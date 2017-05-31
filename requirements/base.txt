@@ -50,3 +50,6 @@ redis>=2.10.5
 
 
 # Your custom requirements go here
+
+
+django-countries==4.5
