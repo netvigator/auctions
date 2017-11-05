@@ -56,6 +56,9 @@ POSTGRES_PASSWORD   = getSecret( 'POSTGRES_PASSWORD')
 POSTGRES_USER       = getSecret( 'POSTGRES_USER'    )
 DATABASE_URL        = getSecret( 'DATABASE_URL'     )
 
+# env['DJANGO_SECRET_KEY'] = DJANGO_SECRET_KEY
+# TypeError: 'Env' object does not support item assignment
+
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------

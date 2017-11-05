@@ -22,29 +22,30 @@ class IntegerRangeField(models.PositiveSmallIntegerField):
 
 
 class Brand(models.Model):
-    cbrandname      = models.CharField(
+    ctitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True)
     bwanted         = models.BooleanField(
                         'want anything from this brand?', default = True )
     ballofinterest  = models.BooleanField(
                         'want everything from this brand?', default = True )
     istars          = IntegerRangeField(
-                        'desireability, five star brand is most desireable',
-                        min_value = 0, max_value = 5 )
+                        'desireability, 10 star brand is most desireable',
+                        min_value = 0, max_value = 10 )
     ccomment        = models.TextField( 'comments', null = True )
     cnationality    = CountryField( null = True )
     cexcludeif      = models.TextField(
                         'exclude item when this text is found' )
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
-    tlegacymodify   = models.DateTimeField( 'legacy row updated on' )
+    tlegacymodify   = models.DateTimeField( 'legacy row updated on', null=True )
     iuser           = models.ForeignKey( User )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     #
     def __str__(self):
-        return self.cbrandname
+        return self.ctitle
     
     class Meta:
         verbose_name_plural = 'brands'
+        ordering            = ('ctitle',)
         db_table            = verbose_name_plural
