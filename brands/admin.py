@@ -14,21 +14,18 @@ class BrandAdmin(admin.ModelAdmin):
         "cnationality", "ccomment", "cexcludeif" )
     read_only_fields = ("_bwanted", "_ballofinterest", "_istars")
     
-    @admin_method_attributes(
-        short_description='Want anything?', allow_tags=True)
+    @admin_method_attributes( short_description='Want anything?' )
     def _bwanted(self, obj):
         return getSayYesOrNo( obj.bwanted )
     
-    @admin_method_attributes(
-        short_description='Want everything?', allow_tags=True)
+    @admin_method_attributes( short_description='Want everything?' )
     def _ballofinterest(self, obj):
         return getSayYesOrNo( obj.ballofinterest )
     
-    @admin_method_attributes(
-        short_description='Desireability', allow_tags=True)
+    @admin_method_attributes( short_description='Desireability' )
     def _istars(self, obj):
         return obj.istars
-    
+
 
 
 admin.site.register(Brand, BrandAdmin)
