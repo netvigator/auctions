@@ -6,19 +6,26 @@ from .models import Brand
 
 from core.utils import admin_method_attributes
 
+from Utils.Output import getSayYesOrNo
+
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ("ctitle", "_bwanted", "_ballofinterest", "_istars")
+    list_display = (
+        "ctitle", "_bwanted", "_ballofinterest", "_istars",
+        "cnationality", "ccomment", "cexcludeif" )
     read_only_fields = ("_bwanted", "_ballofinterest", "_istars")
     
-    @admin_method_attributes(short_description='Want anything?', allow_tags=True)
+    @admin_method_attributes(
+        short_description='Want anything?', allow_tags=True)
     def _bwanted(self, obj):
-        return obj.bwanted
+        return getSayYesOrNo( obj.bwanted )
     
-    @admin_method_attributes(short_description='Want everything?', allow_tags=True)
+    @admin_method_attributes(
+        short_description='Want everything?', allow_tags=True)
     def _ballofinterest(self, obj):
-        return obj.ballofinterest
+        return getSayYesOrNo( obj.ballofinterest )
     
-    @admin_method_attributes(short_description='Desireability', allow_tags=True)
+    @admin_method_attributes(
+        short_description='Desireability', allow_tags=True)
     def _istars(self, obj):
         return obj.istars
     

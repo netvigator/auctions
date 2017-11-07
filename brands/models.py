@@ -31,13 +31,13 @@ class Brand(models.Model):
     istars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10 )
-    ccomment        = models.TextField( 'comments', null = True )
-    cnationality    = CountryField( null = True )
+    ccomment        = models.TextField( 'comments', null = True, blank = True )
+    cnationality    = CountryField( "nationality", null = True )
     cexcludeif      = models.TextField(
-                        'exclude item when this text is found' )
+                        'exclude item when this text is found', blank = True )
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
-    tlegacymodify   = models.DateTimeField( 'legacy row updated on', null=True )
+    tlegacymodify   = models.DateTimeField( 'legacy row updated on', null=True, blank = True )
     iuser           = models.ForeignKey( User )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )

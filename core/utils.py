@@ -1,4 +1,5 @@
-
+# from:
+# https://stackoverflow.com/questions/12048176/how-can-i-rename-a-column-label-in-django-admin-for-a-field-that-is-a-method-pr
 
 def admin_method_attributes(**outer_kwargs):
     """ Wrap an admin method with passed arguments as attributes and values.
