@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from .models import Brand
 
-from core.utils import admin_method_attributes
+from core.admin import admin_method_attributes
 
 from Utils.Output import getSayYesOrNo
 
