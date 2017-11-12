@@ -6,18 +6,10 @@ from django_countries.fields    import CountryField
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+# moved class IntegerRangeField() to core.models
+from core.models import IntegerRangeField
 
-class IntegerRangeField(models.PositiveSmallIntegerField):
-    def __init__(self,
-            verbose_name=None, name=None, min_value=None, max_value=None,
-            **kwargs):
-        self.min_value, self.max_value = min_value, max_value
-        models.PositiveSmallIntegerField.__init__(
-            self, verbose_name, name, **kwargs)
-    def formfield(self, **kwargs):
-        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
-        defaults.update(kwargs)
-        return super(IntegerRangeField, self).formfield(**defaults)
+
 
 
 
@@ -42,10 +34,11 @@ class Brand(models.Model):
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     #
+
     def __str__(self):
         return self.ctitle
     
-    class Meta:
+    class Meta():
         verbose_name_plural = 'brands'
         ordering            = ('ctitle',)
         db_table            = verbose_name_plural

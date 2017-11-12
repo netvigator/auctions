@@ -42,6 +42,8 @@ htmlcov
 # Pycharm
 .idea/*
 
+.directory
+
 Secrets.conf
 
 # Vim

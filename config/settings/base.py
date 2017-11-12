@@ -90,6 +90,7 @@ LOCAL_APPS = [
     'auctionbot.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'brands.apps.BrandsConfig',
+    'categories.apps.CategoriesConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

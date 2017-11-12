@@ -154,8 +154,60 @@ def _Brand( oRow ):
     return oBrand
 
 
+def _Category( oRow ):
+    #
+    #from auctionshoppingbot.auctionbot.models import Type
+    #
+    from categories.models import Category
+    #
+    oT                  = Category()
+    #
+    oT.ctitle           = oRow['CDESCRIBE']
+    oT.ckeywords        = oRow['CKEYWORDS'].replace( '/', ',' )
+    oT.bkeywordrequired = getBool(oRow['LKEYWORDSREQUIRED'])
+    oT.istars           = int( float( oRow['NSTARS'] ) )
+    oT.ballofinterest   = getBool(oRow['LALLOFINTEREST'])
+    oT.bwantpair        = getBool(oRow['LWANTPAIR'])
+    oT.baccessory       = getBool(oRow['LACCESSORY'])
+    oT.bcomponent       = getBool(oRow['LCOMPONENT'])
+    oT.bsupercede       = getBool(oRow['LSUPERCEDE'])
+    oT.ilegacykey       = int( oRow['TYPEINTEGER'] )
+    oT.ilegacyfamily    = int( oRow['FAMILYINTEGER'] )
+    oT.tlegacycreate    = getTimeStampGotString( oRow['TCREATE'] )
+    oT.tlegacymodify    = getTimeStampGotString( oRow['TMODIFY'] )
+    #
+    oT.iuser            = oUserOne
+    #
+    return oT
+
+
+
+def _CategoryFamily():
+    #
+    from categories.models import Category
+    #
+    oAllCategories = Category.objects.all()
+    #
+    for oT in oAllCategories:
+        #
+        iLegacyFamily = oT.ilegacyfamily
+        #
+        if iLegacyFamily > 0:
+            #
+            oMainCategory = (
+                Category.objects.filter( ilegacykey = iLegacyFamily ).first() )
+            #
+            oT.ifamily = oMainCategory
+            #
+            oT.save()
+            #
+            # not working 2017-11-12
+            #
+        #
+    #
+
 '''
-oTypes  = Type.objects
+oCategories  = Category.objects
 
 def _Model( oRow ):
     #
@@ -191,50 +243,6 @@ def _Model( oRow ):
     return oM
 
 
-
-def _Type( oRow ):
-    #
-    #from auctionshoppingbot.auctionbot.models import Type
-    from models import Type
-    #
-    oT                  = Type()
-    #
-    oT.ctypedescribe    = oRow['CDESCRIBE']
-    oT.ctypekeywords    = oRow['CKEYWORDS'].replace( '/', ',' )
-    oT.bkeywordrequired = getBool(oRow['LKEYWORDSREQUIRED'])
-    oT.istars           = int( float( oRow['NSTARS'] ) )
-    oT.ballofinterest   = getBool(oRow['LALLOFINTEREST'])
-    oT.bwantpair        = getBool(oRow['LWANTPAIR'])
-    oT.baccessory       = getBool(oRow['LACCESSORY'])
-    oT.bcomponent       = getBool(oRow['LCOMPONENT'])
-    oT.bsupercede       = getBool(oRow['LSUPERCEDE'])
-    oT.ilegacykey       = int( oRow['TYPEINTEGER'] )
-    oT.ilegacyfamily    = int( oRow['FAMILYINTEGER'] )
-    oT.tlegacycreate    = getTimeStampGotString( oRow['TCREATE'] )
-    oT.tlegacymodify    = getTimeStampGotString( oRow['TMODIFY'] )
-    #
-    oT.iuser            = oUserOne
-    #
-    return oT
-
-
-
-def _TypeFamily():
-    #
-    oAllTypes = Type.objects.all()
-    #
-    for oT in oAllTypes:
-        #
-        iLegacyFamily = oT.ilegacyfamily
-        #
-        if iLegacyFamily > 0:
-            #
-            oMainType = (
-                Type.objects.filter( ilegacykey = iLegacyFamily ).first() )
-            #
-            oT.ifamily = oMainType
-        #
-    #
 
 from csv import DictReader
 oFile = open( '/home/Common/Auctions_CSVs_2017-02-18/BRANDTYPES.CSV' )
@@ -283,9 +291,10 @@ def _BrandType( oRow ):
 
 '''
 dTables = dict(
-    brands      = ['BRANDS.CSV',    _Brand      ], )
+    brands      = ['BRANDS.CSV',    _Brand      ],
+    categories  = ['TYPES.CSV',     _Category,  _CategoryFamily ],
+    )
 '''
-    types       = ['TYPES.CSV',     _Type,      _TypeFamily ],
     models      = ['MODELS.CSV',    _Model      ],
     brandtypes  = ['BRANDTYPES.CSV',_BrandType  ] )
 '''
