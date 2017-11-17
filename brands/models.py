@@ -29,7 +29,8 @@ class Brand(models.Model):
                         'exclude item when this text is found', blank = True )
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
-    tlegacymodify   = models.DateTimeField( 'legacy row updated on', null=True, blank = True )
+    tlegacymodify   = models.DateTimeField( 'legacy row updated on',
+                        null=True, blank = True )
     iuser           = models.ForeignKey( User )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )

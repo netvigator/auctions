@@ -206,7 +206,6 @@ def _CategoryFamily():
         #
     #
 
-'''
 oCategories  = Category.objects
 
 def _Model( oRow ):
@@ -216,8 +215,8 @@ def _Model( oRow ):
     #
     oM                  = Model()
     #
-    oM.cmodelnumber     = oRow['CMODELNO']
-    oM.cmodelkeywords   = oRow['CKEYWORDS']
+    oM.ctitle           = oRow['CMODELNO']
+    oM.ckeywords        = oRow['CKEYWORDS']
     oM.bkeywordrequired =     getBool( oRow['LKEYWORDSREQUIRED'] )
     oM.bsplitdigitsok   =     getBool( oRow['LSPLITDIGITSOK'] )
     oM.istars           = int( float( oRow['NSTARS'] ) )
@@ -228,7 +227,6 @@ def _Model( oRow ):
     oM.bgetpictures     = not getBool( oRow['LNOPICTURES'] )
     oM.bgetdescription  = not getBool( oRow['LNODESCRIPTION'] )
     oM.ccomment         = oRow['CCOMMENTS'] + oRow['MCOMMENTS'] 
-    oM.itype            = None
     oM.ilegacykey       = oRow['MODELINTEGER']
     oM.ilegacybrand     = oRow['BRANDINTEGER']
     oM.ilegacytype      = oRow['TYPEINTEGER']
@@ -243,6 +241,7 @@ def _Model( oRow ):
     return oM
 
 
+'''
 
 from csv import DictReader
 oFile = open( '/home/Common/Auctions_CSVs_2017-02-18/BRANDTYPES.CSV' )
