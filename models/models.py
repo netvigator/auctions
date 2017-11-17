@@ -35,6 +35,9 @@ class Model(models.Model):
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     
+    def __str__(self):
+        return self.ctitle
+        
     class Meta:
         verbose_name_plural = 'models'
         ordering            = ('ctitle',)
