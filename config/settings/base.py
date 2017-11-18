@@ -172,6 +172,11 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # In a Windows environment this must be set to your system time zone.
 TIME_ZONE = 'America/Los_Angeles'
 
+if 'time_zone' in dSecretsConf:
+    #
+    TIME_ZONE = dSecretsConf[ 'time_zone' ]
+
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
 
