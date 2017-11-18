@@ -2,6 +2,12 @@ from django.db import models
 
 from core.models import IntegerRangeField
 
+from brands.models import Brand
+from categories.models import Category
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 # Create your models here.
 
 class Model(models.Model):
@@ -27,7 +33,7 @@ class Model(models.Model):
                         'want the description text?', default = True )
     ccomment        = models.TextField( 'comments', null = True, blank = True )
     ibrand          = models.ForeignKey( Brand )
-    itype           = models.ForeignKey( Type )
+    icategory       = models.ForeignKey( Category )
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
     tlegacymodify   = models.DateTimeField( 'legacy row updated on', blank = True )
