@@ -15,14 +15,15 @@ from brands.models import Brand
 class Category(models.Model):
     ctitle          = models.CharField(
                         'category description', max_length = 48, db_index = True)
-    ckeywords       = models.CharField( 'category key words', max_length = 88 )
+    ckeywords       = models.CharField( 'category key words', max_length = 88,
+                                        null = True, blank = True )
     bkeywordrequired= models.BooleanField(
-                        'key word required?', default = True )
+                        'key word required?', default = False )
     istars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
-                            min_value = 0, max_value = 10 )
+                            min_value = 0, max_value = 10, default = 5 )
     ballofinterest  = models.BooleanField(
-                        'want everything of this category?', default = True )
+                        'want everything of this category?', default = False )
     bwantpair       = models.BooleanField('only want pairs?', default = False)
     baccessory      = models.BooleanField('accessory?', default = False)
     bcomponent      = models.BooleanField('component?', default = False)

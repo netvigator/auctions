@@ -46,7 +46,7 @@ class CategoryAdmin(admin.ModelAdmin):
     def _bcomponent(self, obj):
         return getSayYesOrNo( obj.bcomponent )
 
-    @admin_method_attributes( short_description='Family ID' )
+    @admin_method_attributes( short_description='Family' )
     def _ifamily(self, obj):
         return obj.ifamily
 
