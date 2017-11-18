@@ -206,12 +206,14 @@ def _CategoryFamily():
         #
     #
 
-oCategories  = Category.objects
+# oCategories  = Category.objects
 
 def _Model( oRow ):
     #
     # from auctionshoppingbot.auctionbot.models import Model
-    from models import Model
+    from models.models import Model
+    from brands.models import Brand
+    from categories.models import Category
     #
     oM                  = Model()
     #
@@ -292,9 +294,9 @@ def _BrandType( oRow ):
 dTables = dict(
     brands      = ['BRANDS.CSV',    _Brand      ],
     categories  = ['TYPES.CSV',     _Category,  _CategoryFamily ],
+    models      = ['MODELS.CSV',    _Model      ],
     )
 '''
-    models      = ['MODELS.CSV',    _Model      ],
     brandtypes  = ['BRANDTYPES.CSV',_BrandType  ] )
 '''
 
@@ -341,7 +343,14 @@ def doOneTable( sTable ):
     #
     iCsvLines = -1
     #
-    for sLine in oCsvFile: iCsvLines += 1
+    try:
+        for oCsvRow in oCsvFile: 
+            iCsvLines += 1
+            oPriorRow = oCsvRow
+    except UnicodeDecodeError:
+        print3( 'Unicode error on line %s' % str( iCsvLines ) )
+        print3( 'Prior row: %s' % oPriorRow )
+        raise
     #
     oCsvFile    = getFileObject( sCsvPath, sCsvFile )
     #
