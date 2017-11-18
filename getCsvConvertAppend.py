@@ -67,7 +67,9 @@ User = get_user_model()
 #from auctionshoppingbot.auctionbot.models \
 #   import Brand, Type, Model, BrandType
 
-from brands.models import Brand
+from brands.models      import Brand
+from categories.models  import Category
+from models.models      import Model
 
 
 dConvertConf        = getConfDict('getCsvConvertAppend.conf')
@@ -99,7 +101,8 @@ if not oUserOne:
     oUserOne = oUser
 
 
-oBrands = Brand.objects
+oBrands     = Brand.objects
+oCategories = Category.objects
 
 
 def getTimeStampGotString( sTimeStamp ):
@@ -135,7 +138,6 @@ def _getNationality( s ):
 def _Brand( oRow ):
     #
     # from auctionshoppingbot.auctionbot.models import Brand
-    from brands.models import Brand
     #
     oBrand = Brand()
     #
@@ -157,8 +159,6 @@ def _Brand( oRow ):
 def _Category( oRow ):
     #
     #from auctionshoppingbot.auctionbot.models import Type
-    #
-    from categories.models import Category
     #
     oT                  = Category()
     #
@@ -183,8 +183,6 @@ def _Category( oRow ):
 
 
 def _CategoryFamily():
-    #
-    from categories.models import Category
     #
     oAllCategories = Category.objects.all()
     #
@@ -211,9 +209,6 @@ def _CategoryFamily():
 def _Model( oRow ):
     #
     # from auctionshoppingbot.auctionbot.models import Model
-    from models.models import Model
-    from brands.models import Brand
-    from categories.models import Category
     #
     oM                  = Model()
     #
@@ -236,7 +231,7 @@ def _Model( oRow ):
     oM.tlegacymodify    = getTimeStampGotString( oRow['TMODIFY'] )
     #
     oM.ibrand           = oBrands.filter(ilegacykey =oM.ilegacybrand).first()
-    oM.itype            = oTypes.filter( ilegacykey =oM.ilegacytype ).first()
+    oM.icategory        = oCategories.filter( ilegacykey =oM.ilegacytype ).first()
     #
     oM.iuser            = oUserOne
     #

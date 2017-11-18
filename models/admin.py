@@ -11,9 +11,9 @@ from Utils.Output import getSayYesOrNo
 class ModelAdmin(admin.ModelAdmin):
     list_display = (
         "ctitle", 
-        "_ckeywords","_bkeywordrequired", "_istars", )
+        "_ckeywords","_bkeywordrequired", "_istars", "_ibrand", "_icategory" )
     read_only_fields = (
-        "_ckeywords", "_bkeywordrequired", "_istars", )
+        "_ckeywords", "_bkeywordrequired", "_istars", "_ibrand", "_icategory" )
 
     @admin_method_attributes( short_description='Key words' )
     def _ckeywords(self, obj):
@@ -27,6 +27,13 @@ class ModelAdmin(admin.ModelAdmin):
     def _istars(self, obj):
         return obj.istars
 
+    @admin_method_attributes( short_description='Brand' )
+    def _ibrand(self, obj):
+        return obj.ibrand
+
+    @admin_method_attributes( short_description='Category' )
+    def _icategory(self, obj):
+        return obj.icategory
 
 
 

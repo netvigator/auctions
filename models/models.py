@@ -32,11 +32,12 @@ class Model(models.Model):
     bgetdescription = models.BooleanField(
                         'want the description text?', default = True )
     ccomment        = models.TextField( 'comments', null = True, blank = True )
-    ibrand          = models.ForeignKey( Brand )
+    ibrand          = models.ForeignKey( Brand, null = True, blank = True )
     icategory       = models.ForeignKey( Category )
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
-    tlegacymodify   = models.DateTimeField( 'legacy row updated on', blank = True )
+    tlegacymodify   = models.DateTimeField( 'legacy row updated on',
+                        null = True, blank = True )
     iuser           = models.ForeignKey( User )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
