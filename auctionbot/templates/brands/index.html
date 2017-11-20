@@ -1,7 +1,7 @@
 {% if brand_list %}
     <ul>
     {% for question in brand_list %}
-        <li><a href="/brands/{{ brand.id }}/">{{ brand.cbrandname }}</a></li>
+        <li><a href="/brands/{{ brand.id }}/">{{ brand.ctitle }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
