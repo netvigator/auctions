@@ -4,20 +4,23 @@ from django.contrib import admin
 
 from core.admin import admin_method_attributes
 
-from.models import Model
+from .models import Model
 
-from Utils.Output import getSayYesOrNo
+from Utils.Output   import getSayYesOrNo
+from String.Get     import getUpToLenSplitOnWhite
 
 class ModelAdmin(admin.ModelAdmin):
     list_display = (
         "ctitle", 
-        "_ckeywords","_bkeywordrequired", "_istars", "_ibrand", "_icategory" )
+        "_ckeywords","_bkeywordrequired", "_istars", "_ibrand", "_icategory",
+        "_ccomment" )
     read_only_fields = (
-        "_ckeywords", "_bkeywordrequired", "_istars", "_ibrand", "_icategory" )
+        "_ckeywords", "_bkeywordrequired", "_istars", "_ibrand", "_icategory",
+        "_ccomment" )
 
-    @admin_method_attributes( short_description='Key words' )
+    @admin_method_attributes( short_description='Key words', allow_tags=True )
     def _ckeywords(self, obj):
-        return obj.ckeywords
+        return str( obj.ckeywords ).replace( ' ', '&nbsp;' )
 
     @admin_method_attributes( short_description='Required?' )
     def _bkeywordrequired(self, obj):
@@ -27,14 +30,22 @@ class ModelAdmin(admin.ModelAdmin):
     def _istars(self, obj):
         return obj.istars
 
-    @admin_method_attributes( short_description='Brand' )
+    @admin_method_attributes( short_description='Brand', allow_tags=True )
     def _ibrand(self, obj):
-        return obj.ibrand
+        return str( obj.ibrand ).replace( ' ', '&nbsp;' )
 
-    @admin_method_attributes( short_description='Category' )
+    @admin_method_attributes( short_description='Category', allow_tags=True )
     def _icategory(self, obj):
-        return obj.icategory
+        return str( obj.icategory ).replace( ' ', '&nbsp;' )
 
+    def _ccomment(self, obj):
+        
+        sComment = str( obj.ccomment )
+        
+        if len( sComment ) > 80:
+            sComment = getUpToLenSplitOnWhite( sComment, 76 ) + ' ...'
+                    
+        return sComment
 
 
 admin.site.register(Model, ModelAdmin)
