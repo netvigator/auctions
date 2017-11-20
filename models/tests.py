@@ -1,5 +1,7 @@
 from django.test import TestCase
 
+from .models import Model
+
 # Create your tests here.
 
 '''
@@ -9,3 +11,11 @@ class ModelsViewsTestCase(TestCase):
         resp = self.client.get('/models/')
         self.assertEqual(resp.status_code, 200)
 '''
+
+
+class ModelModelTest(TestCase):
+
+    def test_string_representation(self):
+        sModel = "My model name/number"
+        oModel = Model(ctitle= sModel )
+        self.assertEqual(str(sModel), oModel.ctitle)
