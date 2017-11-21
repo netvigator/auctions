@@ -59,10 +59,6 @@ django.setup()
         #"environmental variable!\n" )
     ##
 
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
 # as import scripts are implemented, import the models here
 #from auctionshoppingbot.auctionbot.models \
 #   import Brand, Type, Model, BrandType
@@ -70,6 +66,7 @@ User = get_user_model()
 from brands.models      import Brand
 from categories.models  import Category
 from models.models      import Model
+from core.utils         import oUserOne
 
 
 dConvertConf        = getConfDict('getCsvConvertAppend.conf')
@@ -83,22 +80,6 @@ sErrorFile          = join( sTempDir, 'conversion_errors_%s.txt'  % sGMT )
 
 
 oHongKongTime = timezone('Asia/Bangkok')
-
-oUserOne = User.objects.filter( id = 1 ).first()
-
-if not oUserOne:
-    #
-    oUser = User()
-    #
-    oUser.cnamegiven    = 'Rick'
-    oUser.cnamefamily   = 'Graves'
-    oUser.cemail        = 'gravesricharde@yahoo.com'
-    oUser.cusername     = 'aardvigator'
-    oUser.cpasswordhash = 'tba'
-    #
-    oUser.save()
-    #
-    oUserOne = oUser
 
 
 oBrands     = Brand.objects
