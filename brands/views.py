@@ -7,14 +7,16 @@ from django.views import generic
 
 from .models import Brand
 
-class IndexView(generic.ListView):
+class IndexView(generic.ListView):  
     template_name = 'brands/index.html'
-    context_object_name = 'brands_list'
-
+    context_object_name = 'brand_list'
+    model = Brand
+    
+'''
     def get_queryset(self):
         """Return the last five published questions."""
         return Brand.objects.order_by('ctitle')
-
+'''
 
 class DetailView(generic.DetailView):
     model = Brand

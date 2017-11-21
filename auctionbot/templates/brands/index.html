@@ -1,6 +1,7 @@
+<h1>Brands</h1>
 {% if brand_list %}
     <ul>
-    {% for question in brand_list %}
+    {% for contact in brand_list %}
         <li><a href="/brands/{{ brand.id }}/">{{ brand.ctitle }}</a></li>
     {% endfor %}
     </ul>
