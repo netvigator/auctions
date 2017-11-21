@@ -1,10 +1,12 @@
 <h1>Brands</h1>
 {% if brand_list %}
     <ul>
-    {% for contact in brand_list %}
+    {% for brand in brand_list %}
         <li><a href="/brands/{{ brand.id }}/">{{ brand.ctitle }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No brands are available.</p>
 {% endif %}
+
+<a href="{% url "brands:brands-new" %}">add brand</a>

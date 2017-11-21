@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from django.views.generic import CreateView
 
 # Create your views here but keep them thin.
 
@@ -22,3 +23,13 @@ class DetailView(generic.DetailView):
     model = Brand
     template_name = 'brands/detail.html'
 
+
+class CreateBrandView(CreateView):
+
+    model = Brand
+    fields = ('ctitle','bwanted','ballofinterest','istars','ccomment',
+              'cnationality','cexcludeif',)
+    template_name = 'brands/edit_brand.html'
+
+    def get_success_url(self):
+        return reverse('brands-list')
