@@ -20,7 +20,7 @@ class Model(models.Model):
                         'split digits OK?', default = False )
     istars          = IntegerRangeField(
                         'desireability, 10 star model is most desireable',
-                        min_value = 0, max_value = 10 )
+                        min_value = 0, max_value = 10, default = 5 )
     bgenericmodel   = models.BooleanField('generic model?', default = True )
     bsubmodelsok    = models.BooleanField(
                         'want to get sub models?', default = True )
