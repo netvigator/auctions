@@ -10,7 +10,7 @@ from .models import Brand
 
 class IndexView(generic.ListView):  
     template_name = 'brands/index.html'
-    context_object_name = 'brand_list'
+    context_object_name = 'index'
     model = Brand
     
 '''

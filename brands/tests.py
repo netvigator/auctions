@@ -26,11 +26,11 @@ class BrandListViewTests(TestCase):
         client = Client()
         response = client.get('/')
 
-        self.assertEquals(list(response.context['brand_list']), [])
+        self.assertEquals(list(response.context['index']), [])
 
         Brand.objects.create(ctitle='Chevrolet', iuser=oUserOne )
         response = client.get('/')
-        self.assertEquals(response.context['brand_list'].count(), 1)
+        self.assertEquals(response.context['index'].count(), 1)
 
     def test_brands_in_the_context_request_factory(self):
 
@@ -39,8 +39,8 @@ class BrandListViewTests(TestCase):
 
         response = IndexView.as_view()(request)
 
-        self.assertEquals(list(response.context_data['brand_list']), [])
+        self.assertEquals(list(response.context_data['index']), [])
 
         Brand.objects.create(ctitle='Chevrolet', iuser=oUserOne )
         response = IndexView.as_view()(request)
-        self.assertEquals(response.context_data['brand_list'].count(), 1)
+        self.assertEquals(response.context_data['index'].count(), 1)

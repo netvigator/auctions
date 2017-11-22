@@ -1,7 +1,7 @@
 <h1>Brands</h1>
-{% if brand_list %}
+{% if index %}
     <ul>
-    {% for brand in brand_list %}
+    {% for brand in index %}
         <li><a href="/brands/{{ brand.id }}/">{{ brand.ctitle }}</a></li>
     {% endfor %}
     </ul>
