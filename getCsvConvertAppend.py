@@ -64,7 +64,7 @@ django.setup()
 #   import Brand, Type, Model, BrandType
 
 from brands.models      import Brand
-from categories.models  import Category
+from categories.models  import Category, BrandCategory
 from models.models      import Model
 from core.utils         import oUserOne
 
@@ -267,14 +267,55 @@ def _BrandType( oRow ):
     return oBT
 
 '''
+
+def _BrandCategory( oRow ):
+    #
+    #from auctionshoppingbot.auctionbot.models import BrandType
+    from categories.models import BrandCategory
+    #
+    oBC            = BrandCategory()
+    #
+    try:
+        #
+        oBC.ibrand = oBrands.filter(ilegacykey =oRow['BRANDINTEGER']).first()
+        #
+    except ValueError:
+        #
+        if bCrashOnErrors: raise
+        #
+        # print3(
+        #     'not finding a brand row for legacy key "%s"!!!' %
+        #     oRow['BRANDINTEGER'] )
+        #
+    try:
+        #
+        oBC.itype = oCategories.filter(
+            ilegacykey =oRow['TYPEINTEGER'] ).first()
+        #
+    except ValueError:
+        #
+        if bCrashOnErrors: raise
+        #
+        # print3(
+        #     'not finding a type row for legacy key "%s"!!!' %
+        #     oRow['TYPEINTEGER'] )
+        #
+    #
+    oBC.tlegacycreate   = ( getTimeStampGotString( oRow['TCREATE'] ) )
+    #
+    oBC.iuser       = oUserOne
+    #
+    return oBC
+
+
+
 dTables = dict(
-    brands      = ['BRANDS.CSV',    _Brand      ],
-    categories  = ['TYPES.CSV',     _Category,  _CategoryFamily ],
-    models      = ['MODELS.CSV',    _Model      ],
+    brands          = ['BRANDS.CSV',    _Brand          ],
+    categories      = ['TYPES.CSV',     _Category, _CategoryFamily ],
+    models          = ['MODELS.CSV',    _Model          ],
+    BrandCategories = ['BRANDTYPES.CSV',_BrandCategory  ],
     )
-'''
-    brandtypes  = ['BRANDTYPES.CSV',_BrandType  ] )
-'''
+
 
 def _putErrorMsg( sTable, oNewRow, sMsg ):
     #

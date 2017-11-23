@@ -9,6 +9,7 @@ User = get_user_model()
 # moved class IntegerRangeField() to core.models
 from core.models import IntegerRangeField
 
+# from categories.models  import Category
 
 
 
@@ -45,3 +46,4 @@ class Brand(models.Model):
         verbose_name_plural = 'brands'
         ordering            = ('ctitle',)
         db_table            = verbose_name_plural
+

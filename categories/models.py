@@ -50,12 +50,12 @@ class Category(models.Model):
 
 class BrandCategory(models.Model):
     ibrand          = models.ForeignKey( Brand )
-    icategory           = models.ForeignKey( Category )
+    icategory       = models.ForeignKey( Category )
     bwanted         = models.BooleanField('want this combination?', default = True )
     iuser           = models.ForeignKey( User )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     
     class Meta:
-        verbose_name_plural = 'brandcategories'
+        verbose_name_plural = 'BrandCategories'
         db_table            = verbose_name_plural
 #
