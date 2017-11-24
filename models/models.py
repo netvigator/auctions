@@ -50,3 +50,14 @@ class Model(models.Model):
         ordering            = ('ctitle',)
         db_table            = verbose_name_plural
 #
+
+class ModelPic(models.Model):
+    imodel          = models.ForeignKey( Model )
+    cfilespec       = models.FilePathField( 'file path & name for model picture' )
+    iuser           = models.ForeignKey( User )
+    tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
+    
+    class Meta:
+        verbose_name_plural = 'modelpics'
+        db_table            = verbose_name_plural
