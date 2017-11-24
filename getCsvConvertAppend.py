@@ -219,54 +219,7 @@ def _Model( oRow ):
     return oM
 
 
-'''
 
-from csv import DictReader
-oFile = open( '/home/Common/Auctions_CSVs_2017-02-18/BRANDTYPES.CSV' )
-oReader = DictReader( oFile )
-oReader.__next__()
-{'': None, 'TMODIFY': '0000-00-00_00:00:00', 'BRANDINTEGER': '6741', 'TYPEINTEGER': '3170', 'TCREATE': '2000-12-26_21:30:51'}
-{'TCREATE': '2000-12-26_21:30:51', 'TYPEINTEGER': '3170', 'BRANDINTEGER': '6741', 'TMODIFY': '0000-00-00_00:00:00', '': None}
-
-def _BrandType( oRow ):
-    #
-    #from auctionshoppingbot.auctionbot.models import BrandType
-    from models import BrandType
-    #
-    oBT                 = BrandType()
-    #
-    try:
-        #
-        oBT.ibrand      = oBrands.filter(ilegacykey =oRow['BRANDINTEGER']).first()
-        #
-    except ValueError:
-        #
-        if bCrashOnErrors: raise
-        #
-        # print3(
-        #     'not finding a brand row for legacy key "%s"!!!' %
-        #     oRow['BRANDINTEGER'] )
-        #
-    try:
-        #
-        oBT.itype       = oTypes.filter( ilegacykey =oRow['TYPEINTEGER'] ).first()
-        #
-    except ValueError:
-        #
-        if bCrashOnErrors: raise
-        #
-        # print3(
-        #     'not finding a type row for legacy key "%s"!!!' %
-        #     oRow['TYPEINTEGER'] )
-        #
-    #
-    oBT.tlegacycreate   = ( getTimeStampGotString( oRow['TCREATE'] ) )
-    #
-    oBT.iuser       = oUserOne
-    #
-    return oBT
-
-'''
 
 def _BrandCategory( oRow ):
     #
@@ -289,7 +242,7 @@ def _BrandCategory( oRow ):
         #
     try:
         #
-        oBC.itype = oCategories.filter(
+        oBC.icategory = oCategories.filter(
             ilegacykey =oRow['TYPEINTEGER'] ).first()
         #
     except ValueError:
@@ -443,6 +396,8 @@ def doTables( lTables ):
         doOneTable( sTable )
         #
     #
+
+
 
 
 if __name__ == "__main__":
