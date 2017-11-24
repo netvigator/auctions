@@ -56,6 +56,6 @@ class BrandCategory(models.Model):
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     
     class Meta:
-        verbose_name_plural = 'BrandCategories'
+        verbose_name_plural = 'brandcategories'
         db_table            = verbose_name_plural
 #
