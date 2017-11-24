@@ -17,7 +17,7 @@ class ModelModelTest(TestCase):
         oBrand = Brand(ctitle= sBrand )
         self.assertEqual(str(sBrand), oBrand.ctitle)
 
-
+'''
 class BrandListViewTests(TestCase):
     """Brand list view tests."""
 
@@ -44,3 +44,4 @@ class BrandListViewTests(TestCase):
         Brand.objects.create(ctitle='Chevrolet', iuser=oUserOne )
         response = IndexView.as_view()(request)
         self.assertEquals(response.context_data['index'].count(), 1)
+'''

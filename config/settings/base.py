@@ -92,6 +92,8 @@ LOCAL_APPS = [
     'brands.apps.BrandsConfig',
     'categories.apps.CategoriesConfig',
     'models.apps.ModelsConfig',
+    'itemhits.apps.ItemHitsConfig',
+    'items.apps.ItemsConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
