@@ -23,9 +23,10 @@ class Model(models.Model):
                         min_value = 0, max_value = 10, default = 5 )
     bgenericmodel   = models.BooleanField('generic model?', default = True )
     bsubmodelsok    = models.BooleanField(
-                        'want to get sub models?', default = True )
+                        'include sub models (suffix such as A, B, C, etc.)?',
+                        default = True )
     bmusthavebrand  = models.BooleanField(
-                        'must have brand key words?', default = False)
+                        'must have brand in aution title?', default = False)
     bwanted         = models.BooleanField('want this model?', default = True )
     bgetpictures    = models.BooleanField(
                         'want to download pics?', default = True )
@@ -34,6 +35,13 @@ class Model(models.Model):
     ccomment        = models.TextField( 'comments', null = True, blank = True )
     ibrand          = models.ForeignKey( Brand, null = True, blank = True )
     icategory       = models.ForeignKey( Category )
+    
+    cfile1spec      = models.FilePathField( 'file path & name for model picture 1' )
+    cfile2spec      = models.FilePathField( 'file path & name for model picture 2' )
+    cfile3spec      = models.FilePathField( 'file path & name for model picture 3' )
+    cfile4spec      = models.FilePathField( 'file path & name for model picture 4' )
+    cfile5spec      = models.FilePathField( 'file path & name for model picture 5' )
+    
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
     tlegacymodify   = models.DateTimeField( 'legacy row updated on',
@@ -50,14 +58,3 @@ class Model(models.Model):
         ordering            = ('ctitle',)
         db_table            = verbose_name_plural
 #
-
-class ModelPic(models.Model):
-    imodel          = models.ForeignKey( Model )
-    cfilespec       = models.FilePathField( 'file path & name for model picture' )
-    iuser           = models.ForeignKey( User )
-    tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
-    tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
-    
-    class Meta:
-        verbose_name_plural = 'modelpics'
-        db_table            = verbose_name_plural
