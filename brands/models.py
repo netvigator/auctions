@@ -27,7 +27,9 @@ class Brand(models.Model):
     ccomment        = models.TextField( 'comments', null = True, blank = True )
     cnationality    = CountryField( "nationality", null = True )
     cexcludeif      = models.TextField(
-                        'not a hit if this text is found',
+                        'Not a hit if this text is found '
+                        '(each line evaluated separately, '
+                        'put different exclude tests on different lines)',
                         null=True, blank = True )
     ilegacykey      = models.PositiveIntegerField('legacy key', null = True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on',

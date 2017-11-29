@@ -36,14 +36,22 @@ class Model(models.Model):
     ibrand          = models.ForeignKey( Brand, null = True, blank = True )
     icategory       = models.ForeignKey( Category )
     
-    cfile1spec      = models.FilePathField( 'file path & name for model picture 1' )
-    cfile2spec      = models.FilePathField( 'file path & name for model picture 2' )
-    cfile3spec      = models.FilePathField( 'file path & name for model picture 3' )
-    cfile4spec      = models.FilePathField( 'file path & name for model picture 4' )
-    cfile5spec      = models.FilePathField( 'file path & name for model picture 5' )
+    cfile1spec      = models.FilePathField( 'file path & name for model picture 1',
+                                            null = True, blank = True )
+    cfile2spec      = models.FilePathField( 'file path & name for model picture 2',
+                                            null = True, blank = True )
+    cfile3spec      = models.FilePathField( 'file path & name for model picture 3',
+                                            null = True, blank = True )
+    cfile4spec      = models.FilePathField( 'file path & name for model picture 4',
+                                            null = True, blank = True )
+    cfile5spec      = models.FilePathField( 'file path & name for model picture 5',
+                                            null = True, blank = True )
     
-    cexcludeif      = models.TextField( 'not a hit if this text is found',
-                                        null = True, blank = True )
+    cexcludeif      = models.TextField(
+                        'Not a hit if this text is found '
+                        '(each line evaluated separately, '
+                        'put different exclude tests on different lines)',
+                        null = True, blank = True )
     
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )

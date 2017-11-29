@@ -261,29 +261,62 @@ def _BrandCategory( oRow ):
     return oBC
 
 
-'''
-def ExcludeThis( oRow, Table ):
-    #
-    oTable = Table()
-    #
-    ilegacykey
-'''
+tSeparator = ( '', '\n' )
 
 
+def ExcludeThis( oCsvRow, oTable, cColName ):
+    #
+    oTableRow = oTable.filter(
+        ilegacykey = int( oCsvRow[ cColName ] ) ).first()
+    #
+    try:
+        #
+        iExcludeAlready = int( bool( oTableRow.cexcludeif ) )
+        #
+        if not iExcludeAlready: oTableRow.cexcludeif = ''
+        #
+        oTableRow.cexcludeif += (
+                tSeparator[iExcludeAlready] + oCsvRow['CEXCLUDEIF'] )
+        #
+    except AttributeError:
+        #
+        oTableRow = None
+        #
+    #
+    return oTableRow
+
+
+'''
 def _CategoryExclude( oRow ):
     #
     # ExcludeThis( oRow, Category )
     #
-    oCategory.icategory = oCategories.filter( ilegacykey = int( oRow['TYPEINTEGER'] ) ).first()
-    
+    oCategory = oCategories.filter(
+        ilegacykey = int( oRow['TYPEINTEGER'] ) ).first()
+    #
+    iExcludeAlready = int( bool( oCategory.cexcludeif ) )
+    #
+    oCategory.cexcludeif += tSeparator[ iExcludeAlready ] + oRow['CEXCLUDEIF']
+    #
+    oCategory.save()
+'''
+
+
+def _CategoryExclude( oRow):
+    #
+    return ExcludeThis( oRow, oCategories, 'TYPEINTEGER' )
 
 def _BrandExclude( oRow ):
     #
-    ExcludeThis( oRow, Brand )
+    if oRow["BRANDINTEGER"].endswith( '.' ):
+        #
+        oRow["BRANDINTEGER"] = oRow["BRANDINTEGER"][:-1]
+        #
+    return ExcludeThis( oRow, oBrands, "BRANDINTEGER" )
 
 def _ModelExclude( oRow ):
     #
-    ExcludeThis( oRow, Model )
+    return ExcludeThis( oRow, oModels, "MODELINTEGER" )
 
 
 
@@ -366,7 +399,13 @@ def doOneTable( sTable ):
     #
     for oCsvRow in oCsvReader:
         #
+        if oCsvRow is None: continue
+        #
         oNewRow = doTable( oCsvRow )
+        #
+        if oNewRow is None: 
+            iSeq += 1
+            continue
         #
         try:
             #
