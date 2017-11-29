@@ -1,7 +1,10 @@
 from django.db import models
+from djmoney.models.fields  import MoneyField
 
 # Create your models here.
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class Item(models.Model):
     iitemnumb       = models.BigIntegerField(
@@ -45,7 +48,7 @@ class Item(models.Model):
     cdescription    = models.TextField( 'description' )
     iimages         = models.PositiveSmallIntegerField( '# of pictures' )
     irelistitemnumb = models.BigIntegerField( 'relist item number' )
-    igetbecause     = models.ForeignKey( FetchPriorty )
+    # igetbecause   = models.ForeignKey( FetchPriorty )
     tlastcheck      = models.DateTimeField( 'got status most recently date/time' )
     bkeeper         = models.NullBooleanField( 'keep this?' )
     bnotwanted      = models.BooleanField( 'not wanted', default = False )

@@ -84,7 +84,7 @@ oHongKongTime = timezone('Asia/Bangkok')
 
 oBrands     = Brand.objects
 oCategories = Category.objects
-
+oModels     = Model.objects
 
 def getTimeStampGotString( sTimeStamp ):
     #
@@ -261,14 +261,44 @@ def _BrandCategory( oRow ):
     return oBC
 
 
+'''
+def ExcludeThis( oRow, Table ):
+    #
+    oTable = Table()
+    #
+    ilegacykey
+'''
+
+
+def _CategoryExclude( oRow ):
+    #
+    # ExcludeThis( oRow, Category )
+    #
+    oCategory.icategory = oCategories.filter( ilegacykey = int( oRow['TYPEINTEGER'] ) ).first()
+    
+
+def _BrandExclude( oRow ):
+    #
+    ExcludeThis( oRow, Brand )
+
+def _ModelExclude( oRow ):
+    #
+    ExcludeThis( oRow, Model )
+
+
 
 dTables = dict(
-    brands          = ['BRANDS.CSV',    _Brand          ],
-    categories      = ['TYPES.CSV',     _Category, _CategoryFamily ],
-    models          = ['MODELS.CSV',    _Model          ],
-    BrandCategories = ['BRANDTYPES.CSV',_BrandCategory  ],
+    brands          = ['BRANDS.CSV',        _Brand          ],
+    categories      = ['TYPES.CSV',         _Category, _CategoryFamily ],
+    models          = ['MODELS.CSV',        _Model          ],
+    BrandCategories = ['BRANDTYPES.CSV',    _BrandCategory  ],
+    categoryExclude = ['TYPEEXCLUDE.CSV',   _CategoryExclude],
+    brandExclude    = ['BRANDEXCLUDE.CSV',  _BrandExclude   ],
+    modelExclude    = ['MODELEXCLUDE.CSV',  _ModelExclude   ],
     )
-
+'''
+    brandsNotWanted = ['BRANDEXCLUDE.CSV',  _BrandsNotWanted],
+'''
 
 def _putErrorMsg( sTable, oNewRow, sMsg ):
     #

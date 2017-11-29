@@ -28,6 +28,8 @@ class Category(models.Model):
     baccessory      = models.BooleanField('accessory?', default = False)
     bcomponent      = models.BooleanField('component?', default = False)
     ifamily         = models.ForeignKey( 'self', null = True )
+    cexcludeif      = models.TextField( 'not a hit if this text is found',
+                                        null = True, blank = True )
     ilegacykey      = models.PositiveIntegerField( 'legacy key', unique=True )
     ilegacyfamily   = models.PositiveIntegerField( 'legacy family',
                                                     null = True )

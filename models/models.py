@@ -42,6 +42,9 @@ class Model(models.Model):
     cfile4spec      = models.FilePathField( 'file path & name for model picture 4' )
     cfile5spec      = models.FilePathField( 'file path & name for model picture 5' )
     
+    cexcludeif      = models.TextField( 'not a hit if this text is found',
+                                        null = True, blank = True )
+    
     ilegacykey      = models.PositiveIntegerField('legacy key', unique=True )
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
     tlegacymodify   = models.DateTimeField( 'legacy row updated on',

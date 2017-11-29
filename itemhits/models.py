@@ -1,9 +1,14 @@
 from django.db              import models
 from djmoney.models.fields  import MoneyField
 
-
 # Create your models here.
 
+from models.models          import Model
+from brands.models          import Brand
+from categories.models      import Category
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class ItemHit(models.Model):
     iitemnumb       = models.BigIntegerField(
