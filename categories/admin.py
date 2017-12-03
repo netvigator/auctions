@@ -13,9 +13,10 @@ class CategoryAdmin(admin.ModelAdmin):
         "ctitle", 
         "_ckeywords","_bkeywordrequired", "_ballofinterest", "_istars",
         "_bwantpair", "_baccessory", "_bcomponent", "_ifamily" )
-    read_only_fields = (
+    readonly_fields = (
         "_ckeywords", "_bkeywordrequired", "_ballofinterest",
-        "_istars", "_bwantpair", "_baccessory", "_bcomponent", "_ifamily" )
+        "_istars", "_bwantpair", "_baccessory", "_bcomponent", "_ifamily",
+        'ilegacykey' )
 
     @admin_method_attributes( short_description='Key words' )
     def _ckeywords(self, obj):

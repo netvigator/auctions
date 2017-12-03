@@ -14,9 +14,9 @@ class ModelAdmin(admin.ModelAdmin):
         "ctitle", 
         "_ckeywords","_bkeywordrequired", "_istars", "_ibrand", "_icategory",
         "_ccomment" )
-    read_only_fields = (
+    readonly_fields = (
         "_ckeywords", "_bkeywordrequired", "_istars", "_ibrand", "_icategory",
-        "_ccomment" )
+        "_ccomment", 'ilegacykey' )
 
     @admin_method_attributes( short_description='Key words', allow_tags=True )
     def _ckeywords(self, obj):

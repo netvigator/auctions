@@ -12,7 +12,7 @@ class BrandAdmin(admin.ModelAdmin):
     list_display = (
         "ctitle", "_bwanted", "_ballofinterest", "_istars",
         "cnationality", "ccomment", "cexcludeif" )
-    read_only_fields = ("_bwanted", "_ballofinterest", "_istars")
+    readonly_fields = ("_bwanted", "_ballofinterest", "_istars", 'ilegacykey' )
     
     @admin_method_attributes( short_description='Want anything?' )
     def _bwanted(self, obj):
