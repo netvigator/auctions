@@ -36,7 +36,7 @@ class Brand(models.Model):
                         null=True, blank = True )
     tlegacymodify   = models.DateTimeField( 'legacy row updated on',
                         null=True, blank = True )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     #

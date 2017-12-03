@@ -39,7 +39,7 @@ class Category(models.Model):
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
     tlegacymodify   = models.DateTimeField( 'legacy row updated on',
                                             null = True )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     
@@ -57,7 +57,7 @@ class BrandCategory(models.Model):
     ibrand          = models.ForeignKey( Brand )
     icategory       = models.ForeignKey( Category )
     bwanted         = models.BooleanField('want this combination?', default = True )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     
     class Meta:

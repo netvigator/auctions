@@ -38,7 +38,7 @@ class ItemHit(models.Model):
     imodel          = models.ForeignKey( Model,     null = True )
     ibrand          = models.ForeignKey( Brand,     null = True )
     icategory       = models.ForeignKey( Category,  null = True )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField(
                         'retrieved info date/time', auto_now = True )

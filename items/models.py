@@ -54,7 +54,7 @@ class Item(models.Model):
     bnotwanted      = models.BooleanField( 'not wanted', default = False )
     bgetdetails     = models.BooleanField( 'get details', default = False )
     basktoget       = models.BooleanField( 'ask whether to get details', default = False )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     
@@ -72,7 +72,7 @@ class ItemImage(models.Model):
     isequence       = models.PositiveSmallIntegerField( 'sequence' )
     cfilename       = models.CharField( 'local file name', max_length = 28 )
     coriginalurl    = models.TextField( 'original URL' )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     
     def __str__(self):

@@ -33,19 +33,22 @@ class Model(models.Model):
     bgetdescription = models.BooleanField(
                         'want the description text?', default = True )
     ccomment        = models.TextField( 'comments', null = True, blank = True )
-    ibrand          = models.ForeignKey( Brand, null = True, blank = True )
-    icategory       = models.ForeignKey( Category )
+    ibrand          = models.ForeignKey( Brand, verbose_name = 'Brand',
+                                        null = True, blank = True )
+    icategory       = models.ForeignKey( Category, verbose_name = 'Category' )
     
-    cfile1spec      = models.FilePathField( 'file path & name for model picture 1',
-                                            null = True, blank = True )
-    cfile2spec      = models.FilePathField( 'file path & name for model picture 2',
-                                            null = True, blank = True )
-    cfile3spec      = models.FilePathField( 'file path & name for model picture 3',
-                                            null = True, blank = True )
-    cfile4spec      = models.FilePathField( 'file path & name for model picture 4',
-                                            null = True, blank = True )
-    cfile5spec      = models.FilePathField( 'file path & name for model picture 5',
-                                            null = True, blank = True )
+    # maybe change to FilePathField later, it is not working now 2017-12-03
+    # models.FilePathField()
+    cfile1spec      = models.CharField( 'file path & name for model picture 1',
+                        max_length = 48, null = True, blank = True )
+    cfile2spec      = models.CharField( 'file path & name for model picture 2',
+                        max_length = 48, null = True, blank = True )
+    cfile3spec      = models.CharField( 'file path & name for model picture 3',
+                        max_length = 48, null = True, blank = True )
+    cfile4spec      = models.CharField( 'file path & name for model picture 4',
+                        max_length = 48, null = True, blank = True )
+    cfile5spec      = models.CharField( 'file path & name for model picture 5',
+                        max_length = 48, null = True, blank = True )
     
     cexcludeif      = models.TextField(
                         'Not a hit if this text is found '
@@ -57,7 +60,7 @@ class Model(models.Model):
     tlegacycreate   = models.DateTimeField( 'legacy row created on' )
     tlegacymodify   = models.DateTimeField( 'legacy row updated on',
                         null = True, blank = True )
-    iuser           = models.ForeignKey( User )
+    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
     
