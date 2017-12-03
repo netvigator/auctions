@@ -219,6 +219,65 @@ def _Model( oRow ):
     return oM
 
 
+tLegacyModelPicCols = (
+    'MPICFILESPEC',   'MFILESPECBIG',   'MFILESPECWIDE',
+    'MFILESPECHALF1', 'MFILESPECHALF2', 'MFILESPECLR' )
+
+tNewModelPicCols = (
+    'cfile1spec', 'cfile2spec', 'cfile3spec', 'cfile4spec', 'cfile5spec' )
+
+
+
+def _ModelPics( oRow ):
+    #
+    iRowLegacyKey   = oRow['MODELINTEGER']
+    #
+    oTargetModel = (
+        Model.objects.filter( ilegacykey = iRowLegacyKey ).first() )
+    #
+    lGotPics = []
+    #
+    for sColName in tLegacyModelPicCols:
+        #
+        cThisPic = oRow[ sColName ]
+        #
+        if cThisPic and len( cThisPic ) > 2:
+            #
+            lGotPics.append( cThisPic )
+            #
+        #
+    #
+    if lGotPics:
+        #
+        def getNextColName():
+            #
+            for sColName in tNewModelPicCols:
+                #
+                yield sColName
+                
+            #
+        #
+        genNextColName = getNextColName()
+        #
+        for sThisPic in lGotPics:
+            #
+            sPutInCol = next( genNextColName )
+            #
+            setattr( oTargetModel, sPutInCol, sThisPic )
+            #
+        #
+        oReturn = oTargetModel
+        #
+    else:
+        #
+        oReturn = None
+        #
+    #
+    return oReturn
+
+            
+        
+            
 
 
 def _BrandCategory( oRow ):
@@ -328,6 +387,7 @@ dTables = dict(
     categoryExclude = ['TYPEEXCLUDE.CSV',   _CategoryExclude],
     brandExclude    = ['BRANDEXCLUDE.CSV',  _BrandExclude   ],
     modelExclude    = ['MODELEXCLUDE.CSV',  _ModelExclude   ],
+    modelPics       = ['MODELS.CSV',        _ModelPics      ],
     )
 '''
     brandsNotWanted = ['BRANDEXCLUDE.CSV',  _BrandsNotWanted],
@@ -440,11 +500,11 @@ def doOneTable( sTable ):
             '\nnote that we enountered %s error%s coverting the %s data!\n' %
             ( iErrors, Plural( iErrors ), sTable ) )
         #
-    
-    
-    
-    
-    
+
+
+
+
+
 
 def doTables( lTables ):
     #
