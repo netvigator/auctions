@@ -30,7 +30,7 @@
 
 from csv            import DictReader
 from pytz           import timezone
-from os             import environ
+from os             import environ, listdir
 from os.path        import join
 from sys            import exit, path
 
@@ -72,7 +72,9 @@ from core.utils         import oUserOne
 dConvertConf        = getConfDict('getCsvConvertAppend.conf')
 
 sCsvPath            = dConvertConf['main']['csvpath']
-bCrashOnErrors      = getBool( dConvertConf['main']['crashonerrors'] )
+bCrashOnErrors      = getBool(
+                      dConvertConf['main']['crashonerrors'] )
+sModelPicsPath      = dConvertConf['main']['cmodelpicspath']
 
 sGMT = sayGMT( sBetween = '_' )
 #
@@ -226,9 +228,19 @@ tLegacyModelPicCols = (
 tNewModelPicCols = (
     'cfile1spec', 'cfile2spec', 'cfile3spec', 'cfile4spec', 'cfile5spec' )
 
-
+dModelPicNames  = {}
 
 def _ModelPics( oRow ):
+    #
+    if len( dModelPicNames ) == 0:
+        #
+        lModelPics = listdir( sModelPicsPath )
+        #
+        for sFileName in lModelPics:
+            #
+            dModelPicNames[ sFileName.upper() ] = sFileName
+            #
+        #
     #
     iRowLegacyKey   = oRow['MODELINTEGER']
     #
@@ -261,9 +273,12 @@ def _ModelPics( oRow ):
         #
         for sThisPic in lGotPics:
             #
-            sPutInCol = next( genNextColName )
-            #
-            setattr( oTargetModel, sPutInCol, sThisPic )
+            if sThisPic in dModelPicNames:
+                #
+                sPutInCol = next( genNextColName )
+                #
+                setattr( oTargetModel, sPutInCol, dModelPicNames[ sThisPic ] )
+                #
             #
         #
         oReturn = oTargetModel
