@@ -340,8 +340,14 @@ tSeparator = ( '', '\n' )
 
 def ExcludeThis( oCsvRow, oTable, cColName ):
     #
-    oTableRow = oTable.filter(
-        ilegacykey = int( oCsvRow[ cColName ] ) ).first()
+    cLook4Key = oCsvRow[ cColName ]
+    #
+    if isinstance( cLook4Key, type( None ) ):
+        #
+        return None
+        #
+    #
+    oTableRow = oTable.filter( ilegacykey = int( cLook4Key ) ).first()
     #
     try:
         #
