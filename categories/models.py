@@ -1,5 +1,4 @@
 from django.db                  import models
-from django_countries.fields    import CountryField
 
 # Create your models here.
 
@@ -27,7 +26,8 @@ class Category(models.Model):
     bwantpair       = models.BooleanField('only want pairs?', default = False)
     baccessory      = models.BooleanField('accessory?', default = False)
     bcomponent      = models.BooleanField('component?', default = False)
-    ifamily         = models.ForeignKey( 'self', null = True, blank = True )
+    ifamily         = models.ForeignKey( 'self',
+                        verbose_name = 'category family', null = True, blank = True )
     cexcludeif      = models.TextField(
                         'Not a hit if this text is found '
                         '(each line evaluated separately, '
