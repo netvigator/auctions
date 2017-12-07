@@ -6,6 +6,9 @@ from django_countries.fields    import CountryField
 # table of ebay MarketPlaces:
 # https://developer.ebay.com/api-docs/static/rest-request-components.html#HTTP
 
+# todo: compare:
+# http://developer.ebay.com/devzone/finding/Concepts/SiteIDToGlobalID.html
+
 class Market(models.Model):
     cmarket     = models.CharField( 'market',    max_length = 14 )
     ccountry    = CountryField(     'country',   null = True )
