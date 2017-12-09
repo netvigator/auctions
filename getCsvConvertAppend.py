@@ -32,7 +32,7 @@ from csv            import DictReader
 from pytz           import timezone
 from os             import environ, listdir
 from os.path        import join
-from sys            import exit, path
+from sys            import path
 
 from six            import print_ as print3
 
@@ -51,13 +51,6 @@ environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
 django.setup()
 
-
-#if not environ.get( 'DJANGO_SETTINGS_MODULE' ):
-    ##
-    #exit(
-        #"\nyou forgot to set the 'DJANGO_SETTINGS_MODULE' "
-        #"environmental variable!\n" )
-    ##
 
 # as import scripts are implemented, import the models here
 #from auctionshoppingbot.auctionbot.models \
