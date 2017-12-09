@@ -12,7 +12,7 @@ django==1.11
 # Configuration
 django-environ==0.4.3
 whitenoise==3.3.0
-
+django-debug-toolbar==1.9.1
 
 # Forms
 django-braces==1.11.0
@@ -47,9 +47,14 @@ redis>=2.10.5
 
 
 
+
 # Your custom requirements go here
 
 django-countries==4.5
 
 # money added by RG 2017-11-27
 django-money==0.12.1
+
+
+# django-extensions added by RG 2017-12-10
+django-extensions==1.9.8
