@@ -17,12 +17,7 @@ from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
 # from six import print_ as print3
 
-
-dSecretsConf = getConf( 'Secrets.conf',
-                       tWantSections = (
-                           'ebay-keys',
-                           'ebay-market',
-                           'ebay-endpoints' ) )
+dSecretsConf = getConf( 'Secrets.conf' )
 
 # print3( dSecretsConf )
 
