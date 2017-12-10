@@ -4,6 +4,8 @@ from django.test import TestCase
 
 from .utils     import oUserOne
 
+from .ebay_wrapper  import oEbayConfig
+
 class CoreUserTests(TestCase):
     """User tests."""
 
@@ -12,3 +14,12 @@ class CoreUserTests(TestCase):
         self.assertEquals( oUserOne.username, 'netvigator')
 
 
+class EbayWrapperTests(TestCase):
+    '''ebay wrapper tests'''
+    
+    def test_get_ini_values(self):
+        
+        self.assertEquals( oEbayConfig['call']['global_id'], 'EBAY-US' )
+        
+        self.assertEquals( oEbayConfig['research']['Token'], 'ENTER_HERE' )
+        
