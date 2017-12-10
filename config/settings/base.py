@@ -14,8 +14,17 @@ from django.core.exceptions import ImproperlyConfigured
 
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
-dSecretsConf = getConf( 'Secrets.conf' )
 
+# from six import print_ as print3
+
+
+dSecretsConf = getConf( 'Secrets.conf',
+                       tWantSections = (
+                           'ebay-keys',
+                           'ebay-market',
+                           'ebay-endpoints' ) )
+
+# print3( dSecretsConf )
 
 ROOT_DIR = environ.Path(__file__) - 3  # (auctionbot/config/settings/base.py - 3 = auctionbot/)
 APPS_DIR = ROOT_DIR.path('auctionbot')
@@ -36,16 +45,28 @@ if READ_DOT_ENV_FILE:
     print('The .env file has been loaded. See base.py for more information')
 
 
-def getSecret( sSetting ):
+def getSecret( sSetting, sSection = None ):
     #
     '''Get the secret variable or return explicit exception.'''
     #
     sSetting = sSetting.lower()
     #
     try:
-        return dSecretsConf[ sSetting ]
+        #
+        if sSection is None:
+            return dSecretsConf[ sSetting ]
+        else:
+            return dSecretsConf[ sSection ][ sSetting ]
+        #
     except KeyError:
-        error_msg = 'Set the {0} environment variable'.format( sSetting )
+        #
+        if sSection is None:
+            error_msg = 'Set the {0} environment variable'.format( sSetting )
+        else:
+            error_msg = (
+                        'Set the {0} environment variable '
+                        'under the {1} section'.format( sSetting, sSection ) )
+        #
         raise ImproperlyConfigured(error_msg)
 
 
