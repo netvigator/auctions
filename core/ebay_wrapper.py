@@ -119,4 +119,4 @@ def getMarketCategories( categorySiteId=0 ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-QuickDump( getMarketCategories(), 'Categories_USA.json' )
+# QuickDump( getMarketCategories(), 'Categories_USA.xml' )
