@@ -13,7 +13,9 @@ from ebay.trading   import getCategories
 
 from File.Write     import QuickDump
 
-# from six import print_ as print3
+from six.moves.urllib.error import HTTPError
+
+from six import print_ as print3
 
 path.append('~/Devel/auctions')
 
@@ -53,6 +55,7 @@ def getDecompressed( oContent ):
 
 '''
 signatures:
+
 findItemsAdvanced
 keywords=None, \
 categoryId=None, \
@@ -73,10 +76,8 @@ domainFilter=None, \
 itemFilter=None, \
 outputSelector=None, \
 
-
 to vary the market searched, add param:
 "X-EBAY-SOA-GLOBAL-ID" : {globalId_you_want}
-
 
 from trading:
 def getCategories(  parentId=None, \
@@ -93,11 +94,45 @@ def getCategories(  parentId=None, \
                     **headers ):
 
 
+
 '''
 
-#sResults = findItemsAdvanced( keywords='Simpson 360', categoryId='58277' )
+def getMarketHeader( sMarketID ):
+    #
+    dHeader = { "X-EBAY-SOA-GLOBAL-ID": sMarketID }
+    #
+    return dHeader
+
+
+#### find requires the hyphenated text global site IDs from here: ###
+# http://developer.ebay.com/DevZone/half-finding/Concepts/SiteIDToGlobalID.html
+# integer and underscore versions case HTTP Error 500: Internal Server Error
+
+def getItemsByKeyWords( sKeyWords, sMarketID = 'EBAY-US' ):
+    #
+    dHeader = getMarketHeader( sMarketID )
+    #
+    return getDecoded(
+            findItemsByKeywords( keywords = sKeyWords, **dHeader ) )
+
+def getItemsByCategory( iCategoryID, sMarketID = 'EBAY-US' ):
+    #
+    dHeader = getMarketHeader( sMarketID )
+    #
+    return getDecoded(
+            findItemsByCategory( categoryId = iCategoryID, **dHeader ) )
+
+def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US' ):
+    #
+    dHeader = getMarketHeader( sMarketID )
+    #
+    return getDecoded(
+            findItemsAdvanced(
+                keywords = sKeyWords, categoryId = iCategoryID, **dHeader ) )
+
+sResults = getItemsByBoth( 'Simpson 360', '58277' )
 #
-#QuickDump( getDecoded( sResults ), 'Results_Adv_Simpson360.json' )
+QuickDump( sResults, 'Results_Adv_Simpson360.json' )
 
 
 def getCategoryVersion( categorySiteId=0 ):
@@ -107,7 +142,17 @@ def getCategoryVersion( categorySiteId=0 ):
     #
     return getDecoded( oVersion )
 
-# QuickDump( getCategoryVersion(), 'Categories_Version_USA.xml' )
+#These are invalid!
+#QuickDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Version_US.xml' )
+#QuickDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Version_DE.xml' )
+
+#These are invalid!
+#QuickDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Version_US.xml' )
+#QuickDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Version_DE.xml' )
+
+#### These are OK ####
+#QuickDump( getCategoryVersion(  0 ), 'Categories_Version_US.xml' )
+#QuickDump( getCategoryVersion( 77 ), 'Categories_Version_DE.xml' )
 
 
 def getMarketCategories( categorySiteId=0 ):
@@ -119,4 +164,4 @@ def getMarketCategories( categorySiteId=0 ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-# QuickDump( getMarketCategories(), 'Categories_USA.xml' )
+# QuickDump( getMarketCategories(), 'Categories_USA.xml.gz' )
