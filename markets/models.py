@@ -3,11 +3,15 @@ from django_countries.fields    import CountryField
 
 # Create your models here.
 
-# table of ebay MarketPlaces:
+#### INVALID ###
+# table of INVALID ebay MarketPlaces:
 # https://developer.ebay.com/api-docs/static/rest-request-components.html#HTTP
+# heading:
+# Marketplace ID and language header values
 
-# todo: compare:
+# notes in core/ebay_wrapper.py tell which global ID to use with which call
 # http://developer.ebay.com/devzone/finding/Concepts/SiteIDToGlobalID.html
+# http://developer.ebay.com/DevZone/half-finding/CallRef/Enums/GlobalIdList.html
 
 class Market(models.Model):
     cmarket     = models.CharField( 'market',    max_length = 14 )
