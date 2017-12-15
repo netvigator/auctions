@@ -8,7 +8,7 @@ from File.Del   import DeleteIfExists
 from File.Write import WriteText2File
 
 
-from .ebay_wrapper import oEbayConfig
+from core.ebay_wrapper import oEbayConfig
 
 
 class EbayWrapperTests(TestCase):
@@ -36,11 +36,14 @@ sExampleCategoryVersion = (
     </GetCategoriesResponse>''' )
 
 
-WriteText2File( sExampleCategoryVersion, cCategoryVersionFile )
+
 
 class getCategoryVersionTest(TestCase):
     #
-    self.assertEqual( getCategoryVersion(), '117' )
+    def test_get_category_version(self):
+        # create/destroy test file needs to be in here
+        # test is run AFTER the last line in this file is executed
+        WriteText2File( sExampleCategoryVersion, cCategoryVersionFile )
+        self.assertEqual( getCategoryVersion(), '117' )
+        DeleteIfExists( cCategoryVersionFile )
 
-
-DeleteIfExists( cCategoryVersionFile )
