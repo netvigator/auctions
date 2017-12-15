@@ -19,7 +19,8 @@ class Market(Model):
     ccountry    = CountryField( 'country' )
     clanguage   = CharField(    'language',  max_length = 8 )
     iebaysiteid = SmallInt(     'global ID', unique=True )
-
+    icategoryver= SmallInt(     'most recent category version', null = True )
+    
     def __str__(self):
         return self.cmarket
     
