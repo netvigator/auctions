@@ -130,9 +130,9 @@ def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US' ):
             findItemsAdvanced(
                 keywords = sKeyWords, categoryId = iCategoryID, **dHeader ) )
 
-sResults = getItemsByBoth( 'Simpson 360', '58277' )
-#
-QuickDump( sResults, 'Results_Adv_Simpson360.json' )
+#sResults = getItemsByBoth( 'Simpson 360', '58277' )
+##
+#QuickDump( sResults, 'Results_Adv_Simpson360.json' )
 
 
 def getCategoryVersion( categorySiteId=0 ):
