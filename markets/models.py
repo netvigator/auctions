@@ -1,4 +1,5 @@
-from django.db import models
+from django.db.models           import PositiveSmallIntegerField as SmallInt
+from django.db.models           import Model, CharField
 from django_countries.fields    import CountryField
 
 # Create your models here.
@@ -13,10 +14,11 @@ from django_countries.fields    import CountryField
 # http://developer.ebay.com/devzone/finding/Concepts/SiteIDToGlobalID.html
 # http://developer.ebay.com/DevZone/half-finding/CallRef/Enums/GlobalIdList.html
 
-class Market(models.Model):
-    cmarket     = models.CharField( 'market',    max_length = 14 )
-    ccountry    = CountryField(     'country',   null = True )
-    clanguages  = models.CharField( 'languages', max_length = 28 )
+class Market(Model):
+    cmarket     = CharField(    'market',    max_length = 14, unique=True )
+    ccountry    = CountryField( 'country' )
+    clanguage   = CharField(    'language',  max_length = 8 )
+    iebaysiteid = SmallInt(     'global ID', unique=True )
 
     def __str__(self):
         return self.cmarket
