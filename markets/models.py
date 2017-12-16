@@ -20,6 +20,8 @@ class Market(Model):
     clanguage   = CharField(    'language',  max_length = 8 )
     iebaysiteid = SmallInt(     'global ID', unique=True )
     icategoryver= SmallInt(     'most recent category version', null = True )
+    ccurrencydef= CharField(    'currency default',
+                                max_length = 3, null = True )
     
     def __str__(self):
         return self.cmarket
