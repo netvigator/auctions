@@ -42,6 +42,7 @@ class Item(models.Model):
     cseller         = models.CharField( 'seller', max_length = 48 )
     isellerfeedback = models.PositiveIntegerField( 'seller feedback' )
     cbuyer          = models.CharField( 'buyer', max_length = 48, null = True )
+    ibuyer          = models.PositiveIntegerField( 'buyer ID', null = True )
     ibuyerfeedback  = models.PositiveIntegerField(
                         'buyer feedback', null = True )
     cshipping       = models.CharField( 'shipping info', max_length = 188 )
@@ -66,6 +67,25 @@ class Item(models.Model):
         db_table            = verbose_name_plural
 #
 
+'''
+ebay currencies
+https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
+AUD Australian Dollar. For eBay, you can only specify this currency for listings you submit to the Australia site (global ID EBAY-AU, site ID 15).
+CAD Canadian Dollar. For eBay, you can only specify this currency for listings you submit to the Canada site (global ID EBAY-ENCA, site ID 2) (Items listed on the Canada site can also specify USD.)
+CHF Swiss Franc. For eBay, you can only specify this currency for listings you submit to the Switzerland site (global ID EBAY-CH, site ID 193).
+CNY Chinese Chinese Renminbi.
+EUR Euro. For eBay, you can only specify this currency for listings you submit to these sites: Austria (global ID EBAY-AT, site 16), Belgium_French (global ID EBAY-FRBE, site 23), France (global ID EBAY-FR, site 71), Germany (global ID EBAY-DE, site 77), Italy (global ID EBAY-IT, site 101), Belgium_Dutch (global ID EBAY-NLBE, site 123), Netherlands (global ID EBAY-NL, site 146), Spain (global ID EBAY-ES, site 186), Ireland (global ID EBAY-IE, site 205).
+GBP Pound Sterling. For eBay, you can only specify this currency for listings you submit to the UK site (global ID EBAY-GB, site ID 3).
+HKD Hong Kong Dollar. For eBay, you can only specify this currency for listings you submit to the Hong Kong site (global ID EBAY-HK, site ID 201).
+INR Indian Rupee. For eBay, you can only specify this currency for listings you submit to the India site (global ID EBAY-IN, site ID 203).
+MYR Malaysian Ringgit. For eBay, you can only specify this currency for listings you submit to the Malaysia site (global ID EBAY-MY, site ID 207).
+PHP Philippines Peso. For eBay, you can only specify this currency for listings you submit to the Philippines site (global ID EBAY-PH, site ID 211).
+PLN Poland, Zloty. For eBay, you can only specify this currency for listings you submit to the Poland site (global ID EBAY-PL, site ID 212).
+SEK Swedish Krona. For eBay, you can only specify this currency for listings you submit to the Sweden site (global ID EBAY-SE, site 218).
+SGD Singapore Dollar. For eBay, you can only specify this currency for listings you submit to the Singapore site (global ID EBAY-SG, site 216).
+TWD New Taiwan Dollar. Note that there is no longer an eBay Taiwan site.
+USD US Dollar. For eBay, you can only specify this currency for listings you submit to the US (site ID 0), eBayMotors (site 100), and Canada (site 2) sites.
+'''
 
 class ItemImage(models.Model):
     iitemnumb       = models.ForeignKey( Item )
