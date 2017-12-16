@@ -9,6 +9,7 @@ import django
 from ebay.utils     import set_config_file, get_config_store
 from ebay.finding   import ( findItemsAdvanced, findItemsByKeywords,
                              findItemsByCategory )
+from ebay.shopping  import GetSingleItem
 from ebay.trading   import getCategories
 
 from File.Write     import QuickDump
@@ -165,3 +166,11 @@ def getMarketCategories( categorySiteId=0 ):
     return getDecoded( getDecompressed( oCategories ) )
 
 # QuickDump( getMarketCategories(), 'Categories_USA.xml.gz' )
+
+
+'''
+def GetSingleItem(item_id, include_selector=None, encoding="JSON"):
+
+
+
+'''
