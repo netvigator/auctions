@@ -171,6 +171,37 @@ def getMarketCategories( categorySiteId=0 ):
 '''
 def GetSingleItem(item_id, include_selector=None, encoding="JSON"):
 
+iitemnumb       = models.BigIntegerField( 'ebay item number', primary_key = True )
+ctitle          = models.CharField( 'auction headline', max_length = 48, db_index = True )
+mlastbid        = MoneyField( 'winning bid', max_digits = 10, decimal_places = 2, default_currency='USD', null = True )
+CurrentPrice
+clastbid        = models.CharField( 'winning bid (text)', max_length = 18, db_index = False, null = True )
+tgotlastbid     = models.DateTimeField( 'retrieved last bid date/time', null = True )
+mbuyitnow       = MoneyField( 'buy it now price', max_digits = 10, decimal_places = 2, default_currency='USD', null = True )
+cbuyitnow       = models.CharField( 'buy it now price (text)', max_length = 18, db_index = False, null = True )
+binvaliditem    = models.BooleanField( 'invalid item?', default = False )
+inumberofbids   = models.PositiveSmallIntegerField( 'number of bids' )
+tauctionend     = models.DateTimeField( 'auction ending date/time' )
+tauctionbeg     = models.DateTimeField( 'auction beginning date/time' )
+iquantity       = models.PositiveSmallIntegerField( 'quantity' )
+tcannotfind     = models.DateTimeField( 'cannot retrieve outcome date/time' )
+tlook4images    = models.DateTimeField( 'tried to retrieve images date/time', null = True )
+bgotimages      = models.NullBooleanField( 'got images?' )
+breservemet     = models.NullBooleanField( 'reserve met?', null = True )
+bbuyitnow       = models.BooleanField( 'buy it now?', default = False )
+brelisted       = models.BooleanField( 'relisted?', default = False )
+clocation       = models.CharField( 'location', max_length = 48 )
+cregion         = models.CharField( 'region', max_length = 48 )
+cseller         = models.CharField( 'seller', max_length = 48 )
+isellerfeedback = models.PositiveIntegerField( 'seller feedback' )
+cbuyer          = models.CharField( 'buyer', max_length = 48, null = True )
+ibuyer          = models.PositiveIntegerField( 'buyer ID', null = True )
+ibuyerfeedback  = models.PositiveIntegerField( 'buyer feedback', null = True )
+cshipping       = models.CharField( 'shipping info', max_length = 188 )
+cdescription    = models.TextField( 'description' )
+Description
+iimages         = models.PositiveSmallIntegerField( '# of pictures' )
+irelistitemnumb = models.BigIntegerField( 'relist item number' )
 
 
 '''
