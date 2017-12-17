@@ -169,6 +169,9 @@ def getMarketCategories( categorySiteId=0 ):
 
 
 '''
+def GetItemStatus(item_id, encoding="JSON"):
+
+
 def GetSingleItem(item_id, include_selector=None, encoding="JSON"):
 
 iitemnumb       = models.BigIntegerField( 'ebay item number', primary_key = True )
