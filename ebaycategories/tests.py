@@ -21,7 +21,7 @@ class EbayWrapperTests(TestCase):
         self.assertEquals( oEbayConfig['research']['Token'], 'ENTER_HERE' )
 
 
-
+# actually for 'EBAY-US' as of 2017-12
 sExampleCategoryVersion = (
   '''<?xml version="1.0" encoding="UTF-8"?>
     <GetCategoriesResponse xmlns="urn:ebay:apis:eBLBaseComponents">
@@ -43,7 +43,8 @@ class getCategoryVersionTest(TestCase):
     def test_get_category_version(self):
         # create/destroy test file needs to be in here
         # test is run AFTER the last line in this file is executed
-        WriteText2File( sExampleCategoryVersion, cCategoryVersionFile )
+        WriteText2File(
+            sExampleCategoryVersion, cCategoryVersionFile % 'EBAY-US' )
         self.assertEqual( getCategoryVersion(), '117' )
-        DeleteIfExists( cCategoryVersionFile )
+        DeleteIfExists( cCategoryVersionFile % 'EBAY-US' )
 

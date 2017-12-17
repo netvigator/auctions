@@ -6,16 +6,17 @@ import xml.etree.ElementTree as ET
 #from pprint import pprint
 from six import print_ as print3
 
+from core.utils import getNamerSpacer
+
 # variable referenced in tests
-cCategoryVersionFile = '/tmp/Categories_Version.xml'
-cCategorylistingFile = '/tmp/Categories_for_0.txt'
+cCategoryVersionFile = '/tmp/Categories_Version_for_%s.xml'
+cCategorylistingFile = '/tmp/Categories_for_%s.xml'
 
-sXmlNameSpace   = 'urn:ebay:apis:eBLBaseComponents'
-sRootTag        = 'GetCategoriesResponse'
-sNameSpaceTag   = '{%s}%s'
-sNamerSpacer    = sNameSpaceTag % ( sXmlNameSpace, '%s' )
+sRootTag = 'GetCategoriesResponse'
 
-sRootNameSpTag  =  sNameSpaceTag % ( sXmlNameSpace, sRootTag )
+sNamerSpacer, sRootNameSpTag = getNamerSpacer( sRootTag,
+                sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' )
+
 
 tVersionChildTags = (
     'Timestamp', 'Ack', 'Version', 'Build', 'UpdateTime', 'CategoryVersion' )
@@ -59,7 +60,8 @@ def getTagsValuesGotRoot( root, tTags = tVersionChildTags ):
     return dTagsValues
 
 
-def getCategoryIterable( sFile = cCategorylistingFile, sWantVersion = '117' ):
+def getCategoryIterable(
+        sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
     #
     tree = ET.parse( sFile )
     #
@@ -80,7 +82,8 @@ def getCategoryIterable( sFile = cCategorylistingFile, sWantVersion = '117' ):
 
 
 
-def countCategories( sFile = cCategorylistingFile, sWantVersion = '117' ):
+def countCategories(
+        sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
     #
     from String.Output import ReadableNo
     #
@@ -98,7 +101,8 @@ def countCategories( sFile = cCategorylistingFile, sWantVersion = '117' ):
             'categories, actully counted', ReadableNo( i ) )
 
 
-def getCategoryDicts( sFile = cCategorylistingFile, sWantVersion = '117' ):
+def getCategoryDicts(
+        sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
     #
     oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
     #
@@ -134,9 +138,9 @@ def getCategoryVersionValues( sFile ):
 
 
 
-def getCategoryVersion( sFile = cCategoryVersionFile ):
+def getCategoryVersion( sMarket = 'EBAY-US', sFile = cCategoryVersionFile ):
     #
-    dTagsValues = getCategoryVersionValues( sFile )
+    dTagsValues = getCategoryVersionValues( sFile % sMarket )
     #
     return dTagsValues[ 'CategoryVersion' ]
 
