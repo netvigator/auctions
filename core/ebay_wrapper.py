@@ -94,7 +94,8 @@ def getCategories(  parentId=None, \
                     encoding="JSON",
                     **headers ):
 
-
+maybe add to trading: getDefaultCategoryTreeId
+https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/getDefaultCategoryTreeId
 
 '''
 
