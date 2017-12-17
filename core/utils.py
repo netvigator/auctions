@@ -27,5 +27,16 @@ if not oUserOne:
         password        = None,
         first_name      = 'Rick',
         last_name       = 'Graves', )
-        
 
+
+def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' ):
+    #
+    '''for extracting values from xml files returned by ebay'''
+    #
+    sNameSpaceTag   = '{%s}%s'
+    #
+    sNamerSpacer    = sNameSpaceTag % ( sXmlNameSpace, '%s' )
+    #
+    sRootNameSpTag  =  sNameSpaceTag % ( sXmlNameSpace, sRootTag )
+    #
+    return sNamerSpacer, sRootNameSpTag
