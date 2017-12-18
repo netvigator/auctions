@@ -52,7 +52,7 @@ def getSearchResultGenerator( sFile ):
         raise SearchGotZeroResults( "search executed OK but returned no items" )
         #
     #
-    iTotalItems = iEntries
+    dPagination[ "totalEntries" ] = dPagination[ "totalEntries" ][0]
     #
     dResultDict = dResponse[ "searchResult" ][0]
     #
@@ -70,7 +70,12 @@ def getSearchResultGenerator( sFile ):
         #
         getDictValuesFromSingleElementLists( dItem )
         #
-        yield dItem, iThisItem, iTotalItems
+        #
+        dPagination["thisEntry"] = str( iThisItem )
+        #
+        dItem["paginationOutput"]= dPagination
+        #
+        yield dItem
         
     
     
