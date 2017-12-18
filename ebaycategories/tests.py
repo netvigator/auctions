@@ -22,7 +22,7 @@ class EbayWrapperTests(TestCase):
 
 
 # actually for 'EBAY-US' as of 2017-12
-sExampleCategoryVersion = (
+sExampleCategoryVersion = \
   '''<?xml version="1.0" encoding="UTF-8"?>
     <GetCategoriesResponse xmlns="urn:ebay:apis:eBLBaseComponents">
         <Timestamp>2017-12-12T04:45:28.766Z</Timestamp>
@@ -33,7 +33,7 @@ sExampleCategoryVersion = (
         <CategoryVersion>117</CategoryVersion>
         <ReservePriceAllowed>true</ReservePriceAllowed>
         <MinimumReservePrice>0.0</MinimumReservePrice>
-    </GetCategoriesResponse>''' )
+    </GetCategoriesResponse>'''
 
 
 
