@@ -19,11 +19,11 @@ class getImportSearchResultsTest(TestCase):
         # test is run AFTER the last line in this file is executed
         WriteText2File( sExampleResponse, sExampleFile )
         #
-        searchResult = getSearchResultGenerator( sExampleFile )
-        dThisItem, iThisItem, iTotalItems = next( searchResult )
+        iterSearchResults = getSearchResultGenerator( sExampleFile )
+        dThisItem = next( iterSearchResults )
         #
-        self.assertEqual( iThisItem, 1 )
-        self.assertEqual( iTotalItems, 1 )
+        #self.assertEqual( iThisItem, 1 )
+        #self.assertEqual( iTotalItems, 1 )
         # print3( 'dThisItem.keys():', list( dThisItem.keys() ) )
         self.assertEqual( dThisItem["itemId"],  "253295991282" )
         self.assertEqual( dThisItem["title" ],  "Simpson 360 Multimeter" )
@@ -57,6 +57,10 @@ class getImportSearchResultsTest(TestCase):
         dConvertPrice   = dSellingStatus["convertedCurrentPrice"]
         self.assertEqual( dConvertPrice["@currencyId"], "USD" )
         self.assertEqual( dConvertPrice["__value__"  ], "39.0")
+        #
+        dPagination     = dThisItem["paginationOutput"]
+        self.assertEqual( dPagination["totalEntries"], "1" )
+        self.assertEqual( dPagination["thisEntry"   ], "1" )
         #
         DeleteIfExists( sExampleFile )
 
