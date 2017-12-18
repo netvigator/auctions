@@ -1,5 +1,8 @@
 from django.apps import AppConfig
 
 
-class EbaycategoryConfig(AppConfig):
-    name = 'ebaycategory'
+class EbayCategoriesConfig(AppConfig):
+    name = 'ebaycategories'
+
+class ConditionsConfig(AppConfig):
+    name = 'conditions'
