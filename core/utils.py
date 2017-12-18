@@ -14,7 +14,7 @@ if not oUserOne:
     oUser.first_name    = 'Rick'
     oUser.last_name     = 'Graves'
     oUser.email         = 'gravesricharde@yahoo.com'
-    oUser.username      = 'aardvigator'
+    oUser.username      = 'netvigator'
     oUser.password      = 'tba'
     #
     oUser.save()
