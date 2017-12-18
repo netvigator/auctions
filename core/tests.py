@@ -11,7 +11,7 @@ class CoreUserTests(TestCase):
 
     def test_get_user(self):
         
-        self.assertEquals( oUserOne.username, 'aardvigator')
+        self.assertEquals( oUserOne.username, 'netvigator')
 
 
 class EbayWrapperTests(TestCase):
