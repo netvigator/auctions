@@ -25,15 +25,15 @@ class EbayCategory(models.Model):
                         'ebay category description', max_length = 48 )
     ilevel          = models.PositiveSmallIntegerField(
                         'level, top is 0, lower levels are bigger numbers' )
-    iparent_id      = models.ForeignKey(
-                        'self', verbose_name = 'parent category' )
+    iparent_id      = models.ForeignKey( 'self',
+                        verbose_name = 'parent category', related_name = 'parentcategory' )
     bleaf_category  = models.BooleanField( 'leaf category?' )
     iTreeVersion    = models.PositiveSmallIntegerField(
                         'category tree version' )
     iMarket         = models.ForeignKey( Market, verbose_name = 'ebay market' )
     isupercededby   = models.ForeignKey(
                         'self', verbose_name = 'superceded by this category',
-                        null = True )
+                        null = True, related_name = 'supercededby')
 
     def __str__(self):
         return self.ctitle
@@ -42,3 +42,16 @@ class EbayCategory(models.Model):
         verbose_name_plural = 'ebay categories'
         db_table            = verbose_name_plural
 #
+
+class Condition(models.Model):
+    ebay_id         = models.PositiveSmallIntegerField( 'ebay condition ID' )
+    cTitle          = models.CharField(
+                        'ebay condition description', max_length = 24 )
+
+    def __str__(self):
+        return self.ctitle
+    
+    class Meta():
+        verbose_name_plural = 'conditions'
+        db_table            = verbose_name_plural
+    
