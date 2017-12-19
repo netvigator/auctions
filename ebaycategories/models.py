@@ -7,13 +7,13 @@ from markets.models import Market
 
 '''
 ebay_id,
-ctitle, 
-ilevel, 
-iparent_id, 
-bleaf_category,
+cTitle, 
+iLevel, 
+iParent_ID, 
+bLeafCategory,
 iTreeVersion,
 imarket,
-isupercededby
+iSupercededBy
 '''
 
 # http://developer.ebay.com/devzone/xml/docs/reference/ebay/getcategories.html
@@ -21,22 +21,22 @@ isupercededby
 
 class EbayCategory(models.Model):
     ebay_id         = models.BigIntegerField( 'ebay category number' )
-    ctitle          = models.CharField(
+    cTitle          = models.CharField(
                         'ebay category description', max_length = 48 )
-    ilevel          = models.PositiveSmallIntegerField(
+    iLevel          = models.PositiveSmallIntegerField(
                         'level, top is 0, lower levels are bigger numbers' )
-    iparent_id      = models.ForeignKey( 'self',
+    iParent_ID      = models.ForeignKey( 'self',
                         verbose_name = 'parent category', related_name = 'parentcategory' )
-    bleaf_category  = models.BooleanField( 'leaf category?' )
+    bLeafCategory  = models.BooleanField( 'leaf category?' )
     iTreeVersion    = models.PositiveSmallIntegerField(
                         'category tree version' )
     iMarket         = models.ForeignKey( Market, verbose_name = 'ebay market' )
-    isupercededby   = models.ForeignKey(
+    iSupercededBy   = models.ForeignKey(
                         'self', verbose_name = 'superceded by this category',
                         null = True, related_name = 'supercededby')
 
     def __str__(self):
-        return self.ctitle
+        return self.cTitle
     
     class Meta():
         verbose_name_plural = 'ebay categories'
@@ -45,11 +45,11 @@ class EbayCategory(models.Model):
 
 class Condition(models.Model):
     ebay_id         = models.PositiveSmallIntegerField( 'ebay condition ID' )
-    ctitle          = models.CharField(
+    cTitle          = models.CharField(
                         'ebay condition description', max_length = 24 )
 
     def __str__(self):
-        return self.ctitle
+        return self.cTitle
     
     class Meta():
         verbose_name_plural = 'ebay condition descriptions'

@@ -15,37 +15,37 @@ from core.models import IntegerRangeField
 
 
 class Brand(models.Model):
-    ctitle          = models.CharField(
+    cTitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True)
-    bwanted         = models.BooleanField(
+    bWanted         = models.BooleanField(
                         'want anything from this brand?', default = True )
-    ballofinterest  = models.BooleanField(
+    bAllOfInterest  = models.BooleanField(
                         'want everything from this brand?', default = True )
-    istars          = IntegerRangeField(
+    iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
-    ccomment        = models.TextField( 'comments', null = True, blank = True )
-    cnationality    = CountryField( "nationality", null = True )
-    cexcludeif      = models.TextField(
+    cComment        = models.TextField( 'comments', null = True, blank = True )
+    cNationality    = CountryField( "nationality", null = True )
+    cExcludeIf      = models.TextField(
                         'Not a hit if this text is found '
                         '(each line evaluated separately, '
                         'put different exclude tests on different lines)',
                         null=True, blank = True )
-    ilegacykey      = models.PositiveIntegerField('legacy key', null = True )
-    tlegacycreate   = models.DateTimeField( 'legacy row created on',
+    iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
+    tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                         null=True, blank = True )
-    tlegacymodify   = models.DateTimeField( 'legacy row updated on',
+    tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                         null=True, blank = True )
-    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
-    tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
-    tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    tModify         = models.DateTimeField( 'updated on', auto_now    = True )
     #
 
     def __str__(self):
-        return self.ctitle
+        return self.cTitle
     
     class Meta():
         verbose_name_plural = 'brands'
-        ordering            = ('ctitle',)
+        ordering            = ('cTitle',)
         db_table            = verbose_name_plural
 

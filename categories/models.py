@@ -12,53 +12,53 @@ User = get_user_model()
 from brands.models import Brand
 
 class Category(models.Model):
-    ctitle          = models.CharField(
+    cTitle          = models.CharField(
                         'category description', max_length = 48, db_index = True)
-    ckeywords       = models.CharField( 'category key words', max_length = 88,
+    cKeyWords       = models.CharField( 'category key words', max_length = 88,
                                         null = True, blank = True )
-    bkeywordrequired= models.BooleanField(
+    bKeyWordRequired= models.BooleanField(
                         'key word required?', default = False )
-    istars          = IntegerRangeField(
+    iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
-    ballofinterest  = models.BooleanField(
+    bAllOfInterest  = models.BooleanField(
                         'want everything of this category?', default = False )
-    bwantpair       = models.BooleanField('only want pairs?', default = False)
-    baccessory      = models.BooleanField('accessory?', default = False)
-    bcomponent      = models.BooleanField('component?', default = False)
-    ifamily         = models.ForeignKey( 'self',
+    bWantPair       = models.BooleanField('only want pairs?', default = False)
+    bAccessory      = models.BooleanField('accessory?', default = False)
+    bComponent      = models.BooleanField('component?', default = False)
+    iFamily         = models.ForeignKey( 'self',
                         verbose_name = 'category family', null = True, blank = True )
-    cexcludeif      = models.TextField(
+    cExcludeIf      = models.TextField(
                         'Not a hit if this text is found '
                         '(each line evaluated separately, '
                         'put different exclude tests on different lines)',
                         null = True, blank = True )
-    ilegacykey      = models.PositiveIntegerField( 'legacy key', unique=True )
-    ilegacyfamily   = models.PositiveIntegerField( 'legacy family',
+    iLegacyKey      = models.PositiveIntegerField( 'legacy key', unique=True )
+    iLegacyFamily   = models.PositiveIntegerField( 'legacy family',
                                                     null = True )
-    tlegacycreate   = models.DateTimeField( 'legacy row created on' )
-    tlegacymodify   = models.DateTimeField( 'legacy row updated on',
+    tLegacyCreate   = models.DateTimeField( 'legacy row created on' )
+    tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                                             null = True )
-    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
-    tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
-    tmodify         = models.DateTimeField( 'updated on', auto_now    = True )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    tModify         = models.DateTimeField( 'updated on', auto_now    = True )
     
     def __str__(self):
-        return self.ctitle
+        return self.cTitle
     
     class Meta():
         verbose_name_plural = 'categories'
-        ordering            = ('ctitle',)
+        ordering            = ('cTitle',)
         db_table            = verbose_name_plural
 #
 
 
 class BrandCategory(models.Model):
-    ibrand          = models.ForeignKey( Brand )
-    icategory       = models.ForeignKey( Category )
-    bwanted         = models.BooleanField('want this combination?', default = True )
-    iuser           = models.ForeignKey( User, verbose_name = 'Owner' )
-    tcreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    iBrand          = models.ForeignKey( Brand )
+    iCategory       = models.ForeignKey( Category )
+    bWant           = models.BooleanField('want this combination?', default = True )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     
     class Meta:
         verbose_name_plural = 'brandcategories'

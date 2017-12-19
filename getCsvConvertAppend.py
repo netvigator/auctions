@@ -117,17 +117,17 @@ def _Brand( oRow ):
     #
     oBrand = Brand()
     #
-    oBrand.ctitle        = oRow['CFULLNAME']
-    oBrand.bwanted       = not getBool(oRow['LNOTWANTED'])
-    oBrand.ballofinterest=     getBool(oRow['LALLOFINTEREST'])
-    oBrand.istars        = int( float( oRow['NSTARS'] ) )
-    oBrand.ccomment      = oRow['CCOMMENTS']
-    oBrand.cnationality  = _getNationality( oRow['CNATIONALITY'] )
-    oBrand.cexcludeif    = ''
-    oBrand.ilegacykey    = int( oRow['BRANDINTEGER'] )
-    oBrand.tlegacycreate = getTimeStampGotString( oRow['TCREATE'] )
-    oBrand.tlegacymodify = getTimeStampGotString( oRow['TMODIFY'] )
-    oBrand.iuser         = oUserOne
+    oBrand.cTitle        = oRow['CFULLNAME']
+    oBrand.bWanted       = not getBool(oRow['LNOTWANTED'])
+    oBrand.bAllOfInterest=     getBool(oRow['LALLOFINTEREST'])
+    oBrand.iStars        = int( float( oRow['NSTARS'] ) )
+    oBrand.cComment      = oRow['CCOMMENTS']
+    oBrand.cNationality  = _getNationality( oRow['CNATIONALITY'] )
+    oBrand.cExcludeIf    = ''
+    oBrand.iLegacyKey    = int( oRow['BRANDINTEGER'] )
+    oBrand.tLegacyCreate = getTimeStampGotString( oRow['TCREATE'] )
+    oBrand.tLegacyModify = getTimeStampGotString( oRow['TMODIFY'] )
+    oBrand.iUser         = oUserOne
     #
     return oBrand
 
@@ -138,21 +138,21 @@ def _Category( oRow ):
     #
     oT                  = Category()
     #
-    oT.ctitle           = oRow['CDESCRIBE']
-    oT.ckeywords        = oRow['CKEYWORDS'].replace( '/', ',' )
-    oT.bkeywordrequired = getBool(oRow['LKEYWORDSREQUIRED'])
-    oT.istars           = int( float( oRow['NSTARS'] ) )
-    oT.ballofinterest   = getBool(oRow['LALLOFINTEREST'])
-    oT.bwantpair        = getBool(oRow['LWANTPAIR'])
-    oT.baccessory       = getBool(oRow['LACCESSORY'])
-    oT.bcomponent       = getBool(oRow['LCOMPONENT'])
+    oT.cTitle           = oRow['CDESCRIBE']
+    oT.cKeyWords        = oRow['CKEYWORDS'].replace( '/', ',' )
+    oT.bKeyWordRequired = getBool(oRow['LKEYWORDSREQUIRED'])
+    oT.iStars           = int( float( oRow['NSTARS'] ) )
+    oT.bAllOfInterest   = getBool(oRow['LALLOFINTEREST'])
+    oT.bWantPair        = getBool(oRow['LWANTPAIR'])
+    oT.bAccessory       = getBool(oRow['LACCESSORY'])
+    oT.bComponent       = getBool(oRow['LCOMPONENT'])
     oT.bsupercede       = getBool(oRow['LSUPERCEDE'])
-    oT.ilegacykey       = int( oRow['TYPEINTEGER'] )
-    oT.ilegacyfamily    = int( oRow['FAMILYINTEGER'] )
-    oT.tlegacycreate    = getTimeStampGotString( oRow['TCREATE'] )
-    oT.tlegacymodify    = getTimeStampGotString( oRow['TMODIFY'] )
+    oT.iLegacyKey       = int( oRow['TYPEINTEGER'] )
+    oT.iLegacyFamily    = int( oRow['FAMILYINTEGER'] )
+    oT.tLegacyCreate    = getTimeStampGotString( oRow['TCREATE'] )
+    oT.tLegacyModify    = getTimeStampGotString( oRow['TMODIFY'] )
     #
-    oT.iuser            = oUserOne
+    oT.iUser            = oUserOne
     #
     return oT
 
@@ -164,14 +164,14 @@ def _CategoryFamily():
     #
     for oT in oAllCategories:
         #
-        iLegacyFamily = oT.ilegacyfamily
+        iLegacyFamily = oT.iLegacyFamily
         #
         if iLegacyFamily > 0:
             #
             oMainCategory = (
-                Category.objects.filter( ilegacykey = iLegacyFamily ).first() )
+                Category.objects.filter( iLegacyKey = iLegacyFamily ).first() )
             #
-            oT.ifamily = oMainCategory
+            oT.iFamily = oMainCategory
             #
             oT.save()
             #
@@ -188,28 +188,28 @@ def _Model( oRow ):
     #
     oM                  = Model()
     #
-    oM.ctitle           = oRow['CMODELNO']
-    oM.ckeywords        = oRow['CKEYWORDS']
-    oM.bkeywordrequired =     getBool( oRow['LKEYWORDSREQUIRED'] )
+    oM.cTitle           = oRow['CMODELNO']
+    oM.cKeyWords        = oRow['CKEYWORDS']
+    oM.bKeyWordRequired =     getBool( oRow['LKEYWORDSREQUIRED'] )
     oM.bsplitdigitsok   =     getBool( oRow['LSPLITDIGITSOK'] )
-    oM.istars           = int( float( oRow['NSTARS'] ) )
-    oM.bgenericmodel    =     getBool( oRow['LGENERICMODEL'] )
-    oM.bsubmodelsok     = not getBool( oRow['LNOMODELVARIATIONS'] )
-    oM.bmusthavebrand   =     getBool( oRow['LMUSTHAVEBRAND'] )
-    oM.bwanted          = not getBool( oRow['LNOTINTEREST'] )
-    oM.bgetpictures     = not getBool( oRow['LNOPICTURES'] )
-    oM.bgetdescription  = not getBool( oRow['LNODESCRIPTION'] )
-    oM.ccomment         = oRow['CCOMMENTS'] + oRow['MCOMMENTS'] 
-    oM.ilegacykey       = oRow['MODELINTEGER']
+    oM.iStars           = int( float( oRow['NSTARS'] ) )
+    oM.bGenericModel    =     getBool( oRow['LGENERICMODEL'] )
+    oM.bSubModelsOK     = not getBool( oRow['LNOMODELVARIATIONS'] )
+    oM.bMustHaveBrand   =     getBool( oRow['LMUSTHAVEBRAND'] )
+    oM.bWanted          = not getBool( oRow['LNOTINTEREST'] )
+    oM.bGetPictures     = not getBool( oRow['LNOPICTURES'] )
+    oM.bGetDescription  = not getBool( oRow['LNODESCRIPTION'] )
+    oM.cComment         = oRow['CCOMMENTS'] + oRow['MCOMMENTS'] 
+    oM.iLegacyKey       = oRow['MODELINTEGER']
     oM.ilegacybrand     = oRow['BRANDINTEGER']
     oM.ilegacytype      = oRow['TYPEINTEGER']
-    oM.tlegacycreate    = getTimeStampGotString( oRow['TCREATE'] )
-    oM.tlegacymodify    = getTimeStampGotString( oRow['TMODIFY'] )
+    oM.tLegacyCreate    = getTimeStampGotString( oRow['TCREATE'] )
+    oM.tLegacyModify    = getTimeStampGotString( oRow['TMODIFY'] )
     #
-    oM.ibrand           = oBrands.filter(ilegacykey =oM.ilegacybrand).first()
-    oM.icategory        = oCategories.filter( ilegacykey =oM.ilegacytype ).first()
+    oM.iBrand           = oBrands.filter(iLegacyKey =oM.ilegacybrand).first()
+    oM.iCategory        = oCategories.filter( iLegacyKey =oM.ilegacytype ).first()
     #
-    oM.iuser            = oUserOne
+    oM.iUser            = oUserOne
     #
     return oM
 
@@ -219,7 +219,7 @@ tLegacyModelPicCols = (
     'MFILESPECHALF1', 'MFILESPECHALF2', 'MFILESPECLR' )
 
 tNewModelPicCols = (
-    'cfile1spec', 'cfile2spec', 'cfile3spec', 'cfile4spec', 'cfile5spec' )
+    'cFileSpec1', 'cFileSpec2', 'cFileSpec3', 'cFileSpec4', 'cFileSpec5' )
 
 dModelPicNames  = {}
 
@@ -238,7 +238,7 @@ def _ModelPics( oRow ):
     iRowLegacyKey   = oRow['MODELINTEGER']
     #
     oTargetModel = (
-        Model.objects.filter( ilegacykey = iRowLegacyKey ).first() )
+        Model.objects.filter( iLegacyKey = iRowLegacyKey ).first() )
     #
     lGotPics = []
     #
@@ -297,7 +297,7 @@ def _BrandCategory( oRow ):
     #
     try:
         #
-        oBC.ibrand = oBrands.filter(ilegacykey =oRow['BRANDINTEGER']).first()
+        oBC.iBrand = oBrands.filter(iLegacyKey =oRow['BRANDINTEGER']).first()
         #
     except ValueError:
         #
@@ -309,8 +309,8 @@ def _BrandCategory( oRow ):
         #
     try:
         #
-        oBC.icategory = oCategories.filter(
-            ilegacykey =oRow['TYPEINTEGER'] ).first()
+        oBC.iCategory = oCategories.filter(
+            iLegacyKey =oRow['TYPEINTEGER'] ).first()
         #
     except ValueError:
         #
@@ -321,9 +321,9 @@ def _BrandCategory( oRow ):
         #     oRow['TYPEINTEGER'] )
         #
     #
-    oBC.tlegacycreate   = ( getTimeStampGotString( oRow['TCREATE'] ) )
+    oBC.tLegacyCreate   = ( getTimeStampGotString( oRow['TCREATE'] ) )
     #
-    oBC.iuser       = oUserOne
+    oBC.iUser       = oUserOne
     #
     return oBC
 
@@ -340,15 +340,15 @@ def ExcludeThis( oCsvRow, oTable, cColName ):
         return None
         #
     #
-    oTableRow = oTable.filter( ilegacykey = int( cLook4Key ) ).first()
+    oTableRow = oTable.filter( iLegacyKey = int( cLook4Key ) ).first()
     #
     try:
         #
-        iExcludeAlready = int( bool( oTableRow.cexcludeif ) )
+        iExcludeAlready = int( bool( oTableRow.cExcludeIf ) )
         #
-        if not iExcludeAlready: oTableRow.cexcludeif = ''
+        if not iExcludeAlready: oTableRow.cExcludeIf = ''
         #
-        oTableRow.cexcludeif += (
+        oTableRow.cExcludeIf += (
                 tSeparator[iExcludeAlready] + oCsvRow['CEXCLUDEIF'] )
         #
     except AttributeError:
@@ -365,11 +365,11 @@ def _CategoryExclude( oRow ):
     # ExcludeThis( oRow, Category )
     #
     oCategory = oCategories.filter(
-        ilegacykey = int( oRow['TYPEINTEGER'] ) ).first()
+        iLegacyKey = int( oRow['TYPEINTEGER'] ) ).first()
     #
-    iExcludeAlready = int( bool( oCategory.cexcludeif ) )
+    iExcludeAlready = int( bool( oCategory.cExcludeIf ) )
     #
-    oCategory.cexcludeif += tSeparator[ iExcludeAlready ] + oRow['CEXCLUDEIF']
+    oCategory.cExcludeIf += tSeparator[ iExcludeAlready ] + oRow['CEXCLUDEIF']
     #
     oCategory.save()
 '''

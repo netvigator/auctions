@@ -27,22 +27,22 @@ from django_countries.fields    import CountryField
 # https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
 
 class Market(Model):
-    cmarket         = CharField(    'ebay Global ID',    max_length = 14,
+    cMarket         = CharField(    'ebay Global ID',    max_length = 14,
                                 unique = True )
-    ccountry        = CountryField( 'country' )
-    clanguage       = CharField(    'language',  max_length = 8 )
-    iebaysiteid     = SmallInt(     'site ID', unique=True )
-    bhascategories  = NullBooleanField( 'has own categories?', null = True )
-    icategoryver    = SmallInt(     'most recent category version',
+    cCountry        = CountryField( 'country' )
+    cLanguage       = CharField(    'language',  max_length = 8 )
+    iEbaySiteID     = SmallInt(     'site ID', unique=True )
+    bHasCategories  = NullBooleanField( 'has own categories?', null = True )
+    iCategoryVer    = SmallInt(     'most recent category version',
                                null = True )
-    ccurrencydef    = CharField(    'currency default',
+    cCurrencyDef    = CharField(    'currency default',
                                max_length = 3, null = True )
     
     def __str__(self):
-        return self.cmarket
+        return self.cMarket
     
     class Meta():
         verbose_name_plural = 'markets'
-        ordering            = ('cmarket',)
+        ordering            = ('cMarket',)
         db_table            = verbose_name_plural
 

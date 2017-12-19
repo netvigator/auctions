@@ -11,36 +11,36 @@ from String.Get     import getUpToLenSplitOnWhite
 
 class ModelAdmin(admin.ModelAdmin):
     list_display = (
-        "ctitle", 
-        "_ckeywords","_bkeywordrequired", "_istars", "_ibrand", "_icategory",
-        "_ccomment" )
+        "cTitle", 
+        "_cKeyWords","_bKeyWordRequired", "_iStars", "_iBrand", "_iCategory",
+        "_cComment" )
     readonly_fields = (
-        "_ckeywords", "_bkeywordrequired", "_istars", "_ibrand", "_icategory",
-        "_ccomment", 'ilegacykey' )
+        "_cKeyWords", "_bKeyWordRequired", "_iStars", "_iBrand", "_iCategory",
+        "_cComment", 'iLegacyKey' )
 
     @admin_method_attributes( short_description='Key words', allow_tags=True )
-    def _ckeywords(self, obj):
-        return str( obj.ckeywords ).replace( ' ', '&nbsp;' )
+    def _cKeyWords(self, obj):
+        return str( obj.cKeyWords ).replace( ' ', '&nbsp;' )
 
     @admin_method_attributes( short_description='Required?' )
-    def _bkeywordrequired(self, obj):
-        return getSayYesOrNo( obj.bkeywordrequired )
+    def _bKeyWordRequired(self, obj):
+        return getSayYesOrNo( obj.bKeyWordRequired )
 
     @admin_method_attributes( short_description='Desireability' )
-    def _istars(self, obj):
-        return obj.istars
+    def _iStars(self, obj):
+        return obj.iStars
 
     @admin_method_attributes( short_description='Brand', allow_tags=True )
-    def _ibrand(self, obj):
-        return str( obj.ibrand ).replace( ' ', '&nbsp;' )
+    def _iBrand(self, obj):
+        return str( obj.iBrand ).replace( ' ', '&nbsp;' )
 
     @admin_method_attributes( short_description='Category', allow_tags=True )
-    def _icategory(self, obj):
-        return str( obj.icategory ).replace( ' ', '&nbsp;' )
+    def _iCategory(self, obj):
+        return str( obj.iCategory ).replace( ' ', '&nbsp;' )
 
-    def _ccomment(self, obj):
+    def _cComment(self, obj):
         
-        sComment = str( obj.ccomment )
+        sComment = str( obj.cComment )
         
         if len( sComment ) > 80:
             sComment = getUpToLenSplitOnWhite( sComment, 76 ) + ' ...'

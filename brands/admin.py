@@ -10,21 +10,21 @@ from Utils.Output import getSayYesOrNo
 
 class BrandAdmin(admin.ModelAdmin):
     list_display = (
-        "ctitle", "_bwanted", "_ballofinterest", "_istars",
-        "cnationality", "ccomment", "cexcludeif" )
-    readonly_fields = ("_bwanted", "_ballofinterest", "_istars", 'ilegacykey' )
+        "cTitle", "_bWanted", "_bAllOfInterest", "_iStars",
+        "cNationality", "cComment", "cExcludeIf" )
+    readonly_fields = ("_bWanted", "_bAllOfInterest", "_iStars", 'iLegacyKey' )
     
     @admin_method_attributes( short_description='Want anything?' )
-    def _bwanted(self, obj):
-        return getSayYesOrNo( obj.bwanted )
+    def _bWanted(self, obj):
+        return getSayYesOrNo( obj.bWanted)
     
     @admin_method_attributes( short_description='Want everything?' )
-    def _ballofinterest(self, obj):
-        return getSayYesOrNo( obj.ballofinterest )
+    def _bAllOfInterest(self, obj):
+        return getSayYesOrNo( obj.bAllOfInterest )
     
     @admin_method_attributes( short_description='Desireability' )
-    def _istars(self, obj):
-        return obj.istars
+    def _iStars(self, obj):
+        return obj.iStars
 
 
 

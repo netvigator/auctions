@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
 '''
     def get_queryset(self):
         """Return the last five published questions."""
-        return Brand.objects.order_by('ctitle')
+        return Brand.objects.order_by('cTitle')
 '''
 
 class DetailView(generic.DetailView):
@@ -27,8 +27,8 @@ class DetailView(generic.DetailView):
 class CreateBrandView(CreateView):
 
     model = Brand
-    fields = ('ctitle','bwanted','ballofinterest','istars','ccomment',
-              'cnationality','cexcludeif',)
+    fields = ('cTitle','bWante','bAllOfInterest','iStars','cComment',
+              'cNationality','cExcludeIf',)
     template_name = 'brands/edit_brand.html'
 
     def get_success_url(self):

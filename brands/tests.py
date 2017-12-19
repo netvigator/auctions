@@ -14,8 +14,8 @@ class ModelModelTest(TestCase):
 
     def test_string_representation(self):
         sBrand = "My brand name"
-        oBrand = Brand(ctitle= sBrand )
-        self.assertEqual(str(sBrand), oBrand.ctitle)
+        oBrand = Brand(cTitle= sBrand )
+        self.assertEqual(str(sBrand), oBrand.cTitle)
 
 '''
 class BrandListViewTests(TestCase):
@@ -28,7 +28,7 @@ class BrandListViewTests(TestCase):
 
         self.assertEquals(list(response.context['index']), [])
 
-        Brand.objects.create(ctitle='Chevrolet', iuser=oUserOne )
+        Brand.objects.create(cTitle='Chevrolet', iUser=oUserOne )
         response = client.get('/')
         self.assertEquals(response.context['index'].count(), 1)
 
@@ -41,7 +41,7 @@ class BrandListViewTests(TestCase):
 
         self.assertEquals(list(response.context_data['index']), [])
 
-        Brand.objects.create(ctitle='Chevrolet', iuser=oUserOne )
+        Brand.objects.create(cTitle='Chevrolet', iUser=oUserOne )
         response = IndexView.as_view()(request)
         self.assertEquals(response.context_data['index'].count(), 1)
 '''

@@ -10,46 +10,46 @@ from Utils.Output import getSayYesOrNo
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        "ctitle", 
-        "_ckeywords","_bkeywordrequired", "_ballofinterest", "_istars",
-        "_bwantpair", "_baccessory", "_bcomponent", "_ifamily" )
+        "cTitle", 
+        "_cKeyWords","_bKeyWordRequired", "_bAllOfInterest", "_iStars",
+        "_bWantPair", "_bAccessory", "_bComponent", "_iFamily" )
     readonly_fields = (
-        "_ckeywords", "_bkeywordrequired", "_ballofinterest",
-        "_istars", "_bwantpair", "_baccessory", "_bcomponent", "_ifamily",
-        'ilegacykey' )
+        "_cKeyWords", "_bKeyWordRequired", "_bAllOfInterest",
+        "_iStars", "_bWantPair", "_bAccessory", "_bComponent", "_iFamily",
+        'iLegacyKey' )
 
     @admin_method_attributes( short_description='Key words' )
-    def _ckeywords(self, obj):
-        return obj.ckeywords
+    def _cKeyWords(self, obj):
+        return obj.cKeyWords
 
     @admin_method_attributes( short_description='Required?' )
-    def _bkeywordrequired(self, obj):
-        return getSayYesOrNo( obj.bkeywordrequired )
+    def _bKeyWordRequired(self, obj):
+        return getSayYesOrNo( obj.bKeyWordRequired )
 
     @admin_method_attributes( short_description='Get all?' )
-    def _ballofinterest(self, obj):
-        return getSayYesOrNo( obj.ballofinterest )
+    def _bAllOfInterest(self, obj):
+        return getSayYesOrNo( obj.bAllOfInterest )
 
     @admin_method_attributes( short_description='Desireability' )
-    def _istars(self, obj):
-        return obj.istars
+    def _iStars(self, obj):
+        return obj.iStars
 
     @admin_method_attributes( short_description='Want Pair?' )
-    def _bwantpair(self, obj):
-        return getSayYesOrNo( obj.bwantpair )
+    def _bWantPair(self, obj):
+        return getSayYesOrNo( obj.bWantPair )
 
 
     @admin_method_attributes( short_description='Accessory?' )
-    def _baccessory(self, obj):
-        return getSayYesOrNo( obj.baccessory )
+    def _bAccessory(self, obj):
+        return getSayYesOrNo( obj.bAccessory )
 
     @admin_method_attributes( short_description='Component?' )
-    def _bcomponent(self, obj):
-        return getSayYesOrNo( obj.bcomponent )
+    def _bComponent(self, obj):
+        return getSayYesOrNo( obj.bComponent )
 
     @admin_method_attributes( short_description='Family' )
-    def _ifamily(self, obj):
-        return obj.ifamily
+    def _iFamily(self, obj):
+        return obj.iFamily
 
 
 

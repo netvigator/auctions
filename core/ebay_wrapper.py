@@ -181,39 +181,39 @@ http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html#Inclu
 
 def GetSingleItem(item_id, include_selector=None, encoding="JSON"):
 
-iitemnumb       = models.BigIntegerField( 'ebay item number', primary_key = True )
-ctitle          = models.CharField( 'auction headline', max_length = 48, db_index = True )
+iItemNumb       = models.BigIntegerField( 'ebay item number', primary_key = True )
+cTitle          = models.CharField( 'auction headline', max_length = 48, db_index = True )
 Item.Title
 Item.Subtitle
-mlastbid        = MoneyField( 'winning bid', max_digits = 10, decimal_places = 2, default_currency='USD', null = True )
+mLastBid        = MoneyField( 'winning bid', max_digits = 10, decimal_places = 2, default_currency='USD', null = True )
 Item.CurrentPrice
 Item.ConvertedCurrentPrice
 clastbid        = models.CharField( 'winning bid (text)', max_length = 18, db_index = False, null = True )
-tgotlastbid     = models.DateTimeField( 'retrieved last bid date/time', null = True )
-mbuyitnow       = MoneyField( 'buy it now price', max_digits = 10, decimal_places = 2, default_currency='USD', null = True )
+tGotLastBid     = models.DateTimeField( 'retrieved last bid date/time', null = True )
+mBuyItNow       = MoneyField( 'buy it now price', max_digits = 10, decimal_places = 2, default_currency='USD', null = True )
 cbuyitnow       = models.CharField( 'buy it now price (text)', max_length = 18, db_index = False, null = True )
 Item.BuyItNowPrice
 Item.BuyItNowAvailable
 binvaliditem    = models.BooleanField( 'invalid item?', default = False )
-inumberofbids   = models.PositiveSmallIntegerField( 'number of bids' )
+iBidCount       = models.PositiveSmallIntegerField( 'number of bids' )
 BidCount
-tauctionend     = models.DateTimeField( 'auction ending date/time' )
+tAuctionEnd     = models.DateTimeField( 'auction ending date/time' )
 Item.EndTime
-tauctionbeg     = models.DateTimeField( 'auction beginning date/time' )
+tAuctionBeg     = models.DateTimeField( 'auction beginning date/time' )
 Item.StartTime
-iquantity       = models.PositiveSmallIntegerField( 'quantity' )
+iQuantity       = models.PositiveSmallIntegerField( 'quantity' )
 Item.Quantity
 tcannotfind     = models.DateTimeField( 'cannot retrieve outcome date/time' )
 tlook4images    = models.DateTimeField( 'tried to retrieve images date/time', null = True )
 bgotimages      = models.NullBooleanField( 'got images?' )
-breservemet     = models.NullBooleanField( 'reserve met?', null = True )
+bReserveMet     = models.NullBooleanField( 'reserve met?', null = True )
 Item.ReserveMet
-bbuyitnow       = models.BooleanField( 'buy it now?', default = False )
-brelisted       = models.BooleanField( 'relisted?', default = False )
-clocation       = models.CharField( 'location', max_length = 48 )
+bBuyItNow       = models.BooleanField( 'buy it now?', default = False )
+bRelisted       = models.BooleanField( 'relisted?', default = False )
+cLocation       = models.CharField( 'location', max_length = 48 )
 Location
 cregion         = models.CharField( 'region', max_length = 48 )
-cseller         = models.CharField( 'seller', max_length = 48 )
+cSeller         = models.CharField( 'seller', max_length = 48 )
 Item.Seller
 Seller
 iseller
@@ -222,17 +222,17 @@ isellerfeedback = models.PositiveIntegerField( 'seller feedback' )
 FeedbackScore
 PositiveFeedbackPercent
 TopRatedSeller
-cbuyer          = models.CharField( 'buyer', max_length = 48, null = True )
+cBuyer          = models.CharField( 'buyer', max_length = 48, null = True )
 Item.HighBidder 
-ibuyer          = models.PositiveIntegerField( 'buyer ID', null = True )
+iBuyer          = models.PositiveIntegerField( 'buyer ID', null = True )
 Item.HighBidder.UserID
-ibuyerfeedback  = models.PositiveIntegerField( 'buyer feedback', null = True )
+iBuyerFeedback  = models.PositiveIntegerField( 'buyer feedback', null = True )
 Item.HighBidder.FeedbackRatingStar
 Item.HighBidder.FeedbackScore
 cshipping       = models.CharField( 'shipping info', max_length = 188 )
-cdescription    = models.TextField( 'description' )
+cDescription    = models.TextField( 'description' )
 Description
-iimages         = models.PositiveSmallIntegerField( '# of pictures' )
+iImages         = models.PositiveSmallIntegerField( '# of pictures' )
 GalleryURL
 PictureURL
 Variations.Pictures
@@ -240,7 +240,7 @@ Item.Variations.Pictures
 Item.Variations.Pictures.VariationSpecificName
 Item.Variations.Pictures.VariationSpecificPictureSet
 Item.Variations.Pictures.VariationSpecificPictureSet.PictureURL
-irelistitemnumb = models.BigIntegerField( 'relist item number' )
+iRelistItemNumb = models.BigIntegerField( 'relist item number' )
 SecondaryCategoryID
 Site
 

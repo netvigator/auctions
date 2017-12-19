@@ -17,5 +17,5 @@ class ModelModelTest(TestCase):
 
     def test_string_representation(self):
         sModel = "My model name/number"
-        oModel = Model(ctitle= sModel )
-        self.assertEqual(str(sModel), oModel.ctitle)
+        oModel = Model(cTitle= sModel )
+        self.assertEqual(str(sModel), oModel.cTitle)

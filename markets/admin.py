@@ -6,9 +6,9 @@ from .models import Market
 
 class MarketAdmin(admin.ModelAdmin):
     list_display = (
-        "cmarket", "ccountry", "clanguage", "iebaysiteid", "icategoryver",
-        "ccurrencydef", "bhascategories" )
-    readonly_fields=('icategoryver', )
+        "cMarket", "cCountry", "cLanguage", "iEbaySiteID", "iCategoryVer",
+        "cCurrencyDef", "bHasCategories" )
+    readonly_fields=('iCategoryVer', )
 
 
 
