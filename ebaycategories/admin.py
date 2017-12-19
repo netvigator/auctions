@@ -15,3 +15,4 @@ class ConditionAdmin(admin.ModelAdmin):
 
 admin.site.register(EbayCategory, EbayCategoryAdmin)
 
+admin.site.register( Condition )
