@@ -45,13 +45,13 @@ class EbayCategory(models.Model):
 
 class Condition(models.Model):
     ebay_id         = models.PositiveSmallIntegerField( 'ebay condition ID' )
-    cTitle          = models.CharField(
+    ctitle          = models.CharField(
                         'ebay condition description', max_length = 24 )
 
     def __str__(self):
         return self.ctitle
     
     class Meta():
-        verbose_name_plural = 'conditions'
-        db_table            = verbose_name_plural
+        verbose_name_plural = 'ebay condition descriptions'
+        db_table            = 'conditions'
     
