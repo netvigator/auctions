@@ -28,8 +28,13 @@ class getImportSearchResultsTest(TestCase):
             "Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" )
         self.assertEqual( dThisItem["location"],"Ruskin,FL,USA" )
         self.assertEqual( dThisItem["country"], "US" )
+        self.assertEqual( dThisItem["postalCode"], "33570" )
+        self.assertEqual( dThisItem["globalId"], "EBAY-US" )
         self.assertEqual( dThisItem["galleryURL"], 
             "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" )
+        self.assertEqual( dThisItem["viewItemURL"],
+            "http://www.ebay.com/itm/Simpson-360-2-Digital-Volt-Ohm-"
+            "Milliammeter-Operators-Manual-/253313715173" )
         #
         dListingInfo    = dThisItem["listingInfo"]
         self.assertEqual( dListingInfo["startTime"], "2017-12-15T05:22:47.000Z" )
