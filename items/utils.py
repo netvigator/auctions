@@ -35,16 +35,18 @@ def getSearchResultGenerator( sFile ):
     #
     dPagination = dResponse[ "paginationOutput" ][0]
     #
-    iEntries    = int( dPagination[ "totalEntries" ][0] )
+    getDictValuesFromSingleElementLists( dPagination )
     #
-    iPages      = int( dPagination[ "totalPages" ][0] )
+    iEntries    = int( dPagination[ "totalEntries" ] )
+    #
+    iPages      = int( dPagination[ "totalPages" ] )
     #
     if iPages > 1:
         #
         # actually iEntries is a minimum, the actual number of entries is more
         #
         iEntries = (
-            1 + ( iPages - 1 ) * int( dPagination[ "entriesPerPage" ][0] ) )
+            1 + ( iPages - 1 ) * int( dPagination[ "entriesPerPage" ] ) )
         #
     #
     if not iEntries:
@@ -52,7 +54,7 @@ def getSearchResultGenerator( sFile ):
         raise SearchGotZeroResults( "search executed OK but returned no items" )
         #
     #
-    dPagination[ "totalEntries" ] = dPagination[ "totalEntries" ][0]
+    dPagination[ "totalEntries" ] = dPagination[ "totalEntries" ]
     #
     dResultDict = dResponse[ "searchResult" ][0]
     #
@@ -69,7 +71,6 @@ def getSearchResultGenerator( sFile ):
         iThisItem += 1
         #
         getDictValuesFromSingleElementLists( dItem )
-        #
         #
         dPagination["thisEntry"] = str( iThisItem )
         #
