@@ -19,22 +19,21 @@ class getImportSearchResultsTest(TestCase):
         # test is run AFTER the last line in this file is executed
         WriteText2File( sExampleResponse, sExampleFile )
         #
-        iterSearchResults = getSearchResultGenerator( sExampleFile )
-        dThisItem = next( iterSearchResults )
+        itemResultsIterator = getSearchResultGenerator( sExampleFile )
         #
-        #self.assertEqual( iThisItem, 1 )
-        #self.assertEqual( iTotalItems, 1 )
-        # print3( 'dThisItem.keys():', list( dThisItem.keys() ) )
-        self.assertEqual( dThisItem["itemId"],  "253295991282" )
-        self.assertEqual( dThisItem["title" ],  "Simpson 360 Multimeter" )
-        self.assertEqual( dThisItem["location"],"Piedmont,SC,USA" )
+        dThisItem = next( itemResultsIterator )
+        #
+        self.assertEqual( dThisItem["itemId"],  "253313715173" )
+        self.assertEqual( dThisItem["title" ],
+            "Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" )
+        self.assertEqual( dThisItem["location"],"Ruskin,FL,USA" )
         self.assertEqual( dThisItem["country"], "US" )
         self.assertEqual( dThisItem["galleryURL"], 
-            "http://thumbs3.ebaystatic.com/m/mDzuc_hBdbr66ce2oqz2yxA/140.jpg" )
+            "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" )
         #
         dListingInfo    = dThisItem["listingInfo"]
-        self.assertEqual( dListingInfo["startTime"], "2017-12-05T14:01:02.000Z" )
-        self.assertEqual( dListingInfo[ "endTime" ], "2018-01-04T14:01:02.000Z" )
+        self.assertEqual( dListingInfo["startTime"], "2017-12-15T05:22:47.000Z" )
+        self.assertEqual( dListingInfo[ "endTime" ], "2018-01-14T05:22:47.000Z" )
         self.assertEqual( dListingInfo["bestOfferEnabled" ], "false" )
         self.assertEqual( dListingInfo["buyItNowAvailable"], "false" )
         #
@@ -43,24 +42,31 @@ class getImportSearchResultsTest(TestCase):
         self.assertEqual( dPrimaryCategory["categoryName"], "Multimeters" )
         #
         dCondition      = dThisItem["condition"]
-        self.assertEqual( dCondition["conditionDisplayName"  ],
-                                            "For parts or not working" )
-        self.assertEqual( dCondition["conditionId"           ], "7000" )
+        self.assertEqual( dCondition["conditionDisplayName"  ], "Used" )
+        self.assertEqual( dCondition["conditionId"           ], "3000" )
         #
         dSellingStatus  = dThisItem["sellingStatus"]
         self.assertEqual( dSellingStatus["sellingState"], "Active" )
         
         dCurrentPrice   = dSellingStatus["currentPrice"]
         self.assertEqual( dCurrentPrice["@currencyId"], "USD" )
-        self.assertEqual( dCurrentPrice["__value__"  ], "39.0")
+        self.assertEqual( dCurrentPrice["__value__"  ], "10.0")
         #
         dConvertPrice   = dSellingStatus["convertedCurrentPrice"]
         self.assertEqual( dConvertPrice["@currencyId"], "USD" )
-        self.assertEqual( dConvertPrice["__value__"  ], "39.0")
+        self.assertEqual( dConvertPrice["__value__"  ], "10.0")
         #
         dPagination     = dThisItem["paginationOutput"]
-        self.assertEqual( dPagination["totalEntries"], "1" )
+        self.assertEqual( dPagination["totalEntries"], "4" )
         self.assertEqual( dPagination["thisEntry"   ], "1" )
+        #
+        iItems = 1
+        #
+        for dThisItem in itemResultsIterator:
+            #
+            iItems += 1
+            #
+        self.assertEqual( iItems, 4 )
         #
         DeleteIfExists( sExampleFile )
 
