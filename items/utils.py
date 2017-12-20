@@ -35,6 +35,9 @@ def getSearchResultGenerator( sFile ):
     #
     dPagination = dResponse[ "paginationOutput" ][0]
     #
+    # do not apply getDictValuesFromSingleElementLists directly to dResponse!
+    #### if the search finds only one item, the function trashes it! ###
+    #
     getDictValuesFromSingleElementLists( dPagination )
     #
     iEntries    = int( dPagination[ "totalEntries" ] )
