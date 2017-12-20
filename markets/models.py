@@ -2,6 +2,9 @@ from django.db.models           import PositiveSmallIntegerField as SmallInt
 from django.db.models           import Model, CharField, NullBooleanField
 from django_countries.fields    import CountryField
 
+from core.models                import UpperCaseCharField
+
+
 # Create your models here.
 
 #### INVALID ###
@@ -27,15 +30,15 @@ from django_countries.fields    import CountryField
 # https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
 
 class Market(Model):
-    cMarket         = CharField(    'ebay Global ID',    max_length = 14,
+    cMarket         = UpperCaseCharField(   'ebay Global ID', max_length = 14,
                                 unique = True )
-    cCountry        = CountryField( 'country' )
-    cLanguage       = CharField(    'language',  max_length = 8 )
-    iEbaySiteID     = SmallInt(     'site ID', unique=True )
-    bHasCategories  = NullBooleanField( 'has own categories?', null = True )
-    iCategoryVer    = SmallInt(     'most recent category version',
+    cCountry        = CountryField(         'country' )
+    cLanguage       = CharField(            'language',  max_length = 8 )
+    iEbaySiteID     = SmallInt(             'site ID', unique=True )
+    bHasCategories  = NullBooleanField(     'has own categories?', null=True)
+    iCategoryVer    = SmallInt(             'most recent category version',
                                null = True )
-    cCurrencyDef    = CharField(    'currency default',
+    cCurrencyDef    = UpperCaseCharField(   'currency default',
                                max_length = 3, null = True )
     
     def __str__(self):
