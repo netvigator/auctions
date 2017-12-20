@@ -6,7 +6,7 @@ from markets.models import Market
 
 
 '''
-ebay_id,
+iCategoryID,
 cTitle, 
 iLevel, 
 iParent_ID, 
@@ -20,14 +20,16 @@ iSupercededBy
 # category numbers are only unique within a marketplace site
 
 class EbayCategory(models.Model):
-    ebay_id         = models.BigIntegerField( 'ebay category number' )
+    iCategoryID     = models.BigIntegerField( 'ebay category number' )
     cTitle          = models.CharField(
-                        'ebay category description', max_length = 48 )
+                        'ebay category description', max_length = 50 )
     iLevel          = models.PositiveSmallIntegerField(
                         'level, top is 0, lower levels are bigger numbers' )
     iParent_ID      = models.ForeignKey( 'self',
-                        verbose_name = 'parent category', related_name = 'parentcategory' )
-    bLeafCategory  = models.BooleanField( 'leaf category?' )
+                        verbose_name = 'parent category',
+                        related_name = 'parentcategory',
+                        null = True )
+    bLeafCategory   = models.BooleanField( 'leaf category?' )
     iTreeVersion    = models.PositiveSmallIntegerField(
                         'category tree version' )
     iMarket         = models.ForeignKey( Market, verbose_name = 'ebay market' )
@@ -40,11 +42,14 @@ class EbayCategory(models.Model):
     
     class Meta():
         verbose_name_plural = 'ebay categories'
-        db_table            = verbose_name_plural
+        db_table        = verbose_name_plural
+        unique_together = ('iCategoryID', 'iMarket',)
+        ordering        = ('iMarket', 'iCategoryID')
+
 #
 
 class Condition(models.Model):
-    ebay_id         = models.PositiveSmallIntegerField( 'ebay condition ID' )
+    iConditionID    = models.PositiveSmallIntegerField( 'ebay condition ID' )
     cTitle          = models.CharField(
                         'ebay condition description', max_length = 24 )
 
