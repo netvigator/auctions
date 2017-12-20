@@ -6,6 +6,9 @@ oUser = get_user_model()
 
 oUserOne = oUser.objects.filter( id = 1 ).first()
 
+#                "2017-12-15T05:22:47.000Z"
+EBAY_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
+
 if not oUserOne:
     #
     '''
@@ -40,3 +43,15 @@ def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' 
     sRootNameSpTag  =  sNameSpaceTag % ( sXmlNameSpace, sRootTag )
     #
     return sNamerSpacer, sRootNameSpTag
+
+
+def getDateTimeObj( sDateTime ):
+    #
+    '''convert ebay string dates into python datetime objects'''
+    #
+    from Time.Convert import getDateTimeObjFromString
+    #
+    #
+    return getDateTimeObjFromString( sDateTime, EBAY_DATE_FORMAT )
+
+
