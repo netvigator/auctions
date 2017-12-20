@@ -6,12 +6,11 @@ from .models import EbayCategory, Condition
 
 
 class EbayCategoryAdmin(admin.ModelAdmin):
-    list_display = ( "ebay_id", "cTitle", "iLevel", "iParent_ID",
-                     "bLeafCategory", "iTreeVersion" )
-
+    list_display = ( "iMarket", "iCategoryID", "cTitle", "iLevel",
+                     "iParent_ID", "bLeafCategory", "iTreeVersion" )
 
 class ConditionAdmin(admin.ModelAdmin):
-    list_display = ( "ebay_id", "cTitle" )
+    list_display = ( "iConditionID", "cTitle" )
 
 admin.site.register(EbayCategory, EbayCategoryAdmin)
 
