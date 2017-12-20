@@ -3,10 +3,18 @@ class UnexpectedResponse( Exception ): pass
 
 import xml.etree.ElementTree as ET
 
-#from pprint import pprint
-from six import print_ as print3
+from pprint import pprint
+from six    import print_ as print3
+from six    import next
 
-from core.utils import getNamerSpacer
+from core.utils     import getNamerSpacer
+from django.core.exceptions import ObjectDoesNotExist
+from django.db      import DataError
+
+from String.Output  import ReadableNo
+from Utils.Progress import TextMeter, DummyMeter
+from Web.HTML       import getChars4HtmlCodes
+
 
 # variable referenced in tests
 cCategoryVersionFile = '/tmp/Categories_Version_for_%s.xml'
@@ -101,7 +109,7 @@ def countCategories(
             'categories, actully counted', ReadableNo( i ) )
 
 
-def getCategoryDicts(
+def getCategoryDictGenerator(
         sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
     #
     oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
@@ -127,7 +135,122 @@ def getCategoryDicts(
         yield dCategory
 
 
+'''
+categoryDictIterable = getCategoryDictGenerator()
+pprint( next( categoryDictIterable ) )
+returns
+{'CategoryID': '20081',
+ 'CategoryLevel': '1',
+ 'CategoryName': 'Antiques',
+ 'CategoryParentID': '20081',
+ 'CategoryVersion': '117',
+ 'LeafCategory': ''}
+'''
 
+
+def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
+            bShowProgress = False ):
+    #
+    from .models        import EbayCategory
+    from markets.models import Market
+    #
+    oMarket = Market.objects.get( cMarket = sMarket )
+    #
+    categoryDictIterable = getCategoryDictGenerator(
+        sFile = cCategorylistingFile % sMarket, sWantVersion = sWantVersion )
+    #
+    if bShowProgress:
+        #
+        oProgressMeter = TextMeter()
+        #
+        print3( 'counting categories ...' )
+        #
+        iCount = 0
+        #
+        for dCategory in categoryDictIterable: iCount +=1
+        #
+        categoryDictIterable = getCategoryDictGenerator(
+            sFile = cCategorylistingFile % sMarket,
+            sWantVersion = sWantVersion )
+        #
+        sLineB4 = 'stepping thru ebay categories ...'
+        sOnLeft = "%s %s" % ( ReadableNo( iCount ), 'categories' )
+        #
+        oProgressMeter.start( iCount, sOnLeft, sLineB4 )
+        #
+    else:
+        #
+        oProgressMeter = DummyMeter()
+        #
+    #
+    iWantVersion = int( sWantVersion )
+    #
+    iSeq = 0
+    #
+    for dCategory in categoryDictIterable:
+        #
+        iSeq  += 1
+        #
+        oProgressMeter.update( iSeq )
+        #
+        sConfirmVersion = dCategory['CategoryVersion']
+        #
+        oCategory = EbayCategory()
+        #
+        if sConfirmVersion != sWantVersion:
+            #
+            raise UnexpectedResponse(
+                'expecting CategoryVersion "%s", got "%s"!' %
+                ( sWantVersion, sConfirmVersion ) )
+            #
+        try:
+            #
+            oCategory = EbayCategory.objects.get(
+                iMarket         = oMarket, 
+                iCategoryID     = int( dCategory['CategoryID'] ) )
+            #
+        except ObjectDoesNotExist:
+            #
+            oCategory = EbayCategory(
+                iCategoryID     = int( dCategory['CategoryID'] ),
+                iMarket         = oMarket )
+        #
+        sCategoryName = getChars4HtmlCodes( dCategory['CategoryName'] )
+        #
+        oCategory.cTitle        = sCategoryName
+        oCategory.iLevel        = int( dCategory['CategoryLevel'   ] )
+        oCategory.bLeafCategory = bool(dCategory['LeafCategory'    ] )
+        oCategory.iTreeVersion  = iWantVersion
+        #
+        if dCategory['CategoryID'] == dCategory['CategoryParentID']:
+            #
+            # level 1 category, CategoryID == CategoryParentID
+            #
+            pass
+            #
+        else:
+            #
+            oCategory.iParent_ID = EbayCategory.objects.get(
+                iMarket     = oMarket, 
+                iCategoryID = dCategory['CategoryParentID'] )
+            #
+        #
+        try:
+            oCategory.save()
+        except DataError:
+            print3( '\ntoo long: %s\n' % sCategoryName )
+            oCategory.cTitle        = sCategoryName[:48]
+            oCategory.save()
+        #
+
+    #
+    oProgressMeter.end( iSeq )
+    #
+
+
+
+
+    
 def getCategoryVersionValues( sFile ):
     #
     tree = ET.parse( sFile )
@@ -144,6 +267,7 @@ def getCategoryVersion( sMarket = 'EBAY-US', sFile = cCategoryVersionFile ):
     #
     return dTagsValues[ 'CategoryVersion' ]
 
-# pprint( getCategoryVersion() )
+
+
 
 
