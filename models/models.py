@@ -18,6 +18,11 @@ class Model(models.Model):
                         'key word required?', default = True )
     bsplitdigitsok  = models.BooleanField(
                         'split digits OK?', default = False )
+    cLookFor        = models.TextField(
+                        'Considered a hit if this text is found '
+                        '(each line evaluated separately, '
+                        'put different look for tests on different lines)',
+                        null=True, blank = True )
     iStars          = IntegerRangeField(
                         'desireability, 10 star model is most desireable',
                         min_value = 0, max_value = 10, default = 5 )

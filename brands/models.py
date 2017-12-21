@@ -21,6 +21,11 @@ class Brand(models.Model):
                         'want anything from this brand?', default = True )
     bAllOfInterest  = models.BooleanField(
                         'want everything from this brand?', default = True )
+    cLookFor        = models.TextField(
+                        'Considered a hit if this text is found '
+                        '(each line evaluated separately, '
+                        'put different look for tests on different lines)',
+                        null=True, blank = True )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )

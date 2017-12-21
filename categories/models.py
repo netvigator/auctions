@@ -18,6 +18,11 @@ class Category(models.Model):
                                         null = True, blank = True )
     bKeyWordRequired= models.BooleanField(
                         'key word required?', default = False )
+    cLookFor        = models.TextField(
+                        'Considered a hit if this text is found '
+                        '(each line evaluated separately, '
+                        'put different look for tests on different lines)',
+                        null=True, blank = True )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
