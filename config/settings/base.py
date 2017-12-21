@@ -112,7 +112,7 @@ LOCAL_APPS = [
     'items.apps.ItemsConfig',
     'markets.apps.MarketsConfig',
     'ebaycategories.apps.EbayCategoriesConfig',
-    'searches.apps.SearchesConfig',
+    'searching.apps.SearchingConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -348,3 +348,4 @@ ADMIN_URL = r'^admin/'
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
 
+SESSION_COOKIE_SECURE = False # set to True in production

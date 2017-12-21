@@ -32,7 +32,7 @@ class Search(models.Model):
 
     class Meta():
         verbose_name_plural = 'searches'
-        db_table        = verbose_name_plural
+        db_table        = 'searching'
         unique_together = ('cKeyWords', 'iEbayCategory',)
 
     

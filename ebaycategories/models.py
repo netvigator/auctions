@@ -24,7 +24,7 @@ class EbayCategory(models.Model):
     cTitle          = models.CharField(
                         'ebay category description', max_length = 50 )
     iLevel          = models.PositiveSmallIntegerField(
-                        'level, top is 0, lower levels are bigger numbers' )
+                        'level (top is 1, lower levels are bigger numbers)' )
     iParent_ID      = models.ForeignKey( 'self',
                         verbose_name = 'parent category',
                         related_name = 'parentcategory',

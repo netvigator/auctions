@@ -13,8 +13,10 @@ class SearchAdmin(admin.ModelAdmin):
     readonly_fields = ('tLastSearch','cLastResult','iUser','tCreate','tModify')
 
     def save_model(self, request, obj, form, change):
-            obj.iUser = request.user
-            obj.save()
+        #
+        if getattr( obj, iUser, None ) is None: obj.iUser = request.user
+        #
+        obj.save()
 
 
 

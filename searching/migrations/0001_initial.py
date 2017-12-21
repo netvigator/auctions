@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name_plural': 'searches',
-                'db_table': 'searches',
+                'db_table': 'searching',
             },
         ),
         migrations.AlterUniqueTogether(
