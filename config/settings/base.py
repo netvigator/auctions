@@ -112,6 +112,7 @@ LOCAL_APPS = [
     'items.apps.ItemsConfig',
     'markets.apps.MarketsConfig',
     'ebaycategories.apps.EbayCategoriesConfig',
+    'searches.apps.SearchesConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
