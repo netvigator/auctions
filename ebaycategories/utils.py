@@ -5,7 +5,6 @@ import xml.etree.ElementTree as ET
 
 from pprint import pprint
 from six    import print_ as print3
-from six    import next
 
 from core.utils     import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist

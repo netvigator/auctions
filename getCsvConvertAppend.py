@@ -421,8 +421,6 @@ def doOneTable( sTable ):
     #
     from sys                import stdout
     #
-    from six                import next as getNext
-    #
     from File.Get           import getFileObject
     from String.Output      import Plural
     from Utils.Progress     import TextMeter, DummyMeter
