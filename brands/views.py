@@ -27,7 +27,7 @@ class DetailView(generic.DetailView):
 class CreateBrandView(CreateView):
 
     model = Brand
-    fields = ('cTitle','bWante','bAllOfInterest','iStars','cComment',
+    fields = ('cTitle','bWanted','bAllOfInterest','iStars','cComment',
               'cNationality','cExcludeIf',)
     template_name = 'brands/edit_brand.html'
 
