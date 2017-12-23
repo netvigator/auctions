@@ -9,12 +9,16 @@ User = get_user_model()
 
 
 class SearchAdmin(admin.ModelAdmin):
-    list_display = ('cTitle','iEbayCategory','cPriority','cKeyWords','tLastSearch','cLastResult',)
-    readonly_fields = ('tLastSearch','cLastResult','iUser','tCreate','tModify')
+    list_display = (
+        'cTitle','iEbayCategory','cPriority','cKeyWords','tLastSearch',
+        'cLastResult',)
+    readonly_fields = (
+        'iEbayCategory','tLastSearch','cLastResult','iUser','tCreate',
+        'tModify')
 
     def save_model(self, request, obj, form, change):
         #
-        if getattr( obj, iUser, None ) is None: obj.iUser = request.user
+        if getattr( obj, "iUser", None ) is None: obj.iUser = request.user
         #
         obj.save()
 
