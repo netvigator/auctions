@@ -5,13 +5,18 @@ from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+# not working: from django.utils.safestring import mark_safe
+
 from ebaycategories.models import EbayCategory
 
 
 class Search(models.Model):
     cTitle          = models.CharField( 'short description',
                                          max_length = 38, null = True )
-    cKeyWords       = models.CharField( 'search for key words', max_length = 98 )
+    cKeyWords       = models.TextField(
+        'search for key words (maximum length 350 characters)',
+        max_length = 350 )
+    # max length for a single key word is 98
     iEbayCategory   = models.ForeignKey( EbayCategory,
                                          verbose_name = 'ebay category (optional)',
                                          null = True, blank = True )
