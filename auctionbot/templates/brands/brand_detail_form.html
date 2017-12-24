@@ -66,13 +66,25 @@
     </table>
 
   <div style="margin-left:20px;margin-top:20px">
-    <h4>Categories for {{ brand }}</h4>
-    {{categories_list.as_ul}}    
+    {% if categories_list %}
+        <h4>Categories for {{ brand }}</h4>
+        <UL>
+        {% for category in categories_list%}
+            <LI>{{ category }}</LI>
+        {% endfor %}
+        </UL>
+    {% endif %}
   </div>
-  
+
   <div style="margin-left:20px;margin-top:20px">
-    <h4>{{ brand }} Models</h4>
-    {{models_list.as_ul}}    
+    {% if models_list %}
+        <h4>{{ brand }} Models</h4>
+        <UL>
+        {% for model in models_list%}
+            <LI>{{ model }}</LI>
+        {% endfor %}
+        </UL>
+    {% endif %}
   </div>
   
 {% endblock %}
