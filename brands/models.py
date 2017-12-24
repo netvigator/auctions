@@ -1,5 +1,6 @@
 from django.db                  import models
 from django_countries.fields    import CountryField
+from django.core.exceptions     import FieldDoesNotExist
 
 # Create your models here.
 
@@ -41,7 +42,8 @@ class Brand(models.Model):
                         null=True, blank = True )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                         null=True, blank = True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
+                        on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
     #
@@ -53,4 +55,52 @@ class Brand(models.Model):
         verbose_name_plural = 'brands'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
+
+    def get_absolute_url(self):
+        return reverse('brand-detail', kwargs={'pk': self.pk})
+    
+    # not working
+    def getFieldsForView( self, tWantFields = None ):
+        #
+        dFields = {}
+        #
+        if tWantFields is None:
+            #
+            tWantFields = [ field.name for field in self._meta.fields ]
+            setWantFields = frozenset( tWantFields )
+            #
+        else:
+            #
+            setWantFields = frozenset( tWantFields )
+            #
+        #
+        for field in self._meta.fields:
+            #
+            if field.name in setWantFields:
+                #
+                try:
+                    dFields[ field.name ] = (
+                        field.verbose_name.title(),
+                        field.value_to_string(self) )
+                except FieldDoesNotExist:
+                    pass
+                except AttributeError:
+                    dFields[ field.name ] = (
+                        field.verbose_name.title(),
+                        field )
+                #
+            #
+        #
+        lNamesValues = []
+        #
+        for sField in tWantFields:
+            #
+            if sField in dFields:
+                #
+                lNamesValues.append( dFields[ sField ] )
+            #
+        #
+        return tuple( lNamesValues )
+
+
 
