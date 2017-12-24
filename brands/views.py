@@ -81,9 +81,10 @@ class BrandDetail(DetailView):
         #context['fields_list'] = Brand.getFieldsForView(
                                         #Brand, tMoreModelFields )
         #
-        context['categories_list'] = Category.objects.all()
+        user = self.request.user
+        context['categories_list'] = Category.objects.filter(iUser=user)
         # Add in a QuerySet of all the models
-        context['models_list'    ] = Model.objects.all()
+        context['models_list'    ] = Model.objects.filter(iUser=user)
         return context
 
 class BrandUpdate(UpdateView):
