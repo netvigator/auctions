@@ -65,7 +65,8 @@ class Model(models.Model):
     tLegacyCreate   = models.DateTimeField( 'legacy row created on' )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                         null = True, blank = True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
+                        on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
     
