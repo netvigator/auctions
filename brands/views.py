@@ -78,8 +78,8 @@ class BrandDetail(DetailView):
         # Call the base implementation first to get a context
         context = super(BrandDetail, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
-        context['fields_list'] = Brand.getFieldsForView(
-                                        Brand, tMoreModelFields )
+        #context['fields_list'] = Brand.getFieldsForView(
+                                        #Brand, tMoreModelFields )
         #
         context['categories_list'] = Category.objects.all()
         # Add in a QuerySet of all the models
