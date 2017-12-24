@@ -4,7 +4,7 @@ from django.urls                import reverse_lazy
 from django.views               import generic
 
 from .models                    import Brand
-from categories.models          import Category
+from categories.models          import Category, BrandCategory
 from models.models              import Model
 
 
@@ -55,9 +55,9 @@ tModelFields = (
     'tModify'
 '''
 
-lMoreModelFields = list( tModelFields )
-lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
-tMoreModelFields = tuple( lMoreModelFields )
+#lMoreModelFields = list( tModelFields )
+#lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
+#tMoreModelFields = tuple( lMoreModelFields )
 
 class BrandCreate(CreateView):
     model   = Brand
