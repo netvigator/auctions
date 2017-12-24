@@ -60,6 +60,7 @@ class Brand(models.Model):
         return reverse('brand-detail', kwargs={'pk': self.pk})
     
     # not working
+    '''
     def getFieldsForView( self, tWantFields = None ):
         #
         dFields = {}
@@ -101,6 +102,7 @@ class Brand(models.Model):
             #
         #
         return tuple( lNamesValues )
+        '''
 
 
 
