@@ -41,6 +41,8 @@ class Category(models.Model):
     iLegacyKey      = models.PositiveIntegerField( 'legacy key', unique=True )
     iLegacyFamily   = models.PositiveIntegerField( 'legacy family',
                                                     null = True )
+    bModelsShared   = models.BooleanField(  'brands share model numbers',
+                                                    default = False)
     tLegacyCreate   = models.DateTimeField( 'legacy row created on' )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                                             null = True )
