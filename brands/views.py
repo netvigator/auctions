@@ -1,13 +1,14 @@
-from django.views.generic.edit  import CreateView, UpdateView, DeleteView
-from django.views.generic       import DetailView, ListView
-from django.urls                import reverse_lazy
-from django.views               import generic
+from django.views.generic.edit      import CreateView, UpdateView, DeleteView
+from django.views.generic           import DetailView, ListView
+from django.urls                    import reverse_lazy
+from django.views                   import generic
+from django.contrib.auth.mixins     import LoginRequiredMixin
 
-from .models                    import Brand
-from categories.models          import Category, BrandCategory
-from models.models              import Model
+from .models                        import Brand
+from categories.models              import Category, BrandCategory
+from models.models                  import Model
 
-from Utils.Output               import getSayYesOrNo
+from Utils.Output                   import getSayYesOrNo
 
 # Create your views here but keep them thin.
 
@@ -86,7 +87,8 @@ tModelFields = (
 #lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
 #tMoreModelFields = tuple( lMoreModelFields )
 
-class BrandCreate(CreateView):
+
+class BrandCreate( LoginRequiredMixin, CreateView ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/add_form.html'
@@ -96,12 +98,14 @@ class BrandCreate(CreateView):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
 
-class BrandDelete(DeleteView):
+
+class BrandDelete( LoginRequiredMixin, DeleteView ):
     model   = Brand
     template_name = 'brands/confirm_delete.html'
     success_url = reverse_lazy('brands:index')
 
-class BrandDetail(DetailView):
+
+class BrandDetail( LoginRequiredMixin, DetailView ):
     model   = Brand
     template_name = 'brands/detail_form.html'
     
@@ -118,12 +122,14 @@ class BrandDetail(DetailView):
         #
         return context
 
-class BrandUpdate(UpdateView):
+
+class BrandUpdate( LoginRequiredMixin, UpdateView ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit_form.html'
 
-class IndexView(ListView):  
+
+class IndexView( LoginRequiredMixin, ListView ):  
     template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand
