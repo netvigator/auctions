@@ -4,7 +4,7 @@ from . import views
 
 
 
-app_name = 'brands'
+app_name = "brands"
 
 urlpatterns = [
     url(r'^$',      views.IndexView.as_view(),  name='index'),
