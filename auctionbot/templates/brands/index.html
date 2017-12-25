@@ -21,8 +21,8 @@
         {% for brand in brand_list %}
             <tr>
             <td><a href="/brands/{{ brand.id }}/">{{ brand.cTitle }}</a></td>
-            <td>{{ brand.bWanted }}</td>
-            <td>{{ brand.bAllOfInterest }}</td>
+            <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
+            <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
             <td>{{ brand.cNationality }}</td>
             <td>{{ brand.tCreate }}</td>
             <td>{{ brand.tModify }}</td>
