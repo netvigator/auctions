@@ -1,6 +1,7 @@
 from django.db                  import models
 from django_countries.fields    import CountryField
 from django.core.exceptions     import FieldDoesNotExist
+from django.core.urlresolvers   import reverse
 
 # Create your models here.
 
@@ -57,7 +58,7 @@ class Brand(models.Model):
         db_table            = verbose_name_plural
 
     def get_absolute_url(self):
-        return reverse('brand-detail', kwargs={'pk': self.pk})
+        return reverse('brands:detail', kwargs={'pk': self.pk})
     
     # not working
     '''
