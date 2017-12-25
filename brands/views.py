@@ -7,6 +7,7 @@ from .models                    import Brand
 from categories.models          import Category, BrandCategory
 from models.models              import Model
 
+from Utils.Output               import getSayYesOrNo
 
 # Create your views here but keep them thin.
 
@@ -76,7 +77,6 @@ class BrandDelete(DeleteView):
 
 class BrandDetail(DetailView):
     model   = Brand
-    fields  = tModelFields
     template_name = 'brands/detail_form.html'
     
     def get_context_data(self, **kwargs):
@@ -84,8 +84,7 @@ class BrandDetail(DetailView):
         context = super(BrandDetail, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
         #context['fields_list'] = Brand.getFieldsForView(
-                                        #Brand, tMoreModelFields )
-        #
+        #                               Brand, tMoreModelFields )
         user = self.request.user
         context['categories_list'] = Category.objects.filter(iUser=user)
         # Add in a QuerySet of all the models
