@@ -1,70 +1,66 @@
+{% extends "base.html" %}
 
 {% block content %}
     <h1>{{ brand }} Details</h1>
-    
-    <p>Reminder! After successful edit, you may need do do 
+    <p>
+    <p>Reminder! After a successful edit, you may need do do 
     a hard refresh &mdash; Ctrl-F5 &mdash; to see your changes!</p>
     
     <table RULES=ROWS CELLPADDING=10>
     <TR>
-    <TD width= 35>Label</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>Value</TD>
-    </TR>
-    <TR>
-    <TD width= 35>brand name</TD> 
+    <TD width = 300>brand name</TD> 
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
     <TR>
     <TD>want anything from this brand?</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.bWanted}}</TD>
+        <TD VALIGN=TOP>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
     <TD>want everything from this brand?</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.bAllOfInterest}}</TD>
+        <TD VALIGN=TOP>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-    <TD width= 35>Considered a hit if this text is found (each line evaluated separately, put different look for tests on different lines)</TD>
+    <TD width = 300>Considered a hit if this text is found (each line evaluated separately, put different look for tests on different lines)</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cLookFor}}</TD>
+        <TD VALIGN=TOP>{{object.cLookFor}}</TD>
     </TR>
     <TR>
-    <TD width= 35>desireability, 10 star brand is most desireable</TD>
+    <TD width = 300>desireability, 10 star brand is most desireable</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.iStars}}</TD>
+        <TD VALIGN=TOP>{{object.iStars}}</TD>
     </TR>
     <TR>
     <TD>comments</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cComment}}</TD>
+        <TD VALIGN=TOP>{{object.cComment}}</TD>
     </TR>
     <TR>
     <TD>nationality</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cNationality}}</TD>
+        <TD VALIGN=TOP>{{object.cNationality}}</TD>
     </TR>
     <TR>
-    <TD width= 35>Not a hit if this text is found (each line evaluated separately, put different exclude tests on different lines)</TD>
+    <TD width = 300>Not a hit if this text is found (each line evaluated separately, put different exclude tests on different lines)</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cExcludeIf}}</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf}}</TD>
     </TR>
     <TR>
     <TD>Owner</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.iUser}}</TD>
+        <TD VALIGN=TOP>{{object.iUser}}</TD>
     </TR>
     <TR>
     <TD>created on</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.tCreate}}</TD>
+        <TD VALIGN=TOP>{{object.tCreate}}</TD>
     </TR>
     <TR>
     <TD>updated on</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.tModify}}</TD>
+        <TD VALIGN=TOP>{{object.tModify}}</TD>
     </TR>
     </table>
     
