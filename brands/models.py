@@ -58,7 +58,8 @@ class Brand(models.Model):
         db_table            = verbose_name_plural
 
     def get_absolute_url(self):
-        return reverse('brands:detail', kwargs={'pk': self.pk})
+        return reverse('brands:detail',
+            kwargs={'pk': self.pk})
     
     # not working
     '''
