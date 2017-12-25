@@ -41,6 +41,32 @@ class CreateBrandView(CreateView):
     def get_success_url(self):
         return reverse('brands-list')
 '''
+
+def getCategoriesForBrand( oBrand ):
+    #
+    from brands.models      import Brand
+    from categories.models  import BrandCategory
+    #
+    oBrandCategories = BrandCategory.objects.filter( iBrand = oBrand )
+    #
+    oCategories = Category.objects.filter(
+        id__in = BrandCategory.objects.values_list("iCategory").filter(
+            iBrand = oBrand ) ).order_by( 'cTitle' )
+    #
+    return oCategories
+
+
+def getModelsForBrand( oBrand ):
+    #
+    from models.models      import Model
+    #
+    oModels = Model.objects.filter( iBrand = oBrand ).order_by( 'cTitle' )
+    #
+    l = [ ( oModel, oModel.iCategory ) for oModel in oModels ]
+    #
+    return l
+
+    
 tModelFields = (
     'cTitle',
     'bWanted',
@@ -85,10 +111,11 @@ class BrandDetail(DetailView):
         # Add in a QuerySet of all the categories
         #context['fields_list'] = Brand.getFieldsForView(
         #                               Brand, tMoreModelFields )
-        user = self.request.user
-        context['categories_list'] = Category.objects.filter(iUser=user)
+        #
+        context['categories_list'] = getCategoriesForBrand( self.object )
         # Add in a QuerySet of all the models
-        context['models_list'    ] = Model.objects.filter(iUser=user)
+        context['models_list'    ] = getModelsForBrand( self.object )
+        #
         return context
 
 class BrandUpdate(UpdateView):
