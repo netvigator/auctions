@@ -62,17 +62,22 @@ tModelFields = (
 class BrandCreate(CreateView):
     model   = Brand
     fields  = tModelFields
-    template_name = 'brands/brand_add_form.html'
+    template_name = 'brands/add_form.html'
+    success_url = reverse_lazy('brands:index')
+
+    def form_valid(self, form):
+        form.instance.iUser = self.request.user
+        return super().form_valid(form)
 
 class BrandDelete(DeleteView):
     model   = Brand
-    template_name = 'brands/brand_confirm_delete.html'
-    success_url = reverse_lazy('brand-list')
+    template_name = 'brands/confirm_delete.html'
+    success_url = reverse_lazy('brands:index')
 
 class BrandDetail(DetailView):
     model   = Brand
     fields  = tModelFields
-    template_name = 'brands/brand_detail_form.html'
+    template_name = 'brands/detail_form.html'
     
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -90,12 +95,16 @@ class BrandDetail(DetailView):
 class BrandUpdate(UpdateView):
     model   = Brand
     fields  = tModelFields
-    template_name = 'brands/brand_edit_form.html'
+    template_name = 'brands/edit_form.html'
 
 class IndexView(ListView):  
-    template_name = 'brands/brand_index.html'
+    template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand
     
     def get_queryset(self):
         return Brand.objects.filter(iUser=self.request.user)
+
+    #def get_context_data(self, **kwargs):
+        ## Call the base implementation first to get a context
+        #context = super(IndexView, self).get_context_data(**kwargs)
