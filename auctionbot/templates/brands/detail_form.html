@@ -100,11 +100,15 @@
     <div style="margin-left:20px;margin-top:20px">
     {% if models_list %}
         <h4>{{ brand }} Models</h4>
-        <UL>
-        {% for model in models_list%}
-            <LI>{{ model }}</LI>
+        <table>
+        {% for model, category in models_list%}
+            <tr>
+                <td>{{ model  }}</td>
+                <TD>&nbsp;&nbsp;&nbsp;</TD>
+                <td>{{category}}</td>
+            </tr>
         {% endfor %}
-        </UL>
+        </table>
     {% endif %}
     </div>
   
