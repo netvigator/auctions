@@ -1,0 +1,115 @@
+
+{% block content %}
+    <h1>{{ brand }} Details</h1>
+    
+    <p>Reminder! After successful edit, you may need do do 
+    a hard refresh &mdash; Ctrl-F5 &mdash; to see your changes!</p>
+    
+    <table RULES=ROWS CELLPADDING=10>
+    <TR>
+    <TD width= 35>Label</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>Value</TD>
+    </TR>
+    <TR>
+    <TD width= 35>brand name</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cTitle}}</TD>
+    </TR>
+    <TR>
+    <TD>want anything from this brand?</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.bWanted}}</TD>
+    </TR>
+    <TR>
+    <TD>want everything from this brand?</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.bAllOfInterest}}</TD>
+    </TR>
+    <TR>
+    <TD width= 35>Considered a hit if this text is found (each line evaluated separately, put different look for tests on different lines)</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cLookFor}}</TD>
+    </TR>
+    <TR>
+    <TD width= 35>desireability, 10 star brand is most desireable</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iStars}}</TD>
+    </TR>
+    <TR>
+    <TD>comments</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cComment}}</TD>
+    </TR>
+    <TR>
+    <TD>nationality</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cNationality}}</TD>
+    </TR>
+    <TR>
+    <TD width= 35>Not a hit if this text is found (each line evaluated separately, put different exclude tests on different lines)</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cExcludeIf}}</TD>
+    </TR>
+    <TR>
+    <TD>Owner</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iUser}}</TD>
+    </TR>
+    <TR>
+    <TD>created on</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.tCreate}}</TD>
+    </TR>
+    <TR>
+    <TD>updated on</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.tModify}}</TD>
+    </TR>
+    </table>
+    
+    <p>
+    
+    <table>
+    <TR ALIGN=MIDDLE>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+    <form action='{% url "brands:edit" pk=brand.id %}'>
+        <input type="submit" value=" edit " />
+    </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+    <form action='{% url "brands:delete" pk=brand.id %}'>
+        <input type="submit" value=" delete " />
+    </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    </TR>
+    </table>
+    
+
+    
+    <div style="margin-left:20px;margin-top:20px">
+    {% if categories_list %}
+        <h4>Categories for {{ brand }}</h4>
+        <UL>
+        {% for category in categories_list%}
+            <LI>{{ category }}</LI>
+        {% endfor %}
+        </UL>
+    {% endif %}
+    </div>
+
+    <div style="margin-left:20px;margin-top:20px">
+    {% if models_list %}
+        <h4>{{ brand }} Models</h4>
+        <UL>
+        {% for model in models_list%}
+            <LI>{{ model }}</LI>
+        {% endfor %}
+        </UL>
+    {% endif %}
+    </div>
+  
+{% endblock %}

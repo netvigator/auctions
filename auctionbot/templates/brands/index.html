@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+    <h1>Brands</h1>
+
+    <form action="{% url "brands:add" %}">
+        <input type="submit" value=" add a brand " />
+    </form>
+
+    {% if brand_list %}
+        <table>
+        <tr>
+        <th ALIGN=LEFT>Brand Name</th>
+        <th ALIGN=LEFT>Wanted?</th>
+        <th ALIGN=LEFT>Want everything?</th>
+        <th ALIGN=LEFT>Nationality</th>
+        <th ALIGN=LEFT>created on</th>
+        <th ALIGN=LEFT>updated on</th>
+        </tr>
+        {% for brand in brand_list %}
+            <tr>
+            <td><a href="/brands/{{ brand.id }}/">{{ brand.cTitle }}</a></td>
+            <td>{{ brand.bWanted }}</td>
+            <td>{{ brand.bAllOfInterest }}</td>
+            <td>{{ brand.cNationality }}</td>
+            <td>{{ brand.tCreate }}</td>
+            <td>{{ brand.tModify }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No brands are available.</p>
+    {% endif %}
+
+    <form action="{% url "brands:add" %}">
+        <input type="submit" value=" add a brand " />
+    </form>
+
+{% endblock %}
