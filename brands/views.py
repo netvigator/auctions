@@ -43,29 +43,6 @@ class CreateBrandView(CreateView):
         return reverse('brands-list')
 '''
 
-def getCategoriesForBrand( oBrand ):
-    #
-    from brands.models      import Brand
-    from categories.models  import BrandCategory
-    #
-    oBrandCategories = BrandCategory.objects.filter( iBrand = oBrand )
-    #
-    oCategories = Category.objects.filter(
-        id__in = BrandCategory.objects.values_list("iCategory").filter(
-            iBrand = oBrand ) ).order_by( 'cTitle' )
-    #
-    return oCategories
-
-
-def getModelsForBrand( oBrand ):
-    #
-    from models.models      import Model
-    #
-    oModels = Model.objects.filter( iBrand = oBrand ).order_by( 'cTitle' )
-    #
-    l = [ ( oModel, oModel.iCategory ) for oModel in oModels ]
-    #
-    return l
 
     
 tModelFields = (
@@ -106,6 +83,7 @@ class BrandDelete( LoginRequiredMixin, DeleteView ):
 
 
 class BrandDetail( LoginRequiredMixin, DetailView ):
+    
     model   = Brand
     template_name = 'brands/detail_form.html'
     
@@ -116,9 +94,11 @@ class BrandDetail( LoginRequiredMixin, DetailView ):
         #context['fields_list'] = Brand.getFieldsForView(
         #                               Brand, tMoreModelFields )
         #
-        context['categories_list'] = getCategoriesForBrand( self.object )
+        context['categories_list'] = \
+            self.object.getCategoriesForBrand(self.object)
         # Add in a QuerySet of all the models
-        context['models_list'    ] = getModelsForBrand( self.object )
+        context['models_list'    ] = \
+            self.object.getModelsForBrand(    self.object )
         #
         return context
 

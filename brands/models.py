@@ -61,6 +61,30 @@ class Brand(models.Model):
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
 
+    def getCategoriesForBrand( self, oBrand ):
+        #
+        from categories.models  import Category
+        from categories.models  import BrandCategory
+        #
+        oBrandCategories = BrandCategory.objects.filter( iBrand = oBrand )
+        #
+        oCategories = Category.objects.filter(
+            id__in = BrandCategory.objects.values_list("iCategory").filter(
+                iBrand = oBrand ) ).order_by( 'cTitle' )
+        #
+        return oCategories
+
+    def getModelsForBrand( self, oBrand ):
+        #
+        from models.models import Model
+        #
+        oModels = Model.objects.filter( iBrand = oBrand ).order_by( 'cTitle' )
+        #
+        l = [ ( oModel, oModel.iCategory ) for oModel in oModels ]
+        #
+        return l
+
+
     def get_absolute_url(self):
         return reverse('brands:detail',
             kwargs={'pk': self.pk})
