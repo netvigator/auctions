@@ -1,4 +1,5 @@
 from django.db                  import models
+from django_countries.conf      import settings
 from django_countries.fields    import CountryField
 from django.core.exceptions     import FieldDoesNotExist
 from django.core.urlresolvers   import reverse
@@ -13,7 +14,10 @@ from core.models import IntegerRangeField
 
 # from categories.models  import Category
 
-
+settings.COUNTRIES_FIRST = [ 'US' ]
+settings.COUNTRIES_OVERRIDE = {
+    'US': ('United States'),
+}
 
 
 class Brand(models.Model):
