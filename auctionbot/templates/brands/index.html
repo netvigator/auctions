@@ -13,19 +13,23 @@
         <tr>
         <th ALIGN=LEFT>Brand Name</th>
         <th ALIGN=LEFT>Wanted?</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Want everything?</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Nationality</th>
-        <th ALIGN=LEFT>created on</th>
-        <th ALIGN=LEFT>updated on</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th ALIGN=LEFT>comment</th>
         </tr>
         {% for brand in brand_list %}
             <tr>
             <td><a href="/brands/{{ brand.id }}/">{{ brand.cTitle }}</a></td>
             <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
+            <TD></TD>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
+            <TD></TD>
             <td>{{ brand.cNationality.name }}</td>
-            <td>{{ brand.tCreate }}</td>
-            <td>{{ brand.tModify }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ brand.cComment|truncatechars:65 }}</td>
             </tr>
         {% endfor %}
         </table>
