@@ -3,6 +3,7 @@ from django.views.generic           import DetailView, ListView
 from django.urls                    import reverse_lazy
 from django.views                   import generic
 from django.contrib.auth.mixins     import LoginRequiredMixin
+from django.http                    import HttpResponseForbidden
 
 from .models                        import Brand
 from categories.models              import Category, BrandCategory
@@ -86,7 +87,14 @@ class BrandDetail( LoginRequiredMixin, DetailView ):
     
     model   = Brand
     template_name = 'brands/detail_form.html'
-    
+
+    def get_object(self):
+        obj = super(BrandDetail, self).get_object()
+        if obj.iUser != self.request.user:
+            return HttpResponseForbidden(
+                "Permission Error -- that's not your record!")
+        return obj
+
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(BrandDetail, self).get_context_data(**kwargs)
