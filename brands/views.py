@@ -8,7 +8,7 @@ from django.http                    import HttpResponseForbidden
 from .models                        import Brand
 from categories.models              import Category, BrandCategory
 from models.models                  import Model
-from core.mixins                    import DoesLoggedInUserOwnTheRowMixin
+from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 
 from Utils.Output                   import getSayYesOrNo
 
@@ -85,7 +85,7 @@ class BrandDelete( LoginRequiredMixin, DeleteView ):
 
 
 class BrandDetail(
-        LoginRequiredMixin, DoesLoggedInUserOwnTheRowMixin,
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
         DetailView ):
     
     model   = Brand
