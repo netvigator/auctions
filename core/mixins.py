@@ -1,13 +1,15 @@
 
-from django.http import HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 
-
-class DoesLoggedInUserOwnTheRowMixin(object):
+class DoesLoggedInUserOwnThisRowMixin(object):
 
     def get_object(self):
-        obj = super(DoesLoggedInUserOwnTheRowMixin, self).get_object()
-        if obj.iUser != self.request.user:
-            return HttpResponseForbidden(
+        '''only allow owner (or superuser) to access the table row'''
+        obj = super(DoesLoggedInUserOwnThisRowMixin, self).get_object()
+        if self.request.user.is_superuser:
+            pass
+        elif obj.iUser != self.request.user:
+            raise PermissionDenied(
                 "Permission Error -- that's not your record!")
         return obj
 
