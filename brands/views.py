@@ -8,6 +8,7 @@ from django.http                    import HttpResponseForbidden
 from .models                        import Brand
 from categories.models              import Category, BrandCategory
 from models.models                  import Model
+from core.mixins                    import DoesLoggedInUserOwnTheRowMixin
 
 from Utils.Output                   import getSayYesOrNo
 
@@ -83,17 +84,13 @@ class BrandDelete( LoginRequiredMixin, DeleteView ):
     success_url = reverse_lazy('brands:index')
 
 
-class BrandDetail( LoginRequiredMixin, DetailView ):
+class BrandDetail(
+        LoginRequiredMixin, DoesLoggedInUserOwnTheRowMixin,
+        DetailView ):
     
     model   = Brand
     template_name = 'brands/detail_form.html'
 
-    def get_object(self):
-        obj = super(BrandDetail, self).get_object()
-        if obj.iUser != self.request.user:
-            return HttpResponseForbidden(
-                "Permission Error -- that's not your record!")
-        return obj
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
