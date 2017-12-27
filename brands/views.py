@@ -78,7 +78,9 @@ class BrandCreate( LoginRequiredMixin, CreateView ):
         return super().form_valid(form)
 
 
-class BrandDelete( LoginRequiredMixin, DeleteView ):
+class BrandDelete(
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        DeleteView ):
     model   = Brand
     template_name = 'brands/confirm_delete.html'
     success_url = reverse_lazy('brands:index')
@@ -108,7 +110,9 @@ class BrandDetail(
         return context
 
 
-class BrandUpdate( LoginRequiredMixin, UpdateView ):
+class BrandUpdate(
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        UpdateView ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit_form.html'
