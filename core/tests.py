@@ -34,7 +34,7 @@ class DateTimeImportTests(TestCase):
         self.assertEquals( getDateTimeObj( "2017-12-15T05:22:47.000Z" ),
                            datetime.datetime(2017, 12, 15, 5, 22, 47) )
 
-
+'''
 oTest = {
     'cNationality': ('Nationality', 'C'),
     'iUser_id': ('Owner', 1), 
@@ -60,3 +60,4 @@ oTest = {
     'iStars': ('Desireability, 10 Star Brand Is Most Desireable', 5),
     'iUser_id': ('Owner', 1),
     'NotOnList': ('blah blah blah', None }
+'''
