@@ -10,7 +10,7 @@ class DoesLoggedInUserOwnThisRowMixin(object):
             pass
         elif obj.iUser != self.request.user:
             raise PermissionDenied(
-                "Permission Error -- that's not your record!")
+                "Permission Denied -- that's not your record!")
         return obj
 
     
