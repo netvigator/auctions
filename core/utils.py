@@ -55,3 +55,15 @@ def getDateTimeObj( sDateTime ):
     return getDateTimeObjFromString( sDateTime, EBAY_DATE_FORMAT )
 
 
+def getExceptionMessageFromResponse( oResponse ):
+    #
+    '''tested in brands.tests.py'''
+    #
+    l = oResponse.__dict__['context']
+    #
+    lLast = l[-1]
+    #
+    dLast = lLast.dicts[-1]
+    #
+    return dLast.get( 'exception' )
+
