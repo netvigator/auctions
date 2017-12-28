@@ -4,6 +4,8 @@ from django.test.client import RequestFactory
 from django.urls        import reverse
 from django.contrib.auth import get_user_model
 
+from core.utils         import getExceptionMessageFromResponse
+
 from pprint import pprint
 from six    import print_ as print3
 
@@ -98,6 +100,7 @@ class BrandViewsTests(TestCase):
         sBrand = "Lever Brothers"
         oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
         oBrand.save()
+        sLeverID = str( oBrand.id )
 
         response = self.client.get(reverse('brands:index'))
         #response = self.client.get('/brands/')
@@ -109,7 +112,23 @@ class BrandViewsTests(TestCase):
         self.assertQuerysetEqual(response.context['brand_list'],
                 ['<Brand: Lever Brothers>', '<Brand: Proctor & Gamble>'] )
         self.assertContains(response, "Lever Brothers")
-    
+        #
+        response = self.client.get(
+                reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Lever Brothers")
+        
+        self.client.logout()
+        self.client.login(username='username2', password='mypassword')
+        
+        response = self.client.get(
+                reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
+
+        self.assertEqual(response.status_code, 403) # forbidden
+        self.assertEqual(
+            getExceptionMessageFromResponse( response ),
+            "Permission Denied -- that's not your record!" )
+
     
 
 
