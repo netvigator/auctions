@@ -57,13 +57,16 @@ def getDateTimeObj( sDateTime ):
 
 def getExceptionMessageFromResponse( oResponse ):
     #
-    '''tested in brands.tests.py'''
+    '''
+    exception message is burried in the response object,
+    here is my struggle to get it out
+    '''
     #
     l = oResponse.__dict__['context']
     #
-    lLast = l[-1]
+    oLast = l[-1]
     #
-    dLast = lLast.dicts[-1]
+    dLast = oLast.dicts[-1]
     #
     return dLast.get( 'exception' )
 
