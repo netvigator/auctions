@@ -7,7 +7,7 @@ from .models import EbayCategory, Condition
 
 class EbayCategoryAdmin(admin.ModelAdmin):
     list_display = ( "iMarket", "iCategoryID", "cTitle", "iLevel",
-                     "iParent_ID", "bLeafCategory", "iTreeVersion" )
+                     "iParentID", "bLeafCategory", "iTreeVersion" )
 
 class ConditionAdmin(admin.ModelAdmin):
     list_display = ( "iConditionID", "cTitle" )
