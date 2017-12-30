@@ -220,6 +220,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         oCategory.iLevel        = int( dCategory['CategoryLevel'   ] )
         oCategory.bLeafCategory = bool(dCategory['LeafCategory'    ] )
         oCategory.iTreeVersion  = iWantVersion
+        oCategory.iParentID     = int( dCategory['CategoryParentID'] )
         #
         if dCategory['CategoryID'] == dCategory['CategoryParentID']:
             #
@@ -229,9 +230,10 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
             #
         else:
             #
-            oCategory.iParent_ID = EbayCategory.objects.get(
+            oCategory.parent = EbayCategory.objects.get(
                 iMarket     = oMarket, 
-                iCategoryID = dCategory['CategoryParentID'] )
+                iCategoryID = dCategory['CategoryParentID'],
+                iTreeVersion= iWantVersion )
             #
         #
         try:
