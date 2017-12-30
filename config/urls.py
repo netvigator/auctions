@@ -19,7 +19,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     
     url(r'^brands/', include('brands.urls', namespace="brands")),
-
+    url(r'^ebay_categories/', include('ebaycategories.urls', namespace="ebaycategories")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
