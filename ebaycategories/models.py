@@ -24,7 +24,7 @@ iSupercededBy
 class EbayCategory(MPTTModel):
     iCategoryID     = models.PositiveIntegerField( 'ebay category number',
                         db_index=True )
-    cTitle          = models.CharField(
+    name            = models.CharField(
                         'ebay category description', max_length = 50 )
     iLevel          = models.PositiveSmallIntegerField(
                         'ebay level (top is 1, lower levels are bigger numbers)' )
@@ -55,7 +55,7 @@ class EbayCategory(MPTTModel):
     '''
 
     def __str__(self):
-        return self.cTitle
+        return self.name
     
     class Meta():
         verbose_name_plural = 'ebay categories'
@@ -63,7 +63,7 @@ class EbayCategory(MPTTModel):
         unique_together = ('iCategoryID', 'iMarket',)
 
     class MPTTMeta:
-        order_insertion_by = ['cTitle']
+        order_insertion_by = ['name']
 
 #
 
