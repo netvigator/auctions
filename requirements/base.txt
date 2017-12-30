@@ -63,3 +63,6 @@ django-extensions==1.9.8
 # for the ebay API
 lxml==4.1.1
 requests==2.18.4
+
+# to handle the ebay category lists
+django-mptt==0.9.0
