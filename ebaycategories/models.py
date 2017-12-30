@@ -23,7 +23,7 @@ iSupercededBy
 
 class EbayCategory(MPTTModel):
     iCategoryID     = models.PositiveIntegerField( 'ebay category number',
-                        db_index=True
+                        db_index=True )
     cTitle          = models.CharField(
                         'ebay category description', max_length = 50 )
     iLevel          = models.PositiveSmallIntegerField(
@@ -39,10 +39,12 @@ class EbayCategory(MPTTModel):
                         null=True, blank=True, related_name='children',
                         db_index=True)
     '''
+    column required by mptt:
+    parent
+    
     columns added by mptt:
     level
     lft
-    parent
     rght
     tree_id
     
@@ -52,9 +54,6 @@ class EbayCategory(MPTTModel):
     but not worth it if there are only a small percent of superceded categories
     '''
 
-    class MPTTMeta:
-        order_insertion_by = ['name']
-
     def __str__(self):
         return self.cTitle
     
@@ -62,7 +61,9 @@ class EbayCategory(MPTTModel):
         verbose_name_plural = 'ebay categories'
         db_table        = verbose_name_plural
         unique_together = ('iCategoryID', 'iMarket',)
-        ordering        = ('iMarket', 'iCategoryID')
+
+    class MPTTMeta:
+        order_insertion_by = ['cTitle']
 
 #
 
