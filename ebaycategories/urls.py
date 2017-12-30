@@ -7,5 +7,5 @@ from . import views
 app_name = "ebaycategories"
 
 urlpatterns = [
-    (r'^ebay_categories/$', views.show_ebay_categories,  name='index'),
+    url(r'^$', views.show_ebay_categories,  name='marketindex'),
     ]
