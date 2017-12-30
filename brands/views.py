@@ -4,6 +4,11 @@ from django.urls                    import reverse_lazy
 from django.views                   import generic
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseForbidden
+# from django                       import forms
+
+from crispy_forms.helper            import FormHelper
+from crispy_forms.layout            import Submit
+# from crispy_forms.layout          import Layout, Field
 
 from .models                        import Brand
 from categories.models              import Category, BrandCategory
@@ -46,7 +51,6 @@ class CreateBrandView(CreateView):
 '''
 
 
-    
 tModelFields = (
     'cTitle',
     'bWanted',
@@ -56,6 +60,7 @@ tModelFields = (
     'cComment',
     'cNationality',
     'cExcludeIf' )
+
 '''
     'iUser',
     'tCreate',
@@ -66,8 +71,8 @@ tModelFields = (
 #lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
 #tMoreModelFields = tuple( lMoreModelFields )
 
-
 class BrandCreate( LoginRequiredMixin, CreateView ):
+
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/add_form.html'
@@ -76,6 +81,14 @@ class BrandCreate( LoginRequiredMixin, CreateView ):
     def form_valid(self, form):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        #form.helper.layout = Layout()
+        #Field( 'cLookFor', rows = 3 )
+        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        return form
 
 
 class BrandDelete(
