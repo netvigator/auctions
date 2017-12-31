@@ -5,12 +5,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
 
+tUserFields = (
+    'name',
+    'iMarket',
+    'cBio',
+    'cLocation',
+    'email',
+    )
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
 
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
@@ -23,7 +31,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 
-    fields = ['name', ]
+    fields = tUserFields[:-1]
 
     # we already imported User in the view code above, remember?
     model = User
@@ -40,6 +48,9 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
 class UserListView(LoginRequiredMixin, ListView):
     model = User
+
+    fields = tUserFields
+
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'
