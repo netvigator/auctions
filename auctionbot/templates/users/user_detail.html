@@ -8,10 +8,18 @@
 
   <div class="row">
     <div class="col-sm-12">
-
       <h2>{{ object.username }}</h2>
       {% if object.name %}
         <p>{{ object.name }}</p>
+      {% endif %}
+      {% if object.email %}
+        <p>{{ object.email }}</p>
+      {% endif %}
+      {% if object.iMarket %}
+        <p>{{ object.iMarket }}</p>
+      {% endif %}
+      {% if object.cLocation %}
+        <p>{{ object.cLocation }}</p>
       {% endif %}
     </div>
   </div>
