@@ -5,8 +5,10 @@ from django.template    import RequestContext
 
 from .models            import EbayCategory
 
+from markets.models     import Market
 # Create your views here.
 
-def show_ebay_categories(request):
-    context = {'nodes':EbayCategory.objects.all()}
+def show_ebay_categories(request, sMarket):
+    iMarket = Market.objects.get( cMarket = sMarket )
+    context = {'nodes':EbayCategory.objects.filter( iMarket = iMarket )}
     return render(request, 'ebaycategories/ebay_categories.html', context)
