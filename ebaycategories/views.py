@@ -10,5 +10,6 @@ from markets.models     import Market
 
 def show_ebay_categories(request, sMarket):
     iMarket = Market.objects.get( cMarket = sMarket )
-    context = {'nodes':EbayCategory.objects.filter( iMarket = iMarket )}
+    context = { 'nodes':EbayCategory.objects.filter(
+        iMarket = iMarket, iTreeVersion = iMarket.iCategoryVer ) }
     return render(request, 'ebaycategories/ebay_categories.html', context)
