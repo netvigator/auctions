@@ -14,7 +14,7 @@ from ebay.trading   import getCategories
 
 from File.Write     import QuickDump
 
-from six.moves.urllib.error import HTTPError
+from markets.models import Market
 
 from six import print_ as print3
 
@@ -145,16 +145,26 @@ def getCategoryVersion( categorySiteId=0 ):
     return getDecoded( oVersion )
 
 #These are invalid!
-#QuickDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Version_US.xml' )
-#QuickDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Version_DE.xml' )
+#QuickDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Version_for_EBAY-US.xml' )
+#QuickDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Version_for_EBAY-DE.xml' )
 
 #These are invalid!
-#QuickDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Version_US.xml' )
-#QuickDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Version_DE.xml' )
+#QuickDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Version_for_EBAY-US.xml' )
+#QuickDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Version_for_EBAY-DE.xml' )
 
 #### These are OK ####
-#QuickDump( getCategoryVersion(  0 ), 'Categories_Version_US.xml' )
-#QuickDump( getCategoryVersion( 77 ), 'Categories_Version_DE.xml' )
+#QuickDump( getCategoryVersion(  0 ), 'Categories_Version_for_EBAY-US.xml' )
+#QuickDump( getCategoryVersion( 77 ), 'Categories_Version_for_EBAY-DE.xml' )
+
+
+
+def getCategoryVersionGotGlobalID( sGlobalID = 'EBAY-US' ):
+    #
+    iID = int( Market.objects.get( cMarket = sGlobalID ).iEbaySiteID )
+    #
+    return getCategoryVersion( categorySiteId = iID )
+
+# QuickDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Version_for_EBAY-GB.xml' )
 
 
 def getMarketCategories( categorySiteId=0 ):
@@ -166,7 +176,22 @@ def getMarketCategories( categorySiteId=0 ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-# QuickDump( getMarketCategories(), 'Categories_USA.xml.gz' )
+# QuickDump( getMarketCategories(), 'Categories_for_EBAY-USA.xml' ) # .gz
+
+
+def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
+    #
+    iID = int( Market.objects.get( cMarket = sGlobalID ).iEbaySiteID )
+    #
+    dHeaders = { 'Accept-Encoding': 'application/gzip' }
+    #
+    oCategories = getCategories(
+        categorySiteId = iID, levelLimit = None, **dHeaders ) # 
+    #
+    return getDecoded( getDecompressed( oCategories ) )
+
+# QuickDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_for_EBAY-GB.xml.gz' )
+
 
 
 '''
