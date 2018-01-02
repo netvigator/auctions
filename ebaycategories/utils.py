@@ -14,10 +14,15 @@ from String.Output  import ReadableNo
 from Utils.Progress import TextMeter, DummyMeter
 from Web.HTML       import getChars4HtmlCodes
 
+'''
+utils for handling info from ebay API 
+note the actual calls to the ebay API are in 
+core.ebay_wrapper.py
+'''
 
 # variable referenced in tests
 cCategoryVersionFile = '/tmp/Categories_Version_for_%s.xml'
-cCategorylistingFile = '/tmp/Categories_for_%s.xml'
+cCategorylistingFile = '/tmp/Categories_for_%s.xml.gz'
 
 sRootTag = 'GetCategoriesResponse'
 
@@ -247,6 +252,9 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
     #
     oProgressMeter.end( iSeq )
     #
+    oMarket.iCategoryVer = int( sWantVersion )
+    #
+    oMarket.save()
 
 
 
@@ -263,6 +271,8 @@ def getCategoryVersionValues( sFile ):
 
 
 def getCategoryVersion( sMarket = 'EBAY-US', sFile = cCategoryVersionFile ):
+    #
+    '''get the version from a file already downloaded'''
     #
     dTagsValues = getCategoryVersionValues( sFile % sMarket )
     #
