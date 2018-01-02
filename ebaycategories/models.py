@@ -59,7 +59,7 @@ class EbayCategory(MPTTModel):
     
     class Meta():
         verbose_name_plural = 'ebay categories'
-        db_table        = verbose_name_plural
+        db_table        = 'ebay_categories'
         unique_together = ('iCategoryID', 'iMarket',)
 
     class MPTTMeta:
