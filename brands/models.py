@@ -15,9 +15,7 @@ from core.models import IntegerRangeField
 # from categories.models  import Category
 
 settings.COUNTRIES_FIRST = [ 'US', 'GB' ]
-settings.COUNTRIES_OVERRIDE = {
-    'US': ('United States'),
-}
+settings.COUNTRIES_OVERRIDE = { 'US': ('United States'), }
 
 
 class Brand(models.Model):
