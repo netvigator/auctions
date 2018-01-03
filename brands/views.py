@@ -43,7 +43,7 @@ class BrandCreate( LoginRequiredMixin, CreateView ):
 
     model   = Brand
     fields  = tModelFields
-    template_name = 'brands/add_form.html'
+    template_name = 'brands/add.html'
     success_url = reverse_lazy('brands:index')
 
     def form_valid(self, form):
@@ -63,7 +63,7 @@ class BrandDelete(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
         DeleteView ):
     model   = Brand
-    template_name = 'brands/confirm_delete.html'
+    template_name = 'confirm_delete.html'
     success_url = reverse_lazy('brands:index')
 
     def post(self, request, *args, **kwargs):
@@ -78,7 +78,7 @@ class BrandDetail(
         DetailView ):
     
     model   = Brand
-    template_name = 'brands/detail_form.html'
+    template_name = 'brands/detail.html'
 
 
     def get_context_data(self, **kwargs):
@@ -102,7 +102,7 @@ class BrandUpdate(
         UpdateView ):
     model   = Brand
     fields  = tModelFields
-    template_name = 'brands/edit_form.html'
+    template_name = 'brands/edit.html'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
