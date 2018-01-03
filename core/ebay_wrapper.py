@@ -190,6 +190,7 @@ def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
+# QuickDump( getMarketCategoriesGotGlobalID(),            'Categories_for_EBAY-US.xml.gz' )
 # QuickDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_for_EBAY-GB.xml.gz' )
 
 
