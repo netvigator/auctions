@@ -2,6 +2,7 @@ from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 from django.views.generic           import DetailView, ListView
 from django.urls                    import reverse_lazy
 from django.contrib.auth.mixins     import LoginRequiredMixin
+from django.http                    import HttpResponseRedirect
 
 from crispy_forms.helper            import FormHelper
 from crispy_forms.layout            import Submit
@@ -65,6 +66,12 @@ class BrandDelete(
     template_name = 'brands/confirm_delete.html'
     success_url = reverse_lazy('brands:index')
 
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            url = reverse_lazy('brands:index')
+            return HttpResponseRedirect(url)
+        else:
+            return super(BrandDelete, self).post(request, *args, **kwargs)
 
 class BrandDetail(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
@@ -97,6 +104,12 @@ class BrandUpdate(
     fields  = tModelFields
     template_name = 'brands/edit_form.html'
 
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            url = reverse_lazy('brands:index')
+            return HttpResponseRedirect(url)
+        else:
+            return super(BrandUpdate, self).post(request, *args, **kwargs)
 
 class IndexView( LoginRequiredMixin, ListView ):  
     template_name = 'brands/index.html'
