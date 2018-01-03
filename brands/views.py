@@ -1,10 +1,7 @@
 from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 from django.views.generic           import DetailView, ListView
 from django.urls                    import reverse_lazy
-from django.views                   import generic
 from django.contrib.auth.mixins     import LoginRequiredMixin
-from django.http                    import HttpResponseForbidden
-# from django                       import forms
 
 from crispy_forms.helper            import FormHelper
 from crispy_forms.layout            import Submit
@@ -19,36 +16,6 @@ from Utils.Output                   import getSayYesOrNo
 
 # Create your views here but keep them thin.
 
-
-'''
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views.generic import CreateView
-
-
-
-
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Brand.objects.order_by('cTitle')
-
-
-class DetailView(generic.DetailView):
-    model = Brand
-    template_name = 'brands/detail.html'
-
-
-class CreateBrandView(CreateView):
-
-    model = Brand
-    fields = ('cTitle','bWanted','bAllOfInterest','iStars','cComment',
-              'cNationality','cExcludeIf',)
-    template_name = 'brands/edit_brand.html'
-
-    def get_success_url(self):
-        return reverse('brands-list')
-'''
 
 
 tModelFields = (
