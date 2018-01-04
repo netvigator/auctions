@@ -23,10 +23,10 @@ urlpatterns = [
     url(r'^brands/', include('brands.urls', namespace="brands")),
     url(r'^ebay_categories/', include('ebaycategories.urls',
                                         namespace="ebaycategories")),
+    url(r'^models/', include('models.urls', namespace="models")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-#    url(r'^models/',            include('models.urls', namespace="models")),
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
