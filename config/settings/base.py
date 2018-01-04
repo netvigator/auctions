@@ -247,6 +247,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
             ],
+            'libraries':{
+                'getNbsp': 'core.templatetags.core_tags', }
         },
     },
 ]
