@@ -10,13 +10,13 @@ urlpatterns = [
         regex   = r'^$',
         view    = views.IndexView.as_view(),
         name    = 'index' ),
-    
-]
-'''
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
         view    = views.ModelDetail.as_view(),
         name    = 'detail'),
+    
+]
+'''
     url(
         regex   = r'^add$',
         view    = views.ModelCreate.as_view(),
