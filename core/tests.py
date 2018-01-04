@@ -5,6 +5,7 @@ import datetime
 # Create your tests here.
 
 from .utils     import oUserOne, getDateTimeObj
+from .core_tags import nbsp
 
 from .ebay_wrapper  import oEbayConfig
 
@@ -33,6 +34,13 @@ class DateTimeImportTests(TestCase):
         #
         self.assertEquals( getDateTimeObj( "2017-12-15T05:22:47.000Z" ),
                            datetime.datetime(2017, 12, 15, 5, 22, 47) )
+
+class NbspTests(TestCase):
+    '''test substituting &nbsp; for spaces'''
+    def test_Nbsp(self):
+        #
+        self.assertEquals( getNbsp( "how now brown cow" ),
+                           "how&nbsp;now&nbsp;brown&nbsp;cow" )
 
 '''
 oTest = {
