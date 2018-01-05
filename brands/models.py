@@ -55,6 +55,7 @@ class Brand(models.Model):
         return self.cTitle
     
     class Meta():
+        verbose_name        = 'brand name'
         verbose_name_plural = 'brands'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
