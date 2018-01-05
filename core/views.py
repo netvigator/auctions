@@ -1,3 +1,83 @@
-from django.shortcuts import render
+from django.shortcuts            import render
+from django.views.generic        import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit   import CreateView, UpdateView, DeleteView
 
 # Create your views here but keep them thin.
+
+class ListViewGotModel( ListView ):
+    '''
+    Enhanced ListView which also includes the model in the context data,
+    so that the template has access to its model class.
+    '''
+ 
+    def get_context_data(self, **kwargs):
+        '''
+        Adds the model to the context data.
+        '''
+        context          = super(ListView, self).get_context_data(**kwargs)
+        context['model'] = self.model
+        # context['model_fields'] = self.model._meta.get_fields()
+        return context
+
+
+class CreateViewGotModel( CreateView ):
+    '''
+    Enhanced CreateView which also includes the model in the context data,
+    so that the template has access to its model class.
+    '''
+ 
+    def get_context_data(self, **kwargs):
+        '''
+        Adds the model to the context data.
+        '''
+        context          = super(CreateView, self).get_context_data(**kwargs)
+        context['model'] = self.model
+        # context['model_fields'] = self.model._meta.get_fields()
+        return context
+
+
+class DeleteViewGotModel( DeleteView ):
+    '''
+    Enhanced DeleteView which also includes the model in the context data,
+    so that the template has access to its model class.
+    '''
+ 
+    def get_context_data(self, **kwargs):
+        '''
+        Adds the model to the context data.
+        '''
+        context = super(DeleteView, self).get_context_data(**kwargs)
+        context['model']        = self.model
+        # context['model_fields'] = self.model._meta.get_fields()
+        return context
+
+class UpdateViewGotModel( UpdateView ):
+    '''
+    Enhanced UpdateView which also includes the model in the context data,
+    so that the template has access to its model class.
+    '''
+ 
+    def get_context_data(self, **kwargs):
+        '''
+        Adds the model to the context data.
+        '''
+        context          = super(UpdateView, self).get_context_data(**kwargs)
+        context['model'] = self.model
+        # context['model_fields'] = self.model._meta.get_fields()
+        return context
+
+class DetailViewGotModel( DetailView ):
+    '''
+    Enhanced DetailView which also includes the model in the context data,
+    so that the template has access to its model class.
+    '''
+ 
+    def get_context_data(self, **kwargs):
+        '''
+        Adds the model to the context data.
+        '''
+        context          = super(DetailView, self).get_context_data(**kwargs)
+        context['model'] = self.model
+        # context['model_fields'] = self.model._meta.get_fields()
+        return context
