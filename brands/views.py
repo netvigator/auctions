@@ -1,5 +1,5 @@
-from django.views.generic.edit      import CreateView, UpdateView, DeleteView
-from django.views.generic           import DetailView, ListView
+# from django.views.generic.edit    import CreateView, UpdateView, DeleteView
+from django.views.generic           import DetailView
 from django.urls                    import reverse_lazy
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
@@ -12,6 +12,9 @@ from .models                        import Brand
 from categories.models              import Category, BrandCategory
 from models.models                  import Model
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
+from core.views                     import (
+                    CreateViewGotModel, DeleteViewGotModel,
+                    DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
 
 from Utils.Output                   import getSayYesOrNo
 
@@ -39,7 +42,7 @@ tModelFields = (
 #lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
 #tMoreModelFields = tuple( lMoreModelFields )
 
-class BrandCreate( LoginRequiredMixin, CreateView ):
+class BrandCreate( LoginRequiredMixin, CreateViewGotModel ):
 
     model   = Brand
     fields  = tModelFields
@@ -61,7 +64,7 @@ class BrandCreate( LoginRequiredMixin, CreateView ):
 
 class BrandDelete(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DeleteView ):
+        DeleteViewGotModel ):
     model   = Brand
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('brands:index')
@@ -75,7 +78,7 @@ class BrandDelete(
 
 class BrandDetail(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DetailView ):
+        DetailViewGotModel ):
     
     model   = Brand
     template_name = 'brands/detail.html'
@@ -86,7 +89,8 @@ class BrandDetail(
         context = super(BrandDetail, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
         #context['fields_list'] = Brand.getFieldsForView(
-        #                               Brand, tMoreModelFields )
+        #
+        context['model_fields'] = tModelFields 
         #
         context['categories_list'] = \
             self.object.getCategoriesForBrand(self.object)
@@ -99,7 +103,7 @@ class BrandDetail(
 
 class BrandUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateView ):
+        UpdateViewGotModel ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit.html'
@@ -111,7 +115,7 @@ class BrandUpdate(
         else:
             return super(BrandUpdate, self).post(request, *args, **kwargs)
 
-class IndexView( LoginRequiredMixin, ListView ):  
+class IndexView( LoginRequiredMixin, ListViewGotModel ):  
     template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand
