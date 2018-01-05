@@ -248,7 +248,10 @@ TEMPLATES = [
                 # Your stuff: custom template context processors go here
             ],
             'libraries':{
-                'getNbsp': 'core.templatetags.core_tags', }
+                'getNbsp'           : 'core.templatetags.core_tags',
+                'model_name'        : 'core.templatetags.core_tags',
+                'model_name_plural' : 'core.templatetags.core_tags',
+                'field_name'        : 'core.templatetags.core_tags',}
         },
     },
 ]
