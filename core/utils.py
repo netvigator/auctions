@@ -1,6 +1,6 @@
 # misc utils can go here
-
 from django.contrib.auth        import get_user_model
+from django.db.models           import ForeignKey
 
 oUser = get_user_model()
 
@@ -70,3 +70,13 @@ def getExceptionMessageFromResponse( oResponse ):
     #
     return dLast.get( 'exception' )
 
+
+# Iterate over model instance field names and values in template
+# https://stackoverflow.com/a/14625776/6366075
+def model_to_dict(instance):
+    dObj = {}
+    for field in instance._meta.fields:
+        dObj[field.name] = field.value_from_object(instance)
+        if isinstance(field, ForeignKey):
+            dObj[field.name] = field.rel.to.objects.get(pk=dObj[field.name])
+    return dObj
