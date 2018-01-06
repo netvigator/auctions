@@ -15,7 +15,7 @@ def getNbsp(value):
 @register.simple_tag
 def model_name(value):
     '''
-    Django template filter which returns the verbose name of a model.
+    Django template tag which returns the verbose name of a model.
     '''
     if hasattr(value, 'model'):
         value = value.model
@@ -25,7 +25,7 @@ def model_name(value):
 @register.simple_tag
 def model_name_plural(value):
     '''
-    Django template filter which returns the plural verbose name of a model.
+    Django template tag which returns the plural verbose name of a model.
     '''
     if hasattr(value, 'model'):
         value = value.model
@@ -35,7 +35,7 @@ def model_name_plural(value):
 @register.simple_tag
 def field_name(value, field):
     '''
-    Django template filter which returns the verbose name of an object's,
+    Django template tag which returns the verbose name of an object's,
     model's or related manager's field.
     '''
     if hasattr(value, 'model'):
