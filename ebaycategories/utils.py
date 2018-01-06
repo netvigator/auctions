@@ -21,8 +21,8 @@ core.ebay_wrapper.py
 '''
 
 # variable referenced in tests
-cCategoryVersionFile = '/tmp/Categories_Version_for_%s.xml'
-cCategorylistingFile = '/tmp/Categories_for_%s.xml.gz'
+cCategoryVersionFile = '/tmp/Categories_Ver_%s.xml'
+cCategorylistingFile = '/tmp/Categories_All_%s.xml.gz'
 
 sRootTag = 'GetCategoriesResponse'
 
