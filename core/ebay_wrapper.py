@@ -145,16 +145,16 @@ def getCategoryVersion( categorySiteId=0 ):
     return getDecoded( oVersion )
 
 #These are invalid!
-#QuickDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Version_for_EBAY-US.xml' )
-#QuickDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Version_for_EBAY-DE.xml' )
+#QuickDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Ver_EBAY-US.xml' )
+#QuickDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
 #These are invalid!
-#QuickDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Version_for_EBAY-US.xml' )
-#QuickDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Version_for_EBAY-DE.xml' )
+#QuickDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Ver_EBAY-US.xml' )
+#QuickDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
 #### These are OK ####
-#QuickDump( getCategoryVersion(  0 ), 'Categories_Version_for_EBAY-US.xml' )
-#QuickDump( getCategoryVersion( 77 ), 'Categories_Version_for_EBAY-DE.xml' )
+#QuickDump( getCategoryVersion(  0 ), 'Categories_Ver_EBAY-US.xml' )
+#QuickDump( getCategoryVersion( 77 ), 'Categories_Ver_EBAY-DE.xml' )
 
 
 
@@ -164,7 +164,7 @@ def getCategoryVersionGotGlobalID( sGlobalID = 'EBAY-US' ):
     #
     return getCategoryVersion( categorySiteId = iID )
 
-# QuickDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Version_for_EBAY-GB.xml' )
+# QuickDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
 
 
 def getMarketCategories( categorySiteId=0 ):
@@ -176,7 +176,7 @@ def getMarketCategories( categorySiteId=0 ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-# QuickDump( getMarketCategories(), 'Categories_for_EBAY-USA.xml' ) # .gz
+# QuickDump( getMarketCategories(), 'Categories_All_EBAY-USA.xml' ) # .gz
 
 
 def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
@@ -190,8 +190,8 @@ def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-# QuickDump( getMarketCategoriesGotGlobalID(),            'Categories_for_EBAY-US.xml.gz' )
-# QuickDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_for_EBAY-GB.xml.gz' )
+# QuickDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml.gz' )
+# QuickDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml.gz' )
 
 
 
