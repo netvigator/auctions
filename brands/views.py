@@ -12,6 +12,7 @@ from .models                        import Brand
 from categories.models              import Category, BrandCategory
 from models.models                  import Model
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
+from core.utils                     import model_to_dict
 from core.views                     import (
                     CreateViewGotModel, DeleteViewGotModel,
                     DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
@@ -90,7 +91,8 @@ class BrandDetail(
         # Add in a QuerySet of all the categories
         #context['fields_list'] = Brand.getFieldsForView(
         #
-        context['model_fields'] = tModelFields 
+        #context['model_fields' ] = tModelFields
+        #context['dFieldsValues'] = model_to_dict( context['model'] )
         #
         context['categories_list'] = \
             self.object.getCategoriesForBrand(self.object)
