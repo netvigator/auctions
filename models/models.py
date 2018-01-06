@@ -12,8 +12,10 @@ User = get_user_model()
 
 class Model(models.Model):
     cTitle          = models.CharField(
-                        'model number or name', max_length = 48, db_index = True)
-    cKeyWords       = models.CharField( 'model key words', max_length = 88 )
+                        'model number or name', max_length = 48,
+                                        db_index = True)
+    cKeyWords       = models.CharField( 'model key words', max_length = 88,
+                                        null = True, blank = True )
     bKeyWordRequired= models.BooleanField(
                         'key word required?', default = True )
     bsplitdigitsok  = models.BooleanField(
