@@ -1,30 +1,159 @@
 {% extends "base.html" %}
 {% load static %}
+{% load field_name %}
 
-{% block title %}Model Name/Number: {{ object.username }}{% endblock %}
+{% block title %}{{ object.iBrand|default_if_none:"" }} Model {{ model }}{% endblock %}
 
 {% block content %}
-<div class="container">
+    <h1>Model {{ model }} Details</h1>
+    <p>
+    <p>Reminder! After a successful edit, you may need do do 
+    a hard refresh &mdash; Ctrl-F5 &mdash; to see your changes!</p>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <h2>{{ object.cTitle }}</h2>
-      {% if object.cKeyWords %}
-        <p>{{ object.cKeyWords }}</p>
-      {% endif %}
-      {% if object.iStars %}
-        <p>{{ object.iStars }}</p>
-      {% endif %}
-      {% if object.cComment %}
-        <p>{{ object.cComment }}</p>
-      {% endif %}
-    </div>
-  </div>
-
-{% if object == request.user %}
+    <table RULES=ROWS CELLPADDING=10>
+    <TR>
+        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cTitle}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cKeyWords' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cKeyWords|default_if_none:""}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bKeyWordRequired' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bKeyWordRequired|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bsplitdigitsok' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bsplitdigitsok|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cLookFor' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cLookFor|default_if_none:""}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'iStars' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iStars}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bSubModelsOK' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bSubModelsOK|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bMustHaveBrand' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bMustHaveBrand|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bWanted' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bWanted|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bGetPictures' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bGetPictures|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bGetDescription' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bGetDescription|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'cComment' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cComment|default_if_none:""}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iBrand' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iBrand|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bGenericModel' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bGenericModel|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iCategory' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iCategory }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cExcludeIf' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cFileSpec1' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cFileSpec1|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cFileSpec2' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cFileSpec2|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cFileSpec3' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cFileSpec3|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cFileSpec4' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cFileSpec4|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cFileSpec5' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cFileSpec5|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iUser' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iUser}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tCreate' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tCreate}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tModify' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tModify}}</TD>
+    </TR>
+    </table>
+    
+    <p>
 <!-- Action buttons -->
+    
+    <table>
+    <TR ALIGN=MIDDLE>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+    <form action='{% url "models:edit" pk=model.id %}'>
+        <input type="submit" value=" edit " />
+    </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+    <form action='{% url "models:index" %}'>
+        <input type="submit" value=" back to model index " />
+    </form>
+    </td>
+    </TR>
+    </table>
+    
 <!-- End Action buttons -->
-{% endif %}
 
 
 </div>
