@@ -72,7 +72,8 @@ class BrandDelete(
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
-            url = reverse_lazy('brands:index')
+            self.object = self.get_object()
+            url = reverse_lazy('brands:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
             return super(BrandDelete, self).post(request, *args, **kwargs)
@@ -112,7 +113,8 @@ class BrandUpdate(
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
-            url = reverse_lazy('brands:index')
+            self.object = self.get_object()
+            url = reverse_lazy('brands:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
             return super(BrandUpdate, self).post(request, *args, **kwargs)
