@@ -138,18 +138,24 @@
     
     <table>
     <TR ALIGN=MIDDLE>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
-    <td>
-    <form action='{% url "models:edit" pk=model.id %}'>
-        <input type="submit" value=" edit " />
-    </form>
-    </td>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
-    <td>
-    <form action='{% url "models:index" %}'>
-        <input type="submit" value=" back to model index " />
-    </form>
-    </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "models:edit" pk=model.id %}'>
+                <input type="submit" value=" edit " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "models:index" %}'>
+                <input type="submit" value=" back to model index " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "models:delete" pk=model.id %}'>
+                <input type="submit" value=" delete " />
+            </form>
+        </td>
     </TR>
     </table>
     
