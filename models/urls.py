@@ -22,12 +22,12 @@ urlpatterns = [
         regex   = r'^(?P<pk>[0-9]+)/delete/$',
         view    = views.ModelDelete.as_view(),
         name    = 'delete'),
-    
-]
-'''
     url(
         regex   = r'^add$',
         view    = views.ModelCreate.as_view(),
         name    = 'add'  ),
+    
+]
+'''
 
 '''
