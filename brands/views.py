@@ -1,5 +1,6 @@
-# from django.views.generic.edit    import CreateView, UpdateView, DeleteView
-from django.views.generic           import DetailView
+#from django.views.generic          import DetailView
+#from django.views.generic.edit     import CreateView, UpdateView, DeleteView
+#from django.views.generic.list     import ListView
 from django.urls                    import reverse_lazy
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
@@ -17,7 +18,6 @@ from core.views                     import (
                     CreateViewGotModel, DeleteViewGotModel,
                     DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
 
-from Utils.Output                   import getSayYesOrNo
 
 # Create your views here but keep them thin.
 
