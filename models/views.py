@@ -1,18 +1,28 @@
 from django.shortcuts import render
 
-from django.views.generic           import (
-                                DetailView, ListView, UpdateView, DeleteView )
+from django.views.generic           import DetailView
+from django.views.generic.edit      import CreateView, UpdateView, DeleteView
+from django.views.generic.list      import ListView
+
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
-from .models                        import Model
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
+
+#from core.views                     import (
+                    #CreateViewGotModel, DeleteViewGotModel,
+                    #DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
+
+from .models                        import Model
 
 
 # Create your views here but keep them thin.
 tModelFields = (
     'cTitle',
+    'iBrand',
+    'bGenericModel',
+    'iCategory',
     'cKeyWords',
     'bKeyWordRequired',
     'bsplitdigitsok',
@@ -24,9 +34,6 @@ tModelFields = (
     'bGetPictures',
     'bGetDescription',
     'cComment',
-    'iBrand',
-    'bGenericModel',
-    'iCategory',
     'cExcludeIf',
     'cFileSpec1',
     'cFileSpec2',
@@ -45,15 +52,36 @@ class IndexView( LoginRequiredMixin, ListView ):
         return Model.objects.filter(iUser=self.request.user)
 
 class ModelDetail(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin, DetailView ):
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        DetailView ):
     
     model   = Model
     template_name = 'models/detail.html'
 
 
+class ModelCreate( LoginRequiredMixin, CreateView ):
+
+    model   = Model
+    fields  = tModelFields
+    template_name = 'models/add.html'
+    success_url = reverse_lazy('models:index')
+
+    def form_valid(self, form):
+        form.instance.iUser = self.request.user
+        return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        #form.helper.layout = Layout()
+        #Field( 'cLookFor', rows = 3 )
+        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        return form
+
 
 class ModelUpdate(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin, UpdateView):
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        UpdateView):
 
     fields = tModelFields
 
@@ -72,7 +100,8 @@ class ModelUpdate(
 
 
 class ModelDelete(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin, DeleteView ):
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        DeleteView ):
     model   = Model
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('models:index')
