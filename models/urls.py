@@ -18,6 +18,10 @@ urlpatterns = [
         regex   = r'^(?P<pk>[0-9]+)/edit/$',
         view    = views.ModelUpdate.as_view(),
         name    = 'edit' ),
+    url(
+        regex   = r'^(?P<pk>[0-9]+)/delete/$',
+        view    = views.ModelDelete.as_view(),
+        name    = 'delete'),
     
 ]
 '''
@@ -25,9 +29,5 @@ urlpatterns = [
         regex   = r'^add$',
         view    = views.ModelCreate.as_view(),
         name    = 'add'  ),
-    url(
-        regex   = r'^(?P<pk>[0-9]+)/delete/$',
-        view    = views.ModelDelete.as_view(),
-        name    = 'delete'),
 
 '''
