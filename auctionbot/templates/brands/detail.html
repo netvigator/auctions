@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load field_name %}
 
 {% block content %}
     <h1>{{ brand }} Details</h1>
@@ -8,57 +9,57 @@
 
     <table RULES=ROWS CELLPADDING=10>
     <TR>
-    <TD width = 300>brand name</TD> 
+        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
     <TR>
-    <TD>want anything from this brand?</TD>
+        <TD>{% field_name model 'bWanted' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-    <TD>want everything from this brand?</TD>
+        <TD>{% field_name model 'bAllOfInterest' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-    <TD width = 300>Considered a hit if this text is found (each line evaluated separately, put different look for tests on different lines)</TD>
+        <TD width = 300>{% field_name model 'cLookFor' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cLookFor}}</TD>
     </TR>
     <TR>
-    <TD width = 300>desireability, 10 star brand is most desireable</TD>
+        <TD width = 300>{% field_name model 'iStars' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iStars}}</TD>
     </TR>
     <TR>
-    <TD>comments</TD>
+        <TD>{% field_name model 'cComment' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cComment}}</TD>
     </TR>
     <TR>
-    <TD>nationality</TD>
+        <TD>{% field_name model 'cNationality' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.cNationality.name }}</TD>
     </TR>
     <TR>
-    <TD width = 300>Not a hit if this text is found (each line evaluated separately, put different exclude tests on different lines)</TD>
+        <TD width = 300>{% field_name model 'cExcludeIf' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cExcludeIf}}</TD>
     </TR>
     <TR>
-    <TD>Owner</TD>
+        <TD>{% field_name model 'iUser' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iUser}}</TD>
     </TR>
     <TR>
-    <TD>created on</TD>
+        <TD>{% field_name model 'tCreate' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.tCreate}}</TD>
     </TR>
     <TR>
-    <TD>updated on</TD>
+        <TD>{% field_name model 'tModify' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.tModify}}</TD>
     </TR>
