@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-from django.views.generic           import DetailView, ListView, UpdateView
+from django.views.generic           import (
+                                DetailView, ListView, UpdateView, DeleteView )
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
@@ -58,13 +59,28 @@ class ModelUpdate(
 
     model = Model
 
-    template_name = 'brands/edit.html'
+    template_name = 'models/edit.html'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
-            url = reverse_lazy('models:index')
+            self.object = self.get_object()
+            url = reverse_lazy('models:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
             return super(ModelUpdate, self).post(request, *args, **kwargs)
 
 
+
+class ModelDelete(
+        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin, DeleteView ):
+    model   = Model
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('models:index')
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            self.object = self.get_object()
+            url = reverse_lazy('models:detail', kwargs={'pk': self.object.id})
+            return HttpResponseRedirect(url)
+        else:
+            return super(ModelDelete, self).post(request, *args, **kwargs)
