@@ -1,11 +1,12 @@
-from django.db import models
+from django.db                  import models
+from django.core.urlresolvers   import reverse
 
-from core.models import IntegerRangeField
+from core.models                import IntegerRangeField
 
-from brands.models import Brand
-from categories.models import Category
+from brands.models              import Brand
+from categories.models          import Category
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth        import get_user_model
 User = get_user_model()
 
 # Create your models here.
@@ -44,6 +45,12 @@ class Model(models.Model):
                                         null = True, blank = True )
     iCategory       = models.ForeignKey( Category, verbose_name = 'Category' )
     
+    cExcludeIf      = models.TextField(
+                        'Not a hit if this text is found '
+                        '(each line evaluated separately, '
+                        'put different exclude tests on different lines)',
+                        null = True, blank = True )
+    
     # maybe change to FilePathField later, it is not working now 2017-12-03
     # models.FilePathField()
     cFileSpec1      = models.CharField( 'file path & name for model picture 1',
@@ -57,12 +64,6 @@ class Model(models.Model):
     cFileSpec5      = models.CharField( 'file path & name for model picture 5',
                         max_length = 48, null = True, blank = True )
     
-    cExcludeIf      = models.TextField(
-                        'Not a hit if this text is found '
-                        '(each line evaluated separately, '
-                        'put different exclude tests on different lines)',
-                        null = True, blank = True )
-    
     iLegacyKey      = models.PositiveIntegerField('legacy key', unique=True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on' )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
@@ -74,9 +75,13 @@ class Model(models.Model):
     
     def __str__(self):
         return self.cTitle
-        
+
     class Meta:
         verbose_name_plural = 'models'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
+
+    def get_absolute_url(self):
+        return reverse('models:detail',
+            kwargs={'pk': self.pk})
 #
