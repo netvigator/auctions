@@ -24,7 +24,7 @@
         <TD VALIGN=TOP>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name model 'cLookFor' %}</TD>
+        <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cLookFor}}</TD>
     </TR>
@@ -34,7 +34,7 @@
         <TD VALIGN=TOP>{{object.iStars}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name model 'cComment' %}</TD>
+        <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cComment}}</TD>
     </TR>
@@ -44,7 +44,7 @@
         <TD VALIGN=TOP>{{ object.cNationality.name }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name model 'cExcludeIf' %}</TD>
+        <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cExcludeIf}}</TD>
     </TR>
