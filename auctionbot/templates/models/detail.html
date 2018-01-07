@@ -17,6 +17,16 @@
         <TD>{{object.cTitle}}</TD>
     </TR>
     <TR>
+        <TD>{% field_name model 'iBrand' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iBrand|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iCategory' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iCategory }}</TD>
+    </TR>
+    <TR>
         <TD width = 300>{% field_name model 'cKeyWords' %}</TD> 
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cKeyWords|default_if_none:""}}</TD>
@@ -32,7 +42,7 @@
         <TD VALIGN=TOP>{{ object.bsplitdigitsok|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name model 'cLookFor' %}</TD>
+        <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cLookFor|default_if_none:""}}</TD>
     </TR>
@@ -57,6 +67,11 @@
         <TD VALIGN=TOP>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
+        <TD>{% field_name model 'bGenericModel' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bGenericModel|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
         <TD>{% field_name model 'bGetPictures' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.bGetPictures|yesno:"Yes,No" }}</TD>
@@ -67,27 +82,12 @@
         <TD VALIGN=TOP>{{ object.bGetDescription|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-        <TD>{% field_name model 'cComment' %}</TD>
+        <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cComment|default_if_none:""}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name model 'iBrand' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iBrand|default_if_none:"" }}</TD>
-    </TR>
-    <TR>
-        <TD>{% field_name model 'bGenericModel' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.bGenericModel|yesno:"Yes,No" }}</TD>
-    </TR>
-    <TR>
-        <TD>{% field_name model 'iCategory' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iCategory }}</TD>
-    </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cExcludeIf' %}</TD>
+        <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:"" }}</TD>
     </TR>
