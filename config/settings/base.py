@@ -356,3 +356,6 @@ ADMIN_URL = r'^admin/'
 # ------------------------------------------------------------------------------
 
 SESSION_COOKIE_SECURE = False # set to True in production
+
+DATETIME_FORMAT = 'j N Y, P'
+DATE_FORMAT     = 'j N Y'
