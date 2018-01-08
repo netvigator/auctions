@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^ebay_categories/', include('ebaycategories.urls',
                                         namespace="ebaycategories")),
     url(r'^models/', include('models.urls', namespace="models")),
+    url(r'^categories/', include('categories.urls', namespace="categories")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
