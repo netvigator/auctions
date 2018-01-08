@@ -2,8 +2,11 @@
 
 {% block content %} 
 
-    <form action="" method="post">{% csrf_token %}
+    <form action="" method="post">
+        {% csrf_token %}
         <h1>Edit {{ brand }} Info</h1>
+        <input type="submit" value="Save" />
+        <input type="submit" name="cancel" value="Cancel" /> 
         {{ form.as_p }}
         <input type="submit" value="Save" />
         <input type="submit" name="cancel" value="Cancel" /> 
