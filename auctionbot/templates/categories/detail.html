@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+{% load field_name %}
+
+{% block title %}Auction Shopping Bot | Category {{ category }}{% endblock %}
+
+{% block content %}
+    <h1>Category {{ category }} Details</h1>
+    <p>
+    <p>Reminder! After a successful edit, you may need do do 
+    a hard refresh &mdash; Ctrl-F5 &mdash; to see your changes!</p>
+
+    <table RULES=ROWS CELLPADDING=10>
+    <TR>
+        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cTitle}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cKeyWords' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cKeyWords|default_if_none:""}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bKeyWordRequired' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bKeyWordRequired|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cLookFor|default_if_none:""}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'iStars' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iStars}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bAllOfInterest' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bWantPair' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bWantPair|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bComponent' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bComponent|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iFamily' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iFamily}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bModelsShared' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bModelsShared|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:""}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iUser' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iUser}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tCreate' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tCreate}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tModify' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tModify}}</TD>
+    </TR>
+    </table>
+    
+    <p>
+<!-- Action buttons -->
+    
+    <table>
+    <TR ALIGN=MIDDLE>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "categories:edit" pk=category.id %}'>
+                <input type="submit" value=" edit " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "categories:index" %}'>
+                <input type="submit" value=" back to category index " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "categories:delete" pk=category.id %}'>
+                <input type="submit" value=" delete " />
+            </form>
+        </td>
+    </TR>
+    </table>
+    
+<!-- End Action buttons -->
+
+
+</div>
+{% endblock content %}
+

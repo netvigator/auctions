@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% load getNbsp %} 
+{% block title %}Auction Shopping Bot Categories{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Categories</h2>
+
+  <div class="list-group">
+    {% if category_list %}
+        <table>
+        <tr>
+        <th ALIGN=LEFT>Category Name</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th ALIGN=LEFT>Stars</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th ALIGN=LEFT>Key Words</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th ALIGN=LEFT>Family</th>
+        </tr>
+        {% for category in category_list %}
+            <tr>
+            <td><a href="{% url 'categories:detail' category.id %}" class="list-group-item">
+                <h4 class="list-group-item-heading">{{ category.cTitle|getNbsp }}</h4> </a>
+            </td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td align=right>{{ category.iStars }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ category.cKeyWords|default_if_none:""}}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ category.iFamily|default_if_none:""}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        {# the pagination section #}
+        {% if is_paginated %}
+            <hr>
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="/categories?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="/categories?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+    {% else %} <!-- brand_list -->
+        <p>No categories are available.</p>
+    {% endif %} <!-- brand_list -->
+  </div>
+</div>
+{% endblock content %}
