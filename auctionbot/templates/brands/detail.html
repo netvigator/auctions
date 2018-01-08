@@ -9,6 +9,29 @@
     <p>Reminder! After a successful edit, you may need do do 
     a hard refresh &mdash; Ctrl-F5 &mdash; to see your changes!</p>
 
+    <table>
+        <TR ALIGN=MIDDLE>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "brands:edit" pk=brand.id %}'>
+                <input type="submit" value=" edit " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "brands:delete" pk=brand.id %}'>
+                <input type="submit" value=" delete " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "brands:index" %}'>
+                <input type="submit" value=" back to brand index " />
+            </form>
+        </td>
+        </TR>
+    </table>
+    
     <table RULES=ROWS CELLPADDING=10>
     <TR>
         <TD width = 300>{% field_name model 'cTitle' %}</TD> 
@@ -70,29 +93,27 @@
     <p>
     
     <table>
-    <TR ALIGN=MIDDLE>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
-    <td>
-    <form action='{% url "brands:edit" pk=brand.id %}'>
-        <input type="submit" value=" edit " />
-    </form>
-    </td>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
-    <td>
-    <form action='{% url "brands:delete" pk=brand.id %}'>
-        <input type="submit" value=" delete " />
-    </form>
-    </td>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
-    <td>
-    <form action='{% url "brands:index" %}'>
-        <input type="submit" value=" back to brand index " />
-    </form>
-    </td>
-    </TR>
+        <TR ALIGN=MIDDLE>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "brands:edit" pk=brand.id %}'>
+                <input type="submit" value=" edit " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "brands:delete" pk=brand.id %}'>
+                <input type="submit" value=" delete " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "brands:index" %}'>
+                <input type="submit" value=" back to brand index " />
+            </form>
+        </td>
+        </TR>
     </table>
-    
-
     
     <div style="margin-left:20px;margin-top:20px">
     {% if categories_list %}
