@@ -11,6 +11,33 @@
     <p>Reminder! After a successful edit, you may need do do 
     a hard refresh &mdash; Ctrl-F5 &mdash; to see your changes!</p>
 
+    <!-- Action buttons -->
+    
+    <table>
+    <TR ALIGN=MIDDLE>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "models:edit" pk=model.id %}'>
+                <input type="submit" value=" edit " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "models:index" %}'>
+                <input type="submit" value=" back to model index " />
+            </form>
+        </td>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <td>
+            <form action='{% url "models:delete" pk=model.id %}'>
+                <input type="submit" value=" delete " />
+            </form>
+        </td>
+    </TR>
+    </table>
+    
+    <!-- End Action buttons -->
+
     <table RULES=ROWS CELLPADDING=10>
     <TR>
         <TD width = 300>{% field_name model 'cTitle' %}</TD> 
@@ -135,7 +162,8 @@
     </table>
     
     <p>
-<!-- Action buttons -->
+
+    <!-- Action buttons -->
     
     <table>
     <TR ALIGN=MIDDLE>
@@ -160,8 +188,7 @@
     </TR>
     </table>
     
-<!-- End Action buttons -->
-
+    <!-- End Action buttons -->
 
 </div>
 {% endblock content %}
