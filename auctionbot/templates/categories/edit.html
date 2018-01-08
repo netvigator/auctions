@@ -6,6 +6,12 @@
 {% block content %}
   <h1>Category {{ category }}</h1>
   <form class="form-horizontal" method="post" action="{% url 'categories:edit' category.id %}">
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" value="Save" />
+        <input type="submit" name="cancel" value="Cancel" /> 
+      </div>
+    </div>
     {% csrf_token %}
     {{ form|crispy }}
     <div class="control-group">
