@@ -58,6 +58,10 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
+
+    def get_absolute_url(self):
+        return reverse('categories:detail',
+            kwargs={'pk': self.pk})
 #
 
 
