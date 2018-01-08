@@ -16,8 +16,8 @@ from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 
 from .models                        import Model
 
-
 # Create your views here but keep them thin.
+
 tModelFields = (
     'cTitle',
     'iBrand',
