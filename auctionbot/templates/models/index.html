@@ -22,7 +22,7 @@
         {% for model in model_list %}
             <tr>
             <td><a href="{% url 'models:detail' model.id %}" class="list-group-item">
-                <h4 class="list-group-item-heading">{{ model.cTitle|getNbsp }}</h4> </a>
+                {{ model.cTitle|getNbsp }}</a>
             </td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.iBrand.cTitle|getNbsp }}</td>
