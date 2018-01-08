@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load field_name %}
 
+{% block title %}Auction Shopping Bot | Brand {{ object.cTitle }}{% endblock %}
+
 {% block content %}
     <h1>{{ brand }} Details</h1>
     <p>
@@ -26,7 +28,7 @@
     <TR>
         <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cLookFor}}</TD>
+        <TD VALIGN=TOP>{{object.cLookFor|default_if_none:""}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'iStars' %}</TD>
@@ -36,7 +38,7 @@
     <TR>
         <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cComment}}</TD>
+        <TD VALIGN=TOP>{{object.cComment|default_if_none:""}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'cNationality' %}</TD>
@@ -46,7 +48,7 @@
     <TR>
         <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cExcludeIf}}</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:""}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'iUser' %}</TD>
