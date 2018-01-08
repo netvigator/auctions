@@ -106,12 +106,12 @@
     <TR>
         <TD>{% field_name model 'tCreate' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.tCreate}}</TD>
+        <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tModify' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.tModify}}</TD>
+        <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
     
