@@ -4,12 +4,23 @@
 {% block title %}Auction Shopping Bot Categories{% endblock %}
 
 {% block content %}
+
 <div class="container">
   <h2>Categories</h2>
 
+    <style>
+    table.bottomBorder { border-collapse: collapse; }
+    table.bottomBorder td, 
+    table.bottomBorder th { 
+        border-bottom: 1px solid silver; 
+        padding: 10px; 
+        text-align: left;
+    }
+    </style>
+
   <div class="list-group">
     {% if category_list %}
-        <table>
+        <table class="bottomBorder">
         <tr>
         <th ALIGN=LEFT>Category Name</th>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -21,7 +32,7 @@
         </tr>
         {% for category in category_list %}
             <tr>
-            <td><a href="{% url 'categories:detail' category.id %}" class="list-group-item">
+            <td><a href="{% url 'categories:detail' category.id %}">
                 <h4 class="list-group-item-heading">{{ category.cTitle|getNbsp }}</h4> </a>
             </td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -36,19 +47,30 @@
         {# the pagination section #}
         {% if is_paginated %}
             <hr>
-            <div class="pagination">
-                <span class="page-links">
-                    {% if page_obj.has_previous %}
-                        <a href="/categories?page={{ page_obj.previous_page_number }}">previous</a>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">
+                        &laquo;&nbsp;&nbsp;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;&nbsp;&nbsp;</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="active"><span>
+                            &nbsp;&nbsp;{{ i }}&nbsp;&nbsp;<span class="sr-only">
+                            &nbsp;&nbsp;(current)&nbsp;&nbsp;</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">
+                            &nbsp;&nbsp;{{ i }}&nbsp;&nbsp;</a></li>
                     {% endif %}
-                    <span class="page-current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-                    {% if page_obj.has_next %}
-                        <a href="/categories?page={{ page_obj.next_page_number }}">next</a>
-                    {% endif %}
-                </span>
-            </div>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">
+                        &nbsp;&nbsp;&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&nbsp;&raquo;</span></li>
+                {% endif %}
+            </ul>
         {% endif %}
     {% else %} <!-- brand_list -->
         <p>No categories are available.</p>
