@@ -7,16 +7,6 @@
 {% block content %}
   <h2>Models</h2>
 
-    <style>
-    table.bottomBorder { border-collapse: collapse; }
-    table.bottomBorder td, 
-    table.bottomBorder th { 
-        border-bottom: 1px solid silver; 
-        padding: 10px; 
-        text-align: left;
-    }
-    </style>
-
     {% if model_list %}
         {# the pagination section #}
         {% if is_paginated %}
