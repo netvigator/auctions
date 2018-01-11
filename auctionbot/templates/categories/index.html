@@ -10,6 +10,13 @@
 
   <div class="list-group">
     {% if category_list %}
+        {# the pagination section #}
+        {% if is_paginated %}
+            <hr>
+            <div class="basic">
+                {% include "../paginate.html" %}    
+            </div>            
+        {% endif %}
         <table class="bottomBorder">
         <tr>
         <th ALIGN=LEFT>Category Name</th>
@@ -37,30 +44,9 @@
         {# the pagination section #}
         {% if is_paginated %}
             <hr>
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}">
-                        &laquo;&nbsp;&nbsp;</a></li>
-                {% else %}
-                    <li class="disabled"><span>&laquo;&nbsp;&nbsp;</span></li>
-                {% endif %}
-                {% for i in paginator.page_range %}
-                    {% if page_obj.number == i %}
-                        <li class="active"><span>
-                            &nbsp;&nbsp;{{ i }}&nbsp;&nbsp;<span class="sr-only">
-                            &nbsp;&nbsp;(current)&nbsp;&nbsp;</span></span></li>
-                    {% else %}
-                        <li><a href="?page={{ i }}">
-                            &nbsp;&nbsp;{{ i }}&nbsp;&nbsp;</a></li>
-                    {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}">
-                        &nbsp;&nbsp;&raquo;</a></li>
-                {% else %}
-                    <li class="disabled"><span>&nbsp;&raquo;</span></li>
-                {% endif %}
-            </ul>
+            <div class="basic">
+                {% include "../paginate.html" %}    
+            </div>            
         {% endif %}
     {% else %} <!-- brand_list -->
         <p>No categories are available.</p>
