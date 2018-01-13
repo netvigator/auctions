@@ -14,7 +14,7 @@ from six    import print_ as print3
 
 from .models        import Brand
 from brands.views   import IndexView
-from core.utils     import oUserOne
+from core.tests     import getDefaultMarket
 
 
 class ModelModelTest(TestCase):
@@ -24,19 +24,18 @@ class ModelModelTest(TestCase):
         oBrand = Brand(cTitle= sBrand )
         self.assertEqual(str(sBrand), oBrand.cTitle)
 
-
-def createBrand( sName, oUser ):
-    #
-    oBrand = Brand(cTitle = sName, iUser = oUser )
-    oBrand.save()
-    #
-    return oBrand.id
-
     
 class BrandViewsTests(TestCase):
     """Brand views tests."""
     
     def setUp(self):
+        
+        getDefaultMarket( self )
+        
+        from markets.models import Market
+        
+        ''' print( '1st Market.object:',
+        Market.objects.first().id, Market.objects.first() ) '''
         
         oUser = get_user_model()
 
@@ -54,7 +53,7 @@ class BrandViewsTests(TestCase):
         self.user2.last_name = 'Blow'
         self.user2.save()
         
-        
+
         '''
         sBrand = "Proctor & Gamble"
         oBrand = Brand(cTitle= sBrand, iUser = user1 )
@@ -133,9 +132,14 @@ class BrandViewsTests(TestCase):
 
 
 '''
+from core.user_one  import oUserOne
+
 class BrandListViewTests(TestCase):
     """Brand list view tests."""
 
+    def setUp(self):
+        getDefaultMarket( self )
+        
     def test_brands_in_the_context(self):
 
         client = Client()
