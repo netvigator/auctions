@@ -59,7 +59,7 @@ django.setup()
 from brands.models      import Brand
 from categories.models  import Category, BrandCategory
 from models.models      import Model
-from core.utils         import oUserOne
+from core.user_one      import oUserOne
 
 
 dConvertConf        = getConfDict('getCsvConvertAppend.conf')
