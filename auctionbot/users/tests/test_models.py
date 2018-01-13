@@ -1,9 +1,13 @@
 from test_plus.test import TestCase
+from core.tests     import getDefaultMarket
 
 
 class TestUser(TestCase):
 
     def setUp(self):
+
+        getDefaultMarket( self )
+
         self.user = self.make_user()
 
     def test__str__(self):
