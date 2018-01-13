@@ -4,14 +4,57 @@ import datetime
 
 # Create your tests here.
 
-from .utils     import oUserOne, getDateTimeObj
-from .core_tags import nbsp
+from markets.models             import Market
+from .utils                     import getDateTimeObj
+from .user_one                  import oUserOne
+from .templatetags.core_tags    import getNbsp
 
-from .ebay_wrapper  import oEbayConfig
+from .ebay_wrapper              import oEbayConfig
 
+
+
+def getDefaultMarket( caller ):
+    
+    if Market.objects.count() == 0:
+        #
+        market = Market()
+        #
+        market.id          = 1
+        market.cMarket     = 'EBAY-US'
+        market.cCountry    = 'US'
+        market.iEbaySiteID = 1
+        market.iCategoryVer= 117
+        market.cCurrencyDef= 'USD'
+        market.cLanguage   = 'en-US'
+        market.save()
+        
+        caller.market = market
+
+    # print( 'self.market.id:', Market.objects.filter( pk = 1 ) )
+
+
+
+def CoreMarketTests(TestCase):
+    #
+    ''' need the default market '''
+    #
+    def setUp(self):
+        getDefaultMarket( self )
+    
+    def test_default_market( self ):
+        #
+        assertIsNotNone( self.market.id )
+        #
+        assertEquals( self.market.id, 1 )
+
+
+    
 class CoreUserTests(TestCase):
     """User tests."""
 
+    def setUp(self):
+        getDefaultMarket( self )
+    
     def test_get_user(self):
         
         self.assertEquals( oUserOne.username, 'netvigator')
