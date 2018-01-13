@@ -1,11 +1,16 @@
 from test_plus.test import TestCase
 
-from ..admin import MyUserCreationForm
+from ..admin        import MyUserCreationForm
+from core.tests     import getDefaultMarket
 
 
 class TestMyUserCreationForm(TestCase):
 
+        
     def setUp(self):
+
+        getDefaultMarket( self )
+
         self.user = self.make_user('notalamode', 'notalamodespassword')
 
     def test_clean_username_success(self):
