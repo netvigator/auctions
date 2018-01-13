@@ -2,11 +2,16 @@ from django.core.urlresolvers import reverse, resolve
 
 from test_plus.test import TestCase
 
+from core.tests     import getDefaultMarket
+
 
 class TestUserURLs(TestCase):
     """Test URL patterns for users app."""
 
     def setUp(self):
+
+        getDefaultMarket( self )
+
         self.user = self.make_user()
 
     def test_list_reverse(self):
