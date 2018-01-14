@@ -1,6 +1,8 @@
-from django.db import models
+from django.db                  import models
+from django.core.urlresolvers   import reverse
 
 # Create your models here.
+
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -14,17 +16,17 @@ class Search(models.Model):
     cTitle          = models.CharField( 'short description',
                                          max_length = 38, null = True )
     cKeyWords       = models.TextField(
-        'search for key words (maximum length 350 characters)',
+        'search for key words (maximum length 350 characters) (required!)',
         max_length = 350 )
     # max length for a single key word is 98
     iEbayCategory   = models.ForeignKey( EbayCategory,
-                                         verbose_name = 'ebay category (optional)',
-                                         null = True, blank = True )
+                                verbose_name = 'ebay category (optional)',
+                                null = True, blank = True )
     cPriority       = models.CharField( 'processing priority',
-                                         max_length = 2, null = True )
+                                max_length = 2, null = True )
     tLastSearch     = models.DateTimeField( 'last search', null = True )
     cLastResult     = models.CharField( 'last search outcome',
-                                         max_length = 28, null = True )
+                                max_length = 28, null = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
@@ -37,4 +39,7 @@ class Search(models.Model):
         db_table        = 'searching'
         unique_together = ('cKeyWords', 'iEbayCategory',)
 
+    def get_absolute_url(self):
+        return reverse('searching:detail',
+            kwargs={'pk': self.pk})
     
