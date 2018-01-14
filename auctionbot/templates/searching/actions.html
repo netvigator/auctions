@@ -1,0 +1,22 @@
+<table>
+<TR ALIGN=MIDDLE>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+        <form action='{% url "searching:edit" pk=search.id %}'>
+            <input type="submit" value=" edit " />
+        </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+        <form action='{% url "searching:index" %}'>
+            <input type="submit" value=" back to search index " />
+        </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+        <form action='{% url "searching:delete" pk=search.id %}'>
+            <input type="submit" value=" delete " />
+        </form>
+    </td>
+</TR>
+</table>

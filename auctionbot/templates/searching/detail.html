@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% load field_name %}
+
+{% block title %}Auction Shopping Bot Search | {{ object.cTitle }}{% endblock %}
+
+{% block content %}
+    <h1>Search for {{ object.cTitle }} - Details</h1>
+    <p>
+    <p>Reminder! After a successful edit, you may need do do 
+    a hard refresh &mdash; F5 or Ctrl-F5 &mdash; to see your changes!</p>
+
+    <!-- Action buttons -->
+    <div class="basic">
+        {% include "./actions.html" %}    
+    </div>            
+    <!-- End Action buttons -->    
+
+tModelFields = (
+    'cTitle',
+    'cKeyWords',
+    'iEbayCategory',
+    'cPriority', )
+
+    <table RULES=ROWS CELLPADDING=10>
+    <TR>
+        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cTitle}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'cKeyWords' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.cKeyWords }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iEbayCategory' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iEbayCategory|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cKeyWords' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cKeyWords|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'cPriority' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.cPriority|default_if_none:"" }}</TD>
+    </TR>
+
+
+    <TR>
+        <TD>{% field_name model 'tLastSearch' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tLastSearch|date:"d M Y  P"}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cLastResult' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cLastResult|default_if_none:"" }}</TD>
+    </TR>
+    
+    <TR>
+        <TD>{% field_name model 'iUser' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iUser}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tCreate' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tModify' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
+    </TR>
+    </table>
+    
+    <p>
+
+    <!-- Action buttons -->
+    <div class="basic">
+        {% include "./actions.html" %}    
+    </div>            
+    <!-- End Action buttons -->    
+
+</div>
+{% endblock content %}
+

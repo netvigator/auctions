@@ -1,0 +1,22 @@
+<table>
+<TR ALIGN=MIDDLE>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+        <form action='{% url "brands:edit" pk=brand.id %}'>
+            <input type="submit" value=" edit " />
+        </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+        <form action='{% url "brands:delete" pk=brand.id %}'>
+            <input type="submit" value=" delete " />
+        </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
+        <form action='{% url "brands:index" %}'>
+            <input type="submit" value=" back to brand index " />
+        </form>
+    </td>
+</TR>
+</table>

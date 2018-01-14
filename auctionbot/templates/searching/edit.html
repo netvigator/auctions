@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Auction Shopping Bot Search for 
+                 {{ object.cTitle }}{% endblock %}
+
+{% block content %}
+  <h1>Search for {{ object.cTitle }}</h1>
+  <form class="form-horizontal" method="post" action="{% url 'searching:edit' search.id %}">
+    {% csrf_token %}
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" value="Save" />
+        <input type="submit" name="cancel" value="Cancel" /> 
+      </div>
+    </div>
+    {{ form|crispy }}
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" value="Save" />
+        <input type="submit" name="cancel" value="Cancel" /> 
+      </div>
+    </div>
+  </form>
+{% endblock %}
