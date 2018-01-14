@@ -30,10 +30,7 @@ class Search(models.Model):
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
 
     def __str__(self):
-        if EbayCategory.cTitle is None:
-            return '%s: %s' % ( EbayCategory.cTitle, self.cKeyWords )
-        else:
-            return self.cKeyWords
+        return self.cTitle
 
     class Meta():
         verbose_name_plural = 'searches'
