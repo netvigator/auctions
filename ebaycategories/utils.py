@@ -189,6 +189,29 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
     #
     iWantVersion = int( sWantVersion )
     #
+    oRootCategory = EbayCategory()
+    #
+    try:
+        #
+        oRootCategory = EbayCategory.objects.get(
+            iMarket         = oMarket,
+            iTreeVersion    = iWantVersion,
+            iCategoryID     = 0 )
+        #
+    except ObjectDoesNotExist:
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iMarket         = oMarket,
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
     iSeq = 0
     #
     for dCategory in categoryDictIterable:
@@ -221,7 +244,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         #
         sCategoryName = getChars4HtmlCodes( dCategory['CategoryName'] )
         #
-        oCategory.cTitle        = sCategoryName
+        oCategory.name          = sCategoryName
         oCategory.iLevel        = int( dCategory['CategoryLevel'   ] )
         oCategory.bLeafCategory = bool(dCategory['LeafCategory'    ] )
         oCategory.iTreeVersion  = iWantVersion
@@ -231,7 +254,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
             #
             # level 1 category, CategoryID == CategoryParentID
             #
-            pass
+            oCategory.parent = oRootCategory
             #
         else:
             #
@@ -245,7 +268,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
             oCategory.save()
         except DataError:
             print3( '\ntoo long: %s\n' % sCategoryName )
-            oCategory.cTitle        = sCategoryName[:48]
+            oCategory.name  = sCategoryName[:48]
             oCategory.save()
         #
 
