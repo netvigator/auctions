@@ -17,13 +17,16 @@ class Search(models.Model):
                                          max_length = 38, null = True )
     cKeyWords       = models.TextField(
         'search for key words (maximum length 350 characters) (required!)',
-        max_length = 350 )
+        max_length = 350,
+        help_text = 'Bot will search for these words in the auction titles' )
     # max length for a single key word is 98
     iEbayCategory   = models.ForeignKey( EbayCategory,
                                 verbose_name = 'ebay category (optional)',
-                                null = True, blank = True )
+                                null = True, blank = True,
+        help_text = 'Limit search to items listed in this category (optional)' )
     cPriority       = models.CharField( 'processing priority',
-                                max_length = 2, null = True )
+                                max_length = 2, null = True,
+        help_text = '1 is higher than 9, 9 is higher than A, A is higher than a' )
     tLastSearch     = models.DateTimeField( 'last search', null = True )
     cLastResult     = models.CharField( 'last search outcome',
                                 max_length = 28, null = True )
