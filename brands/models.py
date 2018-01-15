@@ -22,24 +22,29 @@ class Brand(models.Model):
     cTitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True)
     bWanted         = models.BooleanField(
-                        'want anything from this brand?', default = True )
+                        'want anything from this brand?', default = True,
+        help_text = 'Bot will only download full descriptions and pictures '
+                    'if you want' )
     bAllOfInterest  = models.BooleanField(
-                        'want everything from this brand?', default = True )
+                        'want everything from this brand?', default = True,
+        help_text = 'Definitely set to True for desireable & rare brands' )
     cLookFor        = models.TextField(
-                        'Considered a hit if this text is found '
-                        '(each line evaluated separately, '
-                        'put different look for tests on different lines)',
-                        null=True, blank = True )
+                        'Considered a hit if this text is found',
+                        null=True, blank = True,
+        help_text = 'Considered a hit if this text is found '
+                    '(each line evaluated separately, '
+                    'put different look for tests on different lines)' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
     cComment        = models.TextField( 'comments', null = True, blank = True )
     cNationality    = CountryField( "nationality", null = True )
     cExcludeIf      = models.TextField(
-                        'Not a hit if this text is found '
-                        '(each line evaluated separately, '
-                        'put different exclude tests on different lines)',
-                        null=True, blank = True )
+                        'Not a hit if this text is found',
+                        null=True, blank = True,
+        help_text = 'Not a hit if this text is found '
+                    '(each line evaluated separately, '
+                    'put different exclude tests on different lines)' )
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                         null=True, blank = True )
