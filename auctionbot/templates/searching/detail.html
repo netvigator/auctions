@@ -33,11 +33,6 @@
         <TD VALIGN=TOP>{{ object.iEbayCategory|default_if_none:"" }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name model 'cKeyWords' %}</TD> 
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cKeyWords|default_if_none:"" }}</TD>
-    </TR>
-    <TR>
         <TD>{% field_name model 'cPriority' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.cPriority|default_if_none:"" }}</TD>
