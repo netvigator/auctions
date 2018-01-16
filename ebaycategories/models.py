@@ -32,7 +32,8 @@ class EbayCategory(MPTTModel):
     bLeafCategory   = models.BooleanField( 'leaf category?' )
     iTreeVersion    = models.PositiveSmallIntegerField( 
                         'category tree version' )
-    iMarket         = models.ForeignKey( Market, verbose_name = 'ebay market' )
+    iMarket         = models.ForeignKey( Market, verbose_name = 'ebay market',
+                        db_index=True )
     iSupercededBy   = models.PositiveIntegerField(
                         'superceded by this ebay category', null = True )
     parent          = TreeForeignKey( 'self',
