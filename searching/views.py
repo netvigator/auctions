@@ -7,7 +7,10 @@ from crispy_forms.helper            import FormHelper
 from crispy_forms.layout            import Submit
 # from crispy_forms.layout          import Layout, Field
 
+from .forms                         import AddOrUpdateForm
+from .mixins                        import EbayCategoryFormValidMixin
 from .models                        import Search
+
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 from core.utils                     import model_to_dict
 from core.views                     import (
@@ -16,32 +19,35 @@ from core.views                     import (
 
 # Create your views here.
 
-from .models        import Search
+from .models                        import Search
+
+from ebaycategories.models          import EbayCategory
+
+from django.contrib.auth        import get_user_model
+User = get_user_model()
 
 tModelFields = (
     'cTitle',
     'cKeyWords',
-    'iEbayCategory',
+    'iDummyCategory',
     'cPriority', )
 
-class SearchCreate( LoginRequiredMixin, CreateViewGotModel ):
 
-    model   = Search
-    fields  = tModelFields
-    template_name = 'searching/add.html'
+class SearchCreate(
+        LoginRequiredMixin, EbayCategoryFormValidMixin, CreateViewGotModel ):
+
+    form_class      = AddOrUpdateForm
+    model           = Search
+    template_name   = 'searching/add.html'
     success_url = reverse_lazy('searching:index')
-
-    def form_valid(self, form):
-        form.instance.iUser = self.request.user
-        return super().form_valid(form)
+    #success_url = reverse_lazy('searching:detail', kwargs={'pk': self.object.id})
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
-        #form.helper.layout = Layout()
-        #Field( 'cLookFor', rows = 3 )
         form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         return form
+
 
 
 class IndexView( LoginRequiredMixin, ListViewGotModel ):  
@@ -81,10 +87,11 @@ class SearchDelete(
 
 class SearchUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateViewGotModel ):
-    model   = Search
-    fields  = tModelFields
-    template_name = 'searching/edit.html'
+        EbayCategoryFormValidMixin, UpdateViewGotModel ):
+    model           = Search
+    form_class      = AddOrUpdateForm
+    template_name   = 'searching/edit.html'
+
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
