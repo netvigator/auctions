@@ -14,12 +14,9 @@ from django.core.exceptions import ImproperlyConfigured
 
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
-
-# from six import print_ as print3
-
 dSecretsConf = getConf( 'Secrets.conf' )
 
-# print3( dSecretsConf )
+# print( dSecretsConf )
 
 ROOT_DIR = environ.Path(__file__) - 3  # (auctionbot/config/settings/base.py - 3 = auctionbot/)
 APPS_DIR = ROOT_DIR.path('auctionbot')

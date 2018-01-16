@@ -16,7 +16,6 @@ from File.Write     import QuickDump
 
 from markets.models import Market
 
-from six import print_ as print3
 
 path.append('~/Devel/auctions')
 
@@ -52,7 +51,7 @@ def getDecompressed( oContent ):
     return bContent
 
 
-# print3( 'dev_name:', oEbayConfig['keys']['dev_name'] )
+# print( 'dev_name:', oEbayConfig['keys']['dev_name'] )
 
 '''
 signatures:

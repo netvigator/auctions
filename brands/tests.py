@@ -7,7 +7,6 @@ from django.contrib.auth import get_user_model
 from core.utils         import getExceptionMessageFromResponse
 
 from pprint import pprint
-from six    import print_ as print3
 
 
 # Create your tests here.
@@ -45,7 +44,7 @@ class BrandViewsTests(TestCase):
         self.user1.last_name = 'Citizen'
         self.user1.save()
         
-        # print3( 'user1.id:', user1.id )
+        # print( 'user1.id:', user1.id )
         
         self.user2 = oUser.objects.create_user( 'username2', 'email@gmail.com' )
         self.user2.set_password( 'mypassword')

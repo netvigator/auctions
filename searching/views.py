@@ -21,8 +21,6 @@ from core.views                     import (
 
 from .models                        import Search
 
-from ebaycategories.models          import EbayCategory
-
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 

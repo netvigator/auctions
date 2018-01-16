@@ -3,8 +3,7 @@ class UnexpectedResponse( Exception ): pass
 
 import xml.etree.ElementTree as ET
 
-from pprint import pprint
-from six    import print_ as print3
+#from pprint import pprint
 
 from core.utils     import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
@@ -108,7 +107,7 @@ def countCategories(
         i += 1
         #
     #
-    print3( 'CategoryCount line said', 
+    print( 'CategoryCount line said', 
            ReadableNo( dTagsValues[ 'CategoryCount' ] ),
             'categories, actully counted', ReadableNo( i ) )
 
@@ -167,7 +166,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         #
         oProgressMeter = TextMeter()
         #
-        print3( 'counting categories ...' )
+        print( 'counting categories ...' )
         #
         iCount = 0
         #
@@ -267,7 +266,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         try:
             oCategory.save()
         except DataError:
-            print3( '\ntoo long: %s\n' % sCategoryName )
+            print( '\ntoo long: %s\n' % sCategoryName )
             oCategory.name  = sCategoryName[:48]
             oCategory.save()
         #

@@ -34,8 +34,6 @@ from os             import environ, listdir
 from os.path        import join
 from sys            import path
 
-from six            import print_ as print3
-
 from Dir.Get        import sTempDir
 from String.Output  import ReadableNo
 from Time.Output    import sayGMT
@@ -303,7 +301,7 @@ def _BrandCategory( oRow ):
         #
         if bCrashOnErrors: raise
         #
-        # print3(
+        # print(
         #     'not finding a brand row for legacy key "%s"!!!' %
         #     oRow['BRANDINTEGER'] )
         #
@@ -316,7 +314,7 @@ def _BrandCategory( oRow ):
         #
         if bCrashOnErrors: raise
         #
-        # print3(
+        # print(
         #     'not finding a type row for legacy key "%s"!!!' %
         #     oRow['TYPEINTEGER'] )
         #
@@ -442,7 +440,7 @@ def doOneTable( sTable ):
     if len( dTables[sTable] ) > 2:
         doMore  = dTables[sTable][2]
     #
-    print3( 'counting lines in %s ...' % sCsvFile )
+    print( 'counting lines in %s ...' % sCsvFile )
     #
     oCsvFile    = getFileObject( sCsvPath, sCsvFile )
     #
@@ -453,8 +451,8 @@ def doOneTable( sTable ):
             iCsvLines += 1
             oPriorRow = oCsvRow
     except UnicodeDecodeError:
-        print3( 'Unicode error on line %s' % str( iCsvLines ) )
-        print3( 'Prior row: %s' % oPriorRow )
+        print( 'Unicode error on line %s' % str( iCsvLines ) )
+        print( 'Prior row: %s' % oPriorRow )
         raise
     #
     oCsvFile    = getFileObject( sCsvPath, sCsvFile )
@@ -508,7 +506,7 @@ def doOneTable( sTable ):
     #
     if iErrors:
         #
-        print3(
+        print(
             '\nnote that we enountered %s error%s coverting the %s data!\n' %
             ( iErrors, Plural( iErrors ), sTable ) )
         #
@@ -524,13 +522,13 @@ def doTables( lTables ):
         #
         if sTable not in dTables:
             #
-            print3( 'no such table as "%s"!' % sTable )
+            print( 'no such table as "%s"!' % sTable )
             #
             continue
         #
         if len( dTables[ sTable ] ) < 2:
             #
-            print3( 'no coversion script for "%s" yet!' % sTable )
+            print( 'no coversion script for "%s" yet!' % sTable )
             continue
             #
         #

@@ -2,8 +2,6 @@ from django.test import TestCase
 
 # Create your tests here.
 
-# from six          import print_ as print3
-
 from .test_big_text import sExampleResponse
 from .utils         import getSearchResultGenerator
 

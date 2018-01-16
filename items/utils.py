@@ -1,7 +1,5 @@
 from json           import load
 
-# from six import print_ as print3
-
 from Dict.Get       import getAnyValue
 from Dict.Maintain  import getDictValuesFromSingleElementLists
 
@@ -61,13 +59,13 @@ def getSearchResultGenerator( sFile ):
     #
     dResultDict = dResponse[ "searchResult" ][0]
     #
-    # print3( 'dResultDict.keys():', list( dResultDict.keys() ) )
+    # print( 'dResultDict.keys():', list( dResultDict.keys() ) )
     #
     iThisItem = 0
     #
     lResults = dResultDict.get('item')
     #
-    # print3( 'lResults:', lResults )
+    # print( 'lResults:', lResults )
     #
     for dItem in lResults:
         #
