@@ -12,21 +12,23 @@
         <table>
         <tr>
         <th ALIGN=LEFT>Search Name</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>ebay category</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>priority</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>key words</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>last search</th>
         </tr>
         {% for search in search_list %}
             <tr>
             <td><a href="/searching/{{ search.id }}/">{{ search.cTitle }}</a></td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.iEbayCategory.name }}</td>
-            <TD></TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.cPriority }}</td>
-            <TD></TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.cKeyWords|truncatechars:65 }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.tLastSearch }}</td>
