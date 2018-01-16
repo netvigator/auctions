@@ -5,7 +5,7 @@
     <ul>
         {% recursetree eb_categories %}
             <li>
-                {{ node.name }}
+                {{ node.name }}&nbsp;&nbsp;({{ node.iCategoryID }})
                 {% if not node.is_leaf_node %}
                     <ul class="children">
                         {{ children }}
