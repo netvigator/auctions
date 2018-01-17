@@ -21,7 +21,7 @@ class ModelModelTest(TestCase):
     def test_string_representation(self):
         sBrand = "My brand name"
         oBrand = Brand(cTitle= sBrand )
-        self.assertEqual(str(sBrand), oBrand.cTitle)
+        self.assertEqual(str(oBrand), oBrand.cTitle)
 
     
 class BrandViewsTests(TestCase):
@@ -31,26 +31,29 @@ class BrandViewsTests(TestCase):
         
         getDefaultMarket( self )
         
-        from markets.models import Market
-        
-        ''' print( '1st Market.object:',
-        Market.objects.first().id, Market.objects.first() ) '''
-        
         oUser = get_user_model()
 
         self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
         self.user1.set_password( 'mypassword')
-        self.user1.first_name = 'John'
-        self.user1.last_name = 'Citizen'
+        self.user1.first_name   = 'John'
+        self.user1.last_name    = 'Citizen'
         self.user1.save()
         
         # print( 'user1.id:', user1.id )
         
         self.user2 = oUser.objects.create_user( 'username2', 'email@gmail.com' )
         self.user2.set_password( 'mypassword')
-        self.user2.first_name = 'Joe'
-        self.user2.last_name = 'Blow'
+        self.user2.first_name   = 'Joe'
+        self.user2.last_name    = 'Blow'
         self.user2.save()
+        
+        
+        self.user3 = oUser.objects.create_user( 'username3', 'email@hotmail.com' )
+        self.user3.set_password( 'mypassword')
+        self.user3.first_name   = 'Oscar'
+        self.user3.last_name    = 'Zilch'
+        self.user3.is_superuser = True
+        self.user3.save()
         
 
         '''
@@ -127,7 +130,15 @@ class BrandViewsTests(TestCase):
             getExceptionMessageFromResponse( response ),
             "Permission Denied -- that's not your record!" )
 
-    
+        self.client.logout()
+        self.client.login(username='username3', password='mypassword')
+        
+        response = self.client.get(
+                reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Lever Brothers")
+
+
 
 
 '''
