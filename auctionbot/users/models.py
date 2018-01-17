@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from markets.models     import Market
 
-iEbayUSA = Market.objects.get( cMarket = 'EBAY-US' ).id
+iEbayUSA = Market.objects.get( cMarket = 'EBAY-US' ).id or 1
 
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
