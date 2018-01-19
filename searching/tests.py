@@ -1,6 +1,4 @@
-from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
-from django.test                import TestCase, RequestFactory
 from django.test.client         import Client
 
 from .forms                     import AddOrUpdateForm
@@ -9,7 +7,7 @@ from .views                     import (
         SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
 
 
-from core.tests                 import getDefaultMarket
+from core.tests                 import getDefaultMarket, BaseUserTestCase
 from core.utils                 import getExceptionMessageFromResponse
 from markets.models             import Market
 from ebaycategories.models      import EbayCategory
@@ -17,59 +15,6 @@ from ebaycategories.models      import EbayCategory
 from pprint import pprint
 
 # Create your tests here.
-
-class BaseUserTestCase(TestCase):
-
-    def setUp(self):
-
-        self.factory = RequestFactory()
-        
-        getDefaultMarket( self )
-
-        oUser = get_user_model()
-
-        self.user1 = oUser.objects.create_user('username1', 'email@ymail.com')
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
-
-        self.user2 = oUser.objects.create_user('username2', 'email@gmail.com')
-        self.user2.set_password( 'mypassword')
-        self.user2.first_name   = 'Joe'
-        self.user2.last_name    = 'Blow'
-        self.user2.save()
-        
-        self.user3 = oUser.objects.create_user( 'username3', 'email@hotmail.com' )
-        self.user3.set_password( 'mypassword')
-        self.user3.first_name   = 'Oscar'
-        self.user3.last_name    = 'Zilch'
-        self.user3.is_superuser = True
-        self.user3.save()
-
-        if (  ( not isinstance( self.market, Market ) ) or
-              ( not Market.objects.get( pk = 1 ) ) ):
-            self.market = Market(
-                cMarket     = 'EBAY-US',
-                cCountry    = 'US',
-                iEbaySiteID = 0,
-                cLanguage   = 'en-US',
-                iCategoryVer= 1,
-                cCurrencyDef= 'USD' )
-            self.market.save()
-        
-        self.ebc = EbayCategory(
-            iCategoryID = 10,
-            name        = 'hot products',
-            iLevel      = 1,
-            iParentID   = 1,
-            iTreeVersion= 1,
-            iMarket     = self.market,
-            bLeafCategory = False )
-        self.ebc.save()
-
-
-
 
 
 
