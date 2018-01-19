@@ -86,8 +86,9 @@ class Model(models.Model):
     cFileSpec5      = models.CharField( 'file path & name for model picture 5',
                         max_length = 48, null = True, blank = True )
     
-    iLegacyKey      = models.PositiveIntegerField('legacy key', unique=True )
-    tLegacyCreate   = models.DateTimeField( 'legacy row created on' )
+    iLegacyKey      = models.PositiveIntegerField('legacy key', null=True )
+    tLegacyCreate   = models.DateTimeField( 'legacy row created on',
+                        null = True )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                         null = True, blank = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',

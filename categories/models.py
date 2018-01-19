@@ -49,16 +49,17 @@ class Category(models.Model):
         help_text = 'Not a hit if this text is found '
                     '(each line evaluated separately, '
                     'put different exclude tests on different lines)' )
-    iLegacyKey      = models.PositiveIntegerField( 'legacy key', unique=True )
+    iLegacyKey      = models.PositiveIntegerField( 'legacy key', null=True )
     iLegacyFamily   = models.PositiveIntegerField( 'legacy family',
                                                     null = True )
     bModelsShared   = models.BooleanField(  'brands share model numbers',
                                                     default = False,
         help_text = 'Set to True if different brands use the same model '
                     'names or numbers in this category' )
-    tLegacyCreate   = models.DateTimeField( 'legacy row created on' )
+    tLegacyCreate   = models.DateTimeField( 'legacy row created on',
+                                                    null = True )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
-                                            null = True )
+                                                    null = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
