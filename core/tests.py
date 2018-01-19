@@ -105,10 +105,9 @@ class BaseUserTestCase(TestCase):
 
         self.oCategory = Category(
             cTitle          = "My awesome category",
-            iUser           = self.user1,
-            id              = 1 )
+            iUser           = self.user1 )
         self.oCategory.save()
-            
+        
 
     
 class CoreUserTests(TestCase):
