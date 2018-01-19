@@ -1,10 +1,12 @@
-from django.test        import TestCase
-from django.test.client import Client
-from django.test.client import RequestFactory
-from django.urls        import reverse
-from django.contrib.auth import get_user_model
+from django.contrib.auth        import get_user_model
+from django.core.urlresolvers   import reverse, resolve
+from django.test                import TestCase
+from django.test.client         import Client
+from django.test.client         import RequestFactory
+from django.urls                import reverse
 
-from core.utils         import getExceptionMessageFromResponse
+from core.tests                 import getDefaultMarket, BaseUserTestCase
+from core.utils                 import getExceptionMessageFromResponse
 
 from pprint import pprint
 
@@ -12,8 +14,51 @@ from pprint import pprint
 # Create your tests here.
 
 from .models        import Brand
-from brands.views   import IndexView
-from core.tests     import getDefaultMarket
+
+
+
+class TestURLs(BaseUserTestCase):
+
+    def test_get_absolute_url(self):
+        oBrand = Brand(
+            cTitle          = "My premium brand",
+            iUser           = self.user1,
+            id              = 1 )
+        oBrand.save()
+            
+        self.assertEqual(
+            oBrand.get_absolute_url(),
+            '/brands/1/'
+        )
+
+    def test_list_reverse(self):
+        """searches:index should reverse to /brands/."""
+        self.assertEqual(reverse('brands:index'), '/brands/')
+
+
+    def test_list_resolve(self):
+        """/brands/ should resolve to brands:index."""
+        self.assertEqual(resolve('/brands/').view_name, 'brands:index')
+
+    def test_detail_reverse(self):
+        """brands:detail should reverse to /brands/<pk>/."""
+        self.assertEqual(
+            reverse('brands:detail', kwargs={ 'pk': 1 }),
+            '/brands/1/'
+        )
+
+    def test_edit_reverse(self):
+        """brands:edit should reverse to /brands/edit/."""
+        self.assertEqual(reverse('brands:edit', kwargs={ 'pk': 1 }),
+                         '/brands/1/edit/')
+
+    def test_update_resolve(self):
+        """/brands/~update/ should resolve to brands:update."""
+        self.assertEqual(
+            resolve('/brands/1/edit/').view_name,
+            'brands:edit'
+        )
+
 
 
 class ModelModelTest(TestCase):
@@ -88,7 +133,7 @@ class BrandViewsTests(TestCase):
     def test_got_brands(self):
         #
         """
-        If no brands exist, an appropriate message is displayed.
+        If brands exist, an appropriate message is displayed.
         """
         self.client = Client()
         
@@ -142,6 +187,7 @@ class BrandViewsTests(TestCase):
 
 
 '''
+from brands.views   import IndexView
 from core.user_one  import oUserOne
 
 class BrandListViewTests(TestCase):
