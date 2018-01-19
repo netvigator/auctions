@@ -29,6 +29,15 @@ def getDateTimeObj( sDateTime ):
     return getDateTimeObjFromString( sDateTime, EBAY_DATE_FORMAT )
 
 
+def getLastDictFromResponse( oResponse ):
+    #
+    l = oResponse.__dict__['context']
+    #
+    oLast = l[-1]
+    #
+    return oLast.dicts[-1]
+
+
 def getExceptionMessageFromResponse( oResponse ):
     #
     '''
@@ -36,11 +45,7 @@ def getExceptionMessageFromResponse( oResponse ):
     here is my struggle to get it out
     '''
     #
-    l = oResponse.__dict__['context']
-    #
-    oLast = l[-1]
-    #
-    dLast = oLast.dicts[-1]
+    dLast = getLastDictFromResponse( oResponse )
     #
     return dLast.get( 'exception' )
 
