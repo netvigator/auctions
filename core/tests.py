@@ -1,10 +1,15 @@
-from django.test import TestCase
+from django.contrib.auth        import get_user_model
+from django.core.urlresolvers   import reverse, resolve
+from django.test                import TestCase, RequestFactory
 
 import datetime
 
 # Create your tests here.
 
+from categories.models          import Category
+from ebaycategories.models      import EbayCategory
 from markets.models             import Market
+
 from .utils                     import getDateTimeObj
 from .user_one                  import oUserOne
 from .templatetags.core_tags    import getNbsp
@@ -47,6 +52,63 @@ def CoreMarketTests(TestCase):
         #
         assertEquals( self.market.id, 1 )
 
+
+class BaseUserTestCase(TestCase):
+
+    def setUp(self):
+
+        self.factory = RequestFactory()
+        
+        getDefaultMarket( self )
+
+        oUser = get_user_model()
+
+        self.user1 = oUser.objects.create_user('username1', 'email@ymail.com')
+        self.user1.set_password( 'mypassword')
+        self.user1.first_name   = 'John'
+        self.user1.last_name    = 'Citizen'
+        self.user1.save()
+
+        self.user2 = oUser.objects.create_user('username2', 'email@gmail.com')
+        self.user2.set_password( 'mypassword')
+        self.user2.first_name   = 'Joe'
+        self.user2.last_name    = 'Blow'
+        self.user2.save()
+        
+        self.user3 = oUser.objects.create_user( 'username3', 'email@hotmail.com' )
+        self.user3.set_password( 'mypassword')
+        self.user3.first_name   = 'Oscar'
+        self.user3.last_name    = 'Zilch'
+        self.user3.is_superuser = True
+        self.user3.save()
+
+        if (  ( not isinstance( self.market, Market ) ) or
+              ( not Market.objects.get( pk = 1 ) ) ):
+            self.market = Market(
+                cMarket     = 'EBAY-US',
+                cCountry    = 'US',
+                iEbaySiteID = 0,
+                cLanguage   = 'en-US',
+                iCategoryVer= 1,
+                cCurrencyDef= 'USD' )
+            self.market.save()
+        
+        self.ebc = EbayCategory(
+            iCategoryID = 10,
+            name        = 'hot products',
+            iLevel      = 1,
+            iParentID   = 1,
+            iTreeVersion= 1,
+            iMarket     = self.market,
+            bLeafCategory = False )
+        self.ebc.save()
+
+        self.oCategory = Category(
+            cTitle          = "My awesome category",
+            iUser           = self.user1,
+            id              = 1 )
+        self.oCategory.save()
+            
 
     
 class CoreUserTests(TestCase):
