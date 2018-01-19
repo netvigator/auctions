@@ -1,11 +1,9 @@
 from django.test                import TestCase
 from django.test.client         import Client
-from django.test.client         import RequestFactory
 from django.core.urlresolvers   import reverse, resolve
 from django.contrib.auth        import get_user_model
 
 from core.tests                 import getDefaultMarket, BaseUserTestCase
-
 from core.utils                 import getExceptionMessageFromResponse
 
 from .models                    import Category
