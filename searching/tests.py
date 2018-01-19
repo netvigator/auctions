@@ -1,6 +1,7 @@
-from django.test                import TestCase, RequestFactory
 from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
+from django.test                import TestCase, RequestFactory
+from django.test.client         import Client
 
 from .forms                     import AddOrUpdateForm
 from .models                    import Search
@@ -9,8 +10,11 @@ from .views                     import (
 
 
 from core.tests                 import getDefaultMarket
+from core.utils                 import getExceptionMessageFromResponse
 from markets.models             import Market
 from ebaycategories.models      import EbayCategory
+
+from pprint import pprint
 
 # Create your tests here.
 
@@ -24,12 +28,25 @@ class BaseUserTestCase(TestCase):
 
         oUser = get_user_model()
 
-        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
+        self.user1 = oUser.objects.create_user('username1', 'email@ymail.com')
         self.user1.set_password( 'mypassword')
         self.user1.first_name   = 'John'
         self.user1.last_name    = 'Citizen'
         self.user1.save()
+
+        self.user2 = oUser.objects.create_user('username2', 'email@gmail.com')
+        self.user2.set_password( 'mypassword')
+        self.user2.first_name   = 'Joe'
+        self.user2.last_name    = 'Blow'
+        self.user2.save()
         
+        self.user3 = oUser.objects.create_user( 'username3', 'email@hotmail.com' )
+        self.user3.set_password( 'mypassword')
+        self.user3.first_name   = 'Oscar'
+        self.user3.last_name    = 'Zilch'
+        self.user3.is_superuser = True
+        self.user3.save()
+
         if (  ( not isinstance( self.market, Market ) ) or
               ( not Market.objects.get( pk = 1 ) ) ):
             self.market = Market(
@@ -52,22 +69,89 @@ class BaseUserTestCase(TestCase):
         self.ebc.save()
 
 
-class TestSearchCreateView(BaseUserTestCase):
-    
-    def setUp(self):
 
-        # call BaseUserTestCase.setUp()
-        super(TestSearchCreateView, self).setUp()
-        # Instantiate the view directly. Never do this outside a test!
-        self.view = SearchCreate()
-        # Generate a fake request
-        request = self.factory.get('/fake-url')
-        # Attach the user to the request
-        request.user = self.user1
-        # Attach the request to the view
-        self.view.request = request
+
+
+
+class SearchViewsTests(BaseUserTestCase):
+
+    def test_no_search_yet(self):
+        #
+        """
+        If no search exists, an appropriate message is displayed.
+        """
+        self.client = Client()
+        
+        self.client.login(username='username1', password='mypassword')
+        #
+        response = self.client.get(reverse('searching:index'))
+        #response = self.client.get('/searching/')
+        
+        #pprint( 'printing response:')
+        #pprint( response )
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['search_list'], [])
+        self.assertContains(response, "No searches are available.")
+
+
+    def test_got_search(self):
+        #
+        """
+        If no search exist, an appropriate message is displayed.
+        """
+        self.client = Client()
+        
+        self.client.login(username='username1', password='mypassword')
+        #
+        sSearch = "Great Widgets"
+        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch.save()
+        
+        sSearch = "Phenominal Gadgets"
+        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch.save()
+        sGadgetID = str( oSearch.id )
+
+        response = self.client.get(reverse('searching:index'))
+        #response = self.client.get('/searching/')
+        
+        #print( 'printing response:')
+        #pprint( response.context )
+        #print( response.context['search_list'])
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['search_list'],
+                ['<Search: Phenominal Gadgets>', '<Search: Great Widgets>'],
+                ordered=False )
+        self.assertContains(response, "Phenominal Gadgets")
+        #
+        response = self.client.get(
+                reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Phenominal Gadgets")
+        
+        self.client.logout()
+        self.client.login(username='username2', password='mypassword')
+        
+        response = self.client.get(
+                reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
+
+        self.assertEqual(response.status_code, 403) # forbidden
+        self.assertEqual(
+            getExceptionMessageFromResponse( response ),
+            "Permission Denied -- that's not your record!" )
+
+        self.client.logout()
+        self.client.login(username='username3', password='mypassword')
+        
+        response = self.client.get(
+                reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Phenominal Gadgets")
 
 '''
+
     def test_get_success_url(self):
         # Expect: '/users/testuser/', as that is the default username for
         #   self.make_user()
