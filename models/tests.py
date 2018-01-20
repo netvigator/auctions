@@ -2,7 +2,7 @@ from django.core.urlresolvers   import reverse, resolve
 from django.test                import TestCase
 from django.test.client         import Client
 
-from core.tests                 import getDefaultMarket, BaseUserTestCase
+from core.tests                 import BaseUserTestCase
 from core.utils                 import getExceptionMessageFromResponse
 
 from categories.models          import Category
