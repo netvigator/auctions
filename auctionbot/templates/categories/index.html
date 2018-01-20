@@ -30,7 +30,7 @@
         {% for category in category_list %}
             <tr>
             <td><a href="{% url 'categories:detail' category.id %}">
-                <h4 class="list-group-item-heading">{{ category.cTitle|getNbsp }}</h4> </a>
+                <h4 class="list-group-item-heading">{{ category.cTitle|getNbsp }}</h4></a>
             </td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td align=right>{{ category.iStars }}</td>
