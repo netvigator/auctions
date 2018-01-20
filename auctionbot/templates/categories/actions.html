@@ -2,20 +2,20 @@
 <TR ALIGN=MIDDLE>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "brands:edit" pk=brand.id %}'>
+        <form action='{% url "categories:edit" pk=category.id %}'>
             <input type="submit" value=" edit " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "brands:delete" pk=brand.id %}'>
+        <form action='{% url "categories:delete" pk=category.id %}'>
             <input type="submit" value=" delete " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "brands:index" %}'>
-            <input type="submit" value=" back to brand index " />
+        <form action='{% url "categories:index" %}'>
+            <input type="submit" value=" back to category index " />
         </form>
     </td>
 </TR>
