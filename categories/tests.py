@@ -145,7 +145,6 @@ class CategoryViewsTests(TestCase):
         
         #print( 'iGadgetID:', iGadgetID )
         
-        '''
         response = self.client.get(
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
         self.assertEqual(response.status_code, 200)
@@ -174,6 +173,6 @@ class CategoryViewsTests(TestCase):
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Gadgets")
-        '''
+
 
 
