@@ -86,7 +86,8 @@
         <h4>Categories for {{ brand }}</h4>
         <UL>
         {% for category in categories_list%}
-            <LI>{{ category }}</LI>
+            <LI><a href="{% url 'categories:detail' category.id %}">
+                {{ category }}</a></LI>
         {% endfor %}
         </UL>
     {% endif %}
@@ -98,7 +99,8 @@
         <table>
         {% for model, category in models_list%}
             <tr>
-                <td>{{ model  }}</td>
+                <td><a href="{% url 'models:detail' model.id %}">
+                    {{ model }}</a></td>
                 <TD>&nbsp;&nbsp;&nbsp;</TD>
                 <td>{{category}}</td>
             </tr>
