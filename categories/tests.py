@@ -150,11 +150,6 @@ class CategoryViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Gadgets")
         
-        # getting weird error
-        # django.urls.exceptions.NoReverseMatch: 
-        # Reverse for 'edit' with keyword arguments '{'pk': ''}' not found. 
-        # 1 pattern(s) tried: ['brands/(?P<pk>[0-9]+)/edit/$']
-        
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
         
