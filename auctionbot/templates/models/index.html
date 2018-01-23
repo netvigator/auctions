@@ -7,6 +7,10 @@
 {% block content %}
   <h2>Models</h2>
 
+    <form action="{% url "models:add" %}">
+        <input type="submit" value=" add a model " />
+    </form>
+
     {% if model_list %}
         {# the pagination section #}
         {% if is_paginated %}
@@ -53,4 +57,9 @@
     {% else %} <!-- brand_list -->
         <p>No models are available.</p>
     {% endif %} <!-- brand_list -->
+
+    <form action="{% url "models:add" %}">
+        <input type="submit" value=" add a model " />
+    </form>
+
 {% endblock content %}
