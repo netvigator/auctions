@@ -1,7 +1,9 @@
-from django.conf.urls import url
+from django.conf.urls       import url
+from django.views.generic   import RedirectView
 
-from . import views
+from .                      import views
 
+from markets.models         import Market
 
 
 app_name = "ebaycategories"
@@ -18,3 +20,9 @@ urlpatterns = [
         name    = 'ebay_categories_tree' ),
     ]
     
+'''
+    url( r'^$',
+         RedirectView.as_view(
+            pattern_name='ebay_categories_index',
+            permanent=False)),
+'''
