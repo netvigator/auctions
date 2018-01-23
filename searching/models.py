@@ -51,7 +51,10 @@ class Search(models.Model):
     class Meta():
         verbose_name_plural = 'searches'
         db_table        = 'searching'
-        unique_together = ('cKeyWords', 'iEbayCategory',)
+        unique_together = ( ( 'iUser',      'cPriority' ),
+                            ( 'iUser',      'cTitle'    ),
+                            ( 'iUser',      'cKeyWords',   'iEbayCategory',) )
+        ordering        = ('cTitle',)
 
     def get_absolute_url(self):
         return reverse('searching:detail',
