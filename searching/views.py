@@ -44,8 +44,17 @@ class SearchCreate(
         form = super().get_form(form_class)
         form.helper = FormHelper()
         form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        form.helper.add_input(Submit('submit', 'Cancel', css_class='btn-primary'))
+        form.request = self.request
+        form.which = 'Create'
         return form
 
+    def post(self, request, *args, **kwargs):
+        if "Cancel" in request.POST:
+            url = reverse_lazy('searching:index')
+            return HttpResponseRedirect(url)
+        else:
+            return super(SearchCreate, self).post(request, *args, **kwargs)
 
 
 class IndexView( LoginRequiredMixin, ListViewGotModel ):  
@@ -89,6 +98,12 @@ class SearchUpdate(
     model           = Search
     form_class      = AddOrUpdateForm
     template_name   = 'searching/edit.html'
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.request = self.request
+        form.which = 'Update'
+        return form
 
 
     def post(self, request, *args, **kwargs):
