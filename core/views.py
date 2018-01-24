@@ -3,6 +3,9 @@ from django.views.generic        import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit   import CreateView, UpdateView, DeleteView
 
+from crispy_forms.helper         import FormHelper
+from crispy_forms.layout         import Submit
+
 # Create your views here but keep them thin.
 
 class ListViewGotModel( ListView ):
@@ -36,6 +39,14 @@ class CreateViewGotModel( CreateView ):
         # context['model_fields'] = self.model._meta.get_fields()
         return context
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        return form
+
+
 
 class DeleteViewGotModel( DeleteView ):
     '''
@@ -66,6 +77,14 @@ class UpdateViewGotModel( UpdateView ):
         context['model'] = self.model
         # context['model_fields'] = self.model._meta.get_fields()
         return context
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        return form
+
 
 class DetailViewGotModel( DetailView ):
     '''
