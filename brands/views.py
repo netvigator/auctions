@@ -5,12 +5,9 @@ from django.urls                    import reverse_lazy
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 
-from crispy_forms.helper            import FormHelper
-from crispy_forms.layout            import Submit
-# from crispy_forms.layout          import Layout, Field
-
 from .models                        import Brand
 from categories.models              import Category, BrandCategory
+
 from models.models                  import Model
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 from core.utils                     import model_to_dict
@@ -54,12 +51,6 @@ class BrandCreate( LoginRequiredMixin, CreateViewGotModel ):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
 
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.helper = FormHelper()
-        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
-        return form
 
 
 class BrandDelete(
@@ -110,13 +101,6 @@ class BrandUpdate(
     fields  = tModelFields
     template_name = 'brands/edit.html'
 
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.helper = FormHelper()
-        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
-        return form
-
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
             self.object = self.get_object()
@@ -124,6 +108,7 @@ class BrandUpdate(
             return HttpResponseRedirect(url)
         else:
             return super(BrandUpdate, self).post(request, *args, **kwargs)
+
 
 class IndexView( LoginRequiredMixin, ListViewGotModel ):  
     template_name = 'brands/index.html'
