@@ -34,7 +34,7 @@ class Category(models.Model):
     bAllOfInterest  = models.BooleanField(
                         'want everything of this category?', default = False,
         help_text = 'Definitely set to True for desireable & rare categories'  )
-    bWantPair       = models.BooleanField('only want pairs?', default = False,
+    bWantPair       = models.BooleanField('prefer pairs?', default = False,
         help_text = 'are you hoping to find these in paris?' )
     bAccessory      = models.BooleanField('accessory?', default = False)
     bComponent      = models.BooleanField('component?', default = False)
