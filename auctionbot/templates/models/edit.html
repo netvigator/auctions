@@ -5,21 +5,10 @@
                  Model {{ model }}{% endblock %}
 
 {% block content %}
-  <h1>Model {{ model }}</h1>
-  <form class="form-horizontal" method="post" action="{% url 'models:edit' model.id %}">
+
+    <h1>Model {{ model }}</h1>
+
     {% csrf_token %}
-    <div class="control-group">
-      <div class="controls">
-        <input type="submit" value="Save" />
-        <input type="submit" name="cancel" value="Cancel" /> 
-      </div>
-    </div>
-    {{ form|crispy }}
-    <div class="control-group">
-      <div class="controls">
-        <input type="submit" value="Save" />
-        <input type="submit" name="cancel" value="Cancel" /> 
-      </div>
-    </div>
-  </form>
+    {% crispy form %}
+
 {% endblock %}
