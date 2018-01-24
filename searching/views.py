@@ -5,7 +5,6 @@ from django.shortcuts               import render
 
 from crispy_forms.helper            import FormHelper
 from crispy_forms.layout            import Submit
-# from crispy_forms.layout          import Layout, Field
 
 from .forms                         import AddOrUpdateForm
 from .mixins                        import EbayCategoryFormValidMixin
