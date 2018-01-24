@@ -44,13 +44,13 @@ class SearchCreate(
         form = super().get_form(form_class)
         form.helper = FormHelper()
         form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        form.helper.add_input(Submit('submit', 'Cancel', css_class='btn-primary'))
+        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         form.request = self.request
         form.which = 'Create'
         return form
 
     def post(self, request, *args, **kwargs):
-        if "Cancel" in request.POST:
+        if "cancel" in request.POST:
             url = reverse_lazy('searching:index')
             return HttpResponseRedirect(url)
         else:
@@ -101,6 +101,9 @@ class SearchUpdate(
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         form.request = self.request
         form.which = 'Update'
         return form
