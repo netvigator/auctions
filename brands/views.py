@@ -57,9 +57,8 @@ class BrandCreate( LoginRequiredMixin, CreateViewGotModel ):
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
-        #form.helper.layout = Layout()
-        #Field( 'cLookFor', rows = 3 )
         form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         return form
 
 
@@ -110,6 +109,13 @@ class BrandUpdate(
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit.html'
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        return form
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
