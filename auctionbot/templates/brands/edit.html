@@ -4,22 +4,10 @@
 {% block title %}Auction Shopping Bot Brand | {{ brand }}{% endblock %}
 
 {% block content %} 
+ 
     <h1>Edit {{ brand }} Info</h1>
-    <form class="form-horizontal" method="post" action="{% url 'brands:edit' brand.id %}">
-        {% csrf_token %}
-        <div class="control-group">
-        <div class="controls">
-            <input type="submit" value="Save" />
-            <input type="submit" name="cancel" value="Cancel" /> 
-        </div>
-        </div>
-        {{ form|crispy }}
-        <div class="control-group">
-        <div class="controls">
-            <input type="submit" value="Save" />
-            <input type="submit" name="cancel" value="Cancel" /> 
-        </div>
-        </div>
-    </form>
+
+    {% csrf_token %}
+    {% crispy form %}
 
 {% endblock %}
