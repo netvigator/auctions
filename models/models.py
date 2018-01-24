@@ -3,6 +3,9 @@ from django.core.urlresolvers   import reverse
 
 from core.models                import IntegerRangeField
 
+from crispy_forms.helper        import FormHelper
+from crispy_forms.layout        import Submit
+
 from brands.models              import Brand
 from categories.models          import Category
 
@@ -19,7 +22,7 @@ class Model(models.Model):
                                         null = True, blank = True,
         help_text = 'Bot will look for this text in the item description' )
     bKeyWordRequired= models.BooleanField(
-                        'key word required?', default = True,
+                        'key word required?', default = False,
         help_text = 'Bot will know this model is for sale only '
                     'if these key words are in the description' )
     bsplitdigitsok  = models.BooleanField(
@@ -37,7 +40,7 @@ class Model(models.Model):
                         min_value = 0, max_value = 10, default = 5,
         help_text = 'Bot considers when deciding whether '
                     'to download full description and pictures' )
-    bGenericModel   = models.BooleanField('generic model?', default = True,
+    bGenericModel   = models.BooleanField('generic model?', default = False,
         help_text = 'model name/number is used by more than one brand' )
     bSubModelsOK    = models.BooleanField(
                         'include sub models (suffix such as A, B, C, etc.)?',
