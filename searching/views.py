@@ -3,9 +3,6 @@ from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.shortcuts               import render
 
-from crispy_forms.helper            import FormHelper
-from crispy_forms.layout            import Submit
-
 from .forms                         import AddOrUpdateForm
 from .mixins                        import EbayCategoryFormValidMixin
 from .models                        import Search
@@ -41,9 +38,6 @@ class SearchCreate(
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.helper = FormHelper()
-        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         form.request = self.request
         form.which = 'Create'
         return form
@@ -100,9 +94,6 @@ class SearchUpdate(
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.helper = FormHelper()
-        form.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
-        form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         form.request = self.request
         form.which = 'Update'
         return form

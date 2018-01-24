@@ -13,10 +13,9 @@ from core.views                     import (
                     CreateViewGotModel, DeleteViewGotModel,
                     DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
 
-# Create your views here but keep them thin.
-
 from .models                        import Category
 
+# Create your views here but keep them thin.
 
 tCategoryFields = (
     'cTitle',
@@ -61,24 +60,15 @@ class CategoryCreate( LoginRequiredMixin, CreateViewGotModel ):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
 
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.helper = FormHelper()
-        #form.helper.layout = Layout()
-        #Field( 'cLookFor', rows = 3 )
-        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        return form
 
 
 class CategoryUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
         UpdateViewGotModel):
 
-    fields = tCategoryFields
-
-    model = Category
-
-    template_name = 'categories/edit.html'
+    fields          = tCategoryFields
+    model           = Category
+    template_name   = 'categories/edit.html'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
