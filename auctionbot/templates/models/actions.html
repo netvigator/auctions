@@ -2,7 +2,7 @@
 <TR ALIGN=MIDDLE>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "models:edit" pk=model.id %}'>
+        <form action='{% url "models:edit" pk=object.id %}'>
             <input type="submit" value=" edit " />
         </form>
     </td>
@@ -14,7 +14,7 @@
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "models:delete" pk=model.id %}'>
+        <form action='{% url "models:delete" pk=object.id %}'>
             <input type="submit" value=" delete " />
         </form>
     </td>
