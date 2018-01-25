@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags  %}
+{% block title %}Auction Shopping Bot | Add Search{% endblock %}
 
 {% block content %} 
 
+    <h1>Add a Search</h1>
+    <p>
     {% csrf_token %}
     {% crispy form %}
 
