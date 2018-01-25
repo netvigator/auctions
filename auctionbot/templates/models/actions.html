@@ -8,14 +8,14 @@
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "models:index" %}'>
-            <input type="submit" value=" back to model index " />
+        <form action='{% url "models:delete" pk=object.id %}'>
+            <input type="submit" value=" delete " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "models:delete" pk=object.id %}'>
-            <input type="submit" value=" delete " />
+        <form action='{% url "models:index" %}'>
+            <input type="submit" value=" go to model index " />
         </form>
     </td>
 </TR>

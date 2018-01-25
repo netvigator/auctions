@@ -8,14 +8,14 @@
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "searching:index" %}'>
-            <input type="submit" value=" back to search list " />
+        <form action='{% url "searching:delete" pk=search.id %}'>
+            <input type="submit" value=" delete " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
-        <form action='{% url "searching:delete" pk=search.id %}'>
-            <input type="submit" value=" delete " />
+        <form action='{% url "searching:index" %}'>
+            <input type="submit" value=" go to search list " />
         </form>
     </td>
 </TR>
