@@ -66,6 +66,13 @@ class ModelCreate( LoginRequiredMixin, CreateViewGotModel ):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            url = reverse_lazy('models:index' )
+            return HttpResponseRedirect(url)
+        else:
+            return super(ModelCreate, self).post(request, *args, **kwargs)
+
 
 class ModelUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
