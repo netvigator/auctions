@@ -24,21 +24,11 @@ class ListViewGotModel( ListView ):
         return context
 
 
-class CreateViewGotModel( CreateView ):
+class CreateViewGotCrispy( CreateView ):
     '''
-    Enhanced CreateView which also includes the model in the context data,
-    so that the template has access to its model class.
+    Enhanced CreateView which includes crispy form Create and Cancel buttons.
     '''
  
-    def get_context_data(self, **kwargs):
-        '''
-        Adds the model to the context data.
-        '''
-        context          = super(CreateView, self).get_context_data(**kwargs)
-        context['model'] = self.model
-        # context['model_fields'] = self.model._meta.get_fields()
-        return context
-
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
@@ -63,21 +53,12 @@ class DeleteViewGotModel( DeleteView ):
         # context['model_fields'] = self.model._meta.get_fields()
         return context
 
-class UpdateViewGotModel( UpdateView ):
+
+class UpdateViewGotCrispy( UpdateView ):
     '''
-    Enhanced UpdateView which also includes the model in the context data,
-    so that the template has access to its model class.
+    Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
  
-    def get_context_data(self, **kwargs):
-        '''
-        Adds the model to the context data.
-        '''
-        context          = super(UpdateView, self).get_context_data(**kwargs)
-        context['model'] = self.model
-        # context['model_fields'] = self.model._meta.get_fields()
-        return context
-
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
