@@ -97,6 +97,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',  # registration
     'django_countries',
     'mptt',
+    'admin_honeypot',
 ]
 
 # Apps specific for this project go here.
@@ -347,7 +348,7 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-ADMIN_URL = r'^admin/'
+ADMIN_URL = r'^%s/' % dSecretsConf[ 'admin_url' ]
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
