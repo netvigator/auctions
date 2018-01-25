@@ -60,6 +60,12 @@ class CategoryCreate( LoginRequiredMixin, CreateViewGotModel ):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            url = reverse_lazy('categories:index' )
+            return HttpResponseRedirect(url)
+        else:
+            return super(CategoryCreate, self).post(request, *args, **kwargs)
 
 
 class CategoryUpdate(
