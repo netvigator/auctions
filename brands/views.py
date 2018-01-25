@@ -5,6 +5,8 @@ from django.urls                    import reverse_lazy
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 
+from crispy_forms.layout            import Field
+
 from .models                        import Brand
 from categories.models              import Category, BrandCategory
 
@@ -12,8 +14,8 @@ from models.models                  import Model
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 from core.utils                     import model_to_dict
 from core.views                     import (
-                    CreateViewGotModel, DeleteViewGotModel,
-                    DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
+                    CreateViewGotCrispy, DeleteViewGotModel,
+                    DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
 
 # Create your views here but keep them thin.
@@ -40,7 +42,7 @@ tModelFields = (
 #lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
 #tMoreModelFields = tuple( lMoreModelFields )
 
-class BrandCreate( LoginRequiredMixin, CreateViewGotModel ):
+class BrandCreate( LoginRequiredMixin, CreateViewGotCrispy ):
 
     model   = Brand
     fields  = tModelFields
@@ -58,6 +60,10 @@ class BrandCreate( LoginRequiredMixin, CreateViewGotModel ):
         else:
             return super(BrandCreate, self).post(request, *args, **kwargs)
 
+    def get_form(self, form_class=None):
+        form = super(BrandCreate, self).get_form(form_class)
+        Field('cExcludeIf', rows='2')
+        return form
 
 class BrandDelete(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
@@ -102,7 +108,7 @@ class BrandDetail(
 
 class BrandUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateViewGotModel ):
+        UpdateViewGotCrispy ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit.html'

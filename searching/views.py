@@ -10,8 +10,8 @@ from .models                        import Search
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 from core.utils                     import model_to_dict
 from core.views                     import (
-                    CreateViewGotModel, DeleteViewGotModel,
-                    DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
+                    CreateViewGotCrispy, DeleteViewGotModel,
+                    DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
 # Create your views here.
 
@@ -28,7 +28,7 @@ tModelFields = (
 
 
 class SearchCreate(
-        LoginRequiredMixin, EbayCategoryFormValidMixin, CreateViewGotModel ):
+        LoginRequiredMixin, EbayCategoryFormValidMixin, CreateViewGotCrispy ):
 
     form_class      = AddOrUpdateForm
     model           = Search
@@ -87,7 +87,7 @@ class SearchDelete(
 
 class SearchUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        EbayCategoryFormValidMixin, UpdateViewGotModel ):
+        EbayCategoryFormValidMixin, UpdateViewGotCrispy ):
     model           = Search
     form_class      = AddOrUpdateForm
     template_name   = 'searching/edit.html'

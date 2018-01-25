@@ -10,8 +10,8 @@ from django.urls                    import reverse_lazy
 from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 
 from core.views                     import (
-                    CreateViewGotModel, DeleteViewGotModel,
-                    DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
+                    CreateViewGotCrispy, DeleteViewGotModel,
+                    DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
 from .models                        import Category
 
@@ -49,7 +49,7 @@ class CategoryDetail(
     template_name = 'categories/detail.html'
 
 
-class CategoryCreate( LoginRequiredMixin, CreateViewGotModel ):
+class CategoryCreate( LoginRequiredMixin, CreateViewGotCrispy ):
 
     model   = Category
     fields  = tCategoryFields
@@ -70,7 +70,7 @@ class CategoryCreate( LoginRequiredMixin, CreateViewGotModel ):
 
 class CategoryUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateViewGotModel):
+        UpdateViewGotCrispy):
 
     fields          = tCategoryFields
     model           = Category

@@ -9,8 +9,8 @@ from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 from .models                        import Model
 
 from core.views                     import (
-                    CreateViewGotModel, DeleteViewGotModel,
-                    DetailViewGotModel, ListViewGotModel, UpdateViewGotModel )
+                    CreateViewGotCrispy, DeleteViewGotModel,
+                    DetailViewGotModel, ListViewGotModel, UpdateViewGotCrispy )
 
 # Create your views here but keep them thin.
 
@@ -55,7 +55,7 @@ class ModelDetail(
     template_name = 'models/detail.html'
 
 
-class ModelCreate( LoginRequiredMixin, CreateViewGotModel ):
+class ModelCreate( LoginRequiredMixin, CreateViewGotCrispy ):
 
     model   = Model
     fields  = tModelFields
@@ -76,7 +76,7 @@ class ModelCreate( LoginRequiredMixin, CreateViewGotModel ):
 
 class ModelUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateViewGotModel):
+        UpdateViewGotCrispy):
 
     fields = tModelFields
     model = Model
