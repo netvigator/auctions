@@ -32,9 +32,7 @@ class AddOrUpdateForm(ModelForm):
         
         iDummyCategory  = cleaned.get( 'iDummyCategory', None )
         iDummyOriginal  = self.instance.iDummyCategory
-        
-        print( 'iDummyOriginal:', iDummyOriginal )
-        
+
         if iDummyOriginal and not iDummyCategory:
             sMsg = 'Your ebay category "%s" is invalid' % iDummyOriginal
             raise ValidationError( sMsg, code='invalid ebay category' )
