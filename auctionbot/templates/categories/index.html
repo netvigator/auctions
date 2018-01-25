@@ -8,6 +8,10 @@
 <div class="container">
   <h2>Categories</h2>
 
+  <form action="{% url "categories:add" %}">
+      <input type="submit" value=" add a category " />
+  </form>
+
   <div class="list-group">
     {% if category_list %}
         {# the pagination section #}
@@ -52,5 +56,10 @@
         <p>No categories are available.</p>
     {% endif %} <!-- brand_list -->
   </div>
+
+  <form action="{% url "categories:add" %}">
+      <input type="submit" value=" add a category " />
+  </form>
+
 </div>
 {% endblock content %}
