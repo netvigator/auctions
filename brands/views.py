@@ -51,6 +51,12 @@ class BrandCreate( LoginRequiredMixin, CreateViewGotModel ):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            url = reverse_lazy('brands:index' )
+            return HttpResponseRedirect(url)
+        else:
+            return super(BrandCreate, self).post(request, *args, **kwargs)
 
 
 class BrandDelete(
