@@ -170,6 +170,7 @@ class SearchModelTest(BaseUserTestCase):
                 cTitle          = "My clever search",
                 cKeyWords       = "Blah bleh blih",
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
         valid = form.is_valid()
         self.assertTrue(valid)        
@@ -178,6 +179,7 @@ class SearchModelTest(BaseUserTestCase):
                 cTitle          = "My clever search",
                 iDummyCategory  = 1,
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
         valid = form.is_valid()
         self.assertTrue(valid)
@@ -185,6 +187,7 @@ class SearchModelTest(BaseUserTestCase):
         form = AddOrUpdateForm(
                 cTitle          = "My clever search",
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
         valid = form.is_valid()
         self.assertFalse(valid)
@@ -193,6 +196,7 @@ class SearchModelTest(BaseUserTestCase):
                 cTitle          = "My clever search",
                 iDummyCategory  = 'abc',
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
         valid = form.is_valid()
         self.assertFalse(valid)
