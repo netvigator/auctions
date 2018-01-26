@@ -1,16 +1,15 @@
 from django.db                  import models
 from django.core.urlresolvers   import reverse
 
-# Create your models here.
-
-# moved class IntegerRangeField() to core.models
-from core.models import IntegerRangeField
-
-
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-from brands.models import Brand
+from regex_field.fields         import RegexField
+
+from core.models                import IntegerRangeField
+
+from brands.models              import Brand
+
 
 class Category(models.Model):
     cTitle          = models.CharField(
@@ -25,9 +24,10 @@ class Category(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found',
                         null=True, blank = True,
-        help_text = 'Considered a hit if this text is found -- '
-                    'each line evaluated separately, '
-                    'put different look for tests on different lines'  )
+        help_text = 'Considered a hit if this text is found -- leave '
+                    'blank if bot only needs to look for the category name. '
+                    'Each line evaluated separately, '
+                    'put different look for tests on different lines.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
@@ -56,6 +56,9 @@ class Category(models.Model):
                                                     default = False,
         help_text = 'Set to True if different brands use the same model '
                     'names or numbers in this category' )
+
+    oRegEx          = RegexField( max_length=128, null = True )
+    
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                                                     null = True )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
