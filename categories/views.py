@@ -7,7 +7,8 @@ from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
-from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
+from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
+                                             WereAnyReleventColsChangedMixin )
 
 from core.views                     import (
                     CreateViewGotCrispy, DeleteViewGotModel,
@@ -70,11 +71,19 @@ class CategoryCreate( LoginRequiredMixin, CreateViewGotCrispy ):
 
 class CategoryUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateViewGotCrispy):
+        WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     fields          = tCategoryFields
     model           = Category
     template_name   = 'categories/edit.html'
+
+    tRegExRelevantCols = (
+        'cTitle',
+        'cKeyWords',
+        'bKeyWordRequired',
+        'cLookFor',
+        'bWantPair',
+        'cExcludeIf' )
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
