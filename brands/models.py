@@ -9,14 +9,13 @@ from django.core.urlresolvers   import reverse
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-# moved class IntegerRangeField() to core.models
-from core.models import IntegerRangeField
+from regex_field.fields         import RegexField
 
-# from categories.models  import Category
+from core.models                import IntegerRangeField
+
 
 settings.COUNTRIES_FIRST = [ 'US', 'GB' ]
-settings.COUNTRIES_OVERRIDE = { 'US': ('United States'), }
-
+settings.COUNTRIES_OVERRIDE = { 'US': 'USA' }
 
 class Brand(models.Model):
     cTitle          = models.CharField(
@@ -31,20 +30,25 @@ class Brand(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found',
                         null=True, blank = True,
-        help_text = 'Considered a hit if this text is found '
+        help_text = 'Considered a hit if this text is found -- leave '
+                    'blank if bot only needs to look for the brand name. '
                     '(each line evaluated separately, '
                     'put different look for tests on different lines)' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
     cComment        = models.TextField( 'comments', null = True, blank = True )
-    cNationality    = CountryField( "nationality", null = True )
+    cNationality    = CountryField( "nationality", null = True,
+                        blank_label='(select country)' )
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found',
                         null=True, blank = True,
         help_text = 'Not a hit if this text is found '
                     '(each line evaluated separately, '
                     'put different exclude tests on different lines)' )
+    
+    oRegEx          = RegexField( max_length=128, null = True )
+    
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                         null=True, blank = True )
@@ -93,50 +97,3 @@ class Brand(models.Model):
         return reverse('brands:detail',
             kwargs={'pk': self.pk})
     
-    # not working
-    '''
-    def getFieldsForView( self, tWantFields = None ):
-        #
-        dFields = {}
-        #
-        if tWantFields is None:
-            #
-            tWantFields = [ field.name for field in self._meta.fields ]
-            setWantFields = frozenset( tWantFields )
-            #
-        else:
-            #
-            setWantFields = frozenset( tWantFields )
-            #
-        #
-        for field in self._meta.fields:
-            #
-            if field.name in setWantFields:
-                #
-                try:
-                    dFields[ field.name ] = (
-                        field.verbose_name.title(),
-                        field.value_to_string(self) )
-                except FieldDoesNotExist:
-                    pass
-                except AttributeError:
-                    dFields[ field.name ] = (
-                        field.verbose_name.title(),
-                        field )
-                #
-            #
-        #
-        lNamesValues = []
-        #
-        for sField in tWantFields:
-            #
-            if sField in dFields:
-                #
-                lNamesValues.append( dFields[ sField ] )
-            #
-        #
-        return tuple( lNamesValues )
-        '''
-
-
-
