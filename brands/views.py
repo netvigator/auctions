@@ -7,16 +7,17 @@ from django.http                    import HttpResponseRedirect
 
 from crispy_forms.layout            import Field
 
-from .models                        import Brand
-from categories.models              import Category, BrandCategory
-
-from models.models                  import Model
-from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
+from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
+                                             WereAnyReleventColsChangedMixin )
 from core.utils                     import model_to_dict
 from core.views                     import (
                     CreateViewGotCrispy, DeleteViewGotModel,
                     DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
+from .models                        import Brand
+
+from categories.models              import Category, BrandCategory
+from models.models                  import Model
 
 # Create your views here but keep them thin.
 
@@ -108,10 +109,18 @@ class BrandDetail(
 
 class BrandUpdate(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        UpdateViewGotCrispy ):
+        WereAnyReleventColsChangedMixin, UpdateViewGotCrispy ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit.html'
+
+    tRegExRelevantCols = (
+        'cTitle',
+        'cKeyWords',
+        'bKeyWordRequired',
+        'cLookFor',
+        'bWantPair',
+        'cExcludeIf' )
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
@@ -120,6 +129,7 @@ class BrandUpdate(
             return HttpResponseRedirect(url)
         else:
             return super(BrandUpdate, self).post(request, *args, **kwargs)
+
 
 
 class IndexView( LoginRequiredMixin, ListViewGotModel ):  
