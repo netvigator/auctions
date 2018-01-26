@@ -1,18 +1,19 @@
 from django.db                  import models
 from django.core.urlresolvers   import reverse
 
-from core.models                import IntegerRangeField
-
 from crispy_forms.helper        import FormHelper
 from crispy_forms.layout        import Submit
-
-from brands.models              import Brand
-from categories.models          import Category
 
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 
-# Create your models here.
+from regex_field.fields         import RegexField
+
+from core.models                import IntegerRangeField
+
+from brands.models              import Brand
+from categories.models          import Category
+
 
 class Model(models.Model):
     cTitle          = models.CharField(
@@ -32,9 +33,10 @@ class Model(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found',
                         null=True, blank = True,
-        help_text = 'Considered a hit if this text is found -- '
-                    'each line evaluated separately, '
-                    'put different look for tests on different lines' )
+        help_text = 'Considered a hit if this text is found -- leave '                        
+                        'blank if bot only needs to look for the model '
+                        'name/#. Each line evaluated separately, '
+                        'put different look for tests on different lines.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star model is most desireable',
                         min_value = 0, max_value = 10, default = 5,
@@ -75,6 +77,8 @@ class Model(models.Model):
         help_text = 'Not a hit if this text is found '
                     '(each line evaluated separately, '
                     'put different exclude tests on different lines)' )
+    
+    oRegEx          = RegexField( max_length=128, null = True )
     
     # maybe change to FilePathField later, it is not working now 2017-12-03
     # models.FilePathField()
