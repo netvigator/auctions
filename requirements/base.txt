@@ -69,3 +69,6 @@ django-mptt==0.9.0
 
 # fake admin page
 django-admin-honeypot==1.0.0
+
+# store regex objects
+django-regex-field==1.0.0
