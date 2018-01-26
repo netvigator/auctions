@@ -1,6 +1,9 @@
 
 from django.core.exceptions import PermissionDenied
 
+from Collect.Query          import get1stThatMeets
+
+
 class DoesLoggedInUserOwnThisRowMixin(object):
     
     '''
@@ -21,3 +24,36 @@ class DoesLoggedInUserOwnThisRowMixin(object):
         return obj
 
 
+class WereAnyReleventColsChangedMixin(object):
+    
+    '''
+    for testing whether any RegEx relevant fields have changed 
+    '''
+    def _getIsDataChangedTester( self, form ):
+        
+        def _isFormDataChanged( self, sCol ):
+            #
+            return sCol in form.changed_data
+    
+    def anyReleventColsChanged( self, form, tCols ):
+        #
+        isFormDataChanged = self._getIsDataChangedTester( form )
+        #
+        return get1stThatMeets( tCols, isFormDataChanged )
+
+    def redoRegEx(self):
+        #
+        ''' this is intended to be filled out later or subclassed  '''
+        # print( 'redo RegEx object' )
+        #
+        pass
+    
+    def form_valid(self, form):
+        #
+        if self.anyReleventColsChanged( form, self.tRegExRelevantCols ):
+            #
+            self.redoRegEx()
+            #
+        #
+        return super().form_valid(form)
+        
