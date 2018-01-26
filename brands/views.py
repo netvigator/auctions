@@ -116,8 +116,6 @@ class BrandUpdate(
 
     tRegExRelevantCols = (
         'cTitle',
-        'cKeyWords',
-        'bKeyWordRequired',
         'cLookFor',
         'bWantPair',
         'cExcludeIf' )

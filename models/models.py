@@ -26,7 +26,7 @@ class Model(models.Model):
                         'key word required?', default = False,
         help_text = 'Bot will know this model is for sale only '
                     'if these key words are in the description' )
-    bsplitdigitsok  = models.BooleanField(
+    bSplitDigitsOK  = models.BooleanField(
                         'split digits OK?', default = False,
         help_text = 'Bot will know this model is for sale whether '
                     'the hyphens are in the model number/name or not' )

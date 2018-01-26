@@ -189,7 +189,7 @@ def _Model( oRow ):
     oM.cTitle           = oRow['CMODELNO']
     oM.cKeyWords        = oRow['CKEYWORDS']
     oM.bKeyWordRequired =     getBool( oRow['LKEYWORDSREQUIRED'] )
-    oM.bsplitdigitsok   =     getBool( oRow['LSPLITDIGITSOK'] )
+    oM.bSplitDigitsOK   =     getBool( oRow['LSPLITDIGITSOK'] )
     oM.iStars           = int( float( oRow['NSTARS'] ) )
     oM.bGenericModel    =     getBool( oRow['LGENERICMODEL'] )
     oM.bSubModelsOK     = not getBool( oRow['LNOMODELVARIATIONS'] )
