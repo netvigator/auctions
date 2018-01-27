@@ -16,7 +16,8 @@ class Category(models.Model):
                         'category description', max_length = 48, db_index = True)
     cKeyWords       = models.CharField( 'category key words', max_length = 88,
                                         null = True, blank = True,
-        help_text = 'Bot will look for this text in the item description' )
+        help_text = 'Bot will look for this text in the item description; '
+                    'note: anything in parentheses (), bot will ignore' )
     bKeyWordRequired= models.BooleanField(
                         'key word required?', default = False,
         help_text = 'Bot will know this model is for sale only '
