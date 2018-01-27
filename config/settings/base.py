@@ -12,6 +12,8 @@ import environ
 
 from django.core.exceptions import ImproperlyConfigured
 
+from django_countries.conf  import settings
+
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
 dSecretsConf = getConf( 'Secrets.conf' )
@@ -357,3 +359,7 @@ SESSION_COOKIE_SECURE = False # set to True in production
 
 DATETIME_FORMAT = 'j N Y, P'
 DATE_FORMAT     = 'j N Y'
+
+
+settings.COUNTRIES_FIRST = [ 'US', 'GB' ]
+settings.COUNTRIES_OVERRIDE = { 'US': 'United States' }
