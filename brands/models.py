@@ -1,5 +1,4 @@
 from django.db                  import models
-from django_countries.conf      import settings
 from django_countries.fields    import CountryField
 from django.core.exceptions     import FieldDoesNotExist
 from django.core.urlresolvers   import reverse
@@ -14,8 +13,6 @@ from regex_field.fields         import RegexField
 from core.models                import IntegerRangeField
 
 
-settings.COUNTRIES_FIRST = [ 'US', 'GB' ]
-settings.COUNTRIES_OVERRIDE = { 'US': 'USA' }
 
 class Brand(models.Model):
     cTitle          = models.CharField(
