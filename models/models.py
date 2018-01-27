@@ -78,7 +78,8 @@ class Model(models.Model):
                     '(each line evaluated separately, '
                     'put different exclude tests on different lines)' )
     
-    oRegEx          = RegexField( max_length=128, null = True )
+    oRegExFound     = RegexField( max_length=128, null = True )
+    oRegExExclude   = RegexField( max_length=128, null = True )
     
     # maybe change to FilePathField later, it is not working now 2017-12-03
     # models.FilePathField()

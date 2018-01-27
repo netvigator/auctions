@@ -44,7 +44,8 @@ class Brand(models.Model):
                     '(each line evaluated separately, '
                     'put different exclude tests on different lines)' )
     
-    oRegEx          = RegexField( max_length=128, null = True )
+    oRegExFound     = RegexField( max_length=128, null = True )
+    oRegExExclude   = RegexField( max_length=128, null = True )
     
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
