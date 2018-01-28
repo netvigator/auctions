@@ -21,7 +21,7 @@ from .models                        import Category
 tCategoryFields = (
     'cTitle',
     'cKeyWords',
-    'bKeyWordRequired',
+    # 'bKeyWordRequired',
     'cLookFor',
     'iStars',
     'bAllOfInterest',
@@ -80,7 +80,7 @@ class CategoryUpdate(
     tRegExRelevantCols = (
         'cTitle',
         'cKeyWords',
-        'bKeyWordRequired',
+        # 'bKeyWordRequired',
         'cLookFor',
         'bWantPair',
         'cExcludeIf' )
