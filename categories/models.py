@@ -16,21 +16,20 @@ class Category(models.Model):
                         'category description',
                         max_length = 48, db_index = True,
         help_text = 'while searching auction titles, '
-                    'bot will ignore anything in parentheses ()' )
-    cKeyWords       = models.CharField( 'category key words', max_length = 88,
-                                        null = True, blank = True,
-        help_text = 'Bot will look for this text in the item description -- '
-                    'use the vertical bar "|" between alternate key words' )
-    bKeyWordRequired= models.BooleanField(
-                        'key word required?', default = False,
-        help_text = 'Bot will know this model is for sale only '
-                    'if these key words are in the description' )
+                    'note: bot will ignore anything in parentheses ()' )
+    cKeyWords       = models.TextField( 'category key words (optional)',
+                        null = True, blank = True,
+        help_text = 'Words that must be found in the title '
+                    '<em>IN ADDITION TO</em> category name.'
+                    'Put alternate key words on separate lines -- '
+                    'Bot will know item is for in this category if words '
+                    'on any one line match.' )
     cLookFor        = models.TextField(
-                        'Considered a hit if this text is found',
+                        'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
         help_text = 'Leave blank if bot only needs to look for the category '
                     'name. Each line evaluated separately, '
-                    'put different look for tests on different lines.' )
+                    'put common misspellings and alternate names here.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
