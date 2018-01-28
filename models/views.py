@@ -22,7 +22,7 @@ tModelFields = (
     'bGenericModel',
     'iCategory',
     'cKeyWords',
-    'bKeyWordRequired',
+    #'bKeyWordRequired',
     'bSplitDigitsOK',
     'cLookFor',
     'iStars',
@@ -87,7 +87,7 @@ class ModelUpdate(
     tRegExRelevantCols = (
         'cTitle',
         'cKeyWords',
-        'bKeyWordRequired',
+        #'bKeyWordRequired',
         'bSplitDigitsOK',
         'cLookFor',
         'bSubModelsOK' )
