@@ -16,7 +16,9 @@ from core.models                import IntegerRangeField
 
 class Brand(models.Model):
     cTitle          = models.CharField(
-                        'brand name', max_length = 48, db_index = True)
+                        'brand name', max_length = 48, db_index = True,
+        help_text = 'while searching auction titles, '
+                    'bot will ignore anything in parentheses ()' )
     bWanted         = models.BooleanField(
                         'want anything from this brand?', default = True,
         help_text = 'Bot will only download full descriptions and pictures '
@@ -27,9 +29,8 @@ class Brand(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found',
                         null=True, blank = True,
-        help_text = 'Considered a hit if this text is found -- leave '
-                    'blank if bot only needs to look for the brand name. '
-                    '(each line evaluated separately, '
+        help_text = 'Leave blank if bot only needs to look for '
+                    'the brand name. (Each line evaluated separately, '
                     'put different look for tests on different lines)' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
