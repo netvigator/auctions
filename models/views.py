@@ -23,7 +23,7 @@ tModelFields = (
     'iCategory',
     'cKeyWords',
     #'bKeyWordRequired',
-    'bSplitDigitsOK',
+    #'bSplitDigitsOK',
     'cLookFor',
     'iStars',
     'bSubModelsOK',
@@ -88,7 +88,7 @@ class ModelUpdate(
         'cTitle',
         'cKeyWords',
         #'bKeyWordRequired',
-        'bSplitDigitsOK',
+        #'bSplitDigitsOK',
         'cLookFor',
         'bSubModelsOK' )
 

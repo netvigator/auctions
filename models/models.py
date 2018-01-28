@@ -28,10 +28,6 @@ class Model(models.Model):
                     'Put alternate key words on separate lines -- '
                     'Bot will know item is for this model if words '
                     'on any one line match.' )
-    bSplitDigitsOK  = models.BooleanField(
-                        'split digits OK?', default = False,
-        help_text = 'Bot will know this model is for sale whether '
-                    'the hyphens are in the model number/name or not' )
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
