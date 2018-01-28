@@ -29,20 +29,21 @@ class Brand(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Leave blank if bot only needs to look for '
-                    'the brand name. Each line evaluated separately, '
-                    'put common misspellings and alternate names here.' )
+        help_text = 'Put common misspellings and alternate names here -- '
+                    'leave blank if bot only needs to look for the brand '
+                    'name. Each line evaluated separately, Bot will know '
+                    'item is of this brand if any one line matches.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
-    cComment        = models.TextField( 'comments', null = True, blank = True )
+    cComment        = models.TextField( 'comments', null = True, blank = True)
     cNationality    = CountryField( "nationality", null = True,
                         blank_label='(select country)' )
     cExcludeIf      = models.TextField(
-                        'Not a hit if this text is found',
+                        'Not a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Not a hit if this text is found '
-                    '(each line evaluated separately, '
+        help_text = 'Bot will know item is <b>NOT</b> of this brand if '
+                    'any one line matches (each line evaluated separately, '
                     'put different exclude tests on different lines)' )
     
     oRegExFound     = RegexField( max_length=128, null = True )
