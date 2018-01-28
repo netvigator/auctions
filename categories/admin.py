@@ -11,10 +11,10 @@ from Utils.Output import getSayYesOrNo
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         "cTitle", 
-        "_cKeyWords","_bKeyWordRequired", "_bAllOfInterest", "_iStars",
+        "_cKeyWords", "_bAllOfInterest", "_iStars",
         "_bWantPair", "_bAccessory", "_bComponent", "_iFamily" )
     readonly_fields = (
-        "_cKeyWords", "_bKeyWordRequired", "_bAllOfInterest",
+        "_cKeyWords", "_bAllOfInterest",
         "_iStars", "_bWantPair", "_bAccessory", "_bComponent", "_iFamily",
         'iLegacyKey' )
 
@@ -22,9 +22,9 @@ class CategoryAdmin(admin.ModelAdmin):
     def _cKeyWords(self, obj):
         return obj.cKeyWords
 
-    @admin_method_attributes( short_description='Required?' )
-    def _bKeyWordRequired(self, obj):
-        return getSayYesOrNo( obj.bKeyWordRequired )
+    #@admin_method_attributes( short_description='Required?' )
+    #def _bKeyWordRequired(self, obj):
+        #return getSayYesOrNo( obj.bKeyWordRequired )
 
     @admin_method_attributes( short_description='Get all?' )
     def _bAllOfInterest(self, obj):
