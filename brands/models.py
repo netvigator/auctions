@@ -27,11 +27,11 @@ class Brand(models.Model):
                         'want everything from this brand?', default = True,
         help_text = 'Definitely set to True for desireable & rare brands' )
     cLookFor        = models.TextField(
-                        'Considered a hit if this text is found',
+                        'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
         help_text = 'Leave blank if bot only needs to look for '
-                    'the brand name. (Each line evaluated separately, '
-                    'put different look for tests on different lines)' )
+                    'the brand name. Each line evaluated separately, '
+                    'put common misspellings and alternate names here.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )

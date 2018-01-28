@@ -28,11 +28,6 @@
         <TD>{{object.cKeyWords|default_if_none:""}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name model 'bKeyWordRequired' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.bKeyWordRequired|yesno:"Yes,No" }}</TD>
-    </TR>
-    <TR>
         <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.cLookFor|default_if_none:""}}</TD>
