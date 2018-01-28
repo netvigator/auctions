@@ -18,10 +18,13 @@ from categories.models          import Category
 class Model(models.Model):
     cTitle          = models.CharField(
                         'model number or name', max_length = 48,
-                                        db_index = True)
+                                        db_index = True,
+        help_text = 'while searching auction titles, '
+                    'bot will ignore anything in parentheses ()' )
     cKeyWords       = models.CharField( 'model key words', max_length = 88,
                                         null = True, blank = True,
-        help_text = 'Bot will look for this text in the item description' )
+        help_text = 'Bot will look for this text in the item description -- '
+                    'use the vertical bar "|" between alternate key words')
     bKeyWordRequired= models.BooleanField(
                         'key word required?', default = False,
         help_text = 'Bot will know this model is for sale only '
