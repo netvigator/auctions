@@ -12,19 +12,19 @@ from String.Get     import getUpToLenSplitOnWhite
 class ModelAdmin(admin.ModelAdmin):
     list_display = (
         "cTitle", 
-        "_cKeyWords","_bKeyWordRequired", "_iStars", "_iBrand", "_iCategory",
+        "_cKeyWords", "_iStars", "_iBrand", "_iCategory",
         "_cComment" )
     readonly_fields = (
-        "_cKeyWords", "_bKeyWordRequired", "_iStars", "_iBrand", "_iCategory",
+        "_cKeyWords", "_iStars", "_iBrand", "_iCategory",
         "_cComment", 'iLegacyKey' )
 
     @admin_method_attributes( short_description='Key words', allow_tags=True )
     def _cKeyWords(self, obj):
         return str( obj.cKeyWords ).replace( ' ', '&nbsp;' )
 
-    @admin_method_attributes( short_description='Required?' )
-    def _bKeyWordRequired(self, obj):
-        return getSayYesOrNo( obj.bKeyWordRequired )
+    #@admin_method_attributes( short_description='Required?' )
+    #def _bKeyWordRequired(self, obj):
+        #return getSayYesOrNo( obj.bKeyWordRequired )
 
     @admin_method_attributes( short_description='Desireability' )
     def _iStars(self, obj):
