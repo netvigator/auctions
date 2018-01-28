@@ -138,7 +138,7 @@ def _Category( oRow ):
     #
     oT.cTitle           = oRow['CDESCRIBE']
     oT.cKeyWords        = oRow['CKEYWORDS'].replace( '/', ',' )
-    oT.bKeyWordRequired = getBool(oRow['LKEYWORDSREQUIRED'])
+    #oT.bKeyWordRequired= getBool(oRow['LKEYWORDSREQUIRED'])
     oT.iStars           = int( float( oRow['NSTARS'] ) )
     oT.bAllOfInterest   = getBool(oRow['LALLOFINTEREST'])
     oT.bWantPair        = getBool(oRow['LWANTPAIR'])
@@ -188,7 +188,7 @@ def _Model( oRow ):
     #
     oM.cTitle           = oRow['CMODELNO']
     oM.cKeyWords        = oRow['CKEYWORDS']
-    oM.bKeyWordRequired =     getBool( oRow['LKEYWORDSREQUIRED'] )
+    #oM.bKeyWordRequired=     getBool( oRow['LKEYWORDSREQUIRED'] )
     oM.bSplitDigitsOK   =     getBool( oRow['LSPLITDIGITSOK'] )
     oM.iStars           = int( float( oRow['NSTARS'] ) )
     oM.bGenericModel    =     getBool( oRow['LGENERICMODEL'] )
