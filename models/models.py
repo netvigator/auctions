@@ -21,25 +21,23 @@ class Model(models.Model):
                                         db_index = True,
         help_text = 'while searching auction titles, '
                     'bot will ignore anything in parentheses ()' )
-    cKeyWords       = models.CharField( 'model key words', max_length = 88,
-                                        null = True, blank = True,
-        help_text = 'Bot will look for this text in the item description -- '
-                    'use the vertical bar "|" between alternate key words')
-    bKeyWordRequired= models.BooleanField(
-                        'key word required?', default = False,
-        help_text = 'Bot will know this model is for sale only '
-                    'if these key words are in the description' )
+    cKeyWords       = models.TextField( 'model key words (optional)',
+                        null = True, blank = True,
+        help_text = 'Words that must be found in the title '
+                    '<em>IN ADDITION TO</em> model name/#.'
+                    'Put alternate key words on separate lines -- '
+                    'Bot will know item is for this model if words '
+                    'on any one line match.' )
     bSplitDigitsOK  = models.BooleanField(
                         'split digits OK?', default = False,
         help_text = 'Bot will know this model is for sale whether '
                     'the hyphens are in the model number/name or not' )
     cLookFor        = models.TextField(
-                        'Considered a hit if this text is found',
+                        'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Considered a hit if this text is found -- leave '                        
-                        'blank if bot only needs to look for the model '
-                        'name/#. Each line evaluated separately, '
-                        'put different look for tests on different lines.' )
+        help_text = 'Leave blank if bot only needs to look for '
+                    'the model name/number. Each line evaluated separately, '
+                    'put common misspellings and alternate names here.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star model is most desireable',
                         min_value = 0, max_value = 10, default = 5,
