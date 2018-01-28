@@ -20,16 +20,17 @@ class Category(models.Model):
     cKeyWords       = models.TextField( 'category key words (optional)',
                         null = True, blank = True,
         help_text = 'Words that must be found in the title '
-                    '<em>IN ADDITION TO</em> category name.'
+                    '<b>IN ADDITION TO</b> category name.  '
                     'Put alternate key words on separate lines -- '
                     'Bot will know item is for in this category if words '
                     'on any one line match.' )
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Leave blank if bot only needs to look for the category '
-                    'name. Each line evaluated separately, '
-                    'put common misspellings and alternate names here.' )
+        help_text = 'Put common misspellings and alternate names here -- '
+                    'leave blank if bot only needs to look for the category '
+                    'name. Each line evaluated separately, Bot will know '
+                    'item is in this category if any one line matches.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
@@ -46,10 +47,10 @@ class Category(models.Model):
         help_text = 'you can group some categories into families, '
                     'choose a category to be the lead' )
     cExcludeIf      = models.TextField(
-                        'Not a hit if this text is found',
+                        'Not a hit if this text is found (optional)',
                         null = True, blank = True,
-        help_text = 'Not a hit if this text is found '
-                    '(each line evaluated separately, '
+        help_text = 'Bot will know item is <b>NOT</b> in this category if '
+                    'any one line matches (each line evaluated separately, '
                     'put different exclude tests on different lines)' )
     iLegacyKey      = models.PositiveIntegerField( 'legacy key', null=True )
     iLegacyFamily   = models.PositiveIntegerField( 'legacy family',
@@ -60,6 +61,7 @@ class Category(models.Model):
                     'names or numbers in this category' )
 
     oRegExFound     = RegexField( max_length=128, null = True )
+    oRegExKeyWords  = RegexField( max_length=128, null = True )
     oRegExExclude   = RegexField( max_length=128, null = True )
     
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
