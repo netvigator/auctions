@@ -13,11 +13,14 @@ from brands.models              import Brand
 
 class Category(models.Model):
     cTitle          = models.CharField(
-                        'category description', max_length = 48, db_index = True)
+                        'category description',
+                        max_length = 48, db_index = True,
+        help_text = 'while searching auction titles, '
+                    'bot will ignore anything in parentheses ()' )
     cKeyWords       = models.CharField( 'category key words', max_length = 88,
                                         null = True, blank = True,
-        help_text = 'Bot will look for this text in the item description; '
-                    'note: anything in parentheses (), bot will ignore' )
+        help_text = 'Bot will look for this text in the item description -- '
+                    'use the vertical bar "|" between alternate key words' )
     bKeyWordRequired= models.BooleanField(
                         'key word required?', default = False,
         help_text = 'Bot will know this model is for sale only '
@@ -25,9 +28,8 @@ class Category(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found',
                         null=True, blank = True,
-        help_text = 'Considered a hit if this text is found -- leave '
-                    'blank if bot only needs to look for the category name. '
-                    'Each line evaluated separately, '
+        help_text = 'Leave blank if bot only needs to look for the category '
+                    'name. Each line evaluated separately, '
                     'put different look for tests on different lines.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
