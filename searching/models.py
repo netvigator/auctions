@@ -61,8 +61,7 @@ class Search(models.Model):
             kwargs={'pk': self.pk})
 
 
-
-class ItemFound(models.Model):
+class FoundItem(models.Model):
     iItemNumb       = models.BigIntegerField(
                         'ebay item number', primary_key = True )
     cTitle          = models.CharField(
@@ -117,13 +116,13 @@ class ItemFound(models.Model):
     
     def __str__(self):
         return self.cTitle
-        
+
     class Meta:
-        verbose_name_plural = 'items'
+        verbose_name_plural = 'founditems'
         db_table            = verbose_name_plural
 #
-
 '''
+
 ebay currencies
 https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
 AUD Australian Dollar. For eBay, you can only specify this currency for listings you submit to the Australia site (global ID EBAY-AU, site ID 15).
