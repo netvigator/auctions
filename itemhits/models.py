@@ -73,3 +73,21 @@ class ItemHit(models.Model):
         db_table            = verbose_name_plural
 #
 
+
+class ItemImage(models.Model):
+    iItemNumb       = models.ForeignKey( ItemHit )
+    isequence       = models.PositiveSmallIntegerField( 'sequence' )
+    cfilename       = models.CharField( 'local file name', max_length = 28 )
+    coriginalurl    = models.TextField( 'original URL' )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    
+    def __str__(self):
+        return self.iItemNumb
+
+    class Meta:
+        verbose_name_plural = 'itemimages'
+        db_table            = verbose_name_plural
+        unique_together     = ('iItemNumb', 'isequence',)
+#
+
