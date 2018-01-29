@@ -243,7 +243,7 @@ Item.Seller
 Seller
 iseller
 Item.Seller.UserID
-isellerfeedback = models.PositiveIntegerField( 'seller feedback' )
+iSellerFeedback = models.PositiveIntegerField( 'seller feedback' )
 FeedbackScore
 PositiveFeedbackPercent
 TopRatedSeller
