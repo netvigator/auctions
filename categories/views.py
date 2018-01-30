@@ -93,6 +93,14 @@ class CategoryUpdate(
         else:
             return super(CategoryUpdate, self).post(request, *args, **kwargs)
 
+    def form_valid(self, form):
+        if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
+            form.instance.oRegExLook4Title  = None
+        if 'cKeyWords' in form.changed_data :
+            form.instance.oRegExKeyWords    = None
+        if 'cExcludeIf' in form.changed_data :
+            form.instance.oRegExExclude     = None
+        return super().form_valid(form)
 
 
 class CategoryDelete(
