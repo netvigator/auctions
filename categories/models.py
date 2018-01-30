@@ -60,7 +60,7 @@ class Category(models.Model):
         help_text = 'Set to True if different brands use the same model '
                     'names or numbers in this category' )
 
-    oRegExFound     = RegexField( max_length=128, null = True )
+    oRegExLook4Title= RegexField( max_length=128, null = True )
     oRegExKeyWords  = RegexField( max_length=128, null = True )
     oRegExExclude   = RegexField( max_length=128, null = True )
     

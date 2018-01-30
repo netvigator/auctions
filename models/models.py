@@ -76,7 +76,7 @@ class Model(models.Model):
                     'any one line matches (each line evaluated separately, '
                     'put different exclude tests on different lines)' )
     
-    oRegExFound     = RegexField( max_length=128, null = True )
+    oRegExLook4Title= RegexField( max_length=128, null = True )
     oRegExKeyWords  = RegexField( max_length=128, null = True )
     oRegExExclude   = RegexField( max_length=128, null = True )
     
