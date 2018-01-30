@@ -1,13 +1,17 @@
+from json                   import load
 
-from json           import load
 
-from Dict.Get       import getAnyValue
-from Dict.Maintain  import getDictValuesFromSingleElementLists
+from Dict.Get               import getAnyValue
+from Dict.Maintain          import getDictValuesFromSingleElementLists
+from String.Eat             import eatFromWithin
+from String.Find            import getFinderFindAll, getRegEx4Chars
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 
-    
+oInParensFinder = getFinderFindAll( '\(.*\)' )
+
+
 def getSearchResultGenerator( sFile ):
     #
     dResults = load( open( sFile ) )
@@ -80,5 +84,81 @@ def getSearchResultGenerator( sFile ):
         #
         yield dItem
         
+
+def getSearchResults( oSearch = None ):
+    #
+    from django.contrib.auth    import get_user_model
+    #
+    from core.ebay_wrapper  import (
+                    getItemsByKeyWords, getItemsByCategory, getItemsByBoth )
+    #
+    from .models            import Search
+    from markets.models     import Market
+    #
+    from File.Write         import QuickDump
+    from String.Split       import getWhiteCleaned
+    #
+    User = get_user_model()
+    #
+    if oSearch is None:
+        #
+        oSearch = Search.objects.filter( iUser_id = 1 ).first()
+        #
+    #
+    oUser       = User.objects.get( id = oSearch.iUser.id )
+    #
+    oMarket = Market.objects.get( id = oUser.iMarket_id )
+    #
+    sMarket = oMarket.cMarket
+    #
+    sUserName   = oUser.username
+    #
+    sKeyWords       = getWhiteCleaned( oSearch.cKeyWords )
+    iEbayCategory   = oSearch.iEbayCategory
+    #
+    sFileName       = (
+        'Search-%s-%s-ID_%s.json' % ( sMarket, sUserName, oSearch.id ) )
+    #
+    if sKeyWords and iEbayCategory:
+        #
+        QuickDump(
+            getItemsByBoth( sKeyWords, iEbayCategory, sMarketID = sMarket ),
+            sFileName )
+        #
+    elif sKeyWords:
+        #
+        QuickDump(
+            getItemsByKeyWords( sKeyWords, sMarketID = sMarket ),
+            sFileName )
+        #
+    elif iEbayCategory:
+        #
+        QuickDump(
+            getItemsByCategory( iEbayCategory, sMarketID = sMarket ),
+            sFileName )
+        #
+    #
+    sFileName = '/tmp/%s' % sFileName
+    #
+    return sFileName
+
+        
     
-    
+
+'''
+getSearchResultGenerator( )
+
+def getRegExpFinder(
+        sOrig           = '',
+        dSub1st         = dSub1st,
+        dSub2nd         = dSub2nd,
+        tSubLast        = tSubLast,
+        fDoThisFirst    = None,
+        cSeparator      = '\r',
+        bPermutate      = False ):
+
+
+#
+sGot = eatFromWithin( 'This is for real (but not yet)', oInParensFinder )
+#
+'''
