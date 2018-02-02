@@ -1,0 +1,3 @@
+explore test_plus, take advantage more
+https://pypi.python.org/pypi/django-test-plus/1.0.22
+
