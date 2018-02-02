@@ -43,7 +43,7 @@ pytz==2017.2
 
 # Redis support
 django-redis==4.8.0
-redis>=2.10.5
+redis>=2.10.6
 
 
 
@@ -72,3 +72,6 @@ django-admin-honeypot==1.0.0
 
 # store regex objects
 django-regex-field==1.0.0
+
+# enhanced testing
+django-test-plus==1.0.22
