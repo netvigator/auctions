@@ -50,7 +50,7 @@ redis>=2.10.5
 
 # Your custom requirements go here
 
-django-countries==4.5
+django-countries==5.1.1
 
 # money added by RG 2017-11-27
 django-money==0.12.1
