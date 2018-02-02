@@ -57,7 +57,7 @@ django-money==0.12.3
 
 
 # django-extensions added by RG 2017-12-10
-django-extensions==1.9.8
+django-extensions==1.9.9
 
 
 # for the ebay API
