@@ -53,7 +53,7 @@ redis>=2.10.5
 django-countries==5.1.1
 
 # money added by RG 2017-11-27
-django-money==0.12.1
+django-money==0.12.3
 
 
 # django-extensions added by RG 2017-12-10
