@@ -23,6 +23,9 @@ class ListViewGotModel( ListView ):
         # context['model_fields'] = self.model._meta.get_fields()
         return context
 
+    def get_queryset(self):
+        return self.model.objects.filter( iUser = self.request.user )
+
 
 class CreateViewGotCrispy( CreateView ):
     '''
