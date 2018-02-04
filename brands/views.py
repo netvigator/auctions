@@ -142,9 +142,3 @@ class IndexView( LoginRequiredMixin, ListViewGotModel ):
     # context_object_name = 'brand_list' # default
     model = Brand
     
-    def get_queryset(self):
-        return Brand.objects.filter(iUser=self.request.user)
-
-    #def get_context_data(self, **kwargs):
-        ## Call the base implementation first to get a context
-        #context = super(IndexView, self).get_context_data(**kwargs)
