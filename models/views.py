@@ -41,7 +41,7 @@ tModelFields = (
     'cFileSpec5',
     )
 
-class IndexView( TitleSearchMixin, LoginRequiredMixin, ListViewGotModel ):
+class IndexView( LoginRequiredMixin, TitleSearchMixin, ListViewGotModel ):
     template_name = 'models/index.html'
     # context_object_name = 'model_list' # default
     model = Model
