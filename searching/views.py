@@ -55,8 +55,6 @@ class IndexView( LoginRequiredMixin, ListViewGotModel ):
     # context_object_name = 'brand_list' # default
     model = Search
     
-    def get_queryset(self):
-        return Search.objects.filter(iUser=self.request.user)
 
 
 class SearchDetail(

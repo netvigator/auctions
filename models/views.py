@@ -5,7 +5,8 @@ from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
 from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
-                                             WereAnyReleventColsChangedMixin )
+                                             WereAnyReleventColsChangedMixin,
+                                             TitleSearchMixin )
 
 from core.views                     import (
                     CreateViewGotCrispy, DeleteViewGotModel,
@@ -40,14 +41,12 @@ tModelFields = (
     'cFileSpec5',
     )
 
-class IndexView( LoginRequiredMixin, ListViewGotModel ):  
+class IndexView( TitleSearchMixin, LoginRequiredMixin, ListViewGotModel ):
     template_name = 'models/index.html'
     # context_object_name = 'model_list' # default
     model = Model
     paginate_by = 100
     
-    def get_queryset(self):
-        return Model.objects.filter(iUser=self.request.user)
 
 class ModelDetail(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,

@@ -39,8 +39,6 @@ class IndexView( LoginRequiredMixin, ListViewGotModel ):
     model = Category
     paginate_by = 100
     
-    def get_queryset(self):
-        return Category.objects.filter(iUser=self.request.user)
 
 class CategoryDetail(
         LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
