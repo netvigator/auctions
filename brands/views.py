@@ -8,7 +8,8 @@ from django.http                    import HttpResponseRedirect
 from crispy_forms.layout            import Field
 
 from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
-                                             WereAnyReleventColsChangedMixin )
+                                             WereAnyReleventColsChangedMixin,
+                                             TitleSearchMixin )
 from core.utils                     import model_to_dict
 from core.views                     import (
                     CreateViewGotCrispy, DeleteViewGotModel,
@@ -137,7 +138,7 @@ class BrandUpdate(
 
 
 
-class IndexView( LoginRequiredMixin, ListViewGotModel ):  
+class IndexView( LoginRequiredMixin, TitleSearchMixin, ListViewGotModel ):  
     template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand
