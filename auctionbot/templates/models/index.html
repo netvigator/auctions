@@ -7,11 +7,9 @@
 {% block content %}
   <h2>Models</h2>
 
-    <form action="{% url "models:add" %}">
-        <input type="submit" value=" add a model " />
-    </form>
-
-    {% if model_list %}
+    {% include "../add_search.html" %}
+    
+    {% if object_list %}
         {# the pagination section #}
         {% if is_paginated %}
             <hr>
@@ -31,7 +29,7 @@
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Comment</th>
         </tr>
-        {% for model in model_list %}
+        {% for model in object_list %}
             <tr>
             <td><a href="{% url 'models:detail' model.id %}">
                 {{ model.cTitle|getNbsp }}</a>
@@ -58,8 +56,6 @@
         <p>No models are available.</p>
     {% endif %} <!-- brand_list -->
 
-    <form action="{% url "models:add" %}">
-        <input type="submit" value=" add a model " />
-    </form>
-
+    {% include "../add_search.html" %}
+    
 {% endblock content %}
