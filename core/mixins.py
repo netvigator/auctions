@@ -56,4 +56,24 @@ class WereAnyReleventColsChangedMixin(object):
             #
         #
         return super().form_valid(form)
-        
+
+class TitleSearchMixin(object):
+    
+    def get_queryset( self ):
+        #
+        # fetch the queryset from the parent's get_queryset
+        #
+        queryset = super( TitleSearchMixin, self ).get_queryset()
+        #
+        # get the Q parameter
+        #
+        q = self.request.GET.get( 'q' )
+        #
+        if q:
+            # return a filtered queryset
+            return queryset.filter( cTitle__icontains = q )
+            #
+        else: # no Q
+            #
+            return queryset
+
