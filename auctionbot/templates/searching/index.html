@@ -32,7 +32,9 @@
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.cKeyWords|truncatechars:65 }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ search.tLastSearch }}</td>
+            <td>{{ search.tSearchStarted }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ search.tSearchComplete }}</td>
             </tr>
         {% endfor %}
         </table>

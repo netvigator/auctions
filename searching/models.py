@@ -38,7 +38,10 @@ class Search(models.Model):
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
         help_text = 'high priority 1 ... 9 A ... Z a ... z low priority' )
-    tLastSearch     = models.DateTimeField( 'last search', null = True )
+    tSearchStarted  = models.DateTimeField( 'last search started',
+                                           null = True )
+    tSearchComplete = models.DateTimeField( 'last search completed',
+                                           null = True )
     cLastResult     = models.CharField( 'last search outcome',
                                 max_length = 28, null = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner' )

@@ -40,9 +40,14 @@
 
 
     <TR>
-        <TD>{% field_name model 'tLastSearch' %}</TD>
+        <TD>{% field_name model 'tSearchStarted' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.tLastSearch|date:"d M Y  P"}}</TD>
+        <TD VALIGN=TOP>{{object.tSearchStarted|date:"d M Y  P"}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tSearchComplete' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tSearchComplete|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'cLastResult' %}</TD>
