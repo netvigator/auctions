@@ -12,7 +12,7 @@ from ebay.finding   import ( findItemsAdvanced, findItemsByKeywords,
 from ebay.shopping  import GetSingleItem
 from ebay.trading   import getCategories
 
-from File.Write     import QuickDump
+from File.Write     import QuietDump
 
 from markets.models import Market
 
@@ -133,7 +133,7 @@ def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US' ):
 
 #sResults = getItemsByBoth( 'Simpson 360', '58277' )
 ##
-#QuickDump( sResults, 'Results_Adv_Simpson360.json' )
+#QuietDump( sResults, 'Results_Adv_Simpson360.json' )
 
 
 def getCategoryVersion( categorySiteId=0 ):
@@ -144,16 +144,16 @@ def getCategoryVersion( categorySiteId=0 ):
     return getDecoded( oVersion )
 
 #These are invalid!
-#QuickDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Ver_EBAY-US.xml' )
-#QuickDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Ver_EBAY-DE.xml' )
+#QuietDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Ver_EBAY-US.xml' )
+#QuietDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
 #These are invalid!
-#QuickDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Ver_EBAY-US.xml' )
-#QuickDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Ver_EBAY-DE.xml' )
+#QuietDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Ver_EBAY-US.xml' )
+#QuietDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
 #### These are OK ####
-#QuickDump( getCategoryVersion(  0 ), 'Categories_Ver_EBAY-US.xml' )
-#QuickDump( getCategoryVersion( 77 ), 'Categories_Ver_EBAY-DE.xml' )
+#QuietDump( getCategoryVersion(  0 ), 'Categories_Ver_EBAY-US.xml' )
+#QuietDump( getCategoryVersion( 77 ), 'Categories_Ver_EBAY-DE.xml' )
 
 
 
@@ -163,7 +163,7 @@ def getCategoryVersionGotGlobalID( sGlobalID = 'EBAY-US' ):
     #
     return getCategoryVersion( categorySiteId = iID )
 
-# QuickDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
+# QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
 
 
 def getMarketCategories( categorySiteId=0 ):
@@ -175,7 +175,7 @@ def getMarketCategories( categorySiteId=0 ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-# QuickDump( getMarketCategories(), 'Categories_All_EBAY-USA.xml' ) # .gz
+# QuietDump( getMarketCategories(), 'Categories_All_EBAY-USA.xml' ) # .gz
 
 
 def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
@@ -189,8 +189,8 @@ def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
     #
     return getDecoded( getDecompressed( oCategories ) )
 
-# QuickDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml.gz' )
-# QuickDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml.gz' )
+# QuietDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml.gz' )
+# QuietDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml.gz' )
 
 
 
