@@ -85,7 +85,7 @@ def getSearchResultGenerator( sFile ):
         yield dItem
         
 
-def getSearchResults( oSearch = None ):
+def getSearchResults( iSearchID = None ):
     #
     from django.contrib.auth    import get_user_model
     #
@@ -95,14 +95,23 @@ def getSearchResults( oSearch = None ):
     from .models            import Search
     from markets.models     import Market
     #
-    from File.Write         import QuickDump
+    from File.Write         import QuietDump
     from String.Split       import getWhiteCleaned
     #
     User = get_user_model()
     #
-    if oSearch is None:
+    if iSearchID is None:
         #
         oSearch = Search.objects.filter( iUser_id = 1 ).first()
+        #
+    else:
+        #
+        # Two Sccops recommends AGAINST passin objects to async processes
+        # instead, only pass json serializable values
+        # (integers, floats, strings, lists, tuples and dictionaries)
+        # so passing a user object is not good.
+        #
+        oSearch = Search.objects.get( pk = iSearchID )
         #
     #
     oUser       = User.objects.get( id = oSearch.iUser.id )
@@ -121,19 +130,19 @@ def getSearchResults( oSearch = None ):
     #
     if sKeyWords and iEbayCategory:
         #
-        QuickDump(
+        QuietDump(
             getItemsByBoth( sKeyWords, iEbayCategory, sMarketID = sMarket ),
             sFileName )
         #
     elif sKeyWords:
         #
-        QuickDump(
+        QuietDump(
             getItemsByKeyWords( sKeyWords, sMarketID = sMarket ),
             sFileName )
         #
     elif iEbayCategory:
         #
-        QuickDump(
+        QuietDump(
             getItemsByCategory( iEbayCategory, sMarketID = sMarket ),
             sFileName )
         #
@@ -142,8 +151,8 @@ def getSearchResults( oSearch = None ):
     #
     return sFileName
 
-        
-    
+
+
 
 '''
 getSearchResultGenerator( )
