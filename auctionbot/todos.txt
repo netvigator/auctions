@@ -3,3 +3,6 @@ https://pypi.python.org/pypi/django-test-plus/1.0.22
 
 run at least monthly
 https://pyup.io/account/repos/github/netvigator/auctions/
+
+
+test WereAnyReleventColsChangedMixin !
