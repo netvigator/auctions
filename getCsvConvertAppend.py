@@ -27,10 +27,12 @@
 
 
 '''
+from environ        import Path
 
 from csv            import DictReader
 from pytz           import timezone
-from os             import environ, listdir
+from os             import listdir
+from os             import environ as os_environ
 from os.path        import join
 from sys            import path
 
@@ -42,10 +44,9 @@ from Utils.Config   import getBoolOffYesNoTrueFalse as getBool
 
 import django
 
+path.append( str( Path(__file__) - 1 ) )
 
-path.append('~/Devel/auctions')
-
-environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
+os_environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
 django.setup()
 
@@ -64,7 +65,7 @@ dConvertConf        = getConfDict('getCsvConvertAppend.conf')
 
 sCsvPath            = dConvertConf['main']['csvpath']
 bCrashOnErrors      = getBool(
-                      dConvertConf['main']['crashonerrors'] )
+                        dConvertConf['main']['crashonerrors'] )
 sModelPicsPath      = dConvertConf['main']['cmodelpicspath']
 
 sGMT = sayGMT( sBetween = '_' )
