@@ -1,6 +1,5 @@
 from json                   import load
 
-
 from Dict.Get               import getAnyValue
 from Dict.Maintain          import getDictValuesFromSingleElementLists
 from String.Eat             import eatFromWithin
@@ -83,9 +82,11 @@ def getSearchResultGenerator( sFile ):
         dItem["paginationOutput"]= dPagination
         #
         yield dItem
-        
+
 
 def getSearchResults( iSearchID = None ):
+    #
+    from os.path                import join
     #
     from django.contrib.auth    import get_user_model
     #
@@ -147,7 +148,7 @@ def getSearchResults( iSearchID = None ):
             sFileName )
         #
     #
-    sFileName = '/tmp/%s' % sFileName
+    sFileName = join( '/tmp', sFileName )
     #
     return sFileName
 
@@ -155,8 +156,51 @@ def getSearchResults( iSearchID = None ):
 
 
 '''
-getSearchResultGenerator( )
+oIter = getSearchResultGenerator( sFullFileSpec )
 
+next( oIter )
+
+{'autoPay': 'false',
+ 'condition': {'conditionDisplayName': 'New', 'conditionId': '1000'},
+ 'country': 'US',
+ 'galleryURL': 'http://thumbs3.ebaystatic.com/m/mutHoe85kv1_SUEGG3k1yBw/140.jpg',
+ 'globalId': 'EBAY-US',
+ 'isMultiVariationListing': 'false',
+ 'itemId': '282330751118',
+ 'listingInfo': {'bestOfferEnabled': 'true',
+  'buyItNowAvailable': 'false',
+  'endTime': '2018-02-13T00:34:26.000Z',
+  'gift': 'false',
+  'listingType': 'FixedPrice',
+  'startTime': '2017-01-19T00:34:26.000Z',
+  'watchCount': '19'},
+ 'location': 'Staten Island,NY,USA',
+ 'paginationOutput': {'entriesPerPage': '100',
+  'pageNumber': '1',
+  'thisEntry': '1',
+  'totalEntries': '1320',
+  'totalPages': '14'},
+ 'paymentMethod': 'PayPal',
+ 'postalCode': '10303',
+ 'primaryCategory': {'categoryId': '73160',
+  'categoryName': 'Capacitance & ESR Meters'},
+ 'returnsAccepted': 'true',
+ 'sellingStatus': {'convertedCurrentPrice': {'@currencyId': 'USD',
+   '__value__': '27.99'},
+  'currentPrice': {'@currencyId': 'USD', '__value__': '27.99'},
+  'sellingState': 'Active',
+  'timeLeft': 'P13DT6H33M56S'},
+ 'shippingInfo': {'expeditedShipping': 'false',
+  'handlingTime': '1',
+  'oneDayShippingAvailable': 'false',
+  'shipToLocations': 'Worldwide',
+  'shippingServiceCost': {'@currencyId': 'USD', '__value__': '0.0'},
+  'shippingType': 'Free'},
+ 'title': 'Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF',
+ 'topRatedListing': 'true',
+ 'viewItemURL': 'http://www.ebay.com/itm/Digital-Capacitance-Tester-Capacitor-Meter-Auto-Range-MultimeterChecker-470mF-/282330751118'
+ }
+ 
 def getRegExpFinder(
         sOrig           = '',
         dSub1st         = dSub1st,
