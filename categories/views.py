@@ -52,7 +52,7 @@ class CategoryCreate( CreateViewGotCrispy ):
     template_name = 'categories/add.html'
     success_url = reverse_lazy('categories:index')
 
-    # success_message = 'New Category record successfully saved!!!!'
+    success_message = 'New Category record successfully saved!!!!'
 
     def form_valid(self, form):
         form.instance.iUser = self.request.user
@@ -74,7 +74,7 @@ class CategoryUpdate(
     model           = Category
     template_name   = 'categories/edit.html'
 
-    # success_message = 'Category record update successfully saved!!!!'
+    success_message = 'Category record update successfully saved!!!!'
 
     tRegExRelevantCols = (
         'cTitle',
@@ -107,7 +107,7 @@ class CategoryDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('categories:index')
 
-    # success_message = 'Category record successfully deleted!!!!'
+    success_message = 'Category record successfully deleted!!!!'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:

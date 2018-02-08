@@ -60,7 +60,7 @@ class ModelCreate( CreateViewGotCrispy ):
     template_name = 'models/add.html'
     success_url = reverse_lazy('models:index')
 
-    # success_message = 'New Model record successfully saved!!!!'
+    success_message = 'New Model record successfully saved!!!!'
 
     def form_valid(self, form):
         form.instance.iUser = self.request.user
@@ -82,7 +82,7 @@ class ModelUpdate(
     model = Model
     template_name = 'models/edit.html'
 
-    # success_message = 'Model record update successfully saved!!!!'
+    success_message = 'Model record update successfully saved!!!!'
 
     tRegExRelevantCols = (
         'cTitle',

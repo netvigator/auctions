@@ -34,7 +34,7 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
     Enhanced CreateView which includes crispy form Create and Cancel buttons.
     '''
 
-    # success_message = 'New record successfully saved!!!!'
+    success_message = 'New record successfully saved!!!!'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -51,7 +51,7 @@ class DeleteViewGotModel( LoginRequiredMixin, SuccessMessageMixin, DeleteView ):
     so that the template has access to its model class.
     '''
  
-    # success_message = 'Record successfully deleted!!!!'
+    success_message = 'Record successfully deleted!!!!'
 
     def get_context_data(self, **kwargs):
         '''
@@ -68,7 +68,7 @@ class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, UpdateView )
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
  
-    # success_message = 'Record successfully saved!!!!'
+    success_message = 'Record successfully saved!!!!'
     
     def get_form(self, form_class=None):
         form = super().get_form(form_class)

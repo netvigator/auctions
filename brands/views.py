@@ -50,7 +50,7 @@ class BrandCreate( CreateViewGotCrispy ):
     template_name = 'brands/add.html'
     success_url = reverse_lazy('brands:index')
 
-    # success_message = 'New Brand record successfully saved!!!!'
+    success_message = 'New Brand record successfully saved!!!!'
 
     def form_valid(self, form):
         form.instance.iUser = self.request.user
@@ -73,7 +73,7 @@ class BrandDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('brands:index')
 
-    # success_message = 'Brand record successfully deleted!!!!'
+    success_message = 'Brand record successfully deleted!!!!'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
@@ -114,7 +114,7 @@ class BrandUpdate(
     fields  = tModelFields
     template_name = 'brands/edit.html'
 
-    # success_message = 'Brand record update successfully saved!!!!'
+    success_message = 'Brand record update successfully saved!!!!'
     
     tRegExRelevantCols = (
         'cTitle',

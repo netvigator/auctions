@@ -34,7 +34,7 @@ class SearchCreate( EbayCategoryFormValidMixin, CreateViewGotCrispy ):
     success_url = reverse_lazy('searching:index')
     #success_url = reverse_lazy('searching:detail', kwargs={'pk': self.object.id})
 
-    # success_message = 'New Search record successfully saved!!!!'
+    success_message = 'New Search record successfully saved!!!!'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -69,7 +69,7 @@ class SearchDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('searching:index')
 
-    # success_message = 'Search record successfully deleted!!!!'
+    success_message = 'Search record successfully deleted!!!!'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
@@ -88,7 +88,7 @@ class SearchUpdate(
     form_class      = AddOrUpdateForm
     template_name   = 'searching/edit.html'
 
-    # success_message = 'Search record update successfully saved!!!!'
+    success_message = 'Search record update successfully saved!!!!'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
