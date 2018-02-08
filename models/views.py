@@ -3,8 +3,7 @@ from django.shortcuts import render
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
-from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
-                                             WereAnyReleventColsChangedMixin,
+from core.mixins                    import ( WereAnyReleventColsChangedMixin,
                                              TitleSearchMixin )
 
 from core.views                     import (
@@ -47,7 +46,7 @@ class IndexView( TitleSearchMixin, ListViewGotModel ):
     paginate_by = 100
     
 
-class ModelDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
+class ModelDetail( DetailViewGotModel ):
     
     model   = Model
     template_name = 'models/detail.html'
@@ -74,9 +73,7 @@ class ModelCreate( CreateViewGotCrispy ):
             return super(ModelCreate, self).post(request, *args, **kwargs)
 
 
-class ModelUpdate(
-        DoesLoggedInUserOwnThisRowMixin,
-        WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
+class ModelUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     fields = tModelFields
     model = Model
@@ -110,7 +107,7 @@ class ModelUpdate(
         return super().form_valid(form)
 
 
-class ModelDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
+class ModelDelete( DeleteViewGotModel ):
     model   = Model
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('models:index')

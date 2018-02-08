@@ -8,6 +8,8 @@ from django.contrib.messages.views  import SuccessMessageMixin
 from crispy_forms.helper            import FormHelper
 from crispy_forms.layout            import Submit
 
+from .mixins                        import DoesLoggedInUserOwnThisRowMixin
+
 # Create your views here but keep them thin.
 
 class ListViewGotModel( LoginRequiredMixin, ListView ):
@@ -45,7 +47,8 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
 
 
 
-class DeleteViewGotModel( LoginRequiredMixin, SuccessMessageMixin, DeleteView ):
+class DeleteViewGotModel( LoginRequiredMixin,
+                DoesLoggedInUserOwnThisRowMixin, SuccessMessageMixin, DeleteView ):
     '''
     Enhanced DeleteView which also includes the model in the context data,
     so that the template has access to its model class.
@@ -63,7 +66,8 @@ class DeleteViewGotModel( LoginRequiredMixin, SuccessMessageMixin, DeleteView ):
         return context
 
 
-class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, UpdateView ):
+class UpdateViewGotCrispy( LoginRequiredMixin,
+                DoesLoggedInUserOwnThisRowMixin, SuccessMessageMixin, UpdateView ):
     '''
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
@@ -78,7 +82,8 @@ class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, UpdateView )
         return form
 
 
-class DetailViewGotModel( LoginRequiredMixin, DetailView ):
+class DetailViewGotModel( LoginRequiredMixin,
+                DoesLoggedInUserOwnThisRowMixin, DetailView ):
     '''
     Enhanced DetailView which also includes the model in the context data,
     so that the template has access to its model class.

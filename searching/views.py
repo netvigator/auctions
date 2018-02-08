@@ -6,7 +6,6 @@ from .forms                         import AddOrUpdateForm
 from .mixins                        import EbayCategoryFormValidMixin
 from .models                        import Search
 
-from core.mixins                    import DoesLoggedInUserOwnThisRowMixin
 from core.utils                     import model_to_dict
 from core.views                     import (
                     CreateViewGotCrispy, DeleteViewGotModel,
@@ -57,14 +56,14 @@ class IndexView( ListViewGotModel ):
     
 
 
-class SearchDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
+class SearchDetail( DetailViewGotModel ):
     
     model   = Search
     template_name = 'searching/detail.html'
 
 
 
-class SearchDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
+class SearchDelete( DeleteViewGotModel ):
     model   = Search
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('searching:index')
@@ -81,9 +80,7 @@ class SearchDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
 
 
 
-class SearchUpdate( 
-        DoesLoggedInUserOwnThisRowMixin,
-        EbayCategoryFormValidMixin, UpdateViewGotCrispy ):
+class SearchUpdate(  EbayCategoryFormValidMixin, UpdateViewGotCrispy ):
     model           = Search
     form_class      = AddOrUpdateForm
     template_name   = 'searching/edit.html'

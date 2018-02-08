@@ -6,8 +6,7 @@ from django.shortcuts import render
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
-from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
-                                             WereAnyReleventColsChangedMixin )
+from core.mixins                    import WereAnyReleventColsChangedMixin
 
 from core.views                     import (
                     CreateViewGotCrispy, DeleteViewGotModel,
@@ -39,7 +38,7 @@ class IndexView( ListViewGotModel ):
     paginate_by = 100
     
 
-class CategoryDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
+class CategoryDetail( DetailViewGotModel ):
     
     model   = Category
     template_name = 'categories/detail.html'
@@ -66,9 +65,7 @@ class CategoryCreate( CreateViewGotCrispy ):
             return super(CategoryCreate, self).post(request, *args, **kwargs)
 
 
-class CategoryUpdate(
-        DoesLoggedInUserOwnThisRowMixin,
-        WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
+class CategoryUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     fields          = tCategoryFields
     model           = Category
@@ -102,7 +99,7 @@ class CategoryUpdate(
         return super().form_valid(form)
 
 
-class CategoryDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
+class CategoryDelete( DeleteViewGotModel ):
     model   = Category
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('categories:index')

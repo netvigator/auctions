@@ -6,8 +6,7 @@ from django.http                    import HttpResponseRedirect
 
 from crispy_forms.layout            import Field
 
-from core.mixins                    import ( DoesLoggedInUserOwnThisRowMixin,
-                                             WereAnyReleventColsChangedMixin,
+from core.mixins                    import ( WereAnyReleventColsChangedMixin,
                                              TitleSearchMixin )
 from core.utils                     import model_to_dict
 from core.views                     import (
@@ -68,7 +67,7 @@ class BrandCreate( CreateViewGotCrispy ):
         Field('cExcludeIf', rows='2')
         return form
 
-class BrandDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
+class BrandDelete( DeleteViewGotModel ):
     model   = Brand
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('brands:index')
@@ -83,7 +82,7 @@ class BrandDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
         else:
             return super(BrandDelete, self).post(request, *args, **kwargs)
 
-class BrandDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
+class BrandDetail( DetailViewGotModel ):
     
     model   = Brand
     template_name = 'brands/detail.html'
@@ -107,9 +106,7 @@ class BrandDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
         return context
 
 
-class BrandUpdate(
-        DoesLoggedInUserOwnThisRowMixin,
-        WereAnyReleventColsChangedMixin, UpdateViewGotCrispy ):
+class BrandUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit.html'
