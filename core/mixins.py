@@ -41,7 +41,7 @@ class WereAnyReleventColsChangedMixin(object):
         #
         return get1stThatMeets( tCols, isFormDataChanged )
 
-    def redoRegEx(self):
+    def redoRegEx( self, form ):
         #
         ''' this is intended to be filled out later or subclassed  '''
         # print( 'redo RegEx object' )
@@ -52,7 +52,7 @@ class WereAnyReleventColsChangedMixin(object):
         #
         if self.anyReleventColsChanged( form, self.tRegExRelevantCols ):
             #
-            self.redoRegEx()
+            self.redoRegEx( form )
             #
         #
         return super().form_valid(form)
