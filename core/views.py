@@ -1,14 +1,16 @@
-from django.shortcuts            import render
-from django.views.generic        import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit   import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins     import LoginRequiredMixin
+from django.views.generic           import ListView
+from django.views.generic.detail    import DetailView
+from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 
-from crispy_forms.helper         import FormHelper
-from crispy_forms.layout         import Submit
+from django.contrib.messages.views  import SuccessMessageMixin
+
+from crispy_forms.helper            import FormHelper
+from crispy_forms.layout            import Submit
 
 # Create your views here but keep them thin.
 
-class ListViewGotModel( ListView ):
+class ListViewGotModel( LoginRequiredMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
     so that the template has access to its model class.
@@ -27,11 +29,13 @@ class ListViewGotModel( ListView ):
         return self.model.objects.filter( iUser = self.request.user )
 
 
-class CreateViewGotCrispy( CreateView ):
+class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView ):
     '''
     Enhanced CreateView which includes crispy form Create and Cancel buttons.
     '''
- 
+
+    # success_message = 'New record successfully saved!!!!'
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
@@ -41,12 +45,14 @@ class CreateViewGotCrispy( CreateView ):
 
 
 
-class DeleteViewGotModel( DeleteView ):
+class DeleteViewGotModel( LoginRequiredMixin, SuccessMessageMixin, DeleteView ):
     '''
     Enhanced DeleteView which also includes the model in the context data,
     so that the template has access to its model class.
     '''
  
+    # success_message = 'Record successfully deleted!!!!'
+
     def get_context_data(self, **kwargs):
         '''
         Adds the model to the context data.
@@ -57,11 +63,13 @@ class DeleteViewGotModel( DeleteView ):
         return context
 
 
-class UpdateViewGotCrispy( UpdateView ):
+class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, UpdateView ):
     '''
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
  
+    # success_message = 'Record successfully saved!!!!'
+    
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
@@ -70,7 +78,7 @@ class UpdateViewGotCrispy( UpdateView ):
         return form
 
 
-class DetailViewGotModel( DetailView ):
+class DetailViewGotModel( LoginRequiredMixin, DetailView ):
     '''
     Enhanced DetailView which also includes the model in the context data,
     so that the template has access to its model class.
