@@ -3,7 +3,6 @@ from django.shortcuts import render
 #from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 #from django.views.generic.list      import ListView
 
-from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
@@ -33,27 +32,27 @@ tCategoryFields = (
     'bModelsShared',
     )
 
-class IndexView( LoginRequiredMixin, ListViewGotModel ):  
+class IndexView( ListViewGotModel ):  
     template_name = 'categories/index.html'
     # context_object_name = 'category_list' # default
     model = Category
     paginate_by = 100
     
 
-class CategoryDetail(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DetailViewGotModel ):
+class CategoryDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
     
     model   = Category
     template_name = 'categories/detail.html'
 
 
-class CategoryCreate( LoginRequiredMixin, CreateViewGotCrispy ):
+class CategoryCreate( CreateViewGotCrispy ):
 
     model   = Category
     fields  = tCategoryFields
     template_name = 'categories/add.html'
     success_url = reverse_lazy('categories:index')
+
+    # success_message = 'New Category record successfully saved!!!!'
 
     def form_valid(self, form):
         form.instance.iUser = self.request.user
@@ -68,12 +67,14 @@ class CategoryCreate( LoginRequiredMixin, CreateViewGotCrispy ):
 
 
 class CategoryUpdate(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        DoesLoggedInUserOwnThisRowMixin,
         WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     fields          = tCategoryFields
     model           = Category
     template_name   = 'categories/edit.html'
+
+    # success_message = 'Category record update successfully saved!!!!'
 
     tRegExRelevantCols = (
         'cTitle',
@@ -101,12 +102,12 @@ class CategoryUpdate(
         return super().form_valid(form)
 
 
-class CategoryDelete(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DeleteViewGotModel ):
+class CategoryDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     model   = Category
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('categories:index')
+
+    # success_message = 'Category record successfully deleted!!!!'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:

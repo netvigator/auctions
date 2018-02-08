@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.urls                    import reverse_lazy
 
@@ -41,27 +40,27 @@ tModelFields = (
     'cFileSpec5',
     )
 
-class IndexView( LoginRequiredMixin, TitleSearchMixin, ListViewGotModel ):
+class IndexView( TitleSearchMixin, ListViewGotModel ):
     template_name = 'models/index.html'
     # context_object_name = 'model_list' # default
     model = Model
     paginate_by = 100
     
 
-class ModelDetail(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DetailViewGotModel ):
+class ModelDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
     
     model   = Model
     template_name = 'models/detail.html'
 
 
-class ModelCreate( LoginRequiredMixin, CreateViewGotCrispy ):
+class ModelCreate( CreateViewGotCrispy ):
 
     model   = Model
     fields  = tModelFields
     template_name = 'models/add.html'
     success_url = reverse_lazy('models:index')
+
+    # success_message = 'New Model record successfully saved!!!!'
 
     def form_valid(self, form):
         form.instance.iUser = self.request.user
@@ -76,12 +75,14 @@ class ModelCreate( LoginRequiredMixin, CreateViewGotCrispy ):
 
 
 class ModelUpdate(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        DoesLoggedInUserOwnThisRowMixin,
         WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     fields = tModelFields
     model = Model
     template_name = 'models/edit.html'
+
+    # success_message = 'Model record update successfully saved!!!!'
 
     tRegExRelevantCols = (
         'cTitle',
@@ -109,9 +110,7 @@ class ModelUpdate(
         return super().form_valid(form)
 
 
-class ModelDelete(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DeleteViewGotModel ):
+class ModelDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     model   = Model
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('models:index')

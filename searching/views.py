@@ -1,5 +1,4 @@
 from django.urls                    import reverse_lazy
-from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 from django.shortcuts               import render
 
@@ -27,14 +26,15 @@ tModelFields = (
     'cPriority', )
 
 
-class SearchCreate(
-        LoginRequiredMixin, EbayCategoryFormValidMixin, CreateViewGotCrispy ):
+class SearchCreate( EbayCategoryFormValidMixin, CreateViewGotCrispy ):
 
     form_class      = AddOrUpdateForm
     model           = Search
     template_name   = 'searching/add.html'
     success_url = reverse_lazy('searching:index')
     #success_url = reverse_lazy('searching:detail', kwargs={'pk': self.object.id})
+
+    # success_message = 'New Search record successfully saved!!!!'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -50,28 +50,26 @@ class SearchCreate(
             return super(SearchCreate, self).post(request, *args, **kwargs)
 
 
-class IndexView( LoginRequiredMixin, ListViewGotModel ):  
+class IndexView( ListViewGotModel ):  
     template_name = 'searching/index.html'
     # context_object_name = 'brand_list' # default
     model = Search
     
 
 
-class SearchDetail(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DetailViewGotModel ):
+class SearchDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
     
     model   = Search
     template_name = 'searching/detail.html'
 
 
 
-class SearchDelete(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DeleteViewGotModel ):
+class SearchDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     model   = Search
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('searching:index')
+
+    # success_message = 'Search record successfully deleted!!!!'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
@@ -83,12 +81,14 @@ class SearchDelete(
 
 
 
-class SearchUpdate(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+class SearchUpdate( 
+        DoesLoggedInUserOwnThisRowMixin,
         EbayCategoryFormValidMixin, UpdateViewGotCrispy ):
     model           = Search
     form_class      = AddOrUpdateForm
     template_name   = 'searching/edit.html'
+
+    # success_message = 'Search record update successfully saved!!!!'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)

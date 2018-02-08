@@ -2,7 +2,6 @@
 #from django.views.generic.edit     import CreateView, UpdateView, DeleteView
 #from django.views.generic.list     import ListView
 from django.urls                    import reverse_lazy
-from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.http                    import HttpResponseRedirect
 
 from crispy_forms.layout            import Field
@@ -44,12 +43,14 @@ tModelFields = (
 #lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
 #tMoreModelFields = tuple( lMoreModelFields )
 
-class BrandCreate( LoginRequiredMixin, CreateViewGotCrispy ):
+class BrandCreate( CreateViewGotCrispy ):
 
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/add.html'
     success_url = reverse_lazy('brands:index')
+
+    # success_message = 'New Brand record successfully saved!!!!'
 
     def form_valid(self, form):
         form.instance.iUser = self.request.user
@@ -67,12 +68,12 @@ class BrandCreate( LoginRequiredMixin, CreateViewGotCrispy ):
         Field('cExcludeIf', rows='2')
         return form
 
-class BrandDelete(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DeleteViewGotModel ):
+class BrandDelete( DoesLoggedInUserOwnThisRowMixin, DeleteViewGotModel ):
     model   = Brand
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('brands:index')
+
+    # success_message = 'Brand record successfully deleted!!!!'
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
@@ -82,9 +83,7 @@ class BrandDelete(
         else:
             return super(BrandDelete, self).post(request, *args, **kwargs)
 
-class BrandDetail(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
-        DetailViewGotModel ):
+class BrandDetail( DoesLoggedInUserOwnThisRowMixin, DetailViewGotModel ):
     
     model   = Brand
     template_name = 'brands/detail.html'
@@ -109,12 +108,14 @@ class BrandDetail(
 
 
 class BrandUpdate(
-        LoginRequiredMixin, DoesLoggedInUserOwnThisRowMixin,
+        DoesLoggedInUserOwnThisRowMixin,
         WereAnyReleventColsChangedMixin, UpdateViewGotCrispy ):
     model   = Brand
     fields  = tModelFields
     template_name = 'brands/edit.html'
 
+    # success_message = 'Brand record update successfully saved!!!!'
+    
     tRegExRelevantCols = (
         'cTitle',
         'cLookFor',
@@ -138,7 +139,7 @@ class BrandUpdate(
 
 
 
-class IndexView( LoginRequiredMixin, TitleSearchMixin, ListViewGotModel ):  
+class IndexView( TitleSearchMixin, ListViewGotModel ):  
     template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand
