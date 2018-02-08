@@ -127,12 +127,6 @@ class BrandUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy ):
         else:
             return super(BrandUpdate, self).post(request, *args, **kwargs)
 
-    def form_valid(self, form):
-        if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
-            form.instance.oRegExLook4Title  = None
-        if 'cExcludeIf' in form.changed_data :
-            form.instance.oRegExExclude     = None
-        return super().form_valid(form)
 
 
 

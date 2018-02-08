@@ -43,10 +43,12 @@ class WereAnyReleventColsChangedMixin(object):
 
     def redoRegEx( self, form ):
         #
-        ''' this is intended to be filled out later or subclassed  '''
-        # print( 'redo RegEx object' )
-        #
-        pass
+        if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
+            form.instance.oRegExLook4Title  = None
+        if 'cKeyWords' in form.changed_data :
+            form.instance.oRegExKeyWords    = None
+        if 'cExcludeIf' in form.changed_data :
+            form.instance.oRegExExclude     = None
     
     def form_valid(self, form):
         #
@@ -56,6 +58,7 @@ class WereAnyReleventColsChangedMixin(object):
             #
         #
         return super().form_valid(form)
+
 
 class TitleSearchMixin(object):
     
