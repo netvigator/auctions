@@ -153,12 +153,9 @@ def getUrlQueryStringOff( sURL ):
     #
     lParts = sURL.split('?')
     #
-    if len( lParts ) == 1:
-        #
-        lParts.append( '' )
-        #
+    lParts.append( '' )
     #
-    return lParts
+    return tuple( lParts )
 
 
 def queryGotUTC( s ):
