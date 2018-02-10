@@ -11,6 +11,7 @@ from ebaycategories.models      import EbayCategory
 from markets.models             import Market
 
 from .utils                     import getDateTimeObj
+
 from .user_one                  import oUserOne
 from .templatetags.core_tags    import getNbsp
 
@@ -145,6 +146,27 @@ class NbspTests(TestCase):
         #
         self.assertEquals( getNbsp( "how now brown cow" ),
                            "how&nbsp;now&nbsp;brown&nbsp;cow" )
+
+
+
+def getUrlQueryStringOff( sURL ):
+    #
+    lParts = sURL.split('?')
+    #
+    if len( lParts ) == 1:
+        #
+        lParts.append( '' )
+        #
+    #
+    return lParts
+
+
+def queryGotUTC( s ):
+    #
+    from String.Get import getTextAfter
+    from Time.Test  import isISOdatetimeFileNameSafe
+    #
+    return isISOdatetimeFileNameSafe( getTextAfter( s, 'utc=' ) )
 
 '''
 oTest = {
