@@ -17,13 +17,11 @@ from .models                        import Model
 
 tModelFields = (
     'cTitle',
+    'cLookFor',
     'iBrand',
     'bGenericModel',
     'iCategory',
     'cKeyWords',
-    #'bKeyWordRequired',
-    #'bSplitDigitsOK',
-    'cLookFor',
     'iStars',
     'bSubModelsOK',
     'bMustHaveBrand',
