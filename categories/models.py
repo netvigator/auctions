@@ -1,5 +1,4 @@
 from django.db                  import models
-from django.core.urlresolvers   import reverse
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -7,6 +6,7 @@ User = get_user_model()
 from regex_field.fields         import RegexField
 
 from core.models                import IntegerRangeField
+from core.utils                 import getReverseWithQueryUTC
 
 from brands.models              import Brand
 
@@ -82,8 +82,9 @@ class Category(models.Model):
         db_table            = verbose_name_plural
 
     def get_absolute_url(self):
-        return reverse('categories:detail',
-            kwargs={'pk': self.pk})
+        #
+        return getReverseWithQueryUTC( 'categories:detail',
+                    kwargs = { 'pk': self.pk } )
 #
 
 

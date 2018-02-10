@@ -1,7 +1,6 @@
 from django.db                  import models
 from django_countries.fields    import CountryField
 from django.core.exceptions     import FieldDoesNotExist
-from django.core.urlresolvers   import reverse
 
 # Create your models here.
 
@@ -11,6 +10,7 @@ User = get_user_model()
 from regex_field.fields         import RegexField
 
 from core.models                import IntegerRangeField
+from core.utils                 import getReverseWithQueryUTC
 
 
 
@@ -94,6 +94,6 @@ class Brand(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('brands:detail',
-            kwargs={'pk': self.pk})
-    
+        #
+        return getReverseWithQueryUTC('brands:detail', kwargs={'pk': self.pk})
+

@@ -1,5 +1,4 @@
 from django.db                  import models
-from django.core.urlresolvers   import reverse
 from djmoney.models.fields      import MoneyField
 
 # Create your models here.
@@ -8,6 +7,8 @@ from django.contrib.auth    import get_user_model
 User = get_user_model()
 
 # not working: from django.utils.safestring import mark_safe
+
+from core.utils                 import getReverseWithQueryUTC
 
 from ebaycategories.models  import EbayCategory
 
@@ -60,8 +61,9 @@ class Search(models.Model):
         ordering        = ('cTitle',)
 
     def get_absolute_url(self):
-        return reverse('searching:detail',
-            kwargs={'pk': self.pk})
+        #
+        return getReverseWithQueryUTC( 'searching:detail',
+                    kwargs={ 'pk': self.pk } )
 
 
 class FoundItem(models.Model):

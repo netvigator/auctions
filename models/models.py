@@ -1,5 +1,4 @@
 from django.db                  import models
-from django.core.urlresolvers   import reverse
 
 from crispy_forms.helper        import FormHelper
 from crispy_forms.layout        import Submit
@@ -10,9 +9,11 @@ User = get_user_model()
 from regex_field.fields         import RegexField
 
 from core.models                import IntegerRangeField
+from core.utils                 import getReverseWithQueryUTC
 
 from brands.models              import Brand
 from categories.models          import Category
+
 
 
 class Model(models.Model):
@@ -112,6 +113,7 @@ class Model(models.Model):
         db_table            = verbose_name_plural
 
     def get_absolute_url(self):
-        return reverse('models:detail',
-            kwargs={'pk': self.pk})
+        #
+        return getReverseWithQueryUTC( 'models:detail',
+                    kwargs = { 'pk': self.pk } )
 #
