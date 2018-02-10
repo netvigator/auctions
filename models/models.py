@@ -8,7 +8,10 @@ User = get_user_model()
 
 from regex_field.fields         import RegexField
 
-from core.models                import IntegerRangeField
+from core.models                import ( IntegerRangeField, sTitleHelpText,
+                                         sKeyWordsHelpText, sLookForHelpText,
+                                         sExcludeIfHelpText )
+
 from core.utils                 import getReverseWithQueryUTC
 
 from brands.models              import Brand
@@ -20,22 +23,15 @@ class Model(models.Model):
     cTitle          = models.CharField(
                         'model number or name', max_length = 48,
                                         db_index = True,
-        help_text = 'while searching auction titles, '
-                    'bot will ignore anything in parentheses ()' )
+        help_text = sTitleHelpText % 'model number or' )
     cKeyWords       = models.TextField( 'model key words (optional)',
                         null = True, blank = True,
-        help_text = 'Words that must be found in the title '
-                    '<b>IN ADDITION TO</b> model name/#.  '
-                    'Put alternate key words on separate lines -- '
-                    'Bot will know item is for this model if words '
-                    'on any one line match.' )
+        help_text = sKeyWordsHelpText % ( 'model number or', 'model' ) )
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Put common misspellings and alternate names here -- '
-                    'leave blank if bot only needs to look for the model name'
-                    '/number. Each line evaluated separately, Bot will know '
-                    'item is for this model if any one line matches.' )
+        help_text = sLookForHelpText % (
+                            'model numbers or', 'model number or', 'model' ) )
     iStars          = IntegerRangeField(
                         'desireability, 10 star model is most desireable',
                         min_value = 0, max_value = 10, default = 5,
@@ -73,9 +69,7 @@ class Model(models.Model):
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null = True, blank = True,
-        help_text = 'Bot will know item is <b>NOT</b> for this model if '
-                    'any one line matches (each line evaluated separately, '
-                    'put different exclude tests on different lines)' )
+        help_text = sExcludeIfHelpText % 'model' )
     
     oRegExLook4Title= RegexField( max_length=128, null = True )
     oRegExKeyWords  = RegexField( max_length=128, null = True )
