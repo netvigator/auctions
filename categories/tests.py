@@ -3,11 +3,13 @@ from django.test.client         import Client
 from django.core.urlresolvers   import reverse, resolve
 from django.contrib.auth        import get_user_model
 
-from core.tests                 import getDefaultMarket, BaseUserTestCase
+from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
+                                         getUrlQueryStringOff, queryGotUTC )
+
 from core.utils                 import getExceptionMessageFromResponse
 
 from .models                    import Category
-from core.tests                 import getDefaultMarket
+
 
 # Create your tests here.
 
@@ -18,12 +20,15 @@ class TestURLs(BaseUserTestCase):
         oCategory = Category(
             cTitle          = "My awesome category",
             iUser           = self.user1 )
+        #
         oCategory.save()
+        #
+        lParts = getUrlQueryStringOff( oCategory.get_absolute_url() )
+        #
+        self.assertEqual( lParts[0], '/categories/%s/' % oCategory.id )
+        #
+        self.assertTrue( queryGotUTC( lParts[1] ) )
             
-        self.assertEqual(
-            oCategory.get_absolute_url(),
-            '/categories/%s/' % oCategory.id
-        )
 
     def test_list_reverse(self):
         """searches:index should reverse to /categories/."""

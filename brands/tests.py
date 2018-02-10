@@ -5,11 +5,12 @@ from django.test.client         import Client
 from django.test.client         import RequestFactory
 from django.urls                import reverse
 
-from core.tests                 import getDefaultMarket, BaseUserTestCase
+from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
+                                         getUrlQueryStringOff, queryGotUTC )
+
 from core.utils                 import getExceptionMessageFromResponse
 
 from pprint import pprint
-
 
 # Create your tests here.
 
@@ -25,11 +26,13 @@ class TestURLs(BaseUserTestCase):
             iUser           = self.user1,
             id              = 1 )
         oBrand.save()
+        #
+        lParts = getUrlQueryStringOff( oBrand.get_absolute_url() )
+        #
+        self.assertEqual( lParts[0], '/brands/%s/' % oBrand.id )
+        #
+        self.assertTrue( queryGotUTC( lParts[1] ) )
             
-        self.assertEqual(
-            oBrand.get_absolute_url(),
-            '/brands/1/'
-        )
 
     def test_list_reverse(self):
         """searches:index should reverse to /brands/."""

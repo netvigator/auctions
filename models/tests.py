@@ -2,7 +2,9 @@ from django.core.urlresolvers   import reverse, resolve
 from django.test                import TestCase
 from django.test.client         import Client
 
-from core.tests                 import BaseUserTestCase
+from core.tests                 import ( BaseUserTestCase,
+                                         getUrlQueryStringOff, queryGotUTC )
+
 from core.utils                 import getExceptionMessageFromResponse
 
 from categories.models          import Category
@@ -28,12 +30,14 @@ class TestURLs(BaseUserTestCase):
             cTitle          = "My stellar model",
             iUser           = self.user1,
             iCategory       = self.oCategory )
+        #
         oModel.save()
-        
-        self.assertEqual(
-            oModel.get_absolute_url(),
-            '/models/%s/' % oModel.id
-        )
+        #
+        lParts = getUrlQueryStringOff( oModel.get_absolute_url() )
+        #
+        self.assertEqual( lParts[0], '/models/%s/' % oModel.id )
+        #
+        self.assertTrue( queryGotUTC( lParts[1] ) )
 
     def test_list_reverse(self):
         """searches:index should reverse to /models/."""

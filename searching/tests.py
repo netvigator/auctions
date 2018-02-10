@@ -8,7 +8,9 @@ from .views                     import (
         SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
 
 
-from core.tests                 import getDefaultMarket, BaseUserTestCase
+from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
+                                         getUrlQueryStringOff, queryGotUTC )
+
 from core.utils                 import getExceptionMessageFromResponse
 from markets.models             import Market
 from ebaycategories.models      import EbayCategory
@@ -128,12 +130,14 @@ class TestURLs(BaseUserTestCase):
             cPriority       = "A",
             iUser           = self.user1,
             id              = 1 )
+        #
         oSearch.save()
-            
-        self.assertEqual(
-            oSearch.get_absolute_url(),
-            '/searching/1/'
-        )
+        #
+        lParts = getUrlQueryStringOff( oSearch.get_absolute_url() )
+        #
+        self.assertEqual( lParts[0], '/searching/%s/' % oSearch.id )
+        #
+        self.assertTrue( queryGotUTC( lParts[1] ) )
 
     def test_list_reverse(self):
         """searches:index should reverse to /searching/."""
