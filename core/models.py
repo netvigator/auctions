@@ -1,5 +1,29 @@
 from django.db import models
 
+sTitleHelpText = (
+    'Put the %s name here -- '
+    'Bot will search for this in the auction titles.<br/>'
+    'Optionally, you can put additional description in parentheses ().  '
+    'While searching auction titles, bot will ignore anything in parentheses.' )
+
+sLookForHelpText = (
+    'Put nick names, common misspellings and alternate %s names here -- '
+    'leave blank if Bot only needs to look for the %s name.<br>'
+    'Each line is evaluated separately, '
+    'Bot will know item is in this %s if any one line matches.' )
+
+sKeyWordsHelpText = (
+    'Optionally, words that must be found in the title '
+    '<b>IN ADDITION TO</b> %s name.<br>'
+    'Put alternate key words on separate lines -- '
+    'Bot will know item is for this %s if words '
+    'on any one line match.' )
+
+sExcludeIfHelpText = (
+    'Bot will know item is <b>NOT</b> of this %s if '
+    'any one line matches (each line evaluated separately, '
+    'put different exclude tests on different lines)')
+
 class IntegerRangeField(models.PositiveSmallIntegerField):
     def __init__(self,
             verbose_name=None, name=None, min_value=None, max_value=None,

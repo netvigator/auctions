@@ -7,4 +7,4 @@ https://pyup.io/account/repos/github/netvigator/auctions/
 
 test WereAnyReleventColsChangedMixin !
 
-search template is for model table only, must fix!
+done search template is for model table only, must fix!
