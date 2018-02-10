@@ -59,3 +59,42 @@ def model_to_dict(instance):
         if isinstance(field, ForeignKey):
             dObj[field.name] = field.rel.to.objects.get(pk=dObj[field.name])
     return dObj
+
+
+def _getReverseWithQuery( *args, **kwargs ):
+    #
+    from django.core.urlresolvers   import reverse
+    from django.utils.http          import urlencode
+    #
+    query = kwargs.pop( 'query', {} )
+    #
+    url = reverse(*args, **kwargs)
+    #
+    if query:
+        #
+        url = '%s%s%s' % ( url, '?', urlencode( query ) )
+        #
+    #
+    return url
+
+
+def getReverseWithQueryUTC( *args, **kwargs ):
+    #
+    '''solution to browser lack-of-refresh problem!!
+    browser lack-of-refresh problem:
+    update a record, go back to detail view, and edits do not show up
+    because browser is displaying cached version of page
+    solution:
+    append a unique query string onto the end of the detail page URL
+    UTC date/time of the moment will always be unique.
+    voila! browser lack-of-refresh problem solved!
+    '''
+    #
+    from Time.Output import getNowIsoDateTimeFileNameSafe
+    #
+    dUTC = { 'utc': getNowIsoDateTimeFileNameSafe( bWantLocal = False ) }
+    #
+    kwargs[ 'query' ] = dUTC
+    #
+    return _getReverseWithQuery( *args, **kwargs )
+
