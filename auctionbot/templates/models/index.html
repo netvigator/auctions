@@ -7,7 +7,7 @@
 {% block content %}
   <h2>Models</h2>
 
-    {% include "../add_search.html" %}
+    {% include "./add_search.html" %}
     
     {% if object_list %}
         {# the pagination section #}
@@ -56,6 +56,6 @@
         <p>No models are available.</p>
     {% endif %} <!-- brand_list -->
 
-    {% include "../add_search.html" %}
+    {% include "./add_search.html" %}
     
 {% endblock content %}
