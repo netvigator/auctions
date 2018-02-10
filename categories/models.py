@@ -5,7 +5,10 @@ User = get_user_model()
 
 from regex_field.fields         import RegexField
 
-from core.models                import IntegerRangeField
+from core.models                import ( IntegerRangeField, sTitleHelpText,
+                                         sKeyWordsHelpText, sLookForHelpText,
+                                         sExcludeIfHelpText )
+
 from core.utils                 import getReverseWithQueryUTC
 
 from brands.models              import Brand
@@ -15,22 +18,14 @@ class Category(models.Model):
     cTitle          = models.CharField(
                         'category description',
                         max_length = 48, db_index = True,
-        help_text = 'while searching auction titles, '
-                    'note: bot will ignore anything in parentheses ()' )
+        help_text = sTitleHelpText % 'category' )
     cKeyWords       = models.TextField( 'category key words (optional)',
                         null = True, blank = True,
-        help_text = 'Words that must be found in the title '
-                    '<b>IN ADDITION TO</b> category name.  '
-                    'Put alternate key words on separate lines -- '
-                    'Bot will know item is for in this category if words '
-                    'on any one line match.' )
+        help_text = sKeyWordsHelpText % ( 'category', 'category' ) )
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Put common misspellings and alternate names here -- '
-                    'leave blank if bot only needs to look for the category '
-                    'name. Each line evaluated separately, Bot will know '
-                    'item is in this category if any one line matches.' )
+        help_text = sLookForHelpText % ( 'category', 'category', 'category' ) )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
@@ -49,9 +44,7 @@ class Category(models.Model):
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null = True, blank = True,
-        help_text = 'Bot will know item is <b>NOT</b> in this category if '
-                    'any one line matches (each line evaluated separately, '
-                    'put different exclude tests on different lines)' )
+        help_text = sExcludeIfHelpText % 'category' )
     iLegacyKey      = models.PositiveIntegerField( 'legacy key', null=True )
     iLegacyFamily   = models.PositiveIntegerField( 'legacy family',
                                                     null = True )
