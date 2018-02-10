@@ -18,9 +18,8 @@ from .models                        import Category
 
 tCategoryFields = (
     'cTitle',
-    'cKeyWords',
-    # 'bKeyWordRequired',
     'cLookFor',
+    'cKeyWords',
     'iStars',
     'bAllOfInterest',
     'bWantPair',
