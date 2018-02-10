@@ -22,7 +22,7 @@ class Search(models.Model):
         max_length = 350, null = True, blank = True,
         help_text = 'Bot will search for these words in the auction titles '
                     '-- (key words OR ebay category required!) '
-                    '(Both are OK)' )
+                    '(Including both is OK)' )
     # max length for a single key word is 98
     iEbayCategory   = models.ForeignKey( EbayCategory,
                                 verbose_name = 'ebay category (optional)',
