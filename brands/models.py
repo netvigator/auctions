@@ -9,7 +9,9 @@ User = get_user_model()
 
 from regex_field.fields         import RegexField
 
-from core.models                import IntegerRangeField
+from core.models                import ( IntegerRangeField, sTitleHelpText,
+                                         sLookForHelpText, sExcludeIfHelpText )
+
 from core.utils                 import getReverseWithQueryUTC
 
 
@@ -17,8 +19,7 @@ from core.utils                 import getReverseWithQueryUTC
 class Brand(models.Model):
     cTitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True,
-        help_text = 'while searching auction titles, '
-                    'bot will ignore anything in parentheses ()' )
+        help_text = sTitleHelpText % 'brand' )
     bWanted         = models.BooleanField(
                         'want anything from this brand?', default = True,
         help_text = 'Bot will only download full descriptions and pictures '
@@ -29,10 +30,7 @@ class Brand(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Put common misspellings and alternate names here -- '
-                    'leave blank if bot only needs to look for the brand '
-                    'name. Each line evaluated separately, Bot will know '
-                    'item is of this brand if any one line matches.' )
+        help_text = sLookForHelpText % ( 'brand', 'brand', 'brand' ) )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
@@ -42,9 +40,7 @@ class Brand(models.Model):
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = 'Bot will know item is <b>NOT</b> of this brand if '
-                    'any one line matches (each line evaluated separately, '
-                    'put different exclude tests on different lines)' )
+        help_text = sExcludeIfHelpText % 'brand' )
     
     oRegExLook4Title= RegexField( max_length=128, null = True )
     oRegExExclude   = RegexField( max_length=128, null = True )
