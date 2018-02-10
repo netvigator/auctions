@@ -23,12 +23,13 @@ class TestURLs(BaseUserTestCase):
         #
         oCategory.save()
         #
-        lParts = getUrlQueryStringOff( oCategory.get_absolute_url() )
+        tParts = getUrlQueryStringOff( oCategory.get_absolute_url() )
         #
-        self.assertEqual( lParts[0], '/categories/%s/' % oCategory.id )
+        self.assertEqual( tParts[0], '/categories/%s/' % oCategory.id )
         #
-        self.assertTrue( queryGotUTC( lParts[1] ) )
-            
+        self.assertTrue( queryGotUTC( tParts[1] ) )
+        #
+        self.assertFalse( queryGotUTC( tParts[0] ) )
 
     def test_list_reverse(self):
         """searches:index should reverse to /categories/."""

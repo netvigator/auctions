@@ -33,11 +33,13 @@ class TestURLs(BaseUserTestCase):
         #
         oModel.save()
         #
-        lParts = getUrlQueryStringOff( oModel.get_absolute_url() )
+        tParts = getUrlQueryStringOff( oModel.get_absolute_url() )
         #
-        self.assertEqual( lParts[0], '/models/%s/' % oModel.id )
+        self.assertEqual( tParts[0], '/models/%s/' % oModel.id )
         #
-        self.assertTrue( queryGotUTC( lParts[1] ) )
+        self.assertTrue( queryGotUTC( tParts[1] ) )
+        #
+        self.assertFalse( queryGotUTC( tParts[0] ) )
 
     def test_list_reverse(self):
         """searches:index should reverse to /models/."""

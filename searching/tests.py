@@ -133,11 +133,13 @@ class TestURLs(BaseUserTestCase):
         #
         oSearch.save()
         #
-        lParts = getUrlQueryStringOff( oSearch.get_absolute_url() )
+        tParts = getUrlQueryStringOff( oSearch.get_absolute_url() )
         #
-        self.assertEqual( lParts[0], '/searching/%s/' % oSearch.id )
+        self.assertEqual( tParts[0], '/searching/%s/' % oSearch.id )
         #
-        self.assertTrue( queryGotUTC( lParts[1] ) )
+        self.assertTrue( queryGotUTC( tParts[1] ) )
+        #
+        self.assertFalse( queryGotUTC( tParts[0] ) )
 
     def test_list_reverse(self):
         """searches:index should reverse to /searching/."""
