@@ -197,7 +197,7 @@ class SearchModelTest(BaseUserTestCase):
         valid = form.is_valid()
         self.assertTrue(valid)
         
-        form = AddOrUpdateForm(
+        form = AddOrUpdateForm( # no key words, no category
                 cTitle          = "My clever search",
                 cPriority       = "A",
                 which           = 'Create',
