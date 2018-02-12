@@ -1,7 +1,7 @@
 from django.contrib.auth        import get_user_model
+from django.core.exceptions     import ValidationError
 from django.core.urlresolvers   import reverse, resolve
 from django.test                import TestCase, RequestFactory
-
 import datetime
 
 # Create your tests here.
@@ -10,12 +10,14 @@ from categories.models          import Category
 from ebaycategories.models      import EbayCategory
 from markets.models             import Market
 
-from .utils                     import getDateTimeObj
-
-from .user_one                  import oUserOne
-from .templatetags.core_tags    import getNbsp
 
 from .ebay_wrapper              import oEbayConfig
+from .templatetags.core_tags    import getNbsp
+from .user_one                  import oUserOne
+from .utils                     import getDateTimeObj
+from .validators                import gotTextOutsideParens
+
+
 
 
 
@@ -37,6 +39,82 @@ def getDefaultMarket( caller ):
         caller.market = market
 
     # print( 'self.market.id:', Market.objects.filter( pk = 1 ) )
+
+
+def getUrlQueryStringOff( sURL ):
+    #
+    lParts = sURL.split('?')
+    #
+    lParts.append( '' )
+    #
+    return tuple( lParts )
+
+
+def queryGotUTC( s ):
+    #
+    from String.Get import getTextAfter
+    from Time.Test  import isISOdatetimeFileNameSafe
+    #
+    return isISOdatetimeFileNameSafe( getTextAfter( s, 'utc=' ) )
+
+
+def TestingHelperTests(TestCase):
+    #
+    ''' test the testing helpers above (here)  '''
+    #
+    sURL = 'www.google.com/search?q=django+test+validation+assertRaises'
+    #
+    tParts = getUrlQueryStringOff( sURL )
+    #
+    def test_URL_Parts(self):
+        #
+        self.assertEquals( tParts[0], 'www.google.com/search' )
+        self.assertEquals( tParts[1], 'q=django+test+validation+assertRaises' )
+    #
+    #
+    def test_Query_Dont_Got_UTC(self):
+        #
+        self.assertFalse( queryGotUTC, sURL )
+        #
+    sURL = 'www.google.com/search?utc=2008-04-17_14.28.28'
+    #
+    def test_Query_Got_UTC(self):
+        #
+        self.assertTrue( queryGotUTC, sURL )
+        #
+    #
+    sURL = 'www.google.com/search?utc=2008-04-17 14:28:28'
+    #
+    def test_Query_Got_Invalid_UTC(self):
+        #
+        self.assertTrue( queryGotUTC, sURL )
+        #
+
+
+
+
+def GotTextOutsideParensTests(TestCase):
+    #
+    ''' test the gotTextOutsideParens() validator '''
+    #
+    from .validators import gotTextOutsideParens
+    #
+    s1 = 'abcde (efghijk)'
+    s2 = 'abcde'
+    s1 = ' (efghijk) '
+    
+    def test_OK_titles( self ):
+        #
+        try:
+            gotTextOutsideParens( s1 )
+            gotTextOutsideParens( s2 )
+        except ExceptionType:
+            self.fail("gotTextOutsideParens() raised ExceptionType unexpectedly!")
+    #
+    def test_bad_title( self ):
+        #
+        with self.assertRaises( ValidationError):
+            gotTextOutsideParens( s3 )
 
 
 
@@ -112,7 +190,7 @@ class BaseUserTestCase(TestCase):
 
     
 class CoreUserTests(TestCase):
-    """User tests."""
+    """ User tests."""
 
     def setUp(self):
         getDefaultMarket( self )
@@ -123,7 +201,7 @@ class CoreUserTests(TestCase):
 
 
 class EbayWrapperTests(TestCase):
-    '''ebay wrapper tests'''
+    ''' ebay wrapper tests '''
     
     def test_get_ini_values(self):
         
@@ -147,23 +225,6 @@ class NbspTests(TestCase):
         self.assertEquals( getNbsp( "how now brown cow" ),
                            "how&nbsp;now&nbsp;brown&nbsp;cow" )
 
-
-
-def getUrlQueryStringOff( sURL ):
-    #
-    lParts = sURL.split('?')
-    #
-    lParts.append( '' )
-    #
-    return tuple( lParts )
-
-
-def queryGotUTC( s ):
-    #
-    from String.Get import getTextAfter
-    from Time.Test  import isISOdatetimeFileNameSafe
-    #
-    return isISOdatetimeFileNameSafe( getTextAfter( s, 'utc=' ) )
 
 '''
 oTest = {
