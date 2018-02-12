@@ -1,53 +1,42 @@
-#from django.views.generic          import DetailView
-#from django.views.generic.edit     import CreateView, UpdateView, DeleteView
-#from django.views.generic.list     import ListView
-from django.urls                    import reverse_lazy
-from django.http                    import HttpResponseRedirect
+from django.urls            import reverse_lazy
+from django.http            import HttpResponseRedirect
 
-from crispy_forms.layout            import Field
+from crispy_forms.layout    import Field
 
-from core.mixins                    import ( WereAnyReleventColsChangedMixin,
-                                             TitleSearchMixin )
-from core.utils                     import model_to_dict
-from core.views                     import (
+from core.mixins            import ( WereAnyReleventColsChangedMixin,
+                                     TitleSearchMixin )
+from core.utils             import model_to_dict
+from core.views             import (
                     CreateViewGotCrispy, DeleteViewGotModel,
                     DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
-from .models                        import Brand
+from .models                import Brand
+from .forms                 import BrandForm
 
-from categories.models              import Category, BrandCategory
-from models.models                  import Model
+from categories.models      import Category, BrandCategory
+from models.models          import Model
 
 # Create your views here but keep them thin.
 
 
+class BrandActionMixin( object ):
+    
+    model = Brand
+    
+    @property
+    def success_msg(self): return NotImplemented
 
-tModelFields = (
-    'cTitle',
-    'bWanted',
-    'bAllOfInterest',
-    'cLookFor',
-    'iStars',
-    'cComment',
-    'cNationality',
-    'cExcludeIf' )
+    def form_valid( self ):
+        messages.info( self.request, self.success_msg )
+        return super( BrandActionMixin, self ).form_valid( form )
 
-'''
-    'iUser',
-    'tCreate',
-    'tModify'
-'''
+        
+class BrandCreate( BrandActionMixin, CreateViewGotCrispy ):
 
-#lMoreModelFields = list( tModelFields )
-#lMoreModelFields.extend( [ 'iUser_id', 'tCreate', 'tModify' ] )
-#tMoreModelFields = tuple( lMoreModelFields )
-
-class BrandCreate( CreateViewGotCrispy ):
-
-    model   = Brand
-    fields  = tModelFields
-    template_name = 'brands/add.html'
-    success_url = reverse_lazy('brands:index')
+    model           = Brand
+    template_name   = 'brands/add.html'
+    success_url     = reverse_lazy('brands:index')
+    form_class      = BrandForm
 
     success_message = 'New Brand record successfully saved!!!!'
 
@@ -106,10 +95,11 @@ class BrandDetail( DetailViewGotModel ):
         return context
 
 
-class BrandUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy ):
-    model   = Brand
-    fields  = tModelFields
-    template_name = 'brands/edit.html'
+class BrandUpdate( BrandActionMixin, WereAnyReleventColsChangedMixin,
+                   UpdateViewGotCrispy ):
+    model           = Brand
+    template_name   = 'brands/edit.html'
+    form_class      = BrandForm
 
     success_message = 'Brand record update successfully saved!!!!'
     
