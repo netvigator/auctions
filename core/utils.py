@@ -1,10 +1,12 @@
 # misc utils can go here
-from django.db.models           import ForeignKey
+from django.db.models       import ForeignKey
 
+from String.Find            import getFinderFindAll
 
 #                "2017-12-15T05:22:47.000Z"
 EBAY_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
 
+oInParensFinder = getFinderFindAll( '\(.*\)' )
 
 def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' ):
     #
@@ -97,4 +99,5 @@ def getReverseWithQueryUTC( *args, **kwargs ):
     kwargs[ 'query' ] = dUTC
     #
     return _getReverseWithQuery( *args, **kwargs )
+
 
