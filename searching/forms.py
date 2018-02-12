@@ -76,8 +76,8 @@ class AddOrUpdateForm(ModelForm):
         #
         if doCheckTitle and (
             Search.objects.filter(
-                iUser       = self.request.user,
-                cTitle      = cTitle ).exists() ):
+                iUser           = self.request.user ).filter(
+                cTitle__iexact  = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" already exists' % cTitle,
                         code='title already exists' )
@@ -90,9 +90,11 @@ class AddOrUpdateForm(ModelForm):
                             self.instance.iEbayCategory != iEbayCategory )
         if doCheckSearch and (
             Search.objects.filter(
-                iUser           = self.request.user,
-                cKeyWords       = cKeyWords,
-                iEbayCategory   = iEbayCategory ).exists() ):
+                iUser               = self.request.user,
+                iEbayCategory       = iEbayCategory ).filter(
+                cKeyWords__iexact   = cKeyWords ).exists() ):
+            #
+            # really need to compare sets
             #
             raise ValidationError(
                 'You are already searching for "%s" in "%s"!' %
