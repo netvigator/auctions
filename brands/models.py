@@ -35,7 +35,7 @@ class Brand(models.Model):
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
     cComment        = models.TextField( 'comments', null = True, blank = True)
-    cNationality    = CountryField( "nationality", null = True,
+    cNationality    = CountryField( "nationality",  null = True, blank = True,
                         blank_label='(select country)' )
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
