@@ -1,9 +1,5 @@
-from django             import forms
-
-from .models            import Model
-
-from core.validators    import gotTextOutsideParens
-
+from core.forms import ModelFormValidatesTitle
+from .models    import Model
 
 tModelFields = (
     'cTitle',
@@ -27,13 +23,8 @@ tModelFields = (
     'cFileSpec5',
     )
 
-class ModelForm( forms.ModelForm ):
+class ModelForm( ModelFormValidatesTitle ):
     #
-    def __init__( self, *args, **kwargs ):
-        #
-        super( ModelForm, self ).__init__( *args, **kwargs )
-        self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
-        
     class Meta:
         model   = Model
         fields  = tModelFields
