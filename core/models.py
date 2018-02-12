@@ -1,4 +1,7 @@
-from django.db import models
+from django.db  import models
+
+from .validators import gotTextOutsideParens
+
 
 sTitleHelpText = (
     'Put the %s name here -- '
@@ -53,5 +56,8 @@ class UpperCaseCharField(models.CharField):
 
 # Create your models here.
 
+class gotSomethingOutsideTitleParensCharField( models.CharField ):
+    #
+    validators = [ gotTextOutsideParens, ]
 
 
