@@ -1,34 +1,19 @@
-from django.shortcuts import render
-#from django.views.generic           import DetailView
-#from django.views.generic.edit      import CreateView, UpdateView, DeleteView
-#from django.views.generic.list      import ListView
+from django.shortcuts   import render
 
-from django.http                    import HttpResponseRedirect
-from django.urls                    import reverse_lazy
+from django.http        import HttpResponseRedirect
+from django.urls        import reverse_lazy
 
-from core.mixins                    import WereAnyReleventColsChangedMixin
+from core.mixins        import WereAnyReleventColsChangedMixin
 
-from core.views                     import (
+from core.views         import (
                     CreateViewGotCrispy, DeleteViewGotModel,
                     DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
-from .models                        import Category
+from .forms             import CategoryForm
+from .models            import Category
 
 # Create your views here but keep them thin.
 
-tCategoryFields = (
-    'cTitle',
-    'cLookFor',
-    'cKeyWords',
-    'iStars',
-    'bAllOfInterest',
-    'bWantPair',
-    'bAccessory',
-    'bComponent',
-    'iFamily',
-    'cExcludeIf',
-    'bModelsShared',
-    )
 
 class IndexView( ListViewGotModel ):  
     template_name = 'categories/index.html'
@@ -45,10 +30,10 @@ class CategoryDetail( DetailViewGotModel ):
 
 class CategoryCreate( CreateViewGotCrispy ):
 
-    model   = Category
-    fields  = tCategoryFields
-    template_name = 'categories/add.html'
-    success_url = reverse_lazy('categories:index')
+    model           = Category
+    form_class      = CategoryForm
+    template_name   = 'categories/add.html'
+    success_url     = reverse_lazy('categories:index')
 
     success_message = 'New Category record successfully saved!!!!'
 
@@ -66,7 +51,7 @@ class CategoryCreate( CreateViewGotCrispy ):
 
 class CategoryUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
-    fields          = tCategoryFields
+    form_class      = CategoryForm
     model           = Category
     template_name   = 'categories/edit.html'
 
