@@ -1,8 +1,5 @@
-from django             import forms
-
-from .models            import Brand
-
-from core.validators    import gotTextOutsideParens
+from core.forms import ModelFormValidatesTitle
+from .models    import Brand
 
 
 tModelFields = (
@@ -16,13 +13,8 @@ tModelFields = (
     'cExcludeIf' )
 
 
-class BrandForm( forms.ModelForm ):
+class BrandForm( ModelFormValidatesTitle ):
     #
-    def __init__( self, *args, **kwargs ):
-        #
-        super( BrandForm, self ).__init__( *args, **kwargs )
-        self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
-        
     class Meta:
         model = Brand
         fields = tModelFields
