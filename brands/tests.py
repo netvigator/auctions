@@ -10,11 +10,10 @@ from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
 
 from core.utils                 import getExceptionMessageFromResponse
 
-from pprint import pprint
-
 # Create your tests here.
 
-from .models        import Brand
+from .forms                     import BrandForm
+from .models                    import Brand
 
 
 
@@ -155,37 +154,55 @@ class BrandViewsTests(BaseUserTestCase):
 
 
 
-'''
-from brands.views   import IndexView
-from core.user_one  import oUserOne
-
-class BrandListViewTests(TestCase):
-    """Brand list view tests."""
-
+class TestFormValidation(BaseUserTestCase):
+    
+    ''' Brand Form Tests '''
+    
     def setUp(self):
+        #
         getDefaultMarket( self )
+        #
+        oUser = get_user_model()
+        #
+        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
+        self.user1.set_password( 'mypassword')
+        self.user1.first_name   = 'John'
+        self.user1.last_name    = 'Citizen'
+        self.user1.save()
+        #
+        self.client = Client()
+        self.client.login(username ='username1', password='mypassword')
+        #
+
+    def test_Title_got_outside_parens(self):
+        #
+        form_data = dict(
+            cTitle      = '(Chevrolet)',
+            iStars      = 5,
+            iUser       = self.user1
+            )
         
-    def test_brands_in_the_context(self):
+        form = BrandForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        #
+        '''
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors above!' )
+        '''
+        #
+        form_data['cTitle'] = 'Chevrolet'
+        #
+        form = BrandForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        
+        '''
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors at bottom!' )
+        '''
 
-        client = Client()
-        response = client.get('/')
-
-        self.assertEquals(list(response.context['index']), [])
-
-        Brand.objects.create(cTitle='Chevrolet', iUser=oUserOne )
-        response = client.get('/')
-        self.assertEquals(response.context['index'].count(), 1)
-
-    def test_brands_in_the_context_request_factory(self):
-
-        factory = RequestFactory()
-        request = factory.get('/')
-
-        response = IndexView.as_view()(request)
-
-        self.assertEquals(list(response.context_data['index']), [])
-
-        Brand.objects.create(cTitle='Chevrolet', iUser=oUserOne )
-        response = IndexView.as_view()(request)
-        self.assertEquals(response.context_data['index'].count(), 1)
-'''
