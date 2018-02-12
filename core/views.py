@@ -36,6 +36,12 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
     Enhanced CreateView which includes crispy form Create and Cancel buttons.
     '''
 
+    '''
+    def __init__(self, *args, **kwargs):
+        self.which = 'Create'
+        super(UpdateViewGotCrispy, self).__init__(*args, **kwargs)
+    '''
+
     success_message = 'New record successfully saved!!!!'
 
     def get_form(self, form_class=None):
@@ -43,6 +49,7 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         form.helper = FormHelper()
         form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        form.which = 'Create'
         return form
 
 
@@ -71,14 +78,18 @@ class UpdateViewGotCrispy( LoginRequiredMixin,
     '''
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
- 
     success_message = 'Record successfully saved!!!!'
-    
+    '''
+    def __init__(self, *args, **kwargs):
+        self.which = 'Update'
+        super(UpdateViewGotCrispy, self).__init__(*args, **kwargs)
+    '''
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
         form.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        form.which = 'Update'
         return form
 
 
