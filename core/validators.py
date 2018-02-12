@@ -15,4 +15,6 @@ def gotTextOutsideParens( sTitle ):
     #
     sWhatsLeft = eatFromWithin( sTitle, oInParensFinder ).strip()
     #
-    if not sWhatsLeft: raise ValidationError
+    if not sWhatsLeft:
+        raise ValidationError(
+                'You need some text outside the parens () !!!' )
