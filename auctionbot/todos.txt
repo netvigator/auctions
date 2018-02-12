@@ -7,4 +7,6 @@ https://pyup.io/account/repos/github/netvigator/auctions/
 
 test WereAnyReleventColsChangedMixin !
 
+added model, hit save, when to model index instead of model detail, but cannot duplicate
+
 done search template is for model table only, must fix!
