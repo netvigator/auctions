@@ -4,13 +4,25 @@ from .models            import Brand
 
 from core.validators    import gotTextOutsideParens
 
+
+tModelFields = (
+    'cTitle',
+    'bWanted',
+    'bAllOfInterest',
+    'cLookFor',
+    'iStars',
+    'cComment',
+    'cNationality',
+    'cExcludeIf' )
+
+
 class BrandForm( forms.ModelForm ):
     #
     def __init__( self, *args, **kwargs ):
         #
         super( BrandForm, self ).__init__( *args, **kwargs )
-        self.fileds[ 'cTitle' ].validators.append( gotTextOutsideParens )
+        self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
         
     class Meta:
         model = Brand
-        fields = "__all__"
+        fields = tModelFields
