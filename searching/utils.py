@@ -1,14 +1,15 @@
-from json                   import load
+from json           import load
 
-from Dict.Get               import getAnyValue
-from Dict.Maintain          import getDictValuesFromSingleElementLists
-from String.Eat             import eatFromWithin
-from String.Find            import getFinderFindAll, getRegEx4Chars
+from core.utils     import oInParensFinder
+
+from Dict.Get       import getAnyValue
+from Dict.Maintain  import getDictValuesFromSingleElementLists
+from String.Eat     import eatFromWithin
+from String.Find    import getRegEx4Chars
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 
-oInParensFinder = getFinderFindAll( '\(.*\)' )
 
 
 def getSearchResultGenerator( sFile ):
