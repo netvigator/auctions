@@ -1,14 +1,16 @@
+from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.test                import TestCase
 from django.test.client         import Client
 
-from core.tests                 import ( BaseUserTestCase,
+from core.tests                 import ( BaseUserTestCase, getDefaultMarket,
                                          getUrlQueryStringOff, queryGotUTC )
 
 from core.utils                 import getExceptionMessageFromResponse
 
 from categories.models          import Category
 
+from .forms                     import ModelForm
 from .models                    import Model
 
 # Create your tests here.
@@ -160,4 +162,66 @@ class ModelViewsTests(BaseUserTestCase):
         self.assertContains(response, "Colgate")
 
 
+
+
+class TestFormValidation(BaseUserTestCase):
+    
+    ''' Model Form Tests '''
+    
+    def setUp(self):
+        #
+        getDefaultMarket( self )
+        #
+        oUser = get_user_model()
+        #
+        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
+        self.user1.set_password( 'mypassword')
+        self.user1.first_name   = 'John'
+        self.user1.last_name    = 'Citizen'
+        self.user1.save()
+        #
+        self.client = Client()
+        self.client.login(username ='username1', password='mypassword')
+        #
+        self.oCategory = Category(
+            cTitle = "Widgets",
+            iStars  = 5,
+            iUser = self.user1 )
+        self.oCategory.save()
+        self.CategoryID = self.oCategory.id
+        
+        # print( 'category ID:', self.CategoryID )
+
+    def test_Title_got_outside_parens(self):
+        #
+        form_data = dict(
+            cTitle      = '(LS3-5A)',
+            iStars      = 5,
+            iCategory   = self.CategoryID,
+            iUser       = self.user1
+            )
+        
+        form = ModelForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        #
+        '''
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors above!' )
+        '''
+        #
+        form_data['cTitle'] = 'LS3-5A'
+        #
+        form = ModelForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        
+        '''
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors at bottom!' )
+        '''
 
