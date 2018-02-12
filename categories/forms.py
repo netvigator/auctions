@@ -1,8 +1,5 @@
-from django             import forms
-
-from .models            import Category
-
-from core.validators    import gotTextOutsideParens
+from core.forms import ModelFormValidatesTitle
+from .models    import Category
 
 
 tModelFields = (
@@ -20,13 +17,8 @@ tModelFields = (
     )
 
 
-class CategoryForm( forms.ModelForm ):
+class CategoryForm( ModelFormValidatesTitle ):
     #
-    def __init__( self, *args, **kwargs ):
-        #
-        super( CategoryForm, self ).__init__( *args, **kwargs )
-        self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
-        
     class Meta:
         model   = Category
         fields  = tModelFields
