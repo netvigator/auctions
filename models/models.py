@@ -8,9 +8,11 @@ User = get_user_model()
 
 from regex_field.fields         import RegexField
 
-from core.models                import ( IntegerRangeField, sTitleHelpText,
-                                         sKeyWordsHelpText, sLookForHelpText,
-                                         sExcludeIfHelpText )
+from core.models                import (
+                            gotSomethingOutsideTitleParensCharField,
+                            IntegerRangeField, sTitleHelpText,
+                            sKeyWordsHelpText, sLookForHelpText,
+                            sExcludeIfHelpText )
 
 from core.utils                 import getReverseWithQueryUTC
 
@@ -19,10 +21,10 @@ from categories.models          import Category
 
 
 
-class Model(models.Model):
-    cTitle          = models.CharField(
-                        'model number or name', max_length = 48,
-                                        db_index = True,
+class Model( models.Model ):
+    cTitle          = gotSomethingOutsideTitleParensCharField(
+                        'model number or name',
+                        max_length = 48, db_index = True,
         help_text = sTitleHelpText % 'model number or' )
     cKeyWords       = models.TextField( 'model key words (optional)',
                         null = True, blank = True,
