@@ -9,6 +9,7 @@ from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
 from core.utils                 import getExceptionMessageFromResponse
 
 from .models                    import Category
+from .forms                     import CategoryForm
 
 
 # Create your tests here.
@@ -176,4 +177,56 @@ class CategoryViewsTests(TestCase):
         self.assertContains(response, "Gadgets")
 
 
+
+class TestFormValidation(BaseUserTestCase):
+    
+    ''' Category Form Tests '''
+    
+    def setUp(self):
+        #
+        getDefaultMarket( self )
+        #
+        oUser = get_user_model()
+        #
+        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
+        self.user1.set_password( 'mypassword')
+        self.user1.first_name   = 'John'
+        self.user1.last_name    = 'Citizen'
+        self.user1.save()
+        #
+        self.client = Client()
+        self.client.login(username ='username1', password='mypassword')
+        #
+
+    def test_Title_got_outside_parens(self):
+        #
+        form_data = dict(
+            cTitle      = '(Widgets)',
+            iStars      = 5,
+            iUser       = self.user1
+            )
+        
+        form = CategoryForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        #
+        '''
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors above!' )
+        '''
+        #
+        form_data['cTitle'] = 'Widgets'
+        #
+        form = CategoryForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        
+        '''
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors at bottom!' )
+        '''
 
