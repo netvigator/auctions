@@ -1,5 +1,6 @@
-from django.urls            import reverse_lazy
+from django.contrib         import messages
 from django.http            import HttpResponseRedirect
+from django.urls            import reverse_lazy
 
 from crispy_forms.layout    import Field
 
@@ -19,19 +20,8 @@ from models.models          import Model
 # Create your views here but keep them thin.
 
 
-class BrandActionMixin( object ):
-    
-    model = Brand
-    
-    @property
-    def success_msg(self): return NotImplemented
 
-    def form_valid( self ):
-        messages.info( self.request, self.success_msg )
-        return super( BrandActionMixin, self ).form_valid( form )
-
-        
-class BrandCreate( BrandActionMixin, CreateViewGotCrispy ):
+class BrandCreate( CreateViewGotCrispy ):
 
     model           = Brand
     template_name   = 'brands/add.html'
@@ -95,7 +85,7 @@ class BrandDetail( DetailViewGotModel ):
         return context
 
 
-class BrandUpdate( BrandActionMixin, WereAnyReleventColsChangedMixin,
+class BrandUpdate( WereAnyReleventColsChangedMixin,
                    UpdateViewGotCrispy ):
     model           = Brand
     template_name   = 'brands/edit.html'
