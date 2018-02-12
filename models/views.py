@@ -1,41 +1,20 @@
-from django.shortcuts import render
+from django.http        import HttpResponseRedirect
+from django.shortcuts   import render
+from django.urls        import reverse_lazy
 
-from django.http                    import HttpResponseRedirect
-from django.urls                    import reverse_lazy
-
-from core.mixins                    import ( WereAnyReleventColsChangedMixin,
+from core.mixins        import ( WereAnyReleventColsChangedMixin,
                                              TitleSearchMixin )
 
-from core.views                     import (
+from core.views         import (
                     CreateViewGotCrispy, DeleteViewGotModel,
                     DetailViewGotModel, ListViewGotModel, UpdateViewGotCrispy )
 
-from .models                        import Model
+from .forms             import ModelForm
+from .models            import Model
 
 
 # Create your views here but keep them thin.
 
-tModelFields = (
-    'cTitle',
-    'cLookFor',
-    'iBrand',
-    'bGenericModel',
-    'iCategory',
-    'cKeyWords',
-    'iStars',
-    'bSubModelsOK',
-    'bMustHaveBrand',
-    'bWanted',
-    'bGetPictures',
-    'bGetDescription',
-    'cComment',
-    'cExcludeIf',
-    'cFileSpec1',
-    'cFileSpec2',
-    'cFileSpec3',
-    'cFileSpec4',
-    'cFileSpec5',
-    )
 
 class IndexView( TitleSearchMixin, ListViewGotModel ):
     template_name = 'models/index.html'
@@ -52,10 +31,10 @@ class ModelDetail( DetailViewGotModel ):
 
 class ModelCreate( CreateViewGotCrispy ):
 
-    model   = Model
-    fields  = tModelFields
-    template_name = 'models/add.html'
-    success_url = reverse_lazy('models:index')
+    model           = Model
+    form_class      = ModelForm
+    template_name   = 'models/add.html'
+    success_url     = reverse_lazy('models:index')
 
     success_message = 'New Model record successfully saved!!!!'
 
@@ -73,9 +52,9 @@ class ModelCreate( CreateViewGotCrispy ):
 
 class ModelUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
-    fields = tModelFields
-    model = Model
-    template_name = 'models/edit.html'
+    form_class      = ModelForm
+    model           = Model
+    template_name   = 'models/edit.html'
 
     success_message = 'Model record update successfully saved!!!!'
 
