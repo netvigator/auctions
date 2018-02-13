@@ -189,7 +189,8 @@ class TestFormValidation(BaseUserTestCase):
         #
         oUser = get_user_model()
         #
-        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
+        self.user1 = oUser.objects.create_user(
+                                    'username1', 'email@ymail.com' )
         self.user1.set_password( 'mypassword')
         self.user1.first_name   = 'John'
         self.user1.last_name    = 'Citizen'
