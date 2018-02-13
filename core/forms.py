@@ -6,25 +6,25 @@ from core.validators        import gotTextOutsideParens
 
 class ModelFormValidatesTitle( ModelForm ):
     #
+    which = 'Create' # can be over written in view get_form
+    #
     def __init__( self, *args, **kwargs ):
         #
         super( ModelFormValidatesTitle, self ).__init__( *args, **kwargs )
         #
         self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
-    '''
-    problem in clean():
-    AttributeError: 'BrandForm' object has no attribute 'which'
-    
+        #
+
     def gotTitleAready( self, cTitle ):
         #
-        if ( model.objects.filter(
+        if ( self.Meta.model.objects.filter(
                 iUser           = self.request.user ).filter(
                 cTitle__iexact  = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" already exists' % cTitle,
                         code = 'title already exists' )
         #
-        if ( Search.objects.filter(
+        if ( self.Meta.model.objects.filter(
                 iUser               = self.request.user ).filter(
                 cLookFor__icontains = cTitle ).exists() ):
             #
@@ -43,9 +43,8 @@ class ModelFormValidatesTitle( ModelForm ):
         #
         doCheckTitle = bCreating or self.instance.cTitle != cTitle
         #
-        if doCheckTitle:
+        if cTitle and doCheckTitle: # cTitle can be None if field invalid
             #
             self.gotTitleAready( cTitle )
             #
         #
-       ''' 
