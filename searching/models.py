@@ -65,12 +65,13 @@ class Search(models.Model):
         return getReverseWithQueryUTC( 'searching:detail',
                     kwargs={ 'pk': self.pk } )
 
-
+'''
+mistake! this is info obtained by looing up the listing, not from the finding API!
 class FoundItem(models.Model):
     iItemNumb       = models.BigIntegerField(
-                        'ebay item number', primary_key = True )
+                        'ebay item number', primary_key = True )                # itemId
     cTitle          = models.CharField(
-                        'auction headline', max_length = 48, db_index = True )
+                        'auction headline', max_length = 48, db_index = True )  # title
     mLastBid        = MoneyField( 'winning bid',
                         max_digits = 10, decimal_places = 2,
                         default_currency='USD', null = True )
@@ -87,7 +88,7 @@ class FoundItem(models.Model):
                         db_index = False, null = True )
     binvaliditem    = models.BooleanField( 'invalid item?', default = False )
     iBidCount       = models.PositiveSmallIntegerField( 'number of bids' )
-    tAuctionEnd     = models.DateTimeField( 'auction ending date/time' )
+    tAuctionEnd     = models.DateTimeField( 'auction ending date/time' )        # startTime
     tAuctionBeg     = models.DateTimeField( 'auction beginning date/time' )
     iQuantity       = models.PositiveSmallIntegerField( 'quantity' )
     tcannotfind     = models.DateTimeField( 'cannot retrieve outcome date/time' )
@@ -97,7 +98,7 @@ class FoundItem(models.Model):
     bReserveMet     = models.NullBooleanField( 'reserve met?', null = True )
     bBuyItNow       = models.BooleanField( 'buy it now?', default = False )
     bRelisted       = models.BooleanField( 'relisted?', default = False )
-    cLocation       = models.CharField( 'location', max_length = 48 )
+    cLocation       = models.CharField( 'location', max_length = 48 )           # location
     cregion         = models.CharField( 'region', max_length = 48 )
     cSeller         = models.CharField( 'seller', max_length = 48 )
     iSellerFeedback = models.PositiveIntegerField( 'seller feedback' )
@@ -126,7 +127,6 @@ class FoundItem(models.Model):
         verbose_name_plural = 'founditems'
         db_table            = verbose_name_plural
 #
-'''
 
 ebay currencies
 https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
