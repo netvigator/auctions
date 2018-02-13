@@ -2,7 +2,7 @@ from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.test                import TestCase
 from django.test.client         import Client
-from django.test.client         import RequestFactory
+from django.http.request        import HttpRequest
 from django.urls                import reverse
 
 from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
@@ -111,7 +111,7 @@ class BrandViewsTests(BaseUserTestCase):
         oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
         oBrand.save()
         
-        sBrand = "Lever Brothers"
+        sBrand = "Cadillac"
         oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
         oBrand.save()
         sLeverID = str( oBrand.id )
@@ -124,13 +124,13 @@ class BrandViewsTests(BaseUserTestCase):
         
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['brand_list'],
-                ['<Brand: Lever Brothers>', '<Brand: Proctor & Gamble>'] )
-        self.assertContains(response, "Lever Brothers")
+                ['<Brand: Cadillac>', '<Brand: Proctor & Gamble>'] )
+        self.assertContains(response, "Cadillac")
         #
         response = self.client.get(
                 reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Lever Brothers")
+        self.assertContains(response, "Cadillac")
         
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
@@ -149,7 +149,7 @@ class BrandViewsTests(BaseUserTestCase):
         response = self.client.get(
                 reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Lever Brothers")
+        self.assertContains(response, "Cadillac")
 
 
 
@@ -170,9 +170,15 @@ class TestFormValidation(BaseUserTestCase):
         self.user1.last_name    = 'Citizen'
         self.user1.save()
         #
-        self.client = Client()
-        self.client.login(username ='username1', password='mypassword')
+        #self.client = Client()
+        #self.client.login(username ='username1', password='mypassword')
         #
+        self.request = HttpRequest()
+        self.request.user = self.user1
+        #
+        oBrand = Brand(
+            cTitle = "Cadillac", cLookFor = "Caddy", iUser = self.user1 )
+        oBrand.save()
 
     def test_Title_got_outside_parens(self):
         #
@@ -181,8 +187,9 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1
             )
-        
+        #
         form = BrandForm(data=form_data)
+        form.request = self.request
         self.assertFalse(form.is_valid())
         #
         '''
@@ -196,8 +203,27 @@ class TestFormValidation(BaseUserTestCase):
         form_data['cTitle'] = 'Chevrolet'
         #
         form = BrandForm(data=form_data)
+        form.request = self.request
         self.assertTrue(form.is_valid())
-        
+
+    def test_Title_not_there_already(self):
+        #
+        form_data = dict(
+            cTitle      = 'Cadillac',
+            iStars      = 5,
+            iUser       = self.user1
+            )
+        #
+        form = BrandForm(data=form_data)
+        form.request = self.request
+        self.assertFalse(form.is_valid())
+        #
+        form_data['cTitle'] = 'Caddy'
+        #
+        form = BrandForm(data=form_data)
+        form.request = self.request
+        self.assertFalse(form.is_valid())
+        #
         '''
         if form.errors:
             for k, v in form.errors.items():
