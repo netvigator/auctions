@@ -1,7 +1,8 @@
 from django.test                import TestCase
 from django.test.client         import Client
-from django.core.urlresolvers   import reverse, resolve
 from django.contrib.auth        import get_user_model
+from django.core.urlresolvers   import reverse, resolve
+from django.http.request        import HttpRequest
 
 from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
                                          getUrlQueryStringOff, queryGotUTC )
@@ -197,6 +198,12 @@ class TestFormValidation(BaseUserTestCase):
         self.client = Client()
         self.client.login(username ='username1', password='mypassword')
         #
+        self.request = HttpRequest()
+        self.request.user = self.user1
+        #
+        oCategory = Category(
+            cTitle = "Gadgets", cLookFor = "thingamajig", iUser = self.user1 )
+        oCategory.save()
 
     def test_Title_got_outside_parens(self):
         #
@@ -205,8 +212,9 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1
             )
-        
+        #
         form = CategoryForm(data=form_data)
+        form.request = self.request
         self.assertFalse(form.is_valid())
         #
         '''
@@ -220,8 +228,27 @@ class TestFormValidation(BaseUserTestCase):
         form_data['cTitle'] = 'Widgets'
         #
         form = CategoryForm(data=form_data)
+        form.request = self.request
         self.assertTrue(form.is_valid())
-        
+
+    def test_Title_not_there_already(self):
+        #
+        form_data = dict(
+            cTitle      = 'Gadgets',
+            iStars      = 5,
+            iUser       = self.user1
+            )
+        #
+        form = CategoryForm(data=form_data)
+        form.request = self.request
+        self.assertFalse(form.is_valid())
+        #
+        form_data['cTitle'] = 'ThingaMaJig'
+        #
+        form = CategoryForm(data=form_data)
+        form.request = self.request
+        self.assertFalse(form.is_valid())
+        #
         '''
         if form.errors:
             for k, v in form.errors.items():
