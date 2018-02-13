@@ -1,5 +1,5 @@
-
 from django.core.exceptions import PermissionDenied
+from django.db.models       import Q
 
 from Collect.Query          import get1stThatMeets
 
@@ -74,7 +74,8 @@ class TitleSearchMixin(object):
         #
         if q:
             # return a filtered queryset
-            return queryset.filter( cTitle__icontains = q )
+            return queryset.filter(
+                Q( cTitle__icontains = q ) | Q( cLookFor__icontains = q ) )
             #
         else: # no Q
             #
