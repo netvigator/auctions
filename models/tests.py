@@ -1,5 +1,6 @@
 from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
+from django.http.request        import HttpRequest
 from django.test                import TestCase
 from django.test.client         import Client
 
@@ -180,8 +181,11 @@ class TestFormValidation(BaseUserTestCase):
         self.user1.last_name    = 'Citizen'
         self.user1.save()
         #
-        self.client = Client()
-        self.client.login(username ='username1', password='mypassword')
+        self.request = HttpRequest()
+        self.request.user = self.user1
+        #
+        #self.client = Client()
+        #self.client.login(username ='username1', password='mypassword')
         #
         self.oCategory = Category(
             cTitle = "Widgets",
@@ -189,6 +193,13 @@ class TestFormValidation(BaseUserTestCase):
             iUser = self.user1 )
         self.oCategory.save()
         self.CategoryID = self.oCategory.id
+        #
+        oModel = Model(
+            cTitle      = "Fleetwood",
+            cLookFor    = "Woodie",
+            iCategory   = self.oCategory,
+            iUser       = self.user1 )
+        oModel.save()
         
         # print( 'category ID:', self.CategoryID )
 
@@ -200,8 +211,9 @@ class TestFormValidation(BaseUserTestCase):
             iCategory   = self.CategoryID,
             iUser       = self.user1
             )
-        
+        #
         form = ModelForm(data=form_data)
+        form.request = self.request
         self.assertFalse(form.is_valid())
         #
         '''
@@ -215,6 +227,7 @@ class TestFormValidation(BaseUserTestCase):
         form_data['cTitle'] = 'LS3-5A'
         #
         form = ModelForm(data=form_data)
+        form.request = self.request
         self.assertTrue(form.is_valid())
         
         '''
@@ -224,4 +237,23 @@ class TestFormValidation(BaseUserTestCase):
         else:
             print( 'no form errors at bottom!' )
         '''
+
+    def test_Title_not_there_already(self):
+        #
+        form_data = dict(
+            cTitle      = 'Fleetwood',
+            iStars      = 5,
+            iCategory   = self.CategoryID,
+            iUser       = self.user1
+            )
+        #
+        form = ModelForm(data=form_data)
+        form.request = self.request
+        self.assertFalse(form.is_valid())
+        #
+        form_data['cTitle'] = 'Woodie'
+        #
+        form = ModelForm(data=form_data)
+        form.request = self.request
+        self.assertFalse(form.is_valid())
 
