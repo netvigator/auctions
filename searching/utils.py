@@ -2,6 +2,8 @@ from json           import load
 
 from core.utils     import oInParensFinder
 
+from .models        import ItemFound
+
 from Dict.Get       import getAnyValue
 from Dict.Maintain  import getDictValuesFromSingleElementLists
 from String.Eat     import eatFromWithin
@@ -216,3 +218,29 @@ def getRegExpFinder(
 sGot = eatFromWithin( 'This is for real (but not yet)', oInParensFinder )
 #
 '''
+
+def getItemFoundForWriting( iWantOlderThan = 120 ):
+    #
+    from datetime       import timedelta
+    #
+    from django.utils   import timezone
+    #
+    dDropDead = timezone.now() - timedelta( days = iWantOlderThan )
+    #
+    bGotOldRecords = ( ItemFound.objects
+                        .filter( tCreate__lte = dDropDead )
+                        .exists() )
+    #
+    if bGotOldRecords:
+        #
+        oNewItem = ( ItemFound.objects
+                        .filter( tCreate__lte = dDropDead )
+                        .order_by( 'tCreate', 'pk' )
+                        .first() )
+        #
+    else:
+        #
+        oNewItem = ItemFound()
+        #
+    #
+    return oNewItem
