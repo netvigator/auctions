@@ -2,29 +2,27 @@ from django.core.urlresolvers   import reverse, resolve
 from django.test.client         import Client
 from django.test                import TestCase
 
-from .forms                     import AddOrUpdateForm
-from .models                    import Search
-from .views                     import (
-        SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
-
-
-from core.tests                 import ( getDefaultMarket, BaseUserTestCase,
+from core.tests                 import ( BaseUserTestCase, getDefaultMarket,
                                          getUrlQueryStringOff, queryGotUTC )
 
 from core.utils                 import getExceptionMessageFromResponse
 from markets.models             import Market
 from ebaycategories.models      import EbayCategory
 
+from .forms                     import AddOrUpdateForm
+from .models                    import Search, ItemFound
 from .test_big_text import sExampleResponse
 from .utils         import getSearchResultGenerator
+from .views                     import (
+        SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
+
 
 from File.Del   import DeleteIfExists
 from File.Write import WriteText2File
 
-from pprint import pprint
+# from pprint import pprint
 
 # Create your tests here.
-
 
 
 class SearchViewsTests(BaseUserTestCase):
@@ -35,7 +33,7 @@ class SearchViewsTests(BaseUserTestCase):
         If no search exists, an appropriate message is displayed.
         """
         self.client = Client()
-        
+        #
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('searching:index'))
@@ -55,7 +53,7 @@ class SearchViewsTests(BaseUserTestCase):
         If no search exist, an appropriate message is displayed.
         """
         self.client = Client()
-        
+        #
         self.client.login(username='username1', password='mypassword')
         #
         sSearch = "Great Widgets"
@@ -284,6 +282,58 @@ class getImportSearchResultsTest(TestCase):
         #
         DeleteIfExists( sExampleFile )
 
+
+
+
+class ItemsFoundRecyclingTest(BaseUserTestCase):
+
+    def test_fetch_oldest_of_the_old(self):
+        #
+        from datetime       import timedelta
+        from django.utils   import timezone
+        #
+        from .utils         import getItemFoundForWriting
+        """
+        Want to recycle old records, make sure this is working!
+        """
+        #
+        iWantOlderThan = 120
+        #
+        #
+        sItemTitle1 = "Great Widget"
+        iItemID     = 2823
+        oSearch = ItemFound( cTitle = sItemTitle1,
+                             iItemNumb = iItemID, iUser = self.user1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        sItemTitle2 = "Phenominal Gadget"
+        iItemID     = 2418
+        oSearch = ItemFound( cTitle = sItemTitle2,
+                             iItemNumb = iItemID, iUser = self.user1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        sItemTitle3 = "Awesome Thing a Ma Jig"
+        iItemID     = 2607
+        oSearch = ItemFound( cTitle = sItemTitle3,
+                             iItemNumb = iItemID, iUser = self.user1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        oWriteable = getItemFoundForWriting()
+        #
+        self.assertEqual( oWriteable.cTitle, sItemTitle3 )
+        #
+        oWriteable = getItemFoundForWriting( iWantOlderThan = 140 )
+        #
+        self.assertEqual( oWriteable.cTitle, '' )
 
 
 
