@@ -1,21 +1,21 @@
-from django.urls                    import reverse_lazy
-from django.http                    import HttpResponseRedirect
-from django.shortcuts               import render
+from django.contrib.auth    import get_user_model
+from django.urls            import reverse_lazy
+from django.http            import HttpResponseRedirect
+from django.shortcuts       import render
 
-from .forms                         import AddOrUpdateForm
-from .mixins                        import EbayCategoryFormValidMixin
-from .models                        import Search
+from .forms                 import SearchAddOrUpdateForm
+from .mixins                import EbayCategoryFormValidMixin
+from .models                import Search
 
-from core.utils                     import model_to_dict
-from core.views                     import (
+from core.utils             import model_to_dict
+from core.views             import (
                     CreateViewGotCrispy, DeleteViewGotModel,
                     DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
 
 # Create your views here.
 
-from .models                        import Search
+from .models                import Search
 
-from django.contrib.auth        import get_user_model
 User = get_user_model()
 
 tModelFields = (
@@ -27,7 +27,7 @@ tModelFields = (
 
 class SearchCreate( EbayCategoryFormValidMixin, CreateViewGotCrispy ):
 
-    form_class      = AddOrUpdateForm
+    form_class      = SearchAddOrUpdateForm
     model           = Search
     template_name   = 'searching/add.html'
     success_url = reverse_lazy('searching:index')
@@ -82,7 +82,7 @@ class SearchDelete( DeleteViewGotModel ):
 
 class SearchUpdate(  EbayCategoryFormValidMixin, UpdateViewGotCrispy ):
     model           = Search
-    form_class      = AddOrUpdateForm
+    form_class      = SearchAddOrUpdateForm
     template_name   = 'searching/edit.html'
 
     success_message = 'Search record update successfully saved!!!!'
