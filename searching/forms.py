@@ -14,7 +14,7 @@ tModelFields = (
     'iDummyCategory',
     'cPriority', )
 
-class AddOrUpdateForm(ModelForm):
+class SearchAddOrUpdateForm(ModelForm):
     '''
     using a form to get extra validation
     '''
@@ -22,11 +22,11 @@ class AddOrUpdateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
-        super(AddOrUpdateForm, self).__init__(*args, **kwargs)
+        super(SearchAddOrUpdateForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         #
-        cleaned = super( AddOrUpdateForm, self).clean()
+        cleaned = super( SearchAddOrUpdateForm, self).clean()
         #
         cKeyWords       = cleaned.get( 'cKeyWords',     '' )
         
