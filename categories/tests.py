@@ -177,6 +177,13 @@ class CategoryViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Gadgets")
 
+        """
+        Not logged in, cannot see form, direct to login page.
+        """
+        self.client.logout()
+        response = self.client.get(reverse('categories:index'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/categories/')
 
 
 class TestFormValidation(BaseUserTestCase):
@@ -185,16 +192,11 @@ class TestFormValidation(BaseUserTestCase):
     
     def setUp(self):
         #
+        super( TestFormValidation, self ).setUp()
+        #
         getDefaultMarket( self )
         #
         oUser = get_user_model()
-        #
-        self.user1 = oUser.objects.create_user(
-                                    'username1', 'email@ymail.com' )
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
         #
         self.client = Client()
         self.client.login(username ='username1', password='mypassword')
@@ -231,6 +233,14 @@ class TestFormValidation(BaseUserTestCase):
         form = CategoryForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
+
+        ''' test save '''
+        form.instance.iUser = self.user1
+        form.save()
+        oCategory = Category.objects.get( cTitle = 'Widgets' )
+        self.assertEqual(
+            reverse('categories:detail', kwargs={ 'pk': oCategory.id } ),
+            '/categories/%s/' % oCategory.id )
 
     def test_Title_not_there_already(self):
         #
