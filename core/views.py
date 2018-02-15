@@ -52,6 +52,10 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         form.which = 'Create'
         return form
 
+    def form_valid(self, form):
+        form.instance.iUser = self.request.user
+        return super().form_valid(form)
+
 
 
 class DeleteViewGotModel( LoginRequiredMixin,
