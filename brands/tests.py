@@ -15,6 +15,7 @@ from core.utils                 import getExceptionMessageFromResponse
 from .forms                     import BrandForm
 from .models                    import Brand
 
+from pprint                     import pprint
 
 
 class TestURLs(BaseUserTestCase):
@@ -87,10 +88,6 @@ class BrandViewsTests(BaseUserTestCase):
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('brands:index'))
-        #response = self.client.get('/brands/')
-        
-        #pprint( 'printing response:')
-        #pprint( response )
         
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['brand_list'], [])
@@ -151,7 +148,16 @@ class BrandViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Cadillac")
 
-
+        """
+        Not logged in, cannot see form, direct to login page.
+        """
+        self.client.logout()
+        response = self.client.get(reverse('brands:index'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/brands/')
+        #pprint( 'printing response:')
+        #pprint( response )
+        
 
 
 class TestFormValidation(BaseUserTestCase):
@@ -160,18 +166,14 @@ class TestFormValidation(BaseUserTestCase):
     
     def setUp(self):
         #
+        super( TestFormValidation, self ).setUp()
+        #
         getDefaultMarket( self )
         #
         oUser = get_user_model()
         #
-        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
-        #
-        #self.client = Client()
-        #self.client.login(username ='username1', password='mypassword')
+        self.client = Client()
+        self.client.login(username ='username1', password='mypassword')
         #
         self.request = HttpRequest()
         self.request.user = self.user1
@@ -185,7 +187,7 @@ class TestFormValidation(BaseUserTestCase):
         form_data = dict(
             cTitle      = '(Chevrolet)',
             iStars      = 5,
-            iUser       = self.user1
+            iUser       = self.user1.id
             )
         #
         form = BrandForm(data=form_data)
@@ -205,13 +207,22 @@ class TestFormValidation(BaseUserTestCase):
         form = BrandForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
+        
+        ''' test save '''
+        form.instance.iUser = self.user1
+        form.save()
+        oBrand = Brand.objects.get( cTitle = 'Chevrolet' )
+        self.assertEqual(
+            reverse('brands:detail', kwargs={ 'pk': oBrand.id } ),
+            '/brands/%s/' % oBrand.id )
+        
 
     def test_Title_not_there_already(self):
         #
         form_data = dict(
             cTitle      = 'Cadillac',
             iStars      = 5,
-            iUser       = self.user1
+            iUser       = self.user1.id
             )
         #
         form = BrandForm(data=form_data)
