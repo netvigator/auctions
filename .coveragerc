@@ -1,5 +1,5 @@
 [run]
-include = auctionbot/*
-omit = *migrations*, *tests*
+include = *
+omit = *migrations*, *tests*, *site-packages*, admin.py, *python3*, *pyPacks*, *Common*
 plugins =
     django_coverage_plugin
