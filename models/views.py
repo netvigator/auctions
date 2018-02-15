@@ -38,10 +38,6 @@ class ModelCreate( CreateViewGotCrispy ):
 
     success_message = 'New Model record successfully saved!!!!'
 
-    def form_valid(self, form):
-        form.instance.iUser = self.request.user
-        return super().form_valid(form)
-
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
             url = reverse_lazy('models:index' )
