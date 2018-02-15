@@ -162,6 +162,13 @@ class ModelViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Colgate")
 
+        """
+        Not logged in, cannot see form, direct to login page.
+        """
+        self.client.logout()
+        response = self.client.get(reverse('models:index'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/models/')
 
 
 
@@ -171,21 +178,17 @@ class TestFormValidation(BaseUserTestCase):
     
     def setUp(self):
         #
+        super( TestFormValidation, self ).setUp()
+        #
         getDefaultMarket( self )
         #
         oUser = get_user_model()
         #
-        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
+        self.client = Client()
+        self.client.login(username ='username1', password='mypassword')
         #
         self.request = HttpRequest()
         self.request.user = self.user1
-        #
-        #self.client = Client()
-        #self.client.login(username ='username1', password='mypassword')
         #
         self.oCategory = Category(
             cTitle = "Widgets",
@@ -229,7 +232,15 @@ class TestFormValidation(BaseUserTestCase):
         form = ModelForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
-        
+
+        ''' test save '''
+        form.instance.iUser = self.user1
+        form.save()
+        oModel = Model.objects.get( cTitle = 'LS3-5A' )
+        self.assertEqual(
+            reverse('models:detail', kwargs={ 'pk': oModel.id } ),
+            '/models/%s/' % oModel.id )
+
         '''
         if form.errors:
             for k, v in form.errors.items():
