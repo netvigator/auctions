@@ -30,10 +30,6 @@ class BrandCreate( CreateViewGotCrispy ):
 
     success_message = 'New Brand record successfully saved!!!!'
 
-    def form_valid(self, form):
-        form.instance.iUser = self.request.user
-        return super().form_valid(form)
-
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
             url = reverse_lazy('brands:index' )
