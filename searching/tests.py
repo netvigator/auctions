@@ -102,6 +102,14 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Phenominal Gadgets")
 
+        """
+        Not logged in, cannot see form, direct to login page.
+        """
+        self.client.logout()
+        response = self.client.get(reverse('searching:index'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/searching/')
+
 '''
 
     def test_get_success_url(self):
