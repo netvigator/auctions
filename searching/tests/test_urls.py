@@ -3,8 +3,8 @@ from django.core.urlresolvers   import reverse, resolve
 from core.tests                 import ( BaseUserTestCase,
                                          getUrlQueryStringOff, queryGotUTC )
 
-from .forms                     import SearchAddOrUpdateForm
-from .models                    import Search
+from ..forms                     import SearchAddOrUpdateForm
+from ..models                    import Search
 
 
 
