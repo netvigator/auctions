@@ -6,7 +6,7 @@
     <h1>Searches</h1>
 
     <form action="{% url "searching:add" %}">
-        <input type="submit" value=" add a search " />
+        <input type="submit" value=" add a new search " />
     </form>
 
     {% if search_list %}
@@ -44,7 +44,7 @@
     {% endif %}
 
     <form action="{% url "searching:add" %}">
-        <input type="submit" value=" add a search " />
+        <input type="submit" value=" add a new search " />
     </form>
 
 {% endblock %}
