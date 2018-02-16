@@ -14,6 +14,12 @@
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
+        <form action='{% url "categories:add" %}'>
+            <input type="submit" value=" add a new category " />
+        </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
         <form action='{% url "categories:index" %}'>
             <input type="submit" value=" go to category index " />
         </form>

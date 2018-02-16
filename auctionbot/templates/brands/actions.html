@@ -14,6 +14,12 @@
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
+        <form action='{% url "brands:add" %}'>
+            <input type="submit" value=" add a new brand " />
+        </form>
+    </td>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <td>
         <form action='{% url "brands:index" %}'>
             <input type="submit" value=" go to brand index " />
         </form>
