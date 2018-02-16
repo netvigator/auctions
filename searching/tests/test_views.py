@@ -4,13 +4,13 @@ from django.test.client         import Client, RequestFactory
 from core.tests                 import BaseUserTestCase
 from core.utils                 import getExceptionMessageFromResponse
 
-from .models                    import Search
+from ..models                 import Search
 
-from .views                     import (
+from ..views                  import (
         SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
 
 
-# from pprint import pprint
+from pprint import pprint
 
 # Create your tests here.
 
@@ -56,19 +56,24 @@ class SearchViewsHitButtons(BaseUserTestCase):
 
 
         
-    #def test_add_hit_cancel(self):
-        ##
-        #"""
-        #Hit cancel when adding
-        #"""
-        #self.client = Client()
-        ##
-        #self.client.login(username='username1', password='mypassword')
-        ##
-        #sSearch = "Great Widgets"
-        #oSearch = Search( cTitle= sSearch, iUser = self.user1 )
-        ##
-        ##
+    def test_add_hit_cancel(self):
+        #
+        """
+        Hit cancel when adding
+        """
+        request = self.factory.get(reverse('searching:add'))
+        request.user = self.user1
+        request.POST._mutable = True
+        request.POST['cancel'] = True
+        #
+        response = SearchCreate.as_view()(request)
+        #
+        # print( 'type( request.POST ):', type( request.POST ) )
+        #
+        self.assertEqual(response.status_code, 200 )
+        #print( 'response.template_name:' )
+        #print( response.template_name ) ['searching/add.html']
+        #
     #
 
 class SearchViewsTests(BaseUserTestCase):
@@ -155,19 +160,4 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/searching/')
 
-
-
-    #def test_get_success_url(self):
-        ## Expect: '/users/testuser/', as that is the default username for
-        ##   self.make_user()
-        #self.assertEqual(
-            #self.view.get_success_url(),
-            #'/searching/index/'
-        #)
-    #def test_get_object(self):
-        ## Expect: self.user, as that is the request's user object
-        #self.assertEqual(
-            #self.view.get_object(),
-            #self.user
-        #)
 
