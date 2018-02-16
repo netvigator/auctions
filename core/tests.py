@@ -1,8 +1,10 @@
+import datetime
+
 from django.contrib.auth        import get_user_model
 from django.core.exceptions     import ValidationError
 from django.core.urlresolvers   import reverse, resolve
+from django.http.request        import HttpRequest
 from django.test                import TestCase, RequestFactory
-import datetime
 
 # Create your tests here.
 
@@ -160,7 +162,10 @@ class BaseUserTestCase(TestCase):
         self.user3.last_name    = 'Zilch'
         self.user3.is_superuser = True
         self.user3.save()
-
+        #
+        self.request = HttpRequest()
+        self.request.user = self.user1
+        #
         if (  ( not isinstance( self.market, Market ) ) or
               ( not Market.objects.get( pk = 1 ) ) ):
             self.market = Market(
@@ -171,7 +176,7 @@ class BaseUserTestCase(TestCase):
                 iCategoryVer= 1,
                 cCurrencyDef= 'USD' )
             self.market.save()
-        
+        #
         self.ebc = EbayCategory(
             iCategoryID = 10,
             name        = 'hot products',
@@ -181,12 +186,7 @@ class BaseUserTestCase(TestCase):
             iMarket     = self.market,
             bLeafCategory = False )
         self.ebc.save()
-
-        self.oCategory = Category(
-            cTitle          = "My awesome category",
-            iUser           = self.user1 )
-        self.oCategory.save()
-        
+        #
 
     
 class CoreUserTests(TestCase):
