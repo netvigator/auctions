@@ -1,20 +1,17 @@
 from django.contrib.auth    import get_user_model
 from django.urls            import reverse_lazy
 from django.http            import HttpResponseRedirect
-from django.shortcuts       import render
 
 from .forms                 import SearchAddOrUpdateForm
 from .mixins                import EbayCategoryFormValidMixin
 from .models                import Search
 
-from core.utils             import model_to_dict
 from core.views             import (
-                    CreateViewGotCrispy, DeleteViewGotModel,
-                    DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
+                                CreateViewGotCrispy, DeleteViewGotModel,
+                                DetailViewGotModel,  ListViewGotModel,
+                                UpdateViewGotCrispy )
 
 # Create your views here.
-
-from .models                import Search
 
 User = get_user_model()
 
