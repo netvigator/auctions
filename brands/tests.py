@@ -168,15 +168,8 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        getDefaultMarket( self )
-        #
-        oUser = get_user_model()
-        #
         self.client = Client()
         self.client.login(username ='username1', password='mypassword')
-        #
-        self.request = HttpRequest()
-        self.request.user = self.user1
         #
         oBrand = Brand(
             cTitle = "Cadillac", cLookFor = "Caddy", iUser = self.user1 )
