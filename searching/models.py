@@ -19,8 +19,6 @@ from core.utils                 import getReverseWithQueryUTC
 
 from ebaycategories.models  import EbayCategory
 
-from .validators            import require_digits_only
-
 class Search(models.Model):
     cTitle          = models.CharField( 'short description',
                                          max_length = 38, null = True )
@@ -34,13 +32,11 @@ class Search(models.Model):
     iEbayCategory   = models.ForeignKey( EbayCategory,
                                 verbose_name = 'ebay category (optional)',
                                 null = True, blank = True,
-                                validators = [ require_digits_only ],
         help_text = 'Limit search to items listed in this category '
                     '-- (key words OR ebay category required!) '
                     '(Both are OK)' )
     iDummyCategory  = models.PositiveIntegerField( 'ebay category number',
                                 null = True, blank = True,
-                                validators = [ require_digits_only ],
         help_text = 'Limit search to items listed in this category '
                     '-- (key words OR ebay category required!)' )
     cPriority       = models.CharField( 'processing priority',
