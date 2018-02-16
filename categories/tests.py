@@ -69,40 +69,11 @@ class CategoryModelTest(TestCase):
         oCategory = Category( cTitle = sCategory )
         self.assertEqual(str(sCategory), oCategory.cTitle)
     
-class CategoryViewsTests(TestCase):
+class CategoryViewsTests(BaseUserTestCase):
     """Category views tests."""
     
     urls = '.urls'
     
-    def setUp(self):
-        
-        getDefaultMarket( self )
-        
-        oUser = get_user_model()
-
-        self.user1 = oUser.objects.create_user( 'username1', 'email@ymail.com' )
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
-        
-        # print( 'user1.id:', user1.id )
-        
-        self.user2 = oUser.objects.create_user( 'username2', 'email@gmail.com' )
-        self.user2.set_password( 'mypassword')
-        self.user2.first_name   = 'Joe'
-        self.user2.last_name    = 'Blow'
-        self.user2.save()
-        
-        
-        self.user3 = oUser.objects.create_user( 'username3', 'email@hotmail.com' )
-        self.user3.set_password( 'mypassword')
-        self.user3.first_name   = 'Oscar'
-        self.user3.last_name    = 'Zilch'
-        self.user3.is_superuser = True
-        self.user3.save()
-
-        
     def test_no_categories_yet(self):
         #
         """
@@ -194,15 +165,8 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        getDefaultMarket( self )
-        #
-        oUser = get_user_model()
-        #
         self.client = Client()
         self.client.login(username ='username1', password='mypassword')
-        #
-        self.request = HttpRequest()
-        self.request.user = self.user1
         #
         oCategory = Category(
             cTitle = "Gadgets", cLookFor = "thingamajig", iUser = self.user1 )
