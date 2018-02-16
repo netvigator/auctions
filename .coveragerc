@@ -1,5 +1,5 @@
 [run]
 include = *
-omit = *migrations*, *tests*, *site-packages*, admin.py, *python3*, *pyPacks*, *Common*
+omit = *migrations*, *tests*, *site-packages*, admin.py, *python3*, *pyPacks*, *Common*, *bootstrap4*
 plugins =
     django_coverage_plugin
