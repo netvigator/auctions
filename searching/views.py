@@ -27,7 +27,7 @@ class SearchCreate( EbayCategoryFormValidMixin, CreateViewGotCrispy ):
     form_class      = SearchAddOrUpdateForm
     model           = Search
     template_name   = 'searching/add.html'
-    success_url = reverse_lazy('searching:index')
+    success_url     = reverse_lazy('searching:index')
     #success_url = reverse_lazy('searching:detail', kwargs={'pk': self.object.id})
 
     success_message = 'New Search record successfully saved!!!!'
@@ -47,23 +47,23 @@ class SearchCreate( EbayCategoryFormValidMixin, CreateViewGotCrispy ):
 
 
 class IndexView( ListViewGotModel ):  
-    template_name = 'searching/index.html'
-    # context_object_name = 'brand_list' # default
-    model = Search
+    template_name   = 'searching/index.html'
+    # context_object_name = 'searching_list' # default
+    model           = Search
     
 
 
 class SearchDetail( DetailViewGotModel ):
     
-    model   = Search
-    template_name = 'searching/detail.html'
+    model           = Search
+    template_name   = 'searching/detail.html'
 
 
 
 class SearchDelete( DeleteViewGotModel ):
-    model   = Search
-    template_name = 'confirm_delete.html'
-    success_url = reverse_lazy('searching:index')
+    model           = Search
+    template_name   = 'confirm_delete.html'
+    success_url     = reverse_lazy('searching:index')
 
     success_message = 'Search record successfully deleted!!!!'
 
