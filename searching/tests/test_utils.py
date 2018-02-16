@@ -6,13 +6,13 @@ from django.utils               import timezone
 
 from core.tests                 import BaseUserTestCase, getDefaultMarket
 
-from .models                    import Search, ItemFound
-from .test_big_text             import sExampleResponse
-from .utils                     import getSearchResultGenerator
+from ..models                   import Search, ItemFound
+from ..test_big_text            import sExampleResponse
+from ..utils                    import (
+                        getSearchResultGenerator, getItemFoundForWriting )
 
 from File.Del                   import DeleteIfExists
 from File.Write                 import WriteText2File
-
 
 
 
@@ -88,10 +88,6 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
 
     def test_fetch_oldest_of_the_old(self):
         #
-        from datetime       import timedelta
-        from django.utils   import timezone
-        #
-        from .utils         import getItemFoundForWriting
         """
         Want to recycle old records, make sure this is working!
         """
