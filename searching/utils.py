@@ -238,6 +238,8 @@ def getItemFoundForWriting( iWantOlderThan = 120 ):
                         .order_by( 'tCreate', 'pk' )
                         .first() )
         #
+        oNewItem.tCreate = timezone.now()
+        #
     else:
         #
         oNewItem = ItemFound()
