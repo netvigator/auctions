@@ -18,11 +18,14 @@ class SearchAddOrUpdateForm(ModelForm):
     '''
     using a form to get extra validation
     '''
+    which = 'Create' # can be over written in view get_form
+    #
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
-        super(SearchAddOrUpdateForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
+        # SearchAddOrUpdateForm, self
 
     def clean(self):
         #

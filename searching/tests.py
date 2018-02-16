@@ -1,4 +1,6 @@
+from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
+from django.http.request        import HttpRequest
 from django.test.client         import Client
 from django.test                import TestCase
 
@@ -9,16 +11,16 @@ from core.utils                 import getExceptionMessageFromResponse
 from markets.models             import Market
 from ebaycategories.models      import EbayCategory
 
-from .forms                     import AddOrUpdateForm
+from .forms                     import SearchAddOrUpdateForm
 from .models                    import Search, ItemFound
-from .test_big_text import sExampleResponse
-from .utils         import getSearchResultGenerator
+from .test_big_text             import sExampleResponse
+from .utils                     import getSearchResultGenerator
 from .views                     import (
         SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
 
+from File.Del                   import DeleteIfExists
+from File.Write                 import WriteText2File
 
-from File.Del   import DeleteIfExists
-from File.Write import WriteText2File
 
 # from pprint import pprint
 
@@ -183,44 +185,40 @@ class SearchModelTest(BaseUserTestCase):
         sSearch = "My clever search"
         oSearch = Search( cTitle = sSearch )
         self.assertEqual( str(oSearch), oSearch.cTitle )
-    
-    def AddNewSearchTest( TescCase ):        
-        form = AddOrUpdateForm(
+    '''
+    def test_AddNewSearch(self):        
+        form = SearchAddOrUpdateForm(
                 cTitle          = "My clever search",
                 cKeyWords       = "Blah bleh blih",
                 cPriority       = "A",
-                which           = 'Create',
                 iUser           = self.user1 )
-        valid = form.is_valid()
-        self.assertTrue(valid)        
-        
-        form = AddOrUpdateForm(
+        self.assertTrue( form.is_valid() )
+                #which           = 'Create',
+
+        form = SearchAddOrUpdateForm(
                 cTitle          = "My clever search",
                 iDummyCategory  = 1,
                 cPriority       = "A",
-                which           = 'Create',
                 iUser           = self.user1 )
-        valid = form.is_valid()
-        self.assertTrue(valid)
-        
-        form = AddOrUpdateForm( # no key words, no category
+        self.assertTrue( form.is_valid() )
+                #which           = 'Create',
+
+        form = SearchAddOrUpdateForm( # no key words, no category
                 cTitle          = "My clever search",
                 cPriority       = "A",
-                which           = 'Create',
                 iUser           = self.user1 )
-        valid = form.is_valid()
-        self.assertFalse(valid)
+        self.assertFalse( form.is_valid() )
+                #which           = 'Create',
 
-        form = AddOrUpdateForm(
+        form = SearchAddOrUpdateForm(
                 cTitle          = "My clever search",
                 iDummyCategory  = 'abc',
                 cPriority       = "A",
-                which           = 'Create',
                 iUser           = self.user1 )
-        valid = form.is_valid()
-        self.assertFalse(valid)
+        self.assertFalse( form.is_valid() )
+                #which           = 'Create',
 
-
+    '''
 
 
 
@@ -345,3 +343,75 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
 
 
 
+
+class TestFormValidation(BaseUserTestCase):
+    
+    ''' Search Form Tests '''
+    
+    def setUp(self):
+        #
+        super( TestFormValidation, self ).setUp()
+        #
+        getDefaultMarket( self )
+        #
+        oUser = get_user_model()
+        #
+        self.client = Client()
+        self.client.login(username ='username1', password='mypassword')
+        #
+        self.request = HttpRequest()
+        self.request.user = self.user1
+        #
+
+    def test_save_redirect(self):
+        #
+        form_data = dict(
+            cTitle      = 'Great Widget',
+            cPriority   = "A",
+            cKeyWords   = "Blah bleh blih",
+            iUser       = self.user1.id
+            )
+        #
+        form = SearchAddOrUpdateForm(data=form_data)
+        form.request = self.request
+            #which           = 'Create',
+        self.assertTrue( form.is_valid() )
+        
+        ''' test save '''
+        form.instance.iUser = self.user1
+        form.save()
+        oSearch = Search.objects.get( cTitle = 'Great Widget' )
+        self.assertEqual(
+            reverse('searching:detail', kwargs={ 'pk': oSearch.id } ),
+            '/searching/%s/' % oSearch.id )
+        
+    '''
+    def test_stuff_in_there_already(self):
+        #
+        form = SearchAddOrUpdateForm(
+                cTitle          = "My clever search",
+                cKeyWords       = "Blah bleh blih",
+                cPriority       = "A",
+                iUser           = self.user1 )
+        #
+                #which           = 'Create',
+        form = SearchAddOrUpdateForm(data=form_data)
+        form.request = self.request
+        form.save()        
+        #
+        form = SearchAddOrUpdateForm(
+                cTitle          = "Very clever search",
+                cKeyWords       = "Blah blih bleh", # same things, different order
+                cPriority       = "B",
+                iUser           = self.user1 )
+        #
+                #which           = 'Create',
+        self.assertFalse( form.is_valid() )
+        
+        #
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
+        else:
+            print( 'no form errors at bottom!' )
+        '''
