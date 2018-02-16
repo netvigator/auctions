@@ -1,7 +1,9 @@
+# from unittest.mock              import patch, MagicMock
+
 from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
-from django.test.client         import Client
+from django.test.client         import Client, RequestFactory
 from django.test                import TestCase
 
 from core.tests                 import ( BaseUserTestCase, getDefaultMarket,
@@ -26,6 +28,62 @@ from File.Write                 import WriteText2File
 
 # Create your tests here.
 
+class SearchViewsHitButtons(BaseUserTestCase):
+    """
+    Test Save and Cancel
+    """
+    def setUp(self):
+        #
+        super( SearchViewsHitButtons, self ).setUp()
+        #
+        self.factory = RequestFactory()
+    
+
+    def test_get(self):
+        """
+        Test GET requests
+        """
+        request = self.factory.get(reverse('searching:add'))
+        request.user = self.user1
+        #
+        response = SearchCreate.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+        #print( 'response.context_data has form and view, view keys:' )
+        #for k in response.context_data['view'].__dict__:
+            #print( k )
+        #self.assertEqual(response.context_data['iUser'], self.user1)
+        self.assertEqual(response.context_data['view'].__dict__['request'], request)
+
+
+    # @patch('searching.models.Search.save', MagicMock(name="save"))
+    def test_post(self):
+        """
+        Test post requests
+        """
+        data = dict( cTitle = "Great Widgets", iUser = self.user1 )
+        # Create the request
+        response = self.client.post(reverse('searching:add'), data )
+        # import pdb; pdb.set_trace()
+        self.assertEqual(response.status_code, 302)
+        #oSearch = Search.objects.get( cTitle = "Great Widgets" )
+        #self.assertEqual( oSearch, self.searching )
+
+
+        
+    #def test_add_hit_cancel(self):
+        ##
+        #"""
+        #Hit cancel when adding
+        #"""
+        #self.client = Client()
+        ##
+        #self.client.login(username='username1', password='mypassword')
+        ##
+        #sSearch = "Great Widgets"
+        #oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        ##
+        ##
+    #
 
 class SearchViewsTests(BaseUserTestCase):
 
@@ -47,7 +105,6 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['search_list'], [])
         self.assertContains(response, "No searches are available.")
-
 
     def test_got_search(self):
         #
@@ -112,28 +169,28 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/searching/')
 
-'''
 
-    def test_get_success_url(self):
-        # Expect: '/users/testuser/', as that is the default username for
-        #   self.make_user()
-        self.assertEqual(
-            self.view.get_success_url(),
-            '/searching/index/'
-        )
-    def test_get_object(self):
-        # Expect: self.user, as that is the request's user object
-        self.assertEqual(
-            self.view.get_object(),
-            self.user
-        )
 
-'''
+    #def test_get_success_url(self):
+        ## Expect: '/users/testuser/', as that is the default username for
+        ##   self.make_user()
+        #self.assertEqual(
+            #self.view.get_success_url(),
+            #'/searching/index/'
+        #)
+    #def test_get_object(self):
+        ## Expect: self.user, as that is the request's user object
+        #self.assertEqual(
+            #self.view.get_object(),
+            #self.user
+        #)
+
+
 class TestURLs(BaseUserTestCase):
 
     def test_get_absolute_url(self):
         oSearch = Search(
-            cTitle          = "My clever search",
+            cTitle          = "My clever search 1",
             cKeyWords       = "Blah bleh blih",
             cPriority       = "A",
             iUser           = self.user1,
@@ -180,45 +237,57 @@ class TestURLs(BaseUserTestCase):
 
 
 class SearchModelTest(BaseUserTestCase):
-        
+
     def test_string_representation(self):
-        sSearch = "My clever search"
+        sSearch = "My clever search 2"
         oSearch = Search( cTitle = sSearch )
         self.assertEqual( str(oSearch), oSearch.cTitle )
-    '''
-    def test_AddNewSearch(self):        
-        form = SearchAddOrUpdateForm(
-                cTitle          = "My clever search",
+
+    def test_AddNewSearch(self):
+
+        # has key words
+        dData = dict(
+                cTitle          = "My clever search 3",
                 cKeyWords       = "Blah bleh blih",
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
+        form = SearchAddOrUpdateForm( data = dData )
+        form.request = self.request
         self.assertTrue( form.is_valid() )
-                #which           = 'Create',
 
-        form = SearchAddOrUpdateForm(
-                cTitle          = "My clever search",
-                iDummyCategory  = 1,
+        # has a category
+        dData = dict(
+                cTitle          = "My clever search 4",
+                iDummyCategory  = 10,
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
+        form = SearchAddOrUpdateForm( data = dData )
+        form.request = self.request
+
         self.assertTrue( form.is_valid() )
-                #which           = 'Create',
-
-        form = SearchAddOrUpdateForm( # no key words, no category
-                cTitle          = "My clever search",
+        # no key words, no category
+        dData = dict(
+                cTitle          = "My clever search 5",
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
+        form = SearchAddOrUpdateForm( data = dData ) 
+        form.request = self.request
         self.assertFalse( form.is_valid() )
-                #which           = 'Create',
 
-        form = SearchAddOrUpdateForm(
-                cTitle          = "My clever search",
+        # has an invalid category
+        dData = dict(
+                cTitle          = "My clever search 6",
                 iDummyCategory  = 'abc',
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
+        form = SearchAddOrUpdateForm( data = dData )
+        form.request = self.request
         self.assertFalse( form.is_valid() )
-                #which           = 'Create',
 
-    '''
 
 
 
@@ -343,7 +412,6 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
 
 
 
-
 class TestFormValidation(BaseUserTestCase):
     
     ''' Search Form Tests '''
@@ -362,7 +430,7 @@ class TestFormValidation(BaseUserTestCase):
         self.request = HttpRequest()
         self.request.user = self.user1
         #
-
+    '''
     def test_save_redirect(self):
         #
         form_data = dict(
@@ -377,38 +445,52 @@ class TestFormValidation(BaseUserTestCase):
             #which           = 'Create',
         self.assertTrue( form.is_valid() )
         
-        ''' test save '''
+        # test save
         form.instance.iUser = self.user1
         form.save()
         oSearch = Search.objects.get( cTitle = 'Great Widget' )
         self.assertEqual(
             reverse('searching:detail', kwargs={ 'pk': oSearch.id } ),
             '/searching/%s/' % oSearch.id )
-        
     '''
     def test_stuff_in_there_already(self):
         #
-        form = SearchAddOrUpdateForm(
-                cTitle          = "My clever search",
+        dData = dict(
+                cTitle          = "My clever search 7",
                 cKeyWords       = "Blah bleh blih",
                 cPriority       = "A",
+                which           = 'Create',
                 iUser           = self.user1 )
         #
-                #which           = 'Create',
-        form = SearchAddOrUpdateForm(data=form_data)
-        form.request = self.request
+        form = SearchAddOrUpdateForm(data=dData)
+        form.request            = self.request
+        form.instance.iUser     = self.user1
         form.save()        
         #
-        form = SearchAddOrUpdateForm(
+        dData = dict(
                 cTitle          = "Very clever search",
-                cKeyWords       = "Blah blih bleh", # same things, different order
+                cKeyWords       = "Blah bleh blih", # same as above
+                which           = 'Create',
                 cPriority       = "B",
                 iUser           = self.user1 )
         #
-                #which           = 'Create',
+        form = SearchAddOrUpdateForm( data = dData )
+        form.request = self.request
         self.assertFalse( form.is_valid() )
+        #
+        dData = dict(
+                cTitle          = "Very clever search",
+                cKeyWords       = "Blah blih bleh", # same but different order
+                which           = 'Create',
+                cPriority       = "B",
+                iUser           = self.user1 )
+        #
+        form = SearchAddOrUpdateForm( data = dData )
+        form.request = self.request
+        self.assertTrue( form.is_valid() ) # not comparing sets yet
         
         #
+        '''
         if form.errors:
             for k, v in form.errors.items():
                 print( k, ' -- ', v )
