@@ -27,6 +27,17 @@ class ModelsViewsTestCase(TestCase):
 
 class TestURLs(BaseUserTestCase):
 
+    def setUp(self):
+        #
+        super( TestURLs, self ).setUp()
+        #
+        self.oCategory = Category(
+            cTitle          = "My awesome category",
+            iUser           = self.user1 )
+        self.oCategory.save()
+        #
+
+
     def test_get_absolute_url(self):
         
         oModel = Model(
@@ -86,7 +97,16 @@ class ModelModelTest(TestCase):
 class ModelViewsTests(BaseUserTestCase):
     """Model views tests."""
     
-        
+    def setUp(self):
+        #
+        super( ModelViewsTests, self ).setUp()
+        #
+        self.oCategory = Category(
+            cTitle          = "My awesome category",
+            iUser           = self.user1 )
+        self.oCategory.save()
+        #
+
     def test_no_models_yet(self):
         #
         """
@@ -180,15 +200,8 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        getDefaultMarket( self )
-        #
-        oUser = get_user_model()
-        #
         self.client = Client()
         self.client.login(username ='username1', password='mypassword')
-        #
-        self.request = HttpRequest()
-        self.request.user = self.user1
         #
         self.oCategory = Category(
             cTitle = "Widgets",
