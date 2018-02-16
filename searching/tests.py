@@ -1,10 +1,11 @@
-# from unittest.mock              import patch, MagicMock
+from datetime                   import timedelta
 
 from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test.client         import Client, RequestFactory
 from django.test                import TestCase
+from django.utils               import timezone
 
 from core.tests                 import ( BaseUserTestCase, getDefaultMarket,
                                          getUrlQueryStringOff, queryGotUTC )
@@ -405,6 +406,11 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         oWriteable = getItemFoundForWriting()
         #
         self.assertEqual( oWriteable.cTitle, sItemTitle3 )
+        #
+        self.assertTrue( timezone.now() >= oWriteable.tCreate )
+        
+        tFuture = oWriteable.tCreate + timedelta( seconds = 1 )
+        self.assertTrue( timezone.now() < tFuture )
         #
         oWriteable = getItemFoundForWriting( iWantOlderThan = 140 )
         #
