@@ -31,7 +31,7 @@ class SearchAddOrUpdateForm(ModelForm):
         #
         cleaned = super( SearchAddOrUpdateForm, self).clean()
         #
-        cKeyWords       = cleaned.get( 'cKeyWords',     '' )
+        sKeyWords       = cleaned.get( 'cKeyWords',     '' )
         
         iDummyCategory  = cleaned.get( 'iDummyCategory', None )
         iDummyOriginal  = self.instance.iDummyCategory
@@ -40,10 +40,13 @@ class SearchAddOrUpdateForm(ModelForm):
             sMsg = 'Your ebay category "%s" is invalid' % iDummyOriginal
             raise ValidationError( sMsg, code='invalid ebay category' )
             
-        if not ( cKeyWords or iDummyCategory ):
+        if not ( sKeyWords or iDummyCategory ):
             sMsg = 'key words or ebay category required (having both is OK)'
             raise ValidationError( sMsg, code='invalid' )
         
+        #print( 'iDummyCategory:', iDummyCategory )
+        #print( 'iDummyOriginal:', iDummyOriginal )
+        #
         if iDummyCategory is not None:
             #
             try:
@@ -58,6 +61,8 @@ class SearchAddOrUpdateForm(ModelForm):
             #
             cleaned['iEbayCategory'] = iEbayCategory
             #
+        #
+        #print( "cleaned['iEbayCategory']:", cleaned['iEbayCategory'] )
         #
         cPriority           = cleaned.get( 'cPriority' )
         #
@@ -84,25 +89,45 @@ class SearchAddOrUpdateForm(ModelForm):
             #
             raise ValidationError('Title "%s" already exists' % cTitle,
                         code='title already exists' )
+        
         #
-        cKeyWords           = cleaned.get( 'cKeyWords'      )
-        iEbayCategory       = cleaned.get( 'iEbayCategory'  )
         #
         doCheckSearch = (   bCreating or
-                            self.instance.cKeyWords != cKeyWords or
+                            self.instance.cKeyWords != sKeyWords or
                             self.instance.iEbayCategory != iEbayCategory )
-        if doCheckSearch and (
-            Search.objects.filter(
-                iUser               = self.request.user,
-                iEbayCategory       = iEbayCategory ).filter(
-                cKeyWords__iexact   = cKeyWords ).exists() ):
+        #
+        if doCheckSearch:
+            #
+            sKeyWords           = cleaned.get( 'cKeyWords'      )
+            iEbayCategory       = cleaned.get( 'iEbayCategory'  )
+            #
+            if iEbayCategory:
+                #
+                if Search.objects.filter(
+                        iUser               = self.request.user,
+                        iEbayCategory       = iEbayCategory ).filter(
+                        cKeyWords__iexact   = sKeyWords ).exists():
+                    #
+                    oEbayCategory = EbayCategory.get( iCategoryID = iEbayCategory )
+                    #
+                    raise ValidationError(
+                        'You are already searching for "%s" in "%s"!' %
+                        ( sKeyWords, oEbayCategory.name ),
+                                code='already searching for keywords in ebay category' )
+                #
+            else:
+                #
+                if Search.objects.filter(
+                        iUser     = self.request.user ).filter(
+                        cKeyWords__iexact = sKeyWords ).exists():
+                    #
+                    raise ValidationError(
+                        'You are already searching for "%s"!' % sKeyWords,
+                                code='already searching for same keywords' )
+                #
             #
             # really need to compare sets
             #
-            raise ValidationError(
-                'You are already searching for "%s" in "%s"!' %
-                ( cKeyWords, iEbayCategory.name ),
-                        code='already searching for keywords in ebay category' )
         #
         return cleaned
 
