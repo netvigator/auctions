@@ -21,7 +21,7 @@ from models.models          import Model
 
 
 
-class BrandCreate( CreateViewGotCrispy ):
+class BrandCreateView( CreateViewGotCrispy ):
 
     model           = Brand
     template_name   = 'brands/add.html'
@@ -35,14 +35,14 @@ class BrandCreate( CreateViewGotCrispy ):
             url = reverse_lazy('brands:index' )
             return HttpResponseRedirect(url)
         else:
-            return super(BrandCreate, self).post(request, *args, **kwargs)
+            return super(BrandCreateView, self).post(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
-        form = super(BrandCreate, self).get_form(form_class)
+        form = super(BrandCreateView, self).get_form(form_class)
         Field('cExcludeIf', rows='2')
         return form
 
-class BrandDelete( DeleteViewGotModel ):
+class BrandDeleteView( DeleteViewGotModel ):
     model   = Brand
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('brands:index')
@@ -55,9 +55,9 @@ class BrandDelete( DeleteViewGotModel ):
             url = reverse_lazy('brands:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
-            return super(BrandDelete, self).post(request, *args, **kwargs)
+            return super(BrandDeleteView, self).post(request, *args, **kwargs)
 
-class BrandDetail( DetailViewGotModel ):
+class BrandDetailView( DetailViewGotModel ):
     
     model   = Brand
     template_name = 'brands/detail.html'
@@ -65,7 +65,7 @@ class BrandDetail( DetailViewGotModel ):
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        context = super(BrandDetail, self).get_context_data(**kwargs)
+        context = super(BrandDetailView, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
         #context['fields_list'] = Brand.getFieldsForView(
         #
@@ -81,7 +81,7 @@ class BrandDetail( DetailViewGotModel ):
         return context
 
 
-class BrandUpdate( WereAnyReleventColsChangedMixin,
+class BrandUpdateView( WereAnyReleventColsChangedMixin,
                    UpdateViewGotCrispy ):
     model           = Brand
     template_name   = 'brands/edit.html'
@@ -101,12 +101,12 @@ class BrandUpdate( WereAnyReleventColsChangedMixin,
             url = reverse_lazy('brands:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
-            return super(BrandUpdate, self).post(request, *args, **kwargs)
+            return super(BrandUpdateView, self).post(request, *args, **kwargs)
 
 
 
 
-class IndexView( TitleSearchMixin, ListViewGotModel ):  
+class BrandIndexView( TitleSearchMixin, ListViewGotModel ):  
     template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand

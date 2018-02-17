@@ -15,20 +15,20 @@ from .models            import Category
 # Create your views here but keep them thin.
 
 
-class IndexView( ListViewGotModel ):  
+class CategoryIndexView( ListViewGotModel ):  
     template_name = 'categories/index.html'
     # context_object_name = 'category_list' # default
     model = Category
     paginate_by = 100
     
 
-class CategoryDetail( DetailViewGotModel ):
+class CategoryDetailView( DetailViewGotModel ):
     
     model   = Category
     template_name = 'categories/detail.html'
 
 
-class CategoryCreate( CreateViewGotCrispy ):
+class CategoryCreateView( CreateViewGotCrispy ):
 
     model           = Category
     form_class      = CategoryForm
@@ -42,10 +42,10 @@ class CategoryCreate( CreateViewGotCrispy ):
             url = reverse_lazy('categories:index' )
             return HttpResponseRedirect(url)
         else:
-            return super(CategoryCreate, self).post(request, *args, **kwargs)
+            return super(CategoryCreateView, self).post(request, *args, **kwargs)
 
 
-class CategoryUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
+class CategoryUpdateView( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     form_class      = CategoryForm
     model           = Category
@@ -67,11 +67,11 @@ class CategoryUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
             url = reverse_lazy('categories:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
-            return super(CategoryUpdate, self).post(request, *args, **kwargs)
+            return super(CategoryUpdateView, self).post(request, *args, **kwargs)
 
 
 
-class CategoryDelete( DeleteViewGotModel ):
+class CategoryDeleteView( DeleteViewGotModel ):
     model   = Category
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('categories:index')
@@ -84,4 +84,4 @@ class CategoryDelete( DeleteViewGotModel ):
             url = reverse_lazy('categories:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
-            return super(CategoryDelete, self).post(request, *args, **kwargs)
+            return super(CategoryDeleteView, self).post(request, *args, **kwargs)

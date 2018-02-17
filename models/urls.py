@@ -8,23 +8,23 @@ app_name = "models"
 urlpatterns = [
     url(
         regex   = r'^$',
-        view    = views.IndexView.as_view(),
+        view    = views.ModelIndexView.as_view(),
         name    = 'index' ),
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
-        view    = views.ModelDetail.as_view(),
+        view    = views.ModelDetailView.as_view(),
         name    = 'detail'),
     url(
         regex   = r'^(?P<pk>[0-9]+)/edit/$',
-        view    = views.ModelUpdate.as_view(),
+        view    = views.ModelUpdateView.as_view(),
         name    = 'edit' ),
     url(
         regex   = r'^(?P<pk>[0-9]+)/delete/$',
-        view    = views.ModelDelete.as_view(),
+        view    = views.ModelDeleteView.as_view(),
         name    = 'delete'),
     url(
         regex   = r'^add$',
-        view    = views.ModelCreate.as_view(),
+        view    = views.ModelCreateView.as_view(),
         name    = 'add'  ),
     
 ]

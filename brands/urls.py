@@ -9,23 +9,23 @@ app_name = "brands"
 urlpatterns = [
     url(
         regex   = r'^$',
-        view    = views.IndexView.as_view(),
+        view    = views.BrandIndexView.as_view(),
         name    = 'index' ),
     url(
         regex   = r'^add$',
-        view    = views.BrandCreate.as_view(),
+        view    = views.BrandCreateView.as_view(),
         name    = 'add'  ),
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
-        view    = views.BrandDetail.as_view(),
+        view    = views.BrandDetailView.as_view(),
         name    = 'detail'),
     url(
         regex   = r'^(?P<pk>[0-9]+)/delete/$',
-        view    = views.BrandDelete.as_view(),
+        view    = views.BrandDeleteView.as_view(),
         name    = 'delete'),
     url(
         regex   = r'^(?P<pk>[0-9]+)/edit/$',
-        view    = views.BrandUpdate.as_view(),
+        view    = views.BrandUpdateView.as_view(),
         name    = 'edit' ),
     
 ]

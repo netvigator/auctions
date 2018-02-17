@@ -16,20 +16,20 @@ from .models            import Model
 # Create your views here but keep them thin.
 
 
-class IndexView( TitleSearchMixin, ListViewGotModel ):
+class ModelIndexView( TitleSearchMixin, ListViewGotModel ):
     template_name = 'models/index.html'
     # context_object_name = 'model_list' # default
     model = Model
     paginate_by = 100
     
 
-class ModelDetail( DetailViewGotModel ):
+class ModelDetailView( DetailViewGotModel ):
     
     model   = Model
     template_name = 'models/detail.html'
 
 
-class ModelCreate( CreateViewGotCrispy ):
+class ModelCreateView( CreateViewGotCrispy ):
 
     model           = Model
     form_class      = ModelForm
@@ -43,10 +43,10 @@ class ModelCreate( CreateViewGotCrispy ):
             url = reverse_lazy('models:index' )
             return HttpResponseRedirect(url)
         else:
-            return super(ModelCreate, self).post(request, *args, **kwargs)
+            return super(ModelCreateView, self).post(request, *args, **kwargs)
 
 
-class ModelUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
+class ModelUpdateView( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
 
     form_class      = ModelForm
     model           = Model
@@ -68,11 +68,11 @@ class ModelUpdate( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
             url = reverse_lazy('models:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
-            return super(ModelUpdate, self).post(request, *args, **kwargs)
+            return super(ModelUpdateView, self).post(request, *args, **kwargs)
 
 
 
-class ModelDelete( DeleteViewGotModel ):
+class ModelDeleteView( DeleteViewGotModel ):
     model   = Model
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('models:index')
@@ -83,4 +83,4 @@ class ModelDelete( DeleteViewGotModel ):
             url = reverse_lazy('models:detail', kwargs={'pk': self.object.id})
             return HttpResponseRedirect(url)
         else:
-            return super(ModelDelete, self).post(request, *args, **kwargs)
+            return super(ModelDeleteView, self).post(request, *args, **kwargs)
