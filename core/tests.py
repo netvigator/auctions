@@ -45,6 +45,8 @@ def getDefaultMarket( caller ):
 
 def getUrlQueryStringOff( sURL ):
     #
+    ''' get URL parts, before and after ? for http query string '''
+    #
     lParts = sURL.split('?')
     #
     lParts.append( '' )
@@ -54,10 +56,15 @@ def getUrlQueryStringOff( sURL ):
 
 def queryGotUTC( s ):
     #
-    from String.Get import getTextAfter
+    from String.Get import getTextAfter, getTextBefore
     from Time.Test  import isISOdatetimeFileNameSafe
     #
-    return isISOdatetimeFileNameSafe( getTextAfter( s, 'utc=' ) )
+    sQueryUTC = getTextBefore(
+                    getTextAfter( s, 'utc=' ),
+                    '&',
+                    bWantEmptyIfNoAfter = False )
+    #
+    return isISOdatetimeFileNameSafe( sQueryUTC )
 
 
 def TestingHelperTests(TestCase):
