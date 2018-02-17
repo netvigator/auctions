@@ -1,10 +1,9 @@
-from core.views             import (
-                                CreateViewGotCrispy, DeleteViewGotModel,
-                                DetailViewGotModel,  ListViewGotModel,
-                                UpdateViewGotCrispy )
+from core.views import ( CreateViewGotCrispy, DeleteViewGotModel,
+                         DetailViewGotModel,  ListViewGotModel,
+                         UpdateViewGotCrispy )
 
-from .mixins                import SearchFormValidSuccessPostMixin
-from .models                import Search
+from .mixins    import SearchFormValidSuccessPostMixin
+from .models    import Search
 
 # Create your views here.
 
@@ -15,7 +14,7 @@ tModelFields = (
     'cPriority', )
 
 
-class SearchCreate( SearchFormValidSuccessPostMixin, CreateViewGotCrispy ):
+class SearchCreateView( SearchFormValidSuccessPostMixin, CreateViewGotCrispy ):
 
     template_name   = 'searching/add.html'
     success_message = 'New Search record successfully saved!!!!'
@@ -28,20 +27,20 @@ class SearchCreate( SearchFormValidSuccessPostMixin, CreateViewGotCrispy ):
 
 
 
-class IndexView( ListViewGotModel ):  
+class SearchIndexView( ListViewGotModel ):  
     
     template_name   = 'searching/index.html'
     model           = Search
 
 
-class SearchDetail( DetailViewGotModel ):
+class SearchDetailView( DetailViewGotModel ):
     
     model           = Search
     template_name   = 'searching/detail.html'
 
 
 
-class SearchDelete( DeleteViewGotModel ):
+class SearchDeleteView( DeleteViewGotModel ):
 
     template_name   = 'confirm_delete.html'
     success_message = 'Search record successfully deleted!!!!'
@@ -49,7 +48,7 @@ class SearchDelete( DeleteViewGotModel ):
 
 
 
-class SearchUpdate(  SearchFormValidSuccessPostMixin, UpdateViewGotCrispy ):
+class SearchUpdateView(  SearchFormValidSuccessPostMixin, UpdateViewGotCrispy ):
 
     template_name   = 'searching/edit.html'
     success_message = 'Search record update successfully saved!!!!'
