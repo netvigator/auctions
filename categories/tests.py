@@ -1,5 +1,4 @@
 from django.test                import TestCase
-from django.test.client         import Client
 from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
@@ -79,8 +78,6 @@ class CategoryViewsTests(BaseUserTestCase):
         """
         If no categories exist, an appropriate message is displayed.
         """
-        self.client = Client()
-        
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('categories:index'))
@@ -99,8 +96,6 @@ class CategoryViewsTests(BaseUserTestCase):
         """
         If categories exist, an appropriate message is displayed.
         """
-        self.client = Client()
-        
         self.client.login(username ='username1', password='mypassword')
         #
         oCategory = Category( cTitle = "Widgets", iUser = self.user1 )
@@ -165,7 +160,6 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        self.client = Client()
         self.client.login(username ='username1', password='mypassword')
         #
         oCategory = Category(
