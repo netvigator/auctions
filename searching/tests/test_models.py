@@ -20,8 +20,6 @@ class SearchModelTest(BaseUserTestCase):
 
     def test_get_absolute_url(self):
         #
-        self.client = Client()
-        #
         self.client.login(username='username1', password='mypassword')
         #
         sSearch     = "Great Widgets"
