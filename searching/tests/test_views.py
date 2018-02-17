@@ -1,14 +1,14 @@
 from django.core.urlresolvers   import reverse
 from django.test.client         import Client, RequestFactory
 
-from core.tests                 import BaseUserTestCase
+from core.tests                 import BaseUserTestCase, setup_view_for_tests
 from core.utils                 import getExceptionMessageFromResponse
 
 from ..forms                    import SearchAddOrUpdateForm
 from ..models                   import Search
 
 from ..views                    import (
-        SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
+        SearchCreateView, SearchIndexView, SearchDetailView, SearchDeleteView, SearchUpdateView )
 
 
 from pprint import pprint
@@ -33,7 +33,7 @@ class SearchViewsHitButtons(BaseUserTestCase):
         request = self.factory.get(reverse('searching:add'))
         request.user = self.user1
         #
-        response = SearchCreate.as_view()(request)
+        response = SearchCreateView.as_view()(request)
         self.assertEqual(response.status_code, 200)
         #print( 'response.context_data has form and view, view keys:' )
         #for k in response.context_data['view'].__dict__:
@@ -67,7 +67,7 @@ class SearchViewsHitButtons(BaseUserTestCase):
         request.POST._mutable = True
         request.POST['cancel'] = True
         #
-        response = SearchCreate.as_view()(request)
+        response = SearchCreateView.as_view()(request)
         #
         # print( 'type( request.POST ):', type( request.POST ) )
         #
@@ -108,11 +108,11 @@ class SearchViewsTests(BaseUserTestCase):
         self.client.login(username='username1', password='mypassword')
         #
         sSearch = "Great Widgets"
-        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         
         sSearch = "Phenominal Gadgets"
-        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         sGadgetID = str( oSearch.id )
 
@@ -162,40 +162,40 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertRedirects(response, '/accounts/login/?next=/searching/')
 
 
-def setup_view(view, request, *args, **kwargs):
-    """Mimic as_view() returned callable, but returns view instance.
-    args and kwargs are the same you would pass to ``reverse()``
-
-    """
-    view.request = request
-    view.args = args
-    view.kwargs = kwargs
-    return view
-
 
 
 class SearchUpdateViewTests(BaseUserTestCase):
 
-    ''' test SearchUpdate View '''
+    ''' test SearchUpdateView View '''
     
     def setUp(self):
 
         # call BaseUserTestCase.setUp()
         super(SearchUpdateViewTests, self).setUp()
         #
-        self.form = SearchAddOrUpdateForm
+        sSearch = "Great Widgets"
+        oSearch = Search( cTitle = sSearch, iUser = self.user1 )
+        oSearch.save()
+        #
+        self.form = SearchAddOrUpdateForm( instance = oSearch )
+        #
+        self.request = self.factory.get( reverse( 'searching:index' ) )
         #
         self.request.user = self.user1
         #
-        self.view = setup_view( SearchUpdate(), self.request )
+        self.view = setup_view_for_tests( SearchUpdateView(), self.request )
 
 
+    #def test_form_dot_save_called_with_user(self):
+        #self.view.form_valid(self.form)
+        #self.form.save.assert_called_once_with(iUser=self.request.user)
 
-        def test_form_dot_save_called_with_user(self):
-            self.view.form_valid(self.form)
-            self.form.save.assert_called_once_with(iUser=self.request.user)
 
-
+    def test_update_view_context(self):
+        #
+        self.assertEqual( self.view.template_name, 'searching/edit.html' )
+        #
+        print( 'self.view.form_class:', self.view.form_class )
 
 
 
@@ -209,7 +209,7 @@ class SearchUpdateViewTests(BaseUserTestCase):
         model_data = dict( cTitle = "Great Widgets", iUser = self.user1 )
         #
         # Instantiate the view directly. Never do this outside a test!
-        self.view = SearchUpdate( data = model_data )
+        self.view = SearchUpdateView( data = model_data )
         # Generate a fake request
         request = self.factory.get('/fake-url')
         # Attach the user to the request
