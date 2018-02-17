@@ -1,7 +1,6 @@
 from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.test                import TestCase
-from django.test.client         import Client
 from django.http.request        import HttpRequest
 from django.urls                import reverse
 
@@ -83,8 +82,6 @@ class BrandViewsTests(BaseUserTestCase):
         """
         If no brands exist, an appropriate message is displayed.
         """
-        self.client = Client()
-        
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('brands:index'))
@@ -100,7 +97,6 @@ class BrandViewsTests(BaseUserTestCase):
         """
         If brands exist, an appropriate message is displayed.
         """
-        self.client = Client()
         
         self.client.login(username='username1', password='mypassword')
         #
@@ -168,7 +164,6 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        self.client = Client()
         self.client.login(username ='username1', password='mypassword')
         #
         oBrand = Brand(
