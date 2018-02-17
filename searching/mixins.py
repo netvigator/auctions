@@ -14,7 +14,7 @@ class SearchViewSuccessPostFormValidMixin(object):
 
     def form_valid(self, form):
         #
-        if 'Cancel' in self.request.POST:
+        if 'cancel' in self.request.POST:
             return HttpResponseRedirect(self.get_success_url())
         #
         form.instance.iUser = self.request.user
@@ -28,10 +28,19 @@ class SearchViewSuccessPostFormValidMixin(object):
         return reverse('searching:detail',kwargs = { 'pk': self.object.id } )
 
     def post(self, request, *args, **kwargs):
+        #
         if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = reverse_lazy( 'searching:detail',
+            #
+            if request.path.endswith('add'):
+                url = reverse_lazy( 'searching:index' )
+            else:
+                self.object = self.get_object()
+                url = reverse_lazy( 'searching:detail',
                                kwargs = { 'pk': self.request.object.id } )
+            #
             return HttpResponseRedirect(url)
+            #
         else:
-            return super(SearchDelete, self).post(request, *args, **kwargs)
+            #
+            return ( super( SearchViewSuccessPostFormValidMixin, self )
+                     .post( request, *args, **kwargs ) )
