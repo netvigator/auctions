@@ -6,7 +6,7 @@ from .forms                     import SearchAddOrUpdateForm
 from .models                    import Search
 
 
-class SearchFormValidSuccessPostMixin(object):
+class SearchViewSuccessPostFormValidMixin(object):
 
     model           = Search
     success_url     = reverse_lazy('searching:index')
@@ -21,7 +21,7 @@ class SearchFormValidSuccessPostMixin(object):
         #
         form.instance.iEbayCategory = form.cleaned_data.get('iEbayCategory')
         #
-        return super( SearchFormValidSuccessPostMixin, self ).form_valid(form)
+        return super( SearchViewSuccessPostFormValidMixin, self ).form_valid(form)
 
     def get_success_url(self):
         #

@@ -2,7 +2,7 @@ from core.views import ( CreateViewGotCrispy, DeleteViewGotModel,
                          DetailViewGotModel,  ListViewGotModel,
                          UpdateViewGotCrispy )
 
-from .mixins    import SearchFormValidSuccessPostMixin
+from .mixins    import SearchViewSuccessPostFormValidMixin
 from .models    import Search
 
 # Create your views here.
@@ -14,7 +14,7 @@ tModelFields = (
     'cPriority', )
 
 
-class SearchCreateView( SearchFormValidSuccessPostMixin, CreateViewGotCrispy ):
+class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy ):
 
     template_name   = 'searching/add.html'
     success_message = 'New Search record successfully saved!!!!'
@@ -48,15 +48,15 @@ class SearchDeleteView( DeleteViewGotModel ):
 
 
 
-class SearchUpdateView(  SearchFormValidSuccessPostMixin, UpdateViewGotCrispy ):
+class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy ):
 
     template_name   = 'searching/edit.html'
     success_message = 'Search record update successfully saved!!!!'
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.request = self.request
-        form.which = 'Update'
+        form.request= self.request
+        form.which  = 'Update'
         return form
 
 
