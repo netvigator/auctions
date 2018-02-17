@@ -1,5 +1,5 @@
 from django.core.urlresolvers   import reverse
-from django.test.client         import Client, RequestFactory
+from django.test.client         import RequestFactory
 
 from core.tests                 import BaseUserTestCase, setup_view_for_tests
 from core.utils                 import getExceptionMessageFromResponse
@@ -23,8 +23,9 @@ class SearchViewsHitButtons(BaseUserTestCase):
         #
         super( SearchViewsHitButtons, self ).setUp()
         #
-        self.factory = RequestFactory()
-    
+        self.client.login(username ='username1', password='mypassword')
+
+
 
     def test_get(self):
         """
@@ -47,14 +48,23 @@ class SearchViewsHitButtons(BaseUserTestCase):
         """
         Test post requests
         """
-        data = dict( cTitle = "Great Widgets", iUser = self.user1 )
+        data = dict(
+            cTitle      = "Great Widgets",
+            cKeyWords   = "Blah bleh blih",
+            iUser       = self.user1 )
         # Create the request
-        response = self.client.post(reverse('searching:add'), data )
+        response = self.client.post( reverse('searching:add'), data )
         # import pdb; pdb.set_trace()
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual( response.status_code, 200 )
         #oSearch = Search.objects.get( cTitle = "Great Widgets" )
         #self.assertEqual( oSearch, self.searching )
 
+        #request = self.factory.get(reverse('searching:add'))
+        #request.user = self.user1
+        
+        #response = self.client.post( request, data )
+        
+        #print( 'response.status_code:', response.status_code )
 
         
     def test_add_hit_cancel(self):
@@ -62,10 +72,25 @@ class SearchViewsHitButtons(BaseUserTestCase):
         """
         Hit cancel when adding
         """
+        data = dict(
+            cTitle      = "Great Widgets",
+            cKeyWords   = "Blah bleh blih",
+            iUser       = self.user1,
+            Cancel      = True )
+        # Create the request
+        response = self.client.post( reverse('searching:add'), data )
+        #print( 'response.status_code:', response.status_code )
+        #print( 'response.__dict__:' )
+        #pprint( response.__dict__ )
+        self.assertEqual( response.status_code, 200 )
+        # self.assertRedirects( response, reverse( 'searching:index' ) )
+        
+    def test_search_create_view(self):
+        #
         request = self.factory.get(reverse('searching:add'))
         request.user = self.user1
-        request.POST._mutable = True
-        request.POST['cancel'] = True
+        #request.POST._mutable = True
+        #request.POST['cancel'] = True
         #
         response = SearchCreateView.as_view()(request)
         #
@@ -84,7 +109,6 @@ class SearchViewsTests(BaseUserTestCase):
         """
         If no search exists, an appropriate message is displayed.
         """
-        self.client = Client()
         #
         self.client.login(username='username1', password='mypassword')
         #
@@ -103,7 +127,6 @@ class SearchViewsTests(BaseUserTestCase):
         """
         If no search exist, an appropriate message is displayed.
         """
-        self.client = Client()
         #
         self.client.login(username='username1', password='mypassword')
         #
@@ -197,11 +220,74 @@ class SearchUpdateViewTests(BaseUserTestCase):
         self.assertEqual( self.view.template_name, 'searching/edit.html' )
         #
         self.assertEqual( self.form.which, "Update" )
+        #
+        self.assertEqual( self.view.model, Search )
+        
 
 
+class SearchCreateViewTests(BaseUserTestCase):
 
+    ''' test SearchUpdateView View '''
+    
+    def setUp(self):
+        #
+        super(SearchCreateViewTests, self).setUp()
+        #
+        data = dict(
+            cTitle      = "Great Widgets",
+            cKeyWords   = "Blah bleh blih",
+            iUser       = self.user1 )
+        #
+        self.form = SearchAddOrUpdateForm( data = data )
+        #
+        self.request = self.factory.get( reverse( 'searching:add' ) )
+        #
+        self.request.user = self.user1
+        #
+        self.view = setup_view_for_tests( SearchCreateView(), self.request )
+
+
+    def test_create_view_cancelled(self):
+        #
+        self.assertEqual( self.view.template_name, 'searching/add.html' )
+        #
+        self.assertEqual( self.form.which, "Create" )
+        #
+        self.assertEqual( self.view.model, Search )
+        #
+        self.request.POST._mutable = True
+        self.request.POST['cancel'] = True
+        ##
+        response = self.view.post( self.request ) # , Cancel = True
+        response.client = self.client
+        #
+        self.assertEqual(response.status_code, 302 )
+        self.assertEqual(response.url, '/searching/')
+        #
+        #print( 'response:' )
+        #pprint( response )
+     
+        
+
+    def test_create_view_not_cancelled(self):
+        #
+        self.assertEqual( self.view.template_name, 'searching/add.html' )
+        #
+        self.assertEqual( self.form.which, "Create" )
+        #
+        self.assertEqual( self.view.model, Search )
+        #
+        response = self.view.post( self.request ) # , Cancel = True
+        #
+        self.assertEqual(response.status_code, 200 )
 
 '''
+        if 'context_data' in self.request.__dict__:
+            #
+            print( "self.request.__dict__['context_data']:" )
+            pprint( self.request.__dict__['context_data'] )
+        else:
+
     def setUp(self):
 
         # call BaseUserTestCase.setUp()
