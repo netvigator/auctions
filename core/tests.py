@@ -5,6 +5,7 @@ from django.core.exceptions     import ValidationError
 from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test                import TestCase, RequestFactory
+from django.test.client         import Client
 
 # Create your tests here.
 
@@ -194,6 +195,7 @@ class BaseUserTestCase(TestCase):
             bLeafCategory = False )
         self.ebc.save()
         #
+        self.client = Client()
 
     
 class CoreUserTests(TestCase):
