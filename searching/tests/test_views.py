@@ -4,9 +4,10 @@ from django.test.client         import Client, RequestFactory
 from core.tests                 import BaseUserTestCase
 from core.utils                 import getExceptionMessageFromResponse
 
-from ..models                 import Search
+from ..forms                    import SearchAddOrUpdateForm
+from ..models                   import Search
 
-from ..views                  import (
+from ..views                    import (
         SearchCreate, IndexView, SearchDetail, SearchDelete, SearchUpdate )
 
 
@@ -161,3 +162,74 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertRedirects(response, '/accounts/login/?next=/searching/')
 
 
+def setup_view(view, request, *args, **kwargs):
+    """Mimic as_view() returned callable, but returns view instance.
+    args and kwargs are the same you would pass to ``reverse()``
+
+    """
+    view.request = request
+    view.args = args
+    view.kwargs = kwargs
+    return view
+
+
+
+class SearchUpdateViewTests(BaseUserTestCase):
+
+    ''' test SearchUpdate View '''
+    
+    def setUp(self):
+
+        # call BaseUserTestCase.setUp()
+        super(SearchUpdateViewTests, self).setUp()
+        #
+        self.form = SearchAddOrUpdateForm
+        #
+        self.request.user = self.user1
+        #
+        self.view = setup_view( SearchUpdate(), self.request )
+
+
+
+        def test_form_dot_save_called_with_user(self):
+            self.view.form_valid(self.form)
+            self.form.save.assert_called_once_with(iUser=self.request.user)
+
+
+
+
+
+
+'''
+    def setUp(self):
+
+        # call BaseUserTestCase.setUp()
+        super(SearchUpdateViewTests, self).setUp()
+        #
+        model_data = dict( cTitle = "Great Widgets", iUser = self.user1 )
+        #
+        # Instantiate the view directly. Never do this outside a test!
+        self.view = SearchUpdate( data = model_data )
+        # Generate a fake request
+        request = self.factory.get('/fake-url')
+        # Attach the user to the request
+        request.user = self.user1
+        # Attach the request to the view
+        self.view.request = request
+        #
+        
+    def test_get_success_url(self):
+        # Expect: 
+        print( 'self.view.get_success_url():', self.view.get_success_url() )
+        #self.assertEqual(
+            #self.view.get_success_url(),
+            #'/users/testuser/' )
+
+    def test_get_object(self):
+        # Expect: 
+        #self.assertEqual(
+            #self.view.get_object(),
+            #self.user )
+        print( 'self.view.get_object():', self.view.get_object() )
+
+'''
