@@ -177,7 +177,8 @@ class SearchUpdateViewTests(BaseUserTestCase):
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         #
-        self.form = SearchAddOrUpdateForm( instance = oSearch )
+        self.form = SearchAddOrUpdateForm(
+                            instance = oSearch, which = 'Update' )
         #
         self.request = self.factory.get( reverse( 'searching:index' ) )
         #
@@ -195,7 +196,7 @@ class SearchUpdateViewTests(BaseUserTestCase):
         #
         self.assertEqual( self.view.template_name, 'searching/edit.html' )
         #
-        print( 'self.view.form_class:', self.view.form_class )
+        self.assertEqual( self.form.which, "Update" )
 
 
 
