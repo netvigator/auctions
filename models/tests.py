@@ -2,7 +2,6 @@ from django.contrib.auth        import get_user_model
 from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test                import TestCase
-from django.test.client         import Client
 
 from core.tests                 import ( BaseUserTestCase, getDefaultMarket,
                                          getUrlQueryStringOff, queryGotUTC )
@@ -112,8 +111,6 @@ class ModelViewsTests(BaseUserTestCase):
         """
         If no models exist, an appropriate message is displayed.
         """
-        self.client = Client()
-        
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('models:index'))
@@ -133,8 +130,7 @@ class ModelViewsTests(BaseUserTestCase):
         """
         If models exist, an appropriate message is displayed.
         """
-        self.client = Client()
-        
+        #
         self.client.login(username='username1', password='mypassword')
         #
         
@@ -200,7 +196,6 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        self.client = Client()
         self.client.login(username ='username1', password='mypassword')
         #
         self.oCategory = Category(
