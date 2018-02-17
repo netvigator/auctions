@@ -21,7 +21,6 @@ class TestFormValidation(BaseUserTestCase):
         #
         super( TestFormValidation, self ).setUp()
         #
-        self.client = Client()
         self.client.login(username ='username1', password='mypassword')
 
     def test_save_redirect(self):
