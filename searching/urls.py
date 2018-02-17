@@ -14,7 +14,7 @@ urlpatterns = [
     url(
         regex   = r'^add$',
         view    = views.SearchCreateView.as_view(),
-        name    = 'add'  ),
+        name    = 'add'  ), # SearchViewSuccessPostFormValidMixin references
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
         view    = views.SearchDetailView.as_view(),
