@@ -1,8 +1,16 @@
+from django.core.urlresolvers   import reverse
+from django.http                import HttpResponseRedirect
+from django.urls                import reverse_lazy
+
+from .forms                     import SearchAddOrUpdateForm
+from .models                    import Search
 
 
+class SearchFormValidSuccessPostMixin(object):
 
-
-class EbayCategoryFormValidMixin(object):
+    model           = Search
+    success_url     = reverse_lazy('searching:index')
+    form_class      = SearchAddOrUpdateForm
 
     def form_valid(self, form):
         #
@@ -13,4 +21,17 @@ class EbayCategoryFormValidMixin(object):
         #
         form.instance.iEbayCategory = form.cleaned_data.get('iEbayCategory')
         #
-        return super().form_valid(form)
+        return super( SearchFormValidSuccessPostMixin, self ).form_valid(form)
+
+    def get_success_url(self):
+        #
+        return reverse('searching:detail',kwargs = { 'pk': self.object.id } )
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            self.object = self.get_object()
+            url = reverse_lazy( 'searching:detail',
+                               kwargs = { 'pk': self.request.object.id } )
+            return HttpResponseRedirect(url)
+        else:
+            return super(SearchDelete, self).post(request, *args, **kwargs)
