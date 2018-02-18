@@ -8,19 +8,6 @@ from File.Del   import DeleteIfExists
 from File.Write import WriteText2File
 
 
-from core.ebay_wrapper import oEbayConfig
-
-
-class EbayWrapperTests(TestCase):
-    '''ebay wrapper tests'''
-    
-    def test_get_ini_values(self):
-        
-        self.assertEquals( oEbayConfig['call']['global_id'], 'EBAY-US' )
-        
-        self.assertEquals( oEbayConfig['research']['Token'], 'ENTER_HERE' )
-
-
 # actually for 'EBAY-US' as of 2017-12
 sExampleCategoryVersion = \
   '''<?xml version="1.0" encoding="UTF-8"?>
