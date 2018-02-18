@@ -1,18 +1,19 @@
-from datetime                   import timedelta
+from datetime           import timedelta
 
-from django.test.client         import Client, RequestFactory
-from django.test                import TestCase
-from django.utils               import timezone
+from django.test.client import Client, RequestFactory
+from django.test        import TestCase
+from django.utils       import timezone
 
-from core.tests                 import BaseUserTestCase, getDefaultMarket
+from core.test_utils    import BaseUserTestCase, getDefaultMarket
 
-from ..models                   import Search, ItemFound
-from ..test_big_text            import sExampleResponse
-from ..utils                    import (
-                        getSearchResultGenerator, getItemFoundForWriting )
+from ..models           import Search, ItemFound
+from ..utils            import (
+                            getSearchResultGenerator, getItemFoundForWriting )
 
-from File.Del                   import DeleteIfExists
-from File.Write                 import WriteText2File
+from .test_big_text     import sExampleResponse
+
+from File.Del           import DeleteIfExists
+from File.Write         import WriteText2File
 
 
 
