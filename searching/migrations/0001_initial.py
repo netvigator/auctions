@@ -16,7 +16,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('models', '0026_auto_20180214_0627'),
         ('categories', '0027_auto_20180214_0627'),
-        ('ebaycategories', '0017_auto_20180102_1020'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('brands', '0016_auto_20180214_0627'),
     ]
@@ -73,7 +72,8 @@ class Migration(migrations.Migration):
                 ('cLastResult', models.CharField(max_length=28, null=True, verbose_name='last search outcome')),
                 ('tCreate', models.DateTimeField(auto_now_add=True, verbose_name='created on')),
                 ('tModify', models.DateTimeField(auto_now=True, verbose_name='updated on')),
-                ('iEbayCategory', models.ForeignKey(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, on_delete=django.db.models.deletion.CASCADE, to='ebaycategories.EbayCategory', verbose_name='ebay category (optional)')),
+               #('iEbayCategory', models.ForeignKey(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, on_delete=django.db.models.deletion.CASCADE, to='ebaycategories.EbayCategory', verbose_name='ebay category (optional)')),
+                ('iEbayCategory', models.ForeignKey(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, on_delete=django.db.models.deletion.CASCADE, to='ebayinfo.EbayCategory',       verbose_name='ebay category (optional)')),
                 ('iUser', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Owner')),
             ],
             options={
