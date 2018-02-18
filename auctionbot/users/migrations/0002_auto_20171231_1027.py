@@ -9,9 +9,9 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('markets', '0012_auto_20171220_1319'),
         ('users', '0001_initial'),
     ]
+#        ('markets', '0012_auto_20171220_1319'),
 
     operations = [
         migrations.AddField(
@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='iMarket',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='markets.Market', verbose_name='ebay market (default)'),
+            #field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='markets.Market', verbose_name='ebay market (default)'),
+            field=models.PositiveIntegerField(default=1, verbose_name='ebay market (default)'),
         ),
     ]

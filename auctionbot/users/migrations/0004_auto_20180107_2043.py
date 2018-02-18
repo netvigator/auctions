@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='iMarket',
-            field=models.ForeignKey(default=1, null=True, on_delete=django.db.models.deletion.CASCADE, to='markets.Market', verbose_name='ebay market (default)'),
+            field=models.PositiveIntegerField(default=1, null=True, verbose_name='ebay market (default)'),
         ),
     ]
