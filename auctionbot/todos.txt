@@ -10,3 +10,20 @@ test WereAnyReleventColsChangedMixin !
 added model, hit save, when to model index instead of model detail, but cannot duplicate
 
 done search template is for model table only, must fix!
+
+in Search, max length for a single key word is 98
+
+reorgnizing ebayinfo
+
+done in core.tests
+done from ebaycategories.models      import EbayCategory
+done from markets.models             import Market
+
+done #models.PositiveIntegerField models.ForeignKey
+done ./searching/models.py:    iEbayCategory   = models.ForeignKey( EbayCategory,
+
+done ./ebaycategories/models.py:    iMarket         = models.ForeignKey( Market, verbose_name = 'ebay market',
+
+done ./auctionbot/users/models.py:    iMarket     = models.ForeignKey( Market,
+done iEbayUSA = Market.objects.get( cMarket = 'EBAY-US' ).id or 1
+
