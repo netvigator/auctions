@@ -1,8 +1,8 @@
-from django.core.urlresolvers import reverse, resolve
+from django.core.urlresolvers   import reverse, resolve
 
-from test_plus.test import TestCase
+from test_plus.test             import TestCase
 
-from core.tests     import getDefaultMarket
+from core.test_utils            import getDefaultMarket
 
 
 class TestUserURLs(TestCase):
