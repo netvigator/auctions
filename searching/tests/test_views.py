@@ -1,7 +1,7 @@
 from django.core.urlresolvers   import reverse
 from django.test.client         import RequestFactory
 
-from core.tests                 import BaseUserTestCase, setup_view_for_tests
+from core.test_utils            import BaseUserTestCase, setup_view_for_tests
 from core.utils                 import getExceptionMessageFromResponse
 
 from ..forms                    import SearchAddOrUpdateForm
