@@ -97,7 +97,7 @@ def getSearchResults( iSearchID = None ):
                     getItemsByKeyWords, getItemsByCategory, getItemsByBoth )
     #
     from .models            import Search
-    from markets.models     import Market
+    from ebayinfo.models    import Market
     #
     from File.Write         import QuietDump
     from String.Split       import getWhiteCleaned
