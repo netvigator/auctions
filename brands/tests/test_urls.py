@@ -40,19 +40,16 @@ class TestURLs(BaseUserTestCase):
         """brands:detail should reverse to /brands/<pk>/."""
         self.assertEqual(
             reverse('brands:detail', kwargs={ 'pk': 1 }),
-            '/brands/1/'
-        )
+            '/brands/1/' )
 
     def test_edit_reverse(self):
         """brands:edit should reverse to /brands/edit/."""
         self.assertEqual(reverse('brands:edit', kwargs={ 'pk': 1 }),
                          '/brands/1/edit/')
 
-    def test_update_resolve(self):
-        """/brands/~update/ should resolve to brands:update."""
+    def test_edit_resolve(self):
+        """/brands/~edit/ should resolve to brands:edit."""
         self.assertEqual(
             resolve('/brands/1/edit/').view_name,
-            'brands:edit'
-        )
-
+            'brands:edit' )
 
