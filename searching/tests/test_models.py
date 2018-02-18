@@ -1,13 +1,13 @@
 from django.test.client import Client
 
-from core.tests         import (
+from core.test_utils    import (
                         BaseUserTestCase, getUrlQueryStringOff, queryGotUTC )
 
 from ..forms            import SearchAddOrUpdateForm
 from ..models           import Search
-from ..test_big_text    import sExampleResponse
 from ..utils            import getSearchResultGenerator
 
+from .test_big_text     import sExampleResponse
 
 
 
