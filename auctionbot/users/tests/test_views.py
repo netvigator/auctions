@@ -1,8 +1,8 @@
-from django.test import RequestFactory
+from django.test        import RequestFactory
 
-from test_plus.test import TestCase
+from test_plus.test     import TestCase
 
-from core.tests     import getDefaultMarket
+from core.test_utils    import getDefaultMarket
 
 from ..views import (
     UserRedirectView,
