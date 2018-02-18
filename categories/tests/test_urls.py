@@ -1,7 +1,6 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from core.test_utils            import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUTC )
+from django.test                import TestCase
 
 from ..models                   import Category
 
@@ -9,27 +8,11 @@ from ..models                   import Category
 # Create your tests here.
 
 
-class TestURLs(BaseUserTestCase):
-
-    def test_get_absolute_url(self):
-        oCategory = Category(
-            cTitle          = "My awesome category",
-            iUser           = self.user1 )
-        #
-        oCategory.save()
-        #
-        tParts = getUrlQueryStringOff( oCategory.get_absolute_url() )
-        #
-        self.assertEqual( tParts[0], '/categories/%s/' % oCategory.id )
-        #
-        self.assertTrue( queryGotUTC( tParts[1] ) )
-        #
-        self.assertFalse( queryGotUTC( tParts[0] ) )
+class TestURLs(TestCase):
 
     def test_list_reverse(self):
-        """searches:index should reverse to /categories/."""
+        """categories:index should reverse to /categories/."""
         self.assertEqual(reverse('categories:index'), '/categories/')
-
 
     def test_list_resolve(self):
         """/categories/ should resolve to categories:index."""
@@ -39,18 +22,42 @@ class TestURLs(BaseUserTestCase):
         """categories:detail should reverse to /categories/<pk>/."""
         self.assertEqual(
             reverse('categories:detail', kwargs={ 'pk': 1 }),
-            '/categories/1/'
-        )
+            '/categories/1/' )
+
+    def test_detail_resolve(self):
+        """/categories/<pk>/ should resolve to categories:detail."""
+        self.assertEqual(resolve('/categories/1/').view_name, 'categories:detail')
 
     def test_edit_reverse(self):
         """categories:edit should reverse to /categories/edit/."""
         self.assertEqual(reverse('categories:edit', kwargs={ 'pk': 1 }),
                          '/categories/1/edit/')
 
-    def test_update_resolve(self):
-        """/categories/~update/ should resolve to categories:update."""
+    def test_edit_resolve(self):
+        """/categories/<pk>/edit/ should resolve to categories:edit."""
         self.assertEqual(
             resolve('/categories/1/edit/').view_name,
-            'categories:edit'
-        )
+            'categories:edit' )
+
+    def test_delete_reverse(self):
+        """categories:delete should reverse to /categories/<pk>/delete/."""
+        self.assertEqual(reverse('categories:delete', kwargs={ 'pk': 1 }),
+                         '/categories/1/delete/')
+
+    def test_delete_resolve(self):
+        """/categories/<pk>/delete/ should resolve to categories:delete."""
+        self.assertEqual(
+            resolve('/categories/1/delete/').view_name,
+            'categories:delete' )
+
+    def test_add_reverse(self):
+        """categories:add should reverse to /categories/add/."""
+        self.assertEqual(reverse('categories:add'),
+            '/categories/add/')
+
+    def test_add_resolve(self):
+        """/categories/add/ should resolve to categories:add."""
+        self.assertEqual(
+            resolve('/categories/add/').view_name,
+            'categories:add' )
 

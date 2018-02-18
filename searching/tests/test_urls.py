@@ -1,37 +1,14 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from core.test_utils            import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUTC )
-
-from ..forms                    import SearchAddOrUpdateForm
-from ..models                   import Search
+from django.test                import TestCase
 
 
 
-class TestURLs(BaseUserTestCase):
-
-    def test_get_absolute_url(self):
-        oSearch = Search(
-            cTitle          = "My clever search 1",
-            cKeyWords       = "Blah bleh blih",
-            cPriority       = "A",
-            iUser           = self.user1,
-            id              = 1 )
-        #
-        oSearch.save()
-        #
-        tParts = getUrlQueryStringOff( oSearch.get_absolute_url() )
-        #
-        self.assertEqual( tParts[0], '/searching/%s/' % oSearch.id )
-        #
-        self.assertTrue( queryGotUTC( tParts[1] ) )
-        #
-        self.assertFalse( queryGotUTC( tParts[0] ) )
+class TestURLs(TestCase):
 
     def test_list_reverse(self):
-        """searches:index should reverse to /searching/."""
+        """searching:index should reverse to /searching/."""
         self.assertEqual(reverse('searching:index'), '/searching/')
-
 
     def test_list_resolve(self):
         """/searching/ should resolve to searching:index."""
@@ -41,19 +18,42 @@ class TestURLs(BaseUserTestCase):
         """searching:detail should reverse to /searching/<pk>/."""
         self.assertEqual(
             reverse('searching:detail', kwargs={ 'pk': 1 }),
-            '/searching/1/'
-        )
+            '/searching/1/' )
+
+    def test_detail_resolve(self):
+        """/searching/<pk>/ should resolve to searching:detail."""
+        self.assertEqual(resolve('/searching/1/').view_name, 'searching:detail')
 
     def test_edit_reverse(self):
         """searching:edit should reverse to /searching/edit/."""
         self.assertEqual(reverse('searching:edit', kwargs={ 'pk': 1 }),
                          '/searching/1/edit/')
 
-    def test_update_resolve(self):
-        """/searching/~update/ should resolve to searching:update."""
+    def test_edit_resolve(self):
+        """/searching/<pk>/edit/ should resolve to searching:edit."""
         self.assertEqual(
             resolve('/searching/1/edit/').view_name,
-            'searching:edit'
-        )
+            'searching:edit' )
 
+    def test_delete_reverse(self):
+        """searching:delete should reverse to /searching/<pk>/delete/."""
+        self.assertEqual(reverse('searching:delete', kwargs={ 'pk': 1 }),
+                         '/searching/1/delete/')
+
+    def test_delete_resolve(self):
+        """/searching/<pk>/delete/ should resolve to searching:delete."""
+        self.assertEqual(
+            resolve('/searching/1/delete/').view_name,
+            'searching:delete' )
+
+    def test_add_reverse(self):
+        """searching:add should reverse to /searching/add/."""
+        self.assertEqual(reverse('searching:add'),
+            '/searching/add/')
+
+    def test_add_resolve(self):
+        """/searching/add/ should resolve to searching:add."""
+        self.assertEqual(
+            resolve('/searching/add/').view_name,
+            'searching:add' )
 

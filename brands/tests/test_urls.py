@@ -1,7 +1,6 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from core.test_utils            import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUTC )
+from django.test                import TestCase
 
 # Create your tests here.
 
@@ -9,28 +8,11 @@ from ..models                   import Brand
 
 
 
-class TestURLs(BaseUserTestCase):
-
-    def test_get_absolute_url(self):
-        oBrand = Brand(
-            cTitle          = "My premium brand",
-            iUser           = self.user1,
-            id              = 1 )
-        oBrand.save()
-        #
-        tParts = getUrlQueryStringOff( oBrand.get_absolute_url() )
-        #
-        self.assertEqual( tParts[0], '/brands/%s/' % oBrand.id )
-        #
-        self.assertTrue( queryGotUTC( tParts[1] ) )
-        #
-        self.assertFalse( queryGotUTC( tParts[0] ) )
-        
+class TestURLs(TestCase):
 
     def test_list_reverse(self):
-        """searches:index should reverse to /brands/."""
+        """brands:index should reverse to /brands/."""
         self.assertEqual(reverse('brands:index'), '/brands/')
-
 
     def test_list_resolve(self):
         """/brands/ should resolve to brands:index."""
@@ -42,14 +24,40 @@ class TestURLs(BaseUserTestCase):
             reverse('brands:detail', kwargs={ 'pk': 1 }),
             '/brands/1/' )
 
+    def test_detail_resolve(self):
+        """/brands/<pk>/ should resolve to brands:detail."""
+        self.assertEqual(resolve('/brands/1/').view_name, 'brands:detail')
+
     def test_edit_reverse(self):
         """brands:edit should reverse to /brands/edit/."""
         self.assertEqual(reverse('brands:edit', kwargs={ 'pk': 1 }),
                          '/brands/1/edit/')
 
     def test_edit_resolve(self):
-        """/brands/~edit/ should resolve to brands:edit."""
+        """/brands/<pk>/edit/ should resolve to brands:edit."""
         self.assertEqual(
             resolve('/brands/1/edit/').view_name,
             'brands:edit' )
+
+    def test_delete_reverse(self):
+        """brands:delete should reverse to /brands/<pk>/delete/."""
+        self.assertEqual(reverse('brands:delete', kwargs={ 'pk': 1 }),
+                         '/brands/1/delete/')
+
+    def test_delete_resolve(self):
+        """/brands/<pk>/delete/ should resolve to brands:delete."""
+        self.assertEqual(
+            resolve('/brands/1/delete/').view_name,
+            'brands:delete' )
+
+    def test_add_reverse(self):
+        """brands:add should reverse to /brands/add/."""
+        self.assertEqual(reverse('brands:add'),
+            '/brands/add/')
+
+    def test_add_resolve(self):
+        """/brands/add/ should resolve to brands:add."""
+        self.assertEqual(
+            resolve('/brands/add/').view_name,
+            'brands:add' )
 
