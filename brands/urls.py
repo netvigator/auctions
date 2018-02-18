@@ -12,7 +12,7 @@ urlpatterns = [
         view    = views.BrandIndexView.as_view(),
         name    = 'index' ),
     url(
-        regex   = r'^add$',
+        regex   = r'^add/$',
         view    = views.BrandCreateView.as_view(),
         name    = 'add'  ),
     url(

@@ -23,7 +23,7 @@ urlpatterns = [
         view    = views.CategoryDeleteView.as_view(),
         name    = 'delete'),
     url(
-        regex   = r'^add$',
+        regex   = r'^add/$',
         view    = views.CategoryCreateView.as_view(),
         name    = 'add'  ),
     

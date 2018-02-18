@@ -23,7 +23,7 @@ urlpatterns = [
         view    = views.ModelDeleteView.as_view(),
         name    = 'delete'),
     url(
-        regex   = r'^add$',
+        regex   = r'^add/$',
         view    = views.ModelCreateView.as_view(),
         name    = 'add'  ),
     
