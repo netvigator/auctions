@@ -1,20 +1,19 @@
 
-from os             import environ
-from os.path        import join
-from sys            import path
-
+from os                 import environ
+from os.path            import join
+from sys                import path
 
 import django
 
-from ebay.utils     import set_config_file, get_config_store
-from ebay.finding   import ( findItemsAdvanced, findItemsByKeywords,
-                             findItemsByCategory )
-from ebay.shopping  import GetSingleItem
-from ebay.trading   import getCategories
+from ebay.utils         import set_config_file, get_config_store
+from ebay.finding       import ( findItemsAdvanced, findItemsByKeywords,
+                                 findItemsByCategory )
+from ebay.shopping      import GetSingleItem
+from ebay.trading       import getCategories
 
-from File.Write     import QuietDump
+from File.Write         import QuietDump
 
-from markets.models import Market
+from ebayinfo.models    import Market
 
 
 path.append('~/Devel/auctions')
