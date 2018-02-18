@@ -2,22 +2,20 @@ from django.db                  import models
 from django_countries.fields    import CountryField
 from djmoney.models.fields      import MoneyField
 
-# Create your models here.
-
-from models.models          import Model
-from brands.models          import Brand
-from categories.models      import Category
+from models.models              import Model
+from brands.models              import Brand
+from categories.models          import Category
 
 # Create your models here.
 
-from django.contrib.auth    import get_user_model
+from django.contrib.auth        import get_user_model
 User = get_user_model()
 
 # not working: from django.utils.safestring import mark_safe
 
 from core.utils                 import getReverseWithQueryUTC
 
-from ebaycategories.models  import EbayCategory
+from ebayinfo.models            import EbayCategory
 
 class Search(models.Model):
     cTitle          = models.CharField( 'short description',
@@ -29,9 +27,10 @@ class Search(models.Model):
                     '-- (key words OR ebay category required!) '
                     '(Including both is OK)' )
     # max length for a single key word is 98
+    #models.ForeignKey( EbayCategory, models.PositiveIntegerField(
     iEbayCategory   = models.ForeignKey( EbayCategory,
-                                verbose_name = 'ebay category (optional)',
-                                null = True, blank = True,
+                        verbose_name = 'ebay category (optional)',
+                        null = True, blank = True,
         help_text = 'Limit search to items listed in this category '
                     '-- (key words OR ebay category required!) '
                     '(Both are OK)' )
