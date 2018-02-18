@@ -10,18 +10,13 @@ from django.test.client         import Client
 # Create your tests here.
 
 from categories.models          import Category
-from ebaycategories.models      import EbayCategory
-from markets.models             import Market
-
+from ebayinfo.models            import EbayCategory, Market
 
 from .ebay_wrapper              import oEbayConfig
 from .templatetags.core_tags    import getNbsp
 from .user_one                  import oUserOne
 from .utils                     import getDateTimeObj
 from .validators                import gotTextOutsideParens
-
-
-
 
 
 def getDefaultMarket( caller ):
@@ -68,78 +63,6 @@ def queryGotUTC( s ):
     return isISOdatetimeFileNameSafe( sQueryUTC )
 
 
-def TestingHelperTests(TestCase):
-    #
-    ''' test the testing helpers above (here)  '''
-    #
-    sURL = 'www.google.com/search?q=django+test+validation+assertRaises'
-    #
-    tParts = getUrlQueryStringOff( sURL )
-    #
-    def test_URL_Parts(self):
-        #
-        self.assertEquals( tParts[0], 'www.google.com/search' )
-        self.assertEquals( tParts[1], 'q=django+test+validation+assertRaises' )
-    #
-    #
-    def test_Query_Dont_Got_UTC(self):
-        #
-        self.assertFalse( queryGotUTC, sURL )
-        #
-    sURL = 'www.google.com/search?utc=2008-04-17_14.28.28'
-    #
-    def test_Query_Got_UTC(self):
-        #
-        self.assertTrue( queryGotUTC, sURL )
-        #
-    #
-    sURL = 'www.google.com/search?utc=2008-04-17 14:28:28'
-    #
-    def test_Query_Got_Invalid_UTC(self):
-        #
-        self.assertTrue( queryGotUTC, sURL )
-        #
-
-
-
-
-def GotTextOutsideParensTests(TestCase):
-    #
-    ''' test the gotTextOutsideParens() validator '''
-    #
-    from .validators import gotTextOutsideParens
-    #
-    s1 = 'abcde (efghijk)'
-    s2 = 'abcde'
-    s1 = ' (efghijk) '
-    
-    def test_OK_titles( self ):
-        #
-        try:
-            gotTextOutsideParens( s1 )
-            gotTextOutsideParens( s2 )
-        except ExceptionType:
-            self.fail("gotTextOutsideParens() raised ExceptionType unexpectedly!")
-    #
-    def test_bad_title( self ):
-        #
-        with self.assertRaises( ValidationError):
-            gotTextOutsideParens( s3 )
-
-
-
-def CoreMarketTests(TestCase):
-    #
-    ''' need the default market '''
-    #
-    def setUp(self):
-        getDefaultMarket( self )
-    
-    def test_default_market( self ):
-        #
-        assertIsNotNone( self.market.id )
-        #
-        assertEquals( self.market.id, 1 )
 
 
 class BaseUserTestCase(TestCase):
@@ -198,42 +121,6 @@ class BaseUserTestCase(TestCase):
         self.client = Client()
 
     
-class CoreUserTests(TestCase):
-    """ User tests."""
-
-    def setUp(self):
-        getDefaultMarket( self )
-    
-    def test_get_user(self):
-        
-        self.assertEquals( oUserOne.username, 'netvigator')
-
-
-class EbayWrapperTests(TestCase):
-    ''' ebay wrapper tests '''
-    
-    def test_get_ini_values(self):
-        
-        self.assertEquals( oEbayConfig['call']['global_id'], 'EBAY-US' )
-        
-        self.assertEquals( oEbayConfig['research']['Token'], 'ENTER_HERE' )
-        
-
-
-class DateTimeImportTests(TestCase):
-    '''test converting ebay string dates into python datetime objects'''
-    def test_convert_ebay_string_DateTime(self):
-        #
-        self.assertEquals( getDateTimeObj( "2017-12-15T05:22:47.000Z" ),
-                           datetime.datetime(2017, 12, 15, 5, 22, 47) )
-
-class NbspTests(TestCase):
-    '''test substituting &nbsp; for spaces'''
-    def test_Nbsp(self):
-        #
-        self.assertEquals( getNbsp( "how now brown cow" ),
-                           "how&nbsp;now&nbsp;brown&nbsp;cow" )
-
 
 def setup_view_for_tests( view, request, *args, **kwargs ):
     """
