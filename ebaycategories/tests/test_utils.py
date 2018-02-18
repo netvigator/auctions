@@ -2,7 +2,7 @@ from django.test import TestCase
 
 # Create your tests here.
 
-from .utils  import cCategoryVersionFile, getCategoryVersion
+from ..utils  import cCategoryVersionFile, getCategoryVersion
 
 from File.Del   import DeleteIfExists
 from File.Write import WriteText2File
