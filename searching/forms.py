@@ -1,10 +1,9 @@
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
-# from django.db              import IntegrityError
 from django.forms           import ModelForm
 
 from .models                import Search
 
-from ebaycategories.models  import EbayCategory
+from ebayinfo.models        import EbayCategory
 
 #from .views         import tModelFields
 
