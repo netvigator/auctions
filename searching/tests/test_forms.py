@@ -2,7 +2,7 @@ from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test.client         import Client
 
-from core.utils_testing         import BaseUserTestCase
+from core.utils_testing         import BaseUserTestCase, getUrlQueryStringOff
 
 from ..forms                    import SearchAddOrUpdateForm
 from ..models                   import Search, ItemFound
@@ -25,13 +25,14 @@ class TestFormValidation(BaseUserTestCase):
 
     def test_save_redirect(self):
         #
+        '''after saving the form, next page should be the detail'''
+        #
         form_data = dict(
             cTitle          = 'Great Widget 1',
             cPriority       = "A",
             cKeyWords       = "Blah bleh blih",
             which           = 'Create',
-            iUser           = self.user1.id
-            )
+            iUser           = self.user1.id )
         #
         form = SearchAddOrUpdateForm(data=form_data)
         form.request        = self.request
@@ -42,8 +43,8 @@ class TestFormValidation(BaseUserTestCase):
         form.save()
         oSearch = Search.objects.get( cTitle = 'Great Widget 1' )
         self.assertEqual(
-            reverse('searching:detail', kwargs={ 'pk': oSearch.id } ),
-            '/searching/%s/' % oSearch.id )
+            getUrlQueryStringOff( oSearch.get_absolute_url() )[0],
+            reverse('searching:detail', kwargs={ 'pk': oSearch.id } ) )
 
     def test_form_valid(self):
 
@@ -92,7 +93,7 @@ class TestFormValidation(BaseUserTestCase):
 
 
 
-    def test_stuff_in_there_already(self):
+    def test_add_stuff_already_there(self):
         #
         dData = dict(
                 cTitle          = "My clever search",
