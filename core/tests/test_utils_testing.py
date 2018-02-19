@@ -12,7 +12,7 @@ from ..utils                    import getDateTimeObj
 from ..validators               import gotTextOutsideParens
 
 from ..utils_testing            import (getUrlQueryStringOff,
-                                        queryGotUTC, getDefaultMarket )
+                                        queryGotUpdated, getDefaultMarket )
 
 
 def TestingHelperTests(TestCase):
@@ -31,20 +31,20 @@ def TestingHelperTests(TestCase):
     #
     def test_Query_Dont_Got_UTC(self):
         #
-        self.assertFalse( queryGotUTC, sURL )
+        self.assertFalse( queryGotUpdated, sURL )
         #
     sURL = 'www.google.com/search?utc=2008-04-17_14.28.28'
     #
     def test_Query_Got_UTC(self):
         #
-        self.assertTrue( queryGotUTC, sURL )
+        self.assertTrue( queryGotUpdated, sURL )
         #
     #
     sURL = 'www.google.com/search?utc=2008-04-17 14:28:28'
     #
     def test_Query_Got_Invalid_UTC(self):
         #
-        self.assertTrue( queryGotUTC, sURL )
+        self.assertTrue( queryGotUpdated, sURL )
         #
 
 
