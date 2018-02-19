@@ -12,7 +12,7 @@ from regex_field.fields         import RegexField
 from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sLookForHelpText, sExcludeIfHelpText )
 
-from core.utils                 import getReverseWithQueryUTC
+from core.utils                 import getReverseWithUpdatedQuery
 
 
 
@@ -91,5 +91,7 @@ class Brand(models.Model):
 
     def get_absolute_url(self):
         #
-        return getReverseWithQueryUTC('brands:detail', kwargs={'pk': self.pk})
+        return getReverseWithUpdatedQuery(
+                'brands:detail',
+                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 

@@ -13,7 +13,7 @@ User = get_user_model()
 
 # not working: from django.utils.safestring import mark_safe
 
-from core.utils                 import getReverseWithQueryUTC
+from core.utils                 import getReverseWithUpdatedQuery
 
 from ebayinfo.models            import EbayCategory
 
@@ -64,8 +64,9 @@ class Search(models.Model):
 
     def get_absolute_url(self):
         #
-        return getReverseWithQueryUTC( 'searching:detail',
-                    kwargs={ 'pk': self.pk } )
+        return getReverseWithUpdatedQuery(
+                'searching:detail',
+                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 
 
 class ItemFound(models.Model):

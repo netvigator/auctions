@@ -9,7 +9,7 @@ from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sKeyWordsHelpText, sLookForHelpText,
                                          sExcludeIfHelpText )
 
-from core.utils                 import getReverseWithQueryUTC
+from core.utils                 import getReverseWithUpdatedQuery
 
 from brands.models              import Brand
 
@@ -76,8 +76,9 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         #
-        return getReverseWithQueryUTC( 'categories:detail',
-                    kwargs = { 'pk': self.pk } )
+        return getReverseWithUpdatedQuery(
+                'categories:detail',
+                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 #
 
 
