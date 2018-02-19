@@ -1,27 +1,20 @@
 import datetime
 
 from django.contrib.auth        import get_user_model
-from django.core.exceptions     import ValidationError
-from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test                import TestCase, RequestFactory
 from django.test.client         import Client
 
 # Create your tests here.
 
-from categories.models          import Category
 from ebayinfo.models            import EbayCategory, Market
 
-from .ebay_wrapper              import oEbayConfig
-from .templatetags.core_tags    import getNbsp
-from .user_one                  import oUserOne
-from .utils                     import getDateTimeObj
-from .validators                import gotTextOutsideParens
 
 
-def getDefaultMarket( caller ):
+def getDefaultMarket():
     
-    if Market.objects.count() == 0:
+    if (        Market.objects.count() == 0 or
+            not Market.objects.filter( pk = 1 ).exists() ):
         #
         market = Market()
         #
@@ -33,8 +26,13 @@ def getDefaultMarket( caller ):
         market.cCurrencyDef= 'USD'
         market.cLanguage   = 'en-US'
         market.save()
-        
-        caller.market = market
+        #
+    else:
+        #
+        market = Market.objects.get( pk = 1 )
+        #
+    #
+    return market
 
     # print( 'self.market.id:', Market.objects.filter( pk = 1 ) )
 
@@ -71,7 +69,7 @@ class BaseUserTestCase(TestCase):
 
         self.factory = RequestFactory()
         
-        getDefaultMarket( self )
+        self.market  = getDefaultMarket()
 
         oUser = get_user_model()
 
