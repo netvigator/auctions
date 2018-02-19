@@ -48,13 +48,13 @@ def getUrlQueryStringOff( sURL ):
     return tuple( lParts )
 
 
-def queryGotUTC( s ):
+def queryGotUpdated( s ):
     #
     from String.Get import getTextAfter, getTextBefore
     from Time.Test  import isISOdatetimeFileNameSafe
     #
     sQueryUTC = getTextBefore(
-                    getTextAfter( s, 'utc=' ),
+                    getTextAfter( s, 'updated=' ),
                     '&',
                     bWantEmptyIfNoAfter = False )
     #
