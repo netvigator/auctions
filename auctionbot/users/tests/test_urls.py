@@ -9,10 +9,8 @@ class TestUserURLs(TestCase):
     """Test URL patterns for users app."""
 
     def setUp(self):
-
-        getDefaultMarket( self )
-
-        self.user = self.make_user()
+        self.market = getDefaultMarket()
+        self.user   = self.make_user()
 
     def test_list_reverse(self):
         """users:list should reverse to /users/."""
@@ -30,15 +28,13 @@ class TestUserURLs(TestCase):
         """/users/~redirect/ should resolve to users:redirect."""
         self.assertEqual(
             resolve('/users/~redirect/').view_name,
-            'users:redirect'
-        )
+            'users:redirect' )
 
     def test_detail_reverse(self):
         """users:detail should reverse to /users/testuser/."""
         self.assertEqual(
             reverse('users:detail', kwargs={'username': 'testuser'}),
-            '/users/testuser/'
-        )
+            '/users/testuser/' )
 
     def test_detail_resolve(self):
         """/users/testuser/ should resolve to users:detail."""
@@ -52,5 +48,4 @@ class TestUserURLs(TestCase):
         """/users/~update/ should resolve to users:update."""
         self.assertEqual(
             resolve('/users/~update/').view_name,
-            'users:update'
-        )
+            'users:update' )

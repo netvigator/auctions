@@ -8,10 +8,8 @@ class TestMyUserCreationForm(TestCase):
 
         
     def setUp(self):
-
-        getDefaultMarket( self )
-
-        self.user = self.make_user('notalamode', 'notalamodespassword')
+        self.market = getDefaultMarket()
+        self.user   = self.make_user('notalamode', 'notalamodespassword')
 
     def test_clean_username_success(self):
         # Instantiate the form with a new username

@@ -6,9 +6,9 @@ class TestUser(TestCase):
 
     def setUp(self):
 
-        getDefaultMarket( self )
+        self.market = getDefaultMarket()
 
-        self.user = self.make_user()
+        self.user   = self.make_user()
 
     def test__str__(self):
         self.assertEqual(

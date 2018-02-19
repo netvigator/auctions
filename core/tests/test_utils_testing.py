@@ -55,7 +55,7 @@ def CoreMarketTests(TestCase):
     ''' need the default market '''
     #
     def setUp(self):
-        getDefaultMarket( self )
+        self.market = getDefaultMarket()
     
     def test_default_market( self ):
         #
@@ -93,7 +93,7 @@ class CoreUserTests(TestCase):
     """ User tests."""
 
     def setUp(self):
-        getDefaultMarket( self )
+        self.market = getDefaultMarket()
     
     def test_get_user(self):
         
