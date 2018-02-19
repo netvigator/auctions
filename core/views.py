@@ -51,6 +51,7 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         return super().form_valid(form)
 
     def get_object(self):
+        '''work around obscure bug, sometimes CreateView wants a pk!'''
         # https://github.com/django-guardian/django-guardian/issues/279
         return None
 
