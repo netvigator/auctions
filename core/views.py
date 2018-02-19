@@ -36,12 +36,6 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
     Enhanced CreateView which includes crispy form Create and Cancel buttons.
     '''
 
-    '''
-    def __init__(self, *args, **kwargs):
-        self.which = 'Create'
-        super(UpdateViewGotCrispy, self).__init__(*args, **kwargs)
-    '''
-
     success_message = 'New record successfully saved!!!!'
 
     def get_form(self, form_class=None):
@@ -55,6 +49,10 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
     def form_valid(self, form):
         form.instance.iUser = self.request.user
         return super().form_valid(form)
+
+    def get_object(self):
+        # https://github.com/django-guardian/django-guardian/issues/279
+        return None
 
 
 
