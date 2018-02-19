@@ -1,6 +1,6 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_testing         import BaseUserTestCase
+from core.utils_testing         import BaseUserTestCase, getUrlQueryStringOff
 
 from ..models                   import Category
 from ..forms                    import CategoryForm
@@ -22,11 +22,13 @@ class TestFormValidation(BaseUserTestCase):
 
     def test_Title_got_outside_parens(self):
         #
+        '''text in parens is OK,
+        but there must be some text outside the parens'''
+        #
         form_data = dict(
             cTitle      = '(Widgets)',
             iStars      = 5,
-            iUser       = self.user1
-            )
+            iUser       = self.user1 )
         #
         form = CategoryForm(data=form_data)
         form.request = self.request
@@ -46,21 +48,37 @@ class TestFormValidation(BaseUserTestCase):
         form.request = self.request
         self.assertTrue(form.is_valid())
 
-        ''' test save '''
+
+    def test_save_redirect(self):
+        #
+        '''after saving the form, next page should be the detail'''
+        #
+        form_data = dict(
+            cTitle      = 'Widgets',
+            iStars      = 5,
+            iUser       = self.user1 )
+        #
+        form = CategoryForm(data=form_data)
+        form.request = self.request
+        self.assertTrue(form.is_valid())
+        # 
         form.instance.iUser = self.user1
         form.save()
         oCategory = Category.objects.get( cTitle = 'Widgets' )
         self.assertEqual(
-            reverse('categories:detail', kwargs={ 'pk': oCategory.id } ),
-            '/categories/%s/' % oCategory.id )
+            getUrlQueryStringOff( oCategory.get_absolute_url() )[0],
+            reverse('categories:detail', kwargs={ 'pk': oCategory.id } ) )
 
-    def test_Title_not_there_already(self):
+
+    def test_add_Title_already_there(self):
+        #
+        '''can add category not in there yet,
+        cannot add a category already there'''
         #
         form_data = dict(
             cTitle      = 'Gadgets',
             iStars      = 5,
-            iUser       = self.user1
-            )
+            iUser       = self.user1 )
         #
         form = CategoryForm(data=form_data)
         form.request = self.request

@@ -1,6 +1,6 @@
 from django.urls        import reverse
 
-from core.utils_testing import BaseUserTestCase
+from core.utils_testing import BaseUserTestCase, getUrlQueryStringOff
 
 
 # Create your tests here.
@@ -27,11 +27,13 @@ class TestFormValidation(BaseUserTestCase):
 
     def test_Title_got_outside_parens(self):
         #
+        '''text in parens is OK,
+        but there must be some text outside the parens'''
+        #
         form_data = dict(
             cTitle      = '(Chevrolet)',
             iStars      = 5,
-            iUser       = self.user1.id
-            )
+            iUser       = self.user1.id )
         #
         form = BrandForm(data=form_data)
         form.request = self.request
@@ -50,23 +52,37 @@ class TestFormValidation(BaseUserTestCase):
         form = BrandForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
-        
-        ''' test save '''
+                
+
+    def test_save_redirect(self):
+        #
+        '''after saving the form, next page should be the detail'''
+        #
+        form_data = dict(
+            cTitle      = 'Chevrolet',
+            iStars      = 5,
+            iUser       = self.user1.id )
+        #
+        form = BrandForm(data=form_data)
+        form.request = self.request
+        self.assertTrue(form.is_valid())
+        #
         form.instance.iUser = self.user1
         form.save()
         oBrand = Brand.objects.get( cTitle = 'Chevrolet' )
         self.assertEqual(
-            reverse('brands:detail', kwargs={ 'pk': oBrand.id } ),
-            '/brands/%s/' % oBrand.id )
-        
+            getUrlQueryStringOff( oBrand.get_absolute_url() )[0],
+            reverse('brands:detail', kwargs={ 'pk': oBrand.id } ) )
 
-    def test_Title_not_there_already(self):
+    def test_add_Title_already_there(self):
+        #
+        '''can add brand name not in there yet,
+        cannot add a brand name already there'''
         #
         form_data = dict(
             cTitle      = 'Cadillac',
             iStars      = 5,
-            iUser       = self.user1.id
-            )
+            iUser       = self.user1.id )
         #
         form = BrandForm(data=form_data)
         form.request = self.request
