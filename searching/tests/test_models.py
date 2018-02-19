@@ -1,7 +1,7 @@
 from django.test.client import Client
 
 from core.utils_testing import ( BaseUserTestCase,
-                                 getUrlQueryStringOff, queryGotUTC )
+                                 getUrlQueryStringOff, queryGotUpdated )
 
 from ..models           import Search
 
@@ -20,11 +20,12 @@ class SearchModelTest(BaseUserTestCase):
         oSearch     = Search( cTitle= sSearch, iUser = self.user1 )
         oSearch.save()
         #
+        
         tParts = getUrlQueryStringOff( oSearch.get_absolute_url() )
         #
         self.assertEqual( tParts[0], '/searching/%s/' % oSearch.id )
         #
-        self.assertTrue( queryGotUTC( tParts[1] ) )
+        self.assertTrue( queryGotUpdated( tParts[1] ) )
         #
-        self.assertFalse( queryGotUTC( tParts[0] ) )
+        self.assertFalse( queryGotUpdated( tParts[0] ) )
 

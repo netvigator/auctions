@@ -1,5 +1,5 @@
 from core.utils_testing         import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUTC )
+                                         getUrlQueryStringOff, queryGotUpdated )
 
 from categories.models          import Category
 
@@ -30,7 +30,7 @@ class ModelModelTest(BaseUserTestCase):
         #
         self.assertEqual( tParts[0], '/models/%s/' % oModel.id )
         #
-        self.assertTrue( queryGotUTC( tParts[1] ) )
+        self.assertTrue( queryGotUpdated( tParts[1] ) )
         #
-        self.assertFalse( queryGotUTC( tParts[0] ) )
+        self.assertFalse( queryGotUpdated( tParts[0] ) )
 
