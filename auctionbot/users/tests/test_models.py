@@ -1,5 +1,5 @@
 from test_plus.test     import TestCase
-from core.test_utils    import getDefaultMarket
+from core.utils_testing import getDefaultMarket
 
 
 class TestUser(TestCase):

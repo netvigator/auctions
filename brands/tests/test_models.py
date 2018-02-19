@@ -1,4 +1,4 @@
-from core.test_utils            import ( BaseUserTestCase,
+from core.utils_testing         import ( BaseUserTestCase,
                                          getUrlQueryStringOff, queryGotUTC )
 
 # Create your tests here.

@@ -1,4 +1,4 @@
-from core.test_utils            import ( BaseUserTestCase,
+from core.utils_testing         import ( BaseUserTestCase,
                                          getUrlQueryStringOff, queryGotUTC )
 
 from categories.models          import Category

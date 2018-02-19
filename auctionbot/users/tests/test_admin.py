@@ -1,7 +1,7 @@
 from test_plus.test     import TestCase
 
 from ..admin            import MyUserCreationForm
-from core.test_utils    import getDefaultMarket
+from core.utils_testing import getDefaultMarket
 
 
 class TestMyUserCreationForm(TestCase):

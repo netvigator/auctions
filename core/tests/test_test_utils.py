@@ -11,7 +11,7 @@ from ..user_one                 import oUserOne
 from ..utils                    import getDateTimeObj
 from ..validators               import gotTextOutsideParens
 
-from ..test_utils               import (getUrlQueryStringOff,
+from ..utils_testing            import (getUrlQueryStringOff,
                                         queryGotUTC, getDefaultMarket )
 
 

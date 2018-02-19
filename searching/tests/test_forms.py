@@ -2,7 +2,7 @@ from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test.client         import Client
 
-from core.test_utils            import BaseUserTestCase
+from core.utils_testing         import BaseUserTestCase
 
 from ..forms                    import SearchAddOrUpdateForm
 from ..models                   import Search, ItemFound

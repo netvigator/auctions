@@ -2,7 +2,7 @@ from django.test        import RequestFactory
 
 from test_plus.test     import TestCase
 
-from core.test_utils    import getDefaultMarket
+from core.utils_testing import getDefaultMarket
 
 from ..views import (
     UserRedirectView,

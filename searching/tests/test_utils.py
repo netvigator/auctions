@@ -4,7 +4,7 @@ from django.test.client import Client, RequestFactory
 from django.test        import TestCase
 from django.utils       import timezone
 
-from core.test_utils    import BaseUserTestCase, getDefaultMarket
+from core.utils_testing import BaseUserTestCase, getDefaultMarket
 
 from ..models           import Search, ItemFound
 from ..utils            import (

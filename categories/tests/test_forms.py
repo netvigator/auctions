@@ -1,6 +1,6 @@
 from django.core.urlresolvers   import reverse
 
-from core.test_utils            import BaseUserTestCase
+from core.utils_testing         import BaseUserTestCase
 
 from ..models                   import Category
 from ..forms                    import CategoryForm

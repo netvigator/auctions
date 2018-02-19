@@ -1,6 +1,6 @@
 from django.test.client import Client
 
-from core.test_utils    import ( BaseUserTestCase,
+from core.utils_testing import ( BaseUserTestCase,
                                  getUrlQueryStringOff, queryGotUTC )
 
 from ..models           import Search
