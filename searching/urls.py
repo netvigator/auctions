@@ -12,9 +12,9 @@ urlpatterns = [
         view    = views.SearchIndexView.as_view(),
         name    = 'index' ),
     url(
-        regex   = r'^add$',
+        regex   = r'^add/$', # SearchViewSuccessPostFormValidMixin references
         view    = views.SearchCreateView.as_view(),
-        name    = 'add'  ), # SearchViewSuccessPostFormValidMixin references
+        name    = 'add'  ),
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
         view    = views.SearchDetailView.as_view(),
