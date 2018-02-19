@@ -31,7 +31,7 @@ class SearchViewSuccessPostFormValidMixin(object):
         #
         if "cancel" in request.POST:
             #
-            if request.path.endswith('add'):
+            if request.path.endswith('add/'):
                 url = reverse_lazy( 'searching:index' )
             else:
                 self.object = self.get_object()
