@@ -63,14 +63,14 @@ def model_to_dict(instance):
     return dObj
 
 
-def _getReverseWithQuery( *args, **kwargs ):
+def _getReverseWithQuery( lookup_view, *args, **kwargs ):
     #
     from django.core.urlresolvers   import reverse
     from django.utils.http          import urlencode
     #
-    query = kwargs.pop( 'query', {} )
+    query = kwargs.pop( 'query' )
     #
-    url = reverse(*args, **kwargs)
+    url = reverse( lookup_view, kwargs = kwargs )
     #
     if query:
         #
@@ -80,7 +80,15 @@ def _getReverseWithQuery( *args, **kwargs ):
     return url
 
 
-def getReverseWithQueryUTC( *args, **kwargs ):
+def _getIsoDateTimeOffDateTimeCol( tDateTime ):
+    #
+    from Time           import sFormatISOdateTimeNoColon
+    from Time.Output    import getIsoDateTimeFromDateTime
+    #
+    return tDateTime.strftime( sFormatISOdateTimeNoColon )
+
+
+def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
     #
     '''solution to browser lack-of-refresh problem!!
     browser lack-of-refresh problem:
@@ -90,14 +98,18 @@ def getReverseWithQueryUTC( *args, **kwargs ):
     append a unique query string onto the end of the detail page URL
     UTC date/time of the moment will always be unique.
     voila! browser lack-of-refresh problem solved!
-    '''
+    #'''
     #
     from Time.Output import getNowIsoDateTimeFileNameSafe
     #
-    dUTC = { 'utc': getNowIsoDateTimeFileNameSafe( bWantLocal = False ) }
+    kwargs = kwargs.get( 'kwargs', {} ) # !!!
+    #
+    tModify = kwargs.pop( 'tModify' )
+    #
+    dUTC = { 'updated': _getIsoDateTimeOffDateTimeCol( tModify ) }
     #
     kwargs[ 'query' ] = dUTC
     #
-    return _getReverseWithQuery( *args, **kwargs )
+    return _getReverseWithQuery( lookup_view, *args, **kwargs )
 
 
