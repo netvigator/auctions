@@ -21,7 +21,7 @@ def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' 
     return sNamerSpacer, sRootNameSpTag
 
 
-def getDateTimeObj( sDateTime ):
+def getDateTimeObjGotEbayStr( sDateTime ):
     #
     '''convert ebay string dates into python datetime objects'''
     #
