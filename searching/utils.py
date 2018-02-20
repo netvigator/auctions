@@ -1,6 +1,7 @@
 from json           import load
 
 from core.utils     import oInParensFinder
+from core.utils     import getDateTimeObjGotEbayStr as getDT
 
 from .models        import ItemFound
 
@@ -8,10 +9,12 @@ from Dict.Get       import getAnyValue
 from Dict.Maintain  import getDictValuesFromSingleElementLists
 from String.Eat     import eatFromWithin
 from String.Find    import getRegEx4Chars
+from Utils.Config   import getBoolOffYesNoTrueFalse as getBool
+
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
-
+class ItemFoundAlready       Exception ): pass
 
 
 def getSearchResultGenerator( sFile ):
@@ -246,3 +249,33 @@ def getItemFoundForWriting( iWantOlderThan = 120 ):
         #
     #
     return oNewItem
+
+
+def storeItemFound( dItem ):
+    #
+    bGot = ItemFound.objects.filter( iItemNumb = dItem['itemId'] ).exists()
+    #
+    if bGot: raise ItemFoundAlready( dItem['itemId'] )
+    #
+    oNew = getItemFoundForWriting()
+    #
+    oNew.iItemNumb      = int(     dItem['itemId'] )
+    oNew.cTitle         =          dItem['title']
+    oNew.cLocation      =          dItem['location']
+    oNew.cCountry       =          dItem['country']
+    oNew.cMarket        =          dItem['globalId']
+    oNew.cGalleryURL    =          dItem['galleryURL']
+    oNew.cEbayItemURL   =          dItem['viewItemURL']
+    oNew.tTimeBeg       = getDT(   dItem['startTime'] )
+    oNew.tTimeEnd       = getDT(   dItem['endTime'] )
+    oNew.bBestOfferable = getBool( dItem['listingInfo']['bestOfferEnabled'] )
+    oNew.bBuyItNowable  = getBool( dItem['listingInfo']['buyItNowAvailable'] )
+    oNew.cListingType   =          dItem['listingType']
+    oNew.mCurrentPrice  =          dItem['sellingStatus']['currentPrice']
+    oNew.nCurrentPrice  =          dItem['sellingStatus']['convertedCurrentPrice']
+    oNew.iCategoryID    = int(     dItem['primaryCategory']['categoryId'] )
+    oNew.cCategory      =          dItem['primaryCategory']['categoryName']
+    oNew.iConditionID   = int(     dItem['condition']['conditionId'] )
+    oNew.cCondition     =          dItem['condition']['conditionDisplayName']
+    oNew.cSellingState  =          dItem['sellingStatus']['currentPrice']
+    #
