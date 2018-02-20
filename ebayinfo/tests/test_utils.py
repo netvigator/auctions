@@ -1,37 +1,159 @@
-from django.test import TestCase
+from django.db          import DataError
+from django.test        import TestCase
 
 # Create your tests here.
 
-from ..utils  import cCategoryVersionFile, getCategoryVersion
+from core.utils_testing import getDefaultMarket
 
-from File.Del   import DeleteIfExists
-from File.Write import WriteText2File
+from ..models           import EbayCategory
+# the following is in the __init__.py file
+from ..tests            import sExampleCategoryVersion, sExampleCategoryList
+
+from ..utils            import ( sCategoryVersionFile, getCategoryVersion,
+                                 UnexpectedResponse, sCategorylistingFile,
+                                 putCategoriesInDatabase, countCategories )
+
+from File.Del           import DeleteIfExists
+from File.Write         import WriteText2File
 
 
-# actually for 'EBAY-US' as of 2017-12
-sExampleCategoryVersion = \
-  '''<?xml version="1.0" encoding="UTF-8"?>
-    <GetCategoriesResponse xmlns="urn:ebay:apis:eBLBaseComponents">
-        <Timestamp>2017-12-12T04:45:28.766Z</Timestamp>
-        <Ack>Success</Ack>
-        <Version>1041</Version>
-        <Build>E1041_CORE_APICATALOG_18587827_R1</Build>
-        <UpdateTime>2017-06-13T02:06:57.000Z</UpdateTime>
-        <CategoryVersion>117</CategoryVersion>
-        <ReservePriceAllowed>true</ReservePriceAllowed>
-        <MinimumReservePrice>0.0</MinimumReservePrice>
-    </GetCategoriesResponse>'''
+sMessedCategoryVersion = sExampleCategoryVersion.replace(
+        'GetCategoriesResponse', 'ResponseGetCategories' )
 
+sExampleFailureVersion = sExampleCategoryVersion.replace(
+        'Success', 'Failure' )
+
+sExampleWrongChildTag = sExampleCategoryVersion.replace(
+        'Version', 'Venison' )
 
 
 
 class getCategoryVersionTest(TestCase):
-    #
+    '''test getCategoryVersion()'''
+    
+    sFile = sCategoryVersionFile % 'EBAY-US'
+
+    def tearDown(self):
+        DeleteIfExists( self.sFile )
+        
     def test_get_category_version(self):
         # create/destroy test file needs to be in here
         # test is run AFTER the last line in this file is executed
         WriteText2File(
-            sExampleCategoryVersion, cCategoryVersionFile % 'EBAY-US' )
+                sExampleCategoryVersion, self.sFile )
         self.assertEqual( getCategoryVersion(), '117' )
-        DeleteIfExists( cCategoryVersionFile % 'EBAY-US' )
+
+    def test_wrong_category_version(self):
+        '''test with incorrect GetCategoriesResponse'''
+        #
+        WriteText2File(
+                sMessedCategoryVersion, self.sFile )
+        try:
+            getCategoryVersion()
+        except UnexpectedResponse as e:
+            self.assertEqual(
+                    str(e),
+                    'Check file %s for correct output!' % self.sFile )
+
+    def test_Failure_not_Success(self):
+        '''test without Success in Ack'''
+        #
+        WriteText2File(
+                sExampleFailureVersion, self.sFile )
+        try:
+            getCategoryVersion()
+        except UnexpectedResponse as e:
+            self.assertEqual(
+                    str(e),
+                    'Check file %s for tag "Ack" -- '
+                        'should be "Success"!' % self.sFile )
+
+    def test_wrong_child_tag(self):
+        '''test with missing child tag'''
+        #
+        WriteText2File(
+                sExampleWrongChildTag, self.sFile )
+        try:
+            getCategoryVersion()
+        except UnexpectedResponse as e:
+            self.assertEqual(
+                    str(e),
+                    'Check file %s for tag "%s"!' % ( self.sFile , 'Version' ) )
+        else:
+            self.assertTrue( False )
+
+
+
+class putCategoriesInDatabaseTest(TestCase):
+    '''test getCategoryVersion()'''
+
+    sFile = sCategorylistingFile % 'EBAY-US'
+
+    def setUp(self):
+        getDefaultMarket()
+
+    def tearDown(self):
+        DeleteIfExists( self.sFile )
+
+    def test_put_categories_in_database(self):
+        #
+        WriteText2File(
+                sExampleCategoryList, self.sFile )
+        #
+        putCategoriesInDatabase()
+        #
+        oGreek = EbayCategory.objects.get( iCategoryID = 37906 )
+        #
+        self.assertEqual( oGreek.name, 'Greek' )
+
+
+    def test_category_name_too_long(self):
+        #
+        sLong = ( 'Greek week, Greek food, Greek mythology, '
+                    'Greek way, Greek restaurant ' )
+        #
+        sLongName = sExampleCategoryList.replace( 'Greek', sLong )
+        #
+        WriteText2File( sLongName, self.sFile )
+        #
+        try:
+            putCategoriesInDatabase()
+        except DataError as e:
+            sMsg = str(e)
+            self.assertEqual( sMsg[ - len( sLong ) : ], sLong )
+        else:
+            self.assertTrue( False )
+        
+        
+
+
+    def test_wrong_category_version(self):
+        #
+        sWrongVersion = sExampleCategoryList.replace(
+                'Version>117</Category', 'Version>118</Category' )
+        WriteText2File(
+                sWrongVersion, self.sFile )
+        #
+        try:
+            putCategoriesInDatabase()
+        except UnexpectedResponse as e:
+            self.assertEqual(
+                    str(e),
+                    'Check file %s for tag "CategoryVersion" -- '
+                        'should be %s!' % ( self.sFile, '117' ) )
+        else:
+            self.assertTrue( False )
+
+
+
+    def test_count_categories_in_file(self):
+        #
+        WriteText2File(
+                sExampleCategoryList, self.sFile )
+        #
+        iTags, iCount = countCategories()
+        #
+        self.assertEqual( 8, iCount ) #  integer count in the abbreviated file
+        self.assertEqual( iTags, '19188' ) # str count in the original file
+
 
