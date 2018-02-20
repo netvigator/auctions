@@ -1,15 +1,11 @@
-import datetime
-
-from django.contrib.auth        import get_user_model
-from django.http.request        import HttpRequest
-from django.test                import TestCase, RequestFactory
-from django.test.client         import Client
+from django.contrib.auth    import get_user_model
+from django.http.request    import HttpRequest
+from django.test            import TestCase, RequestFactory
+from django.test.client     import Client
 
 # Create your tests here.
 
-from ebayinfo.models            import EbayCategory, Market
-
-
+from ebayinfo.models        import EbayCategory, Market
 
 def getDefaultMarket():
     
