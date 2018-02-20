@@ -8,7 +8,7 @@ from django.test                import TestCase
 from ..ebay_wrapper             import oEbayConfig
 from ..templatetags.core_tags   import getNbsp
 from ..user_one                 import oUserOne
-from ..utils                    import getDateTimeObj
+from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
 from ..validators               import gotTextOutsideParens
 
 from ..utils_testing            import (getUrlQueryStringOff,
@@ -115,7 +115,7 @@ class DateTimeImportTests(TestCase):
     '''test converting ebay string dates into python datetime objects'''
     def test_convert_ebay_string_DateTime(self):
         #
-        self.assertEquals( getDateTimeObj( "2017-12-15T05:22:47.000Z" ),
+        self.assertEquals( getDateTime( "2017-12-15T05:22:47.000Z" ),
                            datetime.datetime(2017, 12, 15, 5, 22, 47) )
 
 class NbspTests(TestCase):
