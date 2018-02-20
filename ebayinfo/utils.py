@@ -1,17 +1,16 @@
-
-class UnexpectedResponse( Exception ): pass
-
 import xml.etree.ElementTree as ET
 
 #from pprint import pprint
 
-from core.utils     import getNamerSpacer
+from core.utils             import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
-from django.db      import DataError
+from django.db              import DataError
 
-from String.Output  import ReadableNo
-from Utils.Progress import TextMeter, DummyMeter
-from Web.HTML       import getChars4HtmlCodes
+from String.Output          import ReadableNo
+from Utils.Progress         import TextMeter, DummyMeter
+from Web.HTML               import getChars4HtmlCodes
+
+class UnexpectedResponse( Exception ): pass
 
 '''
 utils for handling info from ebay API 
@@ -20,8 +19,8 @@ core.ebay_wrapper.py
 '''
 
 # variable referenced in tests
-cCategoryVersionFile = '/tmp/Categories_Ver_%s.xml'
-cCategorylistingFile = '/tmp/Categories_All_%s.xml.gz'
+sCategoryVersionFile = '/tmp/Categories_Ver_%s.xml'
+sCategorylistingFile = '/tmp/Categories_All_%s.xml.gz'
 
 sRootTag = 'GetCategoriesResponse'
 
@@ -41,7 +40,7 @@ tCategoryArrayTags = (
     'LeafCategory' )
 
 
-def getTagsValuesGotRoot( root, tTags = tVersionChildTags ):
+def getTagsValuesGotRoot( root, tTags = tVersionChildTags, sFile = None ):
     #
     if root.tag != sRootNameSpTag:
         #
@@ -50,7 +49,6 @@ def getTagsValuesGotRoot( root, tTags = tVersionChildTags ):
         #
     #
     dTagsValues = {}
-    #
     #
     for sChildTag in tTags:
         #
@@ -65,20 +63,20 @@ def getTagsValuesGotRoot( root, tTags = tVersionChildTags ):
     #
     if dTagsValues[ 'Ack' ] != 'Success':
         raise( UnexpectedResponse(
-            'Check file %s for tag "Ack" -- should be "Success"!' %
-            ( sFile , ) ) )
+            'Check file %s for tag "Ack" -- should be "Success"!' % sFile ) )
     #
     return dTagsValues
 
 
 def getCategoryIterable(
-        sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
+        sFile = sCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
     #
     tree = ET.parse( sFile )
     #
     root = tree.getroot()
     #
-    dTagsValues = getTagsValuesGotRoot( root, tTags = tListingChildTags )
+    dTagsValues = getTagsValuesGotRoot(
+            root, tTags = tListingChildTags, sFile = sFile )
     #
     if dTagsValues[ 'CategoryVersion' ] != sWantVersion:
         #
@@ -94,7 +92,8 @@ def getCategoryIterable(
 
 
 def countCategories(
-        sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
+        sFile = sCategorylistingFile % 'EBAY-US', sWantVersion = '117',
+        bSayCount = False ):
     #
     from String.Output import ReadableNo
     #
@@ -107,13 +106,17 @@ def countCategories(
         i += 1
         #
     #
-    print( 'CategoryCount line said', 
-           ReadableNo( dTagsValues[ 'CategoryCount' ] ),
-            'categories, actully counted', ReadableNo( i ) )
+    if bSayCount:
+        print( 'CategoryCount line said', 
+            ReadableNo( dTagsValues[ 'CategoryCount' ] ),
+                'categories, actully counted', ReadableNo( i ) )
+    #
+    return dTagsValues[ 'CategoryCount' ], i
+
 
 
 def getCategoryDictGenerator(
-        sFile = cCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
+        sFile = sCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
     #
     oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
     #
@@ -158,10 +161,12 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
     #
     oMarket = Market.objects.get( cMarket = sMarket )
     #
-    categoryDictIterable = getCategoryDictGenerator(
-        sFile = cCategorylistingFile % sMarket, sWantVersion = sWantVersion )
+    # getCategoryDictGenerator checks for the expected version
     #
-    if bShowProgress:
+    categoryDictIterable = getCategoryDictGenerator(
+        sFile = sCategorylistingFile % sMarket, sWantVersion = sWantVersion )
+    #
+    if bShowProgress: # progress meter for running in shell, no need to test
         #
         oProgressMeter = TextMeter()
         #
@@ -172,7 +177,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         for dCategory in categoryDictIterable: iCount +=1
         #
         categoryDictIterable = getCategoryDictGenerator(
-            sFile = cCategorylistingFile % sMarket,
+            sFile = sCategorylistingFile % sMarket,
             sWantVersion = sWantVersion )
         #
         sLineB4 = 'stepping thru ebay categories ...'
@@ -222,12 +227,6 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         #
         oCategory = EbayCategory()
         #
-        if sConfirmVersion != sWantVersion:
-            #
-            raise UnexpectedResponse(
-                'expecting CategoryVersion "%s", got "%s"!' %
-                ( sWantVersion, sConfirmVersion ) )
-            #
         try:
             #
             oCategory = EbayCategory.objects.get(
@@ -265,9 +264,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         try:
             oCategory.save()
         except DataError:
-            print( '\ntoo long: %s\n' % sCategoryName )
-            oCategory.name  = sCategoryName[:48]
-            oCategory.save()
+            raise DataError( 'too long: %s' % sCategoryName )
         #
 
     #
@@ -280,18 +277,18 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
 
 
 
-    
+
 def getCategoryVersionValues( sFile ):
     #
     tree = ET.parse( sFile )
     #
     root = tree.getroot()
     #
-    return getTagsValuesGotRoot( root )
+    return getTagsValuesGotRoot( root, sFile = sFile )
 
 
 
-def getCategoryVersion( sMarket = 'EBAY-US', sFile = cCategoryVersionFile ):
+def getCategoryVersion( sMarket = 'EBAY-US', sFile = sCategoryVersionFile ):
     #
     '''get the version from a file already downloaded'''
     #
