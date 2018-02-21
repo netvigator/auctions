@@ -1,23 +1,15 @@
-from json           import load
-
-from core.utils     import oInParensFinder
-from core.utils     import getDateTimeObjGotEbayStr as getDT
-
-from .models        import ItemFound
-
-from Dict.Get       import getAnyValue
-from Dict.Maintain  import getDictValuesFromSingleElementLists
-from String.Eat     import eatFromWithin
-from String.Find    import getRegEx4Chars
-from Utils.Config   import getBoolOffYesNoTrueFalse as getBool
-
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
-class ItemFoundAlready       Exception ): pass
+class ItemFoundAlready(      Exception ): pass
 
 
 def getSearchResultGenerator( sFile ):
+    #
+    from json           import load
+    #
+    from Dict.Get       import getAnyValue
+    from Dict.Maintain  import getDictValuesFromSingleElementLists
     #
     dResults = load( open( sFile ) )
     #
@@ -222,7 +214,7 @@ sGot = eatFromWithin( 'This is for real (but not yet)', oInParensFinder )
 #
 '''
 
-def getItemFoundForWriting( iWantOlderThan = 120 ):
+def _getTableRowForWriting( oTableModel, iWantOlderThan ):
     #
     from datetime       import timedelta
     #
@@ -230,34 +222,53 @@ def getItemFoundForWriting( iWantOlderThan = 120 ):
     #
     dDropDead = timezone.now() - timedelta( days = iWantOlderThan )
     #
-    bGotOldRecords = ( ItemFound.objects
+    bGotOldRecords = ( oTableModel.objects
                         .filter( tCreate__lte = dDropDead )
                         .exists() )
     #
     if bGotOldRecords:
         #
-        oNewItem = ( ItemFound.objects
+        oNewItem = ( oTableModel.objects
                         .filter( tCreate__lte = dDropDead )
-                        .order_by( 'tCreate', 'pk' )
+                        .order_by( 'tCreate' )
                         .first() )
         #
         oNewItem.tCreate = timezone.now()
         #
     else:
         #
-        oNewItem = ItemFound()
+        oNewItem = oTableModel()
         #
     #
     return oNewItem
 
 
+def getItemFoundForWriting( iWantOlderThan = 100 ):
+    #
+    from .models import ItemFound
+    #
+    return _getTableRowForWriting( ItemFound, iWantOlderThan )
+
+
+
+def getUserItemFoundForWriting( iWantOlderThan = 100 ):
+    #
+    from .models import UserItemFound
+    #
+    return _getTableRowForWriting( UserItemFound, iWantOlderThan )
+
+
+
 def storeItemFound( dItem ):
     #
-    bGot = ItemFound.objects.filter( iItemNumb = dItem['itemId'] ).exists()
+    from Object.Get         import QuickObject
     #
-    if bGot: raise ItemFoundAlready( dItem['itemId'] )
+    from core.utils         import getDateTimeObjGotEbayStr as getDT
+    from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
     #
-    oNew = getItemFoundForWriting()
+    from .forms             import ItemFoundForm, tItemFoundFields
+    #
+    oNew = QuickObject()
     #
     oNew.iItemNumb      = int(     dItem['itemId'] )
     oNew.cTitle         =          dItem['title']
@@ -266,16 +277,39 @@ def storeItemFound( dItem ):
     oNew.cMarket        =          dItem['globalId']
     oNew.cGalleryURL    =          dItem['galleryURL']
     oNew.cEbayItemURL   =          dItem['viewItemURL']
-    oNew.tTimeBeg       = getDT(   dItem['startTime'] )
-    oNew.tTimeEnd       = getDT(   dItem['endTime'] )
+    oNew.tTimeBeg       = getDT(   dItem['listingInfo']['startTime'] )
+    oNew.tTimeEnd       = getDT(   dItem['listingInfo']['endTime']   )
     oNew.bBestOfferable = getBool( dItem['listingInfo']['bestOfferEnabled'] )
     oNew.bBuyItNowable  = getBool( dItem['listingInfo']['buyItNowAvailable'] )
-    oNew.cListingType   =          dItem['listingType']
-    oNew.mCurrentPrice  =          dItem['sellingStatus']['currentPrice']
-    oNew.nCurrentPrice  =          dItem['sellingStatus']['convertedCurrentPrice']
+    oNew.cListingType   =          dItem['listingInfo']['listingType']
+    oNew.lCurrentPrice  =   float( dItem['sellingStatus']
+                                        ['currentPrice']['__value__']   )
+    oNew.lLocalCurrency =        ( dItem['sellingStatus']
+                                        ['currentPrice']['@currencyId'] )
+    oNew.dCurrentPrice  =   float( dItem['sellingStatus']
+                                        ['convertedCurrentPrice']
+                                        ['__value__'] )
     oNew.iCategoryID    = int(     dItem['primaryCategory']['categoryId'] )
     oNew.cCategory      =          dItem['primaryCategory']['categoryName']
     oNew.iConditionID   = int(     dItem['condition']['conditionId'] )
     oNew.cCondition     =          dItem['condition']['conditionDisplayName']
-    oNew.cSellingState  =          dItem['sellingStatus']['currentPrice']
+    oNew.cSellingState  =          dItem['sellingStatus']['sellingState']
     #
+    form = ItemFoundForm( data = oNew.__dict__ )
+    #
+    if form.is_valid():
+        #
+        form.save()
+        #
+        #print( 'form saved!' )
+    else:
+        #print( '\nform.is_valid() returned False' )
+        #print( 'dict lCurrentPrice:', oNew.__dict__['lCurrentPrice'] )
+        #print( 'form lCurrentPrice:', form.data['lCurrentPrice'] )
+        ##
+        #if form.errors:
+            #for k, v in form.errors.items():
+                #print( k, ' -- ', str(v) )
+        #else:
+            #print( 'no form errors at bottom!' )
+        pass # log error
