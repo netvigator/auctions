@@ -1,13 +1,12 @@
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.forms           import ModelForm
 
-from .models                import Search
+from .models                import Search, ItemFound
 
 from ebayinfo.models        import EbayCategory
 
-#from .views         import tModelFields
 
-tModelFields = (
+tSearchFields = (
     'cTitle',
     'cKeyWords',
     'iDummyCategory',
@@ -136,4 +135,38 @@ class SearchAddOrUpdateForm(ModelForm):
 
     class Meta:
         model   = Search
-        fields  = tModelFields
+        fields  = tSearchFields
+
+
+tItemFoundFields = (
+    'iItemNumb',
+    'cTitle',
+    'cLocation',
+    'cCountry',
+    'cMarket',
+    'cGalleryURL',
+    'cEbayItemURL',
+    'tTimeBeg',
+    'tTimeEnd',
+    'bBestOfferable',
+    'bBuyItNowable',
+    'cListingType',
+    'lLocalCurrency',
+    'lCurrentPrice',
+    'dCurrentPrice',
+    'iCategoryID',
+    'cCategory',
+    'iConditionID',
+    'cCondition',
+    'cSellingState' )
+
+class ItemFoundForm(ModelForm):
+    #
+    '''using a form to validate incoming info from ebay'''
+    #
+    class Meta:
+        model   = ItemFound
+        fields  = tItemFoundFields
+
+
+
