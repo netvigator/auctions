@@ -6,8 +6,8 @@ from django.utils       import timezone
 
 from core.utils_testing import BaseUserTestCase
 
-from ..models           import Search, ItemFound
-from ..utils            import (
+from ..models           import Search, ItemFound, UserItemFound
+from ..utils            import ( getUserItemFoundForWriting,
                             getSearchResultGenerator, getItemFoundForWriting )
 
 from .test_big_text     import sExampleResponse
@@ -98,8 +98,7 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         #
         sItemTitle1 = "Great Widget"
         iItemID     = 2823
-        oSearch = ItemFound( cTitle = sItemTitle1,
-                             iItemNumb = iItemID, iUser = self.user1 )
+        oSearch = ItemFound( cTitle = sItemTitle1, iItemNumb = iItemID )
         oSearch.save()
         dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
         oSearch.tCreate = dDropDead
@@ -107,8 +106,7 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         #
         sItemTitle2 = "Phenominal Gadget"
         iItemID     = 2418
-        oSearch = ItemFound( cTitle = sItemTitle2,
-                             iItemNumb = iItemID, iUser = self.user1 )
+        oSearch = ItemFound( cTitle = sItemTitle2, iItemNumb = iItemID )
         oSearch.save()
         dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
         oSearch.tCreate = dDropDead
@@ -116,8 +114,7 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         #
         sItemTitle3 = "Awesome Thing a Ma Jig"
         iItemID     = 2607
-        oSearch = ItemFound( cTitle = sItemTitle3,
-                             iItemNumb = iItemID, iUser = self.user1 )
+        oSearch = ItemFound( cTitle = sItemTitle3, iItemNumb = iItemID )
         oSearch.save()
         dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
         oSearch.tCreate = dDropDead
@@ -137,3 +134,68 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         self.assertEqual( oWriteable.cTitle, '' )
 
 
+class UserItemsFoundRecyclingTest(BaseUserTestCase):
+
+    def test_fetch_oldest_of_the_old(self):
+        #
+        """
+        Want to recycle old records, make sure this is working!
+        """
+        #
+        iWantOlderThan = 120
+        #
+        #
+        iItemID1 = 2823
+        oSearch = UserItemFound( iItemNumb = iItemID1, iUser = self.user1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        iItemID2 = 2418
+        oSearch = UserItemFound( iItemNumb = iItemID2, iUser = self.user1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        iItemID3 = 2607
+        oSearch = UserItemFound( iItemNumb = iItemID3, iUser = self.user1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        oWriteable = getUserItemFoundForWriting()
+        #
+        self.assertEqual( oWriteable.iItemNumb, iItemID3 )
+        #
+        self.assertTrue( timezone.now() >= oWriteable.tCreate )
+        
+        tFuture = oWriteable.tCreate + timedelta( seconds = 1 )
+        self.assertTrue( timezone.now() < tFuture )
+        #
+        oWriteable = getUserItemFoundForWriting( iWantOlderThan = 140 )
+        #
+        self.assertIsNone( oWriteable.iItemNumb )
+
+
+class storeItemFoundTest(TestCase):
+    #
+    ''' class for testing storeItemFound() '''
+
+    def test_store_item_found(self):
+        #
+        ''' test storeItemFound() '''
+        #
+        from ..tests    import dSearchResult # in __init__.py
+        from ..utils    import storeItemFound
+        #
+        storeItemFound( dSearchResult )
+        #
+        oResultRow = ItemFound.objects.filter(
+                                iItemNumb = int(
+                                    dSearchResult['itemId'] ) ).first()
+        #
+        self.assertTrue( oResultRow.iItemNumb,
+                         int( dSearchResult['itemId'] ) )
