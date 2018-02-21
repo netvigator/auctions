@@ -73,7 +73,7 @@ class ItemFound(models.Model):
     iItemNumb       = models.BigIntegerField(
                         'ebay item number', primary_key = True )
     cTitle          = models.CharField(
-                        'auction headline', max_length = 48, db_index = True )
+                        'auction title', max_length = 80, db_index = True )
     cLocation       = models.CharField( 'location',
                         max_length = 48, null = True )
     cCountry        = CountryField( "country", null = True )
@@ -85,20 +85,23 @@ class ItemFound(models.Model):
                         max_length =188, null = True )
     tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
     tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True )
-    bBestOfferable  = models.BooleanField( 'best offer enabled?',
-                                            default = False )
-    bBuyItNowable   = models.BooleanField( 'buy it now enabled?',
-                                            default = False )
-    cListingType    = models.CharField( 'listing type', max_length = 15,
-                                            null = True )
-    mCurrentPrice   = MoneyField( 'current price (local currency)',
+    bBestOfferable  = models.BooleanField(
+                        'best offer enabled?', default = False )
+    bBuyItNowable   = models.BooleanField(
+                        'buy it now enabled?',default = False )
+    cListingType    = models.CharField(
+                        'listing type', max_length = 15, null = True )
+    lLocalCurrency  = models.CharField(
+                        'local currency', max_length = 3, default = 'USD' )
+    lCurrentPrice   = models.DecimalField( 'current price (local currency)',
                         max_digits = 10, decimal_places = 2,
-                        default_currency='USD', null = True )
-    nCurrentPrice   = models.DecimalField(
-                        'current price (converted to USD)',
-                        max_digits=10, decimal_places=2,
-                        db_index = False, null = True )
-    iCategoryID     = models.IntegerField( 'primary category ID', null=True )
+                        null = True )      # use DecimalField not MoneyField
+    dCurrentPrice   = models.DecimalField( # form was throwing nonsense error
+                        'current price (converted to USD)', # for MoneyField
+                        max_digits=10, decimal_places=2,    # but not for
+                        db_index = False, null = True )     # DecimalField
+    iCategoryID     = models.PositiveIntegerField(
+                        'primary category ID', null=True )
     cCategory       = models.CharField( 'primary category',
                         max_length = 48, null = True )
     
@@ -108,22 +111,8 @@ class ItemFound(models.Model):
     
     cSellingState   = models.CharField( 'selling state',
                         max_length = 18, null = True )
-    
-    dhitstars       = models.DecimalField(
-                        'hit stars', max_digits = 3, decimal_places = 2,
-                        null = True )
-    bitemhit        = models.BooleanField( 'item of interest?',
-                        default = False )
-    
-    tlook4hits      = models.DateTimeField(
-                        'assessed interest date/time', null = True )
-    iModel          = models.ForeignKey( Model,     null = True )
-    iBrand          = models.ForeignKey( Brand,     null = True )
-    iCategory       = models.ForeignKey( Category,  null = True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
-    tCreate         = models.DateTimeField( 'created on', auto_now_add=True )
-    tModify         = models.DateTimeField(
-                        'retrieved info date/time', auto_now = True )
+    tCreate         = models.DateTimeField(
+                        'created on', auto_now_add=True, db_index = True )
     
     def __str__(self):
         return self.cTitle
@@ -131,6 +120,34 @@ class ItemFound(models.Model):
     class Meta:
         verbose_name_plural = 'itemsfound'
         db_table            = verbose_name_plural
+
+
+class UserItemFound(models.Model):
+    iItemNumb       = models.BigIntegerField(
+                        'ebay item number', primary_key = True )
+    dhitstars       = models.DecimalField(
+                        'hit stars', max_digits = 3, decimal_places = 2,
+                        null = True )
+    bitemhit        = models.BooleanField( 'item of interest?',
+                        default = False )    
+    tlook4hits      = models.DateTimeField(
+                        'assessed interest date/time', null = True )
+    iModel          = models.ForeignKey( Model,     null = True )
+    iBrand          = models.ForeignKey( Brand,     null = True )
+    iCategory       = models.ForeignKey( Category,  null = True )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    tCreate         = models.DateTimeField(
+                        'created on', auto_now_add=True, db_index = True )
+    tModify         = models.DateTimeField(
+                        'retrieved info date/time', auto_now = True )
+
+    def __str__(self):
+        return '%s - %s' % ( iUser.username, self.iItemNumb )
+
+    class Meta:
+        verbose_name_plural = 'useritemsfound'
+        db_table            = verbose_name_plural
+        unique_together     = (("iItemNumb", "iUser"),)
 
 
 '''
