@@ -1,6 +1,5 @@
 from datetime           import timedelta
 
-from django.test.client import Client, RequestFactory
 from django.test        import TestCase
 from django.utils       import timezone
 
@@ -10,7 +9,7 @@ from ..models           import Search, ItemFound, UserItemFound
 from ..utils            import ( getUserItemFoundForWriting,
                             getSearchResultGenerator, getItemFoundForWriting )
 
-from .test_big_text     import sExampleResponse
+from ..tests            import sExampleResponse
 
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
@@ -83,9 +82,40 @@ class getImportSearchResultsTest(TestCase):
         DeleteIfExists( sExampleFile )
 
 
+class StoreItemsFoundHaveOldRecordsBase(BaseUserTestCase):
+    ''' create base class so multiple tests can have old records to test'''
 
+    sTitle1     = "Great Widget"
+    iItemID1    = 2823
+    sTitle2     = "Phenominal Gadget"
+    iItemID2    = 2418
+    sTitle3     = "Awesome Thing a Ma Jig"
+    iItemID3    = 2607
 
-class ItemsFoundRecyclingTest(BaseUserTestCase):
+    def setUp(self):
+        #
+        iWantOlderThan = 100
+        #
+        oSearch = ItemFound( cTitle = self.sTitle1, iItemNumb = self.iItemID1 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        oSearch = ItemFound( cTitle = self.sTitle2, iItemNumb = self.iItemID2 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        #
+        oSearch = ItemFound( cTitle = self.sTitle3, iItemNumb = self.iItemID3 )
+        oSearch.save()
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
+        oSearch.tCreate = dDropDead
+        oSearch.save()
+        
+
+class ItemsFoundRecyclingTest(StoreItemsFoundHaveOldRecordsBase):
 
     def test_fetch_oldest_of_the_old(self):
         #
@@ -93,36 +123,11 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         Want to recycle old records, make sure this is working!
         """
         #
-        iWantOlderThan = 120
-        #
-        #
-        sItemTitle1 = "Great Widget"
-        iItemID     = 2823
-        oSearch = ItemFound( cTitle = sItemTitle1, iItemNumb = iItemID )
-        oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
-        oSearch.tCreate = dDropDead
-        oSearch.save()
-        #
-        sItemTitle2 = "Phenominal Gadget"
-        iItemID     = 2418
-        oSearch = ItemFound( cTitle = sItemTitle2, iItemNumb = iItemID )
-        oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
-        oSearch.tCreate = dDropDead
-        oSearch.save()
-        #
-        sItemTitle3 = "Awesome Thing a Ma Jig"
-        iItemID     = 2607
-        oSearch = ItemFound( cTitle = sItemTitle3, iItemNumb = iItemID )
-        oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
-        oSearch.tCreate = dDropDead
-        oSearch.save()
+        iWantOlderThan = 100
         #
         oWriteable = getItemFoundForWriting()
         #
-        self.assertEqual( oWriteable.cTitle, sItemTitle3 )
+        self.assertEqual( oWriteable.cTitle, self.sTitle3 )
         #
         self.assertTrue( timezone.now() >= oWriteable.tCreate )
         
@@ -131,7 +136,7 @@ class ItemsFoundRecyclingTest(BaseUserTestCase):
         #
         oWriteable = getItemFoundForWriting( iWantOlderThan = 140 )
         #
-        self.assertEqual( oWriteable.cTitle, '' )
+        self.assertIsNone( oWriteable )
 
 
 class UserItemsFoundRecyclingTest(BaseUserTestCase):
@@ -142,7 +147,7 @@ class UserItemsFoundRecyclingTest(BaseUserTestCase):
         Want to recycle old records, make sure this is working!
         """
         #
-        iWantOlderThan = 120
+        iWantOlderThan = 100
         #
         #
         iItemID1 = 2823
@@ -177,19 +182,37 @@ class UserItemsFoundRecyclingTest(BaseUserTestCase):
         #
         oWriteable = getUserItemFoundForWriting( iWantOlderThan = 140 )
         #
-        self.assertIsNone( oWriteable.iItemNumb )
+        self.assertIsNone( oWriteable )
 
 
-class storeItemFoundTest(TestCase):
+class storeItemFoundTest(StoreItemsFoundHaveOldRecordsBase):
     #
     ''' class for testing storeItemFound() '''
 
-    def test_store_item_found(self):
+    def test_store_item_found_use_recycled_record(self):
         #
-        ''' test storeItemFound() '''
+        ''' test storeItemFound() 2 times
+        1) with old record to recycle and
+        2) with None as old record (no old record)'''
+        #
+        from datetime       import timedelta
+        from django.utils   import timezone
         #
         from ..tests    import dSearchResult # in __init__.py
         from ..utils    import storeItemFound
+        #
+        #oRecycleable = getItemFoundForWriting()
+        # this put's now's timestamp on the row
+        #
+        #self.assertIsNotNone( oRecycleable )
+        #
+        dDropDead = timezone.now() - timedelta( days = 100 )
+        #
+        bGotOldRecord = ( ItemFound.objects
+                            .filter( tCreate__lte = dDropDead )
+                            .exists() )
+        #
+        self.assertTrue( bGotOldRecord )
         #
         storeItemFound( dSearchResult )
         #
@@ -197,5 +220,7 @@ class storeItemFoundTest(TestCase):
                                 iItemNumb = int(
                                     dSearchResult['itemId'] ) ).first()
         #
-        self.assertTrue( oResultRow.iItemNumb,
+        self.assertIsNotNone( oResultRow )
+        #
+        self.assertEqual( oResultRow.iItemNumb,
                          int( dSearchResult['itemId'] ) )
