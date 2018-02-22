@@ -1,3 +1,6 @@
+from django.test.client import Client, RequestFactory
+
+from searching          import dItemFoundFields
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
@@ -237,7 +240,7 @@ def _getTableRowForWriting( oTableModel, iWantOlderThan ):
         #
     else:
         #
-        oNewItem = oTableModel()
+        oNewItem = None
         #
     #
     return oNewItem
@@ -259,12 +262,101 @@ def getUserItemFoundForWriting( iWantOlderThan = 100 ):
 
 
 
+
+def storeRow( dItem, dFields, getRow, Form, oUser = None ):
+    #
+    def getValueOffItemDict( k ):
+        #
+        t = dFields[ k ]
+        #
+        uValue  = dItem[ t[1] ]
+        #
+        tRest   = t[ 2 : ]
+        #
+        for sKey in tRest:
+            uValue = uValue[ sKey ]
+        #
+        sValue  = uValue
+        #
+        if t[0] is None:
+            uReturn = sValue
+        else:
+            f = t[0]
+            uReturn = f( sValue )
+        #
+        return uReturn
+    #
+    if oUser is None:
+        #
+        getValue = getValueOffItemDict
+        #
+    else:
+        #
+        def getValue( k ):
+            #
+            if k == 'iUser':
+                return oUser
+            else:
+                return getValueOffItemDict( k )
+            #
+        #
+    #
+    oRow = getRow()
+    #
+    dNewResult = { k: getValue( k ) for k in dFields }
+    #
+    if oRow is None: # no old record to recycle, form will save to new row
+        #
+        form = Form( data = dNewResult )
+        #
+        print( '\noRow is None: no old record to recycle, form will save to new row' )
+        #
+    else: # got an old record to recycle, overwrite its values then save
+        #
+        print( '\noRow is an old record to recycle, form will save to this row' )
+        #
+        factory = RequestFactory()
+        request = factory.get('/%s/edit/' % oRow.iItemNumb )
+        #
+        form = Form( data=request.POST or None, instance = oRow )
+        #
+        form.data.update( dNewResult )
+        #
+    #
+    if form.is_valid():
+        #
+        form.save()
+        #
+        print( 'form saved!' )
+    else:
+        print( '\nform.is_valid() returned False' )
+        if oRow is None:
+            print( 'fetched row was None, meaning no old record to recycle' )
+        else:
+            print( 'row  iItemNumb:', oRow.__dict__['iItemNumb'] )
+        print( 'dict iItemNumb:', dNewResult['iItemNumb'] )
+        print( 'form iItemNumb:', form.data['iItemNumb'] )
+        #
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', str(v) )
+        else:
+            print( 'no form errors at bottom!' )
+        pass # log error
+    
+    
 def storeItemFound( dItem ):
+    #
+    from .forms import ItemFoundForm
+    #
+    return storeRow(
+            dItem, dItemFoundFields, getItemFoundForWriting, ItemFoundForm )
+
+
+def storeItemFoundOrig( dItem ):
     #
     from Object.Get         import QuickObject
     #
-    from core.utils         import getDateTimeObjGotEbayStr as getDT
-    from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
     #
     from .forms             import ItemFoundForm, tItemFoundFields
     #
@@ -279,8 +371,8 @@ def storeItemFound( dItem ):
     oNew.cEbayItemURL   =          dItem['viewItemURL']
     oNew.tTimeBeg       = getDT(   dItem['listingInfo']['startTime'] )
     oNew.tTimeEnd       = getDT(   dItem['listingInfo']['endTime']   )
-    oNew.bBestOfferable = getBool( dItem['listingInfo']['bestOfferEnabled'] )
-    oNew.bBuyItNowable  = getBool( dItem['listingInfo']['buyItNowAvailable'] )
+    oNew.bBestOfferable = getBo(   dItem['listingInfo']['bestOfferEnabled'] )
+    oNew.bBuyItNowable  = getBo(   dItem['listingInfo']['buyItNowAvailable'] )
     oNew.cListingType   =          dItem['listingInfo']['listingType']
     oNew.lCurrentPrice  =   float( dItem['sellingStatus']
                                         ['currentPrice']['__value__']   )
@@ -313,3 +405,4 @@ def storeItemFound( dItem ):
         #else:
             #print( 'no form errors at bottom!' )
         pass # log error
+
