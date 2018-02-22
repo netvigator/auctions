@@ -14,7 +14,7 @@ from ..tests            import sExampleResponse
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
 
-
+from pprint             import pprint
 
 sExampleFile = '/tmp/search_results.json'
 
@@ -104,7 +104,7 @@ class StoreItemsFoundHaveOldRecordsBase(BaseUserTestCase):
         #
         oSearch = ItemFound( cTitle = self.sTitle2, iItemNumb = self.iItemID2 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
+        dDropDead = timezone.now() - timedelta( days = iWantOlderThan - 9 )
         oSearch.tCreate = dDropDead
         oSearch.save()
         #
@@ -189,30 +189,12 @@ class storeItemFoundTest(StoreItemsFoundHaveOldRecordsBase):
     #
     ''' class for testing storeItemFound() '''
 
-    def test_store_item_found_use_recycled_record(self):
+    def test_store_item_found(self):
         #
-        ''' test storeItemFound() 2 times
-        1) with old record to recycle and
-        2) with None as old record (no old record)'''
-        #
-        from datetime       import timedelta
-        from django.utils   import timezone
+        ''' test storeItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
         from ..utils    import storeItemFound
-        #
-        #oRecycleable = getItemFoundForWriting()
-        # this put's now's timestamp on the row
-        #
-        #self.assertIsNotNone( oRecycleable )
-        #
-        dDropDead = timezone.now() - timedelta( days = 100 )
-        #
-        bGotOldRecord = ( ItemFound.objects
-                            .filter( tCreate__lte = dDropDead )
-                            .exists() )
-        #
-        self.assertTrue( bGotOldRecord )
         #
         storeItemFound( dSearchResult )
         #
@@ -224,3 +206,29 @@ class storeItemFoundTest(StoreItemsFoundHaveOldRecordsBase):
         #
         self.assertEqual( oResultRow.iItemNumb,
                          int( dSearchResult['itemId'] ) )
+        #
+
+
+
+class storeUserItemFoundTest(BaseUserTestCase):
+    #
+    ''' class for testing storeUserItemFound() '''
+
+    def test_store_User_item_found(self):
+        #
+        ''' test storeItemFound() with actual record'''
+        #
+        from ..tests    import dSearchResult # in __init__.py
+        from ..utils    import storeUserItemFound
+        #
+        storeUserItemFound( dSearchResult, self.user1 )
+        #
+        oResultRow = UserItemFound.objects.filter(
+                                iItemNumb = int(
+                                    dSearchResult['itemId'] ) ).first()
+        #
+        self.assertIsNotNone( oResultRow )
+        #
+        self.assertEqual( oResultRow.iItemNumb,
+                         int( dSearchResult['itemId'] ) )
+        #
