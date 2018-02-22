@@ -75,14 +75,14 @@ class ItemFound(models.Model):
     cTitle          = models.CharField(
                         'auction title', max_length = 80, db_index = True )
     cLocation       = models.CharField( 'location',
-                        max_length = 48, null = True )
-    cCountry        = CountryField( "country", null = True )
+                        max_length = 48 )
+    cCountry        = CountryField( "country" )
     cMarket         = models.CharField( 'market Global ID',
-                        max_length = 14, null = True )
+                        max_length = 14 )
     cGalleryURL     = models.CharField( 'gallery pic URL',
-                        max_length = 88, null = True )
+                        max_length = 88 )
     cEbayItemURL    = models.CharField( 'ebay item URL',
-                        max_length =188, null = True )
+                        max_length =188 )
     tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
     tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True )
     bBestOfferable  = models.BooleanField(
@@ -90,7 +90,7 @@ class ItemFound(models.Model):
     bBuyItNowable   = models.BooleanField(
                         'buy it now enabled?',default = False )
     cListingType    = models.CharField(
-                        'listing type', max_length = 15, null = True )
+                        'listing type', max_length = 15 )
     lLocalCurrency  = models.CharField(
                         'local currency', max_length = 3, default = 'USD' )
     lCurrentPrice   = models.DecimalField( 'current price (local currency)',
@@ -99,18 +99,18 @@ class ItemFound(models.Model):
     dCurrentPrice   = models.DecimalField( # form was throwing nonsense error
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
-                        db_index = False, null = True )     # DecimalField
+                        db_index = False )     # DecimalField
     iCategoryID     = models.PositiveIntegerField(
                         'primary category ID', null=True )
     cCategory       = models.CharField( 'primary category',
-                        max_length = 48, null = True )
+                        max_length = 48 )
     
-    iConditionID    = models.IntegerField( 'condition ID', null = True )
+    iConditionID    = models.IntegerField( 'condition ID' )
     cCondition      = models.CharField( 'condition display name',
-                        max_length = 28, null = True )
+                        max_length = 28 )
     
     cSellingState   = models.CharField( 'selling state',
-                        max_length = 18, null = True )
+                        max_length = 18 )
     tCreate         = models.DateTimeField(
                         'created on', auto_now_add=True, db_index = True )
     
