@@ -1,6 +1,6 @@
 from django.test.client import Client, RequestFactory
+from django.utils       import timezone
 
-from searching          import dItemFoundFields
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
@@ -221,8 +221,6 @@ def _getTableRowForWriting( oTableModel, iWantOlderThan ):
     #
     from datetime       import timedelta
     #
-    from django.utils   import timezone
-    #
     dDropDead = timezone.now() - timedelta( days = iWantOlderThan )
     #
     bGotOldRecords = ( oTableModel.objects
@@ -263,7 +261,7 @@ def getUserItemFoundForWriting( iWantOlderThan = 100 ):
 
 
 
-def storeRow( dItem, dFields, getRow, Form, oUser = None ):
+def storeRow( dItem, dFields, Form, oUser = None ):
     #
     def getValueOffItemDict( k ):
         #
@@ -301,108 +299,31 @@ def storeRow( dItem, dFields, getRow, Form, oUser = None ):
             #
         #
     #
-    oRow = getRow()
-    #
     dNewResult = { k: getValue( k ) for k in dFields }
     #
-    if oRow is None: # no old record to recycle, form will save to new row
-        #
-        form = Form( data = dNewResult )
-        #
-        print( '\noRow is None: no old record to recycle, form will save to new row' )
-        #
-    else: # got an old record to recycle, overwrite its values then save
-        #
-        print( '\noRow is an old record to recycle, form will save to this row' )
-        #
-        factory = RequestFactory()
-        request = factory.get('/%s/edit/' % oRow.iItemNumb )
-        #
-        form = Form( data=request.POST or None, instance = oRow )
-        #
-        form.data.update( dNewResult )
-        #
+    form = Form( data = dNewResult )
     #
     if form.is_valid():
         #
         form.save()
         #
-        print( 'form saved!' )
     else:
-        print( '\nform.is_valid() returned False' )
-        if oRow is None:
-            print( 'fetched row was None, meaning no old record to recycle' )
-        else:
-            print( 'row  iItemNumb:', oRow.__dict__['iItemNumb'] )
-        print( 'dict iItemNumb:', dNewResult['iItemNumb'] )
-        print( 'form iItemNumb:', form.data['iItemNumb'] )
         #
-        if form.errors:
-            for k, v in form.errors.items():
-                print( k, ' -- ', str(v) )
-        else:
-            print( 'no form errors at bottom!' )
         pass # log error
+        #
     
     
 def storeItemFound( dItem ):
     #
-    from .forms import ItemFoundForm
+    from .forms     import ItemFoundForm
+    from searching  import dItemFoundFields # in __init__.py
     #
-    return storeRow(
-            dItem, dItemFoundFields, getItemFoundForWriting, ItemFoundForm )
+    return storeRow( dItem, dItemFoundFields, ItemFoundForm )
 
-
-def storeItemFoundOrig( dItem ):
+def storeUserItemFound( dItem, oUser ):
     #
-    from Object.Get         import QuickObject
+    from .forms     import UserItemFoundForm
+    from searching  import dUserItemFoundFields # in __init__.py
     #
-    #
-    from .forms             import ItemFoundForm, tItemFoundFields
-    #
-    oNew = QuickObject()
-    #
-    oNew.iItemNumb      = int(     dItem['itemId'] )
-    oNew.cTitle         =          dItem['title']
-    oNew.cLocation      =          dItem['location']
-    oNew.cCountry       =          dItem['country']
-    oNew.cMarket        =          dItem['globalId']
-    oNew.cGalleryURL    =          dItem['galleryURL']
-    oNew.cEbayItemURL   =          dItem['viewItemURL']
-    oNew.tTimeBeg       = getDT(   dItem['listingInfo']['startTime'] )
-    oNew.tTimeEnd       = getDT(   dItem['listingInfo']['endTime']   )
-    oNew.bBestOfferable = getBo(   dItem['listingInfo']['bestOfferEnabled'] )
-    oNew.bBuyItNowable  = getBo(   dItem['listingInfo']['buyItNowAvailable'] )
-    oNew.cListingType   =          dItem['listingInfo']['listingType']
-    oNew.lCurrentPrice  =   float( dItem['sellingStatus']
-                                        ['currentPrice']['__value__']   )
-    oNew.lLocalCurrency =        ( dItem['sellingStatus']
-                                        ['currentPrice']['@currencyId'] )
-    oNew.dCurrentPrice  =   float( dItem['sellingStatus']
-                                        ['convertedCurrentPrice']
-                                        ['__value__'] )
-    oNew.iCategoryID    = int(     dItem['primaryCategory']['categoryId'] )
-    oNew.cCategory      =          dItem['primaryCategory']['categoryName']
-    oNew.iConditionID   = int(     dItem['condition']['conditionId'] )
-    oNew.cCondition     =          dItem['condition']['conditionDisplayName']
-    oNew.cSellingState  =          dItem['sellingStatus']['sellingState']
-    #
-    form = ItemFoundForm( data = oNew.__dict__ )
-    #
-    if form.is_valid():
-        #
-        form.save()
-        #
-        #print( 'form saved!' )
-    else:
-        #print( '\nform.is_valid() returned False' )
-        #print( 'dict lCurrentPrice:', oNew.__dict__['lCurrentPrice'] )
-        #print( 'form lCurrentPrice:', form.data['lCurrentPrice'] )
-        ##
-        #if form.errors:
-            #for k, v in form.errors.items():
-                #print( k, ' -- ', str(v) )
-        #else:
-            #print( 'no form errors at bottom!' )
-        pass # log error
+    return storeRow( dItem, dUserItemFoundFields, UserItemFoundForm, oUser )
 
