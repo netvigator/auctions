@@ -1,49 +1,6 @@
 from core.utils     import getDateTimeObjGotEbayStr as getDT
 from Utils.Config   import getBoolOffYesNoTrueFalse as getBo
 
-
-dSearchResult = \
-{'autoPay': 'false',
- 'condition': {'conditionDisplayName': 'New', 'conditionId': '1000'},
- 'country': 'US',
- 'galleryURL': 'http://thumbs3.ebaystatic.com/m/mutHoe85kv1_SUEGG3k1yBw/140.jpg',
- 'globalId': 'EBAY-US',
- 'isMultiVariationListing': 'false',
- 'itemId': '282330751118',
- 'listingInfo': {'bestOfferEnabled': 'true',
-  'buyItNowAvailable': 'false',
-  'endTime': '2018-02-13T00:34:26.000Z',
-  'gift': 'false',
-  'listingType': 'FixedPrice',
-  'startTime': '2017-01-19T00:34:26.000Z',
-  'watchCount': '19'},
- 'location': 'Staten Island,NY,USA',
- 'paginationOutput': {'entriesPerPage': '100',
-  'pageNumber': '1',
-  'thisEntry': '1',
-  'totalEntries': '1320',
-  'totalPages': '14'},
- 'paymentMethod': 'PayPal',
- 'postalCode': '10303',
- 'primaryCategory': {'categoryId': '73160',
-  'categoryName': 'Capacitance & ESR Meters'},
- 'returnsAccepted': 'true',
- 'sellingStatus': {'convertedCurrentPrice': {'@currencyId': 'USD',
-   '__value__': '27.99'},
-  'currentPrice': {'@currencyId': 'USD', '__value__': '27.99'},
-  'sellingState': 'Active',
-  'timeLeft': 'P13DT6H33M56S'},
- 'shippingInfo': {'expeditedShipping': 'false',
-  'handlingTime': '1',
-  'oneDayShippingAvailable': 'false',
-  'shipToLocations': 'Worldwide',
-  'shippingServiceCost': {'@currencyId': 'USD', '__value__': '0.0'},
-  'shippingType': 'Free'},
- 'title': 'Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF',
- 'topRatedListing': 'true',
- 'viewItemURL': 'http://www.ebay.com/itm/Digital-Capacitance-Tester-Capacitor-Meter-Auto-Range-MultimeterChecker-470mF-/282330751118'
- }
-
 dItemFoundFields = dict(
     iItemNumb       = (int,  'itemId',),
     cTitle          = (None, 'title',),
@@ -66,3 +23,7 @@ dItemFoundFields = dict(
     cCondition      = (None, 'condition','conditionDisplayName'),
     cSellingState   = (None, 'sellingStatus','sellingState') )
 
+
+dUserItemFoundFields = dict(
+    iItemNumb       = (int,  'itemId',),
+    iUser           = (None, '',) )
