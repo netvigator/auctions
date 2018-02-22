@@ -4,7 +4,7 @@ from django.utils       import timezone
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
-class ItemFoundAlready(      Exception ): pass
+class ItemAlreadyInTable(    Exception ): pass
 
 
 def getSearchResultGenerator( sFile ):
@@ -217,89 +217,42 @@ sGot = eatFromWithin( 'This is for real (but not yet)', oInParensFinder )
 #
 '''
 
-def _getTableRowForWriting( oTableModel, iWantOlderThan ):
+
+def _getValueOffItemDict( k, dItem, dFields, oUser = None ):
     #
-    from datetime       import timedelta
+    t = dFields[ k ]
     #
-    dDropDead = timezone.now() - timedelta( days = iWantOlderThan )
+    uValue  = dItem[ t[1] ]
     #
-    bGotOldRecords = ( oTableModel.objects
-                        .filter( tCreate__lte = dDropDead )
-                        .exists() )
+    tRest   = t[ 2 : ]
     #
-    if bGotOldRecords:
-        #
-        oNewItem = ( oTableModel.objects
-                        .filter( tCreate__lte = dDropDead )
-                        .order_by( 'tCreate' )
-                        .first() )
-        #
-        oNewItem.tCreate = timezone.now()
-        #
+    for sKey in tRest:
+        uValue = uValue[ sKey ]
+    #
+    sValue  = uValue
+    #
+    if t[0] is None:
+        uReturn = sValue
     else:
-        #
-        oNewItem = None
-        #
+        f = t[0]
+        uReturn = f( sValue )
     #
-    return oNewItem
+    return uReturn
 
 
-def getItemFoundForWriting( iWantOlderThan = 100 ):
+def _getValueOrUser( k, dItem, dFields, oUser ):
     #
-    from .models import ItemFound
-    #
-    return _getTableRowForWriting( ItemFound, iWantOlderThan )
-
-
-
-def getUserItemFoundForWriting( iWantOlderThan = 100 ):
-    #
-    from .models import UserItemFound
-    #
-    return _getTableRowForWriting( UserItemFound, iWantOlderThan )
-
-
-
-
-def storeRow( dItem, dFields, Form, oUser = None ):
-    #
-    def getValueOffItemDict( k ):
-        #
-        t = dFields[ k ]
-        #
-        uValue  = dItem[ t[1] ]
-        #
-        tRest   = t[ 2 : ]
-        #
-        for sKey in tRest:
-            uValue = uValue[ sKey ]
-        #
-        sValue  = uValue
-        #
-        if t[0] is None:
-            uReturn = sValue
-        else:
-            f = t[0]
-            uReturn = f( sValue )
-        #
-        return uReturn
-    #
-    if oUser is None:
-        #
-        getValue = getValueOffItemDict
-        #
+    if k == 'iUser':
+        return oUser.id
     else:
-        #
-        def getValue( k ):
-            #
-            if k == 'iUser':
-                return oUser
-            else:
-                return getValueOffItemDict( k )
-            #
-        #
+        return _getValueOffItemDict( k, dItem, dFields )
+
+
+def storeRow( dItem, dFields, Form, getValue, oUser = None ):
     #
-    dNewResult = { k: getValue( k ) for k in dFields }
+    '''can store a row in either ItemFound or UserItemFound'''
+    #
+    dNewResult = { k: getValue( k, dItem, dFields, oUser ) for k in dFields }
     #
     form = Form( data = dNewResult )
     #
@@ -309,21 +262,58 @@ def storeRow( dItem, dFields, Form, oUser = None ):
         #
     else:
         #
-        pass # log error
+        from pprint import pprint
         #
+        print( 'log this error, form did not save' )
+        #
+        if form.errors:
+            for k, v in form.errors.items():
+                print( k, ' -- ', str(v) )
+        else:
+            print( 'no form errors at bottom!' )
     
     
 def storeItemFound( dItem ):
     #
     from .forms     import ItemFoundForm
+    from .models    import ItemFound
     from searching  import dItemFoundFields # in __init__.py
     #
-    return storeRow( dItem, dItemFoundFields, ItemFoundForm )
+    sItemID  = dItem['itemId']
+    #
+    bAlreadyInTable = ( ItemFound.objects
+                        .filter( iItemNumb = int( sItemID ) ).exists() )
+    #
+    if bAlreadyInTable:
+        #
+        raise ItemAlreadyInTable(
+                'ItemID %s is already in the ItemFound table' % sItemID )
+        #
+    #
+    return storeRow( dItem, dItemFoundFields, ItemFoundForm, _getValueOffItemDict )
+
 
 def storeUserItemFound( dItem, oUser ):
     #
+    from django.db.models import Q
+    #
     from .forms     import UserItemFoundForm
+    from .models    import UserItemFound
     from searching  import dUserItemFoundFields # in __init__.py
     #
-    return storeRow( dItem, dUserItemFoundFields, UserItemFoundForm, oUser )
+    sItemID  = dItem['itemId']
+    #
+    bAlreadyInTable = ( UserItemFound.objects
+                        .filter( iItemNumb = int( sItemID ),
+                                 iUser     = oUser )
+                        .exists() )
+    #
+    if bAlreadyInTable:
+        #
+        raise ItemAlreadyInTable(
+                'ItemID %s is already in the UserItemFound table for %s' %
+                ( sItemID, oUser.username ) )
+        #
+    #
+    return storeRow( dItem, dUserItemFoundFields, UserItemFoundForm, _getValueOrUser, oUser )
 
