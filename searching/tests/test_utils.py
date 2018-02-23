@@ -113,7 +113,7 @@ class storeItemFoundTest(TestCase):
                     'ItemID %s is already in the ItemFound table' %
                     dSearchResult['itemId'] )
         else:
-            self.assertTrue( False )
+            self.assertTrue( False ) # exception should hve been raised
 
 
 
@@ -147,7 +147,7 @@ class storeUserItemFoundTest(BaseUserTestCase):
                     'ItemID %s is already in the UserItemFound table for %s' %
                     ( dSearchResult['itemId'], self.user1.username ) )
         else:
-            self.assertTrue( False )
+            self.assertTrue( False ) # exception should hve been raised
 
 
 '''
