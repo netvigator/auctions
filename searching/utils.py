@@ -316,4 +316,14 @@ def doSearch( iSearchID = None, sFileName = None ):
         #
 
 
-    
+
+def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
+    #
+    try:
+        doSearch( iSearchID, sFileName )
+    except SearchNotWorkingError as e:
+        pass
+    except SearchGotZeroResults as e:
+        pass
+
+
