@@ -15,6 +15,13 @@ def getSearchResultGenerator( sFile ):
     #
     from Dict.Get       import getAnyValue
     from Dict.Maintain  import getDictValuesFromSingleElementLists
+    from File.Get       import isFileThere
+    from File.Spec      import getFullSpec
+    #
+    if not isFileThere( sFile ) and isFileThere( '/tmp', sFile ):
+        #
+        sFile = getFullSpec( '/tmp', sFile )
+        #
     #
     dResults = load( open( sFile ) )
     #
@@ -130,7 +137,8 @@ def getSearchResults( iSearchID = None ):
     iEbayCategory   = oSearch.iEbayCategory
     #
     sFileName       = (
-        'Search-%s-%s-ID-%s.json' % ( sMarket, sUserName, oSearch.id ) )
+        sResultFileNamePattern % ( sMarket, sUserName, oSearch.id ) )
+    #  'Search_%s_%s_ID_%s.json'
     #
     if sKeyWords and iEbayCategory:
         #
@@ -244,6 +252,8 @@ def doSearch( iSearchID = None, sFileName = None ):
     #
     from django.contrib.auth import get_user_model
     #
+    from String.Get import getTextBefore
+    #
     User = get_user_model()
     #
     if sFileName is None:
@@ -253,20 +263,20 @@ def doSearch( iSearchID = None, sFileName = None ):
     #
     # 'Search-%s-%s-ID-%s.json' % ( sMarket, sUserName, oSearch.id ) )
     #
-    lParts = sFileName.split( '-' )
+    lParts = sFileName.split( '_' )
     #
-    sUserName   =      lParts[ 1]
-    iSearch     = int( lParts[-1] )
+    sUserName   =                     lParts[ 2]
+    iSearch     = int( getTextBefore( lParts[-1], '.json' ) )
     #
     oUser = User.objects.get( username = sUserName )
     #
     oItemIter = getSearchResultGenerator( sFileName )
     #
-    iCountItems = iStoreItems = iStoreUsers = 0
+    iItems = iStoreItems = iStoreUsers = 0
     #
     for dItem in oItemIter:
         #
-        iCountItems += 1
+        iItems += 1
         #
         try:
             storeItemFound( dItem )
@@ -281,17 +291,20 @@ def doSearch( iSearchID = None, sFileName = None ):
             pass
         #
     #
-    return iCountItems, iStoreItems, iStoreUsers
+    return iItems, iStoreItems, iStoreUsers
 
 
 
 def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     #
+    iItems = iStoreItems = iStoreUsers = 0
+    #
     try:
         iItems, iStoreItems, iStoreUsers = doSearch( iSearchID, sFileName )
     except SearchNotWorkingError as e:
-        pass
+        print( 'log this error, got a SearchNotWorkingError' )
     except SearchGotZeroResults as e:
-        pass
-
+        print( 'log this error, got a SearchGotZeroResults' )
+    #
+    return iItems, iStoreItems, iStoreUsers 
 
