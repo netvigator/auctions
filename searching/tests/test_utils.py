@@ -120,7 +120,7 @@ class storeItemFoundTest(TestCase):
 class storeUserItemFoundTest(BaseUserTestCase):
     #
     ''' class for testing storeUserItemFound() '''
-
+        
     def test_store_User_item_found(self):
         #
         ''' test storeUserItemFound() with actual record'''
@@ -128,7 +128,11 @@ class storeUserItemFoundTest(BaseUserTestCase):
         from ..tests    import dSearchResult # in __init__.py
         from ..utils    import storeUserItemFound
         #
-        storeUserItemFound( dSearchResult, self.user1 )
+        sSearch         = "My clever search 1"
+        self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
+        self.oSearch.save()
+        #
+        storeUserItemFound( dSearchResult, self.user1, self.oSearch.id )
         #
         oResultRow = UserItemFound.objects.filter(
                                 iItemNumb = int(
@@ -140,7 +144,7 @@ class storeUserItemFoundTest(BaseUserTestCase):
                          int( dSearchResult['itemId'] ) )
         #
         try: # again
-            storeUserItemFound( dSearchResult, self.user1 )
+            storeUserItemFound( dSearchResult, self.user1, self.oSearch.id )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
