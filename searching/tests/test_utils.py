@@ -6,7 +6,9 @@ from django.utils       import timezone
 from core.utils_testing import BaseUserTestCase
 
 from ..models           import Search, ItemFound, UserItemFound
-from ..utils            import getSearchResultGenerator, ItemAlreadyInTable
+from ..utils            import ( trySearchCatchExceptions,
+                                 ItemAlreadyInTable,
+                                 getSearchResultGenerator )
 
 from ..tests            import sExampleResponse
 
@@ -17,12 +19,13 @@ from pprint             import pprint
 
 sExampleFile = '/tmp/search_results.json'
 
-class getImportSearchResultsTest(TestCase):
+class getImportSearchResultsTests(TestCase):
     #
     def test_get_search_results(self):
+        '''test readin an example search results file'''
         # create/destroy test file needs to be in here
         # test is run AFTER the last line in this file is executed
-        WriteText2File( sExampleResponse, sExampleFile )
+        WriteText2File( sExampleResponse, '/tmp', sExampleFile )
         #
         itemResultsIterator = getSearchResultGenerator( sExampleFile )
         #
@@ -83,7 +86,7 @@ class getImportSearchResultsTest(TestCase):
 
 
 
-class storeItemFoundTest(TestCase):
+class storeItemFoundTests(TestCase):
     #
     ''' class for testing storeItemFound() '''
 
@@ -117,7 +120,7 @@ class storeItemFoundTest(TestCase):
 
 
 
-class storeUserItemFoundTest(BaseUserTestCase):
+class storeUserItemFoundTests(BaseUserTestCase):
     #
     ''' class for testing storeUserItemFound() '''
         
@@ -153,6 +156,55 @@ class storeUserItemFoundTest(BaseUserTestCase):
         else:
             self.assertTrue( False ) # exception should hve been raised
 
+
+class storeSearchResultsTests(BaseUserTestCase):
+    #
+    ''' class for testing doSearch() store records '''
+    #
+    def setUp(self):
+        # storeSearchResultsTests, self 
+        #
+        from searching import sResultFileNamePattern
+        #
+        super().setUp()
+        #
+        sSearch = "My clever search 1"
+        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch.save()
+        #
+        self.sExampleFile = (
+            sResultFileNamePattern % # 'Search_%s_%s_ID_%s.json'
+            ( 'EBAY-US', self.user1.username, oSearch.id ) )
+        #
+        WriteText2File( sExampleResponse, '/tmp', self.sExampleFile )
+        
+    def tearDown(self):
+        #
+        DeleteIfExists( '/tmp', self.sExampleFile )
+
+    def test_store_search_results(self):
+        #
+        ''' test storeUserItemFound() with actual record'''
+        #
+        iCountItems, iStoreItems, iStoreUsers = (
+                trySearchCatchExceptions( sFileName = self.sExampleFile ) )
+        #
+        self.assertEqual( ItemFound.objects.count(), iCountItems )
+        self.assertEqual( ItemFound.objects.count(), iStoreItems )
+        #
+        self.assertEqual( UserItemFound.objects.count(), iStoreUsers )
+        #
+        # try again with the same data
+        #
+        iCountItems, iStoreItems, iStoreUsers = (
+                trySearchCatchExceptions( sFileName = self.sExampleFile ) )
+        #
+        self.assertEqual( ItemFound.objects.count(), iCountItems )
+        #
+        self.assertEqual( iStoreItems, 0 )
+        #
+        self.assertEqual( iStoreUsers, 0 )
+        #
 
 '''
 will need later
