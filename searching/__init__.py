@@ -26,4 +26,5 @@ dItemFoundFields = dict(
 
 dUserItemFoundFields = dict(
     iItemNumb       = (int,  'itemId',),
+    iSearch         = (None, '',),
     iUser           = (None, '',) )
