@@ -1,6 +1,8 @@
 from core.utils     import getDateTimeObjGotEbayStr as getDT
 from Utils.Config   import getBoolOffYesNoTrueFalse as getBo
 
+sResultFileNamePattern = 'Search_%s_%s_ID_%s.json'
+
 dItemFoundFields = dict(
     iItemNumb       = (int,  'itemId',),
     cTitle          = (None, 'title',),
