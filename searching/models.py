@@ -132,6 +132,8 @@ class UserItemFound(models.Model):
                         default = False )    
     tlook4hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
+    iSearch         = models.ForeignKey( Search,
+                        verbose_name = 'Search that first found this item' )
     iModel          = models.ForeignKey( Model,     null = True )
     iBrand          = models.ForeignKey( Brand,     null = True )
     iCategory       = models.ForeignKey( Category,  null = True )
