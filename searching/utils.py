@@ -1,6 +1,8 @@
 from django.test.client import Client, RequestFactory
 from django.utils       import timezone
 
+from core.utils_ebay    import getValueOffItemDict, storeEbayInfo
+
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
@@ -128,7 +130,7 @@ def getSearchResults( iSearchID = None ):
     iEbayCategory   = oSearch.iEbayCategory
     #
     sFileName       = (
-        'Search-%s-%s-ID_%s.json' % ( sMarket, sUserName, oSearch.id ) )
+        'Search-%s-%s-ID-%s.json' % ( sMarket, sUserName, oSearch.id ) )
     #
     if sKeyWords and iEbayCategory:
         #
@@ -177,60 +179,15 @@ sGot = eatFromWithin( 'This is for real (but not yet)', oInParensFinder )
 '''
 
 
-def _getValueOffItemDict( k, dItem, dFields, oUser = None ):
-    #
-    t = dFields[ k ]
-    #
-    uValue  = dItem[ t[1] ]
-    #
-    tRest   = t[ 2 : ]
-    #
-    for sKey in tRest:
-        uValue = uValue[ sKey ]
-    #
-    sValue  = uValue
-    #
-    if t[0] is None:
-        uReturn = sValue
-    else:
-        f = t[0]
-        uReturn = f( sValue )
-    #
-    return uReturn
-
-
-def _getValueOrUser( k, dItem, dFields, oUser ):
+def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
     #
     if k == 'iUser':
         return oUser.id
+    elif k == 'iSearch':
+        return iSearch
     else:
-        return _getValueOffItemDict( k, dItem, dFields )
+        return getValueOffItemDict( k, dItem, dFields )
 
-
-def storeRow( dItem, dFields, Form, getValue, oUser = None ):
-    #
-    '''can store a row in either ItemFound or UserItemFound'''
-    #
-    dNewResult = { k: getValue( k, dItem, dFields, oUser ) for k in dFields }
-    #
-    form = Form( data = dNewResult )
-    #
-    if form.is_valid():
-        #
-        form.save()
-        #
-    else:
-        #
-        from pprint import pprint
-        #
-        print( 'log this error, form did not save' )
-        #
-        if form.errors:
-            for k, v in form.errors.items():
-                print( k, ' -- ', str(v) )
-        else:
-            print( 'no form errors at bottom!' )
-    
     
 def storeItemFound( dItem ):
     #
@@ -249,10 +206,10 @@ def storeItemFound( dItem ):
                 'ItemID %s is already in the ItemFound table' % sItemID )
         #
     #
-    return storeRow( dItem, dItemFoundFields, ItemFoundForm, _getValueOffItemDict )
+    return storeEbayInfo( dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict )
 
 
-def storeUserItemFound( dItem, oUser ):
+def storeUserItemFound( dItem, oUser, iSearch ):
     #
     from django.db.models import Q
     #
@@ -274,7 +231,9 @@ def storeUserItemFound( dItem, oUser ):
                 ( sItemID, oUser.username ) )
         #
     #
-    return storeRow( dItem, dUserItemFoundFields, UserItemFoundForm, _getValueOrUser, oUser )
+    return storeEbayInfo(
+            dItem, dUserItemFoundFields, UserItemFoundForm, _getValueOrUser,
+            oUser = oUser, iSearch = iSearch )
 
 
 
@@ -292,35 +251,44 @@ def doSearch( iSearchID = None, sFileName = None ):
         sFileName = getSearchResults( iSearchID )
         #
     #
-    # 'Search-%s-%s-ID_%s.json' % ( sMarket, sUserName, oSearch.id ) )
+    # 'Search-%s-%s-ID-%s.json' % ( sMarket, sUserName, oSearch.id ) )
     #
     lParts = sFileName.split( '-' )
     #
-    sUserName = lParts[1]
+    sUserName   =      lParts[ 1]
+    iSearch     = int( lParts[-1] )
     #
     oUser = User.objects.get( username = sUserName )
     #
     oItemIter = getSearchResultGenerator( sFileName )
     #
+    iCountItems = iStoreItems = iStoreUsers = 0
+    #
     for dItem in oItemIter:
+        #
+        iCountItems += 1
         #
         try:
             storeItemFound( dItem )
+            iStoreItems += 1
         except ItemAlreadyInTable:
             pass
         #
         try:
-            storeUserItemFound( dItem, oUser )
+            storeUserItemFound( dItem, oUser, iSearch )
+            iStoreUsers += 1
         except ItemAlreadyInTable:
             pass
         #
+    #
+    return iCountItems, iStoreItems, iStoreUsers
 
 
 
 def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     #
     try:
-        doSearch( iSearchID, sFileName )
+        iItems, iStoreItems, iStoreUsers = doSearch( iSearchID, sFileName )
     except SearchNotWorkingError as e:
         pass
     except SearchGotZeroResults as e:
