@@ -8,7 +8,7 @@ from ..models           import Search
 class SearchModelTest(BaseUserTestCase):
 
     def test_string_representation(self):
-        sSearch = "My clever search 1"
+        sSearch = "My clever search 2"
         oSearch = Search( cTitle = sSearch )
         self.assertEqual( str(oSearch), oSearch.cTitle )
 
@@ -16,7 +16,7 @@ class SearchModelTest(BaseUserTestCase):
         #
         self.client.login(username='username1', password='mypassword')
         #
-        sSearch     = "My clever search 2"
+        sSearch     = "My clever search 1"
         oSearch     = Search( cTitle= sSearch, iUser = self.user1 )
         oSearch.save()
         #
