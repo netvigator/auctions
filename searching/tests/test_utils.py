@@ -81,7 +81,7 @@ class getImportSearchResultsTests(TestCase):
             #
         self.assertEqual( iItems, 4 )
         #
-        DeleteIfExists( sExampleFile )
+        DeleteIfExists( '/tmp', sExampleFile )
 
 
 
