@@ -15,13 +15,9 @@ def getSearchResultGenerator( sFile ):
     #
     from Dict.Get       import getAnyValue
     from Dict.Maintain  import getDictValuesFromSingleElementLists
-    from File.Get       import isFileThere
-    from File.Spec      import getFullSpec
+    from File.Get       import getFileSpecHereOrThere
     #
-    if not isFileThere( sFile ) and isFileThere( '/tmp', sFile ):
-        #
-        sFile = getFullSpec( '/tmp', sFile )
-        #
+    sFile = getFileSpecHereOrThere( sFile )
     #
     dResults = load( open( sFile ) )
     #
