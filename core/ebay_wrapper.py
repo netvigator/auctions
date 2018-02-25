@@ -24,7 +24,7 @@ django.setup()
 
 set_config_file( 'config/settings/ebay_config.ini' )
 
-# accessing the config object only for testing in tests.py
+# accessing the config object only for testing in test_ebay_wrapper.py
 oEbayConfig = get_config_store()
 
 
