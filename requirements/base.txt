@@ -1,3 +1,8 @@
+# any changes?
+# pip install -r requirements/local.txt
+# pip install -r requirements/test.txt
+
+
 # Wheel 0.25+ needed to install certain packages on CPython 3.5+
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
@@ -39,7 +44,7 @@ psycopg2==2.7.3.2
 awesome-slugify==1.6.5
 
 # Time zones support
-pytz==2017.3
+pytz==2018.3
 
 # Redis support
 django-redis==4.8.0
@@ -53,7 +58,9 @@ redis>=2.10.6
 django-countries==5.1.1
 
 # money added by RG 2017-11-27
-django-money==0.12.3
+# django-money==0.12.3
+# removed by RG 2018-02-25 because form cannot validate
+# just using decimal field, works OK
 
 
 # django-extensions added by RG 2017-12-10
@@ -73,5 +80,7 @@ django-admin-honeypot==1.0.0
 # store regex objects
 django-regex-field==1.0.0
 
-# enhanced testing
-django-test-plus==1.0.22
+
+# task queue
+celery==4.1.0
+# redistools==0.1.7
