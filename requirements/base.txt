@@ -1,6 +1,12 @@
+# need
+# python3
+# postgresql server
+# rabbitmq server for celery
+
 # any changes?
 # pip install -r requirements/local.txt
 # pip install -r requirements/test.txt
+# don't do this one, do one or both of the above
 
 
 # Wheel 0.25+ needed to install certain packages on CPython 3.5+
