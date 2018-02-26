@@ -75,3 +75,6 @@ staticfiles/
 .cache/
 
 *.kate-swp
+
+# celery beat schedule file
+celerybeat-schedule
