@@ -10,11 +10,11 @@ if not settings.configured:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
 
 
-app = Celery('getcelery')
+app = Celery('auctionbot')
 
 
 class CeleryConfig(AppConfig):
-    name = 'getcelery.taskapp'
+    name = 'auctionbot.taskapp'
     verbose_name = 'Celery Config'
 
     def ready(self):
