@@ -1,7 +1,7 @@
 Auction Shopping Bot
 ============================
 
-Robot for finding and keeping a database of rare/obscure items on ebay
+Robot for finding and maintaining a database of rare/obscure items on ebay
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
