@@ -12,7 +12,7 @@ import environ
 
 from django.core.exceptions import ImproperlyConfigured
 
-from django_countries.conf  import settings
+from django_countries.conf  import settings as countriesSettings
 
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
@@ -350,7 +350,10 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 ########## CELERY
 INSTALLED_APPS += ['auctionbot.taskapp.celery.CeleryConfig']
-CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
+
+# CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
+CELERY_BROKER_URL = 'amqp://localhost'
+
 if CELERY_BROKER_URL == 'django://':
     CELERY_RESULT_BACKEND = 'redis://'
 else:
@@ -369,5 +372,5 @@ DATETIME_FORMAT = 'j N Y, P'
 DATE_FORMAT     = 'j N Y'
 
 
-settings.COUNTRIES_FIRST = [ 'US', 'GB' ]
-settings.COUNTRIES_OVERRIDE = { 'US': 'United States' }
+countriesSettings.COUNTRIES_FIRST = [ 'US', 'GB' ]
+countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States' }
