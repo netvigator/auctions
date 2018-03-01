@@ -352,7 +352,7 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 INSTALLED_APPS += ['auctionbot.taskapp.celery.CeleryConfig']
 
 # CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://localhost' # using rabbitmq not redis
 
 if CELERY_BROKER_URL == 'django://':
     CELERY_RESULT_BACKEND = 'redis://'
