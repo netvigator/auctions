@@ -110,10 +110,10 @@ LOCAL_APPS = [
     'brands.apps.BrandsConfig',
     'categories.apps.CategoriesConfig',
     'models.apps.ModelsConfig',
-    'itemhits.apps.ItemHitsConfig',
     'ebayinfo.apps.EbayInfoConfig',
     'searching.apps.SearchingConfig',
 ]
+    #'itemhits.apps.ItemHitsConfig',
     #'ebaycategories.apps.EbayCategoriesConfig',
     #'markets.apps.MarketsConfig',
 
