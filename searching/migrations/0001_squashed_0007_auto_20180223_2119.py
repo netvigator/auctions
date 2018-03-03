@@ -78,16 +78,16 @@ class Migration(migrations.Migration):
             name='search',
             unique_together=set([('iUser', 'cKeyWords', 'iEbayCategory'), ('iUser', 'cTitle'), ('iUser', 'cPriority')]),
         ),
-        migrations.AlterField(
-            model_name='search',
-            name='iEbayCategory',
-            field=models.PositiveIntegerField(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, verbose_name='ebay category (optional)'),
-        ),
-        migrations.AlterField(
-            model_name='search',
-            name='iEbayCategory',
-            field=models.ForeignKey(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, on_delete=django.db.models.deletion.CASCADE, to='ebayinfo.EbayCategory', verbose_name='ebay category (optional)'),
-        ),
+        #migrations.AlterField(
+            #model_name='search',
+            #name='iEbayCategory',
+            #field=models.PositiveIntegerField(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, verbose_name='ebay category (optional)'),
+        #),
+        #migrations.AlterField(
+            #model_name='search',
+            #name='iEbayCategory',
+            #field=models.ForeignKey(blank=True, help_text='Limit search to items listed in this category -- (key words OR ebay category required!) (Both are OK)', null=True, on_delete=django.db.models.deletion.CASCADE, to='ebayinfo.EbayCategory', verbose_name='ebay category (optional)'),
+        #),
         migrations.CreateModel(
             name='UserItemFound',
             fields=[
