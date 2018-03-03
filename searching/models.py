@@ -1,6 +1,5 @@
 from django.db                  import models
 from django_countries.fields    import CountryField
-from djmoney.models.fields      import MoneyField
 
 from models.models              import Model
 from brands.models              import Brand

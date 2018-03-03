@@ -1,5 +1,4 @@
 from django.db              import models
-from djmoney.models.fields  import MoneyField
 from django_countries.fields \
                             import CountryField
 
