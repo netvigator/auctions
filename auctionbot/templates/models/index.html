@@ -31,7 +31,7 @@
         </tr>
         {% for model in object_list %}
             <tr>
-            <td><a href="{% url 'models:detail' model.id %}">
+            <td><a href="{{ model.get_absolute_url }}">
                 {{ model.cTitle|getNbsp }}</a>
             </td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
