@@ -15,7 +15,6 @@ from ..tests            import sExampleResponse
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
 
-from pprint             import pprint
 
 sExampleFile = '/tmp/search_results.json'
 
