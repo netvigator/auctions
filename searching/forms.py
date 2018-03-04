@@ -53,12 +53,12 @@ class SearchAddOrUpdateForm(ModelForm):
         #print( 'iDummyCategory:', iDummyCategory )
         #print( 'iDummyOriginal:', iDummyOriginal )
         #
-        iEbayCategory = 0
+        oEbayCategory = None
         #
         if iDummyCategory is not None and iDummyCategory:
             #
             try:
-                iEbayCategory = EbayCategory.objects.get(
+                oEbayCategory = EbayCategory.objects.get(
                     iMarket_id = self.request.user.iMarket,
                     iCategoryID = iDummyCategory )
             except ObjectDoesNotExist:
@@ -67,7 +67,7 @@ class SearchAddOrUpdateForm(ModelForm):
                         params = ( iDummyCategory ),
                         code='ebay category number not found' )
             #
-            cleaned['iEbayCategory'] = iEbayCategory
+            cleaned['iEbayCategory'] = oEbayCategory
             #
         #
         #print( "cleaned['iEbayCategory']:", cleaned['iEbayCategory'] )
@@ -98,21 +98,23 @@ class SearchAddOrUpdateForm(ModelForm):
         
         #
         #
-        doCheckSearch = (   bCreating or
-                            self.instance.cKeyWords     != sKeyWords or
-                          ( self.instance.iEbayCategory != iEbayCategory and
-                            iEbayCategory > 0 ) )
+        doCheckSearch = (
+                bCreating or
+                self.instance.cKeyWords     != sKeyWords or
+              ( self.instance.iEbayCategory != oEbayCategory.iCategoryID and
+                oEbayCategory.iCategoryID > 0 ) )
         #
         if doCheckSearch:
             #
             sKeyWords           = cleaned.get( 'cKeyWords'      )
-            iEbayCategory       = cleaned.get( 'iEbayCategory'  )
+            oEbayCategory       = cleaned.get( 'iEbayCategory'  )
             #
-            if iEbayCategory:
+            if oEbayCategory is not None:
                 #
                 if Search.objects.filter(
                         iUser               = self.request.user,
-                        iEbayCategory       = iEbayCategory ).filter(
+                        iEbayCategory       =
+                            oEbayCategory.iCategoryID ).filter(
                         cKeyWords__iexact   = sKeyWords ).exists():
                     #
                     oEbayCategory = EbayCategory.get( iCategoryID = iEbayCategory )
