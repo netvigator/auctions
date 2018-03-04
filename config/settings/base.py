@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import environ
 
+from logging                import getLogger
+
 from django.core.exceptions import ImproperlyConfigured
 
 from django_countries.conf  import settings as countriesSettings
@@ -17,6 +19,8 @@ from django_countries.conf  import settings as countriesSettings
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
 dSecretsConf = getConf( 'Secrets.conf' )
+
+logger = getLogger(__name__)
 
 # print( dSecretsConf )
 
@@ -34,9 +38,9 @@ if READ_DOT_ENV_FILE:
     # that is to say variables from the .env files will only be used if not defined
     # as environment variables.
     env_file = str(ROOT_DIR.path('.env'))
-    print('Loading : {}'.format(env_file))
+    logger.warning( 'Loading : {}'.format(env_file) )
     env.read_env(env_file)
-    print('The .env file has been loaded. See base.py for more information')
+    logger.warning('The .env file has been loaded. See base.py for more information')
 
 
 def getSecret( sSetting, sSection = None ):
