@@ -1,24 +1,56 @@
+from logging        import getLogger
+
+logger = getLogger(__name__)
 
 
+_dBlankValue = { None: '', int: 0 }
 
 def getValueOffItemDict( k, dItem, dFields, **kwargs ):
     #
-    t = dFields[ k ]
+    t = dFields[ k ][ 't' ]
     #
-    uValue  = dItem[ t[1] ]
+    bOptional = dFields[ k ].get( 'bOptional', False )
     #
-    tRest   = t[ 2 : ]
+    f = dFields[ k ].get( 'f' )
     #
-    for sKey in tRest:
-        uValue = uValue[ sKey ]
+    try:
+        #
+        uValue  = dItem[ t[0] ]
+        #
+        tRest   = t[ 1 : ]
+        #
+        for sKey in tRest:
+            uValue = uValue[ sKey ]
+        #
+    except KeyError:
+        #
+        if bOptional:
+            #
+            uValue = _dBlankValue.get( f )
+            #
+        else:
+            #
+            raise
+            #
+        #
     #
     sValue  = uValue
     #
-    if t[0] is None:
+    if f is None:
+        #
         uReturn = sValue
+        #
     else:
-        f = t[0]
-        uReturn = f( sValue )
+        #
+        try:
+            #
+            uReturn = f( sValue )
+            #
+        except ValueError:
+            #
+            print( '\n', 'field:', k, '\n' )
+            raise
+        #
     #
     return uReturn
 
@@ -44,11 +76,11 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
         #
     else:
         #
-        print( 'log this error, form did not save' )
+        logger.error( 'log this error, form did not save' )
         #
         if form.errors:
             for k, v in form.errors.items():
-                print( k, ' -- ', str(v) )
+                logger.error( k, ' -- ', str(v) )
         else:
-            print( 'no form errors at bottom!' )
+            logger.info( 'no form errors at bottom!' )
     
