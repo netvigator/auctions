@@ -96,7 +96,7 @@ def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
     because browser is displaying cached version of page
     solution:
     append a unique query string onto the end of the detail page URL
-    UTC date/time of the moment will always be unique.
+    date/time of the last update will always be unique when it needs to.
     voila! browser lack-of-refresh problem solved!
     #'''
     #
@@ -106,9 +106,9 @@ def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
     #
     tModify = kwargs.pop( 'tModify' )
     #
-    dUTC = { 'updated': _getIsoDateTimeOffDateTimeCol( tModify ) }
+    tUpdatted = { 'updated': _getIsoDateTimeOffDateTimeCol( tModify ) }
     #
-    kwargs[ 'query' ] = dUTC
+    kwargs[ 'query' ] = tUpdatted
     #
     return _getReverseWithQuery( lookup_view, *args, **kwargs )
 
