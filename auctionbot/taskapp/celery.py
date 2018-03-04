@@ -1,5 +1,7 @@
 import os
 
+from logging        import getLogger
+
 from celery         import Celery
 from celery         import shared_task
 
@@ -9,6 +11,8 @@ from django.conf    import settings
 #if not settings.configured:
     ## set the default Django settings module for the 'celery' program.
     #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
+
+logger = getLogger(__name__)
 
 
 app = Celery('auctionbot')
@@ -61,7 +65,7 @@ class CeleryConfig(AppConfig):
 
 @shared_task( bind = True, name = 'celery.debug_task' )
 def debug_task(self):
-    print('Request: {0!r}'.format(self.request))  # pragma: no cover
+    logger.debug('Request: {0!r}'.format(self.request) ) # pragma: no cover
 
 
 # https://stackoverflow.com/questions/46530784/make-django-test-case-database-visible-to-celery/46564964#46564964
