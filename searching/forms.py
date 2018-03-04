@@ -36,11 +36,13 @@ class SearchAddOrUpdateForm(ModelForm):
         cleaned = super( SearchAddOrUpdateForm, self).clean()
         #
         sKeyWords       = cleaned.get( 'cKeyWords',     '' )
-        
+        #
         iDummyCategory  = cleaned.get( 'iDummyCategory', None )
         iDummyOriginal  = self.instance.iDummyCategory
-
-        if iDummyOriginal and not iDummyCategory:
+        #
+        bCreating = ( self.which == 'Create' )
+        #
+        if bCreating and iDummyOriginal and not iDummyCategory:
             sMsg = 'Your ebay category "%s" is invalid' % iDummyOriginal
             raise ValidationError( sMsg, code='invalid ebay category' )
             
@@ -51,7 +53,9 @@ class SearchAddOrUpdateForm(ModelForm):
         #print( 'iDummyCategory:', iDummyCategory )
         #print( 'iDummyOriginal:', iDummyOriginal )
         #
-        if iDummyCategory is not None:
+        iEbayCategory = 0
+        #
+        if iDummyCategory is not None and iDummyCategory:
             #
             try:
                 iEbayCategory = EbayCategory.objects.get(
@@ -69,8 +73,6 @@ class SearchAddOrUpdateForm(ModelForm):
         #print( "cleaned['iEbayCategory']:", cleaned['iEbayCategory'] )
         #
         cPriority           = cleaned.get( 'cPriority' )
-        #
-        bCreating = ( self.which == 'Create' )
         #
         doCheckPriority = bCreating or self.instance.cPriority != cPriority
         #
@@ -97,8 +99,9 @@ class SearchAddOrUpdateForm(ModelForm):
         #
         #
         doCheckSearch = (   bCreating or
-                            self.instance.cKeyWords != sKeyWords or
-                            self.instance.iEbayCategory != iEbayCategory )
+                            self.instance.cKeyWords     != sKeyWords or
+                          ( self.instance.iEbayCategory != iEbayCategory and
+                            iEbayCategory > 0 ) )
         #
         if doCheckSearch:
             #
