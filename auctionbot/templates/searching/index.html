@@ -24,7 +24,7 @@
         </tr>
         {% for search in search_list %}
             <tr>
-            <td><a href="/searching/{{ search.id }}/">{{ search.cTitle }}</a></td>
+            <td><a href="{{ search.get_absolute_url }}/">{{ search.cTitle }}</a></td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.iEbayCategory.name }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
