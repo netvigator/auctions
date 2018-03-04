@@ -1,8 +1,11 @@
+from logging            import getLogger
+
 from django.test.client import Client, RequestFactory
 from django.utils       import timezone
 
 from core.utils_ebay    import getValueOffItemDict, storeEbayInfo
 
+logger = getLogger(__name__)
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
@@ -99,6 +102,7 @@ def getSearchResults( iSearchID = None ):
     from core.ebay_wrapper  import (
                     getItemsByKeyWords, getItemsByCategory, getItemsByBoth )
     #
+    from searching          import sResultFileNamePattern
     from .models            import Search
     from ebayinfo.models    import Market
     #
@@ -136,7 +140,13 @@ def getSearchResults( iSearchID = None ):
         sResultFileNamePattern % ( sMarket, sUserName, oSearch.id ) )
     #  'Search_%s_%s_ID_%s.json'
     #
+    tSearch = ( oSearch.cTitle, str( oSearch.id ) )
+    #
     if sKeyWords and iEbayCategory:
+        #
+        logger.info(
+            'executing "%s" search (ID %s) for keywords in category ...' %
+            tSearch )
         #
         QuietDump(
             getItemsByBoth( sKeyWords, iEbayCategory, sMarketID = sMarket ),
@@ -144,16 +154,27 @@ def getSearchResults( iSearchID = None ):
         #
     elif sKeyWords:
         #
+        logger.info(
+            'executing "%s" search (ID %s) for keywords '
+            '(in all categories) ...' % tSearch )
+        #
         QuietDump(
             getItemsByKeyWords( sKeyWords, sMarketID = sMarket ),
             sFileName )
         #
     elif iEbayCategory:
         #
+        logger.info(
+            'executing "%s" search (ID %s) in category '
+            '(without key words) ...' % tSearch )
+        #
         QuietDump(
             getItemsByCategory( iEbayCategory, sMarketID = sMarket ),
             sFileName )
         #
+    #
+    logger.info(
+        'completed without error "%s" search (ID %s)' % tSearch )
     #
     sFileName = join( '/tmp', sFileName )
     #
@@ -279,6 +300,9 @@ def doSearch( iSearchID = None, sFileName = None ):
             iStoreItems += 1
         except ItemAlreadyInTable:
             pass
+        except ValueError as e:
+            logger.error( 'ValueError: %s | %s' %
+                          ( str(e), repr(dItem) ) )
         #
         try:
             storeUserItemFound( dItem, oUser, iSearch )
@@ -296,11 +320,12 @@ def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     iItems = iStoreItems = iStoreUsers = 0
     #
     try:
-        iItems, iStoreItems, iStoreUsers = doSearch( iSearchID, sFileName )
+        iItems, iStoreItems, iStoreUsers = doSearch(
+                    iSearchID = iSearchID, sFileName = sFileName )
     except SearchNotWorkingError as e:
-        print( 'log this error, got a SearchNotWorkingError' )
+        logger.error( 'SearchNotWorkingError: %s' % e )
     except SearchGotZeroResults as e:
-        print( 'log this error, got a SearchGotZeroResults' )
+        logger.error( 'SearchGotZeroResults: %s' % e )
     #
     return iItems, iStoreItems, iStoreUsers 
 
