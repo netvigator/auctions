@@ -10,7 +10,7 @@ from ..views                    import (
         SearchCreateView, SearchIndexView, SearchDetailView, SearchDeleteView, SearchUpdateView )
 
 
-from pprint import pprint
+#from pprint import pprint
 
 # Create your tests here.
 
@@ -280,42 +280,3 @@ class SearchCreateViewTests(BaseUserTestCase):
         #
         self.assertEqual(response.status_code, 200 )
 
-'''
-        if 'context_data' in self.request.__dict__:
-            #
-            print( "self.request.__dict__['context_data']:" )
-            pprint( self.request.__dict__['context_data'] )
-        else:
-
-    def setUp(self):
-
-        # call BaseUserTestCase.setUp()
-        super(SearchUpdateViewTests, self).setUp()
-        #
-        model_data = dict( cTitle = "Great Widgets", iUser = self.user1 )
-        #
-        # Instantiate the view directly. Never do this outside a test!
-        self.view = SearchUpdateView( data = model_data )
-        # Generate a fake request
-        request = self.factory.get('/fake-url')
-        # Attach the user to the request
-        request.user = self.user1
-        # Attach the request to the view
-        self.view.request = request
-        #
-        
-    def test_get_success_url(self):
-        # Expect: 
-        print( 'self.view.get_success_url():', self.view.get_success_url() )
-        #self.assertEqual(
-            #self.view.get_success_url(),
-            #'/users/testuser/' )
-
-    def test_get_object(self):
-        # Expect: 
-        #self.assertEqual(
-            #self.view.get_object(),
-            #self.user )
-        print( 'self.view.get_object():', self.view.get_object() )
-
-'''
