@@ -99,14 +99,17 @@ class ItemFound(models.Model):
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
                         db_index = False )     # DecimalField
-    iCategoryID     = models.PositiveIntegerField(
-                        'primary category ID', null=True )
+    iCategoryID     = models.PositiveIntegerField( 'primary category ID',
+                        null = True )
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     
-    iConditionID    = models.IntegerField( 'condition ID' )
+    # condition is optional buy may become required in the future
+    # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
+    iConditionID    = models.IntegerField( 'condition ID',
+                                         null = True, blank = True )
     cCondition      = models.CharField( 'condition display name',
-                        max_length = 28 )
+                        max_length = 28, null = True, blank = True )
     
     cSellingState   = models.CharField( 'selling state',
                         max_length = 18 )
