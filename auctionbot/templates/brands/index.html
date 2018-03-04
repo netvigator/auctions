@@ -21,14 +21,14 @@
         </tr>
         {% for brand in brand_list %}
             <tr>
-            <td><a href="/brands/{{ brand.id }}/">{{ brand.cTitle }}</a></td>
+            <td><a href="{{ brand.get_absolute_url }}/">{{ brand.cTitle }}</a></td>
             <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
             <TD></TD>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
             <TD></TD>
-            <td>{{ brand.cNationality.name }}</td>
+            <td>{{ brand.cNationality.name|safe }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ brand.cComment|truncatechars:65 }}</td>
+            <td>{{ brand.cComment|truncatechars:60 }}</td>
             </tr>
         {% endfor %}
         </table>
