@@ -377,4 +377,6 @@ DATE_FORMAT     = 'j N Y'
 
 
 countriesSettings.COUNTRIES_FIRST = [ 'US', 'GB' ]
-countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States' }
+countriesSettings.COUNTRIES_OVERRIDE = {
+    'US': 'United&nbsp;States',
+    'GB': 'United&nbsp;Kingdom' }

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Auction Shopping Bot Brands{% endblock %}
+{% load getNbsp %} 
 
 {% block content %} 
 
@@ -26,7 +27,7 @@
             <TD></TD>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
             <TD></TD>
-            <td>{{ brand.cNationality.name|safe }}</td>
+            <td>{{ brand.cNationality.name||getNbsp }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ brand.cComment|truncatechars:60 }}</td>
             </tr>
