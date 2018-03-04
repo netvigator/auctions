@@ -47,575 +47,187 @@ sExampleResponse = \
 '''{
   "findItemsAdvancedResponse": [
     {
-      "itemSearchURL": [
-        "http://www.ebay.com/sch/58277/i.html?_nkw=Simpson+360&_ddo=1&_ipg=100&_pgn=1"
-      ], 
+      "itemSearchURL": [ "http://www.ebay.com/sch/58277/i.html?_nkw=Simpson+360&_ddo=1&_ipg=100&_pgn=1" ],
       "paginationOutput": [
-        {
-          "totalPages": [
-            "1"
-          ], 
-          "entriesPerPage": [
-            "100"
-          ], 
-          "pageNumber": [
-            "1"
-          ], 
-          "totalEntries": [
-            "4"
-          ]
-        }
-      ], 
-      "ack": [
-        "Success"
-      ], 
-      "timestamp": [
-        "2017-12-15T14:18:54.955Z"
-      ], 
+        { "totalPages": [ "1" ],
+          "entriesPerPage": [ "100" ],
+          "pageNumber": [ "1" ],
+          "totalEntries": [ "4" ] } ],
+      "ack": [ "Success" ],
+      "timestamp": [ "2017-12-15T14:18:54.955Z" ],
       "searchResult": [
-        {
-          "item": [
-            {
-              "itemId": [
-                "253313715173"
-              ], 
-              "isMultiVariationListing": [
-                "false"
-              ], 
-              "topRatedListing": [
-                "false"
-              ], 
-              "globalId": [
-                "EBAY-US"
-              ], 
-              "title": [
-                "Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual"
-              ], 
-              "country": [
-                "US"
-              ], 
+        { "item": [
+            { "itemId": [ "253313715173" ],
+              "isMultiVariationListing": [ "false" ],
+              "topRatedListing": [ "false" ],
+              "globalId": [ "EBAY-US" ],
+              "title": [ "Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" ],
+              "country": [ "US" ],
               "shippingInfo": [
-                {
-                  "expeditedShipping": [
-                    "false"
-                  ], 
-                  "shippingType": [
-                    "Calculated"
-                  ], 
-                  "handlingTime": [
-                    "3"
-                  ], 
-                  "shipToLocations": [
-                    "Worldwide"
-                  ], 
-                  "oneDayShippingAvailable": [
-                    "false"
-                  ]
-                }
-              ], 
-              "galleryURL": [
-                "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg"
-              ], 
-              "autoPay": [
-                "false"
-              ], 
-              "location": [
-                "Ruskin,FL,USA"
-              ], 
-              "postalCode": [
-                "33570"
-              ], 
-              "returnsAccepted": [
-                "false"
-              ], 
-              "viewItemURL": [
-                "http://www.ebay.com/itm/Simpson-360-2-Digital-Volt-Ohm-Milliammeter-Operators-Manual-/253313715173"
-              ], 
+                { "expeditedShipping": [ "false" ],
+                  "shippingType": [ "Calculated" ],
+                  "handlingTime": [ "3" ],
+                  "shipToLocations": [ "Worldwide" ],
+                  "oneDayShippingAvailable": [ "false" ] } ],
+              "galleryURL": [ "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" ],
+              "autoPay": [ "false" ],
+              "location": [ "Ruskin,FL,USA" ],
+              "postalCode": [ "33570" ],
+              "returnsAccepted": [ "false" ],
+              "viewItemURL": [ "http://www.ebay.com/itm/Simpson-360-2-Digital-Volt-Ohm-Milliammeter-Operators-Manual-/253313715173" ],
               "sellingStatus": [
-                {
-                  "currentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "10.0"
-                    }
-                  ], 
-                  "timeLeft": [
-                    "P29DT15H3M53S"
-                  ], 
+                { "currentPrice": [
+                    { "@currencyId": "USD", "__value__": "10.0" } ],
+                  "timeLeft": [ "P29DT15H3M53S" ],
                   "convertedCurrentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "10.0"
-                    }
-                  ], 
-                  "sellingState": [
-                    "Active"
-                  ]
-                }
-              ], 
-              "paymentMethod": [
-                "PayPal"
-              ], 
+                    { "@currencyId": "USD", "__value__": "10.0" } ],
+                  "sellingState": [ "Active" ] } ],
+              "paymentMethod": [ "PayPal" ],
               "primaryCategory": [
-                {
-                  "categoryId": [
-                    "58277"
-                  ], 
-                  "categoryName": [
-                    "Multimeters"
-                  ]
-                }
-              ], 
+                { "categoryId": [ "58277" ],
+                  "categoryName": [ "Multimeters" ] } ],
               "condition": [
-                {
-                  "conditionId": [
-                    "3000"
-                  ], 
-                  "conditionDisplayName": [
-                    "Used"
-                  ]
-                }
-              ], 
+                { "conditionId": [ "3000" ],
+                  "conditionDisplayName": [ "Used" ] } ],
               "listingInfo": [
-                {
-                  "listingType": [
-                    "StoreInventory"
-                  ], 
-                  "gift": [
-                    "false"
-                  ], 
-                  "bestOfferEnabled": [
-                    "false"
-                  ], 
-                  "startTime": [
-                    "2017-12-15T05:22:47.000Z"
-                  ], 
-                  "buyItNowAvailable": [
-                    "false"
-                  ], 
-                  "endTime": [
-                    "2018-01-14T05:22:47.000Z"
-                  ]
-                }
-              ]
-            }, 
-            {
-              "itemId": [
-                "132401762082"
-              ], 
-              "isMultiVariationListing": [
-                "false"
-              ], 
-              "topRatedListing": [
-                "false"
-              ], 
-              "globalId": [
-                "EBAY-US"
-              ], 
-              "title": [
-                "Simpson 360 Digital Multi Meter Volt Ohm Milliameter Working"
-              ], 
-              "country": [
-                "US"
-              ], 
+                { "listingType": [ "StoreInventory" ],
+                  "gift": [ "false" ],
+                  "bestOfferEnabled": [ "false" ],
+                  "startTime": [ "2017-12-15T05:22:47.000Z" ],
+                  "buyItNowAvailable": [ "false" ],
+                  "endTime": [ "2018-01-14T05:22:47.000Z" ] } ] }, 
+            { "itemId": [ "132401762082" ],
+              "isMultiVariationListing": [ "false" ],
+              "topRatedListing": [ "false" ],
+              "globalId": [ "EBAY-US" ],
+              "title": [ "Simpson 360 Digital Multi Meter Volt Ohm Milliameter Working" ],
+              "country": [ "US" ],
               "shippingInfo": [
-                {
-                  "expeditedShipping": [
-                    "false"
-                  ], 
-                  "handlingTime": [
-                    "2"
-                  ], 
+                { "expeditedShipping": [ "false" ],
+                  "handlingTime": [ "2" ],
                   "shippingServiceCost": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "0.0"
-                    }
-                  ], 
-                  "oneDayShippingAvailable": [
-                    "false"
-                  ], 
-                  "shipToLocations": [
-                    "Worldwide"
-                  ], 
-                  "shippingType": [
-                    "Free"
-                  ]
-                }
-              ], 
-              "galleryURL": [
-                "http://thumbs3.ebaystatic.com/m/mc2iTJIYDZVO0Nh-w2n1Tzw/140.jpg"
-              ], 
-              "autoPay": [
-                "false"
-              ], 
-              "location": [
-                "Bellmore,NY,USA"
-              ], 
-              "postalCode": [
-                "11710"
-              ], 
-              "returnsAccepted": [
-                "false"
-              ], 
-              "viewItemURL": [
-                "http://www.ebay.com/itm/Simpson-360-Digital-Multi-Meter-Volt-Ohm-Milliameter-Working-/132401762082"
-              ], 
+                    { "@currencyId": "USD", "__value__": "0.0" } ],
+                  "oneDayShippingAvailable": [ "false" ],
+                  "shipToLocations": [ "Worldwide" ],
+                  "shippingType": [ "Free" ] } ],
+              "galleryURL": [ "http://thumbs3.ebaystatic.com/m/mc2iTJIYDZVO0Nh-w2n1Tzw/140.jpg" ],
+              "autoPay": [ "false" ],
+              "location": [ "Bellmore,NY,USA" ],
+              "postalCode": [ "11710" ],
+              "returnsAccepted": [ "false" ],
+              "viewItemURL": [ "http://www.ebay.com/itm/Simpson-360-Digital-Multi-Meter-Volt-Ohm-Milliameter-Working-/132401762082" ],
               "sellingStatus": [
-                {
-                  "currentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "79.99"
-                    }
-                  ], 
-                  "timeLeft": [
-                    "P1DT6H52M48S"
-                  ], 
+                { "currentPrice": [
+                    { "@currencyId": "USD", "__value__": "79.99" } ],
+                  "timeLeft": [ "P1DT6H52M48S" ],
                   "convertedCurrentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "79.99"
-                    }
-                  ], 
-                  "sellingState": [
-                    "Active"
-                  ]
-                }
-              ], 
-              "paymentMethod": [
-                "PayPal"
-              ], 
+                    { "@currencyId": "USD", "__value__": "79.99" } ],
+                  "sellingState": [ "Active" ] } ],
+              "paymentMethod": [ "PayPal" ],
               "primaryCategory": [
-                {
-                  "categoryId": [
-                    "58277"
-                  ], 
-                  "categoryName": [
-                    "Multimeters"
-                  ]
-                }
-              ], 
+                { "categoryId": [ "58277" ],
+                  "categoryName": [ "Multimeters" ] } ],
               "condition": [
-                {
-                  "conditionId": [
-                    "3000"
-                  ], 
-                  "conditionDisplayName": [
-                    "Used"
-                  ]
-                }
-              ], 
+                { "conditionId": [ "3000" ],
+                  "conditionDisplayName": [ "Used" ] } ],
               "listingInfo": [
-                {
-                  "listingType": [
-                    "FixedPrice"
-                  ], 
-                  "gift": [
-                    "false"
-                  ], 
-                  "bestOfferEnabled": [
-                    "false"
-                  ], 
-                  "watchCount": [
-                    "5"
-                  ], 
-                  "startTime": [
-                    "2017-11-16T21:11:42.000Z"
-                  ], 
-                  "buyItNowAvailable": [
-                    "false"
-                  ], 
-                  "endTime": [
-                    "2017-12-16T21:11:42.000Z"
-                  ]
-                }
-              ]
-            }, 
-            {
-              "itemId": [
-                "253303813311"
-              ], 
-              "isMultiVariationListing": [
-                "false"
-              ], 
-              "topRatedListing": [
-                "false"
-              ], 
-              "globalId": [
-                "EBAY-US"
-              ], 
-              "title": [
-                "SIMPSON 360-2 RUNII DIGITAL OHM -VOLT METER #12286"
-              ], 
-              "country": [
-                "US"
-              ], 
+                { "listingType": [ "FixedPrice" ],
+                  "gift": [ "false" ],
+                  "bestOfferEnabled": [ "false" ],
+                  "watchCount": [ "5" ],
+                  "startTime": [ "2017-11-16T21:11:42.000Z" ],
+                  "buyItNowAvailable": [ "false" ],
+                  "endTime": [ "2017-12-16T21:11:42.000Z" ] } ] }, 
+            { "itemId": [ "253303813311" ],
+              "isMultiVariationListing": [ "false" ],
+              "topRatedListing": [ "false" ],
+              "globalId": [ "EBAY-US" ],
+              "title": [ "SIMPSON 360-2 RUNII DIGITAL OHM -VOLT METER #12286" ],
+              "country": [ "US" ],
               "shippingInfo": [
-                {
-                  "expeditedShipping": [
-                    "true"
-                  ], 
-                  "handlingTime": [
-                    "3"
-                  ], 
+                { "expeditedShipping": [ "true" ],
+                  "handlingTime": [ "3" ],
                   "shippingServiceCost": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "0.0"
-                    }
-                  ], 
-                  "oneDayShippingAvailable": [
-                    "false"
-                  ], 
-                  "shipToLocations": [
-                    "Worldwide"
-                  ], 
-                  "shippingType": [
-                    "FreePickup"
-                  ]
-                }
-              ], 
-              "galleryURL": [
-                "http://thumbs4.ebaystatic.com/m/m0SU_J1v1SigYgs-VTlbe6g/140.jpg"
-              ], 
-              "autoPay": [
-                "true"
-              ], 
-              "location": [
-                "Sapulpa,OK,USA"
-              ], 
-              "postalCode": [
-                "74066"
-              ], 
-              "returnsAccepted": [
-                "false"
-              ], 
-              "viewItemURL": [
-                "http://www.ebay.com/itm/SIMPSON-360-2-RUNII-DIGITAL-OHM-VOLT-METER-12286-/253303813311"
-              ], 
+                    { "@currencyId": "USD", "__value__": "0.0" } ],
+                  "oneDayShippingAvailable": [ "false" ],
+                  "shipToLocations": [ "Worldwide" ],
+                  "shippingType": [ "FreePickup" ] } ],
+              "galleryURL": [ "http://thumbs4.ebaystatic.com/m/m0SU_J1v1SigYgs-VTlbe6g/140.jpg" ],
+              "autoPay": [ "true" ],
+              "location": [ "Sapulpa,OK,USA" ],
+              "postalCode": [ "74066" ],
+              "returnsAccepted": [ "false" ],
+              "viewItemURL": [ "http://www.ebay.com/itm/SIMPSON-360-2-RUNII-DIGITAL-OHM-VOLT-METER-12286-/253303813311" ],
               "sellingStatus": [
-                {
-                  "currentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "200.0"
-                    }
-                  ], 
-                  "timeLeft": [
-                    "P1DT8H59M46S"
-                  ], 
+                { "currentPrice": [
+                    { "@currencyId": "USD", "__value__": "200.0" } ],
+                  "timeLeft": [ "P1DT8H59M46S" ],
                   "convertedCurrentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "200.0"
-                    }
-                  ], 
-                  "bidCount": [
-                    "0"
-                  ], 
-                  "sellingState": [
-                    "Active"
-                  ]
-                }
-              ], 
-              "paymentMethod": [
-                "PayPal"
-              ], 
+                    { "@currencyId": "USD", "__value__": "200.0" } ],
+                  "bidCount": [ "0" ],
+                  "sellingState": [ "Active" ] } ],
+              "paymentMethod": [ "PayPal" ],
               "primaryCategory": [
-                {
-                  "categoryId": [
-                    "58277"
-                  ], 
-                  "categoryName": [
-                    "Multimeters"
-                  ]
-                }
-              ], 
+                { "categoryId": [ "58277" ],
+                  "categoryName": [ "Multimeters" ] } ],
               "condition": [
-                {
-                  "conditionId": [
-                    "3000"
-                  ], 
-                  "conditionDisplayName": [
-                    "Used"
-                  ]
-                }
-              ], 
+                { "conditionId": [ "3000" ],
+                  "conditionDisplayName": [ "Used" ] } ],
               "listingInfo": [
-                {
-                  "endTime": [
-                    "2017-12-16T23:18:40.000Z"
-                  ], 
+                { "endTime": [ "2017-12-16T23:18:40.000Z" ],
                   "buyItNowPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "400.0"
-                    }
-                  ], 
-                  "gift": [
-                    "false"
-                  ], 
-                  "listingType": [
-                    "AuctionWithBIN"
-                  ], 
+                    { "@currencyId": "USD", "__value__": "400.0" } ],
+                  "gift": [ "false" ],
+                  "listingType": [ "AuctionWithBIN" ],
                   "convertedBuyItNowPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "400.0"
-                    }
-                  ], 
-                  "bestOfferEnabled": [
-                    "false"
-                  ], 
-                  "startTime": [
-                    "2017-12-09T23:18:40.000Z"
-                  ], 
-                  "buyItNowAvailable": [
-                    "true"
-                  ]
-                }
-              ]
-            }, 
-            {
-              "itemId": [
-                "253295991282"
-              ], 
-              "isMultiVariationListing": [
-                "false"
-              ], 
-              "topRatedListing": [
-                "false"
-              ], 
-              "globalId": [
-                "EBAY-US"
-              ], 
-              "title": [
-                "Simpson 360 Multimeter"
-              ], 
-              "country": [
-                "US"
-              ], 
+                    { "@currencyId": "USD", "__value__": "400.0" } ],
+                  "bestOfferEnabled": [ "false" ],
+                  "startTime": [ "2017-12-09T23:18:40.000Z" ],
+                  "buyItNowAvailable": [ "true" ] } ] }, 
+            { "itemId": [ "253295991282" ],
+              "isMultiVariationListing": [ "false" ],
+              "topRatedListing": [ "false" ],
+              "globalId": [ "EBAY-US" ],
+              "title": [ "Simpson 360 Multimeter" ],
+              "country": [ "US" ],
               "shippingInfo": [
-                {
-                  "expeditedShipping": [
-                    "false"
-                  ], 
-                  "handlingTime": [
-                    "2"
-                  ], 
+                { "expeditedShipping": [ "false" ],
+                  "handlingTime": [ "2" ],
                   "shippingServiceCost": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "10.0"
-                    }
-                  ], 
-                  "oneDayShippingAvailable": [
-                    "false"
-                  ], 
-                  "shipToLocations": [
-                    "Worldwide"
-                  ], 
-                  "shippingType": [
-                    "Flat"
-                  ]
-                }
-              ], 
-              "galleryURL": [
-                "http://thumbs3.ebaystatic.com/m/mDzuc_hBdbr66ce2oqz2yxA/140.jpg"
-              ], 
-              "autoPay": [
-                "false"
-              ], 
-              "location": [
-                "Piedmont,SC,USA"
-              ], 
-              "postalCode": [
-                "29673"
-              ], 
-              "returnsAccepted": [
-                "false"
-              ], 
-              "viewItemURL": [
-                "http://www.ebay.com/itm/Simpson-360-Multimeter-/253295991282"
-              ], 
+                    { "@currencyId": "USD", "__value__": "10.0" } ],
+                  "oneDayShippingAvailable": [ "false" ],
+                  "shipToLocations": [ "Worldwide" ],
+                  "shippingType": [ "Flat" ] } ],
+              "galleryURL": [ "http://thumbs3.ebaystatic.com/m/mDzuc_hBdbr66ce2oqz2yxA/140.jpg" ],
+              "autoPay": [ "false" ],
+              "location": [ "Piedmont,SC,USA" ],
+              "postalCode": [ "29673" ],
+              "returnsAccepted": [ "false" ],
+              "viewItemURL": [ "http://www.ebay.com/itm/Simpson-360-Multimeter-/253295991282" ],
               "sellingStatus": [
-                {
-                  "currentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "39.0"
-                    }
-                  ], 
-                  "timeLeft": [
-                    "P19DT23H42M8S"
-                  ], 
+                { "currentPrice": [
+                    { "@currencyId": "USD", "__value__": "39.0" } ],
+                  "timeLeft": [ "P19DT23H42M8S" ],
                   "convertedCurrentPrice": [
-                    {
-                      "@currencyId": "USD", 
-                      "__value__": "39.0"
-                    }
-                  ], 
-                  "sellingState": [
-                    "Active"
-                  ]
-                }
-              ], 
-              "paymentMethod": [
-                "PayPal"
-              ], 
+                    { "@currencyId": "USD", "__value__": "39.0" } ],
+                  "sellingState": [ "Active" ] } ],
+              "paymentMethod": [ "PayPal" ],
               "primaryCategory": [
-                {
-                  "categoryId": [
-                    "58277"
-                  ], 
-                  "categoryName": [
-                    "Multimeters"
-                  ]
-                }
-              ], 
+                { "categoryId": [ "58277" ],
+                  "categoryName": [ "Multimeters" ] } ],
               "condition": [
-                {
-                  "conditionId": [
-                    "7000"
-                  ], 
-                  "conditionDisplayName": [
-                    "For parts or not working"
-                  ]
-                }
-              ], 
+                { "conditionId": [ "7000" ],
+                  "conditionDisplayName": [ "For parts or not working" ] } ],
               "listingInfo": [
-                {
-                  "listingType": [
-                    "StoreInventory"
-                  ], 
-                  "gift": [
-                    "false"
-                  ], 
-                  "bestOfferEnabled": [
-                    "false"
-                  ], 
-                  "startTime": [
-                    "2017-12-05T14:01:02.000Z"
-                  ], 
-                  "buyItNowAvailable": [
-                    "false"
-                  ], 
-                  "endTime": [
-                    "2018-01-04T14:01:02.000Z"
-                  ]
-                }
-              ]
-            }
-          ], 
-          "@count": "4"
-        }
-      ], 
-      "version": [
-        "1.13.0"
-      ]
-    }
-  ]
+                { "listingType": [ "StoreInventory" ],
+                  "gift": [ "false" ],
+                  "bestOfferEnabled": [ "false" ],
+                  "startTime": [ "2017-12-05T14:01:02.000Z" ],
+                  "buyItNowAvailable": [ "false" ],
+                  "endTime": [ "2018-01-04T14:01:02.000Z" ] } ] } ],
+          "@count": "4" }
+      ],
+      "version": [ "1.13.0" ] } ]
 }'''
 
 
@@ -748,8 +360,7 @@ sResponseSearchTooBroad = \
                 "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/md8dlXbAwFZwGG2nDiABxnQ\/140.jpg"],
                 "viewItemURL":["http:\/\/www.ebay.com\/itm\/Original-CATALIN-rod-LARGE-Some-call-Bakelite-Burgundy-beauty-787-\/292466597766"],
                 "paymentMethod":["PayPal"],"autoPay":["false"],
-                "postalCode":["10312"],"loc
-ation":["Staten Island,NY,USA"],
+                "postalCode":["10312"],"location":["Staten Island,NY,USA"],
                 "country":["US"],
                 "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
                 "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT22H55M37S"]}],
@@ -978,8 +589,7 @@ ntPrice":[{"@currencyId":"USD","__value__":"14.95"}],"convertedCurrentPrice":[{"
                 "country":["DE"],
                 "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
                 "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"bidCount":["2"],"sellingState":["Active"],"timeLeft":["P5DT19H58M43S"]}],
-                "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:03:07.000Z"],"endTime":["2018-03-09T19:03:07.000Z"],"listingType":["Auction"
-],"gift":["false"],"watchCount":["3"]}],
+                "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:03:07.000Z"],"endTime":["2018-03-09T19:03:07.000Z"],"listingType":["Auction" ],"gift":["false"],"watchCount":["3"]}],
                 "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
                 "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
