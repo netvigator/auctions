@@ -1,5 +1,5 @@
-from core.utils     import getDateTimeObjGotEbayStr as getDT
-from Utils.Config   import getBoolOffYesNoTrueFalse as getBo
+from core.utils     import getDateTimeObjGotEbayStr
+from Utils.Config   import getBoolOffYesNoTrueFalse
 
 sResultFileNamePattern = 'Search_%s_%s_ID_%s.json'
 
@@ -9,35 +9,42 @@ sResultFileNamePattern = 'Search_%s_%s_ID_%s.json'
 d = dict
 
 dItemFoundFields = d(
-    iItemNumb       = d( f = int,  t = ( 'itemId',) ),
-    cTitle          = d( f = None, t = ( 'title',) ),
-    cLocation       = d( f = None, t = ( 'location',) ),
-    cCountry        = d( f = None, t = ( 'country',) ),
-    cMarket         = d( f = None, t = ( 'globalId',) ),
-    cGalleryURL     = d( f = None, t = ( 'galleryURL',) ),
-    cEbayItemURL    = d( f = None, t = ( 'viewItemURL',) ),
-    tTimeBeg        = d( f = getDT,t = ( 'listingInfo','startTime') ),
-    tTimeEnd        = d( f = getDT,t = ( 'listingInfo','endTime') ),
-    bBestOfferable  = d( f = getBo,t = ( 'listingInfo','bestOfferEnabled') ),
-    bBuyItNowable   = d( f = getBo,t = ( 'listingInfo','buyItNowAvailable') ),
-    cListingType    = d( f = None, t = ( 'listingInfo','listingType') ),
-    lLocalCurrency  = d( f = None,
-                         t = ( 'sellingStatus','currentPrice','@currencyId') ),
-    lCurrentPrice   = d( f = float,
-                         t = ( 'sellingStatus','currentPrice','__value__') ),
-    dCurrentPrice   = d( f = float,
-                         t = ( 'sellingStatus',
-                               'convertedCurrentPrice','__value__') ),
-    iCategoryID     = d( f = int,  t = ( 'primaryCategory','categoryId') ),
-    cCategory       = d( f = None, t = ( 'primaryCategory','categoryName') ),
-    iConditionID    = d( f = int,  t = ( 'condition','conditionId'),
+    iItemNumb       = d( t = ( 'itemId',),
+                         f = int ),
+    cTitle          = d( t = ( 'title',) ),
+    cLocation       = d( t = ( 'location',) ),
+    cCountry        = d( t = ( 'country',) ),
+    cMarket         = d( t = ( 'globalId',) ),
+    cGalleryURL     = d( t = ( 'galleryURL',) ),
+    cEbayItemURL    = d( t = ( 'viewItemURL',) ),
+    tTimeBeg        = d( t = ( 'listingInfo','startTime'),
+                         f = getDateTimeObjGotEbayStr ),
+    tTimeEnd        = d( t = ( 'listingInfo','endTime'),
+                         f = getDateTimeObjGotEbayStr ),
+    bBestOfferable  = d( t = ( 'listingInfo','bestOfferEnabled'),
+                         f = getBoolOffYesNoTrueFalse ),
+    bBuyItNowable   = d( t = ( 'listingInfo','buyItNowAvailable'),
+                         f = getBoolOffYesNoTrueFalse ),
+    cListingType    = d( t = ( 'listingInfo','listingType') ),
+    lLocalCurrency  = d( t = ( 'sellingStatus','currentPrice','@currencyId') ),
+    lCurrentPrice   = d( t = ( 'sellingStatus','currentPrice','__value__'),
+                         f = float ),
+    dCurrentPrice   = d( t = ( 'sellingStatus',
+                               'convertedCurrentPrice','__value__'),
+                         f = float ),
+    iCategoryID     = d( t = ( 'primaryCategory','categoryId'),
+                         f = int ),
+    cCategory       = d( t = ( 'primaryCategory','categoryName') ),
+    iConditionID    = d( t = ( 'condition','conditionId'),
+                         f = int,
                          bOptional = True ),
-    cCondition      = d( f = None, t = ( 'condition','conditionDisplayName'),
+    cCondition      = d( t = ( 'condition','conditionDisplayName'),
                          bOptional = True ),
-    cSellingState   = d( f = None, t = ( 'sellingStatus','sellingState') ) )
+    cSellingState   = d( t = ( 'sellingStatus','sellingState') ) )
 
 
 dUserItemFoundFields = d(
-    iItemNumb       = d( f = int,  t = ( 'itemId',) ),
-    iSearch         = d( f = None, t = ( '',) ),
-    iUser           = d( f = None, t = ( '',) ) )
+    iItemNumb       = d( t = ( 'itemId',),
+                         f = int ),
+    iSearch         = d( t = ( '',) ),
+    iUser           = d( t = ( '',) ) )
