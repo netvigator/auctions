@@ -20,3 +20,8 @@ check Update remove category!
 searching form implement priority radio button
 
 searching should fail gracefully if violating duplicate search 
+
+read up on testfixtures
+http://testfixtures.readthedocs.io/en/latest/django.html
+try to implement
+if cannot, remove from requirements/local.txt
