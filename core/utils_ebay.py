@@ -7,11 +7,11 @@ _dBlankValue = { None: '', int: 0 }
 
 def getValueOffItemDict( k, dItem, dFields, **kwargs ):
     #
-    t = dFields[ k ][ 't' ]
+    t = dFields[ k ][ 't' ] # t is for tuple (of keys)
     #
     bOptional = dFields[ k ].get( 'bOptional', False )
     #
-    f = dFields[ k ].get( 'f' )
+    f = dFields[ k ].get( 'f' ) # f is for function
     #
     try:
         #
@@ -22,7 +22,7 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         for sKey in tRest:
             uValue = uValue[ sKey ]
         #
-    except KeyError:
+    except KeyError as e:
         #
         if bOptional:
             #
@@ -30,6 +30,7 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
             #
         else:
             #
+            logger.error( 'KeyError', 'field:', t[0], str(e) )
             raise
             #
         #
@@ -46,9 +47,9 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
             #
             uReturn = f( sValue )
             #
-        except ValueError:
+        except ValueError as e:
             #
-            print( '\n', 'field:', k, '\n' )
+            logger.error( 'ValueError', 'field:', k, str(e) )
             raise
         #
     #
