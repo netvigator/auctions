@@ -1,8 +1,7 @@
 from django.core.exceptions import ValidationError
 
-from core.utils             import oInParensFinder
+from core.utils             import getWhatsLeft
 
-from String.Eat             import eatFromWithin
 
 def gotTextOutsideParens( sTitle ):
     #
@@ -13,7 +12,7 @@ def gotTextOutsideParens( sTitle ):
     raise ValidationError if everything is in parens
     '''
     #
-    sWhatsLeft = eatFromWithin( sTitle, oInParensFinder ).strip()
+    sWhatsLeft = getWhatsLeft( sTitle )
     #
     if not sWhatsLeft:
         raise ValidationError(
