@@ -2,6 +2,7 @@
 from django.db.models       import ForeignKey
 
 from String.Find            import getFinderFindAll
+from String.Eat             import eatFromWithin
 
 #                "2017-12-15T05:22:47.000Z"
 EBAY_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
@@ -112,4 +113,8 @@ def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
     #
     return _getReverseWithQuery( lookup_view, *args, **kwargs )
 
+
+def getWhatsLeft( s ):
+    #
+    return eatFromWithin( s, oInParensFinder ).strip()
 
