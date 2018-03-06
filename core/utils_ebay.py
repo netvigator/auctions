@@ -91,7 +91,7 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
             logger.info( 'no form errors at bottom!' )
 
 
-def _getWantFinder( cTitle, cLookFor ):
+def _getTitleFinder( cTitle, cLookFor = '' ):
     #
     sLook4Title = getWhatsLeft( cTitle )
     #
@@ -109,9 +109,9 @@ def _getWantFinder( cTitle, cLookFor ):
     return getRegExpFinder( sLookFor )
 
 
-def _getDontWantFinder( cExcludeIf ):
+def _getOtherFinder( cField ):
     #
-    sExcludeIf = cExcludeIf.strip()
+    sExcludeIf = cField.strip()
     #
     if sExcludeIf:
         #
@@ -124,8 +124,27 @@ def _getDontWantFinder( cExcludeIf ):
     return oFinder
 
 
-def getFinders( cTitle, cLookFor, cExcludeIf ):
+def getFinders( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
     #
-    return (    _getWantFinder( cTitle, cLookFor ),
-                _getDontWantFinder( cExcludeIf ) )
+    findTitle   = _getTitleFinder( cTitle, cLookFor )
+    #
+    if cExcludeIf:
+        #
+        findExclude = _getOtherFinder( cExcludeIf )
+        #
+    else:
+        #
+        findExclude = None
+        #
+    #
+    if cKeyWords:
+        #
+        findKeyWords = _getOtherFinder( cKeyWords  )
+        #
+    else:
+        #
+        findKeyWords = None
+        #
+    #
+    return ( findTitle, findExclude, findKeyWords )
 
