@@ -1,5 +1,10 @@
 from logging        import getLogger
 
+from String.Find    import getRegExpFinder
+
+from .utils         import getWhatsLeft
+
+
 logger = getLogger(__name__)
 
 
@@ -84,4 +89,43 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
                 logger.error( k, ' -- ', str(v) )
         else:
             logger.info( 'no form errors at bottom!' )
-    
+
+
+def _getWantFinder( cTitle, cLookFor ):
+    #
+    sLook4Title = getWhatsLeft( cTitle )
+    #
+    cLookFor = cLookFor.strip()
+    #
+    if cLookFor:
+        #
+        sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
+        #
+    else:
+        #
+        sLookFor = sLook4Title
+        #
+    #
+    return getRegExpFinder( sLookFor )
+
+
+def _getDontWantFinder( cExcludeIf ):
+    #
+    sExcludeIf = cExcludeIf.strip()
+    #
+    if sExcludeIf:
+        #
+        oFinder = getRegExpFinder( sExcludeIf )
+        #
+    else:
+        #
+        oFinder = None
+        #
+    return oFinder
+
+
+def getFinders( cTitle, cLookFor, cExcludeIf ):
+    #
+    return (    _getWantFinder( cTitle, cLookFor ),
+                _getDontWantFinder( cExcludeIf ) )
+
