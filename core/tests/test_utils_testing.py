@@ -15,42 +15,44 @@ from ..utils_testing            import (getUrlQueryStringOff,
                                         queryGotUpdated, getDefaultMarket )
 
 
-def TestingHelperTests(TestCase):
+class TestingHelperTests(TestCase):
     #
     ''' test the testing helpers above (here)  '''
     #
-    sURL = 'www.google.com/search?q=django+test+validation+assertRaises'
-    #
-    tParts = getUrlQueryStringOff( sURL )
+    def setUp(self):
+        #
+        self.sURL1 = 'www.google.com/search?q=django+test+validation+assertRaises'
+        self.sURL2 = 'www.google.com/search?updated=2008-04-17_14.28.28'
+        self.sURL3 = 'www.google.com/search?updated=2008-04-17 14:28:28'
+        #
+        self.tParts = getUrlQueryStringOff( self.sURL1 )
+        #
     #
     def test_URL_Parts(self):
         #
-        self.assertEquals( tParts[0], 'www.google.com/search' )
-        self.assertEquals( tParts[1], 'q=django+test+validation+assertRaises' )
+        self.assertEquals( self.tParts[0], 'www.google.com/search' )
+        self.assertEquals( self.tParts[1], 'q=django+test+validation+assertRaises' )
     #
-    #
-    def test_Query_Dont_Got_UTC(self):
+    def test_Query_Dont_Got_Updated(self):
         #
-        self.assertFalse( queryGotUpdated, sURL )
-        #
-    sURL = 'www.google.com/search?utc=2008-04-17_14.28.28'
-    #
-    def test_Query_Got_UTC(self):
-        #
-        self.assertTrue( queryGotUpdated, sURL )
+        self.assertFalse( queryGotUpdated( self.sURL1 ) )
         #
     #
-    sURL = 'www.google.com/search?utc=2008-04-17 14:28:28'
+    def test_Query_Got_Updated(self):
+        #
+        self.assertTrue( queryGotUpdated( self.sURL2 ) )
+        #
     #
-    def test_Query_Got_Invalid_UTC(self):
+    def test_Query_Got_Invalid_Updated(self):
         #
-        self.assertTrue( queryGotUpdated, sURL )
+        self.assertFalse( queryGotUpdated( self.sURL3 ) )
         #
+    #
 
 
 
 
-def CoreMarketTests(TestCase):
+class CoreMarketTests(TestCase):
     #
     ''' need the default market '''
     #
@@ -59,34 +61,35 @@ def CoreMarketTests(TestCase):
     
     def test_default_market( self ):
         #
-        assertIsNotNone( self.market.id )
+        self.assertIsNotNone( self.market.id )
         #
-        assertEquals( self.market.id, 1 )
+        self.assertEquals( self.market.id, 1 )
 
 
 
 
 
-def GotTextOutsideParensTests(TestCase):
+class GotTextOutsideParensTests(TestCase):
     #
     ''' test the gotTextOutsideParens() validator '''
     #
-    s1 = 'abcde (efghijk)'
-    s2 = 'abcde'
-    s1 = ' (efghijk) '
-    
+    def setUp(self):
+        self.s1 = 'abcde (efghijk)'
+        self.s2 = 'abcde'
+        self.s3 = ' (efghijk) '
+
     def test_OK_titles( self ):
         #
         try:
-            gotTextOutsideParens( s1 )
-            gotTextOutsideParens( s2 )
-        except ExceptionType:
-            self.fail("gotTextOutsideParens() raised ExceptionType unexpectedly!")
+            gotTextOutsideParens( self.s1 )
+            gotTextOutsideParens( self.s2 )
+        except ValidationError:
+            self.fail("gotTextOutsideParens() raised ValidationError unexpectedly!")
     #
     def test_bad_title( self ):
         #
         with self.assertRaises( ValidationError):
-            gotTextOutsideParens( s3 )
+            gotTextOutsideParens( self.s3 )
 
 
 class CoreUserTests(TestCase):
