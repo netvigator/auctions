@@ -46,5 +46,5 @@ dItemFoundFields = d(
 dUserItemFoundFields = d(
     iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
-    iSearch         = d( t = ( '',) ),
-    iUser           = d( t = ( '',) ) )
+    iSearch         = {},
+    iUser           = {} )
