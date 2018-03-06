@@ -1,7 +1,5 @@
 from logging            import getLogger
 
-from django.test.client import Client, RequestFactory
-from django.utils       import timezone
 
 from core.utils_ebay    import getValueOffItemDict, storeEbayInfo
 
@@ -182,20 +180,10 @@ def getSearchResults( iSearchID = None ):
 
 
 
-
 '''
 oIter = getSearchResultGenerator( sFullFileSpec )
 
 
-
-def getRegExpFinder(
-        sOrig           = '',
-        dSub1st         = dSub1st,
-        dSub2nd         = dSub2nd,
-        tSubLast        = tSubLast,
-        fDoThisFirst    = None,
-        cSeparator      = '\r',
-        bPermutate      = False ):
 
 
 #
