@@ -36,7 +36,6 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         else:
             #
             logger.error( 'KeyError', 'field:', t[0], str(e) )
-            raise
             #
         #
     #
@@ -55,7 +54,7 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         except ValueError as e:
             #
             logger.error( 'ValueError', 'field:', k, str(e) )
-            raise
+            #
         #
     #
     return uReturn
