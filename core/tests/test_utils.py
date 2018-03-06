@@ -1,7 +1,8 @@
 from django.test        import TestCase
 from django.utils       import timezone
 
-from ..utils            import _getIsoDateTimeOffDateTimeCol, getReverseWithUpdatedQuery
+from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
+                                 getReverseWithUpdatedQuery, getWhatsLeft )
 from ..utils_testing    import getUrlQueryStringOff, queryGotUpdated
 
 from Time               import sFormatISOdateTimeNoColon
@@ -39,7 +40,17 @@ class DateTimeTests(TestCase):
         self.assertFalse( queryGotUpdated( tParts[0] ) )
 
         
+def textProcessingTests(TestCase):
+    '''text processing tests'''
 
+    def test_getWhatsLeft(self):
+        #
+        '''test getWhatsLeft()'''
+        #
+        s = 'This is for real (but not yet)'
+        #
+        self.assertEqual( getWhatsLeft(s), 'This is for real' )
+        
 
 
 
