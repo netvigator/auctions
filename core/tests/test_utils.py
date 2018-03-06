@@ -40,7 +40,7 @@ class DateTimeTests(TestCase):
         self.assertFalse( queryGotUpdated( tParts[0] ) )
 
         
-def textProcessingTests(TestCase):
+class textProcessingTests(TestCase):
     '''text processing tests'''
 
     def test_getWhatsLeft(self):
