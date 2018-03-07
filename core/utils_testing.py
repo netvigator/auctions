@@ -5,6 +5,10 @@ from django.test.client     import Client
 
 # Create your tests here.
 
+from brands.models          import Brand
+from categories.models      import Category
+from models.models          import Model
+
 from ebayinfo.models        import EbayCategory, Market
 
 def getDefaultMarket():
@@ -114,7 +118,50 @@ class BaseUserTestCase(TestCase):
         #
         self.client = Client()
 
+
+
+
+class setUpBrandsCategoriesModels( BaseUserTestCase ):
     
+    ''' handy base class that sets up some models / tables '''
+    
+    def setUp(self):
+        #
+        super( setUpBrandsCategoriesModels, self ).setUp()
+        #
+        self.client.login(username ='username1', password='mypassword')
+        #
+        self.oBrand = Brand(
+            cTitle      = "Cadillac",
+            cLookFor    = "Caddy",
+            cExcludeIf  = 'golf',
+            iStars      = 5,
+            iUser = self.user1 )
+        #
+        self.oBrand.save()
+        #
+        self.oCategory = Category(
+            cTitle      = "Widget",
+            cKeyWords   = 'Gadget',
+            cLookFor    = "Gizmo",
+            cExcludeIf  = 'Delta',
+            iStars      = 5,
+            iUser       = self.user1 )
+        self.oCategory.save()
+        self.CategoryID = self.oCategory.id
+        #
+        self.oModel = Model(
+            cTitle      = "Fleetwood",
+            cLookFor    = "Woodie",
+            cKeyWords   = 'Eldorado',
+            cExcludeIf  = 'golf',
+            iStars      = 5,
+            iBrand      = self.oBrand,
+            iCategory   = self.oCategory,
+            iUser       = self.user1 )
+        self.oModel.save()
+
+
 
 def setup_view_for_tests( view, request, *args, **kwargs ):
     """
