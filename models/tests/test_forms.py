@@ -1,6 +1,6 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_testing         import BaseUserTestCase, getUrlQueryStringOff
+from core.utils_testing         import setUpBrandsCategoriesModels, getUrlQueryStringOff
 
 from categories.models          import Category
 
@@ -10,31 +10,9 @@ from ..models                   import Model
 # Create your tests here.
 
 
-class TestFormValidation(BaseUserTestCase):
+class TestFormValidation(setUpBrandsCategoriesModels):
     
     ''' Model Form Tests '''
-    
-    def setUp(self):
-        #
-        super( TestFormValidation, self ).setUp()
-        #
-        self.client.login(username ='username1', password='mypassword')
-        #
-        self.oCategory = Category(
-            cTitle = "Widgets",
-            iStars  = 5,
-            iUser = self.user1 )
-        self.oCategory.save()
-        self.CategoryID = self.oCategory.id
-        #
-        oModel = Model(
-            cTitle      = "Fleetwood",
-            cLookFor    = "Woodie",
-            iCategory   = self.oCategory,
-            iUser       = self.user1 )
-        oModel.save()
-        
-        # print( 'category ID:', self.CategoryID )
 
     def test_Title_got_outside_parens(self):
         #
