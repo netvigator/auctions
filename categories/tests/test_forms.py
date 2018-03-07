@@ -17,7 +17,7 @@ class TestFormValidation(BaseUserTestCase):
         self.client.login(username ='username1', password='mypassword')
         #
         oCategory = Category(
-            cTitle = "Gadgets", cLookFor = "thingamajig", iUser = self.user1 )
+            cTitle = "Gadget", cLookFor = "thingamajig", iUser = self.user1 )
         oCategory.save()
 
     def test_Title_got_outside_parens(self):
@@ -26,7 +26,7 @@ class TestFormValidation(BaseUserTestCase):
         but there must be some text outside the parens'''
         #
         form_data = dict(
-            cTitle      = '(Widgets)',
+            cTitle      = '(Widget)',
             iStars      = 5,
             iUser       = self.user1 )
         #
@@ -42,7 +42,7 @@ class TestFormValidation(BaseUserTestCase):
             print( 'no form errors above!' )
         '''
         #
-        form_data['cTitle'] = 'Widgets'
+        form_data['cTitle'] = 'Widget'
         #
         form = CategoryForm(data=form_data)
         form.request = self.request
@@ -54,7 +54,7 @@ class TestFormValidation(BaseUserTestCase):
         '''after saving the form, next page should be the detail'''
         #
         form_data = dict(
-            cTitle      = 'Widgets',
+            cTitle      = 'Widget',
             iStars      = 5,
             iUser       = self.user1 )
         #
@@ -64,7 +64,7 @@ class TestFormValidation(BaseUserTestCase):
         # 
         form.instance.iUser = self.user1
         form.save()
-        oCategory = Category.objects.get( cTitle = 'Widgets' )
+        oCategory = Category.objects.get( cTitle = 'Widget' )
         self.assertEqual(
             getUrlQueryStringOff( oCategory.get_absolute_url() )[0],
             reverse('categories:detail', kwargs={ 'pk': oCategory.id } ) )
@@ -76,7 +76,7 @@ class TestFormValidation(BaseUserTestCase):
         cannot add a category already there'''
         #
         form_data = dict(
-            cTitle      = 'Gadgets',
+            cTitle      = 'Gadget',
             iStars      = 5,
             iUser       = self.user1 )
         #
