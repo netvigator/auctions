@@ -41,7 +41,7 @@ class CategoryViewsTests(BaseUserTestCase):
         oCategory = Category( cTitle = "Widgets", iUser = self.user1 )
         oCategory.save()
 
-        oCategory = Category( cTitle = "Gadgets", iUser = self.user1 )
+        oCategory = Category( cTitle = "Gadget", iUser = self.user1 )
         oCategory.save()
         iGadgetID = oCategory.id
 
@@ -53,16 +53,16 @@ class CategoryViewsTests(BaseUserTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['category_list'],
-                ['<Category: Widgets>', '<Category: Gadgets>'],
+                ['<Category: Widgets>', '<Category: Gadget>'],
                 ordered=False )
-        self.assertContains(response, "Gadgets")
+        self.assertContains(response, "Gadget")
         
         #print( 'iGadgetID:', iGadgetID )
         
         response = self.client.get(
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Gadgets")
+        self.assertContains(response, "Gadget")
         
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
@@ -81,7 +81,7 @@ class CategoryViewsTests(BaseUserTestCase):
         response = self.client.get(
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Gadgets")
+        self.assertContains(response, "Gadget")
 
         """
         Not logged in, cannot see form, direct to login page.
