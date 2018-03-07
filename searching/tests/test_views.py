@@ -48,14 +48,14 @@ class SearchViewsHitButtons(BaseUserTestCase):
         Test post requests
         """
         data = dict(
-            cTitle      = "Great Widgets",
+            cTitle      = "Great Widget",
             cKeyWords   = "Blah bleh blih",
             iUser       = self.user1 )
         # Create the request
         response = self.client.post( reverse('searching:add'), data )
         # import pdb; pdb.set_trace()
         self.assertEqual( response.status_code, 200 )
-        #oSearch = Search.objects.get( cTitle = "Great Widgets" )
+        #oSearch = Search.objects.get( cTitle = "Great Widget" )
         #self.assertEqual( oSearch, self.searching )
 
         #request = self.factory.get(reverse('searching:add'))
@@ -72,7 +72,7 @@ class SearchViewsHitButtons(BaseUserTestCase):
         Hit cancel when adding
         """
         data = dict(
-            cTitle      = "Great Widgets",
+            cTitle      = "Great Widget",
             cKeyWords   = "Blah bleh blih",
             iUser       = self.user1,
             Cancel      = True )
@@ -129,11 +129,11 @@ class SearchViewsTests(BaseUserTestCase):
         #
         self.client.login(username='username1', password='mypassword')
         #
-        sSearch = "Great Widgets"
+        sSearch = "Great Widget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         
-        sSearch = "Phenominal Gadgets"
+        sSearch = "Phenominal Gadget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         sGadgetID = str( oSearch.id )
@@ -147,14 +147,14 @@ class SearchViewsTests(BaseUserTestCase):
         
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['search_list'],
-                ['<Search: Phenominal Gadgets>', '<Search: Great Widgets>'],
+                ['<Search: Phenominal Gadget>', '<Search: Great Widget>'],
                 ordered=False )
-        self.assertContains(response, "Phenominal Gadgets")
+        self.assertContains(response, "Phenominal Gadget")
         #
         response = self.client.get(
                 reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Phenominal Gadgets")
+        self.assertContains(response, "Phenominal Gadget")
         
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
@@ -173,7 +173,7 @@ class SearchViewsTests(BaseUserTestCase):
         response = self.client.get(
                 reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Phenominal Gadgets")
+        self.assertContains(response, "Phenominal Gadget")
 
         """
         Not logged in, cannot see form, direct to login page.
@@ -195,7 +195,7 @@ class SearchUpdateViewTests(BaseUserTestCase):
         # call BaseUserTestCase.setUp()
         super(SearchUpdateViewTests, self).setUp()
         #
-        sSearch = "Great Widgets"
+        sSearch = "Great Widget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         #
@@ -233,7 +233,7 @@ class SearchCreateViewTests(BaseUserTestCase):
         super(SearchCreateViewTests, self).setUp()
         #
         data = dict(
-            cTitle      = "Great Widgets",
+            cTitle      = "Great Widget",
             cKeyWords   = "Blah bleh blih",
             iUser       = self.user1 )
         #
