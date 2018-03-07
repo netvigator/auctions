@@ -1,7 +1,9 @@
 from django.test        import TestCase
 
 from ..utils_testing    import setUpBrandsCategoriesModels
-from ..utils_ebay       import getFinders
+from ..utils_ebay       import (
+        getFinders, getModelFinders, getCategoryFinders, getBrandFinders )
+
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -34,27 +36,27 @@ class getFindersTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
         #
-        self.assertTrue(  findKeyWords( sAuctionTitle ) )
+        self.assertTrue(  findKeyWords.findall( sAuctionTitle ) )
         #
-        self.assertFalse( findExclude(  sAuctionTitle ) )
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        self.assertTrue(  findExclude(  sAuctionTitle ) )
+        self.assertTrue(  findExclude.findall(  sAuctionTitle ) )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
 
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        self.assertFalse( findTitle(    sAuctionTitle ) )
+        self.assertFalse( findTitle.findall(    sAuctionTitle ) )
         #
-        self.assertFalse( findExclude(  sAuctionTitle ) )
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
         #
-        self.assertFalse( findKeyWords( sAuctionTitle ) )
+        self.assertFalse( findKeyWords.findall( sAuctionTitle ) )
         #
 
 
@@ -71,25 +73,25 @@ class getFindersTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
         #
         self.assertIsNone(findKeyWords )
         #
-        self.assertFalse( findExclude(  sAuctionTitle ) )
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        self.assertTrue(  findExclude(  sAuctionTitle ) )
+        self.assertTrue(  findExclude.findall(  sAuctionTitle ) )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        self.assertFalse( findTitle(    sAuctionTitle ) )
+        self.assertFalse( findTitle.findall(    sAuctionTitle ) )
         #
-        self.assertFalse( findExclude(  sAuctionTitle ) )
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
         #
 
 
@@ -108,23 +110,56 @@ class getFindersTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
         #
-        self.assertTrue(  findKeyWords( sAuctionTitle ) )
+        self.assertTrue(  findKeyWords.findall( sAuctionTitle ) )
         #
-        self.assertFalse( findExclude(  sAuctionTitle ) )
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
         #
-        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
         #
         sAuctionTitle = 'Gemini Jets 1/200 Delta MD-80 Widget Livery N956DL'
         #
-        self.assertTrue(  findExclude(  sAuctionTitle ) )
+        self.assertTrue(  findExclude.findall(  sAuctionTitle ) )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        self.assertFalse( findTitle(    sAuctionTitle ) )
+        self.assertFalse( findTitle.findall(    sAuctionTitle ) )
         #
-        self.assertFalse( findExclude(  sAuctionTitle ) )
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
         #
-        self.assertFalse( findKeyWords( sAuctionTitle ) )
+        self.assertFalse( findKeyWords.findall( sAuctionTitle ) )
         #
+
+
+    def test_getModelFinders(self):
+        #
+        t = getModelFinders( self.oModel.id )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
+        #
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
+        #
+        self.assertTrue(  findKeyWords.findall( sAuctionTitle ) )
+        #
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
+        #
+        sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
+        #
+        self.assertTrue(  findExclude.findall(  sAuctionTitle ) )
+        #
+        sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
+        #
+        self.assertTrue(  findTitle.findall(    sAuctionTitle ) )
+
+        sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
+        #
+        self.assertFalse( findTitle.findall(    sAuctionTitle ) )
+        #
+        self.assertFalse( findExclude.findall(  sAuctionTitle ) )
+        #
+        self.assertFalse( findKeyWords.findall( sAuctionTitle ) )
+        #
+        
