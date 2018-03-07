@@ -1,8 +1,12 @@
-from logging        import getLogger
+from logging            import getLogger
 
-from String.Find    import getRegExpFinder
+from String.Find        import getRegExpFinder
 
-from .utils         import getWhatsLeft
+from .utils             import getWhatsLeft
+
+from brands.models      import Brand
+from categories.models  import Category
+from models.models      import Model
 
 
 logger = getLogger(__name__)
@@ -146,4 +150,83 @@ def getFinders( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
         #
     #
     return ( findTitle, findExclude, findKeyWords )
+
+
+
+def getModelFinders( iModelID ):
+    #
+    oModel = Model.objects.get( pk = iModelID )
+    #
+    if oModel.oRegExLook4Title is None or oModel.oRegExLook4Title == '':
+        #
+        t = getFinders(
+                oModel.cTitle,
+                oModel.cLookFor,
+                oModel.cExcludeIf,
+                oModel.cKeyWords )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        oModel.oRegExLook4Title= findTitle
+        oModel.oRegExKeyWords  = findKeyWords
+        oModel.oRegExExclude   = findExclude
+        #
+        oModel.save()
+        
+    #
+    return (    oModel.oRegExLook4Title,
+                oModel.oRegExKeyWords,
+                oModel.oRegExExclude )
+
+
+
+def getCategoryFinders( iCategoryID ):
+    #
+    oCategory = Category.objects.get( pk = iCategoryID )
+    #
+    if oCategory.oRegExLook4Title is None or oCategory.oRegExLook4Title == '':
+        #
+        t = getFinders(
+                oCategory.cTitle,
+                oCategory.cLookFor,
+                oCategory.cExcludeIf,
+                oCategory.cKeyWords )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        oCategory.oRegExLook4Title= findTitle
+        oCategory.oRegExKeyWords  = findKeyWords
+        oCategory.oRegExExclude   = findExclude
+        #
+        oCategory.save()
+        
+    #
+    return (    oCategory.oRegExLook4Title,
+                oCategory.oRegExKeyWords,
+                oCategory.oRegExExclude )
+
+
+
+def getBrandFinders( iBrandID ):
+    #
+    oBrand = Brand.objects.get( pk = iBrandID )
+    #
+    if oBrand.oRegExLook4Title is None or oBrand.oRegExLook4Title == '':
+        #
+        t = getFinders(
+                oBrand.cTitle,
+                oBrand.cLookFor,
+                oBrand.cExcludeIf )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        oBrand.oRegExLook4Title= findTitle
+        oBrand.oRegExExclude   = findExclude
+        #
+        oBrand.save()
+        
+    #
+    return (    oBrand.oRegExLook4Title,
+                oBrand.oRegExExclude )
+
 
