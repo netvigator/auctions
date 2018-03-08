@@ -103,14 +103,20 @@ class ItemFound(models.Model):
                         null = True )
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
-    
-    # condition is optional buy may become required in the future
+    i2ndCategoryID  = models.PositiveIntegerField( 'secondary category ID (optional)',
+                        null = True )
+    c2ndCategory    = models.CharField( 'secondary category (optional)',
+                        max_length = 48, null = True )
+    cCatHeirarchy   = models.TextField( 'category hierarchy',
+                        null = True, blank = True)
+
+    # condition is optional but may become required in the future
     # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
     iConditionID    = models.IntegerField( 'condition ID',
                                          null = True, blank = True )
     cCondition      = models.CharField( 'condition display name',
                         max_length = 28, null = True, blank = True )
-    
+
     cSellingState   = models.CharField( 'selling state',
                         max_length = 18 )
     tCreate         = models.DateTimeField(
