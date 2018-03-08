@@ -3,7 +3,8 @@ from datetime           import timedelta
 from django.test        import TestCase
 from django.utils       import timezone
 
-from core.utils_testing import BaseUserTestCase
+from core.utils_testing import BaseUserTestCase, getDefaultMarket
+from ebayinfo.models    import EbayCategory
 
 from ..models           import Search, ItemFound, UserItemFound
 from ..utils            import ( trySearchCatchExceptions,
@@ -11,7 +12,6 @@ from ..utils            import ( trySearchCatchExceptions,
                                  getSearchResultGenerator )
 
 from ..tests            import sExampleResponse
-
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
 
@@ -84,16 +84,104 @@ class getImportSearchResultsTests(TestCase):
 
 
 
+def _getStripped( l ): return [ s.strip() for s in l ]
 
-class storeItemFoundTests(TestCase):
+'''
+['id',
+ 'iCategoryID',
+ 'name',
+ 'iLevel',
+ 'iParentID',
+ 'bLeafCategory',
+ 'iTreeVersion',
+ 'iMarket_id',
+ 'iSupercededBy',
+ 'lft',
+ 'rght',
+ 'tree_id',
+ 'level',
+ 'parent_id']
+'''
+
+
+class getEbayCategoriesSetUp(BaseUserTestCase):
+
+    def setUp(self):
+        #
+        super( getEbayCategoriesSetUp, self ).setUp()
+        #
+        from ..tests            import sCategoryDump  # in __init__.py
+        #
+        from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+        #
+        self.market  = getDefaultMarket()
+
+        sMarket, sWantVersion = 'EBAY-US', '117'
+        #
+        iWantVersion = int( sWantVersion )
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iMarket         = self.market,
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
+        lLines = sCategoryDump.split( '\n' )
+        #
+        lHeader = []
+        #
+        for sLine in lLines:
+            #
+            lParts = sLine.split( '|' )
+            #
+            if len( lParts ) == 1: continue
+            #
+            if not lHeader:
+                #
+                lHeader = _getStripped( lParts )
+                #
+                continue
+                #
+            #
+            oCategory = EbayCategory()
+            #
+            oCategory.id            = int(     lParts[0] )
+            oCategory.iCategoryID   = int(     lParts[1] )
+            oCategory.name          =          lParts[2]
+            oCategory.iLevel        = int(     lParts[3] )
+            #
+            # lParts[4] below
+            #
+            oCategory.bLeafCategory = getBool( lParts[5] )
+            oCategory.iTreeVersion  = int(     lParts[6] )
+            oCategory.iMarket_id    = int(     lParts[7] )
+            
+            if lParts[4] == '1': # top level iParentID
+                oCategory.iParentID = oRootCategory
+            else:
+                oCategory.iParentID = int(     lParts[4] )
+            #
+            oCategory.save()
+
+
+class storeItemFoundTests(getEbayCategoriesSetUp):
     #
     ''' class for testing storeItemFound() '''
 
+            
+        
     def test_store_item_found(self):
         #
         ''' test storeItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
+        
         from ..utils    import storeItemFound
         #
         storeItemFound( dSearchResult )
@@ -156,7 +244,8 @@ class storeUserItemFoundTests(BaseUserTestCase):
             self.assertTrue( False ) # exception should hve been raised
 
 
-class storeSearchResultsTests(BaseUserTestCase):
+
+class storeSearchResultsTests(getEbayCategoriesSetUp):
     #
     ''' class for testing doSearch() store records '''
     #
