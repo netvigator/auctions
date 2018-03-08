@@ -66,34 +66,6 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
 
 
 
-def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
-    #
-    '''can store a row in either ItemFound or UserItemFound'''
-    #
-    dNewResult = kwargs
-    #
-    dNewResult.update( { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields } )
-    #
-    #if 'iSearch' in dNewResult:
-        #print( "dNewResult['iSearch']:", dNewResult['iSearch'] )
-    #
-    form = Form( data = dNewResult )
-    #
-    if form.is_valid():
-        #
-        form.save()
-        #
-    else:
-        #
-        logger.error( 'log this error, form did not save' )
-        #
-        if form.errors:
-            for k, v in form.errors.items():
-                logger.error( k, ' -- ', str(v) )
-        else:
-            logger.info( 'no form errors at bottom!' )
-
-
 def _getTitleRegExObj( cTitle, cLookFor = '' ):
     #
     sLook4Title = getWhatsLeft( cTitle )
