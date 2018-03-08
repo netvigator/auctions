@@ -6,7 +6,10 @@ from django.utils.translation   import ugettext_lazy as _
 
 from ebayinfo.models            import Market
 
-iEbayUSA = Market.objects.get( cMarket = 'EBAY-US' ).id or 1
+iEbayUSA = Market.objects.get(
+            cMarket = 'EBAY-US' ).id or 1 # on error may need to comment out!
+
+# iEbayUSA = 1 # uncomment this one if the above is causing migration error
 
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
