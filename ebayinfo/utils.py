@@ -6,6 +6,8 @@ from core.utils             import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
 
+from .models                import Market
+
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 from Web.HTML               import getChars4HtmlCodes
@@ -298,5 +300,17 @@ def getCategoryVersion( sMarket = 'EBAY-US', sFile = sCategoryVersionFile ):
 
 
 
+def getMarketsIntoDatabase():
+    pass
 
+def getDictMarket2SiteID():
+    #
+    dMarket2SiteID = {}
+    #
+    for oMarket in Market.objects.all():
+        #
+        dMarket2SiteID[ oMarket.cMarket ] = oMarket.iEbaySiteID
+        #
+    #
+    return dMarket2SiteID
 
