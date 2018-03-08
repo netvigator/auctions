@@ -1845,3 +1845,19 @@ sResponseSearchTooBroad = \
    }
  ]
 }'''
+
+
+
+sCategoryDump = \
+'''
+  id  | iCategoryID |           name           | iLevel | iParentID | bLeafCategory | iTreeVersion | iMarket_id | iSupercededBy | lft  | rght | tree_id | level | parent_id 
+------+-------------+--------------------------+--------+-----------+---------------+--------------+------------+---------------+------+------+---------+-------+-----------
+771 |       12576 | Business & Industrial |      1 |     12576 | f             |          117 |          1 |               | 1540 | 6325 |       2 |     1 |         1
+ 1166 |       92074 | Electrical & Test Equipment |      2 |     12576 | f             |          117 |          1 |               | 2329 | 3004 |       2 |     2 |       771
+ 1370 |      181939 | Test, Measurement & Inspection |      3 |     92074 | f             |          117 |          1 |               | 2738 | 2981 |       2 |     3 |      1166
+ 1429 |      181968 | Test Meters & Detectors        |      4 |    181939 | f             |          117 |          1 |               | 2903 | 2980 |       2 |     4 |      1370
+ 1434 |       50960 | Electric Circuit & Multimeters |      5 |    181968 | f             |          117 |          1 |               | 2912 | 2921 |       2 |     5 |      1429
+ 1436 |       58277 | Multimeters              |      6 |     50960 | t             |          117 |          1 |               | 2915 | 2916 |       2 |     6 |      1434
+ 1431 |       73160 | Capacitance & ESR Meters |      5 |    181968 | t             |          117 |          1 |               | 2906 | 2907 |       2 |     5 |      1429
+'''
+
