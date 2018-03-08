@@ -26,3 +26,6 @@ read up on testfixtures
 http://testfixtures.readthedocs.io/en/latest/django.html
 try to implement
 if cannot, remove from requirements/local.txt
+
+
+find where the logs are store!
