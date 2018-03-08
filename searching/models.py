@@ -106,7 +106,7 @@ class ItemFound(models.Model):
     i2ndCategoryID  = models.PositiveIntegerField( 'secondary category ID (optional)',
                         null = True )
     c2ndCategory    = models.CharField( 'secondary category (optional)',
-                        max_length = 48, null = True )
+                        max_length = 48, null = True, blank = True )
     cCatHeirarchy   = models.TextField( 'category hierarchy',
                         null = True, blank = True)
 
