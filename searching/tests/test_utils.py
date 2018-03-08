@@ -84,8 +84,6 @@ class getImportSearchResultsTests(TestCase):
 
 
 
-def _getStripped( l ): return [ s.strip() for s in l ]
-
 '''
 ['id',
  'iCategoryID',
@@ -112,6 +110,8 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         from ..tests            import sCategoryDump  # in __init__.py
         #
+        from core.utils_testing import getTableFromScreenCaptureGenerator
+        #
         from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
         #
         self.market  = getDefaultMarket()
@@ -132,22 +132,11 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         oRootCategory.save()
         #
-        lLines = sCategoryDump.split( '\n' )
+        oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
         #
-        lHeader = []
+        lHeader = next( oTableIter )
         #
-        for sLine in lLines:
-            #
-            lParts = sLine.split( '|' )
-            #
-            if len( lParts ) == 1: continue
-            #
-            if not lHeader:
-                #
-                lHeader = _getStripped( lParts )
-                #
-                continue
-                #
+        for lParts in oTableIter:
             #
             oCategory = EbayCategory()
             #
