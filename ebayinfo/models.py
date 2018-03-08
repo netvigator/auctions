@@ -39,10 +39,14 @@ class Market(Model):
     iEbaySiteID     = SmallInt(             'site ID', unique=True )
     bHasCategories  = NullBooleanField(     'has own categories?', null=True)
     iCategoryVer    = SmallInt(             'most recent category version',
-                               null = True )
+                                null = True )
     cCurrencyDef    = UpperCaseCharField(   'currency default',
-                               max_length = 3, null = True )
-    
+                                max_length = 3, null = True )
+    cUseCategoryID  = UpperCaseCharField(
+                                'uses category list from this Market',
+                                max_length = 14, null = True, blank = True )
+    iUtcPlusOrMinus = SmallInt(             'UTC offset', null=True)
+
     def __str__(self):
         return self.cMarket
     
