@@ -35,6 +35,13 @@ dItemFoundFields = d(
     iCategoryID     = d( t = ( 'primaryCategory','categoryId'),
                          f = int ),
     cCategory       = d( t = ( 'primaryCategory','categoryName') ),
+
+    i2ndCategoryID  = d( t = ( 'secondaryCategory','categoryId'),
+                         f = int,
+                         bOptional = True ),
+    c2ndCategory    = d( t = ( 'secondaryCategory','categoryName'),
+                         bOptional = True ),
+
     iConditionID    = d( t = ( 'condition','conditionId'),
                          f = int,
                          bOptional = True ),
