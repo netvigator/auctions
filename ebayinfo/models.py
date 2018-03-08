@@ -1,9 +1,10 @@
+from django.core.validators     import MaxValueValidator, MinValueValidator
 from django.db                  import models
-from django.db.models           import PositiveSmallIntegerField as SmallInt
+from django.db.models           import PositiveSmallIntegerField as PosSmallInt
 from django.db.models           import Model, CharField, NullBooleanField
+from django.db.models           import SmallIntegerField as SmallInt
 from django_countries.fields    import CountryField
-
-from mptt.models import MPTTModel, TreeForeignKey
+from mptt.models                import MPTTModel, TreeForeignKey
 
 from core.models                import UpperCaseCharField
 
@@ -36,16 +37,18 @@ class Market(Model):
                                 unique = True )
     cCountry        = CountryField(         'country' )
     cLanguage       = CharField(            'language',  max_length = 8 )
-    iEbaySiteID     = SmallInt(             'site ID', unique=True )
+    iEbaySiteID     = PosSmallInt(          'site ID', unique=True )
     bHasCategories  = NullBooleanField(     'has own categories?', null=True)
-    iCategoryVer    = SmallInt(             'most recent category version',
+    iCategoryVer    = PosSmallInt(          'most recent category version',
                                 null = True )
     cCurrencyDef    = UpperCaseCharField(   'currency default',
                                 max_length = 3, null = True )
     cUseCategoryID  = UpperCaseCharField(
                                 'uses category list from this Market',
                                 max_length = 14, null = True, blank = True )
-    iUtcPlusOrMinus = SmallInt(             'UTC offset', null=True)
+    iUtcPlusOrMinus = SmallInt(             'UTC offset', null=True,
+                               validators=[ MaxValueValidator( 12),
+                                            MinValueValidator(-12)] )
 
     def __str__(self):
         return self.cMarket
