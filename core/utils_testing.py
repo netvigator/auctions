@@ -176,6 +176,30 @@ def setup_view_for_tests( view, request, *args, **kwargs ):
     return view
 
 
+
+def getTableFromScreenCaptureGenerator( sScreenCapture ):
+    #
+    from .utils import getSeqStripped
+    #
+    lLines = sScreenCapture.split( '\n' )
+    #
+    lHeader = []
+    #
+    for sLine in lLines:
+        #
+        lParts = list( getSeqStripped( sLine.split( '|' ) ) )
+        #
+        if len( lParts ) == 1: continue
+        #
+        if not lHeader:
+            #
+            lHeader = lParts
+            #
+        #
+        yield lParts
+
+
+
 '''
 oTest = {
     'cNationality': ('Nationality', 'C'),
