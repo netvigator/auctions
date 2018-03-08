@@ -118,3 +118,6 @@ def getWhatsLeft( s ):
     #
     return eatFromWithin( s, oInParensFinder ).strip()
 
+
+
+def getSeqStripped( l ): return ( s.strip() for s in l )
