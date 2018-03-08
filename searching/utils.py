@@ -1,6 +1,6 @@
 from logging            import getLogger
 
-
+from ebayinfo.utils     import getDictMarket2ID
 from core.utils_ebay    import getValueOffItemDict, storeEbayInfo
 
 logger = getLogger(__name__)
@@ -201,6 +201,9 @@ def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
     else:
         return getValueOffItemDict( k, dItem, dFields )
 
+
+_dMarket2ID = getDictMarket2ID()
+
     
 def storeItemFound( dItem ):
     #
@@ -225,9 +228,15 @@ def storeItemFound( dItem ):
     #
     sCategoryID     =   dItem['primaryCategory']['categoryId']
     #
+    sEbayMarketID   = _dMarket2ID.get( dItem.get( 'globalId' ) )
+    #
+    #print( '\n', 'sCategoryID:', sCategoryID )
+    #print( 'globalId:', dItem.get( 'globalId' ) )
+    #print( 'sEbayMarketID:', sEbayMarketID, '\n' )
+    #
     oEbayCategory = EbayCategory.objects.get(
                         iCategoryID = int( sCategoryID ),
-                        iMarket     = int( ) )
+                        iMarket     = int( sEbayMarketID ) )
     #
     while oEbayCategory.iLevel < 1:
         #
@@ -243,7 +252,8 @@ def storeItemFound( dItem ):
         l2ndCatHeirarchy = [ dItem['secondaryCategory' ][ 'categoryName' ] ]
         #
         oEbayCategory = EbayCategory.objects.get(
-                iCategoryID = int( dItem['secondaryCategory']['categoryId'] ) )
+                iCategoryID = int( dItem['secondaryCategory']['categoryId'] ),
+                iMarket     = int( sEbayMarketID ) )
         #
         while oEbayCategory.iLevel < 1:
             #
