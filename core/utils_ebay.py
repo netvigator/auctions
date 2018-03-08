@@ -1,6 +1,6 @@
 from logging            import getLogger
 
-from String.Find        import getRegExpFinder
+from String.Find        import getRegExpObj
 
 from .utils             import getWhatsLeft
 
@@ -94,7 +94,7 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
             logger.info( 'no form errors at bottom!' )
 
 
-def _getTitleFinder( cTitle, cLookFor = '' ):
+def _getTitleRegExObj( cTitle, cLookFor = '' ):
     #
     sLook4Title = getWhatsLeft( cTitle )
     #
@@ -109,16 +109,16 @@ def _getTitleFinder( cTitle, cLookFor = '' ):
         sLookFor = sLook4Title
         #
     #
-    return getRegExpFinder( sLookFor )
+    return getRegExpObj( sLookFor )
 
 
-def _getOtherFinder( cField ):
+def _getOtherRegExObj( cField ):
     #
     sExcludeIf = cField.strip()
     #
     if sExcludeIf:
         #
-        oFinder = getRegExpFinder( sExcludeIf )
+        oFinder = getRegExpObj( sExcludeIf )
         #
     else:
         #
@@ -127,13 +127,13 @@ def _getOtherFinder( cField ):
     return oFinder
 
 
-def getFinders( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
+def getRegExObjs( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
     #
-    findTitle   = _getTitleFinder( cTitle, cLookFor )
+    findTitle   = _getTitleRegExObj( cTitle, cLookFor )
     #
     if cExcludeIf:
         #
-        findExclude = _getOtherFinder( cExcludeIf )
+        findExclude = _getOtherRegExObj( cExcludeIf )
         #
     else:
         #
@@ -142,7 +142,7 @@ def getFinders( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
     #
     if cKeyWords:
         #
-        findKeyWords = _getOtherFinder( cKeyWords  )
+        findKeyWords = _getOtherRegExObj( cKeyWords  )
         #
     else:
         #
@@ -153,67 +153,54 @@ def getFinders( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
 
 
 
-def getModelFinders( iModelID ):
+
+def _getTableRegExFinders( iModelID, djModel ):
     #
-    oModel = Model.objects.get( pk = iModelID )
+    oDjModel = djModel.objects.get( pk = iModelID )
     #
-    if oModel.oRegExLook4Title is None or oModel.oRegExLook4Title == '':
+    if not oDjModel.oRegExLook4Title:
         #
-        t = getFinders(
-                oModel.cTitle,
-                oModel.cLookFor,
-                oModel.cExcludeIf,
-                oModel.cKeyWords )
+        t = getRegExObjs(
+                oDjModel.cTitle,
+                oDjModel.cLookFor,
+                oDjModel.cExcludeIf,
+                oDjModel.cKeyWords )
         #
         findTitle, findExclude, findKeyWords = t
         #
-        oModel.oRegExLook4Title= findTitle
-        oModel.oRegExKeyWords  = findKeyWords
-        oModel.oRegExExclude   = findExclude
+        oDjModel.oRegExLook4Title= findTitle
+        oDjModel.oRegExExclude   = findExclude
+        oDjModel.oRegExKeyWords  = findKeyWords
         #
-        oModel.save()
-        
+        oDjModel.save()
+        #
     #
-    return (    oModel.oRegExLook4Title,
-                oModel.oRegExKeyWords,
-                oModel.oRegExExclude )
+    return (    oDjModel.oRegExLook4Title.search,
+                oDjModel.oRegExExclude.search,
+                oDjModel.oRegExKeyWords.search )
 
 
 
-def getCategoryFinders( iCategoryID ):
+def getModelRegExFinders( iModelID ):
     #
-    oCategory = Category.objects.get( pk = iCategoryID )
+    return _getTableRegExFinders( iModelID, Model )
+
+
+
+def getCategoryRegExFinders( iCategoryID ):
     #
-    if oCategory.oRegExLook4Title is None or oCategory.oRegExLook4Title == '':
-        #
-        t = getFinders(
-                oCategory.cTitle,
-                oCategory.cLookFor,
-                oCategory.cExcludeIf,
-                oCategory.cKeyWords )
-        #
-        findTitle, findExclude, findKeyWords = t
-        #
-        oCategory.oRegExLook4Title= findTitle
-        oCategory.oRegExKeyWords  = findKeyWords
-        oCategory.oRegExExclude   = findExclude
-        #
-        oCategory.save()
-        
-    #
-    return (    oCategory.oRegExLook4Title,
-                oCategory.oRegExKeyWords,
-                oCategory.oRegExExclude )
+    return _getTableRegExFinders( iCategoryID, Category )
 
 
 
-def getBrandFinders( iBrandID ):
+
+def getBrandRegExFinders( iBrandID ):
     #
     oBrand = Brand.objects.get( pk = iBrandID )
     #
-    if oBrand.oRegExLook4Title is None or oBrand.oRegExLook4Title == '':
+    if not oBrand.oRegExLook4Title:
         #
-        t = getFinders(
+        t = getRegExObjs(
                 oBrand.cTitle,
                 oBrand.cLookFor,
                 oBrand.cExcludeIf )
@@ -224,9 +211,9 @@ def getBrandFinders( iBrandID ):
         oBrand.oRegExExclude   = findExclude
         #
         oBrand.save()
-        
+        #
     #
-    return (    oBrand.oRegExLook4Title,
-                oBrand.oRegExExclude )
+    return (    oBrand.oRegExLook4Title.search,
+                oBrand.oRegExExclude.search )
 
 
