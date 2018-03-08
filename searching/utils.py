@@ -1,13 +1,46 @@
 from logging            import getLogger
 
 from ebayinfo.utils     import getDictMarket2ID
-from core.utils_ebay    import getValueOffItemDict, storeEbayInfo
+from core.utils_ebay    import getValueOffItemDict
 
 logger = getLogger(__name__)
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 class ItemAlreadyInTable(    Exception ): pass
+
+
+
+
+def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
+    #
+    '''can store a row in either ItemFound or UserItemFound'''
+    #
+    print( '\n', 'kwargs:', kwargs, '\n' )
+    #
+    dNewResult = kwargs
+    #
+    dNewResult.update( { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields } )
+    #
+    #if 'iSearch' in dNewResult:
+        #print( "dNewResult['iSearch']:", dNewResult['iSearch'] )
+    #
+    form = Form( data = dNewResult )
+    #
+    if form.is_valid():
+        #
+        form.save()
+        #
+    else:
+        #
+        logger.error( 'log this error, form did not save' )
+        #
+        if form.errors:
+            for k, v in form.errors.items():
+                logger.error( k, ' -- ', str(v) )
+        else:
+            logger.info( 'no form errors at bottom!' )
+
 
 
 def getSearchResultGenerator( sFile ):
@@ -228,7 +261,7 @@ def storeItemFound( dItem ):
     #
     sCategoryID     =   dItem['primaryCategory']['categoryId']
     #
-    sEbayMarketID   = _dMarket2ID.get( dItem.get( 'globalId' ) )
+    iEbayMarketID   = _dMarket2ID.get( dItem.get( 'globalId' ) )
     #
     #print( '\n', 'sCategoryID:', sCategoryID )
     #print( 'globalId:', dItem.get( 'globalId' ) )
@@ -236,7 +269,9 @@ def storeItemFound( dItem ):
     #
     oEbayCategory = EbayCategory.objects.get(
                         iCategoryID = int( sCategoryID ),
-                        iMarket     = int( sEbayMarketID ) )
+                        iMarket     = iEbayMarketID )
+    #
+    lCategoryNumbers = [ oEbayCategory.iCategoryID ]
     #
     while oEbayCategory.iLevel < 1:
         #
@@ -244,22 +279,31 @@ def storeItemFound( dItem ):
         #
         lCatHeirarchy.append( oEbayCategory.name )
         #
+        lCategoryNumbers.append( oEbayCategory.iCategoryID )
+        #
     #
     i2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
     #
     if i2ndCategoryID:
         #
+        setPrimaryCategoryNumbers = frozenset( lCategoryNumbers )
+        #
         l2ndCatHeirarchy = [ dItem['secondaryCategory' ][ 'categoryName' ] ]
         #
         oEbayCategory = EbayCategory.objects.get(
                 iCategoryID = int( dItem['secondaryCategory']['categoryId'] ),
-                iMarket     = int( sEbayMarketID ) )
+                iMarket     = iEbayMarketID )
         #
         while oEbayCategory.iLevel < 1:
             #
             oEbayCategory = oEbayCategory.parent
             #
             l2ndCatHeirarchy.append( oEbayCategory.name )
+            #
+            if oEbayCategory.iCategoryID in setPrimaryCategoryNumbers:
+                #
+                break # enough
+                #
             #
         #
         l2ndCatHeirarchy.extend( ['', ''] )
