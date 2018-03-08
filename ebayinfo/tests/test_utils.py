@@ -5,13 +5,14 @@ from django.test        import TestCase
 
 from core.utils_testing import getDefaultMarket
 
-from ..models           import EbayCategory
+from ..models           import EbayCategory, Market
 # the following is in the __init__.py file
 from ..tests            import sExampleCategoryVersion, sExampleCategoryList
 
 from ..utils            import ( sCategoryVersionFile, getCategoryVersion,
                                  UnexpectedResponse, sCategorylistingFile,
-                                 putCategoriesInDatabase, countCategories )
+                                 putCategoriesInDatabase, countCategories,
+                                 getMarketsIntoDatabase )
 
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
@@ -157,3 +158,27 @@ class putCategoriesInDatabaseTest(TestCase):
         self.assertEqual( iTags, '19188' ) # str count in the original file
 
 
+
+class putMarketsInDatabaseTest(TestCase):
+    '''test getMarketsIntoDatabase()'''
+    #
+    def setUp(self):
+        #
+        super( putMarketsInDatabaseTest, self ).setUp()
+        #
+        getMarketsIntoDatabase()
+
+    def test_market_count( self ):
+        #
+        iCount = Market.objects.all().count()
+        #
+        self.assertEqual( 23, iCount )
+        
+    def test_got_market_info_right( self ):
+        #
+        oUSA = Market.objects.get( cMarket = 'EBAY-US' )
+        #
+        self.assertEqual( oUSA.iEbaySiteID, 0 )
+        #
+        self.assertEqual( oUSA.cCurrencyDef, 'USD' )
+        
