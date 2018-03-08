@@ -299,9 +299,53 @@ def getCategoryVersion( sMarket = 'EBAY-US', sFile = sCategoryVersionFile ):
     return dTagsValues[ 'CategoryVersion' ]
 
 
+'''
+['id',
+ 'cMarket',
+ 'cCountry',
+ 'cLanguage',
+ 'iEbaySiteID',
+ 'bHasCategories',
+ 'iCategoryVer',
+ 'cCurrencyDef',
+ 'cUseCategoryID',
+ 'iUtcPlusOrMinus']
+'''
 
 def getMarketsIntoDatabase():
-    pass
+    #
+    from ebayinfo           import sMarketsTable # in __init__.py
+    #
+    from core.utils_testing import getTableFromScreenCaptureGenerator
+    #
+    from .models            import Market
+    #
+    from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+    #
+    oTableIter = getTableFromScreenCaptureGenerator( sMarketsTable )
+    #
+    lHeader = next( oTableIter )
+    #
+    for lParts in oTableIter:
+        #
+        oMarket = Market(
+                    id              = int(      lParts[0] ),
+                    cMarket         =           lParts[1],
+                    cCountry        =           lParts[2],
+                    cLanguage       =           lParts[3],
+                    iEbaySiteID     = int(      lParts[4] ),
+                    bHasCategories  = getBool(  lParts[5] ),
+                    cCurrencyDef    =           lParts[7],
+                    iUtcPlusOrMinus = int(      lParts[9] ) )
+        #
+        if lParts[6]:
+            oMarket.iCategoryVer    = int(      lParts[6] )
+        #
+        if lParts[8]:
+            oMarket.cUseCategoryID  =           lParts[8]
+        #
+        oMarket.save()
+        
 
 
 def getDictMarket2SiteID():
