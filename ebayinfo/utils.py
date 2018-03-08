@@ -303,6 +303,7 @@ def getCategoryVersion( sMarket = 'EBAY-US', sFile = sCategoryVersionFile ):
 def getMarketsIntoDatabase():
     pass
 
+
 def getDictMarket2SiteID():
     #
     dMarket2SiteID = {}
@@ -313,4 +314,17 @@ def getDictMarket2SiteID():
         #
     #
     return dMarket2SiteID
+
+
+
+def getDictMarket2ID():
+    #
+    dMarket2ID = {}
+    #
+    for oMarket in Market.objects.all():
+        #
+        dMarket2ID[ oMarket.cMarket ] = oMarket.id
+        #
+    #
+    return dMarket2ID
 
