@@ -204,11 +204,13 @@ def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
     
 def storeItemFound( dItem ):
     #
-    from .forms     import ItemFoundForm
-    from .models    import ItemFound
-    from searching  import dItemFoundFields # in __init__.py
+    from .forms             import ItemFoundForm
+    from .models            import ItemFound
+    from ebayinfo.models    import EbayCategory
+    
+    from searching          import dItemFoundFields # in __init__.py
     #
-    sItemID  = dItem['itemId']
+    sItemID         = dItem['itemId']
     #
     bAlreadyInTable = ( ItemFound.objects
                         .filter( iItemNumb = int( sItemID ) ).exists() )
@@ -219,7 +221,48 @@ def storeItemFound( dItem ):
                 'ItemID %s is already in the ItemFound table' % sItemID )
         #
     #
-    return storeEbayInfo( dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict )
+    lCatHeirarchy   = [ dItem['primaryCategory' ][ 'categoryName' ] ]
+    #
+    sCategoryID     =   dItem['primaryCategory']['categoryId']
+    #
+    oEbayCategory = EbayCategory.objects.get(
+                        iCategoryID = int( sCategoryID ),
+                        iMarket     = int( ) )
+    #
+    while oEbayCategory.iLevel < 1:
+        #
+        oEbayCategory = oEbayCategory.parent
+        #
+        lCatHeirarchy.append( oEbayCategory.name )
+        #
+    #
+    i2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
+    #
+    if i2ndCategoryID:
+        #
+        l2ndCatHeirarchy = [ dItem['secondaryCategory' ][ 'categoryName' ] ]
+        #
+        oEbayCategory = EbayCategory.objects.get(
+                iCategoryID = int( dItem['secondaryCategory']['categoryId'] ) )
+        #
+        while oEbayCategory.iLevel < 1:
+            #
+            oEbayCategory = oEbayCategory.parent
+            #
+            l2ndCatHeirarchy.append( oEbayCategory.name )
+            #
+        #
+        l2ndCatHeirarchy.extend( ['', ''] )
+        l2ndCatHeirarchy.extend( lCatHeirarchy )
+        #
+        lCatHeirarchy = l2ndCatHeirarchy
+        #
+    #
+    lCatHeirarchy.reverse()
+    #
+    return storeEbayInfo(
+        dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
+        cCatHeirarchy = '\r'.join( lCatHeirarchy ) )
 
 
 def storeUserItemFound( dItem, oUser, iSearch ):
