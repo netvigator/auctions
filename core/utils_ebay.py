@@ -33,7 +33,11 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         #
     except KeyError as e:
         #
-        if bOptional:
+        if bOptional and t[0] in kwargs:
+            #
+            uValue  = kwargs[ t[0] ]
+            #
+        elif bOptional:
             #
             uValue = _dBlankValue.get( f )
             #
