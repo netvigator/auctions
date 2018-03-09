@@ -120,6 +120,8 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         iWantVersion = int( sWantVersion )
         #
+        EbayCategory.objects.all().delete() # BaseUserTestCase 'hot products'
+        #
         oRootCategory = EbayCategory(
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
@@ -140,6 +142,8 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
             #
             oCategory = EbayCategory()
             #
+            oCategory.iMarket       = self.market,
+            oCategory.iTreeVersion  = iWantVersion,
             oCategory.id            = int(     lParts[0] )
             oCategory.iCategoryID   = int(     lParts[1] )
             oCategory.name          =          lParts[2]
@@ -154,7 +158,9 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
             if lParts[4] == '1': # top level iParentID
                 oCategory.iParentID = oRootCategory
             else:
-                oCategory.iParentID = int(     lParts[4] )
+                oCategory.iParentID = lParts[4]
+            #
+            oCategory.parent_id     = EbayCategory.objects.get( iCategoryID = lParts[4] ).id
             #
             oCategory.save()
 
@@ -163,6 +169,34 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
     #
     ''' class for testing storeItemFound() '''
 
+    def test_store_ebay_categories(self):
+        #
+        from ..tests            import sCategoryDump  # in __init__.py
+        #
+        from core.utils_testing import getTableFromScreenCaptureGenerator
+        #
+        iTableCount = EbayCategory.objects.all().count()
+        #
+        oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
+        #
+        lHeader = next( oTableIter )
+        #
+        iExpect = 1 # class getEbayCategoriesSetUp above will add root category
+        #
+        for lParts in oTableIter: iExpect += 1
+        #
+        oCategories = EbayCategory.objects.all()
+        #
+        self.assertEqual( iExpect, iTableCount )
+        #
+        oMultimeters = EbayCategory.objects.get( iCategoryID = 58277 )
+        #
+        print( '\n', 'Multimeters:', oMultimeters )
+        print(       'parent     :', oMultimeters.parent )
+        #
+        for category in EbayCategory.objects.all().order_by('iLevel'):
+            #
+            print( category, 'id:', category.id, 'iParentID:', category.iParentID, 'parent_id:', category.parent_id )
             
         
     def test_store_item_found(self):
