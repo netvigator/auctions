@@ -120,8 +120,6 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         iWantVersion = int( sWantVersion )
         #
-        EbayCategory.objects.all().delete() # BaseUserTestCase 'hot products'
-        #
         oRootCategory = EbayCategory(
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
@@ -140,27 +138,23 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         for lParts in oTableIter:
             #
-            oCategory = EbayCategory()
+            oCategory = EbayCategory(
+                    iMarket         = self.market,
+                    iCategoryID     = int(      lParts[1] ),
+                    name            =           lParts[2],
+                    iLevel          = int(      lParts[3] ),
+                    
+                    bLeafCategory   = getBool(  lParts[5] ),
+                    iTreeVersion    = int(      lParts[6] ),
+                    iMarket_id      = int(      lParts[7] ), )
             #
-            oCategory.iMarket       = self.market,
-            oCategory.iTreeVersion  = iWantVersion,
-            oCategory.id            = int(     lParts[0] )
-            oCategory.iCategoryID   = int(     lParts[1] )
-            oCategory.name          =          lParts[2]
-            oCategory.iLevel        = int(     lParts[3] )
-            #
-            # lParts[4] below
-            #
-            oCategory.bLeafCategory = getBool( lParts[5] )
-            oCategory.iTreeVersion  = int(     lParts[6] )
-            oCategory.iMarket_id    = int(     lParts[7] )
-            
-            if lParts[4] == '1': # top level iParentID
-                oCategory.iParentID = oRootCategory
+            if lParts[3] == '1': # top level iParentID
+                oCategory.iParentID = oRootCategory.iCategoryID
+                oCategory.parent    = oRootCategory
             else:
-                oCategory.iParentID = lParts[4]
-            #
-            oCategory.parent_id     = EbayCategory.objects.get( iCategoryID = lParts[4] ).id
+                oCategory.iParentID = int(     lParts[4] )
+                oCategory.parent= EbayCategory.objects.get(
+                                    iCategoryID = int( lParts[4] ) )
             #
             oCategory.save()
 
@@ -170,6 +164,8 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
     ''' class for testing storeItemFound() '''
 
     def test_store_ebay_categories(self):
+        #
+        ''' testing the ebay item categories '''
         #
         from ..tests            import sCategoryDump  # in __init__.py
         #
@@ -191,20 +187,72 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         oMultimeters = EbayCategory.objects.get( iCategoryID = 58277 )
         #
-        print( '\n', 'Multimeters:', oMultimeters )
-        print(       'parent     :', oMultimeters.parent )
+        self.assertEqual(
+                str( oMultimeters ),
+                'Multimeters' )
         #
-        for category in EbayCategory.objects.all().order_by('iLevel'):
-            #
-            print( category, 'id:', category.id, 'iParentID:', category.iParentID, 'parent_id:', category.parent_id )
-            
+        self.assertEqual(
+                str( oMultimeters.parent ),
+                'Electric Circuit & Multimeters' )
+        #
+        self.assertEqual(
+                str( oMultimeters.parent.parent ),
+                'Test Meters & Detectors' )
+        #
+        self.assertEqual(
+                str( oMultimeters.parent.parent.parent ),
+                'Test, Measurement & Inspection' )
+        #
+        self.assertEqual(
+                str( oMultimeters.parent.parent.parent.parent ),
+                'Electrical & Test Equipment' )
+        #
+        self.assertEqual(
+                str( oMultimeters.parent.parent.parent.parent.parent ),
+                'Business & Industrial' )
+
+
+    def test_get_ebay_category_hierarchy(self):
+        #
+        ''' test getEbayCategoryHierarchy() retrieval & caching '''
+        #
+        from ..tests    import dSearchResult # in __init__.py
+        #
+        from ..utils    import getEbayCategoryHierarchy
+        #
+        dEbayCategoryHierarchy = {}
+        #
+        lCatHeirarchy = getEbayCategoryHierarchy(
+                            dSearchResult, dEbayCategoryHierarchy )
+        #
+        lExpect = [ 'Business & Industrial',
+                    'Electrical & Test Equipment',
+                    'Test, Measurement & Inspection',
+                    'Test Meters & Detectors',
+                    'Capacitance & ESR Meters' ]
+        #
+        self.assertEqual( lCatHeirarchy, lExpect )
+        #
+        dExpect = { 73160 : lExpect }
+        #
+        self.assertEqual( dEbayCategoryHierarchy, dExpect )
+        #
+        # try again
+        #
+        lOrigCatHeirarchy = dEbayCategoryHierarchy[ 73160 ]
+        #
+        lCatHeirarchy = getEbayCategoryHierarchy(
+                            dSearchResult, dEbayCategoryHierarchy )
+        #
+        self.assertIs( dEbayCategoryHierarchy[ 73160 ], lOrigCatHeirarchy )
         
+
     def test_store_item_found(self):
         #
         ''' test storeItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
-        
+        #
         from ..utils    import storeItemFound
         #
         storeItemFound( dSearchResult )
@@ -218,6 +266,14 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         self.assertEqual( oResultRow.iItemNumb,
                          int( dSearchResult['itemId'] ) )
         #
+        sExpect = ( 'Business & Industrial\r'
+                    'Electrical & Test Equipment\r'
+                    'Test, Measurement & Inspection\r'
+                    'Test Meters & Detectors\r'
+                    'Capacitance & ESR Meters' )
+
+        self.assertEqual( oResultRow.cCatHeirarchy,sExpect )
+        #
         try: # again
             storeItemFound( dSearchResult )
         except ItemAlreadyInTable as e:
@@ -227,6 +283,8 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
                     dSearchResult['itemId'] )
         else:
             self.assertTrue( False ) # exception should hve been raised
+        #
+        
 
 
 
