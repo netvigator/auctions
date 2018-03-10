@@ -2,7 +2,9 @@ from django.core.urlresolvers   import reverse, resolve
 from django.http.request        import HttpRequest
 from django.test.client         import Client
 
-from core.utils_testing         import BaseUserTestCase, getUrlQueryStringOff
+from core.utils_testing         import (BaseUserTestCase,
+                                        getSingleEbayCategoryMixin,
+                                        getUrlQueryStringOff )
 
 from ..forms                    import SearchAddOrUpdateForm
 from ..models                   import Search, ItemFound
@@ -13,7 +15,7 @@ from ..models                   import Search, ItemFound
 
 
 
-class TestFormValidation(BaseUserTestCase):
+class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
     
     ''' Search Form Tests '''
     
