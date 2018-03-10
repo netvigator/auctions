@@ -61,6 +61,24 @@ def queryGotUpdated( s ):
     return isISOdatetimeFileNameSafe( sQueryUTC )
 
 
+class getSingleEbayCategoryMixin( object ):
+    
+    def setUp(self):        
+        #
+        super( getSingleEbayCategoryMixin, self ).setUp()
+        #
+        self.ebc = EbayCategory(
+            iCategoryID = 10,
+            name        = 'hot products',
+            iLevel      = 1,
+            iParentID   = 1,
+            iTreeVersion= 1,
+            iMarket     = self.market,
+            bLeafCategory = False )
+        self.ebc.save()
+        #
+        self.client = Client()
+
 
 
 class BaseUserTestCase(TestCase):
@@ -106,18 +124,6 @@ class BaseUserTestCase(TestCase):
                 cCurrencyDef= 'USD' )
             self.market.save()
         #
-        self.ebc = EbayCategory(
-            iCategoryID = 10,
-            name        = 'hot products',
-            iLevel      = 1,
-            iParentID   = 1,
-            iTreeVersion= 1,
-            iMarket     = self.market,
-            bLeafCategory = False )
-        self.ebc.save()
-        #
-        self.client = Client()
-
 
 
 
