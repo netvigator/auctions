@@ -16,8 +16,6 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     '''can store a row in either ItemFound or UserItemFound'''
     #
-    print( '\n', 'kwargs:', kwargs, '\n' )
-    #
     dNewResult = kwargs
     #
     dNewResult.update( { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields } )
@@ -237,12 +235,82 @@ def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
 
 _dMarket2ID = getDictMarket2ID()
 
+
+def _getHierarchyCopyOrGetNew(
+            iCategoryID, iEbayMarketID, dEbayCategoryHierarchy ):
+    #
+    from copy               import copy
+    #
+    from ebayinfo.models    import EbayCategory
+    #
+    if iCategoryID in dEbayCategoryHierarchy:
+        #
+        lCatHeirarchy = copy( dEbayCategoryHierarchy[ iCategoryID ] )
+        #
+    else:
+        #
+        oEbayCategory   = EbayCategory.objects.get(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbayMarketID )
+        #
+        lCatHeirarchy = [ oEbayCategory.name ]
+        #
+        while oEbayCategory.iLevel > 1:
+            #
+            oEbayCategory = oEbayCategory.parent
+            #
+            lCatHeirarchy.append( oEbayCategory.name )
+            #
+        #
+        dEbayCategoryHierarchy[ iCategoryID ] = lCatHeirarchy
+        #
+    #
+    return lCatHeirarchy
+
     
-def storeItemFound( dItem ):
+def getEbayCategoryHierarchy( dItem, dEbayCategoryHierarchy ):
+    #
+    ''' return the ebay category hierarchy for a search find item
+    note:
+    1) items can optionally have a secondary category
+    2) this function has a side effect, it updates dEbayCategoryHierarchy
+    '''
+    #
+    from copy               import copy
+    #
+    from ebayinfo.models    import EbayCategory
+    #
+    iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
+    #
+    iEbayMarketID = _dMarket2ID.get( dItem.get( 'globalId' ) )
+    #
+    lCatHeirarchy = _getHierarchyCopyOrGetNew(
+                        iCategoryID, iEbayMarketID, dEbayCategoryHierarchy )
+    #
+    s2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
+    #
+    if s2ndCategoryID:
+        #
+        i2ndCategoryID = int( s2ndCategoryID )
+        #
+        l2ndCatHeirarchy = _getHierarchyCopyOrGetNew(
+                    i2ndCategoryID, iEbayMarketID, dEbayCategoryHierarchy )
+        #
+        l2ndCatHeirarchy.append( '' )
+        l2ndCatHeirarchy.extend( lCatHeirarchy )
+        #
+        lCatHeirarchy = l2ndCatHeirarchy
+        #
+    #
+    lCatHeirarchy.reverse()
+    #
+    return lCatHeirarchy
+
+
+def storeItemFound( dItem, dEbayCategoryHierarchy = {} ):
     #
     from .forms             import ItemFoundForm
     from .models            import ItemFound
-    from ebayinfo.models    import EbayCategory
     
     from searching          import dItemFoundFields # in __init__.py
     #
@@ -257,66 +325,14 @@ def storeItemFound( dItem ):
                 'ItemID %s is already in the ItemFound table' % sItemID )
         #
     #
-    lCatHeirarchy   = [ dItem['primaryCategory' ][ 'categoryName' ] ]
+    lCatHeirarchy = getEbayCategoryHierarchy( dItem, dEbayCategoryHierarchy )
     #
-    sCategoryID     =   dItem['primaryCategory']['categoryId']
-    #
-    iEbayMarketID   = _dMarket2ID.get( dItem.get( 'globalId' ) )
-    #
-    #print( '\n', 'sCategoryID:', sCategoryID )
-    #print( 'globalId:', dItem.get( 'globalId' ) )
-    #print( 'sEbayMarketID:', sEbayMarketID, '\n' )
-    #
-    oEbayCategory = EbayCategory.objects.get(
-                        iCategoryID = int( sCategoryID ),
-                        iMarket     = iEbayMarketID )
-    #
-    lCategoryNumbers = [ oEbayCategory.iCategoryID ]
-    #
-    while oEbayCategory.iLevel < 1:
-        #
-        oEbayCategory = oEbayCategory.parent
-        #
-        lCatHeirarchy.append( oEbayCategory.name )
-        #
-        lCategoryNumbers.append( oEbayCategory.iCategoryID )
-        #
-    #
-    i2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
-    #
-    if i2ndCategoryID:
-        #
-        setPrimaryCategoryNumbers = frozenset( lCategoryNumbers )
-        #
-        l2ndCatHeirarchy = [ dItem['secondaryCategory' ][ 'categoryName' ] ]
-        #
-        oEbayCategory = EbayCategory.objects.get(
-                iCategoryID = int( dItem['secondaryCategory']['categoryId'] ),
-                iMarket     = iEbayMarketID )
-        #
-        while oEbayCategory.iLevel < 1:
-            #
-            oEbayCategory = oEbayCategory.parent
-            #
-            l2ndCatHeirarchy.append( oEbayCategory.name )
-            #
-            if oEbayCategory.iCategoryID in setPrimaryCategoryNumbers:
-                #
-                break # enough
-                #
-            #
-        #
-        l2ndCatHeirarchy.extend( ['', ''] )
-        l2ndCatHeirarchy.extend( lCatHeirarchy )
-        #
-        lCatHeirarchy = l2ndCatHeirarchy
-        #
-    #
-    lCatHeirarchy.reverse()
+    sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
+    # return only does not work in shell, each line overwrites the prior one
     #
     return storeEbayInfo(
-        dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
-        cCatHeirarchy = '\r'.join( lCatHeirarchy ) )
+            dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
+            cCatHeirarchy = sCatHeirarchy )
 
 
 def storeUserItemFound( dItem, oUser, iSearch ):
@@ -376,12 +392,14 @@ def doSearch( iSearchID = None, sFileName = None ):
     #
     iItems = iStoreItems = iStoreUsers = 0
     #
+    dEbayCategoryHierarchy = {}
+    #
     for dItem in oItemIter:
         #
         iItems += 1
         #
         try:
-            storeItemFound( dItem )
+            storeItemFound( dItem, dEbayCategoryHierarchy )
             iStoreItems += 1
         except ItemAlreadyInTable:
             pass
