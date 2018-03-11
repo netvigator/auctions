@@ -36,13 +36,17 @@ dItemFoundFields = d(
                          f = int ),
     cCategory       = d( t = ( 'primaryCategory','categoryName') ),
 
+    iCatHeirarchy   = d( t = ( 'iCatHeirarchy',), # not from ebay, calculated
+                         bOptional = True ),
+
     i2ndCategoryID  = d( t = ( 'secondaryCategory','categoryId'),
                          f = int,
                          bOptional = True ),
     c2ndCategory    = d( t = ( 'secondaryCategory','categoryName'),
                          bOptional = True ),
-    cCatHeirarchy   = d( t = ( 'cCatHeirarchy',), # not from ebay, calculated
+    i2ndCatHeirarchy= d( t = ( 'i2ndCatHeirarchy',), # not from ebay, calculated
                          bOptional = True ),
+
     iConditionID    = d( t = ( 'condition','conditionId'),
                          f = int,
                          bOptional = True ),
