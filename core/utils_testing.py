@@ -18,10 +18,9 @@ def getDefaultMarket():
         #
         market = Market()
         #
-        market.id          = 1
         market.cMarket     = 'EBAY-US'
         market.cCountry    = 'US'
-        market.iEbaySiteID = 1
+        market.iEbaySiteID = 0
         market.iCategoryVer= 117
         market.cCurrencyDef= 'USD'
         market.cLanguage   = 'en-US'
@@ -29,7 +28,7 @@ def getDefaultMarket():
         #
     else:
         #
-        market = Market.objects.get( pk = 1 )
+        market = Market.objects.get( pk = 0 )
         #
     #
     return market
@@ -114,7 +113,7 @@ class BaseUserTestCase(TestCase):
         self.request.user = self.user1
         #
         if (  ( not isinstance( self.market, Market ) ) or
-              ( not Market.objects.get( pk = 1 ) ) ):
+              ( not Market.objects.get( pk = 0 ) ) ):
             self.market = Market(
                 cMarket     = 'EBAY-US',
                 cCountry    = 'US',
