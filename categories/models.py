@@ -69,7 +69,7 @@ class Category(models.Model):
     def __str__(self):
         return self.cTitle
     
-    class Meta():
+    class Meta:
         verbose_name_plural = 'categories'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
