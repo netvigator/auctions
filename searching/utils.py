@@ -1,6 +1,5 @@
 from logging            import getLogger
 
-from ebayinfo.utils     import getDictMarket2ID
 from core.utils_ebay    import getValueOffItemDict
 
 logger = getLogger(__name__)
@@ -233,19 +232,27 @@ def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
         return getValueOffItemDict( k, dItem, dFields )
 
 
-_dMarket2ID = getDictMarket2ID()
 
 
-def _getHierarchyCopyOrGetNew(
-            iCategoryID, iEbayMarketID, dEbayCategoryHierarchy ):
+
+def _getCategoryHierarchyID(
+            iCategoryID, iEbayMarketID, dEbayCatHierarchies ):
     #
-    from copy               import copy
+    from ebayinfo.models    import EbayCategory, CategoryHierarchy, Market
     #
-    from ebayinfo.models    import EbayCategory
-    #
-    if iCategoryID in dEbayCategoryHierarchy:
+    tCategoryID = iCategoryID, iEbayMarketID
+    
+    if tCategoryID in dEbayCatHierarchies:
         #
-        lCatHeirarchy = copy( dEbayCategoryHierarchy[ iCategoryID ] )
+        iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
+        #
+    elif CategoryHierarchy.objects.filter( 
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbayMarketID ).exists():
+        #
+        iCatHeirarchy = CategoryHierarchy.objects.get(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbayMarketID ).id
         #
     else:
         #
@@ -262,30 +269,45 @@ def _getHierarchyCopyOrGetNew(
             lCatHeirarchy.append( oEbayCategory.name )
             #
         #
-        dEbayCategoryHierarchy[ iCategoryID ] = lCatHeirarchy
+        lCatHeirarchy.reverse()
+        #
+        sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
+        # return only does not work in shell, each line overwrites the prior one
+        #
+        oCategoryHierarchy = CategoryHierarchy(
+                iCategoryID     = iCategoryID,
+                iMarket         = Market.objects.get( pk = iEbayMarketID ),
+                cCatHierarchy   = sCatHeirarchy )
+        #
+        oCategoryHierarchy.save()
+        #
+        iCatHeirarchy = oCategoryHierarchy.id
+        #
+        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
         #
     #
-    return lCatHeirarchy
+    return iCatHeirarchy
 
     
-def getEbayCategoryHierarchy( dItem, dEbayCategoryHierarchy ):
+def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     #
     ''' return the ebay category hierarchy for a search find item
     note:
     1) items can optionally have a secondary category
-    2) this function has a side effect, it updates dEbayCategoryHierarchy
+    2) this function has a side effect, it updates dEbayCatHierarchies
     '''
     #
     from copy               import copy
     #
     from ebayinfo.models    import EbayCategory
+    from ebayinfo.utils     import dMarket2ID
     #
     iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
     #
-    iEbayMarketID = _dMarket2ID.get( dItem.get( 'globalId' ) )
+    iEbayMarketID = dMarket2ID.get( dItem.get( 'globalId' ) )
     #
-    lCatHeirarchy = _getHierarchyCopyOrGetNew(
-                        iCategoryID, iEbayMarketID, dEbayCategoryHierarchy )
+    iCatHeirarchy = _getCategoryHierarchyID(
+                        iCategoryID, iEbayMarketID, dEbayCatHierarchies )
     #
     s2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
     #
@@ -293,21 +315,18 @@ def getEbayCategoryHierarchy( dItem, dEbayCategoryHierarchy ):
         #
         i2ndCategoryID = int( s2ndCategoryID )
         #
-        l2ndCatHeirarchy = _getHierarchyCopyOrGetNew(
-                    i2ndCategoryID, iEbayMarketID, dEbayCategoryHierarchy )
+        i2ndCatHeirarchy = _getCategoryHierarchyID(
+                    i2ndCategoryID, iEbayMarketID, dEbayCatHierarchies )
         #
-        l2ndCatHeirarchy.append( '' )
-        l2ndCatHeirarchy.extend( lCatHeirarchy )
+    else:
         #
-        lCatHeirarchy = l2ndCatHeirarchy
+        i2ndCatHeirarchy = None
         #
     #
-    lCatHeirarchy.reverse()
-    #
-    return lCatHeirarchy
+    return iCatHeirarchy, i2ndCatHeirarchy
 
 
-def storeItemFound( dItem, dEbayCategoryHierarchy = {} ):
+def storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
     from .forms             import ItemFoundForm
     from .models            import ItemFound
@@ -325,14 +344,14 @@ def storeItemFound( dItem, dEbayCategoryHierarchy = {} ):
                 'ItemID %s is already in the ItemFound table' % sItemID )
         #
     #
-    lCatHeirarchy = getEbayCategoryHierarchy( dItem, dEbayCategoryHierarchy )
+    tCatHeirarchies = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
     #
-    sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
-    # return only does not work in shell, each line overwrites the prior one
     #
     return storeEbayInfo(
             dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
-            cCatHeirarchy = sCatHeirarchy )
+            iCatHeirarchy   = tCatHeirarchies[0],
+            i2ndCatHeirarchy= tCatHeirarchies[1] )
+
 
 
 def storeUserItemFound( dItem, oUser, iSearch ):
@@ -392,14 +411,14 @@ def doSearch( iSearchID = None, sFileName = None ):
     #
     iItems = iStoreItems = iStoreUsers = 0
     #
-    dEbayCategoryHierarchy = {}
+    dEbayCatHierarchies = {}
     #
     for dItem in oItemIter:
         #
         iItems += 1
         #
         try:
-            storeItemFound( dItem, dEbayCategoryHierarchy )
+            storeItemFound( dItem, dEbayCatHierarchies )
             iStoreItems += 1
         except ItemAlreadyInTable:
             pass
