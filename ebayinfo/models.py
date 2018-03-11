@@ -53,7 +53,7 @@ class Market(Model):
     def __str__(self):
         return self.cMarket
     
-    class Meta():
+    class Meta:
         verbose_name_plural = 'markets'
         ordering            = ('cMarket',)
         db_table            = verbose_name_plural
@@ -72,6 +72,13 @@ iSupercededBy
 
 # http://developer.ebay.com/devzone/xml/docs/reference/ebay/getcategories.html
 # category numbers are only unique within a marketplace site
+
+# if the context was postgresql only,
+# category number + market ID could be the (compound) primary key
+# BUT
+# 1) django does not support compound primary keys, 
+# and
+# 2) MPTT requires parent, which refers to id
 
 class EbayCategory(MPTTModel):
     iCategoryID     = models.PositiveIntegerField( 'ebay category number',
@@ -92,6 +99,7 @@ class EbayCategory(MPTTModel):
     parent          = TreeForeignKey( 'self',
                         null=True, blank=True, related_name='children',
                         db_index=True)
+    
     '''
     column required by mptt:
     parent
@@ -111,15 +119,32 @@ class EbayCategory(MPTTModel):
     def __str__(self):
         return self.name
     
-    class Meta():
+    class Meta:
         verbose_name_plural = 'ebay categories'
-        db_table        = 'ebay_categories'
-        unique_together = ('iCategoryID', 'iMarket',)
+        db_table            = 'ebay_categories'
+        unique_together     = ('iCategoryID', 'iMarket',)
 
     class MPTTMeta:
-        order_insertion_by = ['name']
+        order_insertion_by  = ['name']
 
-#
+
+
+class CategoryHierarchy(models.Model):
+
+    iCategoryID     = models.PositiveIntegerField( 'ebay category number',
+                        db_index=True )
+    iMarket         = models.ForeignKey( Market,
+                        verbose_name = 'ebay market', db_index=True )
+    cCatHierarchy   = models.TextField( 'category hierarchy',
+                        null = True, blank = True)
+    
+    class Meta:
+        verbose_name_plural = 'category hierarchies'
+        db_table            = 'category_hierarchies'
+        unique_together     = ('iCategoryID', 'iMarket',)
+        ordering            = ('iMarket','iCategoryID')
+
+
 
 class Condition(models.Model):
     iConditionID    = models.PositiveSmallIntegerField( 'ebay condition ID' )
@@ -129,7 +154,7 @@ class Condition(models.Model):
     def __str__(self):
         return self.cTitle
     
-    class Meta():
+    class Meta:
         verbose_name_plural = 'ebay condition descriptions'
         db_table            = 'conditions'
 
