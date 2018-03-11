@@ -5,6 +5,8 @@ from models.models              import Model
 from brands.models              import Brand
 from categories.models          import Category
 
+from ebayinfo.models            import CategoryHierarchy
+
 # Create your models here.
 
 from django.contrib.auth        import get_user_model
@@ -103,12 +105,18 @@ class ItemFound(models.Model):
                         null = True )
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
+    iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
+                        verbose_name = 'category hierarchy (primary)',
+                        related_name = 'primary_category',
+                        null = True, blank = True )
     i2ndCategoryID  = models.PositiveIntegerField( 'secondary category ID (optional)',
                         null = True )
     c2ndCategory    = models.CharField( 'secondary category (optional)',
                         max_length = 48, null = True, blank = True )
-    cCatHeirarchy   = models.TextField( 'category hierarchy',
-                        null = True, blank = True)
+    i2ndCatHeirarchy= models.ForeignKey( CategoryHierarchy,
+                        verbose_name = 'category hierarchy (secondary)',
+                        related_name = 'secondary_category',
+                        null = True, blank = True )
 
     # condition is optional but may become required in the future
     # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
@@ -124,7 +132,7 @@ class ItemFound(models.Model):
     
     def __str__(self):
         return self.cTitle
-        
+
     class Meta:
         verbose_name_plural = 'itemsfound'
         db_table            = verbose_name_plural
