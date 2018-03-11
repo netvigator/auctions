@@ -4,7 +4,7 @@ from django.test        import TestCase
 from django.utils       import timezone
 from core.utils_testing import BaseUserTestCase, getDefaultMarket
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
-from ebayinfo.utils     import dMarket2ID
+from ebayinfo.utils     import dMarket2SiteID
 
 from ..models           import Search, ItemFound, UserItemFound
 from ..utils            import ( trySearchCatchExceptions,
@@ -227,7 +227,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         iCatHeirarchy, i2ndCatHeirarchy = t
         #
-        iMarketEbayUS = dMarket2ID.get( 'EBAY-US' )
+        iMarketEbayUS = dMarket2SiteID.get( 'EBAY-US' )
         #
         oCatHierarchy = CategoryHierarchy.objects.get(
             iCategoryID = 73160,
@@ -280,7 +280,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         oExpectHierarchy = CategoryHierarchy.objects.get(
                 iCategoryID = 73160,
-                iMarket     = dMarket2ID.get( 'EBAY-US' ) )
+                iMarket     = dMarket2SiteID.get( 'EBAY-US' ) )
         #
         sExpect = oExpectHierarchy.cCatHierarchy
         #
