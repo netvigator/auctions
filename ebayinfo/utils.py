@@ -361,7 +361,7 @@ def getDictMarket2SiteID():
 
 
 
-def getDictMarket2ID():
+def _getDictMarket2ID():
     #
     dMarket2ID = {}
     #
@@ -372,3 +372,5 @@ def getDictMarket2ID():
     #
     return dMarket2ID
 
+
+dMarket2ID = _getDictMarket2ID()
