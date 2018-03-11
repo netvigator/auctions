@@ -61,9 +61,9 @@ class CoreMarketTests(TestCase):
     
     def test_default_market( self ):
         #
-        self.assertIsNotNone( self.market.id )
+        self.assertIsNotNone( self.market.pk )
         #
-        self.assertEquals( self.market.id, 1 )
+        self.assertEquals( self.market.pk, 0 )
 
 
 
