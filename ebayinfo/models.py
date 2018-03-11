@@ -33,11 +33,11 @@ from core.models                import UpperCaseCharField
 # https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
 
 class Market(Model):
+    iEbaySiteID     = PosSmallInt(          'site ID', primary_key = True )
     cMarket         = UpperCaseCharField(   'ebay Global ID', max_length = 14,
                                 unique = True )
     cCountry        = CountryField(         'country' )
     cLanguage       = CharField(            'language',  max_length = 8 )
-    iEbaySiteID     = PosSmallInt(          'site ID', unique=True )
     bHasCategories  = NullBooleanField(     'has own categories?', null=True)
     iCategoryVer    = PosSmallInt(          'most recent category version',
                                 null = True )
