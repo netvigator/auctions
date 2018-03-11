@@ -2,9 +2,9 @@ from datetime           import timedelta
 
 from django.test        import TestCase
 from django.utils       import timezone
-
 from core.utils_testing import BaseUserTestCase, getDefaultMarket
-from ebayinfo.models    import EbayCategory
+from ebayinfo.models    import EbayCategory, CategoryHierarchy
+from ebayinfo.utils     import dMarket2ID
 
 from ..models           import Search, ItemFound, UserItemFound
 from ..utils            import ( trySearchCatchExceptions,
@@ -214,37 +214,49 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
 
     def test_get_ebay_category_hierarchy(self):
         #
-        ''' test getEbayCategoryHierarchy() retrieval & caching '''
+        ''' test getEbayCategoryHierarchies() retrieval & caching '''
         #
-        from ..tests    import dSearchResult # in __init__.py
+        from ..tests        import dSearchResult # in __init__.py
         #
-        from ..utils    import getEbayCategoryHierarchy
+        from ..utils        import getEbayCategoryHierarchies
         #
-        dEbayCategoryHierarchy = {}
+        dEbayCatHierarchies = {}
         #
-        lCatHeirarchy = getEbayCategoryHierarchy(
-                            dSearchResult, dEbayCategoryHierarchy )
+        t = getEbayCategoryHierarchies(
+                            dSearchResult, dEbayCatHierarchies )
         #
+        iCatHeirarchy, i2ndCatHeirarchy = t
+        #
+        iMarketEbayUS = dMarket2ID.get( 'EBAY-US' )
+        #
+        oCatHierarchy = CategoryHierarchy.objects.get(
+            iCategoryID = 73160,
+            iMarket     = iMarketEbayUS )
+            
+            
         lExpect = [ 'Business & Industrial',
                     'Electrical & Test Equipment',
                     'Test, Measurement & Inspection',
                     'Test Meters & Detectors',
                     'Capacitance & ESR Meters' ]
         #
-        self.assertEqual( lCatHeirarchy, lExpect )
+        sExpect = '\r'.join( lExpect )
         #
-        dExpect = { 73160 : lExpect }
+        self.assertEqual( oCatHierarchy.cCatHierarchy, sExpect )
         #
-        self.assertEqual( dEbayCategoryHierarchy, dExpect )
+        dExpect = { (73160, iMarketEbayUS) : oCatHierarchy.id }
+        #
+        self.assertEqual( dEbayCatHierarchies, dExpect )
         #
         # try again
         #
-        lOrigCatHeirarchy = dEbayCategoryHierarchy[ 73160 ]
+        lOrigCatHeirarchy = dEbayCatHierarchies[ (73160, iMarketEbayUS) ]
         #
-        lCatHeirarchy = getEbayCategoryHierarchy(
-                            dSearchResult, dEbayCategoryHierarchy )
+        lCatHeirarchy = getEbayCategoryHierarchies(
+                            dSearchResult, dEbayCatHierarchies )
         #
-        self.assertIs( dEbayCategoryHierarchy[ 73160 ], lOrigCatHeirarchy )
+        self.assertIs(
+            dEbayCatHierarchies[ (73160, iMarketEbayUS) ], lOrigCatHeirarchy )
         
 
     def test_store_item_found(self):
@@ -266,13 +278,14 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         self.assertEqual( oResultRow.iItemNumb,
                          int( dSearchResult['itemId'] ) )
         #
-        sExpect = ( 'Business & Industrial\r'
-                    'Electrical & Test Equipment\r'
-                    'Test, Measurement & Inspection\r'
-                    'Test Meters & Detectors\r'
-                    'Capacitance & ESR Meters' )
-
-        self.assertEqual( oResultRow.cCatHeirarchy,sExpect )
+        oExpectHierarchy = CategoryHierarchy.objects.get(
+                iCategoryID = 73160,
+                iMarket     = dMarket2ID.get( 'EBAY-US' ) )
+        #
+        sExpect = oExpectHierarchy.cCatHierarchy
+        #
+        
+        #self.assertEqual( oResultRow.iCatHeirarchy.cCatHierarchy, sExpect )
         #
         try: # again
             storeItemFound( dSearchResult )
