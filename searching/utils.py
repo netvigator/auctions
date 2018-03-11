@@ -236,11 +236,11 @@ def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
 
 
 def _getCategoryHierarchyID(
-            iCategoryID, iEbayMarketID, dEbayCatHierarchies ):
+            iCategoryID, iEbaySiteID, dEbayCatHierarchies ):
     #
     from ebayinfo.models    import EbayCategory, CategoryHierarchy, Market
     #
-    tCategoryID = iCategoryID, iEbayMarketID
+    tCategoryID = iCategoryID, iEbaySiteID
     
     if tCategoryID in dEbayCatHierarchies:
         #
@@ -248,17 +248,17 @@ def _getCategoryHierarchyID(
         #
     elif CategoryHierarchy.objects.filter( 
                             iCategoryID = iCategoryID,
-                            iMarket     = iEbayMarketID ).exists():
+                            iMarket     = iEbaySiteID ).exists():
         #
         iCatHeirarchy = CategoryHierarchy.objects.get(
                             iCategoryID = iCategoryID,
-                            iMarket     = iEbayMarketID ).id
+                            iMarket     = iEbaySiteID ).pk
         #
     else:
         #
         oEbayCategory   = EbayCategory.objects.get(
                             iCategoryID = iCategoryID,
-                            iMarket     = iEbayMarketID )
+                            iMarket     = iEbaySiteID )
         #
         lCatHeirarchy = [ oEbayCategory.name ]
         #
@@ -276,7 +276,7 @@ def _getCategoryHierarchyID(
         #
         oCategoryHierarchy = CategoryHierarchy(
                 iCategoryID     = iCategoryID,
-                iMarket         = Market.objects.get( pk = iEbayMarketID ),
+                iMarket         = Market.objects.get( pk = iEbaySiteID ),
                 cCatHierarchy   = sCatHeirarchy )
         #
         oCategoryHierarchy.save()
@@ -300,14 +300,14 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     from copy               import copy
     #
     from ebayinfo.models    import EbayCategory
-    from ebayinfo.utils     import dMarket2ID
+    from ebayinfo.utils     import dMarket2SiteID
     #
     iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
     #
-    iEbayMarketID = dMarket2ID.get( dItem.get( 'globalId' ) )
+    iEbaySiteID = dMarket2SiteID.get( dItem.get( 'globalId' ) )
     #
     iCatHeirarchy = _getCategoryHierarchyID(
-                        iCategoryID, iEbayMarketID, dEbayCatHierarchies )
+                        iCategoryID, iEbaySiteID, dEbayCatHierarchies )
     #
     s2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
     #
@@ -316,7 +316,7 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
         i2ndCategoryID = int( s2ndCategoryID )
         #
         i2ndCatHeirarchy = _getCategoryHierarchyID(
-                    i2ndCategoryID, iEbayMarketID, dEbayCatHierarchies )
+                    i2ndCategoryID, iEbaySiteID, dEbayCatHierarchies )
         #
     else:
         #
