@@ -59,7 +59,7 @@ class Brand(models.Model):
     def __str__(self):
         return self.cTitle
     
-    class Meta():
+    class Meta:
         verbose_name        = 'brand name'
         verbose_name_plural = 'brands'
         ordering            = ('cTitle',)
