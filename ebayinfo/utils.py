@@ -326,29 +326,41 @@ def getMarketsIntoDatabase():
     #
     lHeader = next( oTableIter )
     #
+    dNamePosition = {}
+    #
+    i = 0
+    #
+    for sName in lHeader:
+        #
+        dNamePosition[ sName ] = i
+        #
+        i += 1
+        #
+    #
+    d = dNamePosition
+    #
     for lParts in oTableIter:
         #
         oMarket = Market(
-                    id              = int(      lParts[0] ),
-                    cMarket         =           lParts[1],
-                    cCountry        =           lParts[2],
-                    cLanguage       =           lParts[3],
-                    iEbaySiteID     = int(      lParts[4] ),
-                    bHasCategories  = getBool(  lParts[5] ),
-                    cCurrencyDef    =           lParts[7],
-                    iUtcPlusOrMinus = int(      lParts[9] ) )
+                iEbaySiteID     = int(      lParts[ d['iEbaySiteID'    ] ] ),
+                cMarket         =           lParts[ d['cMarket'        ] ],
+                cCountry        =           lParts[ d['cCountry'       ] ],
+                cLanguage       =           lParts[ d['cLanguage'      ] ],
+                bHasCategories  = getBool(  lParts[ d['bHasCategories' ] ] ),
+                cCurrencyDef    =           lParts[ d['cCurrencyDef'   ] ],
+                iUtcPlusOrMinus = int(      lParts[ d['iUtcPlusOrMinus'] ] ) )
         #
-        if lParts[6]:
-            oMarket.iCategoryVer    = int(      lParts[6] )
+        if lParts[ d['iCategoryVer'] ]:
+            oMarket.iCategoryVer= int(      lParts[ d['iCategoryVer'   ] ] )
         #
-        if lParts[8]:
-            oMarket.cUseCategoryID  =           lParts[8]
+        if lParts[ d['cUseCategoryID' ] ]:
+            oMarket.cUseCategoryID=         lParts[ d['cUseCategoryID' ] ]
         #
         oMarket.save()
         
 
 
-def getDictMarket2SiteID():
+def _getDictMarket2SiteID():
     #
     dMarket2SiteID = {}
     #
@@ -359,18 +371,5 @@ def getDictMarket2SiteID():
     #
     return dMarket2SiteID
 
+dMarket2SiteID = _getDictMarket2SiteID()
 
-
-def _getDictMarket2ID():
-    #
-    dMarket2ID = {}
-    #
-    for oMarket in Market.objects.all():
-        #
-        dMarket2ID[ oMarket.cMarket ] = oMarket.id
-        #
-    #
-    return dMarket2ID
-
-
-dMarket2ID = _getDictMarket2ID()
