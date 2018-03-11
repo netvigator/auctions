@@ -30,27 +30,28 @@ class ItemFoundAdmin(admin.ModelAdmin):
     list_display = (
         'iItemNumb', 
         'cTitle', 
-        'cLocation', 
-        'cCountry', 
-        'cMarket', 
+        'tCreate',
         'tTimeBeg', 
         'tTimeEnd', 
-        'bBestOfferable', 
-        'bBuyItNowable', 
+        'cLocation', 
+        'cCountry', 
         'cListingType', 
+        'cMarket', 
+        'bBuyItNowable', 
+        'bBestOfferable', 
         'lLocalCurrency', 
         'lCurrentPrice', 
         'dCurrentPrice', 
         'iCategoryID', 
         'cCategory', 
-        'iCatHeirarchy', 
+        'CatHeirarchy', 
         'i2ndCategoryID', 
         'c2ndCategory', 
-        'i2ndCatHeirarchy',
+        'SecondCatHeir',
         'iConditionID', 
         'cCondition', 
         'cSellingState', 
-        'tCreate' )
+        )
     readonly_fields = (
         'iItemNumb', 
         'cTitle', 
@@ -69,14 +70,27 @@ class ItemFoundAdmin(admin.ModelAdmin):
         'dCurrentPrice', 
         'iCategoryID', 
         'cCategory', 
-        'iCatHeirarchy', 
+        'CatHeirarchy', 
         'i2ndCategoryID', 
         'c2ndCategory',
-        'i2ndCatHeirarchy',
+        'SecondCatHeir',
         'iConditionID', 
         'cCondition', 
         'cSellingState', 
         'tCreate' )
+
+    def CatHeirarchy( self, obj ):
+        #
+        return obj.iCatHeirarchy.cCatHierarchy
+    
+    def SecondCatHeir( self, obj ):
+        #
+        if obj.i2ndCatHeirarchy is None:
+            return None
+        else:
+            return obj.i2ndCatHeirarchy.cCatHierarchy
+    
+    
 
 admin.site.register(Search,SearchAdmin)
 admin.site.register(ItemFound,ItemFoundAdmin)
