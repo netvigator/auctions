@@ -7,7 +7,7 @@ from django.utils.translation   import ugettext_lazy as _
 from ebayinfo.models            import Market
 
 iEbayUSA = Market.objects.get(
-            cMarket = 'EBAY-US' ).id or 1 # on error may need to comment out!
+            cMarket = 'EBAY-US' ).pk or 0 # on error may need to comment out!
 
 # iEbayUSA = 1 # uncomment this one if the above is causing migration error
 
