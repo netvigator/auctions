@@ -1,9 +1,10 @@
-from core.views import ( CreateViewGotCrispy, DeleteViewGotModel,
-                         DetailViewGotModel,  ListViewGotModel,
-                         UpdateViewGotCrispy )
+from core.views             import ( CreateViewGotCrispy, DeleteViewGotModel,
+                                     DetailViewGotModel,  ListViewGotModel,
+                                     UpdateViewGotCrispy )
 
-from .mixins    import SearchViewSuccessPostFormValidMixin
-from .models    import Search
+from .forms                 import ItemFoundForm
+from .mixins                import SearchViewSuccessPostFormValidMixin
+from .models                import Search, ItemFound, UserItemFound
 
 # Create your views here.
 
@@ -60,4 +61,26 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy
         return form
 
 
+
+
+class ItemsFoundIndexView( ListViewGotModel ):  
+    
+    template_name       = 'searching/items_found_index.html'
+    model               = ItemFound
+    context_object_name = 'items_found_list'
+
+
+    def get_queryset(self):
+        return self.model.objects.filter(
+                pk__in = UserItemFound.objects
+                    .filter( iUser = self.request.user )
+                    .values_list( 'iItemFound', flat=True ) )
+
+
+
+class ItemFoundDetailView( DetailViewGotModel ):
+    
+    model           = ItemFound
+    template_name   = 'searching/items_found_detail.html'
+    form_class      = ItemFoundForm
 
