@@ -222,18 +222,20 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         dEbayCatHierarchies = {}
         #
+        iCategoryID = int(
+                dSearchResult.get( 'primaryCategory' ).get( 'categoryId' ) )
+        #
         t = getEbayCategoryHierarchies(
                             dSearchResult, dEbayCatHierarchies )
         #
         iCatHeirarchy, i2ndCatHeirarchy = t
         #
-        iMarketEbayUS = dMarket2SiteID.get( 'EBAY-US' )
+        iMarketEbayUS = dMarket2SiteID.get( dSearchResult.get( 'globalId' ) )
         #
         oCatHierarchy = CategoryHierarchy.objects.get(
-            iCategoryID = 73160,
+            iCategoryID = iCategoryID,
             iMarket     = iMarketEbayUS )
-            
-            
+        #
         lExpect = [ 'Business & Industrial',
                     'Electrical & Test Equipment',
                     'Test, Measurement & Inspection',
@@ -244,20 +246,41 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         self.assertEqual( oCatHierarchy.cCatHierarchy, sExpect )
         #
-        dExpect = { (73160, iMarketEbayUS) : oCatHierarchy.id }
+        dExpect = { (iCategoryID, iMarketEbayUS) : oCatHierarchy.id }
         #
         self.assertEqual( dEbayCatHierarchies, dExpect )
         #
         # try again
         #
-        lOrigCatHeirarchy = dEbayCatHierarchies[ (73160, iMarketEbayUS) ]
+        lOrigCatHeirarchy = dEbayCatHierarchies[ (iCategoryID, iMarketEbayUS) ]
         #
         lCatHeirarchy = getEbayCategoryHierarchies(
                             dSearchResult, dEbayCatHierarchies )
         #
         self.assertIs(
-            dEbayCatHierarchies[ (73160, iMarketEbayUS) ], lOrigCatHeirarchy )
+            dEbayCatHierarchies[ (iCategoryID, iMarketEbayUS) ], lOrigCatHeirarchy )
         
+        # try again a 3rd time
+        #
+        dEbayCatHierarchiesNew = {}
+        #
+        t = getEbayCategoryHierarchies(
+                            dSearchResult, dEbayCatHierarchiesNew )
+        #
+        iCatHeirarchy, i2ndCatHeirarchy = t
+        #
+        lNewCatHeirarchy = dEbayCatHierarchiesNew[ (iCategoryID, iMarketEbayUS) ]
+        #
+        lCatHeirarchy = getEbayCategoryHierarchies(
+                            dSearchResult, dEbayCatHierarchiesNew )
+        #
+        self.assertIsNot( dEbayCatHierarchies, dEbayCatHierarchiesNew )
+        #
+        self.assertEqual( lNewCatHeirarchy, lOrigCatHeirarchy )
+        #
+        self.assertEqual( dEbayCatHierarchies, dEbayCatHierarchiesNew )
+
+
 
     def test_store_item_found(self):
         #
@@ -267,7 +290,21 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         from ..utils    import storeItemFound
         #
-        iItemFound = storeItemFound( dSearchResult )
+        dEbayCatHierarchies = {}
+        #
+        iItemFound = storeItemFound( dSearchResult, dEbayCatHierarchies )
+        #
+        iCategoryID = int(
+                dSearchResult.get( 'primaryCategory' ).get( 'categoryId' ) )
+        #
+        iEbaySiteID = dMarket2SiteID.get( dSearchResult.get( 'globalId' ) )
+        #
+        iCatHeirarchy = CategoryHierarchy.objects.get(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbaySiteID ).pk
+        #
+        self.assertEqual( dEbayCatHierarchies,
+                          { ( iCategoryID, iEbaySiteID ) : iCatHeirarchy } )
         #
         oResultRow = ItemFound.objects.filter(
                             iItemNumb = int(
@@ -281,8 +318,8 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         self.assertEqual( iItemFound, oResultRow.pk )
         #
         oExpectHierarchy = CategoryHierarchy.objects.get(
-                iCategoryID = 73160,
-                iMarket     = dMarket2SiteID.get( 'EBAY-US' ) )
+                iCategoryID = iCategoryID,
+                iMarket     = iEbaySiteID )
         #
         sExpect = oExpectHierarchy.cCatHierarchy
         #
