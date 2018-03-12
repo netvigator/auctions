@@ -1,5 +1,6 @@
 from django.db                  import models
 from django_countries.fields    import CountryField
+from django.urls                import reverse
 
 from models.models              import Model
 from brands.models              import Brand
@@ -70,8 +71,12 @@ class Search(models.Model):
                 kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 
 
+# Item IDs are unique across all eBay sites
+# http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html
+
 class ItemFound(models.Model):
-    iItemNumb       = models.BigIntegerField( 'ebay item number' )
+    iItemNumb       = models.BigIntegerField( 'ebay item number',
+                        primary_key = True )
     cTitle          = models.CharField(
                         'auction title', max_length = 80, db_index = True )
     cLocation       = models.CharField( 'location',
@@ -130,13 +135,20 @@ class ItemFound(models.Model):
                         max_length = 18 )
     tCreate         = models.DateTimeField(
                         'created on', auto_now_add=True, db_index = True )
-    
+
     def __str__(self):
         return self.cTitle
 
     class Meta:
         verbose_name_plural = 'itemsfound'
         db_table            = verbose_name_plural
+
+    def get_absolute_url(self):
+        #
+        return reverse(
+                'searching:item_found_detail',
+                kwargs = { 'pk': self.pk } )
+
 
 
 class UserItemFound(models.Model):
@@ -165,6 +177,7 @@ class UserItemFound(models.Model):
     class Meta:
         verbose_name_plural = 'useritemsfound'
         db_table            = verbose_name_plural
+        unique_together     = ('iItemFound', 'iUser',)
 
 
 '''
