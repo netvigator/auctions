@@ -5,7 +5,7 @@ from models.models              import Model
 from brands.models              import Brand
 from categories.models          import Category
 
-from ebayinfo.models            import CategoryHierarchy
+from ebayinfo.models            import CategoryHierarchy, Market
 
 # Create your models here.
 
@@ -71,8 +71,7 @@ class Search(models.Model):
 
 
 class ItemFound(models.Model):
-    iItemNumb       = models.BigIntegerField(
-                        'ebay item number', primary_key = True )
+    iItemNumb       = models.BigIntegerField( 'ebay item number' )
     cTitle          = models.CharField(
                         'auction title', max_length = 80, db_index = True )
     cLocation       = models.CharField( 'location',
@@ -80,6 +79,8 @@ class ItemFound(models.Model):
     cCountry        = CountryField( "country" )
     cMarket         = models.CharField( 'market Global ID',
                         max_length = 14 )
+    iMarket         = models.ForeignKey( Market,
+                        verbose_name = 'ebay site ID', db_index=True, default = 0 ) # temporary
     cGalleryURL     = models.CharField( 'gallery pic URL',
                         max_length = 88 )
     cEbayItemURL    = models.CharField( 'ebay item URL',
@@ -139,8 +140,7 @@ class ItemFound(models.Model):
 
 
 class UserItemFound(models.Model):
-    iItemNumb       = models.BigIntegerField(
-                        'ebay item number', primary_key = True )
+    iItemFound      = models.ForeignKey( ItemFound )
     dhitstars       = models.DecimalField(
                         'hit stars', max_digits = 3, decimal_places = 2,
                         null = True )
@@ -165,7 +165,6 @@ class UserItemFound(models.Model):
     class Meta:
         verbose_name_plural = 'useritemsfound'
         db_table            = verbose_name_plural
-        unique_together     = (("iItemNumb", "iUser"),)
 
 
 '''
