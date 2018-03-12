@@ -28,4 +28,4 @@ try to implement
 if cannot, remove from requirements/local.txt
 
 
-find where the logs are store!
+find where the logs are stored!
