@@ -304,7 +304,8 @@ def _getCategoryHierarchyID(
 
 def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     #
-    ''' return the ebay category hierarchy for a search find item
+    ''' return the ebay category hierarchy for a search find item category
+    that is, this returns the id of the category hierarchy table row
     note:
     1) items can optionally have a secondary category
     2) this function has a side effect, it updates dEbayCatHierarchies
