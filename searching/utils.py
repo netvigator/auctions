@@ -1,6 +1,9 @@
 from logging            import getLogger
 
 from core.utils_ebay    import getValueOffItemDict
+from ebayinfo.utils     import dMarket2SiteID
+
+from .models            import ItemFound
 
 logger = getLogger(__name__)
 
@@ -15,18 +18,21 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     '''can store a row in either ItemFound or UserItemFound'''
     #
+    from ebayinfo.models import CategoryHierarchy
+    #
     dNewResult = kwargs
     #
     dNewResult.update( { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields } )
     #
-    #if 'iSearch' in dNewResult:
-        #print( "dNewResult['iSearch']:", dNewResult['iSearch'] )
-    #
     form = Form( data = dNewResult )
+    #
+    iSavedRowID = None
     #
     if form.is_valid():
         #
-        form.save()
+        oForm = form.save()
+        #
+        iSavedRowID = oForm.pk
         #
     else:
         #
@@ -37,6 +43,11 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
                 logger.error( k, ' -- ', str(v) )
         else:
             logger.info( 'no form errors at bottom!' )
+        #
+        bGotHierarchy = CategoryHierarchy.objects.filter( pk = kwargs[ 'iCatHeirarchy' ] ).exists()
+        #
+    #
+    return iSavedRowID
 
 
 
@@ -100,13 +111,9 @@ def getSearchResultGenerator( sFile ):
     #
     dResultDict = dResponse[ "searchResult" ][0]
     #
-    # print( 'dResultDict.keys():', list( dResultDict.keys() ) )
-    #
     iThisItem = 0
     #
     lResults = dResultDict.get('item')
-    #
-    # print( 'lResults:', lResults )
     #
     for dItem in lResults:
         #
@@ -222,12 +229,12 @@ sGot = eatFromWithin( 'This is for real (but not yet)', oInParensFinder )
 '''
 
 
-def _getValueOrUser( k, dItem, dFields, oUser = None, iSearch = None ):
+def _getValueUserOrOther( k, dItem, dFields, oUser = None, **kwargs ):
     #
     if k == 'iUser':
         return oUser.id
-    elif k == 'iSearch':
-        return iSearch
+    elif k in kwargs:
+        return kwargs[ k ]
     else:
         return getValueOffItemDict( k, dItem, dFields )
 
@@ -246,6 +253,8 @@ def _getCategoryHierarchyID(
         #
         iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
         #
+        bOkCatHeirarchy = CategoryHierarchy.objects.filter( pk = iCatHeirarchy ).exists()
+        #
     elif CategoryHierarchy.objects.filter( 
                             iCategoryID = iCategoryID,
                             iMarket     = iEbaySiteID ).exists():
@@ -253,6 +262,8 @@ def _getCategoryHierarchyID(
         iCatHeirarchy = CategoryHierarchy.objects.get(
                             iCategoryID = iCategoryID,
                             iMarket     = iEbaySiteID ).pk
+        #
+        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
         #
     else:
         #
@@ -276,19 +287,21 @@ def _getCategoryHierarchyID(
         #
         oCategoryHierarchy = CategoryHierarchy(
                 iCategoryID     = iCategoryID,
-                iMarket         = Market.objects.get( pk = iEbaySiteID ),
+                iMarket         = Market.objects.get(
+                                    iEbaySiteID = iEbaySiteID ),
                 cCatHierarchy   = sCatHeirarchy )
         #
         oCategoryHierarchy.save()
         #
-        iCatHeirarchy = oCategoryHierarchy.id
+        iCatHeirarchy = oCategoryHierarchy.pk
         #
         dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
         #
     #
     return iCatHeirarchy
 
-    
+
+
 def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     #
     ''' return the ebay category hierarchy for a search find item
@@ -297,10 +310,7 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     2) this function has a side effect, it updates dEbayCatHierarchies
     '''
     #
-    from copy               import copy
-    #
     from ebayinfo.models    import EbayCategory
-    from ebayinfo.utils     import dMarket2SiteID
     #
     iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
     #
@@ -326,59 +336,61 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     return iCatHeirarchy, i2ndCatHeirarchy
 
 
+
 def storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
-    from .forms             import ItemFoundForm
-    from .models            import ItemFound
-    
-    from searching          import dItemFoundFields # in __init__.py
+    from .forms         import ItemFoundForm
     #
-    sItemID         = dItem['itemId']
+    from searching      import dItemFoundFields # in __init__.py
     #
-    bAlreadyInTable = ( ItemFound.objects
-                        .filter( iItemNumb = int( sItemID ) ).exists() )
+    from ebayinfo.models import CategoryHierarchy
+    #
+    #
+    iItemID         = int(            dItem['itemId'  ] )
+    iSiteID         = dMarket2SiteID[ dItem['globalId'] ]
+    #
+    bAlreadyInTable = ItemFound.objects.filter( iItemNumb = iItemID ).exists()
     #
     if bAlreadyInTable:
         #
         raise ItemAlreadyInTable(
-                'ItemID %s is already in the ItemFound table' % sItemID )
+                'ItemID %s is already in the ItemFound table' % iItemID )
         #
     #
-    tCatHeirarchies = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
+    iCount = CategoryHierarchy.objects.all().count()
     #
+    tCatHeirarchies = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
     #
     return storeEbayInfo(
             dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
             iCatHeirarchy   = tCatHeirarchies[0],
-            i2ndCatHeirarchy= tCatHeirarchies[1] )
+            i2ndCatHeirarchy= tCatHeirarchies[1],
+            iMarket         = iSiteID )
 
 
 
-def storeUserItemFound( dItem, oUser, iSearch ):
-    #
-    from django.db.models import Q
+def storeUserItemFound( dItem, iItemFound, oUser, iSearch ):
     #
     from .forms     import UserItemFoundForm
     from .models    import UserItemFound
     from searching  import dUserItemFoundFields # in __init__.py
     #
-    sItemID  = dItem['itemId']
-    #
-    bAlreadyInTable = ( UserItemFound.objects
-                        .filter( iItemNumb = int( sItemID ),
-                                 iUser     = oUser )
-                        .exists() )
+    bAlreadyInTable = UserItemFound.objects.filter(
+                            iItemFound  = iItemFound,
+                            iUser       = oUser ).exists()
     #
     if bAlreadyInTable:
         #
         raise ItemAlreadyInTable(
-                'ItemID %s is already in the UserItemFound table for %s' %
-                ( sItemID, oUser.username ) )
+                'ItemFound %s is already in the UserItemFound table for %s' %
+                ( iItemFound, oUser.username ) )
         #
     #
     return storeEbayInfo(
-            dItem, dUserItemFoundFields, UserItemFoundForm, _getValueOrUser,
-            oUser = oUser, iSearch = iSearch )
+            dItem, dUserItemFoundFields, UserItemFoundForm, _getValueUserOrOther,
+            oUser       = oUser,
+            iItemFound  = iItemFound,
+            iSearch     = iSearch )
 
 
 
@@ -417,20 +429,27 @@ def doSearch( iSearchID = None, sFileName = None ):
         #
         iItems += 1
         #
+        iItemFound = None
+        #
         try:
-            storeItemFound( dItem, dEbayCatHierarchies )
+            iItemFound = storeItemFound( dItem, dEbayCatHierarchies )
             iStoreItems += 1
         except ItemAlreadyInTable:
-            pass
+            #
+            iItemFound      = int(            dItem['itemId'  ] )
+            #
         except ValueError as e:
+            #
             logger.error( 'ValueError: %s | %s' %
                           ( str(e), repr(dItem) ) )
         #
-        try:
-            storeUserItemFound( dItem, oUser, iSearch )
-            iStoreUsers += 1
-        except ItemAlreadyInTable:
-            pass
+        if iItemFound is not None:
+            #
+            try:
+                storeUserItemFound( dItem, iItemFound, oUser, iSearch )
+                iStoreUsers += 1
+            except ItemAlreadyInTable:
+                pass
         #
     #
     return iItems, iStoreItems, iStoreUsers
