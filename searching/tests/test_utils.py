@@ -267,16 +267,18 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         from ..utils    import storeItemFound
         #
-        storeItemFound( dSearchResult )
+        iItemFound = storeItemFound( dSearchResult )
         #
         oResultRow = ItemFound.objects.filter(
-                                iItemNumb = int(
+                            iItemNumb = int(
                                     dSearchResult['itemId'] ) ).first()
         #
         self.assertIsNotNone( oResultRow )
         #
         self.assertEqual( oResultRow.iItemNumb,
                          int( dSearchResult['itemId'] ) )
+        #
+        self.assertEqual( iItemFound, oResultRow.pk )
         #
         oExpectHierarchy = CategoryHierarchy.objects.get(
                 iCategoryID = 73160,
@@ -301,39 +303,48 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
 
 
 
-class storeUserItemFoundTests(BaseUserTestCase):
+class storeUserItemFoundTests(getEbayCategoriesSetUp):
     #
     ''' class for testing storeUserItemFound() '''
-        
+
     def test_store_User_item_found(self):
         #
         ''' test storeUserItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
-        from ..utils    import storeUserItemFound
+        from ..utils    import storeUserItemFound, storeItemFound
         #
+        class ThisShouldNotBeHappening( Exception ): pass
+
         sSearch         = "My clever search 1"
         self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
         self.oSearch.save()
         #
-        storeUserItemFound( dSearchResult, self.user1, self.oSearch.id )
+        iItemFound = storeItemFound( dSearchResult, {} )
+        #
+        if iItemFound is None:
+            raise ThisShouldNotBeHappening
+        #
+        try:
+            storeUserItemFound(
+                    dSearchResult, iItemFound, self.user1, self.oSearch.id )
+        except ItemAlreadyInTable:
+            pass
         #
         oResultRow = UserItemFound.objects.filter(
-                                iItemNumb = int(
-                                    dSearchResult['itemId'] ) ).first()
+                            iItemFound  = iItemFound,
+                            iUser       = self.user1 ).first()
         #
         self.assertIsNotNone( oResultRow )
         #
-        self.assertEqual( oResultRow.iItemNumb,
-                         int( dSearchResult['itemId'] ) )
-        #
         try: # again
-            storeUserItemFound( dSearchResult, self.user1, self.oSearch.id )
+            storeUserItemFound(
+                    dSearchResult, iItemFound, self.user1, self.oSearch.id )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
-                    'ItemID %s is already in the UserItemFound table for %s' %
-                    ( dSearchResult['itemId'], self.user1.username ) )
+                    'ItemFound %s is already in the UserItemFound table for %s' %
+                    ( iItemFound, self.user1.username ) )
         else:
             self.assertTrue( False ) # exception should hve been raised
 
