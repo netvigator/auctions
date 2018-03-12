@@ -15,6 +15,8 @@ dItemFoundFields = d(
     cLocation       = d( t = ( 'location',) ),
     cCountry        = d( t = ( 'country',) ),
     cMarket         = d( t = ( 'globalId',) ),
+    iMarket         = d( t = ( 'iMarket',), # must use cMarket to look this up
+                         bCalculate = True ),
     cGalleryURL     = d( t = ( 'galleryURL',) ),
     cEbayItemURL    = d( t = ( 'viewItemURL',) ),
     tTimeBeg        = d( t = ( 'listingInfo','startTime'),
@@ -37,7 +39,7 @@ dItemFoundFields = d(
     cCategory       = d( t = ( 'primaryCategory','categoryName') ),
 
     iCatHeirarchy   = d( t = ( 'iCatHeirarchy',), # not from ebay, calculated
-                         bOptional = True ),
+                         bCalculate = True ),
 
     i2ndCategoryID  = d( t = ( 'secondaryCategory','categoryId'),
                          f = int,
@@ -45,7 +47,7 @@ dItemFoundFields = d(
     c2ndCategory    = d( t = ( 'secondaryCategory','categoryName'),
                          bOptional = True ),
     i2ndCatHeirarchy= d( t = ( 'i2ndCatHeirarchy',), # not from ebay, calculated
-                         bOptional = True ),
+                         bCalculate = True ),
 
     iConditionID    = d( t = ( 'condition','conditionId'),
                          f = int,
@@ -56,7 +58,7 @@ dItemFoundFields = d(
 
 
 dUserItemFoundFields = d(
-    iItemNumb       = d( t = ( 'itemId',),
+    iItemFound      = d( t = ( 'itemId',),
                          f = int ),
     iSearch         = {},
     iUser           = {} )
