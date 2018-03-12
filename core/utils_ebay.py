@@ -14,11 +14,15 @@ logger = getLogger(__name__)
 
 _dBlankValue = { None: '', int: 0 }
 
+
 def getValueOffItemDict( k, dItem, dFields, **kwargs ):
     #
     t = dFields[ k ][ 't' ] # t is for tuple (of keys)
     #
-    bOptional = dFields[ k ].get( 'bOptional', False )
+    bOptional = dFields[ k ].get( 'bOptional',  False )
+    bCalculate= dFields[ k ].get( 'bCalculate', False )
+    #
+    bNotInItemDict = bOptional or bCalculate
     #
     f = dFields[ k ].get( 'f' ) # f is for function
     #
@@ -33,7 +37,7 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         #
     except KeyError as e:
         #
-        if bOptional and t[0] in kwargs:
+        if bNotInItemDict and t[0] in kwargs:
             #
             uValue  = kwargs[ t[0] ]
             #
