@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Auction Shopping Bot | Items Found{% endblock %}
+
+{% block content %} 
+
+    <h1>Items Found</h1>
+
+    {% if items_found_list %}
+        <table>
+        <tr>
+        <th ALIGN=LEFT>ebay item number</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th ALIGN=LEFT>auction title</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th ALIGN=LEFT>cMarket</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th ALIGN=LEFT>ending date/time</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th ALIGN=LEFT>created on</th>
+        </tr>
+        {% for item in items_found_list %}
+            <tr>
+            <td><a href="{{ item.get_absolute_url }}/">{{ item.iItemNumb }}</a></td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ item.cTitle|truncatechars:65 }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ item.cMarket }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ item.tTimeEnd }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ item.tCreate }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p/>
+        <p>No items have been found.</p>
+    {% endif %}
+
+{% endblock %}

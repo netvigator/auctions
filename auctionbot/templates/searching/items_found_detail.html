@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load field_name %}
+
+{% block title %}Item Found {{ object.cTitle }}{% endblock %}
+
+{% block content %}
+    <h1>{{ object }} Details</h1>
+
+    
+    <table RULES=ROWS CELLPADDING=10>
+    <TR>
+        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cTitle}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'iItemNumb' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.iItemNumb }}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cLocation' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cLocation}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cCountry' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cCountry}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'cMarket' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.cMarket }}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'iMarket' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iMarket}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cGalleryURL' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cGalleryURL}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cEbayItemURL' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cEbayItemURL}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tTimeBeg' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tTimeBeg|date:"d M Y  P"}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tTimeEnd' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tTimeEnd|date:"d M Y  P"}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bBestOfferable' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bBestOfferable|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bBuyItNowable' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{ object.bBuyItNowable|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cListingType' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cListingType}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'lLocalCurrency' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.lLocalCurrency}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'lCurrentPrice' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.lCurrentPrice}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'dCurrentPrice' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.dCurrentPrice}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'iCategoryID' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iCategoryID}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cCategory' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cCategory}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'iCatHeirarchy' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iCatHeirarchy.cCatHierarchy}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'i2ndCategoryID' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.i2ndCategoryID}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'c2ndCategory' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.c2ndCategory}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'i2ndCatHeirarchy' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.i2ndCatHeirarchy.cCatHierarchy}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'iConditionID' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.iConditionID}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cCondition' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cCondition}}</TD>
+    </TR>
+    <TR>
+        <TD VALIGN=TOP>{% field_name model 'cSellingState' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.cSellingState}}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'tCreate' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
+    </TR>
+    </TR>
+    </table>
+    
+    <p>
+    
+{% endblock %}
