@@ -4,7 +4,8 @@
 {% block title %}Item Found {{ object.cTitle }}{% endblock %}
 
 {% block content %}
-    <h1>{{ object }} Details</h1>
+
+    <h1>Found {{ object }} - Details</h1>
 
     
     <table RULES=ROWS CELLPADDING=10>
@@ -41,7 +42,7 @@
     <TR>
         <TD VALIGN=TOP>{% field_name model 'cGalleryURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cGalleryURL}}</TD>
+        <TD VALIGN=TOP><img src="{{ object.cGalleryURL }}" /></TD>
     </TR>
     <TR>
         <TD VALIGN=TOP>{% field_name model 'cEbayItemURL' %}</TD>
