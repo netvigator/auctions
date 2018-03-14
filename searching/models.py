@@ -2,6 +2,8 @@ from django.db                  import models
 from django_countries.fields    import CountryField
 from django.urls                import reverse
 
+from core.models                import IntegerRangeField
+
 from models.models              import Model
 from brands.models              import Brand
 from categories.models          import Category
@@ -154,10 +156,10 @@ class ItemFound(models.Model):
 
 
 class UserItemFound(models.Model):
-    iItemFound      = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
-    dhitstars       = models.DecimalField(
-                        'hit stars', max_digits = 3, decimal_places = 2,
-                        null = True )
+    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
+    iHitStars       = IntegerRangeField(
+                        'hit stars', null = True,
+                        min_value = 0, max_value = 1000, default = 0 )
     bitemhit        = models.BooleanField( 'item of interest?',
                         default = False )    
     tlook4hits      = models.DateTimeField(
@@ -171,6 +173,8 @@ class UserItemFound(models.Model):
                         on_delete=models.CASCADE )
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
+    cWhereCategory  = models.CharField( 'where category was found',
+                        max_length = 10 ) # title heirarchy1 heirarchy2
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField(
@@ -188,10 +192,10 @@ class UserItemFound(models.Model):
 
 
 class ItemFoundTemp(models.Model):
-    iItemFound      = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
-    dhitstars       = models.DecimalField(
-                        'hit stars', max_digits = 3, decimal_places = 2,
-                        null = True )
+    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
+    iHitStars       = IntegerRangeField(
+                        'hit stars', null = True,
+                        min_value = 0, max_value = 1000, default = 0 )
     iSearch         = models.ForeignKey( Search,
                         verbose_name = 'Search that first found this item',
                         on_delete=models.CASCADE )
@@ -201,6 +205,8 @@ class ItemFoundTemp(models.Model):
                         on_delete=models.CASCADE )
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
+    cWhereCategory  = models.CharField( 'where category was found',
+                        max_length = 10 ) # title heirarchy1 heirarchy2
 
     def __str__(self):
         return 'ItemFound - %s' % self.iItemNumb
