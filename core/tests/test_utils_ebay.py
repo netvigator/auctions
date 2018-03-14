@@ -134,7 +134,7 @@ class getFindersTest( setUpBrandsCategoriesModels ):
 
     def test_getModelRegExFinders(self):
         #
-        t = getModelRegExFinders( self.oModel.id )
+        t = getModelRegExFinders( self.oModel )
         #
         findTitle, findExclude, findKeyWords = t
         #
@@ -166,7 +166,7 @@ class getFindersTest( setUpBrandsCategoriesModels ):
 
     def test_getCategoryRegExFinders(self):
         #
-        t = getCategoryRegExFinders( self.oCategory.id )
+        t = getCategoryRegExFinders( self.oCategory )
         #
         findTitle, findExclude, findKeyWords = t
         #
@@ -198,7 +198,7 @@ class getFindersTest( setUpBrandsCategoriesModels ):
 
     def test_getBrandRegExFinders(self):
         #
-        t = getBrandRegExFinders( self.oBrand.id )
+        t = getBrandRegExFinders( self.oBrand )
         #
         findTitle, findExclude = t
         #
