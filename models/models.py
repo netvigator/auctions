@@ -65,8 +65,10 @@ class Model( models.Model ):
                     'you do want them' )
     cComment        = models.TextField( 'comments', null = True, blank = True )
     iBrand          = models.ForeignKey( Brand, verbose_name = 'Brand',
-                                        null = True, blank = True )
-    iCategory       = models.ForeignKey( Category, verbose_name = 'Category' )
+                            null = True, blank = True,
+                            on_delete=models.CASCADE )
+    iCategory       = models.ForeignKey( Category, verbose_name = 'Category',
+                            on_delete=models.CASCADE )
     
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',

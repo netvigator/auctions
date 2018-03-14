@@ -38,7 +38,7 @@ class Category(models.Model):
     bComponent      = models.BooleanField('component?', default = False)
     iFamily         = models.ForeignKey( 'self',
                         verbose_name = 'category family',
-                        null = True, blank = True,
+                        null = True, blank = True, on_delete=models.CASCADE,
         help_text = 'you can group some categories into families, '
                     'choose a category to be the lead' )
     cExcludeIf      = models.TextField(
@@ -83,10 +83,13 @@ class Category(models.Model):
 
 
 class BrandCategory(models.Model):
-    iBrand          = models.ForeignKey( Brand )
-    iCategory       = models.ForeignKey( Category )
+    iBrand          = models.ForeignKey( Brand,
+                            on_delete=models.CASCADE )
+    iCategory       = models.ForeignKey( Category,
+                            on_delete=models.CASCADE )
     bWant           = models.BooleanField('want this combination?', default = True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
+                            on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     
     class Meta:

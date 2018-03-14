@@ -93,7 +93,8 @@ class EbayCategory(MPTTModel):
                         'category tree version' )
     #models.ForeignKey( Market, PositiveIntegerField
     iMarket         = models.ForeignKey( Market,
-                        verbose_name = 'ebay market', db_index=True )
+                        verbose_name = 'ebay market', db_index=True,
+                        on_delete=models.CASCADE )
     iSupercededBy   = models.PositiveIntegerField(
                         'superceded by this ebay category', null = True )
     parent          = TreeForeignKey( 'self',
@@ -134,7 +135,8 @@ class CategoryHierarchy(models.Model):
     iCategoryID     = models.PositiveIntegerField( 'ebay category number',
                         db_index=True )
     iMarket         = models.ForeignKey( Market,
-                        verbose_name = 'ebay market', db_index=True )
+                        verbose_name = 'ebay market', db_index=True,
+                        on_delete=models.CASCADE )
     cCatHierarchy   = models.TextField( 'category hierarchy',
                         null = True, blank = True)
     

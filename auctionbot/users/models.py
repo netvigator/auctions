@@ -18,7 +18,7 @@ class User(AbstractUser):
     #models.ForeignKey( Market, models.PositiveIntegerField( 
     iMarket     = models.ForeignKey( Market,
                     verbose_name = 'ebay market (default)',
-                    default = iEbayUSA )
+                    default = iEbayUSA, on_delete=models.CASCADE )
 
     '''for testing, it is a big challenge to set default iMarket from markets table,
     because when testing, markets table starts out empty'''
