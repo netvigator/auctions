@@ -134,9 +134,7 @@ def getRegExObjs( cTitle, cLookFor, cExcludeIf, cKeyWords = None ):
 
 
 
-def _getTableRegExFinders( iModelID, djModel ):
-    #
-    oDjModel = djModel.objects.get( pk = iModelID )
+def _getTableRegExFinders( oDjModel ):
     #
     if not oDjModel.oRegExLook4Title:
         #
@@ -161,22 +159,20 @@ def _getTableRegExFinders( iModelID, djModel ):
 
 
 
-def getModelRegExFinders( iModelID ):
+def getModelRegExFinders( oModel ):
     #
-    return _getTableRegExFinders( iModelID, Model )
+    return _getTableRegExFinders( oModel )
 
 
 
-def getCategoryRegExFinders( iCategoryID ):
+def getCategoryRegExFinders( oCategory ):
     #
-    return _getTableRegExFinders( iCategoryID, Category )
+    return _getTableRegExFinders( oCategory )
 
 
 
 
-def getBrandRegExFinders( iBrandID ):
-    #
-    oBrand = Brand.objects.get( pk = iBrandID )
+def getBrandRegExFinders( oBrand ):
     #
     if not oBrand.oRegExLook4Title:
         #
