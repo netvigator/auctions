@@ -3,7 +3,7 @@ from logging            import getLogger
 from core.utils_ebay    import getValueOffItemDict
 from ebayinfo.utils     import dMarket2SiteID
 
-from .models            import ItemFound
+from .models            import ItemFound, UserItemFound
 
 logger = getLogger(__name__)
 
@@ -52,6 +52,10 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
 
 
 def getSearchResultGenerator( sFile ):
+    #
+    ''' search saves results to file, this returns an interator to set through
+    in __init__.py: sResultFileNamePattern = 'Search_%s_%s_ID_%s.json'
+    '''
     #
     from json           import load
     #
@@ -129,6 +133,8 @@ def getSearchResultGenerator( sFile ):
 
 
 def getSearchResults( iSearchID = None ):
+    #
+    '''sends search request to the ebay API, stores the response in /tmp'''
     #
     from os.path                import join
     #
@@ -373,7 +379,6 @@ def storeItemFound( dItem, dEbayCatHierarchies = {} ):
 def storeUserItemFound( dItem, iItemFound, oUser, iSearch ):
     #
     from .forms     import UserItemFoundForm
-    from .models    import UserItemFound
     from searching  import dUserItemFoundFields # in __init__.py
     #
     bAlreadyInTable = UserItemFound.objects.filter(
@@ -397,7 +402,9 @@ def storeUserItemFound( dItem, iItemFound, oUser, iSearch ):
 
 def doSearch( iSearchID = None, sFileName = None ):
     #
-    '''pass Search ID to search ebay via the api, or pass
+    '''put search results in the database
+    can do a search, or use the results file from completed ebay API request
+    pass Search ID to search ebay via the api, or pass
     a file name to process the results of a prior search'''
     #
     from django.contrib.auth import get_user_model
@@ -459,6 +466,8 @@ def doSearch( iSearchID = None, sFileName = None ):
 
 def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     #
+    '''high level script, does a search, catches exceptions, logs errors'''
+    #
     iItems = iStoreItems = iStoreUsers = 0
     #
     try:
@@ -471,3 +480,190 @@ def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     #
     return iItems, iStoreItems, iStoreUsers 
 
+
+
+def _includeNotExclude( s, findExclude ):
+    #
+    return findExclude is None or not findExclude( s )
+
+def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
+    #
+    return findKeyWords is None or findKeyWords( s )
+
+def whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
+    #
+    if bInTitle:
+        #
+        sReturn = 'title'
+        #
+    elif bInHeirarchy1:
+        #
+        sReturn = 'heirarchy1'
+        #
+    else: # bInHeirarchy2 
+        #
+        sReturn = 'heirarchy2'
+        #
+    #
+    return sReturn
+
+
+def findSearchHits( oUser ):
+    #
+    from brands.models      import Brand
+    from categories.models  import Category
+    from models.models      import Model
+    #
+    from core.utils_ebay    import ( getBrandRegExFinders,
+                                     getCategoryRegExFinders,
+                                     getModelRegExFinders )
+    #
+    from .models            import ItemFoundTemp
+    #
+    ItemFoundTemp.objects.all().delete()
+    #
+    oItemQuerySet = ItemFound.objects.filter(
+                pk__in = UserItemFound.objects
+                    .filter( iUser = oUser,
+                             tlook4hits__isnull = True )
+                    .values_list( 'iItemFound', flat=True ) )
+    #
+    for oItem in oItemQuerySet:
+        #
+        oUserItem = UserItemFound.objects.get( 
+                iItemNumb   = oItem.iItemNumb,
+                iUser       = oUser )
+        #
+        oItemFoundTemp = None
+        #
+        oCategoryIter = Category.objects.filter( iUser = oUser )
+        #
+        for oCategory in oCategoryIter:
+            #
+            t = getCategoryRegExFinders( oCategory )
+            #
+            findTitle, findExclude, findKeyWords = t
+            #
+            def foundItem( s ):
+                #
+                return    ( findTitle( s ) and
+                            _includeNotExclude( s, findExclude ) and
+                            _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+            #
+            # the following are short circuiting --
+            # if one is True, the following will be True
+            # and the string will not be searched
+            #
+            bInTitle       = foundItem( oItem.cTitle )
+            #
+            bInHeirarchy1  = ( # will be True if bInTitle is True
+                    bInTitle or
+                    foundItem( oItem.iCatHeirarchy.cCatHierarchy ) )
+            #
+            bInHeirarchy2  = ( # will be True if either are True
+                    bInTitle or
+                    bInHeirarchy1 or
+                    foundItem( oItem.i2ndCatHeirarchy.cCatHierarchy ) )
+            #
+            if bInHeirarchy2: # bInTitle or bInHeirarchy1 or bInHeirarchy2
+                #
+                sWhich = whichGetsCredit(
+                            bInTitle, bInHeirarchy1, bInHeirarchy2 )
+                #
+                oItemFoundTemp = ItemFoundTemp(
+                        iItemNumb       = oItem.iItemNumb,
+                        iHitStars       = oCategory.iStars,
+                        iSearch         = oUserItem,iSearch,
+                        iCategory       = oCategory.pk,
+                        cWhereCategory  = sWhich )
+                #
+                oItemFoundTemp.save()
+                #
+            #
+        #
+        oBrandQuerySet = Brand.objects.filter(
+                iUser = oUser ).order_by( '-iStars' )
+        #
+        bFoundBrand = False
+        #
+        for oBrand in oBrandQuerySet:
+            #
+            t = getBrandRegExFinders( oBrand )
+            #
+            findTitle, findExclude = t
+            #
+            def foundItem( s ):
+                #
+                return    ( findTitle( s ) and
+                            _includeNotExclude( s, findExclude ) )
+            #
+            bInTitle = foundItem( oItem.cTitle )
+            #
+            if bInTitle:
+                #
+                bFoundBrand = True
+                #
+                if oItemFoundTemp is None:
+                    #
+                    oItemFoundTemp = ItemFoundTemp(
+                            iItemNumb       = oItem.iItemNumb,
+                            iBrand          = oBrand,
+                            iHitStars       = oBrand.iStars,
+                            iSearch         = oUserItem.iSearch,
+                            iCategory       = oBrand.pk )
+                    #
+                    oItemFoundTemp.save()
+                    #
+                else:
+                    #
+                    oItemFoundTemp.iHitStars *= oBrand.iStars
+                    oItemFoundTemp.iBrand     = oBrand
+                    #
+                    oItemFoundTemp.save()
+                #
+            #
+            break # maybe keep looking?
+            #
+        #
+        if oItemFoundTemp is None: continue
+        #
+        if bFoundBrand:
+            #
+            oModelQuerySet = Model.objects.filter(
+                    iUser = oUser,
+                    iBrand = oBrand ).order_by( '-iStars' )
+            #
+        else:
+            #
+            oModelQuerySet = Model.objects.filter(
+                    iUser = oUser ).order_by( '-iStars' )
+            #
+        #
+        for oModel in oModelQuerySet:
+            #
+            t = getModelRegExFinders( oModel )
+            #
+            findTitle, findExclude, findKeyWords = t
+            #
+            def foundItem( s ):
+                #
+                return    ( findTitle( s ) and
+                            _includeNotExclude( s, findExclude ) and
+                            _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+            #
+            bInTitle = foundItem( oItem.cTitle )
+            #
+            if bInTitle:
+                #
+                oItemFoundTemp.iHitStars *= oModel.iStars
+                oItemFoundTemp.iModel     = oModel
+                #
+                oItemFoundTemp.save()
+                #
+            #
+            break
+            #
+        #
+    
+
+    
