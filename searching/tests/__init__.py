@@ -530,7 +530,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["372236489965"],
-              "title":[" VINTAGE NOS PAIR 1 1\/8\" CHERRY AMBER CATALIN OR BAKELITE DICE IOB 76.6 G TW "],
+              "title":[" VINTAGE NOS PAIR 1 1\/8\\\" CHERRY AMBER CATALIN OR BAKELITE DICE IOB 76.6 G TW "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "secondaryCategory":[{"categoryId":["7317"],"categoryName":["Game Pieces, Parts"]}],
@@ -658,7 +658,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["112848108338"],
-              "title":["Vintage Bakelite Red Catalin Androck Strainer 12\" USA Stainless Steel Wire Mesh"],
+              "title":["Vintage Bakelite Red Catalin Androck Strainer 12\\" USA Stainless Steel Wire Mesh"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/myUfIOwm6qtvocJxVR2Mctw\/140.jpg"],
@@ -769,7 +769,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["273047508323"],
-              "title":["4 CATALIN FURNITURE HANDLES VINTAGE ART DECO BAKELITE AMBER 63 Grams 2.75\" & 4\""],
+              "title":["4 CATALIN FURNITURE HANDLES VINTAGE ART DECO BAKELITE AMBER 63 Grams 2.75\\" & 4\\""],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mihXCQI3W3KWbL39Pb_6d3A\/140.jpg"],
@@ -1008,7 +1008,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["352290963265"],
-              "title":["Bakelite Catalin 2.72\" x 10.25\" long 865 grams huge rod tube mottled brown USA"],
+              "title":["Bakelite Catalin 2.72\\" x 10.25\\" long 865 grams huge rod tube mottled brown USA"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/myEttsCf2lpYvKIcARuc7Fg\/140.jpg"],
@@ -1104,7 +1104,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["332552628112"],
-              "title":["Bakelite Catalin rod 1.12\" by 9-1\/4\" apple juice 190 gr Katalin USA"],
+              "title":["Bakelite Catalin rod 1.12\\" by 9-1\/4\\" apple juice 190 gr Katalin USA"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/m0V-IS8UP9sd1qMNwnkjmWg\/140.jpg"],
@@ -1184,7 +1184,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
             { "itemId":["332546961703"],
-              "title":["Bakelite Catalin rod 1-1\/2\" x 6-3\/4\" polished Prystal green 294 gr USA vintage"],
+              "title":["Bakelite Catalin rod 1-1\/2\\" x 6-3\/4\\" polished Prystal green 294 gr USA vintage"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqN1kOUA1FQaZBjARFV_Q0Q\/140.jpg"],
@@ -1376,7 +1376,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["401354589892"],
-              "title":["Emerson \"Little Miracle\" Marbled Green White and Yellow Catalin Tube Radio AX235"],
+              "title":["Emerson \\"Little Miracle\\" Marbled Green White and Yellow Catalin Tube Radio AX235"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
               "secondaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -1393,7 +1393,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["122999012619"],
-              "title":["gf Bakelite Catalin Reddish-Brown Swirl Poker Chip Holder 4\" x 5\""],
+              "title":["gf Bakelite Catalin Reddish-Brown Swirl Poker Chip Holder 4\\" x 5\\""],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/msmUYt-2ae16ABC6cZMjhnQ\/140.jpg"],
@@ -1585,7 +1585,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["282346720543"],
-              "title":["VINTAGE 10 CATALIN BACKGAMMON Marbleize Brown 1 3\/16\" (30mm)Diameter by BAKELITE"],
+              "title":["VINTAGE 10 CATALIN BACKGAMMON Marbleize Brown 1 3\/16\\" (30mm)Diameter by BAKELITE"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mutufZc2Z1uGAHN5uF6Ej8w\/140.jpg"],
@@ -1601,7 +1601,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["162924174185"],
-              "title":["EX!DISNEY1930's\"MICKEY MOUSE\" BUTTERSCOTCH VS. CATALIN PLASTIC PENCIL SHARPENER"],
+              "title":["EX!DISNEY1930's\\"MICKEY MOUSE\\" BUTTERSCOTCH VS. CATALIN PLASTIC PENCIL SHARPENER"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["140"],"categoryName":["Other Vintage Disneyana"]}],
               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mcHJlqjBW7hqfSzB5aPCtYQ\/140.jpg"],
@@ -1712,7 +1712,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
             { "itemId":["142707635529"],
-              "title":["Vintage Backgammon Set BAKELITE\/CATALIN 1.5\" x 3\/8\" Brown Swirl RARE COLOR Combo"],
+              "title":["Vintage Backgammon Set BAKELITE\/CATALIN 1.5\\" x 3\/8\\" Brown Swirl RARE COLOR Combo"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["19100"],"categoryName":["Vintage Manufacture"]}],
               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mY2up__wlaBUE5JcU4UDusg\/140.jpg"],
@@ -1792,7 +1792,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
             { "itemId":["162927217862"],
-              "title":["Vintage Catalin Bakelite Galloping Bowling Dice 3\/4\"  Case And Score Sheets.rare"],
+              "title":["Vintage Catalin Bakelite Galloping Bowling Dice 3\/4\\"  Case And Score Sheets.rare"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["10909"],"categoryName":["Dice"]}],
               "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mketMlZ1Eu0w8jwf5D9UMjA\/140.jpg"],
@@ -1824,7 +1824,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
  
             { "itemId":["122988243137"],
-              "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\" across x 1\/8\" thick Beautiful"],
+              "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["150119"],"categoryName":["Poker Chips"]}],
               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mz4F-zq_wX3gSt4nGGmHNLw\/140.jpg"],
