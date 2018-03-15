@@ -10,6 +10,8 @@ class ModelFormValidatesTitle( ModelForm ):
     #
     def __init__( self, *args, **kwargs ):
         #
+        if 'user' in kwargs: self.user = kwargs.pop('user')
+        #
         super( ModelFormValidatesTitle, self ).__init__( *args, **kwargs )
         #
         self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
@@ -17,15 +19,22 @@ class ModelFormValidatesTitle( ModelForm ):
 
     def gotTitleAready( self, cTitle ):
         #
+        if hasattr( self, 'user' ):
+            oUser = self.user
+        elif hasattr( self, 'request' ):
+            oUser = self.request.user
+        else:
+            oUser = self.instance.user
+        #
         if ( self.Meta.model.objects.filter(
-                iUser           = self.request.user ).filter(
+                iUser           = oUser ).filter(
                 cTitle__iexact  = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" already exists' % cTitle,
                         code = 'title already exists' )
         #
         if ( self.Meta.model.objects.filter(
-                iUser               = self.request.user ).filter(
+                iUser               = oUser ).filter(
                 cLookFor__icontains = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" is in Look For' % cTitle,
