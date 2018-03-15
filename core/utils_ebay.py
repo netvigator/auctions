@@ -78,9 +78,9 @@ def _getTitleRegExObj( cTitle, cLookFor = '' ):
     #
     sLook4Title = getWhatsLeft( cTitle )
     #
-    cLookFor = cLookFor.strip()
-    #
     if cLookFor:
+        #
+        cLookFor = cLookFor.strip()
         #
         sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
         #
@@ -153,9 +153,20 @@ def _getTableRegExFinders( oDjModel ):
         oDjModel.save()
         #
     #
-    return (    oDjModel.oRegExLook4Title.search,
-                oDjModel.oRegExExclude.search,
-                oDjModel.oRegExKeyWords.search )
+    oReturnLook4Title = oDjModel.oRegExLook4Title.search
+    #
+    oReturnExclude = oReturnKeyWords = None
+    #
+    if oDjModel.oRegExExclude is not None:
+        #
+        oReturnExclude = oDjModel.oRegExExclude.search
+        #
+    if oDjModel.oRegExKeyWords is not None:
+        #
+        oReturnKeyWords = oDjModel.oRegExKeyWords.search
+        #
+    #    
+    return oReturnLook4Title, oReturnExclude, oReturnKeyWords
 
 
 
@@ -189,7 +200,13 @@ def getBrandRegExFinders( oBrand ):
         oBrand.save()
         #
     #
-    return (    oBrand.oRegExLook4Title.search,
-                oBrand.oRegExExclude.search )
+    oReturnExclude = None
+    #
+    if oBrand.oRegExExclude is not None:
+        #
+        oReturnExclude = oBrand.oRegExExclude.search
+        #
+    #
+    return oBrand.oRegExLook4Title.search, oReturnExclude
 
 
