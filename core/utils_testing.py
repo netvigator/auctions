@@ -14,7 +14,25 @@ from ebayinfo.models        import EbayCategory, Market
 def getDefaultMarket():
     
     if (        Market.objects.count() == 0 or
-            not Market.objects.filter( pk = 1 ).exists() ):
+            not Market.objects.filter( pk = 3 ).exists() ):
+        #
+        market = Market()
+        #
+        market.cMarket     = 'EBAY-GB'
+        market.cCountry    = 'UK'
+        market.iEbaySiteID = 3
+        market.iCategoryVer= 108
+        market.cCurrencyDef= 'GBP'
+        market.cLanguage   = 'en-UK'
+        market.save()
+        #
+    else:
+        #
+        market = Market.objects.get( pk = 0 )
+        #
+    #
+    if (        Market.objects.count() == 0 or
+            not Market.objects.filter( pk = 0 ).exists() ):
         #
         market = Market()
         #
