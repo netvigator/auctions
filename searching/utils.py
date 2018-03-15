@@ -400,7 +400,7 @@ def storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
 
 
 
-def doSearch( iSearchID = None, sFileName = None ):
+def doSearchStoreResults( iSearchID = None, sFileName = None ):
     #
     '''put search results in the database
     can do a search, or use the results file from completed ebay API request
@@ -471,7 +471,7 @@ def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     iItems = iStoreItems = iStoreUsers = 0
     #
     try:
-        iItems, iStoreItems, iStoreUsers = doSearch(
+        iItems, iStoreItems, iStoreUsers = doSearchStoreResults(
                     iSearchID = iSearchID, sFileName = sFileName )
     except SearchNotWorkingError as e:
         logger.error( 'SearchNotWorkingError: %s' % e )
@@ -528,6 +528,9 @@ def findSearchHits( oUser ):
                              tlook4hits__isnull = True )
                     .values_list( 'iItemNumb', flat=True ) )
     #
+    #print( '\n' )
+    #print( 'len( oItemQuerySet ):', len( oItemQuerySet ) )
+    #
     for oItem in oItemQuerySet:
         #
         oUserItem = UserItemFound.objects.get( 
@@ -536,9 +539,16 @@ def findSearchHits( oUser ):
         #
         oItemFoundTemp = None
         #
-        oCategoryIter = Category.objects.filter( iUser = oUser )
+        oCategoryQuerySet = Category.objects.filter( iUser = oUser )
         #
-        for oCategory in oCategoryIter:
+        #print( '\n' )
+        #print( 'len( oCategoryQuerySet ):', len( oCategoryQuerySet ) )
+        #print( 'oItem.iItemNumb:', oItem.iItemNumb )
+        #print( 'oUser:', oUser )
+        #
+        #
+        #
+        for oCategory in oCategoryQuerySet:
             #
             t = getCategoryRegExFinders( oCategory )
             #
@@ -563,18 +573,21 @@ def findSearchHits( oUser ):
             bInHeirarchy2  = ( # will be True if either are True
                     bInTitle or
                     bInHeirarchy1 or
-                    foundItem( oItem.i2ndCatHeirarchy.cCatHierarchy ) )
+                    ( oItem.i2ndCatHeirarchy and
+                      foundItem( oItem.i2ndCatHeirarchy.cCatHierarchy ) ) )
             #
             if bInHeirarchy2: # bInTitle or bInHeirarchy1 or bInHeirarchy2
                 #
                 sWhich = whichGetsCredit(
                             bInTitle, bInHeirarchy1, bInHeirarchy2 )
                 #
+                oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
+                #
                 oItemFoundTemp = ItemFoundTemp(
-                        iItemNumb       = oItem.iItemNumb,
+                        iItemNumb       = oItemFound,
                         iHitStars       = oCategory.iStars,
                         iSearch         = oUserItem.iSearch,
-                        iCategory       = oCategory.pk,
+                        iCategory       = oCategory,
                         cWhereCategory  = sWhich )
                 #
                 oItemFoundTemp.save()
