@@ -57,8 +57,8 @@ dItemFoundFields = d(
     cSellingState   = d( t = ( 'sellingStatus','sellingState') ) )
 
 
-dUserItemFoundFields = d(
-    iItemFound      = d( t = ( 'itemId',),
+dUserItemFoundFields= d(
+    iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
     iSearch         = {},
     iUser           = {} )
