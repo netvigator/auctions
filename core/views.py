@@ -55,6 +55,11 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         # https://github.com/django-guardian/django-guardian/issues/279
         return None
 
+    def get_form_kwargs(self):
+        kwargs = super(CreateViewGotCrispy, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
 
 
 class DeleteViewGotModel( LoginRequiredMixin,
@@ -94,6 +99,11 @@ class UpdateViewGotCrispy( LoginRequiredMixin,
         form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         form.which = 'Update'
         return form
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateViewGotCrispy, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
 
 
 class DetailViewGotModel( LoginRequiredMixin,
