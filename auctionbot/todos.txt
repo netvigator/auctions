@@ -29,3 +29,8 @@ if cannot, remove from requirements/local.txt
 
 
 find where the logs are stored!
+
+
+test save model (request.user problem saving new model), fixed by 
+1) in the views: adding get_form_kwargs() 
+2) in the form __init__ method: self.user = kwargs.pop('user')
