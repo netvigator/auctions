@@ -174,7 +174,7 @@ class UserItemFound(models.Model):
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
     cWhereCategory  = models.CharField( 'where category was found',
-                        null = True,
+                        default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
@@ -207,7 +207,7 @@ class ItemFoundTemp(models.Model):
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
     cWhereCategory  = models.CharField( 'where category was found',
-                        null = True,
+                        default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
 
     def __str__(self):
