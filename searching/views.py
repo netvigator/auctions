@@ -74,7 +74,7 @@ class ItemsFoundIndexView( ListViewGotModel ):
         return self.model.objects.filter(
                 pk__in = UserItemFound.objects
                     .filter( iUser = self.request.user )
-                    .values_list( 'iItemFound', flat=True ) )
+                    .values_list( 'iItemNumb', flat=True ) )
 
 
 
