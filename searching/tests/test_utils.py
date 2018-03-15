@@ -8,10 +8,15 @@ from ebayinfo.utils     import dMarket2SiteID
 
 from ..models           import Search, ItemFound, UserItemFound
 from ..utils            import ( trySearchCatchExceptions,
-                                 ItemAlreadyInTable,
+                                 doSearchStoreResults,
+                                 ItemAlreadyInTable, findSearchHits,
                                  getSearchResultGenerator )
 
-from ..tests            import sExampleResponse
+from brands.models      import Brand
+from categories.models  import Category
+from models.models      import Model
+
+from ..tests            import sExampleResponse, sResponseSearchTooBroad
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
 
@@ -115,7 +120,7 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
         #
         self.market  = getDefaultMarket()
-
+        #
         sMarket, sWantVersion = 'EBAY-US', '117'
         #
         iWantVersion = int( sWantVersion )
@@ -132,6 +137,22 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         oRootCategory.save()
         #
+        sMarket, sWantVersion = 'EBAY-GB', '108'
+        #
+        iWantVersion = int( sWantVersion )
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iMarket_id      = 3,
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
         oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
         #
         lHeader = next( oTableIter )
@@ -139,7 +160,6 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         for lParts in oTableIter:
             #
             oCategory = EbayCategory(
-                    iMarket         = self.market,
                     iCategoryID     = int(      lParts[1] ),
                     name            =           lParts[2],
                     iLevel          = int(      lParts[3] ),
@@ -178,7 +198,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         lHeader = next( oTableIter )
         #
-        iExpect = 1 # class getEbayCategoriesSetUp above will add root category
+        iExpect = 2 # getEbayCategoriesSetUp above adds root categories
         #
         for lParts in oTableIter: iExpect += 1
         #
@@ -390,7 +410,7 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
 
 class storeSearchResultsTests(getEbayCategoriesSetUp):
     #
-    ''' class for testing doSearch() store records '''
+    ''' class for testing doSearchStoreResults() store records '''
     #
     def setUp(self):
         # storeSearchResultsTests, self 
@@ -436,6 +456,116 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         #
         self.assertEqual( iStoreUsers, 0 )
         #
+
+
+
+class findSearchHitsTests(getEbayCategoriesSetUp):
+    #
+    ''' class for testing doSearchStoreResults() store records '''
+    #
+    def setUp(self):
+        # storeSearchResultsTests, self 
+        #
+        from os.path    import join
+        from searching  import sResultFileNamePattern
+        #
+        super().setUp()
+        #
+        sSearch = "My clever search 1"
+        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch.save()
+        #
+        self.sExampleFile = (
+            sResultFileNamePattern % # 'Search_%s_%s_ID_%s.json'
+            ( 'EBAY-US', self.user1.username, oSearch.id ) )
+        #
+        WriteText2File( sResponseSearchTooBroad, '/tmp', self.sExampleFile )
+        #
+        doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
+        #
+        oCategory   = Category( cTitle = 'Radio', iStars = 9, iUser = self.user1 )
+        #
+        oCategory.save()
+        #
+        oBrand      = Brand( cTitle = 'Garod', cLookFor = 'Garol',
+                             iStars = 5, iUser = self.user1 )
+        #
+        oBrand.save()
+        #
+        oModel      = Model( cTitle = '6AU-1',
+                            iBrand = oBrand, iCategory = oCategory,
+                            iStars = 5, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oBrand      = Brand( cTitle = 'Addison', iStars = 7,
+                             iUser = self.user1 )
+        #
+        oBrand.save()
+        #
+        oModel      = Model( cTitle = '5', iBrand = oBrand, iStars = 6,
+                             iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oBrand      = Brand( cTitle = 'Fada', iStars = 8, iUser = self.user1 )
+        #
+        oBrand.save()
+        #
+        oModel      = Model( cTitle = '115', cLookFor = 'bullet', iStars = 6,
+                            iBrand = oBrand, iCategory = oCategory, 
+                            iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oModel      = Model( cTitle = '1000', iBrand = oBrand, iStars = 6,
+                            iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oModel      = Model( cTitle = 'L-56', iBrand = oBrand, iStars = 6,
+                             iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oBrand      = Brand( cTitle = 'Emerson', iStars = 6,
+                             iUser = self.user1 )
+        #
+        oBrand.save()
+        #
+        oModel      = Model( cTitle = '520', iBrand = oBrand, iStars = 6,
+                            iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oModel      = Model( cTitle = 'AX-235', iBrand = oBrand, iStars = 6,
+                            iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oBrand      = Brand( cTitle = 'DeWald', iStars = 4,
+                             iUser = self.user1 )
+        #
+        oBrand.save()
+        #
+        oModel      = Model( cTitle = 'A-501', iBrand = oBrand, iStars = 6,
+                             iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        
+        
+    def tearDown(self):
+        #
+        DeleteIfExists( '/tmp', self.sExampleFile )
+
+    def test_find_search_hits(self):
+        #
+        ''' test storeUserItemFound() with actual record'''
+        #
+        findSearchHits( self.user1 )
+
+
 
 '''
 will need later
