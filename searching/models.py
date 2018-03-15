@@ -174,6 +174,7 @@ class UserItemFound(models.Model):
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
     cWhereCategory  = models.CharField( 'where category was found',
+                        null = True,
                         max_length = 10 ) # title heirarchy1 heirarchy2
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
@@ -188,7 +189,7 @@ class UserItemFound(models.Model):
     class Meta:
         verbose_name_plural = 'useritemsfound'
         db_table            = verbose_name_plural
-        unique_together     = ('iItemFound', 'iUser',)
+        unique_together     = ('iItemNumb', 'iUser',)
 
 
 class ItemFoundTemp(models.Model):
@@ -206,6 +207,7 @@ class ItemFoundTemp(models.Model):
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
     cWhereCategory  = models.CharField( 'where category was found',
+                        null = True,
                         max_length = 10 ) # title heirarchy1 heirarchy2
 
     def __str__(self):
