@@ -22,13 +22,16 @@ class SearchAddOrUpdateForm(ModelForm):
     #
 
     def __init__(self, *args, **kwargs):
+        #
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
+        #
+        if 'user' in kwargs: self.user = kwargs.pop('user')
         #
         if 'which' in kwargs:
             self.which = kwargs.pop('which')
         #
-        super().__init__(*args, **kwargs)
+        super( SearchAddOrUpdateForm, self ).__init__(*args, **kwargs)
         # SearchAddOrUpdateForm, self
 
     def clean(self):
