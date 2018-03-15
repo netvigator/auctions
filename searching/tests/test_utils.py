@@ -154,7 +154,8 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
             else:
                 oCategory.iParentID = int(     lParts[4] )
                 oCategory.parent= EbayCategory.objects.get(
-                                    iCategoryID = int( lParts[4] ) )
+                                    iCategoryID = int( lParts[4] ),
+                                    iMarket     = oCategory.iMarket )
             #
             oCategory.save()
 
@@ -292,7 +293,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         dEbayCatHierarchies = {}
         #
-        iItemFound = storeItemFound( dSearchResult, dEbayCatHierarchies )
+        iItemNumb = storeItemFound( dSearchResult, dEbayCatHierarchies )
         #
         iCategoryID = int(
                 dSearchResult.get( 'primaryCategory' ).get( 'categoryId' ) )
@@ -315,7 +316,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         self.assertEqual( oResultRow.iItemNumb,
                          int( dSearchResult['itemId'] ) )
         #
-        self.assertEqual( iItemFound, oResultRow.pk )
+        self.assertEqual( iItemNumb, oResultRow.pk )
         #
         oExpectHierarchy = CategoryHierarchy.objects.get(
                 iCategoryID = iCategoryID,
@@ -357,31 +358,31 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
         self.oSearch.save()
         #
-        iItemFound = storeItemFound( dSearchResult, {} )
+        iItemNumb = storeItemFound( dSearchResult, {} )
         #
-        if iItemFound is None:
+        if iItemNumb is None:
             raise ThisShouldNotBeHappening
         #
         try:
             storeUserItemFound(
-                    dSearchResult, iItemFound, self.user1, self.oSearch.id )
+                    dSearchResult, iItemNumb, self.user1, self.oSearch.id )
         except ItemAlreadyInTable:
             pass
         #
         oResultRow = UserItemFound.objects.filter(
-                            iItemFound  = iItemFound,
+                            iItemNumb   = iItemNumb,
                             iUser       = self.user1 ).first()
         #
         self.assertIsNotNone( oResultRow )
         #
         try: # again
             storeUserItemFound(
-                    dSearchResult, iItemFound, self.user1, self.oSearch.id )
+                    dSearchResult, iItemNumb, self.user1, self.oSearch.id )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
                     'ItemFound %s is already in the UserItemFound table for %s' %
-                    ( iItemFound, self.user1.username ) )
+                    ( iItemNumb, self.user1.username ) )
         else:
             self.assertTrue( False ) # exception should hve been raised
 
