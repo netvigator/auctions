@@ -376,26 +376,26 @@ def storeItemFound( dItem, dEbayCatHierarchies = {} ):
 
 
 
-def storeUserItemFound( dItem, iItemFound, oUser, iSearch ):
+def storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
     #
     from .forms     import UserItemFoundForm
     from searching  import dUserItemFoundFields # in __init__.py
     #
     bAlreadyInTable = UserItemFound.objects.filter(
-                            iItemFound  = iItemFound,
+                            iItemNumb   = iItemNumb,
                             iUser       = oUser ).exists()
     #
     if bAlreadyInTable:
         #
         raise ItemAlreadyInTable(
                 'ItemFound %s is already in the UserItemFound table for %s' %
-                ( iItemFound, oUser.username ) )
+                ( iItemNumb, oUser.username ) )
         #
     #
     return storeEbayInfo(
             dItem, dUserItemFoundFields, UserItemFoundForm, _getValueUserOrOther,
             oUser       = oUser,
-            iItemFound  = iItemFound,
+            iItemNumb   = iItemNumb,
             iSearch     = iSearch )
 
 
@@ -437,24 +437,24 @@ def doSearch( iSearchID = None, sFileName = None ):
         #
         iItems += 1
         #
-        iItemFound = None
+        iItemNumb = None
         #
         try:
-            iItemFound = storeItemFound( dItem, dEbayCatHierarchies )
+            iItemNumb = storeItemFound( dItem, dEbayCatHierarchies )
             iStoreItems += 1
         except ItemAlreadyInTable:
             #
-            iItemFound      = int(            dItem['itemId'  ] )
+            iItemNumb      = int(            dItem['itemId'  ] )
             #
         except ValueError as e:
             #
             logger.error( 'ValueError: %s | %s' %
                           ( str(e), repr(dItem) ) )
         #
-        if iItemFound is not None:
+        if iItemNumb is not None:
             #
             try:
-                storeUserItemFound( dItem, iItemFound, oUser, iSearch )
+                storeUserItemFound( dItem, iItemNumb, oUser, iSearch )
                 iStoreUsers += 1
             except ItemAlreadyInTable:
                 pass
@@ -526,7 +526,7 @@ def findSearchHits( oUser ):
                 pk__in = UserItemFound.objects
                     .filter( iUser = oUser,
                              tlook4hits__isnull = True )
-                    .values_list( 'iItemFound', flat=True ) )
+                    .values_list( 'iItemNumb', flat=True ) )
     #
     for oItem in oItemQuerySet:
         #
@@ -573,7 +573,7 @@ def findSearchHits( oUser ):
                 oItemFoundTemp = ItemFoundTemp(
                         iItemNumb       = oItem.iItemNumb,
                         iHitStars       = oCategory.iStars,
-                        iSearch         = oUserItem,iSearch,
+                        iSearch         = oUserItem.iSearch,
                         iCategory       = oCategory.pk,
                         cWhereCategory  = sWhich )
                 #
