@@ -223,6 +223,80 @@ def getTableFromScreenCaptureGenerator( sScreenCapture ):
 
 
 
+class getEbayCategoriesSetUp(BaseUserTestCase):
+
+    def setUp(self):
+        #
+        super( getEbayCategoriesSetUp, self ).setUp()
+        #
+        from ebayinfo           import sCategoryDump  # in __init__.py
+        #
+        from core.utils_testing import getTableFromScreenCaptureGenerator
+        #
+        from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+        #
+        self.market  = getDefaultMarket()
+        #
+        sMarket, sWantVersion = 'EBAY-US', '117'
+        #
+        iWantVersion = int( sWantVersion )
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iMarket         = self.market,
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
+        sMarket, sWantVersion = 'EBAY-GB', '108'
+        #
+        iWantVersion = int( sWantVersion )
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iMarket_id      = 3,
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
+        oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
+        #
+        lHeader = next( oTableIter )
+        #
+        for lParts in oTableIter:
+            #
+            oCategory = EbayCategory(
+                    iCategoryID     = int(      lParts[1] ),
+                    name            =           lParts[2],
+                    iLevel          = int(      lParts[3] ),
+                    
+                    bLeafCategory   = getBool(  lParts[5] ),
+                    iTreeVersion    = int(      lParts[6] ),
+                    iMarket_id      = int(      lParts[7] ), )
+            #
+            if lParts[3] == '1': # top level iParentID
+                oCategory.iParentID = oRootCategory.iCategoryID
+                oCategory.parent    = oRootCategory
+            else:
+                oCategory.iParentID = int(     lParts[4] )
+                oCategory.parent= EbayCategory.objects.get(
+                                    iCategoryID = int( lParts[4] ),
+                                    iMarket     = oCategory.iMarket )
+            #
+            oCategory.save()
+
+
+
 '''
 oTest = {
     'cNationality': ('Nationality', 'C'),
