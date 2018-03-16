@@ -1,6 +1,6 @@
 from logging            import getLogger
 
-from String.Find        import getRegExpObj
+from String.Find        import getRegExpress, getRegExObj
 
 from .utils             import getWhatsLeft
 
@@ -74,9 +74,11 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
 
 
 
-def _getTitleRegExObj( cTitle, cLookFor = '', bDeBug = False ):
+def _getTitleRegExress( oTableRow ):
     #
-    sLook4Title = getWhatsLeft( cTitle )
+    sLook4Title = getWhatsLeft( oTableRow.cTitle )
+    #
+    cLookFor = oTableRow.cLookFor 
     #
     if cLookFor:
         #
@@ -89,121 +91,77 @@ def _getTitleRegExObj( cTitle, cLookFor = '', bDeBug = False ):
         sLookFor = sLook4Title
         #
     #
-    oRegExObj = getRegExpObj( sLookFor )
-    #
-    if bDeBug:
-        print( 'RegExpObj:', oRegExObj )
-    #
-    return oRegExObj
-
-
-def _getOtherRegExObj( cField ):
-    #
-    sOther = cField.strip()
-    #
-    if sOther:
-        #
-        oFinder = getRegExpObj( sOther )
-        #
-    else:
-        #
-        oFinder = None
-        #
-    return oFinder
-
-
-def getRegExObjs( cTitle, cLookFor, cExcludeIf, cKeyWords = None,
-                  bDeBug = False ):
-    #
-    findTitle   = _getTitleRegExObj( cTitle, cLookFor, bDeBug = bDeBug )
-    #
-    if cExcludeIf:
-        #
-        findExclude = _getOtherRegExObj( cExcludeIf )
-        #
-    else:
-        #
-        findExclude = None
-        #
-    #
-    if cKeyWords:
-        #
-        findKeyWords = _getOtherRegExObj( cKeyWords  )
-        #
-    else:
-        #
-        findKeyWords = None
-        #
-    #
-    return ( findTitle, findExclude, findKeyWords )
+    return getRegExpress( sLookFor )
 
 
 
-
-def _getTableRegExFinders( oTableRow, bDeBug = False ):
+def _getRowRegExpressions( oTableRow ):
     #
     bRowHasKeyWords = False
     #
-    if not oTableRow.oRegExLook4Title:
+    if not oTableRow.sRegExLook4Title:
+        #
+        sFindTitle = _getTitleRegExress( oTableRow )
+        #
+        sKeyWords = sFindKeyWords = sFindExclude = None
         #
         bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
         #
-        cKeyWords = None
+        if bRowHasKeyWords: sKeyWords = oTableRow.cKeyWords
         #
-        if bRowHasKeyWords: cKeyWords = oTableRow.cKeyWords
+        sExcludeIf = oTableRow.cExcludeIf
         #
-        t = getRegExObjs(
-                oTableRow.cTitle,
-                oTableRow.cLookFor,
-                oTableRow.cExcludeIf,
-                          cKeyWords )
+        if sExcludeIf:
+            #
+            sFindExclude = getRegExpress( sExcludeIf )
+            #
+        if sKeyWords:
+            #
+            sFindKeyWords = getRegExpress( sKeyWords )
+            #
         #
-        findTitle, findExclude, findKeyWords = t
-        #
-        oTableRow.oRegExLook4Title= findTitle
-        oTableRow.oRegExExclude   = findExclude
+        oTableRow.sRegExLook4Title= sFindTitle
+        oTableRow.sRegExExclude   = sFindExclude
         #
         if bRowHasKeyWords:
-            oTableRow.oRegExKeyWords = findKeyWords
+            oTableRow.sRegExKeyWords = sFindKeyWords
         #
         oTableRow.save()
         #
     #
-    if bDeBug:
-        print( 'Title RegExpObj:', oTableRow.oRegExLook4Title )
-    #
-    oReturnLook4Title = oTableRow.oRegExLook4Title.search
-    #
-    oReturnExclude = oReturnKeyWords = None
-    #
-    if oTableRow.oRegExExclude is not None:
-        #
-        oReturnExclude = oTableRow.oRegExExclude.search
-        #
-    if bRowHasKeyWords and oTableRow.oRegExKeyWords is not None:
-        #
-        oReturnKeyWords = oTableRow.oRegExKeyWords.search
-        #
-    #    
-    return oReturnLook4Title, oReturnExclude, oReturnKeyWords
+    return sFindTitle, sFindExclude, sFindKeyWords
 
+
+
+def _getRegExSearchOrNone( s ):
+    #
+    if s:
+        oRegExObj = getRegExObj( s )
+        #
+        return oRegExObj.search
 
 
 def _getModelRegExFinders4Test( oModel ):
     #
-    return _getTableRegExFinders( oModel )
+    t = _getRowRegExpressions( oModel )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
 
 
 def _getCategoryRegExFinders4Test( oCategory ):
     #
-    return _getTableRegExFinders( oCategory )
+    t = _getRowRegExpressions( oCategory )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
 
 
 def _getBrandRegExFinders4Test( oBrand ):
     #
-    oReturnLook4Title, oReturnExclude, oReturnKeyWords = _getTableRegExFinders( oBrand )
+    t = _getRowRegExpressions( oBrand )
     #
-    return oReturnLook4Title, oReturnExclude
+    sFindTitle, sFindExclude, sFindKeyWords = t
+    #
+    return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
 
@@ -218,17 +176,31 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
     return findKeyWords is None or findKeyWords( s )
 
 
-def getFoundItemTester( oTableRow, bDeBug = False ):
+def getFoundItemTester( oTableRow, dFinders ):
     #
     ''' pass model row instance, returns tester '''
     #
-    findTitle, findExclude, findKeyWords = _getTableRegExFinders(
-                                                oTableRow, bDeBug = bDeBug )
+    from String.Find import getRegExObj
     #
-    def foundItemTester( s ):
+    if oTableRow.pk in dFinders:
         #
-        return    ( findTitle( s ) and
-                    _includeNotExclude( s, findExclude ) and
-                    _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+        foundItemTester = dFinders[ oTableRow.pk ]
+        #
+    else:
+        #
+        t = _getRowRegExpressions( oTableRow )
+        #
+        t = tuple( map( _getRegExSearchOrNone, t ) )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        def foundItemTester( s ):
+            #
+            return    ( findTitle( s ) and
+                        _includeNotExclude( s, findExclude ) and
+                        _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+        #
+        dFinders[ oTableRow.pk ] = foundItemTester
+        #
     #
     return foundItemTester
