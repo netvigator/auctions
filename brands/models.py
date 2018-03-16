@@ -42,8 +42,8 @@ class Brand(models.Model):
                         null=True, blank = True,
         help_text = sExcludeIfHelpText % 'brand' )
     
-    oRegExLook4Title= RegexField( max_length=128, null = True )
-    oRegExExclude   = RegexField( max_length=128, null = True )
+    sRegExLook4Title= models.CharField( max_length=128, null = True )
+    sRegExExclude   = models.CharField( max_length=128, null = True )
     
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
