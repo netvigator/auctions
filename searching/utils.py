@@ -1,9 +1,12 @@
 from logging            import getLogger
 
+from core.utils         import getWhatsLeft
 from core.utils_ebay    import getValueOffItemDict
 from ebayinfo.utils     import dMarket2SiteID
 
 from .models            import ItemFound, UserItemFound
+
+from String.Find        import getRegExpress, getRegExObj
 
 logger = getLogger(__name__)
 
@@ -480,6 +483,142 @@ def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     #
     return iItems, iStoreItems, iStoreUsers 
 
+    
+
+
+def _getTitleRegExress( oTableRow, bAddDash = False ):
+    #
+    sLook4Title = getWhatsLeft( oTableRow.cTitle )
+    #
+    cLookFor = oTableRow.cLookFor
+    #
+    if cLookFor:
+        #
+        cLookFor = cLookFor.strip()
+        #
+        sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
+        #
+        sRegExpress = getRegExpress( sLookFor )
+        
+    else:
+        #
+        sRegExpress = getRegExpress( sLook4Title, bAddDash = bAddDash )
+        #
+    #
+    return sRegExpress
+
+
+
+def _getRowRegExpressions( oTableRow, bAddDash = False ):
+    #
+    bRowHasKeyWords = False
+    #
+    if not oTableRow.sRegExLook4Title:
+        #
+        sFindTitle = _getTitleRegExress( oTableRow, bAddDash = bAddDash )
+        #
+        sKeyWords = sFindKeyWords = sFindExclude = None
+        #
+        bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
+        #
+        if bRowHasKeyWords: sKeyWords = oTableRow.cKeyWords
+        #
+        sExcludeIf = oTableRow.cExcludeIf
+        #
+        if sExcludeIf:
+            #
+            sFindExclude = getRegExpress( sExcludeIf )
+            #
+        if sKeyWords:
+            #
+            sFindKeyWords = getRegExpress( sKeyWords )
+            #
+        #
+        oTableRow.sRegExLook4Title= sFindTitle
+        oTableRow.sRegExExclude   = sFindExclude
+        #
+        if bRowHasKeyWords:
+            oTableRow.sRegExKeyWords = sFindKeyWords
+        #
+        oTableRow.save()
+        #
+    #
+    return sFindTitle, sFindExclude, sFindKeyWords
+
+
+
+def _getRegExSearchOrNone( s ):
+    #
+    if s:
+        oRegExObj = getRegExObj( s )
+        #
+        return oRegExObj.search
+
+
+def _getModelRegExFinders4Test( oModel ):
+    #
+    t = _getRowRegExpressions( oModel, bAddDash = True )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
+
+
+def _getCategoryRegExFinders4Test( oCategory ):
+    #
+    t = _getRowRegExpressions( oCategory )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
+
+
+def _getBrandRegExFinders4Test( oBrand ):
+    #
+    t = _getRowRegExpressions( oBrand )
+    #
+    sFindTitle, sFindExclude, sFindKeyWords = t
+    #
+    return tuple( map( _getRegExSearchOrNone, t[:2] ) )
+
+
+
+
+
+def _includeNotExclude( s, findExclude ):
+    #
+    return findExclude is None or not findExclude( s )
+
+def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
+    #
+    return findKeyWords is None or findKeyWords( s )
+
+
+def getFoundItemTester( oTableRow, dFinders ):
+    #
+    ''' pass model row instance, returns tester '''
+    #
+    from String.Find import getRegExObj
+    #
+    if oTableRow.pk in dFinders:
+        #
+        foundItemTester = dFinders[ oTableRow.pk ]
+        #
+    else:
+        #
+        t = _getRowRegExpressions( oTableRow )
+        #
+        t = tuple( map( _getRegExSearchOrNone, t ) )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        def foundItemTester( s ):
+            #
+            return    ( findTitle( s ) and
+                        _includeNotExclude( s, findExclude ) and
+                        _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+        #
+        dFinders[ oTableRow.pk ] = foundItemTester
+        #
+    #
+    return foundItemTester
+
 
 def whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
     #
@@ -505,8 +644,6 @@ def findSearchHits( oUser ):
     from brands.models      import Brand
     from categories.models  import Category
     from models.models      import Model
-    #
-    from core.utils_ebay    import getFoundItemTester
     #
     from .models            import ItemFoundTemp
     #
@@ -658,4 +795,3 @@ def findSearchHits( oUser ):
         #
     
 
-    
