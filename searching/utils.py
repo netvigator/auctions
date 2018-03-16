@@ -521,6 +521,10 @@ def findSearchHits( oUser ):
     #print( '\n' )
     #print( 'len( oItemQuerySet ):', len( oItemQuerySet ) )
     #
+    dFindersBrands      = {}
+    dFindersCategories  = {}
+    dFindersModels      = {}
+    #
     for oItem in oItemQuerySet:
         #
         oUserItem = UserItemFound.objects.get( 
@@ -540,7 +544,7 @@ def findSearchHits( oUser ):
         #
         for oCategory in oCategoryQuerySet:
             #
-            foundItem = getFoundItemTester( oCategory )
+            foundItem = getFoundItemTester( oCategory, dFindersCategories )
             #
             # the following are short circuiting --
             # if one is True, the following will be True
@@ -582,25 +586,11 @@ def findSearchHits( oUser ):
         #
         bFoundBrand = False
         #
-        if oItem.cTitle == 'VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!':
-            #
-            print( '\n' )
-            print( oItem.cTitle )
-            #
-        #
         for oBrand in oBrandQuerySet:
             #
-            bDeBug = ( oBrand.cTitle == 'Fada' and
-                       oItem.cTitle == 'VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!' )
-            #
-            foundItem = getFoundItemTester( oBrand, bDeBug )
+            foundItem = getFoundItemTester( oBrand, dFindersBrands )
             #
             bInTitle = foundItem( oItem.cTitle )
-            #
-            if oItem.cTitle == 'VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!':
-                #
-                print( oBrand.cTitle, '--', 'bInTitle:', bool( bInTitle ), 'tester:', foundItem )
-                #
             #
             if bInTitle:
                 #
@@ -651,7 +641,7 @@ def findSearchHits( oUser ):
             #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
                     #print( 'model:', oModel.cTitle )
             #
-            foundItem = getFoundItemTester( oModel )
+            foundItem = getFoundItemTester( oModel, dFindersModels )
             #
             bInTitle = foundItem( oItem.cTitle )
             #
