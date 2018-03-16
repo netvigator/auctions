@@ -2,11 +2,11 @@ from datetime           import timedelta
 
 from django.test        import TestCase
 from django.utils       import timezone
-from core.utils_testing import BaseUserTestCase, getDefaultMarket
+from core.utils_testing import BaseUserTestCase, getDefaultMarket, getEbayCategoriesSetUp
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID
 
-from ..models           import Search, ItemFound, UserItemFound
+from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
 from ..utils            import ( trySearchCatchExceptions,
                                  doSearchStoreResults,
                                  ItemAlreadyInTable, findSearchHits,
@@ -19,6 +19,7 @@ from models.models      import Model
 from ..tests            import sExampleResponse, sResponseSearchTooBroad
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
+
 
 
 sExampleFile = '/tmp/search_results.json'
@@ -107,79 +108,6 @@ class getImportSearchResultsTests(TestCase):
 '''
 
 
-class getEbayCategoriesSetUp(BaseUserTestCase):
-
-    def setUp(self):
-        #
-        super( getEbayCategoriesSetUp, self ).setUp()
-        #
-        from ..tests            import sCategoryDump  # in __init__.py
-        #
-        from core.utils_testing import getTableFromScreenCaptureGenerator
-        #
-        from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
-        #
-        self.market  = getDefaultMarket()
-        #
-        sMarket, sWantVersion = 'EBAY-US', '117'
-        #
-        iWantVersion = int( sWantVersion )
-        #
-        oRootCategory = EbayCategory(
-            name            = \
-                '%s version %s Root' % ( sMarket, sWantVersion ),
-            iCategoryID     = 0,
-            iMarket         = self.market,
-            iTreeVersion    = iWantVersion,
-            iLevel          = 0,
-            bLeafCategory   = False,
-            iParentID       = 0 )
-        #
-        oRootCategory.save()
-        #
-        sMarket, sWantVersion = 'EBAY-GB', '108'
-        #
-        iWantVersion = int( sWantVersion )
-        #
-        oRootCategory = EbayCategory(
-            name            = \
-                '%s version %s Root' % ( sMarket, sWantVersion ),
-            iCategoryID     = 0,
-            iMarket_id      = 3,
-            iTreeVersion    = iWantVersion,
-            iLevel          = 0,
-            bLeafCategory   = False,
-            iParentID       = 0 )
-        #
-        oRootCategory.save()
-        #
-        oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
-        #
-        lHeader = next( oTableIter )
-        #
-        for lParts in oTableIter:
-            #
-            oCategory = EbayCategory(
-                    iCategoryID     = int(      lParts[1] ),
-                    name            =           lParts[2],
-                    iLevel          = int(      lParts[3] ),
-                    
-                    bLeafCategory   = getBool(  lParts[5] ),
-                    iTreeVersion    = int(      lParts[6] ),
-                    iMarket_id      = int(      lParts[7] ), )
-            #
-            if lParts[3] == '1': # top level iParentID
-                oCategory.iParentID = oRootCategory.iCategoryID
-                oCategory.parent    = oRootCategory
-            else:
-                oCategory.iParentID = int(     lParts[4] )
-                oCategory.parent= EbayCategory.objects.get(
-                                    iCategoryID = int( lParts[4] ),
-                                    iMarket     = oCategory.iMarket )
-            #
-            oCategory.save()
-
-
 class storeItemFoundTests(getEbayCategoriesSetUp):
     #
     ''' class for testing storeItemFound() '''
@@ -188,7 +116,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         ''' testing the ebay item categories '''
         #
-        from ..tests            import sCategoryDump  # in __init__.py
+        from ebayinfo           import sCategoryDump  # in __init__.py
         #
         from core.utils_testing import getTableFromScreenCaptureGenerator
         #
@@ -483,7 +411,8 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
         #
-        oCategory   = Category( cTitle = 'Radio', iStars = 9, iUser = self.user1 )
+        oCategory   = Category( cTitle = 'Radio', iStars = 9,
+                               cExcludeIf = 'reproduction', iUser = self.user1 )
         #
         oCategory.save()
         #
@@ -512,13 +441,18 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oBrand.save()
         #
-        oModel      = Model( cTitle = '115', cLookFor = 'bullet', iStars = 6,
+        oModel      = Model( cTitle = '115', cLookFor = 'bullet', iStars = 9,
                             iBrand = oBrand, iCategory = oCategory, 
                             iUser = self.user1 )
         #
         oModel.save()
         #
-        oModel      = Model( cTitle = '1000', iBrand = oBrand, iStars = 6,
+        oModel      = Model( cTitle = '1000', iBrand = oBrand, iStars = 8,
+                            iCategory = oCategory, iUser = self.user1 )
+        #
+        oModel.save()
+        #
+        oModel      = Model( cTitle = '188', iBrand = oBrand, iStars = 7,
                             iCategory = oCategory, iUser = self.user1 )
         #
         oModel.save()
@@ -564,7 +498,35 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         ''' test storeUserItemFound() with actual record'''
         #
         findSearchHits( self.user1 )
+        #
+        oTempItemsFound = ItemFoundTemp.objects.all().order_by( '-iHitStars' )
+        #
+        print( '\n', 'len( oTempItemsFound ):', len( oTempItemsFound ) )
+        #
+        for oTemp in oTempItemsFound:
+            
+            print( '\n' )
+            #
+            sSayModel = sSayBrand = sSayCategory = 'None'
+            #
+            if oTemp.iModel:
+                sSayModel = oTemp.iModel.cTitle
+            if oTemp.iBrand:
+                sSayBrand = oTemp.iBrand.cTitle
+            if oTemp.iCategory:
+                sSayCategory = oTemp.iCategory.cTitle
+            
+            print( 'iItemNumb.cTitle:', oTemp.iItemNumb.cTitle )
 
+            print( 'iItemNumb.pk    :', oTemp.iItemNumb.pk )
+            print( 'iHitStars       :', oTemp.iHitStars )
+            print( 'iModel.cTitle   :', sSayModel )
+            print( 'iBrand.cTitle   :', sSayBrand )
+            print( 'iCategory.cTitle:', sSayCategory )
+            #
+            print( 'cWhereCategory  :', oTemp.cWhereCategory )
+            #
+        print( '\n' )
 
 
 '''
