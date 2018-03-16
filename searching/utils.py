@@ -481,15 +481,6 @@ def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     return iItems, iStoreItems, iStoreUsers 
 
 
-
-def _includeNotExclude( s, findExclude ):
-    #
-    return findExclude is None or not findExclude( s )
-
-def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
-    #
-    return findKeyWords is None or findKeyWords( s )
-
 def whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
     #
     if bInTitle:
@@ -508,15 +499,14 @@ def whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
     return sReturn
 
 
+
 def findSearchHits( oUser ):
     #
     from brands.models      import Brand
     from categories.models  import Category
     from models.models      import Model
     #
-    from core.utils_ebay    import ( getBrandRegExFinders,
-                                     getCategoryRegExFinders,
-                                     getModelRegExFinders )
+    from core.utils_ebay    import getFoundItemTester
     #
     from .models            import ItemFoundTemp
     #
@@ -550,19 +540,12 @@ def findSearchHits( oUser ):
         #
         for oCategory in oCategoryQuerySet:
             #
-            t = getCategoryRegExFinders( oCategory )
-            #
-            findTitle, findExclude, findKeyWords = t
-            #
-            def foundItem( s ):
-                #
-                return    ( findTitle( s ) and
-                            _includeNotExclude( s, findExclude ) and
-                            _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+            foundItem = getFoundItemTester( oCategory )
             #
             # the following are short circuiting --
             # if one is True, the following will be True
             # and the string will not be searched
+            # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
             #
             bInTitle       = foundItem( oItem.cTitle )
             #
@@ -599,18 +582,25 @@ def findSearchHits( oUser ):
         #
         bFoundBrand = False
         #
+        if oItem.cTitle == 'VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!':
+            #
+            print( '\n' )
+            print( oItem.cTitle )
+            #
+        #
         for oBrand in oBrandQuerySet:
             #
-            t = getBrandRegExFinders( oBrand )
+            bDeBug = ( oBrand.cTitle == 'Fada' and
+                       oItem.cTitle == 'VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!' )
             #
-            findTitle, findExclude = t
-            #
-            def foundItem( s ):
-                #
-                return    ( findTitle( s ) and
-                            _includeNotExclude( s, findExclude ) )
+            foundItem = getFoundItemTester( oBrand, bDeBug )
             #
             bInTitle = foundItem( oItem.cTitle )
+            #
+            if oItem.cTitle == 'VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!':
+                #
+                print( oBrand.cTitle, '--', 'bInTitle:', bool( bInTitle ), 'tester:', foundItem )
+                #
             #
             if bInTitle:
                 #
@@ -622,8 +612,7 @@ def findSearchHits( oUser ):
                             iItemNumb       = oItem.iItemNumb,
                             iBrand          = oBrand,
                             iHitStars       = oBrand.iStars,
-                            iSearch         = oUserItem.iSearch,
-                            iCategory       = oBrand.pk )
+                            iSearch         = oUserItem.iSearch )
                     #
                     oItemFoundTemp.save()
                     #
@@ -634,8 +623,8 @@ def findSearchHits( oUser ):
                     #
                     oItemFoundTemp.save()
                 #
-            #
-            break # maybe keep looking?
+                break # maybe keep looking?
+                #
             #
         #
         if oItemFoundTemp is None: continue
@@ -643,8 +632,13 @@ def findSearchHits( oUser ):
         if bFoundBrand:
             #
             oModelQuerySet = Model.objects.filter(
-                    iUser = oUser,
+                    iUser  = oUser,
                     iBrand = oBrand ).order_by( '-iStars' )
+            #
+            #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
+                ##
+                #print( '\n', oItem.cTitle, '\n', 'found brand:', oBrand.cTitle )
+                #
             #
         else:
             #
@@ -654,15 +648,10 @@ def findSearchHits( oUser ):
         #
         for oModel in oModelQuerySet:
             #
-            t = getModelRegExFinders( oModel )
+            #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
+                    #print( 'model:', oModel.cTitle )
             #
-            findTitle, findExclude, findKeyWords = t
-            #
-            def foundItem( s ):
-                #
-                return    ( findTitle( s ) and
-                            _includeNotExclude( s, findExclude ) and
-                            _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+            foundItem = getFoundItemTester( oModel )
             #
             bInTitle = foundItem( oItem.cTitle )
             #
@@ -673,8 +662,8 @@ def findSearchHits( oUser ):
                 #
                 oItemFoundTemp.save()
                 #
-            #
-            break
+                break
+                #
             #
         #
     
