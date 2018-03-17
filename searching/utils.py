@@ -42,10 +42,13 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
     else:
         #
         logger.error( 'log this error, form did not save' )
+        #print( '\n' )
+        #print( 'log this error, form did not save' )
         #
         if form.errors:
             for k, v in form.errors.items():
                 logger.error( k, ' -- ', str(v) )
+                #print( k, ' -- ', str(v) )
         else:
             logger.info( 'no form errors at bottom!' )
         #
@@ -488,7 +491,7 @@ def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
     
 
 
-def _getTitleRegExress( oTableRow, bAddDash = False ):
+def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
     #
     sLook4Title = getWhatsLeft( oTableRow.cTitle )
     #
@@ -500,24 +503,29 @@ def _getTitleRegExress( oTableRow, bAddDash = False ):
         #
         sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
         #
-        sRegExpress = getRegExpress( sLookFor )
+        sRegExpress = getRegExpress( sLookFor, bSubModelsOK = bSubModelsOK )
         
     else:
         #
-        sRegExpress = getRegExpress( sLook4Title, bAddDash = bAddDash )
+        sRegExpress = getRegExpress( sLook4Title,
+                                     bAddDash     = bAddDash,
+                                     bSubModelsOK = bSubModelsOK )
         #
     #
     return sRegExpress
 
 
 
-def _getRowRegExpressions( oTableRow, bAddDash = False ):
+def _getRowRegExpressions( oTableRow,
+                           bAddDash = False, bSubModelsOK = False ):
     #
     bRowHasKeyWords = False
     #
     if not oTableRow.sRegExLook4Title:
         #
-        sFindTitle = _getTitleRegExress( oTableRow, bAddDash = bAddDash )
+        sFindTitle = _getTitleRegExress( oTableRow,
+                                         bAddDash     = bAddDash,
+                                         bSubModelsOK = bSubModelsOK )
         #
         sKeyWords = sFindKeyWords = sFindExclude = None
         #
@@ -592,7 +600,8 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
     return findKeyWords is None or findKeyWords( s )
 
 
-def getFoundItemTester( oTableRow, dFinders, bAddDash = False ):
+def getFoundItemTester( oTableRow, dFinders,
+                        bAddDash = False, bSubModelsOK = False ):
     #
     ''' pass model row instance, returns tester '''
     #
@@ -602,7 +611,9 @@ def getFoundItemTester( oTableRow, dFinders, bAddDash = False ):
         #
     else:
         #
-        t = _getRowRegExpressions( oTableRow, bAddDash = bAddDash )
+        t = _getRowRegExpressions( oTableRow,
+                                   bAddDash     = bAddDash,
+                                   bSubModelsOK = bSubModelsOK )
         #
         t = tuple( map( _getRegExSearchOrNone, t ) )
         #
@@ -789,8 +800,9 @@ def findSearchHits( oUser ):
             #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
                     #print( 'model:', oModel.cTitle )
             #
-            foundItem = getFoundItemTester(
-                            oModel, dFindersModels, bAddDash = True )
+            foundItem = getFoundItemTester( oModel, dFindersModels,
+                            bAddDash = True,
+                            bSubModelsOK = oModel.bSubModelsOK )
             #
             bInTitle, bExcludeThis = foundItem( oItem.cTitle )
             #
@@ -810,30 +822,48 @@ def findSearchHits( oUser ):
     #
     tNow = timezone.now()
     #
-    oNewItemsFound = ItemFoundTemp.objects.all()
+    bPrintUserItems = False
     #
     for oItem in oItemQuerySet:
         #
-        bItemOfInterest = oNewItemsFound.objects.filter( pk = oItem.pk )
+        bGotUserItem = UserItemFound.objects.filter(
+                            iItemNumb = oItem.pk, iUser = oUser.id ).exists()
         #
-        oUserItem = UserItemFound.objects.get( pk = oItem.pk, iUser = oUser )
+        if bGotUserItem:
+            #
+            oUserItem = UserItemFound.objects.get(
+                            iItemNumb = oItem.pk, iUser = oUser.id )
+            #
+            oUserItem.tlook4hits = tNow
+            #
+            if ItemFoundTemp.objects.filter( iItemNumb = oItem.pk ).exists():
+                #
+                oItemFoundTemp = ItemFoundTemp.objects.get( iItemNumb = oItem.pk )
+                #
+                oUserItem.iBrand        = oItemFoundTemp.iBrand
+                oUserItem.iCategory     = oItemFoundTemp.iCategory
+                oUserItem.iModel        = oItemFoundTemp.iModel
+                #
+                oUserItem.iHitStars     = oItemFoundTemp.iHitStars
+                oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
+                # oUserItem.iSearch     = oItemFoundTemp.iSearch
+                #
+            #
+            oUserItem.save()
+            #
+        else:
+            #
+            logger.error( 'UserItem not found for:', oItem.pk, oItem )
+            #
+            bPrintUserItems = True
         #
-        oUserItem.tlook4hits = tNow
+    #
+    if bPrintUserItems:
         #
-        if ItemFoundTemp.objects.filter( pk = oItem.pk ).exists():
+        for oUserItem in UserItemFound.objects.all():
             #
-            oItemFoundTemp = ItemFoundTemp.objects.get( pk = oItem.pk )
+            logger.error( oUserItem.pk, oUserItem )
             #
-            oUserItem.iBrand        = oItemFoundTemp.iBrand
-            oUserItem.iCategory     = oItemFoundTemp.iCategory
-            oUserItem.iModel        = oItemFoundTemp.iModel
-            #
-            oUserItem.iHitStars     = oItemFoundTemp.iHitStars
-            oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
-            # oUserItem.iSearch     = oItemFoundTemp.iSearch
-            #
-        #
-        oUserItem.save()
-    
-    
+    #
+
 
