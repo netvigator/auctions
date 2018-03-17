@@ -2,6 +2,8 @@ from logging            import getLogger
 
 from core.utils         import getWhatsLeft
 from core.utils_ebay    import getValueOffItemDict
+from django.utils       import timezone
+
 from ebayinfo.utils     import dMarket2SiteID
 
 from .models            import ItemFound, UserItemFound
@@ -590,11 +592,9 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
     return findKeyWords is None or findKeyWords( s )
 
 
-def getFoundItemTester( oTableRow, dFinders ):
+def getFoundItemTester( oTableRow, dFinders, bAddDash = False ):
     #
     ''' pass model row instance, returns tester '''
-    #
-    from String.Find import getRegExObj
     #
     if oTableRow.pk in dFinders:
         #
@@ -602,7 +602,7 @@ def getFoundItemTester( oTableRow, dFinders ):
         #
     else:
         #
-        t = _getRowRegExpressions( oTableRow )
+        t = _getRowRegExpressions( oTableRow, bAddDash = bAddDash )
         #
         t = tuple( map( _getRegExSearchOrNone, t ) )
         #
@@ -610,9 +610,12 @@ def getFoundItemTester( oTableRow, dFinders ):
         #
         def foundItemTester( s ):
             #
-            return    ( findTitle( s ) and
-                        _includeNotExclude( s, findExclude ) and
-                        _gotKeyWordsOrNoKeyWords( s, findKeyWords ) )
+            bIncludeThis = _includeNotExclude( s, findExclude )
+            #
+            return (    findTitle( s ) and
+                        bIncludeThis and
+                        _gotKeyWordsOrNoKeyWords( s, findKeyWords ),
+                     not bIncludeThis )
         #
         dFinders[ oTableRow.pk ] = foundItemTester
         #
@@ -688,17 +691,25 @@ def findSearchHits( oUser ):
             # and the string will not be searched
             # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
             #
-            bInTitle       = foundItem( oItem.cTitle )
+            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
             #
-            bInHeirarchy1  = ( # will be True if bInTitle is True
-                    bInTitle or
-                    foundItem( oItem.iCatHeirarchy.cCatHierarchy ) )
-            #
-            bInHeirarchy2  = ( # will be True if either are True
-                    bInTitle or
-                    bInHeirarchy1 or
-                    ( oItem.i2ndCatHeirarchy and
-                      foundItem( oItem.i2ndCatHeirarchy.cCatHierarchy ) ) )
+            if bExcludeThis:
+                #
+                bInHeirarchy1 = bInHeirarchy2 = False
+                #
+            else:
+                #
+                bInHeirarchy1  = ( # will be True if bInTitle is True
+                        bInTitle or
+                        foundItem( oItem.iCatHeirarchy.cCatHierarchy )[0] )
+                #
+                bInHeirarchy2  = ( # will be True if either are True
+                        bInTitle or
+                        bInHeirarchy1 or
+                        ( oItem.i2ndCatHeirarchy and
+                          foundItem(
+                              oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
+                #
             #
             if bInHeirarchy2: # bInTitle or bInHeirarchy1 or bInHeirarchy2
                 #
@@ -727,16 +738,16 @@ def findSearchHits( oUser ):
             #
             foundItem = getFoundItemTester( oBrand, dFindersBrands )
             #
-            bInTitle = foundItem( oItem.cTitle )
+            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
             #
-            if bInTitle:
+            if bInTitle and not bExcludeThis:
                 #
                 bFoundBrand = True
                 #
                 if oItemFoundTemp is None:
                     #
                     oItemFoundTemp = ItemFoundTemp(
-                            iItemNumb       = oItem.iItemNumb,
+                            iItemNumb       = oItem,
                             iBrand          = oBrand,
                             iHitStars       = oBrand.iStars,
                             iSearch         = oUserItem.iSearch )
@@ -778,11 +789,12 @@ def findSearchHits( oUser ):
             #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
                     #print( 'model:', oModel.cTitle )
             #
-            foundItem = getFoundItemTester( oModel, dFindersModels )
+            foundItem = getFoundItemTester(
+                            oModel, dFindersModels, bAddDash = True )
             #
-            bInTitle = foundItem( oItem.cTitle )
+            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
             #
-            if bInTitle:
+            if bInTitle and not bExcludeThis:
                 #
                 oItemFoundTemp.iHitStars *= oModel.iStars
                 oItemFoundTemp.iModel     = oModel
@@ -793,5 +805,35 @@ def findSearchHits( oUser ):
                 #
             #
         #
+    #
+    # now update UserItemFound with ItemFoundTemp
+    #
+    tNow = timezone.now()
+    #
+    oNewItemsFound = ItemFoundTemp.objects.all()
+    #
+    for oItem in oItemQuerySet:
+        #
+        bItemOfInterest = oNewItemsFound.objects.filter( pk = oItem.pk )
+        #
+        oUserItem = UserItemFound.objects.get( pk = oItem.pk, iUser = oUser )
+        #
+        oUserItem.tlook4hits = tNow
+        #
+        if ItemFoundTemp.objects.filter( pk = oItem.pk ).exists():
+            #
+            oItemFoundTemp = ItemFoundTemp.objects.get( pk = oItem.pk )
+            #
+            oUserItem.iBrand        = oItemFoundTemp.iBrand
+            oUserItem.iCategory     = oItemFoundTemp.iCategory
+            oUserItem.iModel        = oItemFoundTemp.iModel
+            #
+            oUserItem.iHitStars     = oItemFoundTemp.iHitStars
+            oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
+            # oUserItem.iSearch     = oItemFoundTemp.iSearch
+            #
+        #
+        oUserItem.save()
+    
     
 
