@@ -158,7 +158,7 @@ class ItemFound(models.Model):
 class UserItemFound(models.Model):
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
     iHitStars       = IntegerRangeField(
-                        'hit stars', null = True,
+                        'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
     bitemhit        = models.BooleanField( 'item of interest?',
                         default = False )    
@@ -184,7 +184,7 @@ class UserItemFound(models.Model):
                         'retrieved info date/time', auto_now = True )
 
     def __str__(self):
-        return '%s - %s' % ( iUser.username, self.iItemNumb )
+        return '%s - %s' % ( self.iUser.username, self.iItemNumb )
 
     class Meta:
         verbose_name_plural = 'useritemsfound'
