@@ -132,25 +132,38 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        self.assertFalse(  foundItem(  sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertFalse( bInTitle     )
+        self.assertTrue(  bExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
         #
         foundItem = dFinders[ self.oBrand.pk ]
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertIn( self.oBrand.sRegExLook4Title,
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
+        #
+        self.assertIn(     self.oBrand.sRegExLook4Title,
                                     ( 'Cadillac|Caddy', 'Caddy|Cadillac') )
-        self.assertEquals( 'golf',           self.oBrand.sRegExExclude )
+        #
+        self.assertEquals( self.oBrand.sRegExExclude, 'golf' )
 
 
 
@@ -162,26 +175,39 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'Gemini Jets 1/200 Delta MD-80 Widget Livery N956DL'
         #
-        self.assertFalse(  foundItem(  sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertFalse( bInTitle     )
+        self.assertTrue(  bExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        self.assertFalse(  foundItem(  sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertFalse( bInTitle     )
+        self.assertFalse( bExcludeThis )
         #
         foundItem = dFinders[ self.oCategory.pk ]
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertIn( self.oCategory.sRegExLook4Title,
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
+        #
+        self.assertIn(     self.oCategory.sRegExLook4Title,
                                         ( 'Gizmo|Widget', 'Widget|Gizmo' ) )
-        self.assertEquals( 'Delta',         self.oCategory.sRegExExclude )
-        self.assertEquals( 'Gadget',        self.oCategory.sRegExKeyWords )
+        #
+        self.assertEquals( self.oCategory.sRegExExclude,  'Delta'  )
+        self.assertEquals( self.oCategory.sRegExKeyWords, 'Gadget' )
 
 
     def testModelGetFoundItemTester(self):
@@ -192,30 +218,46 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        self.assertFalse(  foundItem(  sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertFalse( bInTitle     )
+        self.assertTrue(  bExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        self.assertFalse(  foundItem(    sAuctionTitle ) )
-
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertFalse( bInTitle     )
+        self.assertFalse( bExcludeThis )
+        #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        self.assertFalse( foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertFalse( bInTitle     )
+        self.assertFalse( bExcludeThis )
         #
         foundItem = dFinders[ self.oModel.pk ]
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        self.assertTrue(  foundItem(    sAuctionTitle ) )
+        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertIn( self.oModel.sRegExLook4Title,
+        self.assertTrue(  bInTitle     )
+        self.assertFalse( bExcludeThis )
+        #
+        self.assertIn(     self.oModel.sRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
-        self.assertEquals( 'golf',              self.oModel.sRegExExclude )
-        self.assertEquals( 'Eldorado',          self.oModel.sRegExKeyWords )
+        #
+        self.assertEquals( self.oModel.sRegExExclude,  'golf'     )
+        self.assertEquals( self.oModel.sRegExKeyWords, 'Eldorado' )
 
 
 
@@ -618,7 +660,7 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oBrand.save()
         #
-        oModel      = Model( cTitle = '6AU-1',
+        oModel      = Model( cTitle = '6AU1',
                             iBrand = oBrand, iCategory = oCategory,
                             iStars = 5, iUser = self.user1 )
         #
@@ -654,7 +696,7 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oModel.save()
         #
-        oModel      = Model( cTitle = 'L-56', iBrand = oBrand, iStars = 6,
+        oModel      = Model( cTitle = 'L56', iBrand = oBrand, iStars = 6,
                              iCategory = oCategory, iUser = self.user1 )
         #
         oModel.save()
@@ -669,7 +711,7 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oModel.save()
         #
-        oModel      = Model( cTitle = 'AX-235', iBrand = oBrand, iStars = 6,
+        oModel      = Model( cTitle = 'AX235', iBrand = oBrand, iStars = 6,
                             iCategory = oCategory, iUser = self.user1 )
         #
         oModel.save()
@@ -679,7 +721,7 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oBrand.save()
         #
-        oModel      = Model( cTitle = 'A-501', iBrand = oBrand, iStars = 6,
+        oModel      = Model( cTitle = 'A501', iBrand = oBrand, iStars = 6,
                              iCategory = oCategory, iUser = self.user1 )
         #
         oModel.save()
@@ -719,7 +761,7 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all().order_by( '-iHitStars' )
         #
-        print( '\n', 'len( oTempItemsFound ):', len( oTempItemsFound ) )
+        self.assertEquals( len( oTempItemsFound ), 17 )
         #
         for oTemp in oTempItemsFound:
             
