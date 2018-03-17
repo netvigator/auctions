@@ -759,34 +759,50 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         findSearchHits( self.user1 )
         #
-        oTempItemsFound = ItemFoundTemp.objects.all().order_by( '-iHitStars' )
+        oTempItemsFound = ItemFoundTemp.objects.all()
         #
         self.assertEquals( len( oTempItemsFound ), 17 )
         #
-        for oTemp in oTempItemsFound:
-            
-            print( '\n' )
+        oUserItems = UserItemFound.objects.filter(
+                        iUser = self.user1 ).order_by( '-iHitStars' )
+        #
+        iCount = 0
+        #
+        for oTemp in oUserItems:
             #
-            sSayModel = sSayBrand = sSayCategory = 'None'
-            #
-            if oTemp.iModel:
-                sSayModel = oTemp.iModel.cTitle
-            if oTemp.iBrand:
-                sSayBrand = oTemp.iBrand.cTitle
-            if oTemp.iCategory:
-                sSayCategory = oTemp.iCategory.cTitle
+            #print( '\n' )
+            ##
+            if oTemp.iHitStars == 0: break
+            ##
+            #sSayModel = sSayBrand = sSayCategory = ''
+            ##
+            #if oTemp.iModel:
+                #sSayModel = oTemp.iModel.cTitle
+            #if oTemp.iBrand:
+                #sSayBrand = oTemp.iBrand.cTitle
+            #if oTemp.iCategory:
+                #sSayCategory = oTemp.iCategory.cTitle
             
-            print( 'iItemNumb.cTitle:', oTemp.iItemNumb.cTitle )
+            #print( 'Auction Title:', oTemp.iItemNumb.cTitle )
 
-            print( 'iItemNumb.pk    :', oTemp.iItemNumb.pk )
-            print( 'iHitStars       :', oTemp.iHitStars )
-            print( 'iModel.cTitle   :', sSayModel )
-            print( 'iBrand.cTitle   :', sSayBrand )
-            print( 'iCategory.cTitle:', sSayCategory )
+            #print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
+            #print( 'iHitStars    :', oTemp.iHitStars        )
+            #print( 'Model        :', sSayModel              )
+            #print( 'Brand        :', sSayBrand              )
+            #print( 'Category     :', sSayCategory           )
+            ##
+            #print( 'Search       :', oTemp.iSearch.cTitle   )
+            #print( 'WhereCategory:', oTemp.cWhereCategory   )
+            #print( 'Evaluated    :',
+                  #oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
+            #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
             #
-            print( 'cWhereCategory  :', oTemp.cWhereCategory )
-            #
-        print( '\n' )
+            iCount += 1
+        #
+        # print( '\n' )
+        #
+        self.assertEquals( iCount, 17 )
+        #
 
 
 '''
