@@ -148,7 +148,7 @@ def getSearchResults( iSearchID = None ):
     #
     from django.contrib.auth    import get_user_model
     #
-    from core.ebay_wrapper  import (
+    from core.ebay_api_calls  import (
                     getItemsByKeyWords, getItemsByCategory, getItemsByBoth )
     #
     from searching          import sResultFileNamePattern
