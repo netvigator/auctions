@@ -14,6 +14,9 @@
 # apt-get update
 # sudo apt-get install erlang erlang-nox rabbitmq-server
 
+# are the requirements outdated?
+# run this monthly:
+# pip list --outdated
 
 # any changes?
 # pip install -r requirements/local.txt
