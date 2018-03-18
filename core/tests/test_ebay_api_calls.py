@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from ..ebay_wrapper import dEbayConf
+from ..ebay_api_calls import dEbayConf
 
 
 class EbayWrapperTests(TestCase):
