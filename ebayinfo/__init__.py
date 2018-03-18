@@ -25,7 +25,7 @@ sMarketsTable = \
  EBAY-FRCA  | CA       | fr-CA     |         210 | f              |              | CAD          |                |              -8
  EBAY-PH    | PH       | en-PH     |         211 | t              |              | PHP          |                |               8
  EBAY-PL    | PL       | pl-PL     |         212 | t              |              | PLN          |                |               1
- EBAY-SG    | SG       | en-SG     |         216 | t              |              | SGD          |                |               8
+ EBAY-SG    | SG       | en-SG     |         216 | t              |           30 | SGD          |                |               8
  EBAY-SE    | SE       | sv-SE     |         218 | f              |              | SEK          |                |               1
  '''
  
