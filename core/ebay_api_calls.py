@@ -1,3 +1,4 @@
+from copy               import deepcopy
 from os                 import environ
 from os.path            import join
 from sys                import path
@@ -17,19 +18,42 @@ from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
 from ebayinfo.models    import Market
 from ebayinfo.utils     import dMarket2SiteID
 
-from ebay.shopping      import GetSingleItem
 
 path.append('~/Devel/auctions')
 
 environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
+class InvalidParameters( Exception ): pass
+
 django.setup()
 
-dSecretsConf    = getConfDict( 'config/settings/Secrets.ini' )
 
-dEbayConf       = getConfDict( 'config/settings/ebay.ini' )
+_dProdSecrets   = getConfDict( 'config/settings/Secrets.ini' )  # secret
 
-class InvalidParameters( Exception ): pass
+_dEbayConf      = getConfDict( 'config/settings/ebay.ini' )     # not secret
+
+_dSandBox       = getConfDict( 'config/settings/sandbox.ini' )  # mixed
+
+_dEbaySandbox   = deepcopy( _dEbayConf )
+
+_dEbaySandbox.update( _dProdSecrets ) # add production secrets
+
+_dEbaySandbox.update( _dSandBox ) # overwrite secrets, add some non secrets
+
+_dProduction    = _dProdSecrets
+
+_dProduction.update( _dEbayConf ) # non secrets mixed in for convenience
+
+
+
+def _getApiConfValues( bUseSandbox ):
+    #
+    if bUseSandbox:
+        dUseThis = _dEbaySandbox
+    else:
+        dUseThis = _dProduction
+    #
+    return dUseThis
 
 
 def _getEbayApiPostResponse(
@@ -39,7 +63,7 @@ def _getEbayApiPostResponse(
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
         **headers ):
     #
-    ''' connect to ebay, get response '''
+    ''' connect to ebay, do a POST, get response '''
     #
     # It's a good practice to set connect timeouts to slightly larger than a
     # multiple of 3, which is the default TCP packet retransmission window.
@@ -72,17 +96,9 @@ def _getEbayApiGetResponse(
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
         **kwargs ):
     #
-    ''' connect to ebay, get response '''
+    ''' connect to ebay, do a GET, get response '''
     #
-    # It's a good practice to set connect timeouts to slightly larger than a
-    # multiple of 3, which is the default TCP packet retransmission window.
-    #
-    # Can set single value, single timeout value will be applied to
-    # both the connect and the read timeouts.
-    # Specify a tuple if you would like to set the values separately
-    # http://docs.python-requests.org/en/master/user/advanced/#timeouts
-    #
-    # can set to 0.001 for testing timed out response
+    # see comments above re timeouts
     #
     dData.update( kwargs )
     #
@@ -94,9 +110,9 @@ def _getEbayApiGetResponse(
     return oResponse.text
 
 
-
-
-def _getItemInfo( iItemNumb, sCallName, dWantMore = None ):
+def _getItemInfo( iItemNumb, sCallName,
+                  bUseSandbox = False,
+                  dWantMore   = None ):
     #
     dParams = { 'callname'          : sCallName, # 'GetSingleItem',
                 'responseencoding'  : "JSON",
@@ -107,11 +123,12 @@ def _getItemInfo( iItemNumb, sCallName, dWantMore = None ):
         dParams['IncludeSelector'] = dWantMore
         #
     #
-    sEndPointURL= dEbayConf[   "endpoints"]['shopping']
-    iSiteID     = dEbayConf[   "call"     ]["global_id"  ]
-    sCompatible = dEbayConf[   "call"     ]["compatibility"  ]
+    dConfValues = _getApiConfValues( bUseSandbox )
     #
-    sAppID      = dSecretsConf["keys"     ]["ebay_app_id"]
+    sEndPointURL= dConfValues[ "endpoints"][ 'shopping'     ]
+    iSiteID     = dConfValues[ "call"     ][ "global_id"    ]
+    sCompatible = dConfValues[ "call"     ][ "compatibility"]
+    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"  ]
     #
     dMore       = dict( appid   = sAppID,
                         siteid  = str( iSiteID ),
@@ -122,37 +139,44 @@ def _getItemInfo( iItemNumb, sCallName, dWantMore = None ):
     return _getEbayApiGetResponse( sEndPointURL, dParams )
 
 
-def getSingleItem( iItemNumb, dWantMore = None ):
+def getSingleItem( iItemNumb, bUseSandbox = False, dWantMore = None ):
     #
-    return _getItemInfo( iItemNumb, 'GetSingleItem', dWantMore = dWantMore )
+    return _getItemInfo( iItemNumb, 'GetSingleItem',
+                         dWantMore   = dWantMore,
+                         bUseSandbox = bUseSandbox )
 
-def getItemStatus( iItemNumb, dWantMore = None ):
+
+def getItemStatus( iItemNumb, bUseSandbox = False ):
     #
-    return _getItemInfo( iItemNumb, 'GetItemStatus' )
+    return _getItemInfo( iItemNumb, 'GetItemStatus', 
+                         bUseSandbox = bUseSandbox )
 
 
 
-def _getCategoriesOrVersion( iSiteId = 0,
+def _getCategoriesOrVersion(
+            iSiteId      = 0,
             sDetailLevel = None,
             iLevelLimit  = None,
+            bUseSandbox  = False,
             **headers ):
     #
-    sEndPointURL= dEbayConf[   "endpoints"]['trading']
-    sCompatible = dEbayConf[   "call"     ]["compatibility"  ]
-    sAppID      = dSecretsConf["keys"     ]["ebay_app_id"]
-    sCertID     = dSecretsConf["keys"     ]["ebay_certid"]
-    sDevID      = dSecretsConf["keys"     ]["ebay_dev_id"]
-    sToken      = dSecretsConf["auth"     ][ "token" ]
+    dConfValues = _getApiConfValues( bUseSandbox )
     #
-
+    sEndPointURL= dConfValues[ "endpoints"][ 'trading'      ]
+    sCompatible = dConfValues[ "call"     ][ "compatibility"]
+    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"  ]
+    sCertID     = dConfValues[ "keys"     ][ "ebay_certid"  ]
+    sDevID      = dConfValues[ "keys"     ][ "ebay_dev_id"  ]
+    sToken      = dConfValues[ "auth"     ][ "token"        ]
+    #
     dHttpHeaders= {
-            "X-EBAY-API-COMPATIBILITY-LEVEL" : sCompatible,
-            "X-EBAY-API-DEV-NAME"   : sDevID,
-            "X-EBAY-API-APP-NAME"   : sAppID,
-            "X-EBAY-API-CERT-NAME"  : sCertID,
-            "X-EBAY-API-CALL-NAME"  : 'GetCategories',
-            "X-EBAY-API-SITEID"     : str( iSiteId ),
-            "Content-Type"          : "text/xml" }
+            "X-EBAY-API-COMPATIBILITY-LEVEL": sCompatible,
+            "X-EBAY-API-DEV-NAME"           : sDevID,
+            "X-EBAY-API-APP-NAME"           : sAppID,
+            "X-EBAY-API-CERT-NAME"          : sCertID,
+            "X-EBAY-API-CALL-NAME"          : 'GetCategories',
+            "X-EBAY-API-SITEID"             : str( iSiteId ),
+            "Content-Type"                  : "text/xml" }
     #
     dHttpHeaders.update( headers )
     #
@@ -175,10 +199,11 @@ def _getCategoriesOrVersion( iSiteId = 0,
         oElement = etree.SubElement(root, "LevelLimit")
         oElement.text = str( iLevelLimit )
     #
-    sRequest    = etree.tostring( root,
-                                  pretty_print = False,
-                                  xml_declaration = True,
-                                  encoding = "utf-8" )
+    sRequest    = etree.tostring(
+                    root,
+                    pretty_print    = False,
+                    xml_declaration = True,
+                    encoding        = "utf-8" )
     #
     return _getEbayApiPostResponse(
             'trading',
@@ -190,14 +215,17 @@ def _getCategoriesOrVersion( iSiteId = 0,
 def _getEbayFindingResponse(
         sOperation,
         sRequest,
+        bUseSandbox = False,
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
         **headers ):
     #
     ''' connect to ebay for finding, get response '''
     #
-    sEndPointURL= dEbayConf[   "endpoints"]['finding'    ]
-    sGlobalID   = dEbayConf[   "call"     ]["global_id"  ]
-    sAppID      = dSecretsConf["keys"     ]["ebay_app_id"]
+    dConfValues = _getApiConfValues( bUseSandbox )
+    #
+    sEndPointURL= dConfValues[ "endpoints"][ 'finding'    ]
+    sGlobalID   = dConfValues[ "call"     ][ "global_id"  ]
+    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"]
 
     dHttpHeaders= {
             "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
@@ -210,7 +238,10 @@ def _getEbayFindingResponse(
 
 
 
-def _findItems( sKeyWords = None, iCategoryID = None, **headers ):
+def _findItems( sKeyWords   = None,
+                iCategoryID = None,
+                bUseSandbox = False,
+                **headers ):
     #
     if sKeyWords and iCategoryID:
         #
@@ -243,7 +274,8 @@ def _findItems( sKeyWords = None, iCategoryID = None, **headers ):
     #
     sRequest = etree.tostring( root, pretty_print = True )
     #
-    return _getEbayFindingResponse( sCall, sRequest, **headers )
+    return _getEbayFindingResponse(
+                sCall, sRequest, bUseSandbox = bUseSandbox, **headers )
 
 
 def _getDecoded( sContent ):
@@ -279,36 +311,49 @@ def _getMarketHeader( sMarketID ):
 # http://developer.ebay.com/DevZone/half-finding/Concepts/SiteIDToGlobalID.html
 # integer and underscore versions case HTTP Error 500: Internal Server Error
 
-def getItemsByKeyWords( sKeyWords, sMarketID = 'EBAY-US' ):
+def getItemsByKeyWords( sKeyWords, sMarketID = 'EBAY-US', bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
-            _findItems( sKeyWords = sKeyWords, **dHeader ) )
+                _findItems(
+                    sKeyWords = sKeyWords,
+                    bUseSandbox = bUseSandbox,
+                    **dHeader ) )
 
-def getItemsByCategory( iCategoryID, sMarketID = 'EBAY-US' ):
+def getItemsByCategory( iCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
-            _findItems( iCategoryID = iCategoryID, **dHeader ) )
+                _findItems(
+                    iCategoryID = iCategoryID,
+                    bUseSandbox = bUseSandbox,
+                    **dHeader ) )
 
-def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US' ):
+def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
-            _findItems(
-                sKeyWords  = sKeyWords, iCategoryID = iCategoryID, **dHeader ) )
+                _findItems(
+                    sKeyWords   = sKeyWords,
+                    iCategoryID = iCategoryID,
+                    bUseSandbox = bUseSandbox,
+                    **dHeader ) )
 
 #sResults = getItemsByBoth( 'Simpson 360', '58277' )
 ##
 #QuietDump( sResults, 'Results_Adv_Simpson360.json' )
 
 
-def getCategoryVersionGotSiteID( iSiteId = 0 ): # ID for EBAY-US
+def getCategoryVersionGotSiteID(
+            iSiteId = 0, bUseSandbox = False ): # ID for EBAY-US
     #
-    oVersion = _getCategoriesOrVersion( iSiteId = iSiteId, iLevelLimit = 1 )
+    oVersion = _getCategoriesOrVersion(
+                    iSiteId     = iSiteId,
+                    iLevelLimit = 1,
+                    bUseSandbox = bUseSandbox )
     #
     return _getDecoded( oVersion )
 
@@ -326,22 +371,26 @@ def getCategoryVersionGotSiteID( iSiteId = 0 ): # ID for EBAY-US
 
 
 
-def getCategoryVersionGotGlobalID( sGlobalID = 'EBAY-US' ):
+def getCategoryVersionGotGlobalID(
+        sGlobalID = 'EBAY-US', bUseSandbox = False ):
     #
     iID = dMarket2SiteID[ sGlobalID ]
     #
-    return getCategoryVersionGotSiteID( iSiteId = iID )
+    return getCategoryVersionGotSiteID(
+                iSiteId = iID, bUseSandbox = bUseSandbox )
 
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
 
 
-def getMarketCategoriesGotSiteID( iSiteId = 0 ): # ID for EBAY-US
+
+def getMarketCategoriesGotSiteID( iSiteId = 0, bUseSandbox = False ): # ID for EBAY-US
     #
     dHeaders = { 'Accept-Encoding': 'application/gzip' }
     #
     oCategories = _getCategoriesOrVersion(
                         iSiteId      = iSiteId,
                         sDetailLevel = 'ReturnAll',
+                        bUseSandbox  = bUseSandbox,
                         **dHeaders )
     #
     return _getDecoded( _getDecompressed( oCategories ) )
@@ -349,11 +398,13 @@ def getMarketCategoriesGotSiteID( iSiteId = 0 ): # ID for EBAY-US
 # QuietDump( getMarketCategoriesGotSiteID(), 'Categories_All_EBAY-USA.xml' )
 
 
-def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
+def getMarketCategoriesGotGlobalID(
+        sGlobalID = 'EBAY-US', bUseSandbox = False ):
     #
     iID = dMarket2SiteID[ sGlobalID ]
     #
-    return getMarketCategoriesGotSiteID( iSiteId = iID )
+    return getMarketCategoriesGotSiteID(
+            iSiteId = iID, bUseSandbox = bUseSandbox )
 
 # QuietDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml' )
 # QuietDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml' )
