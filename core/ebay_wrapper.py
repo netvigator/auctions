@@ -1,20 +1,23 @@
-
 from os                 import environ
 from os.path            import join
 from sys                import path
 
+from urllib.request     import urlopen, Request
+
 import django
 
-from ebay.utils         import set_config_file, get_config_store
-from ebay.finding       import ( findItemsAdvanced, findItemsByKeywords,
-                                 findItemsByCategory )
-from ebay.shopping      import GetSingleItem
-from ebay.trading       import getCategories
+from lxml               import etree
+import requests
+
 
 from File.Write         import QuietDump
+from Utils.Config       import getConfDict
+from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
 
 from ebayinfo.models    import Market
+from ebayinfo.utils     import dMarket2SiteID
 
+from ebay.shopping      import GetSingleItem
 
 path.append('~/Devel/auctions')
 
@@ -22,13 +25,163 @@ environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
 django.setup()
 
-set_config_file( 'config/settings/ebay_config.ini' )
+dSecretsConf    = getConfDict( 'config/settings/Secrets.ini' )
 
-# accessing the config object only for testing in test_ebay_wrapper.py
-oEbayConfig = get_config_store()
+dEbayConf       = getConfDict( 'config/settings/ebay.ini' )
+
+class InvalidParameters( Exception ): pass
 
 
-def getDecoded( sContent ):
+def _getEbayApiResponse(
+        sOperation,
+        sEndPointURL,
+        sRequest,
+        uTimeOuts   = ( 4, 10 ), # ( connect, read )
+        **headers ):
+    #
+    ''' connect to ebay, get response '''
+    #
+    # It's a good practice to set connect timeouts to slightly larger than a
+    # multiple of 3, which is the default TCP packet retransmission window.
+    #
+    # Can set single value, single timeout value will be applied to
+    # both the connect and the read timeouts.
+    # Specify a tuple if you would like to set the values separately
+    # http://docs.python-requests.org/en/master/user/advanced/#timeouts
+    #
+    # can set to 0.001 for testing timed out response
+    #
+    dHttpHeaders= {
+            "X-EBAY-SOA-OPERATION-NAME"      : sOperation,
+            "X-EBAY-SOA-RESPONSE-DATA-FORMAT": 'json' }
+    #
+    dHttpHeaders.update( headers )
+    #
+    oResponse = requests.post(
+                    sEndPointURL,
+                    data    = sRequest,
+                    timeout = uTimeOuts,
+                    headers = dHttpHeaders )
+    #
+    return oResponse.text
+
+
+
+def _getCategoriesOrVersion( iSiteId = 0,
+            sDetailLevel = None,
+            iLevelLimit  = None,
+            **headers ):
+    #
+    sEndPointURL= dEbayConf[   "endpoints"]['trading']
+    sCompatible = dEbayConf[   "call"     ]["compatibility"  ]
+    sAppID      = dSecretsConf["keys"     ]["ebay_app_id"]
+    sCertID     = dSecretsConf["keys"     ]["ebay_certid"]
+    sDevID      = dSecretsConf["keys"     ]["ebay_dev_id"]
+    sToken      = dSecretsConf["auth"     ][ "token" ]
+    #
+
+    dHttpHeaders= {
+            "X-EBAY-API-COMPATIBILITY-LEVEL" : sCompatible,
+            "X-EBAY-API-DEV-NAME"   : sDevID,
+            "X-EBAY-API-APP-NAME"   : sAppID,
+            "X-EBAY-API-CERT-NAME"  : sCertID,
+            "X-EBAY-API-CALL-NAME"  : 'GetCategories',
+            "X-EBAY-API-SITEID"     : str( iSiteId ),
+            "Content-Type"          : "text/xml" }
+    #
+    dHttpHeaders.update( headers )
+    #
+    root = etree.Element( "GetCategoriesRequest",
+                          xmlns = "urn:ebay:apis:eBLBaseComponents" )
+    #
+    oCredentials = etree.SubElement( root, "RequesterCredentials" )
+    #
+    oElement = etree.SubElement( oCredentials, "eBayAuthToken")
+    oElement.text = sToken
+    #
+    oElement = etree.SubElement(root, "CategorySiteID")
+    oElement.text = str( iSiteId )
+    #
+    if sDetailLevel:
+        oElement = etree.SubElement( root, "DetailLevel" )
+        oElement .text = sDetailLevel
+    #
+    if iLevelLimit:
+        oElement = etree.SubElement(root, "LevelLimit")
+        oElement.text = str( iLevelLimit )
+    #
+    sRequest    = etree.tostring( root,
+                                  pretty_print = False,
+                                  xml_declaration = True,
+                                  encoding = "utf-8" )
+    #
+    return _getEbayApiResponse(
+            'trading',
+            sEndPointURL,
+            sRequest,
+            **dHttpHeaders )
+
+
+def _getEbayFindingResponse(
+        sOperation,
+        sRequest,
+        uTimeOuts   = ( 4, 10 ), # ( connect, read )
+        **headers ):
+    #
+    ''' connect to ebay for finding, get response '''
+    #
+    sEndPointURL= dEbayConf[   "endpoints"]['finding'    ]
+    sGlobalID   = dEbayConf[   "call"     ]["global_id"  ]
+    sAppID      = dSecretsConf["keys"     ]["ebay_app_id"]
+
+    dHttpHeaders= {
+            "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
+            "X-EBAY-SOA-SECURITY-APPNAME" : sAppID }
+
+    dHttpHeaders.update( headers )
+    #
+    return _getEbayApiResponse( sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
+
+
+
+
+def _findItems( sKeyWords = None, iCategoryID = None, **headers ):
+    #
+    if sKeyWords and iCategoryID:
+        #
+        sCall = 'findItemsAdvanced'
+        #
+    elif sKeyWords:
+        #
+        sCall = 'findItemsByKeywords'
+        #
+    elif iCategoryID:
+        #
+        sCall = 'findItemsByCategory'
+        #
+    else:
+        #
+        raise InvalidParameters( 'must pass either key words or category' )
+        #
+    #
+    root = etree.Element(
+            sCall,
+            xmlns = "http://www.ebay.com/marketplace/search/v1/services" )
+    #
+    if sKeyWords:
+        oElement        = etree.SubElement( root, "keywords" )
+        oElement.text   = sKeyWords
+    #
+    if iCategoryID:
+        oElement        = etree.SubElement( root, "categoryId" )
+        oElement.text   = iCategoryID
+    #
+    sRequest = etree.tostring( root, pretty_print = True )
+    #
+    return _getEbayFindingResponse( sCall, sRequest, **headers )
+
+
+def _getDecoded( sContent ):
     #
     try:
         sContent = sContent.decode('utf-8')
@@ -38,7 +191,7 @@ def getDecoded( sContent ):
     return sContent
 
 
-def getDecompressed( oContent ):
+def _getDecompressed( oContent ):
     #
     from gzip import decompress
     #
@@ -50,54 +203,7 @@ def getDecompressed( oContent ):
     return bContent
 
 
-# print( 'dev_name:', oEbayConfig['keys']['dev_name'] )
-
-'''
-signatures:
-
-findItemsAdvanced
-keywords=None, \
-categoryId=None, \
-
-findItemsByKeywords
-keywords, \
-
-findItemsByCategory
-categoryId, \
-
-all 3:
-affiliate=None, \
-buyerPostalCode=None, \
-sortOrder=None, \
-paginationInput = None, \
-aspectFilter=None, \
-domainFilter=None, \
-itemFilter=None, \
-outputSelector=None, \
-
-to vary the market searched, add param:
-"X-EBAY-SOA-GLOBAL-ID" : {globalId_you_want}
-
-from trading:
-def getCategories(  parentId=None, \
-                    detailLevel='ReturnAll', \
-                    errorLanguage=None, \
-                    messageId=None, \
-                    outputSelector=None, \
-                    version=None, \
-                    warningLevel="High", \
-                    levelLimit=1, \
-                    viewAllNodes=True, \
-                    categorySiteId=0, \
-                    encoding="JSON",
-                    **headers ):
-
-maybe add to trading: getDefaultCategoryTreeId
-https://developer.ebay.com/api-docs/commerce/taxonomy/resources/category_tree/methods/getDefaultCategoryTreeId
-
-'''
-
-def getMarketHeader( sMarketID ):
+def _getMarketHeader( sMarketID ):
     #
     dHeader = { "X-EBAY-SOA-GLOBAL-ID": sMarketID }
     #
@@ -110,95 +216,98 @@ def getMarketHeader( sMarketID ):
 
 def getItemsByKeyWords( sKeyWords, sMarketID = 'EBAY-US' ):
     #
-    dHeader = getMarketHeader( sMarketID )
+    dHeader = _getMarketHeader( sMarketID )
     #
-    return getDecoded(
-            findItemsByKeywords( keywords = sKeyWords, **dHeader ) )
+    return _getDecoded(
+            _findItems( sKeyWords = sKeyWords, **dHeader ) )
 
 def getItemsByCategory( iCategoryID, sMarketID = 'EBAY-US' ):
     #
-    dHeader = getMarketHeader( sMarketID )
+    dHeader = _getMarketHeader( sMarketID )
     #
-    return getDecoded(
-            findItemsByCategory( categoryId = iCategoryID, **dHeader ) )
+    return _getDecoded(
+            _findItems( iCategoryID = iCategoryID, **dHeader ) )
 
 def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US' ):
     #
-    dHeader = getMarketHeader( sMarketID )
+    dHeader = _getMarketHeader( sMarketID )
     #
-    return getDecoded(
-            findItemsAdvanced(
-                keywords = sKeyWords, categoryId = iCategoryID, **dHeader ) )
+    return _getDecoded(
+            _findItems(
+                sKeyWords  = sKeyWords, iCategoryID = iCategoryID, **dHeader ) )
 
 #sResults = getItemsByBoth( 'Simpson 360', '58277' )
 ##
 #QuietDump( sResults, 'Results_Adv_Simpson360.json' )
 
 
-def getCategoryVersion( categorySiteId=0 ):
+def getCategoryVersionGotSiteID( iSiteId = 0 ): # ID for EBAY-US
     #
-    oVersion = getCategories(
-                categorySiteId = categorySiteId, detailLevel = None )
+    oVersion = _getCategoriesOrVersion( iSiteId = iSiteId, iLevelLimit = 1 )
     #
-    return getDecoded( oVersion )
+    return _getDecoded( oVersion )
 
 #These are invalid!
-#QuietDump( getCategoryVersion( 'EBAY-US' ), 'Categories_Ver_EBAY-US.xml' )
-#QuietDump( getCategoryVersion( 'EBAY-DE' ), 'Categories_Ver_EBAY-DE.xml' )
+#QuietDump( getCategoryVersionGotSiteID( 'EBAY-US' ), 'Categories_Ver_EBAY-US.xml' )
+#QuietDump( getCategoryVersionGotSiteID( 'EBAY-DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
 #These are invalid!
-#QuietDump( getCategoryVersion( 'EBAY_US' ), 'Categories_Ver_EBAY-US.xml' )
-#QuietDump( getCategoryVersion( 'EBAY_DE' ), 'Categories_Ver_EBAY-DE.xml' )
+#QuietDump( getCategoryVersionGotSiteID( 'EBAY_US' ), 'Categories_Ver_EBAY-US.xml' )
+#QuietDump( getCategoryVersionGotSiteID( 'EBAY_DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
 #### These are OK ####
-#QuietDump( getCategoryVersion(  0 ), 'Categories_Ver_EBAY-US.xml' )
-#QuietDump( getCategoryVersion( 77 ), 'Categories_Ver_EBAY-DE.xml' )
+#QuietDump( getCategoryVersionGotSiteID(  0 ), 'Categories_Ver_EBAY-US.xml' )
+#QuietDump( getCategoryVersionGotSiteID( 77 ), 'Categories_Ver_EBAY-DE.xml' )
 
 
 
 def getCategoryVersionGotGlobalID( sGlobalID = 'EBAY-US' ):
     #
-    iID = int( Market.objects.get( cMarket = sGlobalID ).iEbaySiteID )
+    iID = dMarket2SiteID[ sGlobalID ]
     #
-    return getCategoryVersion( categorySiteId = iID )
+    return getCategoryVersionGotSiteID( iSiteId = iID )
 
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
 
 
-def getMarketCategories( categorySiteId=0 ):
+def getMarketCategoriesGotSiteID( iSiteId = 0 ): # ID for EBAY-US
     #
     dHeaders = { 'Accept-Encoding': 'application/gzip' }
     #
-    oCategories = getCategories(
-        categorySiteId = categorySiteId, levelLimit = None, **dHeaders )
+    oCategories = _getCategoriesOrVersion(
+                        iSiteId      = iSiteId,
+                        sDetailLevel = 'ReturnAll',
+                        **dHeaders )
     #
-    return getDecoded( getDecompressed( oCategories ) )
+    return _getDecoded( _getDecompressed( oCategories ) )
 
-# QuietDump( getMarketCategories(), 'Categories_All_EBAY-USA.xml' ) # .gz
+# QuietDump( getMarketCategoriesGotSiteID(), 'Categories_All_EBAY-USA.xml' )
 
 
 def getMarketCategoriesGotGlobalID(  sGlobalID = 'EBAY-US' ):
     #
-    iID = int( Market.objects.get( cMarket = sGlobalID ).iEbaySiteID )
+    iID = dMarket2SiteID[ sGlobalID ]
     #
-    dHeaders = { 'Accept-Encoding': 'application/gzip' }
-    #
-    oCategories = getCategories(
-        categorySiteId = iID, levelLimit = None, **dHeaders ) # 
-    #
-    return getDecoded( getDecompressed( oCategories ) )
+    return getMarketCategoriesGotSiteID( iSiteId = iID )
 
-# QuietDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml.gz' )
-# QuietDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml.gz' )
+# QuietDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml' )
+# QuietDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml' )
 
 
 
 '''
 
 Best Practices
-GetSingleItem has been optimized for response size, speed and usability. So, it returns the most commonly used fields by default. Use the IncludeSelector field to get more data—but please note that getting more data can result in longer response times.
+GetSingleItem has been optimized for response size, speed and usability.
+So, it returns the most commonly used fields by default. 
+Use the IncludeSelector field to get more data—
+but please note that getting more data can result in longer response times.
 ...
-So, after you initially retrieve an item's details, cache the item data locally, and then use GetItemStatus from then on to more quickly update the details that tend to change. Depending on your use case, you can call GetSingleItem again occasionally to see if the seller has revised any other data in the listing.
+So, after you initially retrieve an item's details, 
+cache the item data locally, and then use GetItemStatus 
+from then on to more quickly update the details that tend to change. 
+Depending on your use case, you can call GetSingleItem again occasionally 
+to see if the seller has revised any other data in the listing.
 
 http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html#IncludeSelector
 
