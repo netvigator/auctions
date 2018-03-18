@@ -5,7 +5,6 @@ from django.test                import TestCase
 
 # Create your tests here.
 
-from ..ebay_wrapper             import oEbayConfig
 from ..templatetags.core_tags   import getNbsp
 from ..user_one                 import oUserOne
 from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
@@ -102,16 +101,6 @@ class CoreUserTests(TestCase):
         
         self.assertEquals( oUserOne.username, 'netvigator')
 
-
-class EbayWrapperTests(TestCase):
-    ''' ebay wrapper tests '''
-    
-    def test_get_ini_values(self):
-        
-        self.assertEquals( oEbayConfig['call']['global_id'], 'EBAY-US' )
-        
-        self.assertEquals( oEbayConfig['research']['Token'], 'ENTER_HERE' )
-        
 
 
 class DateTimeImportTests(TestCase):
