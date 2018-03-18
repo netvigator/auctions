@@ -18,7 +18,7 @@ from django_countries.conf  import settings as countriesSettings
 
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
-dSecretsConf = getConf( 'Secrets.conf' )
+dSecretsConf = getConf( 'Secrets.ini' )
 
 logger = getLogger(__name__)
 
