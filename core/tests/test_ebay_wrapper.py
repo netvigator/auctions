@@ -1,7 +1,6 @@
 from django.test import TestCase
 
-
-from ..ebay_wrapper import oEbayConfig
+from ..ebay_wrapper import dEbayConf
 
 
 class EbayWrapperTests(TestCase):
@@ -9,7 +8,9 @@ class EbayWrapperTests(TestCase):
     
     def test_get_ini_values(self):
         
-        self.assertEquals( oEbayConfig['call']['global_id'], 'EBAY-US' )
+        self.assertEquals( dEbayConf['call']['global_id'], 'EBAY-US' )
+        self.assertEquals( dEbayConf['call']['siteid'   ], '0'       )
         
-        self.assertEquals( oEbayConfig['research']['Token'], 'ENTER_HERE' )
+        self.assertEquals( dEbayConf['endpoints']['finding'],
+                    'http://svcs.ebay.com/services/search/FindingService/v1' )
 
