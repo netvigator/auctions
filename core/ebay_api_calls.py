@@ -32,7 +32,7 @@ dEbayConf       = getConfDict( 'config/settings/ebay.ini' )
 class InvalidParameters( Exception ): pass
 
 
-def _getEbayApiResponse(
+def _getEbayApiPostResponse(
         sOperation,
         sEndPointURL,
         sRequest,
@@ -64,6 +64,71 @@ def _getEbayApiResponse(
                     headers = dHttpHeaders )
     #
     return oResponse.text
+
+
+def _getEbayApiGetResponse(
+        sEndPointURL,
+        dData,
+        uTimeOuts   = ( 4, 10 ), # ( connect, read )
+        **kwargs ):
+    #
+    ''' connect to ebay, get response '''
+    #
+    # It's a good practice to set connect timeouts to slightly larger than a
+    # multiple of 3, which is the default TCP packet retransmission window.
+    #
+    # Can set single value, single timeout value will be applied to
+    # both the connect and the read timeouts.
+    # Specify a tuple if you would like to set the values separately
+    # http://docs.python-requests.org/en/master/user/advanced/#timeouts
+    #
+    # can set to 0.001 for testing timed out response
+    #
+    dData.update( kwargs )
+    #
+    oResponse = requests.get(
+                    sEndPointURL,
+                    params = dData,
+                    timeout = uTimeOuts )
+    #
+    return oResponse.text
+
+
+
+
+def _getItemInfo( iItemNumb, sCallName, dWantMore = None ):
+    #
+    dParams = { 'callname'          : sCallName, # 'GetSingleItem',
+                'responseencoding'  : "JSON",
+                'ItemId'            : str( iItemNumb ) }
+    #
+    if dWantMore:
+        #
+        dParams['IncludeSelector'] = dWantMore
+        #
+    #
+    sEndPointURL= dEbayConf[   "endpoints"]['shopping']
+    iSiteID     = dEbayConf[   "call"     ]["global_id"  ]
+    sCompatible = dEbayConf[   "call"     ]["compatibility"  ]
+    #
+    sAppID      = dSecretsConf["keys"     ]["ebay_app_id"]
+    #
+    dMore       = dict( appid   = sAppID,
+                        siteid  = str( iSiteID ),
+                        version = sCompatible )
+    #
+    dParams.update( dMore )
+    #
+    return _getEbayApiGetResponse( sEndPointURL, dParams )
+
+
+def getSingleItem( iItemNumb, dWantMore = None ):
+    #
+    return _getItemInfo( iItemNumb, 'GetSingleItem', dWantMore = dWantMore )
+
+def getItemStatus( iItemNumb, dWantMore = None ):
+    #
+    return _getItemInfo( iItemNumb, 'GetItemStatus' )
 
 
 
@@ -115,7 +180,7 @@ def _getCategoriesOrVersion( iSiteId = 0,
                                   xml_declaration = True,
                                   encoding = "utf-8" )
     #
-    return _getEbayApiResponse(
+    return _getEbayApiPostResponse(
             'trading',
             sEndPointURL,
             sRequest,
@@ -140,7 +205,7 @@ def _getEbayFindingResponse(
 
     dHttpHeaders.update( headers )
     #
-    return _getEbayApiResponse( sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
+    return _getEbayApiPostResponse( sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
 
 
 
