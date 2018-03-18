@@ -21,8 +21,8 @@ core.ebay_wrapper.py
 '''
 
 # variable referenced in tests
-sCategoryVersionFile = '/tmp/Categories_Ver_%s.xml'
-sCategorylistingFile = '/tmp/Categories_All_%s.xml.gz'
+CATEGORY_VERSION_FILE = '/tmp/Categories_Ver_%s.xml'
+CATEGORY_LISTING_FILE = '/tmp/Categories_All_%s.xml.gz'
 
 sRootTag = 'GetCategoriesResponse'
 
@@ -71,7 +71,7 @@ def getTagsValuesGotRoot( root, tTags = tVersionChildTags, sFile = None ):
 
 
 def getCategoryIterable(
-        sFile = sCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
+        sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117' ):
     #
     tree = ET.parse( sFile )
     #
@@ -94,7 +94,7 @@ def getCategoryIterable(
 
 
 def countCategories(
-        sFile = sCategorylistingFile % 'EBAY-US', sWantVersion = '117',
+        sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117',
         bSayCount = False ):
     #
     from String.Output import ReadableNo
@@ -118,7 +118,7 @@ def countCategories(
 
 
 def getCategoryDictGenerator(
-        sFile = sCategorylistingFile % 'EBAY-US', sWantVersion = '117' ):
+        sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117' ):
     #
     oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
     #
@@ -166,7 +166,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
     # getCategoryDictGenerator checks for the expected version
     #
     categoryDictIterable = getCategoryDictGenerator(
-        sFile = sCategorylistingFile % sMarket, sWantVersion = sWantVersion )
+        sFile = CATEGORY_LISTING_FILE % sMarket, sWantVersion = sWantVersion )
     #
     if bShowProgress: # progress meter for running in shell, no need to test
         #
@@ -179,7 +179,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
         for dCategory in categoryDictIterable: iCount +=1
         #
         categoryDictIterable = getCategoryDictGenerator(
-            sFile = sCategorylistingFile % sMarket,
+            sFile = CATEGORY_LISTING_FILE % sMarket,
             sWantVersion = sWantVersion )
         #
         sLineB4 = 'stepping thru ebay categories ...'
@@ -280,7 +280,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
 
 
 
-def getCategoryVersionValues( sFile ):
+def _getCategoryVersionValues( sFile ):
     #
     tree = ET.parse( sFile )
     #
@@ -290,27 +290,16 @@ def getCategoryVersionValues( sFile ):
 
 
 
-def getCategoryVersion( sMarket = 'EBAY-US', sFile = sCategoryVersionFile ):
+def getCategoryVersion( sGlobalID = 'EBAY-US', sFile = CATEGORY_VERSION_FILE ):
     #
     '''get the version from a file already downloaded'''
     #
-    dTagsValues = getCategoryVersionValues( sFile % sMarket )
+    dTagsValues = _getCategoryVersionValues( sFile % sGlobalID )
     #
     return dTagsValues[ 'CategoryVersion' ]
 
 
-'''
-['id',
- 'cMarket',
- 'cCountry',
- 'cLanguage',
- 'iEbaySiteID',
- 'bHasCategories',
- 'iCategoryVer',
- 'cCurrencyDef',
- 'cUseCategoryID',
- 'iUtcPlusOrMinus']
-'''
+
 
 def getMarketsIntoDatabase():
     #
@@ -362,6 +351,8 @@ def getMarketsIntoDatabase():
 
 def _getDictMarket2SiteID():
     #
+    from Dict.Get import getReverseDictGotUniqueItems
+    #
     dMarket2SiteID = {}
     #
     for oMarket in Market.objects.all():
@@ -369,9 +360,9 @@ def _getDictMarket2SiteID():
         dMarket2SiteID[ oMarket.cMarket ] = oMarket.iEbaySiteID
         #
     #
-    return dMarket2SiteID
+    return dMarket2SiteID, getReverseDictGotUniqueItems( dMarket2SiteID )
 
-dMarket2SiteID = _getDictMarket2SiteID()
+dMarket2SiteID, dSiteID2Market = _getDictMarket2SiteID()
 
 '''
 pprint( dMarket2SiteID )
@@ -399,3 +390,40 @@ pprint( dMarket2SiteID )
  'EBAY-SG': 216,
  'EBAY-US': 0}
  '''
+
+
+def getCheckCategoryVersion(
+            iSiteId     = 0,
+            sGlobalID   = None,
+            sFile       = CATEGORY_VERSION_FILE,
+            bUseSandbox = False ):
+    #
+    '''call the ebay API to get the info, extract the version from that'''
+    #
+    from core.ebay_api_calls import ( getCategoryVersionGotSiteID,
+                                      getCategoryVersionGotGlobalID )
+    #
+    from File.Write import QuietDump
+    #
+    # iSiteId = 0 aka sGlobalID = 'EBAY-US'
+    #
+    if sGlobalID  is None:
+        #
+        sResponse = getCategoryVersionGotSiteID(
+                        iSiteId, bUseSandbox = bUseSandbox )
+        #
+        sGlobalID = dSiteID2Market[ int( iSiteId ) ]
+        #
+    else:
+        #
+        sResponse = getCategoryVersionGotGlobalID(
+                        sGlobalID, bUseSandbox = bUseSandbox )
+        #
+    #
+    QuietDump( sResponse, CATEGORY_VERSION_FILE % sGlobalID )
+    #
+    return getCategoryVersion( sGlobalID )
+
+
+
+# QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
