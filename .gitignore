@@ -44,8 +44,8 @@ htmlcov
 
 .directory
 
-ebay.ini
 Secrets.ini
+sandbox.ini
 ebay_config.ini
 
 # Vim
