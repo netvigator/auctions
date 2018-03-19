@@ -1,6 +1,6 @@
 from datetime           import timedelta
 
-from django.test        import TestCase
+from django.test        import TestCase, tag
 from django.utils       import timezone
 from core.utils_testing import ( BaseUserTestCase, getDefaultMarket,
                                  getEbayCategoriesSetUp,
@@ -582,7 +582,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
     def setUp(self):
         # storeSearchResultsTests, self 
         #
-        from searching import sResultFileNamePattern
+        from searching import RESULTS_FILE_NAME_PATTERN
         #
         super().setUp()
         #
@@ -591,7 +591,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         oSearch.save()
         #
         self.sExampleFile = (
-            sResultFileNamePattern % # 'Search_%s_%s_ID_%s.json'
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
             ( 'EBAY-US', self.user1.username, oSearch.id ) )
         #
         WriteText2File( sExampleResponse, '/tmp', self.sExampleFile )
@@ -634,17 +634,28 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         # storeSearchResultsTests, self 
         #
         from os.path    import join
-        from searching  import sResultFileNamePattern
+        from searching  import RESULTS_FILE_NAME_PATTERN
         #
         super().setUp()
         #
-        sSearch = "My clever search 1"
-        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
-        oSearch.save()
+        sSearch = "Catalin Radios"
+        #
+        sKeyWords = (
+                'catalin -Dominoes -Umbrella -Poker -clock -box -backgammon '
+                '-magnet -beads -holder -board -dice -game -napkin -strainer'
+                '-blocks -furniture -mahjong -mahjongg -skull -bracelet '
+                '-stamp -brush -lighter -trophy -pencil -purse -bangle '
+                '-barometer ' )
+        #
+        self.oSearch = Search(
+                        cTitle      = sSearch,
+                        cKeyWords   = sKeyWords,
+                        iUser       = self.user1 )
+        self.oSearch.save()
         #
         self.sExampleFile = (
-            sResultFileNamePattern % # 'Search_%s_%s_ID_%s.json'
-            ( 'EBAY-US', self.user1.username, oSearch.id ) )
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
+            ( 'EBAY-US', self.user1.username, self.oSearch.id ) )
         #
         WriteText2File( sResponseSearchTooBroad, '/tmp', self.sExampleFile )
         #
@@ -803,6 +814,20 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         self.assertEquals( iCount, 17 )
         #
+
+
+    @tag('ebay_api')
+    def do_search_store_results_test( self ):
+        #
+        t = doSearchStoreResults(
+                iSearchID = self.oSearch.id, bUseSandbox = True )
+        #
+        iItems, iStoreItems, iStoreUsers = t
+        #
+        print( 'iItems, iStoreItems, iStoreUsers:',
+                iItems, iStoreItems, iStoreUsers )
+
+
 
 
 '''
