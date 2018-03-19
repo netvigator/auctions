@@ -1,7 +1,7 @@
 from core.utils     import getDateTimeObjGotEbayStr
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
-sResultFileNamePattern = 'Search_%s_%s_ID_%s.json'
+RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
 
 # condition is optional
 # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
