@@ -29,25 +29,6 @@ sMarketsTable = \
  EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
  '''
  
- 
-# to add
-# EBAY-AU
-# EBAY-CH
-# EBAY-DE
-# EBAY-ES
-# EBAY-FRCA
-# EBAY-FRBE
-# EBAY-IN
-# EBAY-IE
-# EBAY-IT
-# EBAY-HK
-# EBAY-MOTOR
-# EBAY-MY
-# EBAY-NLBE
-# EBAY-PH
-# EBAY-PL
-# EBAY-SE
-
 
  
  
