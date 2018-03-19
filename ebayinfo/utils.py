@@ -292,11 +292,12 @@ def _getCategoryVersionValues( sFile ):
 
 def getCategoryVersion( sGlobalID = 'EBAY-US', sFile = CATEGORY_VERSION_FILE ):
     #
-    '''get the version from a file already downloaded'''
+    '''get the version from a file already downloaded
+    values from a downloaded file are all strings, right?!'''
     #
     dTagsValues = _getCategoryVersionValues( sFile % sGlobalID )
     #
-    return dTagsValues[ 'CategoryVersion' ]
+    return int( dTagsValues[ 'CategoryVersion' ] )
 
 
 
