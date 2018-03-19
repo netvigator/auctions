@@ -43,7 +43,7 @@ class Brand(models.Model):
         help_text = sExcludeIfHelpText % 'brand' )
     
     sRegExLook4Title= models.CharField( max_length=128, null = True )
-    sRegExExclude   = models.CharField( max_length=128, null = True )
+    sRegExExclude   = models.TextField(                 null = True )
     
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',

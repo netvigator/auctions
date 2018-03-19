@@ -54,8 +54,8 @@ class Category(models.Model):
                     'names or numbers in this category' )
 
     sRegExLook4Title= models.CharField( max_length=128, null = True )
-    sRegExExclude   = models.CharField( max_length=128, null = True )
-    sRegExExclude   = models.CharField( max_length=128, null = True )
+    sRegExExclude   = models.TextField(                 null = True )
+    sRegExKeyWords  = models.CharField( max_length=128, null = True )
     
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                                                     null = True )

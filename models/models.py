@@ -76,8 +76,8 @@ class Model( models.Model ):
         help_text = sExcludeIfHelpText % 'model' )
     
     sRegExLook4Title= models.CharField( max_length=128, null = True )
-    sRegExExclude   = models.CharField( max_length=128, null = True )
-    sRegExExclude   = models.CharField( max_length=128, null = True )
+    sRegExExclude   = models.TextField(                 null = True )
+    sRegExKeyWords  = models.CharField( max_length=128, null = True )
     
     # maybe change to FilePathField later, it is not working now 2017-12-03
     # models.FilePathField()
