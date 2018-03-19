@@ -18,6 +18,11 @@ class GetConfFileValuesTests(TestCase):
         
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
+        self.assertEquals(
+                dConfValues['auth']['token']
+                                [ : len( 'AgAAAA**AQAAAA**aAAAAA**m1' ) ],
+                'AgAAAA**AQAAAA**aAAAAA**m1' )
+        
         dConfValues = _getApiConfValues( True )
         
         self.assertEquals( dConfValues['call']['global_id'], 'EBAY-US' )
@@ -27,6 +32,10 @@ class GetConfFileValuesTests(TestCase):
                     'http://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
         
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
+        self.assertEquals(
+                dConfValues['auth']['token']
+                                [ : len( 'AgAAAA**AQAAAA**aAAAAA**/0' ) ],
+                'AgAAAA**AQAAAA**aAAAAA**/0' )
 
 '''
 do not test because downloaded file is HUGE:
