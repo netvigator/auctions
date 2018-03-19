@@ -1,14 +1,17 @@
-from logging            import getLogger
+from logging                import getLogger
 
-from core.utils         import getWhatsLeft
-from core.utils_ebay    import getValueOffItemDict
-from django.utils       import timezone
+from core.utils             import getWhatsLeft
+from core.utils_ebay        import getValueOffItemDict
+from django.db              import DataError
+from django.utils           import timezone
 
-from ebayinfo.utils     import dMarket2SiteID
+from ebayinfo.utils         import dMarket2SiteID
 
-from .models            import ItemFound, UserItemFound
+from .models                import ItemFound, UserItemFound
 
-from String.Find        import getRegExpress, getRegExObj
+from String.Find            import getRegExpress, getRegExObj
+
+from core.user_one          import oUserOne
 
 logger = getLogger(__name__)
 
@@ -62,7 +65,7 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
 def getSearchResultGenerator( sFile ):
     #
     ''' search saves results to file, this returns an interator to set through
-    in __init__.py: sResultFileNamePattern = 'Search_%s_%s_ID_%s.json'
+    in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
     '''
     #
     from json           import load
@@ -140,7 +143,7 @@ def getSearchResultGenerator( sFile ):
         yield dItem
 
 
-def getSearchResults( iSearchID = None ):
+def getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response in /tmp'''
     #
@@ -151,7 +154,7 @@ def getSearchResults( iSearchID = None ):
     from core.ebay_api_calls  import (
                     getItemsByKeyWords, getItemsByCategory, getItemsByBoth )
     #
-    from searching          import sResultFileNamePattern
+    from searching          import RESULTS_FILE_NAME_PATTERN
     from .models            import Search
     from ebayinfo.models    import Market
     #
@@ -186,7 +189,7 @@ def getSearchResults( iSearchID = None ):
     iEbayCategory   = oSearch.iEbayCategory
     #
     sFileName       = (
-        sResultFileNamePattern % ( sMarket, sUserName, oSearch.id ) )
+        RESULTS_FILE_NAME_PATTERN % ( sMarket, sUserName, oSearch.id ) )
     #  'Search_%s_%s_ID_%s.json'
     #
     tSearch = ( oSearch.cTitle, str( oSearch.id ) )
@@ -198,7 +201,9 @@ def getSearchResults( iSearchID = None ):
             tSearch )
         #
         QuietDump(
-            getItemsByBoth( sKeyWords, iEbayCategory, sMarketID = sMarket ),
+            getItemsByBoth( sKeyWords, iEbayCategory,
+                            sMarketID = sMarket,
+                            bUseSandbox = bUseSandbox ),
             sFileName )
         #
     elif sKeyWords:
@@ -208,7 +213,9 @@ def getSearchResults( iSearchID = None ):
             '(in all categories) ...' % tSearch )
         #
         QuietDump(
-            getItemsByKeyWords( sKeyWords, sMarketID = sMarket ),
+            getItemsByKeyWords( sKeyWords,
+                                sMarketID   = sMarket,
+                                bUseSandbox = bUseSandbox ),
             sFileName )
         #
     elif iEbayCategory:
@@ -218,7 +225,9 @@ def getSearchResults( iSearchID = None ):
             '(without key words) ...' % tSearch )
         #
         QuietDump(
-            getItemsByCategory( iEbayCategory, sMarketID = sMarket ),
+            getItemsByCategory( iEbayCategory,
+                                sMarketID   = sMarket,
+                                bUseSandbox = bUseSandbox ),
             sFileName )
         #
     #
@@ -408,7 +417,9 @@ def storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
 
 
 
-def doSearchStoreResults( iSearchID = None, sFileName = None ):
+def doSearchStoreResults( iSearchID     = None,
+                          sFileName     = None,
+                          bUseSandbox   = False ):
     #
     '''put search results in the database
     can do a search, or use the results file from completed ebay API request
@@ -423,7 +434,7 @@ def doSearchStoreResults( iSearchID = None, sFileName = None ):
     #
     if sFileName is None:
         #
-        sFileName = getSearchResults( iSearchID )
+        sFileName = getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
         #
     #
     # 'Search-%s-%s-ID-%s.json' % ( sMarket, sUserName, oSearch.id ) )
@@ -472,15 +483,23 @@ def doSearchStoreResults( iSearchID = None, sFileName = None ):
 
 
 
-def trySearchCatchExceptions( iSearchID = None, sFileName = None ):
+def trySearchCatchExceptions(
+            iSearchID   = None,
+            sFileName   = None,
+            bUseSandbox = False ):
     #
     '''high level script, does a search, catches exceptions, logs errors'''
     #
     iItems = iStoreItems = iStoreUsers = 0
     #
     try:
-        iItems, iStoreItems, iStoreUsers = doSearchStoreResults(
-                    iSearchID = iSearchID, sFileName = sFileName )
+        t = doSearchStoreResults(
+                    iSearchID   = iSearchID,
+                    sFileName   = sFileName,
+                    bUseSandbox = bUseSandbox )
+        #
+        iItems, iStoreItems, iStoreUsers = t
+        #
     except SearchNotWorkingError as e:
         logger.error( 'SearchNotWorkingError: %s' % e )
     except SearchGotZeroResults as e:
@@ -519,9 +538,19 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
 def _getRowRegExpressions( oTableRow,
                            bAddDash = False, bSubModelsOK = False ):
     #
-    bRowHasKeyWords = False
+    bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
     #
-    if not oTableRow.sRegExLook4Title:
+    sFindKeyWords = None
+    #
+    if oTableRow.sRegExLook4Title:
+        #
+        sFindTitle          = oTableRow.sRegExLook4Title
+        sFindExclude        = oTableRow.sRegExExclude
+        #
+        if bRowHasKeyWords:
+            sFindKeyWords   = oTableRow.sRegExKeyWords
+        #
+    else:
         #
         sFindTitle = _getTitleRegExress( oTableRow,
                                          bAddDash     = bAddDash,
@@ -529,7 +558,6 @@ def _getRowRegExpressions( oTableRow,
         #
         sKeyWords = sFindKeyWords = sFindExclude = None
         #
-        bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
         #
         if bRowHasKeyWords: sKeyWords = oTableRow.cKeyWords
         #
@@ -550,7 +578,15 @@ def _getRowRegExpressions( oTableRow,
         if bRowHasKeyWords:
             oTableRow.sRegExKeyWords = sFindKeyWords
         #
-        oTableRow.save()
+        try:
+            oTableRow.save()
+        except DataError as e:
+            logger.error( 'DataError: %s' % e )
+            print( 'oTableRow   :', oTableRow.cTitle )
+            print( 'sFindTitle  :', sFindTitle )
+            print( 'sFindExclude:', sFindExclude )
+            if bRowHasKeyWords:
+                print( 'sFindKeyWords:', sFindKeyWords)
         #
     #
     return sFindTitle, sFindExclude, sFindKeyWords
@@ -634,7 +670,7 @@ def getFoundItemTester( oTableRow, dFinders,
     return foundItemTester
 
 
-def whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
+def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
     #
     if bInTitle:
         #
@@ -653,7 +689,7 @@ def whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 
 
-def findSearchHits( oUser ):
+def findSearchHits( oUser = oUserOne ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -724,7 +760,7 @@ def findSearchHits( oUser ):
             #
             if bInHeirarchy2: # bInTitle or bInHeirarchy1 or bInHeirarchy2
                 #
-                sWhich = whichGetsCredit(
+                sWhich = _whichGetsCredit(
                             bInTitle, bInHeirarchy1, bInHeirarchy2 )
                 #
                 oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
@@ -838,7 +874,9 @@ def findSearchHits( oUser ):
             #
             if ItemFoundTemp.objects.filter( iItemNumb = oItem.pk ).exists():
                 #
-                oItemFoundTemp = ItemFoundTemp.objects.get( iItemNumb = oItem.pk )
+                oItemFoundTemp = ( ItemFoundTemp.objects
+                                    .filter( iItemNumb = oItem.pk )
+                                    .order_by( '-iHitStars' ).first() )
                 #
                 oUserItem.iBrand        = oItemFoundTemp.iBrand
                 oUserItem.iCategory     = oItemFoundTemp.iCategory
