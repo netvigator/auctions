@@ -1,18 +1,19 @@
 from django.db          import DataError
-from django.test        import TestCase
+from django.test        import TestCase, tag
 
-# Create your tests here.
 
 from core.utils_testing import getDefaultMarket
 
 from ..models           import EbayCategory, Market
-# the following is in the __init__.py file
+
+# the following are in the tests __init__.py file
 from ..tests            import sExampleCategoryVersion, sExampleCategoryList
 
-from ..utils            import ( sCategoryVersionFile, getCategoryVersion,
-                                 UnexpectedResponse, sCategorylistingFile,
+from ..utils            import ( CATEGORY_VERSION_FILE, getCategoryVersion,
+                                 UnexpectedResponse, CATEGORY_LISTING_FILE,
                                  putCategoriesInDatabase, countCategories,
-                                 getMarketsIntoDatabase )
+                                 getMarketsIntoDatabase,
+                                 getCheckCategoryVersion )
 
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
@@ -28,11 +29,15 @@ sExampleWrongChildTag = sExampleCategoryVersion.replace(
         'Version', 'Venison' )
 
 
+class CatetoryVersionMissing( Exception ): pass
+class CatetoryListHasNewVers( Exception ): pass
+
+
 
 class getCategoryVersionTest(TestCase):
     '''test getCategoryVersion()'''
     
-    sFile = sCategoryVersionFile % 'EBAY-US'
+    sFile = CATEGORY_VERSION_FILE % 'EBAY-US'
 
     def tearDown(self):
         DeleteIfExists( self.sFile )
@@ -42,7 +47,7 @@ class getCategoryVersionTest(TestCase):
         # test is run AFTER the last line in this file is executed
         WriteText2File(
                 sExampleCategoryVersion, self.sFile )
-        self.assertEqual( getCategoryVersion(), '117' )
+        self.assertEqual( getCategoryVersion(), 117 )
 
     def test_wrong_category_version(self):
         '''test with incorrect GetCategoriesResponse'''
@@ -88,7 +93,7 @@ class getCategoryVersionTest(TestCase):
 class putCategoriesInDatabaseTest(TestCase):
     '''test getCategoryVersion()'''
 
-    sFile = sCategorylistingFile % 'EBAY-US'
+    sFile = CATEGORY_LISTING_FILE % 'EBAY-US'
 
     def setUp(self):
         getDefaultMarket()
@@ -181,4 +186,37 @@ class putMarketsInDatabaseTest(TestCase):
         self.assertEqual( oUSA.iEbaySiteID, 0 )
         #
         self.assertEqual( oUSA.cCurrencyDef, 'USD' )
-        
+
+    @tag('ebay_api')
+    def test_got_current_category_version_list( self ):
+        #
+        from random import randrange
+        #
+        iCount = Market.objects.all().count()
+        #
+        iRandom = randrange( 0, iCount )
+        #
+        oMarket = Market.objects.all()[ iRandom ]
+        #
+        if randrange( 0, 1000 ) % 2: # randomly alternate
+            #
+            iCurrentVersion = getCheckCategoryVersion(
+                    iSiteId = oMarket.iEbaySiteID, bUseSandbox = True )
+            #
+        else:
+            #
+            iCurrentVersion = getCheckCategoryVersion(
+                    sGlobalID = oMarket.cMarket, bUseSandbox = True )
+            #
+        #
+        if iCurrentVersion != oMarket.iCategoryVer:
+            #
+            print( '\n' )
+            print( 'testing market %s' % oMarket.cMarket )
+            #
+        #
+        self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
+        #
+
+
+
