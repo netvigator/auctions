@@ -170,7 +170,6 @@ def _getCategoriesOrVersion(
     sToken      = dConfValues[ "auth"     ][ "token"        ]
     #
     dHttpHeaders= {
-            "X-EBAY-API-COMPATIBILITY-LEVEL": sCompatible,
             "X-EBAY-API-DEV-NAME"           : sDevID,
             "X-EBAY-API-APP-NAME"           : sAppID,
             "X-EBAY-API-CERT-NAME"          : sCertID,
@@ -226,14 +225,15 @@ def _getEbayFindingResponse(
     sEndPointURL= dConfValues[ "endpoints"][ 'finding'    ]
     sGlobalID   = dConfValues[ "call"     ][ "global_id"  ]
     sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"]
-
+    #
     dHttpHeaders= {
             "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
             "X-EBAY-SOA-SECURITY-APPNAME" : sAppID }
 
-    dHttpHeaders.update( headers )
+    headers.update( dHttpHeaders )
     #
-    return _getEbayApiPostResponse( sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
+    return _getEbayApiPostResponse(
+                sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
 
 
 
