@@ -18,10 +18,11 @@ class GetConfFileValuesTests(TestCase):
         
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
+        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**m1'
+        
         self.assertEquals(
-                dConfValues['auth']['token']
-                                [ : len( 'AgAAAA**AQAAAA**aAAAAA**m1' ) ],
-                'AgAAAA**AQAAAA**aAAAAA**m1' )
+                dConfValues['auth']['token'][ : len( sTokenStart ) ],
+                sTokenStart )
         
         dConfValues = _getApiConfValues( True )
         
@@ -31,20 +32,19 @@ class GetConfFileValuesTests(TestCase):
         self.assertEquals( dConfValues['endpoints']['finding'],
                     'http://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
         
+        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**/0'
+        
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
         self.assertEquals(
-                dConfValues['auth']['token']
-                                [ : len( 'AgAAAA**AQAAAA**aAAAAA**/0' ) ],
-                'AgAAAA**AQAAAA**aAAAAA**/0' )
+                dConfValues['auth']['token'][ : len( sTokenStart ) ],
+                sTokenStart )
 
 '''
-do not test because downloaded file is HUGE:
+use these for time out tests only because downloaded file is HUGE:
     getMarketCategoriesGotSiteID()
     getMarketCategoriesGotGlobalID()
 
 do test:
-    getCategoryVersionGotSiteID()
-    getCategoryVersionGotGlobalID()
     getItemsByKeyWords()
     getItemsByCategory()
     getItemsByBoth()
@@ -53,3 +53,4 @@ do test:
 '''
 
 
+        
