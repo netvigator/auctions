@@ -2,8 +2,8 @@ from django.contrib.auth    import get_user_model
 from django.http.request    import HttpRequest
 from django.test            import TestCase, RequestFactory
 from django.test.client     import Client
+from django.db.utils        import IntegrityError
 
-# Create your tests here.
 
 from brands.models          import Brand
 from categories.models      import Category
@@ -289,11 +289,28 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
                 oCategory.parent    = oRootCategory
             else:
                 oCategory.iParentID = int(     lParts[4] )
-                oCategory.parent= EbayCategory.objects.get(
+                #
+                if EbayCategory.objects.filter(
+                                iCategoryID = int( lParts[4] ),
+                                iMarket     = oCategory.iMarket ).exists():
+                    #
+                    oCategory.parent = EbayCategory.objects.get(
                                     iCategoryID = int( lParts[4] ),
                                     iMarket     = oCategory.iMarket )
-            #
-            oCategory.save()
+                    #
+                else:
+                    #
+                    print('\n')
+                    print('cannot find category with iCategoryID %s, '
+                          'parent of iCategoryID %s' %
+                          ( lParts[4], lParts[1] ) )
+                #
+            try:
+                oCategory.save()
+            except IntegrityError:
+                print('\n')
+                print('iCategoryID already exists: %s -- '
+                    'clean up the list!' % lParts[1] )
 
 
 
