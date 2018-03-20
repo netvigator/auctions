@@ -156,8 +156,8 @@ returns
 '''
 
 
-def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '118',
-            bShowProgress = False ):
+def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
+            bShowProgress = False, sFile = None ):
     #
     from .models import EbayCategory, Market
     #
@@ -165,8 +165,13 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '118',
     #
     # getCategoryDictGenerator checks for the expected version
     #
+    if sFile is None:
+        #
+        sFile = CATEGORY_LISTING_FILE % sMarket
+        #
+    #
     categoryDictIterable = getCategoryDictGenerator(
-        sFile = CATEGORY_LISTING_FILE % sMarket, sWantVersion = sWantVersion )
+        sFile = sFile, sWantVersion = sWantVersion )
     #
     if bShowProgress: # progress meter for running in shell, no need to test
         #
@@ -451,7 +456,11 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
         #
         if iEbayHas != iTableHas:
             #
-            lMarketsHaveNewerCategoryVersionLists.append( iSiteID )
+            d = dict( iSiteID   = iSiteID,
+                      iEbayHas  = iEbayHas,
+                      iTableHas = iTableHas )
+            #
+            lMarketsHaveNewerCategoryVersionLists.append( d )
             #
         #
     #
