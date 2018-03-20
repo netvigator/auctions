@@ -827,8 +827,9 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
     @tag('ebay_api')
     def test_search_store_results( self ):
         #
+        # sandbox returns 0 items, can use it to test for 0 items
         t = doSearchStoreResults(
-                iSearchID = self.oSearch.id, bUseSandbox = True )
+                iSearchID = self.oSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
