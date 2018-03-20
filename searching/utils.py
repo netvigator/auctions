@@ -277,7 +277,7 @@ def _getValueUserOrOther( k, dItem, dFields, oUser = None, **kwargs ):
 
 
 def _getCategoryHierarchyID(
-            iCategoryID, iEbaySiteID, dEbayCatHierarchies ):
+            iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies ):
     #
     from ebayinfo.models    import EbayCategory, CategoryHierarchy, Market
     #
@@ -335,14 +335,13 @@ def _getCategoryHierarchyID(
         #
     else: # testing glitch, limited set of categories
         #
-        iCatHeirarchy = ''
+        iCatHeirarchy = sCategoryName
         #
-        sMessage = ( 'Ebay category does not exist: '
-                     'iCategoryID = %s | iMarket = %s' %
-                          ( iCategoryID, iEbaySiteID ) )
+        sMessage = ( 'For market %s, ebay category '
+                     '%s does not exist' %
+                          ( iEbaySiteID, iCategoryID ) )
         logger.info( sMessage)
         #
-        print('\n')
         print( sMessage )
         #
     #
@@ -362,11 +361,12 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     from ebayinfo.models    import EbayCategory
     #
     iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
+    sCategoryName =    dItem.get( 'primaryCategory' ).get( 'categoryName' )
     #
     iEbaySiteID = dMarket2SiteID.get( dItem.get( 'globalId' ) )
     #
     iCatHeirarchy = _getCategoryHierarchyID(
-                        iCategoryID, iEbaySiteID, dEbayCatHierarchies )
+                        iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
     #
     s2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
     #
@@ -374,8 +374,10 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
         #
         i2ndCategoryID = int( s2ndCategoryID )
         #
+        sCategoryName =    dItem.get( 'secondaryCategory' ).get( 'categoryName' )
+        #
         i2ndCatHeirarchy = _getCategoryHierarchyID(
-                    i2ndCategoryID, iEbaySiteID, dEbayCatHierarchies )
+                    i2ndCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
         #
     else:
         #
