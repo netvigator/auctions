@@ -192,13 +192,15 @@ class putMarketsInDatabaseTest(TestCase):
         #
         from random import randrange
         #
+        from Utils.Get import getRandomTrueOrFalse
+        #
         iCount = Market.objects.all().count()
         #
         iRandom = randrange( 0, iCount )
         #
         oMarket = Market.objects.all()[ iRandom ]
         #
-        if randrange( 0, 1000 ) % 2: # randomly alternate
+        if getRandomTrueOrFalse(): # randomly alternate
             #
             iCurrentVersion = getCheckCategoryVersion(
                     iSiteId = oMarket.iEbaySiteID, bUseSandbox = True )
@@ -218,5 +220,16 @@ class putMarketsInDatabaseTest(TestCase):
         self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
         #
 
-
-
+    @tag('ebay_api')
+    def test_check_whether_any_ebay_market_list_is_updated( self ):
+        #
+        oUSA = Market.objects.get( cMarket = 'EBAY-US' )
+        #
+        oUSA.iCategoryVer = 116 # current version is actually 117
+        oUSA.save()
+        #
+        lUpdated = getWhetherAnyEbayCategoryListsAreUpdated(
+                        bUseSandbox = True )
+        #
+        self.assertEqual( lUpdated, [ oUSA.iEbaySiteID ] )
+        #
