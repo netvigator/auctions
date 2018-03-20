@@ -1,3 +1,5 @@
+from os                 import rename
+
 from django.db          import DataError
 from django.test        import TestCase, tag
 
@@ -52,7 +54,7 @@ class getCategoryVersionTest(TestCase):
                 sExampleCategoryVersion, self.sFile )
         self.assertEqual( _getCategoryVersionFromFile(), 117 )
 
-    def test_wrong_category_version(self):
+    def test_file_wrong_category_version(self):
         '''test with incorrect GetCategoriesResponse'''
         #
         WriteText2File(
@@ -102,14 +104,14 @@ class putCategoriesInDatabaseTest(TestCase):
         getDefaultMarket()
 
     def tearDown(self):
-        DeleteIfExists( self.sFile )
+        pass # DeleteIfExists( self.sFile )
 
     def test_put_categories_in_database(self):
         #
         WriteText2File(
                 sExampleCategoryList, self.sFile )
         #
-        putCategoriesInDatabase()
+        putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117' )
         #
         oGreek = EbayCategory.objects.get( iCategoryID = 37906 )
         #
@@ -126,7 +128,7 @@ class putCategoriesInDatabaseTest(TestCase):
         WriteText2File( sLongName, self.sFile )
         #
         try:
-            putCategoriesInDatabase()
+            putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117' )
         except DataError as e:
             sMsg = str(e)
             self.assertEqual( sMsg[ - len( sLong ) : ], sLong )
@@ -136,20 +138,21 @@ class putCategoriesInDatabaseTest(TestCase):
         
 
 
-    def test_wrong_category_version(self):
+    def test_database_wrong_category_version(self):
         #
         sWrongVersion = sExampleCategoryList.replace(
-                'Version>117</Category', 'Version>118</Category' )
-        WriteText2File(
-                sWrongVersion, self.sFile )
+                'Version>117</Category', 'Version>116</Category' )
+        
+        sFileName = '%s_WrongVersion' % self.sFile
+        WriteText2File( sWrongVersion, sFileName )
         #
         try:
-            putCategoriesInDatabase()
+            putCategoriesInDatabase( sFile = sFileName, sWantVersion = '117')
         except UnexpectedResponse as e:
             self.assertEqual(
                     str(e),
                     'Check file %s for tag "CategoryVersion" -- '
-                        'should be %s!' % ( self.sFile, '117' ) )
+                        'should be %s!' % ( sFileName, '117' ) )
         else:
             self.assertTrue( False )
 
@@ -237,5 +240,6 @@ class putMarketsInDatabaseTest(TestCase):
         lUpdated = getWhetherAnyEbayCategoryListsAreUpdated(
                         bUseSandbox = True )
         #
-        self.assertEqual( lUpdated, [ oUSA.iEbaySiteID ] )
+        self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
+        self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
         #
