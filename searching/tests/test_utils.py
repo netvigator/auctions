@@ -59,8 +59,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         self.assertTrue(  findTitle(    sAuctionTitle ) )
         #
-        
-    
+
 
     def test_CategoryRegExFinderStorage(self):
         #
@@ -524,7 +523,6 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         else:
             self.assertTrue( False ) # exception should hve been raised
         #
-        
 
 
 
@@ -575,6 +573,7 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
 
 
 
+
 class storeSearchResultsTests(getEbayCategoriesSetUp):
     #
     ''' class for testing doSearchStoreResults() store records '''
@@ -584,7 +583,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         #
         from searching import RESULTS_FILE_NAME_PATTERN
         #
-        super().setUp()
+        super( storeSearchResultsTests, self ).setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
@@ -626,9 +625,10 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
 
 
 
-class findSearchHitsTests(getEbayCategoriesSetUp):
+
+class getBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
     #
-    ''' class for testing doSearchStoreResults() store records '''
+    ''' base class for testing doSearchStoreResults() store records '''
     #
     def setUp(self):
         # storeSearchResultsTests, self 
@@ -636,30 +636,18 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         from os.path    import join
         from searching  import RESULTS_FILE_NAME_PATTERN
         #
-        super().setUp()
+        super( getBrandsCategoriesModelsSetUp, self ).setUp()
         #
         sSearch = "Catalin Radios"
         #
-        sKeyWords = (
-                'catalin -Dominoes -Umbrella -Poker -clock -box -backgammon '
-                '-magnet -beads -holder -board -dice -game -napkin -strainer'
-                '-blocks -furniture -mahjong -mahjongg -skull -bracelet '
-                '-stamp -brush -lighter -trophy -pencil -purse -bangle '
-                '-barometer ' )
+        sKeyWords = 'catalin radio'
         #
         self.oSearch = Search(
                         cTitle      = sSearch,
                         cKeyWords   = sKeyWords,
                         iUser       = self.user1 )
+        #
         self.oSearch.save()
-        #
-        self.sExampleFile = (
-            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
-            ( 'EBAY-US', self.user1.username, self.oSearch.id ) )
-        #
-        WriteText2File( sResponseSearchTooBroad, '/tmp', self.sExampleFile )
-        #
-        doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
         #
         oCategory   = Category( cTitle = 'Radio', iStars = 9,
                                cExcludeIf = 'reproduction', iUser = self.user1 )
@@ -757,12 +745,27 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         #
         oBrand.save()
         #
-
-
         
-    def tearDown(self):
+
+
+class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
+    #
+    ''' class for testing doSearchStoreResults() store records '''
+    #
+    def setUp(self):
         #
-        DeleteIfExists( '/tmp', self.sExampleFile )
+        super( findSearchHitsTests, self ).setUp()
+        #
+        self.sExampleFile = (
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
+            ( 'EBAY-US', self.user1.username, self.oSearch.id ) )
+        #
+        WriteText2File( sResponseSearchTooBroad, '/tmp', self.sExampleFile )
+        #
+        doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
+        #
+        print( '\n' )
+        print( 'setting up findSearchHitsTests' )
 
     def test_find_search_hits(self):
         #
@@ -810,14 +813,19 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
             #
             iCount += 1
         #
-        # print( '\n' )
+        print( '\n' )
+        print( 'did test_find_search_hits' )
         #
         self.assertEquals( iCount, 17 )
         #
 
+class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
+    #
+    ''' class for testing doSearchStoreResults() store records '''
+    #
 
     @tag('ebay_api')
-    def do_search_store_results_test( self ):
+    def test_search_store_results( self ):
         #
         t = doSearchStoreResults(
                 iSearchID = self.oSearch.id, bUseSandbox = True )
@@ -827,7 +835,12 @@ class findSearchHitsTests(getEbayCategoriesSetUp):
         print( 'iItems, iStoreItems, iStoreUsers:',
                 iItems, iStoreItems, iStoreUsers )
 
+        oUserItems = UserItemFound.objects.filter(
+                        iUser = self.user1 ).order_by( '-iHitStars' )
+        #
 
+        print( '\n' )
+        print( 'did do_search_store_results_test' )
 
 
 '''
