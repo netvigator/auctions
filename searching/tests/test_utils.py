@@ -159,10 +159,10 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertTrue(  bInTitle     )
         self.assertFalse( bExcludeThis )
         #
-        self.assertIn(     self.oBrand.sRegExLook4Title,
+        self.assertIn(     self.oBrand.cRegExLook4Title,
                                     ( 'Cadillac|Caddy', 'Caddy|Cadillac') )
         #
-        self.assertEquals( self.oBrand.sRegExExclude, 'golf' )
+        self.assertEquals( self.oBrand.cRegExExclude, 'golf' )
 
 
 
@@ -202,11 +202,11 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertTrue(  bInTitle     )
         self.assertFalse( bExcludeThis )
         #
-        self.assertIn(     self.oCategory.sRegExLook4Title,
+        self.assertIn(     self.oCategory.cRegExLook4Title,
                                         ( 'Gizmo|Widget', 'Widget|Gizmo' ) )
         #
-        self.assertEquals( self.oCategory.sRegExExclude,  'Delta'  )
-        self.assertEquals( self.oCategory.sRegExKeyWords, 'Gadget' )
+        self.assertEquals( self.oCategory.cRegExExclude,  'Delta'  )
+        self.assertEquals( self.oCategory.cRegExKeyWords, 'Gadget' )
 
 
     def testModelGetFoundItemTester(self):
@@ -252,11 +252,11 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertTrue(  bInTitle     )
         self.assertFalse( bExcludeThis )
         #
-        self.assertIn(     self.oModel.sRegExLook4Title,
+        self.assertIn(     self.oModel.cRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
         #
-        self.assertEquals( self.oModel.sRegExExclude,  'golf'     )
-        self.assertEquals( self.oModel.sRegExKeyWords, 'Eldorado' )
+        self.assertEquals( self.oModel.cRegExExclude,  'golf'     )
+        self.assertEquals( self.oModel.cRegExKeyWords, 'Eldorado' )
 
 
 

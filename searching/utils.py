@@ -553,13 +553,13 @@ def _getRowRegExpressions( oTableRow,
     #
     sFindKeyWords = None
     #
-    if oTableRow.sRegExLook4Title:
+    if oTableRow.cRegExLook4Title:
         #
-        sFindTitle          = oTableRow.sRegExLook4Title
-        sFindExclude        = oTableRow.sRegExExclude
+        sFindTitle          = oTableRow.cRegExLook4Title
+        sFindExclude        = oTableRow.cRegExExclude
         #
         if bRowHasKeyWords:
-            sFindKeyWords   = oTableRow.sRegExKeyWords
+            sFindKeyWords   = oTableRow.cRegExKeyWords
         #
     else:
         #
@@ -583,11 +583,11 @@ def _getRowRegExpressions( oTableRow,
             sFindKeyWords = getRegExpress( sKeyWords )
             #
         #
-        oTableRow.sRegExLook4Title= sFindTitle
-        oTableRow.sRegExExclude   = sFindExclude
+        oTableRow.cRegExLook4Title= sFindTitle
+        oTableRow.cRegExExclude   = sFindExclude
         #
         if bRowHasKeyWords:
-            oTableRow.sRegExKeyWords = sFindKeyWords
+            oTableRow.cRegExKeyWords = sFindKeyWords
         #
         try:
             oTableRow.save()

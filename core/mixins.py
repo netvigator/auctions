@@ -44,11 +44,11 @@ class WereAnyReleventColsChangedMixin(object):
     def redoRegEx( self, form ):
         #
         if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
-            form.instance.sRegExLook4Title  = None
+            form.instance.cRegExLook4Title  = None
         if 'cKeyWords' in form.changed_data :
-            form.instance.sRegExKeyWords    = None
+            form.instance.cRegExKeyWords    = None
         if 'cExcludeIf' in form.changed_data :
-            form.instance.sRegExExclude     = None
+            form.instance.cRegExExclude     = None
     
     def form_valid(self, form):
         #
