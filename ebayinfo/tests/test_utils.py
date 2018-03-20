@@ -9,11 +9,14 @@ from ..models           import EbayCategory, Market
 # the following are in the tests __init__.py file
 from ..tests            import sExampleCategoryVersion, sExampleCategoryList
 
-from ..utils            import ( CATEGORY_VERSION_FILE, getCategoryVersion,
-                                 UnexpectedResponse, CATEGORY_LISTING_FILE,
-                                 putCategoriesInDatabase, countCategories,
-                                 getMarketsIntoDatabase,
-                                 getCheckCategoryVersion )
+from ..utils            import ( CATEGORY_VERSION_FILE,
+                            _getCategoryVersionFromFile,
+                            UnexpectedResponse, CATEGORY_LISTING_FILE,
+                            putCategoriesInDatabase, countCategories,
+                            _getCheckCategoryVersion,
+                            getWhetherAnyEbayCategoryListsAreUpdated )
+
+from ..utils_testing    import getMarketsIntoDatabase
 
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
@@ -35,7 +38,7 @@ class CatetoryListHasNewVers( Exception ): pass
 
 
 class getCategoryVersionTest(TestCase):
-    '''test getCategoryVersion()'''
+    '''test _getCategoryVersionFromFile()'''
     
     sFile = CATEGORY_VERSION_FILE % 'EBAY-US'
 
@@ -47,7 +50,7 @@ class getCategoryVersionTest(TestCase):
         # test is run AFTER the last line in this file is executed
         WriteText2File(
                 sExampleCategoryVersion, self.sFile )
-        self.assertEqual( getCategoryVersion(), 117 )
+        self.assertEqual( _getCategoryVersionFromFile(), 117 )
 
     def test_wrong_category_version(self):
         '''test with incorrect GetCategoriesResponse'''
@@ -55,7 +58,7 @@ class getCategoryVersionTest(TestCase):
         WriteText2File(
                 sMessedCategoryVersion, self.sFile )
         try:
-            getCategoryVersion()
+            _getCategoryVersionFromFile()
         except UnexpectedResponse as e:
             self.assertEqual(
                     str(e),
@@ -67,7 +70,7 @@ class getCategoryVersionTest(TestCase):
         WriteText2File(
                 sExampleFailureVersion, self.sFile )
         try:
-            getCategoryVersion()
+            _getCategoryVersionFromFile()
         except UnexpectedResponse as e:
             self.assertEqual(
                     str(e),
@@ -80,7 +83,7 @@ class getCategoryVersionTest(TestCase):
         WriteText2File(
                 sExampleWrongChildTag, self.sFile )
         try:
-            getCategoryVersion()
+            _getCategoryVersionFromFile()
         except UnexpectedResponse as e:
             self.assertEqual(
                     str(e),
@@ -91,7 +94,7 @@ class getCategoryVersionTest(TestCase):
 
 
 class putCategoriesInDatabaseTest(TestCase):
-    '''test getCategoryVersion()'''
+    '''test _getCategoryVersionFromFile()'''
 
     sFile = CATEGORY_LISTING_FILE % 'EBAY-US'
 
@@ -186,6 +189,13 @@ class putMarketsInDatabaseTest(TestCase):
         self.assertEqual( oUSA.iEbaySiteID, 0 )
         #
         self.assertEqual( oUSA.cCurrencyDef, 'USD' )
+        #
+        oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
+        #
+        self.assertEqual( oSG.iEbaySiteID, 216 )
+        #
+        self.assertEqual( oSG.iCategoryVer, 31 )
+
 
     @tag('ebay_api')
     def test_got_current_category_version_list( self ):
@@ -202,19 +212,13 @@ class putMarketsInDatabaseTest(TestCase):
         #
         if getRandomTrueOrFalse(): # randomly alternate
             #
-            iCurrentVersion = getCheckCategoryVersion(
+            iCurrentVersion = _getCheckCategoryVersion(
                     iSiteId = oMarket.iEbaySiteID, bUseSandbox = True )
             #
         else:
             #
-            iCurrentVersion = getCheckCategoryVersion(
+            iCurrentVersion = _getCheckCategoryVersion(
                     sGlobalID = oMarket.cMarket, bUseSandbox = True )
-            #
-        #
-        if iCurrentVersion != oMarket.iCategoryVer:
-            #
-            print( '\n' )
-            print( 'testing market %s' % oMarket.cMarket )
             #
         #
         self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
@@ -225,8 +229,10 @@ class putMarketsInDatabaseTest(TestCase):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        oUSA.iCategoryVer = 116 # current version is actually 117
+        oUSA.iCategoryVer = 116 # current version is actually 118
         oUSA.save()
+        #
+        oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
         lUpdated = getWhetherAnyEbayCategoryListsAreUpdated(
                         bUseSandbox = True )
