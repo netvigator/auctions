@@ -304,6 +304,10 @@ def getCategoryVersion( sGlobalID = 'EBAY-US', sFile = CATEGORY_VERSION_FILE ):
 
 def getMarketsIntoDatabase():
     #
+    '''fetches the markets table text dump,
+    uses that to populate the markets table.
+    useful for testing, where the database starts empty.'''
+    #
     from ebayinfo           import sMarketsTable # in __init__.py
     #
     from core.utils_testing import getTableFromScreenCaptureGenerator
@@ -354,16 +358,21 @@ def _getDictMarket2SiteID():
     #
     from Dict.Get import getReverseDictGotUniqueItems
     #
-    dMarket2SiteID = {}
+    dMarket2SiteID   = {}
+    dSiteID2ListVers = {}
     #
     for oMarket in Market.objects.all():
         #
-        dMarket2SiteID[ oMarket.cMarket ] = oMarket.iEbaySiteID
+        dMarket2SiteID[   oMarket.cMarket     ] = oMarket.iEbaySiteID
+        dSiteID2ListVers[ oMarket.iEbaySiteID ] = oMarket.iCategoryVer
         #
     #
-    return dMarket2SiteID, getReverseDictGotUniqueItems( dMarket2SiteID )
+    dSiteID2Market = getReverseDictGotUniqueItems( dMarket2SiteID )
+    #
+    return dMarket2SiteID, dSiteID2Market, dSiteID2ListVers
 
-dMarket2SiteID, dSiteID2Market = _getDictMarket2SiteID()
+
+dMarket2SiteID, dSiteID2Market, dSiteID2ListVers = _getDictMarket2SiteID()
 
 '''
 pprint( dMarket2SiteID )
@@ -426,5 +435,31 @@ def getCheckCategoryVersion(
     return getCategoryVersion( sGlobalID )
 
 
-
+def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
+    #
+    '''For each market, this queries ebay,
+    compares ebay's latest category version with the database.
+    returns: tuple of markets
+    markets with a newer category list version are in the tuple
+    '''
+    #
+    lMarketsHaveNewerCategoryVersionLists = []
+    #
+    for iSiteID in dSiteID2ListVers:
+        #
+        iEbayHas = getCheckCategoryVersion(
+            iSiteId     = iSiteID,
+            bUseSandbox = bUseSandbox )
+        #
+        if iEbayHas != dSiteID2ListVers[ iSiteID ]:
+            #
+            lMarketsHaveNewerCategoryVersionLists.append( iSiteID )
+            #
+        #
+    #
+    return lMarketsHaveNewerCategoryVersionLists
+    
+    
+    
+    
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
