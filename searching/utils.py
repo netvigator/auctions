@@ -299,7 +299,9 @@ def _getCategoryHierarchyID(
         #
         dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
         #
-    else:
+    elif EbayCategory.objects.filter(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbaySiteID ).exists():
         #
         oEbayCategory   = EbayCategory.objects.get(
                             iCategoryID = iCategoryID,
@@ -330,6 +332,18 @@ def _getCategoryHierarchyID(
         iCatHeirarchy = oCategoryHierarchy.pk
         #
         dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
+        #
+    else: # testing glitch, limited set of categories
+        #
+        iCatHeirarchy = ''
+        #
+        sMessage = ( 'Ebay category does not exist: '
+                     'iCategoryID = %s | iMarket = %s' %
+                          ( iCategoryID, iEbaySiteID ) )
+        logger.info( sMessage)
+        #
+        print('\n')
+        print( sMessage )
         #
     #
     return iCatHeirarchy
