@@ -6,7 +6,7 @@ sMarketsTable = \
 ------------+----------+-----------+-------------+----------------+--------------+--------------+----------------+-----------------
  EBAY-US    | US       | en-US     |           0 | t              |          118 | USD          |                |              -8
  EBAY-ENCA  | CA       | en-CA     |           2 | t              |          116 | CAD          |                |              -8
- EBAY-GB    | GB       | en-GB     |           3 | t              |          108 | GBP          |                |               0
+ EBAY-GB    | GB       | en-GB     |           3 | t              |          109 | GBP          |                |               0
  EBAY-AU    | AU       | en-AU     |          15 | t              |          109 | AUD          |                |              10
  EBAY-AT    | AT       | de-AT     |          16 | t              |           87 | EUR          |                |               1
  EBAY-FRBE  | BE       | fr-BE     |          23 | f              |           82 | EUR          |                |               1
@@ -52,6 +52,7 @@ sCategoryDump = \
  4570 |          34 | Advertising                   |      2 |         1 | f             |          118 |          0
  8481 |        1446 | Religion & Spirituality       |      2 |         1 | f             |          118 |          0 
   417 |      100927 | Periods & Styles              |      2 |     20081 | f             |          118 |          0 
+19525 |      100927 | Periods/Styles                |      2 |     20081 | f             |          108 |          3
   432 |       20094 | Science & Medicine (Pre-1930) |      2 |     20081 | f             |          118 |          0 
  5547 |       66502 | Arcade, Jukeboxes & Pinball   |      2 |         1 | f             |          118 |          0 
  5745 |         898 | Casino                        |      2 |         1 | f             |          118 |          0 
@@ -60,6 +61,7 @@ sCategoryDump = \
  1166 |       92074 | Electrical & Test Equipment   |      2 |     12576 | f             |          118 |          0 
  9290 |         597 | Vanity, Perfume & Shaving     |      2 |         1 | f             |          118 |          0 
  9325 |       69851 | Vintage, Retro, Mid-Century   |      2 |         1 | f             |          118 |          0 
+24923 |       69851 | Vintage & Retro Collectables  |      2 |         1 | f             |          108 |          3
  3882 |      175759 | Vintage                       |      2 |     11450 | f             |          118 |          0 
  6664 |         137 | Disneyana                     |      2 |         1 | f             |          118 |          0 
  8455 |       29832 | Radio, Phonograph, TV, Phone  |      2 |         1 | f             |          118 |          0 
@@ -68,6 +70,7 @@ sCategoryDump = \
 14066 |       48579 | Vintage & Antique Jewelry     |      2 |       281 | f             |          118 |          0 
 17915 |         233 | Games                         |      2 |       220 | f             |          118 |          0 
  
+ 8479 |      171194 | Price Guides & Publications   |      3 |     29832 | t             |          117 |          0
  5021 |      165266 | Other Collectible Ads         |      3 |        34 | t             |          118 |          0
  8462 |         931 | Radios                        |      3 |     29832 | f             |          118 |          0
 19527 |       69471 | Art Deco                      |      3 |    100927 | t             |          108 |          3 
@@ -85,7 +88,6 @@ sCategoryDump = \
  9331 |       72397 | Bakelite                      |      3 |     69851 | t             |          118 |          0 
  3883 |      182059 | Vintage Accessories           |      3 |    175759 | f             |          118 |          0 
  6665 |         139 | Vintage (Pre-1968)            |      3 |       137 | f             |          118 |          0 
- 8462 |         931 | Radios                        |      3 |     29832 | f             |          118 |          0 
  9873 |      175740 | Vintage Audio & Video         |      3 |    183077 | f             |          118 |          0 
 17933 |        7317 | Game Pieces, Parts            |      3 |       233 | t             |          118 |          0 
 17152 |       50133 | Other Vintage Sports Mem      |      3 |     50123 | t             |          118 |          0 
