@@ -38,3 +38,6 @@ test save model (request.user problem saving new model), fixed by
 
 exclude for Reproduction not working
 search 17 item 112846965430
+
+searching/utils
+handle search executed OK but returned no items
