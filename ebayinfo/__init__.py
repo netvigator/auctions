@@ -1,5 +1,5 @@
 
-# put USA first, it should be pk = 1
+#
 sMarketsTable = \
 '''
   cMarket   | cCountry | cLanguage | iEbaySiteID | bHasCategories | iCategoryVer | cCurrencyDef | cUseCategoryID | iUtcPlusOrMinus 
@@ -25,7 +25,7 @@ sMarketsTable = \
  EBAY-FRCA  | CA       | fr-CA     |         210 | f              |           69 | CAD          |                |              -8
  EBAY-PH    | PH       | en-PH     |         211 | t              |           32 | PHP          |                |               8
  EBAY-PL    | PL       | pl-PL     |         212 | t              |           51 | PLN          |                |               1
- EBAY-SG    | SG       | en-SG     |         216 | t              |           30 | SGD          |                |               8
+ EBAY-SG    | SG       | en-SG     |         216 | t              |           31 | SGD          |                |               8
  EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
  '''
  
