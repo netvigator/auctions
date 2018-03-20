@@ -156,7 +156,7 @@ returns
 '''
 
 
-def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
+def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '118',
             bShowProgress = False ):
     #
     from .models import EbayCategory, Market
@@ -194,20 +194,29 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
     #
     iWantVersion = int( sWantVersion )
     #
-    oRootCategory = EbayCategory()
+    oRoot = EbayCategory()
     #
     try: # look for a root category for this market & tree version
         #
-        oRootCategory = EbayCategory.objects.get(
+        oRoot = EbayCategory.objects.get(
             iMarket         = oMarket,
-            iTreeVersion    = iWantVersion,
             iCategoryID     = 0 )
+        #
+        if oRoot.iTreeVersion != iWantVersion:
+            #
+            oRoot.name      = (
+                '%s version %s Root' % ( sMarket, sWantVersion ) )
+            #
+            oRoot.iTreeVersion = iWantVersion
+            #
+            oRoot.save()
+            #
         #
     except ObjectDoesNotExist: # if the root is not there yet, put it in
         #
-        oRootCategory = EbayCategory(
-            name            = \
-                '%s version %s Root' % ( sMarket, sWantVersion ),
+        oRoot = EbayCategory(
+            name            = (
+                '%s version %s Root' % ( sMarket, sWantVersion ) ),
             iCategoryID     = 0,
             iMarket         = oMarket,
             iTreeVersion    = iWantVersion,
@@ -215,7 +224,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
             bLeafCategory   = False,
             iParentID       = 0 )
         #
-        oRootCategory.save()
+        oRoot.save()
         #
     iSeq = 0
     #
@@ -253,7 +262,7 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
             #
             # level 1 category, CategoryID == CategoryParentID
             #
-            oCategory.parent = oRootCategory
+            oCategory.parent = oRoot
             #
         else:
             #
@@ -278,6 +287,27 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
 
 
 
+def getCategoryListThenStore(
+            sMarket         = 'EBAY-US',
+            sWantVersion    = '118',
+            bUseSandbox     = False,
+            bShowProgress   = False ):
+    #
+    from core.ebay_api_calls    import getMarketCategoriesGotGlobalID
+    #
+    from File.Write             import QuietDump
+    from File.Del               import DeleteIfExists
+    #
+    if bShowProgress: print( 'fetching category list ....' )
+    #
+    sCategories = getMarketCategoriesGotGlobalID(
+            sGlobalID = sMarket, bUseSandbox = bUseSandbox )
+    #
+    QuietDump( sCategories, CATEGORY_LISTING_FILE % sMarket )
+    #
+    putCategoriesInDatabase( sMarket = sMarket , sWantVersion = sWantVersion,
+            bShowProgress = bShowProgress )
+
 
 
 def _getCategoryVersionValues( sFile ):
@@ -290,10 +320,12 @@ def _getCategoryVersionValues( sFile ):
 
 
 
-def getCategoryVersion( sGlobalID = 'EBAY-US', sFile = CATEGORY_VERSION_FILE ):
+def _getCategoryVersionFromFile(
+            sGlobalID = 'EBAY-US', sFile = CATEGORY_VERSION_FILE ):
     #
     '''get the version from a file already downloaded
-    values from a downloaded file are all strings, right?!'''
+    values from a downloaded file are all strings, right?!
+    this returns an integer (if it works)'''
     #
     dTagsValues = _getCategoryVersionValues( sFile % sGlobalID )
     #
@@ -301,57 +333,6 @@ def getCategoryVersion( sGlobalID = 'EBAY-US', sFile = CATEGORY_VERSION_FILE ):
 
 
 
-
-def getMarketsIntoDatabase():
-    #
-    '''fetches the markets table text dump,
-    uses that to populate the markets table.
-    useful for testing, where the database starts empty.'''
-    #
-    from ebayinfo           import sMarketsTable # in __init__.py
-    #
-    from core.utils_testing import getTableFromScreenCaptureGenerator
-    #
-    from .models            import Market
-    #
-    from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
-    #
-    oTableIter = getTableFromScreenCaptureGenerator( sMarketsTable )
-    #
-    lHeader = next( oTableIter )
-    #
-    dNamePosition = {}
-    #
-    i = 0
-    #
-    for sName in lHeader:
-        #
-        dNamePosition[ sName ] = i
-        #
-        i += 1
-        #
-    #
-    d = dNamePosition
-    #
-    for lParts in oTableIter:
-        #
-        oMarket = Market(
-                iEbaySiteID     = int(      lParts[ d['iEbaySiteID'    ] ] ),
-                cMarket         =           lParts[ d['cMarket'        ] ],
-                cCountry        =           lParts[ d['cCountry'       ] ],
-                cLanguage       =           lParts[ d['cLanguage'      ] ],
-                bHasCategories  = getBool(  lParts[ d['bHasCategories' ] ] ),
-                cCurrencyDef    =           lParts[ d['cCurrencyDef'   ] ],
-                iUtcPlusOrMinus = int(      lParts[ d['iUtcPlusOrMinus'] ] ) )
-        #
-        if lParts[ d['iCategoryVer'] ]:
-            oMarket.iCategoryVer= int(      lParts[ d['iCategoryVer'   ] ] )
-        #
-        if lParts[ d['cUseCategoryID' ] ]:
-            oMarket.cUseCategoryID=         lParts[ d['cUseCategoryID' ] ]
-        #
-        oMarket.save()
-        
 
 
 def _getDictMarket2SiteID():
@@ -402,7 +383,7 @@ pprint( dMarket2SiteID )
  '''
 
 
-def getCheckCategoryVersion(
+def _getCheckCategoryVersion(
             iSiteId     = 0,
             sGlobalID   = None,
             sFile       = CATEGORY_VERSION_FILE,
@@ -414,6 +395,7 @@ def getCheckCategoryVersion(
                                       getCategoryVersionGotGlobalID )
     #
     from File.Write import QuietDump
+    from File.Del   import DeleteIfExists
     #
     # iSiteId = 0 aka sGlobalID = 'EBAY-US'
     #
@@ -430,9 +412,14 @@ def getCheckCategoryVersion(
                         sGlobalID, bUseSandbox = bUseSandbox )
         #
     #
-    QuietDump( sResponse, CATEGORY_VERSION_FILE % sGlobalID )
+    QuietDump( sResponse, sFile % sGlobalID )
     #
-    return getCategoryVersion( sGlobalID )
+    iVersion = _getCategoryVersionFromFile( sGlobalID, sFile )
+    #
+    DeleteIfExists( '/tmp', sFile % sGlobalID )
+    #
+    return iVersion
+
 
 
 def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
@@ -447,11 +434,22 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
     #
     for iSiteID in dSiteID2ListVers:
         #
-        iEbayHas = getCheckCategoryVersion(
+        iEbayHas = _getCheckCategoryVersion(
             iSiteId     = iSiteID,
             bUseSandbox = bUseSandbox )
         #
-        if iEbayHas != dSiteID2ListVers[ iSiteID ]:
+        # when testing, must access the database directly to work right!
+        #
+        if bUseSandbox:
+            #
+            iTableHas = Market.objects.get(iEbaySiteID=iSiteID).iCategoryVer
+            #
+        else:
+            #            
+            iTableHas = dSiteID2ListVers[ iSiteID ]
+            #
+        #
+        if iEbayHas != iTableHas:
             #
             lMarketsHaveNewerCategoryVersionLists.append( iSiteID )
             #
