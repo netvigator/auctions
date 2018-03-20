@@ -275,14 +275,27 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         for lParts in oTableIter:
             #
+            iCategoryID             = int( lParts[1] )
+            iMarket                 = int( lParts[7] )
+            #
+            if EbayCategory.objects.filter(
+                        iCategoryID = iCategoryID,
+                        iMarket_id = iMarket ).exists():
+                #
+                print('iCategoryID already exists: %s -- '
+                    'clean up the list!' % lParts[1] )
+                #
+                continue
+                #
+            #
             oCategory = EbayCategory(
-                    iCategoryID     = int(      lParts[1] ),
+                    iCategoryID     =           iCategoryID,
                     name            =           lParts[2],
                     iLevel          = int(      lParts[3] ),
                     
                     bLeafCategory   = getBool(  lParts[5] ),
                     iTreeVersion    = int(      lParts[6] ),
-                    iMarket_id      = int(      lParts[7] ), )
+                    iMarket_id      =           iMarket, )
             #
             if lParts[3] == '1': # top level iParentID
                 oCategory.iParentID = oRootCategory.iCategoryID
@@ -300,17 +313,12 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
                     #
                 else:
                     #
-                    print('\n')
-                    print('cannot find category with iCategoryID %s, '
+                    print('in market %s, cannot find iCategoryID %s, '
                           'parent of iCategoryID %s' %
-                          ( lParts[4], lParts[1] ) )
+                          ( lParts[7], lParts[4], lParts[1] ) )
                 #
-            try:
-                oCategory.save()
-            except IntegrityError:
-                print('\n')
-                print('iCategoryID already exists: %s -- '
-                    'clean up the list!' % lParts[1] )
+            #
+            oCategory.save()
 
 
 
