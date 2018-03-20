@@ -53,9 +53,9 @@ class Category(models.Model):
         help_text = 'Set to True if different brands use the same model '
                     'names or numbers in this category' )
 
-    sRegExLook4Title= models.CharField( max_length=128, null = True )
-    sRegExExclude   = models.TextField(                 null = True )
-    sRegExKeyWords  = models.CharField( max_length=128, null = True )
+    cRegExLook4Title= models.TextField( null = True )
+    cRegExExclude   = models.TextField( null = True )
+    cRegExKeyWords  = models.TextField( null = True )
     
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                                                     null = True )
