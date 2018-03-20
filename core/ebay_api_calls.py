@@ -28,30 +28,37 @@ class InvalidParameters( Exception ): pass
 django.setup()
 
 
-_dProdSecrets   = getConfDict( 'config/settings/Secrets.ini' )  # secret
 
-_dEbayConf      = getConfDict( 'config/settings/ebay.ini' )     # not secret
+def _getConfValues():
+    #
+    class oConfValues( object ): pass
+    #
+    dProdSecrets   = getConfDict( 'config/settings/Secrets.ini' )  # secret
+    dEbayConf      = getConfDict( 'config/settings/ebay.ini' )     # not secret
+    dSandBox       = getConfDict( 'config/settings/sandbox.ini' )  # mixed
+    #
+    dEbaySandbox   = deepcopy( dEbayConf )
+    dEbaySandbox.update( dProdSecrets ) # add production secrets
+    dEbaySandbox.update( dSandBox ) # overwrite secrets, add some non secrets
 
-_dSandBox       = getConfDict( 'config/settings/sandbox.ini' )  # mixed
+    dProduction    = dProdSecrets
+    dProduction.update( dEbayConf ) # non secrets mixed in for convenience
+    #
+    oConfValues.dEbaySandbox = dEbaySandbox
+    oConfValues.dProduction  = dProduction
+    #
+    return oConfValues
 
-_dEbaySandbox   = deepcopy( _dEbayConf )
 
-_dEbaySandbox.update( _dProdSecrets ) # add production secrets
-
-_dEbaySandbox.update( _dSandBox ) # overwrite secrets, add some non secrets
-
-_dProduction    = _dProdSecrets
-
-_dProduction.update( _dEbayConf ) # non secrets mixed in for convenience
-
+oConfValues = _getConfValues()
 
 
 def _getApiConfValues( bUseSandbox ):
     #
     if bUseSandbox:
-        dUseThis = _dEbaySandbox
+        dUseThis = oConfValues.dEbaySandbox
     else:
-        dUseThis = _dProduction
+        dUseThis = oConfValues.dProduction
     #
     return dUseThis
 
@@ -175,6 +182,7 @@ def _getCategoriesOrVersion(
             "X-EBAY-API-CERT-NAME"          : sCertID,
             "X-EBAY-API-CALL-NAME"          : 'GetCategories',
             "X-EBAY-API-SITEID"             : str( iSiteId ),
+            "X-EBAY-API-COMPATIBILITY-LEVEL": sCompatible,
             "Content-Type"                  : "text/xml" }
     #
     dHttpHeaders.update( headers )
@@ -197,10 +205,6 @@ def _getCategoriesOrVersion(
     if iLevelLimit:
         oElement = etree.SubElement(root, "LevelLimit")
         oElement.text = str( iLevelLimit )
-    #
-    if sCompatible:
-        oElement = etree.SubElement(root, "Version")
-        oElement.text = sCompatible
     #
     sRequest    = etree.tostring(
                     root,
