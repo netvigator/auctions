@@ -93,8 +93,19 @@ def getSearchResultGenerator( sFile ):
     #
     if dResponse.get( "ack" ) != ["Success"]:
         #
-        sMessage = 'ack returned "%s"' % dResponse[ "ack" ][0]
-        #
+        if "ack" in dResponse:
+            #
+            sMessage = 'ack returned "%s"' % dResponse[ "ack" ][0]
+            #
+            #
+        elif "error" in dResponse:
+            #
+            sMessage = 'error message, check file'
+            #
+        else:
+            #
+            sMessage = 'unknown error, check file'
+            #
         raise SearchNotWorkingError( sMessage )
         #
     #
@@ -179,7 +190,7 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     oUser       = User.objects.get( id = oSearch.iUser.id )
     #
-    oMarket = Market.objects.get( id = oUser.iMarket_id )
+    oMarket = Market.objects.get( iEbaySiteID = oUser.iMarket_id )
     #
     sMarket = oMarket.cMarket
     #
