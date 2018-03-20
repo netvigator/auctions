@@ -198,6 +198,10 @@ def _getCategoriesOrVersion(
         oElement = etree.SubElement(root, "LevelLimit")
         oElement.text = str( iLevelLimit )
     #
+    if sCompatible:
+        oElement = etree.SubElement(root, "Version")
+        oElement.text = sCompatible
+    #
     sRequest    = etree.tostring(
                     root,
                     pretty_print    = False,
