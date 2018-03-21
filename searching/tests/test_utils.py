@@ -1,3 +1,7 @@
+import inspect
+import logging
+
+from os.path            import realpath
 from datetime           import timedelta
 
 from django.test        import TestCase, tag
@@ -24,10 +28,14 @@ from models.models      import Model
 
 from ..tests            import sExampleResponse, sResponseSearchTooBroad
 from File.Del           import DeleteIfExists
-from File.Write         import WriteText2File
+from File.Write         import QuietDump
 
-
-
+'''
+this will print logging messages to the terminal
+logging.basicConfig(
+    format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
+    level=logging.INFO)
+'''
 
 class findersStorageTest( setUpBrandsCategoriesModels ):
     
@@ -59,6 +67,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         self.assertTrue(  findTitle(    sAuctionTitle ) )
         #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_CategoryRegExFinderStorage(self):
@@ -89,6 +98,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         self.assertFalse( findKeyWords( sAuctionTitle ) )
         #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -121,6 +131,8 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertFalse( findExclude(  sAuctionTitle ) )
         #
         self.assertFalse( findKeyWords( sAuctionTitle ) )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
 
     def testBrandGetFoundItemTester(self):
@@ -163,6 +175,9 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
                                     ( 'Cadillac|Caddy', 'Caddy|Cadillac') )
         #
         self.assertEquals( self.oBrand.cRegExExclude, 'golf' )
+        #
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -207,6 +222,8 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         self.assertEquals( self.oCategory.cRegExExclude,  'Delta'  )
         self.assertEquals( self.oCategory.cRegExKeyWords, 'Gadget' )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def testModelGetFoundItemTester(self):
@@ -257,6 +274,8 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         self.assertEquals( self.oModel.cRegExExclude,  'golf'     )
         self.assertEquals( self.oModel.cRegExKeyWords, 'Eldorado' )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -268,7 +287,7 @@ class getImportSearchResultsTests(TestCase):
         '''test readin an example search results file'''
         # create/destroy test file needs to be in here
         # test is run AFTER the last line in this file is executed
-        WriteText2File( sExampleResponse, '/tmp', sExampleFile )
+        QuietDump( sExampleResponse, sExampleFile )
         #
         itemResultsIterator = getSearchResultGenerator( sExampleFile )
         #
@@ -325,6 +344,8 @@ class getImportSearchResultsTests(TestCase):
         self.assertEqual( iItems, 4 )
         #
         DeleteIfExists( '/tmp', sExampleFile )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -397,6 +418,10 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         self.assertEqual(
                 str( oMultimeters.parent.parent.parent.parent.parent ),
                 'Business & Industrial' )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
+        #logging.info("class storeItemFoundTests")
 
 
     def test_get_ebay_category_hierarchy(self):
@@ -466,6 +491,10 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         self.assertEqual( lNewCatHeirarchy, lOrigCatHeirarchy )
         #
         self.assertEqual( dEbayCatHierarchies, dEbayCatHierarchiesNew )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
+        #logging.info("class storeItemFoundTests")
 
 
 
@@ -523,6 +552,10 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         else:
             self.assertTrue( False ) # exception should hve been raised
         #
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
+        #logging.info("class storeItemFoundTests")
 
 
 
@@ -570,6 +603,8 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
                     ( iItemNumb, self.user1.username ) )
         else:
             self.assertTrue( False ) # exception should hve been raised
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -593,11 +628,11 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
             ( 'EBAY-US', self.user1.username, oSearch.id ) )
         #
-        WriteText2File( sExampleResponse, '/tmp', self.sExampleFile )
+        QuietDump( sExampleResponse, self.sExampleFile )
         
     def tearDown(self):
         #
-        DeleteIfExists( '/tmp', self.sExampleFile )
+        pass # DeleteIfExists( '/tmp', self.sExampleFile )
 
     def test_store_search_results(self):
         #
@@ -622,6 +657,8 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         #
         self.assertEqual( iStoreUsers, 0 )
         #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
 
 
 
@@ -633,21 +670,24 @@ class getBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
     def setUp(self):
         # storeSearchResultsTests, self 
         #
-        from os.path    import join
-        from searching  import RESULTS_FILE_NAME_PATTERN
-        #
         super( getBrandsCategoriesModelsSetUp, self ).setUp()
         #
         sSearch = "Catalin Radios"
         #
         sKeyWords = 'catalin radio'
         #
-        self.oSearch = Search(
-                        cTitle      = sSearch,
-                        cKeyWords   = sKeyWords,
-                        iUser       = self.user1 )
-        #
-        self.oSearch.save()
+        if Search.objects.filter( cKeyWords = sKeyWords ).exists():
+            #
+            self.oSearch = Search.objects.get( cKeyWords = sKeyWords ).first()
+            #
+        else:
+            self.oSearch = Search(
+                            cTitle      = sSearch,
+                            cKeyWords   = sKeyWords,
+                            iUser       = self.user1 )
+            #
+            self.oSearch.save()
+            #
         #
         oCategory   = Category( cTitle = 'Radio', iStars = 9,
                                cExcludeIf = 'reproduction', iUser = self.user1 )
@@ -745,7 +785,18 @@ class getBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
         #
         oBrand.save()
         #
+        #print( 'ran getBrandsCategoriesModelsSetUp %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
         
+    def test_BrandsCategoriesModels_setUp(self):
+        #
+        self.assertEqual( Model.objects.all().count(), 10 )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
+        #print( 'self.oSearch.id:', self.oSearch.id )
+        #print( 'Search.objects.all().count():', Search.objects.all().count() )
+        #print( 'self.__class__.__name__:', self.__class__.__name__ )
 
 
 class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
@@ -754,18 +805,27 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
     #
     def setUp(self):
         #
+        from os.path   import join
+        #
+        from searching import RESULTS_FILE_NAME_PATTERN
+        #
+        #print( 'will call super' )
         super( findSearchHitsTests, self ).setUp()
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
             ( 'EBAY-US', self.user1.username, self.oSearch.id ) )
         #
-        WriteText2File( sResponseSearchTooBroad, '/tmp', self.sExampleFile )
+        #print( 'will DeleteIfExists' )
+        DeleteIfExists( '/tmp', self.sExampleFile )
+        #
+        #print( 'will QuietDump' )
+        QuietDump( sResponseSearchTooBroad, self.sExampleFile )
         #
         doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
         #
-        print( '\n' )
-        print( 'setting up findSearchHitsTests' )
+        #print( '\n' )
+        #print( 'setting up findSearchHitsTests' )
 
     def test_find_search_hits(self):
         #
@@ -813,13 +873,14 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
             #
             iCount += 1
         #
-        print( '\n' )
-        print( 'did test_find_search_hits' )
         #
         self.assertEquals( iCount, 17 )
         #
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
-class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
+
+class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
     #
     ''' class for testing doSearchStoreResults() store records '''
     #
@@ -827,21 +888,43 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
     @tag('ebay_api')
     def test_search_store_results( self ):
         #
+        from File.Test import isFileThere
+        #
         # sandbox returns 0 items, can use it to test for 0 items
         t = doSearchStoreResults(
                 iSearchID = self.oSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
+        print( '\n' )
         print( 'iItems, iStoreItems, iStoreUsers:',
                 iItems, iStoreItems, iStoreUsers )
-
-        oUserItems = UserItemFound.objects.filter(
-                        iUser = self.user1 ).order_by( '-iHitStars' )
+        #
+        self.assertTrue( iItems and iStoreItems and iStoreUsers )
+        #
+        if iItems and iStoreItems and iStoreUsers: # > 0 each
+            #
+            findSearchHits( oUser = self.user1 )
+            #
+            oUserItems = UserItemFound.objects.filter(
+                            iUser = self.user1 ).order_by( '-iHitStars' )
+            #
+            oTopItem = oUserItems[0]
+            #
+            print( 'iItemNumb.cTitle  :', oTopItem.iItemNumb.cTitle )            
+            print( 'oTopItem.iHitStars:', oTopItem.iHitStars )
+            #
+            sHitLogFile = '.ItemHitLog.txt'
+            #
+            if isFileThere( sHitLogFile ):
+                pass
+            else:
+                pass
         #
 
-        print( '\n' )
-        print( 'did do_search_store_results_test' )
+        #
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 '''
@@ -890,3 +973,4 @@ will need later
         oSearch.save()
 
 '''
+
