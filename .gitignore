@@ -28,6 +28,8 @@ logs
 *.log
 pip-log.txt
 npm-debug.log*
+!ItemHitsLog.log
+ItemHitsLog.bak
 
 # Unit test / coverage reports
 .coverage
