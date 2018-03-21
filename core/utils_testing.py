@@ -200,24 +200,24 @@ def setup_view_for_tests( view, request, *args, **kwargs ):
 
 
 
-def getTableFromScreenCaptureGenerator( sScreenCapture ):
+def getTableFromScreenCaptureGenerator( uScreenCapture ):
     #
     from .utils import getSeqStripped
     #
-    lLines = sScreenCapture.split( '\n' )
+    if isinstance( uScreenCapture, str ):
+        #
+        oLines = uScreenCapture.split( '\n' )
+        #
+    else:
+        #
+        oLines = uScreenCapture
+        #
     #
-    lHeader = []
-    #
-    for sLine in lLines:
+    for sLine in oLines:
         #
         lParts = list( getSeqStripped( sLine.split( '|' ) ) )
         #
         if len( lParts ) == 1: continue
-        #
-        if not lHeader:
-            #
-            lHeader = lParts
-            #
         #
         yield lParts
 
@@ -230,8 +230,6 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         super( getEbayCategoriesSetUp, self ).setUp()
         #
         from ebayinfo           import sCategoryDump  # in __init__.py
-        #
-        from core.utils_testing import getTableFromScreenCaptureGenerator
         #
         from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
         #
