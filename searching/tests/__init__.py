@@ -1,3 +1,9 @@
+sItemHitLog = \
+'''
+tTimeEnd            | iItemNumb    | iHitStars
+2018-03-07 20:59:24 | 132521748790 | 175
+'''
+
 
 dSearchResult = \
 {'autoPay': 'false',
