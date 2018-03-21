@@ -1,7 +1,7 @@
 import inspect
 import logging
 
-from os.path            import realpath
+from os.path            import realpath, join
 from datetime           import timedelta
 
 from django.test        import TestCase, tag
@@ -14,6 +14,9 @@ from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID
 
 from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
+from ..tests            import sExampleResponse, sResponseSearchTooBroad
+from ..utils_testing    import ( getItemHitsLog, updateHitLogFile,
+                                 updateHitLogFile )
 from ..utils            import ( trySearchCatchExceptions,
                                  doSearchStoreResults, ItemAlreadyInTable,
                                  findSearchHits, getFoundItemTester,
@@ -26,9 +29,12 @@ from brands.models      import Brand
 from categories.models  import Category
 from models.models      import Model
 
-from ..tests            import sExampleResponse, sResponseSearchTooBroad
 from File.Del           import DeleteIfExists
+from File.Get           import getFileContent
+from File.Spec          import getPathNameExt
+from File.Test          import isFileThere
 from File.Write         import QuietDump
+
 
 '''
 this will print logging messages to the terminal
@@ -805,8 +811,6 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
     #
     def setUp(self):
         #
-        from os.path   import join
-        #
         from searching import RESULTS_FILE_NAME_PATTERN
         #
         #print( 'will call super' )
@@ -880,6 +884,8 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
+
+
 class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
     #
     ''' class for testing doSearchStoreResults() store records '''
@@ -888,41 +894,44 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
     @tag('ebay_api')
     def test_search_store_results( self ):
         #
-        from File.Test import isFileThere
-        #
         # sandbox returns 0 items, can use it to test for 0 items
         t = doSearchStoreResults(
                 iSearchID = self.oSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
-        print( '\n' )
-        print( 'iItems, iStoreItems, iStoreUsers:',
-                iItems, iStoreItems, iStoreUsers )
-        #
         self.assertTrue( iItems and iStoreItems and iStoreUsers )
         #
+        sThisFilePath, sName, sExt = getPathNameExt( realpath(__file__) )
+        #
+        sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
+        #
         if iItems and iStoreItems and iStoreUsers: # > 0 each
+            #
+            iBegLines = 1
+            #
+            if isFileThere( sHitLogFile ):
+                #
+                iBegLines = len( getItemHitsLog( getFileContent( sHitLogFile ) ) )
             #
             findSearchHits( oUser = self.user1 )
             #
             oUserItems = UserItemFound.objects.filter(
-                            iUser = self.user1 ).order_by( '-iHitStars' )
+                            iUser          = self.user1,
+                            iHitStars__gte = 100 )
             #
-            oTopItem = oUserItems[0]
+            iLen = len( oUserItems )
             #
-            print( 'iItemNumb.cTitle  :', oTopItem.iItemNumb.cTitle )            
-            print( 'oTopItem.iHitStars:', oTopItem.iHitStars )
+            if iLen > 0: # add to list of items to test fetching the results
+                #
+                updateHitLogFile( oUserItems )
+                #
             #
-            sHitLogFile = '.ItemHitLog.txt'
+            iEndLines = len( getItemHitsLog( getFileContent( sHitLogFile ) ) )
             #
-            if isFileThere( sHitLogFile ):
-                pass
-            else:
-                pass
-        #
-
-        #
+            self.assertEquals( iEndLines,
+                               iBegLines + min( iLen, 5 ) )
+            
         #
         print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
