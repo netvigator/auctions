@@ -1,7 +1,8 @@
 from os                 import rename
 from os.path            import realpath, join
 
-from core.utils_testing import getTableFromScreenCaptureGenerator
+from core.utils_testing import ( getTableFromScreenCaptureGenerator,
+                                 getNamePositionDict )
 
 
 from .tests             import sItemHitLog # in __init__.py
@@ -21,18 +22,7 @@ def getItemHitsLog( uHitLogFileContent ):
     #
     lHeader = next( oHitsLogIter )
     #
-    dNamePosition = {}
-    #
-    i = 0
-    #
-    for sName in lHeader:
-        #
-        dNamePosition[ sName ] = i
-        #
-        i += 1
-        #
-    #
-    d = dNamePosition
+    d = getNamePositionDict( lHeader )
     #
     lItemHits = []
     #
