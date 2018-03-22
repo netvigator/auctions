@@ -11,7 +11,10 @@ from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
 from ..validators               import gotTextOutsideParens
 
 from ..utils_testing            import (getUrlQueryStringOff,
+                                        getEbayCategoriesSetUp,
                                         queryGotUpdated, getDefaultMarket )
+
+from ebayinfo.models            import EbayCategory, Market
 
 
 class TestingHelperTests(TestCase):
@@ -117,3 +120,12 @@ class NbspTests(TestCase):
         self.assertEquals( getNbsp( "how now brown cow" ),
                            "how&nbsp;now&nbsp;brown&nbsp;cow" )
 
+
+class TestEbayCategoriesSetUp(getEbayCategoriesSetUp):
+
+    def test_set_up_categories( self ):
+        #
+        '''test whether all the categories are in the table'''
+        #
+        self.assertEquals(
+                EbayCategory.objects.all().count(), self.iCategories )
