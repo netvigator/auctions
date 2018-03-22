@@ -15,8 +15,7 @@ from ebayinfo.utils     import dMarket2SiteID
 
 from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
 from ..tests            import sExampleResponse, sResponseSearchTooBroad
-from ..utils_testing    import ( getItemHitsLog, updateHitLogFile,
-                                 updateHitLogFile )
+from ..utils_testing    import getItemHitsLog, updateHitLogFile
 from ..utils            import ( trySearchCatchExceptions,
                                  doSearchStoreResults, ItemAlreadyInTable,
                                  findSearchHits, getFoundItemTester,
@@ -30,8 +29,8 @@ from categories.models  import Category
 from models.models      import Model
 
 from File.Del           import DeleteIfExists
-from File.Get           import getFileContent
 from File.Spec          import getPathNameExt
+from Time.Delta         import getDeltaDaysFromStrings
 from File.Test          import isFileThere
 from File.Write         import QuietDump
 
@@ -890,9 +889,35 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
     #
     ''' class for testing doSearchStoreResults() store records '''
     #
+    def setUp( self ):
+        #
+        sThisFilePath, sName, sExt = getPathNameExt( realpath(__file__) )
+        #
+        self.sPathHere   = sThisFilePath
+        #
+        self.sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
+
+    def test_already_stored_results( self ):
+        #
+        '''test whether it has been a while since running the ebay API tests,
+        if it has been a while (mmore than 1 month), prompt to run soon
+        so the list of actual item numbers can stay current enough'''
+        #
+        lItemHits = getItemHitsLog( open( self.sHitLogFile ) )
+        #
+        # list is sorted with the oldest on top, newest at bottom
+        #
+        sLastAuctionEndDate = lItemHits[ -1 ][ 'tTimeEnd' ]
+        #
+        iDays = getDeltaDaysFromStrings( sLastAuctionEndDate )
+        #
+        # to be continued
 
     @tag('ebay_api')
     def test_search_store_results( self ):
+        #
+        '''not only test store results, add to the log of actual item numbers
+        which will be used later for testing getting the auction results'''
         #
         # sandbox returns 0 items, can use it to test for 0 items
         t = doSearchStoreResults(
@@ -902,17 +927,13 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
         #
         self.assertTrue( iItems and iStoreItems and iStoreUsers )
         #
-        sThisFilePath, sName, sExt = getPathNameExt( realpath(__file__) )
-        #
-        sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
-        #
         if iItems and iStoreItems and iStoreUsers: # > 0 each
             #
             iBegLines = 1
             #
-            if isFileThere( sHitLogFile ):
+            if isFileThere( self.sHitLogFile ):
                 #
-                iBegLines = len( getItemHitsLog( getFileContent( sHitLogFile ) ) )
+                iBegLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
             #
             findSearchHits( oUser = self.user1 )
             #
@@ -924,13 +945,13 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
             #
             if iLen > 0: # add to list of items to test fetching the results
                 #
-                updateHitLogFile( oUserItems )
+                iBegRows, iEndRows = updateHitLogFile(
+                                        oUserItems, self.sPathHere )
                 #
             #
-            iEndLines = len( getItemHitsLog( getFileContent( sHitLogFile ) ) )
+            iEndLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
             #
-            self.assertEquals( iEndLines,
-                               iBegLines + min( iLen, 5 ) )
+            self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
             
         #
         print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
