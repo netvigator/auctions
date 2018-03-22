@@ -247,11 +247,11 @@ def _getEbayFindingResponse(
 
 
 def _findItems( sKeyWords   = None,
-                iCategoryID = None,
+                sCategoryID = None,
                 bUseSandbox = False,
                 **headers ):
     #
-    if sKeyWords and iCategoryID:
+    if sKeyWords and sCategoryID:
         #
         sCall = 'findItemsAdvanced'
         #
@@ -259,7 +259,7 @@ def _findItems( sKeyWords   = None,
         #
         sCall = 'findItemsByKeywords'
         #
-    elif iCategoryID:
+    elif sCategoryID:
         #
         sCall = 'findItemsByCategory'
         #
@@ -276,10 +276,16 @@ def _findItems( sKeyWords   = None,
         oElement        = etree.SubElement( root, "keywords" )
         oElement.text   = sKeyWords
     #
-    if iCategoryID:
+    if sCategoryID:
         oElement        = etree.SubElement( root, "categoryId" )
-        oElement.text   = iCategoryID
+        oElement.text   = sCategoryID
     #
+    #if paginationInput:
+        #paginationInput_elem = etree.SubElement(root, "paginationInput")
+        #for key in paginationInput:
+            #key_elem = etree.SubElement(paginationInput_elem, key)
+            #key_elem.text = paginationInput[key]
+
     sRequest = etree.tostring( root, pretty_print = True )
     #
     return _getEbayFindingResponse(
@@ -329,24 +335,24 @@ def getItemsByKeyWords( sKeyWords, sMarketID = 'EBAY-US', bUseSandbox = False ):
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
-def getItemsByCategory( iCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
+def getItemsByCategory( sCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
                 _findItems(
-                    iCategoryID = iCategoryID,
+                    sCategoryID = sCategoryID,
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
-def getItemsByBoth( sKeyWords, iCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
+def getItemsByBoth( sKeyWords, sCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
                 _findItems(
                     sKeyWords   = sKeyWords,
-                    iCategoryID = iCategoryID,
+                    sCategoryID = sCategoryID,
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
