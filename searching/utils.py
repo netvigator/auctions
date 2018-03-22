@@ -192,27 +192,34 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     oMarket = Market.objects.get( iEbaySiteID = oUser.iMarket_id )
     #
-    sMarket = oMarket.cMarket
+    sMarket             = oMarket.cMarket
     #
-    sUserName   = oUser.username
+    sUserName           = oUser.username
     #
-    sKeyWords       = getWhiteCleaned( oSearch.cKeyWords )
-    iEbayCategory   = oSearch.iEbayCategory
+    sKeyWords           = ''
     #
-    sFileName       = (
-        RESULTS_FILE_NAME_PATTERN % ( sMarket, sUserName, oSearch.id ) )
+    if oSearch.cKeyWords:
+        sKeyWords       = getWhiteCleaned( oSearch.cKeyWords )
+    #
+    sEbayCategory       = ''
+    #
+    if oSearch.iEbayCategory:
+        sEbayCategory   = str( oSearch.iEbayCategory.iCategoryID )
+    #
+    sFileName           = (
+            RESULTS_FILE_NAME_PATTERN % ( sMarket, sUserName, oSearch.id ) )
     #  'Search_%s_%s_ID_%s.json'
     #
     tSearch = ( oSearch.cTitle, str( oSearch.id ) )
     #
-    if sKeyWords and iEbayCategory:
+    if sKeyWords and sEbayCategory:
         #
         logger.info(
             'executing "%s" search (ID %s) for keywords in category ...' %
             tSearch )
         #
         QuietDump(
-            getItemsByBoth( sKeyWords, iEbayCategory,
+            getItemsByBoth( sKeyWords, sEbayCategory,
                             sMarketID = sMarket,
                             bUseSandbox = bUseSandbox ),
             sFileName )
@@ -229,14 +236,14 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
                                 bUseSandbox = bUseSandbox ),
             sFileName )
         #
-    elif iEbayCategory:
+    elif sEbayCategory:
         #
         logger.info(
             'executing "%s" search (ID %s) in category '
             '(without key words) ...' % tSearch )
         #
         QuietDump(
-            getItemsByCategory( iEbayCategory,
+            getItemsByCategory( sEbayCategory,
                                 sMarketID   = sMarket,
                                 bUseSandbox = bUseSandbox ),
             sFileName )
@@ -275,116 +282,6 @@ def _getValueUserOrOther( k, dItem, dFields, oUser = None, **kwargs ):
 
 
 
-
-def _getCategoryHierarchyID(
-            iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies ):
-    #
-    from ebayinfo.models    import EbayCategory, CategoryHierarchy, Market
-    #
-    tCategoryID = iCategoryID, iEbaySiteID
-    
-    if tCategoryID in dEbayCatHierarchies:
-        #
-        iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
-        #
-        bOkCatHeirarchy = CategoryHierarchy.objects.filter( pk = iCatHeirarchy ).exists()
-        #
-    elif CategoryHierarchy.objects.filter( 
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID ).exists():
-        #
-        iCatHeirarchy = CategoryHierarchy.objects.get(
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID ).pk
-        #
-        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
-        #
-    elif EbayCategory.objects.filter(
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID ).exists():
-        #
-        oEbayCategory   = EbayCategory.objects.get(
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID )
-        #
-        lCatHeirarchy = [ oEbayCategory.name ]
-        #
-        while oEbayCategory.iLevel > 1:
-            #
-            oEbayCategory = oEbayCategory.parent
-            #
-            lCatHeirarchy.append( oEbayCategory.name )
-            #
-        #
-        lCatHeirarchy.reverse()
-        #
-        sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
-        # return only does not work in shell, each line overwrites the prior one
-        #
-        oCategoryHierarchy = CategoryHierarchy(
-                iCategoryID     = iCategoryID,
-                iMarket         = Market.objects.get(
-                                    iEbaySiteID = iEbaySiteID ),
-                cCatHierarchy   = sCatHeirarchy )
-        #
-        oCategoryHierarchy.save()
-        #
-        iCatHeirarchy = oCategoryHierarchy.pk
-        #
-        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
-        #
-    else: # testing glitch, limited set of categories
-        #
-        iCatHeirarchy = sCategoryName
-        #
-        sMessage = ( 'For market %s, ebay category '
-                     '%s does not exist' %
-                          ( iEbaySiteID, iCategoryID ) )
-        logger.info( sMessage)
-        #
-        print( sMessage )
-        #
-    #
-    return iCatHeirarchy
-
-
-
-def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
-    #
-    ''' return the ebay category hierarchy for a search find item category
-    that is, this returns the id of the category hierarchy table row
-    note:
-    1) items can optionally have a secondary category
-    2) this function has a side effect, it updates dEbayCatHierarchies
-    '''
-    #
-    from ebayinfo.models    import EbayCategory
-    #
-    iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
-    sCategoryName =    dItem.get( 'primaryCategory' ).get( 'categoryName' )
-    #
-    iEbaySiteID = dMarket2SiteID.get( dItem.get( 'globalId' ) )
-    #
-    iCatHeirarchy = _getCategoryHierarchyID(
-                        iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
-    #
-    s2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
-    #
-    if s2ndCategoryID:
-        #
-        i2ndCategoryID = int( s2ndCategoryID )
-        #
-        sCategoryName =    dItem.get( 'secondaryCategory' ).get( 'categoryName' )
-        #
-        i2ndCatHeirarchy = _getCategoryHierarchyID(
-                    i2ndCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
-        #
-    else:
-        #
-        i2ndCatHeirarchy = None
-        #
-    #
-    return iCatHeirarchy, i2ndCatHeirarchy
 
 
 
