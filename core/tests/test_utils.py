@@ -2,11 +2,19 @@ from django.test        import TestCase
 from django.utils       import timezone
 
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
-                                 getReverseWithUpdatedQuery, getWhatsLeft )
-from ..utils_testing    import getUrlQueryStringOff, queryGotUpdated
+                                 getReverseWithUpdatedQuery,
+                                 getWhatsLeft )
+from ..utils_testing    import ( getUrlQueryStringOff,
+                                 queryGotUpdated )
+
+from ebayinfo.models    import Market
+
+from ebayinfo.utils_testing import ( getMarketsIntoDatabase,
+                                     PutMarketsInDatabaseTest )
 
 from Time               import sFormatISOdateTimeNoColon
 from Time.Test          import isISOdatetime
+
 
 
 class DateTimeTests(TestCase):
@@ -53,5 +61,43 @@ class textProcessingTests(TestCase):
         
 
 
+class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
+    #
+    def test_get_dict_siteID_2_list_vers( self ):
+        #
+        import ebayinfo.utils
+        #
+        from core.utils import updateMemoryTableUpdated
+        #
+        oUSA = Market.objects.get( cMarket = 'EBAY-US' )
+        #
+        oUSA.iCategoryVer = 116 # current version is actually 118
+        oUSA.save()
+        #
+        self.assertEqual( oUSA.iCategoryVer, 116 )
+        #
+        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        #
+        self.assertNotEqual( oUSA.iCategoryVer, iListVers )
+        #
+        updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
+        #
+        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        #
+        self.assertEqual( oUSA.iCategoryVer, iListVers )
+        #
+        oUSA.iCategoryVer = 115
+        oUSA.save()
+        #
+        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        #
+        self.assertNotEqual( oUSA.iCategoryVer, iListVers )
+        #
+        updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
+        #
+        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        #
+        self.assertEqual( oUSA.iCategoryVer, iListVers )
+        #
 
-        
+
