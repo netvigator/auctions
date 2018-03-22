@@ -99,18 +99,12 @@ def updateHitLogFile( oUserItems, sPathHere ):
     #
     if iNew > 0:
         #
-        dItemHits = { dItemHits[ d['tTimeEnd'] ] : d for d in lItemHits }
-        #
-        lKeys = list( dItemHits.keys() )
-        #
-        lKeys.sort()
-        #
-        iterItemHits = ( dItemHits[ k ] for k in lKeys )
-        #
         lOut = [ ' | '.join( ( d['tTimeEnd'],d['iItemNumb'],d['iHitStars'] ) )
-                    for d in iterItemHits ]
+                    for d in lItemHits ]
         #
         iEndRows = len( lOut )
+        #
+        lOut.sort()
         #
         lOut[0:0] = [ 'tTimeEnd            | iItemNumb    | iHitStars' ]
         #
