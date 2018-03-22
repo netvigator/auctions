@@ -13,7 +13,9 @@ from core.utils_testing import ( BaseUserTestCase, getDefaultMarket,
                                  getNamePositionDict )
 
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
-from ebayinfo.utils     import dMarket2SiteID
+from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
+#
+
 from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
@@ -435,8 +437,6 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         from ..tests        import dSearchResult # in __init__.py
         #
-        from ..utils        import getEbayCategoryHierarchies
-        #
         dEbayCatHierarchies = {}
         #
         iCategoryID = int(
@@ -500,6 +500,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
         #logging.info("class storeItemFoundTests")
+
 
 
 
@@ -933,14 +934,60 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
 
 
     @tag('ebay_api')
-    def test_search_store_results( self ):
+    def test_key_word_only_search_store_results( self ):
         #
-        '''not only test store results, add to the log of actual item numbers
+        '''test key words only search
+        not only test store results, add to the log of actual item numbers
         which will be used later for testing getting the auction results'''
         #
         # sandbox returns 0 items, can use it to test for 0 items
         t = doSearchStoreResults(
                 iSearchID = self.oCatalinSearch.id, bUseSandbox = False )
+        #
+        iItems, iStoreItems, iStoreUsers = t
+        #
+        self.assertTrue( iItems and iStoreItems and iStoreUsers )
+        #
+        if iItems and iStoreItems and iStoreUsers: # > 0 each
+            #
+            iBegLines = 1
+            #
+            if isFileThere( self.sHitLogFile ):
+                #
+                iBegLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
+            #
+            findSearchHits( oUser = self.user1 )
+            #
+            oUserItems = UserItemFound.objects.filter(
+                            iUser          = self.user1,
+                            iHitStars__gte = 100 )
+            #
+            iLen = len( oUserItems )
+            #
+            if iLen > 0: # add to list of items to test fetching the results
+                #
+                iBegRows, iEndRows = updateHitLogFile(
+                                        oUserItems, self.sPathHere )
+                #
+            #
+            iEndLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
+            #
+            self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
+            
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+    @tag('ebay_api')
+    def test_category_only_search_store_results( self ):
+        #
+        '''test category only search
+        not only test store results, add to the log of actual item numbers
+        which will be used later for testing getting the auction results'''
+        #
+        # sandbox returns 0 items, can use it to test for 0 items
+        t = doSearchStoreResults(
+                iSearchID = self.oPreampSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
