@@ -1,3 +1,5 @@
+from logging                import getLogger
+
 import xml.etree.ElementTree as ET
 
 #from pprint import pprint
@@ -6,11 +8,13 @@ from core.utils             import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
 
-from .models                import Market
+from .models                import EbayCategory, Market, CategoryHierarchy
 
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 from Web.HTML               import getChars4HtmlCodes
+
+logger = getLogger(__name__)
 
 class UnexpectedResponse( Exception ): pass
 
@@ -158,8 +162,6 @@ returns
 
 def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
             bShowProgress = False, sFile = None ):
-    #
-    from .models import EbayCategory, Market
     #
     oMarket = Market.objects.get( cMarket = sMarket )
     #
@@ -458,6 +460,129 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
         #
     #
     return lMarketsHaveNewerCategoryVersionLists
+
+
+
+def _getCategoryHierarchyID(
+            iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies ):
+    #
+    tCategoryID = iCategoryID, iEbaySiteID
+    
+    if tCategoryID in dEbayCatHierarchies:
+        #
+        iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
+        #
+        bOkCatHeirarchy = CategoryHierarchy.objects.filter( pk = iCatHeirarchy ).exists()
+        #
+    elif CategoryHierarchy.objects.filter( 
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbaySiteID ).exists():
+        #
+        iCatHeirarchy = CategoryHierarchy.objects.get(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbaySiteID ).pk
+        #
+        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
+        #
+    elif EbayCategory.objects.filter(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbaySiteID ).exists():
+        #
+        oEbayCategory   = EbayCategory.objects.get(
+                            iCategoryID = iCategoryID,
+                            iMarket     = iEbaySiteID )
+        #
+        lCatHeirarchy = [ oEbayCategory.name ]
+        #
+        while oEbayCategory.iLevel > 1:
+            #
+            oParentCat = oEbayCategory.parent
+            #
+            if oParentCat:
+                lCatHeirarchy.append( oParentCat.name )
+            else:
+                #
+                sMessage = ( 'For market %s, PARENT of ebay category '
+                            '%s does not exist' %
+                                ( iEbaySiteID, iCategoryID ) )
+                logger.info( sMessage)
+                #
+                print( sMessage )
+                #
+                break
+                #
+            #
+            oEbayCategory = oParentCat
+            #
+        #
+        lCatHeirarchy.reverse()
+        #
+        sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
+        # return only does not work in shell, each line overwrites the prior one
+        #
+        oCategoryHierarchy = CategoryHierarchy(
+                iCategoryID     = iCategoryID,
+                iMarket         = Market.objects.get(
+                                    iEbaySiteID = iEbaySiteID ),
+                cCatHierarchy   = sCatHeirarchy )
+        #
+        oCategoryHierarchy.save()
+        #
+        iCatHeirarchy = oCategoryHierarchy.pk
+        #
+        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
+        #
+    else: # testing glitch, limited set of categories
+        #
+        iCatHeirarchy = sCategoryName
+        #
+        sMessage = ( 'For market %s, ebay category '
+                     '%s does not exist' %
+                          ( iEbaySiteID, iCategoryID ) )
+        logger.info( sMessage)
+        #
+        print( sMessage )
+        #
+    #
+    return iCatHeirarchy
+
+
+
+def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
+    #
+    ''' return the ebay category hierarchy for a search find item category
+    that is, this returns the id of the category hierarchy table row
+    note:
+    1) items can optionally have a secondary category
+    2) this function has a side effect, it updates dEbayCatHierarchies
+    '''
+    #
+    iCategoryID = int( dItem.get( 'primaryCategory' ).get( 'categoryId' ) )
+    sCategoryName =    dItem.get( 'primaryCategory' ).get( 'categoryName' )
+    #
+    iEbaySiteID = dMarket2SiteID.get( dItem.get( 'globalId' ) )
+    #
+    iCatHeirarchy = _getCategoryHierarchyID(
+                        iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
+    #
+    s2ndCategoryID = dItem.get( 'secondaryCategory', {} ).get( 'categoryId' )
+    #
+    if s2ndCategoryID:
+        #
+        i2ndCategoryID = int( s2ndCategoryID )
+        #
+        sCategoryName =    dItem.get( 'secondaryCategory' ).get( 'categoryName' )
+        #
+        i2ndCatHeirarchy = _getCategoryHierarchyID(
+                    i2ndCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
+        #
+    else:
+        #
+        i2ndCatHeirarchy = None
+        #
+    #
+    return iCatHeirarchy, i2ndCatHeirarchy
+
 
     
 # ### if any category versions are updated, call            ###
