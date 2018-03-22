@@ -94,6 +94,7 @@ sCategoryDump = \
 14067 |         500 | Costume                       |      3 |     48579 | f             |          118 |          0 
 17916 |        2550 | Board & Traditional Games     |      3 |       233 | f             |          118 |          0 
 
+ 9881 |       67807 | Vintage Preamps & Tube Preamps|      4 |    175740 | t             |          118 |          0
  8464 |         934 | Manuals                       |      4 |       931 | t             |          118 |          0
  8467 |         932 | Transistor Radios             |      4 |       931 | t             |          118 |          0
  5559 |       13723 | Replacement Parts             |      4 |     13720 | t             |          118 |          0 
