@@ -668,14 +668,13 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
 
 
 
-class getBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
+class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
     #
     ''' base class for testing doSearchStoreResults() store records '''
     #
     def setUp(self):
-        # storeSearchResultsTests, self 
         #
-        super( getBrandsCategoriesModelsSetUp, self ).setUp()
+        super( GetBrandsCategoriesModelsSetUp, self ).setUp()
         #
         sSearch = "Catalin Radios"
         #
@@ -683,15 +682,38 @@ class getBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
         #
         if Search.objects.filter( cKeyWords = sKeyWords ).exists():
             #
-            self.oSearch = Search.objects.get( cKeyWords = sKeyWords ).first()
+            self.oCatalinSearch = Search.objects.get(
+                                    cKeyWords = sKeyWords ).first()
             #
         else:
-            self.oSearch = Search(
+            #
+            self.oCatalinSearch = Search(
                             cTitle      = sSearch,
                             cKeyWords   = sKeyWords,
                             iUser       = self.user1 )
             #
-            self.oSearch.save()
+            self.oCatalinSearch.save()
+            #
+        #
+        sSearch         = 'Tube Preamps'
+        iEbayCategory   = 67807
+        #
+        if Search.objects.filter( cTitle = sSearch ).exists():
+            #
+            self.oPreampSearch = Search.objects.get(
+                                    cTitle = sSearch ).first()
+            #
+        else:
+            #
+            oEbayCateID = EbayCategory.objects.get(
+                    name = 'Vintage Preamps & Tube Preamps' )
+            #
+            self.oPreampSearch = Search(
+                            cTitle          = sSearch,
+                            iEbayCategory   = oEbayCateID,
+                            iUser           = self.user1 )
+            #
+            self.oPreampSearch.save()
             #
         #
         oCategory   = Category( cTitle = 'Radio', iStars = 9,
@@ -790,21 +812,14 @@ class getBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
         #
         oBrand.save()
         #
-        #print( 'ran getBrandsCategoriesModelsSetUp %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #print( '\n' )
+        #print( 'Model.objects.all().count():', Model.objects.all().count() )
+        #print( 'ran GetBrandsCategoriesModelsSetUp %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
-        
-    def test_BrandsCategoriesModels_setUp(self):
-        #
-        self.assertEqual( Model.objects.all().count(), 10 )
-        #
-        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-        #
-        #print( 'self.oSearch.id:', self.oSearch.id )
-        #print( 'Search.objects.all().count():', Search.objects.all().count() )
-        #print( 'self.__class__.__name__:', self.__class__.__name__ )
 
 
-class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
+
+class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
     #
     ''' class for testing doSearchStoreResults() store records '''
     #
@@ -813,11 +828,11 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
         from searching import RESULTS_FILE_NAME_PATTERN
         #
         #print( 'will call super' )
-        super( findSearchHitsTests, self ).setUp()
+        super( KeyWordFindSearchHitsTests, self ).setUp()
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
-            ( 'EBAY-US', self.user1.username, self.oSearch.id ) )
+            ( 'EBAY-US', self.user1.username, self.oCatalinSearch.id ) )
         #
         #print( 'will DeleteIfExists' )
         DeleteIfExists( '/tmp', self.sExampleFile )
@@ -828,7 +843,14 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
         doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
         #
         #print( '\n' )
-        #print( 'setting up findSearchHitsTests' )
+        #print( 'setting up KeyWordFindSearchHitsTests' )
+
+    def test_BrandsCategoriesModels_setUp(self):
+        #
+        iCount = Model.objects.all().count()
+        #
+        self.assertEqual( iCount, 10 )
+        #
 
     def test_find_search_hits(self):
         #
@@ -885,7 +907,7 @@ class findSearchHitsTests(getBrandsCategoriesModelsSetUp):
 
 
 
-class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
+class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
     #
     ''' class for testing doSearchStoreResults() store records '''
     #
@@ -896,6 +918,9 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
         self.sPathHere   = sThisFilePath
         #
         self.sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
+        #
+        super( DoSearchStoreResultsTests, self ).setUp()
+
 
     def test_already_stored_results( self ):
         #
@@ -909,9 +934,26 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
         #
         sLastAuctionEndDate = lItemHits[ -1 ][ 'tTimeEnd' ]
         #
-        iDays = getDeltaDaysFromStrings( sLastAuctionEndDate )
+        iDaysFromNow = - getDeltaDaysFromStrings( sLastAuctionEndDate )
         #
-        # to be continued
+        sSayLastEnd = ''
+        #
+        if iDaysFromNow >= 2:
+            sSayLastEnd = ( 'last auction end date '
+                            'is about %s days from now' % iDaysFromNow )
+        elif iDaysFromNow == 1:
+            sSayLastEnd = 'last auction end date is tomorrow'
+        elif iDaysFromNow == 0:
+            sSayLastEnd = 'last auction end date is TODAY!!!!'
+        #
+        if sSayLastEnd:
+            print( '' )
+            print( sSayLastEnd )            
+        #
+        self.assertGreater( iDaysFromNow, 0,
+                    msg = 'auction end dates are all past, API test is WAY OVERDUE!' )
+        #
+
 
     @tag('ebay_api')
     def test_search_store_results( self ):
@@ -921,7 +963,7 @@ class findDoSearchStoreResultsTests(getBrandsCategoriesModelsSetUp):
         #
         # sandbox returns 0 items, can use it to test for 0 items
         t = doSearchStoreResults(
-                iSearchID = self.oSearch.id, bUseSandbox = False )
+                iSearchID = self.oCatalinSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
