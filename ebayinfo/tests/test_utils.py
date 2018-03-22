@@ -4,7 +4,7 @@ from django.db          import DataError
 from django.test        import TestCase, tag
 
 
-from core.utils_testing import getDefaultMarket
+from core.utils_testing import getDefaultMarket, getEbayCategoriesSetUp
 
 from ..models           import EbayCategory, Market
 
@@ -16,7 +16,8 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                             UnexpectedResponse, CATEGORY_LISTING_FILE,
                             putCategoriesInDatabase, countCategories,
                             _getCheckCategoryVersion, dSiteID2ListVers,
-                            getWhetherAnyEbayCategoryListsAreUpdated )
+                            getWhetherAnyEbayCategoryListsAreUpdated,
+                            getEbayCategoryHierarchies )
 
 from ..utils_testing    import getMarketsIntoDatabase, PutMarketsInDatabaseTest
 
@@ -169,7 +170,30 @@ class putCategoriesInDatabaseTest(TestCase):
         self.assertEqual( iTags, '19188' ) # str count in the original file
 
 
+class TestHeirarchiesAreTheyCompleteTest( getEbayCategoriesSetUp ):
+    
+    def test_are_heirarchies_complete( self ):
+        #
+        oLeaves = EbayCategory.objects.filter( bLeafCategory = True )
+        #
+        dEbayCatHierarchies = {}
+        #
+        for oLeaf in oLeaves:
+            #
+            dItem = dict(
+                primaryCategory = dict(
+                    categoryId      = oLeaf.iCategoryID,
+                    categoryName    = oLeaf.name ),
+                secondaryCategory   = {},
+                globalId            = oLeaf.iMarket.cMarket )
+            #
+            t = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
+        #
+        # will print helpful message to terminal if heirarchy is incomplete
 
+
+
+    
 class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
     '''test getMarketsIntoDatabase()'''
     #
