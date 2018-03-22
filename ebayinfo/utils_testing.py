@@ -1,5 +1,8 @@
 from django.test    import TestCase
 
+from core.utils_testing import ( getTableFromScreenCaptureGenerator,
+                                 getNamePositionDict )
+
 from .models        import Market
 
 def getMarketsIntoDatabase():
@@ -10,7 +13,6 @@ def getMarketsIntoDatabase():
     #
     from ebayinfo           import sMarketsTable # in __init__.py
     #
-    from core.utils_testing import getTableFromScreenCaptureGenerator
     #
     from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
     #
@@ -18,18 +20,7 @@ def getMarketsIntoDatabase():
     #
     lHeader = next( oTableIter )
     #
-    dNamePosition = {}
-    #
-    i = 0
-    #
-    for sName in lHeader:
-        #
-        dNamePosition[ sName ] = i
-        #
-        i += 1
-        #
-    #
-    d = dNamePosition
+    d = getNamePositionDict( lHeader )
     #
     for lParts in oTableIter:
         #
