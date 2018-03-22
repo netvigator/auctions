@@ -45,7 +45,7 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
     else:
         #
         logger.error( 'log this error, form did not save' )
-        #print( '\n' )
+        #print( '' )
         #print( 'log this error, form did not save' )
         #
         if form.errors:
@@ -732,7 +732,7 @@ def findSearchHits( oUser = oUserOne ):
                              tlook4hits__isnull = True )
                     .values_list( 'iItemNumb', flat=True ) )
     #
-    #print( '\n' )
+    #print( '' )
     #print( 'len( oItemQuerySet ):', len( oItemQuerySet ) )
     #
     dFindersBrands      = {}
@@ -749,7 +749,7 @@ def findSearchHits( oUser = oUserOne ):
         #
         oCategoryQuerySet = Category.objects.filter( iUser = oUser )
         #
-        #print( '\n' )
+        #print( '' )
         #print( 'len( oCategoryQuerySet ):', len( oCategoryQuerySet ) )
         #print( 'oItem.iItemNumb:', oItem.iItemNumb )
         #print( 'oUser:', oUser )
