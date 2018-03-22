@@ -15,10 +15,10 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                             _getCategoryVersionFromFile,
                             UnexpectedResponse, CATEGORY_LISTING_FILE,
                             putCategoriesInDatabase, countCategories,
-                            _getCheckCategoryVersion,
+                            _getCheckCategoryVersion, dSiteID2ListVers,
                             getWhetherAnyEbayCategoryListsAreUpdated )
 
-from ..utils_testing    import getMarketsIntoDatabase
+from ..utils_testing    import getMarketsIntoDatabase, PutMarketsInDatabaseTest
 
 from File.Del           import DeleteIfExists
 from File.Write         import WriteText2File
@@ -170,14 +170,9 @@ class putCategoriesInDatabaseTest(TestCase):
 
 
 
-class putMarketsInDatabaseTest(TestCase):
+class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
     '''test getMarketsIntoDatabase()'''
     #
-    def setUp(self):
-        #
-        super( putMarketsInDatabaseTest, self ).setUp()
-        #
-        getMarketsIntoDatabase()
 
     def test_market_count( self ):
         #
@@ -243,3 +238,5 @@ class putMarketsInDatabaseTest(TestCase):
         self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
         self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
         #
+
+
