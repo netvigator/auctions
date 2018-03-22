@@ -362,29 +362,29 @@ dMarket2SiteID, dSiteID2Market, dSiteID2ListVers = _getDictMarket2SiteID()
 
 '''
 pprint( dMarket2SiteID )
-{'EBAY-AT': 16,
- 'EBAY-AU': 15,
- 'EBAY-CH': 193,
- 'EBAY-DE': 77,
- 'EBAY-ENCA': 2,
- 'EBAY-ES': 186,
- 'EBAY-FR': 71,
- 'EBAY-FRBE': 23,
- 'EBAY-FRCA': 210,
- 'EBAY-GB': 3,
- 'EBAY-HK': 201,
- 'EBAY-IE': 205,
- 'EBAY-IN': 203,
- 'EBAY-IT': 101,
- 'EBAY-MOTOR': 100,
- 'EBAY-MY': 207,
- 'EBAY-NL': 146,
- 'EBAY-NLBE': 123,
- 'EBAY-PH': 211,
- 'EBAY-PL': 212,
- 'EBAY-SE': 218,
- 'EBAY-SG': 216,
- 'EBAY-US': 0}
+{'EBAY-AT':      16,
+ 'EBAY-AU':      15,
+ 'EBAY-CH':     193,
+ 'EBAY-DE':      77,
+ 'EBAY-ENCA':     2,
+ 'EBAY-ES':     186,
+ 'EBAY-FR':      71,
+ 'EBAY-FRBE':    23,
+ 'EBAY-FRCA':   210,
+ 'EBAY-GB':       3,
+ 'EBAY-HK':     201,
+ 'EBAY-IE':     205,
+ 'EBAY-IN':     203,
+ 'EBAY-IT':     101,
+ 'EBAY-MOTOR':  100,
+ 'EBAY-MY':     207,
+ 'EBAY-NL':     146,
+ 'EBAY-NLBE':   123,
+ 'EBAY-PH':     211,
+ 'EBAY-PL':     212,
+ 'EBAY-SE':     218,
+ 'EBAY-SG':     216,
+ 'EBAY-US':       0 }
  '''
 
 
@@ -445,14 +445,7 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
         #
         # when testing, must access the database directly to work right!
         #
-        if bUseSandbox:
-            #
-            iTableHas = Market.objects.get(iEbaySiteID=iSiteID).iCategoryVer
-            #
-        else:
-            #            
-            iTableHas = dSiteID2ListVers[ iSiteID ]
-            #
+        iTableHas = dSiteID2ListVers[ iSiteID ]
         #
         if iEbayHas != iTableHas:
             #
@@ -465,8 +458,11 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
         #
     #
     return lMarketsHaveNewerCategoryVersionLists
+
     
-    
-    
-    
+# ### if any category versions are updated, call            ###
+# ### updateMemoryTableUpdated( 'markets', 'iCategoryVer' ) ###
+# ###                     in core.utils                     ###
+
+
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
