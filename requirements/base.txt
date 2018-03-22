@@ -15,8 +15,10 @@
 # sudo apt-get install erlang erlang-nox rabbitmq-server
 
 # are the requirements outdated?
-# run this monthly:
-# pip list --outdated
+# take a look monthly:
+# https://pyup.io/account/repos/github/netvigator/auctions/
+# also lists packages installed by django and others
+# pip list --outdated --format=columns
 
 # any changes?
 # pip install -r requirements/local.txt
@@ -42,7 +44,7 @@ django-debug-toolbar==1.9.1
 
 # Forms
 django-braces==1.12.0
-django-crispy-forms==1.7.0
+django-crispy-forms==1.7.2
 
 # Models
 django-model-utils==3.1.1
@@ -59,7 +61,7 @@ django-allauth==0.35.0
 
 
 # Python-PostgreSQL Database Adapter
-psycopg2==2.7.3.2
+psycopg2==2.7.4
 
 # Unicode slugification
 awesome-slugify==1.6.5
@@ -68,7 +70,7 @@ awesome-slugify==1.6.5
 pytz==2018.3
 
 # Redis support
-django-redis==4.8.0
+django-redis==4.9.0
 redis>=2.10.6
 
 
@@ -76,7 +78,7 @@ redis>=2.10.6
 
 # Your custom requirements go here
 
-django-countries==5.1.1
+django-countries==5.2
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -84,12 +86,8 @@ django-countries==5.1.1
 # just using decimal field, works OK
 
 
-# django-extensions added by RG 2017-12-10
-django-extensions==1.9.9
-
-
 # for the ebay API
-lxml==4.1.1
+lxml==4.2.1
 requests==2.18.4
 
 # to handle the ebay category lists
