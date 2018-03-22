@@ -229,9 +229,11 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         super( getEbayCategoriesSetUp, self ).setUp()
         #
-        from ebayinfo           import sCategoryDump  # in __init__.py
+        from ebayinfo           import sCategoryDump # in __init__.py
         #
         from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+        #
+        self.iCategories = 0
         #
         self.market  = getDefaultMarket()
         #
@@ -271,6 +273,8 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         lHeader = next( oTableIter )
         #
+        iCategories = 0
+        #
         for lParts in oTableIter:
             #
             iCategoryID             = int( lParts[1] )
@@ -280,8 +284,8 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
                         iCategoryID = iCategoryID,
                         iMarket_id = iMarket ).exists():
                 #
-                print('iCategoryID already exists: %s -- '
-                    'clean up the list!' % lParts[1] )
+                print('for market %s, iCategoryID already exists: %s -- '
+                    'clean up the list!' % (lParts[7],lParts[1] ) )
                 #
                 continue
                 #
@@ -317,7 +321,12 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
                 #
             #
             oCategory.save()
-
+            #
+            iCategories += 1
+            #
+        #
+        self.iCategories = iCategories + 2 # add 2 root categories
+        #
 
 
 '''
