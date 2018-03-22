@@ -63,7 +63,7 @@ def _getApiConfValues( bUseSandbox ):
     return dUseThis
 
 
-def _getEbayApiPostResponse(
+def _postResponseEbayApi(
         sOperation,
         sEndPointURL,
         sRequest,
@@ -97,7 +97,7 @@ def _getEbayApiPostResponse(
     return oResponse.text
 
 
-def _getEbayApiGetResponse(
+def _getResponseEbayApi(
         sEndPointURL,
         dData,
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
@@ -143,7 +143,7 @@ def _getItemInfo( iItemNumb, sCallName,
     #
     dParams.update( dMore )
     #
-    return _getEbayApiGetResponse( sEndPointURL, dParams )
+    return _getResponseEbayApi( sEndPointURL, dParams )
 
 
 def getSingleItem( iItemNumb, bUseSandbox = False, dWantMore = None ):
@@ -212,7 +212,7 @@ def _getCategoriesOrVersion(
                     xml_declaration = True,
                     encoding        = "utf-8" )
     #
-    return _getEbayApiPostResponse(
+    return _postResponseEbayApi(
             'trading',
             sEndPointURL,
             sRequest,
@@ -240,7 +240,7 @@ def _getEbayFindingResponse(
 
     headers.update( dHttpHeaders )
     #
-    return _getEbayApiPostResponse(
+    return _postResponseEbayApi(
                 sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
 
 
