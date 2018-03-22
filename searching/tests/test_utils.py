@@ -8,13 +8,15 @@ from django.test        import TestCase, tag
 from django.utils       import timezone
 from core.utils_testing import ( BaseUserTestCase, getDefaultMarket,
                                  getEbayCategoriesSetUp,
-                                 setUpBrandsCategoriesModels )
+                                 setUpBrandsCategoriesModels,
+                                 getTableFromScreenCaptureGenerator,
+                                 getNamePositionDict )
 
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID
-
 from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
-from ..tests            import sExampleResponse, sResponseSearchTooBroad
+from ..tests            import ( sExampleResponse, sBrands, sModels,
+                                 sResponseSearchTooBroad )
 from ..utils_testing    import getItemHitsLog, updateHitLogFile
 from ..utils            import ( trySearchCatchExceptions,
                                  doSearchStoreResults, ItemAlreadyInTable,
@@ -30,10 +32,10 @@ from models.models      import Model
 
 from File.Del           import DeleteIfExists
 from File.Spec          import getPathNameExt
-from Time.Delta         import getDeltaDaysFromStrings
 from File.Test          import isFileThere
 from File.Write         import QuietDump
-
+from Time.Delta         import getDeltaDaysFromStrings
+from Utils.Config       import getBoolOffYesNoTrueFalse as getB
 
 '''
 this will print logging messages to the terminal
@@ -382,8 +384,6 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         from ebayinfo           import sCategoryDump  # in __init__.py
         #
-        from core.utils_testing import getTableFromScreenCaptureGenerator
-        #
         iTableCount = EbayCategory.objects.all().count()
         #
         oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
@@ -677,7 +677,6 @@ class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
         super( GetBrandsCategoriesModelsSetUp, self ).setUp()
         #
         sSearch = "Catalin Radios"
-        #
         sKeyWords = 'catalin radio'
         #
         if Search.objects.filter( cKeyWords = sKeyWords ).exists():
@@ -718,99 +717,77 @@ class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
         #
         oCategory   = Category( cTitle = 'Radio', iStars = 9,
                                cExcludeIf = 'reproduction', iUser = self.user1 )
-        #
         oCategory.save()
         #
-        oBrand      = Brand( cTitle = 'Garod', cLookFor = 'Garol',
-                             iStars = 5, iUser = self.user1 )
         #
-        oBrand.save()
+        oCategory   = Category( cTitle = 'Preamp', iStars = 9,
+                                iUser = self.user1 )
+        oCategory.save()
         #
-        oModel      = Model( cTitle = '6AU1',
-                            iBrand = oBrand, iCategory = oCategory,
-                            iStars = 5, iUser = self.user1 )
         #
-        oModel.save()
+        oTableIter = getTableFromScreenCaptureGenerator( sBrands )
         #
-        oBrand      = Brand( cTitle = 'Addison', iStars = 7,
-                             iUser = self.user1 )
+        lHeader = next( oTableIter )
         #
-        oBrand.save()
+        d = getNamePositionDict( lHeader )
         #
-        oModel      = Model( cTitle = '5', iBrand = oBrand, iStars = 6,
-                             iCategory = oCategory, iUser = self.user1 )
+        def fRt( s ): return s.replace( r'\\r', '\r' )
         #
-        oModel.save()
+        for lParts in oTableIter:
+            #
+            oBrand = Brand(
+                cTitle      =      lParts[ d['cTitle'    ] ],
+                iStars      = int( lParts[ d['iStars'    ] ] ),
+                cExcludeIf  = fRt( lParts[ d['cExcludeIf'] ] ),
+                cLookFor    = fRt( lParts[ d['cLookFor'  ] ] ),
+                iUser       = self.user1 )
+            #
+            oBrand.save()
+            #
         #
-        oBrand      = Brand( cTitle = 'Fada', iStars = 8, iUser = self.user1 )
+        oTableIter = getTableFromScreenCaptureGenerator( sModels )
         #
-        oBrand.save()
+        lHeader = next( oTableIter )
         #
-        oModel      = Model( cTitle = '115', cLookFor = 'bullet', iStars = 9,
-                            iBrand = oBrand, iCategory = oCategory, 
-                            iUser = self.user1 )
+        d = getNamePositionDict( lHeader )
         #
-        oModel.save()
-        #
-        oModel      = Model( cTitle = '1000', iBrand = oBrand, iStars = 8,
-                            iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oModel      = Model( cTitle = '188', iBrand = oBrand, iStars = 7,
-                            iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oModel      = Model( cTitle = 'L56', iBrand = oBrand, iStars = 6,
-                             iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oBrand      = Brand( cTitle = 'Emerson', iStars = 6,
-                             iUser = self.user1 )
-        #
-        oBrand.save()
-        #
-        oModel      = Model( cTitle = '520', iBrand = oBrand, iStars = 6,
-                            iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oModel      = Model( cTitle = 'AX235', iBrand = oBrand, iStars = 6,
-                            iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oBrand      = Brand( cTitle = 'DeWald', iStars = 4,
-                             iUser = self.user1 )
-        #
-        oBrand.save()
-        #
-        oModel      = Model( cTitle = 'A501', iBrand = oBrand, iStars = 6,
-                             iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oBrand      = Brand( cTitle = 'Crosley', iStars = 3,
-                             iUser = self.user1 )
-        #
-        oBrand.save()
-        #
-        oModel      = Model( cTitle = '1465', iBrand = oBrand, iStars = 5,
-                             iCategory = oCategory, iUser = self.user1 )
-        #
-        oModel.save()
-        #
-        oBrand      = Brand( cTitle = 'RCA', iStars = 6,
-                             iUser = self.user1 )
-        #
-        oBrand.save()
-        #
-        oBrand      = Brand( cTitle = 'Motorola', iStars = 5,
-                             iUser = self.user1 )
-        #
-        oBrand.save()
+        for lParts in oTableIter:
+            #
+            sBrand    = lParts[ d['Brand'   ] ]
+            sCategory = lParts[ d['Category'] ]
+            #
+            bHaveBrand = Brand.objects.filter( cTitle = sBrand ).exists()
+            #
+            if bHaveBrand:
+                #
+                oBrand = Brand.objects.filter( cTitle = sBrand )
+                #
+                if len( oBrand ) > 1:
+                    print( '' )
+                    print( 'got more than one brand %s' % sBrand )
+                #
+                oBrand = oBrand.first()
+                #
+            else:
+                print( '' )
+                print( 'do not have brand %s' % sBrand )
+                oBrand = None
+            #
+            oCategory = Category.objects.get( cTitle = sCategory )
+            #
+            oModel = Model(
+                cTitle      =      lParts[ d['cTitle'       ] ],
+                cKeyWords   =      lParts[ d['cKeyWords'    ] ],
+                iStars      = int( lParts[ d['iStars'       ] ] ),
+                bSubModelsOK= getB(lParts[ d['bSubModelsOK' ] ] ),
+                cLookFor    = fRt( lParts[ d['cLookFor'     ] ] ),
+                cExcludeIf  = fRt( lParts[ d['cExcludeIf'   ] ] ),
+                iBrand      = oBrand,
+                iCategory   = oCategory,
+                iUser       = self.user1 )
+            #
+            oModel.save()
+            #
         #
         #print( '\n' )
         #print( 'Model.objects.all().count():', Model.objects.all().count() )
@@ -849,7 +826,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         iCount = Model.objects.all().count()
         #
-        self.assertEqual( iCount, 10 )
+        self.assertEqual( iCount, 151 )
         #
 
     def test_find_search_hits(self):
@@ -860,7 +837,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 17 )
+        self.assertEquals( len( oTempItemsFound ), 73 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
@@ -899,7 +876,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
             iCount += 1
         #
         #
-        self.assertEquals( iCount, 17 )
+        self.assertEquals( iCount, 73 )
         #
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
