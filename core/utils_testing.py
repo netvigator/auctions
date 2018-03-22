@@ -200,6 +200,24 @@ def setup_view_for_tests( view, request, *args, **kwargs ):
 
 
 
+def getNamePositionDict( lHeader ):
+    #
+    '''utility for getTableFromScreenCaptureGenerator()'''
+    #
+    dNamePosition = {}
+    #
+    i = 0
+    #
+    for sName in lHeader:
+        #
+        dNamePosition[ sName ] = i
+        #
+        i += 1
+        #
+    #
+    return dNamePosition
+
+
 def getTableFromScreenCaptureGenerator( uScreenCapture ):
     #
     from .utils import getSeqStripped
@@ -327,6 +345,9 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
         self.iCategories = iCategories + 2 # add 2 root categories
         #
+
+
+
 
 
 '''
