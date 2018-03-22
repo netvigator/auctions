@@ -121,3 +121,19 @@ def getWhatsLeft( s ):
 
 
 def getSeqStripped( l ): return ( s.strip() for s in l )
+
+
+
+def updateMemoryTableUpdated( sTable, sField = None ):
+    #
+    if (    sTable == 'markets' and
+            sField is not None  and sField == 'iCategoryVer' ):
+        #
+        import ebayinfo.utils
+        #
+        t = ebayinfo.utils._getDictMarket2SiteID()
+        #
+        dMarket2SiteID, dSiteID2Market, dSiteID2ListVers = t
+        #
+        ebayinfo.utils.dSiteID2ListVers = dSiteID2ListVers
+        #
