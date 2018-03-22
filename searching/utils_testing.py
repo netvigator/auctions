@@ -7,12 +7,12 @@ from core.utils_testing import getTableFromScreenCaptureGenerator
 from .tests             import sItemHitLog # in __init__.py
 
 from File.Del           import DeleteIfExists
-from File.Spec          import getPathNameExt
 from File.Test          import isFileThere
 from File.Write         import QuietDump
 
-from Time.Convert       import getDateTimeObjFromString as getDate
-from Time.Output        import getIsoDateTimeFromDateTime as getIsoDateTime
+from Time.Convert       import getDateTimeObjFromString   as getDate
+from Time.Delta         import getIsoDateTimeNowPlus
+from Time.Output        import getIsoDateTimeFromDateTime as getIsoDT
 
 
 def getItemHitsLog( uHitLogFileContent ):
@@ -51,14 +51,10 @@ def getItemHitsLog( uHitLogFileContent ):
 
 
 
-def updateHitLogFile( oUserItems ):
+def updateHitLogFile( oUserItems, sPathHere ):
     #
-    sThisFilePath, sName, sExt = getPathNameExt( realpath(__file__) )
-    #
-    sLogFilePath = join( sThisFilePath, 'tests' )
-    #
-    sHitLogFile = join( sLogFilePath, 'ItemHitsLog.log' )
-    sHitLogBack = join( sLogFilePath, 'ItemHitsLog.bak' )
+    sHitLogFile = join( sPathHere, 'ItemHitsLog.log' )
+    sHitLogBack = join( sPathHere, 'ItemHitsLog.bak' )
     #            
     if not isFileThere( sHitLogFile ):
         #
@@ -69,7 +65,17 @@ def updateHitLogFile( oUserItems ):
     #
     lItemHits = getItemHitsLog( oHitLogFile )
     #
-    setItemNumbsAlready = set( [ int( d['iItemNumb'] ) for d in lItemHits ] )
+    iBegRows = len( lItemHits )
+    #
+    # discard rows that are too old
+    #
+    sDateTimeAgo = getIsoDateTimeNowPlus( -120 )
+    #
+    lItemHits = [ d for d in lItemHits if d['tTimeEnd' ] > sDateTimeAgo ]
+    #
+    iEndRows = len( lItemHits )
+    #
+    setItemNumbsAlready = set( ( int( d['iItemNumb'] ) for d in lItemHits ) )
     #
     iNew = 0
     #
@@ -78,10 +84,9 @@ def updateHitLogFile( oUserItems ):
         if oItemHit.iItemNumb_id in setItemNumbsAlready: continue
         #
         dRow = dict(
-            iItemNumb   = str( oItemHit.iItemNumb_id ),
-            tTimeEnd    = getIsoDateTime(
-                               oItemHit.iItemNumb.tTimeEnd ),
-            iHitStars   = str( oItemHit.iHitStars ) )
+            iItemNumb   = str(      oItemHit.iItemNumb_id ),
+            tTimeEnd    = getIsoDT( oItemHit.iItemNumb.tTimeEnd ),
+            iHitStars   = str(      oItemHit.iHitStars ) )
         #
         lItemHits.append( dRow )
         #
@@ -94,10 +99,20 @@ def updateHitLogFile( oUserItems ):
     #
     if iNew > 0:
         #
-        lOut = [ ' | '.join( ( d['tTimeEnd'], d['iItemNumb'], d['iHitStars'] ) ) 
-                    for d in lItemHits ]
+        dItemHits = { dItemHits[ d['tTimeEnd'] ] : d for d in lItemHits }
         #
-        lOut[0:0] = [ ' | '.join( ( 'tTimeEnd', 'iItemNumb', 'iHitStars' ) ) ]
+        lKeys = list( dItemHits.keys() )
+        #
+        lKeys.sort()
+        #
+        iterItemHits = ( dItemHits[ k ] for k in lKeys )
+        #
+        lOut = [ ' | '.join( ( d['tTimeEnd'],d['iItemNumb'],d['iHitStars'] ) )
+                    for d in iterItemHits ]
+        #
+        iEndRows = len( lOut )
+        #
+        lOut[0:0] = [ 'tTimeEnd            | iItemNumb    | iHitStars' ]
         #
         sOut = '\n'.join( lOut )
         #
@@ -107,4 +122,6 @@ def updateHitLogFile( oUserItems ):
         #
         QuietDump( sOut, sHitLogFile )
         #
+    #
+    return iBegRows, iEndRows
 
