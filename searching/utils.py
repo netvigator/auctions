@@ -5,7 +5,7 @@ from core.utils_ebay        import getValueOffItemDict
 from django.db              import DataError
 from django.utils           import timezone
 
-from ebayinfo.utils         import dMarket2SiteID
+from ebayinfo.utils         import dMarket2SiteID, getEbayCategoryHierarchies
 
 from .models                import ItemFound, UserItemFound
 
@@ -18,7 +18,6 @@ logger = getLogger(__name__)
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 class ItemAlreadyInTable(    Exception ): pass
-
 
 
 
@@ -55,32 +54,25 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
         else:
             logger.info( 'no form errors at bottom!' )
         #
-        bGotHierarchy = CategoryHierarchy.objects.filter( pk = kwargs[ 'iCatHeirarchy' ] ).exists()
-        #
     #
     return iSavedRowID
 
 
 
-def getSearchResultGenerator( sFile ):
+
+
+def getJsonFindingResponse( uContent ):
     #
-    ''' search saves results to file, this returns an interator to set through
-    in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
-    '''
+    '''pass in the response
+    returns the resonse dictionary dResponse
+    which includes dPagination for convenience'''
     #
     from json           import load
     #
     from Dict.Get       import getAnyValue
     from Dict.Maintain  import getDictValuesFromSingleElementLists
-    from File.Get       import getFileSpecHereOrThere
     #
-    sFile = getFileSpecHereOrThere( sFile )
-    #
-    dResults = load( open( sFile ) )
-    #
-    # findItemsAdvancedResponse
-    # findItemsByCategoryResponse
-    # findItemsByKeywordsResponse
+    dResults = load( uContent )
     #
     lResponse = getAnyValue( dResults ) # should be only 1 value to get
     #
@@ -96,7 +88,6 @@ def getSearchResultGenerator( sFile ):
         if "ack" in dResponse:
             #
             sMessage = 'ack returned "%s"' % dResponse[ "ack" ][0]
-            #
             #
         elif "error" in dResponse:
             #
@@ -120,20 +111,53 @@ def getSearchResultGenerator( sFile ):
     #
     iPages      = int( dPagination[ "totalPages" ] )
     #
+    iEntriesPP  = int( dPagination[ "entriesPerPage" ] )
+    #
+    dPagination['iEntries'    ] = iEntries
+    dPagination['iPages'      ] = iPages
+    dPagination['iEntriesPP'  ] = iEntriesPP
+    #
+    dResponse[  'dPagination' ] = dPagination
+    #
+    return dResponse
+    
+
+
+def getSearchResultGenerator( sFile ):
+    #
+    ''' search saves results to file, this returns an interator to set through
+    in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
+    '''
+    #
+    from Dict.Maintain  import getDictValuesFromSingleElementLists
+    from File.Get       import getFileSpecHereOrThere
+    #
+    sFile = getFileSpecHereOrThere( sFile )
+    #
+    # findItemsAdvancedResponse
+    # findItemsByCategoryResponse
+    # findItemsByKeywordsResponse
+    #
+    dResponse = getJsonFindingResponse( open( sFile ) )
+    #
+    dPagination = dResponse[  'dPagination']
+    #
+    iEntries    = dPagination['iEntries'   ]
+    #
+    iPages      = dPagination['iPages'     ]
+    #
     if iPages > 1:
         #
         # actually iEntries is a minimum, the actual number of entries is more
         #
         iEntries = (
-            1 + ( iPages - 1 ) * int( dPagination[ "entriesPerPage" ] ) )
+            1 + ( iPages - 1 ) * dPagination[ "iEntriesPP" ] )
         #
     #
     if not iEntries:
         #
         raise SearchGotZeroResults( "search executed OK but returned no items" )
         #
-    #
-    dPagination[ "totalEntries" ] = dPagination[ "totalEntries" ]
     #
     dResultDict = dResponse[ "searchResult" ][0]
     #
@@ -162,8 +186,9 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     from django.contrib.auth    import get_user_model
     #
-    from core.ebay_api_calls  import (
-                    getItemsByKeyWords, getItemsByCategory, getItemsByBoth )
+    from core.ebay_api_calls  import ( getItemsByKeyWords,
+                                       getItemsByCategory, getItemsByBoth,
+                                       getJsonFindingResponse )
     #
     from searching          import RESULTS_FILE_NAME_PATTERN
     from .models            import Search
@@ -206,11 +231,17 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
     if oSearch.iEbayCategory:
         sEbayCategory   = str( oSearch.iEbayCategory.iCategoryID )
     #
-    sFileName           = (
-            RESULTS_FILE_NAME_PATTERN % ( sMarket, sUserName, oSearch.id ) )
-    #  'Search_%s_%s_ID_%s.json'
-    #
     tSearch = ( oSearch.cTitle, str( oSearch.id ) )
+    #
+    # getJsonFindingResponse
+    # pass in the response
+    # returns the resonse dictionary dResponse
+    # which includes dPagination for convenience
+    #
+    sFileName           = (
+            RESULTS_FILE_NAME_PATTERN %
+                ( sMarket, sUserName, oSearch.id, '000') )
+    #  'Search_%s_%s_ID_%s.json'
     #
     if sKeyWords and sEbayCategory:
         #
@@ -218,11 +249,11 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
             'executing "%s" search (ID %s) for keywords in category ...' %
             tSearch )
         #
-        QuietDump(
-            getItemsByBoth( sKeyWords, sEbayCategory,
-                            sMarketID = sMarket,
-                            bUseSandbox = bUseSandbox ),
-            sFileName )
+        sResponse = getItemsByBoth( sKeyWords, sEbayCategory,
+                        sMarketID = sMarket,
+                        bUseSandbox = bUseSandbox )
+        #
+        QuietDump( sResponse, sFileName )
         #
     elif sKeyWords:
         #
@@ -230,11 +261,11 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
             'executing "%s" search (ID %s) for keywords '
             '(in all categories) ...' % tSearch )
         #
-        QuietDump(
-            getItemsByKeyWords( sKeyWords,
-                                sMarketID   = sMarket,
-                                bUseSandbox = bUseSandbox ),
-            sFileName )
+        sResponse = getItemsByKeyWords( sKeyWords,
+                        sMarketID   = sMarket,
+                        bUseSandbox = bUseSandbox )
+        #
+        QuietDump( sResponse, sFileName )
         #
     elif sEbayCategory:
         #
@@ -242,11 +273,11 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
             'executing "%s" search (ID %s) in category '
             '(without key words) ...' % tSearch )
         #
-        QuietDump(
-            getItemsByCategory( sEbayCategory,
-                                sMarketID   = sMarket,
-                                bUseSandbox = bUseSandbox ),
-            sFileName )
+        sResponse = getItemsByCategory( sEbayCategory,
+                        sMarketID   = sMarket,
+                        bUseSandbox = bUseSandbox )
+        #
+        QuietDump( sResponse, sFileName )
         #
     #
     logger.info(
@@ -365,8 +396,8 @@ def doSearchStoreResults( iSearchID     = None,
     #
     lParts = sFileName.split( '_' )
     #
-    sUserName   =                     lParts[ 2]
-    iSearch     = int( getTextBefore( lParts[-1], '.json' ) )
+    sUserName   =      lParts[2]
+    iSearch     = int( lParts[4] )
     #
     oUser = User.objects.get( username = sUserName )
     #
@@ -387,7 +418,7 @@ def doSearchStoreResults( iSearchID     = None,
             iStoreItems += 1
         except ItemAlreadyInTable:
             #
-            iItemNumb      = int(            dItem['itemId'  ] )
+            iItemNumb      = int( dItem['itemId'  ] )
             #
         except ValueError as e:
             #
