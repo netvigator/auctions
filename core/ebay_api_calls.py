@@ -249,6 +249,7 @@ def _getEbayFindingResponse(
 def _findItems( sKeyWords   = None,
                 sCategoryID = None,
                 bUseSandbox = False,
+                iPage       = 1,
                 **headers ):
     #
     if sKeyWords and sCategoryID:
@@ -280,11 +281,13 @@ def _findItems( sKeyWords   = None,
         oElement        = etree.SubElement( root, "categoryId" )
         oElement.text   = sCategoryID
     #
-    #if paginationInput:
+    if iPage > 1:
         #paginationInput_elem = etree.SubElement(root, "paginationInput")
         #for key in paginationInput:
             #key_elem = etree.SubElement(paginationInput_elem, key)
             #key_elem.text = paginationInput[key]
+        oElement        = etree.SubElement( root, "paginationInput" )
+        oElement.text   = str( iPage )
 
     sRequest = etree.tostring( root, pretty_print = True )
     #
@@ -325,27 +328,32 @@ def _getMarketHeader( sMarketID ):
 # http://developer.ebay.com/DevZone/half-finding/Concepts/SiteIDToGlobalID.html
 # integer and underscore versions case HTTP Error 500: Internal Server Error
 
-def getItemsByKeyWords( sKeyWords, sMarketID = 'EBAY-US', bUseSandbox = False ):
+def getItemsByKeyWords( sKeyWords,
+            sMarketID = 'EBAY-US', iPage = 1, bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
                 _findItems(
-                    sKeyWords = sKeyWords,
+                    sKeyWords   = sKeyWords,
+                    iPage       = iPage,
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
-def getItemsByCategory( sCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
+def getItemsByCategory( sCategoryID,
+            sMarketID = 'EBAY-US', iPage = 1, bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
                 _findItems(
                     sCategoryID = sCategoryID,
+                    iPage       = iPage,
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
-def getItemsByBoth( sKeyWords, sCategoryID, sMarketID = 'EBAY-US', bUseSandbox = False ):
+def getItemsByBoth( sKeyWords, sCategoryID,
+            sMarketID = 'EBAY-US', iPage = 1, bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
@@ -353,6 +361,7 @@ def getItemsByBoth( sKeyWords, sCategoryID, sMarketID = 'EBAY-US', bUseSandbox =
                 _findItems(
                     sKeyWords   = sKeyWords,
                     sCategoryID = sCategoryID,
+                    iPage       = iPage,
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
@@ -382,6 +391,8 @@ def getCategoryVersionGotSiteID(
 #### These are OK ####
 #QuietDump( getCategoryVersionGotSiteID(  0 ), 'Categories_Ver_EBAY-US.xml' )
 #QuietDump( getCategoryVersionGotSiteID( 77 ), 'Categories_Ver_EBAY-DE.xml' )
+
+
 
 
 
