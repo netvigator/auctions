@@ -16,6 +16,8 @@ from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 #
 
+from searching          import RESULTS_FILE_NAME_PATTERN
+
 from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
@@ -622,8 +624,6 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
     def setUp(self):
         # storeSearchResultsTests, self 
         #
-        from searching import RESULTS_FILE_NAME_PATTERN
-        #
         super( storeSearchResultsTests, self ).setUp()
         #
         sSearch = "My clever search 1"
@@ -632,7 +632,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
-            ( 'EBAY-US', self.user1.username, oSearch.id ) )
+            ( 'EBAY-US', self.user1.username, oSearch.id, '000' ) )
         #
         QuietDump( sExampleResponse, self.sExampleFile )
         
@@ -803,14 +803,12 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
     #
     def setUp(self):
         #
-        from searching import RESULTS_FILE_NAME_PATTERN
-        #
         #print( 'will call super' )
         super( KeyWordFindSearchHitsTests, self ).setUp()
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
-            ( 'EBAY-US', self.user1.username, self.oCatalinSearch.id ) )
+            ( 'EBAY-US', self.user1.username, self.oCatalinSearch.id, '000' ) )
         #
         #print( 'will DeleteIfExists' )
         DeleteIfExists( '/tmp', self.sExampleFile )
