@@ -122,6 +122,78 @@ def getJsonFindingResponse( uContent ):
     return dResponse
     
 
+def _getUpToDoubleQuote( s ):
+    #
+    return s.split( '"', maxsplit = 1 )[0]
+
+
+def getPagination( sResponse ):
+    #
+    lParts          = sResponse.split( '"@count":"' )
+    #
+    sCount          = '0'
+    #
+    if len( lParts ) > 1:
+        #
+        sCount      = _getUpToDoubleQuote( lParts[1] )
+        #
+    
+    lParts      = sResponse.split( '"paginationOutput":' )
+    #
+    if len( lParts ) > 1:
+        #
+        sContent    = lParts[1]
+        #
+        lParts      = sContent.split( '"pageNumber":["' )
+        #
+        sPageNumb   = _getUpToDoubleQuote( lParts[1] )
+        #
+        lParts      = sContent.split( '"entriesPerPage":["' )
+        #
+        sEntriesPP  = _getUpToDoubleQuote( lParts[1] )
+        #
+        lParts      = sContent.split( '"totalPages":["' )
+        #
+        sPages      = _getUpToDoubleQuote( lParts[1] )
+        #
+        lParts      = sContent.split( '"totalEntries":["' )
+        #
+        sEntries    = _getUpToDoubleQuote( lParts[1] )
+        #
+        dPagination = dict(
+            iCount      = int( sCount     ),
+            iEntries    = int( sEntries   ),
+            iPages      = int( sPages     ),
+            iEntriesPP  = int( sEntriesPP ),
+            iPageNumb   = int( sPageNumb  ) )
+        #
+    else:
+        #
+        dPagination = dict(
+            iCount      = int( sCount ),
+            iEntries    = None,
+            iPages      = None,
+            iEntriesPP  = None,
+            iPageNumb   = None )
+        #
+    #
+    return dPagination
+
+
+def getSuccessOrNot( sResponse ):
+    #
+    lParts      = sResponse.split( '"ack":["' )
+    #
+    sSuccessOrNot = ''
+    #
+    if len( lParts ) > 1:
+        #
+        sSuccessOrNot = _getUpToDoubleQuote( lParts[1] )
+        #
+    #
+    return sSuccessOrNot == 'Success'
+
+
 
 def getSearchResultGenerator( sFile ):
     #
