@@ -219,38 +219,15 @@ def _getCategoriesOrVersion(
             **dHttpHeaders )
 
 
+
+
 def _getEbayFindingResponse(
-        sOperation,
-        sRequest,
-        bUseSandbox = False,
-        uTimeOuts   = ( 4, 10 ), # ( connect, read )
-        **headers ):
-    #
-    ''' connect to ebay for finding, get response '''
-    #
-    dConfValues = _getApiConfValues( bUseSandbox )
-    #
-    sEndPointURL= dConfValues[ "endpoints"][ 'finding'    ]
-    sGlobalID   = dConfValues[ "call"     ][ "global_id"  ]
-    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"]
-    #
-    dHttpHeaders= {
-            "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
-            "X-EBAY-SOA-SECURITY-APPNAME" : sAppID }
-
-    headers.update( dHttpHeaders )
-    #
-    return _postResponseEbayApi(
-                sOperation, sEndPointURL, sRequest, uTimeOuts, **headers )
-
-
-
-
-def _findItems( sKeyWords   = None,
-                sCategoryID = None,
-                bUseSandbox = False,
-                iPage       = 1,
-                **headers ):
+            sKeyWords   = None,
+            sCategoryID = None,
+            iPage       = 1,
+            bUseSandbox = False,
+            uTimeOuts   = ( 4, 10 ), # ( connect, read )
+            **headers ):
     #
     if sKeyWords and sCategoryID:
         #
@@ -282,17 +259,36 @@ def _findItems( sKeyWords   = None,
         oElement.text   = sCategoryID
     #
     if iPage > 1:
-        #paginationInput_elem = etree.SubElement(root, "paginationInput")
-        #for key in paginationInput:
-            #key_elem = etree.SubElement(paginationInput_elem, key)
-            #key_elem.text = paginationInput[key]
+        #
         oElement        = etree.SubElement( root, "paginationInput" )
-        oElement.text   = str( iPage )
-
+        #
+        oSubElement     = etree.SubElement( oElement, 'entriesPerPage' )
+        oSubElement.text= '100'
+        oSubElement     = etree.SubElement( oElement, 'pageNumber' )
+        oSubElement.text= str( iPage )
+        #
+    #
     sRequest = etree.tostring( root, pretty_print = True )
     #
-    return _getEbayFindingResponse(
-                sCall, sRequest, bUseSandbox = bUseSandbox, **headers )
+    #
+    ''' connect to ebay for finding, get response '''
+    #
+    dConfValues = _getApiConfValues( bUseSandbox )
+    #
+    sEndPointURL= dConfValues[ "endpoints"][ 'finding'    ]
+    sGlobalID   = dConfValues[ "call"     ][ "global_id"  ]
+    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"]
+    #
+    dHttpHeaders= {
+            "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
+            "X-EBAY-SOA-SECURITY-APPNAME" : sAppID }
+
+    headers.update( dHttpHeaders )
+    #
+    return _postResponseEbayApi(
+                sCall, sEndPointURL, sRequest, uTimeOuts, **headers )
+
+
 
 
 def _getDecoded( sContent ):
@@ -328,44 +324,25 @@ def _getMarketHeader( sMarketID ):
 # http://developer.ebay.com/DevZone/half-finding/Concepts/SiteIDToGlobalID.html
 # integer and underscore versions case HTTP Error 500: Internal Server Error
 
-def getItemsByKeyWords( sKeyWords,
-            sMarketID = 'EBAY-US', iPage = 1, bUseSandbox = False ):
-    #
-    dHeader = _getMarketHeader( sMarketID )
-    #
-    return _getDecoded(
-                _findItems(
-                    sKeyWords   = sKeyWords,
-                    iPage       = iPage,
-                    bUseSandbox = bUseSandbox,
-                    **dHeader ) )
 
-def getItemsByCategory( sCategoryID,
-            sMarketID = 'EBAY-US', iPage = 1, bUseSandbox = False ):
+def findItems(
+            sKeyWords   = None,
+            sCategoryID = None,
+            sMarketID   = 'EBAY-US',
+            iPage       = 1,
+            bUseSandbox = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
     return _getDecoded(
-                _findItems(
-                    sCategoryID = sCategoryID,
-                    iPage       = iPage,
-                    bUseSandbox = bUseSandbox,
-                    **dHeader ) )
-
-def getItemsByBoth( sKeyWords, sCategoryID,
-            sMarketID = 'EBAY-US', iPage = 1, bUseSandbox = False ):
-    #
-    dHeader = _getMarketHeader( sMarketID )
-    #
-    return _getDecoded(
-                _findItems(
+                _getEbayFindingResponse(
                     sKeyWords   = sKeyWords,
                     sCategoryID = sCategoryID,
                     iPage       = iPage,
                     bUseSandbox = bUseSandbox,
                     **dHeader ) )
 
-#sResults = getItemsByBoth( 'Simpson 360', '58277' )
+#sResults = findItems( sKeyWords = 'Simpson 360', '58277' )
 ##
 #QuietDump( sResults, 'Results_Adv_Simpson360.json' )
 
