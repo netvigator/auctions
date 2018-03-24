@@ -440,6 +440,23 @@ def getSearchResultGenerator( sFile ):
         yield dItem
 
 
+
+def _putPageNumbInFileName( sFileName, iThisPage ):
+    #
+    lParts = sFileName.split( '_' )
+    #
+    #   0         1          2            3     4    5    6      7
+    # ['Search', 'EBAY-US', 'username1', 'ID', '8', 'p', '000', '.json']
+    #
+    sThisPage = str( iThisPage ).zfill( 3 )
+    #
+    lParts[6] = sThisPage
+    #
+    return '_'.join( lParts )
+
+
+
+
 def getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response in /tmp'''
@@ -448,16 +465,14 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     from django.contrib.auth    import get_user_model
     #
-    from core.ebay_api_calls  import ( getItemsByKeyWords,
-                                       getItemsByCategory, getItemsByBoth,
-                                       getJsonFindingResponse )
+    from core.ebay_api_calls    import findItems
     #
-    from searching          import RESULTS_FILE_NAME_PATTERN
-    from .models            import Search
-    from ebayinfo.models    import Market
+    from searching              import RESULTS_FILE_NAME_PATTERN
+    from .models                import Search
+    from ebayinfo.models        import Market
     #
-    from File.Write         import QuietDump
-    from String.Split       import getWhiteCleaned
+    from File.Write             import QuietDump
+    from String.Split           import getWhiteCleaned
     #
     User = get_user_model()
     #
@@ -511,23 +526,11 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
             'executing "%s" search (ID %s) for keywords in category ...' %
             tSearch )
         #
-        sResponse = getItemsByBoth( sKeyWords, sEbayCategory,
-                        sMarketID = sMarket,
-                        bUseSandbox = bUseSandbox )
-        #
-        QuietDump( sResponse, sFileName )
-        #
     elif sKeyWords:
         #
         logger.info(
             'executing "%s" search (ID %s) for keywords '
             '(in all categories) ...' % tSearch )
-        #
-        sResponse = getItemsByKeyWords( sKeyWords,
-                        sMarketID   = sMarket,
-                        bUseSandbox = bUseSandbox )
-        #
-        QuietDump( sResponse, sFileName )
         #
     elif sEbayCategory:
         #
@@ -535,11 +538,43 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
             'executing "%s" search (ID %s) in category '
             '(without key words) ...' % tSearch )
         #
-        sResponse = getItemsByCategory( sEbayCategory,
+    #
+    iThisPage  = 0
+    iWantPages = 1
+    #
+    while iThisPage <= iWantPages:
+        #
+        sResponse = findItems(
+                        sKeyWords   = sKeyWords,
+                        sCategoryID = sEbayCategory,
                         sMarketID   = sMarket,
+                        iPage       = iThisPage, # will ignore if < 1
                         bUseSandbox = bUseSandbox )
         #
+        dPagination = getPagination( sResponse )
+        #
+        '''
+        dPagination = dict(
+            iCount      = int( sCount     ),
+            iEntries    = int( sEntries   ),
+            iPages      = int( sPages     ),
+            iEntriesPP  = int( sEntriesPP ),
+            iPageNumb   = int( sPageNumb  ) )
+        '''
+        #
+        if dPagination["iPages"] > 1 and iThisPage == 0:
+            #
+            iThisPage = dPagination["iPageNumb"]
+            #
+        #
+        if iThisPage > 0:
+            sFileName = _putPageNumbInFileName( sFileName, iThisPage )
+        #
         QuietDump( sResponse, sFileName )
+        #
+        iWantPages = dPagination["iPages"]
+        #
+        iThisPage += 1
         #
     #
     logger.info(
