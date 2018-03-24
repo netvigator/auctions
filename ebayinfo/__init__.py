@@ -74,6 +74,7 @@ sCategoryDump = \
  9629 |       15052 | Portable Audio & Headphones   |      2 |       293 | f             |          117 |          0
 14502 |      180014 | Pro Audio Equipment           |      2 |       619 | f             |          117 |          0
  
+ 9899 |      183079 | Other Vintage Electronics     |      3 |    183077 | t             |          118 |          0
  9661 |       14969 | Home Audio Stereos, Components|      3 |     32852 | f             |          117 |          0
  8479 |      171194 | Price Guides & Publications   |      3 |     29832 | t             |          117 |          0
  5021 |      165266 | Other Collectible Ads         |      3 |        34 | t             |          117 |          0
@@ -102,7 +103,8 @@ sCategoryDump = \
 14523 |      119019 | Vintage Pro Audio Equipment   |      3 |    180014 | t             |          117 |          0
  9630 |      112529 | Headphones                    |      3 |     15052 | t             |          117 |          0
  4979 |       13623 | Merchandise & Memorabilia     |      3 |        34 | f             |          117 |          0
-
+14504 |      163896 | Amplifiers                    |      3 |    180014 | t             |          118 |          0
+ 
  5003 |       10804 | Signs                         |      4 |     13623 | f             |          117 |          0  
  9881 |       67807 | Vintage Preamps & Tube Preamps|      4 |    175740 | t             |          117 |          0
  8464 |         934 | Manuals                       |      4 |       931 | t             |          117 |          0
