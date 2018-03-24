@@ -64,6 +64,7 @@ class Brand(models.Model):
         verbose_name_plural = 'brands'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
+        unique_together     = ('cTitle','iUser')
 
     def getCategoriesForBrand( self, oBrand ):
         #

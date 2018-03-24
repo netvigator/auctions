@@ -73,6 +73,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
+        unique_together     = ('cTitle','iUser')
 
     def get_absolute_url(self):
         #

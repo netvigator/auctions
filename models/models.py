@@ -109,6 +109,7 @@ class Model( models.Model ):
         verbose_name_plural = 'models'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
+        unique_together     = ('cTitle','iBrand','iCategory','iUser')
 
     def get_absolute_url(self):
         #
