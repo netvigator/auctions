@@ -28,7 +28,8 @@ from ..utils            import ( trySearchCatchExceptions,
                                  getSearchResultGenerator,
                                 _getModelRegExFinders4Test,
                                 _getCategoryRegExFinders4Test,
-                                _getBrandRegExFinders4Test )
+                                _getBrandRegExFinders4Test,
+                                getPagination, getSuccessOrNot )
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -1019,6 +1020,38 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             
         #
         print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+class TestFindingResponseHelpers( TestCase ):
+    #
+    '''test the nifty finding response info extractors'''
+    
+    def test_get_pagination( self ):
+        #
+        ''' test getPagination() '''
+        #
+        dGot = getPagination( sResponseSearchTooBroad )
+        #
+        dExpect = { 'iCount'    :  100,
+                    'iEntries'  : 2374,
+                    'iEntriesPP':  100,
+                    'iPageNumb' :    1,
+                    'iPages'    :   24 }
+    
+        #
+        self.assertEquals( dGot, dExpect )
+        #
+        dGot = getPagination( '' )
+        #
+        self.assertNotEquals( dGot, dExpect )
+            
+    def test_get_success_or_not( self ):
+        #
+        ''' test getSuccessOrNot() '''
+        #
+        self.assertTrue(  getSuccessOrNot( sResponseSearchTooBroad ) )
+        self.assertFalse( getSuccessOrNot( '' ) )
+
 
 
 '''
