@@ -67,12 +67,15 @@ def getJsonFindingResponse( uContent ):
     returns the resonse dictionary dResponse
     which includes dPagination for convenience'''
     #
-    from json           import load
+    from json           import load, loads
     #
     from Dict.Get       import getAnyValue
     from Dict.Maintain  import getDictValuesFromSingleElementLists
     #
-    dResults = load( uContent )
+    try:
+        dResults = load(  uContent ) # this is for file pointers
+    except AttributeError:
+        dResults = loads( uContent ) # this is for strings
     #
     lResponse = getAnyValue( dResults ) # should be only 1 value to get
     #
@@ -120,7 +123,7 @@ def getJsonFindingResponse( uContent ):
     dResponse[  'dPagination' ] = dPagination
     #
     return dResponse
-    
+
 
 def _getUpToDoubleQuote( s ):
     #
@@ -144,38 +147,49 @@ def getSuccessOrNot( sResponse ):
 
 def getPagination( sResponse ):
     #
-    lParts          = sResponse.split( '"@count":"' )
-    #
     sCount          = '0'
-    #
-    if len( lParts ) > 1:
-        #
-        sCount      = _getUpToDoubleQuote( lParts[1] )
-        #
     #
     sEnd = sResponse[ -500 : ] # last 500 chars
     #
-    lParts      = sEnd.split( '"paginationOutput":' )
+    lCountParts     = sEnd.split( '"@count":"' )
+    lPageParts      = sEnd.split( '"paginationOutput":' )
     #
-    if len( lParts ) > 1:
+    if len( lCountParts ) == 1: # count can be either place
         #
-        sContent    = lParts[1]
+        lCountParts = sResponse.split( '"@count":"' )
         #
-        lParts      = sContent.split( '"pageNumber":["' )
+    #
+    if len( lCountParts ) > 1:
         #
-        sPageNumb   = _getUpToDoubleQuote( lParts[1] )
+        sCount      = _getUpToDoubleQuote( lCountParts[1] )
         #
-        lParts      = sContent.split( '"entriesPerPage":["' )
+    #
+    if len( lPageParts ) == 1:
         #
-        sEntriesPP  = _getUpToDoubleQuote( lParts[1] )
+        # try beginning
         #
-        lParts      = sContent.split( '"totalPages":["' )
+        lPageParts  = sResponse.split( '"paginationOutput":' )
         #
-        sPages      = _getUpToDoubleQuote( lParts[1] )
+    #
+    if len( lPageParts ) > 1:
         #
-        lParts      = sContent.split( '"totalEntries":["' )
+        sContent    = lPageParts[1]
         #
-        sEntries    = _getUpToDoubleQuote( lParts[1] )
+        lPageParts  = sContent.split( '"pageNumber":["' )
+        #
+        sPageNumb   = _getUpToDoubleQuote( lPageParts[1] )
+        #
+        lPageParts  = sContent.split( '"entriesPerPage":["' )
+        #
+        sEntriesPP  = _getUpToDoubleQuote( lPageParts[1] )
+        #
+        lPageParts  = sContent.split( '"totalPages":["' )
+        #
+        sPages      = _getUpToDoubleQuote( lPageParts[1] )
+        #
+        lPageParts  = sContent.split( '"totalEntries":["' )
+        #
+        sEntries    = _getUpToDoubleQuote( lPageParts[1] )
         #
         dPagination = dict(
             iCount      = int( sCount     ),
@@ -212,6 +226,7 @@ def _getContentFromParts( lParts ):
 def _getSplitters():
     #
     tTopLevelSplitters = (
+            '"itemId":["',
             '"title":["',
             '"globalId":["',
             '"location":["',
@@ -219,76 +234,113 @@ def _getSplitters():
             '"postalCode":["',
             '"galleryURL":["',
             '"viewItemURL":["' )
-
-    dMultiLevelSplits = {}
-    
+    #
+    dSplits = {}
+    #
     for sSplitter in tTopLevelSplitters:
         #
-        dMultiLevelSplits[ sSplitter ] = None
-
-    dMultiLevelSplits['"listingInfo":[' ] = (
+        dSplits[ sSplitter ] = None
+        #
+    #
+    dSplits['"listingInfo":[' ] = (
             '"listingType":["',
             '"gift":["',
             '"bestOfferEnabled":["',
             '"startTime":["',
             '"buyItNowAvailable":["',
+            '"watchCount":["',
             '"endTime":["' )
-
-    dMultiLevelSplits['"primaryCategory":['] = (
+    #
+    dSplits['"primaryCategory":['] = (
             '"categoryId":["',
             '"categoryName":["' )
-
-    dMultiLevelSplits['"secondaryCategory":['] = (
+    #
+    dSplits['"secondaryCategory":['] = (
             '"categoryId":["',
             '"categoryName":["' )
-
-    dMultiLevelSplits['"condition":['] = (
+    #
+    dSplits['"condition":['] = (
             '"conditionId":["',
-            '"conditionDisplayName":["'
-            )
-
+            '"conditionDisplayName":["' )
+    #
     dSelling = {}
     #
     dSelling['"currentPrice":['] = (
-            '"@currencyId": "',
-            '"__value__": "' )
+            '"@currencyId":"',
+            '"__value__":"' )
     dSelling['"convertedCurrentPrice":['] = (
-            '"@currencyId": "',
-            '"__value__": "' )
-    dSelling['"sellingState":["'] = ''
-    
+            '"@currencyId":"',
+            '"__value__":"' )
+    dSelling['"sellingState":["'] = None
+    dSelling['"bidCount":["']     = None
+    dSelling['"timeLeft":["']     = None
     #
-    dMultiLevelSplits[
-        '"sellingStatus":['] = dSelling
+    dSplits['"sellingStatus":['] = dSelling
     #
-    return dMultiLevelSplits
+    return dSplits
 
 
 _dSplitters = _getSplitters()
 
 
-def _getReponseOneLevelValue( sContent, sSplitOn ):
+def _getReponseKeyValue( sContent, sSplitOn, uSplitterValue ):
     #
-    sValue = sValueName = ''
+    uValue = sValueName = ''
     #
     lParts = sContent.split( sSplitOn )
     #
-    if len( lParts ) > 1:
+    if len( lParts ) == 1:
+        #
+        # must be an optional field not in this record
+        #
+        sValueName, uValue = '', ''
+        #
+    else:
         #
         lNameParts  = sSplitOn.split( '"' )
         #
         sValueName  = lNameParts[1]
         #
-        sValue      = _getUpToDoubleQuote( lParts[1] )
+        if uSplitterValue is None:
+            #
+            uValue  = _getUpToDoubleQuote( lParts[1] )
+            #
+        elif isinstance( uSplitterValue, dict ):
+            #
+            dSub = {}
+            #
+            for sSplit, uSubValue in uSplitterValue.items():
+                #
+                sSubValueName, sValue = _getReponseKeyValue( sContent, sSplit, uSubValue )
+                #
+                dSub[ sSubValueName ] = sValue
+                #
+            #
+            uValue = dSub
+            #
+        elif isinstance( uSplitterValue, tuple ):
+            #
+            dSub = {}
+            #
+            for sSplit in uSplitterValue:
+                #
+                sSubValueName, sValue = _getReponseKeyValue( sContent, sSplit, None )
+                #                
+                dSub[ sSubValueName ] = sValue
+                #
+            #
+            uValue = dSub
+            #
         #
     #
-    return sValueName, sValue
+    return sValueName, uValue
 
 
 
 def getFindingResponseGenerator( sResponse ):
     #
-    '''lazy finding response getter'''
+    '''lazy finding response getter
+    json way proved to be faster'''
     #
     sRest = sResponse # will eat sRest
     #
@@ -299,19 +351,17 @@ def getFindingResponseGenerator( sResponse ):
         raise StopIteration
         #
     #
-    sRest = lParts[1]
-    #
-    bDidLastAlready = False
+    bStillMore = True
     #
     while True:
         #
-        if bDidLastAlready: raise StopIteration
+        if not bStillMore: raise StopIteration
         #
-        lParts = sRest.split( '"itemId":["', maxsplit = 1 )
+        lParts = sRest.split( '},{', maxsplit = 1 )
         #
         if len( lParts ) == 1:
             #
-            bDidLastAlready = True
+            bStillMore = False
             #
         else:
             #
@@ -322,16 +372,12 @@ def getFindingResponseGenerator( sResponse ):
         #
         sThis = lParts[0]
         #
-        dItem["itemId"] = _getUpToDoubleQuote( sThis )
-        #
-        for sSplit, uValue in _dSplitters.items():
+        for sSplit, uSplitValue in _dSplitters.items():
             #
-            if not uValue:
-                #
-                sValueName, sValue = _getReponseOneLevelValue( sRest, sSplit )
-                #
-                dItem[ sValueName ] = sValue
-                #
+            sValueName, uValue = _getReponseKeyValue( sThis, sSplit, uSplitValue )
+            #
+            if sValueName:
+                dItem[ sValueName ] = uValue
             #
         #
         
