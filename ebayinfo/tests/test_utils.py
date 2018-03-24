@@ -251,16 +251,19 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        oUSA.iCategoryVer = 116 # current version is actually 118
-        oUSA.save()
+        #oUSA.iCategoryVer = 116 # current SANDBOX version is actually 118
+        #oUSA.save()
         #
         oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
         lUpdated = getWhetherAnyEbayCategoryListsAreUpdated(
                         bUseSandbox = True )
         #
-        self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
-        self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
+        #print('')
+        #print( 'lUpdated:', lUpdated )
         #
+        self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
+        self.assertEqual( lUpdated[0].get('iTableHas'), 117 )
+        self.assertEqual( lUpdated[0].get('iEbayHas'),  118 )
 
 
