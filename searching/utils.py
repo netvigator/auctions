@@ -23,7 +23,10 @@ class ItemAlreadyInTable(    Exception ): pass
 
 def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
-    '''can store a row in either ItemFound or UserItemFound'''
+    '''can store a row in either ItemFound or UserItemFound
+    note that when testing against the live ebay api,
+    form errors are common,
+    not all real categories are in the test database'''
     #
     from ebayinfo.models import CategoryHierarchy
     #
@@ -42,6 +45,9 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
         iSavedRowID = oForm.pk
         #
     else:
+        #
+        # ### form errors are common,
+        # ### not all real categories are in the test database
         #
         logger.error( 'log this error, form did not save' )
         #print( '' )
@@ -462,6 +468,7 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
     '''sends search request to the ebay API, stores the response in /tmp'''
     #
     from os.path                import join
+    from time                   import sleep
     #
     from django.contrib.auth    import get_user_model
     #
@@ -575,6 +582,8 @@ def getSearchResults( iSearchID = None, bUseSandbox = False ):
         iWantPages = dPagination["iPages"]
         #
         iThisPage += 1
+        #
+        if iThisPage <= iWantPages: sleep(1)
         #
     #
     logger.info(
