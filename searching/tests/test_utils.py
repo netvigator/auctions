@@ -29,7 +29,9 @@ from ..utils            import ( trySearchCatchExceptions,
                                 _getModelRegExFinders4Test,
                                 _getCategoryRegExFinders4Test,
                                 _getBrandRegExFinders4Test,
-                                getPagination, getSuccessOrNot )
+                                getPagination, getSuccessOrNot,
+                                getFindingResponseGenerator,
+                                getJsonFindingResponse )
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -1052,6 +1054,140 @@ class TestFindingResponseHelpers( TestCase ):
         self.assertTrue(  getSuccessOrNot( sResponseSearchTooBroad ) )
         self.assertFalse( getSuccessOrNot( '' ) )
 
+
+
+
+def getResultGeneratorTheJsonWay():
+    #
+    from Dict.Maintain  import getDictValuesFromSingleElementLists
+    #
+    dResponse = getJsonFindingResponse( sResponseSearchTooBroad )
+    #
+    dPagination = dResponse[  'dPagination']
+    #
+    iEntries    = dPagination['iEntries'   ]
+    #
+    iPages      = dPagination['iPages'     ]
+    #
+    dResultDict = dResponse[ "searchResult" ][0]
+    #
+    iThisItem = 0
+    #
+    lResults = dResultDict.get('item')
+    #
+    for dItem in lResults:
+        #
+        iThisItem += 1
+        #
+        getDictValuesFromSingleElementLists( dItem )
+        #
+        dPagination["thisEntry"] = str( iThisItem )
+        #
+        dItem["paginationOutput"]= dPagination
+        #
+        yield dItem
+
+
+def getConsumedJsonItems():
+    #
+    oIterItems = getResultGeneratorTheJsonWay()
+    #
+    for dItem in oIterItems:
+        #
+        pass
+
+
+def getResultGeneratorMyWay():
+    #
+    getSuccessOrNot( sResponseSearchTooBroad )
+    getPagination( sResponseSearchTooBroad )
+    #
+    return getFindingResponseGenerator( sResponseSearchTooBroad )
+
+
+def getConsumedMyWayItems():
+    #
+    oIterItems = getResultGeneratorMyWay()
+    #
+    for dItem in oIterItems:
+        #
+        pass
+
+
+def getJsonPagination():
+    #
+    oIterItemsJson  = getResultGeneratorTheJsonWay()
+    #
+    dItem = next( oIterItemsJson )
+    #
+    dJsonPage = dItem["paginationOutput"]
+
+
+
+def getOnlyPagination():
+    #
+    dOnlyPage = getPagination( sResponseSearchTooBroad )
+
+
+
+class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
+    '''do a time trial, compare loading & using Json load with home brew job'''
+
+    def name_must_start_with_test_to_do_time_trial( self ):
+        #
+        from Utils.TimeTrial import TimeTrial
+        #
+        print( '' )
+        print( 'using getJsonFindingResponse ...' )
+        #
+        iCallsPerSet, iSets = TimeTrial( getJsonPagination )
+        #
+        print( '' )
+        print( 'using my way ...' )
+        #
+        TimeTrial( getOnlyPagination,
+              iCallsPerSet=iCallsPerSet, iSets=iSets)
+        #
+        # my way takes less than 1/10 the time
+
+
+    def test_pagination_info( self ):
+        #
+        oIterItemsJson  = getResultGeneratorTheJsonWay()
+        #
+        dItem = next( oIterItemsJson )
+        #
+        dJsonPage = dItem["paginationOutput"]
+        #
+        dOnlyPage = getPagination( sResponseSearchTooBroad )
+        #
+        #
+        self.assertEquals( dJsonPage["iEntriesPP"], dOnlyPage["iCount"    ] )
+        self.assertEquals( dJsonPage["iEntries"],   dOnlyPage["iEntries"  ] )
+        self.assertEquals( dJsonPage["iPages"],     dOnlyPage["iPages"    ] )
+        self.assertEquals( dJsonPage["iEntriesPP"], dOnlyPage["iEntriesPP"] )
+        self.assertEquals(
+                      int( dJsonPage["pageNumber"]),dOnlyPage["iPageNumb" ]  )
+
+
+    def test_get_same_item_info( self ):
+        #
+        oIterItemsMyWay = getResultGeneratorMyWay()
+        oIterItemsJson  = getResultGeneratorTheJsonWay()
+        #
+        dItemMyWay   = next( oIterItemsMyWay )
+        dItemJsonWay = next( oIterItemsJson )
+        #
+        self.assertEquals( dItemMyWay["itemId"],
+                                dItemJsonWay["itemId"] )
+        self.assertEquals( dItemMyWay["listingInfo"],
+                                dItemJsonWay["listingInfo"] )
+        self.assertEquals( dItemMyWay["primaryCategory"],
+                                dItemJsonWay["primaryCategory"] )
+        self.assertEquals( dItemMyWay["condition"],
+                                dItemJsonWay["condition"] )
+        self.assertEquals( dItemMyWay["sellingStatus"],
+                               dItemJsonWay["sellingStatus"] )
 
 
 '''
