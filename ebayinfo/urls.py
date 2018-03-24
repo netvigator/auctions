@@ -14,13 +14,13 @@ urlpatterns = [
         regex   = r'^categories/(?P<sMarket>ebay-[a-z]{2,5})/$',
         view    = views.show_ebay_categories,
         name    = 'ebay_categories_index' ),
+    ]
+
+'''
     url(
         regex   = r'^(?P<sMarket>EBAY-[A-Z]{2,5})/$',
         view    = views.show_ebay_tree,
         name    = 'ebay_categories_tree' ),
-    ]
-
-'''
     url( r'^$',
          RedirectView.as_view(
             pattern_name='ebay_categories_index',
