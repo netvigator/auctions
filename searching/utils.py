@@ -127,6 +127,21 @@ def _getUpToDoubleQuote( s ):
     return s.split( '"', maxsplit = 1 )[0]
 
 
+
+def getSuccessOrNot( sResponse ):
+    #
+    lParts      = sResponse.split( '"ack":["' )
+    #
+    sSuccessOrNot = ''
+    #
+    if len( lParts ) > 1:
+        #
+        sSuccessOrNot = _getUpToDoubleQuote( lParts[1] )
+        #
+    #
+    return sSuccessOrNot == 'Success'
+
+
 def getPagination( sResponse ):
     #
     lParts          = sResponse.split( '"@count":"' )
@@ -137,8 +152,10 @@ def getPagination( sResponse ):
         #
         sCount      = _getUpToDoubleQuote( lParts[1] )
         #
-    
-    lParts      = sResponse.split( '"paginationOutput":' )
+    #
+    sEnd = sResponse[ -500 : ] # last 500 chars
+    #
+    lParts      = sEnd.split( '"paginationOutput":' )
     #
     if len( lParts ) > 1:
         #
@@ -180,18 +197,145 @@ def getPagination( sResponse ):
     return dPagination
 
 
-def getSuccessOrNot( sResponse ):
+def _getContentFromParts( lParts ):
     #
-    lParts      = sResponse.split( '"ack":["' )
-    #
-    sSuccessOrNot = ''
+    sContent = ''
     #
     if len( lParts ) > 1:
         #
-        sSuccessOrNot = _getUpToDoubleQuote( lParts[1] )
+        sContent = _getUpToDoubleQuote( lParts[1] )
         #
     #
-    return sSuccessOrNot == 'Success'
+    return sContent
+
+
+def _getSplitters():
+    #
+    tTopLevelSplitters = (
+            '"title":["',
+            '"globalId":["',
+            '"location":["',
+            '"country":["',
+            '"postalCode":["',
+            '"galleryURL":["',
+            '"viewItemURL":["' )
+
+    dMultiLevelSplits = {}
+    
+    for sSplitter in tTopLevelSplitters:
+        #
+        dMultiLevelSplits[ sSplitter ] = None
+
+    dMultiLevelSplits['"listingInfo":[' ] = (
+            '"listingType":["',
+            '"gift":["',
+            '"bestOfferEnabled":["',
+            '"startTime":["',
+            '"buyItNowAvailable":["',
+            '"endTime":["' )
+
+    dMultiLevelSplits['"primaryCategory":['] = (
+            '"categoryId":["',
+            '"categoryName":["' )
+
+    dMultiLevelSplits['"secondaryCategory":['] = (
+            '"categoryId":["',
+            '"categoryName":["' )
+
+    dMultiLevelSplits['"condition":['] = (
+            '"conditionId":["',
+            '"conditionDisplayName":["'
+            )
+
+    dSelling = {}
+    #
+    dSelling['"currentPrice":['] = (
+            '"@currencyId": "',
+            '"__value__": "' )
+    dSelling['"convertedCurrentPrice":['] = (
+            '"@currencyId": "',
+            '"__value__": "' )
+    dSelling['"sellingState":["'] = ''
+    
+    #
+    dMultiLevelSplits[
+        '"sellingStatus":['] = dSelling
+    #
+    return dMultiLevelSplits
+
+
+_dSplitters = _getSplitters()
+
+
+def _getReponseOneLevelValue( sContent, sSplitOn ):
+    #
+    sValue = sValueName = ''
+    #
+    lParts = sContent.split( sSplitOn )
+    #
+    if len( lParts ) > 1:
+        #
+        lNameParts  = sSplitOn.split( '"' )
+        #
+        sValueName  = lNameParts[1]
+        #
+        sValue      = _getUpToDoubleQuote( lParts[1] )
+        #
+    #
+    return sValueName, sValue
+
+
+
+def getFindingResponseGenerator( sResponse ):
+    #
+    '''lazy finding response getter'''
+    #
+    sRest = sResponse # will eat sRest
+    #
+    lParts = sRest.split( '"itemId":["', maxsplit = 1 )
+    #
+    if len( lParts ) == 1:
+        #
+        raise StopIteration
+        #
+    #
+    sRest = lParts[1]
+    #
+    bDidLastAlready = False
+    #
+    while True:
+        #
+        if bDidLastAlready: raise StopIteration
+        #
+        lParts = sRest.split( '"itemId":["', maxsplit = 1 )
+        #
+        if len( lParts ) == 1:
+            #
+            bDidLastAlready = True
+            #
+        else:
+            #
+            sRest = lParts[1]
+            #
+        #
+        dItem = {}
+        #
+        sThis = lParts[0]
+        #
+        dItem["itemId"] = _getUpToDoubleQuote( sThis )
+        #
+        for sSplit, uValue in _dSplitters.items():
+            #
+            if not uValue:
+                #
+                sValueName, sValue = _getReponseOneLevelValue( sRest, sSplit )
+                #
+                dItem[ sValueName ] = sValue
+                #
+            #
+        #
+        
+        yield dItem
 
 
 
