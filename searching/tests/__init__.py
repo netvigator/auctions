@@ -159,7 +159,7 @@ sModels = \
  Audio Consolette   |           |     10 | t            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
  245                |           |      9 | t            | Fairchild         |       Preamp |             | 
  7                  |           |     10 | t            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7 
- 400-CX             | 4 button  |      8 | t            | Fisher            |       Preamp |             | 400-CX-2
+ 400-CX (4 button)  |           |      8 | t            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             | 
  mirror             |           |      8 | t            | Spartan           |        Radio |             | 
  RC350              |           |      8 | t            | RCA               |        Radio |             | 
