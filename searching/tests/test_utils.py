@@ -31,7 +31,8 @@ from ..utils            import ( trySearchCatchExceptions,
                                 _getBrandRegExFinders4Test,
                                 getPagination, getSuccessOrNot,
                                 getFindingResponseGenerator,
-                                getJsonFindingResponse )
+                                getJsonFindingResponse,
+                                _putPageNumbInFileName )
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -634,7 +635,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         oSearch.save()
         #
         self.sExampleFile = (
-            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
             ( 'EBAY-US', self.user1.username, oSearch.id, '000' ) )
         #
         QuietDump( sExampleResponse, self.sExampleFile )
@@ -810,7 +811,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         super( KeyWordFindSearchHitsTests, self ).setUp()
         #
         self.sExampleFile = (
-            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s.json'
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
             ( 'EBAY-US', self.user1.username, self.oCatalinSearch.id, '000' ) )
         #
         #print( 'will DeleteIfExists' )
@@ -979,7 +980,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-    @tag('ebay_api')
+    # @tag('ebay_api')
     def test_category_only_search_store_results( self ):
         #
         '''test category only search
@@ -1188,6 +1189,24 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
                                 dItemJsonWay["condition"] )
         self.assertEquals( dItemMyWay["sellingStatus"],
                                dItemJsonWay["sellingStatus"] )
+
+
+class FileNameUtilitiesTesting( TestCase ):
+    '''test the file naming utilities'''
+    
+    def test_put_number_in_file_name( self ):
+        #
+        sExampleFile = (
+                RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( 'EBAY-US', 'oUserOne', 10, '000' ) )
+        
+        sNewFileName = _putPageNumbInFileName( sExampleFile, 1 )
+        #
+        lParts = sNewFileName.split( '_' )
+        #
+        self.assertEquals( lParts[6], '001' )
+
+
 
 
 '''
