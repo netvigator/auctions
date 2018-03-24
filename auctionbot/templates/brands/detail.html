@@ -83,7 +83,7 @@
         <h4>Categories for {{ brand }}</h4>
         <UL>
         {% for category in categories_list%}
-            <LI><a href="{% url 'categories:detail' category.id %}">
+            <LI><a href="{{ category.get_absolute_url }}">
                 {{ category }}</a></LI>
         {% endfor %}
         </UL>
@@ -96,7 +96,7 @@
         <table>
         {% for model, category in models_list%}
             <tr>
-                <td><a href="{% url 'models:detail' model.id %}">
+                <td><a href="{{ model.get_absolute_url }}">
                     {{ model }}</a></td>
                 <TD>&nbsp;&nbsp;&nbsp;</TD>
                 <td>{{category}}</td>
