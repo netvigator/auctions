@@ -139,12 +139,12 @@ class CategoryViewsHitButtons(BaseUserTestCase):
 
         #request = self.factory.get(reverse('categories:add'))
         #request.user = self.user1
-        
+
         #response = self.client.post( request, data )
-        
+
         #print( 'response.status_code:', response.status_code )
 
-        
+
     def test_add_hit_cancel(self):
         #
         """
@@ -161,7 +161,7 @@ class CategoryViewsHitButtons(BaseUserTestCase):
         #pprint( response.__dict__ )
         self.assertEqual( response.status_code, 200 )
         # self.assertRedirects( response, reverse( 'categories:index' ) )
-        
+
     def test_search_create_view(self):
         #
         request = self.factory.get(reverse('categories:add'))
