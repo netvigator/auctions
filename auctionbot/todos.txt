@@ -42,4 +42,3 @@ search 17 item 112846965430
 searching/utils
 handle search executed OK but returned no items
 
-brand detail model listing should use the model get_absolute_url
