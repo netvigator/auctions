@@ -339,7 +339,7 @@ def _getReponseKeyValue( sContent, sSplitOn, uSplitterValue ):
 
 
 
-def getFindingResponseGenerator( sResponse ):
+def _getFindingResponseGenerator( sResponse ): # json.load is faster
     #
     '''lazy finding response getter
     json way proved to be faster'''
@@ -459,7 +459,7 @@ def _putPageNumbInFileName( sFileName, iThisPage ):
 
 
 
-def getSearchResults( iSearchID = None, bUseSandbox = False ):
+def _getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response in /tmp'''
     #
@@ -618,7 +618,7 @@ def _getValueUserOrOther( k, dItem, dFields, oUser = None, **kwargs ):
 
 
 
-def storeItemFound( dItem, dEbayCatHierarchies = {} ):
+def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
     from .forms         import ItemFoundForm
     #
@@ -664,7 +664,7 @@ def storeItemFound( dItem, dEbayCatHierarchies = {} ):
 
 
 
-def storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
+def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
     #
     from .forms     import UserItemFoundForm
     from searching  import dUserItemFoundFields # in __init__.py
@@ -688,7 +688,7 @@ def storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
 
 
 
-def doSearchStoreResults( iSearchID     = None,
+def _doSearchStoreResults( iSearchID     = None,
                           sFileName     = None,
                           bUseSandbox   = False ):
     #
@@ -705,7 +705,7 @@ def doSearchStoreResults( iSearchID     = None,
     #
     if sFileName is None:
         #
-        sFileName = getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
+        sFileName = _getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
         #
     #
     # 'Search_%s_%s_ID_%s_p_%s_.json' % ( sMarket, sUserName, oSearch.id, iPageNumb ) )
@@ -747,7 +747,7 @@ def doSearchStoreResults( iSearchID     = None,
             iItemNumb = None
             #
             try:
-                iItemNumb = storeItemFound( dItem, dEbayCatHierarchies )
+                iItemNumb = _storeItemFound( dItem, dEbayCatHierarchies )
                 iStoreItems += 1
             except ItemAlreadyInTable:
                 #
@@ -761,7 +761,7 @@ def doSearchStoreResults( iSearchID     = None,
             if iItemNumb is not None:
                 #
                 try:
-                    storeUserItemFound( dItem, iItemNumb, oUser, iSearch )
+                    _storeUserItemFound( dItem, iItemNumb, oUser, iSearch )
                     iStoreUsers += 1
                 except ItemAlreadyInTable:
                     pass
@@ -783,7 +783,7 @@ def trySearchCatchExceptions(
     iItems = iStoreItems = iStoreUsers = 0
     #
     try:
-        t = doSearchStoreResults(
+        t = _doSearchStoreResults(
                     iSearchID   = iSearchID,
                     sFileName   = sFileName,
                     bUseSandbox = bUseSandbox )
@@ -797,7 +797,7 @@ def trySearchCatchExceptions(
     #
     return iItems, iStoreItems, iStoreUsers 
 
-    
+
 
 
 def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
@@ -926,7 +926,7 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
     return findKeyWords is None or findKeyWords( s )
 
 
-def getFoundItemTester( oTableRow, dFinders,
+def _getFoundItemTester( oTableRow, dFinders,
                         bAddDash = False, bSubModelsOK = False ):
     #
     ''' pass model row instance, returns tester '''
@@ -979,7 +979,7 @@ def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 
 
-def findSearchHits( oUser = oUserOne ):
+def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -1021,7 +1021,7 @@ def findSearchHits( oUser = oUserOne ):
         #
         for oCategory in oCategoryQuerySet:
             #
-            foundItem = getFoundItemTester( oCategory, dFindersCategories )
+            foundItem = _getFoundItemTester( oCategory, dFindersCategories )
             #
             # the following are short circuiting --
             # if one is True, the following will be True
@@ -1073,7 +1073,7 @@ def findSearchHits( oUser = oUserOne ):
         #
         for oBrand in oBrandQuerySet:
             #
-            foundItem = getFoundItemTester( oBrand, dFindersBrands )
+            foundItem = _getFoundItemTester( oBrand, dFindersBrands )
             #
             bInTitle, bExcludeThis = foundItem( oItem.cTitle )
             #
@@ -1126,7 +1126,7 @@ def findSearchHits( oUser = oUserOne ):
             #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
                     #print( 'model:', oModel.cTitle )
             #
-            foundItem = getFoundItemTester( oModel, dFindersModels,
+            foundItem = _getFoundItemTester( oModel, dFindersModels,
                             bAddDash = True,
                             bSubModelsOK = oModel.bSubModelsOK )
             #
@@ -1192,6 +1192,11 @@ def findSearchHits( oUser = oUserOne ):
             #
             logger.error( oUserItem.pk, oUserItem )
             #
+    #
+    if bCleanUpAfterYourself:
+        #
+        ItemFoundTemp.objects.all().delete()
+        #
     #
 
 
