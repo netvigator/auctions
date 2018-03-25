@@ -23,16 +23,16 @@ from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
 from ..utils_testing    import getItemHitsLog, updateHitLogFile
 from ..utils            import ( trySearchCatchExceptions,
-                                 doSearchStoreResults, ItemAlreadyInTable,
-                                 findSearchHits, getFoundItemTester,
+                                 _doSearchStoreResults, ItemAlreadyInTable,
+                                 findSearchHits, _getFoundItemTester,
                                  getSearchResultGenerator,
-                                _getModelRegExFinders4Test,
-                                _getCategoryRegExFinders4Test,
-                                _getBrandRegExFinders4Test,
-                                getPagination, getSuccessOrNot,
-                                getFindingResponseGenerator,
-                                getJsonFindingResponse,
-                                _putPageNumbInFileName )
+                                 _getModelRegExFinders4Test,
+                                 _getCategoryRegExFinders4Test,
+                                 _getBrandRegExFinders4Test,
+                                 getPagination, getSuccessOrNot,
+                                 _getFindingResponseGenerator,
+                                 getJsonFindingResponse,
+                                 _putPageNumbInFileName )
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -154,7 +154,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oBrand, dFinders )
+        foundItem = _getFoundItemTester( self.oBrand, dFinders )
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
@@ -200,7 +200,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oCategory, dFinders )
+        foundItem = _getFoundItemTester( self.oCategory, dFinders )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
@@ -245,7 +245,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oModel, dFinders )
+        foundItem = _getFoundItemTester( self.oModel, dFinders )
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
@@ -384,7 +384,7 @@ class getImportSearchResultsTests(TestCase):
 
 class storeItemFoundTests(getEbayCategoriesSetUp):
     #
-    ''' class for testing storeItemFound() '''
+    ''' class for testing _storeItemFound() '''
 
     def test_store_ebay_categories(self):
         #
@@ -512,15 +512,15 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
 
     def test_store_item_found(self):
         #
-        ''' test storeItemFound() with actual record'''
+        ''' test _storeItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
         #
-        from ..utils    import storeItemFound
+        from ..utils    import _storeItemFound
         #
         dEbayCatHierarchies = {}
         #
-        iItemNumb = storeItemFound( dSearchResult, dEbayCatHierarchies )
+        iItemNumb = _storeItemFound( dSearchResult, dEbayCatHierarchies )
         #
         iCategoryID = int(
                 dSearchResult.get( 'primaryCategory' ).get( 'categoryId' ) )
@@ -555,7 +555,7 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #self.assertEqual( oResultRow.iCatHeirarchy.cCatHierarchy, sExpect )
         #
         try: # again
-            storeItemFound( dSearchResult )
+            _storeItemFound( dSearchResult )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
@@ -580,7 +580,7 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         ''' test storeUserItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
-        from ..utils    import storeUserItemFound, storeItemFound
+        from ..utils    import _storeUserItemFound, _storeItemFound
         #
         class ThisShouldNotBeHappening( Exception ): pass
 
@@ -588,13 +588,13 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
         self.oSearch.save()
         #
-        iItemNumb = storeItemFound( dSearchResult, {} )
+        iItemNumb = _storeItemFound( dSearchResult, {} )
         #
         if iItemNumb is None:
             raise ThisShouldNotBeHappening
         #
         try:
-            storeUserItemFound(
+            _storeUserItemFound(
                     dSearchResult, iItemNumb, self.user1, self.oSearch.id )
         except ItemAlreadyInTable:
             pass
@@ -606,7 +606,7 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         self.assertIsNotNone( oResultRow )
         #
         try: # again
-            storeUserItemFound(
+            _storeUserItemFound(
                     dSearchResult, iItemNumb, self.user1, self.oSearch.id )
         except ItemAlreadyInTable as e:
             self.assertEqual(
@@ -623,7 +623,7 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
 
 class storeSearchResultsTests(getEbayCategoriesSetUp):
     #
-    ''' class for testing doSearchStoreResults() store records '''
+    ''' class for testing _doSearchStoreResults() store records '''
     #
     def setUp(self):
         # storeSearchResultsTests, self 
@@ -646,7 +646,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
 
     def test_store_search_results(self):
         #
-        ''' test storeUserItemFound() with actual record'''
+        ''' test _storeUserItemFound() with actual record'''
         #
         iCountItems, iStoreItems, iStoreUsers = (
                 trySearchCatchExceptions( sFileName = self.sExampleFile ) )
@@ -675,7 +675,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
 
 class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
     #
-    ''' base class for testing doSearchStoreResults() store records '''
+    ''' base class for testing _doSearchStoreResults() store records '''
     #
     def setUp(self):
         #
@@ -803,7 +803,7 @@ class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
 
 class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
     #
-    ''' class for testing doSearchStoreResults() store records '''
+    ''' class for testing _doSearchStoreResults() store records '''
     #
     def setUp(self):
         #
@@ -820,7 +820,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #print( 'will QuietDump' )
         QuietDump( sResponseSearchTooBroad, self.sExampleFile )
         #
-        doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
+        _doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
@@ -834,9 +834,9 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
 
     def test_find_search_hits(self):
         #
-        ''' test storeUserItemFound() with actual record'''
+        ''' test _storeUserItemFound() with actual record'''
         #
-        findSearchHits( self.user1 )
+        findSearchHits( self.user1, bCleanUpAfterYourself = False )
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
@@ -889,7 +889,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
 
 class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
     #
-    ''' class for testing doSearchStoreResults() store records '''
+    ''' class for testing _doSearchStoreResults() store records '''
     #
     def setUp( self ):
         #
@@ -943,7 +943,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         which will be used later for testing getting the auction results'''
         #
         # sandbox returns 0 items, can use it to test for 0 items
-        t = doSearchStoreResults(
+        t = _doSearchStoreResults(
                 iSearchID = self.oCatalinSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
@@ -988,7 +988,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         which will be used later for testing getting the auction results'''
         #
         # sandbox returns 0 items, can use it to test for 0 items
-        t = doSearchStoreResults(
+        t = _doSearchStoreResults(
                 iSearchID = self.oPreampSearch.id, bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
@@ -1103,7 +1103,7 @@ def getResultGeneratorMyWay():
     getSuccessOrNot( sResponseSearchTooBroad )
     getPagination( sResponseSearchTooBroad )
     #
-    return getFindingResponseGenerator( sResponseSearchTooBroad )
+    return _getFindingResponseGenerator( sResponseSearchTooBroad )
 
 
 def getConsumedMyWayItems():
