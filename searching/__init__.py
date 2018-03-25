@@ -58,11 +58,13 @@ dItemFoundFields = d(
                          bOptional = True ),
     cCondition      = d( t = ( 'condition','conditionDisplayName'),
                          bOptional = True ),
-    cSellingState   = d( t = ( 'sellingStatus','sellingState') ) )
+    cSellingState   = d( t = ( 'sellingStatus','sellingState') ),
+    tCreate         = d( t = () ) )
 
 
 dUserItemFoundFields= d(
     iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
-    iSearch         = {},
-    iUser           = {} )
+    iSearch         = d( t = () ),
+    iUser           = d( t = () ),
+    tCreate         = d( t = () ) ) # why does this not work for tCreate?
