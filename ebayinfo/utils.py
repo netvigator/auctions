@@ -502,13 +502,6 @@ def _getCategoryHierarchyID(
                 lCatHeirarchy.append( oParentCat.name )
             else:
                 #
-                sMessage = ( 'For market %s, PARENT of ebay category '
-                            '%s does not exist' %
-                                ( iEbaySiteID, iCategoryID ) )
-                logger.info( sMessage)
-                #
-                print( sMessage )
-                #
                 break
                 #
             #
