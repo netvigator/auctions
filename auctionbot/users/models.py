@@ -4,6 +4,9 @@ from django.db                  import models
 from django.utils.encoding      import python_2_unicode_compatible
 from django.utils.translation   import ugettext_lazy as _
 
+import pytz
+from timezone_field             import TimeZoneField
+
 from ebayinfo.models            import Market
 
 iEbayUSA = Market.objects.get(
@@ -25,6 +28,7 @@ class User(AbstractUser):
     
     cBio        = models.TextField( 'Bio info', max_length=500, blank=True)
     cLocation   = models.CharField( 'Location', max_length=30, blank=True)
+    zTimeZone   = TimeZoneField( default = 'UTC' )
 
     def __str__(self):
         return self.username
