@@ -4,13 +4,13 @@ from django.utils       import timezone
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
                                  getWhatsLeft )
-from ..utils_testing    import ( getUrlQueryStringOff,
+from ..utils_test       import ( getUrlQueryStringOff,
                                  queryGotUpdated )
 
 from ebayinfo.models    import Market
 
-from ebayinfo.utils_testing import ( getMarketsIntoDatabase,
-                                     PutMarketsInDatabaseTest )
+from ebayinfo.utils_test import ( getMarketsIntoDatabase,
+                                  PutMarketsInDatabaseTest )
 
 from Time               import sFormatISOdateTimeNoColon
 from Time.Test          import isISOdatetime
@@ -69,35 +69,51 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
         #
         from core.utils import updateMemoryTableUpdated
         #
+        updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
+        #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        oUSA.iCategoryVer = 116 # current version is actually 118
-        oUSA.save()
+        self.assertEqual( oUSA.iCategoryVer, 117 )
+        #
+        iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        #
+        self.assertEqual( iDictVers, 117 )
+        #
+        self.assertEqual( oUSA.iCategoryVer, iDictVers,
+                          msg = 'table & memory values should be same' )
+        #
+        oUSA.iCategoryVer = 116 # current production version is actually 117
+        oUSA.save() # saved to table but dSiteID2ListVers should have 117
         #
         self.assertEqual( oUSA.iCategoryVer, 116 )
         #
-        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertNotEqual( oUSA.iCategoryVer, iListVers )
+        self.assertNotEqual( oUSA.iCategoryVer, iDictVers,
+                             msg = 'table has 116, dict not updated yet' )
         #
         updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
         #
-        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertEqual( oUSA.iCategoryVer, iListVers )
+        self.assertEqual( oUSA.iCategoryVer,
+                          iDictVers,
+                          msg = 'table has 116, dict updated' )
         #
         oUSA.iCategoryVer = 115
         oUSA.save()
         #
-        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertNotEqual( oUSA.iCategoryVer, iListVers )
+        self.assertNotEqual( oUSA.iCategoryVer, iDictVers,
+                             msg = 'table has 115, dict not updated yet' )
+        #
         #
         updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
         #
-        iListVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
+        iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertEqual( oUSA.iCategoryVer, iListVers )
+        self.assertEqual( oUSA.iCategoryVer, iDictVers )
         #
 
 
