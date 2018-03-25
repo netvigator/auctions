@@ -9,7 +9,7 @@ from django.utils           import timezone
 
 from ebayinfo.utils         import dMarket2SiteID, getEbayCategoryHierarchies
 
-from .models                import ItemFound, UserItemFound
+from .models                import ItemFound, UserItemFound, SearchLog
 
 from String.Find            import getRegExpress, getRegExObj
 
@@ -23,7 +23,7 @@ class ItemAlreadyInTable(    Exception ): pass
 
 
 
-def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
+def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
     #
     '''can store a row in either ItemFound or UserItemFound
     note that when testing against the live ebay api,
@@ -32,9 +32,11 @@ def storeEbayInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     from ebayinfo.models import CategoryHierarchy
     #
-    dNewResult = kwargs
+    dNewResult = { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields }
     #
-    dNewResult.update( { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields } )
+    dNewResult.update( kwargs )
+    #
+    dNewResult['tCreate'] = tSearchTime
     #
     form = Form( data = dNewResult )
     #
@@ -618,7 +620,7 @@ def _getValueUserOrOther( k, dItem, dFields, oUser = None, **kwargs ):
 
 
 
-def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
+def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
     #
     from .forms         import ItemFoundForm
     #
@@ -652,11 +654,15 @@ def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
         #
     else:
         #
-        iSavedRowID = storeEbayInfo(
-            dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
-            iCatHeirarchy   = tCatHeirarchies[0],
-            i2ndCatHeirarchy= tCatHeirarchies[1],
-            iMarket         = iSiteID )
+        iSavedRowID = _storeEbayInfo(
+                        dItem,
+                        dItemFoundFields,
+                        tSearchTime,
+                        ItemFoundForm,
+                        getValueOffItemDict,
+                        iCatHeirarchy   = tCatHeirarchies[0],
+                        i2ndCatHeirarchy= tCatHeirarchies[1],
+                        iMarket         = iSiteID )
         #
     #
     return iSavedRowID
@@ -664,7 +670,7 @@ def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
 
 
 
-def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
+def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
     #
     from .forms     import UserItemFoundForm
     from searching  import dUserItemFoundFields # in __init__.py
@@ -680,17 +686,22 @@ def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
                 ( iItemNumb, oUser.username ) )
         #
     #
-    return storeEbayInfo(
-            dItem, dUserItemFoundFields, UserItemFoundForm, _getValueUserOrOther,
-            oUser       = oUser,
-            iItemNumb   = iItemNumb,
-            iSearch     = iSearch )
+    return _storeEbayInfo(
+                dItem,
+                dUserItemFoundFields,
+                tSearchTime,
+                UserItemFoundForm,
+                _getValueUserOrOther,
+                oUser       = oUser,
+                iItemNumb   = iItemNumb,
+                iSearch     = iSearch )
 
 
 
 def _doSearchStoreResults( iSearchID     = None,
-                          sFileName     = None,
-                          bUseSandbox   = False ):
+                           sFileName     = None,
+                           tSearchTime   = None,
+                           bUseSandbox   = False ):
     #
     '''put search results in the database
     can do a search, or use the results file from completed ebay API request
@@ -747,7 +758,8 @@ def _doSearchStoreResults( iSearchID     = None,
             iItemNumb = None
             #
             try:
-                iItemNumb = _storeItemFound( dItem, dEbayCatHierarchies )
+                iItemNumb = _storeItemFound(
+                                dItem, tSearchTime, dEbayCatHierarchies )
                 iStoreItems += 1
             except ItemAlreadyInTable:
                 #
@@ -761,7 +773,8 @@ def _doSearchStoreResults( iSearchID     = None,
             if iItemNumb is not None:
                 #
                 try:
-                    _storeUserItemFound( dItem, iItemNumb, oUser, iSearch )
+                    _storeUserItemFound(
+                            dItem, iItemNumb, tSearchTime, oUser, iSearch )
                     iStoreUsers += 1
                 except ItemAlreadyInTable:
                     pass
@@ -782,10 +795,13 @@ def trySearchCatchExceptions(
     #
     iItems = iStoreItems = iStoreUsers = 0
     #
+    tSearchStart = timezone.now()
+    #
     try:
         t = _doSearchStoreResults(
                     iSearchID   = iSearchID,
                     sFileName   = sFileName,
+                    tSearchTime = tSearchStart,
                     bUseSandbox = bUseSandbox )
         #
         iItems, iStoreItems, iStoreUsers = t
@@ -795,7 +811,18 @@ def trySearchCatchExceptions(
     except SearchGotZeroResults as e:
         logger.error( 'SearchGotZeroResults: %s' % e )
     #
-    return iItems, iStoreItems, iStoreUsers 
+    if iSearchID is not None:
+        #
+        oSearchLog = SearchLog(
+                iSearch     = iSearchID,
+                tSearchTime = tSearchStart,
+                iItems      = iItems,
+                iStoreItems = iStoreItems,
+                iStoreUsers = iStoreUsers )
+        #
+        oSearchLog.save()
+        #
+    return iItems, iStoreItems, iStoreUsers
 
 
 
