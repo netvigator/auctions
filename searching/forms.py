@@ -62,10 +62,10 @@ class SearchAddOrUpdateForm(ModelForm):
             #
             try:
                 oEbayCategory = EbayCategory.objects.get(
-                    iMarket_id = self.request.user.iMarket,
+                    iMarket_id = self.request.user.iMarket_id,
                     iCategoryID = iDummyCategory )
             except ObjectDoesNotExist:
-                sMsg = '"%s" not an ebay category number!'
+                sMsg = '"%s" is not an ebay category number!'
                 raise ValidationError( sMsg,
                         params = ( iDummyCategory ),
                         code='ebay category number not found' )
