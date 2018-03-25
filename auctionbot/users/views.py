@@ -11,6 +11,7 @@ tUserFields = (
     'cBio',
     'cLocation',
     'email',
+    'zTimeZone'
     )
 
 class UserDetailView(LoginRequiredMixin, DetailView):
