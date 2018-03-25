@@ -2,6 +2,8 @@ from logging                import getLogger
 
 from core.utils             import getWhatsLeft
 from core.utils_ebay        import getValueOffItemDict
+
+from django.conf            import settings
 from django.db              import DataError
 from django.utils           import timezone
 
@@ -221,17 +223,6 @@ def getPagination( sResponse ):
     #
     return dPagination
 
-
-def _getContentFromParts( lParts ):
-    #
-    sContent = ''
-    #
-    if len( lParts ) > 1:
-        #
-        sContent = _getUpToDoubleQuote( lParts[1] )
-        #
-    #
-    return sContent
 
 
 def _getSplitters():
@@ -651,11 +642,25 @@ def storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
     tCatHeirarchies = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
     #
-    return storeEbayInfo(
+    if settings.TESTING and isinstance( tCatHeirarchies[0], str ):
+        #
+        # test database does not have all categories
+        #
+        # skip this one
+        #
+        iSavedRowID = None
+        #
+    else:
+        #
+        iSavedRowID = storeEbayInfo(
             dItem, dItemFoundFields, ItemFoundForm, getValueOffItemDict,
             iCatHeirarchy   = tCatHeirarchies[0],
             i2ndCatHeirarchy= tCatHeirarchies[1],
             iMarket         = iSiteID )
+        #
+    #
+    return iSavedRowID
+
 
 
 
@@ -746,7 +751,7 @@ def doSearchStoreResults( iSearchID     = None,
                 iStoreItems += 1
             except ItemAlreadyInTable:
                 #
-                iItemNumb      = int( dItem['itemId'  ] )
+                iItemNumb      = int( dItem['itemId'] )
                 #
             except ValueError as e:
                 #
@@ -867,11 +872,11 @@ def _getRowRegExpressions( oTableRow,
             oTableRow.save()
         except DataError as e:
             logger.error( 'DataError: %s' % e )
-            print( 'oTableRow   :', oTableRow.cTitle )
-            print( 'sFindTitle  :', sFindTitle )
-            print( 'sFindExclude:', sFindExclude )
-            if bRowHasKeyWords:
-                print( 'sFindKeyWords:', sFindKeyWords)
+            #print( 'oTableRow   :', oTableRow.cTitle )
+            #print( 'sFindTitle  :', sFindTitle )
+            #print( 'sFindExclude:', sFindExclude )
+            #if bRowHasKeyWords:
+                #print( 'sFindKeyWords:', sFindKeyWords)
         #
     #
     return sFindTitle, sFindExclude, sFindKeyWords
