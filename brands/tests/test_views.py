@@ -139,12 +139,12 @@ class BrandViewsHitButtons(BaseUserTestCase):
 
         #request = self.factory.get(reverse('brands:add'))
         #request.user = self.user1
-        
+
         #response = self.client.post( request, data )
-        
+
         #print( 'response.status_code:', response.status_code )
 
-        
+
     def test_add_hit_cancel(self):
         #
         """
@@ -161,7 +161,7 @@ class BrandViewsHitButtons(BaseUserTestCase):
         #pprint( response.__dict__ )
         self.assertEqual( response.status_code, 200 )
         # self.assertRedirects( response, reverse( 'brands:index' ) )
-        
+
     def test_search_create_view(self):
         #
         request = self.factory.get(reverse('brands:add'))
