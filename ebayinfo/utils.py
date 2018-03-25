@@ -1,5 +1,7 @@
 from logging                import getLogger
 
+from django.conf            import settings
+
 import xml.etree.ElementTree as ET
 
 #from pprint import pprint
@@ -529,12 +531,19 @@ def _getCategoryHierarchyID(
         #
         iCatHeirarchy = sCategoryName
         #
-        sMessage = ( 'For market %s, ebay category '
-                     '%s does not exist' %
-                          ( iEbaySiteID, iCategoryID ) )
-        logger.info( sMessage)
-        #
-        print( sMessage )
+        if settings.TESTING:
+            #
+            # test database does not have all categories
+            #
+            pass
+            #
+        else:
+            #
+            sMessage = ( 'For market %s,  '
+                        '%s does not exist' %
+                            ( iEbaySiteID, iCategoryID ) )
+            logger.info( sMessage)
+            #
         #
     #
     return iCatHeirarchy
