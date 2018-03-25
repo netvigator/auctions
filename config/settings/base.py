@@ -104,6 +104,7 @@ THIRD_PARTY_APPS = [
     'django_countries',
     'mptt',
     'admin_honeypot',
+    'timezone_field',
 ]
 
 # Apps specific for this project go here.
@@ -197,7 +198,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'UTC'
 
 if 'time_zone' in dSecretsConf:
     #
