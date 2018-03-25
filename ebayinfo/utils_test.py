@@ -1,7 +1,7 @@
 from django.test    import TestCase
 
-from core.utils_testing import ( getTableFromScreenCaptureGenerator,
-                                 getNamePositionDict )
+from core.utils_test import ( getTableFromScreenCaptureGenerator,
+                              getNamePositionDict )
 
 from .models        import Market
 
@@ -65,6 +65,8 @@ class PutMarketsInDatabaseTest(TestCase):
         self.assertEqual( oUSA.iEbaySiteID, 0 )
         #
         self.assertEqual( oUSA.cCurrencyDef, 'USD' )
+        #
+        self.assertEqual( oUSA.iCategoryVer, 117 )
         #
         oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
