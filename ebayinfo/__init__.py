@@ -48,7 +48,10 @@ sCategoryDump = \
 13707 |         281 | Jewelry & Watches             |      1 |       281 | f             |          117 |          0 
   540 |         550 | Art                           |      1 |       550 | f             |          117 |          0
 14311 |         619 | Musical Instruments & Gear    |      1 |       619 | f             |          117 |          0
-
+18739 |        1249 | Video Games & Consoles        |      1 |      1249 | f             |          117 |          0
+ 3164 |         625 | Cameras & Photo               |      1 |       625 | f             |          117 |          0
+ 
+14477 |      180010 | Pianos, Keyboards & Organs    |      2 |       619 | f             |          117 |          0
  9656 |       32852 | TV, Video & Home Audio        |      2 |       293 | f             |          117 |          0
   548 |         551 | Paintings                     |      2 |       550 | t             |          117 |          0
  4570 |          34 | Advertising                   |      2 |         1 | f             |          117 |          0
@@ -73,8 +76,14 @@ sCategoryDump = \
 17915 |         233 | Games                         |      2 |       220 | f             |          117 |          0 
  9629 |       15052 | Portable Audio & Headphones   |      2 |       293 | f             |          117 |          0
 14502 |      180014 | Pro Audio Equipment           |      2 |       619 | f             |          117 |          0
+18742 |       54968 | Video Game Accessories        |      2 |      1249 | f             |          117 |          0
+ 3209 |       69323 | Film Photography              |      2 |       625 | f             |          117 |          0
  
- 9899 |      183079 | Other Vintage Electronics     |      3 |    183077 | t             |          118 |          0
+ 9679 |       14961 | TV, Video & Audio Accessories |      3 |     32852 | f             |          117 |          0
+ 3230 |       15250 | Slide & Movie Projection      |      3 |     69323 | f             |          117 |          0
+ 9710 |       71582 | TV, Video & Audio Parts       |      3 |     32852 | f             |          117 |          0
+14491 |      181224 | Parts & Accessories           |      3 |    180010 | f             |          117 |          0
+ 9899 |      183079 | Other Vintage Electronics     |      3 |    183077 | t             |          117 |          0
  9661 |       14969 | Home Audio Stereos, Components|      3 |     32852 | f             |          117 |          0
  8479 |      171194 | Price Guides & Publications   |      3 |     29832 | t             |          117 |          0
  5021 |      165266 | Other Collectible Ads         |      3 |        34 | t             |          117 |          0
@@ -103,8 +112,10 @@ sCategoryDump = \
 14523 |      119019 | Vintage Pro Audio Equipment   |      3 |    180014 | t             |          117 |          0
  9630 |      112529 | Headphones                    |      3 |     15052 | t             |          117 |          0
  4979 |       13623 | Merchandise & Memorabilia     |      3 |        34 | f             |          117 |          0
-14504 |      163896 | Amplifiers                    |      3 |    180014 | t             |          118 |          0
- 
+14504 |      163896 | Amplifiers                    |      3 |    180014 | t             |          117 |          0
+18746 |      171814 | Cables & Adapters             |      3 |     54968 | t             |          117 |          0 
+ 8480 |       29833 | Other Vintage Radio, TV, Phone|      3 |     29832 | t             |          117 |          0
+
  5003 |       10804 | Signs                         |      4 |     13623 | f             |          117 |          0  
  9881 |       67807 | Vintage Preamps & Tube Preamps|      4 |    175740 | t             |          117 |          0
  8464 |         934 | Manuals                       |      4 |       931 | t             |          117 |          0
@@ -130,7 +141,16 @@ sCategoryDump = \
  9878 |       73368 | Vintage Amplifiers & Tube Amps|      4 |    175740 | t             |          117 |          0
  9888 |      175741 | Vintage Parts & Accessories   |      4 |    175740 | f             |          117 |          0
  9662 |       14970 | Amplifiers & Preamps          |      4 |     14969 | t             |          117 |          0
-  
+ 9669 |       48647 | Record Players/Home Turntables|      4 |     14969 | t             |          117 |          0
+ 9683 |       14964 | Audio Cables & Interconnects  |      4 |     14961 | t             |          117 |          0
+ 9711 |      122649 | Amplifier Parts & Components  |      4 |     71582 | t             |          117 |          0
+ 9672 |       81741 | Other Home Stereo Components  |      4 |     14969 | t             |          117 |          0
+ 9887 |       73382 | Vintage Tuners & Tube Tuners  |      4 |    175740 | t             |          117 |          0
+14500 |       21766 | Other Parts & Accessories     |      4 |    181224 | t             |          117 |          0
+ 3231 |       15252 | Movie Projectors              |      4 |     15250 | t             |          117 |          0
+ 
+ 9893 |       67815 | Vintage Transformers          |      5 |    175741 | t             |          117 |          0
+ 9895 |      168088 | Other Vintage A/V Parts & Accs|      5 |    175741 | t             |          117 |          0 
  5004 |       37840 | Original                      |      5 |     10804 | f             |          117 |          0
  9894 |       64627 | Vintage Tubes & Tube Sockets  |      5 |    175741 | t             |          117 |          0
  1434 |       50960 | Electric Circuit & Multimeters|      5 |    181968 | f             |          117 |          0 
