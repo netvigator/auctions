@@ -1007,7 +1007,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             #
             oUserItems = UserItemFound.objects.filter(
                             iUser          = self.user1,
-                            iHitStars__gte = 100 )
+                            iHitStars__gte = 200 )
             #
             iLen = len( oUserItems )
             #
@@ -1022,7 +1022,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
             
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 class TestFindingResponseHelpers( TestCase ):
