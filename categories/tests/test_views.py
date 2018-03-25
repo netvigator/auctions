@@ -5,7 +5,7 @@ from core.utils_testing         import BaseUserTestCase
 from core.utils                 import getExceptionMessageFromResponse
 
 from ..models                   import Category
-
+from ..views                    import CategoryCreateView
 
 
 class CategoryViewsTests(BaseUserTestCase):
@@ -90,4 +90,133 @@ class CategoryViewsTests(BaseUserTestCase):
         response = self.client.get(reverse('categories:index'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/categories/')
+
+
+
+
+class CategoryViewsHitButtons(BaseUserTestCase):
+    """
+    Test Save and Cancel
+    """
+    def setUp(self):
+        #
+        super( CategoryViewsHitButtons, self ).setUp()
+        #
+        self.client.login(username ='username1', password='mypassword')
+
+
+
+    def test_get(self):
+        """
+        Test GET requests
+        """
+        request = self.factory.get(reverse('categories:add'))
+        request.user = self.user1
+        #
+        response = CategoryCreateView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+        #print( 'response.context_data has form and view, view keys:' )
+        #for k in response.context_data['view'].__dict__:
+            #print( k )
+        #self.assertEqual(response.context_data['iUser'], self.user1)
+        self.assertEqual(response.context_data['view'].__dict__['request'], request)
+
+
+    # @patch('categories.models.Category.save', MagicMock(name="save"))
+    def test_add_post(self):
+        """
+        Test post requests
+        """
+        data = dict(
+            cTitle      = "Widgets",
+            iUser       = self.user1 )
+        # Create the request
+        response = self.client.post( reverse('categories:add'), data )
+        # import pdb; pdb.set_trace()
+        self.assertEqual( response.status_code, 200 )
+        #oCategory = Category.objects.get( cTitle = "Great Widget" )
+        #self.assertEqual( oCategory, self.categories )
+
+        #request = self.factory.get(reverse('categories:add'))
+        #request.user = self.user1
+        
+        #response = self.client.post( request, data )
+        
+        #print( 'response.status_code:', response.status_code )
+
+        
+    def test_add_hit_cancel(self):
+        #
+        """
+        Hit cancel when adding
+        """
+        data = dict(
+            cTitle      = "Widgets",
+            iUser       = self.user1,
+            Cancel      = True )
+        # Create the request
+        response = self.client.post( reverse('categories:add'), data )
+        #print( 'response.status_code:', response.status_code )
+        #print( 'response.__dict__:' )
+        #pprint( response.__dict__ )
+        self.assertEqual( response.status_code, 200 )
+        # self.assertRedirects( response, reverse( 'categories:index' ) )
+        
+    def test_search_create_view(self):
+        #
+        request = self.factory.get(reverse('categories:add'))
+        request.user = self.user1
+        #request.POST._mutable = True
+        #request.POST['cancel'] = True
+        #
+        response = CategoryCreateView.as_view()(request)
+        #
+        # print( 'type( request.POST ):', type( request.POST ) )
+        #
+        self.assertEqual(response.status_code, 200 )
+        #print( 'response.template_name:' )
+        #print( response.template_name ) ['categories/add.html']
+        #
+    #
+
+    # @patch('categories.models.Category.save', MagicMock(name="save"))
+    def test_edit_post(self):
+        """
+        Test post requests
+        """
+        sCategory = "Widgets"
+        oCategory = Category( cTitle= sCategory, iUser = self.user1 )
+        oCategory.save()
+        #
+        data = dict(
+            cTitle      = "Gadget",
+            iUser       = self.user1 )
+        # Create the request
+        response = self.client.post(
+                reverse('categories:edit', kwargs={'pk': oCategory.id} ), data )
+        # import pdb; pdb.set_trace()
+        self.assertEqual( response.status_code, 200 )
+
+
+    def test_edit_hit_cancel(self):
+        #
+        """
+        Hit cancel when adding
+        """
+        sCategory = "Widgets"
+        oCategory = Category( cTitle= sCategory, iUser = self.user1 )
+        oCategory.save()
+        #
+        data = dict(
+            cTitle      = "Gadget",
+            iUser       = self.user1,
+            Cancel      = True )
+        # Create the request
+        response = self.client.post(
+                reverse('categories:edit', kwargs={'pk': oCategory.id} ), data )
+        #print( 'response.status_code:', response.status_code )
+        #print( 'response.__dict__:' )
+        #pprint( response.__dict__ )
+        self.assertEqual( response.status_code, 200 )
+        # self.assertRedirects( response, reverse( 'categories:index' ) )
 
