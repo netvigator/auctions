@@ -1,17 +1,17 @@
-from os                 import rename
+from os             import rename
 
-from django.db          import DataError
-from django.test        import TestCase, tag
+from django.db      import DataError
+from django.test    import TestCase, tag
 
-from core.utils         import updateMemoryTableUpdated
-from core.utils_testing import getDefaultMarket, getEbayCategoriesSetUp
+from core.utils     import updateMemoryTableUpdated
+from core.utils_test import getDefaultMarket, getEbayCategoriesSetUp
 
-from ..models           import EbayCategory, Market
+from ..models       import EbayCategory, Market
 
 # the following are in the tests __init__.py file
-from ..tests            import sExampleCategoryVersion, sExampleCategoryList
+from ..tests        import sExampleCategoryVersion, sExampleCategoryList
 
-from ..utils            import ( CATEGORY_VERSION_FILE,
+from ..utils        import ( CATEGORY_VERSION_FILE,
                             _getCategoryVersionFromFile,
                             UnexpectedResponse, CATEGORY_LISTING_FILE,
                             putCategoriesInDatabase, countCategories,
@@ -19,10 +19,10 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                             getWhetherAnyEbayCategoryListsAreUpdated,
                             getEbayCategoryHierarchies )
 
-from ..utils_testing    import getMarketsIntoDatabase, PutMarketsInDatabaseTest
+from ..utils_test   import getMarketsIntoDatabase, PutMarketsInDatabaseTest
 
-from File.Del           import DeleteIfExists
-from File.Write         import WriteText2File
+from File.Del       import DeleteIfExists
+from File.Write     import WriteText2File
 
 
 sMessedCategoryVersion = sExampleCategoryVersion.replace(

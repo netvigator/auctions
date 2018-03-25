@@ -1,6 +1,6 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_testing         import setUpBrandsCategoriesModels, getUrlQueryStringOff
+from core.utils_test import setUpBrandsCategoriesModels, getUrlQueryStringOff
 
 from categories.models          import Category
 

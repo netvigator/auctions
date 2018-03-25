@@ -1,9 +1,9 @@
-from core.utils_testing         import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUpdated )
+from core.utils_test    import ( BaseUserTestCase,
+                                 getUrlQueryStringOff, queryGotUpdated )
 
-from categories.models          import Category
+from categories.models  import Category
 
-from ..models                   import Model
+from ..models           import Model
 
 class ModelModelTest(BaseUserTestCase):
 

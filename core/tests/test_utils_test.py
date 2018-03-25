@@ -10,7 +10,7 @@ from ..user_one                 import oUserOne
 from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
 from ..validators               import gotTextOutsideParens
 
-from ..utils_testing            import (getUrlQueryStringOff,
+from ..utils_test               import (getUrlQueryStringOff,
                                         getEbayCategoriesSetUp,
                                         queryGotUpdated, getDefaultMarket )
 

@@ -1,9 +1,9 @@
-from core.utils_testing         import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUpdated )
+from core.utils_test    import ( BaseUserTestCase,
+                                 getUrlQueryStringOff, queryGotUpdated )
 
 # Create your tests here.
 
-from ..models                   import Brand
+from ..models           import Brand
 
 
 class ModelModelTest(BaseUserTestCase):

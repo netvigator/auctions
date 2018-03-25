@@ -1,6 +1,6 @@
 from django.urls        import reverse
 
-from core.utils_testing import BaseUserTestCase, getUrlQueryStringOff
+from core.utils_test    import BaseUserTestCase, getUrlQueryStringOff
 
 
 # Create your tests here.

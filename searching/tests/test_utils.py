@@ -6,7 +6,7 @@ from datetime           import timedelta
 
 from django.test        import TestCase, tag
 from django.utils       import timezone
-from core.utils_testing import ( BaseUserTestCase, getDefaultMarket,
+from core.utils_test    import ( BaseUserTestCase, getDefaultMarket,
                                  getEbayCategoriesSetUp,
                                  setUpBrandsCategoriesModels,
                                  getTableFromScreenCaptureGenerator,
@@ -21,7 +21,7 @@ from searching          import RESULTS_FILE_NAME_PATTERN
 from ..models           import Search, ItemFound, UserItemFound, ItemFoundTemp
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
-from ..utils_testing    import getItemHitsLog, updateHitLogFile
+from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils            import ( trySearchCatchExceptions,
                                  _doSearchStoreResults, ItemAlreadyInTable,
                                  findSearchHits, _getFoundItemTester,

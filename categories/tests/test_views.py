@@ -1,6 +1,6 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_testing         import BaseUserTestCase
+from core.utils_test            import BaseUserTestCase
 
 from core.utils                 import getExceptionMessageFromResponse
 

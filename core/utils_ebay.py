@@ -33,7 +33,7 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         #
     except ( IndexError, KeyError ) as e:
         #
-        if not t: # empty
+        if not t: # empty, IndexError
             #
             uValue  = None
             #

@@ -2,7 +2,7 @@ from django.core.urlresolvers   import reverse, resolve
 
 from test_plus.test             import TestCase
 
-from core.utils_testing         import getDefaultMarket
+from core.utils_test            import getDefaultMarket
 
 
 class TestUserURLs(TestCase):

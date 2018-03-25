@@ -1,13 +1,14 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_testing         import BaseUserTestCase, setup_view_for_tests
+from core.utils_test            import BaseUserTestCase, setup_view_for_tests
 from core.utils                 import getExceptionMessageFromResponse
 
 from ..forms                    import SearchAddOrUpdateForm
 from ..models                   import Search
 
-from ..views                    import (
-        SearchCreateView, SearchIndexView, SearchDetailView, SearchDeleteView, SearchUpdateView )
+from ..views                    import ( SearchCreateView, SearchIndexView,
+                                         SearchDetailView, SearchDeleteView,
+                                         SearchUpdateView )
 
 
 #from pprint import pprint

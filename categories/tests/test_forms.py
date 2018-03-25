@@ -1,6 +1,6 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_testing         import BaseUserTestCase, getUrlQueryStringOff
+from core.utils_test            import BaseUserTestCase, getUrlQueryStringOff
 
 from ..models                   import Category
 from ..forms                    import CategoryForm

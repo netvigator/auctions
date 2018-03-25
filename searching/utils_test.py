@@ -1,7 +1,7 @@
 from os                 import rename
 from os.path            import realpath, join
 
-from core.utils_testing import ( getTableFromScreenCaptureGenerator,
+from core.utils_test    import ( getTableFromScreenCaptureGenerator,
                                  getNamePositionDict )
 
 

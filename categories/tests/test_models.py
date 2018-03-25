@@ -1,8 +1,7 @@
-from core.utils_testing         import ( BaseUserTestCase,
-                                         getUrlQueryStringOff, queryGotUpdated )
+from core.utils_test    import ( BaseUserTestCase,
+                                 getUrlQueryStringOff, queryGotUpdated )
 
-
-from ..models                   import Category
+from ..models           import Category
 
 
 class CategoryModelTest(BaseUserTestCase):
@@ -27,3 +26,4 @@ class CategoryModelTest(BaseUserTestCase):
         self.assertTrue( queryGotUpdated( tParts[1] ) )
         #
         self.assertFalse( queryGotUpdated( tParts[0] ) )
+
