@@ -31,9 +31,13 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         for sKey in tRest:
             uValue = uValue[ sKey ]
         #
-    except KeyError as e:
+    except ( IndexError, KeyError ) as e:
         #
-        if bNotInItemDict and t[0] in kwargs:
+        if not t: # empty
+            #
+            uValue  = None
+            #
+        elif bNotInItemDict and t[0] in kwargs:
             #
             uValue  = kwargs[ t[0] ]
             #
