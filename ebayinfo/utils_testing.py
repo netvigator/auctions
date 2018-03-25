@@ -70,5 +70,5 @@ class PutMarketsInDatabaseTest(TestCase):
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, 31 )
+        self.assertEqual( oSG.iCategoryVer, 30 )
 
