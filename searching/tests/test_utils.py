@@ -520,7 +520,9 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         dEbayCatHierarchies = {}
         #
-        iItemNumb = _storeItemFound( dSearchResult, dEbayCatHierarchies )
+        tNow = timezone.now()
+        #
+        iItemNumb = _storeItemFound( dSearchResult, tNow, dEbayCatHierarchies )
         #
         iCategoryID = int(
                 dSearchResult.get( 'primaryCategory' ).get( 'categoryId' ) )
@@ -551,11 +553,12 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         sExpect = oExpectHierarchy.cCatHierarchy
         #
-        
         #self.assertEqual( oResultRow.iCatHeirarchy.cCatHierarchy, sExpect )
         #
+        tNow = timezone.now()
+        #
         try: # again
-            _storeItemFound( dSearchResult )
+            _storeItemFound( dSearchResult, tNow )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
@@ -583,19 +586,21 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         from ..utils    import _storeUserItemFound, _storeItemFound
         #
         class ThisShouldNotBeHappening( Exception ): pass
-
+        #
         sSearch         = "My clever search 1"
         self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
         self.oSearch.save()
         #
-        iItemNumb = _storeItemFound( dSearchResult, {} )
+        tNow = timezone.now()
+        #
+        iItemNumb = _storeItemFound( dSearchResult, tNow, {} )
         #
         if iItemNumb is None:
             raise ThisShouldNotBeHappening
         #
         try:
             _storeUserItemFound(
-                    dSearchResult, iItemNumb, self.user1, self.oSearch.id )
+                dSearchResult, iItemNumb, tNow, self.user1, self.oSearch.id )
         except ItemAlreadyInTable:
             pass
         #
@@ -607,7 +612,7 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         #
         try: # again
             _storeUserItemFound(
-                    dSearchResult, iItemNumb, self.user1, self.oSearch.id )
+                dSearchResult, iItemNumb, tNow, self.user1, self.oSearch.id )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
@@ -820,7 +825,9 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #print( 'will QuietDump' )
         QuietDump( sResponseSearchTooBroad, self.sExampleFile )
         #
-        _doSearchStoreResults( sFileName = join( '/tmp', self.sExampleFile ) )
+        _doSearchStoreResults(
+            sFileName = join( '/tmp', self.sExampleFile ),
+            tSearchTime = timezone.now() )
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
@@ -944,7 +951,9 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         #
         # sandbox returns 0 items, can use it to test for 0 items
         t = _doSearchStoreResults(
-                iSearchID = self.oCatalinSearch.id, bUseSandbox = False )
+                iSearchID = self.oCatalinSearch.id,
+                tSearchTime = timezone.now(),
+                bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
@@ -989,7 +998,9 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         #
         # sandbox returns 0 items, can use it to test for 0 items
         t = _doSearchStoreResults(
-                iSearchID = self.oPreampSearch.id, bUseSandbox = False )
+                iSearchID = self.oPreampSearch.id,
+                tSearchTime = timezone.now(),
+                bUseSandbox = False )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
