@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 '''
 
 import environ
+import sys
 
 from logging                import getLogger
 
@@ -379,3 +380,6 @@ DATE_FORMAT     = 'j N Y'
 
 countriesSettings.COUNTRIES_FIRST = [ 'US', 'GB' ]
 countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States' }
+
+# code can know if a test is being run
+TESTING = len(sys.argv) > 1 and 'test' in sys.argv[1] 
