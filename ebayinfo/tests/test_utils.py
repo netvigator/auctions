@@ -3,7 +3,7 @@ from os                 import rename
 from django.db          import DataError
 from django.test        import TestCase, tag
 
-
+from core.utils         import updateMemoryTableUpdated
 from core.utils_testing import getDefaultMarket, getEbayCategoriesSetUp
 
 from ..models           import EbayCategory, Market
@@ -216,7 +216,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, 31 )
+        self.assertEqual( oSG.iCategoryVer, 30 )
 
 
     @tag('ebay_api')
@@ -235,12 +235,12 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         if getRandomTrueOrFalse(): # randomly alternate
             #
             iCurrentVersion = _getCheckCategoryVersion(
-                    iSiteId = oMarket.iEbaySiteID, bUseSandbox = True )
+                    iSiteId = oMarket.iEbaySiteID, bUseSandbox = False )
             #
         else:
             #
             iCurrentVersion = _getCheckCategoryVersion(
-                    sGlobalID = oMarket.cMarket, bUseSandbox = True )
+                    sGlobalID = oMarket.cMarket, bUseSandbox = False )
             #
         #
         self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
@@ -251,21 +251,25 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        #oUSA.iCategoryVer = 116 # current SANDBOX version is actually 118
-        #oUSA.save()
+        oUSA.iCategoryVer = 116 # current SANDBOX version is actually 118
+        oUSA.save()
+        #
+        updateMemoryTableUpdated( 'markets', sField = 'iCategoryVer' )
         #
         oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
         lUpdated = getWhetherAnyEbayCategoryListsAreUpdated(
-                        bUseSandbox = True )
+                        bUseSandbox = False )
         #
-        #print('')
-        #print( 'lUpdated:', lUpdated )
+        # sandbox can be ahead of the production site
         #
-        # getting different numbers, I cannot explain!
+        oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
-        self.assertIn(    lUpdated[0].get('iTableHas'), (115,117) )
-        self.assertEqual( lUpdated[0].get('iEbayHas'),  118 )
+        self.assertTrue( bool( lUpdated ) )
+        #
+        if lUpdated:
+            self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
+            self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
+            self.assertEqual( lUpdated[0].get('iEbayHas'),  117 )
 
 
