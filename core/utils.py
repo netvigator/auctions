@@ -84,7 +84,6 @@ def _getReverseWithQuery( lookup_view, *args, **kwargs ):
 def _getIsoDateTimeOffDateTimeCol( tDateTime ):
     #
     from Time           import sFormatISOdateTimeNoColon
-    from Time.Output    import getIsoDateTimeFromDateTime
     #
     return tDateTime.strftime( sFormatISOdateTimeNoColon )
 
