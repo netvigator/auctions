@@ -1,4 +1,5 @@
 from logging                import getLogger
+from time                   import sleep
 
 from django.conf            import settings
 
@@ -441,7 +442,13 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
     #
     lMarketsHaveNewerCategoryVersionLists = []
     #
+    iTotalSites = len( dSiteID2ListVers )
+    #
+    i = 0
+    #
     for iSiteID in dSiteID2ListVers:
+        #
+        i += 1
         #
         iEbayHas = _getCheckCategoryVersion(
             iSiteId     = iSiteID,
@@ -459,6 +466,8 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
             #
             lMarketsHaveNewerCategoryVersionLists.append( d )
             #
+        #
+        if i < iTotalSites: sleep(1)
         #
     #
     return lMarketsHaveNewerCategoryVersionLists
@@ -591,5 +600,6 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
 # ### updateMemoryTableUpdated( 'markets', 'iCategoryVer' ) ###
 # ###                     in core.utils                     ###
 
+# ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
 
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
