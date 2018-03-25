@@ -977,7 +977,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
             
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     @tag('ebay_api')
