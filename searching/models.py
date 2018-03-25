@@ -21,6 +21,8 @@ from core.utils                 import getReverseWithUpdatedQuery
 
 from ebayinfo.models            import EbayCategory
 
+from Time.Output                import getIsoDateTimeFromDateTime
+
 class Search(models.Model):
     cTitle          = models.CharField( 'short description',
                                          max_length = 38, null = True )
@@ -137,8 +139,7 @@ class ItemFound(models.Model):
 
     cSellingState   = models.CharField( 'selling state',
                         max_length = 18 )
-    tCreate         = models.DateTimeField(
-                        'created on', auto_now_add=True, db_index = True )
+    tCreate         = models.DateTimeField( 'created on', db_index = True )
 
     def __str__(self):
         return self.cTitle
@@ -178,8 +179,7 @@ class UserItemFound(models.Model):
                         max_length = 10 ) # title heirarchy1 heirarchy2
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
-    tCreate         = models.DateTimeField(
-                        'created on', auto_now_add=True, db_index = True )
+    tCreate         = models.DateTimeField( 'created on', db_index = True )
     tModify         = models.DateTimeField(
                         'retrieved info date/time', auto_now = True )
 
@@ -215,6 +215,24 @@ class ItemFoundTemp(models.Model):
 
     class Meta:
         verbose_name_plural = 'itemsfoundtemp'
+        db_table            = verbose_name_plural
+
+
+class SearchLog(models.Model):
+    iSearch         = models.ForeignKey( Search,
+                        verbose_name = 'Search that first found this item',
+                        on_delete=models.CASCADE )
+    tSearchTime     = models.DateTimeField( 'search date', db_index = True )
+    iItems          = models.PositiveIntegerField( 'items found' )
+    iStoreItems     = models.PositiveIntegerField( 'items stored' )
+    iStoreUsers     = models.PositiveIntegerField( 'items stored for owner' )
+
+    def __str__(self):
+        return '%s - %s' % (
+            getIsoDateTimeFromDateTime( tSearchTime, iSearch.cTitle ) )
+
+    class Meta:
+        verbose_name_plural = 'searchlogs'
         db_table            = verbose_name_plural
 
 
