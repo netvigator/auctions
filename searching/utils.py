@@ -139,6 +139,8 @@ def _getUpToDoubleQuote( s ):
 
 def getSuccessOrNot( sResponse ):
     #
+    '''determine whether the request was a success from the response text'''
+    #
     lParts      = sResponse.split( '"ack":["' )
     #
     sSuccessOrNot = ''
@@ -152,6 +154,9 @@ def getSuccessOrNot( sResponse ):
 
 
 def getPagination( sResponse ):
+    #
+    '''get the "pagination" info such as total pages and number of this page
+    from the response text, returns dPagination '''
     #
     sCount          = '0'
     #
@@ -698,46 +703,65 @@ def doSearchStoreResults( iSearchID     = None,
         sFileName = getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
         #
     #
-    # 'Search-%s-%s-ID-%s.json' % ( sMarket, sUserName, oSearch.id ) )
+    # 'Search_%s_%s_ID_%s_p_%s_.json' % ( sMarket, sUserName, oSearch.id, iPageNumb ) )
     #
-    lParts = sFileName.split( '_' )
+    lFileNameParts = sFileName.split( '_' )
     #
-    sUserName   =      lParts[2]
-    iSearch     = int( lParts[4] )
+    sUserName   =      lFileNameParts[2]
+    iSearch     = int( lFileNameParts[4] )
+    iLastPage   = int( lFileNameParts[6] )
     #
-    oUser = User.objects.get( username = sUserName )
+    iStartPage  = int( bool( iLastPage > 0 ) ) # 0 if iLastPage == 0, else 1
     #
-    oItemIter = getSearchResultGenerator( sFileName )
+    tRangeArgs  = ( iStartPage, iLastPage + 1 )
     #
     iItems = iStoreItems = iStoreUsers = 0
     #
-    dEbayCatHierarchies = {}
+    oUser = User.objects.get( username = sUserName )
     #
-    for dItem in oItemIter:
+    for iThisPage in range( *tRangeArgs ):
         #
-        iItems += 1
+        sThisPage           = str( iThisPage ).zfill( 3 )
         #
-        iItemNumb = None
+        lFileNameParts[6]   = sThisPage
         #
-        try:
-            iItemNumb = storeItemFound( dItem, dEbayCatHierarchies )
-            iStoreItems += 1
-        except ItemAlreadyInTable:
+        sThisFileName       = '_'.join( lFileNameParts )
+        #
+        # if iLastPage > 0:
+        #     print( 'doing %s, page %s of %s' %
+        #             ( sFileName, sThisPage, iLastPage ) )
+        #
+        oItemIter = getSearchResultGenerator( sThisFileName )
+        #
+        dEbayCatHierarchies = {}
+        #
+        for dItem in oItemIter:
             #
-            iItemNumb      = int( dItem['itemId'  ] )
+            iItems += 1
             #
-        except ValueError as e:
-            #
-            logger.error( 'ValueError: %s | %s' %
-                          ( str(e), repr(dItem) ) )
-        #
-        if iItemNumb is not None:
+            iItemNumb = None
             #
             try:
-                storeUserItemFound( dItem, iItemNumb, oUser, iSearch )
-                iStoreUsers += 1
+                iItemNumb = storeItemFound( dItem, dEbayCatHierarchies )
+                iStoreItems += 1
             except ItemAlreadyInTable:
-                pass
+                #
+                iItemNumb      = int( dItem['itemId'  ] )
+                #
+            except ValueError as e:
+                #
+                logger.error( 'ValueError: %s | %s' %
+                            ( str(e), repr(dItem) ) )
+            #
+            if iItemNumb is not None:
+                #
+                try:
+                    storeUserItemFound( dItem, iItemNumb, oUser, iSearch )
+                    iStoreUsers += 1
+                except ItemAlreadyInTable:
+                    pass
+                #
+            #
         #
     #
     return iItems, iStoreItems, iStoreUsers
