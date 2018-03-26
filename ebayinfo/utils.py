@@ -162,11 +162,35 @@ returns
  'LeafCategory': ''}
 '''
 
-
-def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
-            bShowProgress = False, sFile = None ):
+def _getCategoryListParams( uMarket, uWantVersion ):
     #
-    oMarket = Market.objects.get( cMarket = sMarket )
+    if isinstance( uMarket, str ):
+        oMarket = Market.objects.get( cMarket = uMarket )
+        sMarket = uMarket
+    else:
+        oMarket = uMarket
+        sMarket = oMarket.cMarket
+    #
+    if isinstance( uWantVersion, str ):
+        sWantVersion =      uWantVersion
+    else:
+        sWantVersion = str( uWantVersion )
+    #
+    return oMarket, sMarket, sWantVersion
+
+
+
+
+
+def _putCategoriesInDatabase(
+            uMarket         = 'EBAY-US',
+            uWantVersion    = '117',
+            bShowProgress   = False,
+            sFile           = None ):
+    #
+    t = _getCategoryListParams( uMarket, uWantVersion )
+    #
+    oMarket, sMarket, sWantVersion = t
     #
     # getCategoryDictGenerator checks for the expected version
     #
@@ -297,9 +321,10 @@ def putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117',
 
 
 
+
 def getCategoryListThenStore(
-            sMarket         = 'EBAY-US',
-            sWantVersion    = '118',
+            uMarket         = 'EBAY-US',
+            uWantVersion    = '117',
             bUseSandbox     = False,
             bShowProgress   = False ):
     #
@@ -308,15 +333,23 @@ def getCategoryListThenStore(
     from File.Write             import QuietDump
     from File.Del               import DeleteIfExists
     #
-    if bShowProgress: print( 'fetching category list ....' )
+    t = _getCategoryListParams( uMarket, uWantVersion )
+    #
+    oMarket, sMarket, sWantVersion = t
+    #
+    if bShowProgress:
+        print('')
+        print( 'fetching category list for %s ....' % sMarket )
     #
     sCategories = getMarketCategoriesGotGlobalID(
             sGlobalID = sMarket, bUseSandbox = bUseSandbox )
     #
     QuietDump( sCategories, CATEGORY_LISTING_FILE % sMarket )
     #
-    putCategoriesInDatabase( sMarket = sMarket , sWantVersion = sWantVersion,
-            bShowProgress = bShowProgress )
+    _putCategoriesInDatabase(
+            uMarket         = sMarket,
+            uWantVersion    = sWantVersion,
+            bShowProgress   = bShowProgress )
 
 
 
