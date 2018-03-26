@@ -1,0 +1,409 @@
+from core.utils             import getWhatsLeft
+
+from String.Find            import getRegExpress, getRegExObj
+
+from core.user_one          import oUserOne
+
+
+
+def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
+    #
+    sLook4Title = getWhatsLeft( oTableRow.cTitle )
+    #
+    cLookFor = oTableRow.cLookFor
+    #
+    if cLookFor:
+        #
+        cLookFor = cLookFor.strip()
+        #
+        sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
+        #
+        sRegExpress = getRegExpress( sLookFor, bSubModelsOK = bSubModelsOK )
+        
+    else:
+        #
+        sRegExpress = getRegExpress( sLook4Title,
+                                     bAddDash     = bAddDash,
+                                     bSubModelsOK = bSubModelsOK )
+        #
+    #
+    return sRegExpress
+
+
+
+def _getRowRegExpressions( oTableRow,
+                           bAddDash = False, bSubModelsOK = False ):
+    #
+    bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
+    #
+    sFindKeyWords = None
+    #
+    if oTableRow.cRegExLook4Title:
+        #
+        sFindTitle          = oTableRow.cRegExLook4Title
+        sFindExclude        = oTableRow.cRegExExclude
+        #
+        if bRowHasKeyWords:
+            sFindKeyWords   = oTableRow.cRegExKeyWords
+        #
+    else:
+        #
+        sFindTitle = _getTitleRegExress( oTableRow,
+                                         bAddDash     = bAddDash,
+                                         bSubModelsOK = bSubModelsOK )
+        #
+        sKeyWords = sFindKeyWords = sFindExclude = None
+        #
+        #
+        if bRowHasKeyWords: sKeyWords = oTableRow.cKeyWords
+        #
+        sExcludeIf = oTableRow.cExcludeIf
+        #
+        if sExcludeIf:
+            #
+            sFindExclude = getRegExpress( sExcludeIf )
+            #
+        if sKeyWords:
+            #
+            sFindKeyWords = getRegExpress( sKeyWords )
+            #
+        #
+        oTableRow.cRegExLook4Title= sFindTitle
+        oTableRow.cRegExExclude   = sFindExclude
+        #
+        if bRowHasKeyWords:
+            oTableRow.cRegExKeyWords = sFindKeyWords
+        #
+        try:
+            oTableRow.save()
+        except DataError as e:
+            logger.error( 'DataError: %s' % e )
+            #print( 'oTableRow   :', oTableRow.cTitle )
+            #print( 'sFindTitle  :', sFindTitle )
+            #print( 'sFindExclude:', sFindExclude )
+            #if bRowHasKeyWords:
+                #print( 'sFindKeyWords:', sFindKeyWords)
+        #
+    #
+    return sFindTitle, sFindExclude, sFindKeyWords
+
+
+
+def _getRegExSearchOrNone( s ):
+    #
+    if s:
+        oRegExObj = getRegExObj( s )
+        #
+        return oRegExObj.search
+
+
+def _getModelRegExFinders4Test( oModel ):
+    #
+    t = _getRowRegExpressions( oModel, bAddDash = True )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
+
+
+def _getCategoryRegExFinders4Test( oCategory ):
+    #
+    t = _getRowRegExpressions( oCategory )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
+
+
+def _getBrandRegExFinders4Test( oBrand ):
+    #
+    t = _getRowRegExpressions( oBrand )
+    #
+    sFindTitle, sFindExclude, sFindKeyWords = t
+    #
+    return tuple( map( _getRegExSearchOrNone, t[:2] ) )
+
+
+
+
+
+def _includeNotExclude( s, findExclude ):
+    #
+    return findExclude is None or not findExclude( s )
+
+def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
+    #
+    return findKeyWords is None or findKeyWords( s )
+
+
+def getFoundItemTester( oTableRow, dFinders,
+                        bAddDash = False, bSubModelsOK = False ):
+    #
+    ''' pass model row instance, returns tester '''
+    #
+    if oTableRow.pk in dFinders:
+        #
+        foundItemTester = dFinders[ oTableRow.pk ]
+        #
+    else:
+        #
+        t = _getRowRegExpressions( oTableRow,
+                                   bAddDash     = bAddDash,
+                                   bSubModelsOK = bSubModelsOK )
+        #
+        t = tuple( map( _getRegExSearchOrNone, t ) )
+        #
+        findTitle, findExclude, findKeyWords = t
+        #
+        def foundItemTester( s ):
+            #
+            bIncludeThis = _includeNotExclude( s, findExclude )
+            #
+            return (    findTitle( s ) and
+                        bIncludeThis and
+                        _gotKeyWordsOrNoKeyWords( s, findKeyWords ),
+                     not bIncludeThis )
+        #
+        dFinders[ oTableRow.pk ] = foundItemTester
+        #
+    #
+    return foundItemTester
+
+
+def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
+    #
+    if bInTitle:
+        #
+        sReturn = 'title'
+        #
+    elif bInHeirarchy1:
+        #
+        sReturn = 'heirarchy1'
+        #
+    else: # bInHeirarchy2 
+        #
+        sReturn = 'heirarchy2'
+        #
+    #
+    return sReturn
+
+
+
+def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
+    #
+    from brands.models      import Brand
+    from categories.models  import Category
+    from models.models      import Model
+    #
+    from .models            import ItemFoundTemp
+    #
+    ItemFoundTemp.objects.all().delete()
+    #
+    oItemQuerySet = ItemFound.objects.filter(
+                pk__in = UserItemFound.objects
+                    .filter( iUser = oUser,
+                             tlook4hits__isnull = True )
+                    .values_list( 'iItemNumb', flat=True ) )
+    #
+    #print( '' )
+    #print( 'len( oItemQuerySet ):', len( oItemQuerySet ) )
+    #
+    dFindersBrands      = {}
+    dFindersCategories  = {}
+    dFindersModels      = {}
+    #
+    for oItem in oItemQuerySet:
+        #
+        oUserItem = UserItemFound.objects.get( 
+                iItemNumb   = oItem.iItemNumb,
+                iUser       = oUser )
+        #
+        oItemFoundTemp = None
+        #
+        oCategoryQuerySet = Category.objects.filter( iUser = oUser )
+        #
+        #print( '' )
+        #print( 'len( oCategoryQuerySet ):', len( oCategoryQuerySet ) )
+        #print( 'oItem.iItemNumb:', oItem.iItemNumb )
+        #print( 'oUser:', oUser )
+        #
+        #
+        #
+        for oCategory in oCategoryQuerySet:
+            #
+            foundItem = getFoundItemTester( oCategory, dFindersCategories )
+            #
+            # the following are short circuiting --
+            # if one is True, the following will be True
+            # and the string will not be searched
+            # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
+            #
+            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
+            #
+            if bExcludeThis:
+                #
+                bInHeirarchy1 = bInHeirarchy2 = False
+                #
+            else:
+                #
+                bInHeirarchy1  = ( # will be True if bInTitle is True
+                        bInTitle or
+                        foundItem( oItem.iCatHeirarchy.cCatHierarchy )[0] )
+                #
+                bInHeirarchy2  = ( # will be True if either are True
+                        bInTitle or
+                        bInHeirarchy1 or
+                        ( oItem.i2ndCatHeirarchy and
+                          foundItem(
+                              oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
+                #
+            #
+            if bInHeirarchy2: # bInTitle or bInHeirarchy1 or bInHeirarchy2
+                #
+                sWhich = _whichGetsCredit(
+                            bInTitle, bInHeirarchy1, bInHeirarchy2 )
+                #
+                oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
+                #
+                oItemFoundTemp = ItemFoundTemp(
+                        iItemNumb       = oItemFound,
+                        iHitStars       = oCategory.iStars,
+                        iSearch         = oUserItem.iSearch,
+                        iCategory       = oCategory,
+                        cWhereCategory  = sWhich )
+                #
+                oItemFoundTemp.save()
+                #
+            #
+        #
+        oBrandQuerySet = Brand.objects.filter(
+                iUser = oUser ).order_by( '-iStars' )
+        #
+        bFoundBrand = False
+        #
+        for oBrand in oBrandQuerySet:
+            #
+            foundItem = getFoundItemTester( oBrand, dFindersBrands )
+            #
+            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
+            #
+            if bInTitle and not bExcludeThis:
+                #
+                bFoundBrand = True
+                #
+                if oItemFoundTemp is None:
+                    #
+                    oItemFoundTemp = ItemFoundTemp(
+                            iItemNumb       = oItem,
+                            iBrand          = oBrand,
+                            iHitStars       = oBrand.iStars,
+                            iSearch         = oUserItem.iSearch )
+                    #
+                    oItemFoundTemp.save()
+                    #
+                else:
+                    #
+                    oItemFoundTemp.iHitStars *= oBrand.iStars
+                    oItemFoundTemp.iBrand     = oBrand
+                    #
+                    oItemFoundTemp.save()
+                #
+                break # maybe keep looking?
+                #
+            #
+        #
+        if oItemFoundTemp is None: continue
+        #
+        if bFoundBrand:
+            #
+            oModelQuerySet = Model.objects.filter(
+                    iUser  = oUser,
+                    iBrand = oBrand ).order_by( '-iStars' )
+            #
+            #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
+                ##
+                #print( '\n', oItem.cTitle, '\n', 'found brand:', oBrand.cTitle )
+                #
+            #
+        else:
+            #
+            oModelQuerySet = Model.objects.filter(
+                    iUser = oUser ).order_by( '-iStars' )
+            #
+        #
+        for oModel in oModelQuerySet:
+            #
+            #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
+                    #print( 'model:', oModel.cTitle )
+            #
+            foundItem = getFoundItemTester( oModel, dFindersModels,
+                            bAddDash = True,
+                            bSubModelsOK = oModel.bSubModelsOK )
+            #
+            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
+            #
+            if bInTitle and not bExcludeThis:
+                #
+                oItemFoundTemp.iHitStars *= oModel.iStars
+                oItemFoundTemp.iModel     = oModel
+                #
+                oItemFoundTemp.save()
+                #
+                break
+                #
+            #
+        #
+    #
+    # now update UserItemFound with ItemFoundTemp
+    #
+    tNow = timezone.now()
+    #
+    bPrintUserItems = False
+    #
+    for oItem in oItemQuerySet:
+        #
+        bGotUserItem = UserItemFound.objects.filter(
+                            iItemNumb = oItem.pk, iUser = oUser.id ).exists()
+        #
+        if bGotUserItem:
+            #
+            oUserItem = UserItemFound.objects.get(
+                            iItemNumb = oItem.pk, iUser = oUser.id )
+            #
+            oUserItem.tlook4hits = tNow
+            #
+            if ItemFoundTemp.objects.filter( iItemNumb = oItem.pk ).exists():
+                #
+                oItemFoundTemp = ( ItemFoundTemp.objects
+                                    .filter( iItemNumb = oItem.pk )
+                                    .order_by( '-iHitStars' ).first() )
+                #
+                oUserItem.iBrand        = oItemFoundTemp.iBrand
+                oUserItem.iCategory     = oItemFoundTemp.iCategory
+                oUserItem.iModel        = oItemFoundTemp.iModel
+                #
+                oUserItem.iHitStars     = oItemFoundTemp.iHitStars
+                oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
+                # oUserItem.iSearch     = oItemFoundTemp.iSearch
+                #
+            #
+            oUserItem.save()
+            #
+        else:
+            #
+            logger.error( 'UserItem not found for:', oItem.pk, oItem )
+            #
+            bPrintUserItems = True
+        #
+    #
+    if bPrintUserItems:
+        #
+        for oUserItem in UserItemFound.objects.all():
+            #
+            logger.error( oUserItem.pk, oUserItem )
+            #
+    #
+    if bCleanUpAfterYourself:
+        #
+        ItemFoundTemp.objects.all().delete()
+        #
+    #
+
+
+ 
