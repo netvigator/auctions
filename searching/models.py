@@ -229,7 +229,8 @@ class SearchLog(models.Model):
 
     def __str__(self):
         return '%s - %s' % (
-            getIsoDateTimeFromDateTime( tSearchTime, iSearch.cTitle ) )
+            getIsoDateTimeFromDateTime( self.tSearchTime ),
+            self.iSearch.cTitle )
 
     class Meta:
         verbose_name_plural = 'searchlogs'
