@@ -14,7 +14,7 @@ from ..tests        import sExampleCategoryVersion, sExampleCategoryList
 from ..utils        import ( CATEGORY_VERSION_FILE,
                             _getCategoryVersionFromFile,
                             UnexpectedResponse, CATEGORY_LISTING_FILE,
-                            putCategoriesInDatabase, countCategories,
+                            _putCategoriesInDatabase, countCategories,
                             _getCheckCategoryVersion, dSiteID2ListVers,
                             getWhetherAnyEbayCategoryListsAreUpdated,
                             getEbayCategoryHierarchies )
@@ -96,7 +96,7 @@ class getCategoryVersionTest(TestCase):
 
 
 
-class putCategoriesInDatabaseTest(TestCase):
+class _putCategoriesInDatabaseTest(TestCase):
     '''test _getCategoryVersionFromFile()'''
 
     sFile = CATEGORY_LISTING_FILE % 'EBAY-US'
@@ -112,7 +112,7 @@ class putCategoriesInDatabaseTest(TestCase):
         WriteText2File(
                 sExampleCategoryList, self.sFile )
         #
-        putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117' )
+        _putCategoriesInDatabase( uMarket = 'EBAY-US', uWantVersion = '117' )
         #
         oGreek = EbayCategory.objects.get( iCategoryID = 37906 )
         #
@@ -129,7 +129,7 @@ class putCategoriesInDatabaseTest(TestCase):
         WriteText2File( sLongName, self.sFile )
         #
         try:
-            putCategoriesInDatabase( sMarket = 'EBAY-US', sWantVersion = '117' )
+            _putCategoriesInDatabase( uMarket = 'EBAY-US', uWantVersion = '117' )
         except DataError as e:
             sMsg = str(e)
             self.assertEqual( sMsg[ - len( sLong ) : ], sLong )
@@ -148,7 +148,7 @@ class putCategoriesInDatabaseTest(TestCase):
         WriteText2File( sWrongVersion, sFileName )
         #
         try:
-            putCategoriesInDatabase( sFile = sFileName, sWantVersion = '117')
+            _putCategoriesInDatabase( sFile = sFileName, uWantVersion = '117')
         except UnexpectedResponse as e:
             self.assertEqual(
                     str(e),
