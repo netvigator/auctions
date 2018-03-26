@@ -48,13 +48,16 @@ def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         # ### form errors are common,
         # ### not all real categories are in the test database
         #
-        logger.error( 'log this error, form did not save' )
+        #
+        sMsg = ('form did not save' )
+        #
+        logger.error( sMsg )
         #print( '' )
         #print( 'log this error, form did not save' )
         #
         if form.errors:
             for k, v in form.errors.items():
-                logger.error( k, ' -- ', str(v) )
+                logger.error( '%s -- %s' % ( k, str(v) ) )
                 #print( k, ' -- ', str(v) )
         else:
             logger.info( 'no form errors at bottom!' )
@@ -788,6 +791,9 @@ def trySearchCatchExceptions(
     #
     '''high level script, does a search, catches exceptions, logs errors'''
     #
+    # ### sandbox returns zero items ### 
+    # ### use bUseSandbox = False    ### 
+    #
     iItems = iStoreItems = iStoreUsers = 0
     #
     tSearchStart = timezone.now()
@@ -798,6 +804,9 @@ def trySearchCatchExceptions(
                     sFileName   = sFileName,
                     tSearchTime = tSearchStart,
                     bUseSandbox = bUseSandbox )
+        #
+        # ### sandbox returns zero items ### 
+        # ### use bUseSandbox = False    ### 
         #
         iItems, iStoreItems, iStoreUsers = t
         #
