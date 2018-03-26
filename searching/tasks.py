@@ -1,14 +1,27 @@
+from celery             import Celery
+from celery.schedules   import crontab
 
-from .utils         import trySearchCatchExceptions
-from .utils_stars   import findSearchHits
+from .utils             import trySearchCatchExceptions
+from .utils_stars       import findSearchHits
 
-from .models        import Search
+from .models            import Search
 
-from String.Output  import ReadableNo
+from String.Output      import ReadableNo
 
 # trySearchCatchExceptions( iSearchID = None, sFileName = None )
 # findSearchHits( oUser )
 
+app = Celery()
+
+# task basics
+#
+# If you’re using Django ... 
+# then you probably want to use the shared_task() decorator:
+#   @shared_task
+#   def add(x, y):
+#       return x + y
+# schedule tasks
+# http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
 
 def doAllSearching():
     #
