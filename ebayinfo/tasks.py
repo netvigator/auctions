@@ -19,7 +19,8 @@ def getAllMissingCategoryLists():
         #
         if bGotThis:
             #
-            print( 'got %s categories already moving on ...' )
+            print( 'got %s categories already moving on ...' %
+                   oMarket.cMarket )
             #
         else:
             #
