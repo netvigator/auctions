@@ -1,9 +1,11 @@
 from core.utils             import getWhatsLeft
+from django.utils           import timezone
 
 from String.Find            import getRegExpress, getRegExObj
 
 from core.user_one          import oUserOne
 
+from .models                import ItemFound, UserItemFound, ItemFoundTemp
 
 
 def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
@@ -191,7 +193,6 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
     from categories.models  import Category
     from models.models      import Model
     #
-    from .models            import ItemFoundTemp
     #
     ItemFoundTemp.objects.all().delete()
     #

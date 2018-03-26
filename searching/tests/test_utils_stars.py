@@ -1,5 +1,26 @@
-from .test_utils    import GetBrandsCategoriesModelsSetUp
-from ..utils_stars  import _getModelRegExFinders4Test
+from os.path            import join
+
+from core.utils_test    import setUpBrandsCategoriesModels
+from django.utils       import timezone
+
+from searching          import RESULTS_FILE_NAME_PATTERN
+
+from ..models           import ( ItemFound, UserItemFound,
+                                 ItemFoundTemp )
+from ..tests            import sResponseSearchTooBroad
+from ..utils            import _doSearchStoreResults
+
+from .test_utils        import GetBrandsCategoriesModelsSetUp
+from ..utils_stars      import ( _getModelRegExFinders4Test,
+                                 _getCategoryRegExFinders4Test,
+                                 _getBrandRegExFinders4Test,
+                                 getFoundItemTester,
+                                 findSearchHits )
+
+from models.models      import Model
+
+from File.Del           import DeleteIfExists
+from File.Write         import QuietDump
 
 
 class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):

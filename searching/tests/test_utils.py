@@ -23,12 +23,13 @@ from ..models           import ( Search, ItemFound, UserItemFound,
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
-from ..utils_stars      import getFoundItemTester, findSearchHits
+from ..utils_stars      import ( getFoundItemTester,
+                                 _getBrandRegExFinders4Test,
+                                 _getCategoryRegExFinders4Test,
+                                 findSearchHits )
 from ..utils            import ( trySearchCatchExceptions,
                                  _doSearchStoreResults, ItemAlreadyInTable,
                                  getSearchResultGenerator,
-                                 _getCategoryRegExFinders4Test,
-                                 _getBrandRegExFinders4Test,
                                  getPagination, getSuccessOrNot,
                                  _getFindingResponseGenerator,
                                  getJsonFindingResponse,
