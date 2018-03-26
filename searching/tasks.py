@@ -1,5 +1,6 @@
 
-from .utils     import trySearchCatchExceptions, findSearchHits
+from .utils         import trySearchCatchExceptions
+from .utils_stars   import findSearchHits
 
 
 
