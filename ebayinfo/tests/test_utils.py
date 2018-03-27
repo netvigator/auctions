@@ -185,11 +185,10 @@ class TestHeirarchiesAreTheyCompleteTest( getEbayCategoriesSetUp ):
                     categoryId      = oLeaf.iCategoryID,
                     categoryName    = oLeaf.name ),
                 secondaryCategory   = {},
-                globalId            = oLeaf.iMarket.cMarket )
+                globalId            = oLeaf.iEbaySiteID.cMarket )
             #
             t = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
         #
-        # will print helpful message to terminal if heirarchy is incomplete
 
 
 
