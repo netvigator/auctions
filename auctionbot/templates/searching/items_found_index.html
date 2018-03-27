@@ -16,19 +16,19 @@
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>ending date/time</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>created on</th>
+        <th ALIGN=LEFT>hit stars</th>
         </tr>
         {% for item in items_found_list %}
             <tr>
-            <td><a href="{{ item.get_absolute_url }}/">{{ item.iItemNumb }}</a></td>
+            <td><a href="{{ item.get_absolute_url }}/">{{ item.iItemNumb.iItemNumb }}</a></td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ item.cTitle|truncatechars:65 }}</td>
+            <td>{{ item.iItemNumb.cTitle|truncatechars:65 }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ item.cMarket }}</td>
+            <td>{{ item.iItemNumb.cMarket }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ item.tTimeEnd }}</td>
+            <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ item.tCreate }}</td>
+            <td>{{ item.iHitStars }}</td>
             </tr>
         {% endfor %}
         </table>
