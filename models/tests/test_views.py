@@ -26,14 +26,14 @@ class ModelViewsTests(BaseUserTestCase):
         #
         self.oCategory = oCategory
         #
+        self.client.login(username='username1', password='mypassword')
+        #
 
     def test_no_models_yet(self):
         #
         """
         If no models exist, an appropriate message is displayed.
         """
-        self.client.login(username='username1', password='mypassword')
-        #
         response = self.client.get(reverse('models:index'))
         #response = self.client.get('/models/')
         
@@ -52,15 +52,12 @@ class ModelViewsTests(BaseUserTestCase):
         If models exist, an appropriate message is displayed.
         """
         #
-        self.client.login(username='username1', password='mypassword')
-        #
-        
         oModel  = Model(
                 cTitle      = "Crest",
                 iUser       = self.user1,
                 iCategory   = self.oCategory )
         oModel.save()
-        
+        #
         oModel  = Model(
                 cTitle = "Colgate",
                 iUser       = self.user1,
