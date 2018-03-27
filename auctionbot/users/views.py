@@ -7,7 +7,7 @@ from .models import User
 
 tUserFields = (
     'name',
-    'iMarket',
+    'iEbaySiteID',
     'cBio',
     'cLocation',
     'email',
