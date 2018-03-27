@@ -34,7 +34,7 @@ sMarketsTable = \
  
 sCategoryDump = \
 '''
-  id  | iCategoryID |           name                | iLevel | iParentID | bLeafCategory | iTreeVersion | iMarket_id 
+  id  | iCategoryID |           name                | iLevel | iParentID | bLeafCategory | iTreeVersion | iEbaySiteID_id 
 ------+-------------+--------------------------+--------+-----------+---------------+--------------+------------+----
   771 |       12576 | Business & Industrial         |      1 |     12576 | f             |          117 |          0 
 22882 |           1 | Collectables                  |      1 |         1 | f             |          108 |          3 
