@@ -90,7 +90,7 @@ class getSingleEbayCategoryMixin( object ):
             iLevel      = 1,
             iParentID   = 1,
             iTreeVersion= 1,
-            iMarket     = self.market,
+            iEbaySiteID = self.market,
             bLeafCategory = False )
         self.ebc.save()
         #
@@ -263,7 +263,7 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
             iCategoryID     = 0,
-            iMarket         = self.market,
+            iEbaySiteID     = self.market,
             iTreeVersion    = iWantVersion,
             iLevel          = 0,
             bLeafCategory   = False,
@@ -279,7 +279,7 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
             iCategoryID     = 0,
-            iMarket_id      = 3,
+            iEbaySiteID_id  = 3,
             iTreeVersion    = iWantVersion,
             iLevel          = 0,
             bLeafCategory   = False,
@@ -296,11 +296,11 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         for lParts in oTableIter:
             #
             iCategoryID             = int( lParts[1] )
-            iMarket                 = int( lParts[7] )
+            iEbaySiteID             = int( lParts[7] )
             #
             if EbayCategory.objects.filter(
-                        iCategoryID = iCategoryID,
-                        iMarket_id = iMarket ).exists():
+                        iCategoryID     = iCategoryID,
+                        iEbaySiteID_id  = iEbaySiteID ).exists():
                 #
                 print('for market %s, iCategoryID already exists: %s -- '
                     'clean up the list!' % (lParts[7],lParts[1] ) )
@@ -315,7 +315,7 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
                     
                     bLeafCategory   = getBool(  lParts[5] ),
                     iTreeVersion    = int(      lParts[6] ),
-                    iMarket_id      =           iMarket, )
+                    iEbaySiteID_id  =           iEbaySiteID, )
             #
             if lParts[3] == '1': # top level iParentID
                 oCategory.iParentID = oRootCategory.iCategoryID
@@ -325,11 +325,11 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
                 #
                 if EbayCategory.objects.filter(
                                 iCategoryID = int( lParts[4] ),
-                                iMarket     = oCategory.iMarket ).exists():
+                                iEbaySiteID = oCategory.iEbaySiteID ).exists():
                     #
                     oCategory.parent = EbayCategory.objects.get(
                                     iCategoryID = int( lParts[4] ),
-                                    iMarket     = oCategory.iMarket )
+                                    iEbaySiteID = oCategory.iEbaySiteID )
                     #
                 else:
                     #
