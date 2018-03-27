@@ -89,11 +89,11 @@ class ItemFound(models.Model):
     cCountry        = CountryField( "country" )
     cMarket         = models.CharField( 'market Global ID',
                         max_length = 14 )
-    iMarket         = models.ForeignKey( Market,
-                        verbose_name = 'ebay site ID', db_index=True,
+    iEbaySiteID     = models.ForeignKey( Market,
+                        verbose_name = 'ebay site ID (PK)', db_index=True,
                         on_delete=models.CASCADE )
     cGalleryURL     = models.CharField( 'gallery pic URL',
-                        max_length = 88 )
+                        max_length = 88, null = True, blank = True )
     cEbayItemURL    = models.CharField( 'ebay item URL',
                         max_length =188 )
     tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
