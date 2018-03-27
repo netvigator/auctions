@@ -1,3 +1,6 @@
+from django.utils       import timezone
+from django.db.models   import Q
+
 from celery             import Celery
 from celery.schedules   import crontab
 
@@ -27,7 +30,12 @@ def doAllSearching():
     #
     # really want to select for active users only (not inactive)
     #
-    oSearches = Search.objects.all()
+    tNow = timezone.now()
+    tAgo = tNow - timezone.timedelta( hours = 12 )
+    #
+    oSearches = Search.objects.filter(
+            Q( tSearchStarted__isnull = True ) or
+            Q( tSearchStarted__gte    = tAgo ) ).order_by('cPriority')
     #
     for oSearch in oSearches:
         #
@@ -46,5 +54,7 @@ def doAllSearching():
             'got %s items, of which %s were new, and %s were new for %s.' %
             ( sItems, sStoreItems, sStoreUsers, oSearch.iUser.name ) )
         print( '' )
+        #
+
 
 
