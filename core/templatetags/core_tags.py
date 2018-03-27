@@ -1,7 +1,18 @@
 from django import template
 from django.utils.safestring import mark_safe
 
+from Time.Output import getIsoDateTimeFromDateTime
+
 register = template.Library()
+
+
+@register.filter()
+def getIsoDateTime( tDT ):
+    #
+    '''return non ambigious ISO date time format'''
+    #
+    return getIsoDateTimeFromDateTime( tDT )
+
 
 @register.filter()
 def getNbsp(value):
