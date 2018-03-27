@@ -7,7 +7,7 @@ from .models import EbayCategory, Condition, Market
 # Register your models here.
 
 class EbayCategoryAdmin(admin.ModelAdmin):
-    list_display = ( "iMarket", "iCategoryID", "name", "iLevel",
+    list_display = ( "iEbaySiteID", "iCategoryID", "name", "iLevel",
                      "iParentID", "bLeafCategory", "iTreeVersion" )
 
 class ConditionAdmin(admin.ModelAdmin):
