@@ -514,7 +514,7 @@ def _getCategoryHierarchyID(
     #
     iCatHeirarchy = None
     #
-    while True: # 2 loops possible if ebay-motor
+    while True: # 2 loops possible if ebay-us or ebay-motor
         #
         if tCategoryID in dEbayCatHierarchies:
             #
@@ -562,10 +562,11 @@ def _getCategoryHierarchyID(
             sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
             # return only does not work in shell, each line overwrites the prior one
             #
+            oMarket = Market.objects.get( iEbaySiteID = iEbaySiteID )
+            #
             oCategoryHierarchy = CategoryHierarchy(
                     iCategoryID     = iCategoryID,
-                    iEbaySiteID     = Market.objects.get(
-                                        iEbaySiteID = iEbaySiteID ),
+                    iEbaySiteID     = oMarket,
                     cCatHierarchy   = sCatHeirarchy )
             #
             oCategoryHierarchy.save()
@@ -577,9 +578,19 @@ def _getCategoryHierarchyID(
         elif (  iEbaySiteID == 100  and # ebay-motor
                 EbayCategory.objects.filter(
                                 iCategoryID = iCategoryID,
-                                iEbaySiteID     = 1 ).exists() ):
+                                iEbaySiteID = 1 ).exists() ):
             #
             iEbaySiteID = 1 # ebay-us
+            tCategoryID = iCategoryID, iEbaySiteID
+            #
+            continue
+            #
+        elif (  iEbaySiteID == 0  and # ebay-us
+                EbayCategory.objects.filter(
+                                iCategoryID = iCategoryID,
+                                iEbaySiteID = 100 ).exists() ):
+            #
+            iEbaySiteID = 100 # ebay-us
             tCategoryID = iCategoryID, iEbaySiteID
             #
             continue
@@ -634,10 +645,13 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
         #
         i2ndCategoryID = int( s2ndCategoryID )
         #
-        sCategoryName =    dItem.get( 'secondaryCategory' ).get( 'categoryName' )
+        sCategoryName = dItem.get( 'secondaryCategory' ).get( 'categoryName' )
         #
         i2ndCatHeirarchy = _getCategoryHierarchyID(
-                    i2ndCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
+                    i2ndCategoryID,
+                    sCategoryName,
+                    iEbaySiteID,
+                    dEbayCatHierarchies )
         #
     else:
         #
@@ -647,7 +661,96 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     return iCatHeirarchy, i2ndCatHeirarchy
 
 
-    
+
+'''
+select "iCategoryID","cCategory","iCatHeirarchy_id","i2ndCategoryID","c2ndCategory","i2ndCatHeirarchy_id","iEbaySiteID_id" from itemsfound limit 2 ;
+ iCategoryID |      cCategory      | iCatHeirarchy_id | i2ndCategoryID | c2ndCategory | i2ndCatHeirarchy_id | iEbaySiteID_id 
+-------------+---------------------+------------------+----------------+--------------+---------------------+----------------
+       38034 | 1930-49             |                  |              0 |              |                     |              0
+       73374 | Vintage Televisions |                  |              0 |              |                     |              0
+
+def _fillInCategoryHierarchiesObliteratedByMistake():
+    #
+    from searching.models import ItemFound
+    #
+    dEbayCatHierarchies = {}
+    #
+    oProgressMeter = TextMeter()
+    #
+    print('')
+    print('counting items found ...' )
+    #
+    oItemsFound = ItemFound.objects.all()
+    #
+    iCount = len( oItemsFound )
+    #
+    sLineB4 = 'stepping thru items found ...'
+    sOnLeft = "%s %s" % ( ReadableNo( iCount ), 'items found' )
+    #
+    oProgressMeter.start( iCount, sOnLeft, sLineB4 )
+    #
+    iSeq = 0
+    #
+    for oItem in oItemsFound:
+        #
+        iSeq  += 1
+        #
+        oProgressMeter.update( iSeq )
+        #
+        #
+        iCatHeirarchy = _getCategoryHierarchyID(
+                oItem.iCategoryID,
+                oItem.cCategory,
+                oItem.iEbaySiteID_id,
+                dEbayCatHierarchies )
+        #
+        bSave = False
+        #
+        if isinstance( iCatHeirarchy, int ):
+            #
+            oItem.iCatHeirarchy_id = iCatHeirarchy
+            #
+            bSave = True
+            #
+        else:
+            #
+            print('cannot get CatHeirarchy for iItemNumb: %s ' %
+                   oItem.iItemNumb )    
+            #
+        #
+        if oItem.i2ndCategoryID:
+            #
+            i2ndCatHeirarchy = _getCategoryHierarchyID(
+                        oItem.i2ndCategoryID,
+                        oItem.c2ndCategory,
+                        oItem.iEbaySiteID_id,
+                        dEbayCatHierarchies )
+            #
+            if isinstance( i2ndCatHeirarchy, int ):
+                #
+                oItem.i2ndCatHeirarchy_id = i2ndCatHeirarchy
+                #
+                bSave = True
+                #
+            else:
+                #
+                print('cannot get CatHeirarchy for iItemNumb: %s ' %
+                    oItem.iItemNumb )
+                #
+            #
+        #
+        if bSave:
+            #
+            oItem.save()
+            #
+        #
+                
+    #
+    oProgressMeter.end( iSeq )
+    #
+'''
+
+
 # ### if any category versions are updated, call            ###
 # ### updateMemoryTableUpdated( 'markets', 'iCategoryVer' ) ###
 # ###                     in core.utils                     ###
