@@ -1,4 +1,4 @@
-from logging                import getLogger
+import logging
 
 from core.utils_ebay        import getValueOffItemDict
 
@@ -8,9 +8,20 @@ from django.utils           import timezone
 
 from ebayinfo.utils         import dMarket2SiteID, getEbayCategoryHierarchies
 
-from .models                import ItemFound, UserItemFound, SearchLog
+from .models                import ItemFound, UserItemFound, SearchLog, Search
 
-logger = getLogger(__name__)
+
+logger = logging.getLogger(__name__)
+
+logging_level = logging.INFO
+
+'''
+logging.basicConfig(level=logging.loglevel)
+this will print logging messages to the terminal
+'''
+#logging.basicConfig(
+    #format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
+    #level=logging.INFO)
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
@@ -62,6 +73,12 @@ def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         else:
             logger.info( 'no form errors at bottom!' )
         #
+        tProblems = ( 'iCategoryID', 'cCategory', 'iCatHeirarchy',
+                      'i2ndCategoryID', 'c2ndCategory', 'i2ndCatHeirarchy' )
+        #
+        print( '' )
+        for sField in tProblems:
+            print( 'dItem["%s"]:' % sField, dItem.get( sField ) )
     #
     return iSavedRowID
 
@@ -495,7 +512,7 @@ def _getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     oUser       = User.objects.get( id = oSearch.iUser.id )
     #
-    oMarket = Market.objects.get( iEbaySiteID = oUser.iMarket_id )
+    oMarket = Market.objects.get( iEbaySiteID = oUser.iEbaySiteID_id )
     #
     sMarket             = oMarket.cMarket
     #
@@ -575,7 +592,7 @@ def _getSearchResults( iSearchID = None, bUseSandbox = False ):
         #
         QuietDump( sResponse, sFileName )
         #
-        iWantPages = dPagination["iPages"]
+        iWantPages = min( dPagination["iPages"], 100 ) # ebay will do 100 max
         #
         iThisPage += 1
         #
@@ -587,7 +604,7 @@ def _getSearchResults( iSearchID = None, bUseSandbox = False ):
     #
     sFileName = join( '/tmp', sFileName )
     #
-    return sFileName
+    return sFileName, oSearch.cTitle
 
 
 
@@ -660,7 +677,7 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
                         getValueOffItemDict,
                         iCatHeirarchy   = tCatHeirarchies[0],
                         i2ndCatHeirarchy= tCatHeirarchies[1],
-                        iMarket         = iSiteID )
+                        iEbaySiteID     = iSiteID )
         #
     #
     return iSavedRowID
@@ -712,9 +729,13 @@ def _doSearchStoreResults( iSearchID     = None,
     #
     User = get_user_model()
     #
+    sSearchName = None
+    #
     if sFileName is None:
         #
-        sFileName = _getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
+        t = _getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
+        #
+        sFileName, sSearchName = t
         #
     #
     # 'Search_%s_%s_ID_%s_p_%s_.json' % ( sMarket, sUserName, oSearch.id, iPageNumb ) )
@@ -724,6 +745,11 @@ def _doSearchStoreResults( iSearchID     = None,
     sUserName   =      lFileNameParts[2]
     iSearch     = int( lFileNameParts[4] )
     iLastPage   = int( lFileNameParts[6] )
+    #
+    if sSearchName is None:
+        #
+        sSearchName = Search.objects.get( pk = iSearch ).cTitle
+        #
     #
     iStartPage  = int( bool( iLastPage > 0 ) ) # 0 if iLastPage == 0, else 1
     #
@@ -779,6 +805,10 @@ def _doSearchStoreResults( iSearchID     = None,
                 #
             #
         #
+        logger.info(
+            'finished stroing records for "%s" search (ID %s) ...' %
+            ( sSearchName, iSearchID ) )
+
     #
     return iItems, iStoreItems, iStoreUsers
 
@@ -797,6 +827,13 @@ def trySearchCatchExceptions(
     iItems = iStoreItems = iStoreUsers = 0
     #
     tSearchStart = timezone.now()
+    #
+    if iSearchID is not None:
+        #
+        oSearch = Search.objects.get( pk = iSearchID )
+        oSearch.tSearchStarted = tSearchStart
+        oSearch.save()
+        #
     #
     try:
         t = _doSearchStoreResults(
@@ -821,6 +858,12 @@ def trySearchCatchExceptions(
         #
         iSearchID = int( lFileNameParts[4] )
         #
+    else:
+        #
+        oSearch.tSearchComplete = tSearchStart
+        oSearch.save()
+        #
+    #
     #
     oSearchLog = SearchLog(
             iSearch_id  = iSearchID,
