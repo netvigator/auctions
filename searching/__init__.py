@@ -19,9 +19,9 @@ dItemFoundFields = d(
     cLocation       = d( t = ( 'location',) ),
     cCountry        = d( t = ( 'country',) ),
     cMarket         = d( t = ( 'globalId',) ),
-    iMarket         = d( t = ( 'iMarket',), # must use cMarket to look this up
+    iEbaySiteID     = d( t = ( 'iEbaySiteID',), # must use cMarket to look this up
                          bCalculate = True ),
-    cGalleryURL     = d( t = ( 'galleryURL',) ),
+    cGalleryURL     = d( t = ( 'galleryURL',), bOptional = True ),
     cEbayItemURL    = d( t = ( 'viewItemURL',) ),
     tTimeBeg        = d( t = ( 'listingInfo','startTime'),
                          f = getDateTimeObjGotEbayStr ),
