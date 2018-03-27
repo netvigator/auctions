@@ -92,7 +92,7 @@ class EbayCategory(MPTTModel):
     iTreeVersion    = models.PositiveSmallIntegerField( 
                         'category tree version' )
     #models.ForeignKey( Market, PositiveIntegerField
-    iMarket         = models.ForeignKey( Market,
+    iEbaySiteID     = models.ForeignKey( Market,
                         verbose_name = 'ebay market', db_index=True,
                         on_delete=models.CASCADE )
     iSupercededBy   = models.PositiveIntegerField(
@@ -123,7 +123,7 @@ class EbayCategory(MPTTModel):
     class Meta:
         verbose_name_plural = 'ebay categories'
         db_table            = 'ebay_categories'
-        unique_together     = ('iCategoryID', 'iMarket',)
+        unique_together     = ('iCategoryID', 'iEbaySiteID',)
 
     class MPTTMeta:
         order_insertion_by  = ['name']
@@ -134,8 +134,8 @@ class CategoryHierarchy(models.Model):
 
     iCategoryID     = models.PositiveIntegerField( 'ebay category number',
                         db_index=True )
-    iMarket         = models.ForeignKey( Market,
-                        verbose_name = 'ebay market', db_index=True,
+    iEbaySiteID     = models.ForeignKey( Market,
+                        verbose_name = 'ebay market site ID', db_index=True,
                         on_delete=models.CASCADE )
     cCatHierarchy   = models.TextField( 'category hierarchy',
                         null = True, blank = True)
@@ -143,8 +143,8 @@ class CategoryHierarchy(models.Model):
     class Meta:
         verbose_name_plural = 'category hierarchies'
         db_table            = 'category_hierarchies'
-        unique_together     = ('iCategoryID', 'iMarket',)
-        ordering            = ('iMarket','iCategoryID')
+        unique_together     = ('iCategoryID', 'iEbaySiteID',)
+        ordering            = ('iEbaySiteID','iCategoryID')
 
 
 
