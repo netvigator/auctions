@@ -2,7 +2,7 @@ from core.views             import ( CreateViewGotCrispy, DeleteViewGotModel,
                                      DetailViewGotModel,  ListViewGotModel,
                                      UpdateViewGotCrispy )
 
-from .forms                 import ItemFoundForm
+from .forms                 import ItemFoundForm, UserItemFoundForm
 from .mixins                import SearchViewSuccessPostFormValidMixin
 from .models                import Search, ItemFound, UserItemFound
 
@@ -66,21 +66,18 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy
 class ItemsFoundIndexView( ListViewGotModel ):  
     
     template_name       = 'searching/items_found_index.html'
-    model               = ItemFound
+    model               = UserItemFound
     context_object_name = 'items_found_list'
 
 
     def get_queryset(self):
-        return self.model.objects.filter(
-                pk__in = UserItemFound.objects
-                    .filter( iUser = self.request.user )
-                    .values_list( 'iItemNumb', flat=True ) )
+        return self.model.objects.filter( iUser = self.request.user )
 
 
 
 class ItemFoundDetailView( DetailViewGotModel ):
     
-    model           = ItemFound
+    model           = UserItemFound
     template_name   = 'searching/items_found_detail.html'
-    form_class      = ItemFoundForm
+    form_class      = UserItemFoundForm
 
