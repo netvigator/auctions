@@ -233,7 +233,7 @@ def _putCategoriesInDatabase(
     try: # look for a root category for this market & tree version
         #
         oRoot = EbayCategory.objects.get(
-            iMarket         = oMarket,
+            iEbaySiteID     = oMarket,
             iCategoryID     = 0 )
         #
         if oRoot.iTreeVersion != iWantVersion:
@@ -252,7 +252,7 @@ def _putCategoriesInDatabase(
             name            = (
                 '%s version %s Root' % ( sMarket, sWantVersion ) ),
             iCategoryID     = 0,
-            iMarket         = oMarket,
+            iEbaySiteID     = oMarket,
             iTreeVersion    = iWantVersion,
             iLevel          = 0,
             bLeafCategory   = False,
@@ -275,14 +275,14 @@ def _putCategoriesInDatabase(
         try:
             #
             oCategory = EbayCategory.objects.get(
-                iMarket         = oMarket, 
+                iEbaySiteID     = oMarket, 
                 iCategoryID     = int( dCategory['CategoryID'] ) )
             #
         except ObjectDoesNotExist:
             #
             oCategory = EbayCategory(
                 iCategoryID     = int( dCategory['CategoryID'] ),
-                iMarket         = oMarket )
+                iEbaySiteID     = oMarket )
         #
         sCategoryName = getChars4HtmlCodes( dCategory['CategoryName'] )
         #
@@ -301,7 +301,7 @@ def _putCategoriesInDatabase(
         else:
             #
             oCategory.parent = EbayCategory.objects.get(
-                iMarket     = oMarket, 
+                iEbaySiteID = oMarket, 
                 iCategoryID = dCategory['CategoryParentID'],
                 iTreeVersion= iWantVersion )
             #
@@ -511,65 +511,84 @@ def _getCategoryHierarchyID(
             iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies ):
     #
     tCategoryID = iCategoryID, iEbaySiteID
-    
-    if tCategoryID in dEbayCatHierarchies:
+    #
+    iCatHeirarchy = None
+    #
+    while True: # 2 loops possible if ebay-motor
         #
-        iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
-        #
-        bOkCatHeirarchy = CategoryHierarchy.objects.filter( pk = iCatHeirarchy ).exists()
-        #
-    elif CategoryHierarchy.objects.filter( 
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID ).exists():
-        #
-        iCatHeirarchy = CategoryHierarchy.objects.get(
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID ).pk
-        #
-        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
-        #
-    elif EbayCategory.objects.filter(
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID ).exists():
-        #
-        oEbayCategory   = EbayCategory.objects.get(
-                            iCategoryID = iCategoryID,
-                            iMarket     = iEbaySiteID )
-        #
-        lCatHeirarchy = [ oEbayCategory.name ]
-        #
-        while oEbayCategory.iLevel > 1:
+        if tCategoryID in dEbayCatHierarchies:
             #
-            oParentCat = oEbayCategory.parent
+            iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
             #
-            if oParentCat:
-                lCatHeirarchy.append( oParentCat.name )
-            else:
+            # bOkCatHeirarchy = 
+            # CategoryHierarchy.objects.filter( pk = iCatHeirarchy ).exists()
+            #
+        elif CategoryHierarchy.objects.filter( 
+                                iCategoryID = iCategoryID,
+                                iEbaySiteID = iEbaySiteID ).exists():
+            #
+            iCatHeirarchy = CategoryHierarchy.objects.get(
+                                iCategoryID = iCategoryID,
+                                iEbaySiteID = iEbaySiteID ).pk
+            #
+            dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
+            #
+        elif EbayCategory.objects.filter(
+                                iCategoryID = iCategoryID,
+                                iEbaySiteID = iEbaySiteID ).exists():
+            #
+            oEbayCategory   = EbayCategory.objects.get(
+                                iCategoryID = iCategoryID,
+                                iEbaySiteID = iEbaySiteID )
+            #
+            lCatHeirarchy = [ oEbayCategory.name ]
+            #
+            while oEbayCategory.iLevel > 1:
                 #
-                break
+                oParentCat = oEbayCategory.parent
+                #
+                if oParentCat:
+                    lCatHeirarchy.append( oParentCat.name )
+                else:
+                    #
+                    break
+                    #
+                #
+                oEbayCategory = oParentCat
                 #
             #
-            oEbayCategory = oParentCat
+            lCatHeirarchy.reverse()
+            #
+            sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
+            # return only does not work in shell, each line overwrites the prior one
+            #
+            oCategoryHierarchy = CategoryHierarchy(
+                    iCategoryID     = iCategoryID,
+                    iEbaySiteID     = Market.objects.get(
+                                        iEbaySiteID = iEbaySiteID ),
+                    cCatHierarchy   = sCatHeirarchy )
+            #
+            oCategoryHierarchy.save()
+            #
+            iCatHeirarchy = oCategoryHierarchy.pk
+            #
+            dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
+            #
+        elif (  iEbaySiteID == 100  and # ebay-motor
+                EbayCategory.objects.filter(
+                                iCategoryID = iCategoryID,
+                                iEbaySiteID     = 1 ).exists() ):
+            #
+            iEbaySiteID = 1 # ebay-us
+            tCategoryID = iCategoryID, iEbaySiteID
+            #
+            continue
             #
         #
-        lCatHeirarchy.reverse()
+        break
         #
-        sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
-        # return only does not work in shell, each line overwrites the prior one
-        #
-        oCategoryHierarchy = CategoryHierarchy(
-                iCategoryID     = iCategoryID,
-                iMarket         = Market.objects.get(
-                                    iEbaySiteID = iEbaySiteID ),
-                cCatHierarchy   = sCatHeirarchy )
-        #
-        oCategoryHierarchy.save()
-        #
-        iCatHeirarchy = oCategoryHierarchy.pk
-        #
-        dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
-        #
-    else: # testing glitch, limited set of categories
+    #
+    if iCatHeirarchy is None: # testing glitch, limited set of categories
         #
         iCatHeirarchy = sCategoryName
         #
