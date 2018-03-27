@@ -22,6 +22,8 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
     #
     f = dFields[ k ].get( 'f' ) # f is for function
     #
+    uValue = None
+    #
     try:
         #
         uValue  = dItem[ t[0] ]
