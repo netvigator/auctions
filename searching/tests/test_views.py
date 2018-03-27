@@ -208,7 +208,9 @@ class SearchUpdateViewTests(BaseUserTestCase):
         self.request.user = self.user1
         #
         self.view = setup_view_for_tests( SearchUpdateView(), self.request )
-
+        #
+        self.client.login(username='username1', password='mypassword')
+        #
 
     #def test_form_dot_save_called_with_user(self):
         #self.view.form_valid(self.form)
@@ -245,6 +247,8 @@ class SearchCreateViewTests(BaseUserTestCase):
         self.request.user = self.user1
         #
         self.view = setup_view_for_tests( SearchCreateView(), self.request )
+        #
+        self.client.login(username='username1', password='mypassword')
 
 
     def test_create_view_cancelled(self):
