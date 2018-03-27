@@ -379,7 +379,9 @@ DATE_FORMAT     = 'j N Y'
 
 
 countriesSettings.COUNTRIES_FIRST = [ 'US', 'GB' ]
-countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States' }
+countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States',
+                                         'AA': 'APO/FPO', # ebay allows this
+                                         'AN':'Netherlands Antilles' }
 
 # code can know if a test is being run
 TESTING = len(sys.argv) > 1 and 'test' in sys.argv[1] 
