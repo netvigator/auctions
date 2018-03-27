@@ -19,11 +19,11 @@ class User(AbstractUser):
     # around the globe.
     name        = models.CharField(_('Name of User'), blank=True, max_length=255)
     #models.ForeignKey( Market, models.PositiveIntegerField( 
-    iMarket     = models.ForeignKey( Market,
+    iEbaySiteID = models.ForeignKey( Market,
                     verbose_name = 'ebay market (default)',
                     default = iEbayUSA, on_delete=models.CASCADE )
 
-    '''for testing, it is a big challenge to set default iMarket from markets table,
+    '''for testing, it is a big challenge to set default iEbaySiteID from markets table,
     because when testing, markets table starts out empty'''
     
     cBio        = models.TextField( 'Bio info', max_length=500, blank=True)
