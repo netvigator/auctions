@@ -15,7 +15,7 @@ def getAllMissingCategoryLists():
     #
     for oMarket in oMarkets:
         #
-        bGotThis = EbayCategory.objects.filter( iMarket = oMarket ).exists()
+        bGotThis = EbayCategory.objects.filter( iEbaySiteID = oMarket ).exists()
         #
         if bGotThis:
             #
