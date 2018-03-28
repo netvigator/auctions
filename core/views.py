@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins     import LoginRequiredMixin
+from django.contrib.messages.views  import SuccessMessageMixin
+
 from django.views.generic           import ListView
 from django.views.generic.detail    import DetailView
 from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 
-from django.contrib.messages.views  import SuccessMessageMixin
 
 from crispy_forms.helper            import FormHelper
 from crispy_forms.layout            import Submit
@@ -60,6 +61,12 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         kwargs.update({'user': self.request.user})
         return kwargs
 
+    def get_success_url(self):
+        """
+        Returns the supplied success URL.
+        """
+        return self.object.get_absolute_url()
+
 
 
 class DeleteViewGotModel( LoginRequiredMixin,
@@ -104,6 +111,12 @@ class UpdateViewGotCrispy( LoginRequiredMixin,
         kwargs = super(UpdateViewGotCrispy, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
         return kwargs
+
+    def get_success_url(self):
+        """
+        Returns the supplied success URL.
+        """
+        return self.object.get_absolute_url()
 
 
 class DetailViewGotModel( LoginRequiredMixin,
