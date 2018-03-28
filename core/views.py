@@ -67,6 +67,12 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         """
         return self.object.get_absolute_url()
 
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            url = reverse_lazy('models:index' )
+            return HttpResponseRedirect(url)
+        else:
+            return super(CreateViewGotCrispy, self).post(request, *args, **kwargs)
 
 
 class DeleteViewGotModel( LoginRequiredMixin,
@@ -86,6 +92,14 @@ class DeleteViewGotModel( LoginRequiredMixin,
         context['model']        = self.model
         # context['model_fields'] = self.model._meta.get_fields()
         return context
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            self.object = self.get_object()
+            url = self.object.get_absolute_url()
+            return HttpResponseRedirect(url)
+        else:
+            return super(DeleteViewGotModel, self).post(request, *args, **kwargs)
 
 
 class UpdateViewGotCrispy( LoginRequiredMixin,
@@ -117,6 +131,14 @@ class UpdateViewGotCrispy( LoginRequiredMixin,
         Returns the supplied success URL.
         """
         return self.object.get_absolute_url()
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            self.object = self.get_object()
+            url = self.object.get_absolute_url()
+            return HttpResponseRedirect(url)
+        else:
+            return super(UpdateViewGotCrispy, self).post(request, *args, **kwargs)
 
 
 class DetailViewGotModel( LoginRequiredMixin,
