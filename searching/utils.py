@@ -242,6 +242,22 @@ def getPagination( sResponse ):
 
 
 
+''' not needed
+def getItemSearchURL( sResponse ):
+    #
+    lParts = sResponse.split( 'itemSearchURL":["' )
+    #
+    sItemSearchURL = ''
+    #
+    if len( lParts ) > 1:
+        #
+        sItemSearchURL = _getUpToDoubleQuote( lParts[1] )
+        #
+    #
+    return sItemSearchURL
+'''
+
+
 def _getSplitters():
     #
     tTopLevelSplitters = (
@@ -437,7 +453,10 @@ def getSearchResultGenerator( sFile ):
     #
     if not iEntries:
         #
-        raise SearchGotZeroResults( "search executed OK but returned no items" )
+        raise SearchGotZeroResults(
+                    "search executed OK but returned zero items, "
+                    "try this and look carefully: %s" %
+                 dResponse["itemSearchURL"][0] )
         #
     #
     dResultDict = dResponse[ "searchResult" ][0]
@@ -832,8 +851,11 @@ def trySearchCatchExceptions(
         #
         oSearch = Search.objects.get( pk = iSearchID )
         oSearch.tSearchStarted = tSearchStart
+        oSearch.tSearchComplete= None
         oSearch.save()
         #
+    #
+    sLastResult = 'tba'
     #
     try:
         t = _doSearchStoreResults(
@@ -847,10 +869,16 @@ def trySearchCatchExceptions(
         #
         iItems, iStoreItems, iStoreUsers = t
         #
+        if iItems:
+            sLastResult = 'Success'
+        #
     except SearchNotWorkingError as e:
-        logger.error( 'SearchNotWorkingError: %s' % e )
+        # logger.error( 'SearchNotWorkingError: %s' % e )
+        sLastResult = 'SearchNotWorkingError: %s' % e
     except SearchGotZeroResults as e:
-        logger.error( 'SearchGotZeroResults: %s' % e )
+        # logger.error( 'SearchGotZeroResults: %s' % e )
+        sLastResult = 'SearchGotZeroResults: %s' % e
+        # suggest sending an email to the owner
     #
     if iSearchID is None:
         #
@@ -861,6 +889,7 @@ def trySearchCatchExceptions(
     else:
         #
         oSearch.tSearchComplete = tSearchStart
+        oSearch.cLastResult     = sLastResult
         oSearch.save()
         #
     #
@@ -870,7 +899,8 @@ def trySearchCatchExceptions(
             tSearchTime = tSearchStart,
             iItems      = iItems,
             iStoreItems = iStoreItems,
-            iStoreUsers = iStoreUsers )
+            iStoreUsers = iStoreUsers,
+            cResult     = sLastResult )
     #
     oSearchLog.save()
     #
