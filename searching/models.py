@@ -51,8 +51,7 @@ class Search(models.Model):
                                            null = True )
     tSearchComplete = models.DateTimeField( 'last search completed',
                                            null = True )
-    cLastResult     = models.CharField( 'last search outcome',
-                            max_length = 28, null = True )
+    cLastResult     = models.TextField( 'last search outcome', null = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                             on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
@@ -226,6 +225,7 @@ class SearchLog(models.Model):
     iItems          = models.PositiveIntegerField( 'items found' )
     iStoreItems     = models.PositiveIntegerField( 'items stored' )
     iStoreUsers     = models.PositiveIntegerField( 'items stored for owner' )
+    cResult         = models.TextField( 'search outcome', null = True )
 
     def __str__(self):
         return '%s - %s' % (
