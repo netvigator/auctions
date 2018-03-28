@@ -36,12 +36,6 @@ class CategoryCreateView( CreateViewGotCrispy ):
 
     success_message = 'New Category record successfully saved!!!!'
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            url = reverse_lazy('categories:index' )
-            return HttpResponseRedirect(url)
-        else:
-            return super(CategoryCreateView, self).post(request, *args, **kwargs)
 
 
 class CategoryUpdateView( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
@@ -59,13 +53,6 @@ class CategoryUpdateView( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
         'bWantPair',
         'cExcludeIf' )
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = self.object.get_absolute_url()
-            return HttpResponseRedirect(url)
-        else:
-            return super(CategoryUpdateView, self).post(request, *args, **kwargs)
 
 
 
@@ -76,10 +63,3 @@ class CategoryDeleteView( DeleteViewGotModel ):
     success_url     = reverse_lazy('categories:index')
     success_message = 'Category record successfully deleted!!!!'
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = self.object.get_absolute_url()
-            return HttpResponseRedirect(url)
-        else:
-            return super(CategoryDeleteView, self).post(request, *args, **kwargs)
