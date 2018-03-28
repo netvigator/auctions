@@ -25,10 +25,10 @@ class BrandCreateView( CreateViewGotCrispy ):
 
     model           = Brand
     template_name   = 'brands/add.html'
-    success_url     = reverse_lazy('brands:index')
     form_class      = BrandForm
 
     success_message = 'New Brand record successfully saved!!!!'
+    # success_url   = reverse_lazy('brands:detail')
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
@@ -43,19 +43,21 @@ class BrandCreateView( CreateViewGotCrispy ):
         return form
 
 class BrandDeleteView( DeleteViewGotModel ):
-    model   = Brand
-    template_name = 'confirm_delete.html'
-    success_url = reverse_lazy('brands:index')
 
+    model           = Brand
+    template_name   = 'confirm_delete.html'
     success_message = 'Brand record successfully deleted!!!!'
+    success_url     = reverse_lazy('brands:index')
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
             self.object = self.get_object()
-            url = reverse_lazy('brands:detail', kwargs={'pk': self.object.id})
+            url = self.object.get_absolute_url()
             return HttpResponseRedirect(url)
         else:
             return super(BrandDeleteView, self).post(request, *args, **kwargs)
+
+
 
 class BrandDetailView( DetailViewGotModel ):
     
@@ -88,7 +90,8 @@ class BrandUpdateView( WereAnyReleventColsChangedMixin,
     form_class      = BrandForm
 
     success_message = 'Brand record update successfully saved!!!!'
-    
+    # success_url   = reverse_lazy('brands:detail')
+
     tRegExRelevantCols = (
         'cTitle',
         'cLookFor',
@@ -98,7 +101,7 @@ class BrandUpdateView( WereAnyReleventColsChangedMixin,
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
             self.object = self.get_object()
-            url = reverse_lazy('brands:detail', kwargs={'pk': self.object.id})
+            url = self.object.get_absolute_url()
             return HttpResponseRedirect(url)
         else:
             return super(BrandUpdateView, self).post(request, *args, **kwargs)
