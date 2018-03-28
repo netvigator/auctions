@@ -28,14 +28,6 @@ class BrandCreateView( CreateViewGotCrispy ):
     form_class      = BrandForm
 
     success_message = 'New Brand record successfully saved!!!!'
-    # success_url   = reverse_lazy('brands:detail')
-
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            url = reverse_lazy('brands:index' )
-            return HttpResponseRedirect(url)
-        else:
-            return super(BrandCreateView, self).post(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
         form = super(BrandCreateView, self).get_form(form_class)
@@ -49,13 +41,6 @@ class BrandDeleteView( DeleteViewGotModel ):
     success_message = 'Brand record successfully deleted!!!!'
     success_url     = reverse_lazy('brands:index')
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = self.object.get_absolute_url()
-            return HttpResponseRedirect(url)
-        else:
-            return super(BrandDeleteView, self).post(request, *args, **kwargs)
 
 
 
@@ -98,13 +83,6 @@ class BrandUpdateView( WereAnyReleventColsChangedMixin,
         'bWantPair',
         'cExcludeIf' )
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = self.object.get_absolute_url()
-            return HttpResponseRedirect(url)
-        else:
-            return super(BrandUpdateView, self).post(request, *args, **kwargs)
 
 
 
