@@ -26,35 +26,51 @@ app = Celery()
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
 
-def doAllSearching():
+def doAllSearching( bOnlyList = False ):
     #
     # really want to select for active users only (not inactive)
     #
-    tNow = timezone.now()
-    tAgo = tNow - timezone.timedelta( hours = 12 )
+    tNow    = timezone.now()
+    t12hAgo = tNow - timezone.timedelta( hours = 48 )
+    t04hAgo = tNow - timezone.timedelta( hours =  4 )
     #
-    oSearches = Search.objects.filter(
-            Q( tSearchStarted__isnull = True ) or
-            Q( tSearchStarted__gte    = tAgo ) ).order_by('cPriority')
+    qsSearches = (
+            Search.objects.filter(
+                Q( tSearchStarted__isnull = True    ) |
+                Q( tSearchStarted__lte    = t12hAgo ) ) |
+            Search.objects.filter(
+                    tSearchComplete__isnull= True,
+                    tSearchStarted__lte    = t04hAgo ) ).order_by('cPriority')
     #
-    for oSearch in oSearches:
+    if len( qsSearches ) == 0:
         #
-        print( 'Searching for %s for %s ...' %
-                ( oSearch, oSearch.iUser.name ) )
+        print( 'no searches are due for any user !' )
         #
-        t = trySearchCatchExceptions( iSearchID = oSearch.id ) 
+    for oSearch in qsSearches:
         #
-        iItems, iStoreItems, iStoreUsers = t
-        #
-        sItems      = ReadableNo( iItems      )
-        sStoreItems = ReadableNo( iStoreItems )
-        sStoreUsers = ReadableNo( iStoreUsers )
-        #
-        print(
-            'got %s items, of which %s were new, and %s were new for %s.' %
-            ( sItems, sStoreItems, sStoreUsers, oSearch.iUser.name ) )
-        print( '' )
-        #
+        if bOnlyList:
+            #
+            print( 'would do the "%s" search for %s ...' %
+                    ( oSearch, oSearch.iUser.name ) )
+            #
+        else:
+            #
+            print( 'Doing the "%s" search for %s ...' %
+                    ( oSearch, oSearch.iUser.name ) )
+            #
+            t = trySearchCatchExceptions( iSearchID = oSearch.id ) 
+            #
+            iItems, iStoreItems, iStoreUsers = t
+            #
+            sItems      = ReadableNo( iItems      )
+            sStoreItems = ReadableNo( iStoreItems )
+            sStoreUsers = ReadableNo( iStoreUsers )
+            #
+            print(
+                'got %s items, of which %s were new, and %s were new for %s.' %
+                ( sItems, sStoreItems, sStoreUsers, oSearch.iUser.name ) )
+            print( '' )
+            #
 
 
 
