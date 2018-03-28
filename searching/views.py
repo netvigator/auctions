@@ -2,6 +2,8 @@ from core.views             import ( CreateViewGotCrispy, DeleteViewGotModel,
                                      DetailViewGotModel,  ListViewGotModel,
                                      UpdateViewGotCrispy )
 
+from django.urls            import reverse_lazy
+
 from .forms                 import ItemFoundForm, UserItemFoundForm
 from .mixins                import SearchViewSuccessPostFormValidMixin
 from .models                import Search, ItemFound, UserItemFound
@@ -40,11 +42,12 @@ class SearchDetailView( DetailViewGotModel ):
     template_name   = 'searching/detail.html'
 
 
-
 class SearchDeleteView( DeleteViewGotModel ):
 
+    model           = Search
     template_name   = 'confirm_delete.html'
     success_message = 'Search record successfully deleted!!!!'
+    success_url     = reverse_lazy('searching:index')
 
 
 
