@@ -19,6 +19,7 @@ tModelFields = (
 
 class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy ):
 
+    model           = Search
     template_name   = 'searching/add.html'
     success_message = 'New Search record successfully saved!!!!'
 
@@ -54,6 +55,7 @@ class SearchDeleteView( DeleteViewGotModel ):
 
 class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy ):
 
+    model           = Search
     template_name   = 'searching/edit.html'
     success_message = 'Search record update successfully saved!!!!'
 
@@ -71,7 +73,7 @@ class ItemsFoundIndexView( ListViewGotModel ):
     template_name       = 'searching/items_found_index.html'
     model               = UserItemFound
     context_object_name = 'items_found_list'
-
+    paginate_by         = 100
 
     def get_queryset(self):
         return self.model.objects.filter( iUser = self.request.user )
