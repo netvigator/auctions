@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins     import LoginRequiredMixin
 from django.contrib.messages.views  import SuccessMessageMixin
 
+from django.http                    import HttpResponseRedirect
+
 from django.views.generic           import ListView
 from django.views.generic.detail    import DetailView
 from django.views.generic.edit      import CreateView, UpdateView, DeleteView
@@ -26,7 +28,29 @@ class ListViewGotModel( LoginRequiredMixin, ListView ):
         context          = super(ListView, self).get_context_data(**kwargs)
         context['model'] = self.model
         # context['model_fields'] = self.model._meta.get_fields()
+
+        if not context.get('is_paginated', False):
+            return context
+
+        paginator = context.get('paginator')
+        
+        oThisPage = context.get('page_obj')
+        iPageNumb = oThisPage.number
+
+        iMaxPage = len(paginator.page_range)
+        #
+        iStart = iPageNumb - 10 if iPageNumb >= 10 else 0
+        iLast  = iPageNumb + 10 if iPageNumb <= iMaxPage else iMaxPage
+        
+        page_range = paginator.page_range[ iStart : iLast ]
+
+        context.update({ 'page_range' : page_range,
+                         'iStart'     : iStart,
+                         'iLast'      : iLast,
+                         'iMaxPage'   : iMaxPage })
+
         return context
+
 
     def get_queryset(self):
         return self.model.objects.filter( iUser = self.request.user )
@@ -67,9 +91,10 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         """
         return self.object.get_absolute_url()
 
+
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
-            url = reverse_lazy('models:index' )
+            url = reverse_lazy( '%s:index' % self.model.name ) # need to test!
             return HttpResponseRedirect(url)
         else:
             return super(CreateViewGotCrispy, self).post(request, *args, **kwargs)
