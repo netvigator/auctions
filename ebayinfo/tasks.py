@@ -31,3 +31,6 @@ def getAllMissingCategoryLists():
             #
             #
 
+
+# ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
+
