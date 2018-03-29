@@ -29,6 +29,35 @@ class ItemAlreadyInTable(    Exception ): pass
 
 
 
+def getPriorityChoices( oUser ):
+    #
+    from string import ascii_letters, digits
+    #
+    lAll = list( ascii_letters )
+    #
+    lAll.extend( list( digits ) )
+    #
+    setAll = set( lAll )
+    #
+    oSearches = Search.objects.filter( iUser = oUser )
+    #
+    for oSearch in oSearches:
+        #
+        setAll.discard( oSearch.cPriority )
+        #
+    #
+    lAll = list( setAll )
+    #
+    lAll.sort()
+    #
+    tChoices = tuple( ( ( sPriority, sPriority ) for sPriority in lAll ) )
+    #
+    return tChoices
+
+
+    
+
+
 def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
     #
     '''can store a row in either ItemFound or UserItemFound
@@ -73,8 +102,11 @@ def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         else:
             logger.info( 'no form errors at bottom!' )
         #
-        tProblems = ( 'iCategoryID', 'cCategory', 'iCatHeirarchy',
+        tProblems = ( 'iItemNumb', 'iCategoryID', 'cCategory', 'iCatHeirarchy',
                       'i2ndCategoryID', 'c2ndCategory', 'i2ndCatHeirarchy' )
+        #
+        if not dItem.get( 'iCategoryID' ):
+            tProblems = ( 'iItemNumb', )
         #
         print( '' )
         for sField in tProblems:
@@ -880,6 +912,8 @@ def trySearchCatchExceptions(
         sLastResult = 'SearchGotZeroResults: %s' % e
         # suggest sending an email to the owner
     #
+    tNow = timezone.now()
+    #
     if iSearchID is None:
         #
         lFileNameParts = sFileName.split( '_' )
@@ -888,19 +922,20 @@ def trySearchCatchExceptions(
         #
     else:
         #
-        oSearch.tSearchComplete = tSearchStart
+        oSearch.tSearchComplete = tNow
         oSearch.cLastResult     = sLastResult
         oSearch.save()
         #
     #
     #
     oSearchLog = SearchLog(
-            iSearch_id  = iSearchID,
-            tSearchTime = tSearchStart,
-            iItems      = iItems,
-            iStoreItems = iStoreItems,
-            iStoreUsers = iStoreUsers,
-            cResult     = sLastResult )
+            iSearch_id      = iSearchID,
+            tSearchStarted  = tSearchStart,
+            tSearchComplete = tNow,
+            iItems          = iItems,
+            iStoreItems     = iStoreItems,
+            iStoreUsers     = iStoreUsers,
+            cResult         = sLastResult )
     #
     oSearchLog.save()
     #
