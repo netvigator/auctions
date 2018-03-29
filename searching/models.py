@@ -46,7 +46,7 @@ class Search(models.Model):
                     '-- (key words OR ebay category required!)' )
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
-        help_text = 'high priority 1 ... 9 A ... Z a ... z low priority' )
+        help_text = 'high priority 0 ... 9 A ... Z a ... z low priority' )
     tSearchStarted  = models.DateTimeField( 'last search started',
                                            null = True )
     tSearchComplete = models.DateTimeField( 'last search completed',
@@ -221,15 +221,19 @@ class SearchLog(models.Model):
     iSearch         = models.ForeignKey( Search,
                         verbose_name = 'Search that first found this item',
                         on_delete=models.CASCADE )
-    tSearchTime     = models.DateTimeField( 'search date', db_index = True )
+    tSearchStarted  = models.DateTimeField( 'search started', db_index = True )
+    tSearchComplete = models.DateTimeField( 'last search completed',
+                        null = True )
     iItems          = models.PositiveIntegerField( 'items found' )
     iStoreItems     = models.PositiveIntegerField( 'items stored' )
     iStoreUsers     = models.PositiveIntegerField( 'items stored for owner' )
+    iItemHits       = models.PositiveIntegerField(
+                        'items with category, brand & model', null = True )
     cResult         = models.TextField( 'search outcome', null = True )
 
     def __str__(self):
         return '%s - %s' % (
-            getIsoDateTimeFromDateTime( self.tSearchTime ),
+            getIsoDateTimeFromDateTime( self.tSearchStarted ),
             self.iSearch.cTitle )
 
     class Meta:
