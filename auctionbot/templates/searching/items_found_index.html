@@ -6,7 +6,16 @@
     <h1>Items Found</h1>
 
     {% if items_found_list %}
-        <table>
+        {# the pagination section #}
+        {% if is_paginated %}
+            <hr>
+            <div class="basic">
+                {% include "../paginate.html" %}    
+            </div>            
+        {% endif %}
+        <div class="container">
+        <div class="list-group">
+        <table class="bottomBorder">
         <tr>
         <th ALIGN=LEFT>ebay item number</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
@@ -32,6 +41,15 @@
             </tr>
         {% endfor %}
         </table>
+        </div>
+        </div>
+        {# the pagination section #}
+        {% if is_paginated %}
+            <hr>
+            <div class="basic">
+                {% include "../paginate.html" %}    
+            </div>            
+        {% endif %}
     {% else %}
         <p/>
         <p>No items have been found.</p>
