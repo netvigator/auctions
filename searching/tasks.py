@@ -31,7 +31,7 @@ def doAllSearching( bOnlyList = False ):
     # really want to select for active users only (not inactive)
     #
     tNow    = timezone.now()
-    t12hAgo = tNow - timezone.timedelta( hours = 48 )
+    t12hAgo = tNow - timezone.timedelta( hours = 12 )
     t04hAgo = tNow - timezone.timedelta( hours =  4 )
     #
     qsSearches = (
