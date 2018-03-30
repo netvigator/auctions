@@ -79,10 +79,10 @@ class ItemsFoundIndexView( ListViewGotModel ):
     model               = UserItemFound
     context_object_name = 'items_found_list'
     paginate_by         = 100
-    ordering            = ['-iHitStars']
 
     def get_queryset(self):
-        return self.model.objects.filter( iUser = self.request.user )
+        return self.model.objects.filter(
+                        iUser = self.request.user ).order_by('-iHitStars')
 
 
 
