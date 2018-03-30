@@ -689,6 +689,10 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
         #
         iSavedRowID = None
         #
+    elif not dItem["iItemNumb"]:
+        #
+        iSavedRowID = None
+        #
     else:
         #
         iSavedRowID = _storeEbayInfo(
@@ -797,6 +801,9 @@ def _doSearchStoreResults( iSearchID     = None,
         #
         dEbayCatHierarchies = {}
         #
+        sPriorItemNumb = None
+        bPriorNumbNone = False
+        #
         for dItem in oItemIter:
             #
             iItems += 1
@@ -816,7 +823,20 @@ def _doSearchStoreResults( iSearchID     = None,
                 logger.error( 'ValueError: %s | %s' %
                             ( str(e), repr(dItem) ) )
             #
-            if iItemNumb is not None:
+            if iItemNumb is None:
+                #
+                print( 'iItemNumb is None' )
+                print( 'prior iItemNumb:', sPriorItemNumb )
+                #
+                bPriorNumbNone = True
+                #
+            else:
+                #
+                if bPriorNumbNone:
+                    print( 'next iItemNumb:', iItemNumb )
+                #
+                sPriorItemNumb = iItemNumb
+                bPriorNumbNone = False
                 #
                 try:
                     _storeUserItemFound(
