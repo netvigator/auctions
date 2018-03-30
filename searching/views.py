@@ -9,7 +9,6 @@ from .forms         import ( ItemFoundForm, UserItemFoundForm,
 from .mixins        import SearchViewSuccessPostFormValidMixin
 from .models        import Search, ItemFound, UserItemFound
 
-# Create your views here.
 
 tModelFields = (
     'cTitle',
@@ -33,9 +32,7 @@ class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy
 
     def get_form_kwargs(self):
         kwargs = super(SearchCreateView, self).get_form_kwargs()
-        kwargs.update( { 'user': self.request.user,
-                         'tPriorityChoices' :
-                                getPriorityChoices( self.request.user )})
+        kwargs.update( { 'user': self.request.user } )
         return kwargs
 
 
@@ -82,6 +79,7 @@ class ItemsFoundIndexView( ListViewGotModel ):
     model               = UserItemFound
     context_object_name = 'items_found_list'
     paginate_by         = 100
+    ordering            = ['-iHitStars']
 
     def get_queryset(self):
         return self.model.objects.filter( iUser = self.request.user )
