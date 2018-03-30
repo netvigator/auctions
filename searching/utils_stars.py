@@ -7,6 +7,7 @@ from core.user_one          import oUserOne
 
 from .models                import ItemFound, UserItemFound, ItemFoundTemp
 
+from Utils.Progress         import TextMeter, DummyMeter
 
 def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
     #
@@ -187,7 +188,7 @@ def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 
 
-def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
+def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True, bShowProgress = False ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -209,7 +210,33 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
     dFindersCategories  = {}
     dFindersModels      = {}
     #
+    bExcludeThis        = False
+    #
+    if bShowProgress: # progress meter for running in shell, no need to test
+        #
+        oProgressMeter = TextMeter()
+        #
+        print( 'counting items found ...' )
+        #
+        iItemsFound = len( oItemQuerySet )
+        #
+        sLineB4 = 'determining hit stars for items found ...'
+        sOnLeft = "%s %s" % ( ReadableNo( iItemsFound ), 'items found' )
+        #
+        oProgressMeter.start( iItemsFound, sOnLeft, sLineB4 )
+        #
+    else:
+        #
+        oProgressMeter = DummyMeter()
+        #
+    #
+    iSeq = 0
+    #
     for oItem in oItemQuerySet:
+        #
+        iSeq  += 1
+        #
+        oProgressMeter.update( iSeq )
         #
         oUserItem = UserItemFound.objects.get( 
                 iItemNumb   = oItem.iItemNumb,
@@ -218,13 +245,6 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
         oItemFoundTemp = None
         #
         oCategoryQuerySet = Category.objects.filter( iUser = oUser )
-        #
-        #print( '' )
-        #print( 'len( oCategoryQuerySet ):', len( oCategoryQuerySet ) )
-        #print( 'oItem.iItemNumb:', oItem.iItemNumb )
-        #print( 'oUser:', oUser )
-        #
-        #
         #
         for oCategory in oCategoryQuerySet:
             #
@@ -273,6 +293,8 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
                 #
             #
         #
+        if bExcludeThis: continue
+        #
         oBrandQuerySet = Brand.objects.filter(
                 iUser = oUser ).order_by( '-iStars' )
         #
@@ -309,18 +331,13 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
                 #
             #
         #
-        if oItemFoundTemp is None: continue
+        if oItemFoundTemp is None or bExcludeThis: continue
         #
         if bFoundBrand:
             #
             oModelQuerySet = Model.objects.filter(
                     iUser  = oUser,
                     iBrand = oBrand ).order_by( '-iStars' )
-            #
-            #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
-                ##
-                #print( '\n', oItem.cTitle, '\n', 'found brand:', oBrand.cTitle )
-                #
             #
         else:
             #
@@ -329,9 +346,6 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
             #
         #
         for oModel in oModelQuerySet:
-            #
-            #if oItem.cTitle == 'Maroon Fada L-56 Catalin Radio':
-                    #print( 'model:', oModel.cTitle )
             #
             foundItem = getFoundItemTester( oModel, dFindersModels,
                             bAddDash = True,
@@ -351,13 +365,32 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
             #
         #
     #
+    oProgressMeter.end( iSeq )
+    #
     # now update UserItemFound with ItemFoundTemp
     #
     tNow = timezone.now()
     #
     bPrintUserItems = False
     #
+    if bShowProgress: # progress meter for running in shell, no need to test
+        #
+        oProgressMeter = TextMeter()
+        #
+        print('')
+        sLineB4 = 'updating the items found table ...'
+        sOnLeft = "%s %s" % ( ReadableNo( iItemsFound ), 'items found' )
+        #
+        oProgressMeter.start( iItemsFound, sOnLeft, sLineB4 )
+        #
+    #
+    iSeq = 0
+    #
     for oItem in oItemQuerySet:
+        #
+        iSeq  += 1
+        #
+        oProgressMeter.update( iSeq )
         #
         bGotUserItem = UserItemFound.objects.filter(
                             iItemNumb = oItem.pk, iUser = oUser.id ).exists()
@@ -392,6 +425,8 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True ):
             #
             bPrintUserItems = True
         #
+    #
+    oProgressMeter.end( iSeq )
     #
     if bPrintUserItems:
         #
