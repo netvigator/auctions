@@ -1,14 +1,15 @@
 import logging
+from string             import ascii_letters, digits
 
-from core.utils_ebay        import getValueOffItemDict
+from core.utils_ebay    import getValueOffItemDict
 
-from django.conf            import settings
-from django.db              import DataError
-from django.utils           import timezone
+from django.conf        import settings
+from django.db          import DataError
+from django.utils       import timezone
 
-from ebayinfo.utils         import dMarket2SiteID, getEbayCategoryHierarchies
+from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
-from .models                import ItemFound, UserItemFound, SearchLog, Search
+from .models            import ItemFound, UserItemFound, SearchLog, Search
 
 
 logger = logging.getLogger(__name__)
@@ -26,36 +27,6 @@ this will print logging messages to the terminal
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 class ItemAlreadyInTable(    Exception ): pass
-
-
-
-def getPriorityChoices( oUser ):
-    #
-    from string import ascii_letters, digits
-    #
-    lAll = list( ascii_letters )
-    #
-    lAll.extend( list( digits ) )
-    #
-    setAll = set( lAll )
-    #
-    oSearches = Search.objects.filter( iUser = oUser )
-    #
-    for oSearch in oSearches:
-        #
-        setAll.discard( oSearch.cPriority )
-        #
-    #
-    lAll = list( setAll )
-    #
-    lAll.sort()
-    #
-    tChoices = tuple( ( ( sPriority, sPriority ) for sPriority in lAll ) )
-    #
-    return tChoices
-
-
-    
 
 
 def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
