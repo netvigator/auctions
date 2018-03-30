@@ -3,6 +3,7 @@ from django_countries.fields    import CountryField
 from django.urls                import reverse
 
 from core.models                import IntegerRangeField
+from core.utils                 import getReverseWithUpdatedQuery
 
 from models.models              import Model
 from brands.models              import Brand
@@ -10,18 +11,17 @@ from categories.models          import Category
 
 from ebayinfo.models            import CategoryHierarchy, Market
 
-# Create your models here.
-
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 
-# not working: from django.utils.safestring import mark_safe
-
-from core.utils                 import getReverseWithUpdatedQuery
+from .utils_misc                import ALL_PRIORITIES # avoid circular imports
 
 from ebayinfo.models            import EbayCategory
 
 from Time.Output                import getIsoDateTimeFromDateTime
+
+
+
 
 class Search(models.Model):
     cTitle          = models.CharField( 'short description',
@@ -46,6 +46,7 @@ class Search(models.Model):
                     '-- (key words OR ebay category required!)' )
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
+                                choices = ALL_PRIORITIES,
         help_text = 'high priority 0 ... 9 A ... Z a ... z low priority' )
     tSearchStarted  = models.DateTimeField( 'last search started',
                                            null = True )
