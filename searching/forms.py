@@ -1,9 +1,12 @@
+from django                 import forms
+
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.forms           import ModelForm
 
 from searching              import dItemFoundFields, dUserItemFoundFields
 
 from .models                import Search, ItemFound, UserItemFound
+from .utils_misc            import getPriorityChoices, ALL_PRIORITIES
 
 from ebayinfo.models        import EbayCategory
 
@@ -19,6 +22,10 @@ class SearchAddOrUpdateForm(ModelForm):
     using a form to get extra validation
     '''
     which = 'Create' # can be over written in view get_form
+    cPriority = forms.ChoiceField(
+                    choices = ALL_PRIORITIES )
+#                    label   = form.instance.get_cPriority_display(),
+
     #
 
     def __init__(self, *args, **kwargs):
@@ -33,6 +40,15 @@ class SearchAddOrUpdateForm(ModelForm):
         #
         super( SearchAddOrUpdateForm, self ).__init__(*args, **kwargs)
         # SearchAddOrUpdateForm, self
+        #
+        self.fields['cPriority'].choices = getPriorityChoices(
+                                                    Search, self.user )
+
+        if self.instance and hasattr(self.instance, 'cPriority'):
+            print( 'self.instance' )
+            self.initial['cPriority'] = self.get_initial_for_field(
+                self.fields['cPriority'], 'cPriority')
+
 
     def clean(self):
         #
