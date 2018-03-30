@@ -3,6 +3,8 @@ from django.contrib.messages.views  import SuccessMessageMixin
 
 from django.http                    import HttpResponseRedirect
 
+from django.urls                    import reverse_lazy
+
 from django.views.generic           import ListView
 from django.views.generic.detail    import DetailView
 from django.views.generic.edit      import CreateView, UpdateView, DeleteView
@@ -94,7 +96,7 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
-            url = reverse_lazy( '%s:index' % self.model.name ) # need to test!
+            url = reverse_lazy( '%s:index' % self.model._meta.db_table )
             return HttpResponseRedirect(url)
         else:
             return super(CreateViewGotCrispy, self).post(request, *args, **kwargs)
