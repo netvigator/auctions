@@ -6,6 +6,8 @@ from .forms                     import SearchAddOrUpdateForm
 from .models                    import Search
 
 
+
+
 class SearchViewSuccessPostFormValidMixin(object):
 
     model           = Search
@@ -23,24 +25,3 @@ class SearchViewSuccessPostFormValidMixin(object):
         #
         return super( SearchViewSuccessPostFormValidMixin, self ).form_valid(form)
 
-    def get_success_url(self):
-        #
-        return reverse('searching:detail',kwargs = { 'pk': self.object.id } )
-
-    def post(self, request, *args, **kwargs):
-        #
-        if "cancel" in request.POST:
-            #
-            if request.path.endswith('add/'):
-                url = reverse_lazy( 'searching:index' )
-            else:
-                self.object = self.get_object()
-                url = reverse_lazy( 'searching:detail',
-                               kwargs = { 'pk': self.request.object.id } )
-            #
-            return HttpResponseRedirect(url)
-            #
-        else:
-            #
-            return ( super( SearchViewSuccessPostFormValidMixin, self )
-                     .post( request, *args, **kwargs ) )
