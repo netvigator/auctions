@@ -13,17 +13,23 @@ def isPriorityValid( sPriority ):
         raise ValidationError( 'need 2 charaters, 1st should be alpha' )
         #
     #
-    if not sPriority[0].isalpha() :
+    if not sPriority[0].isalpha():
         #
         raise ValidationError( '1st charater should be alpha' )
         #
     #
-    if sPriority.isalnum() or sPriority.isalpha():
+    if not sPriority[0].isupper():
         #
-        pass # OK
+        raise ValidationError( 'priority charaters should be upper' )
         #
-    else:
+    #
+    if not sPriority.isalnum():
         #
         raise ValidationError( '2nd charater should be digit (alpha is OK)' )
         #
-
+    #
+    if sPriority[1].isalpha() and not sPriority[1].isupper():
+        #
+        raise ValidationError( 'if a letter, 2nd charater should be upper' )
+        #
+    #
