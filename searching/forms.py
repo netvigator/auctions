@@ -7,6 +7,7 @@ from searching              import dItemFoundFields, dUserItemFoundFields
 
 from .models                import Search, ItemFound, UserItemFound
 from .utils_misc            import getPriorityChoices, ALL_PRIORITIES
+from .validators            import isPriorityValid
 
 from ebayinfo.models        import EbayCategory
 
@@ -23,15 +24,17 @@ class SearchAddOrUpdateForm(ModelForm):
     '''
     which = 'Create' # can be over written in view get_form
     cPriority = forms.ChoiceField(
-                    choices = ALL_PRIORITIES )
-#                    label   = form.instance.get_cPriority_display(),
+                    choices     = ALL_PRIORITIES,
+                    label       = Search._meta.get_field('cPriority').verbose_name,
+                    help_text   = Search._meta.get_field('cPriority').help_text )
 
-    #
 
     def __init__(self, *args, **kwargs):
         #
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
+        #
+        if not hasattr( self, 'user' ): self.user = None
         #
         if 'user' in kwargs: self.user = kwargs.pop('user')
         #
@@ -41,11 +44,15 @@ class SearchAddOrUpdateForm(ModelForm):
         super( SearchAddOrUpdateForm, self ).__init__(*args, **kwargs)
         # SearchAddOrUpdateForm, self
         #
-        self.fields['cPriority'].choices = getPriorityChoices(
-                                                    Search, self.user )
+        self.fields[ 'cPriority' ].validators.append( isPriorityValid )
+        #
+        self.fields['cPriority'].choices = (
+                getPriorityChoices( Search,
+                                    self.user,
+                                    self.instance.cPriority ) )
 
         if self.instance and hasattr(self.instance, 'cPriority'):
-            print( 'self.instance' )
+            # print( 'self.instance' )
             self.initial['cPriority'] = self.get_initial_for_field(
                 self.fields['cPriority'], 'cPriority')
 
@@ -162,6 +169,7 @@ class SearchAddOrUpdateForm(ModelForm):
     class Meta:
         model   = Search
         fields  = tSearchFields
+
 
 
 tItemFoundFields = tuple( dItemFoundFields.keys() )
