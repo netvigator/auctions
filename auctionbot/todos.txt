@@ -18,8 +18,6 @@ put iCategoryID back as Foreign key (changed to integer for reorganization)
 searching SearchAddOrUpdateForm needs more testing between Create and Update 
 check Update remove category!
 
-searching form implement priority radio button
-
 searching should fail gracefully if violating duplicate search 
 
 read up on testfixtures
