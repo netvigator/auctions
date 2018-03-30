@@ -31,7 +31,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         #
         form_data = dict(
             cTitle          = 'Great Widget 1',
-            cPriority       = "A",
+            cPriority       = "A1",
             cKeyWords       = "Blah bleh blih",
             which           = 'Create',
             iUser           = self.user1.id )
@@ -54,7 +54,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         dData = dict(
                 cTitle          = "My clever search 3",
                 cKeyWords       = "Blah bleh blih",
-                cPriority       = "A",
+                cPriority       = "A1",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = SearchAddOrUpdateForm( data = dData )
@@ -65,17 +65,28 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         dData = dict(
                 cTitle          = "My clever search 4",
                 iDummyCategory  = 10, # see core.tests
-                cPriority       = "A",
+                cPriority       = "A1",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = SearchAddOrUpdateForm( data = dData )
         form.request = self.request
         self.assertTrue( form.is_valid() )
 
+        # cPriority not good
+        dData = dict(
+                cTitle          = "My clever search 4",
+                iDummyCategory  = 10, # see core.tests
+                cPriority       = "A",
+                which           = 'Create',
+                iUser           = self.user1 )
+        form = SearchAddOrUpdateForm( data = dData )
+        form.request = self.request
+        self.assertFalse( form.is_valid() )
+
         # no key words, no category
         dData = dict(
                 cTitle          = "My clever search 5",
-                cPriority       = "A",
+                cPriority       = "A1",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = SearchAddOrUpdateForm( data = dData ) 
@@ -86,7 +97,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         dData = dict(
                 cTitle          = "My clever search 6",
                 iDummyCategory  = 'abc',
-                cPriority       = "A",
+                cPriority       = "A2",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = SearchAddOrUpdateForm( data = dData )
@@ -100,7 +111,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         dData = dict(
                 cTitle          = "My clever search",
                 cKeyWords       = "Blah bleh blih",
-                cPriority       = "A",
+                cPriority       = "A2",
                 which           = 'Create',
                 iUser           = self.user1 )
         #
@@ -113,7 +124,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cTitle          = "Very clever search 1",
                 cKeyWords       = "Blah bleh blih", # same as above
                 which           = 'Create',
-                cPriority       = "B",
+                cPriority       = "B1",
                 iUser           = self.user1 )
         #
         form = SearchAddOrUpdateForm( data = dData )
@@ -124,7 +135,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cTitle          = "Very clever search 2",
                 cKeyWords       = "Blah blih bleh", # same but different order
                 which           = 'Create',
-                cPriority       = "B",
+                cPriority       = "B2",
                 iUser           = self.user1 )
         #
         form = SearchAddOrUpdateForm( data = dData )
