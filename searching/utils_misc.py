@@ -1,30 +1,38 @@
-from string    import ascii_letters, digits
+from string    import ascii_uppercase, digits
 
 
 # avoiding circular import problems!
 
-def getPriorityChoices( oModel = None, oUser = None ):
+def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
     #
     '''get list of priorities for Search.cPriority'''
     #
-    lAll = list( ascii_letters )
+    tAlpha = tuple( ascii_uppercase )
+    tNums  = tuple( digits )[1:]
     #
-    lAll.extend( list( digits ) )
+    iterAll = ( '%s%s' % (A, N) for N in tNums for A in tAlpha )
     #
-    setAll = set( lAll )
+    setAll = set( iterAll )
+    #
+    if sInclude:
+        def doOmitFromChoices( s ): return s != sInclude
+    else:
+        def doOmitFromChoices( s ): return True
     #
     if oUser is not None and oModel is not None:
         #
         oSearches = oModel.objects.filter( iUser = oUser )
         #
-        setAll.difference_update( ( oSearch.cPriority for oSearch in oSearches ) )
+        setAll.difference_update( ( oSearch.cPriority
+                                    for oSearch in oSearches
+                                    if doOmitFromChoices( oSearch.cPriority ) ) )
         #
     #
     lAll = list( setAll )
     #
     lAll.sort()
     #
-    return tuple( ( ( sPriority, sPriority ) for sPriority in lAll ) )
+    return tuple( ( ( s, s ) for s in lAll ) )
  
 
 ALL_PRIORITIES = getPriorityChoices()
