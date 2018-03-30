@@ -76,12 +76,12 @@ def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         tProblems = ( 'iItemNumb', 'iCategoryID', 'cCategory', 'iCatHeirarchy',
                       'i2ndCategoryID', 'c2ndCategory', 'i2ndCatHeirarchy' )
         #
-        if not dItem.get( 'iCategoryID' ):
+        if not dNewResult.get( 'iCategoryID' ):
             tProblems = ( 'iItemNumb', )
         #
         print( '' )
         for sField in tProblems:
-            print( 'dItem["%s"]:' % sField, dItem.get( sField ) )
+            print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
     #
     return iSavedRowID
 
@@ -689,7 +689,7 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
         #
         iSavedRowID = None
         #
-    elif not dItem["iItemNumb"]:
+    elif not dItem.get( "itemId" ):
         #
         iSavedRowID = None
         #
