@@ -1,12 +1,13 @@
-from core.views             import ( CreateViewGotCrispy, DeleteViewGotModel,
+from core.views     import ( CreateViewGotCrispy, DeleteViewGotModel,
                                      DetailViewGotModel,  ListViewGotModel,
                                      UpdateViewGotCrispy )
 
-from django.urls            import reverse_lazy
+from django.urls    import reverse_lazy
 
-from .forms                 import ItemFoundForm, UserItemFoundForm
-from .mixins                import SearchViewSuccessPostFormValidMixin
-from .models                import Search, ItemFound, UserItemFound
+from .forms         import ( ItemFoundForm, UserItemFoundForm,
+                             SearchAddOrUpdateForm )
+from .mixins        import SearchViewSuccessPostFormValidMixin
+from .models        import Search, ItemFound, UserItemFound
 
 # Create your views here.
 
@@ -22,6 +23,7 @@ class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy
     model           = Search
     template_name   = 'searching/add.html'
     success_message = 'New Search record successfully saved!!!!'
+    form_class      = SearchAddOrUpdateForm
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -29,6 +31,12 @@ class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy
         form.which = 'Create'
         return form
 
+    def get_form_kwargs(self):
+        kwargs = super(SearchCreateView, self).get_form_kwargs()
+        kwargs.update( { 'user': self.request.user,
+                         'tPriorityChoices' :
+                                getPriorityChoices( self.request.user )})
+        return kwargs
 
 
 class SearchIndexView( ListViewGotModel ):  
@@ -58,13 +66,13 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy
     model           = Search
     template_name   = 'searching/edit.html'
     success_message = 'Search record update successfully saved!!!!'
+    form_class      = SearchAddOrUpdateForm
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.request= self.request
         form.which  = 'Update'
         return form
-
 
 
 
