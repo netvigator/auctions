@@ -30,8 +30,10 @@ class Search(models.Model):
         'search for key words (maximum length 350 characters)',
         max_length = 350, null = True, blank = True,
         help_text = 'Bot will search for these words in the auction titles '
-                    '-- (key words OR ebay category required!) '
-                    '(Including both is OK)' )
+                    '-- TIPS: to exclude words, put a - in front '
+                    '(without any space), '
+                    'search for red or green handbags as follows: '
+                    'handbags (red, green)  350 characters MAX' )
     # max length for a single key word is 98
     #models.ForeignKey( EbayCategory, models.PositiveIntegerField(
     iEbayCategory   = models.ForeignKey( EbayCategory,
@@ -47,7 +49,7 @@ class Search(models.Model):
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
                                 choices = ALL_PRIORITIES,
-        help_text = 'high priority 0 ... 9 A ... Z a ... z low priority' )
+        help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
     tSearchStarted  = models.DateTimeField( 'last search started',
                                            null = True )
     tSearchComplete = models.DateTimeField( 'last search completed',
