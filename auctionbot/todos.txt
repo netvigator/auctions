@@ -41,3 +41,6 @@ searching/utils
 handle search executed OK but returned no items
 
 need some tests in core/tests/test_utils_ebay.py and categories/tests/test_utils.py
+
+
+set up search tips page!
