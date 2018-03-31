@@ -76,11 +76,9 @@ def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         else:
             logger.info( 'no form errors at bottom!' )
         #
-        tProblems = ( 'iItemNumb', 'iCategoryID', 'cCategory', 'iCatHeirarchy',
-                      'i2ndCategoryID', 'c2ndCategory', 'i2ndCatHeirarchy' )
-        #
-        if not dNewResult.get( 'iCategoryID' ):
-            tProblems = ( 'iItemNumb', )
+        tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
+                      'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
+                      'i2ndCatHeirarchy', 'cCountry' )
         #
         print( '' )
         for sField in tProblems:
@@ -804,9 +802,6 @@ def _doSearchStoreResults( iSearchID     = None,
         #
         oItemIter = getSearchResultGenerator( sThisFileName )
         #
-        sPriorItemNumb = None
-        bPriorNumbNone = False
-        #
         for dItem in oItemIter:
             #
             iItems += 1
@@ -826,20 +821,7 @@ def _doSearchStoreResults( iSearchID     = None,
                 logger.error( 'ValueError: %s | %s' %
                             ( str(e), repr(dItem) ) )
             #
-            if iItemNumb is None:
-                #
-                print( 'iItemNumb is None' )
-                print( 'prior iItemNumb:', sPriorItemNumb )
-                #
-                bPriorNumbNone = True
-                #
-            else:
-                #
-                if bPriorNumbNone:
-                    print( 'next iItemNumb:', iItemNumb )
-                #
-                sPriorItemNumb = iItemNumb
-                bPriorNumbNone = False
+            if iItemNumb is not None:
                 #
                 try:
                     _storeUserItemFound(
@@ -1005,7 +987,11 @@ def trySearchCatchExceptStoreInFile( iSearchID = None ):
     return sLastFile
 
 
-def storeSearchResultsInDB( iLogID, sMarket, sUserName, iSearchID ):
+def storeSearchResultsInDB( iLogID,
+                            sMarket,
+                            sUserName,
+                            iSearchID,
+                            sSearchName ):
     #
     '''high level script, accesses results in /tmp file(s)
     and stores indatabase'''
@@ -1014,7 +1000,7 @@ def storeSearchResultsInDB( iLogID, sMarket, sUserName, iSearchID ):
     #
     from searching              import RESULTS_FILE_NAME_PATTERN
     #
-    tBegStore = timezone.now()
+    tSearchTime = tBegStore = timezone.now()
     #
     sFilePattern = ( RESULTS_FILE_NAME_PATTERN % 
                      ( sMarket, sUserName, iSearchID, '*') )
@@ -1022,6 +1008,8 @@ def storeSearchResultsInDB( iLogID, sMarket, sUserName, iSearchID ):
     lGotFiles = getFilesMatchingPattern( '/tmp', sFilePattern )
     #
     lGotFiles.sort()
+    #
+    User = get_user_model()
     #
     oUser = User.objects.get( username = sUserName )
     #
