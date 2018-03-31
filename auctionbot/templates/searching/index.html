@@ -34,9 +34,9 @@
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.cKeyWords|truncatechars:65 }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ search.tSearchStarted|date:'Y-m-d H:i:s' }}</td>
+            <td>{{ search.tBegSearch|date:'Y-m-d H:i:s' }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ search.tSearchComplete|date:'Y-m-d H:i:s' }}</td>
+            <td>{{ search.tEndSearch|date:'Y-m-d H:i:s' }}</td>
             </tr>
         {% endfor %}
         </table>
