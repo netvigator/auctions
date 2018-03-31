@@ -506,7 +506,14 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
     return lMarketsHaveNewerCategoryVersionLists
 
 
-
+_dSubstituteMarkets = {
+        0   : 100, # EBAY-US    : EBAY-MOTOR
+        100 : 0,   # EBAY-MOTOR : EBAY-US
+        2   : 210, # EBAY-ENCA  : EBAY-FRCA
+        210 : 2,   # EBAY-FRCA  : EBAY-ENCA
+        23  : 123, # EBAY-FRBE  : EBAY-NLBE
+        123 : 23 } # EBAY-NLBE  : EBAY-FRBE
+        
 def _getCategoryHierarchyID(
             iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies ):
     #
@@ -575,25 +582,18 @@ def _getCategoryHierarchyID(
             #
             dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
             #
-        elif (  iEbaySiteID == 100  and # ebay-motor
-                EbayCategory.objects.filter(
+        elif iEbaySiteID in _getCategoryHierarchyID:
+            #
+            iTrySite = _getCategoryHierarchyID.get( iEbaySiteID )
+            #
+            if EbayCategory.objects.filter(
                                 iCategoryID = iCategoryID,
-                                iEbaySiteID = 1 ).exists() ):
-            #
-            iEbaySiteID = 1 # ebay-us
-            tCategoryID = iCategoryID, iEbaySiteID
-            #
-            continue
-            #
-        elif (  iEbaySiteID == 0  and # ebay-us
-                EbayCategory.objects.filter(
-                                iCategoryID = iCategoryID,
-                                iEbaySiteID = 100 ).exists() ):
-            #
-            iEbaySiteID = 100 # ebay-us
-            tCategoryID = iCategoryID, iEbaySiteID
-            #
-            continue
+                                iEbaySiteID = iTrySite ).exists() ):
+                #
+                iEbaySiteID = iTrySite # ebay-us
+                tCategoryID = iCategoryID, iEbaySiteID
+                #
+                continue
             #
         #
         break
