@@ -6,7 +6,8 @@ from django.db.models   import Q
 from celery             import Celery
 from celery.schedules   import crontab
 
-from .utils             import trySearchCatchExceptStoreInFile
+from .utils             import ( trySearchCatchExceptStoreInFile,
+                                 storeSearchResultsInDB )
 from .utils_stars       import findSearchHits
 
 from .models            import Search, SearchLog
@@ -127,12 +128,6 @@ def doSearchingPutResultsInFiles( bOnlyList = False ):
             #
 
 
-# select * from searchlogs
-# where "tBegSearch" is not null and
-#       "tEndSearch" is not null and
-#       "cResult" = 'Success' and
-#       "tBegStore" is null
-# order by "tBegSearch" ;
 
 def putSearchResultsInItemsFound( bOnlyList = False ):
     #
@@ -147,24 +142,25 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
         #
         iLogID      = oLogSearch.pk
         iSearchID   = oLogSearch.iSearch.pk
+        sSearchName = oLogSearch.iSearch.cTitle
         sUserName   = oLogSearch.iSearch.iUser.username
         sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
         #
         if bOnlyList:
             #
-            print( 'would do the "%s" search for %s ...' %
-                    ( oLogSearch.iSearch.cTitle, oSearch.iUser.name ) )
+            print( 'would store items from the "%s" search named %s ...' %
+                    ( sUserName, sSearchName ) )
             #
         else:
             #
-            print( 'Storing the "%s" search results for %s ...' %
-                    ( oSearch, oSearch.iUser.name ) )
+            print( 'Storing the items from the %s search named "%s" ...' %
+                    ( sUserName, sSearchName ) )
             #
-            t = storeSearchResultsInDB(
-                        iLogID    = iLogID,
-                        sMarket   = sMarket,
-                        sUserName = sUserName,
-                        iSearchID = iSearchID )
+            t = storeSearchResultsInDB( iLogID,
+                                        sMarket,
+                                        sUserName,
+                                        iSearchID,
+                                        sSearchName )
             #
             iItems, iStoreItems, iStoreUsers = t
             #
@@ -174,7 +170,7 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
             #
             print(
                 'got %s items, of which %s were new, and %s were new for %s.' %
-                ( sItems, sStoreItems, sStoreUsers, oSearch.iUser.name ) )
+                ( sItems, sStoreItems, sStoreUsers, sUserName ) )
             print( '' )
             #
         
