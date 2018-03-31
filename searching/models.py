@@ -50,9 +50,9 @@ class Search(models.Model):
                                 max_length = 2, null = True,
                                 choices = ALL_PRIORITIES,
         help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
-    tSearchStarted  = models.DateTimeField( 'last search started',
+    tBegSearch      = models.DateTimeField( 'last search started',
                                            null = True )
-    tSearchComplete = models.DateTimeField( 'last search completed',
+    tEndSearch      = models.DateTimeField( 'last search completed',
                                            null = True )
     cLastResult     = models.TextField( 'last search outcome', null = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
@@ -221,22 +221,31 @@ class ItemFoundTemp(models.Model):
 
 
 class SearchLog(models.Model):
-    iSearch         = models.ForeignKey( Search,
+    iSearch     = models.ForeignKey( Search,
                         verbose_name = 'Search that first found this item',
                         on_delete=models.CASCADE )
-    tSearchStarted  = models.DateTimeField( 'search started', db_index = True )
-    tSearchComplete = models.DateTimeField( 'last search completed',
+    tBegSearch  = models.DateTimeField( 'search started',
+                        db_index = True )
+    tEndSearch  = models.DateTimeField( 'last search completed',
                         null = True )
-    iItems          = models.PositiveIntegerField( 'items found' )
-    iStoreItems     = models.PositiveIntegerField( 'items stored' )
-    iStoreUsers     = models.PositiveIntegerField( 'items stored for owner' )
-    iItemHits       = models.PositiveIntegerField(
-                        'items with category, brand & model', null = True )
-    cResult         = models.TextField( 'search outcome', null = True )
+    tBegStore   = models.DateTimeField( 'search processing started',
+                        null = True )
+    tEndStore   = models.DateTimeField( 'search processing completed',
+                        null = True )
+    iItems      = models.PositiveIntegerField( 'items found',
+                        null = True )
+    iStoreItems = models.PositiveIntegerField( 'items stored',
+                        null = True )
+    iStoreUsers = models.PositiveIntegerField( 'items stored for owner',
+                        null = True )
+    iItemHits   = models.PositiveIntegerField(
+                        'items with category, brand & model',
+                        null = True )
+    cResult     = models.TextField( 'search outcome', null = True )
 
     def __str__(self):
         return '%s - %s' % (
-            getIsoDateTimeFromDateTime( self.tSearchStarted ),
+            getIsoDateTimeFromDateTime( self.tBegSearch ),
             self.iSearch.cTitle )
 
     class Meta:
