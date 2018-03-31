@@ -26,7 +26,7 @@ from ..utils_stars      import ( getFoundItemTester,
                                  _getBrandRegExFinders4Test,
                                  _getCategoryRegExFinders4Test,
                                  findSearchHits )
-from ..utils            import ( trySearchCatchExceptions,
+from ..utils            import ( trySearchCatchExceptStoreInDB,
                                  _doSearchStoreResults, ItemAlreadyInTable,
                                  getSearchResultGenerator,
                                  getPagination, getSuccessOrNot,
@@ -420,7 +420,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         ''' test _storeUserItemFound() with actual record'''
         #
         iCountItems, iStoreItems, iStoreUsers = (
-                trySearchCatchExceptions( sFileName = self.sExampleFile ) )
+                trySearchCatchExceptStoreInDB( sFileName = self.sExampleFile ) )
         #
         self.assertEqual( ItemFound.objects.count(), iCountItems )
         self.assertEqual( ItemFound.objects.count(), iStoreItems )
@@ -444,7 +444,7 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         # try again with the same data
         #
         iCountItems, iStoreItems, iStoreUsers = (
-                trySearchCatchExceptions( sFileName = self.sExampleFile ) )
+                trySearchCatchExceptStoreInDB( sFileName = self.sExampleFile ) )
         #
         self.assertEqual( ItemFound.objects.count(), iCountItems )
         #
