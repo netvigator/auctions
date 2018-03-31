@@ -11,6 +11,9 @@ from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
 from .models            import ItemFound, UserItemFound, SearchLog, Search
 
+from File.Get           import getFilesMatchingPattern
+from Numb.Get           import getHowManyDigitsNeeded
+
 
 logger = logging.getLogger(__name__)
 
@@ -498,7 +501,7 @@ def _putPageNumbInFileName( sFileName, iThisPage ):
 
 
 
-def _getSearchResults( iSearchID = None, bUseSandbox = False ):
+def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response in /tmp'''
     #
@@ -759,7 +762,7 @@ def _doSearchStoreResults( iSearchID     = None,
     #
     if sFileName is None:
         #
-        t = _getSearchResults( iSearchID, bUseSandbox = bUseSandbox )
+        t = _doSearchStoreInFile( iSearchID, bUseSandbox = bUseSandbox )
         #
         sFileName, sSearchName = t
         #
@@ -785,6 +788,8 @@ def _doSearchStoreResults( iSearchID     = None,
     #
     oUser = User.objects.get( username = sUserName )
     #
+    dEbayCatHierarchies = {}
+    #
     for iThisPage in range( *tRangeArgs ):
         #
         sThisPage           = str( iThisPage ).zfill( 3 )
@@ -798,8 +803,6 @@ def _doSearchStoreResults( iSearchID     = None,
         #             ( sFileName, sThisPage, iLastPage ) )
         #
         oItemIter = getSearchResultGenerator( sThisFileName )
-        #
-        dEbayCatHierarchies = {}
         #
         sPriorItemNumb = None
         bPriorNumbNone = False
@@ -856,7 +859,7 @@ def _doSearchStoreResults( iSearchID     = None,
 
 
 
-def trySearchCatchExceptions(
+def trySearchCatchExceptStoreInDB(
             iSearchID   = None,
             sFileName   = None,
             bUseSandbox = False ):
@@ -873,8 +876,8 @@ def trySearchCatchExceptions(
     if iSearchID is not None:
         #
         oSearch = Search.objects.get( pk = iSearchID )
-        oSearch.tSearchStarted = tSearchStart
-        oSearch.tSearchComplete= None
+        oSearch.tBegSearch = tSearchStart
+        oSearch.tEndSearch = None
         oSearch.save()
         #
     #
@@ -913,16 +916,16 @@ def trySearchCatchExceptions(
         #
     else:
         #
-        oSearch.tSearchComplete = tNow
-        oSearch.cLastResult     = sLastResult
+        oSearch.tEndSearch  = tNow
+        oSearch.cLastResult = sLastResult
         oSearch.save()
         #
     #
     #
     oSearchLog = SearchLog(
             iSearch_id      = iSearchID,
-            tSearchStarted  = tSearchStart,
-            tSearchComplete = tNow,
+            tBegSearch      = tSearchStart,
+            tEndSearch      = tNow,
             iItems          = iItems,
             iStoreItems     = iStoreItems,
             iStoreUsers     = iStoreUsers,
@@ -934,3 +937,160 @@ def trySearchCatchExceptions(
 
 
 
+def trySearchCatchExceptStoreInFile( iSearchID = None ):
+    #
+    '''high level script, does a search, catches exceptions, logs errors,
+    stores results in /tmp file'''
+    #
+    # ### sandbox returns zero items ### 
+    # ### use bUseSandbox = False    ### 
+    #
+    tSearchStart = timezone.now()
+    #
+    if iSearchID is not None:
+        #
+        oSearch = Search.objects.get( pk = iSearchID )
+        oSearch.tBegSearch = tSearchStart
+        oSearch.cLastResult= None
+        oSearch.tEndSearch = None
+        oSearch.save()
+        #
+    #
+    sLastResult = 'tba'
+    #
+    try:
+        #
+        t = _doSearchStoreInFile( iSearchID = iSearchID )
+        #
+        # ### sandbox returns zero items ### 
+        # ### use bUseSandbox = False    ### 
+        #
+        sLastFile, sSearchName = t
+        #
+        if sLastFile:
+            sLastResult = 'Success'
+        #
+    except SearchNotWorkingError as e:
+        # logger.error( 'SearchNotWorkingError: %s' % e )
+        sLastResult = 'SearchNotWorkingError: %s' % e
+    except SearchGotZeroResults as e:
+        # logger.error( 'SearchGotZeroResults: %s' % e )
+        sLastResult = 'SearchGotZeroResults: %s' % e
+        # suggest sending an email to the owner
+    #
+    tNow = timezone.now()
+    #
+    if iSearchID is None:
+        #
+        lFileNameParts = sLastFile.split( '_' )
+        #
+        iSearchID = int( lFileNameParts[4] )
+        #
+    else:
+        #
+        oSearch.tEndSearch  = tNow
+        oSearch.cLastResult = sLastResult
+        oSearch.save()
+        #
+    #
+    #
+    oSearchLog = SearchLog(
+            iSearch_id  = iSearchID,
+            tBegSearch  = tSearchStart,
+            tEndSearch  = tNow,
+            cResult     = sLastResult )
+    #
+    oSearchLog.save()
+    #
+    return sLastFile
+
+
+def storeSearchResultsInDB( iLogID, sMarket, sUserName, iSearchID ):
+    #
+    '''high level script, accesses results in /tmp file(s)
+    and stores indatabase'''
+    #
+    from django.contrib.auth    import get_user_model
+    #
+    from searching              import RESULTS_FILE_NAME_PATTERN
+    #
+    tBegStore = timezone.now()
+    #
+    sFilePattern = ( RESULTS_FILE_NAME_PATTERN % 
+                     ( sMarket, sUserName, iSearchID, '*') )
+    #
+    lGotFiles = getFilesMatchingPattern( '/tmp', sFilePattern )
+    #
+    lGotFiles.sort()
+    #
+    oUser = User.objects.get( username = sUserName )
+    #
+    dEbayCatHierarchies = {}
+    #
+    iItems = iStoreItems = iStoreUsers = 0
+    #
+    for sThisFileName in lGotFiles:
+        #
+        oItemIter = getSearchResultGenerator( sThisFileName )
+        #
+        sPriorItemNumb = None
+        bPriorNumbNone = False
+        #
+        for dItem in oItemIter:
+            #
+            iItems += 1
+            #
+            iItemNumb = None
+            #
+            try:
+                iItemNumb = _storeItemFound(
+                                dItem, tSearchTime, dEbayCatHierarchies )
+                iStoreItems += 1
+            except ItemAlreadyInTable:
+                #
+                iItemNumb      = int( dItem['itemId'] )
+                #
+            except ValueError as e:
+                #
+                logger.error( 'ValueError: %s | %s' %
+                            ( str(e), repr(dItem) ) )
+            #
+            if iItemNumb is None:
+                #
+                print( 'iItemNumb is None' )
+                print( 'prior iItemNumb:', sPriorItemNumb )
+                #
+                bPriorNumbNone = True
+                #
+            else:
+                #
+                if bPriorNumbNone:
+                    print( 'next iItemNumb:', iItemNumb )
+                #
+                sPriorItemNumb = iItemNumb
+                bPriorNumbNone = False
+                #
+                try:
+                    _storeUserItemFound(
+                            dItem, iItemNumb, tSearchTime, oUser, iSearchID )
+                    iStoreUsers += 1
+                except ItemAlreadyInTable:
+                    pass
+                #
+            #
+    #
+    oSearchLog = SearchLog.objects.get( pk = iLogID )
+    #
+    oSearchLog.tBegStore   = tBegStore
+    oSearchLog.tEndStore   = timezone.now()
+    oSearchLog.iItems      = iItems
+    oSearchLog.iStoreItems = iStoreItems
+    oSearchLog.iStoreUsers = iStoreUsers
+    #
+    oSearchLog.save()
+    #
+    logger.info(
+        'finished stroing records for "%s" search (ID %s) ...' %
+        ( sSearchName, iSearchID ) )
+    #
+    return iItems, iStoreItems, iStoreUsers
