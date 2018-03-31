@@ -10,12 +10,20 @@ User = get_user_model()
 
 class SearchAdmin(admin.ModelAdmin):
     list_display = (
-        'cTitle','iEbayCategory','cPriority','cKeyWords',
-        'tSearchStarted','tSearchComplete',
+        'cTitle',
+        'iEbayCategory',
+        'cPriority',
+        'cKeyWords',
+        'tBegSearch',
+        'tEndSearch',
         'cLastResult',)
     readonly_fields = (
-        'iEbayCategory','tSearchStarted','tSearchComplete',
-        'cLastResult','iUser','tCreate',
+        'iEbayCategory',
+        'tBegSearch',
+        'tEndSearch',
+        'cLastResult',
+        'iUser',
+        'tCreate',
         'tModify')
 
     def save_model(self, request, obj, form, change):
