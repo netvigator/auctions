@@ -8,9 +8,11 @@ from searching          import RESULTS_FILE_NAME_PATTERN
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
 from ..tests            import sResponseSearchTooBroad
-from ..utils            import _doSearchStoreResults
+from ..utils            import storeSearchResultsInDB
 
-from .test_utils        import GetBrandsCategoriesModelsSetUp
+from .test_utils        import ( GetBrandsCategoriesModelsSetUp,
+                                 storeSearchResultsTestsSetUp )
+
 from ..utils_stars      import ( _getModelRegExFinders4Test,
                                  _getCategoryRegExFinders4Test,
                                  _getBrandRegExFinders4Test,
@@ -23,9 +25,10 @@ from File.Del           import DeleteIfExists
 from File.Write         import QuietDump
 
 
+
 class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
     #
-    ''' class for testing _doSearchStoreResults() store records '''
+    ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp(self):
         #
@@ -34,7 +37,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-            ( 'EBAY-US', self.user1.username, self.oCatalinSearch.id, '000' ) )
+            ( 'EBAY-US', self.user1.username, self.oSearch.id, '000' ) )
         #
         #print( 'will DeleteIfExists' )
         DeleteIfExists( '/tmp', self.sExampleFile )
@@ -42,19 +45,16 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #print( 'will QuietDump' )
         QuietDump( sResponseSearchTooBroad, self.sExampleFile )
         #
-        _doSearchStoreResults(
-            sFileName = join( '/tmp', self.sExampleFile ),
-            tSearchTime = timezone.now() )
+        t = ( storeSearchResultsInDB(   self.oSearchLog.id,
+                                        self.sMarket,
+                                        self.user1.username,
+                                        self.oSearch.id,
+                                        self.oSearch.cTitle ) )
+        #
+        iCountItems, iStoreItems, iStoreUsers = t
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
-
-    def test_BrandsCategoriesModels_setUp(self):
-        #
-        iCount = Model.objects.all().count()
-        #
-        self.assertEqual( iCount, 151 )
-        #
 
     def test_find_search_hits(self):
         #
@@ -108,6 +108,13 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
+
+    def test_BrandsCategoriesModels_setUp(self):
+        #
+        iCount = Model.objects.all().count()
+        #
+        self.assertEqual( iCount, 151 )
+        #
 
 
  
