@@ -2,10 +2,11 @@ from os                 import rename
 from os.path            import realpath, join
 
 from core.utils_test    import ( getTableFromScreenCaptureGenerator,
-                                 getNamePositionDict )
+                                 getNamePositionDict, BaseUserTestCase )
 
-
+from .models            import Search
 from .tests             import sItemHitLog # in __init__.py
+from .utils_misc        import getPriorityChoices
 
 from File.Del           import DeleteIfExists
 from File.Test          import isFileThere
@@ -14,6 +15,36 @@ from File.Write         import QuietDump
 from Time.Convert       import getDateTimeObjFromString   as getDate
 from Time.Delta         import getIsoDateTimeNowPlus
 from Time.Output        import getIsoDateTimeFromDateTime as getIsoDT
+
+
+class BaseUserTestCaseCanAddSearches( BaseUserTestCase ):
+    ''' test getPriorityChoices() '''
+    #
+    def setUp( self ):
+        #
+        super( BaseUserTestCaseCanAddSearches, self ).setUp()
+        #
+        self.client.login(username='username1', password='mypassword')
+        #
+        self.addSearch( "My clever search c", 'C1', self.user1 )
+        #
+        self.addSearch( "My clever search D", 'D2', self.user1 )
+        #
+        self.addSearch( "My clever search 2", 'A1', self.user1 )
+        #
+    #
+    def addSearch( self, cTitle, cPriority, oUser ):
+        oSearch     = Search(
+                        cTitle      = cTitle,
+                        cPriority   = cPriority,
+                        iUser       = oUser )
+        #
+        oSearch.save()
+
+    #
+    def getPriorityChoices( self, oUser, sThisPriority = None ):
+        #
+        return getPriorityChoices( Search, oUser, sThisPriority )
 
 
 def getItemHitsLog( uHitLogFileContent ):
