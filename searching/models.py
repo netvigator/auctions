@@ -14,8 +14,6 @@ from ebayinfo.models            import CategoryHierarchy, Market
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 
-from .utils_misc                import ALL_PRIORITIES # avoid circular imports
-
 from ebayinfo.models            import EbayCategory
 
 from Time.Output                import getIsoDateTimeFromDateTime
@@ -48,7 +46,7 @@ class Search(models.Model):
                     '-- (key words OR ebay category required!)' )
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
-                                choices = ALL_PRIORITIES,
+                                choices = (),
         help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
     tBegSearch      = models.DateTimeField( 'last search started',
                                            null = True )
@@ -226,20 +224,20 @@ class SearchLog(models.Model):
                         on_delete=models.CASCADE )
     tBegSearch  = models.DateTimeField( 'search started',
                         db_index = True )
-    tEndSearch  = models.DateTimeField( 'last search completed',
+    tEndSearch  = models.DateTimeField( 'search completed',
                         null = True )
-    tBegStore   = models.DateTimeField( 'search processing started',
+    tBegStore   = models.DateTimeField( 'processing started',
                         null = True )
-    tEndStore   = models.DateTimeField( 'search processing completed',
+    tEndStore   = models.DateTimeField( 'processing completed',
                         null = True )
     iItems      = models.PositiveIntegerField( 'items found',
                         null = True )
     iStoreItems = models.PositiveIntegerField( 'items stored',
                         null = True )
-    iStoreUsers = models.PositiveIntegerField( 'items stored for owner',
+    iStoreUsers = models.PositiveIntegerField( 'stored for owner',
                         null = True )
     iItemHits   = models.PositiveIntegerField(
-                        'items with category, brand & model',
+                        'have category, brand & model',
                         null = True )
     cResult     = models.TextField( 'search outcome', null = True )
 
