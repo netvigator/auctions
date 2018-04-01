@@ -44,3 +44,6 @@ need some tests in core/tests/test_utils_ebay.py and categories/tests/test_utils
 
 
 set up search tips page!
+
+
+check whether submodel functionality will id A-326B as Altec 326
