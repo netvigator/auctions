@@ -11,6 +11,7 @@ from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
 from .models            import ItemFound, UserItemFound, SearchLog, Search
 
+from File.Del           import DeleteIfExists
 from File.Get           import getFilesMatchingPattern
 from Numb.Get           import getHowManyDigitsNeeded
 
@@ -740,186 +741,7 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
 
 
 
-def _doSearchStoreResults( iSearchID     = None,
-                           sFileName     = None,
-                           tSearchTime   = None,
-                           bUseSandbox   = False ):
-    #
-    '''put search results in the database
-    can do a search, or use the results file from completed ebay API request
-    pass Search ID to search ebay via the api, or pass
-    a file name to process the results of a prior search'''
-    #
-    from django.contrib.auth import get_user_model
-    #
-    from String.Get import getTextBefore
-    #
-    User = get_user_model()
-    #
-    sSearchName = None
-    #
-    if sFileName is None:
-        #
-        t = _doSearchStoreInFile( iSearchID, bUseSandbox = bUseSandbox )
-        #
-        sFileName, sSearchName = t
-        #
-    #
-    # 'Search_%s_%s_ID_%s_p_%s_.json' % ( sMarket, sUserName, oSearch.id, iPageNumb ) )
-    #
-    lFileNameParts = sFileName.split( '_' )
-    #
-    sUserName   =      lFileNameParts[2]
-    iSearch     = int( lFileNameParts[4] )
-    iLastPage   = int( lFileNameParts[6] )
-    #
-    if sSearchName is None:
-        #
-        sSearchName = Search.objects.get( pk = iSearch ).cTitle
-        #
-    #
-    iStartPage  = int( bool( iLastPage > 0 ) ) # 0 if iLastPage == 0, else 1
-    #
-    tRangeArgs  = ( iStartPage, iLastPage + 1 )
-    #
-    iItems = iStoreItems = iStoreUsers = 0
-    #
-    oUser = User.objects.get( username = sUserName )
-    #
-    dEbayCatHierarchies = {}
-    #
-    for iThisPage in range( *tRangeArgs ):
-        #
-        sThisPage           = str( iThisPage ).zfill( 3 )
-        #
-        lFileNameParts[6]   = sThisPage
-        #
-        sThisFileName       = '_'.join( lFileNameParts )
-        #
-        # if iLastPage > 0:
-        #     print( 'doing %s, page %s of %s' %
-        #             ( sFileName, sThisPage, iLastPage ) )
-        #
-        oItemIter = getSearchResultGenerator( sThisFileName )
-        #
-        for dItem in oItemIter:
-            #
-            iItems += 1
-            #
-            iItemNumb = None
-            #
-            try:
-                iItemNumb = _storeItemFound(
-                                dItem, tSearchTime, dEbayCatHierarchies )
-                iStoreItems += 1
-            except ItemAlreadyInTable:
-                #
-                iItemNumb      = int( dItem['itemId'] )
-                #
-            except ValueError as e:
-                #
-                logger.error( 'ValueError: %s | %s' %
-                            ( str(e), repr(dItem) ) )
-            #
-            if iItemNumb is not None:
-                #
-                try:
-                    _storeUserItemFound(
-                            dItem, iItemNumb, tSearchTime, oUser, iSearch )
-                    iStoreUsers += 1
-                except ItemAlreadyInTable:
-                    pass
-                #
-            #
-        #
-        logger.info(
-            'finished stroing records for "%s" search (ID %s) ...' %
-            ( sSearchName, iSearchID ) )
-
-    #
-    return iItems, iStoreItems, iStoreUsers
-
-
-
-def trySearchCatchExceptStoreInDB(
-            iSearchID   = None,
-            sFileName   = None,
-            bUseSandbox = False ):
-    #
-    '''high level script, does a search, catches exceptions, logs errors'''
-    #
-    # ### sandbox returns zero items ### 
-    # ### use bUseSandbox = False    ### 
-    #
-    iItems = iStoreItems = iStoreUsers = 0
-    #
-    tSearchStart = timezone.now()
-    #
-    if iSearchID is not None:
-        #
-        oSearch = Search.objects.get( pk = iSearchID )
-        oSearch.tBegSearch = tSearchStart
-        oSearch.tEndSearch = None
-        oSearch.save()
-        #
-    #
-    sLastResult = 'tba'
-    #
-    try:
-        t = _doSearchStoreResults(
-                    iSearchID   = iSearchID,
-                    sFileName   = sFileName,
-                    tSearchTime = tSearchStart,
-                    bUseSandbox = bUseSandbox )
-        #
-        # ### sandbox returns zero items ### 
-        # ### use bUseSandbox = False    ### 
-        #
-        iItems, iStoreItems, iStoreUsers = t
-        #
-        if iItems:
-            sLastResult = 'Success'
-        #
-    except SearchNotWorkingError as e:
-        # logger.error( 'SearchNotWorkingError: %s' % e )
-        sLastResult = 'SearchNotWorkingError: %s' % e
-    except SearchGotZeroResults as e:
-        # logger.error( 'SearchGotZeroResults: %s' % e )
-        sLastResult = 'SearchGotZeroResults: %s' % e
-        # suggest sending an email to the owner
-    #
-    tNow = timezone.now()
-    #
-    if iSearchID is None:
-        #
-        lFileNameParts = sFileName.split( '_' )
-        #
-        iSearchID = int( lFileNameParts[4] )
-        #
-    else:
-        #
-        oSearch.tEndSearch  = tNow
-        oSearch.cLastResult = sLastResult
-        oSearch.save()
-        #
-    #
-    #
-    oSearchLog = SearchLog(
-            iSearch_id      = iSearchID,
-            tBegSearch      = tSearchStart,
-            tEndSearch      = tNow,
-            iItems          = iItems,
-            iStoreItems     = iStoreItems,
-            iStoreUsers     = iStoreUsers,
-            cResult         = sLastResult )
-    #
-    oSearchLog.save()
-    #
-    return iItems, iStoreItems, iStoreUsers
-
-
-
-def trySearchCatchExceptStoreInFile( iSearchID = None ):
+def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     '''high level script, does a search, catches exceptions, logs errors,
     stores results in /tmp file'''
@@ -929,20 +751,27 @@ def trySearchCatchExceptStoreInFile( iSearchID = None ):
     #
     tSearchStart = timezone.now()
     #
-    if iSearchID is not None:
-        #
-        oSearch = Search.objects.get( pk = iSearchID )
-        oSearch.tBegSearch = tSearchStart
-        oSearch.cLastResult= None
-        oSearch.tEndSearch = None
-        oSearch.save()
-        #
+    oSearch = Search.objects.get( pk = iSearchID )
+    oSearch.tBegSearch = tSearchStart
+    oSearch.cLastResult= None
+    oSearch.tEndSearch = None
+    oSearch.save()
     #
     sLastResult = 'tba'
     #
+    sUserName   = oSearch.iUser.username
+    sMarket     = oSearch.iUser.iEbaySiteID.cMarket
+    #
+    sFilePattern= ( RESULTS_FILE_NAME_PATTERN %
+                     ( sMarket, sUserName, iSearchID, '*') )
+    #
+    lGotFiles   = getFilesMatchingPattern( '/tmp', sFilePattern )
+    #
+    for sFile in lGotFiles: DeleteIfExists( sFile )
+    #
     try:
         #
-        t = _doSearchStoreInFile( iSearchID = iSearchID )
+        t       = _doSearchStoreInFile( iSearchID = iSearchID )
         #
         # ### sandbox returns zero items ### 
         # ### use bUseSandbox = False    ### 
@@ -1002,7 +831,7 @@ def storeSearchResultsInDB( iLogID,
     #
     tSearchTime = tBegStore = timezone.now()
     #
-    sFilePattern = ( RESULTS_FILE_NAME_PATTERN % 
+    sFilePattern = ( RESULTS_FILE_NAME_PATTERN %
                      ( sMarket, sUserName, iSearchID, '*') )
     #
     lGotFiles = getFilesMatchingPattern( '/tmp', sFilePattern )
