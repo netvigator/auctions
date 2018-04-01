@@ -28,12 +28,12 @@ from ..utils_stars      import ( getFoundItemTester,
                                  findSearchHits )
 from ..utils            import ( storeSearchResultsInDB,
                                  ItemAlreadyInTable,
-                                 getSearchResultGenerator,
-                                 getPagination, getSuccessOrNot,
-                                 _getFindingResponseGenerator,
-                                 getJsonFindingResponse,
                                  _putPageNumbInFileName,
                                  trySearchCatchExceptStoreInFile )
+
+from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
+                                 getPagination, _getFindingResponseGenerator,
+                                 getSearchResultGenerator )
 
 from brands.models      import Brand
 from categories.models  import Category
