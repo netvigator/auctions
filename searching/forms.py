@@ -6,7 +6,7 @@ from django.forms           import ModelForm
 from searching              import dItemFoundFields, dUserItemFoundFields
 
 from .models                import Search, ItemFound, UserItemFound
-from .utils_misc            import getPriorityChoices, ALL_PRIORITIES
+from .utilsearch            import getPriorityChoices, ALL_PRIORITIES
 from .validators            import isPriorityValid
 
 from ebayinfo.models        import EbayCategory
