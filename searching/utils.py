@@ -1,19 +1,23 @@
 import logging
-from string             import ascii_letters, digits
 
-from core.utils_ebay    import getValueOffItemDict
+from string                 import ascii_letters, digits
 
-from django.conf        import settings
-from django.db          import DataError
-from django.utils       import timezone
+from django.conf            import settings
+from django.db              import DataError
+from django.utils           import timezone
 
-from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
+from core.utils_ebay        import getValueOffItemDict
 
-from .models            import ItemFound, UserItemFound, SearchLog, Search
+from ebayinfo.utils         import dMarket2SiteID, getEbayCategoryHierarchies
 
-from File.Del           import DeleteIfExists
-from File.Get           import getFilesMatchingPattern
-from Numb.Get           import getHowManyDigitsNeeded
+from .models                import ItemFound, UserItemFound, SearchLog, Search
+
+from searching              import RESULTS_FILE_NAME_PATTERN
+
+from File.Del               import DeleteIfExists
+from File.Get               import getFilesMatchingPattern
+from Numb.Get               import getHowManyDigitsNeeded
+
 
 
 logger = logging.getLogger(__name__)
@@ -31,6 +35,24 @@ this will print logging messages to the terminal
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 class ItemAlreadyInTable(    Exception ): pass
+
+
+
+def getHowManySearchDigitsNeeded():
+    #
+    return getHowManyDigitsNeeded( Search.objects.latest('pk').pk )
+
+iNEED_SEARCH_ID_DIGITS = getHowManySearchDigitsNeeded()
+
+def getIdStrZeroFilled( iID, iDigits ):
+    #
+    return str( iID ).zfill( iDigits )
+
+def getSearchIdStr( iId ):
+    #
+    return getIdStrZeroFilled( iId, iNEED_SEARCH_ID_DIGITS  )
+
+
 
 
 def _storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
@@ -511,7 +533,6 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     from core.ebay_api_calls    import findItems
     #
-    from searching              import RESULTS_FILE_NAME_PATTERN
     from .models                import Search
     from ebayinfo.models        import Market
     #
@@ -826,8 +847,6 @@ def storeSearchResultsInDB( iLogID,
     and stores indatabase'''
     #
     from django.contrib.auth    import get_user_model
-    #
-    from searching              import RESULTS_FILE_NAME_PATTERN
     #
     tSearchTime = tBegStore = timezone.now()
     #
