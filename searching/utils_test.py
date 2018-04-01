@@ -6,7 +6,7 @@ from core.utils_test    import ( getTableFromScreenCaptureGenerator,
 
 from .models            import Search
 from .tests             import sItemHitLog # in __init__.py
-from .utils_misc        import getPriorityChoices
+from .utilsearch        import getPriorityChoices
 
 from File.Del           import DeleteIfExists
 from File.Test          import isFileThere
