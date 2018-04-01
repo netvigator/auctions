@@ -60,7 +60,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         ''' test _storeUserItemFound() with actual record'''
         #
-        findSearchHits( self.user1, bCleanUpAfterYourself = False )
+        findSearchHits( self.user1.id, bCleanUpAfterYourself = False )
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
