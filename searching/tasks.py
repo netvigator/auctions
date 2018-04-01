@@ -1,22 +1,20 @@
-from time               import sleep
+from time                   import sleep
 
-from django.utils       import timezone
-from django.db.models   import Q
+from django.contrib.auth    import get_user_model
+from django.db.models       import Q
+from django.utils           import timezone
 
-from celery             import Celery
-from celery.schedules   import crontab
+from celery                 import Celery
+from celery.schedules       import crontab
 
-from .utils             import ( trySearchCatchExceptStoreInFile,
-                                 storeSearchResultsInDB )
-from .utils_stars       import findSearchHits
+from .utils                 import ( trySearchCatchExceptStoreInFile,
+                                     storeSearchResultsInDB )
+from .utils_stars           import findSearchHits
 
-from .models            import Search, SearchLog
+from .models                import Search, SearchLog
 
-from String.Output      import ReadableNo
+from String.Output          import ReadableNo
 
-
-# trySearchCatchExceptStoreInDB( iSearchID = None, sFileName = None )
-# findSearchHits( oUser )
 
 app = Celery()
 
@@ -128,3 +126,12 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
             print( '' )
             #
         
+def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
+    #
+    oUserModel = get_user_model()
+    #
+    for oUser in oUserModel:
+        #
+        findSearchHits( iUser                   = oUser.id,
+                        bCleanUpAfterYourself   = bCleanUpAfterYourself,
+                        bShowProgress           = bShowProgress )
