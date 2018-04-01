@@ -1,12 +1,13 @@
-from core.utils             import getWhatsLeft
+from django.contrib.auth    import get_user_model
 from django.utils           import timezone
 
-from String.Find            import getRegExpress, getRegExObj
-
 from core.user_one          import oUserOne
+from core.utils             import getWhatsLeft
 
 from .models                import ItemFound, UserItemFound, ItemFoundTemp
 
+from String.Find            import getRegExpress, getRegExObj
+from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 
 def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
@@ -188,12 +189,15 @@ def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 
 
-def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True, bShowProgress = False ):
+def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProgress = False ):
     #
     from brands.models      import Brand
     from categories.models  import Category
     from models.models      import Model
     #
+    oUserModel = get_user_model()
+    #
+    oUser = oUserModel.objects.get( id = iUser )
     #
     ItemFoundTemp.objects.all().delete()
     #
@@ -202,6 +206,8 @@ def findSearchHits( oUser = oUserOne, bCleanUpAfterYourself = True, bShowProgres
                     .filter( iUser = oUser,
                              tlook4hits__isnull = True )
                     .values_list( 'iItemNumb', flat=True ) )
+    #
+    if len( oItemQuerySet ) == 0: return
     #
     #print( '' )
     #print( 'len( oItemQuerySet ):', len( oItemQuerySet ) )
