@@ -1,6 +1,6 @@
 
 from ..utils        import getHowManySearchDigitsNeeded, getIdStrZeroFilled
-from ..utils_misc   import getPriorityChoices
+from ..utilsearch   import getPriorityChoices
 from ..utils_test   import BaseUserTestCaseCanAddSearches
 
 
