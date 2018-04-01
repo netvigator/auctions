@@ -148,12 +148,6 @@ class ItemFound(models.Model):
         verbose_name_plural = 'itemsfound'
         db_table            = verbose_name_plural
 
-    def get_absolute_url(self):
-        #
-        return reverse(
-                'searching:item_found_detail',
-                kwargs = { 'pk': self.pk } )
-
 
 
 class UserItemFound(models.Model):
@@ -190,6 +184,12 @@ class UserItemFound(models.Model):
         verbose_name_plural = 'useritemsfound'
         db_table            = verbose_name_plural
         unique_together     = ('iItemNumb', 'iUser',)
+
+    def get_absolute_url(self):
+        #
+        return reverse(
+                'searching:item_found_detail',
+                kwargs = { 'pk': self.pk } )
 
 
 class ItemFoundTemp(models.Model):
