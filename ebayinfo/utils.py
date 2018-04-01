@@ -5,12 +5,12 @@ from django.conf            import settings
 
 import xml.etree.ElementTree as ET
 
-#from pprint import pprint
 
 from core.utils             import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
 
+from ebayinfo               import dMarketsRelated # in __init__.py
 from .models                import EbayCategory, Market, CategoryHierarchy
 
 from String.Output          import ReadableNo
@@ -507,13 +507,6 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
 
 
 
-_dSubstituteMarkets = {
-        0   : 100, # EBAY-US    : EBAY-MOTOR
-        100 : 0,   # EBAY-MOTOR : EBAY-US
-        2   : 210, # EBAY-ENCA  : EBAY-FRCA
-        210 : 2,   # EBAY-FRCA  : EBAY-ENCA
-        23  : 123, # EBAY-FRBE  : EBAY-NLBE
-        123 : 23 } # EBAY-NLBE  : EBAY-FRBE
 
 
 def _getCategoryHierarchyID(
@@ -584,13 +577,13 @@ def _getCategoryHierarchyID(
             #
             dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
             #
-        elif (  iEbaySiteID in _dSubstituteMarkets and:
+        elif (  iEbaySiteID in dMarketsRelated and
                 EbayCategory.objects.filter(
                         iCategoryID = iCategoryID,
-                        iEbaySiteID = _dSubstituteMarkets.get( iEbaySiteID ) )
-                        .exists() ):
+                        iEbaySiteID = dMarketsRelated.get( iEbaySiteID ) )
+                        .exists() ): # EBAY-US : EBAY-MOTOR & vice versa
                 #
-                iEbaySiteID = _dSubstituteMarkets.get( iEbaySiteID )
+                iEbaySiteID = dMarketsRelated.get( iEbaySiteID )
                 tCategoryID = iCategoryID, iEbaySiteID
                 #
                 continue
