@@ -26,13 +26,14 @@ from ..utils_stars      import ( getFoundItemTester,
                                  _getBrandRegExFinders4Test,
                                  _getCategoryRegExFinders4Test,
                                  findSearchHits )
-from ..utils            import ( trySearchCatchExceptStoreInDB,
-                                 _doSearchStoreResults, ItemAlreadyInTable,
+from ..utils            import ( storeSearchResultsInDB,
+                                 ItemAlreadyInTable,
                                  getSearchResultGenerator,
                                  getPagination, getSuccessOrNot,
                                  _getFindingResponseGenerator,
                                  getJsonFindingResponse,
-                                 _putPageNumbInFileName )
+                                 _putPageNumbInFileName,
+                                 trySearchCatchExceptStoreInFile )
 
 from ..utils_misc       import getPriorityChoices
 
@@ -342,11 +343,11 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
 
 class storeUserItemFoundTests(getEbayCategoriesSetUp):
     #
-    ''' class for testing storeUserItemFound() '''
+    ''' class for testing _storeUserItemFound() '''
 
     def test_store_User_item_found(self):
         #
-        ''' test storeUserItemFound() with actual record'''
+        ''' test _storeUserItemFound() with actual record'''
         #
         from ..tests    import dSearchResult # in __init__.py
         from ..utils    import _storeUserItemFound, _storeItemFound
@@ -392,35 +393,60 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
 
 
 
-class storeSearchResultsTests(getEbayCategoriesSetUp):
+class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
     #
-    ''' class for testing _doSearchStoreResults() store records '''
+    ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp(self):
         # storeSearchResultsTests, self 
         #
-        super( storeSearchResultsTests, self ).setUp()
+        super( storeSearchResultsTestsSetUp, self ).setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
         oSearch.save()
+        #
+        self.oSearch = oSearch
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
             ( 'EBAY-US', self.user1.username, oSearch.id, '000' ) )
         #
         QuietDump( sExampleResponse, self.sExampleFile )
-        
+        #
+        tNow    = timezone.now()
+        tBefore = tNow - timezone.timedelta( minutes = 5 )
+        #
+        oSearchLog = SearchLog(
+                iSearch_id  = self.oSearch.id,
+                tBegSearch  = tBefore,
+                tEndSearch  = tNow,
+                cResult     = 'Success' )
+        #
+        oSearchLog.save()
+        #
+        self.oSearchLog = oSearchLog
+        #
+        self.sMarket = 'EBAY-US'
+
     def tearDown(self):
         #
         pass # DeleteIfExists( '/tmp', self.sExampleFile )
 
+
+class storeSearchResultsTests(storeSearchResultsTestsSetUp):
+    #
     def test_store_search_results(self):
         #
-        ''' test _storeUserItemFound() with actual record'''
+        ''' test storeSearchResultsInDB() with actual record'''
         #
-        iCountItems, iStoreItems, iStoreUsers = (
-                trySearchCatchExceptStoreInDB( sFileName = self.sExampleFile ) )
+        t = ( storeSearchResultsInDB(   self.oSearchLog.id,
+                                        self.sMarket,
+                                        self.user1.username,
+                                        self.oSearch.id,
+                                        self.oSearch.cTitle ) )
+        #
+        iCountItems, iStoreItems, iStoreUsers = t
         #
         self.assertEqual( ItemFound.objects.count(), iCountItems )
         self.assertEqual( ItemFound.objects.count(), iStoreItems )
@@ -443,8 +469,13 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
         #
         # try again with the same data
         #
-        iCountItems, iStoreItems, iStoreUsers = (
-                trySearchCatchExceptStoreInDB( sFileName = self.sExampleFile ) )
+        t = ( storeSearchResultsInDB(   self.oSearchLog.id,
+                                        self.sMarket,
+                                        self.user1.username,
+                                        self.oSearch.id,
+                                        self.oSearch.cTitle ) )
+        #
+        iCountItems, iStoreItems, iStoreUsers = t
         #
         self.assertEqual( ItemFound.objects.count(), iCountItems )
         #
@@ -457,9 +488,10 @@ class storeSearchResultsTests(getEbayCategoriesSetUp):
 
 
 
-class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
+class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
     #
-    ''' base class for testing _doSearchStoreResults() store records '''
+    ''' base class for testing trySearchCatchExceptStoreInFile() &
+    storeSearchResultsInDB() store records '''
     #
     def setUp(self):
         #
@@ -587,7 +619,8 @@ class GetBrandsCategoriesModelsSetUp(getEbayCategoriesSetUp):
 
 class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
     #
-    ''' class for testing _doSearchStoreResults() store records '''
+    ''' class for testing trySearchCatchExceptStoreInFile() &
+    storeSearchResultsInDB() store records '''
     #
     def setUp( self ):
         #
@@ -641,10 +674,26 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         which will be used later for testing getting the auction results'''
         #
         # sandbox returns 0 items, can use it to test for 0 items
-        t = _doSearchStoreResults(
-                iSearchID = self.oCatalinSearch.id,
-                tSearchTime = timezone.now(),
-                bUseSandbox = False )
+        #
+        oSearch = self.oCatalinSearch
+        #
+        iSearchID = oSearch.id
+        #
+        sLastFile = trySearchCatchExceptStoreInFile( iSearchID )
+        #
+        iLogID = SearchLog.objects.get(
+                    iSearch     = oSearch,
+                    tBegSearch  = oSearch.tBegSearch )
+        #
+        sSearchName = oSearch.cTitle
+        sUserName   = oSearch.iUser.username
+        sMarket     = oSearch.iUser.iEbaySiteID.cMarket
+        #
+        t = storeSearchResultsInDB( iLogID,
+                                    sMarket,
+                                    sUserName,
+                                    iSearchID,
+                                    sSearchName )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
@@ -688,10 +737,26 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         which will be used later for testing getting the auction results'''
         #
         # sandbox returns 0 items, can use it to test for 0 items
-        t = _doSearchStoreResults(
-                iSearchID = self.oPreampSearch.id,
-                tSearchTime = timezone.now(),
-                bUseSandbox = False )
+        #
+        oSearch = self.oPreampSearch
+        #
+        iSearchID = oSearch.id
+        #
+        sLastFile = trySearchCatchExceptStoreInFile( iSearchID )
+        #
+        iLogID = SearchLog.objects.get(
+                    iSearch     = oSearch,
+                    tBegSearch  = oSearch.tBegSearch )
+        #
+        sSearchName = oSearch.cTitle
+        sUserName   = oSearch.iUser.username
+        sMarket     = oSearch.iUser.iEbaySiteID.cMarket
+        #
+        t = storeSearchResultsInDB( iLogID,
+                                    sMarket,
+                                    sUserName,
+                                    iSearchID,
+                                    sSearchName )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
