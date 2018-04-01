@@ -30,52 +30,6 @@ app = Celery()
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
 
-def doAllSearching( bOnlyList = False ):
-    #
-    # really want to select for active users only (not inactive)
-    #
-    tNow    = timezone.now()
-    t12hAgo = tNow - timezone.timedelta( hours = 12 )
-    t04hAgo = tNow - timezone.timedelta( hours =  4 )
-    #
-    qsSearches = (
-            Search.objects.filter(
-                Q( tBegSearch__isnull = True    ) |
-                Q( tBegSearch__lte    = t12hAgo ) ) |
-            Search.objects.filter(
-                    tEndSearch__isnull= True,
-                    tBegSearch__lte   = t04hAgo ) ).order_by('cPriority')
-    #
-    if len( qsSearches ) == 0:
-        #
-        print( 'no searches are due for any user !' )
-        #
-    for oSearch in qsSearches:
-        #
-        if bOnlyList:
-            #
-            print( 'would do the "%s" search for %s ...' %
-                    ( oSearch, oSearch.iUser.name ) )
-            #
-        else:
-            #
-            print( 'Doing the "%s" search for %s ...' %
-                    ( oSearch, oSearch.iUser.name ) )
-            #
-            t = trySearchCatchExceptStoreInDB( iSearchID = oSearch.id )
-            #
-            iItems, iStoreItems, iStoreUsers = t
-            #
-            sItems      = ReadableNo( iItems      )
-            sStoreItems = ReadableNo( iStoreItems )
-            sStoreUsers = ReadableNo( iStoreUsers )
-            #
-            print(
-                'got %s items, of which %s were new, and %s were new for %s.' %
-                ( sItems, sStoreItems, sStoreUsers, oSearch.iUser.name ) )
-            print( '' )
-            #
-
 
 
 def doSearchingPutResultsInFiles( bOnlyList = False ):
