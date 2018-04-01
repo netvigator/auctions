@@ -29,6 +29,13 @@ sMarketsTable = \
  EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
  '''
  
+dMarketsRelated = {
+          0 : 100,  # EBAY-US    : EBAY-MOTOR
+        100 :   0,  # EBAY-MOTOR : EBAY-US
+          2 : 210,  # EBAY-ENCA  : EBAY-FRCA
+        210 :   2,  # EBAY-FRCA  : EBAY-ENCA
+         23 : 123,  # EBAY-FRBE  : EBAY-NLBE
+        123 :  23 } # EBAY-NLBE  : EBAY-FRBE
 
 # select "id","iCategoryID","name","iLevel","iParentID","bLeafCategory","iTreeVersion","iMarket_id" 
  
