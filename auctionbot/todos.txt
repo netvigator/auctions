@@ -6,7 +6,7 @@ https://pyup.io/account/repos/github/netvigator/auctions/
 
 test make sure RegEx fields get wiped on Edit - Save
 
-test WereAnyReleventColsChangedMixin !
+test WereAnyReleventRegExColsChangedMixin !
 
 added model, hit save, when to model index instead of model detail, but cannot duplicate
 
@@ -48,3 +48,6 @@ set up search tips page!
 
 check whether submodel functionality will id A-326B as Altec 326
 check whether itemsfound & useritemsfound 162946585770 get processed (entered manually)
+
+maybe overdone:
+self.client.login(username ='username1', password='mypassword')
