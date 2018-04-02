@@ -19,12 +19,16 @@ class ModelFormValidatesTitle( ModelForm ):
 
     def gotTitleAready( self, cTitle ):
         #
+        oUser = None
+        #
         if hasattr( self, 'user' ):
             oUser = self.user
         elif hasattr( self, 'request' ):
             oUser = self.request.user
-        else:
+        elif hasattr( self.instance, 'user' ):
             oUser = self.instance.user
+        elif hasattr( self.instance, 'iUser' ): # testing
+            oUser = self.instance.iUser
         #
         if ( self.Meta.model.objects.filter(
                 iUser           = oUser ).filter(
