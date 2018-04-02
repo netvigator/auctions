@@ -1,6 +1,12 @@
+import logging
+
 from string     import ascii_uppercase, digits
 
 # avoiding circular import problems!
+
+logger = logging.getLogger(__name__)
+
+logging_level = logging.INFO
 
 
 def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
@@ -489,4 +495,16 @@ def getSearchResultGenerator( sFile ):
         #
         yield dItem
 
+
+
+def getShrinkItemURL( sURL ):
+    #
+    lParts = sURL.split( '/' )
+    #
+    if lParts[3] == 'itm':
+        #
+        lParts[4] = 'b'
+        #
+    #
+    return ( '/' ).join( lParts )
 
