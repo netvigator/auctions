@@ -66,7 +66,7 @@ dItemFoundFields = d(
     tCreate         = d( t = () ) )
 
 
-dUserItemFoundFields= d(
+dUserItemFoundUploadFields = d(
     iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
     iSearch         = d( t = () ),
