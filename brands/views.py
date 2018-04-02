@@ -4,7 +4,7 @@ from django.urls            import reverse_lazy
 
 from crispy_forms.layout    import Field
 
-from core.mixins            import ( WereAnyReleventColsChangedMixin,
+from core.mixins            import ( WereAnyReleventRegExColsChangedMixin,
                                      TitleSearchMixin )
 from core.utils             import model_to_dict
 from core.views             import (
@@ -68,7 +68,7 @@ class BrandDetailView( DetailViewGotModel ):
         return context
 
 
-class BrandUpdateView( WereAnyReleventColsChangedMixin,
+class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
                    UpdateViewGotCrispy ):
     model           = Brand
     template_name   = 'brands/edit.html'
