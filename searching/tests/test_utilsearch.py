@@ -1,6 +1,7 @@
+from django.test    import TestCase
 
 from ..utils        import getHowManySearchDigitsNeeded, getIdStrZeroFilled
-from ..utilsearch   import getPriorityChoices
+from ..utilsearch   import getPriorityChoices, getShrinkItemURL
 from ..utils_test   import BaseUserTestCaseCanAddSearches
 
 
@@ -114,4 +115,20 @@ class TestGetPriorityChoices( BaseUserTestCaseCanAddSearches ):
             ('Z1','Z1'), ('Z2','Z2'), ('Z3','Z3'), ('Z4','Z4'), ('Z5','Z5'), ('Z6','Z6'), ('Z7','Z7'), ('Z8','Z8'), ('Z9','Z9'))
         #
 
+
+
+
+class TestGetShrinkItemURL( TestCase ):
+    #
+    ''' test getShrinkItemURL( sURL ) '''
+
+    def test_getShrinkItemURL( self ):
+        #
+        sURL = ( 'http://www.ebay.com/itm/2015-NEW-DIY-Marantz-7-m7-Tube-Pre-'
+                 'amplifier-Kit-6z5p-12ax7b-Tubes-Amp-J1510-2-/191863708651' )
+        #
+        sExpect = 'http://www.ebay.com/itm/b/191863708651'
+        #
+        self.assertEquals( getShrinkItemURL( sURL ), sExpect )
+        #
 
