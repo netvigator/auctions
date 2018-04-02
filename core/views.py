@@ -65,6 +65,15 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
 
     success_message = 'New record successfully saved!!!!'
 
+    def form_valid(self, form):
+        # model form does not accept user in kwargs
+        obj = form.save(commit=False)
+        obj.user = self.user = self.request.user
+        form.instance.iUser  = self.request.user
+        # obj.save()
+        return super(CreateViewGotCrispy, self).form_valid(form)
+
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
@@ -73,19 +82,10 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         form.which = 'Create'
         return form
 
-    def form_valid(self, form):
-        form.instance.iUser = self.request.user
-        return super().form_valid(form)
-
     def get_object(self):
         '''work around obscure bug, sometimes CreateView wants a pk!'''
         # https://github.com/django-guardian/django-guardian/issues/279
         return None
-
-    def get_form_kwargs(self):
-        kwargs = super(CreateViewGotCrispy, self).get_form_kwargs()
-        kwargs.update({'user': self.request.user})
-        return kwargs
 
     def get_success_url(self):
         """
@@ -129,8 +129,8 @@ class DeleteViewGotModel( LoginRequiredMixin,
             return super(DeleteViewGotModel, self).post(request, *args, **kwargs)
 
 
-class UpdateViewGotCrispy( LoginRequiredMixin,
-                DoesLoggedInUserOwnThisRowMixin, SuccessMessageMixin, UpdateView ):
+class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin,
+                DoesLoggedInUserOwnThisRowMixin, UpdateView ):
     '''
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
@@ -140,6 +140,14 @@ class UpdateViewGotCrispy( LoginRequiredMixin,
         self.which = 'Update'
         super(UpdateViewGotCrispy, self).__init__(*args, **kwargs)
     '''
+    def form_valid(self, form):
+        # model form does not accept user in kwargs
+        obj = form.save(commit=False)
+        obj.user = self.user = self.request.user
+        form.instance.iUser  = self.request.user
+        # obj.save()
+        return super(UpdateViewGotCrispy, self).form_valid(form)
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.helper = FormHelper()
@@ -147,11 +155,6 @@ class UpdateViewGotCrispy( LoginRequiredMixin,
         form.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         form.which = 'Update'
         return form
-
-    def get_form_kwargs(self):
-        kwargs = super(UpdateViewGotCrispy, self).get_form_kwargs()
-        kwargs.update({'user': self.request.user})
-        return kwargs
 
     def get_success_url(self):
         """
