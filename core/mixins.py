@@ -24,10 +24,11 @@ class DoesLoggedInUserOwnThisRowMixin(object):
         return obj
 
 
-class WereAnyReleventColsChangedMixin(object):
+
+class WereAnyReleventColsChangedBase(object):
     
     '''
-    for testing whether any RegEx relevant fields have changed 
+    for testing whether any relevant fields have changed 
     '''
     def _getIsDataChangedTester( self, form ):
         
@@ -41,6 +42,12 @@ class WereAnyReleventColsChangedMixin(object):
         #
         return get1stThatMeets( tCols, isFormDataChanged )
 
+
+class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
+    
+    '''
+    for testing whether any RegEx relevant fields have changed 
+    '''
     def redoRegEx( self, form ):
         #
         if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
