@@ -3,7 +3,7 @@ from django.shortcuts   import render
 from django.http        import HttpResponseRedirect
 from django.urls        import reverse_lazy
 
-from core.mixins        import WereAnyReleventColsChangedMixin
+from core.mixins        import WereAnyReleventRegExColsChangedMixin
 
 from core.views         import (
                     CreateViewGotCrispy, DeleteViewGotModel,
@@ -38,7 +38,7 @@ class CategoryCreateView( CreateViewGotCrispy ):
 
 
 
-class CategoryUpdateView( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
+class CategoryUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewGotCrispy):
 
     form_class      = CategoryForm
     model           = Category
