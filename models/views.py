@@ -2,7 +2,7 @@ from django.http        import HttpResponseRedirect
 from django.shortcuts   import render
 from django.urls        import reverse_lazy
 
-from core.mixins        import ( WereAnyReleventColsChangedMixin,
+from core.mixins        import ( WereAnyReleventRegExColsChangedMixin,
                                              TitleSearchMixin )
 
 from core.views         import (
@@ -38,7 +38,7 @@ class ModelCreateView( CreateViewGotCrispy ):
 
 
 
-class ModelUpdateView( WereAnyReleventColsChangedMixin, UpdateViewGotCrispy):
+class ModelUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewGotCrispy):
 
     form_class      = ModelForm
     model           = Model
