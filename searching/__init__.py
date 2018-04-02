@@ -1,4 +1,7 @@
 from core.utils     import getDateTimeObjGotEbayStr
+
+from .utilsearch    import getShrinkItemURL
+
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
 RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s_p_%s_.json'
@@ -22,7 +25,8 @@ dItemFoundFields = d(
     iEbaySiteID     = d( t = ( 'iEbaySiteID',), # must use cMarket to look this up
                          bCalculate = True ),
     cGalleryURL     = d( t = ( 'galleryURL',), bOptional = True ),
-    cEbayItemURL    = d( t = ( 'viewItemURL',) ),
+    cEbayItemURL    = d( t = ( 'viewItemURL',),
+                         f = getShrinkItemURL ),
     tTimeBeg        = d( t = ( 'listingInfo','startTime'),
                          f = getDateTimeObjGotEbayStr ),
     tTimeEnd        = d( t = ( 'listingInfo','endTime'),
