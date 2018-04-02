@@ -89,6 +89,7 @@ class ItemsFoundIndexView( ListViewGotModel ):
 class ItemFoundDetailView( DetailViewGotModel ):
     
     model           = UserItemFound
+    parent          = ItemFound
     template_name   = 'searching/items_found_detail.html'
     form_class      = UserItemFoundForm
 
