@@ -3,7 +3,7 @@ from django                 import forms
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.forms           import ModelForm
 
-from searching              import dItemFoundFields, dUserItemFoundFields
+from searching              import dItemFoundFields, dUserItemFoundUploadFields
 
 from .models                import Search, ItemFound, UserItemFound
 from .utilsearch            import getPriorityChoices, ALL_PRIORITIES
@@ -185,15 +185,56 @@ class ItemFoundForm(ModelForm):
 
 
 
-tUserItemFoundFields = tuple( dUserItemFoundFields.keys() )
+tUserItemFoundUploadFields = tuple( dUserItemFoundUploadFields.keys() )
 
-class UserItemFoundForm(ModelForm):
+class UserItemFoundUploadForm(ModelForm):
     #
     '''using a form to validate incoming info from ebay'''
     #
     class Meta:
         model   = UserItemFound
-        fields  = tUserItemFoundFields
+        fields  = tUserItemFoundUploadFields
 
+
+
+lUserItemFoundFields = [
+    'iItemNumb.cTitle',
+    'iItemNumb.cLocation',
+    'iItemNumb.cCountry',
+    'iItemNumb.cMarket', ]
+
+tRest = (
+    'iSearch',
+    'tlook4hits',
+    'cWhereCategory', )
+
+lEditable = [
+   'iHitStars',
+    'bitemhit',
+    'iModel',
+    'iBrand',
+    'iCategory', ]
+
+
+tUserItemFoundFields = lEditable
+tUserItemFoundFields.extend( tRest )
+
+
+tReadOnly = tRest
+ 
+class UserItemFoundForm(ModelForm):
+    #
+    '''using a form on the edit user item found page'''
+     #
+    read_only_fields = tRest
+    
+    def __init__(self, *args, **kwargs):
+        super(UserItemFoundForm, self).__init__(*args, **kwargs)
+        for field in self.read_only_fields:
+            self.fields[field].widget.attrs['readonly'] = True
+
+    class Meta:
+        model   = UserItemFound
+        fields  = tUserItemFoundFields
 
 
