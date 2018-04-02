@@ -144,6 +144,8 @@ class BaseUserTestCase(TestCase):
                 cCurrencyDef= 'USD' )
             self.market.save()
         #
+        self.client.login(username ='username1', password='mypassword')
+        #
 
 
 
