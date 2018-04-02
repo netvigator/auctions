@@ -1,11 +1,12 @@
 from core.views     import ( CreateViewGotCrispy, DeleteViewGotModel,
-                                     DetailViewGotModel,  ListViewGotModel,
-                                     UpdateViewGotCrispy )
+                             DetailViewGotModel,  ListViewGotModel,
+                             UpdateViewGotCrispy )
 
 from django.urls    import reverse_lazy
 
 from .forms         import ( ItemFoundForm, UserItemFoundForm,
                              SearchAddOrUpdateForm )
+
 from .mixins        import SearchViewSuccessPostFormValidMixin
 from .models        import Search, ItemFound, UserItemFound
 
@@ -73,8 +74,8 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy
 
 
 
-class ItemsFoundIndexView( ListViewGotModel ):  
-    
+class ItemsFoundIndexView( ListViewGotModel ):
+
     template_name       = 'searching/items_found_index.html'
     model               = UserItemFound
     context_object_name = 'items_found_list'
@@ -82,7 +83,8 @@ class ItemsFoundIndexView( ListViewGotModel ):
 
     def get_queryset(self):
         return self.model.objects.filter(
-                        iUser = self.request.user ).order_by('-iHitStars')
+                        iUser = self.request.user,
+                        iHitStars__isnull = False ).order_by('-iHitStars')
 
 
 
@@ -90,6 +92,17 @@ class ItemFoundDetailView( DetailViewGotModel ):
     
     model           = UserItemFound
     parent          = ItemFound
-    template_name   = 'searching/items_found_detail.html'
+    template_name   = 'searching/item_found_detail.html'
     form_class      = UserItemFoundForm
+
+
+    
+class ItemFoundUpdateView( UpdateViewGotCrispy ):
+
+    model           = UserItemFound
+    template_name   = 'searching/item_found_edit.html'
+    success_message = 'Item Found record update successfully saved!!!!'
+    form_class      = UserItemFoundForm
+
+
 
