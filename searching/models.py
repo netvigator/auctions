@@ -162,11 +162,14 @@ class UserItemFound(models.Model):
     iSearch         = models.ForeignKey( Search,
                         verbose_name = 'Search that first found this item',
                         on_delete=models.CASCADE )
-    iModel          = models.ForeignKey( Model,     null = True,
+    iModel          = models.ForeignKey( Model,    null = True, blank = True,
+                        verbose_name = 'Model Name/Number',
                         on_delete=models.CASCADE )
-    iBrand          = models.ForeignKey( Brand,     null = True,
+    iBrand          = models.ForeignKey( Brand,    null = True, blank = True,
+                        verbose_name = 'Brand',
                         on_delete=models.CASCADE )
-    iCategory       = models.ForeignKey( Category,  null = True,
+    iCategory       = models.ForeignKey( Category, null = True, blank = True,
+                        verbose_name = 'Category',
                         on_delete=models.CASCADE )
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
@@ -178,7 +181,7 @@ class UserItemFound(models.Model):
                         'retrieved info date/time', auto_now = True )
 
     def __str__(self):
-        return '%s - %s' % ( self.iUser.username, self.iItemNumb )
+        return self.iItemNumb.cTitle
 
     class Meta:
         verbose_name_plural = 'useritemsfound'
