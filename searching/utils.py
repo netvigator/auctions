@@ -273,7 +273,7 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
 
 def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
     #
-    from .forms     import UserItemFoundForm
+    from .forms     import UserItemFoundUploadForm
     from searching  import dUserItemFoundFields # in __init__.py
     #
     bAlreadyInTable = UserItemFound.objects.filter(
@@ -291,7 +291,7 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
                 dItem,
                 dUserItemFoundFields,
                 tSearchTime,
-                UserItemFoundForm,
+                UserItemFoundUploadForm,
                 _getValueUserOrOther,
                 oUser       = oUser,
                 iItemNumb   = iItemNumb,
