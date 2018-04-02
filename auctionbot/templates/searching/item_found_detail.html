@@ -7,6 +7,11 @@
 
     <h1>Found {{ object }} - Details</h1>
 
+    <!-- Action buttons -->
+    <div class="basic">
+        {% include "./items_found_actions.html" %}    
+    </div>            
+    <!-- End Action buttons -->
     
     <table RULES=ROWS CELLPADDING=10>
     <TR>
@@ -143,5 +148,11 @@
     </table>
     
     <p>
-    
+
+    <!-- Action buttons -->
+    <div class="basic">
+        {% include "./items_found_actions.html" %}    
+    </div>            
+    <!-- End Action buttons -->
+
 {% endblock %}

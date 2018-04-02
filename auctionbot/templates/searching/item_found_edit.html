@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Auction Shopping Bot Item Found | {{ useritemfound }}{% endblock %}
+
+
+{% block content %} 
+ 
+    <h3>{{ useritemfound }}</h3>
+    <table>
+    <tr>
+        <td>Listing Type:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iItemNumb.cListingType }}</td>
+    </tr>
+    <tr>
+        <td>Location:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iItemNumb.cLocation }}</td>
+    </tr>
+    <tr>
+        <td>Country:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iItemNumb.cCountry }}</td>
+    </tr>
+    <tr>
+        <td>Market:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iItemNumb.cMarket }}</td>
+    </tr>
+    <tr>
+        <td>End date/time:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
+    </tr>
+    </table>
+    <p>
+    
+    {% csrf_token %}
+    {% crispy form %}
+
+{% endblock %} 
