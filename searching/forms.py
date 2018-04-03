@@ -4,8 +4,12 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.forms           import ModelForm
 
 from crispy_forms.layout    import Field
+from crispy_forms.layout    import Submit
+
 
 from searching              import dItemFoundFields, dUserItemFoundUploadFields
+
+from core.forms             import BaseModelFormGotCrispy
 
 from .models                import Search, ItemFound, UserItemFound
 from .utilsearch            import getPriorityChoices, ALL_PRIORITIES
@@ -20,11 +24,13 @@ tSearchFields = (
     'iDummyCategory',
     'cPriority', )
 
-class SearchAddOrUpdateForm(ModelForm):
+
+class BaseSearchForm( BaseModelFormGotCrispy ):
     '''
     using a form to get extra validation
     '''
-    which = 'Create' # can be over written in view get_form
+    which = 'Create' # can be over written
+    #
     cPriority = forms.ChoiceField(
                     choices     = ALL_PRIORITIES,
                     label       = Search._meta.get_field('cPriority').verbose_name,
@@ -33,18 +39,11 @@ class SearchAddOrUpdateForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         #
-        self.request = kwargs.get( 'request' )
-        # Voila, now you can access request via self.request!
-        #
-        if not hasattr( self, 'user' ): self.user = None
-        #
-        if 'user' in kwargs: self.user = kwargs.pop('user')
-        #
         if 'which' in kwargs:
             self.which = kwargs.pop('which')
         #
-        super( SearchAddOrUpdateForm, self ).__init__(*args, **kwargs)
-        # SearchAddOrUpdateForm, self
+        super( BaseSearchForm, self ).__init__(*args, **kwargs)
+        # BaseSearchForm, self
         #
         self.fields[ 'cPriority' ].validators.append( isPriorityValid )
         #
@@ -61,7 +60,7 @@ class SearchAddOrUpdateForm(ModelForm):
 
     def clean(self):
         #
-        cleaned = super( SearchAddOrUpdateForm, self).clean()
+        cleaned = super( BaseSearchForm, self).clean()
         #
         sKeyWords       = cleaned.get( 'cKeyWords',     '' )
         #
@@ -174,6 +173,35 @@ class SearchAddOrUpdateForm(ModelForm):
 
 
 
+class CreateSearchForm( BaseSearchForm ):
+    '''form for creating new search'''
+
+    def __init__(self, *args, **kwargs):
+        #
+        super( CreateSearchForm, self ).__init__( *args, **kwargs )
+        #
+        self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        #
+
+
+
+
+class UpdateSearchForm( BaseSearchForm ):
+    '''form for editing existing search'''
+    which = 'Update' # can be over written
+    #
+
+    def __init__(self, *args, **kwargs):
+        #
+        super( UpdateSearchForm, self ).__init__( *args, **kwargs )
+        #
+        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        #
+
+
+
 tItemFoundFields = tuple( dItemFoundFields.keys() )
 
 class ItemFoundForm(ModelForm):
@@ -206,35 +234,35 @@ lUserItemFoundFields = [
     'iItemNumb.cMarket', ]
 
 tRest = (
+    'iHitStars',
     'iSearch',
     'tlook4hits',
     'cWhereCategory', )
 
-lEditable = [
-   'iHitStars',
+tEditable = (
     'bitemhit',
     'iModel',
     'iBrand',
-    'iCategory', ]
+    'iCategory' )
 
 
-tUserItemFoundFields = lEditable
-tUserItemFoundFields.extend( tRest )
+tUserItemFoundFields = tEditable
+# tUserItemFoundFields.extend( tRest )
 
 
-tReadOnly = tRest
  
-class UserItemFoundForm(ModelForm):
+class UserItemFoundForm( BaseModelFormGotCrispy ):
     #
     '''using a form on the edit user item found page'''
      #
-    read_only_fields = tRest
     
     def __init__(self, *args, **kwargs):
-        super(UserItemFoundForm, self).__init__(*args, **kwargs)
-        for field in self.read_only_fields:
-            # self.fields[field].widget.attrs['readonly'] = True
-            Field( field, readonly = True ),
+        #
+        super( UserItemFoundForm, self ).__init__( *args, **kwargs )
+        #
+        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        #
 
     class Meta:
         model   = UserItemFound
