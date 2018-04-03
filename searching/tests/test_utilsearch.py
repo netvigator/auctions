@@ -4,7 +4,6 @@ from django.test        import TestCase
 from django.urls        import reverse_lazy
 
 from core.utils_test    import setup_view_for_tests
-from ..forms            import SearchAddOrUpdateForm
 from ..models           import Search
 from ..utils            import ( getIdStrZeroFilled,
                                  getHowManySearchDigitsNeeded )
