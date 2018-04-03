@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load field_name %}
 {% load crispy_forms_tags %}
 
 {% block title %}Auction Shopping Bot Item Found | {{ useritemfound }}{% endblock %}
@@ -9,29 +10,63 @@
     <h4>{{ useritemfound }}</h4>
     <table>
     <tr>
-        <td>Listing Type:</td>
+        <td>{% field_name parent 'cListingType' %}:</td>
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.iItemNumb.cListingType }}</td>
+        <td>&nbsp;&nbsp;</td>
+        <TD ROWSPAN=7><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
     </tr>
     <tr>
-        <td>Location:</td>
+        <td>{% field_name parent 'cLocation' %}:</td>
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.iItemNumb.cLocation }}</td>
     </tr>
     <tr>
-        <td>Country:</td>
+        <td>{% field_name parent 'cCountry' %}:</td>
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.iItemNumb.cCountry }}</td>
     </tr>
     <tr>
-        <td>Market:</td>
+        <td>{% field_name parent 'cMarket' %}:</td>
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.iItemNumb.cMarket }}</td>
     </tr>
     <tr>
-        <td>End date/time:</td>
+        <td>{% field_name parent 'tTimeEnd' %}:</td>
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'iSearch' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iSearch }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'tlook4hits' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.tlook4hits|date:'Y-m-d H:i:s' }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'cWhereCategory' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.cWhereCategory }}</td>
+    </tr>
+    <TR>
+        <TD>{{ sayCurrentPrice }}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
+    </TR>
+    {% if object.iItemNumb.lLocalCurrency != "USD" %}
+        <TR>
+            <TD>{% field_name parent 'dCurrentPrice' %}</TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
+        </TR>
+    {% endif %}
+    <tr>
+        <td>{% field_name model 'iHitStars' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td COLSPAN=3>{{ object.iHitStars }} (changing model, brand or category below will recalculate)</td>
     </tr>
     </table>
     <p>
