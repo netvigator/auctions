@@ -29,7 +29,8 @@ from ..utils_stars      import ( getFoundItemTester,
 from ..utils            import ( storeSearchResultsInDB,
                                  ItemAlreadyInTable,
                                  _putPageNumbInFileName,
-                                 trySearchCatchExceptStoreInFile )
+                                 trySearchCatchExceptStoreInFile,
+                                 getSearchIdStr )
 
 from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
                                  getPagination, _getFindingResponseGenerator,
@@ -408,7 +409,10 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-            ( 'EBAY-US', self.user1.username, oSearch.id, '000' ) )
+                ( 'EBAY-US',
+                   self.user1.username,
+                   getSearchIdStr( oSearch.id ),
+                   '000' ) )
         #
         QuietDump( sExampleResponse, self.sExampleFile )
         #
@@ -963,7 +967,7 @@ class FileNameUtilitiesTesting( TestCase ):
         #
         sExampleFile = (
                 RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-                ( 'EBAY-US', 'oUserOne', 10, '000' ) )
+                ( 'EBAY-US', 'oUserOne', getSearchIdStr( 10 ), '000' ) )
         
         sNewFileName = _putPageNumbInFileName( sExampleFile, 1 )
         #
