@@ -1,6 +1,6 @@
-from core.views     import ( CreateViewGotCrispy, DeleteViewGotModel,
+from core.views     import ( CreateViewCanCancel, DeleteViewGotModel,
                              DetailViewGotModel,  ListViewGotModel,
-                             UpdateViewGotCrispy )
+                             UpdateViewCanCancel )
 
 from django.http    import HttpResponseRedirect
 from django.urls    import reverse_lazy
@@ -8,7 +8,7 @@ from django.urls    import reverse_lazy
 from django.core.urlresolvers   import reverse
 
 from .forms         import ( ItemFoundForm, UserItemFoundForm,
-                             SearchAddOrUpdateForm )
+                             CreateSearchForm, UpdateSearchForm )
 
 import searching.utils
 
@@ -24,18 +24,14 @@ tModelFields = (
     'cPriority', )
 
 
-class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy ):
+class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewCanCancel ):
 
     model           = Search
     template_name   = 'searching/add.html'
     success_message = 'New Search record successfully saved!!!!'
-    form_class      = SearchAddOrUpdateForm
+    form_class      = CreateSearchForm
 
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.request = self.request
-        form.which = 'Create'
-        return form
+    success_message = 'New Search record successfully saved!!!!'
 
 
 class SearchIndexView( ListViewGotModel ):  
@@ -59,19 +55,15 @@ class SearchDeleteView( DeleteViewGotModel ):
 
 
 
-
-class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewGotCrispy ):
+class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewCanCancel ):
 
     model           = Search
     template_name   = 'searching/edit.html'
     success_message = 'Search record update successfully saved!!!!'
-    form_class      = SearchAddOrUpdateForm
+    form_class      = UpdateSearchForm
 
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.request= self.request
-        form.which  = 'Update'
-        return form
+    success_message = 'Search record successfully updated!!!!'
+
 
 
 
@@ -97,10 +89,12 @@ class ItemFoundDetailView( DetailViewGotModel ):
     form_class      = UserItemFoundForm
 
 
-    
-class ItemFoundUpdateView( UpdateViewGotCrispy ):
+
+
+class ItemFoundUpdateView( UpdateViewCanCancel ):
 
     model           = UserItemFound
+    parent          = ItemFound
     template_name   = 'searching/item_found_edit.html'
     success_message = 'Item Found record update successfully saved!!!!'
     form_class      = UserItemFoundForm
