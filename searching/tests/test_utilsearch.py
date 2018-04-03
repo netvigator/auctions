@@ -1,8 +1,16 @@
-from django.test    import TestCase
+from django.core.urlresolvers   import reverse
+from django.http        import HttpResponseRedirect
+from django.test        import TestCase
+from django.urls        import reverse_lazy
 
-from ..utils        import getHowManySearchDigitsNeeded, getIdStrZeroFilled
-from ..utilsearch   import getPriorityChoices, getShrinkItemURL
-from ..utils_test   import BaseUserTestCaseCanAddSearches
+from core.utils_test    import setup_view_for_tests
+from ..forms            import SearchAddOrUpdateForm
+from ..models           import Search
+from ..utils            import ( getIdStrZeroFilled,
+                                 getHowManySearchDigitsNeeded )
+from ..utilsearch       import getPriorityChoices, getShrinkItemURL
+from ..utils_test       import BaseUserTestCaseCanAddSearches
+from ..views            import SearchCreateView
 
 
 
@@ -31,6 +39,36 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
                 self.addSearch( "My clever search %s%s" % ( sChar, str(i) ),
                                 '%s%s' % ( sChar, str(i) ),
                                 self.user1 )
+        #
+        self.assertEquals( getHowManySearchDigitsNeeded(), 3 )
+        #
+        data = dict(
+            cTitle      = "Great Widget",
+            cKeyWords   = "Blah bleh blih",
+            cPriority   = 'Q1',
+            iUser       = self.user1 )
+        #
+        request = self.factory.get(reverse('searching:add'))
+        #
+        request.user = self.user1
+        #
+        view = setup_view_for_tests( SearchCreateView(), self.request )
+        #
+        form = view.get_form()
+        #
+        url = reverse_lazy('searching:add')
+        #
+        response = self.client.post( url, data )
+        #
+        self.assertEqual(response.status_code, 302 )
+        #
+        # view.get_success_url() # cannot work,
+        # 'SearchCreateView' object has no attribute 'object'
+        #
+        iLast = Search.objects.latest('pk').pk
+        #
+        # lack of success get_success_url
+        self.assertRedirects( response, '/searching/' )
         #
         self.assertEquals( getHowManySearchDigitsNeeded(), 3 )
         #
