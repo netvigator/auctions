@@ -6,10 +6,10 @@ from core.mixins        import ( WereAnyReleventRegExColsChangedMixin,
                                              TitleSearchMixin )
 
 from core.views         import (
-                    CreateViewGotCrispy, DeleteViewGotModel,
-                    DetailViewGotModel, ListViewGotModel, UpdateViewGotCrispy )
+                    CreateViewCanCancel, DeleteViewGotModel,
+                    DetailViewGotModel, ListViewGotModel, UpdateViewCanCancel )
 
-from .forms             import ModelForm
+from .forms             import CreateModelForm, UpdateModelForm
 from .models            import Model
 
 
@@ -29,18 +29,18 @@ class ModelDetailView( DetailViewGotModel ):
     template_name = 'models/detail.html'
 
 
-class ModelCreateView( CreateViewGotCrispy ):
+class ModelCreateView( CreateViewCanCancel ):
 
     model           = Model
-    form_class      = ModelForm
+    form_class      = CreateModelForm
     template_name   = 'models/add.html'
     success_message = 'New Model record successfully saved!!!!'
 
 
 
-class ModelUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewGotCrispy):
+class ModelUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
 
-    form_class      = ModelForm
+    form_class      = UpdateModelForm
     model           = Model
     template_name   = 'models/edit.html'
     success_message = 'Model record update successfully saved!!!!'
