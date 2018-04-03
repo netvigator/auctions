@@ -4,7 +4,7 @@ from core.utils_test import setUpBrandsCategoriesModels, getUrlQueryStringOff
 
 from categories.models          import Category
 
-from ..forms                    import ModelForm
+from ..forms                    import CreateModelForm, UpdateModelForm
 from ..models                   import Model
 
 # Create your tests here.
@@ -25,7 +25,7 @@ class TestFormValidation(setUpBrandsCategoriesModels):
             iCategory   = self.CategoryID,
             iUser       = self.user1 )
         #
-        form = ModelForm(data=form_data)
+        form = CreateModelForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
@@ -39,7 +39,7 @@ class TestFormValidation(setUpBrandsCategoriesModels):
         #
         form_data['cTitle'] = 'LS3-5A'
         #
-        form = ModelForm(data=form_data)
+        form = CreateModelForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
 
@@ -61,7 +61,7 @@ class TestFormValidation(setUpBrandsCategoriesModels):
             iCategory   = self.CategoryID,
             iUser       = self.user1 )
         #
-        form = ModelForm(data=form_data)
+        form = CreateModelForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
         #
@@ -82,16 +82,16 @@ class TestFormValidation(setUpBrandsCategoriesModels):
         form_data = dict(
             cTitle      = 'Fleetwood',
             iStars      = 5,
-            iCategory   = self.CategoryID,
-            iUser       = self.user1 )
+            iCategory_id= self.CategoryID,
+            iUser_id    = self.user1.id )
         #
-        form = ModelForm(data=form_data)
+        form = CreateModelForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
         form_data['cTitle'] = 'Woodie'
         #
-        form = ModelForm(data=form_data)
+        form = CreateModelForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
 
