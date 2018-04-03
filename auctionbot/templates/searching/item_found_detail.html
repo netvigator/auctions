@@ -15,132 +15,132 @@
     
     <table RULES=ROWS CELLPADDING=10>
     <TR>
-        <TD width = 300>{% field_name parent  'cTitle' %}</TD> 
+        <TD width = 300>{% field_name parent 'cTitle' %}</TD> 
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.iItemNumb.iItemNumb.cTitle}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'iItemNumb' %}</TD>
+        <TD>{% field_name parent 'iItemNumb' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.iItemNumb.iItemNumb }}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cLocation' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cLocation' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cLocation}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cCountry' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cCountry' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cCountry}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'cMarket' %}</TD>
+        <TD>{% field_name parent 'cMarket' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.iItemNumb.cMarket }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name parent  'iEbaySiteID' %}</TD>
+        <TD width = 300>{% field_name parent 'iEbaySiteID' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.iEbaySiteID.pk}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cGalleryURL' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cEbayItemURL' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cEbayItemURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cEbayItemURL}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'tTimeBeg' %}</TD>
+        <TD>{% field_name parent 'tTimeBeg' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.tTimeBeg|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'tTimeEnd' %}</TD>
+        <TD>{% field_name parent 'tTimeEnd' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.tTimeEnd|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'bBestOfferable' %}</TD>
+        <TD>{% field_name parent 'bBestOfferable' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.iItemNumb.bBestOfferable|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'bBuyItNowable' %}</TD>
+        <TD>{% field_name parent 'bBuyItNowable' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.iItemNumb.bBuyItNowable|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cListingType' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cListingType' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cListingType}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'lLocalCurrency' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'lLocalCurrency' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.lLocalCurrency}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'lCurrentPrice' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'lCurrentPrice' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.lCurrentPrice}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'dCurrentPrice' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'dCurrentPrice' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'iCategoryID' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'iCategoryID' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.iCategoryID}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cCategory' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cCategory' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cCategory}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'iCatHeirarchy' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'iCatHeirarchy' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.iCatHeirarchy.cCatHierarchy}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'i2ndCategoryID' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'i2ndCategoryID' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.i2ndCategoryID}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'c2ndCategory' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'c2ndCategory' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.c2ndCategory}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'i2ndCatHeirarchy' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'iConditionID' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'iConditionID' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.iConditionID}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cCondition' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cCondition' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cCondition}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent  'cSellingState' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cSellingState' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.cSellingState}}</TD>
     </TR>
     <TR>
-        <TD>{% field_name parent  'tCreate' %}</TD>
+        <TD>{% field_name parent 'tCreate' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{object.iItemNumb.tCreate|date:"d M Y  P"}}</TD>
     </TR>
