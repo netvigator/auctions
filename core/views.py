@@ -67,7 +67,7 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
 
     def form_valid(self, form):
         # model form does not accept user in kwargs
-        obj = form.save(commit=False)
+        obj = form.save( commit = False )
         obj.user = self.user = self.request.user
         form.instance.iUser  = self.request.user
         # obj.save()
@@ -83,23 +83,25 @@ class CreateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin, CreateView )
         return form
 
     def get_object(self):
-        '''work around obscure bug, sometimes CreateView wants a pk!'''
+        '''work around obscure bug, sometimes CreateView requires a pk!'''
         # https://github.com/django-guardian/django-guardian/issues/279
         return None
 
-    def get_success_url(self):
-        """
-        Returns the supplied success URL.
-        """
-        return self.object.get_absolute_url()
-
+    #def get_success_url(self):
+        #"""
+        #Returns the supplied success URL.
+        #"""
+        #return self.object.get_absolute_url()
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
             url = reverse_lazy( '%s:index' % self.model._meta.db_table )
             return HttpResponseRedirect(url)
         else:
-            return super(CreateViewGotCrispy, self).post(request, *args, **kwargs)
+            # self.object = self.get_object() # assign the object to the view
+            # cannot work, see above
+            return ( super( CreateViewGotCrispy, self )
+                     .post( request, *args, **kwargs ) )
 
 
 class DeleteViewGotModel( LoginRequiredMixin,
@@ -142,7 +144,7 @@ class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin,
     '''
     def form_valid(self, form):
         # model form does not accept user in kwargs
-        obj = form.save(commit=False)
+        obj = form.save( commit = False )
         obj.user = self.user = self.request.user
         form.instance.iUser  = self.request.user
         # obj.save()
@@ -156,11 +158,11 @@ class UpdateViewGotCrispy( LoginRequiredMixin, SuccessMessageMixin,
         form.which = 'Update'
         return form
 
-    def get_success_url(self):
-        """
-        Returns the supplied success URL.
-        """
-        return self.object.get_absolute_url()
+    #def get_success_url(self):
+        #"""
+        #Returns the supplied success URL.
+        #"""
+        #return self.object.get_absolute_url()
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
