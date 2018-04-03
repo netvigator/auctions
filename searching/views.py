@@ -2,13 +2,19 @@ from core.views     import ( CreateViewGotCrispy, DeleteViewGotModel,
                              DetailViewGotModel,  ListViewGotModel,
                              UpdateViewGotCrispy )
 
+from django.http    import HttpResponseRedirect
 from django.urls    import reverse_lazy
+
+from django.core.urlresolvers   import reverse
 
 from .forms         import ( ItemFoundForm, UserItemFoundForm,
                              SearchAddOrUpdateForm )
 
+import searching.utils
+
 from .mixins        import SearchViewSuccessPostFormValidMixin
 from .models        import Search, ItemFound, UserItemFound
+from .utils         import getHowManySearchDigitsNeeded
 
 
 tModelFields = (
@@ -30,11 +36,6 @@ class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewGotCrispy
         form.request = self.request
         form.which = 'Create'
         return form
-
-    def get_form_kwargs(self):
-        kwargs = super(SearchCreateView, self).get_form_kwargs()
-        kwargs.update( { 'user': self.request.user } )
-        return kwargs
 
 
 class SearchIndexView( ListViewGotModel ):  
@@ -104,5 +105,6 @@ class ItemFoundUpdateView( UpdateViewGotCrispy ):
     success_message = 'Item Found record update successfully saved!!!!'
     form_class      = UserItemFoundForm
 
-
+    # want to set tlook4hits = None if any relevant fields changed
+    # can be done with a mixin
 
