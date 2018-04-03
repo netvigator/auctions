@@ -51,23 +51,23 @@
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.cWhereCategory }}</td>
     </tr>
-    <TR>
-        <TD>{{ sayCurrentPrice }}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
-    </TR>
-    {% if object.iItemNumb.lLocalCurrency != "USD" %}
-        <TR>
-            <TD>{% field_name parent 'dCurrentPrice' %}</TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
-        </TR>
-    {% endif %}
     <tr>
         <td>{% field_name model 'iHitStars' %}:</td>
         <td>&nbsp;&nbsp;</td>
         <td COLSPAN=3>{{ object.iHitStars }} (changing model, brand or category below will recalculate)</td>
     </tr>
+    <TR>
+        <TD>{% field_name parent 'lCurrentPrice' %} ({{object.iItemNumb.lLocalCurrency}})</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
+    </TR>
+    {% if object.iItemNumb.lLocalCurrency != "USD" %}
+    <TR>
+        <TD>{% field_name parent 'dCurrentPrice' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
+    </TR>
+    {% endif %}
     </table>
     <p>
     
