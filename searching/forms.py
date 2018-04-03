@@ -3,6 +3,8 @@ from django                 import forms
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.forms           import ModelForm
 
+from crispy_forms.layout    import Field
+
 from searching              import dItemFoundFields, dUserItemFoundUploadFields
 
 from .models                import Search, ItemFound, UserItemFound
@@ -231,7 +233,8 @@ class UserItemFoundForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserItemFoundForm, self).__init__(*args, **kwargs)
         for field in self.read_only_fields:
-            self.fields[field].widget.attrs['readonly'] = True
+            # self.fields[field].widget.attrs['readonly'] = True
+            Field( field, readonly = True ),
 
     class Meta:
         model   = UserItemFound
