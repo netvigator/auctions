@@ -5,7 +5,7 @@ from core.utils_test    import BaseUserTestCase, getUrlQueryStringOff
 
 # Create your tests here.
 
-from ..forms            import BrandForm
+from ..forms            import CreateBrandForm, UpdateBrandForm
 from ..models           import Brand
 
 
@@ -35,7 +35,7 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = BrandForm(data=form_data)
+        form = CreateBrandForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
@@ -49,7 +49,7 @@ class TestFormValidation(BaseUserTestCase):
         #
         form_data['cTitle'] = 'Chevrolet'
         #
-        form = BrandForm(data=form_data)
+        form = CreateBrandForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
                 
@@ -63,7 +63,7 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = BrandForm(data=form_data)
+        form = CreateBrandForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
         #
@@ -84,13 +84,13 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = BrandForm(data=form_data)
+        form = CreateBrandForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
         form_data['cTitle'] = 'Caddy'
         #
-        form = BrandForm(data=form_data)
+        form = CreateBrandForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
