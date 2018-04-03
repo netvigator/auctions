@@ -2,7 +2,6 @@ from django.core.urlresolvers   import reverse
 from django.http                import HttpResponseRedirect
 from django.urls                import reverse_lazy
 
-from .forms                     import SearchAddOrUpdateForm
 from .models                    import Search
 
 
@@ -12,7 +11,6 @@ class SearchViewSuccessPostFormValidMixin(object):
 
     model           = Search
     success_url     = reverse_lazy('searching:index')
-    form_class      = SearchAddOrUpdateForm
 
     def form_valid(self, form):
         #
