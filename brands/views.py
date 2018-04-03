@@ -8,11 +8,11 @@ from core.mixins            import ( WereAnyReleventRegExColsChangedMixin,
                                      TitleSearchMixin )
 from core.utils             import model_to_dict
 from core.views             import (
-                    CreateViewGotCrispy, DeleteViewGotModel,
-                    DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
+                    CreateViewCanCancel, DeleteViewGotModel,
+                    DetailViewGotModel,  ListViewGotModel, UpdateViewCanCancel )
 
 from .models                import Brand
-from .forms                 import BrandForm
+from .forms                 import CreateBrandForm, UpdateBrandForm
 
 from categories.models      import Category, BrandCategory
 from models.models          import Model
@@ -21,11 +21,11 @@ from models.models          import Model
 
 
 
-class BrandCreateView( CreateViewGotCrispy ):
+class BrandCreateView( CreateViewCanCancel ):
 
     model           = Brand
     template_name   = 'brands/add.html'
-    form_class      = BrandForm
+    form_class      = CreateBrandForm
 
     success_message = 'New Brand record successfully saved!!!!'
 
@@ -69,10 +69,10 @@ class BrandDetailView( DetailViewGotModel ):
 
 
 class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
-                   UpdateViewGotCrispy ):
+                   UpdateViewCanCancel ):
     model           = Brand
     template_name   = 'brands/edit.html'
-    form_class      = BrandForm
+    form_class      = UpdateBrandForm
 
     success_message = 'Brand record update successfully saved!!!!'
     # success_url   = reverse_lazy('brands:detail')
