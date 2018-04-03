@@ -6,10 +6,10 @@ from django.urls        import reverse_lazy
 from core.mixins        import WereAnyReleventRegExColsChangedMixin
 
 from core.views         import (
-                    CreateViewGotCrispy, DeleteViewGotModel,
-                    DetailViewGotModel,  ListViewGotModel, UpdateViewGotCrispy )
+                    CreateViewCanCancel, DeleteViewGotModel,
+                    DetailViewGotModel,  ListViewGotModel, UpdateViewCanCancel )
 
-from .forms             import CategoryForm
+from .forms             import UpdateCategoryForm, CreateCategoryForm
 from .models            import Category
 
 # Create your views here but keep them thin.
@@ -28,19 +28,19 @@ class CategoryDetailView( DetailViewGotModel ):
     template_name = 'categories/detail.html'
 
 
-class CategoryCreateView( CreateViewGotCrispy ):
+class CategoryCreateView( CreateViewCanCancel ):
 
     model           = Category
-    form_class      = CategoryForm
+    form_class      = CreateCategoryForm
     template_name   = 'categories/add.html'
 
     success_message = 'New Category record successfully saved!!!!'
 
 
 
-class CategoryUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewGotCrispy):
+class CategoryUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
 
-    form_class      = CategoryForm
+    form_class      = UpdateCategoryForm
     model           = Category
     template_name   = 'categories/edit.html'
     success_message = 'Category record update successfully saved!!!!'
