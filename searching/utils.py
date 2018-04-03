@@ -3,9 +3,9 @@ import logging
 from string             import ascii_letters, digits
 
 from django.conf        import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.db          import DataError
 from django.utils       import timezone
-
 from core.utils_ebay    import getValueOffItemDict
 
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
@@ -40,11 +40,16 @@ class ItemAlreadyInTable(    Exception ): pass
 
 
 
-def getHowManySearchDigitsNeeded():
+def getHowManySearchDigitsNeeded( iID = None ):
     #
-    return getHowManyDigitsNeeded( Search.objects.latest('pk').pk )
+    if iID is None:
+        try:
+            iID = Search.objects.latest('pk').pk
+        except ObjectDoesNotExist: # testing and no search objects yet
+            return None
+    #
+    return getHowManyDigitsNeeded( iID )
 
-iNEED_SEARCH_ID_DIGITS = getHowManySearchDigitsNeeded()
 
 def getIdStrZeroFilled( iID, iDigits ):
     #
@@ -52,7 +57,14 @@ def getIdStrZeroFilled( iID, iDigits ):
 
 def getSearchIdStr( iId ):
     #
-    return getIdStrZeroFilled( iId, iNEED_SEARCH_ID_DIGITS  )
+    iNeedDigits = getHowManySearchDigitsNeeded()
+    #
+    if iNeedDigits is None: # testing and no search objects yet
+        #
+        iNeedDigits = getHowManyDigitsNeeded( iId )
+        #
+    #
+    return getIdStrZeroFilled( iId, iNeedDigits )
 
 
 
@@ -129,9 +141,9 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     # returns the resonse dictionary dResponse
     # which includes dPagination for convenience
     #
-    sFileName           = (
+    sFileName = (
             RESULTS_FILE_NAME_PATTERN %
-                ( sMarket, sUserName, oSearch.id, '000') )
+                ( sMarket, sUserName, getSearchIdStr( oSearch.id ), '000') )
     #  'Search_%s_%s_ID_%s.json'
     #
     if sKeyWords and sEbayCategory:
@@ -274,7 +286,7 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
 def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
     #
     from .forms     import UserItemFoundUploadForm
-    from searching  import dUserItemFoundFields # in __init__.py
+    from searching  import dUserItemFoundUploadFields # in __init__.py
     #
     bAlreadyInTable = UserItemFound.objects.filter(
                             iItemNumb   = iItemNumb,
@@ -289,7 +301,7 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
     #
     return storeEbayInfo(
                 dItem,
-                dUserItemFoundFields,
+                dUserItemFoundUploadFields,
                 tSearchTime,
                 UserItemFoundUploadForm,
                 _getValueUserOrOther,
@@ -320,8 +332,9 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     sUserName   = oSearch.iUser.username
     sMarket     = oSearch.iUser.iEbaySiteID.cMarket
     #
-    sFilePattern= ( RESULTS_FILE_NAME_PATTERN %
-                     ( sMarket, sUserName, iSearchID, '*') )
+    sFilePattern= (
+            RESULTS_FILE_NAME_PATTERN %
+                ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
     lGotFiles   = getFilesMatchingPattern( '/tmp', sFilePattern )
     #
@@ -387,8 +400,9 @@ def storeSearchResultsInDB( iLogID,
     #
     tSearchTime = tBegStore = timezone.now()
     #
-    sFilePattern = ( RESULTS_FILE_NAME_PATTERN %
-                     ( sMarket, sUserName, iSearchID, '*') )
+    sFilePattern = (
+            RESULTS_FILE_NAME_PATTERN %
+                ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
     lGotFiles = getFilesMatchingPattern( '/tmp', sFilePattern )
     #
