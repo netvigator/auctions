@@ -3,7 +3,7 @@ from django.core.urlresolvers   import reverse
 from core.utils_test            import BaseUserTestCase, getUrlQueryStringOff
 
 from ..models                   import Category
-from ..forms                    import CategoryForm
+from ..forms                    import CreateCategoryForm, UpdateCategoryForm
 
 
 class TestFormValidation(BaseUserTestCase):
@@ -30,7 +30,7 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1 )
         #
-        form = CategoryForm(data=form_data)
+        form = CreateCategoryForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
@@ -44,7 +44,7 @@ class TestFormValidation(BaseUserTestCase):
         #
         form_data['cTitle'] = 'Widget'
         #
-        form = CategoryForm(data=form_data)
+        form = CreateCategoryForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
 
@@ -58,7 +58,7 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1 )
         #
-        form = CategoryForm(data=form_data)
+        form = CreateCategoryForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
         # 
@@ -80,13 +80,13 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1 )
         #
-        form = CategoryForm(data=form_data)
+        form = CreateCategoryForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
         form_data['cTitle'] = 'ThingaMaJig'
         #
-        form = CategoryForm(data=form_data)
+        form = CreateCategoryForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
