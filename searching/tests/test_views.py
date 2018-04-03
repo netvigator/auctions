@@ -3,7 +3,7 @@ from django.core.urlresolvers   import reverse
 from core.utils_test            import BaseUserTestCase, setup_view_for_tests
 from core.utils                 import getExceptionMessageFromResponse
 
-from ..forms                    import SearchAddOrUpdateForm
+from ..forms                    import CreateSearchForm, UpdateSearchForm
 from ..models                   import Search
 
 from ..views                    import ( SearchCreateView, SearchIndexView,
@@ -200,8 +200,7 @@ class SearchUpdateViewTests(BaseUserTestCase):
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         #
-        self.form = SearchAddOrUpdateForm(
-                            instance = oSearch, which = 'Update' )
+        self.form = UpdateSearchForm( instance = oSearch )
         #
         self.request = self.factory.get( reverse( 'searching:index' ) )
         #
@@ -240,7 +239,7 @@ class SearchCreateViewTests(BaseUserTestCase):
             cKeyWords   = "Blah bleh blih",
             iUser       = self.user1 )
         #
-        self.form = SearchAddOrUpdateForm( data = data )
+        self.form = CreateSearchForm( data = data )
         #
         self.request = self.factory.get( reverse( 'searching:add' ) )
         #
