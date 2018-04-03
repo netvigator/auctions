@@ -6,7 +6,7 @@ from core.utils_test            import (BaseUserTestCase,
                                         getSingleEbayCategoryMixin,
                                         getUrlQueryStringOff )
 
-from ..forms                    import SearchAddOrUpdateForm
+from ..forms                    import CreateSearchForm, UpdateSearchForm
 from ..models                   import Search, ItemFound
 
 # from pprint import pprint
@@ -36,7 +36,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
             which           = 'Create',
             iUser           = self.user1.id )
         #
-        form = SearchAddOrUpdateForm(data=form_data)
+        form = CreateSearchForm(data=form_data)
         form.request        = self.request
         form.instance.iUser = self.user1
         self.assertTrue( form.is_valid() )
@@ -57,7 +57,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "A1",
                 which           = 'Create',
                 iUser           = self.user1 )
-        form = SearchAddOrUpdateForm( data = dData )
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertTrue( form.is_valid() )
 
@@ -68,7 +68,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "A1",
                 which           = 'Create',
                 iUser           = self.user1 )
-        form = SearchAddOrUpdateForm( data = dData )
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertTrue( form.is_valid() )
 
@@ -79,7 +79,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "A",
                 which           = 'Create',
                 iUser           = self.user1 )
-        form = SearchAddOrUpdateForm( data = dData )
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
@@ -89,7 +89,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "A1",
                 which           = 'Create',
                 iUser           = self.user1 )
-        form = SearchAddOrUpdateForm( data = dData ) 
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
@@ -100,7 +100,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "A2",
                 which           = 'Create',
                 iUser           = self.user1 )
-        form = SearchAddOrUpdateForm( data = dData )
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
@@ -115,7 +115,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 which           = 'Create',
                 iUser           = self.user1 )
         #
-        form = SearchAddOrUpdateForm(data=dData)
+        form = CreateSearchForm(data=dData)
         form.request            = self.request
         form.instance.iUser     = self.user1
         form.save()        
@@ -127,7 +127,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "B1",
                 iUser           = self.user1 )
         #
-        form = SearchAddOrUpdateForm( data = dData )
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
         #
@@ -138,7 +138,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
                 cPriority       = "B2",
                 iUser           = self.user1 )
         #
-        form = SearchAddOrUpdateForm( data = dData )
+        form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertTrue( form.is_valid() ) # not comparing sets yet
         
