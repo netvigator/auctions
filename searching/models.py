@@ -106,7 +106,7 @@ class ItemFound(models.Model):
                         'listing type', max_length = 15 )
     lLocalCurrency  = models.CharField(
                         'local currency', max_length = 3, default = 'USD' )
-    lCurrentPrice   = models.DecimalField( 'current price (local currency)',
+    lCurrentPrice   = models.DecimalField( 'current price',
                         max_digits = 10, decimal_places = 2,
                         null = True )      # use DecimalField not MoneyField
     dCurrentPrice   = models.DecimalField( # form was throwing nonsense error
