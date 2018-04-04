@@ -240,10 +240,11 @@ tRest = (
     'cWhereCategory', )
 
 tEditable = (
-    'bitemhit',
     'iModel',
     'iBrand',
-    'iCategory' )
+    'iCategory',
+    'bGetDescribe',
+    'bGetPictures' )
 
 
 tUserItemFoundFields = tEditable
@@ -263,6 +264,8 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+
+
 
     class Meta:
         model   = UserItemFound
