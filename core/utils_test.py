@@ -1,10 +1,13 @@
 from django.contrib.auth    import get_user_model
+from django.core.urlresolvers import reverse
+from django.db.utils        import IntegrityError
 from django.http.request    import HttpRequest
 from django.test            import TestCase, RequestFactory
 from django.test.client     import Client
-from django.db.utils        import IntegrityError
 
 from django_webtest         import WebTest
+
+from config.settings.base   import LOGIN_URL
 
 from brands.models          import Brand
 from categories.models      import Category
@@ -148,6 +151,13 @@ class BaseUserTestCase( WebTest ):
         self.client.login(username ='username1', password='mypassword')
         #
 
+    def loginWebTest( self, username ='username1', password = 'mypassword' ):
+        #
+        form = self.app.get( reverse( LOGIN_URL ) ).form
+        form['login']    = username
+        form['password'] = password
+        response = form.submit()
+        #
 
 
 class setUpBrandsCategoriesModels( BaseUserTestCase ):
