@@ -4,10 +4,6 @@ https://pypi.python.org/pypi/django-test-plus/1.0.22
 run at least monthly
 https://pyup.io/account/repos/github/netvigator/auctions/
 
-test make sure RegEx fields get wiped on Edit - Save
-
-test WereAnyReleventRegExColsChangedMixin !
-
 added model, hit save, when to model index instead of model detail, but cannot duplicate
 
 in Search, max length for a single key word is 98
@@ -55,3 +51,5 @@ self.client.login(username ='username1', password='mypassword')
 had single form per model, now have 2, create & update, only testing create, need to test update
 
 consider whether we need class SetupViewForTestingMixin
+
+all /accounts/login/ urls  in testing are invalid!
