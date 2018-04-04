@@ -1,5 +1,6 @@
 from django.core.exceptions import PermissionDenied
 from django.db.models       import Q
+from django.http            import HttpResponseRedirect
 
 from Collect.Query          import get1stThatMeets
 
@@ -44,10 +45,10 @@ class WereAnyReleventColsChangedBase(object):
 
 
 class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
-    
     '''
     for testing whether any RegEx relevant fields have changed 
     '''
+    
     def redoRegEx( self, form ):
         #
         if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
@@ -57,14 +58,15 @@ class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
         if 'cExcludeIf' in form.changed_data :
             form.instance.cRegExExclude     = None
     
-    def form_valid(self, form):
+    def form_valid( self, form ):
         #
         if self.anyReleventColsChanged( form, self.tRegExRelevantCols ):
             #
             self.redoRegEx( form )
             #
         #
-        return super().form_valid(form)
+        return super(
+                WereAnyReleventRegExColsChangedMixin, self ).form_valid( form )
 
 
 class TitleSearchMixin(object):
@@ -117,6 +119,18 @@ class GetModelInContextMixin( object ):
         return context
 
 
+class DoPostCanCancelMixin( object ):
+    '''more DRY, move some copied and pasted code here'''
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            self.object = self.get_object()
+            url = self.object.get_absolute_url()
+            return HttpResponseRedirect(url)
+        else:
+            return ( super( DoPostCanCancelMixin, self )
+                     .post( request, *args, **kwargs ) )
+
 
 class GetFormMixin( object ):
     '''more DRY, move some copied and pasted code here'''
@@ -128,9 +142,12 @@ class GetFormMixin( object ):
         see below for mixin that worked
         (but not used because there was a much easier way)
         '''
-        form = super( GetFormMixin, self ).get_form(form_class)
+        if not hasattr( self, 'form' ) or self.form is None:
+            form = super( GetFormMixin, self ).get_form(form_class)
+            self.form = form
+        #
         form.request = self.request
-        self.form = form
+        #
         return form
 
 
