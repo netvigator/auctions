@@ -53,3 +53,5 @@ maybe overdone:
 self.client.login(username ='username1', password='mypassword')
 
 had single form per model, now have 2, create & update, only testing create, need to test update
+
+consider whether we need class SetupViewForTestingMixin
