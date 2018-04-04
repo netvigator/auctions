@@ -95,3 +95,4 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
             self.gotTitleAready( cTitle )
             #
         #
+        return cleaned
