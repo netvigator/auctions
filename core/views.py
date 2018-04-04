@@ -12,23 +12,23 @@ from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 
 from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              FormValidMixin, GetFormMixin,
-                                             GetModelInContextMixin )
+                                             GetModelInContextMixin,
+                                             DoPostCanCancelMixin )
 
 # Create your views here but keep them thin.
 
-class ListViewGotModel( LoginRequiredMixin, ListView ):
+class ListViewGotModel(
+            LoginRequiredMixin, GetModelInContextMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
     so that the template has access to its model class.
     '''
  
-    def get_context_data(self, **kwargs):
+    def get_context_data( self, **kwargs ):
         '''
-        Adds the model to the context data.
+        Adds the pagination to the context data.
         '''
         context          = super(ListView, self).get_context_data(**kwargs)
-        context['model'] = self.model
-        # context['model_fields'] = self.model._meta.get_fields()
 
         if not context.get('is_paginated', False):
             return context
@@ -49,12 +49,12 @@ class ListViewGotModel( LoginRequiredMixin, ListView ):
                          'iStart'     : iStart,
                          'iLast'      : iLast,
                          'iMaxPage'   : iMaxPage })
-
+        #
         return context
-
 
     def get_queryset(self):
         return self.model.objects.filter( iUser = self.request.user )
+
 
 
 class CreateViewCanCancel( LoginRequiredMixin, 
@@ -73,7 +73,9 @@ class CreateViewCanCancel( LoginRequiredMixin,
         return None
 
     def post(self, request, *args, **kwargs):
+        # this one is different, cannot use mixin
         if "cancel" in request.POST:
+            # different URL in this one
             url = reverse_lazy( '%s:index' % self.model._meta.db_table )
             return HttpResponseRedirect(url)
         else:
@@ -85,7 +87,9 @@ class CreateViewCanCancel( LoginRequiredMixin,
 
 
 class DeleteViewGotModel( LoginRequiredMixin, GetModelInContextMixin,
-                DoesLoggedInUserOwnThisRowMixin, SuccessMessageMixin, DeleteView ):
+                DoesLoggedInUserOwnThisRowMixin, SuccessMessageMixin,
+                DoPostCanCancelMixin,
+                DeleteView ):
     '''
     Enhanced DeleteView which also includes the model in the context data,
     so that the template has access to its model class.
@@ -94,32 +98,18 @@ class DeleteViewGotModel( LoginRequiredMixin, GetModelInContextMixin,
     success_message = 'Record successfully deleted!!!!'
 
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = self.object.get_absolute_url()
-            return HttpResponseRedirect(url)
-        else:
-            return super(DeleteViewGotModel, self).post(request, *args, **kwargs)
 
 
 class UpdateViewCanCancel(
             LoginRequiredMixin, SuccessMessageMixin, FormValidMixin,
-            DoesLoggedInUserOwnThisRowMixin, GetFormMixin, GetModelInContextMixin,
-
+            DoesLoggedInUserOwnThisRowMixin, GetModelInContextMixin,
+            GetFormMixin, DoPostCanCancelMixin,
             UpdateView ):
     '''
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
     success_message = 'Record successfully saved!!!!'
 
-    def post(self, request, *args, **kwargs):
-        if "cancel" in request.POST:
-            self.object = self.get_object()
-            url = self.object.get_absolute_url()
-            return HttpResponseRedirect(url)
-        else:
-            return super(UpdateViewCanCancel, self).post(request, *args, **kwargs)
 
 
 
