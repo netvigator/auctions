@@ -4,6 +4,7 @@ from django.test            import TestCase, RequestFactory
 from django.test.client     import Client
 from django.db.utils        import IntegrityError
 
+from django_webtest         import WebTest
 
 from brands.models          import Brand
 from categories.models      import Category
@@ -98,7 +99,7 @@ class getSingleEbayCategoryMixin( object ):
 
 
 
-class BaseUserTestCase(TestCase):
+class BaseUserTestCase( WebTest ):
 
     def setUp(self):
 
@@ -352,7 +353,20 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
 
 
+class SetupViewForTestingMixin( object ):
+    '''
+    Get view instances on which you can run unit tests
+    '''
+    #
+    def setup_view( self, view, request, *args, **kwargs ):
+        """Mimic ``as_view()``, but returns view instance.
+        Get view instances on which you can run unit tests,
+        by testing specific methods."""
 
+        view.request = request
+        view.args = args
+        view.kwargs = kwargs
+        return view
 
 
 '''
