@@ -155,7 +155,9 @@ class UserItemFound(models.Model):
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    bitemhit        = models.BooleanField( 'item of interest?',
+    bGetDescribe    = models.BooleanField( 'get description?',
+                        default = False )    
+    bGetPictures    = models.BooleanField( 'get pictures?',
                         default = False )    
     tlook4hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
