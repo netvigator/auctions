@@ -3,6 +3,27 @@ from django.db  import models
 from .validators import gotTextOutsideParens
 
 
+
+class ModelCanYieldFieldNamesAndValuesMixin( object ):
+    '''
+    This lets you do:
+
+    for field, val in object:
+        print field, val
+    '''
+    def __iter__(self):
+        #
+        bYieldRest = False
+        #
+        for field in self._meta.get_fields():
+            #
+            value = getattr( self, field.name, None )
+            #
+            yield ( field.name, value )
+
+
+
+
 sTitleHelpText = (
     'Put the %s name here -- '
     'Bot will search for this in the auction titles.<br/>'
