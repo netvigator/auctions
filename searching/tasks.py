@@ -83,6 +83,8 @@ def doSearchingPutResultsInFiles( bOnlyList = False ):
 
 def putSearchResultsInItemsFound( bOnlyList = False ):
     #
+    print( 'Beg:', str( timezone.now() )[:19] )
+    #
     qsLogSearches = (
             SearchLog.objects.filter(
                 tBegSearch__isnull = False,
@@ -100,7 +102,7 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
         #
         if bOnlyList:
             #
-            print( 'would store items from the "%s" search named %s ...' %
+            print( 'would store items from the "%s" search named %s' %
                     ( sUserName, sSearchName ) )
             #
         else:
@@ -125,13 +127,25 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
                 ( sItems, sStoreItems, sStoreUsers, sUserName ) )
             print( '' )
             #
+    #
+    print( 'End:', str( timezone.now() )[:19] )
+    #
         
 def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
     #
+    print( 'Beg:', str( timezone.now() )[:19] )
+    #
     oUserModel = get_user_model()
     #
-    for oUser in oUserModel:
+    for oUser in oUserModel.objects.all():
         #
         findSearchHits( iUser                   = oUser.id,
                         bCleanUpAfterYourself   = bCleanUpAfterYourself,
                         bShowProgress           = bShowProgress )
+    #
+    print( 'End:', str( timezone.now() )[:19] )
+    #
+
+# workflow
+# 2 hours per user doSearchingPutResultsInFiles
+# 12 mins per user putSearchResultsInItemsFound
