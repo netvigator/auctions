@@ -19,6 +19,8 @@ from searching          import RESULTS_FILE_NAME_PATTERN
 
 from ..models           import ( Search, ItemFound, UserItemFound,
                                  ItemFoundTemp, SearchLog )
+
+from ..tests            import dSearchResult # in __init__.py
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
@@ -30,11 +32,14 @@ from ..utils            import ( storeSearchResultsInDB,
                                  ItemAlreadyInTable,
                                  _putPageNumbInFileName,
                                  trySearchCatchExceptStoreInFile,
-                                 getSearchIdStr )
+                                 getSearchIdStr,
+                                 _storeUserItemFound, _storeItemFound )
 
 from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
                                  getPagination, _getFindingResponseGenerator,
                                  getSearchResultGenerator )
+
+#
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -148,7 +153,7 @@ class getImportSearchResultsTests(TestCase):
 '''
 
 
-class storeItemFoundTests(getEbayCategoriesSetUp):
+class storeItemFoundTests( getEbayCategoriesSetUp ):
     #
     ''' class for testing _storeItemFound() '''
 
@@ -206,8 +211,6 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
     def test_get_ebay_category_hierarchy(self):
         #
         ''' test getEbayCategoryHierarchies() retrieval & caching '''
-        #
-        from ..tests        import dSearchResult # in __init__.py
         #
         dEbayCatHierarchies = {}
         #
@@ -280,10 +283,6 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
         #
         ''' test _storeItemFound() with actual record'''
         #
-        from ..tests    import dSearchResult # in __init__.py
-        #
-        from ..utils    import _storeItemFound
-        #
         dEbayCatHierarchies = {}
         #
         tNow = timezone.now()
@@ -340,16 +339,15 @@ class storeItemFoundTests(getEbayCategoriesSetUp):
 
 
 
-class storeUserItemFoundTests(getEbayCategoriesSetUp):
+class storeUserItemFoundButDontTestYet( getEbayCategoriesSetUp ):
     #
     ''' class for testing _storeUserItemFound() '''
 
-    def test_store_User_item_found(self):
+    def setUp( self ):
         #
-        ''' test _storeUserItemFound() with actual record'''
+        '''set up to test _storeUserItemFound() with actual record'''
         #
-        from ..tests    import dSearchResult # in __init__.py
-        from ..utils    import _storeUserItemFound, _storeItemFound
+        super( storeUserItemFoundButDontTestYet, self ).setUp()
         #
         class ThisShouldNotBeHappening( Exception ): pass
         #
@@ -370,6 +368,21 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
         except ItemAlreadyInTable:
             pass
         #
+        self.iItemNumb  = iItemNumb
+        self.tNow       = tNow
+
+
+class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
+    #
+    ''' class for testing _storeUserItemFound() '''
+
+    def test_store_User_item_found(self):
+        #
+        ''' test _storeUserItemFound() with actual record'''
+        #
+        iItemNumb   = self.iItemNumb
+        tNow        = self.tNow
+        #
         oResultRow = UserItemFound.objects.filter(
                             iItemNumb   = iItemNumb,
                             iUser       = self.user1 ).first()
@@ -388,7 +401,6 @@ class storeUserItemFoundTests(getEbayCategoriesSetUp):
             self.assertTrue( False ) # exception should hve been raised
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-
 
 
 
