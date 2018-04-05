@@ -51,6 +51,11 @@
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.cWhereCategory }}</td>
     </tr>
+    <TR>
+        <TD>{% field_name parent 'iItemNumb' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD VALIGN=TOP><A HREF="https://www.ebay.com/itm/b/{{object.iItemNumb.iItemNumb}}/">{{object.iItemNumb.iItemNumb}}</A></TD>
+    </TR>
     <tr>
         <td>{% field_name model 'iHitStars' %}:</td>
         <td>&nbsp;&nbsp;</td>
