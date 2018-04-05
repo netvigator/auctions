@@ -3,9 +3,7 @@ from django                 import forms
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.forms           import ModelForm
 
-from crispy_forms.layout    import Field
-from crispy_forms.layout    import Submit
-
+from crispy_forms.layout    import Field, Layout, Submit
 
 from searching              import dItemFoundFields, dUserItemFoundUploadFields
 
@@ -234,7 +232,6 @@ lUserItemFoundFields = [
     'iItemNumb.cMarket', ]
 
 tRest = (
-    'iHitStars',
     'iSearch',
     'tlook4hits',
     'cWhereCategory', )
@@ -244,14 +241,15 @@ tEditable = (
     'iBrand',
     'iCategory',
     'bGetDescribe',
-    'bGetPictures' )
+    'bGetPictures',
+    'iHitStars'  )
 
 
 tUserItemFoundFields = tEditable
 # tUserItemFoundFields.extend( tRest )
 
 
- 
+
 class UserItemFoundForm( BaseModelFormGotCrispy ):
     #
     '''using a form on the edit user item found page'''
@@ -264,8 +262,13 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
-
-
+        self.helper.layout = Layout(
+                'iModel',
+                'iBrand',
+                'iCategory',
+                'bGetDescribe',
+                'bGetPictures',
+                Field( 'iHitStars', readonly = True ), )
 
     class Meta:
         model   = UserItemFound
