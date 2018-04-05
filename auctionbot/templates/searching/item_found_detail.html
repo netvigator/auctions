@@ -40,11 +40,6 @@
         <TD VALIGN=TOP>{{ object.iItemNumb.cMarket }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name parent 'iEbaySiteID' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.iEbaySiteID.pk}}</TD>
-    </TR>
-    <TR>
         <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
@@ -94,7 +89,7 @@
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cEbayItemURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cEbayItemURL}}</TD>
+        <TD VALIGN=TOP><A HREF="{{object.iItemNumb.cEbayItemURL}}">{{object.iItemNumb.cEbayItemURL}}</A></TD>
     </TR>
     <TR>
         <TD>{% field_name parent 'tTimeBeg' %}</TD>
