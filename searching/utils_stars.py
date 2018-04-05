@@ -22,13 +22,16 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
         #
         sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
         #
-        sRegExpress = getRegExpress( sLookFor, bSubModelsOK = bSubModelsOK )
+        sRegExpress = getRegExpress( sLookFor,
+                                     bSubModelsOK   = bSubModelsOK,
+                                     iWordBoundChrs = 2 )
         
     else:
         #
         sRegExpress = getRegExpress( sLook4Title,
-                                     bAddDash     = bAddDash,
-                                     bSubModelsOK = bSubModelsOK )
+                                     bAddDash       = bAddDash,
+                                     bSubModelsOK   = bSubModelsOK,
+                                     iWordBoundChrs = 2 )
         #
     #
     return sRegExpress
@@ -65,11 +68,11 @@ def _getRowRegExpressions( oTableRow,
         #
         if sExcludeIf:
             #
-            sFindExclude = getRegExpress( sExcludeIf )
+            sFindExclude = getRegExpress( sExcludeIf, iWordBoundChrs = 2 )
             #
         if sKeyWords:
             #
-            sFindKeyWords = getRegExpress( sKeyWords )
+            sFindKeyWords = getRegExpress( sKeyWords, iWordBoundChrs = 2 )
             #
         #
         oTableRow.cRegExLook4Title= sFindTitle
