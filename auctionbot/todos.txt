@@ -51,3 +51,5 @@ self.client.login(username ='username1', password='mypassword')
 had single form per model, now have 2, create & update, only testing create, need to test update
 
 
+title: Vintage The Fisher XP-55B Speaker System-Pair
+found speaker but model 55A amp not XP-55-B speaker
