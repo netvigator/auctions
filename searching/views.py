@@ -12,7 +12,8 @@ from .forms         import ( ItemFoundForm, UserItemFoundForm,
 
 import searching.utils
 
-from .mixins        import SearchViewSuccessPostFormValidMixin
+from .mixins        import ( SearchViewSuccessPostFormValidMixin,
+                             AnyReleventHitStarColsChangedMixin )
 from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
@@ -91,7 +92,8 @@ class ItemFoundDetailView( DetailViewGotModel ):
 
 
 
-class ItemFoundUpdateView( UpdateViewCanCancel ):
+class ItemFoundUpdateView(
+            AnyReleventHitStarColsChangedMixin, UpdateViewCanCancel ):
 
     model           = UserItemFound
     parent          = ItemFound
@@ -99,6 +101,8 @@ class ItemFoundUpdateView( UpdateViewCanCancel ):
     success_message = 'Item Found record update successfully saved!!!!'
     form_class      = UserItemFoundForm
 
-    # want to set tlook4hits = None if any relevant fields changed
-    # can be done with a mixin
+    tHitStarRelevantCols = (
+        'iModel',
+        'iBrand',
+        'iCategory' )
 
