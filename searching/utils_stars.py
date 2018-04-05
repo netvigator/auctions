@@ -274,7 +274,9 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
                 #
                 bInHeirarchy1  = ( # will be True if bInTitle is True
                         bInTitle or
-                        foundItem( oItem.iCatHeirarchy.cCatHierarchy )[0] )
+                        ( oItem.iCatHeirarchy and # can be None
+                          foundItem(
+                              oItem.iCatHeirarchy.cCatHierarchy )[0] ) )
                 #
                 bInHeirarchy2  = ( # will be True if either are True
                         bInTitle or
