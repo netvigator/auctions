@@ -68,7 +68,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 73 )
+        self.assertEquals( len( oTempItemsFound ), 20 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
@@ -107,7 +107,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
             iCount += 1
         #
         #
-        self.assertEquals( iCount, 73 )
+        self.assertEquals( iCount, 20 )
         #
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
