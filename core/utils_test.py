@@ -257,7 +257,7 @@ def getTableFromScreenCaptureGenerator( uScreenCapture ):
 
 
 
-class getEbayCategoriesSetUp(BaseUserTestCase):
+class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
 
     def setUp(self):
         #
@@ -363,20 +363,6 @@ class getEbayCategoriesSetUp(BaseUserTestCase):
         #
 
 
-class SetupViewForTestingMixin( object ):
-    '''
-    Get view instances on which you can run unit tests
-    '''
-    #
-    def setup_view( self, view, request, *args, **kwargs ):
-        """Mimic ``as_view()``, but returns view instance.
-        Get view instances on which you can run unit tests,
-        by testing specific methods."""
-
-        view.request = request
-        view.args = args
-        view.kwargs = kwargs
-        return view
 
 
 '''
