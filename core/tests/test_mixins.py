@@ -1,13 +1,11 @@
 from django.core.urlresolvers import reverse
 
-from core.utils_test        import ( setUpBrandsCategoriesModels,
-                                     SetupViewForTestingMixin )
+from core.utils_test        import setUpBrandsCategoriesModels
 
 from searching.utils_stars  import getFoundItemTester
 
 
-class EditingTitleShouldBlankFinder(
-            SetupViewForTestingMixin, setUpBrandsCategoriesModels ):
+class EditingTitleShouldBlankFinder( setUpBrandsCategoriesModels ):
     #
     ''' test WereAnyReleventRegExColsChangedMixin'''
     
