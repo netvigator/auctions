@@ -5,7 +5,7 @@
 
 {% block content %}
 
-    <h1>Found {{ object }} - Details</h1>
+    <h4>{{ object }}</h4>
 
     <!-- Action buttons -->
     <div class="basic">
@@ -15,9 +15,9 @@
     
     <table RULES=ROWS CELLPADDING=10>
     <TR>
-        <TD width = 300>{% field_name parent 'cTitle' %}</TD> 
+        <TD VALIGN=TOP>{% field_name parent 'cListingType' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.iItemNumb.iItemNumb.cTitle}}</TD>
+        <TD VALIGN=TOP>{{object.iItemNumb.cListingType}}</TD>
     </TR>
     <TR>
         <TD>{% field_name parent 'iItemNumb' %}</TD>
@@ -49,6 +49,48 @@
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
     </TR>
+    <tr>
+        <td>{% field_name model 'iHitStars' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iHitStars }}</td>
+    </tr>
+    <TR>
+        <TD>{% field_name parent 'lCurrentPrice' %} ({{object.iItemNumb.lLocalCurrency}})</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
+    </TR>
+    {% if object.iItemNumb.lLocalCurrency != "USD" %}
+    <TR>
+        <TD>{% field_name parent 'dCurrentPrice' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
+    </TR>
+    {% endif %}
+    <tr>
+        <td>{% field_name model 'iModel' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iModel }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'iBrand' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iBrand }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'iCategory' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.iCategory }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'bGetDescribe' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.bGetDescribe }}</td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'bGetPictures' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>{{ object.bGetPictures }}</td>
+    </tr>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cEbayItemURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -73,11 +115,6 @@
         <TD>{% field_name parent 'bBuyItNowable' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.iItemNumb.bBuyItNowable|yesno:"Yes,No" }}</TD>
-    </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cListingType' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cListingType}}</TD>
     </TR>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'lLocalCurrency' %}</TD>
