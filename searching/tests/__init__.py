@@ -488,7 +488,7 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
-              },{"itemId":["372238175241"],
+           },{"itemId":["372238175241"],
               "title":["VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -505,7 +505,7 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["false"],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["132511862199"],
+           },{"itemId":["132511862199"],
               "title":["VINTAGE BEAUTIFUL 40s FADA BULLET ART DECO CATALIN BAKELITE ANTIQUE TUBE RADIO "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50595"],"categoryName":["Vintage Radios"]}],
@@ -522,7 +522,7 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
-              },{"itemId":["202246769108"],
+           },{"itemId":["202246769108"],
               "title":["Vtg Red Bakelite\/Catalin Carved Clear\/Black Plastic 2 Umbrella\/Parasol 3 Handles"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -536,10 +536,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P9DT3H48M22S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T02:52:46.000Z"],"endTime":["2018-03-13T02:52:46.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["132523993393"],
+           },{"itemId":["132523993393"],
               "title":["Vintage Bakelite\/Catalin Poker Chip & Card Holder~Marbled Butterscotch w\/chips "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -552,10 +553,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"32.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"32.0"}],"bidCount":["3"],"sellingState":["Active"],"timeLeft":["P5DT15H11M15S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T14:15:39.000Z"],"endTime":["2018-03-09T14:15:39.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
-              },{"itemId":["122987310830"],
+           },{"itemId":["122987310830"],
               "title":["Catalin \/ Bakelite Dominoes. VINTAGE with a Leather Case."],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -568,10 +570,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"sellingState":["Active"],"timeLeft":["P3DT19H30M53S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T18:35:17.000Z"],"endTime":["2018-03-07T18:35:17.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["282867250157"],
+           },{"itemId":["282867250157"],
               "title":["Rare Morse Chain co Poole clock Bakelite Catalin Synchronous 1928-29 Deco"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -584,10 +587,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT1H55M46S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"235.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"235.0"}],"startTime":["2018-03-02T01:00:10.000Z"],"endTime":["2018-03-12T01:00:10.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["9"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["292466597766"],
+           },{"itemId":["292466597766"],
               "title":["Original CATALIN rod. LARGE. Some call it Bakelite. Burgundy beauty. #787"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -599,10 +603,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT22H55M37S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T22:00:01.000Z"],"endTime":["2018-03-07T22:00:01.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["112846965430"],
+           },{"itemId":["112846965430"],
               "title":["Addison 5 Catalin Radio Green Dial Glass Exact Reproduction"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -615,10 +620,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"30.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"30.0"}],"sellingState":["Active"],"timeLeft":["P29DT4H59M41S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T04:04:05.000Z"],"endTime":["2018-04-02T04:04:05.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/112846965430_1_0_1.jpg"],"condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/112846965430_1_0_1.jpg"],
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["202235032315"],
+           },{"itemId":["202235032315"],
               "title":["Beautiful Emerson Model 520 Catalin radio"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -631,7 +637,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"30.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"129.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"129.99"}],"sellingState":["Active"],"timeLeft":["P18DT19H30M28S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-20T18:34:52.000Z"],"endTime":["2018-03-22T18:34:52.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["19"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273089837651"],
@@ -647,7 +654,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"58.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"58.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT3H25M23S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"110.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"110.0"}],"startTime":["2018-03-01T02:30:46.000Z"],"endTime":["2018-03-08T02:29:47.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["132521748790"],
@@ -663,7 +671,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT21H55M0S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"325.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"325.0"}],"startTime":["2018-02-28T20:59:24.000Z"],"endTime":["2018-03-07T20:59:24.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["20"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["253420370365"],
@@ -679,7 +688,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.95"}],"sellingState":["Active"],"timeLeft":["P8DT20H7M2S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-10T19:11:26.000Z"],"endTime":["2018-03-12T19:11:26.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332542605606"],
@@ -695,7 +705,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"6.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"6.0"}],"sellingState":["Active"],"timeLeft":["P4DT1H56M12S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-06T01:00:36.000Z"],"endTime":["2018-03-08T01:00:36.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332542605606_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332542605606_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["382396316470"],
@@ -711,7 +722,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.85"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT21H35M21S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T20:39:45.000Z"],"endTime":["2018-03-08T20:39:45.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104744162"],
@@ -727,7 +739,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H31M48S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:36:12.000Z"],"endTime":["2018-03-09T19:36:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332551135853"],
@@ -759,7 +772,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"44.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"44.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT4H23M32S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-23T03:27:56.000Z"],"endTime":["2018-03-05T03:27:56.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["372236489965"],
@@ -776,7 +790,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"39.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT19H43M0S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T18:47:24.000Z"],"endTime":["2018-03-08T18:47:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["253446988728"],
@@ -824,7 +839,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"bidCount":["2"],"sellingState":["Active"],"timeLeft":["P5DT19H58M43S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:03:07.000Z"],"endTime":["2018-03-09T19:03:07.000Z"],"listingType":["Auction" ],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100580502"],
@@ -840,7 +856,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P3DT19H21M41S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:26:05.000Z"],"endTime":["2018-03-07T18:26:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100580502_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100580502_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100583400"],
@@ -856,7 +873,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"22.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"22.5"}],"bidCount":["12"],"sellingState":["Active"],"timeLeft":["P3DT19H26M3S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:30:27.000Z"],"endTime":["2018-03-07T18:30:27.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100583400_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100583400_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["232678777465"],
@@ -872,7 +890,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.22"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.22"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT23H16M44S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T22:21:08.000Z"],"endTime":["2018-03-04T22:21:08.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["391992779536"],
@@ -887,7 +906,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"GBP","__value__":"450.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"619.7"}],"sellingState":["Active"],"timeLeft":["P6DT14H1M9S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T13:05:33.000Z"],"endTime":["2018-03-10T13:05:33.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["112848108338"],
@@ -903,7 +923,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"sellingState":["Active"],"timeLeft":["P29DT20H45M29S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T19:49:53.000Z"],"endTime":["2018-04-02T19:49:53.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/112848108338_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/112848108338_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["323093306380"],
@@ -935,7 +956,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H0M46S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:05:10.000Z"],"endTime":["2018-03-09T19:05:10.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["222862364643"],
@@ -951,10 +973,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"19.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT18H57M18S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"69.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"69.0"}],"startTime":["2018-03-01T18:01:42.000Z"],"endTime":["2018-03-08T18:01:42.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["183100574760"],
+           },{"itemId":["183100574760"],
               "title":["Authentic Old Vintage German Bakelite Catalin Rods Blocks Rare Veined 480g"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["165690"],"categoryName":["Prayer Beads"]}],
@@ -967,7 +990,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"bidCount":["4"],"sellingState":["Active"],"timeLeft":["P3DT19H18M27S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:22:51.000Z"],"endTime":["2018-03-07T18:22:51.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100574760_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100574760_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100578429"],
@@ -983,7 +1007,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.5"}],"bidCount":["2"],"sellingState":["Active"],"timeLeft":["P3DT19H19M49S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:24:13.000Z"],"endTime":["2018-03-07T18:24:13.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100578429_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100578429_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273074865833"],
@@ -998,7 +1023,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"sellingState":["Active"],"timeLeft":["P16DT16H3M56S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-18T15:08:20.000Z"],"endTime":["2018-03-20T15:08:20.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["19"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/273074865833_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/273074865833_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273047508323"],
@@ -1014,7 +1040,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"55.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"55.0"}],"sellingState":["Active"],"timeLeft":["P27DT14H0M46S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-01-30T13:05:10.000Z"],"endTime":["2018-03-31T13:05:10.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["5"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["362252683340"],
@@ -1030,7 +1057,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"22.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"33.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"33.0"}],"bidCount":["21"],"sellingState":["Active"],"timeLeft":["P1DT3H16M3S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T02:20:27.000Z"],"endTime":["2018-03-05T02:20:27.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100582130"],
@@ -1046,10 +1074,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"bidCount":["4"],"sellingState":["Active"],"timeLeft":["P3DT19H23M50S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:28:14.000Z"],"endTime":["2018-03-07T18:28:14.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100582130_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100582130_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["183104747518"],
+           },{"itemId":["183104747518"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Orange Dice Beads Block 2815gr"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -1062,7 +1091,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H35M48S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:40:12.000Z"],"endTime":["2018-03-09T19:40:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104699744"],
@@ -1078,7 +1108,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"27.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"27.0"}],"bidCount":["10"],"sellingState":["Active"],"timeLeft":["P5DT20H18M40S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:23:04.000Z"],"endTime":["2018-03-09T19:23:04.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104746092"],
@@ -1094,7 +1125,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H33M47S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:38:11.000Z"],"endTime":["2018-03-09T19:38:11.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282864936201"],
@@ -1110,7 +1142,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"sellingState":["Active"],"timeLeft":["P1DT4H42M9S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T03:46:33.000Z"],"endTime":["2018-03-05T03:46:33.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192452462001"],
@@ -1126,7 +1159,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"27.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"27.99"}],"sellingState":["Active"],"timeLeft":["P8DT12H7M44S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-10T11:12:08.000Z"],"endTime":["2018-03-12T11:12:08.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/192452462001_1_0_1.jpg"],"condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/192452462001_1_0_1.jpg"],
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192470136271"],
@@ -1142,7 +1176,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"140.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"140.0"}],"sellingState":["Active"],"timeLeft":["P27DT11H47M34S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T10:51:58.000Z"],"endTime":["2018-03-31T10:51:58.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282867825374"],
@@ -1158,7 +1193,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"22.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT13H29M15S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T12:33:39.000Z"],"endTime":["2018-03-09T12:33:39.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["362258497448"],
@@ -1174,7 +1210,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT20H57M51S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T20:02:15.000Z"],"endTime":["2018-03-10T20:02:15.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282864937449"],
@@ -1190,7 +1227,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"sellingState":["Active"],"timeLeft":["P1DT4H43M6S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T03:47:30.000Z"],"endTime":["2018-03-05T03:47:30.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["382397798449"],
@@ -1206,7 +1244,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.9"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"230.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"230.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P9DT2H33M39S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T01:38:03.000Z"],"endTime":["2018-03-13T01:38:03.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282858547870"],
@@ -1222,7 +1261,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"75.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"75.0"}],"bidCount":["6"],"sellingState":["Active"],"timeLeft":["P1DT1H56M18S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"175.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"175.0"}],"startTime":["2018-02-23T01:00:42.000Z"],"endTime":["2018-03-05T01:00:42.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["16"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282863028569"],
@@ -1238,7 +1278,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"150.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"150.5"}],"bidCount":["31"],"sellingState":["Active"],"timeLeft":["P4DT16H52M22S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T15:56:46.000Z"],"endTime":["2018-03-08T15:56:46.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/282863028569_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/282863028569_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["352290963265"],
@@ -1254,7 +1295,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"sellingState":["Active"],"timeLeft":["P23DT22H7M39S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T21:12:03.000Z"],"endTime":["2018-03-27T21:12:03.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273091141755"],
@@ -1270,7 +1312,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"sellingState":["Active"],"timeLeft":["P27DT22H40M42S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:45:06.000Z"],"endTime":["2018-03-31T21:45:06.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273084559811"],
@@ -1302,7 +1345,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.5"}],"bidCount":["3"],"sellingState":["Active"],"timeLeft":["P5DT20H27M45S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:32:09.000Z"],"endTime":["2018-03-09T19:32:09.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104668667"],
@@ -1318,7 +1362,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT19H57M18S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:01:42.000Z"],"endTime":["2018-03-09T19:01:42.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104696572"],
@@ -1334,7 +1379,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H14M41S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:19:05.000Z"],"endTime":["2018-03-09T19:19:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332552628112"],
@@ -1350,7 +1396,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"190.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"190.0"}],"sellingState":["Active"],"timeLeft":["P10DT17H45M15S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T16:49:39.000Z"],"endTime":["2018-03-14T16:49:39.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["323112905602"],
@@ -1366,7 +1413,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"155.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"155.0"}],"sellingState":["Active"],"timeLeft":["P29DT15H27M48S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T14:32:12.000Z"],"endTime":["2018-04-02T14:32:12.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/323112905602_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/323112905602_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332572082444"],
@@ -1382,7 +1430,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"sellingState":["Active"],"timeLeft":["P27DT20H47M58S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T19:52:22.000Z"],"endTime":["2018-03-31T19:52:22.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332572082444_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332572082444_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332566887402"],
@@ -1398,7 +1447,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"sellingState":["Active"],"timeLeft":["P23DT2H55M24S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T01:59:48.000Z"],"endTime":["2018-03-27T01:59:48.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["252785840595"],
@@ -1414,7 +1464,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"799.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"799.95"}],"sellingState":["Active"],"timeLeft":["P17DT20H4M4S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2017-02-24T19:08:28.000Z"],"endTime":["2018-03-21T19:08:28.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["11"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/252785840595_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/252785840595_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["332546961703"],
@@ -1430,7 +1481,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"350.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"350.0"}],"sellingState":["Active"],"timeLeft":["P5DT13H1M25S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-07T12:05:49.000Z"],"endTime":["2018-03-09T12:05:49.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["4"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["112847922741"],
@@ -1446,7 +1498,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"sellingState":["Active"],"timeLeft":["P6DT18H21M51S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T17:26:15.000Z"],"endTime":["2018-03-10T17:26:15.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["122979796906"],
@@ -1462,7 +1515,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"sellingState":["Active"],"timeLeft":["P19DT16H30M14S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-21T15:34:38.000Z"],"endTime":["2018-03-23T15:34:38.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["302653378838"],
@@ -1478,7 +1532,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H27M47S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:32:11.000Z"],"endTime":["2018-03-04T17:32:11.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["362253944495"],
@@ -1494,7 +1549,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"22.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"bidCount":["8"],"sellingState":["Active"],"timeLeft":["P2DT5H1M36S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T04:06:00.000Z"],"endTime":["2018-03-06T04:06:00.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["13"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["302653367361"],
@@ -1510,7 +1566,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H12M10S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:16:34.000Z"],"endTime":["2018-03-04T17:16:34.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104691495"],
@@ -1526,7 +1583,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H8M48S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:13:12.000Z"],"endTime":["2018-03-09T19:13:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104694661"],
@@ -1542,7 +1600,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H12M41S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:17:05.000Z"],"endTime":["2018-03-09T19:17:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192470649439"],
@@ -1574,7 +1633,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H16M46S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:21:10.000Z"],"endTime":["2018-03-09T19:21:10.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104704582"],
@@ -1590,7 +1650,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H24M45S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:29:09.000Z"],"endTime":["2018-03-09T19:29:09.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["162919176989"],
@@ -1623,7 +1684,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2124.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2124.95"}],"sellingState":["Active"],"timeLeft":["P19DT22H25M21S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2017-06-26T21:29:45.000Z"],"endTime":["2018-03-23T21:29:45.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["21"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["122999012619"],
@@ -1639,7 +1701,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"sellingState":["Active"],"timeLeft":["P29DT17H29M15S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T16:33:39.000Z"],"endTime":["2018-04-02T16:33:39.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["372045072006"],
@@ -1658,7 +1721,7 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/372045072006_1_0_1.jpg"],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["312074903524"],
+           },{"itemId":["312074903524"],
               "title":["Catalin Bakelite Ever Ready Shaving Brush Set In Rubber With Zel Catalin Case"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["35988"],"categoryName":["Mugs, Brushes"]}],
@@ -1671,10 +1734,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT0H30M52S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-24T23:35:16.000Z"],"endTime":["2018-03-03T23:35:16.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["302653369590"],
+           },{"itemId":["302653369590"],
               "title":["Vintage Antique Old amber  Bakelite Catalin faturan Ball block rar 882gr"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -1687,7 +1751,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H15M48S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:20:12.000Z"],"endTime":["2018-03-04T17:20:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183084437878"],
@@ -1703,7 +1768,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"sellingState":["Active"],"timeLeft":["P17DT20H23M23S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-19T19:27:47.000Z"],"endTime":["2018-03-21T19:27:47.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["7"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192470100960"],
@@ -1719,7 +1785,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"425.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"425.0"}],"sellingState":["Active"],"timeLeft":["P27DT11H0M43S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T10:05:07.000Z"],"endTime":["2018-03-31T10:05:07.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192471465856"],
@@ -1735,7 +1802,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.9"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT22H40M19S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T21:44:43.000Z"],"endTime":["2018-03-09T21:44:43.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["183095562479"],
@@ -1751,7 +1819,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"22.72"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"22.72"}],"bidCount":["9"],"sellingState":["Active"],"timeLeft":["P0DT20H46M33S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T19:50:57.000Z"],"endTime":["2018-03-04T19:50:57.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["142707264033"],
@@ -1783,7 +1852,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"sellingState":["Active"],"timeLeft":["P10DT20H2M42S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T19:07:06.000Z"],"endTime":["2018-03-14T19:07:06.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["17"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["202247971131"],
@@ -1815,7 +1885,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"sellingState":["Active"],"timeLeft":["P27DT5H52M58S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T04:57:22.000Z"],"endTime":["2018-03-31T04:57:22.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282346720543"],
@@ -1831,7 +1902,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.9"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"sellingState":["Active"],"timeLeft":["P24DT23H0M47S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-02-01T22:05:11.000Z"],"endTime":["2018-03-28T22:05:11.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["79"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/282346720543_1_1_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/282346720543_1_1_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["162924174185"],
@@ -1847,7 +1919,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"69.3"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"69.3"}],"sellingState":["Active"],"timeLeft":["P27DT7H52M35S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T06:56:59.000Z"],"endTime":["2018-03-31T06:56:59.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122999391845"],
@@ -1878,7 +1951,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"14.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT23H9M12S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-22T22:13:36.000Z"],"endTime":["2018-03-04T22:13:36.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/382389203283_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/382389203283_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["372226281258"],
@@ -1894,7 +1968,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"sellingState":["Active"],"timeLeft":["P16DT18H15M16S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-18T17:19:40.000Z"],"endTime":["2018-03-20T17:19:40.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["22"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["323100715891"],
@@ -1910,7 +1985,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"22.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"22.0"}],"sellingState":["Active"],"timeLeft":["P24DT1H3M7S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T00:07:31.000Z"],"endTime":["2018-03-28T00:07:31.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["122988148187"],
@@ -1926,7 +2002,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2000.0"}],"sellingState":["Active"],"timeLeft":["P24DT2H2M2S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:06:26.000Z"],"endTime":["2018-03-28T01:06:26.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["8"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["372220754011"],
@@ -1942,7 +2019,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"sellingState":["Active"],"timeLeft":["P10DT20H2M13S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T19:06:37.000Z"],"endTime":["2018-03-14T19:06:37.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["14"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["142707635529"],
@@ -1958,7 +2036,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"112.49"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"112.49"}],"sellingState":["Active"],"timeLeft":["P27DT22H52M43S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:57:07.000Z"],"endTime":["2018-03-31T21:57:07.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["2"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122986954753"],
@@ -1974,7 +2053,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"sellingState":["Active"],"timeLeft":["P23DT16H50M51S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T15:55:15.000Z"],"endTime":["2018-03-27T15:55:15.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["18"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122988142735"],
@@ -1990,7 +2070,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10000.0"}],"sellingState":["Active"],"timeLeft":["P24DT1H56M13S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:00:37.000Z"],"endTime":["2018-03-28T01:00:37.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["11"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["253425443084"],
@@ -2006,10 +2087,11 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"11.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"74.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"74.99"}],"sellingState":["Active"],"timeLeft":["P11DT20H5M55S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-13T19:10:19.000Z"],"endTime":["2018-03-15T19:10:19.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["4"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["302653382980"],
+            },{"itemId":["302653382980"],
               "title":["Vintage Antique Old amber  Bakelite Catalin faturan Ball block rar 2879gr"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
@@ -2022,7 +2104,8 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H32M0S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:36:24.000Z"],"endTime":["2018-03-04T17:36:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["162927217862"],
@@ -2038,10 +2121,27 @@ sResponseSearchTooBroad = \
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P9DT3H58M59S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T03:03:23.000Z"],"endTime":["2018-03-13T03:03:23.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["6"]}],
-              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["372237637649"],
+            },{"itemId":["183157500032"],
+              "title":["KENWOOD Basic C1 Pre-Amp - NEEDS REPAIR - SOLD AS IS"],
+              "globalId":["EBAY-ENCA"],
+              "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/m3if_N_Ep7pS7UHSAtkcLgA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/KENWOOD-Basic-C1-Pre-Amp-NEEDS-REPAIR-SOLD-\/183157500032"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["B0K1X0"],
+              "location":["Canada"],
+              "country":["CA"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"50.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.13"}],"sellingState":["Active"],"timeLeft":["P24DT9H39M38S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-01T17:17:44.000Z"],"endTime":["2018-05-01T17:17:44.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
+              "returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["372237637649"],
               "title":["GREEN CATALIN TAYLOR BAROMETER"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["163036"],"categoryName":["Barometers"]}],
@@ -2057,7 +2157,7 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["false"],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-              },{"itemId":["122988243137"],
+           },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["150119"],"categoryName":["Poker Chips"]}],
@@ -2071,7 +2171,8 @@ sResponseSearchTooBroad = \
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"bidCount":["4"],"sellingState":["Active"],"timeLeft":["P1DT2H45M49S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:50:13.000Z"],"endTime":["2018-03-05T01:50:13.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],
               "returnsAccepted":["true"],
-              "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/122988243137_1_0_1.jpg"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/122988243137_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["true"]}]}],
 
         "paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["100"],"totalPages":["24"],"totalEntries":["2374"]}],
