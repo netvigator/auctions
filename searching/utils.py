@@ -322,10 +322,11 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     tSearchStart = timezone.now()
     #
     oSearch = Search.objects.get( pk = iSearchID )
-    oSearch.tBegSearch = tSearchStart
+    oSearch.tBegSearch = tSearchStart # working
     oSearch.cLastResult= None
     oSearch.tEndSearch = None
-    oSearch.save()
+    #
+    oSearch.save()                    # working
     #
     sLastResult = 'tba'
     #
@@ -342,7 +343,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     try:
         #
-        t       = _doSearchStoreInFile( iSearchID = iSearchID )
+        t = _doSearchStoreInFile( iSearchID = iSearchID )
         #
         # ### sandbox returns zero items ### 
         # ### use bUseSandbox = False    ### 
@@ -362,19 +363,9 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     tNow = timezone.now()
     #
-    if iSearchID is None:
-        #
-        lFileNameParts = sLastFile.split( '_' )
-        #
-        iSearchID = int( lFileNameParts[4] )
-        #
-    else:
-        #
-        oSearch.tEndSearch  = tNow
-        oSearch.cLastResult = sLastResult
-        oSearch.save()
-        #
-    #
+    oSearch.tEndSearch  = tNow
+    oSearch.cLastResult = sLastResult
+    oSearch.save()
     #
     oSearchLog = SearchLog(
             iSearch_id  = iSearchID,
