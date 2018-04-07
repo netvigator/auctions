@@ -85,18 +85,19 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         #
         if form.errors:
             for k, v in form.errors.items():
-                logger.error( '%s -- %s' % ( k, str(v) ) )
-                #print( k, ' -- ', str(v) )
+                logger.warning( '%s -- %s' % ( k, str(v) ) )
+                # print( k, ' -- ', str(v) )
         else:
             logger.info( 'no form errors at bottom!' )
         #
-        tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
-                      'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
-                      'i2ndCatHeirarchy', 'cCountry' )
-        #
-        print( '' )
-        for sField in tProblems:
-            print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
+        #tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
+                      #'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
+                      #'i2ndCatHeirarchy', 'cCountry' )
+        ##
+        #print( '' )
+        #print( 'fields with errors:' )
+        #for sField in tProblems:
+            #print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
     #
     return iSavedRowID
 
