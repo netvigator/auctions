@@ -420,9 +420,6 @@ def storeSearchResultsInDB( iLogID,
         #
         oItemIter = getSearchResultGenerator( sThisFileName )
         #
-        sPriorItemNumb = None
-        bPriorNumbNone = False
-        #
         for dItem in oItemIter:
             #
             iItems += 1
@@ -433,34 +430,35 @@ def storeSearchResultsInDB( iLogID,
                 iItemNumb = _storeItemFound(
                                 dItem, tSearchTime, dEbayCatHierarchies )
                 iStoreItems += 1
+                #
+                if iItemNumb is None and not settings.TESTING:
+                    #
+                    logger.warning( '%s -- %s' % 
+                                ( '_storeItemFound() returned None',
+                                  dItem['itemId'] ) )
+                    #
+                #
             except ItemAlreadyInTable:
                 #
                 iItemNumb      = int( dItem['itemId'] )
                 #
             except ValueError as e:
                 #
-                logger.error( 'ValueError: %s | %s' %
-                            ( str(e), repr(dItem) ) )
+                sMsg = 'ValueError: %s | %s' % ( str(e), repr(dItem) )
+                logger.error( sMsg)
+                #
+                print( sMsg )
+                #
             #
-            if iItemNumb is None:
-                #
-                print( 'iItemNumb is None' )
-                print( 'prior iItemNumb:', sPriorItemNumb )
-                #
-                bPriorNumbNone = True
-                #
-            else:
-                #
-                if bPriorNumbNone:
-                    print( 'next iItemNumb:', iItemNumb )
-                #
-                sPriorItemNumb = iItemNumb
-                bPriorNumbNone = False
+            if iItemNumb is not None:
                 #
                 try:
+                    #
                     _storeUserItemFound(
                             dItem, iItemNumb, tSearchTime, oUser, iSearchID )
+                    #
                     iStoreUsers += 1
+                    #
                 except ItemAlreadyInTable:
                     pass
                 #
