@@ -691,13 +691,19 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         #
         oSearch = self.oCatalinSearch
         #
+        # tBegSearch is set when the search begins - not yet
+        #
         iSearchID = oSearch.id
         #
         sLastFile = trySearchCatchExceptStoreInFile( iSearchID )
         #
+        oSearch.refresh_from_db() # this is necessary to get the updated object!
+        #
+        iSearchID = oSearch.id    # refresh_from_db() wipes this!
+        #
         iLogID = SearchLog.objects.get(
                     iSearch     = oSearch,
-                    tBegSearch  = oSearch.tBegSearch )
+                    tBegSearch  = oSearch.tBegSearch ).id
         #
         sSearchName = oSearch.cTitle
         sUserName   = oSearch.iUser.username
@@ -721,7 +727,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                 #
                 iBegLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
             #
-            findSearchHits( oUser = self.user1 )
+            findSearchHits( iUser = self.user1.id )
             #
             oUserItems = UserItemFound.objects.filter(
                             iUser          = self.user1,
@@ -758,9 +764,13 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         #
         sLastFile = trySearchCatchExceptStoreInFile( iSearchID )
         #
+        oSearch.refresh_from_db() # this is necessary to get the updated object!
+        #
+        iSearchID = oSearch.id    # refresh_from_db() wipes this!
+        #
         iLogID = SearchLog.objects.get(
                     iSearch     = oSearch,
-                    tBegSearch  = oSearch.tBegSearch )
+                    tBegSearch  = oSearch.tBegSearch ).id
         #
         sSearchName = oSearch.cTitle
         sUserName   = oSearch.iUser.username
@@ -784,7 +794,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                 #
                 iBegLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
             #
-            findSearchHits( oUser = self.user1 )
+            findSearchHits( iUser = self.user1.id )
             #
             oUserItems = UserItemFound.objects.filter(
                             iUser          = self.user1,
