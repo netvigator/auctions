@@ -15,7 +15,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              GetModelInContextMixin,
                                              DoPostCanCancelMixin )
 
-# Create your views here but keep them thin.
+# ### keep views thin! ###
+
 
 class ListViewGotModel(
             LoginRequiredMixin, GetModelInContextMixin, ListView ):
@@ -40,14 +41,24 @@ class ListViewGotModel(
 
         iMaxPage = len(paginator.page_range)
         #
-        iStart = iPageNumb - 10 if iPageNumb >= 10 else 0
-        iLast  = iPageNumb + 10 if iPageNumb <= iMaxPage else iMaxPage
+        iStart = iPageNumb - 2 if iPageNumb >= 4 else 0
+        iLast  = iPageNumb + 2 if iPageNumb <= iMaxPage else iMaxPage
         
+        iMidLeft = iMidRight = 0
+        
+        iMidLeft    = ( (         1 + iPageNumb ) // 2
+                            if iPageNumb - 1 > 9 else 0 )
+        iMidRight   = ( ( iPageNumb + iMaxPage  ) // 2
+                            if iMaxPage - iPageNumb > 9 else 0 )
+
+
         page_range = paginator.page_range[ iStart : iLast ]
 
         context.update({ 'page_range' : page_range,
                          'iStart'     : iStart,
                          'iLast'      : iLast,
+                         'iMidLeft'   : iMidLeft,
+                         'iMidRight'  : iMidRight,
                          'iMaxPage'   : iMaxPage })
         #
         return context
