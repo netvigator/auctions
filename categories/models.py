@@ -13,6 +13,7 @@ from core.utils                 import getReverseWithUpdatedQuery
 
 from brands.models              import Brand
 
+# ### models can be FAT but not too FAT! ###
 
 class Category(models.Model):
     cTitle          = models.CharField(
