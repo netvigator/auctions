@@ -15,6 +15,8 @@ from core.models                import ( IntegerRangeField, sTitleHelpText,
 from core.utils                 import getReverseWithUpdatedQuery
 
 
+# ### models can be FAT but not too FAT! ###
+
 
 class Brand(models.Model):
     cTitle          = models.CharField(
