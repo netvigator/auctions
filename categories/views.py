@@ -12,7 +12,7 @@ from core.views         import (
 from .forms             import UpdateCategoryForm, CreateCategoryForm
 from .models            import Category
 
-# Create your views here but keep them thin.
+# ### keep views thin! ###
 
 
 class CategoryIndexView( ListViewGotModel ):  
