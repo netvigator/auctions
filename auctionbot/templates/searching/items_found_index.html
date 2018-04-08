@@ -7,21 +7,73 @@
 
     {% if items_found_list %}
         {# the pagination section #}
-        {% if is_paginated %}
-            <hr>
-            <div class="basic">
-                {% include "../paginate.html" %}    
-            </div>            
-        {% endif %}
+
+        <form>
+        <table>
+        <TR ALIGN=MIDDLE>
+            <td>
+                <input type="submit" name="submit" value=" Submit " />
+            </td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>
+                <input type="submit" name="cancel" value=" Cancel " />
+            </td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>select items to display:</TD>
+            <!--<TD>-->
+                <!--<form action='{% url "searching:items_found_index" select='A' %}'>-->
+                    <!--<input type="submit" value=" all " />-->
+                <!--</form>-->
+            <!--</TD>-->
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>
+                <form action='{% url "searching:items_found_index" select='P' %}'>
+                    <input type="submit" value=" hit stars > 0 " />
+                </form>
+            </TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>
+                <form action='{% url "searching:items_found_index" select='D' %}'>
+                    <input type="submit" value=" deleted " />
+                </form>
+            </TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>
+                <form action='{% url "searching:items_found_index" select='Z' %}'>
+                    <input type="submit" value=" hit stars = 0 " />
+                </form>
+            </TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>go to page:</TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>
+                {% if is_paginated %}
+                    <hr>
+                    <div class="basic">
+                        {% include "../paginate.html" %}    
+                    </div>            
+                {% endif %}
+            </td>
+        </TR>
+        </table>
+
         <div class="container">
         <div class="list-group">
         <table class="bottomBorder">
         <tr>
-        <th ALIGN=LEFT>ebay item number</th>
+        </tr>
+        <th class="text-center" colspan=2>get</th>
+        <tr>
+        <th ALIGN=LEFT>description</th>
+        <th ALIGN=LEFT>pictures</th>
+        <th ALIGN=LEFT>delete</th>
+        <th ALIGN=LEFT>ebay item</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>auction title</th>
+        <th ALIGN=LEFT>title</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>cMarket</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th ALIGN=LEFT>type</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>ending date/time</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
@@ -29,11 +81,17 @@
         </tr>
         {% for item in items_found_list %}
             <tr>
-            <td><a href="{{ item.get_absolute_url }}/">{{ item.iItemNumb.iItemNumb }}</a></td>
+            <td><input type="checkbox" name="describe" value="item_{{ item.id }}"></td>
+            <td><input type="checkbox" name="pictures" value="item_{{ item.id }}"></td>
+            <td><input type="checkbox" name="delete"   value="item_{{ item.id }}"></td>
+            <td><a href="https://www.ebay.com/itm/b/{{item.iItemNumb.iItemNumb}}/">
+                            {{ item.iItemNumb.iItemNumb }}</a></td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ item.iItemNumb.cTitle|truncatechars:65 }}</td>
+            <td><a href="{{ item.get_absolute_url }}/">{{ item.iItemNumb.cTitle }}</a></td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iItemNumb.cMarket }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ item.iItemNumb.cListingType }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -47,9 +105,10 @@
         {% if is_paginated %}
             <hr>
             <div class="basic">
-                {% include "../paginate.html" %}    
-            </div>            
+                {% include "../paginate.html" %}
+            </div>
         {% endif %}
+        </form>
     {% else %}
         <p/>
         <p>No items have been found.</p>
