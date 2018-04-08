@@ -13,7 +13,7 @@ from .forms             import CreateModelForm, UpdateModelForm
 from .models            import Model
 
 
-# Create your views here but keep them thin.
+# ### keep views thin! ###
 
 
 class ModelIndexView( TitleSearchMixin, ListViewGotModel ):
