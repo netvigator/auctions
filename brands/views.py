@@ -17,7 +17,7 @@ from .forms                 import CreateBrandForm, UpdateBrandForm
 from categories.models      import Category, BrandCategory
 from models.models          import Model
 
-# Create your views here but keep them thin.
+# ### keep views thin! ###
 
 
 
