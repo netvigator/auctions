@@ -8,7 +8,7 @@ from mptt.models                import MPTTModel, TreeForeignKey
 
 from core.models                import UpperCaseCharField
 
-# Create your models here.
+# ### models can be FAT but not too FAT! ###
 
 #### INVALID ###
 # table of INVALID ebay MarketPlaces:
