@@ -5,7 +5,7 @@ from django.shortcuts   import render
 
 from .models            import EbayCategory, Market
 
-# Create your views here but keep them thin.
+# ### keep views thin! ###
 
 def show_ebay_categories(request, sMarket):
     oMarket = Market.objects.get( cMarket = sMarket.upper() )
