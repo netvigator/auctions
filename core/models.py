@@ -2,6 +2,7 @@ from django.db  import models
 
 from .validators import gotTextOutsideParens
 
+# ### models can be FAT but not too FAT! ###
 
 
 class ModelCanYieldFieldNamesAndValuesMixin( object ):
