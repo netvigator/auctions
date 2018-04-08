@@ -19,6 +19,7 @@ from core.utils                 import getReverseWithUpdatedQuery
 from brands.models              import Brand
 from categories.models          import Category
 
+# ### models can be FAT but not too FAT! ###
 
 
 class Model( models.Model ):
