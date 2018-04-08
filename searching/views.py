@@ -18,6 +18,8 @@ from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
 
+# ### keep views thin! ###
+
 tModelFields = (
     'cTitle',
     'cKeyWords',
@@ -76,9 +78,30 @@ class ItemsFoundIndexView( ListViewGotModel ):
     paginate_by         = 100
 
     def get_queryset(self):
-        return self.model.objects.filter(
+        # ADPZ
+        qs = super( ItemsFoundIndexView, self ).get_queryset()
+        sSelect = self.kwargs['select']
+        if sSelect == 'A': # all
+            return qs.filter(
                         iUser = self.request.user,
+                        bListExclude = False,
                         iHitStars__isnull = False ).order_by('-iHitStars')
+        elif sSelect == 'P': # postive (non-zero hit stars)
+            return qs.filter(
+                        iUser = self.request.user,
+                        iHitStars__isnull = False,
+                        bListExclude = False,
+                        iHitStars__gt = 0 ).order_by('-iHitStars')
+        elif sSelect == 'D': # "deleted" (excluded from list)
+            return qs.filter(
+                        iUser = self.request.user,
+                        iHitStars__isnull = False,
+                        bListExclude = True ).order_by('-iHitStars')
+        elif sSelect == 'Z': # iHitStars = 0
+            return qs.filter(
+                        iUser = self.request.user,
+                        iHitStars__eq = 0,
+                        bListExclude =  False).order_by('-iHitStars')
 
 
 
