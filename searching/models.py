@@ -19,6 +19,8 @@ from ebayinfo.models            import EbayCategory
 from Time.Output                import getIsoDateTimeFromDateTime
 
 
+# ### models can be FAT but not too FAT! ###
+
 
 
 class Search(models.Model):
@@ -176,6 +178,8 @@ class UserItemFound(models.Model):
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
+    bListExclude    = models.BooleanField( 'exclude from listing?',
+                        default = False )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
