@@ -68,47 +68,64 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 20 )
+        self.assertEquals( len( oTempItemsFound ), 21 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
         #
         iCount = 0
         #
+        oFisherSpeakers = None
+        #
         for oTemp in oUserItems:
             #
-            #print( '\n' )
             ##
             if oTemp.iHitStars == 0: break
             ##
-            #sSayModel = sSayBrand = sSayCategory = ''
             ##
-            #if oTemp.iModel:
-                #sSayModel = oTemp.iModel.cTitle
-            #if oTemp.iBrand:
-                #sSayBrand = oTemp.iBrand.cTitle
-            #if oTemp.iCategory:
-                #sSayCategory = oTemp.iCategory.cTitle
-            
-            #print( 'Auction Title:', oTemp.iItemNumb.cTitle )
+            if oTemp.iItemNumb_id == 253486571279:
 
-            #print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
-            #print( 'iHitStars    :', oTemp.iHitStars        )
-            #print( 'Model        :', sSayModel              )
-            #print( 'Brand        :', sSayBrand              )
-            #print( 'Category     :', sSayCategory           )
-            ##
-            #print( 'Search       :', oTemp.iSearch.cTitle   )
-            #print( 'WhereCategory:', oTemp.cWhereCategory   )
-            #print( 'Evaluated    :',
-                  #oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
-            #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
+                oFisherSpeakers = oTemp
+
+                #print( '' )
+
+                #sSayModel = sSayBrand = sSayCategory = ''
+                ##
+                #if oTemp.iModel:
+                    #sSayModel = oTemp.iModel.cTitle
+                #if oTemp.iBrand:
+                    #sSayBrand = oTemp.iBrand.cTitle
+                #if oTemp.iCategory:
+                    #sSayCategory = oTemp.iCategory.cTitle
+
+                #print( 'Auction Title:', oTemp.iItemNumb.cTitle )
+
+                #print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
+                #print( 'iHitStars    :', oTemp.iHitStars        )
+                #print( 'Model        :', sSayModel              )
+                #print( 'Brand        :', sSayBrand              )
+                #print( 'Category     :', sSayCategory           )
+                ##
+                #print( 'Search       :', oTemp.iSearch.cTitle   )
+                #print( 'WhereCategory:', oTemp.cWhereCategory   )
+                #print( 'Evaluated    :',
+                    #oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
+                #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
             #
             iCount += 1
         #
         #
-        self.assertEquals( iCount, 20 )
+        self.assertEquals( iCount, 21 )
         #
+        self.assertIsNotNone( oFisherSpeakers )
+        #
+        self.assertEquals( oFisherSpeakers.iModel.cTitle,    'XP-55-B' )
+        #
+        self.assertEquals( oFisherSpeakers.iBrand.cTitle,    'Fisher'  )
+        #
+        self.assertEquals( oFisherSpeakers.iCategory.cTitle, 'Speaker System')
+        #
+        self.assertEquals( oFisherSpeakers.cWhereCategory,   'title' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -117,7 +134,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         iCount = Model.objects.all().count()
         #
-        self.assertEqual( iCount, 152 )
+        self.assertEqual( iCount, 153 )
         #
 
 
