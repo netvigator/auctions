@@ -550,12 +550,21 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
             self.oPreampSearch.save()
             #
         #
-        oCategory   = Category( cTitle = 'Radio', iStars = 9,
-                               cExcludeIf = 'reproduction', iUser = self.user1 )
+        oCategory   = Category( cTitle = 'Radio',
+                                iStars = 9,
+                                cExcludeIf = 'reproduction',
+                                iUser = self.user1 )
         oCategory.save()
         #
         #
-        oCategory   = Category( cTitle = 'Preamp', iStars = 9,
+        oCategory   = Category( cTitle = 'Preamp',
+                                iStars = 9,
+                                iUser = self.user1 )
+        oCategory.save()
+        #
+        #
+        oCategory   = Category( cTitle = 'Speaker System',
+                                iStars = 9,
                                 iUser = self.user1 )
         oCategory.save()
         #
