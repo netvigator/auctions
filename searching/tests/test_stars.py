@@ -68,14 +68,14 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 22 )
+        self.assertEquals( len( oTempItemsFound ), 25 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
         #
         iCount = 0
         #
-        oFisherSpeakers = None
+        oFisherSpeakers = oTube5R4GB = None
         #
         for oTemp in oUserItems:
             #
@@ -89,35 +89,37 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
 
             if oTemp.iItemNumb_id == 123046984227:
 
-                print( '' )
+                oTube5R4GB = oTemp
 
-                sSayModel = sSayBrand = sSayCategory = ''
-                #
-                if oTemp.iModel:
-                    sSayModel = oTemp.iModel.cTitle
-                if oTemp.iBrand:
-                    sSayBrand = oTemp.iBrand.cTitle
-                if oTemp.iCategory:
-                    sSayCategory = oTemp.iCategory.cTitle
+                #print( '' )
 
-                print( 'Auction Title:', oTemp.iItemNumb.cTitle )
+                #sSayModel = sSayBrand = sSayCategory = ''
+                ##
+                #if oTemp.iModel:
+                    #sSayModel = oTemp.iModel.cTitle
+                #if oTemp.iBrand:
+                    #sSayBrand = oTemp.iBrand.cTitle
+                #if oTemp.iCategory:
+                    #sSayCategory = oTemp.iCategory.cTitle
 
-                print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
-                print( 'iHitStars    :', oTemp.iHitStars        )
-                print( 'Model        :', sSayModel              )
-                print( 'Brand        :', sSayBrand              )
-                print( 'Category     :', sSayCategory           )
-                #
-                print( 'Search       :', oTemp.iSearch.cTitle   )
-                print( 'WhereCategory:', oTemp.cWhereCategory   )
-                print( 'Evaluated    :',
-                    oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
-                print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
+                #print( 'Auction Title:', oTemp.iItemNumb.cTitle )
+
+                #print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
+                #print( 'iHitStars    :', oTemp.iHitStars        )
+                #print( 'Model        :', sSayModel              )
+                #print( 'Brand        :', sSayBrand              )
+                #print( 'Category     :', sSayCategory           )
+                ##
+                #print( 'Search       :', oTemp.iSearch.cTitle   )
+                #print( 'WhereCategory:', oTemp.cWhereCategory   )
+                #print( 'Evaluated    :',
+                    #oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
+                #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
             #
             iCount += 1
         #
         #
-        self.assertEquals( iCount, 22 )
+        self.assertEquals( iCount, 24 )
         #
         self.assertIsNotNone( oFisherSpeakers )
         #
@@ -129,6 +131,20 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         self.assertEquals( oFisherSpeakers.cWhereCategory,   'title' )
         #
+        self.assertTrue(   oFisherSpeakers.iHitStars > 100 )
+        #
+        self.assertIsNotNone( oTube5R4GB )
+        #
+        self.assertEquals( oTube5R4GB.iModel.cTitle,    '5R4GA' )
+        #
+        self.assertEquals( oTube5R4GB.iBrand.cTitle,    'GE'    )
+        #
+        self.assertEquals( oTube5R4GB.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        self.assertEquals( oTube5R4GB.cWhereCategory,   'title' )
+        #
+        self.assertTrue(   oTube5R4GB.iHitStars > 100 )
+        #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
@@ -136,7 +152,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         iCount = Model.objects.all().count()
         #
-        self.assertEqual( iCount, 153 )
+        self.assertEqual( iCount, 156 )
         #
 
 
