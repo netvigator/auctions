@@ -68,7 +68,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 21 )
+        self.assertEquals( len( oTempItemsFound ), 22 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
@@ -87,35 +87,37 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
 
                 oFisherSpeakers = oTemp
 
-                #print( '' )
+            if oTemp.iItemNumb_id == 123046984227:
 
-                #sSayModel = sSayBrand = sSayCategory = ''
-                ##
-                #if oTemp.iModel:
-                    #sSayModel = oTemp.iModel.cTitle
-                #if oTemp.iBrand:
-                    #sSayBrand = oTemp.iBrand.cTitle
-                #if oTemp.iCategory:
-                    #sSayCategory = oTemp.iCategory.cTitle
+                print( '' )
 
-                #print( 'Auction Title:', oTemp.iItemNumb.cTitle )
+                sSayModel = sSayBrand = sSayCategory = ''
+                #
+                if oTemp.iModel:
+                    sSayModel = oTemp.iModel.cTitle
+                if oTemp.iBrand:
+                    sSayBrand = oTemp.iBrand.cTitle
+                if oTemp.iCategory:
+                    sSayCategory = oTemp.iCategory.cTitle
 
-                #print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
-                #print( 'iHitStars    :', oTemp.iHitStars        )
-                #print( 'Model        :', sSayModel              )
-                #print( 'Brand        :', sSayBrand              )
-                #print( 'Category     :', sSayCategory           )
-                ##
-                #print( 'Search       :', oTemp.iSearch.cTitle   )
-                #print( 'WhereCategory:', oTemp.cWhereCategory   )
-                #print( 'Evaluated    :',
-                    #oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
-                #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
+                print( 'Auction Title:', oTemp.iItemNumb.cTitle )
+
+                print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
+                print( 'iHitStars    :', oTemp.iHitStars        )
+                print( 'Model        :', sSayModel              )
+                print( 'Brand        :', sSayBrand              )
+                print( 'Category     :', sSayCategory           )
+                #
+                print( 'Search       :', oTemp.iSearch.cTitle   )
+                print( 'WhereCategory:', oTemp.cWhereCategory   )
+                print( 'Evaluated    :',
+                    oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
+                print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
             #
             iCount += 1
         #
         #
-        self.assertEquals( iCount, 21 )
+        self.assertEquals( iCount, 22 )
         #
         self.assertIsNotNone( oFisherSpeakers )
         #
