@@ -75,6 +75,7 @@ sModels = \
 '''
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category |  cLookFor   |  cExcludeIf  
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------
+ XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             | 
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             | 
  HF-85              |           |      7 | t            | EICO              |       Preamp |             | 
  ST-84              |           |      7 | t            | EICO              |       Preamp |             | 
@@ -487,6 +488,22 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+           },{"itemId":["253486571279"],
+              "title":["Vintage The Fisher XP-55B Speaker System-Pair"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/ml2_sva9LX3ZuyvXvbKCCDQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Fisher-XP-55B-Speaker-System-Pair-\/253486571279"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["95963"],
+              "location":["Orland,CA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"sellingState":["Active"],"timeLeft":["P3DT12H18M53S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-13T01:48:50.000Z"],"endTime":["2018-04-12T01:48:50.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
+              "returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["372238175241"],
               "title":["VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!"],
