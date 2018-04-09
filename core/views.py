@@ -46,10 +46,25 @@ class ListViewGotModel(
         
         iMidLeft = iMidRight = 0
         
-        iMidLeft    = ( (         1 + iPageNumb ) // 2
-                            if iPageNumb - 1 > 9 else 0 )
-        iMidRight   = ( ( iPageNumb + iMaxPage  ) // 2
-                            if iMaxPage - iPageNumb > 9 else 0 )
+        sPrevPage = self.request.GET.get( 'previous', None )
+
+        if sPrevPage is not None:
+            #
+            iPrevPage = int( sPrevPage )
+            #
+            iBegAvg = iPrevPage if iPrevPage < iPageNumb else 1
+            iEndAvg = iPrevPage if iPrevPage > iPageNumb else iMaxPage
+            #
+        else:
+            #
+            iBegAvg = 1
+            iEndAvg = iMaxPage
+            #
+        #
+        iMidLeft    = ( ( iBegAvg   + iPageNumb ) // 2
+                            if iPageNumb - 1 > 5 else 0 )
+        iMidRight   = ( ( iPageNumb + iEndAvg   ) // 2
+                            if iEndAvg - iPageNumb > 5 else 0 )
 
 
         page_range = paginator.page_range[ iStart : iLast ]
