@@ -550,22 +550,30 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
             self.oPreampSearch.save()
             #
         #
-        oCategory   = Category( cTitle = 'Radio',
-                                iStars = 9,
-                                cExcludeIf = 'reproduction',
-                                iUser = self.user1 )
+        oCategory   = Category( cTitle      = 'Radio',
+                                iStars      = 9,
+                                cExcludeIf  = 'reproduction',
+                                iUser       = self.user1 )
         oCategory.save()
         #
         #
-        oCategory   = Category( cTitle = 'Preamp',
-                                iStars = 9,
-                                iUser = self.user1 )
+        oCategory   = Category( cTitle      = 'Preamp',
+                                iStars      = 9,
+                                iUser       = self.user1 )
         oCategory.save()
         #
         #
-        oCategory   = Category( cTitle = 'Speaker System',
-                                iStars = 9,
-                                iUser = self.user1 )
+        oCategory   = Category( cTitle      = 'Speaker System',
+                                iStars      = 9,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        #
+        oCategory   = Category( cTitle      = 'Vacuum Tube',
+                                cLookFor    = 'tube\rtubes',
+                                cExcludeIf  = 'tube radio\rtube clock radio\rtube portable radio',
+                                iStars      = 6,
+                                iUser       = self.user1 )
         oCategory.save()
         #
         #
@@ -595,40 +603,68 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         d = getNamePositionDict( lHeader )
         #
+        iHeaderLen = len( lHeader )
+        #
         for lParts in oTableIter:
+            #
+            if len( lParts ) < iHeaderLen:
+                #
+                lRest = lHeader[ len( lParts ) : ]
+                #
+                for sHead in lRest:
+                    #
+                    if sHead.startswith( 'b' ):
+                        #
+                        lParts.append( 'f' ) # for getBoolOffYesNoTrueFalse()
+                        #
+                    else:
+                        #
+                        lParts.append( '' )
+                        #
+                    #
+                #
             #
             sBrand    = lParts[ d['Brand'   ] ]
             sCategory = lParts[ d['Category'] ]
             #
-            bHaveBrand = Brand.objects.filter( cTitle = sBrand ).exists()
-            #
-            if bHaveBrand:
+            if sBrand:
                 #
-                oBrand = Brand.objects.filter( cTitle = sBrand )
+                bHaveBrand = Brand.objects.filter( cTitle = sBrand ).exists()
                 #
-                if len( oBrand ) > 1:
+                if bHaveBrand:
+                    #
+                    oBrand = Brand.objects.filter( cTitle = sBrand )
+                    #
+                    if len( oBrand ) > 1:
+                        print( '' )
+                        print( 'got more than one brand %s' % sBrand )
+                    #
+                    oBrand = oBrand.first()
+                    #
+                else:
+                    #
                     print( '' )
-                    print( 'got more than one brand %s' % sBrand )
+                    print( 'do not have brand %s' % sBrand )
+                    oBrand = None
+                    #
+            else: # not sBrand, blank, generic model
                 #
-                oBrand = oBrand.first()
-                #
-            else:
-                print( '' )
-                print( 'do not have brand %s' % sBrand )
                 oBrand = None
+                #
             #
             oCategory = Category.objects.get( cTitle = sCategory )
             #
             oModel = Model(
-                cTitle      =      lParts[ d['cTitle'       ] ],
-                cKeyWords   =      lParts[ d['cKeyWords'    ] ],
-                iStars      = int( lParts[ d['iStars'       ] ] ),
-                bSubModelsOK= getB(lParts[ d['bSubModelsOK' ] ] ),
-                cLookFor    = fRt( lParts[ d['cLookFor'     ] ] ),
-                cExcludeIf  = fRt( lParts[ d['cExcludeIf'   ] ] ),
-                iBrand      = oBrand,
-                iCategory   = oCategory,
-                iUser       = self.user1 )
+                cTitle          =       lParts[ d['cTitle'       ] ],
+                cKeyWords       =       lParts[ d['cKeyWords'    ] ],
+                iStars          = int(  lParts[ d['iStars'       ] ] ),
+                bSubModelsOK    = getB( lParts[ d['bSubModelsOK' ] ] ),
+                cLookFor        = fRt(  lParts[ d['cLookFor'     ] ] ),
+                cExcludeIf      = fRt(  lParts[ d['cExcludeIf'   ] ] ),
+                bGenericModel   = getB( lParts[ d['bGenericModel'] ] ),
+                iBrand          = oBrand,
+                iCategory       = oCategory,
+                iUser           = self.user1 )
             #
             oModel.save()
             #
