@@ -73,8 +73,11 @@ sBrands = \
 
 sModels = \
 '''
-       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category |  cLookFor   |  cExcludeIf  
---------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------
+       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category |  cLookFor   |  cExcludeIf  | bGenericModel
+--------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+
+ 5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             | 
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             | 
  HF-85              |           |      7 | t            | EICO              |       Preamp |             | 
