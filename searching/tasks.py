@@ -30,7 +30,7 @@ app = Celery()
 
 
 
-def doSearchingPutResultsInFiles( bOnlyList = False ):
+def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
     #
     # really want to select for active users only (not inactive)
     #
@@ -55,35 +55,62 @@ def doSearchingPutResultsInFiles( bOnlyList = False ):
     #
     iSeq = 0
     #
+    tBeg = timezone.now()
+    #
+    if bConsoleOut:
+        #
+        print( 'Beg:', str( tBeg )[:19] )
+        #
+    #
     for oSearch in qsSearches:
         #
         iSeq += 1
         #
         if bOnlyList:
             #
-            print( 'would do the "%s" search for %s ...' %
-                    ( oSearch, oSearch.iUser.name ) )
+            #
+            if bConsoleOut:
+                #
+                print( 'would do the "%s" search for %s ...' %
+                        ( oSearch, oSearch.iUser.name ) )
             #
         else:
             #
-            print( 'Doing the "%s" search for %s ...' %
-                    ( oSearch, oSearch.iUser.name ) )
+            if bConsoleOut:
+                #
+                print( 'Doing the "%s" search for %s ...' %
+                        ( oSearch, oSearch.iUser.name ) )
             #
             sLastFile = trySearchCatchExceptStoreInFile( iSearchID = oSearch.id ) 
             #
-            print(
-                'Search "%s" for %s yielded file "%s"' %
-                ( oSearch.cTitle, oSearch.iUser.name, sLastFile ) )
-            print( '' )
+            if bConsoleOut:
+                #
+                print(
+                    'Search "%s" for %s yielded file "%s"' %
+                    ( oSearch.cTitle, oSearch.iUser.name, sLastFile ) )
+                print( '' )
             #
             if iSeq < iSearches: sleep( 1 )
             #
-
-
-
-def putSearchResultsInItemsFound( bOnlyList = False ):
+        #
     #
-    print( 'Beg:', str( timezone.now() )[:19] )
+    if bConsoleOut:
+        #
+        tEnd = timezone.now()
+        #
+        print( 'End:', str( tEnd )[:19] )
+        #
+        print( 'Duration:', str( tEnd - tBeg ) )
+
+
+def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
+    #
+    if bConsoleOut:
+        #
+        tBeg = timezone.now()
+        #
+        print( 'Beg:', str( tBeg )[:19] )
+        #
     #
     qsLogSearches = (
             SearchLog.objects.filter(
@@ -107,8 +134,10 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
             #
         else:
             #
-            print( 'Storing the items from the %s search named "%s" ...' %
-                    ( sUserName, sSearchName ) )
+            if bConsoleOut:
+                #
+                print( 'Storing the items from the %s search named "%s" ...' %
+                        ( sUserName, sSearchName ) )
             #
             t = storeSearchResultsInDB( iLogID,
                                         sMarket,
@@ -122,18 +151,32 @@ def putSearchResultsInItemsFound( bOnlyList = False ):
             sStoreItems = ReadableNo( iStoreItems )
             sStoreUsers = ReadableNo( iStoreUsers )
             #
-            print(
-                'got %s items, of which %s were new, and %s were new for %s.' %
-                ( sItems, sStoreItems, sStoreUsers, sUserName ) )
-            print( '' )
+            if bConsoleOut:
+                #
+                print(
+                    'got %s items, of which %s were new, '
+                    'and %s were new for %s.' %
+                    ( sItems, sStoreItems, sStoreUsers, sUserName ) )
+                print( '' )
             #
     #
-    print( 'End:', str( timezone.now() )[:19] )
+    if bConsoleOut:
+        #
+        tEnd = timezone.now()
+        #
+        print( 'End:', str( tEnd )[:19] )
+        #
+        print( 'Duration:', str( tEnd - tBeg ) )
     #
         
 def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
     #
-    print( 'Beg:', str( timezone.now() )[:19] )
+    IF bShowProgress:
+        #
+        tBeg = timezone.now()
+        #
+        print( 'Beg:', str( tBeg )[:19] )
+        #
     #
     oUserModel = get_user_model()
     #
@@ -143,10 +186,15 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
                         bCleanUpAfterYourself   = bCleanUpAfterYourself,
                         bShowProgress           = bShowProgress )
     #
-    print( 'End:', str( timezone.now() )[:19] )
-    #
+    IF bShowProgress:
+        #
+        tEnd = timezone.now()
+        #
+        print( 'End:', str( tEnd )[:19] )
+        #
+        print( 'Duration:', str( tEnd - tBeg ) )
 
 # workflow
 # 2 hours per user doSearchingPutResultsInFiles
-# 12 mins per user putSearchResultsInItemsFound
-# ??      per user doFindSearhHits redoing all, must assess normal load later
+# 24 mins per user putSearchResultsInItemsFound
+# 40 mins per user doFindSearhHits redoing all, must assess normal load later
