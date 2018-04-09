@@ -155,6 +155,7 @@ sCategoryDump = \
  9887 |       73382 | Vintage Tuners & Tube Tuners  |      4 |    175740 | t             |          117 |          0
 14500 |       21766 | Other Parts & Accessories     |      4 |    181224 | t             |          117 |          0
  3231 |       15252 | Movie Projectors              |      4 |     15250 | t             |          117 |          0
+ 9884 |       50597 | Vintage Speakers              |      4 |    175740 | t             |          117 |          0
  
  9893 |       67815 | Vintage Transformers          |      5 |    175741 | t             |          117 |          0
  9895 |      168088 | Other Vintage A/V Parts & Accs|      5 |    175741 | t             |          117 |          0 
