@@ -505,6 +505,22 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
+           },{"itemId":["123046984227"],
+              "title":["Tests NOS GE USA 5R4GB 2 Black T Plate Side [] Get HANGING FILAMENT Tube 100+%"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m9xY_ranr2aV2hVP_LHMZ1g\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Tests-NOS-GE-USA-5R4GA-2-Black-T-Plate-Side-Get-HANGING-FILAMENT-Tube-100-\/123046984227"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["01027"],
+              "location":["Easthampton,MA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.95"}],"sellingState":["Active"],"timeLeft":["P19DT4H26M22S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-28T17:57:55.000Z"],"endTime":["2018-04-27T17:57:55.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["true"],"condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
            },{"itemId":["372238175241"],
               "title":["VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!"],
               "globalId":["EBAY-US"],
