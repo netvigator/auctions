@@ -1,3 +1,4 @@
+from django.db.models       import Q
 from django.contrib.auth    import get_user_model
 from django.utils           import timezone
 
@@ -204,16 +205,13 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
     #
     ItemFoundTemp.objects.all().delete()
     #
-    oItemQuerySet = ItemFound.objects.filter(
+    qsItems = ItemFound.objects.filter(
                 pk__in = UserItemFound.objects
                     .filter( iUser = oUser,
                              tlook4hits__isnull = True )
                     .values_list( 'iItemNumb', flat=True ) )
     #
-    if len( oItemQuerySet ) == 0: return
-    #
-    #print( '' )
-    #print( 'len( oItemQuerySet ):', len( oItemQuerySet ) )
+    if len( qsItems ) == 0: return
     #
     dFindersBrands      = {}
     dFindersCategories  = {}
@@ -227,7 +225,7 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
         #
         print( 'counting items found ...' )
         #
-        iItemsFound = len( oItemQuerySet )
+        iItemsFound = len( qsItems )
         #
         sLineB4 = 'determining hit stars for items found ...'
         sOnLeft = "%s %s" % ( ReadableNo( iItemsFound ), 'items found' )
@@ -241,7 +239,7 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
     #
     iSeq = 0
     #
-    for oItem in oItemQuerySet:
+    for oItem in qsItems:
         #
         iSeq  += 1
         #
@@ -251,11 +249,13 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
                 iItemNumb   = oItem.iItemNumb,
                 iUser       = oUser )
         #
+        bGotCategory   = False
+        #
         oItemFoundTemp = None
         #
-        oCategoryQuerySet = Category.objects.filter( iUser = oUser )
+        qsCategories = Category.objects.filter( iUser = oUser )
         #
-        for oCategory in oCategoryQuerySet:
+        for oCategory in qsCategories:
             #
             foundItem = getFoundItemTester( oCategory, dFindersCategories )
             #
@@ -286,10 +286,12 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
                               oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
                 #
             #
-            if bInHeirarchy2: # bInTitle or bInHeirarchy1 or bInHeirarchy2
+            bGotCategory = bInTitle or bInHeirarchy1 or bInHeirarchy2
+            #
+            if bGotCategory: # bInTitle or bInHeirarchy1 or bInHeirarchy2
                 #
                 sWhich = _whichGetsCredit(
-                            bInTitle, bInHeirarchy1, bInHeirarchy2 )
+                            bInTitle, bInHeirarchy1, bGotCategory )
                 #
                 oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
                 #
@@ -306,12 +308,11 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
         #
         if bExcludeThis: continue
         #
-        oBrandQuerySet = Brand.objects.filter(
-                iUser = oUser ).order_by( '-iStars' )
+        qsBrands = Brand.objects.filter( iUser = oUser ).order_by( '-iStars' )
         #
         bFoundBrand = False
         #
-        for oBrand in oBrandQuerySet:
+        for oBrand in qsBrands:
             #
             foundItem = getFoundItemTester( oBrand, dFindersBrands )
             #
@@ -346,17 +347,19 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
         #
         if bFoundBrand:
             #
-            oModelQuerySet = Model.objects.filter(
-                    iUser  = oUser,
-                    iBrand = oBrand ).order_by( '-iStars' )
+            qsModels = ( Model.objects.filter( iUser  = oUser )
+                    .filter(
+                        Q( bGenericModel = True ) |
+                        Q( iBrand        = oBrand ) )
+                    .order_by( '-iStars' ) )
             #
         else:
             #
-            oModelQuerySet = Model.objects.filter(
+            qsModels = Model.objects.filter(
                     iUser = oUser ).order_by( '-iStars' )
             #
         #
-        for oModel in oModelQuerySet:
+        for oModel in qsModels:
             #
             foundItem = getFoundItemTester( oModel, dFindersModels,
                             bAddDash = True,
@@ -397,7 +400,7 @@ def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProg
     #
     iSeq = 0
     #
-    for oItem in oItemQuerySet:
+    for oItem in qsItems:
         #
         iSeq  += 1
         #
