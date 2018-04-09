@@ -1,48 +1,48 @@
 <ul class="pagination">
 
     {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}">
+        <li><a href="?page={{ page_obj.previous_page_number }}&previous={{page_obj.number}}">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;</a></li>
     {% else %}
         <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span>&nbsp;</li>
     {% endif %}
 
     {% if iStart > 1 %}
-        <li><a href="?page=1">1&nbsp;</a></li>
+        <li><a href="?page=1&previous={{page_obj.number}}">1&nbsp;</a></li>
     {% endif %}
     
     {% if iMidLeft > 0 %}
-        <li><a href="?page={{ iMidLeft|add:'-1' }}">&hellip;</a></li>
-        <li><a href="?page={{ iMidLeft }}">&nbsp;{{ iMidLeft }}&nbsp;</a></li>
+        <li><a href="?page={{ iMidLeft|add:'-1' }}&previous={{page_obj.number}}">&hellip;</a></li>
+        <li><a href="?page={{ iMidLeft }}&previous={{page_obj.number}}">&nbsp;{{ iMidLeft }}&nbsp;</a></li>
     {% endif %}
     
     {% if page_obj.number|add:'-1' > 1 %}
-        <li><a href="?page={{ page_obj.number|add:'-2' }}">&hellip;</a></li>
+        <li><a href="?page={{ page_obj.number|add:'-2' }}&previous={{page_obj.number}}">&hellip;</a></li>
     {% endif %}
 
     {% for i in page_range %}
         {% if page_obj.number == i %}
             <li class="active"><span>{{ i }} <span class="sr-only">&nbsp;(current)&nbsp;</span></span></li>
         {% elif i > page_obj.number|add:'-2' and i < page_obj.number|add:'2' %}
-            <li><a href="?page={{ i }}">&nbsp;{{ i }}&nbsp;</a></li>
+            <li><a href="?page={{ i }}&previous={{page_obj.number}}">&nbsp;{{ i }}&nbsp;</a></li>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.paginator.num_pages > page_obj.number|add:'1' %}
-        <li><a href="?page={{ page_obj.number|add:'2' }}">&hellip;</a></li>
+        <li><a href="?page={{ page_obj.number|add:'2' }}&previous={{page_obj.number}}">&hellip;</a></li>
     {% endif %}
 
     {% if iMidRight > 0 %}
-        <li><a href="?page={{ iMidRight }}">&nbsp;{{ iMidRight }}&nbsp;</a></li>
-        <li><a href="?page={{ iMidRight|add:'1' }}">&hellip;</a></li>
+        <li><a href="?page={{ iMidRight }}&previous={{page_obj.number}}">&nbsp;{{ iMidRight }}&nbsp;</a></li>
+        <li><a href="?page={{ iMidRight|add:'1' }}&previous={{page_obj.number}}">&hellip;</a></li>
     {% endif %}
     
     {% if iMaxPage > iLast %}
-            <li><a href="?page={{ iMaxPage }}">&nbsp;{{ iMaxPage }}</a></li>
+            <li><a href="?page={{ iMaxPage }}&previous={{page_obj.number}}">&nbsp;{{ iMaxPage }}</a></li>
     {% endif %}
 
     {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}">&nbsp;
+        <li><a href="?page={{ page_obj.next_page_number }}&previous={{page_obj.number}}">&nbsp;
             <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
     {% else %}
         <li class="disabled">&nbsp;<span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
