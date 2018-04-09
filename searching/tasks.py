@@ -171,7 +171,7 @@ def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
         
 def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
     #
-    IF bShowProgress:
+    if bShowProgress:
         #
         tBeg = timezone.now()
         #
@@ -186,7 +186,7 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
                         bCleanUpAfterYourself   = bCleanUpAfterYourself,
                         bShowProgress           = bShowProgress )
     #
-    IF bShowProgress:
+    if bShowProgress:
         #
         tEnd = timezone.now()
         #
