@@ -100,7 +100,9 @@ def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
         #
         print( 'End:', str( tEnd )[:19] )
         #
-        print( 'Duration:', str( tEnd - tBeg ) )
+        lDuration = str( tEnd - tBeg ).split( '.' )
+        #
+        print( 'Duration:', lDuration[0] )
 
 
 def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
@@ -166,7 +168,9 @@ def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
         #
         print( 'End:', str( tEnd )[:19] )
         #
-        print( 'Duration:', str( tEnd - tBeg ) )
+        lDuration = str( tEnd - tBeg ).split( '.' )
+        #
+        print( 'Duration:', lDuration[0] )
     #
         
 def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
@@ -192,7 +196,9 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bShowProgress = False ):
         #
         print( 'End:', str( tEnd )[:19] )
         #
-        print( 'Duration:', str( tEnd - tBeg ) )
+        lDuration = str( tEnd - tBeg ).split( '.' )
+        #
+        print( 'Duration:', lDuration[0] )
 
 # workflow
 # 2 hours per user doSearchingPutResultsInFiles
