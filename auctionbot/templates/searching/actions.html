@@ -3,25 +3,25 @@
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:edit" pk=search.id %}'>
-            <input type="submit" value=" edit " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" edit " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:delete" pk=search.id %}'>
-            <input type="submit" value=" delete " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" delete " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:add" %}'>
-            <input type="submit" value=" add a new search " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" add a new search " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:index" %}'>
-            <input type="submit" value=" go to search list " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" go to search list " />
         </form>
     </td>
 </TR>
