@@ -3,25 +3,25 @@
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "models:edit" pk=object.id %}'>
-            <input type="submit" value=" edit " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" edit " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "models:delete" pk=object.id %}'>
-            <input type="submit" value=" delete " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" delete " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "models:add" %}'>
-            <input type="submit" value=" add a new model " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" add a new model " />
         </form>
     </td>
     <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "models:index" %}'>
-            <input type="submit" value=" go to model index " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" go to model index " />
         </form>
     </td>
 </TR>
