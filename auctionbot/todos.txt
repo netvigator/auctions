@@ -51,3 +51,5 @@ self.client.login(username ='username1', password='mypassword')
 had single form per model, now have 2, create & update, only testing create, need to test update
 
 implement or remove bMustHaveBrand (inverse of bGenericModel?)
+
+fix submodels OK for digit suffix
