@@ -11,6 +11,8 @@ from String.Find            import getRegExpress, getRegExObj
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 
+from searching              import WORD_BOUNDARY_MAX
+
 def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
     #
     sLook4Title = getWhatsLeft( oTableRow.cTitle )
@@ -25,14 +27,14 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
         #
         sRegExpress = getRegExpress( sLookFor,
                                      bSubModelsOK   = bSubModelsOK,
-                                     iWordBoundChrs = 2 )
+                                     iWordBoundChrs = WORD_BOUNDARY_MAX )
         
     else:
         #
         sRegExpress = getRegExpress( sLook4Title,
                                      bAddDash       = bAddDash,
                                      bSubModelsOK   = bSubModelsOK,
-                                     iWordBoundChrs = 2 )
+                                     iWordBoundChrs = WORD_BOUNDARY_MAX )
         #
     #
     return sRegExpress
@@ -69,11 +71,15 @@ def _getRowRegExpressions( oTableRow,
         #
         if sExcludeIf:
             #
-            sFindExclude = getRegExpress( sExcludeIf, iWordBoundChrs = 2 )
+            sFindExclude = getRegExpress(
+                            sExcludeIf,
+                            iWordBoundChrs = WORD_BOUNDARY_MAX )
             #
         if sKeyWords:
             #
-            sFindKeyWords = getRegExpress( sKeyWords, iWordBoundChrs = 2 )
+            sFindKeyWords = getRegExpress(
+                            sKeyWords,
+                            iWordBoundChrs = WORD_BOUNDARY_MAX )
             #
         #
         oTableRow.cRegExLook4Title= sFindTitle
@@ -193,7 +199,9 @@ def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 
 
-def findSearchHits( iUser = oUserOne.id, bCleanUpAfterYourself = True, bShowProgress = False ):
+def findSearchHits( iUser = oUserOne.id,
+        bCleanUpAfterYourself   = True,
+        bShowProgress           = False ):
     #
     from brands.models      import Brand
     from categories.models  import Category
