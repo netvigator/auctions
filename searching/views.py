@@ -2,6 +2,7 @@ from core.views     import ( CreateViewCanCancel, DeleteViewGotModel,
                              DetailViewGotModel,  ListViewGotModel,
                              UpdateViewCanCancel )
 
+from django.contrib import messages
 from django.http    import HttpResponseRedirect
 from django.urls    import reverse_lazy
 
@@ -17,6 +18,7 @@ from .mixins        import ( SearchViewSuccessPostFormValidMixin,
 from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
+from pprint import pprint
 
 # ### keep views thin! ###
 
@@ -69,6 +71,11 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewCanCancel
 
 
 
+def _getTableBoolSetTrue( sChangeBoolField, sIdField, lIDsToChange ):
+    #
+    for iID in lIDsToChange:
+        pass
+    
 
 class ItemsFoundIndexView( ListViewGotModel ):
 
@@ -76,32 +83,84 @@ class ItemsFoundIndexView( ListViewGotModel ):
     model               = UserItemFound
     context_object_name = 'items_found_list'
     paginate_by         = 100
+    #form_class          = ItemsFoundIndexForm
 
     def get_queryset(self):
         # ADPZ
         qs = super( ItemsFoundIndexView, self ).get_queryset()
+        #
         sSelect = self.kwargs['select']
+        #
         if sSelect == 'A': # all
-            return qs.filter(
-                        iUser = self.request.user,
+            qsGot = qs.filter(
                         bListExclude = False,
                         iHitStars__isnull = False ).order_by('-iHitStars')
         elif sSelect == 'P': # postive (non-zero hit stars)
-            return qs.filter(
-                        iUser = self.request.user,
+            qsGot = qs.filter(
                         iHitStars__isnull = False,
                         bListExclude = False,
                         iHitStars__gt = 0 ).order_by('-iHitStars')
         elif sSelect == 'D': # "deleted" (excluded from list)
-            return qs.filter(
-                        iUser = self.request.user,
+            qsGot = qs.filter(
                         iHitStars__isnull = False,
                         bListExclude = True ).order_by('-iHitStars')
         elif sSelect == 'Z': # iHitStars = 0
-            return qs.filter(
-                        iUser = self.request.user,
+            qsGot = qs.filter(
                         iHitStars__eq = 0,
                         bListExclude =  False).order_by('-iHitStars')
+        #
+        self.queryset = qsGot
+        #
+        return qsGot
+
+
+    def post(self, request, *args, **kwargs):
+
+        url = request.build_absolute_uri()
+        #
+        if "cancel" in request.POST:
+            pass
+        elif 'submit' in request.POST:
+            #
+            setDelete  = frozenset( request.POST.getlist('bListExclude') )
+            setGetPics = frozenset( request.POST.getlist('bGetPictures') )
+            setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
+            setExclSet = frozenset( request.POST.getlist('ExclSet'     ) )
+            #
+            setCommon  = setGetPics.intersection( setDelete )
+            #
+            if setCommon:
+                #
+                messages.error( request,
+                        'Error! On a row, it is invalid set both '
+                        'get pics and delete! Careful!' )
+                #
+            else:
+
+                setNewDel  = setDelete.difference( setExclSet )
+                setNewPics = setGetPics.difference( setPicsSet )
+                #
+                qsNewDel = UserItemFound.objects.filter(
+                                                pk__in = tuple( setNewDel ) )
+                #
+                for oItem in qsNewDel:
+                    #
+                    oItem.bListExclude = True
+                    oItem.save()
+                    #
+                #
+                qsNewPics = UserItemFound.objects.filter(
+                                                pk__in = tuple( setNewPics ) )
+                #
+                for oItem in qsNewPics:
+                    #
+                    print( 'saving:', oItem.iItemNumb_id )
+                    oItem.bGetPictures = True
+                    oItem.save()
+                    #
+                #
+            #
+        return HttpResponseRedirect( url )
 
 
 
