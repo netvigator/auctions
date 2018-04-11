@@ -1,7 +1,7 @@
 from django                 import forms
 
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.forms           import ModelForm
+from django.forms           import ModelForm, CheckboxInput
 
 from crispy_forms.layout    import Field, Layout, Submit
 
@@ -240,7 +240,6 @@ tEditable = (
     'iModel',
     'iBrand',
     'iCategory',
-    'bGetDescribe',
     'bGetPictures',
     'iHitStars'  )
 
@@ -266,12 +265,12 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
                 'iModel',
                 'iBrand',
                 'iCategory',
-                'bGetDescribe',
                 'bGetPictures',
                 Field( 'iHitStars', readonly = True ), )
 
     class Meta:
         model   = UserItemFound
         fields  = tUserItemFoundFields
+
 
 
