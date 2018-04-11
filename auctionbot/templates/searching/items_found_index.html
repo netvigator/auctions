@@ -8,15 +8,17 @@
     {% if items_found_list %}
         {# the pagination section #}
 
-        <form>
+        
+        <form action="" method="post">
+        {% csrf_token %}
         <table>
         <TR ALIGN=MIDDLE>
             <td>
-                <input type="submit" name="submit" value=" Submit " />
+                <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
             </td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>
-                <input type="submit" name="cancel" value=" Cancel " />
+                <input class='btn btn-primary btn-blue' type="submit" name="cancel" value=" Cancel " />
             </td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <TD>select items:</TD>
@@ -28,19 +30,19 @@
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <TD>
                 <form action='{% url "searching:items_found_index" select='P' %}'>
-                    <input type="submit" value=" hit stars > 0 " />
+                    <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
                 </form>
             </TD>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <TD>
                 <form action='{% url "searching:items_found_index" select='D' %}'>
-                    <input type="submit" value=" deleted " />
+                    <input class='btn btn-primary btn-blue' class='btn btn-primary btn-blue' type="submit" value=" deleted " />
                 </form>
             </TD>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <TD>
                 <form action='{% url "searching:items_found_index" select='Z' %}'>
-                    <input type="submit" value=" hit stars = 0 " />
+                    <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
                 </form>
             </TD>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -60,30 +62,32 @@
         <div class="container">
         <div class="list-group">
         <table class="bottomBorder">
-        <tr>
-        </tr>
-        <th class="text-center" colspan=2>get</th>
-        <tr>
-        <th ALIGN=LEFT>description</th>
-        <th ALIGN=LEFT>pictures</th>
-        <th ALIGN=LEFT>delete</th>
+        <th ALIGN=LEFT>get<p>pics</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th><i class="fas fa-trash-alt"></i></th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>ebay item</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>title</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>cMarket</th>
+        <th ALIGN=LEFT>market</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>type</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>ending date/time</th>
+        <th ALIGN=LEFT>ending</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>hit stars</th>
+        <th><i class="far fa-star"></i></th>
         </tr>
         {% for item in items_found_list %}
             <tr>
-            <td><input type="checkbox" name="describe" value="item_{{ item.id }}"></td>
-            <td><input type="checkbox" name="pictures" value="item_{{ item.id }}"></td>
-            <td><input type="checkbox" name="delete"   value="item_{{ item.id }}"></td>
+            <!--<td><input type="checkbox" value="{{ item.id }} name='get_pics'"></td>-->
+            <TD><input class="checkbox" name="bGetPictures" type="checkbox" value={{ item.iItemNumb_id }} {% if item.bGetPictures %}checked{% endif %}></td>
+            <!--<TD><INPUT TYPE="CHECKBOX" VALUE="{{ item.bGetPictures }}"></TD>-->
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <!--<td><input type="checkbox" value="{{ item.id }} name='delete'"></td>-->
+            <TD><input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}></td>
+            <!--<TD><INPUT TYPE="CHECKBOX" VALUE="{{ item.bListExclude }}"></TD>-->
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td><a href="https://www.ebay.com/itm/b/{{item.iItemNumb.iItemNumb}}/">
                             {{ item.iItemNumb.iItemNumb }}</a></td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -96,6 +100,12 @@
             <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iHitStars }}</td>
+            <TD><input name="PicsSet" type="checkbox" style="display:none;"
+                 class="HIDDEN" value={{ item.iItemNumb_id }}
+                 {% if item.bGetPictures %}checked{% endif %}></td>
+            <TD><input name="ExclSet" type="checkbox" style="display:none;"
+                 class="HIDDEN" value={{ item.iItemNumb_id }}
+                 {% if item.bListExclude %}checked{% endif %}></td>
             </tr>
         {% endfor %}
         </table>
