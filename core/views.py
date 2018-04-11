@@ -29,7 +29,7 @@ class ListViewGotModel(
         '''
         Adds the pagination to the context data.
         '''
-        context          = super(ListView, self).get_context_data(**kwargs)
+        context = super( ListView, self ).get_context_data( **kwargs )
 
         if not context.get('is_paginated', False):
             return context
@@ -41,8 +41,8 @@ class ListViewGotModel(
 
         iMaxPage = len(paginator.page_range)
         #
-        iStart = iPageNumb - 2 if iPageNumb >= 4 else 0
-        iLast  = iPageNumb + 2 if iPageNumb <= iMaxPage else iMaxPage
+        iStart = iPageNumb - 2 if iPageNumb > 3 else 0
+        iLast  = iPageNumb + 2 if iPageNumb < iMaxPage else iMaxPage
         
         iMidLeft = iMidRight = 0
         
@@ -68,6 +68,14 @@ class ListViewGotModel(
 
 
         page_range = paginator.page_range[ iStart : iLast ]
+
+        #print( 'iPageNumb', iPageNumb   )
+        #print( 'iBegAvg',   iBegAvg     )
+        #print( 'iEndAvg',   iEndAvg     )
+        #print( 'iStart',    iStart      )
+        #print( 'iLast',     iLast       )
+        #print( 'iMidLeft',  iMidLeft    )
+        #print( 'iMidRight', iMidRight   )
 
         context.update({ 'page_range' : page_range,
                          'iStart'     : iStart,
