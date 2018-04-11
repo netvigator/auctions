@@ -52,4 +52,6 @@ had single form per model, now have 2, create & update, only testing create, nee
 
 implement or remove bMustHaveBrand (inverse of bGenericModel?)
 
-fix submodels OK for digit suffix
+fill in iItemHits in searchlogs
+
+
