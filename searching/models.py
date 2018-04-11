@@ -157,8 +157,6 @@ class UserItemFound(models.Model):
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    bGetDescribe    = models.BooleanField( 'get description?',
-                        default = False )    
     bGetPictures    = models.BooleanField( 'get pictures?',
                         default = False )    
     tlook4hits      = models.DateTimeField(
@@ -180,6 +178,8 @@ class UserItemFound(models.Model):
                         max_length = 10 ) # title heirarchy1 heirarchy2
     bListExclude    = models.BooleanField( 'exclude from listing?',
                         default = False )
+    tGotPics        = models.DateTimeField( 'got pictures',
+                        null = True, blank = True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
