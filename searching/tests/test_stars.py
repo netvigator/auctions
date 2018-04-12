@@ -1,3 +1,5 @@
+#import inspect
+
 from os.path            import join
 
 from django.core.urlresolvers import reverse
@@ -13,8 +15,7 @@ from ..models           import ( ItemFound, UserItemFound,
 from ..tests            import sResponseSearchTooBroad
 from ..utils            import storeSearchResultsInDB
 
-from .test_utils        import ( GetBrandsCategoriesModelsSetUp,
-                                 storeSearchResultsTestsSetUp )
+from .test_utils        import GetBrandsCategoriesModelsSetUp
 
 from ..utils_stars      import ( _getModelRegExFinders4Test,
                                  _getCategoryRegExFinders4Test,
@@ -68,14 +69,14 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 25 )
+        self.assertEquals( len( oTempItemsFound ), 45 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
         #
         iCount = 0
         #
-        oFisherSpeakers = oTube5R4GB = None
+        oFisherSpeakers = oTube5R4GB = oTube12SN7 = None
         #
         for oTemp in oUserItems:
             #
@@ -91,6 +92,10 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
 
                 oTube5R4GB = oTemp
 
+            if oTemp.iItemNumb_id == 162988285719:
+
+                oTube12SN7 = oTemp
+                #
                 #print( '' )
 
                 #sSayModel = sSayBrand = sSayCategory = ''
@@ -145,6 +150,14 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         self.assertTrue(   oTube5R4GB.iHitStars > 100 )
         #
+        self.assertIsNotNone( oTube12SN7 )
+        #
+        self.assertEquals( oTube12SN7.iModel.cTitle,    '12SN7' )
+        #
+        self.assertEquals( oTube12SN7.iBrand.cTitle,    'RCA'   )
+        #
+        self.assertEquals( oTube12SN7.iCategory.cTitle, 'Vacuum Tube' )
+        #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
@@ -152,7 +165,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         iCount = Model.objects.all().count()
         #
-        self.assertEqual( iCount, 156 )
+        self.assertEqual( iCount, 158 )
         #
 
 
