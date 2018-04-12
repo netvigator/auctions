@@ -20,7 +20,8 @@ class Category(models.Model):
                         'category description',
                         max_length = 48, db_index = True,
         help_text = sTitleHelpText % 'category' )
-    cKeyWords       = models.TextField( 'category key words (optional)',
+    cKeyWords       = models.TextField(
+                        'category key words',
                         null = True, blank = True,
         help_text = sKeyWordsHelpText % ( 'category', 'category' ) )
     cLookFor        = models.TextField(
