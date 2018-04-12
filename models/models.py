@@ -27,7 +27,8 @@ class Model( models.Model ):
                         'model number or name',
                         max_length = 48, db_index = True,
         help_text = sTitleHelpText % 'model number or' )
-    cKeyWords       = models.TextField( 'model key words (optional)',
+    cKeyWords       = models.TextField(
+                        'model key words',
                         null = True, blank = True,
         help_text = sKeyWordsHelpText % ( 'model number or', 'model' ) )
     cLookFor        = models.TextField(
@@ -44,7 +45,7 @@ class Model( models.Model ):
         help_text = 'model name/number is used by more than one brand' )
     bSubModelsOK    = models.BooleanField(
                         'include sub models (suffix such as A, B, C, etc.)?',
-                        default = True,
+                        default = False,
         help_text = 'Set to False when you want to track the submodels '
                     'separately (so you should enter a model record '
                     'for each submodel)' )
