@@ -18,7 +18,6 @@ from .mixins        import ( SearchViewSuccessPostFormValidMixin,
 from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
-from pprint import pprint
 
 # ### keep views thin! ###
 
@@ -87,29 +86,31 @@ class ItemsFoundIndexView( ListViewGotModel ):
 
     def get_queryset(self):
         # ADPZ
-        qs = super( ItemsFoundIndexView, self ).get_queryset()
+        # qs = super( ItemsFoundIndexView, self ).get_queryset()
         #
         sSelect = self.kwargs['select']
         #
         if sSelect == 'A': # all
-            qsGot = qs.filter(
-                        bListExclude = False,
-                        iHitStars__isnull = False ).order_by('-iHitStars')
+            qsGot = UserItemFound.objects.filter(
+                        iUser               = self.request.user,
+                        bListExclude        = False,
+                        iHitStars__isnull   = False ).order_by('-iHitStars')
         elif sSelect == 'P': # postive (non-zero hit stars)
-            qsGot = qs.filter(
-                        iHitStars__isnull = False,
-                        bListExclude = False,
-                        iHitStars__gt = 0 ).order_by('-iHitStars')
+            qsGot = UserItemFound.objects.filter(
+                        iUser               = self.request.user,
+                        iHitStars__isnull   = False,
+                        bListExclude        = False,
+                        iHitStars__gt       = 0 ).order_by('-iHitStars')
         elif sSelect == 'D': # "deleted" (excluded from list)
-            qsGot = qs.filter(
-                        iHitStars__isnull = False,
-                        bListExclude = True ).order_by('-iHitStars')
+            qsGot = UserItemFound.objects.filter(
+                        iUser               = self.request.user,
+                        iHitStars__isnull   = False,
+                        bListExclude        = True ).order_by('-iHitStars')
         elif sSelect == 'Z': # iHitStars = 0
-            qsGot = qs.filter(
-                        iHitStars__eq = 0,
-                        bListExclude =  False).order_by('-iHitStars')
-        #
-        self.queryset = qsGot
+            qsGot = UserItemFound.objects.filter(
+                        iUser               = self.request.user,
+                        iHitStars__eq       = 0,
+                        bListExclude        = False ).order_by('-iHitStars')
         #
         return qsGot
 
@@ -137,25 +138,32 @@ class ItemsFoundIndexView( ListViewGotModel ):
                 #
             else:
 
-                setNewDel  = setDelete.difference( setExclSet )
-                setNewPics = setGetPics.difference( setPicsSet )
+                setNewDel  = setDelete.union( setExclSet )
+                setNewPics = setGetPics.union( setPicsSet )
                 #
                 qsNewDel = UserItemFound.objects.filter(
-                                                pk__in = tuple( setNewDel ) )
+                                iItemNumb_id__in = setNewDel,
+                                iUser            = self.request.user )
                 #
                 for oItem in qsNewDel:
                     #
-                    oItem.bListExclude = True
+                    if str( oItem.iItemNumb_id ) in setDelete:
+                        oItem.bListExclude = True
+                    else:
+                        oItem.bListExclude = False
                     oItem.save()
                     #
                 #
                 qsNewPics = UserItemFound.objects.filter(
-                                                pk__in = tuple( setNewPics ) )
+                                iItemNumb_id__in = setNewPics,
+                                iUser            = self.request.user )
                 #
                 for oItem in qsNewPics:
                     #
-                    print( 'saving:', oItem.iItemNumb_id )
-                    oItem.bGetPictures = True
+                    if str( oItem.iItemNumb_id ) in setGetPics:
+                        oItem.bGetPictures = True
+                    else:
+                        oItem.bGetPictures = False
                     oItem.save()
                     #
                 #
