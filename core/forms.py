@@ -68,7 +68,9 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
                 iUser           = oUser ).filter(
                 cTitle__iexact  = cTitle ).exists() ):
             #
-            raise ValidationError('Title "%s" already exists' % cTitle,
+            raise ValidationError('Title "%s" already exists. '
+                        '(Info in parens about this entry can '
+                        'overcome this glitch.)' % cTitle,
                         code = 'title already exists' )
         #
         if ( self.Meta.model.objects.filter(
