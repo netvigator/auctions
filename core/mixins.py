@@ -3,6 +3,7 @@ from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
 from Collect.Query          import get1stThatMeets
+from Collect.Test           import ContainsAny
 
 
 class DoesLoggedInUserOwnThisRowMixin(object):
@@ -48,10 +49,15 @@ class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
     '''
     for testing whether any RegEx relevant fields have changed 
     '''
-    
+    setLook4TitleFields = frozenset( ( 'cTitle', 'cLookFor', 'bSubModelsOK' ) )
+    #
     def redoRegEx( self, form ):
         #
-        if 'cTitle' in form.changed_data or 'cLookFor' in form.changed_data :
+        if ContainsAny( self.setLook4TitleFields, form.changed_data ):
+            # Check whether sequence1 contains any of the items in sequence2.
+            # 'cTitle' in form.changed_data or
+            # 'cLookFor' in form.changed_data or
+            # 'bSubModelsOK' in form.changed_data:
             form.instance.cRegExLook4Title  = None
         if 'cKeyWords' in form.changed_data :
             form.instance.cRegExKeyWords    = None
