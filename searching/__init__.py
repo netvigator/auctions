@@ -4,7 +4,7 @@ from .utilsearch    import getShrinkItemURL
 
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
-WORD_BOUNDARY_MAX   = 3
+WORD_BOUNDARY_MAX   = 5
 
 RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s_p_%s_.json'
 # variables: sMarket, sUserName, iSearchID, iPageNumb
