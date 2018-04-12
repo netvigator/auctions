@@ -73,11 +73,13 @@ sBrands = \
 
 sModels = \
 '''
-       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category |  cLookFor   |  cExcludeIf  | bGenericModel
---------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+
+       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel 
+--------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+
+ 12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ Radiotron          |           |      6 | t            | RCA               |         Book |
  XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             | 
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             | 
  HF-85              |           |      7 | t            | EICO              |       Preamp |             | 
@@ -492,6 +494,24 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+           },{"itemId":["162988285719"],
+              "title":["RCA 12SN7GT Electron Radiotron Radio Audio Amp Vacuum Tube Antique TV NOS"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mBi0IeLkbbbJ_lrQVn0Q4Qw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/RCA-12SN7GT-Electron-Radiotron-Radio-Audio-Amp-Vacuum-Tube-Antique-TV-NOS-\/162988285719"],
+              "paymentMethod":["PayPal"],
+              "autoPay":["true"],
+              "postalCode":["15679"],
+              "location":["Ruffs Dale,PA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"sellingState":["Active"],"timeLeft":["P28DT4H58M34S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+           
            },{"itemId":["253486571279"],
               "title":["Vintage The Fisher XP-55B Speaker System-Pair"],
               "globalId":["EBAY-US"],
