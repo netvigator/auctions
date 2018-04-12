@@ -4,6 +4,8 @@ import logging
 from os.path            import realpath, join
 from datetime           import timedelta
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from django.test        import TestCase, tag
 from django.utils       import timezone
 from core.utils_test    import ( BaseUserTestCase, getDefaultMarket,
@@ -576,6 +578,13 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iUser       = self.user1 )
         oCategory.save()
         #
+        oCategory   = Category( cTitle      = 'Book',
+                                cLookFor    = 'tube\rtubes',
+                                cExcludeIf  = 'book shelf\rdigital',
+                                iStars      = 5,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
         #
         oTableIter = getTableFromScreenCaptureGenerator( sBrands )
         #
@@ -652,7 +661,12 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                 oBrand = None
                 #
             #
-            oCategory = Category.objects.get( cTitle = sCategory )
+            try:
+                oCategory = Category.objects.get( cTitle = sCategory )
+            except ObjectDoesNotExist:
+                print( 'not finding category %s for %s!' %
+                        ( sCategory, sBrand ) )
+                raise
             #
             oModel = Model(
                 cTitle          =       lParts[ d['cTitle'       ] ],
