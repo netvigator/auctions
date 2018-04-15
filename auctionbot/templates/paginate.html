@@ -7,7 +7,7 @@
         <li class="disabled"><span><i class="fas fa-angle-double-left"></i></span>&nbsp;</li>
     {% endif %}
 
-    {% if iStart >= 1 %}
+    {% if iBeg >= 1 %}
         <li><a href="?previous={{page_obj.number}}&page=1">1&nbsp;</a></li>
     {% endif %}
     
@@ -16,20 +16,20 @@
         <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft }}">&nbsp;{{ iMidLeft }}&nbsp;</a></li>
     {% endif %}
     
-    {% if page_obj.number|add:'-1' > 1 %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'-2' }}">&hellip;</a></li>
+    {% if page_obj.number|add:'-2' > 1 %}
+        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'-3' }}">&hellip;</a></li>
     {% endif %}
 
-    {% for i in page_range %}
+    {% for i in show_range %}
         {% if page_obj.number == i %}
             <li class="active"><span>{{ i }} <span class="sr-only">&nbsp;(current)&nbsp;</span></span></li>
-        {% elif i > page_obj.number|add:'-2' and i < page_obj.number|add:'2' %}
+        {% else %}
             <li><a href="?previous={{page_obj.number}}&page={{ i }}">&nbsp;{{ i }}&nbsp;</a></li>
         {% endif %}
     {% endfor %}
 
-    {% if page_obj.paginator.num_pages > page_obj.number|add:'1' %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'2' }}">&hellip;</a></li>
+    {% if page_obj.paginator.num_pages > page_obj.number|add:'2' %}
+        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'3' }}">&hellip;</a></li>
     {% endif %}
 
     {% if iMidRight > 0 %}
@@ -37,7 +37,7 @@
         <li><a href="?previous={{page_obj.number}}&page={{ iMidRight|add:'1' }}">&hellip;</a></li>
     {% endif %}
     
-    {% if iMaxPage >= iLast %}
+    {% if iMaxPage >= iEnd %}
             <li><a href="?previous={{page_obj.number}}&page={{ iMaxPage }}">&nbsp;{{ iMaxPage }}</a></li>
     {% endif %}
 
