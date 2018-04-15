@@ -18,6 +18,7 @@ from .mixins        import ( SearchViewSuccessPostFormValidMixin,
 from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
+from models.models  import Model
 
 # ### keep views thin! ###
 
@@ -91,28 +92,29 @@ class ItemsFoundIndexView( ListViewGotModel ):
         sSelect = self.kwargs['select']
         #
         if sSelect == 'A': # all
-            qsGot = UserItemFound.objects.filter(
+            qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         bListExclude        = False,
                         iHitStars__isnull   = False ).order_by('-iHitStars')
         elif sSelect == 'P': # postive (non-zero hit stars)
-            qsGot = UserItemFound.objects.filter(
+            qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__isnull   = False,
                         bListExclude        = False,
                         iHitStars__gt       = 0 ).order_by('-iHitStars')
         elif sSelect == 'D': # "deleted" (excluded from list)
-            qsGot = UserItemFound.objects.filter(
+            qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__isnull   = False,
                         bListExclude        = True ).order_by('-iHitStars')
         elif sSelect == 'Z': # iHitStars = 0
-            qsGot = UserItemFound.objects.filter(
+            qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__eq       = 0,
                         bListExclude        = False ).order_by('-iHitStars')
         #
         return qsGot
+
 
 
     def post(self, request, *args, **kwargs):
