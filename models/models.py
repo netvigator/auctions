@@ -6,8 +6,6 @@ from crispy_forms.layout        import Submit
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 
-from regex_field.fields         import RegexField
-
 from core.models                import (
                             gotSomethingOutsideTitleParensCharField,
                             IntegerRangeField, sTitleHelpText,
