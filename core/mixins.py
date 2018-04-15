@@ -157,6 +157,29 @@ class GetFormMixin( object ):
         return form
 
 
+class FindUserMixin( object ):
+
+    ''' find the user object '''
+
+    def findUser( self ):
+
+        ''' method to find the user object '''
+
+        if hasattr( self, 'user' ) and self.user is not None:
+            oUser = self.user
+        elif ( hasattr( self, 'request' ) and
+               hasattr( self.request, 'user' ) and
+               self.request.user is not None ):
+            oUser = self.request.user
+        elif ( hasattr( self.instance, 'user' ) and
+               self.instance.user is not None ):
+            oUser = self.instance.user
+        elif ( hasattr( self.instance, 'iUser' ) and
+               self.instance.iUser is not None ): # testing
+            oUser = self.instance.iUser
+        #
+        return oUser
+
 """
 example of calling get_form()
 this worked but this is not used cuz there was a much easier way
