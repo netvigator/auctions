@@ -39,6 +39,21 @@
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP>{{ object.iItemNumb.cMarket }}</TD>
     </TR>
+    <tr>
+        <td>{% field_name model 'iModel' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'iBrand' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
+    </tr>
+    <tr>
+        <td>{% field_name model 'iCategory' %}:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
+    </tr>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -61,21 +76,6 @@
         <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
     {% endif %}
-    <tr>
-        <td>{% field_name model 'iModel' %}:</td>
-        <td>&nbsp;&nbsp;</td>
-        <td>{{ object.iModel }}</td>
-    </tr>
-    <tr>
-        <td>{% field_name model 'iBrand' %}:</td>
-        <td>&nbsp;&nbsp;</td>
-        <td>{{ object.iBrand }}</td>
-    </tr>
-    <tr>
-        <td>{% field_name model 'iCategory' %}:</td>
-        <td>&nbsp;&nbsp;</td>
-        <td>{{ object.iCategory }}</td>
-    </tr>
     <tr>
         <td>{% field_name model 'bGetPictures' %}:</td>
         <td>&nbsp;&nbsp;</td>
