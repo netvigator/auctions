@@ -9,11 +9,14 @@ from searching              import dItemFoundFields, dUserItemFoundUploadFields
 
 from core.forms             import BaseModelFormGotCrispy
 
+from models.models          import Model
+
 from .models                import Search, ItemFound, UserItemFound
 from .utilsearch            import getPriorityChoices, ALL_PRIORITIES
 from .validators            import isPriorityValid
 
 from ebayinfo.models        import EbayCategory
+
 
 
 tSearchFields = (
@@ -84,7 +87,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
             #
             try:
                 oEbayCategory = EbayCategory.objects.get(
-                    iEbaySiteID = self.request.user.iEbaySiteID,
+                    iEbaySiteID = self.user.iEbaySiteID,
                     iCategoryID = iDummyCategory )
             except ObjectDoesNotExist:
                 sMsg = '"%s" is not an ebay category number!'
@@ -103,7 +106,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
         #
         if doCheckPriority and (
             Search.objects.filter(
-                iUser       = self.request.user,
+                iUser       = self.user,
                 cPriority   = cPriority ).exists() ):
             #
             raise ValidationError('Priority "%s" already exists' % cPriority,
@@ -115,7 +118,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
         #
         if doCheckTitle and (
             Search.objects.filter(
-                iUser           = self.request.user ).filter(
+                iUser           = self.user ).filter(
                 cTitle__iexact  = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" already exists' % cTitle,
@@ -137,7 +140,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
             if oEbayCategory is not None:
                 #
                 if Search.objects.filter(
-                        iUser               = self.request.user,
+                        iUser               = self.user,
                         iEbayCategory       =
                             oEbayCategory.iCategoryID ).filter(
                         cKeyWords__iexact   = sKeyWords ).exists():
@@ -152,7 +155,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
             else:
                 #
                 if Search.objects.filter(
-                        iUser     = self.request.user ).filter(
+                        iUser     = self.user ).filter(
                         cKeyWords__iexact = sKeyWords ).exists():
                     #
                     raise ValidationError(
@@ -252,22 +255,67 @@ tUserItemFoundFields = tEditable
 class UserItemFoundForm( BaseModelFormGotCrispy ):
     #
     '''using a form on the edit user item found page'''
-     #
+    #
+    gModel = forms.ChoiceField( (),
+                    label='Generic Models '
+                          '(more than one brand may offer this model)' )
+
     
-    def __init__(self, *args, **kwargs):
+    def __init__( self, *args, **kwargs ):
         #
         super( UserItemFoundForm, self ).__init__( *args, **kwargs )
         #
+        if self.instance.iBrand is not None:
+            self.fields["iModel"].queryset = (
+                    Model.objects.filter(
+                            iUser  = self.user,
+                            iBrand = self.instance.iBrand ) )
+        else:
+            self.fields["iModel"].queryset = Model.objects.filter(
+                                              iUser = self.user )
+
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+        self.fields['gModel'].choices = (
+                ( o.pk, o.cTitle )
+                  for o in Model.objects.filter( 
+                            iUser  = self.user,
+                            bGenericModel = True) )
+        #
+        self.fields['gModel'].required = False
+        #
+        if self.instance.iModel.bGenericModel:
+            #
+            self.fields['gModel'].initial = self.instance.iModel_id
+            #
+        #
         self.helper.layout = Layout(
                 'iModel',
+                'gModel',
                 'iBrand',
                 'iCategory',
                 'bGetPictures',
                 Field( 'iHitStars', readonly = True ), )
 
+    def clean( self ):
+        #
+        if any( self.errors ):
+            # Don't bother validating the formset unless each form is valid on its own
+            return
+        #
+        cleaned = super( UserItemFoundForm, self ).clean()
+        #
+        igModel = self.cleaned_data['gModel']
+        iModel  = self.cleaned_data['iModel']
+        #
+        if iModel is None and igModel is not None:
+            #
+            self.cleaned_data['iModel'] = Model.objects.get( pk = igModel )
+            #
+        #
+        return cleaned
+        
     class Meta:
         model   = UserItemFound
         fields  = tUserItemFoundFields
