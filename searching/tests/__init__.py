@@ -293,8 +293,7 @@ sExampleResponse = \
       "timestamp":["2017-12-15T14:18:54.955Z" ],
       "searchResult":[
         { "item":[
-          { "itemId":["253313715173" ],
-              "isMultiVariationListing":["false" ],
+          { "itemId":["253313715173" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" ],
@@ -333,8 +332,7 @@ sExampleResponse = \
                 "buyItNowAvailable":["false" ],
                 "endTime":["2018-01-14T05:22:47.000Z" ] } ]
 
-            },{"itemId":["132401762082" ],
-              "isMultiVariationListing":["false" ],
+            },{"itemId":["132401762082" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["Simpson 360 Digital Multi Meter Volt Ohm Milliameter Working" ],
@@ -376,8 +374,7 @@ sExampleResponse = \
                 "buyItNowAvailable":["false" ],
                 "endTime":["2017-12-16T21:11:42.000Z" ] } ]
 
-            },{"itemId":["253303813311" ],
-              "isMultiVariationListing":["false" ],
+            },{"itemId":["253303813311" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["SIMPSON 360-2 RUNII DIGITAL OHM -VOLT METER #12286" ],
@@ -423,8 +420,7 @@ sExampleResponse = \
                 "startTime":["2017-12-09T23:18:40.000Z" ],
                 "buyItNowAvailable":["true" ] } ]
 
-            },{"itemId":["253295991282" ],
-              "isMultiVariationListing":["false" ],
+            },{"itemId":["253295991282" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["Simpson 360 Multimeter" ],
@@ -481,18 +477,98 @@ sResponseSearchTooBroad = \
               "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
-              "paymentMethod":["PayPal"],
-              "autoPay":["false"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
               "postalCode":["15085"],
               "location":["Trafford,PA,USA"],
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+           },{"itemId":["332618106572"],
+              "title":["NIB Matched Quad RCA 6BH6 6661 E90F BLACK Marantz 8B Test STRONG 98-101% NEW NOS"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mbzAx1VlTAKPaAX9FMC5_aw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/NIB-Matched-Quad-RCA-6BH6-6661-E90F-BLACK-Marantz-8B-Test-STRONG-98-101-NEW-NOS-\/332618106572"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["53121"],
+              "location":["Elkhorn,WI,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"29.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"29.0"}],"sellingState":["Active"],"timeLeft":["P27DT5H18M54S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-12T00:55:39.000Z"],"endTime":["2018-05-12T00:55:39.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["183161209931"],
+              "title":["1 Pair - JENSEN RP201 Horns + RP201 H-F Unit Compression Drivers - 16 Ohms"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqVhhyAT4V8qBM45j9jmBIQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/1-Pair-JENSEN-RP201-Horns-RP201-H-F-Unit-Compression-Drivers-16-Ohms-\/183161209931"],
+              "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+              "postalCode":["97224"],
+              "location":["Portland,OR,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"380.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"380.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P1DT4H33M39S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-06T00:02:31.000Z"],"endTime":["2018-04-16T00:02:31.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+           },{"itemId":["162988530803"],
+              "title":["ALTEC LANSING  311-90 Horn for 288 290 291 292 299 drivers "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],"secondaryCategory":[{"categoryId":["47092"],"categoryName":["Speaker Drivers & Horns"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mzRY0LYxDsD1ETtl0gj_xOQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ALTEC-LANSING-311-90-Horn-288-290-291-292-299-drivers-\/162988530803"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["35210"],
+              "location":["Birmingham,AL,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"399.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"399.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P1DT6H36M27S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-09T02:05:02.000Z"],"endTime":["2018-04-16T02:05:02.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["25"]}],"returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/162988530803_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["282602694679"],
+              "title":["ALTEC LANSING 604E Super 15\" Duplex Horn Speakers N-1500-A Crossover Pair"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mTRKR64kQS_8hQCnfmSzwnw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ALTEC-LANSING-604E-Super-15-Duplex-Horn-Speakers-N-1500-A-Crossover-Pair-\/282602694679"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["58701"],
+              "location":["Minot,ND,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"sellingState":["Active"],"timeLeft":["P20DT5H24M55S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-08-08T00:53:54.000Z"],"endTime":["2018-05-05T00:53:54.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["51"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["192509883813"],
+              "title":["Vintage THE FISHER 100 SPEAKER SYSTEM ~ Pair Retro Speakers Long Island City NY"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mqfVuLsXXqLnM1kj8AfComg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-FISHER-100-SPEAKER-SYSTEM-Pair-Retro-Speakers-Long-Island-City-NY-\/192509883813"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["12309"],
+              "location":["Schenectady,NY,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"38.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"38.88"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT18H35M17S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"51.88"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"51.88"}],"startTime":["2018-04-13T14:07:11.000Z"],"endTime":["2018-04-20T14:07:11.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
            },{"itemId":["162988285719"],
               "title":["RCA 12SN7GT Electron Radiotron Radio Audio Amp Vacuum Tube Antique TV NOS"],
@@ -507,9 +583,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"sellingState":["Active"],"timeLeft":["P28DT4H58M34S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
            
            },{"itemId":["253486571279"],
@@ -524,9 +600,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"sellingState":["Active"],"timeLeft":["P3DT12H18M53S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-13T01:48:50.000Z"],"endTime":["2018-04-12T01:48:50.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-13T01:48:50.000Z"],"endTime":["2018-04-12T01:48:50.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["123046984227"],
               "title":["Tests NOS GE USA 5R4GB 2 Black T Plate Side [] Get HANGING FILAMENT Tube 100+%"],
@@ -540,9 +616,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.95"}],"sellingState":["Active"],"timeLeft":["P19DT4H26M22S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-28T17:57:55.000Z"],"endTime":["2018-04-27T17:57:55.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
-              "returnsAccepted":["true"],"condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-28T17:57:55.000Z"],"endTime":["2018-04-27T17:57:55.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
            },{"itemId":["372238175241"],
               "title":["VINTAGE 1940s FADA CATALIN BAKELITE RADIO MODEL 1000 CABINET  !!"],
@@ -557,9 +634,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"95.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"95.0"}],"sellingState":["Active"],"timeLeft":["P6DT12H41M45S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T11:46:09.000Z"],"endTime":["2018-03-10T11:46:09.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T11:46:09.000Z"],"endTime":["2018-03-10T11:46:09.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["3"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["132511862199"],
               "title":["VINTAGE BEAUTIFUL 40s FADA BULLET ART DECO CATALIN BAKELITE ANTIQUE TUBE RADIO "],
@@ -574,9 +651,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"580.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"580.0"}],"bidCount":["32"],"sellingState":["Active"],"timeLeft":["P0DT3H28M21S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T02:32:45.000Z"],"endTime":["2018-03-04T02:32:45.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["83"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T02:32:45.000Z"],"endTime":["2018-03-04T02:32:45.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["83"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
            },{"itemId":["202246769108"],
               "title":["Vtg Red Bakelite\/Catalin Carved Clear\/Black Plastic 2 Umbrella\/Parasol 3 Handles"],
@@ -591,10 +668,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P9DT3H48M22S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T02:52:46.000Z"],"endTime":["2018-03-13T02:52:46.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T02:52:46.000Z"],"endTime":["2018-03-13T02:52:46.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["132523993393"],
               "title":["Vintage Bakelite\/Catalin Poker Chip & Card Holder~Marbled Butterscotch w\/chips "],
@@ -608,10 +685,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"32.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"32.0"}],"bidCount":["3"],"sellingState":["Active"],"timeLeft":["P5DT15H11M15S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T14:15:39.000Z"],"endTime":["2018-03-09T14:15:39.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T14:15:39.000Z"],"endTime":["2018-03-09T14:15:39.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
            },{"itemId":["122987310830"],
               "title":["Catalin \/ Bakelite Dominoes. VINTAGE with a Leather Case."],
@@ -625,10 +702,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"sellingState":["Active"],"timeLeft":["P3DT19H30M53S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T18:35:17.000Z"],"endTime":["2018-03-07T18:35:17.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T18:35:17.000Z"],"endTime":["2018-03-07T18:35:17.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["282867250157"],
               "title":["Rare Morse Chain co Poole clock Bakelite Catalin Synchronous 1928-29 Deco"],
@@ -642,10 +719,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT1H55M46S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"235.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"235.0"}],"startTime":["2018-03-02T01:00:10.000Z"],"endTime":["2018-03-12T01:00:10.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["9"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"235.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"235.0"}],"startTime":["2018-03-02T01:00:10.000Z"],"endTime":["2018-03-12T01:00:10.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["9"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["292466597766"],
               "title":["Original CATALIN rod. LARGE. Some call it Bakelite. Burgundy beauty. #787"],
@@ -658,10 +735,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT22H55M37S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T22:00:01.000Z"],"endTime":["2018-03-07T22:00:01.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T22:00:01.000Z"],"endTime":["2018-03-07T22:00:01.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["112846965430"],
               "title":["Addison 5 Catalin Radio Green Dial Glass Exact Reproduction"],
@@ -675,10 +752,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"30.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"30.0"}],"sellingState":["Active"],"timeLeft":["P29DT4H59M41S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T04:04:05.000Z"],"endTime":["2018-04-02T04:04:05.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T04:04:05.000Z"],"endTime":["2018-04-02T04:04:05.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/112846965430_1_0_1.jpg"],
-              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["202235032315"],
               "title":["Beautiful Emerson Model 520 Catalin radio"],
@@ -692,10 +769,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"30.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"129.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"129.99"}],"sellingState":["Active"],"timeLeft":["P18DT19H30M28S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-20T18:34:52.000Z"],"endTime":["2018-03-22T18:34:52.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["19"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-20T18:34:52.000Z"],"endTime":["2018-03-22T18:34:52.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["19"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273089837651"],
               "title":["Catalin bakelite Poker Chips Set-Yellow Butterscotch 402grams 100 chips in box"],
@@ -709,10 +786,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"58.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"58.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT3H25M23S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"110.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"110.0"}],"startTime":["2018-03-01T02:30:46.000Z"],"endTime":["2018-03-08T02:29:47.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"110.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"110.0"}],"startTime":["2018-03-01T02:30:46.000Z"],"endTime":["2018-03-08T02:29:47.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["132521748790"],
               "title":["DeWALD Catalin Harp Model A-501 Radio"],
@@ -726,10 +803,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT21H55M0S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"325.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"325.0"}],"startTime":["2018-02-28T20:59:24.000Z"],"endTime":["2018-03-07T20:59:24.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["20"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"325.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"325.0"}],"startTime":["2018-02-28T20:59:24.000Z"],"endTime":["2018-03-07T20:59:24.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["20"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["253420370365"],
               "title":["VTG ANTIQUE ART DECO BAKELITE CATALIN LUCITE JEWELRY BOX TRINKET CIGARETTE"],
@@ -743,10 +820,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.95"}],"sellingState":["Active"],"timeLeft":["P8DT20H7M2S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-10T19:11:26.000Z"],"endTime":["2018-03-12T19:11:26.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-10T19:11:26.000Z"],"endTime":["2018-03-12T19:11:26.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332542605606"],
               "title":["Small Green Swirl Catalin or Bakelite Refrigerator Magnet. Quality Made."],
@@ -760,10 +837,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"6.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"6.0"}],"sellingState":["Active"],"timeLeft":["P4DT1H56M12S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-06T01:00:36.000Z"],"endTime":["2018-03-08T01:00:36.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-06T01:00:36.000Z"],"endTime":["2018-03-08T01:00:36.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332542605606_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["382396316470"],
               "title":["VINTAGE CATALIN  ALPHABET LETTERS --67 TOTAL"],
@@ -777,10 +854,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.85"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT21H35M21S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T20:39:45.000Z"],"endTime":["2018-03-08T20:39:45.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T20:39:45.000Z"],"endTime":["2018-03-08T20:39:45.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104744162"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Yellow Dice Beads Faturan Block 2824g"],
@@ -794,10 +871,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H31M48S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:36:12.000Z"],"endTime":["2018-03-09T19:36:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:36:12.000Z"],"endTime":["2018-03-09T19:36:12.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332551135853"],
               "title":["Quality-Made Business Calling Card Holder. Catalin or Bakelite.  Art Deco Style."],
@@ -811,9 +888,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"42.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"42.0"}],"sellingState":["Active"],"timeLeft":["P10DT2H11M12S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T01:15:36.000Z"],"endTime":["2018-03-14T01:15:36.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["10"]}],
-              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332551135853_1_0_1.jpg"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T01:15:36.000Z"],"endTime":["2018-03-14T01:15:36.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["10"]}],
+              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332551135853_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["142699330480"],
               "title":["VINTAGE BAKELITE\/CATALIN FOLDING CRIBBAGE BOARD W\/PEGS,ICE TEA COLOR,1940'S"],
@@ -827,10 +904,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"44.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"44.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT4H23M32S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-23T03:27:56.000Z"],"endTime":["2018-03-05T03:27:56.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-23T03:27:56.000Z"],"endTime":["2018-03-05T03:27:56.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["372236489965"],
               "title":[" VINTAGE NOS PAIR 1 1\/8\\\" CHERRY AMBER CATALIN OR BAKELITE DICE IOB 76.6 G TW "],
@@ -845,10 +922,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"39.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT19H43M0S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T18:47:24.000Z"],"endTime":["2018-03-08T18:47:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T18:47:24.000Z"],"endTime":["2018-03-08T18:47:24.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["253446988728"],
               "title":["Vintage EXCELLENT Galloping Golf Bakelite Catalin Dice Game In Leather Case"],
@@ -862,9 +939,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15.0"}],"sellingState":["Active"],"timeLeft":["P21DT19H16M26S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-23T18:20:50.000Z"],"endTime":["2018-03-25T18:20:50.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-23T18:20:50.000Z"],"endTime":["2018-03-25T18:20:50.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["3"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["332557814246"],
               "title":["Business Calling Card Holder. Catalin or Bakelite. Quality Made. Art Deco Style."],
@@ -878,9 +955,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"38.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"38.0"}],"sellingState":["Active"],"timeLeft":["P17DT2H13M36S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-19T01:18:00.000Z"],"endTime":["2018-03-21T01:18:00.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["7"]}],
-              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332557814246_1_0_1.jpg"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-19T01:18:00.000Z"],"endTime":["2018-03-21T01:18:00.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["7"]}],
+              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332557814246_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104670611"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Yellow White Dice Beads Faturan Block"],
@@ -894,10 +971,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"bidCount":["2"],"sellingState":["Active"],"timeLeft":["P5DT19H58M43S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:03:07.000Z"],"endTime":["2018-03-09T19:03:07.000Z"],"listingType":["Auction" ],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:03:07.000Z"],"endTime":["2018-03-09T19:03:07.000Z"],
+              "listingType":["Auction" ],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100580502"],
               "title":["Authentic Old Vintage German Bakelite Catalin Rods Blocks Rare Veined 590g"],
@@ -911,10 +988,10 @@ sResponseSearchTooBroad = \
               "country":["LT"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P3DT19H21M41S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:26:05.000Z"],"endTime":["2018-03-07T18:26:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:26:05.000Z"],"endTime":["2018-03-07T18:26:05.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100580502_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100583400"],
               "title":["Authentic Old Vintage German Bakelite Catalin Rods Blocks Rare Veined 482g"],
@@ -928,10 +1005,10 @@ sResponseSearchTooBroad = \
               "country":["LT"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"22.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"22.5"}],"bidCount":["12"],"sellingState":["Active"],"timeLeft":["P3DT19H26M3S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:30:27.000Z"],"endTime":["2018-03-07T18:30:27.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:30:27.000Z"],"endTime":["2018-03-07T18:30:27.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100583400_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["232678777465"],
               "title":["Vintage Butterscotch Bakelite\/Catalin Bird Napkin Ring 1930s"],
@@ -945,10 +1022,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.22"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.22"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT23H16M44S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T22:21:08.000Z"],"endTime":["2018-03-04T22:21:08.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T22:21:08.000Z"],"endTime":["2018-03-04T22:21:08.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["391992779536"],
               "title":["3 Art Deco Green Butterscotch Amber Bakelite Catalin Phenolic Handle"],
@@ -961,10 +1038,10 @@ sResponseSearchTooBroad = \
               "country":["GB"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"GBP","__value__":"450.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"619.7"}],"sellingState":["Active"],"timeLeft":["P6DT14H1M9S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T13:05:33.000Z"],"endTime":["2018-03-10T13:05:33.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T13:05:33.000Z"],"endTime":["2018-03-10T13:05:33.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["112848108338"],
               "title":["Vintage Bakelite Red Catalin Androck Strainer 12\\" USA Stainless Steel Wire Mesh"],
@@ -978,10 +1055,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"sellingState":["Active"],"timeLeft":["P29DT20H45M29S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T19:49:53.000Z"],"endTime":["2018-04-02T19:49:53.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T19:49:53.000Z"],"endTime":["2018-04-02T19:49:53.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/112848108338_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["323093306380"],
               "title":["CATALIN BAKELITE  LOT OF 34 PIECES   Deco Caps KNOBS 1 3\/4 inches "],
@@ -995,9 +1072,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"sellingState":["Active"],"timeLeft":["P20DT17H38M15S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-22T16:42:39.000Z"],"endTime":["2018-03-24T16:42:39.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["4"]}],
-              "returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-22T16:42:39.000Z"],"endTime":["2018-03-24T16:42:39.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["4"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104681993"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Yellow Dice Beads Faturan Block 363gr"],
@@ -1011,10 +1088,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H0M46S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:05:10.000Z"],"endTime":["2018-03-09T19:05:10.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:05:10.000Z"],"endTime":["2018-03-09T19:05:10.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["222862364643"],
               "title":["LOT OF 30 MARBLEIZED AMBER BAKELITE\/CATALIN BACKGAMMON PIECES. 4 SIZES 260 GRAMS"],
@@ -1028,10 +1105,10 @@ sResponseSearchTooBroad = \
               "country":["CA"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"19.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT18H57M18S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"69.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"69.0"}],"startTime":["2018-03-01T18:01:42.000Z"],"endTime":["2018-03-08T18:01:42.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"69.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"69.0"}],"startTime":["2018-03-01T18:01:42.000Z"],"endTime":["2018-03-08T18:01:42.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["183100574760"],
               "title":["Authentic Old Vintage German Bakelite Catalin Rods Blocks Rare Veined 480g"],
@@ -1045,10 +1122,10 @@ sResponseSearchTooBroad = \
               "country":["LT"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.5"}],"bidCount":["4"],"sellingState":["Active"],"timeLeft":["P3DT19H18M27S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:22:51.000Z"],"endTime":["2018-03-07T18:22:51.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:22:51.000Z"],"endTime":["2018-03-07T18:22:51.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100574760_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100578429"],
               "title":["Authentic Old Vintage German Bakelite Catalin Rods Blocks Rare Veined 468g"],
@@ -1062,10 +1139,10 @@ sResponseSearchTooBroad = \
               "country":["LT"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.5"}],"bidCount":["2"],"sellingState":["Active"],"timeLeft":["P3DT19H19M49S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:24:13.000Z"],"endTime":["2018-03-07T18:24:13.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:24:13.000Z"],"endTime":["2018-03-07T18:24:13.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100578429_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273074865833"],
               "title":["bakelite catalin art deco"],
@@ -1078,10 +1155,10 @@ sResponseSearchTooBroad = \
               "country":["SK"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"sellingState":["Active"],"timeLeft":["P16DT16H3M56S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-18T15:08:20.000Z"],"endTime":["2018-03-20T15:08:20.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["19"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-18T15:08:20.000Z"],"endTime":["2018-03-20T15:08:20.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["19"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/273074865833_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273047508323"],
               "title":["4 CATALIN FURNITURE HANDLES VINTAGE ART DECO BAKELITE AMBER 63 Grams 2.75\\" & 4\\""],
@@ -1095,10 +1172,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"55.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"55.0"}],"sellingState":["Active"],"timeLeft":["P27DT14H0M46S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-01-30T13:05:10.000Z"],"endTime":["2018-03-31T13:05:10.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["5"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-01-30T13:05:10.000Z"],"endTime":["2018-03-31T13:05:10.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["5"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["362252683340"],
               "title":["VINTAGE MAHJONG SET - APPLE JUICE CATALIN RESIN - UNUSED - NRMINT 1930'S"],
@@ -1112,10 +1189,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"22.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"33.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"33.0"}],"bidCount":["21"],"sellingState":["Active"],"timeLeft":["P1DT3H16M3S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T02:20:27.000Z"],"endTime":["2018-03-05T02:20:27.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T02:20:27.000Z"],"endTime":["2018-03-05T02:20:27.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183100582130"],
               "title":["Authentic Old Vintage German Bakelite Catalin Rods Blocks Rare Veined 384g"],
@@ -1129,10 +1206,10 @@ sResponseSearchTooBroad = \
               "country":["LT"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"bidCount":["4"],"sellingState":["Active"],"timeLeft":["P3DT19H23M50S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:28:14.000Z"],"endTime":["2018-03-07T18:28:14.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T18:28:14.000Z"],"endTime":["2018-03-07T18:28:14.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/183100582130_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["183104747518"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Orange Dice Beads Block 2815gr"],
@@ -1146,10 +1223,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H35M48S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:40:12.000Z"],"endTime":["2018-03-09T19:40:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:40:12.000Z"],"endTime":["2018-03-09T19:40:12.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104699744"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Black Cherry Dice Beads Faturan Block"],
@@ -1163,10 +1240,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"27.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"27.0"}],"bidCount":["10"],"sellingState":["Active"],"timeLeft":["P5DT20H18M40S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:23:04.000Z"],"endTime":["2018-03-09T19:23:04.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:23:04.000Z"],"endTime":["2018-03-09T19:23:04.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104746092"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Turquoise Dice Beads Faturan Block"],
@@ -1180,10 +1257,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H33M47S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:38:11.000Z"],"endTime":["2018-03-09T19:38:11.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:38:11.000Z"],"endTime":["2018-03-09T19:38:11.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282864936201"],
               "title":["Large bakelite skull catalin swirled colors end of day rat rod hot rod"],
@@ -1197,10 +1274,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"sellingState":["Active"],"timeLeft":["P1DT4H42M9S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T03:46:33.000Z"],"endTime":["2018-03-05T03:46:33.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T03:46:33.000Z"],"endTime":["2018-03-05T03:46:33.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192452462001"],
               "title":["NEW SEALED CARDINAL GLEAMING CATALIN DOMINOES GAME SET VINTAGE 28 DOMINOS"],
@@ -1214,10 +1291,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"27.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"27.99"}],"sellingState":["Active"],"timeLeft":["P8DT12H7M44S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-10T11:12:08.000Z"],"endTime":["2018-03-12T11:12:08.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-10T11:12:08.000Z"],"endTime":["2018-03-12T11:12:08.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/192452462001_1_0_1.jpg"],
-              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192470136271"],
               "title":["Box Full 1940s BAKELITE Catalin Poker Chips 50 Butterscotch 25 Red 25 Green NICE"],
@@ -1231,10 +1308,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"140.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"140.0"}],"sellingState":["Active"],"timeLeft":["P27DT11H47M34S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T10:51:58.000Z"],"endTime":["2018-03-31T10:51:58.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T10:51:58.000Z"],"endTime":["2018-03-31T10:51:58.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282867825374"],
               "title":["Old Vintage CHERRY Amber Bakelite Catalin marbled rod block faturan 48g"],
@@ -1248,10 +1325,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"22.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT13H29M15S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T12:33:39.000Z"],"endTime":["2018-03-09T12:33:39.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T12:33:39.000Z"],"endTime":["2018-03-09T12:33:39.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["362258497448"],
               "title":["VTG RETRO GENERAL ELECTRIC GE L-512 TUBE RADIO CATALIN HANDLE BAKELITE SHELL"],
@@ -1265,10 +1342,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT20H57M51S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T20:02:15.000Z"],"endTime":["2018-03-10T20:02:15.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T20:02:15.000Z"],"endTime":["2018-03-10T20:02:15.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282864937449"],
               "title":["Large bakelite skull catalin swirled colors end of day rat rod hot rod"],
@@ -1282,10 +1359,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"sellingState":["Active"],"timeLeft":["P1DT4H43M6S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T03:47:30.000Z"],"endTime":["2018-03-05T03:47:30.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-28T03:47:30.000Z"],"endTime":["2018-03-05T03:47:30.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["382397798449"],
               "title":["POKER CHIPS SET  LOWE CARD GAME BOX  CATALIN BAKELITE VTG ANTIQUE"],
@@ -1299,10 +1376,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.9"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"230.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"230.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P9DT2H33M39S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T01:38:03.000Z"],"endTime":["2018-03-13T01:38:03.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T01:38:03.000Z"],"endTime":["2018-03-13T01:38:03.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282858547870"],
               "title":["Emerson radio BA199 Working Bakelite Catalin"],
@@ -1316,10 +1393,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"75.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"75.0"}],"bidCount":["6"],"sellingState":["Active"],"timeLeft":["P1DT1H56M18S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"175.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"175.0"}],"startTime":["2018-02-23T01:00:42.000Z"],"endTime":["2018-03-05T01:00:42.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["16"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"175.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"175.0"}],"startTime":["2018-02-23T01:00:42.000Z"],"endTime":["2018-03-05T01:00:42.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["16"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282863028569"],
               "title":["Large Bakelite  catalin Amber Dice "],
@@ -1333,10 +1410,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"150.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"150.5"}],"bidCount":["31"],"sellingState":["Active"],"timeLeft":["P4DT16H52M22S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T15:56:46.000Z"],"endTime":["2018-03-08T15:56:46.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T15:56:46.000Z"],"endTime":["2018-03-08T15:56:46.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/282863028569_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["352290963265"],
               "title":["Bakelite Catalin 2.72\\" x 10.25\\" long 865 grams huge rod tube mottled brown USA"],
@@ -1350,10 +1427,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"sellingState":["Active"],"timeLeft":["P23DT22H7M39S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T21:12:03.000Z"],"endTime":["2018-03-27T21:12:03.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T21:12:03.000Z"],"endTime":["2018-03-27T21:12:03.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273091141755"],
               "title":["4 \u201cRDC\u201d BAKELITE CATALIN MINT MAH JONGG MAHJONGG TILES Your Pick"],
@@ -1367,10 +1444,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"sellingState":["Active"],"timeLeft":["P27DT22H40M42S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:45:06.000Z"],"endTime":["2018-03-31T21:45:06.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:45:06.000Z"],"endTime":["2018-03-31T21:45:06.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["273084559811"],
               "title":[" A Rare Art Deco Phenolic Catalin Dressing Table set, trinket boxes on a tray"],
@@ -1384,9 +1461,9 @@ sResponseSearchTooBroad = \
               "country":["GB"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"26.85"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"GBP","__value__":"249.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"344.26"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT14H29M0S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T13:33:24.000Z"],"endTime":["2018-03-04T13:33:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T13:33:24.000Z"],"endTime":["2018-03-04T13:33:24.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104724243"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Blue Dice Beads Faturan Block 2541g"],
@@ -1400,10 +1477,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.5"}],"bidCount":["3"],"sellingState":["Active"],"timeLeft":["P5DT20H27M45S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:32:09.000Z"],"endTime":["2018-03-09T19:32:09.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:32:09.000Z"],"endTime":["2018-03-09T19:32:09.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104668667"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Red Cherry Dice Beads Faturan Block"],
@@ -1417,10 +1494,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"18.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT19H57M18S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:01:42.000Z"],"endTime":["2018-03-09T19:01:42.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:01:42.000Z"],"endTime":["2018-03-09T19:01:42.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104696572"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Red Cherry Dice Beads Faturan Block"],
@@ -1434,10 +1511,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H14M41S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:19:05.000Z"],"endTime":["2018-03-09T19:19:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:19:05.000Z"],"endTime":["2018-03-09T19:19:05.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332552628112"],
               "title":["Bakelite Catalin rod 1.12\\" by 9-1\/4\\" apple juice 190 gr Katalin USA"],
@@ -1451,10 +1528,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"190.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"190.0"}],"sellingState":["Active"],"timeLeft":["P10DT17H45M15S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T16:49:39.000Z"],"endTime":["2018-03-14T16:49:39.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T16:49:39.000Z"],"endTime":["2018-03-14T16:49:39.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["323112905602"],
               "title":["Wurlitzer 850 850A Jukebox Original Catalin Pilaster Plastic Set"],
@@ -1468,10 +1545,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"155.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"155.0"}],"sellingState":["Active"],"timeLeft":["P29DT15H27M48S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T14:32:12.000Z"],"endTime":["2018-04-02T14:32:12.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T14:32:12.000Z"],"endTime":["2018-04-02T14:32:12.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/323112905602_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332572082444"],
               "title":["Mid Century Bakelite Catalin Red Rabbit Napkin Holder Yellow Apple Juice Eyes"],
@@ -1485,10 +1562,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"sellingState":["Active"],"timeLeft":["P27DT20H47M58S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T19:52:22.000Z"],"endTime":["2018-03-31T19:52:22.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T19:52:22.000Z"],"endTime":["2018-03-31T19:52:22.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332572082444_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["332566887402"],
               "title":["Bakelite Catalin Child's bracelet tube in marbelized green 373 grams USA"],
@@ -1502,10 +1579,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"sellingState":["Active"],"timeLeft":["P23DT2H55M24S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T01:59:48.000Z"],"endTime":["2018-03-27T01:59:48.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T01:59:48.000Z"],"endTime":["2018-03-27T01:59:48.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["252785840595"],
               "title":["Set 10 Art Deco Carved Catalin Or Bakelite Place Card Holder Austria Enamel Gilt"],
@@ -1519,10 +1596,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"799.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"799.95"}],"sellingState":["Active"],"timeLeft":["P17DT20H4M4S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2017-02-24T19:08:28.000Z"],"endTime":["2018-03-21T19:08:28.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["11"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2017-02-24T19:08:28.000Z"],"endTime":["2018-03-21T19:08:28.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["11"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/252785840595_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["332546961703"],
               "title":["Bakelite Catalin rod 1-1\/2\\" x 6-3\/4\\" polished Prystal green 294 gr USA vintage"],
@@ -1536,10 +1613,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"350.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"350.0"}],"sellingState":["Active"],"timeLeft":["P5DT13H1M25S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-07T12:05:49.000Z"],"endTime":["2018-03-09T12:05:49.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["4"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-07T12:05:49.000Z"],"endTime":["2018-03-09T12:05:49.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["4"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["112847922741"],
               "title":["LARGE VTG SOLID BAKELITE CATALIN PHENOLIC KNOB HANDLE GRIP PULL FINIAL POMMEL"],
@@ -1553,10 +1630,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"sellingState":["Active"],"timeLeft":["P6DT18H21M51S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T17:26:15.000Z"],"endTime":["2018-03-10T17:26:15.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T17:26:15.000Z"],"endTime":["2018-03-10T17:26:15.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["122979796906"],
               "title":["Addison 5, Radio, Catalin, Parts, 45 ounces, Jewelry"],
@@ -1570,10 +1647,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"135.0"}],"sellingState":["Active"],"timeLeft":["P19DT16H30M14S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-21T15:34:38.000Z"],"endTime":["2018-03-23T15:34:38.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-21T15:34:38.000Z"],"endTime":["2018-03-23T15:34:38.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["302653378838"],
               "title":["Vintage Antique Old amber  Bakelite Catalin faturan Ball block rar 2984gr"],
@@ -1587,10 +1664,10 @@ sResponseSearchTooBroad = \
               "country":["PL"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H27M47S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:32:11.000Z"],"endTime":["2018-03-04T17:32:11.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:32:11.000Z"],"endTime":["2018-03-04T17:32:11.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["362253944495"],
               "title":["VINTAGE MAH JONG BAKELITE CATALIN"],
@@ -1604,10 +1681,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"22.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"bidCount":["8"],"sellingState":["Active"],"timeLeft":["P2DT5H1M36S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T04:06:00.000Z"],"endTime":["2018-03-06T04:06:00.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["13"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T04:06:00.000Z"],"endTime":["2018-03-06T04:06:00.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["13"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["302653367361"],
               "title":["Vintage Antique Old amber  Bakelite Catalin faturan Ball block rar 1130gr"],
@@ -1621,10 +1698,10 @@ sResponseSearchTooBroad = \
               "country":["PL"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H12M10S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:16:34.000Z"],"endTime":["2018-03-04T17:16:34.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:16:34.000Z"],"endTime":["2018-03-04T17:16:34.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104691495"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Green Dice Beads Faturan Block 2672g"],
@@ -1638,10 +1715,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H8M48S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:13:12.000Z"],"endTime":["2018-03-09T19:13:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:13:12.000Z"],"endTime":["2018-03-09T19:13:12.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104694661"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Brown Dice Beads Faturan Block 1977g"],
@@ -1655,10 +1732,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H12M41S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:17:05.000Z"],"endTime":["2018-03-09T19:17:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:17:05.000Z"],"endTime":["2018-03-09T19:17:05.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192470649439"],
               "title":["Catalin or Lucite Ex Original Pair of Knobs"],
@@ -1672,9 +1749,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.75"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.75"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT0H0M7S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T23:04:31.000Z"],"endTime":["2018-03-08T23:04:31.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T23:04:31.000Z"],"endTime":["2018-03-08T23:04:31.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104698242"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Green Dice Beads Faturan Block 2545g"],
@@ -1688,10 +1765,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H16M46S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:21:10.000Z"],"endTime":["2018-03-09T19:21:10.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:21:10.000Z"],"endTime":["2018-03-09T19:21:10.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104704582"],
               "title":["Antique Vintage Old Amber Bakelite Catalin Brown Dice Beads Faturan Block 2021g"],
@@ -1705,10 +1782,10 @@ sResponseSearchTooBroad = \
               "country":["DE"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"28.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT20H24M45S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:29:09.000Z"],"endTime":["2018-03-09T19:29:09.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T19:29:09.000Z"],"endTime":["2018-03-09T19:29:09.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["162919176989"],
               "title":["LOOSE BEADS OLD DARK CHERRY OTTOMAN AMBER BAKELITE CATALİN FATURAN BEADS"],
@@ -1722,9 +1799,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"8.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"8.5"}],"bidCount":["5"],"sellingState":["Active"],"timeLeft":["P1DT2H14M48S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:19:12.000Z"],"endTime":["2018-03-05T01:19:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
-              "returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:19:12.000Z"],"endTime":["2018-03-05T01:19:12.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["401354589892"],
               "title":["Emerson \\"Little Miracle\\" Marbled Green White and Yellow Catalin Tube Radio AX235"],
@@ -1739,10 +1816,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2124.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2124.95"}],"sellingState":["Active"],"timeLeft":["P19DT22H25M21S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2017-06-26T21:29:45.000Z"],"endTime":["2018-03-23T21:29:45.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["21"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2017-06-26T21:29:45.000Z"],"endTime":["2018-03-23T21:29:45.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["21"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["122999012619"],
               "title":["gf Bakelite Catalin Reddish-Brown Swirl Poker Chip Holder 4\\" x 5\\""],
@@ -1756,10 +1833,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.95"}],"sellingState":["Active"],"timeLeft":["P29DT17H29M15S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T16:33:39.000Z"],"endTime":["2018-04-02T16:33:39.000Z"],"listingType":["StoreInventory"],"gift":["false"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T16:33:39.000Z"],"endTime":["2018-04-02T16:33:39.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["372045072006"],
               "title":["ANTIQUE ART DECO MARBLED AMBER & BLACK BAKELITE CATALIN DESK DOUBLE STAMP BOX"],
@@ -1773,9 +1850,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"sellingState":["Active"],"timeLeft":["P8DT21H43M33S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-08-14T20:48:57.000Z"],"endTime":["2018-03-12T20:47:57.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["6"]}],
-              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/372045072006_1_0_1.jpg"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-08-14T20:48:57.000Z"],"endTime":["2018-03-12T20:47:57.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["6"]}],
+              "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/372045072006_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["312074903524"],
               "title":["Catalin Bakelite Ever Ready Shaving Brush Set In Rubber With Zel Catalin Case"],
@@ -1789,10 +1866,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT0H30M52S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-24T23:35:16.000Z"],"endTime":["2018-03-03T23:35:16.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-24T23:35:16.000Z"],"endTime":["2018-03-03T23:35:16.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["302653369590"],
               "title":["Vintage Antique Old amber  Bakelite Catalin faturan Ball block rar 882gr"],
@@ -1806,10 +1883,10 @@ sResponseSearchTooBroad = \
               "country":["PL"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H15M48S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:20:12.000Z"],"endTime":["2018-03-04T17:20:12.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:20:12.000Z"],"endTime":["2018-03-04T17:20:12.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183084437878"],
               "title":["Antique Cherry Amber Bakelite Swirl Cube Faturan Catalin Cube Square Dice"],
@@ -1823,10 +1900,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"sellingState":["Active"],"timeLeft":["P17DT20H23M23S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-19T19:27:47.000Z"],"endTime":["2018-03-21T19:27:47.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["7"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-19T19:27:47.000Z"],"endTime":["2018-03-21T19:27:47.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["7"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192470100960"],
               "title":["Vintage 1940s Deco BAKELITE Catalin Poker Chip Caddy Butterscoth Amber 200 CHIPS"],
@@ -1840,10 +1917,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"425.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"425.0"}],"sellingState":["Active"],"timeLeft":["P27DT11H0M43S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T10:05:07.000Z"],"endTime":["2018-03-31T10:05:07.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T10:05:07.000Z"],"endTime":["2018-03-31T10:05:07.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["192471465856"],
               "title":["Bakelite\/Catalin Real Marblette Poker Chips, 2 Green Dice, Turntable\/Holder-Box"],
@@ -1857,10 +1934,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.9"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P5DT22H40M19S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T21:44:43.000Z"],"endTime":["2018-03-09T21:44:43.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-02T21:44:43.000Z"],"endTime":["2018-03-09T21:44:43.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["183095562479"],
               "title":["vintage Thorens (?) table lighter with green bakelite\/catalin base"],
@@ -1874,10 +1951,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"22.72"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"22.72"}],"bidCount":["9"],"sellingState":["Active"],"timeLeft":["P0DT20H46M33S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T19:50:57.000Z"],"endTime":["2018-03-04T19:50:57.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T19:50:57.000Z"],"endTime":["2018-03-04T19:50:57.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["142707264033"],
               "title":["Vintage 1933 Champions Basketball Trophy Green Marble Bakelite\/Catalin? Cool !"],
@@ -1891,9 +1968,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT16H53M23S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T15:57:47.000Z"],"endTime":["2018-03-08T15:57:47.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],
-              "returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T15:57:47.000Z"],"endTime":["2018-03-08T15:57:47.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122964406400"],
               "title":["Motorola S Grill Catalin Radio"],
@@ -1907,10 +1984,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"sellingState":["Active"],"timeLeft":["P10DT20H2M42S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T19:07:06.000Z"],"endTime":["2018-03-14T19:07:06.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["17"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T19:07:06.000Z"],"endTime":["2018-03-14T19:07:06.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["17"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["202247971131"],
               "title":["20 MISC. VTG ART DECO PULLS BAKELITE CATALIN METAL 1 LOT"],
@@ -1924,9 +2001,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.6"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"sellingState":["Active"],"timeLeft":["P6DT23H43M7S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T22:47:31.000Z"],"endTime":["2018-03-10T22:47:31.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
-              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/202247971131_1_0_1.jpg"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T22:47:31.000Z"],"endTime":["2018-03-10T22:47:31.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"]}],
+              "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/202247971131_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["232682730454"],
               "title":["27 VINTAGE EXTRA THICK MINI BAKELITE CATALIN BLONDE DOMINOES WITH BOX RARE"],
@@ -1940,10 +2017,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"sellingState":["Active"],"timeLeft":["P27DT5H52M58S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T04:57:22.000Z"],"endTime":["2018-03-31T04:57:22.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T04:57:22.000Z"],"endTime":["2018-03-31T04:57:22.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["282346720543"],
               "title":["VINTAGE 10 CATALIN BACKGAMMON Marbleize Brown 1 3\/16\\" (30mm)Diameter by BAKELITE"],
@@ -1957,10 +2034,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.9"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"sellingState":["Active"],"timeLeft":["P24DT23H0M47S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-02-01T22:05:11.000Z"],"endTime":["2018-03-28T22:05:11.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["79"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-02-01T22:05:11.000Z"],"endTime":["2018-03-28T22:05:11.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["79"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/282346720543_1_1_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["162924174185"],
               "title":["EX!DISNEY1930's\\"MICKEY MOUSE\\" BUTTERSCOTCH VS. CATALIN PLASTIC PENCIL SHARPENER"],
@@ -1974,10 +2051,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"69.3"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"69.3"}],"sellingState":["Active"],"timeLeft":["P27DT7H52M35S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T06:56:59.000Z"],"endTime":["2018-03-31T06:56:59.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T06:56:59.000Z"],"endTime":["2018-03-31T06:56:59.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["5"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122999391845"],
               "title":["Vintage 1920s 1930s Leather Clutch Purse Bakelite Catalin Flip Handle Art Deco"],
@@ -1991,9 +2068,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"4.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"4.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT23H8M57S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T22:13:21.000Z"],"endTime":["2018-03-10T22:13:21.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T22:13:21.000Z"],"endTime":["2018-03-10T22:13:21.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["382389203283"],
               "title":["Vintage Butterscotch Yellow Bakelite  Catalin Round Poker Chip Holder,Rack,Tray"],
@@ -2006,10 +2083,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"14.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT23H9M12S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-22T22:13:36.000Z"],"endTime":["2018-03-04T22:13:36.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-22T22:13:36.000Z"],"endTime":["2018-03-04T22:13:36.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
               "returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/382389203283_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["372226281258"],
               "title":["Red Garol 6AU-1 Catalin Radio"],
@@ -2023,10 +2100,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"sellingState":["Active"],"timeLeft":["P16DT18H15M16S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-18T17:19:40.000Z"],"endTime":["2018-03-20T17:19:40.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["22"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-18T17:19:40.000Z"],"endTime":["2018-03-20T17:19:40.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["22"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["323100715891"],
               "title":["Set of 2 Vintage 1940's Cherry Red Bakelite\/Catalin Bangles"],
@@ -2040,10 +2117,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"22.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"22.0"}],"sellingState":["Active"],"timeLeft":["P24DT1H3M7S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T00:07:31.000Z"],"endTime":["2018-03-28T00:07:31.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T00:07:31.000Z"],"endTime":["2018-03-28T00:07:31.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["122988148187"],
               "title":["Maroon Fada L-56 Catalin Radio"],
@@ -2057,10 +2134,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2000.0"}],"sellingState":["Active"],"timeLeft":["P24DT2H2M2S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:06:26.000Z"],"endTime":["2018-03-28T01:06:26.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["8"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:06:26.000Z"],"endTime":["2018-03-28T01:06:26.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["8"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["372220754011"],
               "title":["Green RCA Tulip Grill Catalin Radio"],
@@ -2074,10 +2151,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1500.0"}],"sellingState":["Active"],"timeLeft":["P10DT20H2M13S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T19:06:37.000Z"],"endTime":["2018-03-14T19:06:37.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["14"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-12T19:06:37.000Z"],"endTime":["2018-03-14T19:06:37.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["14"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["142707635529"],
               "title":["Vintage Backgammon Set BAKELITE\/CATALIN 1.5\\" x 3\/8\\" Brown Swirl RARE COLOR Combo"],
@@ -2091,10 +2168,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"112.49"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"112.49"}],"sellingState":["Active"],"timeLeft":["P27DT22H52M43S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:57:07.000Z"],"endTime":["2018-03-31T21:57:07.000Z"],"listingType":["StoreInventory"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:57:07.000Z"],"endTime":["2018-03-31T21:57:07.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122986954753"],
               "title":["Crosley Split Grill Catalin Radio"],
@@ -2108,10 +2185,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"sellingState":["Active"],"timeLeft":["P23DT16H50M51S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T15:55:15.000Z"],"endTime":["2018-03-27T15:55:15.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["18"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-25T15:55:15.000Z"],"endTime":["2018-03-27T15:55:15.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["18"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["122988142735"],
               "title":["RARE Fada 188 All American Catalin Radio"],
@@ -2125,10 +2202,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10000.0"}],"sellingState":["Active"],"timeLeft":["P24DT1H56M13S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:00:37.000Z"],"endTime":["2018-03-28T01:00:37.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["11"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:00:37.000Z"],"endTime":["2018-03-28T01:00:37.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["11"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
 
             },{"itemId":["253425443084"],
               "title":["95 Vintage Bakelite\/Catalin Poker Chips, Red and Yellow w Original Box"],
@@ -2142,10 +2219,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"11.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"74.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"74.99"}],"sellingState":["Active"],"timeLeft":["P11DT20H5M55S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-13T19:10:19.000Z"],"endTime":["2018-03-15T19:10:19.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["4"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-13T19:10:19.000Z"],"endTime":["2018-03-15T19:10:19.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["4"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["302653382980"],
               "title":["Vintage Antique Old amber  Bakelite Catalin faturan Ball block rar 2879gr"],
@@ -2159,10 +2236,10 @@ sResponseSearchTooBroad = \
               "country":["PL"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT18H32M0S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:36:24.000Z"],"endTime":["2018-03-04T17:36:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T17:36:24.000Z"],"endTime":["2018-03-04T17:36:24.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["162927217862"],
               "title":["Vintage Catalin Bakelite Galloping Bowling Dice 3\/4\\"  Case And Score Sheets.rare"],
@@ -2176,10 +2253,10 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"3.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P9DT3H58M59S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T03:03:23.000Z"],"endTime":["2018-03-13T03:03:23.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["6"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T03:03:23.000Z"],"endTime":["2018-03-13T03:03:23.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["6"]}],
               "returnsAccepted":["false"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183157500032"],
               "title":["KENWOOD Basic C1 Pre-Amp - NEEDS REPAIR - SOLD AS IS"],
@@ -2193,9 +2270,9 @@ sResponseSearchTooBroad = \
               "country":["CA"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"50.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.13"}],"sellingState":["Active"],"timeLeft":["P24DT9H39M38S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-01T17:17:44.000Z"],"endTime":["2018-05-01T17:17:44.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
-              "returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-01T17:17:44.000Z"],"endTime":["2018-05-01T17:17:44.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["372237637649"],
               "title":["GREEN CATALIN TAYLOR BAROMETER"],
@@ -2209,9 +2286,9 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT22H16M1S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T21:20:25.000Z"],"endTime":["2018-03-10T21:20:25.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
-              "returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T21:20:25.000Z"],"endTime":["2018-03-10T21:20:25.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
@@ -2225,11 +2302,11 @@ sResponseSearchTooBroad = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"11.5"}],"bidCount":["4"],"sellingState":["Active"],"timeLeft":["P1DT2H45M49S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:50:13.000Z"],"endTime":["2018-03-05T01:50:13.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:50:13.000Z"],"endTime":["2018-03-05T01:50:13.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],
               "returnsAccepted":["true"],
               "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/122988243137_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["true"]}]}],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]}]}],
 
         "paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["100"],"totalPages":["24"],"totalEntries":["2374"]}],
         "itemSearchURL":["http:\/\/www.ebay.com\/sch\/i.html?_nkw=catalin&_ddo=1&_ipg=100&_pgn=1"]
