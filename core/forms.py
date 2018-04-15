@@ -6,12 +6,14 @@ from core.validators        import gotTextOutsideParens
 from crispy_forms.helper    import FormHelper
 from crispy_forms.layout    import Submit
 
+from .mixins                import FindUserMixin
 
 
-class BaseModelFormGotCrispy( ModelForm ):
+class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
     #
     '''base crispy form, can subclass to create or update'''
     #
+    
     def __init__( self, *args, **kwargs ):
         #
         self.request = kwargs.get( 'request' )
@@ -20,6 +22,8 @@ class BaseModelFormGotCrispy( ModelForm ):
         if not hasattr( self, 'user' ): self.user = None
         #
         if 'user' in kwargs: self.user = kwargs.pop('user')
+        #
+        if self.user is None: self.user = self.FindUserMixin()
         #
         super( BaseModelFormGotCrispy, self ).__init__( *args, **kwargs )
         #
@@ -48,24 +52,10 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
 
     def gotTitleAready( self, cTitle ):
         #
-        # oUser = None
-        #
-        #
-        if hasattr( self, 'user' ) and self.user is not None:
-            oUser = self.user
-        elif ( hasattr( self, 'request' ) and
-               hasattr( self.request, 'user' ) and
-               self.request.user is not None ):
-            oUser = self.request.user
-        elif ( hasattr( self.instance, 'user' ) and
-               self.instance.user is not None ):
-            oUser = self.instance.user
-        elif ( hasattr( self.instance, 'iUser' ) and
-               self.instance.iUser is not None ): # testing
-            oUser = self.instance.iUser
-        #
+        # oUser = self.FindUserMixin()
+        #        
         if ( self.Meta.model.objects.filter(
-                iUser           = oUser ).filter(
+                iUser           = self.user ).filter(
                 cTitle__iexact  = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" already exists. '
@@ -74,7 +64,7 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
                         code = 'title already exists' )
         #
         if ( self.Meta.model.objects.filter(
-                iUser               = oUser ).filter(
+                iUser               = self.user ).filter(
                 cLookFor__icontains = cTitle ).exists() ):
             #
             raise ValidationError('Title "%s" is in Look For' % cTitle,
