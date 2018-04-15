@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-import regex_field.fields
+#import regex_field.fields
 
 
 class Migration(migrations.Migration):
@@ -13,9 +13,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='brand',
-            name='oRegExExclude',
-            field=regex_field.fields.RegexField(max_length=128, null=True),
-        ),
+        #migrations.AddField(
+            #model_name='brand',
+            #name='oRegExExclude',
+            #field=regex_field.fields.RegexField(max_length=128, null=True),
+        #),
     ]
