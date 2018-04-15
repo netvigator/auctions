@@ -24,7 +24,7 @@ class ListViewGotModel(
     Enhanced ListView which also includes the model in the context data,
     so that the template has access to its model class.
     '''
- 
+
     def get_context_data( self, **kwargs ):
         '''
         Adds the pagination to the context data.
@@ -41,12 +41,42 @@ class ListViewGotModel(
 
         iMaxPage = len(paginator.page_range)
         #
-        iStart = iPageNumb - 2 if iPageNumb > 3 else 0
-        iLast  = iPageNumb + 2 if iPageNumb < iMaxPage else iMaxPage
+        iBeg = iPageNumb - 1 if iPageNumb > 3 else 0
+        iEnd = iMaxPage if iPageNumb + 2 == iMaxPage else iPageNumb + 1
         
         iMidLeft = iMidRight = 0
         
         sPrevPage = self.request.GET.get( 'previous', None )
+
+        # on page 1 fresh
+        # (<<) (1) 2 ... iM ... iEnd >>
+        #
+        # on page 1 from prior page
+        # (<<) (1) 2 ... iML ... iM ... iEnd >>
+        #
+        # on page 2
+        # << 1 (2) 3 ... iM ... iEnd >>
+        #
+        # on page 3
+        # << 1 2 (3) 4 ... iM ... iEnd >>
+        #
+        # on page 4
+        # << 1 ... 3 (4) 5 ... iM ... iEnd >>
+        #
+        # mid page
+        # << 1 ... iML ... i-1 (i) i+1 ... iMR ... iEnd >>
+        #
+        # on last -3
+        # << 1 ... iML ... iM ... iMR ... iL-4 (iL-3) iL-2 ... iL >>
+        #
+        # on last -2
+        # << 1 ... iML ... iM ... iMR ... iL-3 (iL-2) iL-1 iL >>
+        #
+        # on last -1
+        # << 1 ... iML ... iM ... iMR ... iL-2 (iL-1) iL >>
+        #
+        # on last page
+        # << 1 ... iML ... iM ... iMR ... iL-1 (iL) (>>)
 
         if sPrevPage is not None:
             #
@@ -66,20 +96,25 @@ class ListViewGotModel(
         iMidRight   = ( ( iPageNumb + iEndAvg   ) // 2
                             if iEndAvg - iPageNumb > 5 else 0 )
 
-
-        page_range = paginator.page_range[ iStart : iLast ]
+        iStart = iBeg - 1 if iBeg > 0 else 0
+        
+        show_range = paginator.page_range[ iStart : iEnd ]
+        print( 'iBeg:', iBeg )
+        print( 'iEnd:', iEnd )
+        print( 'iMidRight:', iMidRight )
+        print( 'show_range:', show_range )
 
         #print( 'iPageNumb', iPageNumb   )
         #print( 'iBegAvg',   iBegAvg     )
         #print( 'iEndAvg',   iEndAvg     )
-        #print( 'iStart',    iStart      )
-        #print( 'iLast',     iLast       )
+        #print( 'iBeg',    iBeg      )
+        #print( 'iEnd',     iEnd       )
         #print( 'iMidLeft',  iMidLeft    )
         #print( 'iMidRight', iMidRight   )
 
-        context.update({ 'page_range' : page_range,
-                         'iStart'     : iStart,
-                         'iLast'      : iLast,
+        context.update({ 'show_range' : show_range,
+                         'iBeg'       : iBeg,
+                         'iEnd'       : iEnd,
                          'iMidLeft'   : iMidLeft,
                          'iMidRight'  : iMidRight,
                          'iMaxPage'   : iMaxPage })
@@ -143,6 +178,11 @@ class UpdateViewCanCancel(
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
     success_message = 'Record successfully saved!!!!'
+
+    def get_form_kwargs(self):
+        kwargs = super( UpdateViewCanCancel, self ).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 
