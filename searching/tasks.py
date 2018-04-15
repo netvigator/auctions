@@ -191,6 +191,6 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
 
 
 # workflow
-# 2 hours per user doSearchingPutResultsInFiles
-# 24 mins per user putSearchResultsInItemsFound
-# 40 mins per user doFindSearhHits redoing all, must assess normal load later
+# 30 mins per user doSearchingPutResultsInFiles
+# 40 mins per user putSearchResultsInItemsFound
+# 90 mins per user doFindSearhHits
