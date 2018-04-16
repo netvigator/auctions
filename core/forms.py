@@ -19,7 +19,11 @@ class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
         #
-        if not hasattr( self, 'user' ) or self.user is None:
+        if 'user' in kwargs:
+            #
+            self.user = kwargs.pop( 'user' ) # super crashes if kwarg includes
+            #
+        elif not hasattr( self, 'user' ) or self.user is None:
             #
             self.user = self.findUser( **kwargs )
             #
