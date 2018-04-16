@@ -82,15 +82,23 @@ class TestFormValidation(BaseUserTestCase):
         #
         form = CreateCategoryForm(data=form_data)
         form.request = self.request
+        form.user    = self.user1
         self.assertFalse(form.is_valid())
         #
-        form_data['cTitle'] = 'ThingaMaJig'
+        form_data = dict(
+            cTitle      = 'ThingaMaJig',
+            iStars      = 5,
+            iUser       = self.user1.id )
         #
         form = CreateCategoryForm(data=form_data)
         form.request = self.request
-        self.assertFalse(form.is_valid())
+        form.user    = self.user1
+        isFormValid = form.is_valid()
+        self.assertFalse( isFormValid )
         #
         '''
+        print('')
+        print( 'isFormValid:', isFormValid )
         if form.errors:
             for k, v in form.errors.items():
                 print( k, ' -- ', v )
