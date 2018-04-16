@@ -465,8 +465,8 @@ sExampleResponse = \
       "version":["1.13.0" ] } ]
 }'''
 
-# ###     if you add an item whose title includes a double quote,      ###
-# ### you must manually cover a signle backslash to a double backslash ###
+# ###      if you add an item whose title includes a double quote,       ###
+# ### you must manually convert a signle backslash to a double backslash ###
 
 sResponseSearchTooBroad = \
 '''{"findItemsByKeywordsResponse":
