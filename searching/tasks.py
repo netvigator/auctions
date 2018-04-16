@@ -13,6 +13,8 @@ from .utils_stars           import findSearchHits
 
 from .models                import Search, SearchLog
 
+from core.utils             import getBegTime, sayDuration
+
 from String.Output          import ReadableNo
 
 
@@ -29,34 +31,12 @@ app = Celery()
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
 
 
-def _getBegTime( bConsoleOut ):
-    #
-    tBeg = timezone.now()
-    #
-    if bConsoleOut:
-        #
-        print( 'Beg:', str( tBeg )[:19] )
-        #
-    #
-    return tBeg
-
-
-def _sayDuration( tBeg ):
-    #
-    tEnd = timezone.now()
-    #
-    print( 'End:', str( tEnd )[:19] )
-    #
-    lDuration = str( tEnd - tBeg ).split( '.' )
-    #
-    print( 'Duration:', lDuration[0] )
-
 
 def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
     #
     # really want to select for active users only (not inactive)
     #
-    tBeg = _getBegTime( bConsoleOut )
+    tBeg = getBegTime( bConsoleOut )
     #
     t12hAgo = tBeg - timezone.timedelta( hours = 12 )
     t04hAgo = tBeg - timezone.timedelta( hours =  4 )
@@ -112,12 +92,12 @@ def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
     #
     if bConsoleOut:
         #
-        _sayDuration( tBeg )
+        sayDuration( tBeg )
 
 
 def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
     #
-    tBeg = _getBegTime( bConsoleOut )
+    tBeg = getBegTime( bConsoleOut )
     #
     qsLogSearches = (
             SearchLog.objects.filter(
@@ -169,13 +149,13 @@ def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
     #
     if bConsoleOut:
         #
-        _sayDuration( tBeg )
+        sayDuration( tBeg )
     #
 
 
 def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
     #
-    tBeg = _getBegTime( bConsoleOut )
+    tBeg = getBegTime( bConsoleOut )
     #
     oUserModel = get_user_model()
     #
@@ -187,7 +167,7 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
     #
     if bConsoleOut:
         #
-        _sayDuration( tBeg )
+        sayDuration( tBeg )
 
 
 # workflow
