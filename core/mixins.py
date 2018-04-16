@@ -161,9 +161,11 @@ class FindUserMixin( object ):
 
     ''' find the user object '''
 
-    def findUser( self ):
+    def findUser( self, **kwargs  ):
 
         ''' method to find the user object '''
+
+        oUser = None
 
         if hasattr( self, 'user' ) and self.user is not None:
             oUser = self.user
@@ -171,10 +173,12 @@ class FindUserMixin( object ):
                hasattr( self.request, 'user' ) and
                self.request.user is not None ):
             oUser = self.request.user
-        elif ( hasattr( self.instance, 'user' ) and
+        elif ( hasattr( self, 'instance' ) and
+               hasattr( self.instance, 'user' ) and
                self.instance.user is not None ):
             oUser = self.instance.user
-        elif ( hasattr( self.instance, 'iUser' ) and
+        elif ( hasattr( self, 'instance' ) and
+               hasattr( self.instance, 'iUser' ) and
                self.instance.iUser is not None ): # testing
             oUser = self.instance.iUser
         #
