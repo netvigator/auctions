@@ -465,6 +465,9 @@ sExampleResponse = \
       "version":["1.13.0" ] } ]
 }'''
 
+# ###     if you add an item whose title includes a double quote,      ###
+# ### you must manually cover a signle backslash to a double backslash ###
+
 sResponseSearchTooBroad = \
 '''{"findItemsByKeywordsResponse":
   [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2018-03-03T23:04:24.581Z"],
@@ -537,7 +540,7 @@ sResponseSearchTooBroad = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["25"]}],"returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/162988530803_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["282602694679"],
-              "title":["ALTEC LANSING 604E Super 15\" Duplex Horn Speakers N-1500-A Crossover Pair"],
+              "title":["ALTEC LANSING 604E Super 15\\" Duplex Horn Speakers N-1500-A Crossover Pair"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mTRKR64kQS_8hQCnfmSzwnw\/140.jpg"],
