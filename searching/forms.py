@@ -83,7 +83,8 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
         #
         oEbayCategory = None
         #
-        if iDummyCategory is not None and iDummyCategory:
+        if (    self.user is not None and
+                iDummyCategory is not None and iDummyCategory ):
             #
             try:
                 oEbayCategory = EbayCategory.objects.get(
@@ -152,7 +153,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
                         ( sKeyWords, oEbayCategory.name ),
                                 code='already searching for keywords in ebay category' )
                 #
-            else:
+            else: # oEbayCategory is None
                 #
                 if Search.objects.filter(
                         iUser     = self.user ).filter(
