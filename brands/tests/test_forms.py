@@ -84,17 +84,26 @@ class TestFormValidation(BaseUserTestCase):
             iStars      = 5,
             iUser       = self.user1.id )
         #
+        # print( 'test_add_Title_already_there' )
         form = CreateBrandForm(data=form_data)
         form.request = self.request
-        self.assertFalse(form.is_valid())
+        form.user    = self.user1
+        #isFormValid = form.is_valid()
+        #self.assertFalse( isFormValid )
+        self.assertFalse( form.is_valid() )
         #
         form_data['cTitle'] = 'Caddy'
         #
         form = CreateBrandForm(data=form_data)
         form.request = self.request
-        self.assertFalse(form.is_valid())
+        form.user    = self.user1
+        #isFormValid = form.is_valid()
+        #self.assertFalse( isFormValid )
+        self.assertFalse( form.is_valid() )
         #
-        '''
+        ''' yes the errors are there
+        print('')
+        print( 'form.is_valid() returns', form.is_valid() )
         if form.errors:
             for k, v in form.errors.items():
                 print( k, ' -- ', v )

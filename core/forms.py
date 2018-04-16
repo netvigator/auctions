@@ -19,11 +19,10 @@ class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
         #
-        if not hasattr( self, 'user' ): self.user = None
-        #
-        if 'user' in kwargs: self.user = kwargs.pop('user')
-        #
-        if self.user is None: self.user = self.FindUserMixin()
+        if not hasattr( self, 'user' ) or self.user is None:
+            #
+            self.user = self.findUser( **kwargs )
+            #
         #
         super( BaseModelFormGotCrispy, self ).__init__( *args, **kwargs )
         #
@@ -53,22 +52,37 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
     def gotTitleAready( self, cTitle ):
         #
         # oUser = self.FindUserMixin()
-        #        
+        #
+        #qs = self.Meta.model.objects.all()
+        #for oModel in qs:
+            #print( 'oModel.cTitle:', oModel.cTitle, 'oModel.iUser:', oModel.iUser )
+        ##
+        #print( 'cTitle:', cTitle, 'self.user:', self.user )
+        #
         if ( self.Meta.model.objects.filter(
-                iUser           = self.user ).filter(
+                iUser           = self.user,
                 cTitle__iexact  = cTitle ).exists() ):
             #
-            raise ValidationError('Title "%s" already exists. '
+            oInvalid = ValidationError('Title "%s" already exists. '
                         '(Info in parens about this entry can '
                         'overcome this glitch.)' % cTitle,
                         code = 'title already exists' )
+            #
+            self.add_error( 'cTitle', oInvalid )
+            #
+            #raise oInvalid
         #
         if ( self.Meta.model.objects.filter(
-                iUser               = self.user ).filter(
+                iUser               = self.user,
                 cLookFor__icontains = cTitle ).exists() ):
             #
-            raise ValidationError('Title "%s" is in Look For' % cTitle,
+            oInvalid = ValidationError('Title "%s" is in Look For' % cTitle,
                         code = 'title exists in Look For' )
+            #
+            self.add_error( 'cLookFor', oInvalid )
+            #
+            #raise oInvalid
+            #
 
     def clean(self):
         #
