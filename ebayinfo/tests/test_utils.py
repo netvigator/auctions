@@ -269,6 +269,6 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         if lUpdated:
             self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
             self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
-            self.assertEqual( lUpdated[0].get('iEbayHas'),  117 )
+            self.assertEqual( lUpdated[0].get('iEbayHas'),  118 )
 
 
