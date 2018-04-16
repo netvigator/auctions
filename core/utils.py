@@ -1,5 +1,6 @@
 # misc utils can go here
 from django.db.models       import ForeignKey
+from django.utils           import timezone
 
 from String.Find            import getFinderFindAll
 from String.Eat             import eatFromWithin
@@ -136,3 +137,28 @@ def updateMemoryTableUpdated( sTable, sField = None ):
         #
         ebayinfo.utils.dSiteID2ListVers = dSiteID2ListVers
         #
+
+
+def getBegTime( bConsoleOut ):
+    #
+    tBeg = timezone.now()
+    #
+    if bConsoleOut:
+        #
+        print( 'Beg:', str( tBeg )[:19] )
+        #
+    #
+    return tBeg
+
+
+
+def sayDuration( tBeg ):
+    #
+    tEnd = timezone.now()
+    #
+    print( 'End:', str( tEnd )[:19] )
+    #
+    lDuration = str( tEnd - tBeg ).split( '.' )
+    #
+    print( 'Duration:', lDuration[0] )
+
