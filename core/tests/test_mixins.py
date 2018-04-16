@@ -28,7 +28,7 @@ class EditingTitleShouldBlankFinder( setUpBrandsCategoriesModels ):
         bInTitle, bExcludeThis = foundItem( self.oBrand.cTitle )
         #
         self.assertIn( self.oBrand.cRegExLook4Title,
-                                    ( 'Cadillac|Caddy', 'Caddy|Cadillac') )
+                            ( r'Cadillac|\bCaddy\b', r'\bCaddy\b|Cadillac') )
         #
         update_url = reverse( 'brands:edit', args=(self.oBrand.id,) )
         #
