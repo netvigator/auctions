@@ -215,7 +215,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, 30 )
+        self.assertEqual( oSG.iCategoryVer, 31 )
 
 
     @tag('ebay_api')
