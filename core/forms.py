@@ -57,12 +57,6 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         # oUser = self.FindUserMixin()
         #
-        #qs = self.Meta.model.objects.all()
-        #for oModel in qs:
-            #print( 'oModel.cTitle:', oModel.cTitle, 'oModel.iUser:', oModel.iUser )
-        ##
-        #print( 'cTitle:', cTitle, 'self.user:', self.user )
-        #
         if ( self.Meta.model.objects.filter(
                 iUser           = self.user,
                 cTitle__iexact  = cTitle ).exists() ):
