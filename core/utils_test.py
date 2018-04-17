@@ -13,6 +13,9 @@ from brands.models          import Brand
 from categories.models      import Category
 from models.models          import Model
 
+from ebayinfo               import ( EBAY_US_CURRENT_VERSION,
+                                     EBAY_GB_CURRENT_VERSION )
+
 from ebayinfo.models        import EbayCategory, Market
 
 def getDefaultMarket():
@@ -25,7 +28,7 @@ def getDefaultMarket():
         market.cMarket     = 'EBAY-GB'
         market.cCountry    = 'UK'
         market.iEbaySiteID = 3
-        market.iCategoryVer= 108
+        market.iCategoryVer= EBAY_GB_CURRENT_VERSION
         market.cCurrencyDef= 'GBP'
         market.cLanguage   = 'en-UK'
         market.save()
@@ -43,7 +46,7 @@ def getDefaultMarket():
         market.cMarket     = 'EBAY-US'
         market.cCountry    = 'US'
         market.iEbaySiteID = 0
-        market.iCategoryVer= 117
+        market.iCategoryVer= EBAY_US_CURRENT_VERSION
         market.cCurrencyDef= 'USD'
         market.cLanguage   = 'en-US'
         market.save()
@@ -144,7 +147,7 @@ class BaseUserTestCase( WebTest ):
                 cCountry    = 'US',
                 iEbaySiteID = 0,
                 cLanguage   = 'en-US',
-                iCategoryVer= 1,
+                iCategoryVer= EBAY_US_CURRENT_VERSION,
                 cCurrencyDef= 'USD' )
             self.market.save()
         #
