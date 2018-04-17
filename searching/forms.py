@@ -229,28 +229,15 @@ class UserItemFoundUploadForm(ModelForm):
 
 
 
-lUserItemFoundFields = [
-    'iItemNumb.cTitle',
-    'iItemNumb.cLocation',
-    'iItemNumb.cCountry',
-    'iItemNumb.cMarket', ]
 
-tRest = (
-    'iSearch',
-    'tlook4hits',
-    'cWhereCategory', )
 
-tEditable = (
+tUserItemFoundFields = (
     'iModel',
+    'gModel',
     'iBrand',
     'iCategory',
     'bGetPictures',
     'iHitStars'  )
-
-
-tUserItemFoundFields = tEditable
-# tUserItemFoundFields.extend( tRest )
-
 
 
 class UserItemFoundForm( BaseModelFormGotCrispy ):
