@@ -4,13 +4,31 @@ from ..models           import UserItemFound
 
 from .test_utils        import storeUserItemFoundButDontTestYet
 
+from models.models      import Model
+
+
 
 class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet ):
     #
     ''' test AnyReleventHitStarColsChangedMixin'''
-    
 
-    def test_remove_brand_zero_hitstars( self ):
+    def setUp( self ):
+        #
+        '''set up to test _storeUserItemFound() with actual record'''
+        #
+        super( EditingUserItemFoundShouldRedoHitStars, self ).setUp()
+        #
+        self.oModel2 = Model(
+            cTitle      = "Calais",
+            cExcludeIf  = 'golf',
+            iStars      = 1,
+            iBrand      = self.oBrand,
+            iCategory   = self.oCategory,
+            iUser       = self.user1 )
+        self.oModel2.save()
+
+
+    def test_change_brand_recalculate_hitstars( self ):
         #
         ''' test AnyReleventHitStarColsChangedMixin'''
         #
@@ -49,7 +67,13 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet )
         self.assertEqual( data['iModel'], self.oModel.id )
         #
         # manipulate some data
-        data['iModel'] = ''
+        data['iModel'] = self.oModel2.id
+        #
+        # ### testing no longer works, maybe cuz the extra field gModel ###
+        #print('')
+        #print( 'form.is_valid():', form.is_valid() )
+        #print('searching data:')
+        #pprint( data )
         #
         # POST to the form
         r = self.client.post( update_url, data )
@@ -57,17 +81,23 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet )
         # retrieve again
         r = self.client.get( update_url )
         #
-        self.assertIsNone( r.context['form'].initial['iModel'] )
+        #pprint( r.context['form'] )
+        self.assertEquals(
+                r.context['form'].initial['iModel'], self.oModel2.id )
         #
         form = self.app.get( update_url ).form
         #
-        form['iModel'] = ''
+        form['iModel'] = self.oModel2.id
         #
         response = form.submit()
         #
         oUserItemFound.refresh_from_db()
         #
-        self.assertEquals( oUserItemFound.iHitStars, 0 )
+        iExpectStars = (
+                oUserItemFound.iBrand.iStars *
+                oUserItemFound.iCategory.iStars )
+        #
+        self.assertEquals( oUserItemFound.iHitStars, iExpectStars )
 
 
 
