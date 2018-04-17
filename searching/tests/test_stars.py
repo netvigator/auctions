@@ -17,17 +17,40 @@ from ..utils            import storeSearchResultsInDB
 
 from .test_utils        import GetBrandsCategoriesModelsSetUp
 
-from ..utils_stars      import ( _getModelRegExFinders4Test,
-                                 _getCategoryRegExFinders4Test,
-                                 _getBrandRegExFinders4Test,
-                                 getFoundItemTester,
-                                 findSearchHits )
+from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
+                                 findSearchHits, _getRowRegExpressions )
+
 
 from brands.views       import BrandUpdateView
 from models.models      import Model
 
 from File.Del           import DeleteIfExists
 from File.Write         import QuietDump
+
+
+
+def _getModelRegExFinders4Test( oModel ):
+    #
+    t = _getRowRegExpressions( oModel, bAddDash = True )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
+
+
+def _getCategoryRegExFinders4Test( oCategory ):
+    #
+    t = _getRowRegExpressions( oCategory )
+    #
+    return tuple( map( _getRegExSearchOrNone, t ) )
+
+
+def _getBrandRegExFinders4Test( oBrand ):
+    #
+    t = _getRowRegExpressions( oBrand )
+    #
+    sFindTitle, sFindExclude, sFindKeyWords = t
+    #
+    return tuple( map( _getRegExSearchOrNone, t[:2] ) )
+
 
 
 
@@ -69,7 +92,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 45 )
+        self.assertEquals( len( oTempItemsFound ), 48 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
@@ -124,7 +147,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
             iCount += 1
         #
         #
-        self.assertEquals( iCount, 24 )
+        self.assertEquals( iCount, 26 )
         #
         self.assertIsNotNone( oFisherSpeakers )
         #
@@ -169,7 +192,6 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
 
 
- 
 
 class findersStorageTest( setUpBrandsCategoriesModels ):
     
@@ -306,9 +328,9 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertFalse( bExcludeThis )
         #
         self.assertIn(     self.oBrand.cRegExLook4Title,
-                                    ( 'Cadillac|Caddy', 'Caddy|Cadillac') )
+                            ( r'Cadillac|\bCaddy\b', r'\bCaddy\b|Cadillac') )
         #
-        self.assertEquals( self.oBrand.cRegExExclude, 'golf' )
+        self.assertEquals( self.oBrand.cRegExExclude, r'\bgolf\b' )
         #
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
@@ -352,10 +374,10 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertFalse( bExcludeThis )
         #
         self.assertIn(     self.oCategory.cRegExLook4Title,
-                                        ( 'Gizmo|Widget', 'Widget|Gizmo' ) )
+                                ( r'\bGizmo\b|Widget', r'Widget|\bGizmo\b' ) )
         #
-        self.assertEquals( self.oCategory.cRegExExclude,  'Delta'  )
-        self.assertEquals( self.oCategory.cRegExKeyWords, 'Gadget' )
+        self.assertEquals( self.oCategory.cRegExExclude,  r'\bDelta\b'  )
+        self.assertEquals( self.oCategory.cRegExKeyWords,    'Gadget' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -406,7 +428,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertIn(     self.oModel.cRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
         #
-        self.assertEquals( self.oModel.cRegExExclude,  'golf'     )
+        self.assertEquals( self.oModel.cRegExExclude, r'\bgolf\b' )
         self.assertEquals( self.oModel.cRegExKeyWords, 'Eldorado' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
