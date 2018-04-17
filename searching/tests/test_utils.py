@@ -26,10 +26,7 @@ from ..tests            import dSearchResult # in __init__.py
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseSearchTooBroad )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
-from ..utils_stars      import ( getFoundItemTester,
-                                 _getBrandRegExFinders4Test,
-                                 _getCategoryRegExFinders4Test,
-                                 findSearchHits )
+from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInDB,
                                  ItemAlreadyInTable,
                                  _putPageNumbInFileName,
@@ -41,7 +38,6 @@ from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
                                  getPagination, _getFindingResponseGenerator,
                                  getSearchResultGenerator )
 
-#
 
 from brands.models      import Brand
 from categories.models  import Category
