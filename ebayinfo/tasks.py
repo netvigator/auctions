@@ -1,9 +1,12 @@
 
 
 from .utils         import getWhetherAnyEbayCategoryListsAreUpdated
-from .utils         import getCategoryListThenStore
+from .utils         import getCategoryListThenStore, dSiteID2Market
 
 from .models        import Market, EbayCategory
+
+from core.utils     import getBegTime, sayDuration
+
 
 # ### l = getWhetherAnyEbayCategoryListsAreUpdated() ###
 
@@ -32,5 +35,25 @@ def getAllMissingCategoryLists():
             #
 
 
-# ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
+def getCategoryListsUpdated( bConsoleOut = False ):
+    #
+    tBeg = getBegTime( bConsoleOut )
+    #
+    lNeedUpdates = getWhetherAnyEbayCategoryListsAreUpdated()
+    #
+    for d in lNeedUpdates:
+        #
+        getCategoryListThenStore(
+                uMarket         = dSiteID2Market[ d['iSiteID'] ],
+                uWantVersion    = d['iEbayHas'],
+                bShowProgress   = bConsoleOut )
+        #
+    #
+    #
+    if bConsoleOut:
+        #
+        sayDuration( tBeg )
 
+
+# ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
+# ### run getCategoryListsUpdated() to update               ###
