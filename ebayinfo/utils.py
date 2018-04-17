@@ -5,7 +5,6 @@ from django.conf            import settings
 
 import xml.etree.ElementTree as ET
 
-
 from core.utils             import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
@@ -158,7 +157,7 @@ returns
  'CategoryLevel': '1',
  'CategoryName': 'Antiques',
  'CategoryParentID': '20081',
- 'CategoryVersion': '117',
+ 'CategoryVersion': EBAY_US_CURRENT_VERSION,
  'LeafCategory': ''}
 '''
 
