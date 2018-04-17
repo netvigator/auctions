@@ -28,7 +28,7 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet )
         self.oModel2.save()
 
 
-    def test_change_brand_recalculate_hitstars( self ):
+    def test_change_model_recalculate_hitstars( self ):
         #
         ''' test AnyReleventHitStarColsChangedMixin'''
         #
