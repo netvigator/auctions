@@ -6,6 +6,8 @@ from django.test    import TestCase, tag
 from core.utils     import updateMemoryTableUpdated
 from core.utils_test import getDefaultMarket, getEbayCategoriesSetUp
 
+from ebayinfo       import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
+
 from ..models       import EbayCategory, Market
 
 # the following are in the tests __init__.py file
@@ -40,7 +42,7 @@ class CatetoryListHasNewVers( Exception ): pass
 
 
 
-class getCategoryVersionTest(TestCase):
+class TestCategoryVersionTest(TestCase):
     '''test _getCategoryVersionFromFile()'''
     
     sFile = CATEGORY_VERSION_FILE % 'EBAY-US'
@@ -53,7 +55,8 @@ class getCategoryVersionTest(TestCase):
         # test is run AFTER the last line in this file is executed
         WriteText2File(
                 sExampleCategoryVersion, self.sFile )
-        self.assertEqual( _getCategoryVersionFromFile(), 117 )
+        self.assertEqual(
+                _getCategoryVersionFromFile(), 117 )
 
     def test_file_wrong_category_version(self):
         '''test with incorrect GetCategoriesResponse'''
@@ -215,7 +218,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, 31 )
+        self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
 
 
     @tag('ebay_api')
@@ -250,7 +253,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        oUSA.iCategoryVer = 116 # current SANDBOX version is actually 118
+        oUSA.iCategoryVer = 116 # current version is actually 118
         oUSA.save()
         #
         updateMemoryTableUpdated( 'markets', sField = 'iCategoryVer' )
