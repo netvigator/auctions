@@ -13,28 +13,29 @@ from Utils.Progress         import TextMeter, DummyMeter
 
 from searching              import WORD_BOUNDARY_MAX
 
+
 def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
+    #
+    '''gets the RegEx expression for title + look for
+    (comibines title & look for into one RegEx expression)'''
     #
     sLook4Title = getWhatsLeft( oTableRow.cTitle )
     #
-    cLookFor = oTableRow.cLookFor
+    sRegExpress = getRegExpress( sLook4Title,
+                                 bAddDash       = bAddDash,
+                                 bSubModelsOK   = bSubModelsOK,
+                                 iWordBoundChrs = WORD_BOUNDARY_MAX )
     #
-    if cLookFor:
+    if oTableRow.cLookFor is not None and oTableRow.cLookFor:
         #
-        cLookFor = cLookFor.strip()
+        sLookFor = oTableRow.cLookFor.strip()
         #
-        sLookFor = '\r'.join( ( sLook4Title, cLookFor ) )
-        #
-        sRegExpress = getRegExpress( sLookFor,
-                                     bSubModelsOK   = bSubModelsOK,
-                                     iWordBoundChrs = WORD_BOUNDARY_MAX )
-        
-    else:
-        #
-        sRegExpress = getRegExpress( sLook4Title,
-                                     bAddDash       = bAddDash,
-                                     bSubModelsOK   = bSubModelsOK,
-                                     iWordBoundChrs = WORD_BOUNDARY_MAX )
+        sRegExpress = '|'.join( (   sRegExpress,
+                                    getRegExpress(
+                                        sLookFor,
+                                        bAddDash       = bAddDash,
+                                        bSubModelsOK   = bSubModelsOK,
+                                        iWordBoundChrs = WORD_BOUNDARY_MAX ) ) )
         #
     #
     return sRegExpress
@@ -43,6 +44,10 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
 
 def _getRowRegExpressions( oTableRow,
                            bAddDash = False, bSubModelsOK = False ):
+    #
+    '''if the row already has RegEx expressions stored, returns them;
+    otherwise, generate the RegEx expressions, store them in the row,
+    & return them'''
     #
     bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
     #
@@ -111,29 +116,13 @@ def _getRegExSearchOrNone( s ):
         return oRegExObj.search
 
 
-def _getModelRegExFinders4Test( oModel ):
-    #
-    t = _getRowRegExpressions( oModel, bAddDash = True )
-    #
-    return tuple( map( _getRegExSearchOrNone, t ) )
 
-
-def _getCategoryRegExFinders4Test( oCategory ):
+def _getRegExObjOrNone( s ):
     #
-    t = _getRowRegExpressions( oCategory )
-    #
-    return tuple( map( _getRegExSearchOrNone, t ) )
-
-
-def _getBrandRegExFinders4Test( oBrand ):
-    #
-    t = _getRowRegExpressions( oBrand )
-    #
-    sFindTitle, sFindExclude, sFindKeyWords = t
-    #
-    return tuple( map( _getRegExSearchOrNone, t[:2] ) )
-
-
+    if s:
+        oRegExObj = getRegExObj( s )
+        #
+        return oRegExObj
 
 
 
@@ -161,17 +150,23 @@ def getFoundItemTester( oTableRow, dFinders,
                                    bAddDash     = bAddDash,
                                    bSubModelsOK = bSubModelsOK )
         #
-        t = tuple( map( _getRegExSearchOrNone, t ) )
+        t = tuple( map( _getRegExObjOrNone, t ) )
         #
         findTitle, findExclude, findKeyWords = t
         #
+        searchTitle = searchExclude = searchKeyWords = None
+        #
+        if findTitle    is not None: searchTitle     = findTitle.search
+        if findExclude  is not None: searchExclude   = findExclude.search
+        if findKeyWords is not None: searchKeyWords  = findKeyWords.search
+        #
         def foundItemTester( s ):
             #
-            bIncludeThis = _includeNotExclude( s, findExclude )
+            bIncludeThis = _includeNotExclude( s, searchExclude )
             #
-            return (    findTitle( s ) and
+            return (    searchTitle( s ) and
                         bIncludeThis and
-                        _gotKeyWordsOrNoKeyWords( s, findKeyWords ),
+                        _gotKeyWordsOrNoKeyWords( s, searchKeyWords ),
                      not bIncludeThis )
         #
         dFinders[ oTableRow.pk ] = foundItemTester
