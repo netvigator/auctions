@@ -66,11 +66,11 @@ class PutMarketsInDatabaseTest(TestCase):
         #
         self.assertEqual( oUSA.cCurrencyDef, 'USD' )
         #
-        self.assertEqual( oUSA.iCategoryVer, 117 )
+        self.assertEqual( oUSA.iCategoryVer, 118 )
         #
         oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, 30 )
+        self.assertEqual( oSG.iCategoryVer, 31 )
 
