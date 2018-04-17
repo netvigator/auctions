@@ -73,11 +73,11 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        self.assertEqual( oUSA.iCategoryVer, 117 )
+        self.assertEqual( oUSA.iCategoryVer, 118 )
         #
         iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertEqual( iDictVers, 117 )
+        self.assertEqual( iDictVers, 118 )
         #
         self.assertEqual( oUSA.iCategoryVer, iDictVers,
                           msg = 'table & memory values should be same' )
