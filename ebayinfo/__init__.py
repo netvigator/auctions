@@ -1,3 +1,7 @@
+EBAY_SG_CURRENT_VERSION =  31
+EBAY_US_CURRENT_VERSION = 118
+EBAY_GB_CURRENT_VERSION = 109
+
 # select * from markets order by "iEbaySiteID" ;
 #
 sMarketsTable = \
