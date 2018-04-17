@@ -3,6 +3,8 @@ from django.test    import TestCase
 from core.utils_test import ( getTableFromScreenCaptureGenerator,
                               getNamePositionDict )
 
+from ebayinfo       import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
+
 from .models        import Market
 
 def getMarketsIntoDatabase():
@@ -66,11 +68,11 @@ class PutMarketsInDatabaseTest(TestCase):
         #
         self.assertEqual( oUSA.cCurrencyDef, 'USD' )
         #
-        self.assertEqual( oUSA.iCategoryVer, 118 )
+        self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
         #
         oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, 31 )
+        self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
 
