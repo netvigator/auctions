@@ -7,6 +7,8 @@ from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
 from ..utils_test       import ( getUrlQueryStringOff,
                                  queryGotUpdated )
 
+from ebayinfo           import EBAY_US_CURRENT_VERSION
+
 from ebayinfo.models    import Market
 
 from ebayinfo.utils_test import ( getMarketsIntoDatabase,
@@ -73,7 +75,7 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        self.assertEqual( oUSA.iCategoryVer, 118 )
+        self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
         #
         iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
@@ -82,8 +84,8 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
         self.assertEqual( oUSA.iCategoryVer, iDictVers,
                           msg = 'table & memory values should be same' )
         #
-        oUSA.iCategoryVer = 116 # current production version is actually 117
-        oUSA.save() # saved to table but dSiteID2ListVers should have 117
+        oUSA.iCategoryVer = 116 # current version is actually higher
+        oUSA.save() # saved to table but dSiteID2ListVers should have higher
         #
         self.assertEqual( oUSA.iCategoryVer, 116 )
         #
