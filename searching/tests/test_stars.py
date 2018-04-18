@@ -92,32 +92,56 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         oTempItemsFound = ItemFoundTemp.objects.all()
         #
-        self.assertEquals( len( oTempItemsFound ), 48 )
+        self.assertGreater( len( oTempItemsFound ), 160 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
         #
         iCount = 0
         #
-        oFisherSpeakers = oTube5R4GB = oTube12SN7 = None
+        oFisherSpeakers = oTube5R4GB = oTube12SN7 = oAltecHorn = None
+
+        oFisher100s = oAltecItem1 = oAltecItem2 = oTube6BH6 = None
+        #
+        setItemsToTest = frozenset(
+              ( 282602694679,
+                253486571279,
+                123046984227,
+                192509883813,
+                162988285719,
+                332618106572,
+                162988530803,
+                ) )
         #
         for oTemp in oUserItems:
             #
-            ##
+            #
             if oTemp.iHitStars == 0: break
-            ##
-            ##
-            if oTemp.iItemNumb_id == 253486571279:
+            #
+            if oTemp.iItemNumb_id in setItemsToTest:
+                #
+                if oTemp.iItemNumb_id == 282602694679:
 
-                oFisherSpeakers = oTemp
+                    if oAltecItem1 is not None:
 
-            if oTemp.iItemNumb_id == 123046984227:
+                        oAltecItem2 = oTemp
 
-                oTube5R4GB = oTemp
+                    else:
 
-            if oTemp.iItemNumb_id == 162988285719:
+                        oAltecItem1 = oTemp
 
-                oTube12SN7 = oTemp
+                elif oTemp.iItemNumb_id == 253486571279 :
+                    oFisherSpeakers = oTemp
+                elif oTemp.iItemNumb_id == 123046984227 :
+                    oTube5R4GB      = oTemp
+                elif oTemp.iItemNumb_id == 192509883813 :
+                    oFisher100s     = oTemp
+                elif oTemp.iItemNumb_id == 162988285719 :
+                    oTube12SN7      = oTemp
+                elif oTemp.iItemNumb_id == 332618106572 :
+                    oTube6BH6       = oTemp
+                elif oTemp.iItemNumb_id == 162988530803 :
+                    oAltecHorn      = oTemp
                 #
                 #print( '' )
 
@@ -146,8 +170,24 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
             #
             iCount += 1
         #
+        #if oAltecItem1 is not None:
+            #if oAltecItem1.iModel is not None:
+                #print( oAltecItem1.iModel.cTitle )
+            #else: print( 'oAltecItem1.iModel is None' )
+            #if oAltecItem1.iCategory is not None:
+                #print( oAltecItem1.iCategory.cTitle )
+            #else: print( 'oAltecItem1.iCategory is None' )
+            #print( oAltecItem1.iHitStars )
+        #if oAltecItem2 is not None:
+            #if oAltecItem2.iModel is not None:
+                #print( oAltecItem2.iModel.cTitle )
+            #else: print( 'oAltecItem2.iModel is None' )
+            #if oAltecItem2.iCategory is not None:
+                #print( oAltecItem2.iCategory.cTitle )
+            #else: print( 'oAltecItem2.iCategory is None' )
+            #print( oAltecItem2.iHitStars )
         #
-        self.assertEquals( iCount, 26 )
+        self.assertGreater( iCount, 40 )
         #
         self.assertIsNotNone( oFisherSpeakers )
         #
@@ -181,6 +221,46 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         self.assertEquals( oTube12SN7.iCategory.cTitle, 'Vacuum Tube' )
         #
+        self.assertIsNotNone( oAltecItem1 )
+        #
+        self.assertIn( oAltecItem1.iModel.cTitle, ( 'N-1500A', '604E' ) )
+        #
+        self.assertIn( oAltecItem1.iCategory.cTitle, ( 'Driver', 'Crossover' ) )
+        #
+        self.assertIsNotNone( oAltecItem2 )
+        #
+        self.assertIn( oAltecItem2.iModel.cTitle, ( 'N-1500A', '604E' ) )
+        #
+        self.assertIn( oAltecItem2.iCategory.cTitle, ( 'Driver', 'Crossover' ) )
+        #
+        self.assertIsNotNone( oFisher100s )
+        #
+        self.assertEquals( oFisher100s.iModel.cTitle,    '100 (speaker)' )
+        #
+        self.assertEquals( oFisher100s.iBrand.cTitle,    'Fisher' )
+        #
+        self.assertEquals( oFisher100s.iCategory.cTitle, 'Speaker System' )
+        #
+        self.assertIsNotNone( oTube6BH6 )
+        #
+        self.assertEquals( oTube6BH6.iModel.cTitle,    '6BH6' )
+        #
+        self.assertEquals( oTube6BH6.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        self.assertEquals( oTube6BH6.cWhereCategory,   'heirarchy1' )
+        #
+        self.assertEquals( oTube6BH6.iBrand.cTitle,    'RCA'    )
+        #
+        self.assertIsNotNone( oAltecHorn )
+        #
+        self.assertEquals( oAltecHorn.iModel.cTitle,    '311-90' )
+        #
+        self.assertEquals( oAltecHorn.iCategory.cTitle, 'Horn' )
+        #
+        self.assertEquals( oAltecHorn.cWhereCategory,   'title' )
+        #
+        self.assertEquals( oAltecHorn.iBrand.cTitle,    'Altec-Lansing' )
+        #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
@@ -188,7 +268,7 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         iCount = Model.objects.all().count()
         #
-        self.assertEqual( iCount, 158 )
+        self.assertGreater( iCount, 160 )
         #
 
 
