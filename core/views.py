@@ -99,10 +99,11 @@ class ListViewGotModel(
         iStart = iBeg - 1 if iBeg > 0 else 0
         
         show_range = paginator.page_range[ iStart : iEnd ]
-        print( 'iBeg:', iBeg )
-        print( 'iEnd:', iEnd )
-        print( 'iMidRight:', iMidRight )
-        print( 'show_range:', show_range )
+
+        #print( 'iBeg:', iBeg )
+        #print( 'iEnd:', iEnd )
+        #print( 'iMidRight:', iMidRight )
+        #print( 'show_range:', show_range )
 
         #print( 'iPageNumb', iPageNumb   )
         #print( 'iBegAvg',   iBegAvg     )
