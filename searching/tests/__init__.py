@@ -41,7 +41,7 @@ sBrands = \
  National          |      7 |            | 
  DuKane            |      7 |            | 
  Brociner          |      6 |            | 
- Altec-Lansing     |     10 |            | 
+ Altec-Lansing     |     10 |            | Altec
  Fisher            |      9 |            | 
  Heathkit          |      8 |            | Heath
  Scott, H.H.       |      8 |            | Scott\\rH.H. Scott
@@ -79,7 +79,13 @@ sModels = \
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
- Radiotron          |           |      6 | t            | RCA               |         Book |
+ 6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
+ 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
+ 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | 
+ 604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
+ N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ Designers Handbook | Radiotron |      6 | t            | RCA               |         Book | Designer's Handbook |
  XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             | 
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             | 
  HF-85              |           |      7 | t            | EICO              |       Preamp |             | 
@@ -527,7 +533,7 @@ sResponseSearchTooBroad = \
            },{"itemId":["162988530803"],
               "title":["ALTEC LANSING  311-90 Horn for 288 290 291 292 299 drivers "],
               "globalId":["EBAY-US"],
-              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],"secondaryCategory":[{"categoryId":["47092"],"categoryName":["Speaker Drivers & Horns"]}],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mzRY0LYxDsD1ETtl0gj_xOQ\/140.jpg"],
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/ALTEC-LANSING-311-90-Horn-288-290-291-292-299-drivers-\/162988530803"],
               "paymentMethod":["PayPal"],"autoPay":["false"],
