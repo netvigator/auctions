@@ -7,6 +7,9 @@ from core.utils             import getWhatsLeft
 
 from .models                import ItemFound, UserItemFound, ItemFoundTemp
 
+from categories.models      import BrandCategory
+
+from String.Get             import getTextBeforeC
 from String.Find            import getRegExpress, getRegExObj
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
@@ -97,11 +100,6 @@ def _getRowRegExpressions( oTableRow,
             oTableRow.save()
         except DataError as e:
             logger.error( 'DataError: %s' % e )
-            #print( 'oTableRow   :', oTableRow.cTitle )
-            #print( 'sFindTitle  :', sFindTitle )
-            #print( 'sFindExclude:', sFindExclude )
-            #if bRowHasKeyWords:
-                #print( 'sFindKeyWords:', sFindKeyWords)
         #
     #
     return sFindTitle, sFindExclude, sFindKeyWords
@@ -194,9 +192,10 @@ def _whichGetsCredit( bInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 
 
-def findSearchHits( iUser = oUserOne.id,
-        bCleanUpAfterYourself   = True,
-        bShowProgress           = False ):
+def findSearchHits(
+            iUser                   = oUserOne.id,
+            bCleanUpAfterYourself   = True,
+            bShowProgress           = False ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -242,6 +241,16 @@ def findSearchHits( iUser = oUserOne.id,
     #
     iSeq = 0
     #
+    qsCategories = Category.objects.filter(
+            iUser = oUser ).order_by( '-iStars' )
+    #
+    qsModels = ( Model.objects
+                    .select_related('iBrand')
+                    .filter( iUser = oUser )
+                    .order_by( '-iStars' ) )
+    #
+    qsBrands = Brand.objects.filter( iUser = oUser ).order_by( '-iStars' )
+    #
     for oItem in qsItems:
         #
         iSeq  += 1
@@ -255,9 +264,21 @@ def findSearchHits( iUser = oUserOne.id,
         bGotCategory   = False
         #
         oItemFoundTemp = None
+        lItemFoundTemp = []
         #
-        qsCategories = Category.objects.filter( iUser = oUser )
+        oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
         #
+        sRelevantTitle = oItem.cTitle
+        #
+        if ' for ' in sRelevantTitle.lower(): # abc for xyz
+            #
+            sRelevantTitle = getTextBeforeC( sRelevantTitle, ' for ' )
+            #
+        #
+        #if oItem.iItemNumb == 162988530803:
+            #print('')
+            #print('Item 162988530803 is here' )
+            #print('sRelevantTitle:', sRelevantTitle )
         for oCategory in qsCategories:
             #
             foundItem = getFoundItemTester( oCategory, dFindersCategories )
@@ -267,11 +288,11 @@ def findSearchHits( iUser = oUserOne.id,
             # and the string will not be searched
             # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
             #
-            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
+            bInTitle, bExcludeThis = foundItem( sRelevantTitle )
             #
             if bExcludeThis:
                 #
-                bInHeirarchy1 = bInHeirarchy2 = False
+                continue
                 #
             else:
                 #
@@ -296,8 +317,6 @@ def findSearchHits( iUser = oUserOne.id,
                 sWhich = _whichGetsCredit(
                             bInTitle, bInHeirarchy1, bGotCategory )
                 #
-                oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
-                #
                 oItemFoundTemp = ItemFoundTemp(
                         iItemNumb       = oItemFound,
                         iHitStars       = oCategory.iStars,
@@ -307,25 +326,124 @@ def findSearchHits( iUser = oUserOne.id,
                 #
                 oItemFoundTemp.save()
                 #
+                lItemFoundTemp.append( oItemFoundTemp )
+                #
+                #if oItem.iItemNumb == 162988530803:
+                    #print('')
+                    #print('Category:', oCategory.cTitle )
             #
         #
-        if bExcludeThis: continue
-        #
-        qsBrands = Brand.objects.filter( iUser = oUser ).order_by( '-iStars' )
-        #
-        bFoundBrand = False
+        #if oItem.iItemNumb == 162988530803:
+            #print('')
+            #print('doing models now')
+        for oModel in qsModels:
+            #
+            foundItem = getFoundItemTester( oModel, dFindersModels,
+                            bAddDash = True,
+                            bSubModelsOK = oModel.bSubModelsOK )
+            #
+            bFoundCategoryForModel = False
+            #
+            bInTitle, bExcludeThis = foundItem( sRelevantTitle )
+            #
+            #if oItem.iItemNumb == 162988530803 and oModel.cTitle == '311-90':
+                #print('')
+                #print('doing model 311-90 now')
+                #print('bInTitle, bExcludeThis:', bInTitle, bExcludeThis )
+            if bInTitle and not bExcludeThis:
+                #
+                for oItemFoundTemp in lItemFoundTemp:
+                    #
+                    if oModel.iCategory == oItemFoundTemp.iCategory:
+                        #
+                        oItemFoundTemp.iModel     = oModel
+                        oItemFoundTemp.iHitStars *= oModel.iStars
+                        #
+                        oItemFoundTemp.save()
+                        #
+                        bFoundCategoryForModel    = True
+                        #
+                        #if oItem.iItemNumb == 162988530803:
+                            #print('')
+                            #print('model found for caregory:',
+                                   #oModel.cTitle, oModel.iCategory.cTitle )
+                        #
+                        break
+                        #
+                #
+                if not bFoundCategoryForModel:
+                    #
+                    oItemFoundTemp = ItemFoundTemp(
+                            iItemNumb       = oItemFound,
+                            iHitStars       = oModel.iStars,
+                            iSearch         = oUserItem.iSearch,
+                            iModel          = oModel )
+                    #
+                    oItemFoundTemp.save()
+                    #
+                    lItemFoundTemp.append( oItemFoundTemp )
+                    #
+                    #if oItem.iItemNumb == 162988530803:
+                        #print('')
+                        #print('model found but no category:', oModel.cTitle )
+                    #
+                #
+            #
         #
         for oBrand in qsBrands:
             #
             foundItem = getFoundItemTester( oBrand, dFindersBrands )
             #
-            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
+            bFoundBrandForModel = False
             #
+            bInTitle, bExcludeThis = foundItem( sRelevantTitle )
+            #
+            #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE':
+                #print('brand GE')
             if bInTitle and not bExcludeThis:
                 #
-                bFoundBrand = True
+                #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE':
+                    #print('bInTitle and not bExcludeThis')
+                for oItemFoundTemp in lItemFoundTemp:
+                    #
+                    if oItemFoundTemp.iModel is not None:
+                        #
+                        #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE' and oItemFoundTemp.iModel.cTitle == '5R4GA':
+                            #print('doing 5R4GA')
+                        bSaveBrand = False
+                        #
+                        if oBrand == oItemFoundTemp.iModel.iBrand:
+                            #
+                            bSaveBrand = True
+                            #
+                        elif oItemFoundTemp.iModel.bGenericModel:
+                            #
+                            bSaveBrand = BrandCategory.objects.filter(
+                                iUser     = oUser,
+                                iBrand    = oBrand,
+                                iCategory = oItemFoundTemp.iCategory
+                                ).exists()
+                            #
+                            #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE' and oItemFoundTemp.iModel.cTitle == '5R4GA':
+                                #print('did we find a BrandCategory?:', bSaveBrand )
+                                #print('oUser:', oUser )
+                                #print('oBrand:', oBrand )
+                                #print('oItemFoundTemp.iCategory.cTitle:', oItemFoundTemp.iCategory.cTitle )
+                            #
+                        #
+                        if bSaveBrand:
+                            #
+                            oItemFoundTemp.iHitStars *= oBrand.iStars
+                            oItemFoundTemp.iBrand     = oBrand
+                            #
+                            oItemFoundTemp.save()
+                            #
+                            bFoundBrandForModel = True
+                            #
+                        #
+                    #
                 #
-                if oItemFoundTemp is None:
+                if not bFoundBrandForModel:
                     #
                     oItemFoundTemp = ItemFoundTemp(
                             iItemNumb       = oItem,
@@ -335,122 +453,83 @@ def findSearchHits( iUser = oUserOne.id,
                     #
                     oItemFoundTemp.save()
                     #
+                    lItemFoundTemp.append( oItemFoundTemp )
+                    #
+                #
+            #
+        #
+        tNow = timezone.now()
+        #
+        if lItemFoundTemp:
+            #
+            if len( lItemFoundTemp ) > 1:
+                #
+                lSortItems = []
+                #
+                for i in range( len( lItemFoundTemp ) ):
+                    #
+                    lSortItems.append( ( lItemFoundTemp[i].iHitStars, i ) )
+                    #
+                #
+                lSortItems.sort()
+                #
+                lSortItems.reverse()
+                #
+                lItemFoundTemp = [ lItemFoundTemp[ t[1] ] for t in lSortItems ]
+                #
+            #
+            iItemsFoundTemp = 0
+            #
+            for oItemFoundTemp in lItemFoundTemp:
+                #
+                iItemsFoundTemp += 1
+                #
+                if iItemsFoundTemp == 1:
+                    #
+                    oUserItem.iBrand        = oItemFoundTemp.iBrand
+                    oUserItem.iCategory     = oItemFoundTemp.iCategory
+                    oUserItem.iModel        = oItemFoundTemp.iModel
+                    #
+                    oUserItem.iHitStars     = oItemFoundTemp.iHitStars
+                    oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
+                    # oUserItem.iSearch     = oItemFoundTemp.iSearch
+                    #
+                    oUserItem.tlook4hits = tNow
+                    #
+                    oUserItem.save()
+                    #
+                elif (  oItemFoundTemp.iBrand and
+                        oItemFoundTemp.iCategory and
+                        oItemFoundTemp.iModel ):
+                    #
+                    # have complete hit, make an additional UserItem record
+                    #
+                    tNow = timezone.now()
+                    #
+                    oNewUserItem = UserItemFound(
+                            iItemNumb       = oUserItem.iItemNumb,
+                            iHitStars       = oItemFoundTemp.iHitStars,
+                            iSearch         = oItemFoundTemp.iSearch,
+                            iModel          = oItemFoundTemp.iModel,
+                            iBrand          = oItemFoundTemp.iBrand,
+                            iCategory       = oItemFoundTemp.iCategory,
+                            cWhereCategory  = oItemFoundTemp.cWhereCategory,
+                            tlook4hits      = tNow,
+                            tCreate         = tNow,
+                            tModify         = tNow,
+                            iUser           = oUser )
+                    #
+                    oNewUserItem.save()
+                    #
                 else:
                     #
-                    oItemFoundTemp.iHitStars *= oBrand.iStars
-                    oItemFoundTemp.iBrand     = oBrand
+                    break
                     #
-                    oItemFoundTemp.save()
-                #
-                break # maybe keep looking?
-                #
-            #
-        #
-        if oItemFoundTemp is None or bExcludeThis: continue
-        #
-        if bFoundBrand:
-            #
-            qsModels = ( Model.objects.filter( iUser  = oUser )
-                    .filter(
-                        Q( bGenericModel = True ) |
-                        Q( iBrand        = oBrand ) )
-                    .order_by( '-iStars' ) )
-            #
-        else:
-            #
-            qsModels = Model.objects.filter(
-                    iUser = oUser ).order_by( '-iStars' )
-            #
-        #
-        for oModel in qsModels:
-            #
-            foundItem = getFoundItemTester( oModel, dFindersModels,
-                            bAddDash = True,
-                            bSubModelsOK = oModel.bSubModelsOK )
-            #
-            bInTitle, bExcludeThis = foundItem( oItem.cTitle )
-            #
-            if bInTitle and not bExcludeThis:
-                #
-                oItemFoundTemp.iHitStars *= oModel.iStars
-                oItemFoundTemp.iModel     = oModel
-                #
-                oItemFoundTemp.save()
-                #
-                break
                 #
             #
         #
     #
     oProgressMeter.end( iSeq )
-    #
-    # now update UserItemFound with ItemFoundTemp
-    #
-    tNow = timezone.now()
-    #
-    bPrintUserItems = False
-    #
-    if bShowProgress: # progress meter for running in shell, no need to test
-        #
-        oProgressMeter = TextMeter()
-        #
-        print('')
-        sLineB4 = 'updating the items found table ...'
-        sOnLeft = "%s %s" % ( ReadableNo( iItemsFound ), 'items found' )
-        #
-        oProgressMeter.start( iItemsFound, sOnLeft, sLineB4 )
-        #
-    #
-    iSeq = 0
-    #
-    for oItem in qsItems:
-        #
-        iSeq  += 1
-        #
-        oProgressMeter.update( iSeq )
-        #
-        bGotUserItem = UserItemFound.objects.filter(
-                            iItemNumb = oItem.pk, iUser = oUser.id ).exists()
-        #
-        if bGotUserItem:
-            #
-            oUserItem = UserItemFound.objects.get(
-                            iItemNumb = oItem.pk, iUser = oUser.id )
-            #
-            oUserItem.tlook4hits = tNow
-            #
-            if ItemFoundTemp.objects.filter( iItemNumb = oItem.pk ).exists():
-                #
-                oItemFoundTemp = ( ItemFoundTemp.objects
-                                    .filter( iItemNumb = oItem.pk )
-                                    .order_by( '-iHitStars' ).first() )
-                #
-                oUserItem.iBrand        = oItemFoundTemp.iBrand
-                oUserItem.iCategory     = oItemFoundTemp.iCategory
-                oUserItem.iModel        = oItemFoundTemp.iModel
-                #
-                oUserItem.iHitStars     = oItemFoundTemp.iHitStars
-                oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
-                # oUserItem.iSearch     = oItemFoundTemp.iSearch
-                #
-            #
-            oUserItem.save()
-            #
-        else:
-            #
-            logger.error( 'UserItem not found for:', oItem.pk, oItem )
-            #
-            bPrintUserItems = True
-        #
-    #
-    oProgressMeter.end( iSeq )
-    #
-    if bPrintUserItems:
-        #
-        for oUserItem in UserItemFound.objects.all():
-            #
-            logger.error( oUserItem.pk, oUserItem )
-            #
     #
     if bCleanUpAfterYourself:
         #
