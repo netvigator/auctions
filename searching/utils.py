@@ -360,6 +360,10 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         # logger.error( 'SearchGotZeroResults: %s' % e )
         sLastResult = 'SearchGotZeroResults: %s' % e
         # suggest sending an email to the owner
+    except ConnectionResetError as e:
+        # logger.error( 'SearchGotZeroResults: %s' % e )
+        sLastResult = 'SearchGotZeroResults: %s' % e
+        # maybe an error reading the results
     #
     tNow = timezone.now()
     #
