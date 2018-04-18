@@ -170,6 +170,14 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
         sayDuration( tBeg )
 
 
+def doAllUnattended():
+    #
+    doSearchingPutResultsInFiles( bConsoleOut = True )
+    putSearchResultsInItemsFound( bConsoleOut = True )
+    doFindSearhHits( bConsoleOut = True )
+
+
+
 # workflow
 # 30 mins per user doSearchingPutResultsInFiles
 # 40 mins per user putSearchResultsInItemsFound
