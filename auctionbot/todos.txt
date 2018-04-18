@@ -62,18 +62,8 @@ http://127.0.0.1:8000/models/?previous=16&page=17
      15   15
 
 
-282602694679
-ALTEC LANSING 604E Super 15\" Duplex Horn Speakers N-1500-A Crossover Pair
-should get the driver and crossover
+tell all select_related calls which fields to select!!!
 
-192509883813
-Vintage THE FISHER 100 SPEAKER SYSTEM ~ Pair Retro Speakers Long Island City NY
-should get speaker not amp
 
-332618106572
-NIB Matched Quad RCA 6BH6 6661 E90F BLACK Marantz 8B Test STRONG 98-101% NEW NOS
-should find tube not 8b
 
-162988530803
-ALTEC LANSING  311-90 Horn for 288 290 291 292 299 drivers
-should find 311-90
+need to add to brandcategories (in categories)
