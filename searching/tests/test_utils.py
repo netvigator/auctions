@@ -40,7 +40,7 @@ from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
 
 
 from brands.models      import Brand
-from categories.models  import Category
+from categories.models  import Category, BrandCategory
 from models.models      import Model
 
 from File.Del           import DeleteIfExists
@@ -561,12 +561,6 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oCategory.save()
         #
         #
-        oCategory   = Category( cTitle      = 'Speaker System',
-                                iStars      = 9,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        #
         oCategory   = Category( cTitle      = 'Vacuum Tube',
                                 cLookFor    = 'tube\rtubes',
                                 cExcludeIf  = 'tube radio\rtube clock radio\rtube portable radio',
@@ -574,10 +568,42 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iUser       = self.user1 )
         oCategory.save()
         #
+        oVacuumTubes = oCategory
+        #
         oCategory   = Category( cTitle      = 'Book',
                                 cLookFor    = 'tube\rtubes',
                                 cExcludeIf  = 'book shelf\rdigital',
                                 iStars      = 5,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Driver',
+                                cLookFor    = 'speaker',
+                                iStars      = 8,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Crossover',
+                                iStars      = 7,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Speaker System',
+                                cLookFor    = 'speakers',
+                                iStars      = 9,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Amplifier',
+                                cLookFor    = 'amp',
+                                cExcludeIf  = 'Table Radio\rPre-amplifier\r'
+                                              'Pre-amp\rFuse Holder\rCapacitor',
+                                iStars      = 10,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Horn',
+                                iStars      = 6,
                                 iUser       = self.user1 )
         oCategory.save()
         #
@@ -679,9 +705,23 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
             oModel.save()
             #
         #
-        #print( '\n' )
-        #print( 'Model.objects.all().count():', Model.objects.all().count() )
-        #print( 'ran GetBrandsCategoriesModelsSetUp %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        oBrand = Brand.objects.get( cTitle = 'GE' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
+        #
+        oBrand = Brand.objects.get( cTitle = 'RCA' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
         #
 
 
