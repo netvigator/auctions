@@ -8,6 +8,19 @@
     <h1>Add a Brand</h1>
     <p>
     {% csrf_token %}
+
+    <form action="{% url "brands:add" %}" method="post">
+
+    <button class='btn btn-primary btn-blue' type = "submit"> Add </button>
+    <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
+
+
     {% crispy form %}
+
+    {% include "./brand_category_list.html" %}
+    <p>
+
+    <button class='btn btn-primary btn-blue' type = "submit"> Add </button>
+    <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
 
 {% endblock %}
