@@ -7,7 +7,20 @@
  
     <h1>Edit {{ brand }} Info</h1>
 
+    <form action="{% url "brands:edit" pk=brand.id %}" method="post">
+
+    <button class='btn btn-primary btn-blue' type = "submit"> Save </button>
+    <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
+
     {% csrf_token %}
     {% crispy form %}
+
+    {% include "./brand_category_list.html" %}
+
+    <p>
+    <button class='btn btn-primary btn-blue' type = "submit"> Save </button>
+    <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
+
+    </form>
 
 {% endblock %}
