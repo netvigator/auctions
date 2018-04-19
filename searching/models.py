@@ -215,6 +215,12 @@ class ItemFoundTemp(models.Model):
                         on_delete=models.CASCADE )
     iCategory       = models.ForeignKey( Category,  null = True,
                         on_delete=models.CASCADE )
+    iStarsModel     = IntegerRangeField( null = True,
+                        min_value = 0, max_value = 10, default = 1 )
+    iStarsBrand     = IntegerRangeField( null = True,
+                        min_value = 0, max_value = 10, default = 1 )
+    iStarsCategory  = IntegerRangeField( null = True,
+                        min_value = 0, max_value = 10, default = 1 )
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
