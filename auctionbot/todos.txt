@@ -67,3 +67,16 @@ tell all select_related calls which fields to select!!!
 
 
 need to add to brandcategories (in categories)
+
+
+put updated query string on Edit buttons in detail templates
+
+
+282920157755
+Hi-Fi NEWS magazine 5\/1997 MARANTZ CD Thorens AVI amplifier CD player CELESTION
+should find magazine not Marantz 5
+
+
+Leak TL/12 listed as TL 12 or TL12
+
+
