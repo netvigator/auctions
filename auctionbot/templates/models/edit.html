@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Auction Shopping Bot | {{ object.iBrand|default_if_none:"" }} 
-                 Model {{ model }}{% endblock %}
+{% block title %}Auction Shopping Bot | update {{ object.iBrand|default_if_none:"" }} 
+                 Model {{ object.cTitle }}{% endblock %}
 
 {% block content %}
 
-    <h1>Model {{ model }}</h1>
+    <h1>{{ object.iBrand |default_if_none:""}} Model {{ object.cTitle }}</h1>
 
     {% csrf_token %}
     {% crispy form %}
