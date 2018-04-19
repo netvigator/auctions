@@ -36,10 +36,15 @@ class GetContextForBrandCategoryList( object ):
             '''<small>
             Checking the appropriate categories for %s is important
             <b>IF</b> you have any generic models -- model numbers/names
-            that are shared by more than one brand.<br>''' % self.object.cTitle,
+            that are shared by more than one brand.<br>'''
+            % self.object.cTitle,
             '''If %s has model numbers/names that are shared by other brands,
-            for the robot to be accurate, you <b>must</b> click on the categories
-            below for the generic models.</small>''' % self.object.cTitle ]
+            for the robot to be accurate, you <b>must</b> click on the
+            categories below for the generic models.<br>'''
+            % self.object.cTitle,
+            '''(If %s does <b>not</b> have model numbers/names that are
+            shared by other brands, never mind.)</small>'''
+            % self.object.cTitle ]
 
 
         context['category_help'] = ''.join( lHelp )
