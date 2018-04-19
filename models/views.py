@@ -22,12 +22,6 @@ class ModelIndexView( TitleSearchMixin, ListViewGotModel ):
     model = Model
     paginate_by = 100
     
-    def get_queryset(self):
-        #
-        qs = Model.objects.select_related().filter(
-                        iUser = self.request.user ).order_by('cTitle')
-        #
-        return qs
 
 
 class ModelDetailView( DetailViewGotModel ):
