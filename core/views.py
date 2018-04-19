@@ -78,7 +78,7 @@ class ListViewGotModel(
         # on last page
         # << 1 ... iML ... iM ... iMR ... iL-1 (iL) (>>)
 
-        if sPrevPage is not None:
+        if iPageNumb > 1 and sPrevPage is not None:
             #
             iPrevPage = int( sPrevPage )
             #
@@ -136,11 +136,14 @@ class CreateViewCanCancel( LoginRequiredMixin,
 
     success_message = 'New record successfully saved!!!!'
 
-
     def get_object(self):
         '''work around obscure bug, sometimes CreateView requires a pk!'''
         # https://github.com/django-guardian/django-guardian/issues/279
         return None
+
+    def get_form(self, form_class=None):
+        form = super(CreateViewCanCancel, self).get_form(form_class)
+        return form
 
     def post(self, request, *args, **kwargs):
         # this one is different, cannot use mixin
