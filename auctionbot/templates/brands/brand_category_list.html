@@ -2,13 +2,7 @@
 
     <h3>Categories for {{ brand }}</h3>
 
-    <small>
-    Checking the appropriate categories for {{ brand }} is important
-    <b>IF</b> you have any generic models -- model numbers/names
-    that are shared by more than one brand.<br>
-    If {{ brand }} has model numbers/names that are shared by other brands,
-    for the robot to be accurate, you <b>must</b> click on the categories
-    below for the generic models.</small>
+    {{ category_help|safe }}
     <p/>
     <table>
     <tr>
