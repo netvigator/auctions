@@ -89,12 +89,11 @@ class TitleSearchMixin(object):
         #
         if q:
             # return a filtered queryset
-            return queryset.filter(
+            queryset = queryset.filter(
                 Q( cTitle__icontains = q ) | Q( cLookFor__icontains = q ) )
             #
-        else: # no Q
-            #
-            return queryset
+        #
+        return queryset
 
 
 class FormValidMixin( object ):
@@ -183,6 +182,111 @@ class FindUserMixin( object ):
             oUser = self.instance.iUser
         #
         return oUser
+
+
+class GetPaginationExtraInfoInContext( object ):
+    ''' get info into context for bisect style page choices'''
+
+    def get_context_data( self, **kwargs ):
+        '''
+        Adds pagination info to the context data.
+        '''
+        context = super(
+                GetPaginationExtraInfoInContext, self
+                ).get_context_data( **kwargs )
+
+        if not context.get('is_paginated', False):
+            return context
+
+        paginator = context.get('paginator')
+
+        oThisPage = context.get('page_obj')
+        iPageNumb = oThisPage.number
+
+        iMaxPage = len(paginator.page_range)
+        #
+        iBeg = iPageNumb - 1 if iPageNumb > 3 else 0
+        iEnd = iMaxPage if iPageNumb + 2 == iMaxPage else iPageNumb + 1
+
+        iMidLeft = iMidRight = 0
+
+        sPrevPage = self.request.GET.get( 'previous', None )
+
+        # on page 1 fresh
+        # (<<) (1) 2 ... iM ... iEnd >>
+        #
+        # on page 1 from prior page
+        # (<<) (1) 2 ... iML ... iM ... iEnd >>
+        #
+        # on page 2
+        # << 1 (2) 3 ... iM ... iEnd >>
+        #
+        # on page 3
+        # << 1 2 (3) 4 ... iM ... iEnd >>
+        #
+        # on page 4
+        # << 1 ... 3 (4) 5 ... iM ... iEnd >>
+        #
+        # mid page
+        # << 1 ... iML ... i-1 (i) i+1 ... iMR ... iEnd >>
+        #
+        # on last -3
+        # << 1 ... iML ... iM ... iMR ... iL-4 (iL-3) iL-2 ... iL >>
+        #
+        # on last -2
+        # << 1 ... iML ... iM ... iMR ... iL-3 (iL-2) iL-1 iL >>
+        #
+        # on last -1
+        # << 1 ... iML ... iM ... iMR ... iL-2 (iL-1) iL >>
+        #
+        # on last page
+        # << 1 ... iML ... iM ... iMR ... iL-1 (iL) (>>)
+
+        if iPageNumb > 1 and sPrevPage is not None:
+            #
+            iPrevPage = int( sPrevPage )
+            #
+            iBegAvg = iPrevPage if iPrevPage < iPageNumb else 1
+            iEndAvg = iPrevPage if iPrevPage > iPageNumb else iMaxPage
+            #
+        else:
+            #
+            iBegAvg = 1
+            iEndAvg = iMaxPage
+            #
+        #
+        iMidLeft    = ( ( iBegAvg   + iPageNumb ) // 2
+                            if iPageNumb - 1 > 5 else 0 )
+        iMidRight   = ( ( iPageNumb + iEndAvg   ) // 2
+                            if iEndAvg - iPageNumb > 5 else 0 )
+
+        iStart = iBeg - 1 if iBeg > 0 else 0
+
+        show_range = paginator.page_range[ iStart : iEnd ]
+
+        #print( 'iBeg:', iBeg )
+        #print( 'iEnd:', iEnd )
+        #print( 'iMidRight:', iMidRight )
+        #print( 'show_range:', show_range )
+
+        #print( 'iPageNumb', iPageNumb   )
+        #print( 'iBegAvg',   iBegAvg     )
+        #print( 'iEndAvg',   iEndAvg     )
+        #print( 'iBeg',    iBeg      )
+        #print( 'iEnd',     iEnd       )
+        #print( 'iMidLeft',  iMidLeft    )
+        #print( 'iMidRight', iMidRight   )
+
+        context.update({ 'show_range' : show_range,
+                         'iBeg'       : iBeg,
+                         'iEnd'       : iEnd,
+                         'iMidLeft'   : iMidLeft,
+                         'iMidRight'  : iMidRight,
+                         'iMaxPage'   : iMaxPage })
+        #
+        return context
+
+
 
 """
 example of calling get_form()
