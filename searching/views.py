@@ -70,11 +70,6 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewCanCancel
     success_message = 'Search record successfully updated!!!!'
 
 
-
-def _getTableBoolSetTrue( sChangeBoolField, sIdField, lIDsToChange ):
-    #
-    for iID in lIDsToChange:
-        pass
     
 
 class ItemsFoundIndexView( ListViewGotModel ):
