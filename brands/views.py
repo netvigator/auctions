@@ -2,26 +2,27 @@ from django.contrib         import messages
 from django.http            import HttpResponseRedirect
 from django.urls            import reverse_lazy
 
-from crispy_forms.layout    import Field
-
 from core.mixins            import ( WereAnyReleventRegExColsChangedMixin,
                                      TitleSearchMixin )
 from core.utils             import model_to_dict
-from core.views             import (
+from core.views         import (
                     CreateViewCanCancel, DeleteViewGotModel,
                     DetailViewGotModel,  ListViewGotModel, UpdateViewCanCancel )
 
-from .models                import Brand
-from .forms                 import CreateBrandForm, UpdateBrandForm
+from .forms             import CreateBrandForm, UpdateBrandForm
+from .mixins            import ( GetContextForBrandCategoryList,
+                                 PostUpdateBrandCategoryList )
+from .models            import Brand
 
-from categories.models      import Category, BrandCategory
-from models.models          import Model
+from categories.models  import Category, BrandCategory
+from models.models      import Model
 
 # ### keep views thin! ###
 
 
 
-class BrandCreateView( CreateViewCanCancel ):
+class BrandCreateView( GetContextForBrandCategoryList,
+                       PostUpdateBrandCategoryList, CreateViewCanCancel ):
 
     model           = Brand
     template_name   = 'brands/add.html'
@@ -29,10 +30,10 @@ class BrandCreateView( CreateViewCanCancel ):
 
     success_message = 'New Brand record successfully saved!!!!'
 
-    def get_form(self, form_class=None):
-        form = super(BrandCreateView, self).get_form(form_class)
-        Field('cExcludeIf', rows='2')
-        return form
+
+
+
+
 
 class BrandDeleteView( DeleteViewGotModel ):
 
@@ -69,7 +70,9 @@ class BrandDetailView( DetailViewGotModel ):
 
 
 class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
-                   UpdateViewCanCancel ):
+                   GetContextForBrandCategoryList,
+                   PostUpdateBrandCategoryList, UpdateViewCanCancel ):
+
     model           = Brand
     template_name   = 'brands/edit.html'
     form_class      = UpdateBrandForm
@@ -82,7 +85,6 @@ class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
         'cLookFor',
         'bWantPair',
         'cExcludeIf' )
-
 
 
 
