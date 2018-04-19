@@ -515,6 +515,22 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+           },{"itemId":["282920157755"],
+              "title":["Hi-Fi NEWS magazine 5\/1997 MARANTZ CD Thorens AVI amplifier CD player CELESTION "],
+              "globalId":["EBAY-ENCA"],
+              "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mnmMxt603kKccodU-8VA8YQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Hi-Fi-NEWS-magazine-5-1997-MARANTZ-CD-Thorens-AVI-amplifier-CD-player-CELESTION-\/282920157755"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "location":["Russian Federation"],
+              "country":["RU"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"13.52"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"12.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.94"}],"sellingState":["Active"],"timeLeft":["P23DT20H24M12S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-11T07:06:04.000Z"],"endTime":["2018-05-11T07:06:04.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["183161209931"],
               "title":["1 Pair - JENSEN RP201 Horns + RP201 H-F Unit Compression Drivers - 16 Ohms"],
               "globalId":["EBAY-US"],
