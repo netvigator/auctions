@@ -140,10 +140,14 @@ def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
             #
             if bConsoleOut:
                 #
+                sStoreVerb = 'was' if iStoreItems == 1 else 'were'
+                sUsersVerb = 'was' if iStoreUsers == 1 else 'were'
+                #
                 print(
-                    'got %s items, of which %s were new, '
-                    'and %s were new for %s.' %
-                    ( sItems, sStoreItems, sStoreUsers, sUserName ) )
+                    'got %s items, of which %s %s new, '
+                    'and %s %s new for %s.' %
+                    ( sItems,      sStoreItems, sStoreVerb,
+                      sStoreUsers, sUsersVerb,  sUserName ) )
                 print( '' )
             #
     #
