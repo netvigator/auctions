@@ -83,6 +83,16 @@ def _putPageNumbInFileName( sFileName, iThisPage ):
 
 
 
+def getPageNumbOffFileName( sFileName ):
+    #
+    lParts = sFileName.split( '_' )
+    #
+    #   0         1          2            3     4    5    6      7
+    # ['Search', 'EBAY-US', 'username1', 'ID', '8', 'p', '000', '.json']
+    #
+    return int( lParts[6] )
+
+
 
 def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
@@ -403,6 +413,8 @@ def storeSearchResultsInDB( iLogID,
     #
     lGotFiles.sort()
     #
+    iLastPage = getPageNumbOffFileName( lGotFiles[-1] )
+    #
     User = get_user_model()
     #
     oUser = User.objects.get( username = sUserName )
@@ -413,7 +425,7 @@ def storeSearchResultsInDB( iLogID,
     #
     for sThisFileName in lGotFiles:
         #
-        oItemIter = getSearchResultGenerator( sThisFileName )
+        oItemIter = getSearchResultGenerator( sThisFileName, iLastPage )
         #
         for dItem in oItemIter:
             #
