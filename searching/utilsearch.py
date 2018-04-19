@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
 
+class SearchGotZeroResults(  Exception ): pass
 
 def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
     #
@@ -439,14 +440,18 @@ def _getFindingResponseGenerator( sResponse ): # json.load is faster
 
 
 
-def getSearchResultGenerator( sFile ):
+def getSearchResultGenerator( sFile, iLastPage ):
     #
     ''' search saves results to file, this returns an interator to set through
     in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
     '''
     #
+    from .utils         import getPageNumbOffFileName
+    #
     from Dict.Maintain  import getDictValuesFromSingleElementLists
     from File.Get       import getFileSpecHereOrThere
+    #
+    iThisPage = getPageNumbOffFileName( sFile )
     #
     sFile = getFileSpecHereOrThere( sFile )
     #
@@ -470,19 +475,30 @@ def getSearchResultGenerator( sFile ):
             1 + ( iPages - 1 ) * dPagination[ "iEntriesPP" ] )
         #
     #
-    if not iEntries:
+    if iEntries == 0:
         #
-        raise SearchGotZeroResults(
-                    "search executed OK but returned zero items, "
-                    "try this and look carefully: %s" %
-                 dResponse["itemSearchURL"][0] )
+        if iLastPage > 0 and iThisPage == iLastPage:
+            #
+            # ebay sometimes gives zero results on the last of several pages
+            #
+            lResults = () # empty tuple will raise StopIteration
+            #
+        else:
+            #
+            raise SearchGotZeroResults(
+                        "search executed OK but returned zero items, "
+                        "try this and look carefully: %s" %
+                    dResponse["itemSearchURL"][0] )
+            #
         #
-    #
-    dResultDict = dResponse[ "searchResult" ][0]
+    else: # iEntries > 0
+        #
+        dResultDict = dResponse[ "searchResult" ][0]
+        #
+        lResults = dResultDict.get('item')
+        #
     #
     iThisItem = 0
-    #
-    lResults = dResultDict.get('item')
     #
     for dItem in lResults:
         #
