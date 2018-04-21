@@ -9,6 +9,7 @@ from core.utils                 import getExceptionMessageFromResponse
 from ..models                   import Brand
 from ..views                    import BrandCreateView
 
+from .test_models               import ModelModelTest
 
 
 class BrandViewsTests(BaseUserTestCase):
@@ -94,7 +95,7 @@ class BrandViewsTests(BaseUserTestCase):
         
 
 
-class BrandViewsHitButtons(BaseUserTestCase):
+class BrandViewsHitButtons(ModelModelTest):
     """
     Test Save and Cancel
     """
@@ -166,6 +167,7 @@ class BrandViewsHitButtons(BaseUserTestCase):
         #
         request = self.factory.get(reverse('brands:add'))
         request.user = self.user1
+        self.object = self.oBrand
         #request.POST._mutable = True
         #request.POST['cancel'] = True
         #
