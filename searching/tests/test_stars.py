@@ -54,14 +54,13 @@ def _getBrandRegExFinders4Test( oBrand ):
 
 
 
-class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
+class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
-    def setUp(self):
+    def setUp( self ):
         #
-        #print( 'will call super' )
-        super( KeyWordFindSearchHitsTests, self ).setUp()
+        super( SetUpForKeyWordFindSearchHitsTests, self ).setUp()
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
@@ -81,18 +80,27 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
+        # bCleanUpAfterYourself must be False or tests will fail!
+        findSearchHits( self.user1.id, bCleanUpAfterYourself = False )
+        #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
 
-    def test_find_search_hits(self):
+
+
+class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
+
+    def test_find_search_hits_test(self):
         #
         ''' test _storeUserItemFound() with actual record'''
         #
-        findSearchHits( self.user1.id, bCleanUpAfterYourself = False )
+        iTempItems = ItemFoundTemp.objects.all().count()
         #
-        oTempItemsFound = ItemFoundTemp.objects.all()
+        self.assertGreater( iTempItems, 160 )
         #
-        self.assertGreater( len( oTempItemsFound ), 160 )
+        iCount = Model.objects.all().count()
+        #
+        self.assertGreater( iCount, 160 )
         #
         oUserItems = UserItemFound.objects.filter(
                         iUser = self.user1 ).order_by( '-iHitStars' )
@@ -264,12 +272,6 @@ class KeyWordFindSearchHitsTests(GetBrandsCategoriesModelsSetUp):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-    def test_BrandsCategoriesModels_setUp(self):
-        #
-        iCount = Model.objects.all().count()
-        #
-        self.assertGreater( iCount, 160 )
-        #
 
 
 
