@@ -32,7 +32,7 @@ urlpatterns = [
         view    = views.ItemFoundUpdateView.as_view(),
         name    = 'item_found_edit' ),
     url(
-        regex   = r'items_found/(?P<select>[ADPZ])/+$',
+        regex   = r'items_found/(?P<select>[ADPZ]){0,1}/+$', # testing cannot
         view    = views.ItemsFoundIndexView.as_view(),
         name    = 'items_found_index' ),
     url(
