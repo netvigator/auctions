@@ -1,5 +1,6 @@
 from categories.models  import Category
 
+from Object.Get         import QuickObject
 
 class GetContextForBrandCategoryList( object ):
     '''get the brand category list into the context'''
@@ -32,6 +33,13 @@ class GetContextForBrandCategoryList( object ):
         #
         context['all_categories_list'] = qsAllCategories
         #
+        if not hasattr( self, 'object' ) or self.object is None:
+            # work around testing glitch
+            self.object = QuickObject()
+        if not hasattr( self.object, 'cTitle' ):
+            # work around testing glitch
+            self.object.cTitle = ''
+        #
         lHelp = [
             '''<small>
             Checking the appropriate categories for %s is important
@@ -56,9 +64,7 @@ class PostUpdateBrandCategoryList( object ):
     '''do post, handle the brand category updates'''
 
     def post(self, request, *args, **kwargs):
-
-        print('"cancel" in request.POST:', "cancel" in request.POST )
-        
+        '''handle changes to brand categories'''
         if "cancel" in request.POST:
             pass
         else: # 'submit' in request.POST
@@ -73,10 +79,6 @@ class PostUpdateBrandCategoryList( object ):
             #
             self.object = self.get_object()
             #
-            print('')
-            print( 'setMustInclude  :', setMustInclude  )
-            print( 'setMustUnInclude:', setMustUnInclude)
-
             for sID in setMustInclude:
                 #
                 oBrandCategory = BrandCategory(
