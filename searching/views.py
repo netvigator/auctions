@@ -18,6 +18,8 @@ from .mixins        import ( SearchViewSuccessPostFormValidMixin,
 from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
+from core.mixins    import GetPaginationExtraInfoInContext
+
 from models.models  import Model
 
 # ### keep views thin! ###
@@ -72,7 +74,8 @@ class SearchUpdateView( SearchViewSuccessPostFormValidMixin, UpdateViewCanCancel
 
     
 
-class ItemsFoundIndexView( ListViewGotModel ):
+class ItemsFoundIndexView(
+            GetPaginationExtraInfoInContext, ListViewGotModel ):
 
     template_name       = 'searching/items_found_index.html'
     model               = UserItemFound
@@ -81,10 +84,12 @@ class ItemsFoundIndexView( ListViewGotModel ):
     #form_class          = ItemsFoundIndexForm
 
     def get_queryset(self):
+        #
         # ADPZ
         # qs = super( ItemsFoundIndexView, self ).get_queryset()
+        #sSelect = 'P'
         #
-        sSelect = self.kwargs['select']
+        sSelect = self.kwargs.get('select', 'P' )
         #
         if sSelect == 'A': # all
             qsGot = UserItemFound.objects.select_related().filter(
