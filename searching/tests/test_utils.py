@@ -63,7 +63,7 @@ logging.basicConfig(
 '''
 
 
-sExampleFile = '/tmp/search_results.json'
+sExampleFile = '/tmp/search_results_____0_.json'
 
 class getImportSearchResultsTests(TestCase):
     #
@@ -73,7 +73,7 @@ class getImportSearchResultsTests(TestCase):
         # test is run AFTER the last line in this file is executed
         QuietDump( sExampleResponse, sExampleFile )
         #
-        itemResultsIterator = getSearchResultGenerator( sExampleFile )
+        itemResultsIterator = getSearchResultGenerator( sExampleFile, 0 )
         #
         dThisItem = next( itemResultsIterator )
         #
