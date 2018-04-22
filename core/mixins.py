@@ -191,11 +191,17 @@ class GetPaginationExtraInfoInContext( object ):
         '''
         Adds pagination info to the context data.
         '''
+        sPrevPage = self.request.GET.get( 'previous', None )
+        
+        if sPrevPage is None and 'sPrevPage' in kwargs:
+            #
+            sPrevPage = kwargs.pop( 'sPrevPage' )
+
         context = super(
                 GetPaginationExtraInfoInContext, self
                 ).get_context_data( **kwargs )
 
-        if not context.get('is_paginated', False):
+        if not context.get( 'is_paginated' ):
             return context
 
         paginator = context.get('paginator')
@@ -209,8 +215,6 @@ class GetPaginationExtraInfoInContext( object ):
         iEnd = iMaxPage if iPageNumb + 2 == iMaxPage else iPageNumb + 1
 
         iMidLeft = iMidRight = 0
-
-        sPrevPage = self.request.GET.get( 'previous', None )
 
         # on page 1 fresh
         # (<<) (1) 2 ... iM ... iEnd >>
@@ -245,24 +249,52 @@ class GetPaginationExtraInfoInContext( object ):
         if iPageNumb > 1 and sPrevPage is not None:
             #
             iPrevPage = int( sPrevPage )
-            #
-            iBegAvg = iPrevPage if iPrevPage < iPageNumb else 1
-            iEndAvg = iPrevPage if iPrevPage > iPageNumb else iMaxPage
+
+            # always want to have a choice between last page and this page
+            iNeedPage = ( iPageNumb + iPrevPage ) // 2
+
+            #iBegAvg = iPrevPage if iPrevPage < iPageNumb else 1
+            #iEndAvg = iPrevPage if iPrevPage > iPageNumb else iMaxPage
             #
         else:
             #
-            iBegAvg = 1
-            iEndAvg = iMaxPage
-            #
+            iNeedPage = 0
+
+        iBegAvg = 1
+        iEndAvg = iMaxPage
+        #
         #
         iMidLeft    = ( ( iBegAvg   + iPageNumb ) // 2
-                            if iPageNumb - 1 > 5 else 0 )
+                            if iPageNumb - 1 > 2 else 0 )
         iMidRight   = ( ( iPageNumb + iEndAvg   ) // 2
-                            if iEndAvg - iPageNumb > 5 else 0 )
+                            if iEndAvg - iPageNumb > 2 else 0 )
 
         iStart = iBeg - 1 if iBeg > 0 else 0
 
         show_range = paginator.page_range[ iStart : iEnd ]
+
+        #print('iMidRight:', iMidRight )
+        #print('sPrevPage:', sPrevPage )
+        #print('iNeedPage:', iNeedPage )
+        # always want to have a choice between last page and this page
+        if iNeedPage > 0 and iNeedPage not in show_range:
+            if iNeedPage > iPageNumb:
+                iMidRight = iNeedPage
+            elif iNeedPage < iPageNumb:
+                iMidLeft  = iNeedPage
+        #print('iMidRight:', iMidRight )
+
+        if iMidLeft  in show_range:
+            if iPageNumb > iMaxPage // 2:
+                iMidLeft  = iPageNumb // 2
+            else:
+                iMidLeft  = 0
+
+        if iMidRight in show_range:
+            if iPageNumb < iMaxPage // 2:
+                iMidRight = ( iPageNumb + iMaxPage ) // 2
+            else:
+                iMidRight = 0
 
         #print( 'iBeg:', iBeg )
         #print( 'iEnd:', iEnd )
