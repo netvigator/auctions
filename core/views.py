@@ -13,13 +13,12 @@ from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              FormValidMixin, GetFormMixin,
                                              GetModelInContextMixin,
-                                             DoPostCanCancelMixin,
-                                             GetPaginationExtraInfoInContext )
+                                             DoPostCanCancelMixin )
 
 # ### keep views thin! ###
 
 
-class ListViewGotModel( GetPaginationExtraInfoInContext,
+class ListViewGotModel(
             LoginRequiredMixin, GetModelInContextMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
