@@ -3,7 +3,8 @@ from django.shortcuts   import render
 from django.urls        import reverse_lazy
 
 from core.mixins        import ( WereAnyReleventRegExColsChangedMixin,
-                                             TitleSearchMixin )
+                                 GetPaginationExtraInfoInContext,
+                                 TitleSearchMixin )
 
 from core.views         import (
                     CreateViewCanCancel, DeleteViewGotModel,
@@ -16,7 +17,8 @@ from .models            import Model
 # ### keep views thin! ###
 
 
-class ModelIndexView( TitleSearchMixin, ListViewGotModel ):
+class ModelIndexView( GetPaginationExtraInfoInContext, TitleSearchMixin,
+                      ListViewGotModel ):
     template_name = 'models/index.html'
     # context_object_name = 'model_list' # default
     model = Model
