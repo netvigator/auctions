@@ -1,18 +1,19 @@
-from django.db              import models
-from django_countries.fields \
-                            import CountryField
+from django.db                  import models
+from django_countries.fields    import CountryField
 
 # Create your models here.
 
-from models.models          import Model
-from brands.models          import Brand
-from categories.models      import Category
+from models.models              import Model
+from brands.models              import Brand
+from categories.models          import Category
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth        import get_user_model
+
 User = get_user_model()
 
 
 
+'''
 class ItemImage(models.Model):
     iItemNumb       = models.BigIntegerField(
                         'ebay item number', primary_key = True )
@@ -30,4 +31,4 @@ class ItemImage(models.Model):
         db_table            = verbose_name_plural
         unique_together     = ('iItemNumb', 'isequence',)
 #
-
+'''
