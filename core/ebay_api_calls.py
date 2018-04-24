@@ -119,15 +119,15 @@ def _getResponseEbayApi(
 
 def _getItemInfo( iItemNumb, sCallName,
                   bUseSandbox = False,
-                  dWantMore   = None ):
+                  tWantMore   = None ):
     #
     dParams = { 'callname'          : sCallName, # 'GetSingleItem',
                 'responseencoding'  : "JSON",
                 'ItemId'            : str( iItemNumb ) }
     #
-    if dWantMore:
+    if tWantMore:
         #
-        dParams['IncludeSelector'] = dWantMore
+        dParams['IncludeSelector'] = ','.join( tWantMore )
         #
     #
     dConfValues = _getApiConfValues( bUseSandbox )
@@ -146,10 +146,15 @@ def _getItemInfo( iItemNumb, sCallName,
     return _getResponseEbayApi( sEndPointURL, dParams )
 
 
-def getSingleItem( iItemNumb, bUseSandbox = False, dWantMore = None ):
+_tIncludeDefaults = ( 'Details', 'ItemSpecifics', 'TextDescription' )
+
+def getSingleItem(
+            iItemNumb,
+            bUseSandbox = False,
+            tWantMore = _tIncludeDefaults ):
     #
     return _getItemInfo( iItemNumb, 'GetSingleItem',
-                         dWantMore   = dWantMore,
+                         tWantMore   = tWantMore,
                          bUseSandbox = bUseSandbox )
 
 
@@ -431,6 +436,8 @@ http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html#Inclu
 
 
 def GetSingleItem(item_id, include_selector=None, encoding="JSON"):
+
+BestOfferEnabled
 
 iItemNumb       = models.BigIntegerField( 'ebay item number', primary_key = True )
 cTitle          = models.CharField( 'auction headline', max_length = 48, db_index = True )
