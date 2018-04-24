@@ -58,8 +58,6 @@ class TestPagination( SetUpForKeyWordFindSearchHitsTests ):
         #
         oThisPage.number = 50
         #
-        self.request.GET.previous = 1
-        #
         context = self.view.get_context_data(
                 object_list = range(1,10000),
                 page_obj    = oThisPage,
@@ -355,13 +353,31 @@ class TestPagination( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( context.get( 'iEnd'       ),  17 )
         self.assertEqual( context.get( 'iMidLeft'   ),   8 )
         self.assertEqual( context.get( 'iMidRight'  ),  58 )
+        #
+        sPrevPage = None # str( oThisPage.number )
+        #
+        oThisPage.number = 1
+        #
         #print('')
-        #print( "show_range:  ", context.get( 'show_range' ) )
-        #print( "iBeg:        ", context.get( 'iBeg'       ) )
-        #print( "iEnd:        ", context.get( 'iEnd'       ) )
-        #print( "iMidLeft:    ", context.get( 'iMidLeft'   ) )
-        #print( "iMidRight:   ", context.get( 'iMidRight'  ) )
-
+        #print('oThisPage.number:', oThisPage.number  )
+        context = self.view.get_context_data(
+                object_list = range(1,1770),
+                page_obj    = oThisPage,
+                sPrevPage   = sPrevPage )
+        #
+        self.assertEqual( context.get( 'show_range' ), range(1,3) )
+        self.assertEqual( context.get( 'iBeg'       ),   0 )
+        self.assertEqual( context.get( 'iEnd'       ),   2 )
+        self.assertEqual( context.get( 'iMidLeft'   ),   0 )
+        self.assertEqual( context.get( 'iMidRight'  ),   9 )
+        #
+        #print('')
+        #print( "show_range  :", context.get( 'show_range' ) )
+        #print( "iBeg        :", context.get( 'iBeg'       ) )
+        #print( "iEnd        :", context.get( 'iEnd'       ) )
+        #print( "iMidLeft    :", context.get( 'iMidLeft'   ) )
+        #print( "iMidRight   :", context.get( 'iMidRight'  ) )
+        #print( "iMaxPage    :", context.get( 'iMaxPage'   ) )
 
 
 
