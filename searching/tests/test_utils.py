@@ -748,7 +748,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         if it has been a while (mmore than 1 month), prompt to run soon
         so the list of actual item numbers can stay current enough'''
         #
-        lItemHits = getItemHitsLog( open( self.sHitLogFile ) )
+        lItemHits = getItemHitsLog( self.sHitLogFile )
         #
         # list is sorted with the oldest on top, newest at bottom
         #
@@ -820,7 +820,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             #
             if isFileThere( self.sHitLogFile ):
                 #
-                iBegLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
+                iBegLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
             findSearchHits( iUser = self.user1.id )
             #
@@ -836,7 +836,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                                         oUserItems, self.sPathHere )
                 #
             #
-            iEndLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
+            iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
             
@@ -887,7 +887,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             #
             if isFileThere( self.sHitLogFile ):
                 #
-                iBegLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
+                iBegLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
             findSearchHits( iUser = self.user1.id )
             #
@@ -903,7 +903,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                                         oUserItems, self.sPathHere )
                 #
             #
-            iEndLines = len( getItemHitsLog( open( self.sHitLogFile ) ) )
+            iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
             
