@@ -47,9 +47,9 @@ class BaseUserTestCaseCanAddSearches( BaseUserTestCase ):
         return getPriorityChoices( Search, oUser, sThisPriority )
 
 
-def getItemHitsLog( uHitLogFileContent ):
+def getItemHitsLog( sPathFile ):
     #
-    oHitsLogIter = getTableFromScreenCaptureGenerator( uHitLogFileContent )
+    oHitsLogIter = getTableFromScreenCaptureGenerator( open( sPathFile ) )
     #
     lHeader = next( oHitsLogIter )
     #
@@ -82,9 +82,7 @@ def updateHitLogFile( oUserItems, sPathHere ):
         QuietDump( sItemHitLog, sHitLogFile )
         #
     #
-    oHitLogFile = open( sHitLogFile )
-    #
-    lItemHits = getItemHitsLog( oHitLogFile )
+    lItemHits = getItemHitsLog( sHitLogFile )
     #
     iBegRows = len( lItemHits )
     #
