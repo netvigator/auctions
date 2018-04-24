@@ -216,46 +216,13 @@ class GetPaginationExtraInfoInContext( object ):
 
         iMidLeft = iMidRight = 0
 
-        # on page 1 fresh
-        # (<<) (1) 2 ... iM ... iEnd >>
-        #
-        # on page 1 from prior page
-        # (<<) (1) 2 ... iML ... iM ... iEnd >>
-        #
-        # on page 2
-        # << 1 (2) 3 ... iM ... iEnd >>
-        #
-        # on page 3
-        # << 1 2 (3) 4 ... iM ... iEnd >>
-        #
-        # on page 4
-        # << 1 ... 3 (4) 5 ... iM ... iEnd >>
-        #
-        # mid page
-        # << 1 ... iML ... i-1 (i) i+1 ... iMR ... iEnd >>
-        #
-        # on last -3
-        # << 1 ... iML ... iM ... iMR ... iL-4 (iL-3) iL-2 ... iL >>
-        #
-        # on last -2
-        # << 1 ... iML ... iM ... iMR ... iL-3 (iL-2) iL-1 iL >>
-        #
-        # on last -1
-        # << 1 ... iML ... iM ... iMR ... iL-2 (iL-1) iL >>
-        #
-        # on last page
-        # << 1 ... iML ... iM ... iMR ... iL-1 (iL) (>>)
-
         if iPageNumb > 1 and sPrevPage is not None:
             #
             iPrevPage = int( sPrevPage )
 
-            # always want to have a choice between last page and this page
+            # want choice midway between previous page and this page
             iNeedPage = ( iPageNumb + iPrevPage ) // 2
 
-            #iBegAvg = iPrevPage if iPrevPage < iPageNumb else 1
-            #iEndAvg = iPrevPage if iPrevPage > iPageNumb else iMaxPage
-            #
         else:
             #
             iNeedPage = 0
@@ -276,7 +243,8 @@ class GetPaginationExtraInfoInContext( object ):
         #print('iMidRight:', iMidRight )
         #print('sPrevPage:', sPrevPage )
         #print('iNeedPage:', iNeedPage )
-        # always want to have a choice between last page and this page
+
+        # want choice midway between previous page and this page
         if iNeedPage > 0 and iNeedPage not in show_range:
             if iNeedPage > iPageNumb:
                 iMidRight = iNeedPage
@@ -296,18 +264,14 @@ class GetPaginationExtraInfoInContext( object ):
             else:
                 iMidRight = 0
 
-        #print( 'iBeg:', iBeg )
-        #print( 'iEnd:', iEnd )
-        #print( 'iMidRight:', iMidRight )
         #print( 'show_range:', show_range )
-
-        #print( 'iPageNumb', iPageNumb   )
-        #print( 'iBegAvg',   iBegAvg     )
-        #print( 'iEndAvg',   iEndAvg     )
-        #print( 'iBeg',    iBeg      )
-        #print( 'iEnd',     iEnd       )
-        #print( 'iMidLeft',  iMidLeft    )
-        #print( 'iMidRight', iMidRight   )
+        #print( 'iPageNumb :', iPageNumb  )
+        #print( 'iBegAvg   :', iBegAvg    )
+        #print( 'iEndAvg   :', iEndAvg    )
+        #print( 'iBeg      :', iBeg       )
+        #print( 'iEnd      :', iEnd       )
+        #print( 'iMidLeft  :', iMidLeft   )
+        #print( 'iMidRight :', iMidRight  )
 
         context.update({ 'show_range' : show_range,
                          'iBeg'       : iBeg,
@@ -319,34 +283,3 @@ class GetPaginationExtraInfoInContext( object ):
         return context
 
 
-
-"""
-example of calling get_form()
-this worked but this is not used cuz there was a much easier way
-
-class SayCurrentPriceBetterMixin( object ):
-    '''streamline saying the current price if in USD'''
-
-    #
-    def get_context_data( self, **kwargs ):
-        '''
-        Adds the the current price line to the context data.
-        '''
-        context = super(
-            SayCurrentPriceBetterMixin, self ).get_context_data(**kwargs)
-        #
-        form = self.get_form( self.form_class )
-        #
-        sayCurrentPrice = form.instance.iItemNumb._meta.get_field(
-                                'lCurrentPrice').verbose_name
-        #
-        sayCurrentPrice = sayCurrentPrice.replace(
-                'local currency',
-                form.instance.iItemNumb.lLocalCurrency )
-        #
-        context['sayCurrentPrice'] = sayCurrentPrice
-        #
-        self.form = form
-        #
-        return context
-"""
