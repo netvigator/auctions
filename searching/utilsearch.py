@@ -514,14 +514,3 @@ def getSearchResultGenerator( sFile, iLastPage ):
 
 
 
-def getShrinkItemURL( sURL ):
-    #
-    lParts = sURL.split( '/' )
-    #
-    if lParts[3] == 'itm':
-        #
-        lParts[4] = 'b'
-        #
-    #
-    return ( '/' ).join( lParts )
-
