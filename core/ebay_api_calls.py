@@ -146,7 +146,7 @@ def _getItemInfo( iItemNumb, sCallName,
     return _getResponseEbayApi( sEndPointURL, dParams )
 
 
-_tIncludeDefaults = ( 'Details', 'ItemSpecifics', 'TextDescription' )
+_tIncludeDefaults = ( 'Details', 'TextDescription' )
 
 def getSingleItem(
             iItemNumb,
