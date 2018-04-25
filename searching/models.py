@@ -84,8 +84,7 @@ class Search(models.Model):
 class ItemFound(models.Model):
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
-    cTitle          = models.CharField(
-                        'auction title', max_length = 80, db_index = True )
+    cTitle          = models.CharField( 'item title', max_length = 80 )
     cLocation       = models.CharField( 'location',
                         max_length = 48 )
     cCountry        = CountryField( "country" )
@@ -114,7 +113,7 @@ class ItemFound(models.Model):
     dCurrentPrice   = models.DecimalField( # form was throwing nonsense error
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
-                        db_index = False )     # DecimalField
+                        db_index = False )                  # DecimalField
     iCategoryID     = models.PositiveIntegerField( 'primary category ID',
                         null = True )
     cCategory       = models.CharField( 'primary category',
@@ -141,7 +140,8 @@ class ItemFound(models.Model):
 
     cSellingState   = models.CharField( 'selling state',
                         max_length = 18 )
-    tCreate         = models.DateTimeField( 'created on', db_index = True )
+    tCreate         = models.DateTimeField( 'created on',
+                        db_index = True, auto_now_add= True )
 
     def __str__(self):
         return self.cTitle
