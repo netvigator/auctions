@@ -4,10 +4,12 @@ from django.test        import TestCase
 from django.urls        import reverse_lazy
 
 from core.utils_test    import setup_view_for_tests
+from core.utils         import getShrinkItemURL
+
 from ..models           import Search
 from ..utils            import ( getIdStrZeroFilled,
                                  getHowManySearchDigitsNeeded )
-from ..utilsearch       import getPriorityChoices, getShrinkItemURL
+from ..utilsearch       import getPriorityChoices
 from ..utils_test       import BaseUserTestCaseCanAddSearches
 from ..views            import SearchCreateView
 
