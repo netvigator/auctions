@@ -1,6 +1,4 @@
-from core.utils     import getDateTimeObjGotEbayStr
-
-from .utilsearch    import getShrinkItemURL
+from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
 
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
@@ -64,8 +62,7 @@ dItemFoundFields = d(
                          bOptional = True ),
     cCondition      = d( t = ( 'condition','conditionDisplayName'),
                          bOptional = True ),
-    cSellingState   = d( t = ( 'sellingStatus','sellingState') ),
-    tCreate         = d( t = () ) )
+    cSellingState   = d( t = ( 'sellingStatus','sellingState') ) )
 
 
 dUserItemFoundUploadFields = d(
