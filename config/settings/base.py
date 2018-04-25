@@ -118,7 +118,7 @@ LOCAL_APPS = [
     'models.apps.ModelsConfig',
     'ebayinfo.apps.EbayInfoConfig',
     'searching.apps.SearchingConfig',
-    
+    'archive.apps.ArchiveConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
