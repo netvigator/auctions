@@ -204,7 +204,8 @@ class UpdateSearchForm( BaseSearchForm ):
 
 
 
-tItemFoundFields = tuple( dItemFoundFields.keys() )
+tItemFoundFields = tuple( k for k, v in dItemFoundFields.items()
+                          if not v.get( 'bOmitFromForm' ) )
 
 class ItemFoundForm(ModelForm):
     #
