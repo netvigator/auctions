@@ -1,27 +1,80 @@
+import logging
+
+from archive            import dItemFields as dFields # in __init__.py
+
+from core.utils_ebay    import getValueOffItemDict as getValue
+
+from Time.Output        import getNowIsoDateTimeFileNameSafe
+
+from pprint import pprint
 
 
-def _getList( s ):
+class GetSingleItemNotWorkingError( Exception ): pass
+
+logger = logging.getLogger(__name__)
+
+logging_level = logging.INFO
+
+
+
+
+
+def _getJsonSingleItemResponse( sContent ):
     #
-    if s.startswith( '[' ) and s.endswith( ']' ):
+    '''pass in the response
+    returns the resonse dictionary dResponse
+    which includes dPagination for convenience'''
+    #
+    from json           import loads
+    #
+    from Dict.Maintain  import getDictValuesFromSingleElementLists
+    #
+    dResult = loads( sContent ) # this is for strings
+    #
+    if not ( "Ack" in dResult and dResult.get( "Ack" ) == "Success" ):
         #
-        s = s[ 1 : -1 ]
+        if "Ack" in dResult:
+            #
+            sFile = ( '/tmp/single_item_response_failure_%s_.json'
+                        % getNowIsoDateTimeFileNameSafe() )
+            #
+            sMsg = ( 'getSingleItem failure, check file %s'
+                    % sFile )
+            #
+            logger.info( sMsg )
+            #
+            raise GetSingleItemNotWorkingError( sMsg )
+            #
+        else:
+            #
+            # unexpected content
+            #
+            sFile = (   '/tmp/invalid_single_item_response_%s_.json'
+                        % getNowIsoDateTimeFileNameSafe() )
+            #
+            sMsg = ( 'unexpected content from getSingleItem, check %s'
+                    % sFile )
+            #
+            logger.error( sMsg )
+            #
+            raise GetSingleItemNotWorkingError( sMsg )
+            #
         #
     #
-    l = [ s.strip()[ 1 : -1 ] for s in s.split( ',' ) ]
+    dItem = dResult.get( "Item" )
     #
-    return l
+    return dItem
 
 
-def getListAsLines( s ):
+
+def storeJsonSingleItemResponse( sContent, **kwargs ):
     #
-    l = _getList( s )
+    dItem    = _getJsonSingleItemResponse( sContent )
     #
-    return '\n'.join( l )
+    dGotItem = { k: getValue( k, dItem, dFields[k], **kwargs ) for k in dFields }
+    #
+    return dGotItem
 
 
-def getListWithCommas( s ):
-    #
-    l = _getList( s )
-    #
-    return ', '.join( l )
+
 
