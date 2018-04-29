@@ -9,7 +9,7 @@ from models.models              import Model
 from brands.models              import Brand
 from categories.models          import Category
 
-from ebayinfo.models            import CategoryHierarchy, Market
+from ebayinfo.models            import CategoryHierarchy, Market, EbayCategory
 
 from django.contrib.auth        import get_user_model
 User = get_user_model()
@@ -114,7 +114,9 @@ class ItemFound(models.Model):
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
                         db_index = False )                  # DecimalField
-    iCategoryID     = models.PositiveIntegerField( 'primary category ID',
+    iCategoryID     = models.ForeignKey( EbayCategory,
+                        verbose_name = 'primary category ID',
+                        related_name = 'ebay_primary_category',
                         null = True )
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
@@ -122,7 +124,9 @@ class ItemFound(models.Model):
                         verbose_name = 'category hierarchy (primary)',
                         related_name = 'primary_category',
                         null = True, blank = True, on_delete=models.CASCADE )
-    i2ndCategoryID  = models.PositiveIntegerField( 'secondary category ID (optional)',
+    i2ndCategoryID  = models.ForeignKey( EbayCategory,
+                        verbose_name = 'secondary category ID (optional)',
+                        related_name = 'ebay_secondary_category',
                         null = True )
     c2ndCategory    = models.CharField( 'secondary category (optional)',
                         max_length = 48, null = True, blank = True )
