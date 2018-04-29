@@ -43,7 +43,8 @@ dItemFoundFields = d(
                                'convertedCurrentPrice','__value__'),
                          f = float ),
     iCategoryID     = d( t = ( 'primaryCategory','categoryId'),
-                         f = int ),
+                         f = int,
+                         bOmitFromForm = True ), # False form.is_valid()
     cCategory       = d( t = ( 'primaryCategory','categoryName') ),
 
     iCatHeirarchy   = d( t = ( 'iCatHeirarchy',), # not from ebay, calculated
@@ -51,7 +52,8 @@ dItemFoundFields = d(
 
     i2ndCategoryID  = d( t = ( 'secondaryCategory','categoryId'),
                          f = int,
-                         bOptional = True ),
+                         bOptional = True,
+                         bOmitFromForm = True ), # False form.is_valid()
     c2ndCategory    = d( t = ( 'secondaryCategory','categoryName'),
                          bOptional = True ),
     i2ndCatHeirarchy= d( t = ( 'i2ndCatHeirarchy',), # not from ebay, calculated
