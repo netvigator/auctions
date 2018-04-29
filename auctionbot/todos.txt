@@ -9,8 +9,6 @@ added model, hit save, when to model index instead of model detail, but cannot d
 in Search, max length for a single key word is 98
 
 
-put iCategoryID back as Foreign key (changed to integer for reorganization)
-
 searching SearchAddOrUpdateForm needs more testing between Create and Update 
 check Update remove category!
 
@@ -85,3 +83,6 @@ take out of brands.mixins:
         if not hasattr( self.object, 'cTitle' ):
             # work around testing glitch
             self.object.cTitle = ''
+
+
+implement getOldRecordToRecycleGenerator for ItemsFound, UserItemsFound, searchlogs
