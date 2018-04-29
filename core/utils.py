@@ -1,4 +1,6 @@
 # misc utils can go here
+from datetime               import timedelta
+
 from django.db.models       import ForeignKey
 from django.utils           import timezone
 
@@ -173,4 +175,20 @@ def getShrinkItemURL( sURL ):
         #
     #
     return ( '/' ).join( lParts )
+
+
+def getOldRecordToRecycleGenerator( oModel, iHowOld, sDateTimeField ):
+    #
+    tOlderThan = timezone.now() - timedelta( days = iHowOld )
+    #
+    sDateTimeFilter = '%s__lte' % sDateTimeField
+    #
+    qsOldRecors = oModel.objects.filter(
+                    **{ sDateTimeFilter : tOlderThan }
+                    ).order_by( sDateTimeField )
+    #
+    for oRow in qsOldRecors:
+        #
+        yield oRow
+
 
