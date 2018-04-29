@@ -366,6 +366,16 @@ class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
         #
 
 
+class AssertEmptyMixin( object ):
+
+    def assertEmpty(self, obj):
+        self.assertFalse(obj)
+
+
+class AssertNotEmptyMixin( object ):
+
+    def assertNotEmpty(self, obj):
+        self.assertTrue(obj)
 
 
 '''
