@@ -56,7 +56,8 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
     #
     from ebayinfo.models import CategoryHierarchy
     #
-    dNewResult = { k: getValue( k, dItem, dFields, **kwargs ) for k in dFields }
+    dNewResult = { k: getValue( k, v, dItem, **kwargs )
+                   for k, v in dFields.items() }
     #
     dNewResult.update( kwargs )
     #
