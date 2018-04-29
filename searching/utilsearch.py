@@ -1,12 +1,22 @@
 import logging
 
-from string     import ascii_uppercase, digits
+from string             import ascii_uppercase, digits
+
+from django.conf        import settings
+
+from ebayinfo.models    import EbayCategory
 
 # avoiding circular import problems!
 
 logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
+
+''' prints logging messages to terminal
+logging.basicConfig(
+    format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
+    level=logging.INFO)
+'''
 
 class SearchGotZeroResults(  Exception ): pass
 
@@ -56,10 +66,38 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
     #
     from ebayinfo.models import CategoryHierarchy
     #
-    dNewResult = { k: getValue( k, v, dItem, **kwargs )
+    dNewResult = { k: getValue( dItem, k, v, **kwargs )
                    for k, v in dFields.items() }
     #
     dNewResult.update( kwargs )
+    #
+    if False and settings.TESTING: # EbayCategory table incomplete when testing
+        #
+        # form throwing error for ForeignKey even those can find in table
+        #  # False form.is_valid() but category is in table
+        #
+        if not EbayCategory.objects.filter(
+                iCategoryID    = dNewResult['iCategoryID'],
+                iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists():
+            #
+            if dNewResult['iCategoryID'] == 73160: print( 'not OK:', 73160 )
+            #
+            dNewResult['iCategoryID'] = None
+            #
+        elif dNewResult['iCategoryID'] == 73160: print( 'OK:', 73160 )
+        #
+        if ( not hasattr( dNewResult, 'i2ndCategoryID' ) or
+             not dNewResult['i2ndCategoryID'] or
+             not EbayCategory.objects.filter(
+                iCategoryID    = dNewResult['iCategoryID'],
+                iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists() ):
+            #
+            dNewResult['i2ndCategoryID'] = None
+            #
+        #
+        print( "dNewResult['iCategoryID']:", dNewResult['iCategoryID'] )
+        print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
+        print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
     #
     dNewResult['tCreate'] = tSearchTime
     #
@@ -79,6 +117,7 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         # ### not all real categories are in the test database
         #
         #
+        # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
         sMsg = ('form did not save' )
         #
         logger.error( sMsg )
