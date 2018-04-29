@@ -109,7 +109,7 @@ class ItemFound(models.Model):
                         'local currency', max_length = 3, default = 'USD' )
     lCurrentPrice   = models.DecimalField( 'current price',
                         max_digits = 10, decimal_places = 2,
-                        null = True )      # use DecimalField not MoneyField
+                        null = True, blank = True )      # use DecimalField not MoneyField
     dCurrentPrice   = models.DecimalField( # form was throwing nonsense error
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
@@ -117,7 +117,8 @@ class ItemFound(models.Model):
     iCategoryID     = models.ForeignKey( EbayCategory,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
-                        null = True )
+                        on_delete=models.CASCADE )
+                        # , null = True, blank = True
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
@@ -127,7 +128,7 @@ class ItemFound(models.Model):
     i2ndCategoryID  = models.ForeignKey( EbayCategory,
                         verbose_name = 'secondary category ID (optional)',
                         related_name = 'ebay_secondary_category',
-                        null = True )
+                        null = True, blank = True )
     c2ndCategory    = models.CharField( 'secondary category (optional)',
                         max_length = 48, null = True, blank = True )
     i2ndCatHeirarchy= models.ForeignKey( CategoryHierarchy,
