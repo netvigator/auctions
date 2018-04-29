@@ -224,14 +224,14 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
 
 
 
-def _getValueUserOrOther( k, dItem, dFields, oUser = None, **kwargs ):
+def _getValueUserOrOther( k, dThisField, dItem, oUser = None, **kwargs ):
     #
     if k == 'iUser':
         return oUser.id
     elif k in kwargs:
         return kwargs[ k ]
     else:
-        return getValueOffItemDict( k, dItem, dFields )
+        return getValueOffItemDict( k, dThisField, dItem )
 
 
 
