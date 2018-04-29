@@ -224,14 +224,14 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
 
 
 
-def _getValueUserOrOther( k, dThisField, dItem, oUser = None, **kwargs ):
+def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
     #
     if k == 'iUser':
         return oUser.id
     elif k in kwargs:
         return kwargs[ k ]
     else:
-        return getValueOffItemDict( k, dThisField, dItem )
+        return getValueOffItemDict( dItem, k, dThisField )
 
 
 
@@ -481,8 +481,8 @@ def storeSearchResultsInDB( iLogID,
     #
     oSearchLog.save()
     #
-    logger.info(
-        'finished stroing records for "%s" search (ID %s) ...' %
-        ( sSearchName, iSearchID ) )
+    #logger.info(
+        #'finished stroing records for "%s" search (ID %s) ...' %
+        #( sSearchName, iSearchID ) )
     #
     return iItems, iStoreItems, iStoreUsers
