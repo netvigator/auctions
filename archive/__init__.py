@@ -1,8 +1,39 @@
 from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
 
-from archive.utils  import getListAsLines, getListWithCommas # in __init__.py
-
 from Utils.Config   import getBoolOffYesNoTrueFalse
+
+
+def _getList( s ):
+    #
+    if isinstance( s, list ):
+        #
+        l = s
+        #
+    elif isinstance( s, str ):
+        #
+        if s.startswith( '[' ) and s.endswith( ']' ):
+            #
+            s = s[ 1 : -1 ]
+            #
+        #
+        l = [ s.strip()[ 1 : -1 ] for s in s.split( ',' ) ]
+        #
+    #
+    return l
+
+
+def getListAsLines( s ):
+    #
+    l = _getList( s )
+    #
+    return '\n'.join( l )
+
+
+def getListWithCommas( s ):
+    #
+    l = _getList( s )
+    #
+    return ', '.join( l )
 
 
 d = dict
@@ -27,9 +58,6 @@ dItemFields = d(
     cPictureURLs    = d( t = ( "PictureURL",),
                          f = getListAsLines ),
     cPostalCode     = d( t = ( "PostalCode",), ),
-    iCategoryID     = d( t = ( "PrimaryCategoryID",),
-                         f = int ),
-    cCategoryID     = d( t = ( "PrimaryCategoryName",), ),
     iQuantity       = d( t = ( "Quantity",),
                          f = int ),
     cSellerID       = d( t = ( "Seller", "UserID",), ),
@@ -38,13 +66,14 @@ dItemFields = d(
     cFeedbackPercent= d( t = ( "Seller", "PositiveFeedbackPercent",), ),
     iBidCount       = d( t = ( "BidCount",),
                          f = int ),
-    dCurrentPrice   = d( t = ( "ConvertedCurrentPrice", "Value",),
+    dConvertPrice   = d( t = ( "ConvertedCurrentPrice", "Value",),
                          f = float ),
-    dConvertCurrency= d( t = ( "ConvertedCurrentPrice", "CurrencyID",), ),
-    lCurrentPrice   = d( t = ( "CurrentPrice", "Value",),
+    cConvertCurrency= d( t = ( "ConvertedCurrentPrice", "CurrencyID",), ),
+    lLocalPrice     = d( t = ( "CurrentPrice", "Value",),
                          f = float ),
     lLocalCurrency  = d( t = ( "CurrentPrice", "CurrencyID",), ),
-    cHighBidder     = d( t = ( "HighBidder", "UserID",), ),
+    cHighBidder     = d( t = ( "HighBidder", "UserID",),
+                         bOptional = True ),
     cListingStatus  = d( t = ( "ListingStatus",), ),
     iQuantitySold   = d( t = ( "QuantitySold",),
                          f = int ),
@@ -55,15 +84,35 @@ dItemFields = d(
     cTitle          = d( t = ( "Title",), ),
     iHitCount       = d( t = ( "HitCount",),
                          f = int ),
-    cCategoryPath   = d( t = ( "PrimaryCategoryIDPath",), ),
+    iCategoryID     = d( t = ( "PrimaryCategoryID",),
+                         f = int ),
+    cCategoryIDs    = d( t = ( "PrimaryCategoryIDPath",), ),
+    cCategoryNames  = d( t = ( "PrimaryCategoryName",), ),
     cCountry        = d( t = ( "Country",), ),
     cReturnPolicy   = d( t = ( "ReturnPolicy", "ReturnsAccepted",), ),
-    dMinimumBid     = d( t = ( "MinimumToBid", "Value",), ),
-    cBidCurrency    = d( t = ( "MinimumToBid", "CurrencyID",), ),
+    dMinimumBid     = d( t = ( "MinimumToBid", "Value",),
+                         bOptional = True ),
+    cBidCurrency    = d( t = ( "MinimumToBid", "CurrencyID",),
+                         bOptional = True ),
     iConditionID    = d( t = ( "ConditionID",),
-                         f = int ),
-    cCondition      = d( t = ( "ConditionDisplayName",), ),
+                         f = int,
+                         bOptional = True ),
+    cCondition      = d( t = ( "ConditionDisplayName",),
+                         bOptional = True ),
     bGlobalShipping = d( t = ( "GlobalShipping",),
-                         f = getBoolOffYesNoTrueFalse ) )
+                         f = getBoolOffYesNoTrueFalse ),
 
-
+    bBuyItNowable   = d( t = ( "BuyItNowAvailable"),
+                         f = getBoolOffYesNoTrueFalse,
+                         bOptional = True ),
+    lBuyItNowPrice  = d( t = ( "BuyItNowPrice", "Value",),
+                         f = float,
+                         bOptional = True ),
+    lBuyItNowCurrenc= d( t = ( "BuyItNowPrice", "CurrencyID",),
+                         bOptional = True ),
+    dBuyItNowPrice  = d( t = ( "ConvertedBuyItNowPrice", "Value",),
+                         f = float,
+                         bOptional = True ),
+    cBuyItNowConvert= d( t = ( "ConvertedBuyItNowPrice", "CurrencyID",),
+                         bOptional = True ),
+)
