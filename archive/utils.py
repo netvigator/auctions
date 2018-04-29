@@ -2,7 +2,7 @@ import logging
 
 from archive            import dItemFields as dFields # in __init__.py
 
-from core.utils_ebay    import getValueOffItemDict as getValue
+from core.utils_ebay    import getValueOffItemDict
 
 from Time.Output        import getNowIsoDateTimeFileNameSafe
 
@@ -71,7 +71,9 @@ def storeJsonSingleItemResponse( sContent, **kwargs ):
     #
     dItem    = _getJsonSingleItemResponse( sContent )
     #
-    dGotItem = { k: getValue( k, dItem, dFields[k], **kwargs ) for k in dFields }
+    dGotItem = { k: getValueOffItemDict( dItem, k, v, **kwargs )
+                 for k, v in dFields.items() }
+    #
     #
     return dGotItem
 
