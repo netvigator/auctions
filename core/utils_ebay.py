@@ -11,7 +11,7 @@ logger = getLogger(__name__)
 _dBlankValue = { None: '', int: 0 }
 
 
-def getValueOffItemDict( k, dThisField, dItem, **kwargs ):
+def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
     #
     t = dThisField[ 't' ] # t is for tuple (of keys)
     #
