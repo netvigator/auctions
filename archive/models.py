@@ -27,7 +27,7 @@ class Item(models.Model):
                         null = True, blank = True )
     cPostalCode     = models.CharField( 'postal code', max_length = 12 )
     iCategoryID     = models.PositiveIntegerField( 'primary category ID',
-                        null = True )
+                        null = True, blank = True )
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iQuantity       = models.SmallIntegerField( 'quantity' )
@@ -35,18 +35,19 @@ class Item(models.Model):
     iFeedbackScore  = models.SmallIntegerField( 'seller feedback score' )
     cFeedbackPercent= models.CharField( 'seller feedback percent', max_length = 8 )
     iBidCount       = models.SmallIntegerField( 'bid count' )
-    dCurrentPrice   = models.DecimalField( # form was throwing nonsense error
-                        'current price (converted)', # for MoneyField
+    dConvertPrice   = models.DecimalField( # form was throwing nonsense error
+                        'price (converted)',        # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
                         db_index = False )                  # DecimalField
-    dConvertCurrency= models.CharField( 'local currency converted to this',
+    cConvertCurrency= models.CharField( 'local currency converted to this',
                         max_length = 3, default = 'USD' )
-    lCurrentPrice   = models.DecimalField( 'current price (local currency)',
+    lLocalPrice     = models.DecimalField( 'price (local currency)',
                         max_digits = 10, decimal_places = 2,
-                        null = True )
+                        null = True, blank = True )
     lLocalCurrency  = models.CharField( 'local currency',
                         max_length = 3, default = 'USD' )
-    cHighBidder     = models.CharField( 'high bidder user name', max_length = 48 )
+    cHighBidder     = models.CharField( 'high bidder user name',
+                        max_length = 48, null = True, blank = True )
     cListingStatus  = models.CharField( 'Listing Status', max_length = 18 )
     iQuantitySold   = models.SmallIntegerField( 'quantity sold' )
     cShipToLocations= models.CharField( 'ship to locations', max_length =188 )
@@ -55,11 +56,13 @@ class Item(models.Model):
     cTitle          = models.CharField( 'item title',
                         max_length = 80 )
     iHitCount       = models.SmallIntegerField( 'Hit Count' )
-    cCategoryPath   = models.CharField( 'category path', max_length = 48 )
+    cCategoryIDs    = models.CharField( 'category IDs',   max_length =  88 )
+    cCategoryNames  = models.CharField( 'category names', max_length = 148 )
     cCountry        = CountryField( "Country" )
     cReturnPolicy   = models.CharField( 'Return Policy', max_length = 48 )
     dMinimumBid     = models.DecimalField( 'Minimum Bid',
-                        max_digits = 6, decimal_places = 2, null = True )
+                        max_digits = 6, decimal_places = 2,
+                        null = True, blank = True )
     cBidCurrency    = models.CharField( 'bid currency',
                         max_length = 3, default = 'USD' )
     iConditionID    = models.SmallIntegerField( 'Condition ID',
@@ -70,6 +73,23 @@ class Item(models.Model):
 
     tCreate         = models.DateTimeField( 'created on',
                         db_index = True, auto_now_add= True )
+    bBuyItNowable   = models.BooleanField(
+                        'buy it now enabled?',default = False )
+    lBuyItNowPrice  = models.DecimalField( 'buy it now price (local currency)',
+                        max_digits = 10, decimal_places = 2,
+                        null = True, blank = True )
+    lBuyItNowCurrenc= models.CharField( 'buy it now local currency',
+                        max_length = 3, default = 'USD' )
+    dBuyItNowPrice  = models.DecimalField(
+                        'buy it now price (converted)',
+                        max_digits=10, decimal_places=2,
+                        null = True, blank = True )
+    cBuyItNowConvert= models.CharField(
+                        'buy it now local currency converted to this',
+                        max_length = 3, default = 'USD' )
+
+    tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    tModify         = models.DateTimeField( 'updated on', null = True )
 
 
     def __str__(self):
