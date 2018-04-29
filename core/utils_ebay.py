@@ -11,20 +11,20 @@ logger = getLogger(__name__)
 _dBlankValue = { None: '', int: 0 }
 
 
-def getValueOffItemDict( k, dItem, dFields, **kwargs ):
+def getValueOffItemDict( k, dThisField, dItem, **kwargs ):
     #
-    t = dFields[ k ][ 't' ] # t is for tuple (of keys)
+    t = dThisField[ 't' ] # t is for tuple (of keys)
     #
-    bOptional = dFields[ k ].get( 'bOptional',  False )
-    bCalculate= dFields[ k ].get( 'bCalculate', False )
+    bOptional = dThisField.get( 'bOptional',  False )
+    bCalculate= dThisField.get( 'bCalculate', False )
     #
     bNotInItemDict = bOptional or bCalculate
     #
-    f = dFields[ k ].get( 'f' ) # f is for function
+    f = dThisField.get( 'f' ) # f is for function
     #
     uValue = None
     #
-    try:
+    if t and t[0] in dItem:
         #
         uValue  = dItem[ t[0] ]
         #
@@ -33,29 +33,28 @@ def getValueOffItemDict( k, dItem, dFields, **kwargs ):
         for sKey in tRest:
             uValue = uValue[ sKey ]
         #
-    except ( IndexError, KeyError ) as e:
+    elif not t: # empty, IndexError
         #
-        if not t: # empty, IndexError
-            #
-            uValue  = None
-            #
-        elif bNotInItemDict and t[0] in kwargs:
-            #
-            uValue  = kwargs[ t[0] ]
-            #
-        elif bOptional:
-            #
-            uValue = _dBlankValue.get( f )
-            #
-        else:
-            #
-            logger.error( 'KeyError', 'field:', t[0], str(e) )
-            #
+        pass
+        #
+    elif bNotInItemDict and t[0] in kwargs:
+        #
+        uValue  = kwargs[ t[0] ]
+        #
+    elif bOptional:
+        #
+        uValue = _dBlankValue.get( f )
+        #
+    else:
+        #
+        sMsg = 'expecting key but did not find in info from ebay'
+        #
+        logger.error( 'KeyError, field * %s * -- %s' % ( t[0], sMsg ) )
         #
     #
     sValue  = uValue
     #
-    if f is None:
+    if f is None or sValue is None or isinstance( sValue, bool ):
         #
         uReturn = sValue
         #
