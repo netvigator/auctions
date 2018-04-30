@@ -1,3 +1,5 @@
+# import inspect
+
 from django.core.urlresolvers   import reverse
 
 from core.utils_test            import BaseUserTestCase
@@ -10,7 +12,6 @@ from ..models                   import Brand
 from ..views                    import BrandCreateView
 
 from .test_models               import ModelModelTest
-
 
 class BrandViewsTests(BaseUserTestCase):
     """Brand views tests."""
@@ -28,6 +29,8 @@ class BrandViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['brand_list'], [])
         self.assertContains(response, "No brands are available.")
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
     
     
         
@@ -66,6 +69,7 @@ class BrandViewsTests(BaseUserTestCase):
         
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
+        # print( 'logged out of user1, logged into user 2')
         
         response = self.client.get(
                 reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
@@ -77,7 +81,8 @@ class BrandViewsTests(BaseUserTestCase):
 
         self.client.logout()
         self.client.login(username='username3', password='mypassword')
-        
+        # print( 'logged out of user2, logged into user 3')
+
         response = self.client.get(
                 reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
         self.assertEqual(response.status_code, 200)
@@ -87,12 +92,16 @@ class BrandViewsTests(BaseUserTestCase):
         Not logged in, cannot see form, direct to login page.
         """
         self.client.logout()
+        # print( 'logged out of user3, did not log back in ')
+
         response = self.client.get(reverse('brands:index'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/brands/')
         #pprint( 'printing response:')
         #pprint( response )
-        
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
 
 
 class BrandViewsHitButtons(ModelModelTest):
@@ -121,6 +130,8 @@ class BrandViewsHitButtons(ModelModelTest):
             #print( k )
         #self.assertEqual(response.context_data['iUser'], self.user1)
         self.assertEqual(response.context_data['view'].__dict__['request'], request)
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     # @patch('brands.models.Brand.save', MagicMock(name="save"))
@@ -144,6 +155,8 @@ class BrandViewsHitButtons(ModelModelTest):
         #response = self.client.post( request, data )
 
         #print( 'response.status_code:', response.status_code )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_add_hit_cancel(self):
@@ -162,6 +175,8 @@ class BrandViewsHitButtons(ModelModelTest):
         #pprint( response.__dict__ )
         self.assertEqual( response.status_code, 200 )
         # self.assertRedirects( response, reverse( 'brands:index' ) )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_search_create_view(self):
         #
@@ -179,7 +194,7 @@ class BrandViewsHitButtons(ModelModelTest):
         #print( 'response.template_name:' )
         #print( response.template_name ) ['brands/add.html']
         #
-    #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     # @patch('brands.models.Brand.save', MagicMock(name="save"))
     def test_edit_post(self):
@@ -198,6 +213,8 @@ class BrandViewsHitButtons(ModelModelTest):
                 reverse('brands:edit', kwargs={'pk': oBrand.id} ), data )
         # import pdb; pdb.set_trace()
         self.assertEqual( response.status_code, 200 )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_edit_hit_cancel(self):
@@ -221,4 +238,6 @@ class BrandViewsHitButtons(ModelModelTest):
         #pprint( response.__dict__ )
         self.assertEqual( response.status_code, 200 )
         # self.assertRedirects( response, reverse( 'brands:index' ) )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
