@@ -9,7 +9,7 @@ from .models            import Item
 
 tItemFields = tuple( dItemFields.keys() )
 
-class ItemFoundForm(ModelForm):
+class ItemForm(ModelForm):
     #
     '''using a form to validate incoming info from ebay'''
     #
