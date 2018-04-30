@@ -54,9 +54,13 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
     #
     sValue  = uValue
     #
-    if f is None or sValue is None or isinstance( sValue, bool ):
+    if sValue is None or isinstance( sValue, bool ):
         #
         uReturn = sValue
+        #
+    elif f is None:
+        #
+        uReturn = str( sValue )
         #
     else:
         #
