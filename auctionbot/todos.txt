@@ -86,3 +86,6 @@ take out of brands.mixins:
 
 
 implement getOldRecordToRecycleGenerator for ItemsFound, UserItemsFound, searchlogs
+
+
+global replace old assertEquals new assertEqual
