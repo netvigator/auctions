@@ -1,3 +1,5 @@
+# import inspect
+
 from core.utils_test    import ( BaseUserTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
@@ -27,6 +29,8 @@ class ModelModelTest(BaseUserTestCase):
     def test_string_representation(self):
         #
         self.assertEqual(str(self.oBrand), self.oBrand.cTitle)
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_get_absolute_url(self):
         """browser refresh trick: detail URL includes a UTC query string"""
@@ -38,4 +42,6 @@ class ModelModelTest(BaseUserTestCase):
         self.assertTrue( queryGotUpdated( tParts[1] ) )
         #
         self.assertFalse( queryGotUpdated( tParts[0] ) )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         
