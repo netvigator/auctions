@@ -41,7 +41,7 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         #
         uValue  = kwargs[ t[0] ]
         #
-    elif bOptional:
+    elif bNotInItemDict:
         #
         uValue = _dBlankValue.get( f )
         #
