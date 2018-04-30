@@ -64,7 +64,8 @@ class Item(models.Model):
                         max_digits = 6, decimal_places = 2,
                         null = True, blank = True )
     cBidCurrency    = models.CharField( 'bid currency',
-                        max_length = 3, default = 'USD' )
+                        max_length = 3, default = 'USD',
+                        null = True, blank = True )
     iConditionID    = models.SmallIntegerField( 'Condition ID',
                         null = True, blank = True )
     cCondition      = models.CharField( 'condition display name',
@@ -79,14 +80,16 @@ class Item(models.Model):
                         max_digits = 10, decimal_places = 2,
                         null = True, blank = True )
     lBuyItNowCurrenc= models.CharField( 'buy it now local currency',
-                        max_length = 3, default = 'USD' )
+                        max_length = 3, default = 'USD',
+                        null = True, blank = True )
     dBuyItNowPrice  = models.DecimalField(
                         'buy it now price (converted)',
                         max_digits=10, decimal_places=2,
                         null = True, blank = True )
     cBuyItNowConvert= models.CharField(
                         'buy it now local currency converted to this',
-                        max_length = 3, default = 'USD' )
+                        max_length = 3, default = 'USD',
+                        null = True, blank = True )
 
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', null = True )
