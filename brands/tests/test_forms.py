@@ -1,3 +1,5 @@
+# import inspect
+
 from django.urls        import reverse
 
 from core.utils_test    import BaseUserTestCase, getUrlQueryStringOff
@@ -52,7 +54,9 @@ class TestFormValidation(BaseUserTestCase):
         form = CreateBrandForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
-                
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
 
     def test_save_redirect(self):
         #
@@ -73,6 +77,8 @@ class TestFormValidation(BaseUserTestCase):
         self.assertEqual(
             getUrlQueryStringOff( oBrand.get_absolute_url() )[0],
             reverse('brands:detail', kwargs={ 'pk': oBrand.id } ) )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_add_Title_already_there(self):
         #
@@ -110,4 +116,6 @@ class TestFormValidation(BaseUserTestCase):
         else:
             print( 'no form errors at bottom!' )
         '''
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
