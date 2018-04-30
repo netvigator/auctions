@@ -12,10 +12,10 @@ logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
 
-''' prints logging messages to terminal
 logging.basicConfig(
     format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
     level=logging.INFO)
+''' prints logging messages to terminal
 '''
 
 class SearchGotZeroResults(  Exception ): pass
@@ -71,20 +71,27 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
     #
     dNewResult.update( kwargs )
     #
-    if False and settings.TESTING: # EbayCategory table incomplete when testing
+    if settings.TESTING: # EbayCategory table incomplete when testing
         #
         # form throwing error for ForeignKey even those can find in table
         #  # False form.is_valid() but category is in table
         #
-        if not EbayCategory.objects.filter(
-                iCategoryID    = dNewResult['iCategoryID'],
-                iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists():
+        #if not hasattr( dNewResult, 'iCategoryID' ):
             #
-            if dNewResult['iCategoryID'] == 73160: print( 'not OK:', 73160 )
+            #print('')
+            #print('no iCategoryID for %s' % dNewResult.get( 'iItemNumb' ) )
+            #
+        if ( not hasattr( dNewResult, 'iCategoryID' ) or
+             not dNewResult['iCategoryID'] or
+             not EbayCategory.objects.filter(
+                iCategoryID    = dNewResult['iCategoryID'],
+                iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists() ):
+            #
+            # if dNewResult['iCategoryID'] == 73160: print( 'not OK:', 73160 )
             #
             dNewResult['iCategoryID'] = None
             #
-        elif dNewResult['iCategoryID'] == 73160: print( 'OK:', 73160 )
+        #elif dNewResult['iCategoryID'] == 73160: print( 'OK:', 73160 )
         #
         if ( not hasattr( dNewResult, 'i2ndCategoryID' ) or
              not dNewResult['i2ndCategoryID'] or
@@ -95,9 +102,9 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
             dNewResult['i2ndCategoryID'] = None
             #
         #
-        print( "dNewResult['iCategoryID']:", dNewResult['iCategoryID'] )
-        print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
-        print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
+        #print( "dNewResult['iCategoryID']:", dNewResult['iCategoryID'] )
+        #print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
+        #print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
     #
     dNewResult['tCreate'] = tSearchTime
     #
@@ -480,7 +487,7 @@ def _getFindingResponseGenerator( sResponse ): # json.load is faster
 
 
 
-def getSearchResultGenerator( sFile, iLastPage ):
+def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
     #
     ''' search saves results to file, this returns an interator to set through
     in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
@@ -491,15 +498,18 @@ def getSearchResultGenerator( sFile, iLastPage ):
     from Dict.Maintain  import getDictValuesFromSingleElementLists
     from File.Get       import getFileSpecHereOrThere
     #
-    iThisPage = getPageNumbOffFileName( sFile )
-    #
-    sFile = getFileSpecHereOrThere( sFile )
-    #
-    # findItemsAdvancedResponse
-    # findItemsByCategoryResponse
-    # findItemsByKeywordsResponse
-    #
-    dResponse = getJsonFindingResponse( open( sFile ) )
+    if sContent is None:
+        #
+        iThisPage = getPageNumbOffFileName( sFile )
+        #
+        sFile = getFileSpecHereOrThere( sFile )
+        #
+        dResponse = getJsonFindingResponse( open( sFile ) )
+        #
+    else:
+        #
+        dResponse = getJsonFindingResponse( sContent )
+        #
     #
     dPagination = dResponse[  'dPagination']
     #
