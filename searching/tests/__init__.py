@@ -473,6 +473,7 @@ sExampleResponse = \
 
 # ###      if you add an item whose title includes a double quote,       ###
 # ### you must manually convert a signle backslash to a double backslash ###
+# ###      also first item is tested in core.test_utils_ebay             ###
 
 sResponseSearchTooBroad = \
 '''{"findItemsByKeywordsResponse":
