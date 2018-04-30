@@ -117,8 +117,8 @@ class ItemFound(models.Model):
     iCategoryID     = models.ForeignKey( EbayCategory,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
-                        on_delete=models.CASCADE )
-                        # , null = True, blank = True
+                        on_delete=models.CASCADE,
+                        null = True, blank = True ) # need for testing
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
