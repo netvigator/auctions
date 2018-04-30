@@ -1,4 +1,4 @@
-import datetime
+from datetime                   import datetime, timezone
 
 from django.core.exceptions     import ValidationError
 from django.test                import TestCase
@@ -86,8 +86,9 @@ class DateTimeImportTests(TestCase):
     '''test converting ebay string dates into python datetime objects'''
     def test_convert_ebay_string_DateTime(self):
         #
-        self.assertEquals( getDateTime( "2017-12-15T05:22:47.000Z" ),
-                           datetime.datetime(2017, 12, 15, 5, 22, 47) )
+        self.assertEquals(
+                getDateTime( "2017-12-15T05:22:47.000Z" ),
+                datetime(2017, 12, 15, 5, 22, 47, 0, timezone.utc ) )
 
 class NbspTests(TestCase):
     '''test substituting &nbsp; for spaces'''
