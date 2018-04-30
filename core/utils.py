@@ -1,5 +1,5 @@
 # misc utils can go here
-from datetime               import timedelta
+from datetime               import timedelta, timezone
 
 from django.db.models       import ForeignKey
 from django.utils           import timezone
@@ -32,7 +32,8 @@ def getDateTimeObjGotEbayStr( sDateTime ):
     from Time.Convert import getDateTimeObjFromString
     #
     #
-    return getDateTimeObjFromString( sDateTime, EBAY_DATE_FORMAT )
+    return getDateTimeObjFromString(
+            sDateTime, EBAY_DATE_FORMAT, oTimeZone = timezone.utc )
 
 
 def getLastDictFromResponse( oResponse ):
