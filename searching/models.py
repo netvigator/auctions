@@ -147,6 +147,11 @@ class ItemFound(models.Model):
                         max_length = 18 )
     tCreate         = models.DateTimeField( 'created on',
                         db_index = True, auto_now_add= True )
+    tRetrieved      = models.DateTimeField( 'retrieved info',
+                        null = True, blank = True )
+    tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
+                        null = True, blank = True )
+
 
     def __str__(self):
         return self.cTitle
@@ -162,7 +167,7 @@ class UserItemFound(models.Model):
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    bGetPictures    = models.BooleanField( 'get pictures?',
+    bGetPictures    = models.BooleanField( 'get description & pictures?',
                         default = False )    
     tlook4hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
@@ -188,8 +193,11 @@ class UserItemFound(models.Model):
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
-    tModify         = models.DateTimeField(
-                        'retrieved info date/time', auto_now = True )
+    tModify         = models.DateTimeField( 'updated on', auto_now = True )
+    tRetrieved      = models.DateTimeField( 'retrieved info',
+                        null = True, blank = True )
+    tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
+                        null = True, blank = True )
 
     def __str__(self):
         return self.iItemNumb.cTitle
