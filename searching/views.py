@@ -95,22 +95,26 @@ class ItemsFoundIndexView(
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         bListExclude        = False,
+                        tRetrieved__isnull  = True,
                         iHitStars__isnull   = False ).order_by('-iHitStars')
         elif sSelect == 'P': # postive (non-zero hit stars)
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__isnull   = False,
                         bListExclude        = False,
+                        tRetrieved__isnull  = True,
                         iHitStars__gt       = 0 ).order_by('-iHitStars')
         elif sSelect == 'D': # "deleted" (excluded from list)
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__isnull   = False,
+                        tRetrieved__isnull  = True,
                         bListExclude        = True ).order_by('-iHitStars')
         elif sSelect == 'Z': # iHitStars = 0
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__eq       = 0,
+                        tRetrieved__isnull  = True,
                         bListExclude        = False ).order_by('-iHitStars')
         #
         return qsGot
