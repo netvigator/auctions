@@ -1,15 +1,18 @@
 import logging
 
-from django.test        import TestCase
+from django.test    import TestCase
 
-from archive            import getListAsLines
+from archive        import getListAsLines
 
-from archive.tests      import s142766343340, s232742493872, s232709513135
+from archive.tests  import s142766343340, s232742493872, s232709513135
 
-from ..models           import Item
-from ..utils            import storeJsonSingleItemResponse
+from ..models       import Item
+from ..utils        import storeJsonSingleItemResponse, getSingleItemThenStore
+from ..utils_test   import getSingleItemCandidates
 
-from String.Get         import getTextAfter
+from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
+
+from String.Get     import getTextAfter
 
 logger = logging.getLogger(__name__)
 
@@ -97,4 +100,21 @@ class StoreItemsTest( TestCase ):
         iSavedRowID = storeJsonSingleItemResponse( s232709513135 )
         #
         self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
+
+
+class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
+    '''class to test getSingleItemThenStore'''
+
+    def setUp( self ):
+        #
+        self.lItems = getSingleItemCandidates()
+        #
+
+    def test_get_single_item_then_store( self ):
+        #
+        iItem0 = self.lItems[0]
+        #
+        getSingleItemThenStore( iItem0 )
+        #
+
 
