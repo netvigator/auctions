@@ -91,7 +91,7 @@ class Item(models.Model):
                         max_length = 3, default = 'USD',
                         null = True, blank = True )
 
-    tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
+    tCreate         = models.DateTimeField( 'created on', auto_now_add=True )
     tModify         = models.DateTimeField( 'updated on', null = True )
 
 
