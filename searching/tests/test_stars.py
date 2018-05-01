@@ -108,8 +108,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         iCount = 0
         #
         oFisherSpeakers = oTube5R4GB = oTube12SN7 = oAltecHorn = None
-
-        oFisher100s = oAltecItem1 = oAltecItem2 = oTube6BH6 = None
+        oFisher100s = oAltecItem1 = oAltecItem2 = oAltecItem3 = None
+        oTube6BH6 = None
         #
         setItemsToTest = frozenset(
               ( 282602694679,
@@ -119,6 +119,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 162988285719,
                 332618106572,
                 162988530803,
+                232745789325,
                 ) )
         #
         for oTemp in oUserItems:
@@ -151,6 +152,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 elif oTemp.iItemNumb_id == 162988530803 :
                     oAltecHorn      = oTemp
                 #
+                elif oTemp.iItemNumb_id == 232745789325 :
+                    oAltecItem3     = oTemp
                 #print( '' )
 
                 #sSayModel = sSayBrand = sSayCategory = ''
@@ -186,14 +189,14 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 #print( oAltecItem1.iCategory.cTitle )
             #else: print( 'oAltecItem1.iCategory is None' )
             #print( oAltecItem1.iHitStars )
-        #if oAltecItem2 is not None:
-            #if oAltecItem2.iModel is not None:
-                #print( oAltecItem2.iModel.cTitle )
-            #else: print( 'oAltecItem2.iModel is None' )
-            #if oAltecItem2.iCategory is not None:
-                #print( oAltecItem2.iCategory.cTitle )
-            #else: print( 'oAltecItem2.iCategory is None' )
-            #print( oAltecItem2.iHitStars )
+        if oAltecItem3 is not None:
+            if oAltecItem3.iModel is not None:
+                print( oAltecItem3.iModel.cTitle )
+            else: print( 'oAltecItem3.iModel is None' )
+            if oAltecItem3.iCategory is not None:
+                print( oAltecItem3.iCategory.cTitle )
+            else: print( 'oAltecItem3.iCategory is None' )
+            print( oAltecItem3.iHitStars )
         #
         self.assertGreater( iCount, 40 )
         #
