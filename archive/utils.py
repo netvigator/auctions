@@ -1,15 +1,19 @@
 import logging
 
+from django.utils           import timezone
 
-from archive            import dItemFields as dFields # in __init__.py
-from .forms             import ItemForm
-from .models            import Item
+from core.ebay_api_calls    import getSingleItem
 
-from core.utils_ebay    import getValueOffItemDict
+from archive                import dItemFields as dFields # in __init__.py
+from .forms                 import ItemForm
+from .models                import Item
 
-from Time.Test          import isDateTimeObj
-from Time.Output        import getNowIsoDateTimeFileNameSafe
+from core.utils_ebay        import getValueOffItemDict
 
+from searching.models       import ItemFound, UserItemFound
+
+from Time.Test              import isDateTimeObj
+from Time.Output            import getNowIsoDateTimeFileNameSafe
 
 
 
@@ -73,20 +77,23 @@ def _getJsonSingleItemResponse( sContent ):
 
 def storeJsonSingleItemResponse( sContent, **kwargs ):
     #
+    if 'tNow' in kwargs:
+        tNow = kwargs.pop( 'tNow' )
+    else:
+        tNow = timezone.now()
+    #
     dItem    = _getJsonSingleItemResponse( sContent )
     #
     dGotItem = { k: getValueOffItemDict( dItem, k, v, **kwargs )
                  for k, v in dFields.items() }
     #
-    bAnyChanged = False
-    #
     if Item.objects.filter( pk = dGotItem['iItemNumb'] ).exists():
+        #
+        bAnyChanged = False
         #
         iSavedRowID = dGotItem['iItemNumb']
         #
-        oItem = Item.objects.get( pk = dGotItem['iItemNumb'] )
-        #
-        form = ItemForm( instance = oItem )
+        oItem = Item.objects.get( pk = iSavedRowID )
         #
         for sField in dGotItem:
             #
@@ -102,6 +109,8 @@ def storeJsonSingleItemResponse( sContent, **kwargs ):
                 #
             #
         if bAnyChanged:
+            #
+            oItem.tModify = tNow
             #
             oItem.save()
             #
@@ -122,7 +131,6 @@ def storeJsonSingleItemResponse( sContent, **kwargs ):
             #
             # ### form errors are common,
             # ### not all real categories are in the test database
-            #
             #
             # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
             sMsg = ('form did not save' )
@@ -151,4 +159,50 @@ def storeJsonSingleItemResponse( sContent, **kwargs ):
 
 
 
+def getSingleItemThenStore( iItemNumb ):
+    #
+    sContent = iSavedRowID = None
+    #
+    try:
+        #
+        sContent = getSingleItem( iItemNumb )
+        #
+    except Exception as e:
+        #
+        logging.info(
+                'Exception for %s', str( iItemNumb ), exc_info = e )
+    #
+    tNow = timezone.now()
+    #
+    if sContent is not None:
+        #
+        iSavedRowID = storeJsonSingleItemResponse( sContent, tNow = tNow )
+        #
+    #
+    if iSavedRowID is not None:
+        #
+        oItemFound = ItemFound.objects.get( pk = iItemNumb )
+        #
+        if (        oItemFound.tRetrieved and
+                not oItemFound.tRetrieveFinal and
+                    oItemFound.tTimeEnd < tNow ):
+            #
+            oItemFound.tRetrieveFinal = tNow
+            #
+            oItemFound.save()
+            #
+            UserItemFound.objects.filter(
+                    iItemNumb = iItemNumb ).update( tRetrieveFinal = tNow )
+            #
+        elif not oItemFound.tRetrieved:
+            #
+            oItemFound.tRetrieved = tNow
+            #
+            oItemFound.save()
+            #
+            UserItemFound.objects.filter(
+                    iItemNumb = iItemNumb ).update( tRetrieved = tNow )
+            #
+        #
+    #
 
