@@ -62,7 +62,8 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['auctionshoppingbot.com', ])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
+                         default=[ '59.148.236.215', 'auctionshoppingbot.com', ])
 # END SITE CONFIGURATION
 
 INSTALLED_APPS += ['gunicorn', ]
@@ -101,6 +102,8 @@ MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 # Static Assets
 # ------------------------
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_URL = '/srv/big/' # '/static/'
 
 
 # EMAIL
