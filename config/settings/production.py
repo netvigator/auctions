@@ -67,7 +67,7 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
                          default=[ '59.148.236.215', 'auctionshoppingbot.com', ])
 # END SITE CONFIGURATION
 
-INSTALLED_APPS += ['gunicorn', ]
+# INSTALLED_APPS += ['gunicorn', ]
 
 
 # STORAGE CONFIGURATION
@@ -109,17 +109,22 @@ STATIC_URL = '/srv/big/' # '/static/'
 
 # EMAIL
 # ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='Auction Shopping Bot <noreply@auctionshoppingbot.com>')
-EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Auction Shopping Bot]')
-SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
+DEFAULT_FROM_EMAIL   = env('DJANGO_DEFAULT_FROM_EMAIL',
+            default='Auction Shopping Bot <noreply@auctionshoppingbot.com>')
+EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX',
+            default='[Auction Shopping Bot]')
+SERVER_EMAIL         = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
 # Anymail with Mailgun
 INSTALLED_APPS += ['anymail', ]
+#ANYMAIL = {
+    #'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
+    #'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
+
 ANYMAIL = {
-    'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
-    'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
+    'MAILGUN_API_KEY': getSecret( 'MAILGUN_API_KEY', 'email' ),
 }
+
 EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 # TEMPLATE CONFIGURATION
@@ -141,24 +146,28 @@ DATABASES['default'] = env.db('DATABASE_URL')
 # CACHING
 # ------------------------------------------------------------------------------
 
-REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0)
-# Heroku URL does not pass the DB number, so we parse it in
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_LOCATION,
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'IGNORE_EXCEPTIONS': True,  # mimics memcache behavior.
-                                        # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
-        }
-    }
-}
+#REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0)
+## Heroku URL does not pass the DB number, so we parse it in
+#CACHES = {
+    #'default': {
+        #'BACKEND': 'django_redis.cache.RedisCache',
+        #'LOCATION': REDIS_LOCATION,
+        #'OPTIONS': {
+            #'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            #'IGNORE_EXCEPTIONS': True,  # mimics memcache behavior.
+                                        ## http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+        #}
+    #}
+#}
 
 
 # Sentry Configuration
-SENTRY_DSN = env('DJANGO_SENTRY_DSN')
-SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+# SENTRY_DSN = env('DJANGO_SENTRY_DSN')
+
+SENTRY_DSN = getSecret( 'SENTRY_DSN')
+
+SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT',
+                    default='raven.contrib.django.raven_compat.DjangoClient')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
