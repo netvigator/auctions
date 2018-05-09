@@ -225,7 +225,8 @@ RAVEN_CONFIG = {
 }
 
 # Custom Admin URL, use {% url 'admin:index' %}
-ADMIN_URL = env('DJANGO_ADMIN_URL')
+# ADMIN_URL = env('DJANGO_ADMIN_URL')
+# set in base.py for all
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
