@@ -12,6 +12,7 @@ Production Configurations
 
 from boto.s3.connection import OrdinaryCallingFormat
 
+import logging # maybe also need
 from logging import getLogger
 
 logger = getLogger(__name__)
@@ -166,7 +167,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # Sentry Configuration
 # SENTRY_DSN = env('DJANGO_SENTRY_DSN')
 
-SENTRY_DSN = getSecret( 'SENTRY_DSN')
+SENTRY_DSN = getSecret( 'SENTRY_DSN', 'sentry' )
 
 SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT',
                     default='raven.contrib.django.raven_compat.DjangoClient')
