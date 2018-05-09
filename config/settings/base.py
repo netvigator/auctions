@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import environ
 import sys
 
-from logging                import getLogger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 from django.core.exceptions import ImproperlyConfigured
 
@@ -20,8 +22,6 @@ from django_countries.conf  import settings as countriesSettings
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
 dSecretsConf = getConf( 'Secrets.ini', tWantSections = ( 'email', 'sentry' ) )
-
-logger = getLogger(__name__)
 
 # print( dSecretsConf )
 
