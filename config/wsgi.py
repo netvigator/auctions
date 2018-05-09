@@ -24,7 +24,7 @@ from django.core.wsgi import get_wsgi_application
 app_path = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(os.path.join(app_path, 'auctionbot'))
 
-if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
+if True or os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
