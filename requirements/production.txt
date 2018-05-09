@@ -23,4 +23,5 @@ django-anymail==0.10
 # --------------------------
 raven==6.6.0
 
-
+# ubuntu package is old and has issues, install from pip instead
+mod_wsgi==4.6.4
