@@ -19,7 +19,7 @@ from django_countries.conf  import settings as countriesSettings
 
 from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
-dSecretsConf = getConf( 'Secrets.ini' )
+dSecretsConf = getConf( 'Secrets.ini', tWantSections = ( 'email', 'sentry' ) )
 
 logger = getLogger(__name__)
 
