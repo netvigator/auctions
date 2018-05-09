@@ -14,6 +14,7 @@ from boto.s3.connection import OrdinaryCallingFormat
 
 import logging
 
+logger = getLogger(__name__)
 
 from .base import *  # noqa
 
