@@ -21,7 +21,8 @@ from .base import *  # noqa
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+# SECRET_KEY = env('DJANGO_SECRET_KEY')
+# set in base.py
 
 
 # This ensures that Django will be able to detect a secure connection
@@ -76,9 +77,9 @@ INSTALLED_APPS += ['gunicorn', ]
 # See: http://django-storages.readthedocs.io/en/latest/index.html
 INSTALLED_APPS += ['storages', ]
 
-AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
+#AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
+#AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
+#AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
 AWS_AUTO_CREATE_BUCKET = True
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
