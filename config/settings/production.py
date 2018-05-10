@@ -104,7 +104,12 @@ MEDIA_URL = 'media/'
 
 # Static Assets
 # ------------------------
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+from whitenoise.storage import CompressedManifestStaticFilesStorage
+
+class laxCompressedManifestStaticFilesStorage( CompressedManifestStaticFilesStorage ):
+    manifest_strict = False
+
+STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
 
 STATIC_URL = 'static/'
 
