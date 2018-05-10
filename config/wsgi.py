@@ -25,7 +25,7 @@ app_path = os.path.dirname(os.path.dirname(__file__))
 # sys.path.append(os.path.join(app_path, 'auctionbot'))
 sys.path.append( app_path )
 
-if True or os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
+if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
     # need Sentry with or without DJANGO_SETTINGS_MODULE in the env
     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
 
