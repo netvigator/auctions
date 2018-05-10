@@ -9,7 +9,6 @@ Production Configurations
 
 
 """
-from urllib.parse import unquote, urlsplit, urlunsplit
 
 from boto.s3.connection import OrdinaryCallingFormat
 
@@ -105,7 +104,10 @@ MEDIA_URL = '/media/'
 
 # Static Assets
 # ------------------------
-from whitenoise.storage import CompressedManifestStaticFilesStorage
+# from whitenoise.storage import CompressedManifestStaticFilesStorage
+
+'''
+did not work
 
 class laxCompressedManifestStaticFilesStorage( CompressedManifestStaticFilesStorage ):
     manifest_strict = False
@@ -146,6 +148,8 @@ class laxCompressedManifestStaticFilesStorage( CompressedManifestStaticFilesStor
         return urlunsplit(unparsed_name)
 
 STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
+'''
 
 STATIC_URL = '/static/'
 
