@@ -72,6 +72,9 @@ def getSecret( sSetting, sSection = None ):
 
 DJANGO_SECRET_KEY   = getSecret( 'DJANGO_SECRET_KEY')
 
+SECRET_KEY          = DJANGO_SECRET_KEY
+# django code is looking for SECRET_KEY
+
 POSTGRES_PASSWORD   = getSecret( 'POSTGRES_PASSWORD')
 POSTGRES_USER       = getSecret( 'POSTGRES_USER'    )
 DATABASE_URL        = getSecret( 'DATABASE_URL'     )
