@@ -108,6 +108,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS.append( STATIC_URL )
+
 
 # EMAIL
 # ------------------------------------------------------------------------------
