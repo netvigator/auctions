@@ -113,6 +113,7 @@ STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
+# hard coded path, will surely change when sever moves!
 STATICFILES_DIRS.append( '/srv/big/static/' )
 
 
