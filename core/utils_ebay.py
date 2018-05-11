@@ -41,6 +41,10 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         #
         uValue  = kwargs[ t[0] ]
         #
+    elif bNotInItemDict and bOptional: # form will accept None
+        #
+        uValue = None
+        #
     elif bNotInItemDict:
         #
         uValue = _dBlankValue.get( f )
