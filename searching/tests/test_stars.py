@@ -196,7 +196,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             if oAltecItem3.iCategory is not None:
                 print( oAltecItem3.iCategory.cTitle )
             else: print( 'oAltecItem3.iCategory is None' )
-            print( oAltecItem3.iHitStars )
+            print( 'oAltecItem3.iHitStars:', oAltecItem3.iHitStars )
         #
         self.assertGreater( iCount, 40 )
         #
