@@ -25,10 +25,8 @@ app_path = os.path.dirname(os.path.dirname(__file__))
 # sys.path.append(os.path.join(app_path, 'auctionbot'))
 sys.path.append( app_path )
 
-# try putting this in /etc/environment:
-# DJANGO_SETTINGS_MODULE="config.settings.production"
 # if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
-if 'DJANGO_SETTINGS_MODULE' in os.environ:
+if 'APACHE_RUN_USER' in os.environ:
     # need Sentry with or without DJANGO_SETTINGS_MODULE in the env
     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
 
@@ -36,7 +34,7 @@ if 'DJANGO_SETTINGS_MODULE' in os.environ:
 # if running multiple sites in the same mod_wsgi process. To fix this, use
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
@@ -44,7 +42,7 @@ if 'DJANGO_SETTINGS_MODULE' in os.environ:
 application = get_wsgi_application()
 
 #if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
-if 'DJANGO_SETTINGS_MODULE' in os.environ:
+if 'APACHE_RUN_USER' in os.environ:
     application = Sentry(application)
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
