@@ -24,7 +24,7 @@ from Numb.Get           import getHowManyDigitsNeeded
 
 logger = logging.getLogger(__name__)
 
-logging_level = logging.INFO
+logging_level = logging.WARNING
 
 '''
 logging.basicConfig(level=logging.loglevel)
