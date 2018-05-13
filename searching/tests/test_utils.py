@@ -456,7 +456,8 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
                                         self.sMarket,
                                         self.user1.username,
                                         self.oSearch.id,
-                                        self.oSearch.cTitle ) )
+                                        self.oSearch.cTitle,
+                                        self.setTestCategories ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -485,7 +486,8 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
                                         self.sMarket,
                                         self.user1.username,
                                         self.oSearch.id,
-                                        self.oSearch.cTitle ) )
+                                        self.oSearch.cTitle,
+                                        self.setTestCategories ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -808,7 +810,8 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                                     sMarket,
                                     sUserName,
                                     iSearchID,
-                                    sSearchName )
+                                    sSearchName,
+                                    self.setTestCategories )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
@@ -875,7 +878,8 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                                     sMarket,
                                     sUserName,
                                     iSearchID,
-                                    sSearchName )
+                                    sSearchName,
+                                    self.setTestCategories )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
