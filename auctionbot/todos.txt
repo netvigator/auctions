@@ -88,7 +88,6 @@ take out of brands.mixins:
 implement getOldRecordToRecycleGenerator for ItemsFound, UserItemsFound, searchlogs
 
 
-global replace old assertEquals new assertEqual
 
 
 should be able to change 603-b to 603-B, as of now, cannot!
