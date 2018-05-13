@@ -89,3 +89,6 @@ implement getOldRecordToRecycleGenerator for ItemsFound, UserItemsFound, searchl
 
 
 global replace old assertEquals new assertEqual
+
+
+should be able to change 603-b to 603-B, as of now, cannot!
