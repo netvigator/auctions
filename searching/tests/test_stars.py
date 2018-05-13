@@ -202,35 +202,35 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertIsNotNone( oFisherSpeakers )
         #
-        self.assertEquals( oFisherSpeakers.iModel.cTitle,    'XP-55-B' )
+        self.assertEqual( oFisherSpeakers.iModel.cTitle,    'XP-55-B' )
         #
-        self.assertEquals( oFisherSpeakers.iBrand.cTitle,    'Fisher'  )
+        self.assertEqual( oFisherSpeakers.iBrand.cTitle,    'Fisher'  )
         #
-        self.assertEquals( oFisherSpeakers.iCategory.cTitle, 'Speaker System')
+        self.assertEqual( oFisherSpeakers.iCategory.cTitle, 'Speaker System')
         #
-        self.assertEquals( oFisherSpeakers.cWhereCategory,   'title' )
+        self.assertEqual( oFisherSpeakers.cWhereCategory,   'title' )
         #
         self.assertTrue(   oFisherSpeakers.iHitStars > 100 )
         #
         self.assertIsNotNone( oTube5R4GB )
         #
-        self.assertEquals( oTube5R4GB.iModel.cTitle,    '5R4GA' )
+        self.assertEqual( oTube5R4GB.iModel.cTitle,    '5R4GA' )
         #
-        self.assertEquals( oTube5R4GB.iBrand.cTitle,    'GE'    )
+        self.assertEqual( oTube5R4GB.iBrand.cTitle,    'GE'    )
         #
-        self.assertEquals( oTube5R4GB.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertEqual( oTube5R4GB.iCategory.cTitle, 'Vacuum Tube' )
         #
-        self.assertEquals( oTube5R4GB.cWhereCategory,   'title' )
+        self.assertEqual( oTube5R4GB.cWhereCategory,   'title' )
         #
         self.assertTrue(   oTube5R4GB.iHitStars > 100 )
         #
         self.assertIsNotNone( oTube12SN7 )
         #
-        self.assertEquals( oTube12SN7.iModel.cTitle,    '12SN7' )
+        self.assertEqual( oTube12SN7.iModel.cTitle,    '12SN7' )
         #
-        self.assertEquals( oTube12SN7.iBrand.cTitle,    'RCA'   )
+        self.assertEqual( oTube12SN7.iBrand.cTitle,    'RCA'   )
         #
-        self.assertEquals( oTube12SN7.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertEqual( oTube12SN7.iCategory.cTitle, 'Vacuum Tube' )
         #
         self.assertIsNotNone( oAltecItem1 )
         #
@@ -246,31 +246,31 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertIsNotNone( oFisher100s )
         #
-        self.assertEquals( oFisher100s.iModel.cTitle,    '100 (speaker)' )
+        self.assertEqual( oFisher100s.iModel.cTitle,    '100 (speaker)' )
         #
-        self.assertEquals( oFisher100s.iBrand.cTitle,    'Fisher' )
+        self.assertEqual( oFisher100s.iBrand.cTitle,    'Fisher' )
         #
-        self.assertEquals( oFisher100s.iCategory.cTitle, 'Speaker System' )
+        self.assertEqual( oFisher100s.iCategory.cTitle, 'Speaker System' )
         #
         self.assertIsNotNone( oTube6BH6 )
         #
-        self.assertEquals( oTube6BH6.iModel.cTitle,    '6BH6' )
+        self.assertEqual( oTube6BH6.iModel.cTitle,    '6BH6' )
         #
-        self.assertEquals( oTube6BH6.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertEqual( oTube6BH6.iCategory.cTitle, 'Vacuum Tube' )
         #
-        self.assertEquals( oTube6BH6.cWhereCategory,   'heirarchy1' )
+        self.assertEqual( oTube6BH6.cWhereCategory,   'heirarchy1' )
         #
-        self.assertEquals( oTube6BH6.iBrand.cTitle,    'RCA'    )
+        self.assertEqual( oTube6BH6.iBrand.cTitle,    'RCA'    )
         #
         self.assertIsNotNone( oAltecHorn )
         #
-        self.assertEquals( oAltecHorn.iModel.cTitle,    '311-90' )
+        self.assertEqual( oAltecHorn.iModel.cTitle,    '311-90' )
         #
-        self.assertEquals( oAltecHorn.iCategory.cTitle, 'Horn' )
+        self.assertEqual( oAltecHorn.iCategory.cTitle, 'Horn' )
         #
-        self.assertEquals( oAltecHorn.cWhereCategory,   'title' )
+        self.assertEqual( oAltecHorn.cWhereCategory,   'title' )
         #
-        self.assertEquals( oAltecHorn.iBrand.cTitle,    'Altec-Lansing' )
+        self.assertEqual( oAltecHorn.iBrand.cTitle,    'Altec-Lansing' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -415,7 +415,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertIn(     self.oBrand.cRegExLook4Title,
                             ( r'Cadillac|\bCaddy\b', r'\bCaddy\b|Cadillac') )
         #
-        self.assertEquals( self.oBrand.cRegExExclude, r'\bgolf\b' )
+        self.assertEqual( self.oBrand.cRegExExclude, r'\bgolf\b' )
         #
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
@@ -461,8 +461,8 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertIn(     self.oCategory.cRegExLook4Title,
                                 ( r'\bGizmo\b|Widget', r'Widget|\bGizmo\b' ) )
         #
-        self.assertEquals( self.oCategory.cRegExExclude,  r'\bDelta\b'  )
-        self.assertEquals( self.oCategory.cRegExKeyWords,    'Gadget' )
+        self.assertEqual( self.oCategory.cRegExExclude,  r'\bDelta\b'  )
+        self.assertEqual( self.oCategory.cRegExKeyWords,    'Gadget' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -513,8 +513,8 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertIn(     self.oModel.cRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
         #
-        self.assertEquals( self.oModel.cRegExExclude, r'\bgolf\b' )
-        self.assertEquals( self.oModel.cRegExKeyWords, 'Eldorado' )
+        self.assertEqual( self.oModel.cRegExExclude, r'\bgolf\b' )
+        self.assertEqual( self.oModel.cRegExKeyWords, 'Eldorado' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 

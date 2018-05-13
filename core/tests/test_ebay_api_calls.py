@@ -10,32 +10,32 @@ class GetConfFileValuesTests(TestCase):
         
         dConfValues = _getApiConfValues( False )
         
-        self.assertEquals( dConfValues['call']['global_id'], 'EBAY-US' )
-        self.assertEquals( dConfValues['call']['siteid'   ], '0'       )
+        self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
+        self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
         
-        self.assertEquals( dConfValues['endpoints']['finding'],
+        self.assertEqual( dConfValues['endpoints']['finding'],
                     'http://svcs.ebay.com/services/search/FindingService/v1' )
         
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
         sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**m1'
         
-        self.assertEquals(
+        self.assertEqual(
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
                 sTokenStart )
         
         dConfValues = _getApiConfValues( True )
         
-        self.assertEquals( dConfValues['call']['global_id'], 'EBAY-US' )
-        self.assertEquals( dConfValues['call']['siteid'   ], '0'       )
+        self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
+        self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
         
-        self.assertEquals( dConfValues['endpoints']['finding'],
+        self.assertEqual( dConfValues['endpoints']['finding'],
                     'http://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
         
         sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**/0'
         
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
-        self.assertEquals(
+        self.assertEqual(
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
                 sTokenStart )
 

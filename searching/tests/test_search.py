@@ -29,7 +29,7 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
             #
             self.addSearch( "My clever search %s" % i, 'A%s' % i, self.user1 )
         #
-        self.assertEquals( getHowManySearchDigitsNeeded(), 2 )
+        self.assertEqual( getHowManySearchDigitsNeeded(), 2 )
         #
         for iOrd in range( 69, 81 ):
             #
@@ -41,7 +41,7 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
                                 '%s%s' % ( sChar, str(i) ),
                                 self.user1 )
         #
-        self.assertEquals( getHowManySearchDigitsNeeded(), 3 )
+        self.assertEqual( getHowManySearchDigitsNeeded(), 3 )
         #
         data = dict(
             cTitle      = "Great Widget",
@@ -71,17 +71,17 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
         # lack of success get_success_url
         self.assertRedirects( response, '/searching/' )
         #
-        self.assertEquals( getHowManySearchDigitsNeeded(), 3 )
+        self.assertEqual( getHowManySearchDigitsNeeded(), 3 )
         #
         
         
     def test_get_ID_str_zero_filled( self ):
         #
-        self.assertEquals( getIdStrZeroFilled(   1, 3 ),  '001' )
+        self.assertEqual( getIdStrZeroFilled(   1, 3 ),  '001' )
         #
-        self.assertEquals( getIdStrZeroFilled( 100, 2 ),  '100' )
+        self.assertEqual( getIdStrZeroFilled( 100, 2 ),  '100' )
         #
-        self.assertEquals( getIdStrZeroFilled( 100, 4 ), '0100' )
+        self.assertEqual( getIdStrZeroFilled( 100, 4 ), '0100' )
         #
     
 
@@ -121,7 +121,7 @@ class TestGetPriorityChoices( BaseUserTestCaseCanAddSearches ):
             ('Y1','Y1'), ('Y2','Y2'), ('Y3','Y3'), ('Y4','Y4'), ('Y5','Y5'), ('Y6','Y6'), ('Y7','Y7'), ('Y8','Y8'), ('Y9','Y9'),
             ('Z1','Z1'), ('Z2','Z2'), ('Z3','Z3'), ('Z4','Z4'), ('Z5','Z5'), ('Z6','Z6'), ('Z7','Z7'), ('Z8','Z8'), ('Z9','Z9'))
         #
-        self.assertEquals( tChoices, tExpect )
+        self.assertEqual( tChoices, tExpect )
         #
         tChoices = self.getPriorityChoices( self.user1, 'A1' )
         #
@@ -168,6 +168,6 @@ class TestGetShrinkItemURL( TestCase ):
         #
         sExpect = 'http://www.ebay.com/itm/b/191863708651'
         #
-        self.assertEquals( getShrinkItemURL( sURL ), sExpect )
+        self.assertEqual( getShrinkItemURL( sURL ), sExpect )
         #
 

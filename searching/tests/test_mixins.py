@@ -53,7 +53,7 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet )
                 oUserItemFound.iBrand.iStars *
                 oUserItemFound.iCategory.iStars )
         #
-        self.assertEquals( oUserItemFound.iHitStars, iExpectStars )
+        self.assertEqual( oUserItemFound.iHitStars, iExpectStars )
         #
         update_url = reverse(
                 'searching:item_found_edit', args=(oUserItemFound.id,) )
@@ -82,7 +82,7 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet )
         r = self.client.get( update_url )
         #
         #pprint( r.context['form'] )
-        self.assertEquals(
+        self.assertEqual(
                 r.context['form'].initial['iModel'], self.oModel2.id )
         #
         form = self.app.get( update_url ).form
@@ -97,7 +97,7 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet )
                 oUserItemFound.iBrand.iStars *
                 oUserItemFound.iCategory.iStars )
         #
-        self.assertEquals( oUserItemFound.iHitStars, iExpectStars )
+        self.assertEqual( oUserItemFound.iHitStars, iExpectStars )
 
 
 

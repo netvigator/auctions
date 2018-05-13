@@ -932,7 +932,7 @@ class TestFindingResponseHelpers( TestCase ):
                     'iPages'    :   24 }
     
         #
-        self.assertEquals( dGot, dExpect )
+        self.assertEqual( dGot, dExpect )
         #
         dGot = getPagination( '' )
         #
@@ -1053,11 +1053,11 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
         dOnlyPage = getPagination( sResponseSearchTooBroad )
         #
         #
-        self.assertEquals( dJsonPage["iEntriesPP"], dOnlyPage["iCount"    ] )
-        self.assertEquals( dJsonPage["iEntries"],   dOnlyPage["iEntries"  ] )
-        self.assertEquals( dJsonPage["iPages"],     dOnlyPage["iPages"    ] )
-        self.assertEquals( dJsonPage["iEntriesPP"], dOnlyPage["iEntriesPP"] )
-        self.assertEquals(
+        self.assertEqual( dJsonPage["iEntriesPP"], dOnlyPage["iCount"    ] )
+        self.assertEqual( dJsonPage["iEntries"],   dOnlyPage["iEntries"  ] )
+        self.assertEqual( dJsonPage["iPages"],     dOnlyPage["iPages"    ] )
+        self.assertEqual( dJsonPage["iEntriesPP"], dOnlyPage["iEntriesPP"] )
+        self.assertEqual(
                       int( dJsonPage["pageNumber"]),dOnlyPage["iPageNumb" ]  )
 
 
@@ -1069,15 +1069,15 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
         dItemMyWay   = next( oIterItemsMyWay )
         dItemJsonWay = next( oIterItemsJson )
         #
-        self.assertEquals( dItemMyWay["itemId"],
+        self.assertEqual( dItemMyWay["itemId"],
                                 dItemJsonWay["itemId"] )
-        self.assertEquals( dItemMyWay["listingInfo"],
+        self.assertEqual( dItemMyWay["listingInfo"],
                                 dItemJsonWay["listingInfo"] )
-        self.assertEquals( dItemMyWay["primaryCategory"],
+        self.assertEqual( dItemMyWay["primaryCategory"],
                                 dItemJsonWay["primaryCategory"] )
-        self.assertEquals( dItemMyWay["condition"],
+        self.assertEqual( dItemMyWay["condition"],
                                 dItemJsonWay["condition"] )
-        self.assertEquals( dItemMyWay["sellingStatus"],
+        self.assertEqual( dItemMyWay["sellingStatus"],
                                dItemJsonWay["sellingStatus"] )
 
 
@@ -1094,7 +1094,7 @@ class FileNameUtilitiesTesting( TestCase ):
         #
         lParts = sNewFileName.split( '_' )
         #
-        self.assertEquals( lParts[6], '001' )
+        self.assertEqual( lParts[6], '001' )
 
 
 

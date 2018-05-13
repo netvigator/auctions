@@ -31,8 +31,8 @@ class TestingHelperTests(TestCase):
     #
     def test_URL_Parts(self):
         #
-        self.assertEquals( self.tParts[0], 'www.google.com/search' )
-        self.assertEquals( self.tParts[1], 'q=django+test+validation+assertRaises' )
+        self.assertEqual( self.tParts[0], 'www.google.com/search' )
+        self.assertEqual( self.tParts[1], 'q=django+test+validation+assertRaises' )
     #
     def test_Query_Dont_Got_Updated(self):
         #
@@ -64,7 +64,7 @@ class CoreMarketTests(TestCase):
         #
         self.assertIsNotNone( self.market.pk )
         #
-        self.assertEquals( self.market.pk, 0 )
+        self.assertEqual( self.market.pk, 0 )
 
 
 
@@ -78,7 +78,7 @@ class CoreUserTests(TestCase):
     
     def test_get_user(self):
         
-        self.assertEquals( oUserOne.username, 'netvigator')
+        self.assertEqual( oUserOne.username, 'netvigator')
 
 
 
@@ -86,7 +86,7 @@ class DateTimeImportTests(TestCase):
     '''test converting ebay string dates into python datetime objects'''
     def test_convert_ebay_string_DateTime(self):
         #
-        self.assertEquals(
+        self.assertEqual(
                 getDateTime( "2017-12-15T05:22:47.000Z" ),
                 datetime(2017, 12, 15, 5, 22, 47, 0, timezone.utc ) )
 
@@ -94,7 +94,7 @@ class NbspTests(TestCase):
     '''test substituting &nbsp; for spaces'''
     def test_Nbsp(self):
         #
-        self.assertEquals( getNbsp( "how now brown cow" ),
+        self.assertEqual( getNbsp( "how now brown cow" ),
                            "how&nbsp;now&nbsp;brown&nbsp;cow" )
 
 
@@ -104,5 +104,5 @@ class TestEbayCategoriesSetUp(getEbayCategoriesSetUp):
         #
         '''test whether all the categories are in the table'''
         #
-        self.assertEquals(
+        self.assertEqual(
                 EbayCategory.objects.all().count(), self.iCategories )
