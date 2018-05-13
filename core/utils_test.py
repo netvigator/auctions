@@ -312,6 +312,8 @@ class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
         #
         iCategories = 0
         #
+        setTestCategories = set( [] )
+        #
         for lParts in oTableIter:
             #
             iCategoryID             = int( lParts[1] )
@@ -326,6 +328,8 @@ class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
                 #
                 continue
                 #
+            #
+            setTestCategories.add( ( iEbaySiteID, iCategoryID ) )
             #
             oCategory = EbayCategory(
                     iCategoryID     =           iCategoryID,
@@ -363,6 +367,8 @@ class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
             #
         #
         self.iCategories = iCategories + 2 # add 2 root categories
+        #
+        self.setTestCategories = frozenset( setTestCategories )
         #
 
 
