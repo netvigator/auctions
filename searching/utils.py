@@ -396,7 +396,8 @@ def storeSearchResultsInDB( iLogID,
                             sMarket,
                             sUserName,
                             iSearchID,
-                            sSearchName ):
+                            sSearchName,
+                            setTestCategories = None ):
     #
     '''high level script, accesses results in /tmp file(s)
     and stores indatabase'''
@@ -430,6 +431,34 @@ def storeSearchResultsInDB( iLogID,
         for dItem in oItemIter:
             #
             iItems += 1
+            #
+            if setTestCategories is not None:
+                #
+                # when testing, will skip items with categories
+                # not in the abbreviated category table
+                #
+                iEbaySiteID     = dMarket2SiteID[ dItem.get( 'globalId' ) ]
+                iCategoryID     = int( dItem.get( 'primaryCategory'       )
+                                            .get( 'categoryId' ) )
+                u2ndCategoryID  =    ( dItem.get( 'secondaryCategory', {} )
+                                            .get( 'categoryId' ) )
+                #
+                if ( iEbaySiteID, iCategoryID ) not in setTestCategories:
+                    #
+                    #print('')
+                    #print('discarded %s, category %s' %
+                            #( dItem['itemId'], str( ( iEbaySiteID, iCategoryID ) ) ) )
+                    #
+                    continue
+                    #
+                #
+                if ( u2ndCategoryID is not None and 
+                            ( iEbaySiteID, int( u2ndCategoryID ) )
+                            not in setTestCategories ):
+                    #
+                    del dItem[ 'secondaryCategory' ] # 2nd category optional
+                    #
+                #
             #
             iItemNumb = None
             #
