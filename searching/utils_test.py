@@ -88,7 +88,7 @@ def updateHitLogFile( oUserItems, sPathHere ):
     #
     # discard rows that are too old
     #
-    sDateTimeAgo = getIsoDateTimeNowPlus( -120 )
+    sDateTimeAgo = getIsoDateTimeNowPlus( -100 )
     #
     lItemHits = [ d for d in lItemHits if d['tTimeEnd' ] > sDateTimeAgo ]
     #
@@ -101,6 +101,8 @@ def updateHitLogFile( oUserItems, sPathHere ):
     for oItemHit in oUserItems:
         #
         if oItemHit.iItemNumb_id in setItemNumbsAlready: continue
+        #
+        if oItemHit.iHitStars < 400: continue
         #
         dRow = dict(
             iItemNumb   = str(      oItemHit.iItemNumb_id ),
