@@ -125,8 +125,11 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         #
         #
         # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
-        sMsg = ('form did not save' )
         #
+        if 'iItemNumb' in dNewResult:
+            sMsg = ('form did not save for item %s' % dNewResult['iItemNumb'] )
+        else:
+            sMsg = ('form did not save' )
         logger.error( sMsg )
         #print( '' )
         #print( 'log this error, form did not save' )
