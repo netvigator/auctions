@@ -159,7 +159,7 @@ def storeJsonSingleItemResponse( sContent, **kwargs ):
 
 
 
-def getSingleItemThenStore( iItemNumb ):
+def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     sContent = iSavedRowID = None
     #
@@ -172,7 +172,10 @@ def getSingleItemThenStore( iItemNumb ):
         logging.info(
                 'Exception for %s', str( iItemNumb ), exc_info = e )
     #
-    tNow = timezone.now()
+    if 'tNow' in kwargs:
+        tNow = kwargs.pop( 'tNow' )
+    else:
+        tNow = timezone.now()
     #
     if sContent is not None:
         #
@@ -183,16 +186,21 @@ def getSingleItemThenStore( iItemNumb ):
         #
         oItemFound = ItemFound.objects.get( pk = iItemNumb )
         #
-        if (        oItemFound.tRetrieved and
-                not oItemFound.tRetrieveFinal and
-                    oItemFound.tTimeEnd < tNow ):
+        if oItemFound.tTimeEnd < tNow:
             #
             oItemFound.tRetrieveFinal = tNow
+            #
+            if not oItemFound.tRetrieved:
+                #
+                oItemFound.tRetrieved = tNow
+                #
             #
             oItemFound.save()
             #
             UserItemFound.objects.filter(
-                    iItemNumb = iItemNumb ).update( tRetrieveFinal = tNow )
+                    iItemNumb = iItemNumb ).update(
+                            tRetrieveFinal = tNow,
+                            tRetrieved     = tNow )
             #
         elif not oItemFound.tRetrieved:
             #
