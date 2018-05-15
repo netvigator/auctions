@@ -37,11 +37,59 @@ def getFetchUserItems():
                                 tRetrieved__isnull  = True )
                             .values('iItemNumb').distinct() )
     #
+    qsAlreadyFetched = ( ItemFound.objects
+                            .filter( iItemNumb__in = qsUserItemNumbs )
+                            .filter( tRetrieved__isnull = False )
+                            .prefetch_related(
+                                    'tRetrieved', 'tRetrieveFinal' ) )
+    #
+    for oItemFound in qsAlreadyFetched:
+        #
+        qsUserItemFound = UserItemFound.filter(
+                                iItemNumb = oItemFound.iItemNumb )
+        #
+        for oUserItemFound in qsUserItemFound:
+            #
+            oUserItemFound.tRetrieved     = oItemFound.tRetrieved
+            oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
+            #
+            oUserItemFound.save()
+            #
+        #
+    #
+    qsAlreadyFinal = ( ItemFound.objects
+                            .filter( iItemNumb__in = qsUserItemNumbs )
+                            .filter( tRetrieveFinal__isnull = False )
+                            .prefetch_related( 'tRetrieveFinal' ) )
+    #
+    for oItemFound in qsAlreadyFinal:
+        #
+        qsUserItemFound = UserItemFound.filter(
+                                iItemNumb = oItemFound.iItemNumb )
+        #
+        for oUserItemFound in qsUserItemFound:
+            #
+            oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
+            #
+            oUserItemFound.save()
+            #
+        #
+    #
+    if qsAlreadyFetched.exists() or qsAlreadyFinal.exists():
+        #
+        # must redo query
+        #
+        qsUserItemNumbs = ( UserItemFound.objects.filter(
+                                    bGetPictures        = True,
+                                    tRetrieved__isnull  = True )
+                                .values('iItemNumb').distinct() )
+        #
     for iItemNumb in qsUserItemNumbs:
         #
         # assign task
         #
-        pass
+        getSingleItemThenStore( iItemNumb )
+        #
 
 
 
