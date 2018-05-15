@@ -169,7 +169,7 @@ class UserItemFound(models.Model):
                         min_value = 0, max_value = 1000, default = 0 )
     bGetPictures    = models.BooleanField( 'get description & pictures?',
                         default = False )    
-    tlook4hits      = models.DateTimeField(
+    tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
     iSearch         = models.ForeignKey( Search,
                         verbose_name = 'Search that first found this item',

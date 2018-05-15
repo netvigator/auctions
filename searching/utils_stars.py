@@ -208,7 +208,7 @@ def findSearchHits(
     if (    bShowProgress and
             UserItemFound.objects.filter(
                     iUser = oUser,
-                    tlook4hits__isnull = True ).exists() ):
+                    tLook4Hits__isnull = True ).exists() ):
         #
         # no need to test
         #
@@ -220,7 +220,7 @@ def findSearchHits(
     qsItems = ItemFound.objects.filter(
                 pk__in = UserItemFound.objects
                     .filter( iUser = oUser,
-                             tlook4hits__isnull = True )
+                             tLook4Hits__isnull = True )
                     .values_list( 'iItemNumb', flat=True ) )
     #
     if len( qsItems ) == 0: return
@@ -539,7 +539,7 @@ def findSearchHits(
                     oUserItem.cWhereCategory= oItemFoundTemp.cWhereCategory
                     # oUserItem.iSearch     = oItemFoundTemp.iSearch
                     #
-                    oUserItem.tlook4hits = tNow
+                    oUserItem.tLook4Hits = tNow
                     #
                     oUserItem.save()
                     #
@@ -559,7 +559,7 @@ def findSearchHits(
                             iBrand          = oItemFoundTemp.iBrand,
                             iCategory       = oItemFoundTemp.iCategory,
                             cWhereCategory  = oItemFoundTemp.cWhereCategory,
-                            tlook4hits      = tNow,
+                            tLook4Hits      = tNow,
                             tCreate         = tNow,
                             tModify         = tNow,
                             iUser           = oUser )

@@ -176,7 +176,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 #print( 'Search       :', oTemp.iSearch.cTitle   )
                 #print( 'WhereCategory:', oTemp.cWhereCategory   )
                 #print( 'Evaluated    :',
-                    #oTemp.tlook4hits.strftime('%Y-%m-%d %H:%M:%S'))
+                    #oTemp.tLook4Hits.strftime('%Y-%m-%d %H:%M:%S'))
                 #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
             #
             iCount += 1
