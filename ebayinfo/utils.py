@@ -1,4 +1,5 @@
 from logging                import getLogger
+from os.path                import join
 from time                   import sleep
 
 from django.conf            import settings
@@ -9,9 +10,12 @@ from core.utils             import getNamerSpacer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
 
-from ebayinfo               import dMarketsRelated # in __init__.py
+# in __init__.py
+from ebayinfo               import dMarketsRelated, EBAY_FILES_FOLDER
+
 from .models                import EbayCategory, Market, CategoryHierarchy
 
+from Dir.Get                import getMakeDir
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 from Web.HTML               import getChars4HtmlCodes
@@ -25,10 +29,11 @@ utils for handling info from ebay API
 note the actual calls to the ebay API are in 
 core.ebay_wrapper.py
 '''
+getMakeDir( EBAY_FILES_FOLDER )
 
 # variable referenced in tests
-CATEGORY_VERSION_FILE = '/tmp/Categories_Ver_%s.xml'
-CATEGORY_LISTING_FILE = '/tmp/Categories_All_%s.xml'
+CATEGORY_VERSION_FILE = join( EBAY_FILES_FOLDER, 'Categories_Ver_%s.xml' )
+CATEGORY_LISTING_FILE = join( EBAY_FILES_FOLDER, 'Categories_All_%s.xml' )
 
 sRootTag = 'GetCategoriesResponse'
 
@@ -458,7 +463,7 @@ def _getCheckCategoryVersion(
     #
     iVersion = _getCategoryVersionFromFile( sGlobalID, sFile )
     #
-    DeleteIfExists( '/tmp', sFile % sGlobalID )
+    DeleteIfExists( EBAY_FILES_FOLDER, sFile % sGlobalID )
     #
     return iVersion
 
