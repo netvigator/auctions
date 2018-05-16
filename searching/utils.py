@@ -207,7 +207,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         if iThisPage > 0:
             sFileName = _putPageNumbInFileName( sFileName, iThisPage )
         #
-        QuietDump( sResponse, sFileName )
+        QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
         #
         iWantPages = min( dPagination["iPages"], 100 ) # ebay will do 100 max
         #
