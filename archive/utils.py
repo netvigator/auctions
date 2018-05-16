@@ -1,10 +1,14 @@
+from os.path                import join
+
 import logging
 
 from django.utils           import timezone
 
 from core.ebay_api_calls    import getSingleItem
 
-from archive                import dItemFields as dFields # in __init__.py
+# in __init__.py
+from archive                import EBAY_ITEMS_FOLDER, dItemFields as dFields
+
 from .forms                 import ItemForm
 from .models                import Item
 
@@ -12,6 +16,7 @@ from core.utils_ebay        import getValueOffItemDict
 
 from searching.models       import ItemFound, UserItemFound
 
+from Dir.Get                import getMakeDir
 from Time.Test              import isDateTimeObj
 from Time.Output            import getNowIsoDateTimeFileNameSafe
 
@@ -24,7 +29,7 @@ logger = logging.getLogger(__name__)
 logging_level = logging.INFO
 
 
-
+getMakeDir( EBAY_ITEMS_FOLDER )
 
 
 def _getJsonSingleItemResponse( sContent ):
@@ -43,8 +48,9 @@ def _getJsonSingleItemResponse( sContent ):
         #
         if "Ack" in dResult:
             #
-            sFile = ( '/tmp/single_item_response_failure_%s_.json'
-                        % getNowIsoDateTimeFileNameSafe() )
+            sFile = join( EBAY_ITEMS_FOLDER, 
+                          'single_item_response_failure_%s_.json'
+                            % getNowIsoDateTimeFileNameSafe() )
             #
             sMsg = ( 'getSingleItem failure, check file %s'
                     % sFile )
@@ -57,8 +63,9 @@ def _getJsonSingleItemResponse( sContent ):
             #
             # unexpected content
             #
-            sFile = (   '/tmp/invalid_single_item_response_%s_.json'
-                        % getNowIsoDateTimeFileNameSafe() )
+            sFile = join( EBAY_ITEMS_FOLDER,
+                          'invalid_single_item_response_%s_.json'
+                                % getNowIsoDateTimeFileNameSafe() )
             #
             sMsg = ( 'unexpected content from getSingleItem, check %s'
                     % sFile )
