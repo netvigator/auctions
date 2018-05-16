@@ -2,6 +2,7 @@ from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
 
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
+EBAY_ITEMS_FOLDER = '/tmp/ebay_items'
 
 def _getList( s ):
     #
