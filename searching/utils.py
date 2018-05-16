@@ -14,8 +14,9 @@ from .models            import ItemFound, UserItemFound, SearchLog, Search
 from .utilsearch        import ( storeEbayInfo, getPagination,
                                  getSearchResultGenerator )
 
-from searching          import RESULTS_FILE_NAME_PATTERN
+from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
+from Dir.Get            import getMakeDir
 from File.Del           import DeleteIfExists
 from File.Get           import getFilesMatchingPattern
 from Numb.Get           import getHowManyDigitsNeeded
@@ -38,7 +39,7 @@ class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 class ItemAlreadyInTable(    Exception ): pass
 
-
+getMakeDir( SEARCH_FILES_FOLDER )
 
 def getHowManySearchDigitsNeeded( iID = None ):
     #
@@ -96,7 +97,7 @@ def getPageNumbOffFileName( sFileName ):
 
 def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
-    '''sends search request to the ebay API, stores the response in /tmp'''
+    '''sends search request to the ebay API, stores the response'''
     #
     from os.path                import join
     from time                   import sleep
@@ -218,7 +219,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     logger.info(
         'completed without error "%s" search (ID %s)' % tSearch )
     #
-    sFileName = join( '/tmp', sFileName )
+    sFileName = join( SEARCH_FILES_FOLDER, sFileName )
     #
     return sFileName, oSearch.cTitle
 
@@ -324,7 +325,7 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
 def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     '''high level script, does a search, catches exceptions, logs errors,
-    stores results in /tmp file'''
+    stores results in file'''
     #
     # ### sandbox returns zero items ### 
     # ### use bUseSandbox = False    ### 
@@ -347,7 +348,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
-    lGotFiles   = getFilesMatchingPattern( '/tmp', sFilePattern )
+    lGotFiles   = getFilesMatchingPattern( SEARCH_FILES_FOLDER, sFilePattern )
     #
     for sFile in lGotFiles: DeleteIfExists( sFile )
     #
@@ -399,8 +400,8 @@ def storeSearchResultsInDB( iLogID,
                             sSearchName,
                             setTestCategories = None ):
     #
-    '''high level script, accesses results in /tmp file(s)
-    and stores indatabase'''
+    '''high level script, accesses results in file(s)
+    and stores in database'''
     #
     from django.contrib.auth    import get_user_model
     #
@@ -410,7 +411,7 @@ def storeSearchResultsInDB( iLogID,
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
-    lGotFiles = getFilesMatchingPattern( '/tmp', sFilePattern )
+    lGotFiles = getFilesMatchingPattern( SEARCH_FILES_FOLDER, sFilePattern )
     #
     lGotFiles.sort()
     #
