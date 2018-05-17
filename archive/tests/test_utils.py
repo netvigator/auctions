@@ -8,9 +8,10 @@ from archive.tests  import s142766343340, s232742493872, s232709513135
 
 from ..models       import Item
 from ..utils        import storeJsonSingleItemResponse, getSingleItemThenStore
-# from ..utils_test import getSingleItemCandidates
 
-from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
+from ..utils_test   import getSingleItemResponseCandidate
+
+from searching.tests.test_utils import GetBrandsCategoriesModelsSetUp
 
 from String.Get     import getTextAfter
 
@@ -102,7 +103,7 @@ class StoreItemsTest( TestCase ):
         self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
 
 
-class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
+class GetAndStoreSingleItemsTests( GetBrandsCategoriesModelsSetUp ):
     '''class to test getSingleItemThenStore'''
 
     def setUp( self ):
@@ -111,11 +112,18 @@ class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
         # self.lItems = getSingleItemCandidates()
         #
 
-    def not_yet_test_get_single_item_then_store( self ):
+    def test_get_single_active_item_then_store( self ):
         #
-        iItem0 = self.lItems[0]
+        d = getSingleItemResponseCandidate( bWantEnded = False )
         #
-        getSingleItemThenStore( iItem0 )
+        iItemNumb = int( d[ 'iItemNumb' ] )
         #
+        # need an ItemFound record here!
+        #
+        getSingleItemThenStore( iItemNumb )
+        #
+        qsItem = Item.objects.filter( iItemNumb = iItemNumb )
+        #
+        self.assertEqual( len( qsItem ), 1 )
 
 
