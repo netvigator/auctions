@@ -117,13 +117,13 @@ def _getResponseEbayApi(
     return oResponse.text
 
 
-def _getItemInfo( iItemNumb, sCallName,
+def _getItemInfo( uItemNumb, sCallName,
                   bUseSandbox = False,
                   tWantMore   = None ):
     #
     dParams = { 'callname'          : sCallName, # 'GetSingleItem',
                 'responseencoding'  : "JSON",
-                'ItemId'            : str( iItemNumb ) }
+                'ItemId'            : str( uItemNumb ) }
     #
     if tWantMore:
         #
@@ -149,18 +149,18 @@ def _getItemInfo( iItemNumb, sCallName,
 _tIncludeDefaults = ( 'Details', 'TextDescription' )
 
 def getSingleItem(
-            iItemNumb,
+            uItemNumb,
             bUseSandbox = False,
             tWantMore = _tIncludeDefaults ):
     #
-    return _getItemInfo( iItemNumb, 'GetSingleItem',
+    return _getItemInfo( uItemNumb, 'GetSingleItem',
                          tWantMore   = tWantMore,
                          bUseSandbox = bUseSandbox )
 
 
-def getItemStatus( iItemNumb, bUseSandbox = False ):
+def getItemStatus( uItemNumb, bUseSandbox = False ):
     #
-    return _getItemInfo( iItemNumb, 'GetItemStatus', 
+    return _getItemInfo( uItemNumb, 'GetItemStatus', 
                          bUseSandbox = bUseSandbox )
 
 
