@@ -25,7 +25,8 @@ class Item(models.Model):
                         max_length = 88, null = True, blank = True )
     cPictureURLs    = models.TextField( 'picture URLs',
                         null = True, blank = True )
-    cPostalCode     = models.CharField( 'postal code', max_length = 12 )
+    cPostalCode     = models.CharField( 'postal code', max_length = 12,
+                        null = True, blank = True )
     iCategoryID     = models.PositiveIntegerField( 'primary category ID',
                         null = True, blank = True )
     cCategory       = models.CharField( 'primary category',
