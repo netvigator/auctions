@@ -67,23 +67,23 @@ def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
             #
             if bConsoleOut:
                 #
-                print( 'would do the "%s" search for %s ...' %
-                        ( oSearch, oSearch.iUser.name ) )
+                print( 'would do %s "%s" search for %s ...' %
+                        ( oSearch.id, oSearch, oSearch.iUser.name ) )
             #
         else:
             #
             if bConsoleOut:
                 #
-                print( 'Doing the "%s" search for %s ...' %
-                        ( oSearch, oSearch.iUser.name ) )
+                print( 'Doing %s "%s" search for %s ...' %
+                        ( oSearch.id, oSearch, oSearch.iUser.name ) )
             #
             sLastFile = trySearchCatchExceptStoreInFile( iSearchID = oSearch.id ) 
             #
             if bConsoleOut:
                 #
                 print(
-                    'Search "%s" for %s yielded file "%s"' %
-                    ( oSearch.cTitle, oSearch.iUser.name, sLastFile ) )
+                    'Search %s "%s" for %s yielded file "%s"' %
+                    ( oSearch.id, oSearch.cTitle, oSearch.iUser.name, sLastFile ) )
                 print( '' )
             #
             if iSeq < iSearches: sleep( 1 )
@@ -179,6 +179,13 @@ def doAllUnattended():
     doSearchingPutResultsInFiles( bConsoleOut = True )
     putSearchResultsInItemsFound( bConsoleOut = True )
     doFindSearhHits( bConsoleOut = True )
+
+
+def doMostUnattended():
+    #
+    doSearchingPutResultsInFiles( bConsoleOut = True )
+    putSearchResultsInItemsFound( bConsoleOut = True )
+    # doFindSearhHits( bConsoleOut = True )
 
 
 
