@@ -1,4 +1,5 @@
 from django.core.urlresolvers   import reverse
+from django.db.models   import Max
 from django.http        import HttpResponseRedirect
 from django.test        import TestCase
 from django.urls        import reverse_lazy
@@ -66,7 +67,7 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
         # view.get_success_url() # cannot work,
         # 'SearchCreateView' object has no attribute 'object'
         #
-        iLast = Search.objects.latest('pk').pk
+        iLast = Search.objects.all().aggregate(Max('id'))['id__max']
         #
         # lack of success get_success_url
         self.assertRedirects( response, '/searching/' )
