@@ -8,7 +8,7 @@ from django.utils       import timezone
 
 from core.utils_test    import setUpBrandsCategoriesModels
 
-from searching          import RESULTS_FILE_NAME_PATTERN
+from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
@@ -67,10 +67,10 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
             ( 'EBAY-US', self.user1.username, self.oSearch.id, '000' ) )
         #
         #print( 'will DeleteIfExists' )
-        DeleteIfExists( '/tmp', self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         #print( 'will QuietDump' )
-        QuietDump( sResponseSearchTooBroad, self.sExampleFile )
+        QuietDump( sResponseSearchTooBroad, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         t = ( storeSearchResultsInDB(   self.oSearchLog.id,
                                         self.sMarket,
