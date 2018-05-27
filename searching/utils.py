@@ -5,6 +5,7 @@ from string             import ascii_letters, digits
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db          import DataError
+from django.db.models   import Max
 from django.utils       import timezone
 from core.utils_ebay    import getValueOffItemDict
 
@@ -43,13 +44,20 @@ getMakeDir( SEARCH_FILES_FOLDER )
 
 def getHowManySearchDigitsNeeded( iID = None ):
     #
+    iNeedDigits = iID = None
+    #
     if iID is None:
         try:
-            iID = Search.objects.latest('pk').pk
+            iID = Search.objects.all().aggregate(Max('id'))['id__max']
         except ObjectDoesNotExist: # testing and no search objects yet
-            return None
+            pass
     #
-    return getHowManyDigitsNeeded( iID )
+    if iID is not None:
+        #
+        iNeedDigits = getHowManyDigitsNeeded( iID )
+        #
+    #
+    return iNeedDigits
 
 
 def getIdStrZeroFilled( iID, iDigits ):
@@ -199,7 +207,9 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             iPageNumb   = int( sPageNumb  ) )
         '''
         #
-        if dPagination["iPages"] > 1 and iThisPage == 0:
+        if (    "iPages" in dPagination and
+                dPagination["iPages"] > 1 and
+                iThisPage == 0 ):
             #
             iThisPage = dPagination["iPageNumb"]
             #
@@ -207,9 +217,11 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         if iThisPage > 0:
             sFileName = _putPageNumbInFileName( sFileName, iThisPage )
         #
-        QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
+        if sFileName is not None:
+            QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
         #
-        iWantPages = min( dPagination["iPages"], 100 ) # ebay will do 100 max
+        if "iPages" in dPagination:
+            iWantPages = min( dPagination["iPages"], 100 ) # ebay will do 100 max
         #
         iThisPage += 1
         #
