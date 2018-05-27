@@ -574,6 +574,12 @@ def findSearchHits(
                     #
                 #
             #
+        else: # not lItemFoundTemp
+            #
+            oUserItem.tLook4Hits = tNow
+            #
+            oUserItem.save()
+            #
         #
     #
     oProgressMeter.end( iSeq )
