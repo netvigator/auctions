@@ -239,7 +239,9 @@ def findSearchHits(
         #
         iItemsFound = len( qsItems )
         #
-        sLineB4 = 'determining hit stars for items found ...'
+        sLineB4 = ( 'determining items found hit stars for %s ...' %
+                    oUser.username )
+        #
         sOnLeft = "%s %s" % ( ReadableNo( iItemsFound ), 'items found' )
         #
         oProgressMeter.start( iItemsFound, sOnLeft, sLineB4 )
