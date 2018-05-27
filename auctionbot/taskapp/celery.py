@@ -1,5 +1,5 @@
+from __future__     import absolute_import # celery absolutely needs this
 import os
-
 from logging        import getLogger
 
 from celery         import Celery
@@ -8,15 +8,14 @@ from celery         import shared_task
 from django.apps    import apps, AppConfig
 from django.conf    import settings
 
-#if not settings.configured:
-    ## set the default Django settings module for the 'celery' program.
-    #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
+if not settings.configured:
+    # set the default Django settings module for the 'celery' program.
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
 
 logger = getLogger(__name__)
 
 
 app = Celery('auctionbot')
-
 
 class CeleryConfig(AppConfig):
     name = 'auctionbot.taskapp'
