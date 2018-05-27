@@ -12,7 +12,7 @@ from .utils                 import ( trySearchCatchExceptStoreInFile,
                                      storeSearchResultsInDB )
 from .utils_stars           import findSearchHits
 
-from .models                import Search, SearchLog
+from .models                import Search, SearchLog, UserItemFound
 
 from core.utils             import getBegTime, sayDuration
 
@@ -96,6 +96,48 @@ def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
         sayDuration( tBeg )
 
 
+@shared_task( name = 'auctionbot.searching.tasks.storeSearchResultsInDB' )
+def storeSearchResultsInDbTask( iLogID,
+                                sMarket,
+                                sUserName,
+                                iSearchID,
+                                sSearchName ):
+    #
+    t = storeSearchResultsInDB( iLogID,
+                                sMarket,
+                                sUserName,
+                                iSearchID,
+                                sSearchName )
+    #
+
+
+def doPutSearchResultsInItemsFoundTasks():
+    #
+    qsLogSearches = (
+            SearchLog.objects.filter(
+                tBegSearch__isnull = False,
+                tEndSearch__isnull = False,
+                tBegStore__isnull  = True,
+                cResult = 'Success' ).order_by( "tBegSearch" ) )
+    #
+    for oLogSearch in qsLogSearches:
+        #
+        iLogID      = oLogSearch.pk
+        iSearchID   = oLogSearch.iSearch.pk
+        sSearchName = oLogSearch.iSearch.cTitle
+        sUserName   = oLogSearch.iSearch.iUser.username
+        sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
+        #
+        storeSearchResultsInDbTask.delay(   iLogID,
+                                            sMarket,
+                                            sUserName,
+                                            iSearchID,
+                                            sSearchName )
+        #
+
+
+
+
 def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
     #
     tBeg = getBegTime( bConsoleOut )
@@ -158,6 +200,34 @@ def putSearchResultsInItemsFound( bOnlyList = False, bConsoleOut = False ):
     #
 
 
+@shared_task( name = 'auctionbot.searching.tasks.findSearchHits' )
+def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
+    #
+    print( 'calling findSearchHits() for %s now ....' % iUser )
+    #
+    findSearchHits( iUser,
+                    bCleanUpAfterYourself   = bCleanUp,
+                    bShowProgress           = bShowProgress )
+    #
+
+
+def doFindSearhHitsTasks( bCleanUpAfterYourself = True, bConsoleOut = False ):
+    #
+    oUserModel = get_user_model()
+    #
+    for oUser in oUserModel.objects.all():
+        #
+        if ( UserItemFound.objects
+                        .filter( iUser = oUser.id,
+                        tLook4Hits__isnull = True ).exists() ):
+            #
+            findSearchHitsTask.delay(
+                    iUser           = oUser.id,
+                    bCleanUp        = bCleanUpAfterYourself,
+                    bShowProgress   = bConsoleOut )
+    #
+
+
 def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
     #
     tBeg = getBegTime( bConsoleOut )
@@ -166,24 +236,18 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
     #
     for oUser in oUserModel.objects.all():
         #
-        findSearchHitsTask.delay(
-                iUser           = oUser.id,
-                bCleanUp        = bCleanUpAfterYourself,
-                bShowProgress   = bConsoleOut )
+        if ( UserItemFound.objects
+                        .filter( iUser = oUser.id,
+                        tLook4Hits__isnull = True ).exists() ):
+            #
+            findSearchHits(
+                    iUser           = oUser.id,
+                    bCleanUp        = bCleanUpAfterYourself,
+                    bShowProgress   = bConsoleOut )
     #
     if bConsoleOut:
         #
         sayDuration( tBeg )
-
-
-@shared_task( name = 'auctionbot.searching.tasks.findSearchHits' )
-def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
-    #
-    print( 'calling findSearchHits() for user %s now ....' % iUser )
-    #
-    findSearchHits( iUser,
-                    bCleanUpAfterYourself   = bCleanUp,
-                    bShowProgress           = bShowProgress )
 
 
 
