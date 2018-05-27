@@ -1,19 +1,21 @@
 import logging
 
-from django.test    import TestCase
+from django.test        import TestCase
 
-from archive        import getListAsLines
+from archive            import getListAsLines
 
-from archive.tests  import s142766343340, s232742493872, s232709513135
+from archive.tests      import s142766343340, s232742493872, s232709513135
 
-from ..models       import Item
-from ..utils        import storeJsonSingleItemResponse, getSingleItemThenStore
+from ..models           import Item
+from ..utils            import ( storeJsonSingleItemResponse,
+                                 getSingleItemThenStore )
 
-from ..utils_test   import getSingleItemResponseCandidate
+from ..utils_test       import getSingleItemResponseCandidate
 
-from searching.tests.test_utils import GetBrandsCategoriesModelsSetUp
+from searching.models   import ItemFound, UserItemFound
+from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
 
-from String.Get     import getTextAfter
+from String.Get         import getTextAfter
 
 logger = logging.getLogger(__name__)
 
@@ -103,14 +105,8 @@ class StoreItemsTest( TestCase ):
         self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
 
 
-class GetAndStoreSingleItemsTests( GetBrandsCategoriesModelsSetUp ):
+class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
     '''class to test getSingleItemThenStore'''
-
-    def setUp( self ):
-        #
-        pass
-        # self.lItems = getSingleItemCandidates()
-        #
 
     def test_get_single_active_item_then_store( self ):
         #
@@ -119,6 +115,18 @@ class GetAndStoreSingleItemsTests( GetBrandsCategoriesModelsSetUp ):
         iItemNumb = int( d[ 'iItemNumb' ] )
         #
         # need an ItemFound record here!
+        #
+        oItemFound = ItemFound.objects.all().first()
+        #
+        iOrigItemNumb = oItemFound.iItemNumb
+        #
+        oItemFound.iItemNumb = iItemNumb
+        oItemFound.save()
+        #
+        if iOrigItemNumb is not None:
+            oUserItemFound = UserItemFound.objects.get( iItemNumb = iOrigItemNumb )
+            oUserItemFound.iItemNumb = oItemFound
+            oUserItemFound.save()
         #
         getSingleItemThenStore( iItemNumb )
         #
