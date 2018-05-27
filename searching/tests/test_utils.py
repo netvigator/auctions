@@ -17,7 +17,7 @@ from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 #
 
-from searching          import RESULTS_FILE_NAME_PATTERN
+from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
 from ..models           import ( Search, ItemFound, UserItemFound,
                                  ItemFoundTemp, SearchLog )
@@ -424,7 +424,7 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
                    getSearchIdStr( oSearch.id ),
                    '000' ) )
         #
-        QuietDump( sExampleResponse, self.sExampleFile )
+        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         tNow    = timezone.now()
         tBefore = tNow - timezone.timedelta( minutes = 5 )
