@@ -6,6 +6,7 @@ from django.utils           import timezone
 
 from celery                 import Celery
 from celery.schedules       import crontab
+from celery                 import shared_task
 
 from .utils                 import ( trySearchCatchExceptStoreInFile,
                                      storeSearchResultsInDB )
@@ -165,13 +166,25 @@ def doFindSearhHits( bCleanUpAfterYourself = True, bConsoleOut = False ):
     #
     for oUser in oUserModel.objects.all():
         #
-        findSearchHits( iUser                   = oUser.id,
-                        bCleanUpAfterYourself   = bCleanUpAfterYourself,
-                        bShowProgress           = bConsoleOut )
+        findSearchHitsTask.delay(
+                iUser           = oUser.id,
+                bCleanUp        = bCleanUpAfterYourself,
+                bShowProgress   = bConsoleOut )
     #
     if bConsoleOut:
         #
         sayDuration( tBeg )
+
+
+@shared_task( name = 'auctionbot.searching.tasks.findSearchHits' )
+def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
+    #
+    print( 'calling findSearchHits() for user %s now ....' % iUser )
+    #
+    findSearchHits( iUser,
+                    bCleanUpAfterYourself   = bCleanUp,
+                    bShowProgress           = bShowProgress )
+
 
 
 def doAllUnattended():
