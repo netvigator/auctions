@@ -4,7 +4,7 @@ from string             import ascii_letters, digits
 
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.db          import DataError
+from django.db          import DataError, IntegrityError
 from django.db.models   import Max
 from django.utils       import timezone
 from core.utils_ebay    import getValueOffItemDict
@@ -207,7 +207,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             iPageNumb   = int( sPageNumb  ) )
         '''
         #
-        if (    "iPages" in dPagination and
+        if (    dPagination.get( "iPages" ) and
                 dPagination["iPages"] > 1 and
                 iThisPage == 0 ):
             #
@@ -410,7 +410,8 @@ def storeSearchResultsInDB( iLogID,
                             sUserName,
                             iSearchID,
                             sSearchName,
-                            setTestCategories = None ):
+                            setTestCategories = None,
+                            bCleanUpFiles     = True ):
     #
     '''high level script, accesses results in file(s)
     and stores in database'''
@@ -424,6 +425,15 @@ def storeSearchResultsInDB( iLogID,
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
     lGotFiles = getFilesMatchingPattern( SEARCH_FILES_FOLDER, sFilePattern )
+    #
+    if not lGotFiles:
+        #
+        logger.warning(
+                'storeSearchResultsInDB() did not find file "%s"!'
+                % sFilePattern )
+        #
+        return 0, 0, 0
+        #
     #
     lGotFiles.sort()
     #
@@ -487,7 +497,7 @@ def storeSearchResultsInDB( iLogID,
                                   dItem['itemId'] ) )
                     #
                 #
-            except ItemAlreadyInTable:
+            except ( IntegrityError, ItemAlreadyInTable ):
                 #
                 iItemNumb      = int( dItem['itemId'] )
                 #
@@ -508,7 +518,7 @@ def storeSearchResultsInDB( iLogID,
                     #
                     iStoreUsers += 1
                     #
-                except ItemAlreadyInTable:
+                except ( IntegrityError, ItemAlreadyInTable ):
                     pass
                 #
             #
@@ -526,5 +536,13 @@ def storeSearchResultsInDB( iLogID,
     #logger.info(
         #'finished stroing records for "%s" search (ID %s) ...' %
         #( sSearchName, iSearchID ) )
+    #
+    if bCleanUpFiles:
+        #
+        for sThisFileName in lGotFiles:
+            #
+            DeleteIfExists( sThisFileName )
+            #
+        #
     #
     return iItems, iStoreItems, iStoreUsers
