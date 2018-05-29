@@ -207,21 +207,21 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             iPageNumb   = int( sPageNumb  ) )
         '''
         #
-        if (    dPagination.get( "iPages" ) and
-                dPagination["iPages"] > 1 and
-                iThisPage == 0 ):
+        if dPagination.get( "iPages" ):
             #
-            iThisPage = dPagination["iPageNumb"]
+            if dPagination["iPages"] > 1 and iThisPage == 0:
+                #
+                iThisPage = dPagination["iPageNumb"]
+                #
+            #
+            iWantPages = min( dPagination["iPages"], 100 ) # ebay will do 100 max
             #
         #
-        if iThisPage > 0:
+        if iThisPage > 0 and iWantPages > 1:
             sFileName = _putPageNumbInFileName( sFileName, iThisPage )
         #
         if sFileName is not None:
             QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
-        #
-        if "iPages" in dPagination:
-            iWantPages = min( dPagination["iPages"], 100 ) # ebay will do 100 max
         #
         iThisPage += 1
         #
