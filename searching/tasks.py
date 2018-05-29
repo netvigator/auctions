@@ -72,11 +72,8 @@ def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
         #
         if bOnlyList:
             #
-            #
-            if bConsoleOut:
-                #
-                print( 'would do %s "%s" search for %s ...' %
-                        ( oSearch.id, oSearch, oSearch.iUser.name ) )
+            print( 'would do %s "%s" search for %s ...' %
+                    ( oSearch.id, oSearch, oSearch.iUser.name ) )
             #
         else:
             #
@@ -122,25 +119,29 @@ def storeSearchResultsInDbTask( iLogID,
 def doPutSearchResultsInItemsFoundTasks():
     #
     qsLogSearches = (
-            SearchLog.objects.filter(
-                tBegSearch__isnull = False,
-                tEndSearch__isnull = False,
-                tBegStore__isnull  = True,
-                cResult = 'Success' ).order_by( "tBegSearch" ) )
+            SearchLog.objects
+                .select_related('iSearch')
+                .filter(
+                    tBegSearch__isnull = False,
+                    tEndSearch__isnull = False,
+                    tBegStore__isnull  = True,
+                    cResult            = 'Success' )
+                .order_by( "tBegSearch" ) )
     #
     for oLogSearch in qsLogSearches:
         #
         iLogID      = oLogSearch.pk
-        iSearchID   = oLogSearch.iSearch.pk
+        iSearchID   = oLogSearch.iSearch_id
         sSearchName = oLogSearch.iSearch.cTitle
         sUserName   = oLogSearch.iSearch.iUser.username
         sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
         #
-        storeSearchResultsInDbTask.delay(   iLogID,
-                                            sMarket,
-                                            sUserName,
-                                            iSearchID,
-                                            sSearchName )
+        storeSearchResultsInDbTask.delay(
+                                    iLogID,
+                                    sMarket,
+                                    sUserName,
+                                    iSearchID,
+                                    sSearchName )
         #
 
 
