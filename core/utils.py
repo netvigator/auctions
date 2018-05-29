@@ -142,7 +142,7 @@ def updateMemoryTableUpdated( sTable, sField = None ):
         #
 
 
-def getBegTime( bConsoleOut ):
+def getBegTime( bConsoleOut = False ):
     #
     tBeg = timezone.now()
     #
