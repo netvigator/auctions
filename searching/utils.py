@@ -165,6 +165,8 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 ( sMarket, sUserName, getSearchIdStr( oSearch.id ), '000') )
     #  'Search_%s_%s_ID_%s.json'
     #
+    sErrorFile = sFileName.replace( 'Search_', 'Search_ERROR_' )
+    #
     if sKeyWords and sEbayCategory:
         #
         logger.info(
@@ -189,23 +191,47 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     while iThisPage <= iWantPages:
         #
-        sResponse = findItems(
-                        sKeyWords   = sKeyWords,
-                        sCategoryID = sEbayCategory,
-                        sMarketID   = sMarket,
-                        iPage       = iThisPage, # will ignore if < 1
-                        bUseSandbox = bUseSandbox )
+        iRetries    = 0
         #
-        dPagination = getPagination( sResponse )
-        #
-        '''
-        dPagination = dict(
-            iCount      = int( sCount     ),
-            iEntries    = int( sEntries   ),
-            iPages      = int( sPages     ),
-            iEntriesPP  = int( sEntriesPP ),
-            iPageNumb   = int( sPageNumb  ) )
-        '''
+        while iRetries < 5:
+            #
+            sResponse   = findItems(
+                            sKeyWords   = sKeyWords,
+                            sCategoryID = sEbayCategory,
+                            sMarketID   = sMarket,
+                            iPage       = iThisPage, # will ignore if < 1
+                            bUseSandbox = bUseSandbox )
+            #
+            dPagination = getPagination( sResponse )
+            #
+            '''
+            dPagination = dict(
+                iCount      = int( sCount     ),
+                iEntries    = int( sEntries   ),
+                iPages      = int( sPages     ),
+                iEntriesPP  = int( sEntriesPP ),
+                iPageNumb   = int( sPageNumb  ) )
+            if ebay returns an error message instead of a finding response,
+            getPagination( sResponse ) returns a dictionary,
+            iCount = 0, & all other values are None
+            actual example error message in core.tests.__init__.py
+            '''
+            #
+            if dPagination.get( "iPages" ):
+                #
+                break
+                #
+            #
+            iRetries += 1
+            #
+            sErrorFile = _putPageNumbInFileName( sErrorFile, iRetries )
+            #
+            QuietDump( sResponse, '/tmp', sErrorFile )
+            #
+            logger.error( 'ebay api error in tmp file "%s"' % sErrorFile )
+            #
+            sleep(1)
+            #
         #
         if dPagination.get( "iPages" ):
             #
@@ -351,7 +377,13 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     oSearch.save()                    # working
     #
-    sLastResult = 'tba'
+    oSearchLog = SearchLog(
+            iSearch_id  = iSearchID,
+            tBegSearch  = tSearchStart )
+    #
+    oSearchLog.save()
+    #
+    sLastResult = 'unknown'
     #
     sUserName   = oSearch.iUser.username
     sMarket     = oSearch.iUser.iEbaySiteID.cMarket
@@ -394,11 +426,8 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     oSearch.cLastResult = sLastResult
     oSearch.save()
     #
-    oSearchLog = SearchLog(
-            iSearch_id  = iSearchID,
-            tBegSearch  = tSearchStart,
-            tEndSearch  = tNow,
-            cResult     = sLastResult )
+    oSearchLog.tEndSearch  = tNow
+    oSearchLog.cResult     = sLastResult
     #
     oSearchLog.save()
     #
