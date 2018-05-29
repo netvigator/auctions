@@ -6,9 +6,10 @@ from django.contrib.auth    import get_user_model
 from django.db.models       import Q
 from django.utils           import timezone
 
-from celery                 import Celery
+from celery                 import Celery, shared_task
 from celery.schedules       import crontab
 
+from .utils                 import getSingleItemThenStore
 
 
 logger = logging.getLogger(__name__)
@@ -29,8 +30,14 @@ app = Celery()
 
 
 
+@shared_task( name = 'archive.tasks.getSingleItemThenStore' )
+def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
+    #
+    getSingleItemThenStore( iItemNumb, **kwargs )
 
-def getFetchUserItems():
+
+
+def getFetchUserItems( bOnlySay = False ):
     #
     qsUserItemNumbs = ( UserItemFound.objects.filter(
                                 bGetPictures        = True,
@@ -84,12 +91,19 @@ def getFetchUserItems():
                                     tRetrieved__isnull  = True )
                                 .values('iItemNumb').distinct() )
         #
-    for iItemNumb in qsUserItemNumbs:
+    #
+    #
+    if bOnlySay:
         #
-        # assign task
+        print3( 'would fetch resuls on %s items now'
+                % qsUserItemNumbs.count() )
         #
-        getSingleItemThenStore( iItemNumb )
+    else:
         #
+        for iItemNumb in qsUserItemNumbs:
+            #
+            doGetSingleItemThenStoreTask.delay( iItemNumb )
+            #
 
 
 
