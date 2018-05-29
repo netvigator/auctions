@@ -33,6 +33,13 @@ app = Celery()
 
 
 
+@shared_task( name = 'auctionbot.searching.tasks.trySearchCatchExceptStoreInFile' )
+def doTrySearchCatchExceptStoreInFileTask( iSearchID ):
+    #
+    trySearchCatchExceptStoreInFile( iSearchID )
+
+
+
 def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
     #
     # really want to select for active users only (not inactive)
@@ -78,7 +85,8 @@ def doSearchingPutResultsInFiles( bOnlyList = False, bConsoleOut = False ):
                 print( 'Doing %s "%s" search for %s ...' %
                         ( oSearch.id, oSearch, oSearch.iUser.name ) )
             #
-            sLastFile = trySearchCatchExceptStoreInFile( iSearchID = oSearch.id ) 
+            sLastFile = doTrySearchCatchExceptStoreInFileTask.delay(
+                            iSearchID = oSearch.id ) 
             #
             if bConsoleOut:
                 #
