@@ -176,7 +176,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
     except Exception as e:
         #
-        logging.info(
+        logger.info(
                 'Exception for %s', str( iItemNumb ), exc_info = e )
     #
     if 'tNow' in kwargs:
