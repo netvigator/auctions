@@ -7,7 +7,7 @@ from archive            import getListAsLines
 from archive.tests      import s142766343340, s232742493872, s232709513135
 
 from ..models           import Item
-from ..utils            import ( storeJsonSingleItemResponse,
+from ..utils            import ( _storeJsonSingleItemResponse,
                                  getSingleItemThenStore )
 
 from ..utils_test       import getSingleItemResponseCandidate
@@ -45,21 +45,21 @@ class SomeItemsTest( TestCase ):
     def test_s142766343340( self ):
         '''test getSingleItem 1946 Bendix Catalin'''
         #
-        iSavedRowID = storeJsonSingleItemResponse( s142766343340 )
+        iSavedRowID = _storeJsonSingleItemResponse( s142766343340 )
         #
         self.assertEqual( 142766343340, iSavedRowID )
 
     def test_s232742493872( self ):
         '''test getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
         #
-        iSavedRowID = storeJsonSingleItemResponse( s232742493872 )
+        iSavedRowID = _storeJsonSingleItemResponse( s232742493872 )
         #
         self.assertEqual( 232742493872, iSavedRowID )
 
     def test_s232709513135( self ):
         '''test getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
-        iSavedRowID = storeJsonSingleItemResponse( s232709513135 )
+        iSavedRowID = _storeJsonSingleItemResponse( s232709513135 )
         #
         self.assertEqual( 232709513135, iSavedRowID )
 
@@ -71,7 +71,7 @@ class StoreItemsTest( TestCase ):
     def test_s142766343340( self ):
         '''test storing getSingleItem 1946 Bendix Catalin including update'''
         #
-        iOriginalSavedRowID = storeJsonSingleItemResponse( s142766343340 )
+        iOriginalSavedRowID = _storeJsonSingleItemResponse( s142766343340 )
         #
         self.assertTrue( Item.objects.filter( pk = 142766343340 ).exists() )
         #
@@ -81,7 +81,7 @@ class StoreItemsTest( TestCase ):
         #
         new142766343340 = s142766343340.replace( '"BidCount":0,', '"BidCount":5,' )
         #
-        iNewSavedRowID = storeJsonSingleItemResponse( new142766343340 )
+        iNewSavedRowID = _storeJsonSingleItemResponse( new142766343340 )
         #
         oItem.refresh_from_db()
         #
@@ -93,14 +93,14 @@ class StoreItemsTest( TestCase ):
     def test_s232742493872( self ):
         '''test storing getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
         #
-        iSavedRowID = storeJsonSingleItemResponse( s232742493872 )
+        iSavedRowID = _storeJsonSingleItemResponse( s232742493872 )
         #
         self.assertTrue( Item.objects.filter( pk = 232742493872 ).exists() )
 
     def test_s232709513135( self ):
         '''test storing getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
-        iSavedRowID = storeJsonSingleItemResponse( s232709513135 )
+        iSavedRowID = _storeJsonSingleItemResponse( s232709513135 )
         #
         self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
 
