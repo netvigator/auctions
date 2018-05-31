@@ -52,8 +52,9 @@ from Time.Delta         import getDeltaDaysFromStrings
 from Time.Test          import isISOdatetime
 from Utils.Config       import getBoolOffYesNoTrueFalse as getB
 
-#logging_level = logging.INFO
-#logging.basicConfig(level=logging.DEBUG)
+
+logger = logging.getLogger(__name__)
+logging_level = logging.INFO
 
 '''
 this will print logging messages to the terminal
@@ -203,7 +204,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
-        #logging.info("class storeItemFoundTests")
+        #logger.info("class storeItemFoundTests")
 
 
     def test_get_ebay_category_hierarchy(self):
@@ -272,7 +273,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
-        #logging.info("class storeItemFoundTests")
+        #logger.info("class storeItemFoundTests")
 
 
 
@@ -333,7 +334,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
-        #logging.info("class storeItemFoundTests")
+        #logger.info("class storeItemFoundTests")
 
 
 
