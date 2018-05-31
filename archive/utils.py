@@ -82,7 +82,7 @@ def _getJsonSingleItemResponse( sContent ):
 
 
 
-def storeJsonSingleItemResponse( sContent, **kwargs ):
+def _storeJsonSingleItemResponse( sContent, **kwargs ):
     #
     if 'tNow' in kwargs:
         tNow = kwargs.pop( 'tNow' )
@@ -186,7 +186,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     if sContent is not None:
         #
-        iSavedRowID = storeJsonSingleItemResponse( sContent, tNow = tNow )
+        iSavedRowID = _storeJsonSingleItemResponse( sContent, tNow = tNow )
         #
     #
     if iSavedRowID is not None:
