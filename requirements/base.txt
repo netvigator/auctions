@@ -17,8 +17,7 @@
 # are the requirements outdated?
 # take a look monthly:
 # https://pyup.io/account/repos/github/netvigator/auctions/
-# also lists packages installed by django and others
-# pip list --outdated --format=columns
+# use github login (d/n need separate login)
 
 # any changes?
 # pip install -r requirements/local.txt
@@ -30,7 +29,7 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.30.0
+wheel==0.31.1
 
 
 # Bleeding edge Django
@@ -43,21 +42,21 @@ whitenoise==3.3.1
 django-debug-toolbar==1.9.1
 
 # Forms
-django-braces==1.12.0
+django-braces==1.13.0
 django-crispy-forms==1.7.2
 
 # Models
-django-model-utils==3.1.1
+django-model-utils==3.1.2
 
 # Images
-Pillow==5.0.0
+Pillow==5.1.0
 
 # Password storage
 argon2-cffi==18.1.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.35.0
+django-allauth==0.36.0
 
 
 # Python-PostgreSQL Database Adapter
@@ -68,7 +67,7 @@ psycopg2==2.7.3.2
 awesome-slugify==1.6.5
 
 # Time zones support
-pytz==2018.3
+pytz==2018.4
 
 # Redis support
 django-redis==4.9.0
@@ -79,7 +78,7 @@ redis>=2.10.6
 
 # Your custom requirements go here
 
-django-countries==5.2
+django-countries==5.3
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -95,14 +94,14 @@ requests==2.18.4
 django-mptt==0.9.0
 
 # fake admin page
-django-admin-honeypot==1.0.0
+django-admin-honeypot==1.1.0
 
 # store regex objects
 # django-regex-field==1.0.0 case sensitive only!
 
 
 # task queue
-celery==4.1.0
+celery==4.1.1
 # redistools==0.1.7
 
 # users need to select their timezone
