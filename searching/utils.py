@@ -32,9 +32,9 @@ logging_level = logging.WARNING
 logging.basicConfig(level=logging.loglevel)
 this will print logging messages to the terminal
 '''
-#logging.basicConfig(
-    #format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
-    #level=logging.INFO)
+logging.basicConfig(
+    format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
+    level=logging.INFO)
 
 class SearchNotWorkingError( Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
@@ -206,11 +206,11 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             #
             '''
             dPagination = dict(
-                iCount      = int( sCount     ),
-                iEntries    = int( sEntries   ),
-                iPages      = int( sPages     ),
-                iEntriesPP  = int( sEntriesPP ),
-                iPageNumb   = int( sPageNumb  ) )
+                iCount          = int( sCount       ),
+                iTotalEntries   = int( sTotalEntries),
+                iPages          = int( sPages       ),
+                iEntriesPP      = int( sEntriesPP   ),
+                iPageNumb       = int( sPageNumb    ) )
             if ebay returns an error message instead of a finding response,
             getPagination( sResponse ) returns a dictionary,
             iCount = 0, & all other values are None
@@ -570,7 +570,7 @@ def storeSearchResultsInDB( iLogID,
         #
         for sThisFileName in lGotFiles:
             #
-            DeleteIfExists( sThisFileName )
+            DeleteIfExists( sThisFileName ) # may include Example file!
             #
         #
     #
