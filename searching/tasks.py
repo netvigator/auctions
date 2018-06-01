@@ -32,7 +32,7 @@ def doTrySearchCatchExceptStoreInFileTask( iSearchID ):
 
 # called as a daily (periodic) task
 @shared_task( name = 'searching.tasks.doSearchingPutResultsInFiles' )
-def doSearchingPutResultsInFiles( bOnlyList = False ):
+def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
     # really want to select for active users only (not inactive)
     #
@@ -171,3 +171,4 @@ def doAllUnattended(): # example only!
 # 30 mins per user doSearchingPutResultsInFiles
 # 40 mins per user putSearchResultsInItemsFound
 # 90 mins per user doFindSearhHits
+# from from searching.tasks import doSearchingPutResultsInFilesTasks, doPutSearchResultsInItemsFoundTasks, doFindSearhHitsTasks
