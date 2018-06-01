@@ -67,7 +67,7 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
             ( 'EBAY-US', self.user1.username, self.oSearch.id, '000' ) )
         #
         #print( 'will DeleteIfExists' )
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        # DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         #print( 'will QuietDump' )
         QuietDump( sResponseSearchTooBroad, SEARCH_FILES_FOLDER, self.sExampleFile )
@@ -85,6 +85,10 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
+
+    def tearDown(self):
+        #
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
 
 
