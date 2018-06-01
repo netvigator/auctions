@@ -171,4 +171,4 @@ def doAllUnattended(): # example only!
 # 30 mins per user doSearchingPutResultsInFiles
 # 40 mins per user putSearchResultsInItemsFound
 # 90 mins per user doFindSearhHits
-# from from searching.tasks import doSearchingPutResultsInFilesTasks, doPutSearchResultsInItemsFoundTasks, doFindSearhHitsTasks
+# from searching.tasks import doSearchingPutResultsInFilesTasks, doPutSearchResultsInItemsFoundTasks, doFindSearhHitsTasks
