@@ -2369,3 +2369,15 @@ sResponseSearchTooBroad = \
 }'''
 
 
+sLastPageZeroEntries = \
+'''{"findItemsAdvancedResponse":
+    [  { "ack":["Success"],
+         "version":["1.13.0"],
+         "timestamp":["2018-05-31T21:26:08.971Z"],
+         "searchResult":[{"@count":"0"}],
+         "paginationOutput":
+            [ { "pageNumber":["15"],
+                "entriesPerPage":["100"],
+                "totalPages":["15"],
+                "totalEntries":["1500"]}],
+                "itemSearchURL":["http:\/\/www.ebay.com\/sch\/183077\/i.html?_nkw=magazine&_ddo=1&_ipg=100&_pgn=16"]}]}'''
