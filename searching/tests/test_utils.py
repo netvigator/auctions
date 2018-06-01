@@ -72,7 +72,7 @@ class getImportSearchResultsTests(TestCase):
         '''test readin an example search results file'''
         # create/destroy test file needs to be in here
         # test is run AFTER the last line in this file is executed
-        QuietDump( sExampleResponse, sExampleFile )
+        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, sExampleFile )
         #
         itemResultsIterator = getSearchResultGenerator( sExampleFile, 0 )
         #
@@ -128,7 +128,7 @@ class getImportSearchResultsTests(TestCase):
             #
         self.assertEqual( iItems, 4 )
         #
-        DeleteIfExists( '/tmp', sExampleFile )
+        # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -418,9 +418,11 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
         #
         self.oSearch = oSearch
         #
+        self.sMarket = 'EBAY-US'
+        #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-                ( 'EBAY-US',
+                ( self.sMarket,
                    self.user1.username,
                    getSearchIdStr( oSearch.id ),
                    '000' ) )
@@ -440,11 +442,10 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
         #
         self.oSearchLog = oSearchLog
         #
-        self.sMarket = 'EBAY-US'
 
     def tearDown(self):
         #
-        pass # DeleteIfExists( '/tmp', self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
 
 class storeSearchResultsTests(storeSearchResultsTestsSetUp):
@@ -453,12 +454,16 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
         #
         ''' test storeSearchResultsInDB() with actual record'''
         #
+        #print('')
+        #print( 'self.oSearch.id:', self.oSearch.id )
+        #
         t = ( storeSearchResultsInDB(   self.oSearchLog.id,
                                         self.sMarket,
                                         self.user1.username,
                                         self.oSearch.id,
                                         self.oSearch.cTitle,
-                                        self.setTestCategories ) )
+                                        self.setTestCategories,
+                                        bCleanUpFiles = False ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -926,11 +931,11 @@ class TestFindingResponseHelpers( TestCase ):
         #
         dGot = getPagination( sResponseSearchTooBroad )
         #
-        dExpect = { 'iCount'    :  100,
-                    'iEntries'  : 2374,
-                    'iEntriesPP':  100,
-                    'iPageNumb' :    1,
-                    'iPages'    :   24 }
+        dExpect = { 'iPageCount'    :  100,
+                    'iTotalEntries' : 2374,
+                    'iEntriesPP'    :  100,
+                    'iPageNumb'     :    1,
+                    'iPages'        :   24 }
     
         #
         self.assertEqual( dGot, dExpect )
@@ -953,15 +958,15 @@ def getResultGeneratorTheJsonWay():
     #
     from Dict.Maintain  import getDictValuesFromSingleElementLists
     #
-    dResponse = getJsonFindingResponse( sResponseSearchTooBroad )
+    dResponse       = getJsonFindingResponse( sResponseSearchTooBroad )
     #
-    dPagination = dResponse[  'dPagination']
+    dPagination     = dResponse[  'dPagination']
     #
-    iEntries    = dPagination['iEntries'   ]
+    iTotalEntries   = dPagination['iTotalEntries'   ]
     #
-    iPages      = dPagination['iPages'     ]
+    iPages          = dPagination['iPages'     ]
     #
-    dResultDict = dResponse[ "searchResult" ][0]
+    dResultDict     = dResponse[ "searchResult" ][0]
     #
     iThisItem = 0
     #
@@ -1049,17 +1054,16 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
         #
         dItem = next( oIterItemsJson )
         #
-        dJsonPage = dItem["paginationOutput"]
+        dPageJ = dItem["paginationOutput"]
         #
         dOnlyPage = getPagination( sResponseSearchTooBroad )
         #
-        #
-        self.assertEqual( dJsonPage["iEntriesPP"], dOnlyPage["iCount"    ] )
-        self.assertEqual( dJsonPage["iEntries"],   dOnlyPage["iEntries"  ] )
-        self.assertEqual( dJsonPage["iPages"],     dOnlyPage["iPages"    ] )
-        self.assertEqual( dJsonPage["iEntriesPP"], dOnlyPage["iEntriesPP"] )
+        self.assertEqual( dPageJ["iEntriesPP"],    dOnlyPage["iPageCount"] )
+        self.assertEqual( dPageJ["iTotalEntries"], dOnlyPage["iTotalEntries"])
+        self.assertEqual( dPageJ["iPages"],        dOnlyPage["iPages"    ] )
+        self.assertEqual( dPageJ["iEntriesPP"],    dOnlyPage["iEntriesPP"] )
         self.assertEqual(
-                      int( dJsonPage["pageNumber"]),dOnlyPage["iPageNumb" ]  )
+                      int( dPageJ["pageNumber"]),  dOnlyPage["iPageNumb" ]  )
 
 
     def test_get_same_item_info( self ):
