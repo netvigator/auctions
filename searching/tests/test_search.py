@@ -1,19 +1,27 @@
+from os.path            import join
+
 from django.core.urlresolvers   import reverse
 from django.db.models   import Max
 from django.http        import HttpResponseRedirect
 from django.test        import TestCase
 from django.urls        import reverse_lazy
 
-from core.utils_test    import setup_view_for_tests
+from core.utils_test    import ( setup_view_for_tests,
+                                 getEbayCategoriesSetUp, AssertEmptyMixin )
 from core.utils         import getShrinkItemURL
 
+from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
+
 from ..models           import Search
-from ..utils            import ( getIdStrZeroFilled,
+from ..tests            import sLastPageZeroEntries
+from ..utils            import ( getIdStrZeroFilled, getSearchIdStr,
                                  getHowManySearchDigitsNeeded )
-from ..utilsearch       import getPriorityChoices
+from ..utilsearch       import getPriorityChoices, getSearchResultGenerator
 from ..utils_test       import BaseUserTestCaseCanAddSearches
 from ..views            import SearchCreateView
 
+from File.Del           import DeleteIfExists
+from File.Write         import QuietDump
 
 
 class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
@@ -171,4 +179,46 @@ class TestGetShrinkItemURL( TestCase ):
         #
         self.assertEqual( getShrinkItemURL( sURL ), sExpect )
         #
+
+
+
+
+class storeSearchResultGeneratorTests( AssertEmptyMixin, getEbayCategoriesSetUp ):
+    #
+    ''' class for testing storeSearchResultsInDB() store records '''
+    #
+    def setUp(self):
+        #
+        super( storeSearchResultGeneratorTests, self ).setUp()
+        #
+        sSearch = "My clever search 1"
+        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch.save()
+        #
+        self.oSearch = oSearch
+        #
+        self.sMarket = 'EBAY-US'
+        #
+        self.sExampleFile = (
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( self.sMarket,
+                   self.user1.username,
+                   getSearchIdStr( oSearch.id ),
+                   '016' ) )
+        #
+        QuietDump( sLastPageZeroEntries, SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        #
+
+    def tearDown(self):
+        #
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+
+    def test_search_result_generator(self):
+        #
+        sThisFileName = join( SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        oItemIter = getSearchResultGenerator( sThisFileName, 5 )
+        #
+        self.assertEmpty( tuple( oItemIter ) )
 
