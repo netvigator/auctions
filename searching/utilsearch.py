@@ -205,17 +205,29 @@ def getJsonFindingResponse( uContent ):
     #
     getDictValuesFromSingleElementLists( dPagination )
     #
-    iEntries    = int( dPagination[ "totalEntries" ] )
+    iTotalEntries   = int( dPagination[ "totalEntries" ] )
     #
-    iPages      = int( dPagination[ "totalPages" ] )
+    iPages          = int( dPagination[ "totalPages" ] )
     #
-    iEntriesPP  = int( dPagination[ "entriesPerPage" ] )
+    iEntriesPP      = int( dPagination[ "entriesPerPage" ] )
     #
-    dPagination['iEntries'    ] = iEntries
-    dPagination['iPages'      ] = iPages
-    dPagination['iEntriesPP'  ] = iEntriesPP
+    iPageCount      = 0
     #
-    dResponse[  'dPagination' ] = dPagination
+    lCount          = dResponse.get('searchResult', [] )
+    #
+    if lCount:
+        #
+        dCount      = lCount[0]
+        #
+        iPageCount  = int( dCount.get( '@count', 0 ) )
+        #
+    #
+    dPagination['iTotalEntries'] = iTotalEntries
+    dPagination['iPages'       ] = iPages
+    dPagination['iEntriesPP'   ] = iEntriesPP
+    dPagination['iPageCount'   ] = iPageCount
+    #
+    dResponse[  'dPagination'  ] = dPagination
     #
     return dResponse
 
@@ -247,7 +259,7 @@ def getPagination( sResponse ):
     '''get the "pagination" info such as total pages and number of this page
     from the response text, returns dPagination '''
     #
-    sCount          = '0'
+    sThisCount      = '0'
     #
     sEnd = sResponse[ -500 : ] # last 500 chars
     #
@@ -261,7 +273,7 @@ def getPagination( sResponse ):
     #
     if len( lCountParts ) > 1:
         #
-        sCount      = _getUpToDoubleQuote( lCountParts[1] )
+        sThisCount  = _getUpToDoubleQuote( lCountParts[1] )
         #
     #
     if len( lPageParts ) == 1:
@@ -273,39 +285,39 @@ def getPagination( sResponse ):
     #
     if len( lPageParts ) > 1:
         #
-        sContent    = lPageParts[1]
+        sContent        = lPageParts[1]
         #
-        lPageParts  = sContent.split( '"pageNumber":["' )
+        lPageParts      = sContent.split( '"pageNumber":["' )
         #
-        sPageNumb   = _getUpToDoubleQuote( lPageParts[1] )
+        sPageNumb       = _getUpToDoubleQuote( lPageParts[1] )
         #
-        lPageParts  = sContent.split( '"entriesPerPage":["' )
+        lPageParts      = sContent.split( '"entriesPerPage":["' )
         #
-        sEntriesPP  = _getUpToDoubleQuote( lPageParts[1] )
+        sEntriesPP      = _getUpToDoubleQuote( lPageParts[1] )
         #
-        lPageParts  = sContent.split( '"totalPages":["' )
+        lPageParts      = sContent.split( '"totalPages":["' )
         #
-        sPages      = _getUpToDoubleQuote( lPageParts[1] )
+        sPages          = _getUpToDoubleQuote( lPageParts[1] )
         #
-        lPageParts  = sContent.split( '"totalEntries":["' )
+        lPageParts      = sContent.split( '"totalEntries":["' )
         #
-        sEntries    = _getUpToDoubleQuote( lPageParts[1] )
+        sTotalEntries   = _getUpToDoubleQuote( lPageParts[1] )
         #
         dPagination = dict(
-            iCount      = int( sCount     ),
-            iEntries    = int( sEntries   ),
-            iPages      = int( sPages     ),
-            iEntriesPP  = int( sEntriesPP ),
-            iPageNumb   = int( sPageNumb  ) )
+            iPageCount      = int( sThisCount   ),
+            iTotalEntries   = int( sTotalEntries),
+            iPages          = int( sPages       ),
+            iEntriesPP      = int( sEntriesPP   ),
+            iPageNumb       = int( sPageNumb    ) )
         #
     else:
         #
         dPagination = dict(
-            iCount      = int( sCount ),
-            iEntries    = None,
-            iPages      = None,
-            iEntriesPP  = None,
-            iPageNumb   = None )
+            iPageCount      = int( sThisCount ),
+            iTotalEntries   = None,
+            iPages          = None,
+            iEntriesPP      = None,
+            iPageNumb       = None )
         #
     #
     return dPagination
@@ -503,32 +515,34 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
     #
     if sContent is None:
         #
-        iThisPage = getPageNumbOffFileName( sFile )
+        iThisPage   = getPageNumbOffFileName( sFile )
         #
-        sFile = getFileSpecHereOrThere( sFile )
+        sFile       = getFileSpecHereOrThere( sFile )
         #
-        dResponse = getJsonFindingResponse( open( sFile ) )
+        dResponse   = getJsonFindingResponse( open( sFile ) )
         #
     else:
         #
-        dResponse = getJsonFindingResponse( sContent )
+        dResponse   = getJsonFindingResponse( sContent )
         #
     #
-    dPagination = dResponse[  'dPagination']
+    dPagination     = dResponse[  'dPagination'  ]
     #
-    iEntries    = dPagination['iEntries'   ]
+    iTotalEntries   = dPagination['iTotalEntries']
     #
-    iPages      = dPagination['iPages'     ]
+    iPages          = dPagination['iPages'       ]
+    #
+    iPageCount      = dPagination['iPageCount'   ]
     #
     if iPages > 1:
         #
-        # actually iEntries is a minimum, the actual number of entries is more
+        # actually iTotalEntries is a minimum, the actual number of entries is more
         #
-        iEntries = (
+        iTotalEntries = (
             1 + ( iPages - 1 ) * dPagination[ "iEntriesPP" ] )
         #
     #
-    if iEntries == 0:
+    if iTotalEntries == 0:
         #
         if iLastPage > 0 and iThisPage == iLastPage:
             #
@@ -544,7 +558,11 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
                     dResponse["itemSearchURL"][0] )
             #
         #
-    else: # iEntries > 0
+    elif iPageCount == 0:
+            #
+            lResults = () # empty tuple will raise StopIteration
+            #
+    else: # iTotalEntries > 0
         #
         dResultDict = dResponse[ "searchResult" ][0]
         #
