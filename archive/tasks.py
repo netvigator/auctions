@@ -13,7 +13,7 @@ from celery.schedules       import crontab
 
 #from auctionbot             import celery_app as app # app = Celery()
 
-#from .utils                 import getSingleItemThenStore
+from .utils                 import getSingleItemThenStore
 
 logger = logging.getLogger(__name__)
 
