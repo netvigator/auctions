@@ -25,7 +25,7 @@ environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
 class InvalidParameters( Exception ): pass
 
-django.setup()
+# django.setup()
 
 
 
