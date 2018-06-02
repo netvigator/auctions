@@ -15,6 +15,8 @@ from celery.schedules       import crontab
 
 from .utils                 import getSingleItemThenStore
 
+from searching.models       import ItemFound, UserItemFound
+
 logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
@@ -90,7 +92,7 @@ def getFetchUserItems( bOnlySay = False ):
     #
     if bOnlySay:
         #
-        print3( 'would fetch resuls on %s items now'
+        print( 'would fetch resuls on %s items now'
                 % qsUserItemNumbs.count() )
         #
     else:
@@ -102,9 +104,9 @@ def getFetchUserItems( bOnlySay = False ):
 
 
 
-def getFetchFinalItems():
+def getFetchFinalItems( bOnlySay = False ):
     #
-    tYesterday = timezone.now() - timedelta(1)
+    tYesterday = timezone.now() - timezone.timedelta(1)
     #
     qsItemsFinal = ItemFound.objects.filter(
                 tTimeEnd__lte = tYesterday,
@@ -113,8 +115,20 @@ def getFetchFinalItems():
                                 tRetrieveFinal__isnull  = True )
                     .values_list( 'iItemNumb', flat=True ) )
     #
-    for oItemFound in qsItemsFinal:
+    if bOnlySay:
         #
-        # assign task
+        print( 'would fetch final resuls on %s items now'
+                % qsItemsFinal.count() )
         #
-        pass
+    else:
+        #
+        for oItemFound in qsItemsFinal:
+            #
+            # assign task
+            #
+            pass
+
+# from archive.tasks import getFetchUserItems
+# getFetchUserItems( bOnlySay = True )
+# from archive.tasks import doGetSingleItemThenStoreTask
+# doGetSingleItemThenStoreTask
