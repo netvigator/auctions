@@ -197,23 +197,41 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             oItemFound.tRetrieveFinal = tNow
             #
-            if not oItemFound.tRetrieved:
+            if oItemFound.tRetrieved:
+                #
+                bAlreadyRetrieved = True
+                #
+            else:
                 #
                 oItemFound.tRetrieved = tNow
+                #
+                bAlreadyRetrieved = False
                 #
             #
             oItemFound.save()
             #
-            UserItemFound.objects.filter(
-                    iItemNumb = iItemNumb ).update(
-                            tRetrieveFinal = tNow,
-                            tRetrieved     = tNow )
+            # next: queryset update method
+            #
+            if bAlreadyRetrieved:
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb = iItemNumb ).update(
+                                tRetrieveFinal = tNow )
+                #
+            else:
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb = iItemNumb ).update(
+                                tRetrieveFinal = tNow,
+                                tRetrieved     = tNow )
             #
         elif not oItemFound.tRetrieved:
             #
             oItemFound.tRetrieved = tNow
             #
             oItemFound.save()
+            #
+            # next: queryset update method
             #
             UserItemFound.objects.filter(
                     iItemNumb = iItemNumb ).update( tRetrieved = tNow )
