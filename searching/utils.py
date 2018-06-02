@@ -1,6 +1,7 @@
 import logging
 
 from string             import ascii_letters, digits
+from urllib3.exceptions import ConnectTimeoutError
 
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -416,9 +417,13 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         sLastResult = 'SearchGotZeroResults: %s' % e
         # suggest sending an email to the owner
     except ConnectionResetError as e:
-        # logger.error( 'SearchGotZeroResults: %s' % e )
-        sLastResult = 'SearchGotZeroResults: %s' % e
+        # logger.error( 'ConnectionResetError: %s' % e )
+        sLastResult = 'ConnectionResetError: %s' % e
         # maybe an error reading the results
+    except ConnectTimeoutError as e:
+        # logger.error( 'ConnectTimeoutError: %s' % e )
+        sLastResult = 'ConnectTimeoutError: %s' % e
+        # connection timeout
     #
     tNow = timezone.now()
     #
