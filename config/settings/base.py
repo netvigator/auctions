@@ -363,12 +363,13 @@ INSTALLED_APPS += ['auctionbot.taskapp.celery.CeleryConfig']
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#new-lowercase-settings
 
 # CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
-# broker_url = 'amqp://localhost' # using rabbitmq not redis
-CELERY_BROKER_URL = 'amqp://localhost' # using rabbitmq not redis
+#CELERY_BROKER_URL = 'amqp://localhost' # using rabbitmq not redis
+broker_url = 'amqp://localhost' # using rabbitmq not redis
 
 task_default_rate_limit = '1/s'
 
-CELERY_RESULT_BACKEND = 'amqp'
+#CELERY_RESULT_BACKEND = 'amqp'
+result_backend = 'amqp'
 
 #### END CELERY
 
