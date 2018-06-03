@@ -128,7 +128,8 @@ def doPutSearchResultsInItemsFoundTasks():
 @shared_task( name = 'searching.tasks.findSearchHits' )
 def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
     #
-    print( 'calling findSearchHits() for %s now ....' % iUser )
+    if bShowProgress:
+        print( 'calling findSearchHits() for user ID %s now ....' % iUser )
     #
     findSearchHits( iUser,
                     bCleanUpAfterYourself   = bCleanUp,
