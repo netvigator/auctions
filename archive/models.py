@@ -51,7 +51,7 @@ class Item(models.Model):
                         max_length = 48, null = True, blank = True )
     cListingStatus  = models.CharField( 'Listing Status', max_length = 18 )
     iQuantitySold   = models.SmallIntegerField( 'quantity sold' )
-    cShipToLocations= models.CharField( 'ship to locations', max_length =188 )
+    cShipToLocations= models.TextField( 'ship to locations' )
     cSite           = models.CharField( 'Site', max_length = 8 )
     cTimeLeft       = models.CharField( 'time left', max_length =18 )
     cTitle          = models.CharField( 'item title',
@@ -62,7 +62,7 @@ class Item(models.Model):
     cCountry        = CountryField( "Country" )
     cReturnPolicy   = models.CharField( 'Return Policy', max_length = 48 )
     dMinimumBid     = models.DecimalField( 'Minimum Bid',
-                        max_digits = 6, decimal_places = 2,
+                        max_digits = 12, decimal_places = 2,
                         null = True, blank = True )
     cBidCurrency    = models.CharField( 'bid currency',
                         max_length = 3, default = 'USD',
