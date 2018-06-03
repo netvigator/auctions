@@ -23,7 +23,9 @@ from Time.Output            import getNowIsoDateTimeFileNameSafe
 
 
 
-class GetSingleItemNotWorkingError( Exception ): pass
+class GetSingleItemNotWorkingError(  Exception ): pass
+class InvalidOrNonExistentItemError( Exception ): pass
+
 
 logger = logging.getLogger(__name__)
 
@@ -51,9 +53,24 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
     #
     dResult = loads( sContent ) # this is for strings
     #
-    if not ( "Ack" in dResult and dResult.get( "Ack" ) == "Success" ):
+    dErrors = dResult.get( 'Errors', {} )
+    #
+    if ( "Ack" in dResult and dResult.get( "Ack" ) == "Success" ):
         #
-        if "Ack" in dResult:
+        pass # OK
+        #
+    else:
+        #
+        if (    "Ack" in dResult and
+                dResult.get( "Ack" ) == "Failure" and
+                dErrors and
+                dErrors.get( 'ErrorCode' ) == '10.12' ):
+            #
+            # 'LongMessage': 'Invalid or non-existent item ID.'
+            #
+            raise InvalidOrNonExistentItemError( str( iItemNumb ) )
+            #
+        elif "Ack" in dResult:
             #
             sFile = join( EBAY_ITEMS_FOLDER, 
                           'single_item_response_failure_%s_%s_.json'
@@ -103,9 +120,9 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     dItem    = _getJsonSingleItemResponse( iItemNumb, sContent )
     #
     dGotItem = { k: getValueOffItemDict( dItem, k, v, **kwargs )
-                 for k, v in dFields.items() }
+                for k, v in dFields.items() }
     #
-    if Item.objects.filter( pk = iItemNumb ).exists():
+    if dGotItem and Item.objects.filter( pk = iItemNumb ).exists():
         #
         bAnyChanged = False
         #
@@ -133,7 +150,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             oItem.save()
             #
         #
-    else:
+    elif dGotItem:
         #
         form = ItemForm( data = dGotItem )
         #
@@ -172,6 +189,8 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             #print( 'fields with errors:' )
             #for sField in tProblems:
                 #print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
+            #
+        #
     #
     return iSavedRowID
 
@@ -180,6 +199,8 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
 def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     sContent = iSavedRowID = None
+    #
+    bItemNumberStillGood = True
     #
     try:
         #
@@ -197,15 +218,24 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     if sContent is not None:
         #
-        iSavedRowID = _storeJsonSingleItemResponse(
-                            iItemNumb, sContent, tNow = tNow )
+        try:
+            #
+            iSavedRowID = _storeJsonSingleItemResponse(
+                                iItemNumb, sContent, tNow = tNow )
+            #
+        except InvalidOrNonExistentItemError:
+            #
+            bItemNumberStillGood = False
+            #
         #
     #
-    if iSavedRowID is not None:
+    if iSavedRowID is not None or not bItemNumberStillGood:
+        #
+        # InvalidOrNonExistentItemError:
         #
         oItemFound = ItemFound.objects.get( pk = iItemNumb )
         #
-        if oItemFound.tTimeEnd < tNow:
+        if oItemFound.tTimeEnd and oItemFound.tTimeEnd < tNow:
             #
             oItemFound.tRetrieveFinal = tNow
             #
@@ -219,6 +249,8 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
                 #
                 bAlreadyRetrieved = False
                 #
+            #
+            oItemFound.bCancelledItem = not bItemNumberStillGood
             #
             oItemFound.save()
             #
@@ -241,12 +273,27 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             oItemFound.tRetrieved = tNow
             #
+            if not bItemNumberStillGood:
+                #
+                oItemFound.tRetrieveFinal = tNow
+                #
+            #
             oItemFound.save()
             #
             # next: queryset update method
             #
-            UserItemFound.objects.filter(
-                    iItemNumb = iItemNumb ).update( tRetrieved = tNow )
+            if bItemNumberStillGood:
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb = iItemNumb ).update( tRetrieved = tNow )
+                #
+            else:
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb = iItemNumb ).update(
+                                tRetrieveFinal = tNow,
+                                tRetrieved     = tNow )
+                #
             #
         #
     #

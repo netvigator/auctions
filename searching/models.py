@@ -145,6 +145,8 @@ class ItemFound(models.Model):
 
     cSellingState   = models.CharField( 'selling state',
                         max_length = 18 )
+    bCancelledItem  = models.BooleanField(
+                        'Invalid Or Non-Existent Item Number',default = False )
     tCreate         = models.DateTimeField( 'created on',
                         db_index = True, auto_now_add= True )
     tRetrieved      = models.DateTimeField( 'retrieved info',
