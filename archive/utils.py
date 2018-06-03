@@ -17,6 +17,7 @@ from core.utils_ebay        import getValueOffItemDict
 from searching.models       import ItemFound, UserItemFound
 
 from Dir.Get                import getMakeDir
+from File.Write             import QuietDump
 from Time.Test              import isDateTimeObj
 from Time.Output            import getNowIsoDateTimeFileNameSafe
 
@@ -29,10 +30,16 @@ logger = logging.getLogger(__name__)
 logging_level = logging.INFO
 
 
+
 getMakeDir( EBAY_ITEMS_FOLDER )
 
 
-def _getJsonSingleItemResponse( sContent ):
+def _writeResult( sContent, sFilePathName ):
+    #
+    QuietDump( sContent, sFilePathName )
+
+
+def _getJsonSingleItemResponse( iItemNumb, sContent ):
     #
     '''pass in the response
     returns the resonse dictionary dResponse
@@ -49,13 +56,15 @@ def _getJsonSingleItemResponse( sContent ):
         if "Ack" in dResult:
             #
             sFile = join( EBAY_ITEMS_FOLDER, 
-                          'single_item_response_failure_%s_.json'
-                            % getNowIsoDateTimeFileNameSafe() )
+                          'single_item_response_failure_%s_%s_.json'
+                            % ( getNowIsoDateTimeFileNameSafe(), iItemNumb ) )
             #
             sMsg = ( 'getSingleItem failure, check file %s'
                     % sFile )
             #
             logger.info( sMsg )
+            #
+            _writeResult( repr( dResult ), sFile )
             #
             raise GetSingleItemNotWorkingError( sMsg )
             #
@@ -64,13 +73,15 @@ def _getJsonSingleItemResponse( sContent ):
             # unexpected content
             #
             sFile = join( EBAY_ITEMS_FOLDER,
-                          'invalid_single_item_response_%s_.json'
-                                % getNowIsoDateTimeFileNameSafe() )
+                          'invalid_single_item_response_%s_%s_.json'
+                            % ( getNowIsoDateTimeFileNameSafe(), iItemNumb ) )
             #
             sMsg = ( 'unexpected content from getSingleItem, check %s'
                     % sFile )
             #
             logger.error( sMsg )
+            #
+            _writeResult( repr( dResult ), sFile )
             #
             raise GetSingleItemNotWorkingError( sMsg )
             #
@@ -82,19 +93,19 @@ def _getJsonSingleItemResponse( sContent ):
 
 
 
-def _storeJsonSingleItemResponse( sContent, **kwargs ):
+def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     #
     if 'tNow' in kwargs:
         tNow = kwargs.pop( 'tNow' )
     else:
         tNow = timezone.now()
     #
-    dItem    = _getJsonSingleItemResponse( sContent )
+    dItem    = _getJsonSingleItemResponse( iItemNumb, sContent )
     #
     dGotItem = { k: getValueOffItemDict( dItem, k, v, **kwargs )
                  for k, v in dFields.items() }
     #
-    if Item.objects.filter( pk = dGotItem['iItemNumb'] ).exists():
+    if Item.objects.filter( pk = iItemNumb ).exists():
         #
         bAnyChanged = False
         #
@@ -186,7 +197,8 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     if sContent is not None:
         #
-        iSavedRowID = _storeJsonSingleItemResponse( sContent, tNow = tNow )
+        iSavedRowID = _storeJsonSingleItemResponse(
+                            iItemNumb, sContent, tNow = tNow )
         #
     #
     if iSavedRowID is not None:
