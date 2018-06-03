@@ -1,3 +1,17 @@
+sExampleErrorNoMoreItem = '''{
+    'Version': '1063',
+    'Timestamp': '2018-06-03T13:40:05.704Z',
+    'Build': 'E1063_CORE_APILW_18716243_R1',
+    'Ack': 'Failure',
+    'Errors': [
+        {'ShortMessage': 'Invalid item ID.',
+        'ErrorCode': '10.12',
+        'SeverityCode': 'Error',
+        'ErrorClassification': 'RequestError',
+        'LongMessage': 'Invalid or non-existent item ID.'}]}'''
+
+
+
 s142766343340 = '''{
     "Timestamp":"2018-04-28T01:09:38.251Z",
     "Ack":"Success",
