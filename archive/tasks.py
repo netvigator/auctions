@@ -34,12 +34,14 @@ def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
 
 
 
-def getFetchUserItems( bOnlySay = False ):
+@shared_task( name = 'archive.tasks.getFetchUserItems' )
+def doGetFetchUserItemsTasks( bOnlySay = False ):
     #
     qsUserItemNumbs = ( UserItemFound.objects.filter(
                                 bGetPictures        = True,
                                 tRetrieved__isnull  = True )
-                            .values('iItemNumb').distinct() )
+                            .values_list( 'iItemNumb', flat = True )
+                            .distinct() )
     #
     qsAlreadyFetched = ( ItemFound.objects
                             .filter( iItemNumb__in = qsUserItemNumbs )
@@ -86,7 +88,8 @@ def getFetchUserItems( bOnlySay = False ):
         qsUserItemNumbs = ( UserItemFound.objects.filter(
                                     bGetPictures        = True,
                                     tRetrieved__isnull  = True )
-                                .values('iItemNumb').distinct() )
+                                .values_list( 'iItemNumb', flat = True )
+                                .distinct() )
         #
     #
     #
@@ -128,7 +131,7 @@ def getFetchFinalItems( bOnlySay = False ):
             #
             pass
 
-# from archive.tasks import getFetchUserItems
-# getFetchUserItems( bOnlySay = True )
 # from archive.tasks import doGetSingleItemThenStoreTask
 # doGetSingleItemThenStoreTask
+# from archive.tasks import doGetFetchUserItemsTasks
+# doGetFetchUserItemsTasks( bOnlySay = True )
