@@ -53,7 +53,7 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
     #
     dResult = loads( sContent ) # this is for strings
     #
-    dErrors = dResult.get( 'Errors', {} )
+    dErrors = dResult.get( 'Errors', [{}] )[0]
     #
     if ( "Ack" in dResult and dResult.get( "Ack" ) == "Success" ):
         #
