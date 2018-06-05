@@ -56,7 +56,8 @@ class Item(models.Model):
     cTimeLeft       = models.CharField( 'time left', max_length =18 )
     cTitle          = models.CharField( 'item title',
                         max_length = 80 )
-    iHitCount       = models.SmallIntegerField( 'Hit Count' )
+    iHitCount       = models.SmallIntegerField( 'Hit Count',
+                        null = True, blank = True ) # ebay d/n always include
     cCategoryIDs    = models.CharField( 'category IDs',   max_length =  88 )
     cCategoryNames  = models.CharField( 'category names', max_length = 148 )
     cCountry        = CountryField( "Country" )
