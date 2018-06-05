@@ -91,6 +91,8 @@ class ItemsFoundIndexView(
         #
         sSelect = self.kwargs.get('select', 'P' )
         #
+        if not sSelect: sSelect = 'P'
+        #
         if sSelect == 'A': # all
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
