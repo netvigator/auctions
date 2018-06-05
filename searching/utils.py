@@ -1,7 +1,7 @@
 import logging
 
 from string             import ascii_letters, digits
-from urllib3.exceptions import ConnectTimeoutError
+from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -196,27 +196,44 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         #
         while iRetries < 5:
             #
-            sResponse   = findItems(
-                            sKeyWords   = sKeyWords,
-                            sCategoryID = sEbayCategory,
-                            sMarketID   = sMarket,
-                            iPage       = iThisPage, # will ignore if < 1
-                            bUseSandbox = bUseSandbox )
+            dPagination = {}
             #
-            dPagination = getPagination( sResponse )
+            try:
+                #
+                sResponse   = findItems(
+                                sKeyWords   = sKeyWords,
+                                sCategoryID = sEbayCategory,
+                                sMarketID   = sMarket,
+                                iPage       = iThisPage, # will ignore if < 1
+                                bUseSandbox = bUseSandbox )
+                #
+                dPagination = getPagination( sResponse )
+                #
+                '''
+                dPagination = dict(
+                    iCount          = int( sCount       ),
+                    iTotalEntries   = int( sTotalEntries),
+                    iPages          = int( sPages       ),
+                    iEntriesPP      = int( sEntriesPP   ),
+                    iPageNumb       = int( sPageNumb    ) )
+                if ebay returns an error message instead of a finding response,
+                getPagination( sResponse ) returns a dictionary,
+                iCount = 0, & all other values are None
+                actual example error message in core.tests.__init__.py
+                '''
+            except ConnectionResetError as e:
+                # logger.error( 'ConnectionResetError: %s' % e )
+                sResponse = 'ConnectionResetError: %s' % e
+                # maybe an error reading the results
+            except ConnectTimeoutError as e:
+                # logger.error( 'ConnectTimeoutError: %s' % e )
+                sResponse = 'ConnectTimeoutError: %s' % e
+                # connection timeout
+            except ReadTimeoutError as e:
+                # logger.error( 'ReadTimeoutError: %s' % e )
+                sResponse = 'ReadTimeoutError: %s' % e
+                # read timeout
             #
-            '''
-            dPagination = dict(
-                iCount          = int( sCount       ),
-                iTotalEntries   = int( sTotalEntries),
-                iPages          = int( sPages       ),
-                iEntriesPP      = int( sEntriesPP   ),
-                iPageNumb       = int( sPageNumb    ) )
-            if ebay returns an error message instead of a finding response,
-            getPagination( sResponse ) returns a dictionary,
-            iCount = 0, & all other values are None
-            actual example error message in core.tests.__init__.py
-            '''
             #
             if dPagination.get( "iPages" ):
                 #
@@ -231,7 +248,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             #
             logger.error( 'ebay api error in tmp file "%s"' % sErrorFile )
             #
-            sleep(1)
+            sleep( 1 + iRetries )
             #
         #
         if dPagination.get( "iPages" ):
@@ -416,14 +433,18 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         # logger.error( 'SearchGotZeroResults: %s' % e )
         sLastResult = 'SearchGotZeroResults: %s' % e
         # suggest sending an email to the owner
-    except ConnectionResetError as e:
-        # logger.error( 'ConnectionResetError: %s' % e )
-        sLastResult = 'ConnectionResetError: %s' % e
-        # maybe an error reading the results
-    except ConnectTimeoutError as e:
-        # logger.error( 'ConnectTimeoutError: %s' % e )
-        sLastResult = 'ConnectTimeoutError: %s' % e
-        # connection timeout
+    #except ConnectionResetError as e:
+        ## logger.error( 'ConnectionResetError: %s' % e )
+        #sLastResult = 'ConnectionResetError: %s' % e
+        ## maybe an error reading the results
+    #except ConnectTimeoutError as e:
+        ## logger.error( 'ConnectTimeoutError: %s' % e )
+        #sLastResult = 'ConnectTimeoutError: %s' % e
+        ## connection timeout
+    #except ReadTimeoutError as e:
+        ## logger.error( 'ReadTimeoutError: %s' % e )
+        #sLastResult = 'ReadTimeoutError: %s' % e
+        ## read timeout
     #
     tNow = timezone.now()
     #
