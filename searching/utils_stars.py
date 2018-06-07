@@ -562,15 +562,11 @@ def findSearchHits(
                     #
                     oUserItem.save()
                     #
-                    oSearchLog = dSearchLogs.get( oItemFoundTemp.iSearch )
+                    oSearchLog = dSearchLogs.get( oItemFoundTemp.iSearch_id )
                     #
                     if (    oItemFoundTemp.iBrand and
                             oItemFoundTemp.iCategory and
-                            oItemFoundTemp.iModel and
-                            oItemFoundTemp.tLook4Hits >=
-                                        oSearchLog.tBegStore and
-                            oItemFoundTemp.tLook4Hits <=
-                                        oSearchLog.tEndStore):
+                            oItemFoundTemp.iModel ):
                         #
                         oSearchLog.iItemHits += 1
                         #
