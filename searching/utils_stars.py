@@ -1,11 +1,12 @@
-from django.db.models       import Q
+from django.db.models       import Q, Max
 from django.contrib.auth    import get_user_model
 from django.utils           import timezone
 
 from core.user_one          import oUserOne
 from core.utils             import getWhatsLeft
 
-from .models                import ItemFound, UserItemFound, ItemFoundTemp
+from .models                import ( ItemFound, UserItemFound, ItemFoundTemp,
+                                     Search, SearchLog )
 
 from categories.models      import BrandCategory
 
@@ -214,6 +215,22 @@ def findSearchHits(
         #
         print( 'doing some big queries ...' )
         #
+    #
+    # generate a list of the most recent SearchLogs for this user
+    #
+    qsSearchLogs = ( SearchLog.objects.filter(
+                        iSearch_id__in = 
+                            Search.objects.filter( iUser = oUser )
+                            .values_list( 'id', flat=True ),
+                        tBegStore__in = 
+                            SearchLog.objects.values( "iSearch_id" )
+                            .annotate(
+                                tBegStore = Max( "tBegStore" )
+                                ).values_list( "tBegStore", flat = True ) ) )
+    #
+    for o in qsSearchLogs: o.iItemHits = 0
+    #
+    dSearchLogs = { o.iSearch_id: o for o in qsSearchLogs }
     #
     ItemFoundTemp.objects.all().delete()
     #
@@ -545,6 +562,19 @@ def findSearchHits(
                     #
                     oUserItem.save()
                     #
+                    oSearchLog = dSearchLogs.get( oItemFoundTemp.iSearch )
+                    #
+                    if (    oItemFoundTemp.iBrand and
+                            oItemFoundTemp.iCategory and
+                            oItemFoundTemp.iModel and
+                            oItemFoundTemp.tLook4Hits >=
+                                        oSearchLog.tBegStore and
+                            oItemFoundTemp.tLook4Hits <=
+                                        oSearchLog.tEndStore):
+                        #
+                        oSearchLog.iItemHits += 1
+                        #
+                    #
                 elif (  oItemFoundTemp.iBrand and
                         oItemFoundTemp.iCategory and
                         oItemFoundTemp.iModel ):
@@ -583,6 +613,13 @@ def findSearchHits(
         #
     #
     oProgressMeter.end( iSeq )
+    #
+    for oSearchLog in dSearchLogs.values():
+        #
+        if oSearchLog.iItemHits > 0:
+            #
+            oSearchLog.save()
+        #
     #
     if bCleanUpAfterYourself:
         #
