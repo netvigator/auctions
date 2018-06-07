@@ -139,7 +139,10 @@ def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
 
 # called as a hourly (periodic) task
 @shared_task( name = 'searching.tasks.doFindSearhHitsTasks' )
-def doFindSearhHitsTasks( bCleanUpAfterYourself = True, bConsoleOut = False ):
+def doFindSearhHitsTasks(
+            bCleanUpAfterYourself = True,
+            bConsoleOut           = False,
+            bDoTask_Later         = True ):
     #
     oUserModel = get_user_model()
     #
@@ -149,10 +152,21 @@ def doFindSearhHitsTasks( bCleanUpAfterYourself = True, bConsoleOut = False ):
                         .filter( iUser = oUser.id,
                         tLook4Hits__isnull = True ).exists() ):
             #
-            findSearchHitsTask.delay(
+            if bDoTask_Later:
+                #
+                findSearchHitsTask.delay(
                     iUser           = oUser.id,
                     bCleanUp        = bCleanUpAfterYourself,
                     bShowProgress   = bConsoleOut )
+                #
+            else:
+                #
+                findSearchHitsTask(
+                    iUser           = oUser.id,
+                    bCleanUp        = bCleanUpAfterYourself,
+                    bShowProgress   = bConsoleOut )
+                #
+            #
     #
 
 
