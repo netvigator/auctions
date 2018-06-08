@@ -91,3 +91,5 @@ implement getOldRecordToRecycleGenerator for ItemsFound, UserItemsFound, searchl
 
 
 should be able to change 603-b to 603-B, as of now, cannot!
+
+implement tests for both search errors sLastPageZeroEntries & sSuccessButZeroResultsCollectableTVs_ID_16
