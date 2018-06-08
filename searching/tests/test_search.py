@@ -13,7 +13,7 @@ from core.utils         import getShrinkItemURL
 from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
 from ..models           import Search
-from ..tests            import sLastPageZeroEntries
+from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
 from ..utils            import ( getIdStrZeroFilled, getSearchIdStr,
                                  getHowManySearchDigitsNeeded )
 from ..utilsearch       import getPriorityChoices, getSearchResultGenerator
@@ -183,13 +183,13 @@ class TestGetShrinkItemURL( TestCase ):
 
 
 
-class storeSearchResultGeneratorTests( AssertEmptyMixin, getEbayCategoriesSetUp ):
+class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, getEbayCategoriesSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp(self):
         #
-        super( storeSearchResultGeneratorTests, self ).setUp()
+        super( storeSearchResultGeneratorLastPageGotZeroTest, self ).setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
@@ -214,11 +214,52 @@ class storeSearchResultGeneratorTests( AssertEmptyMixin, getEbayCategoriesSetUp 
         #
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
-    def test_search_result_generator(self):
+    def test_search_result_generator_last_page_got_zero(self):
         #
         sThisFileName = join( SEARCH_FILES_FOLDER, self.sExampleFile )
         #
-        oItemIter = getSearchResultGenerator( sThisFileName, 5 )
+        oItemIter = getSearchResultGenerator( sThisFileName, 16 )
         #
         self.assertEmpty( tuple( oItemIter ) )
 
+
+
+
+class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, getEbayCategoriesSetUp ):
+    #
+    ''' class for testing storeSearchResultsInDB() store records '''
+    #
+    def setUp(self):
+        #
+        super( storeSearchResultGeneratorSearchGotZeroTest, self ).setUp()
+        #
+        sSearch = "My clever search 1"
+        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch.save()
+        #
+        self.oSearch = oSearch
+        #
+        self.sMarket = 'EBAY-US'
+        #
+        self.sExampleFile = (
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( self.sMarket,
+                   self.user1.username,
+                   getSearchIdStr( oSearch.id ),
+                   '001' ) )
+        #
+        QuietDump( sSuccessButZeroResults, SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        #
+
+    def tearDown(self):
+        #
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+
+    def test_search_result_generator_search_got_zero(self):
+        #
+        sThisFileName = join( SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        oItemIter = getSearchResultGenerator( sThisFileName, 1 )
+        #
+        self.assertEmpty( tuple( oItemIter ) )
