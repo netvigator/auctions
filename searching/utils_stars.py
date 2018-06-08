@@ -228,7 +228,11 @@ def findSearchHits(
                                 tBegStore = Max( "tBegStore" )
                                 ).values_list( "tBegStore", flat = True ) ) )
     #
-    for o in qsSearchLogs: o.iItemHits = 0
+    for oSearchLog in qsSearchLogs:
+        #
+        oSearchLog.iOrigHits = oSearchLog.iItemHits
+        oSearchLog.iItemHits = 0
+        #
     #
     dSearchLogs = { o.iSearch_id: o for o in qsSearchLogs }
     #
@@ -612,7 +616,7 @@ def findSearchHits(
     #
     for oSearchLog in dSearchLogs.values():
         #
-        if oSearchLog.iItemHits > 0:
+        if not oSearchLog.iOrigHits:
             #
             oSearchLog.save()
         #
