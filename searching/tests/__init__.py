@@ -2382,7 +2382,8 @@ sLastPageZeroEntries = \
                 "totalEntries":["1500"]}],
          "itemSearchURL":["http:\/\/www.ebay.com\/sch\/183077\/i.html?_nkw=magazine&_ddo=1&_ipg=100&_pgn=16"]}]}'''
 
-sSuccessButZeroResultsCollectableTVs_ID_16 = \
+# CollectableTVs_ID_16
+sSuccessButZeroResults = \
 '''{"findItemsByCategoryResponse":
     [   {"ack":["Success"],
     "version":["1.13.0"],
