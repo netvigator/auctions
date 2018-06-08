@@ -13,8 +13,8 @@ from core.utils_ebay    import getValueOffItemDict
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
 from .models            import ItemFound, UserItemFound, SearchLog, Search
-from .utilsearch        import ( storeEbayInfo, getPagination,
-                                 getSearchResultGenerator )
+from .utilsearch        import ( getSearchResultGenerator, getPagination,
+                                 storeEbayInfo, SearchGotZeroResults )
 
 from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
@@ -38,7 +38,6 @@ logging.basicConfig(
     level=logging.INFO)
 
 class SearchNotWorkingError( Exception ): pass
-class SearchGotZeroResults(  Exception ): pass
 class ItemAlreadyInTable(    Exception ): pass
 
 getMakeDir( SEARCH_FILES_FOLDER )
