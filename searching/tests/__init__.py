@@ -2380,4 +2380,17 @@ sLastPageZeroEntries = \
                 "entriesPerPage":["100"],
                 "totalPages":["15"],
                 "totalEntries":["1500"]}],
-                "itemSearchURL":["http:\/\/www.ebay.com\/sch\/183077\/i.html?_nkw=magazine&_ddo=1&_ipg=100&_pgn=16"]}]}'''
+         "itemSearchURL":["http:\/\/www.ebay.com\/sch\/183077\/i.html?_nkw=magazine&_ddo=1&_ipg=100&_pgn=16"]}]}'''
+
+sSuccessButZeroResultsCollectableTVs_ID_16 = \
+'''{"findItemsByCategoryResponse":
+    [   {"ack":["Success"],
+    "version":["1.13.0"],
+    "timestamp":["2018-06-07T23:47:55.652Z"],
+    "searchResult":[{"@count":"0"}],
+    "paginationOutput":
+        [ { "pageNumber":["0"],
+            "entriesPerPage":["100"],
+            "totalPages":["0"],
+            "totalEntries":["0"]}],
+    "itemSearchURL":["http:\/\/www.ebay.com\/sch\/73374\/i.html?_ddo=1&_ipg=100&_pgn=10"]}]}'''
