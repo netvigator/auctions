@@ -375,6 +375,16 @@ class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
     #
     ''' class for testing _storeUserItemFound() '''
 
+    def test_Auction_bool_set_correctly( self ):
+        #
+        ''' test _storeUserItemFound() with actual record, check bAuction'''
+        #
+        oUserItemFound = UserItemFound.objects.filter(
+                            iItemNumb = self.iItemNumb ).first()
+        #
+        self.assertTrue( oUserItemFound.bAuction )
+
+
     def test_store_User_item_found(self):
         #
         ''' test _storeUserItemFound() with actual record'''
@@ -397,7 +407,7 @@ class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
                     'ItemFound %s is already in the UserItemFound table for %s' %
                     ( iItemNumb, self.user1.username ) )
         else:
-            self.assertTrue( False ) # exception should hve been raised
+            self.assertTrue( False ) # exception should have been raised
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
