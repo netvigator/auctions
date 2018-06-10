@@ -131,3 +131,12 @@ why 803 is wrongly assigned so often:
 
 test:
 sEbayErrorResponse
+
+
+cannot update
+JBL Model Lancer 77
+Model number or name*
+Considered a hit if this text is found (optional)
+L77
+cannot reverse Lancer 77 & L77
+
