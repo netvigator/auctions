@@ -254,7 +254,7 @@ dSearchResult = \
   'buyItNowAvailable': 'false',
   'endTime': '2018-02-13T00:34:26.000Z',
   'gift': 'false',
-  'listingType': 'FixedPrice',
+  'listingType': 'Auction',
   'startTime': '2017-01-19T00:34:26.000Z',
   'watchCount': '19'
 }, 'location': 'Staten Island,NY,USA',
