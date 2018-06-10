@@ -93,3 +93,32 @@ implement getOldRecordToRecycleGenerator for ItemsFound, UserItemsFound, searchl
 should be able to change 603-b to 603-B, as of now, cannot!
 
 implement tests for both search errors sLastPageZeroEntries & sSuccessButZeroResultsCollectableTVs_ID_16
+
+
+ALTEC LANSING N-800-8K CROSSOVER DIVIDING NETWORK 846B VALENCIA WORKING PAIR
+Vintage Speakers
+Consumer Electronics Vintage Electronics Vintage Audio & Video Vintage Speakers
+
+
+Matched Pair of Altec N 800 F Crossovers removed from 9844-A system TESTED
+should find crossover
+
+
+Altec Lansing 802-D Compression Driver Pair (2) / Original Diaphragms for VOTT
+should find 802 not 803
+
+
+Vintage Altec Lancing N-800-F Crossover Dividing Network
+Vintage Speakers
+Consumer Electronics Vintage Electronics Vintage Audio & Video Vintage Speakers
+should find N-800-F not 803b
+
+
+Vintage Altec Lansing Model 802-8D High Frequency Driver 8 ohm 802 8D Working
+should find 802-8d not 803b
+
+
+VINTAGE JENSEN H 222 12" COAXIAL 2 WAY SPEAKER IN WORKING CONDITION
+should find H 222 not H
+
+**Vintage** Jensen H-970 Coaxial Speaker_Professional Series
