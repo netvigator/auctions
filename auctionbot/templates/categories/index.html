@@ -56,10 +56,11 @@
         <p>No categories are available.</p>
     {% endif %} <!-- brand_list -->
   </div>
-
+  <p/>
   <form action="{% url "categories:add" %}">
-      <input type="submit" value=" add a new category " />
+      <input class='btn btn-primary btn-blue' type="submit" value=" add a new category " />
   </form>
+  <p/>
 
 </div>
 {% endblock content %}
