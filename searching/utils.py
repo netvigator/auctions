@@ -470,7 +470,7 @@ def storeSearchResultsInDB( iLogID,
                             iSearchID,
                             sSearchName,
                             setTestCategories = None,
-                            bCleanUpFiles     = True ):
+                            bCleanUpFiles     = False ):
     #
     '''high level script, accesses results in file(s)
     and stores in database'''
