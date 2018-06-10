@@ -24,11 +24,6 @@ from models.models  import Model
 
 # ### keep views thin! ###
 
-tModelFields = (
-    'cTitle',
-    'cKeyWords',
-    'iDummyCategory',
-    'cPriority', )
 
 
 class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewCanCancel ):
@@ -89,9 +84,9 @@ class ItemsFoundIndexView(
         # qs = super( ItemsFoundIndexView, self ).get_queryset()
         #sSelect = 'P'
         #
-        sSelect = self.kwargs.get('select', 'P' )
+        sSelect = self.kwargs.get('select', 'p' )
         #
-        if not sSelect: sSelect = 'P'
+        if not sSelect: sSelect = 'p'
         #
         if sSelect == 'A': # all
             qsGot = UserItemFound.objects.select_related().filter(
@@ -115,6 +110,35 @@ class ItemsFoundIndexView(
         elif sSelect == 'Z': # iHitStars = 0
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
+                        iHitStars__eq       = 0,
+                        tRetrieved__isnull  = True,
+                        bListExclude        = False ).order_by('-iHitStars')
+        if sSelect == 'a': # all auctions
+            qsGot = UserItemFound.objects.select_related().filter(
+                        iUser               = self.request.user,
+                        bAuction            = True,
+                        bListExclude        = False,
+                        tRetrieved__isnull  = True,
+                        iHitStars__isnull   = False ).order_by('-iHitStars')
+        elif sSelect == 'p': # postive (non-zero hit stars) auctions
+            qsGot = UserItemFound.objects.select_related().filter(
+                        iUser               = self.request.user,
+                        bAuction            = True,
+                        iHitStars__isnull   = False,
+                        bListExclude        = False,
+                        tRetrieved__isnull  = True,
+                        iHitStars__gt       = 0 ).order_by('-iHitStars')
+        elif sSelect == 'd': # "deleted" (excluded from list) auctions
+            qsGot = UserItemFound.objects.select_related().filter(
+                        iUser               = self.request.user,
+                        bAuction            = True,
+                        iHitStars__isnull   = False,
+                        tRetrieved__isnull  = True,
+                        bListExclude        = True ).order_by('-iHitStars')
+        elif sSelect == 's': # iHitStars = 0 auctions
+            qsGot = UserItemFound.objects.select_related().filter(
+                        iUser               = self.request.user,
+                        bAuction            = True,
                         iHitStars__eq       = 0,
                         tRetrieved__isnull  = True,
                         bListExclude        = False ).order_by('-iHitStars')
