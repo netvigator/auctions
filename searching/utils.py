@@ -365,6 +365,10 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
                 ( iItemNumb, oUser.username ) )
         #
     #
+    sListingType = dItem.get( 'listingInfo' ).get( 'listingType' )
+    #
+    bAuction = sListingType.startswith( 'Auction' )
+    #
     return storeEbayInfo(
                 dItem,
                 dUserItemFoundUploadFields,
@@ -373,7 +377,8 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
                 _getValueUserOrOther,
                 oUser       = oUser,
                 iItemNumb   = iItemNumb,
-                iSearch     = iSearch )
+                iSearch     = iSearch,
+                bAuction    = bAuction )
 
 
 
