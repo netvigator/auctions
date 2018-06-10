@@ -121,4 +121,13 @@ should find 802-8d not 803b
 VINTAGE JENSEN H 222 12" COAXIAL 2 WAY SPEAKER IN WORKING CONDITION
 should find H 222 not H
 
+1940S ALTEC RWB 604 original speaker and N-2000B crossover
+should find 604a not 605a
+
+why 803 is wrongly assigned so often:
+| \b803[- ]*[A-Z]\b|\b80[0-9]\b |
+
 **Vintage** Jensen H-970 Coaxial Speaker_Professional Series
+
+test:
+sEbayErrorResponse
