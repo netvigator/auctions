@@ -72,4 +72,5 @@ dUserItemFoundUploadFields = d(
                          f = int ),
     iSearch         = d( t = () ),
     iUser           = d( t = () ),
-    tCreate         = d( t = () ) ) # why does this not work for tCreate?
+    tCreate         = d( t = () ), # why does this not work for tCreate?
+    bAuction        = d( t = (), bCalculate = True ) )
