@@ -192,6 +192,8 @@ class UserItemFound(models.Model):
                         default = False )
     tGotPics        = models.DateTimeField( 'got pictures',
                         null = True, blank = True )
+    bAuction        = models.BooleanField(
+                        'Auction or Auction with Buy It Now',default = False )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
@@ -211,9 +213,9 @@ class UserItemFound(models.Model):
 
     def get_absolute_url(self):
         #
-        return reverse(
+        return getReverseWithUpdatedQuery(
                 'searching:item_found_detail',
-                kwargs = { 'pk': self.pk } )
+                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 
 
 class ItemFoundTemp(models.Model):
