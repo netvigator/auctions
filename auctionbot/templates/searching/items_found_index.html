@@ -82,7 +82,8 @@
         {% for item in items_found_list %}
             <tr>
             <!--<td><input type="checkbox" value="{{ item.id }} name='get_pics'"></td>-->
-            <TD><input class="checkbox" name="bGetPictures" type="checkbox" value={{ item.iItemNumb_id }} {% if item.bGetPictures %}checked{% endif %}></td>
+            <TD><input class="checkbox" name="bGetPictures" type="checkbox" 
+                    value={{ item.iItemNumb_id }} {% if item.bGetPictures %}checked{% endif %}></td>
             <!--<TD><INPUT TYPE="CHECKBOX" VALUE="{{ item.bGetPictures }}"></TD>-->
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <!--<td><input type="checkbox" value="{{ item.id }} name='delete'"></td>-->
