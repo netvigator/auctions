@@ -38,8 +38,10 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
                                     getRegExpress(
                                         sLookFor,
                                         bAddDash       = bAddDash,
-                                        bSubModelsOK   = bSubModelsOK,
                                         iWordBoundChrs = WORD_BOUNDARY_MAX ) ) )
+        #
+        # removed 2018-06-12 solve Altec 803 problem
+        #                               bSubModelsOK   = bSubModelsOK,
         #
     #
     return sRegExpress
