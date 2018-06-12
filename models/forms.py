@@ -6,12 +6,12 @@ from .models                import Model
 tModelFields = (
     'cTitle',
     'cLookFor',
+    'bSubModelsOK',
     'iBrand',
     'bGenericModel',
     'iCategory',
     'cKeyWords',
     'iStars',
-    'bSubModelsOK',
     'bMustHaveBrand',
     'bWanted',
     'bGetPictures',
