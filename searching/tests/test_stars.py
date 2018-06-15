@@ -111,11 +111,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iCount = 0
         #
-        oFisherSpeakers = oTube5R4GB = oTube12SN7 = oAltecHorn = None
-        oFisher100s = oAltecItem1 = oAltecItem2 = oAltecItem3 = None
-        oTube6BH6 = None
-        #
-        setItemsToTest = frozenset(
+        dItemsToTest = dict.fromkeys(
               ( 282602694679,
                 253486571279,
                 123046984227,
@@ -124,6 +120,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 332618106572,
                 162988530803,
                 232745789325,
+                283006362761,
                 ) )
         #
         for oTemp in oUserItems:
@@ -131,33 +128,18 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             #
             if oTemp.iHitStars == 0: break
             #
-            if oTemp.iItemNumb_id in setItemsToTest:
+            if oTemp.iItemNumb_id in dItemsToTest:
                 #
-                if oTemp.iItemNumb_id == 282602694679:
-
-                    if oAltecItem1 is not None:
-
-                        oAltecItem2 = oTemp
-
-                    else:
-
-                        oAltecItem1 = oTemp
-
-                elif oTemp.iItemNumb_id == 253486571279 :
-                    oFisherSpeakers = oTemp
-                elif oTemp.iItemNumb_id == 123046984227 :
-                    oTube5R4GB      = oTemp
-                elif oTemp.iItemNumb_id == 192509883813 :
-                    oFisher100s     = oTemp
-                elif oTemp.iItemNumb_id == 162988285719 :
-                    oTube12SN7      = oTemp
-                elif oTemp.iItemNumb_id == 332618106572 :
-                    oTube6BH6       = oTemp
-                elif oTemp.iItemNumb_id == 162988530803 :
-                    oAltecHorn      = oTemp
+                if (    dItemsToTest[ oTemp.iItemNumb_id ] and
+                        oTemp.iItemNumb_id == 282602694679 ):
+                    #
+                    dItemsToTest[ ( 282602694679, 2 ) ] = oTemp
+                    #
+                else:
+                    #
+                    dItemsToTest[ oTemp.iItemNumb_id ] = oTemp
+                    #
                 #
-                elif oTemp.iItemNumb_id == 232745789325 :
-                    oAltecItem3     = oTemp
                 #print( '' )
 
                 #sSayModel = sSayBrand = sSayCategory = ''
@@ -185,96 +167,111 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             #
             iCount += 1
         #
-        #if oAltecItem1 is not None:
-            #if oAltecItem1.iModel is not None:
-                #print( oAltecItem1.iModel.cTitle )
-            #else: print( 'oAltecItem1.iModel is None' )
-            #if oAltecItem1.iCategory is not None:
-                #print( oAltecItem1.iCategory.cTitle )
-            #else: print( 'oAltecItem1.iCategory is None' )
-            #print( oAltecItem1.iHitStars )
-        #if oAltecItem3 is not None:
-            #if oAltecItem3.iModel is not None:
-                #print( oAltecItem3.iModel.cTitle )
-            #else: print( 'oAltecItem3.iModel is None' )
-            #if oAltecItem3.iCategory is not None:
-                #print( oAltecItem3.iCategory.cTitle )
-            #else: print( 'oAltecItem3.iCategory is None' )
-            #print( 'oAltecItem3.iHitStars:', oAltecItem3.iHitStars )
-        #
         self.assertGreater( iCount, 38 )
         #
-        self.assertIsNotNone( oFisherSpeakers )
+        oTest = dItemsToTest[ 253486571279 ]
         #
-        self.assertEqual( oFisherSpeakers.iModel.cTitle,    'XP-55-B' )
+        self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oFisherSpeakers.iBrand.cTitle,    'Fisher'  )
+        self.assertEqual( oTest.iModel.cTitle,    'XP-55-B' )
         #
-        self.assertEqual( oFisherSpeakers.iCategory.cTitle, 'Speaker System')
+        self.assertEqual( oTest.iBrand.cTitle,    'Fisher'  )
         #
-        self.assertEqual( oFisherSpeakers.cWhereCategory,   'title' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System')
         #
-        self.assertTrue(   oFisherSpeakers.iHitStars > 100 )
+        self.assertEqual( oTest.cWhereCategory,   'title' )
         #
-        self.assertIsNotNone( oTube5R4GB )
+        self.assertTrue(   oTest.iHitStars > 100 )
         #
-        self.assertEqual( oTube5R4GB.iModel.cTitle,    '5R4GA' )
+        oTest = dItemsToTest[ 123046984227 ]
         #
-        self.assertEqual( oTube5R4GB.iBrand.cTitle,    'GE'    )
+        self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oTube5R4GB.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertEqual( oTest.iModel.cTitle,    '5R4GA' )
         #
-        self.assertEqual( oTube5R4GB.cWhereCategory,   'title' )
+        self.assertEqual( oTest.iBrand.cTitle,    'GE'    )
         #
-        self.assertTrue(   oTube5R4GB.iHitStars > 100 )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        self.assertIsNotNone( oTube12SN7 )
+        self.assertEqual( oTest.cWhereCategory,   'title' )
         #
-        self.assertEqual( oTube12SN7.iModel.cTitle,    '12SN7' )
+        self.assertTrue(   oTest.iHitStars > 100 )
         #
-        self.assertEqual( oTube12SN7.iBrand.cTitle,    'RCA'   )
+        oTest = dItemsToTest[ 162988285719 ]
         #
-        self.assertEqual( oTube12SN7.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertIsNotNone( oTest )
         #
-        self.assertIsNotNone( oAltecItem1 )
+        self.assertEqual( oTest.iModel.cTitle,    '12SN7' )
         #
-        self.assertIn( oAltecItem1.iModel.cTitle, ( 'N-1500A', '604E' ) )
+        self.assertEqual( oTest.iBrand.cTitle,    'RCA'   )
         #
-        self.assertIn( oAltecItem1.iCategory.cTitle, ( 'Driver', 'Crossover' ) )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        self.assertIsNotNone( oAltecItem2 )
+        oTest = dItemsToTest[ 282602694679 ]
         #
-        self.assertIn( oAltecItem2.iModel.cTitle, ( 'N-1500A', '604E' ) )
+        self.assertIsNotNone( oTest )
         #
-        self.assertIn( oAltecItem2.iCategory.cTitle, ( 'Driver', 'Crossover' ) )
+        self.assertIn( oTest.iModel.cTitle, ( 'N-1500A', '604E' ) )
         #
-        self.assertIsNotNone( oFisher100s )
+        self.assertIn( oTest.iCategory.cTitle, ( 'Driver', 'Crossover' ) )
         #
-        self.assertEqual( oFisher100s.iModel.cTitle,    '100 (speaker)' )
+        oAltecItem1 = oTest
         #
-        self.assertEqual( oFisher100s.iBrand.cTitle,    'Fisher' )
+        oTest = dItemsToTest[ ( 282602694679, 2 ) ]
         #
-        self.assertEqual( oFisher100s.iCategory.cTitle, 'Speaker System' )
+        self.assertIsNotNone( oTest )
         #
-        self.assertIsNotNone( oTube6BH6 )
+        self.assertIn( oTest.iModel.cTitle, ( 'N-1500A', '604E' ) )
         #
-        self.assertEqual( oTube6BH6.iModel.cTitle,    '6BH6' )
+        self.assertIn( oTest.iCategory.cTitle, ( 'Driver', 'Crossover' ) )
         #
-        self.assertEqual( oTube6BH6.iCategory.cTitle, 'Vacuum Tube' )
+        oAltecItem2 = oTest
         #
-        self.assertEqual( oTube6BH6.cWhereCategory,   'heirarchy1' )
+        self.assertFalse( oAltecItem1.iModel == oAltecItem2.iModel )
         #
-        self.assertEqual( oTube6BH6.iBrand.cTitle,    'RCA'    )
+        self.assertFalse( oAltecItem1.iCategory == oAltecItem2.iCategory )
         #
-        self.assertIsNotNone( oAltecHorn )
+        oTest = dItemsToTest[ 192509883813 ]
         #
-        self.assertEqual( oAltecHorn.iModel.cTitle,    '311-90' )
+        self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oAltecHorn.iCategory.cTitle, 'Horn' )
+        self.assertEqual( oTest.iModel.cTitle,    '100 (speaker)' )
         #
-        self.assertEqual( oAltecHorn.cWhereCategory,   'title' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Fisher' )
         #
-        self.assertEqual( oAltecHorn.iBrand.cTitle,    'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        oTest = dItemsToTest[ 332618106572 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '6BH6' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        self.assertEqual( oTest.cWhereCategory,   'heirarchy1' )
+        #
+        self.assertEqual( oTest.iBrand.cTitle,    'RCA'    )
+        #
+        oTest = dItemsToTest[ 162988530803 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '311-90' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        self.assertEqual( oTest.cWhereCategory,   'title' )
+        #
+        self.assertEqual( oTest.iBrand.cTitle,    'Altec-Lansing' )
+        #
+        oTest = dItemsToTest[ 283006362761 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Harman-Kardon' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Citation III-X' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
