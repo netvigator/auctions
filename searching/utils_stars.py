@@ -204,6 +204,8 @@ def findSearchHits(
     from categories.models  import Category
     from models.models      import Model
     #
+    oForWithFinder = getRegExObj( r' (?:for|with) ' )
+    #
     oUserModel = get_user_model()
     #
     oUser = oUserModel.objects.get( id = iUser )
@@ -320,12 +322,10 @@ def findSearchHits(
         #
         oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
         #
-        sRelevantTitle = oItem.cTitle
+        # if title includes for or with, consider the part in front,
+        # not what follows
         #
-        if ' for ' in sRelevantTitle.lower(): # abc for xyz
-            #
-            sRelevantTitle = getTextBeforeC( sRelevantTitle, ' for ' )
-            #
+        sRelevantTitle = oForWithFinder.split( oItem.cTitle )[0]
         #
         #if oItem.iItemNumb == 162988530803:
             #print('')
