@@ -131,7 +131,6 @@ def getFetchFinalItems( bOnlySay = False ):
             #
             pass
 
-# from archive.tasks import doGetSingleItemThenStoreTask
-# doGetSingleItemThenStoreTask
 # from archive.tasks import doGetFetchUserItemsTasks
 # doGetFetchUserItemsTasks( bOnlySay = True )
+# doGetFetchUserItemsTasks()
