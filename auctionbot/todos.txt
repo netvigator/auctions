@@ -104,46 +104,12 @@ Matched Pair of Altec N 800 F Crossovers removed from 9844-A system TESTED
 should find crossover
 
 
-Altec Lansing 802-D Compression Driver Pair (2) / Original Diaphragms for VOTT
-should find 802 not 803
-
-
-Vintage Altec Lancing N-800-F Crossover Dividing Network
-Vintage Speakers
-Consumer Electronics Vintage Electronics Vintage Audio & Video Vintage Speakers
-should find N-800-F not 803b
-
-
-Vintage Altec Lansing Model 802-8D High Frequency Driver 8 ohm 802 8D Working
-should find 802-8d not 803b
-
-
-VINTAGE JENSEN H 222 12" COAXIAL 2 WAY SPEAKER IN WORKING CONDITION
-should find H 222 not H
-
-1940S ALTEC RWB 604 original speaker and N-2000B crossover
-should find 604a not 605a
-
-why 803 is wrongly assigned so often:
-| \b803[- ]*[A-Z]\b|\b80[0-9]\b |
-
 **Vintage** Jensen H-970 Coaxial Speaker_Professional Series
 
-VT-52 Western Electric Early Engraved Base VT52 Audio Tube 45 50–TV-7 Tested NR
-should find VT-52
-
-
-**Matching Pair-NIB** RCA 6B4G (6 volt octal 2A3) amplifier tubes.TV-7 test NOS.
-should find 6B4G
 
 pair heavy factory jbl c36 speaker cabinets with 075, d131? d130? + crossovers
 should find c36
 
-
-have examples:
-283006362761
-find Citation III-X not I
-duplicate, already have tuner, s/n find preamp
 
 IntegrityError at /searching/item_found/269093/edit/
 duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iModel_id_53e6b351_uniq"
