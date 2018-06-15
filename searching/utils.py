@@ -545,6 +545,7 @@ def storeSearchResultsInDB( iLogID,
             iItemNumb = None
             #
             try:
+                #
                 iItemNumb = _storeItemFound(
                                 dItem, tSearchTime, dEbayCatHierarchies )
                 iStoreItems += 1
@@ -578,7 +579,9 @@ def storeSearchResultsInDB( iLogID,
                     iStoreUsers += 1
                     #
                 except ( IntegrityError, ItemAlreadyInTable ):
+                    #
                     pass
+                    #
                 #
             #
     #
