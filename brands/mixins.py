@@ -1,4 +1,4 @@
-from categories.models  import Category
+from categories.models  import Category, BrandCategory
 
 from Object.Get         import QuickObject
 
@@ -66,7 +66,9 @@ class PostUpdateBrandCategoryList( object ):
     def post(self, request, *args, **kwargs):
         '''handle changes to brand categories'''
         if "cancel" in request.POST:
+            #
             pass
+            #
         else: # 'submit' in request.POST
             #
             self.object = self.get_object()
