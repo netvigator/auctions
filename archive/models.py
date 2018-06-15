@@ -75,8 +75,6 @@ class Item(models.Model):
                         max_length = 28, null = True, blank = True )
     bGlobalShipping = models.BooleanField( 'Global Shipping', default=False )
 
-    tCreate         = models.DateTimeField( 'created on',
-                        db_index = True, auto_now_add= True )
     bBuyItNowable   = models.BooleanField(
                         'buy it now enabled?',default = False )
     lBuyItNowPrice  = models.DecimalField( 'buy it now price (local currency)',
@@ -94,7 +92,9 @@ class Item(models.Model):
                         max_length = 3, default = 'USD',
                         null = True, blank = True )
 
-    tCreate         = models.DateTimeField( 'created on', auto_now_add=True )
+    tCreate         = models.DateTimeField( 'created on',
+                        db_index = True, auto_now_add= True )
+
     tModify         = models.DateTimeField( 'updated on', null = True )
 
 
