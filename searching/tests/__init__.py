@@ -104,6 +104,7 @@ sModels = \
  212                |           |      5 | f            | Grommes           |       Preamp |             | 
  AP-426             |           |      5 | f            | Stromberg-Carlson |       Preamp |             | 
  Citation IV        |           |      9 | f            | Harman-Kardon     |       Preamp |             | 
+ Citation III-X     |           |      8 | f            | Harman-Kardon     |        Tuner |             |
  SP-2               |           |      5 | f            | Heathkit          |       Preamp |             | 
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             | 
  Point 1            |           |      8 | f            | Leak              |       Preamp |             | 
