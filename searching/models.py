@@ -218,6 +218,7 @@ class UserItemFound(models.Model):
                 kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 
 
+
 class ItemFoundTemp(models.Model):
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
     iHitStars       = IntegerRangeField(
@@ -238,6 +239,9 @@ class ItemFoundTemp(models.Model):
                         min_value = 0, max_value = 10, default = 1 )
     iStarsCategory  = IntegerRangeField( null = True,
                         min_value = 0, max_value = 10, default = 1 )
+
+    iFoundModelLen  = models.PositiveSmallIntegerField( default = 0 )
+
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
