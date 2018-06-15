@@ -218,7 +218,7 @@ def findSearchHits(
     from categories.models  import Category
     from models.models      import Model
     #
-    oForWithFinder = getRegExObj( r' (?:for|with) ' )
+    oForWithFinder = getRegExObj( r' (?:for|with|fits) ' )
     #
     oUserModel = get_user_model()
     #
