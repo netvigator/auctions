@@ -12,7 +12,8 @@ User = get_user_model()
 class Item(models.Model):
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
-    cDescription    = models.TextField( 'description' )
+    cDescription    = models.TextField( 'description',
+                        null = True, blank = True ) # d/n always get
     bBestOfferable  = models.BooleanField( 'buy it now enabled?',
                         default = False )
     tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
