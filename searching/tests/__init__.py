@@ -500,6 +500,24 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+           },{"itemId":["283006362761"],
+              "title":["ITM#2 Harman Kardon CITATION III X Multiplex FM Stereo Vacuum TUBE TUNER Radio"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["67807"],
+              "categoryName":["Vintage Preamps & Tube Preamps"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mRd4PiejZdyF6HKb71_8qyA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ITM-2-Harman-Kardon-CITATION-III-X-Multiplex-FM-Stereo-Vacuum-TUBE-TUNER-Radio-\/283006362761"],
+              "paymentMethod":["PayPal"],
+              "autoPay":["false"],
+              "postalCode":["90026"],
+              "location":["Los Angeles,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"0.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"0.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P6DT2H17M22S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-06-13T13:14:41.000Z"],"endTime":["2018-06-20T01:14:41.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["18"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["232745789325"],
               "title":["Altec 603 B 15\\" Speaker 604 803 Vintage"],
               "globalId":["EBAY-US"],
