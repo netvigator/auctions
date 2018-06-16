@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import logging
 
+from datetime               import timedelta
 from time                   import sleep
 
 from django.contrib.auth    import get_user_model
@@ -35,7 +36,9 @@ def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
 
 
 @shared_task( name = 'archive.tasks.getFetchUserItems' )
-def doGetFetchUserItemsTasks( bOnlySay = False ):
+def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
+    #
+    # select useritemsfound that have not been fetched yet
     #
     qsUserItemNumbs = ( UserItemFound.objects.filter(
                                 bGetPictures        = True,
@@ -43,11 +46,16 @@ def doGetFetchUserItemsTasks( bOnlySay = False ):
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() )
     #
+    # select itemsfound that have been fetched already
+    #
     qsAlreadyFetched = ( ItemFound.objects
                             .filter( iItemNumb__in = qsUserItemNumbs )
                             .filter( tRetrieved__isnull = False )
                             .prefetch_related(
                                     'tRetrieved', 'tRetrieveFinal' ) )
+    #
+    # update useritemsfound, step thru itemsfound,
+    # mark useritemsfound that have results fetched already
     #
     for oItemFound in qsAlreadyFetched:
         #
@@ -63,10 +71,15 @@ def doGetFetchUserItemsTasks( bOnlySay = False ):
             #
         #
     #
+    # select itemsfound for which we have final results
+    #
     qsAlreadyFinal = ( ItemFound.objects
                             .filter( iItemNumb__in = qsUserItemNumbs )
                             .filter( tRetrieveFinal__isnull = False )
                             .prefetch_related( 'tRetrieveFinal' ) )
+    #
+    # update useritemsfound, step thru itemsfound,
+    # mark useritemsfound for which we have final results
     #
     for oItemFound in qsAlreadyFinal:
         #
@@ -84,6 +97,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False ):
     if qsAlreadyFetched.exists() or qsAlreadyFinal.exists():
         #
         # must redo query
+        # select useritemsfound for which we need to fetch results
         #
         qsUserItemNumbs = ( UserItemFound.objects.filter(
                                     bGetPictures        = True,
@@ -92,8 +106,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False ):
                                 .distinct() )
         #
     #
-    #
-    if bOnlySay:
+    if bOnlySay or bDoFinalOnly:
         #
         print( 'would fetch resuls on %s items now'
                 % qsUserItemNumbs.count() )
@@ -104,10 +117,8 @@ def doGetFetchUserItemsTasks( bOnlySay = False ):
             #
             doGetSingleItemThenStoreTask.delay( iItemNumb )
             #
-
-
-
-def getFetchFinalItems( bOnlySay = False ):
+    #
+    # carry on, fetch final results
     #
     tYesterday = timezone.now() - timezone.timedelta(1)
     #
@@ -129,8 +140,11 @@ def getFetchFinalItems( bOnlySay = False ):
             #
             # assign task
             #
-            pass
+            doGetSingleItemThenStoreTask.delay( oItemFound.iItemNumb )
+
+
 
 # from archive.tasks import doGetFetchUserItemsTasks
 # doGetFetchUserItemsTasks( bOnlySay = True )
+# doGetFetchUserItemsTasks( bDoFinalOnly = True )
 # doGetFetchUserItemsTasks()
