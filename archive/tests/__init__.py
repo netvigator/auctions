@@ -164,6 +164,76 @@ s232709513135 = '''{
         "QuantitySoldByPickupInStore":0,
         "NewBestOffer":false}}'''
 
+s282330751118 = '''{
+    "Timestamp":"2018-06-17T02:46:33.737Z",
+    "Ack":"Success",
+    "Build":"E1065_CORE_APILW_18725136_R1",
+    "Version":"1065",
+    "Item":{
+        "BestOfferEnabled":true,
+        "Description":"Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF Features: -Brand：Excelvan -Larger measuring range,read up to 470mF/ 470000uF -With auto running averaging function, can read pF more stable and accuracy -Easy to use and fast response time on measuring from 0.01pF to 470000uF Note: 1.*Accuracy maybe affected by the test lead&rsquo;s length and distance of test leads. Especially testing pF small capacitance, shortest test lead is recommended, and be careful the surrounding EMI or RF noise may affect the pF reading. 2.PLEASE DISCHARGE THE CAPACITOR BEFORE TESTING, you can use a screwdriver to short circuit, or series with a resistor around 10 ohm and short for 5 to 10s. There is 1 fast zener diode inside the meter to prevent high voltage, but it is important to discharge the capacitor firstly, as it is a large surge current and voltage and may damage the meter. Package Content 1 X Digital Capacitance Meter 1 X pair test probe Operating Introduction: - POWER ON Press and hold the ON/ OFF circle orange button for 1 to 2 second to power on. Press and release the ON/ OFF button to shut down meter. - AUTO/ MANUAL mode: Auto Range: Press and release the RANGE button and at the first line of LCD will show \\"AUTO:\\" At auto mode meter will automatically select the best range to detect. Manual Range: Scroll the manual range from 47nF, 47uF and 470mF range by press and release the RANGE button In LCD will show MANUAL at first LCD line and show at second line: 0-47NF, 47NF TO 47UF and 47UF TO 470MF. 1 Key Zero: OPEN circuit the test leads terminal. Press and release the &ldquo;ZERO\\" button, LCD shows &ldquo;ZERO\\" and wait the zero disappear. If you are using the meter array socket, you need to OPEN circuit to set zero too. Socket: You can use the 8 pin socket to measure the capacitor Running Average: It will automatically start running average if the capacitance reading become stable and user can get more accuracy reading. During running average it will show &ldquo;AVG&rdquo; at right bottom LCD or it will show raw data icon &ldquo;RAW&rdquo; As a result, if you want to get higher accuracy reading, you can take the reading during AVG display. This function will automatically on, once the raw data is noise. Backlight: LCD backlight will on during power on Auto Sleep: Around 8 to 10 hours for not testing, it will shut down automatically to save power. OVERFLOW or OL: Display overflow when the value is out of range, you can check that you are zero correctly. Specification: Range Accuracy (After Zero, tested with 1nF, 1uF, 1000uF) Refresh Time (Manual Mode) *Auto mode take 0 to 2s more time depend on value Larger capacitance take more measuring time 0.01pF to 47.000nF 1%+2Digit ~0.2s to 1s 47.00nF to 47.000uF 1%+1Digit ~0.2s to 2s 47.00uF to 470.00mF 1 to 3%+1Digit (Larger capacitance will have larger error) ~0.2s to 30s Accuracy Up to 1% (detail on above table) High Resolution 5 digit Measuring voltage <0.8V Clamping voltage ~1.25V (open voltage) Battery 2X AA 1.5V battery(Not Included) Operating current 0.02A Payment Method ★We accept PayPal only. ★NOTE: Payment should be sent within 4 (FOUR) days of auction closing. Or unpaid dispute will be filed for closing auction. Please contact us if you have any questions of payment procedures. Shipping Policy ★How much is shipping and handling (S&H)? The shipping and handling costs will be clearly marked on the auction item page. ★Please make sure the Ship-To address you type during checkout is correct. We are not responsible for any wrong or undeliverable addresses. ★Local pick up is not available. ★Items are generally shipped out the next business day after your payment has been cleared (Sat. & Sun. excluded.). ★An e-mail will be sent to your eBay e-mail address upon item is shipped out. If you do not receive this e-mail in 48 Business Hours, please contact us to check the status of your transaction. . ★International Buyers - Please Note: Import duties, taxes, and charges are not included in the item price or shipping cost. These charges are the buyer's responsibility. Please check with your country's customs office to determine what these additional costs will be prior to bidding or buying. Customs fees are normally charged by the shipping company or collected when you pick the item up. These fees are not additional shipping charges. Return & Warranty ★Our items come with one-year warranty. ★Our warranty does not extended to any products that are physically damaged or that are not under normal operating conditions as a result of misuse or improper installation on the buyer/user's part. ★This product comes with 30-Day Money Back Guarantee. ★We stand behind every product we sell. If you're not pleased with your purchase, we'll be happy to make an exchange or refund. ★For all returned products, please contact us for the returning address. Reply ★ALL replies will be sent to your email, if you don't get response within 1-2 business days, pls check your My Messages in case your email provider has an overly-aggressive spam filterblocking eBay's emails. Please email us AGAIN. ★Email is the priority of our customer service. Feedback ★You will receive our positive feedback as soon as you pay for your item.  ★Your better comments will be an encouragement for us to offer the better quality and the better service in future. ★If you are not satisfied with them, please contact us first via Ask a Question or via Contact Seller. Your messages will be answered within 1-2 business day. We shall try our best to solve your problem to your satisfaction.",
+        "ItemID":"282330751118",
+        "EndTime":"2018-06-13T00:34:26.000Z",
+        "StartTime":"2017-01-19T00:34:26.000Z",
+        "ViewItemURLForNaturalSearch":
+            "http://www.ebay.com/itm/Digital-Capacitance-Tester-Capacitor-Meter-Auto-Range-Multimeter-Checker-470mF-/282330751118",
+        "ListingType":"FixedPriceItem",
+        "Location":"Staten Island, New York",
+        "PaymentMethods":["PayPal"],"GalleryURL":"http://thumbs3.ebaystatic.com/pict/2823307511188080_1.jpg",
+        "PictureURL":[
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/TvsAAOSwnHZYgAlk/$_12.JPG?set_id=880000500F",
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/DTEAAOSwLEtYgAlm/$_12.JPG?set_id=880000500F",
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/EZYAAOSwt5hYgAlo/$_12.JPG?set_id=880000500F",
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/EbEAAOSwt5hYgAlq/$_12.JPG?set_id=880000500F",
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/34IAAOSw2xRYgAlt/$_12.JPG?set_id=880000500F",
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/eJ0AAOSw-0xYgAlv/$_12.JPG?set_id=880000500F",
+            "http://i.ebayimg.com/00/s/MTAyNFgxMDI0/z/2ZUAAOSw9GhYgAlx/$_12.JPG?set_id=880000500F"],
+        "PostalCode":"10303",
+        "PrimaryCategoryID":"73160",
+        "PrimaryCategoryName":"Business & Industrial:Electrical & Test Equipment:Test, Measurement & Inspection:Test Meters & Detectors:Capacitance & ESR Meters",
+        "Quantity":23,
+        "Seller":{
+            "UserID":"blissmall",
+            "FeedbackRatingStar":"YellowShooting",
+            "FeedbackScore":10052,
+            "PositiveFeedbackPercent":99.1,
+            "TopRatedSeller":true},
+        "BidCount":0,
+        "ConvertedCurrentPrice":{"Value":25.99,"CurrencyID":"USD"},
+        "CurrentPrice":{"Value":25.99,"CurrencyID":"USD"},
+        "ListingStatus":"Completed",
+        "QuantitySold":23,
+        "ShipToLocations":["US"],
+        "Site":"US",
+        "TimeLeft":"PT0S",
+        "Title":"Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF",
+        "HitCount":1662,
+        "PrimaryCategoryIDPath":"12576:92074:181939:181968:73160",
+        "Storefront":{
+            "StoreURL":"http://stores.ebay.com/id=1552145652",
+            "StoreName":"Blissmall.Inc"},
+        "Country":"US",
+        "ReturnPolicy":{
+            "Refund":"Money Back",
+            "ReturnsWithin":"30 Days",
+            "ReturnsAccepted":"Returns Accepted",
+            "Description":"Returns Accepted, Buyer, 30 Days, Money Back",
+            "ShippingCostPaidBy":"Buyer"},
+        "AutoPay":false,
+        "PaymentAllowedSite":[],
+        "IntegratedMerchantCreditCardEnabled":false,
+        "HandlingTime":1,
+        "ConditionID":1000,
+        "ConditionDisplayName":"New",
+        "ExcludeShipToLocation":[
+            "Alaska/Hawaii","APO/FPO","US Protectorates","Africa","Asia",
+            "Central America and Caribbean","Europe","Middle East",
+            "North America","Oceania","Southeast Asia","South America"],
+        "TopRatedListing":true,
+        "GlobalShipping":false,
+        "QuantitySoldByPickupInStore":0,
+        "SKU":"138764001",
+        "NewBestOffer":false}}'''
 
 
 sPicList = '''[
