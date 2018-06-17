@@ -122,6 +122,8 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     dGotItem = { k: getValueOffItemDict( dItem, k, v, **kwargs )
                 for k, v in dFields.items() }
     #
+    iSavedRowID = sListingStatus = None
+    #
     if dGotItem and Item.objects.filter( pk = iItemNumb ).exists():
         #
         bAnyChanged = False
@@ -133,6 +135,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
         for sField in dGotItem:
             #
             sValTable  = getattr( oItem, sField )
+            #
             sValImport = dGotItem[ sField ]
             #
             if (    ( sValTable or sValImport ) and
@@ -143,6 +146,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
                 bAnyChanged = True
                 #
             #
+        #
         if bAnyChanged:
             #
             oItem.tModify = tNow
@@ -150,11 +154,11 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             oItem.save()
             #
         #
+        sListingStatus = oItem.cListingStatus
+        #
     elif dGotItem:
         #
         form = ItemForm( data = dGotItem )
-        #
-        iSavedRowID = None
         #
         if form.is_valid():
             #
@@ -162,6 +166,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             #
             iSavedRowID = oItemInstance.pk
             #
+            sListingStatus = oItemInstance.cListingStatus
         else:
             #
             # ### form errors are common,
@@ -192,7 +197,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             #
         #
     #
-    return iSavedRowID
+    return iSavedRowID, sListingStatus
 
 
 
@@ -202,14 +207,22 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     bItemNumberStillGood = True
     #
-    try:
+    if 'sContent' in kwargs: # passed for testing
         #
-        sContent = getSingleItem( iItemNumb )
+        sContent = kwargs.pop( 'sContent' )
         #
-    except Exception as e:
+    else:
         #
-        logger.info(
-                'Exception for %s', str( iItemNumb ), exc_info = e )
+        try:
+            #
+            sContent = getSingleItem( iItemNumb )
+            #
+        except Exception as e:
+            #
+            logger.info(
+                    'Exception for %s', str( iItemNumb ), exc_info = e )
+            #
+        #
     #
     if 'tNow' in kwargs:
         tNow = kwargs.pop( 'tNow' )
@@ -220,8 +233,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         try:
             #
-            iSavedRowID = _storeJsonSingleItemResponse(
-                                iItemNumb, sContent, tNow = tNow )
+            t = _storeJsonSingleItemResponse(
+                        iItemNumb, sContent, tNow = tNow )
+            #
+            iSavedRowID, sListingStatus = t
             #
         except InvalidOrNonExistentItemError:
             #
@@ -234,6 +249,11 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         # InvalidOrNonExistentItemError:
         #
         oItemFound = ItemFound.objects.get( pk = iItemNumb )
+        #
+        if sListingStatus is not None:
+            #
+            oItemFound.cSellingState = sListingStatus
+            #
         #
         if oItemFound.tTimeEnd and oItemFound.tTimeEnd < tNow:
             #
