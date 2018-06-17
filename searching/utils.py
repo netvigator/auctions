@@ -3,12 +3,15 @@ import logging
 from string             import ascii_letters, digits
 from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 
+from requests.exceptions import ConnectTimeout
+
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db          import DataError, IntegrityError
 from django.db.models   import Max
 from django.utils       import timezone
 from core.utils_ebay    import getValueOffItemDict
+
 
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
@@ -232,6 +235,10 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 # logger.error( 'ReadTimeoutError: %s' % e )
                 sResponse = 'ReadTimeoutError: %s' % e
                 # read timeout
+            except ConnectTimeout as e:
+                # logger.error( 'ReadTimeoutError: %s' % e )
+                sResponse = 'ConnectTimeout: %s' % e
+                # read timeout
             #
             #
             if dPagination.get( "iPages" ):
@@ -437,18 +444,6 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         # logger.error( 'SearchGotZeroResults: %s' % e )
         sLastResult = 'SearchGotZeroResults: %s' % e
         # suggest sending an email to the owner
-    #except ConnectionResetError as e:
-        ## logger.error( 'ConnectionResetError: %s' % e )
-        #sLastResult = 'ConnectionResetError: %s' % e
-        ## maybe an error reading the results
-    #except ConnectTimeoutError as e:
-        ## logger.error( 'ConnectTimeoutError: %s' % e )
-        #sLastResult = 'ConnectTimeoutError: %s' % e
-        ## connection timeout
-    #except ReadTimeoutError as e:
-        ## logger.error( 'ReadTimeoutError: %s' % e )
-        #sLastResult = 'ReadTimeoutError: %s' % e
-        ## read timeout
     #
     tNow = timezone.now()
     #
@@ -462,6 +457,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     oSearchLog.save()
     #
     return sLastFile
+
 
 
 def storeSearchResultsInDB( iLogID,
