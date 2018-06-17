@@ -59,6 +59,8 @@ def getSingleItemResponseCandidate( bWantEnded = True ):
     #
     iTryThis = len( lPrioritySelect ) + 1
     #
+    dTryThis = None
+    #
     for d in lItemHits:
         #
         while iTryThis > len( lPrioritySelect ):
@@ -66,7 +68,8 @@ def getSingleItemResponseCandidate( bWantEnded = True ):
             iTryThis = int( getRandomDigits(1) )
             #
         #
-        if lPrioritySelect[ iTryThis ][1] < len( lItemHits ):
+        if (    len( lPrioritySelect ) > 1 and
+                lPrioritySelect[ iTryThis ][1] < len( lItemHits ) ):
             #
             dTryThis = lItemHits[ lPrioritySelect[ iTryThis ][1] ]
             #
