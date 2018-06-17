@@ -238,7 +238,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             except ConnectTimeout as e:
                 # logger.error( 'ReadTimeoutError: %s' % e )
                 sResponse = 'ConnectTimeout: %s' % e
-                # read timeout
+                # connect timeout
             #
             #
             if dPagination.get( "iPages" ):
@@ -252,7 +252,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             #
             QuietDump( sResponse, '/tmp', sErrorFile )
             #
-            logger.error( 'ebay api error in tmp file "%s"' % sErrorFile )
+            logger.warning( 'ebay api error in tmp file "%s"' % sErrorFile )
             #
             sleep( 1 + iRetries )
             #
