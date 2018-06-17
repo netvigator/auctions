@@ -203,7 +203,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
 
 def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
-    sContent = iSavedRowID = None
+    sContent = iSavedRowID = sListingStatus = None
     #
     bItemNumberStillGood = True
     #
@@ -255,7 +255,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             oItemFound.cSellingState = sListingStatus
             #
         #
-        if oItemFound.tTimeEnd and oItemFound.tTimeEnd < tNow:
+        if (    oItemFound.tTimeEnd and
+                oItemFound.tTimeEnd < tNow and
+                sListingStatus and
+                sListingStatus != 'Active' ):
             #
             oItemFound.tRetrieveFinal = tNow
             #
