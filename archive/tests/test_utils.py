@@ -1,10 +1,16 @@
 import logging
 
+from datetime           import timedelta
+
 from django.test        import TestCase
+from django.utils       import timezone
 
 from archive            import getListAsLines
 
-from archive.tests      import s142766343340, s232742493872, s232709513135
+from archive.tests      import ( s142766343340, s232742493872,
+                                 s232709513135, s282330751118 )
+
+from core.utils_test    import getEbayCategoriesSetUp
 
 from ..models           import Item
 from ..utils            import ( _storeJsonSingleItemResponse,
@@ -12,7 +18,10 @@ from ..utils            import ( _storeJsonSingleItemResponse,
 
 from ..utils_test       import getSingleItemResponseCandidate
 
-from searching.models   import ItemFound, UserItemFound
+from searching.models   import ItemFound, UserItemFound, Search
+from searching.tests    import dSearchResult # in __init__.py
+from searching.utils    import _storeUserItemFound, _storeItemFound
+
 from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
 
 from String.Get         import getTextAfter
@@ -45,21 +54,27 @@ class SomeItemsTest( TestCase ):
     def test_s142766343340( self ):
         '''test getSingleItem 1946 Bendix Catalin'''
         #
-        iSavedRowID = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
+        t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
+        #
+        iSavedRowID, sListingStatus = t
         #
         self.assertEqual( 142766343340, iSavedRowID )
 
     def test_s232742493872( self ):
         '''test getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
         #
-        iSavedRowID = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        #
+        iSavedRowID, sListingStatus = t
         #
         self.assertEqual( 232742493872, iSavedRowID )
 
     def test_s232709513135( self ):
         '''test getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
-        iSavedRowID = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        #
+        iSavedRowID, sListingStatus = t
         #
         self.assertEqual( 232709513135, iSavedRowID )
 
@@ -71,7 +86,9 @@ class StoreItemsTest( TestCase ):
     def test_s142766343340( self ):
         '''test storing getSingleItem 1946 Bendix Catalin including update'''
         #
-        iOriginalSavedRowID = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
+        t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
+        #
+        iOriginalSavedRowID, sListingStatus = t
         #
         self.assertTrue( Item.objects.filter( pk = 142766343340 ).exists() )
         #
@@ -81,7 +98,9 @@ class StoreItemsTest( TestCase ):
         #
         new142766343340 = s142766343340.replace( '"BidCount":0,', '"BidCount":5,' )
         #
-        iNewSavedRowID = _storeJsonSingleItemResponse( 142766343340, new142766343340 )
+        t = _storeJsonSingleItemResponse( 142766343340, new142766343340 )
+        #
+        iNewSavedRowID, sListingStatus = t
         #
         oItem.refresh_from_db()
         #
@@ -93,14 +112,18 @@ class StoreItemsTest( TestCase ):
     def test_s232742493872( self ):
         '''test storing getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
         #
-        iSavedRowID = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        #
+        iSavedRowID, sListingStatus = t
         #
         self.assertTrue( Item.objects.filter( pk = 232742493872 ).exists() )
 
     def test_s232709513135( self ):
         '''test storing getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
-        iSavedRowID = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        #
+        iSavedRowID, sListingStatus = t
         #
         self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
 
@@ -111,6 +134,8 @@ class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
     def test_get_single_active_item_then_store( self ):
         #
         d = getSingleItemResponseCandidate( bWantEnded = False )
+        #
+        if d is None: d = getSingleItemResponseCandidate()
         #
         iItemNumb = int( d[ 'iItemNumb' ] )
         #
@@ -134,4 +159,65 @@ class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( len( qsItem ), 1 )
 
+
+
+
+class StoreSingleItemTests( getEbayCategoriesSetUp ):
+    #
+    ''' class for testing _storeItemFound() '''
+    #
+
+    def setUp( self ):
+        #
+        '''set up to test _storeUserItemFound() with actual record'''
+        #
+        super( StoreSingleItemTests, self ).setUp()
+        #
+        class ThisShouldNotBeHappening( Exception ): pass
+        #
+        sSearch         = "My clever search 1"
+        self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
+        self.oSearch.save()
+        #
+        tBefore = timezone.now() - timezone.timedelta( days = 20 )
+        #
+        iItemNumb = _storeItemFound( dSearchResult, tBefore, {} )
+        #
+        if iItemNumb is None:
+            raise ThisShouldNotBeHappening
+        #
+        _storeUserItemFound(
+                dSearchResult,
+                iItemNumb,
+                tBefore,
+                self.user1,
+                self.oSearch.id )
+        #
+        self.iItemNumb  = iItemNumb
+        self.tNow       = tBefore
+
+
+    def test_store_fetched_single_item( self ):
+        #
+        t = _storeJsonSingleItemResponse( 282330751118, s282330751118 )
+        #
+        iSavedRowID, sListingStatus = t
+        #
+        self.assertEqual( iSavedRowID, 282330751118 )
+        #
+        oItem = Item.objects.get( pk = 282330751118 )
+        #
+        self.assertEqual( oItem.cListingStatus, "Completed" )
+        #
+        self.assertEqual( oItem.cListingStatus, sListingStatus )
+
+
+    def test_store_item_found_fetched_single_item( self ):
+        #
+        getSingleItemThenStore( 282330751118, sContent = s282330751118 )
+        #
+        oItemFound = ItemFound.objects.get( pk = 282330751118 )
+        #
+        self.assertEqual( oItemFound.cSellingState, "Completed" )
+        #
 
