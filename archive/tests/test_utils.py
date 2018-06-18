@@ -14,7 +14,8 @@ from core.utils_test    import getEbayCategoriesSetUp
 
 from ..models           import Item
 from ..utils            import ( _storeJsonSingleItemResponse,
-                                 getSingleItemThenStore )
+                                 getSingleItemThenStore,
+                                 getItemsFoundForUpdate )
 
 from ..utils_test       import getSingleItemResponseCandidate
 
@@ -199,6 +200,16 @@ class StoreSingleItemTests( getEbayCategoriesSetUp ):
 
     def test_store_fetched_single_item( self ):
         #
+        oItemFound = ItemFound.objects.get( pk = 282330751118 )
+        #
+        self.assertEqual( oItemFound.cSellingState, 'Active' )
+        #
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
+        #
+        self.assertIsNone( oUserItemFound.tRetrieved )
+        self.assertIsNone( oUserItemFound.tRetrieveFinal )
+        #
         t = _storeJsonSingleItemResponse( 282330751118, s282330751118 )
         #
         iSavedRowID, sListingStatus = t
@@ -210,6 +221,7 @@ class StoreSingleItemTests( getEbayCategoriesSetUp ):
         self.assertEqual( oItem.cListingStatus, "Completed" )
         #
         self.assertEqual( oItem.cListingStatus, sListingStatus )
+        #
 
 
     def test_store_item_found_fetched_single_item( self ):
@@ -223,17 +235,22 @@ class StoreSingleItemTests( getEbayCategoriesSetUp ):
 
     def test_update_user_items_found_code( self ):
         #
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
+        #
+        tNow = timezone.now()
+        #
+        getSingleItemThenStore( 282330751118,
+                            sContent = s282330751118,
+                            tNow     = tNow )
+        #
         oItemFound = ItemFound.objects.get( pk = 282330751118 )
         #
-        print('')
-        #self.assertEqual( oItemFound.cSellingState, "Completed" )
-        print('oItemFound.cSellingState:', oItemFound.cSellingState )
+        self.assertEqual( oItemFound.cSellingState, 'Completed' )
         #
-        oUserItemFound = UserItemFound.objects.get( iItemNumb_id = 282330751118 )
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
         #
-        print('oUserItemFound.tRetrieved:', oUserItemFound.tRetrieved )
-        print('oUserItemFound.tRetrieveFinal:', oUserItemFound.tRetrieveFinal )
+        self.assertEqual( oUserItemFound.tRetrieved,    tNow )
+        self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
         #
-        #oItemFound.cSellingState: Active
-        #oUserItemFound.tRetrieved: None
-        #oUserItemFound.tRetrieveFinal: None
