@@ -221,3 +221,19 @@ class StoreSingleItemTests( getEbayCategoriesSetUp ):
         self.assertEqual( oItemFound.cSellingState, "Completed" )
         #
 
+    def test_update_user_items_found_code( self ):
+        #
+        oItemFound = ItemFound.objects.get( pk = 282330751118 )
+        #
+        print('')
+        #self.assertEqual( oItemFound.cSellingState, "Completed" )
+        print('oItemFound.cSellingState:', oItemFound.cSellingState )
+        #
+        oUserItemFound = UserItemFound.objects.get( iItemNumb_id = 282330751118 )
+        #
+        print('oUserItemFound.tRetrieved:', oUserItemFound.tRetrieved )
+        print('oUserItemFound.tRetrieveFinal:', oUserItemFound.tRetrieveFinal )
+        #
+        #oItemFound.cSellingState: Active
+        #oUserItemFound.tRetrieved: None
+        #oUserItemFound.tRetrieveFinal: None
