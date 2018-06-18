@@ -321,3 +321,83 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
     #
 
+
+def getItemsFoundForUpdate():
+    #
+    # preliminary job:
+    # do this before fetching single item results
+    # item could have been fetched for another user
+    # so step thru itemsfound, mark all useritemsfound
+    # that have been fetched already
+    #
+    # code is here so it can be tested separately
+    #
+    # select useritemsfound that have not been marked as fetched yet
+    #
+    qsUserItemNumbs = ( UserItemFound.objects.filter(
+                                bGetPictures        = True,
+                                tRetrieved__isnull  = True )
+                            .values_list( 'iItemNumb', flat = True )
+                            .distinct() )
+    #
+    # for those item numbers, select itemsfound that have been fetched already
+    #
+    qsAlreadyFetched = ( ItemFound.objects
+                            .filter( iItemNumb__in = qsUserItemNumbs )
+                            .filter( tRetrieved__isnull = False )
+                            .prefetch_related(
+                                    'tRetrieved', 'tRetrieveFinal' ) )
+    #
+    # update useritemsfound, step thru selected itemsfound,
+    # mark useritemsfound that have results fetched already
+    #
+    for oItemFound in qsAlreadyFetched:
+        #
+        qsUserItemFound = UserItemFound.filter(
+                                iItemNumb = oItemFound.iItemNumb )
+        #
+        for oUserItemFound in qsUserItemFound:
+            #
+            oUserItemFound.tRetrieved     = oItemFound.tRetrieved
+            oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
+            #
+            oUserItemFound.save()
+            #
+        #
+    #
+    # for the useritemsfound that have not been marked as fetched yet,
+    # select itemsfound for which we have final results
+    #
+    qsAlreadyFinal = ( ItemFound.objects
+                            .filter( iItemNumb__in = qsUserItemNumbs )
+                            .filter( tRetrieveFinal__isnull = False )
+                            .prefetch_related( 'tRetrieveFinal' ) )
+    #
+    # update useritemsfound, step thru itemsfound,
+    # mark useritemsfound for which we have final results
+    #
+    for oItemFound in qsAlreadyFinal:
+        #
+        qsUserItemFound = UserItemFound.filter(
+                                iItemNumb = oItemFound.iItemNumb )
+        #
+        for oUserItemFound in qsUserItemFound:
+            #
+            oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
+            #
+            oUserItemFound.save()
+            #
+        #
+    #
+    if qsAlreadyFetched.exists() or qsAlreadyFinal.exists():
+        #
+        # select useritemsfound for which we need to fetch results
+        #
+        qsUserItemNumbs = ( UserItemFound.objects.filter(
+                                    bGetPictures        = True,
+                                    tRetrieved__isnull  = True )
+                                .values_list( 'iItemNumb', flat = True )
+                                .distinct() )
+        #
+    #
+    return qsUserItemNumbs
