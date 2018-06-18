@@ -112,6 +112,11 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
 
 def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     #
+    '''
+    gets single item result from ebay API (can pass response for testing)
+    stores response in items but does NOT store in itemsfound or useritemsfound
+    '''
+    #
     if 'tNow' in kwargs:
         tNow = kwargs.pop( 'tNow' )
     else:
@@ -202,6 +207,11 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
 
 
 def getSingleItemThenStore( iItemNumb, **kwargs ):
+    #
+    '''
+    gets single item result from ebay API (can pass response for testing)
+    stores response in items, itemsfound and useritemsfound
+    '''
     #
     sContent = iSavedRowID = sListingStatus = None
     #
