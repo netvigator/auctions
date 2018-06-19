@@ -53,7 +53,7 @@ class Item(models.Model):
     cListingStatus  = models.CharField( 'Listing Status', max_length = 18 )
     iQuantitySold   = models.SmallIntegerField( 'quantity sold' )
     cShipToLocations= models.TextField( 'ship to locations' )
-    cSite           = models.CharField( 'Site', max_length = 8 )
+    cSite           = models.CharField( 'Site', max_length = 14 )
     cTimeLeft       = models.CharField( 'time left', max_length =18 )
     cTitle          = models.CharField( 'item title',
                         max_length = 80 )
