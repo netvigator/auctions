@@ -224,25 +224,15 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 actual example error message in core.tests.__init__.py
                 '''
             except ConnectionResetError as e:
-                # logger.error( 'ConnectionResetError: %s' % e )
-                sResponse = 'ConnectionResetError: %s' % e
-                # maybe an error reading the results
+                sResponse = 'ConnectionResetError: %s'  % e
             except ConnectTimeoutError as e:
-                # logger.error( 'ConnectTimeoutError: %s' % e )
-                sResponse = 'ConnectTimeoutError: %s' % e
-                # connection timeout
+                sResponse = 'ConnectTimeoutError: %s'   % e
             except ReadTimeoutError as e:
-                # logger.error( 'ReadTimeoutError: %s' % e )
-                sResponse = 'ReadTimeoutError: %s' % e
-                # read timeout
+                sResponse = 'ReadTimeoutError: %s'      % e
             except ConnectTimeout as e:
-                # logger.error( 'ReadTimeoutError: %s' % e )
-                sResponse = 'ConnectTimeout: %s' % e
-                # connect timeout
+                sResponse = 'ConnectTimeout: %s'        % e
             except ReadTimeout as e:
-                # logger.error( 'ReadTimeoutError: %s' % e )
-                sResponse = 'ReadTimeout: %s' % e
-                # connect timeout
+                sResponse = 'ReadTimeout: %s'           % e
             #
             if dPagination.get( "iPages" ):
                 #
