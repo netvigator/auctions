@@ -15,7 +15,6 @@ from ebayinfo               import dMarketsRelated, EBAY_FILES_FOLDER
 
 from .models                import EbayCategory, Market, CategoryHierarchy
 
-from Dir.Get                import getMakeDir
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 from Web.HTML               import getChars4HtmlCodes
@@ -25,11 +24,10 @@ logger = getLogger(__name__)
 class UnexpectedResponse( Exception ): pass
 
 '''
-utils for handling info from ebay API 
-note the actual calls to the ebay API are in 
+utils for handling info from ebay API
+note the actual calls to the ebay API are in
 core.ebay_wrapper.py
 '''
-getMakeDir( EBAY_FILES_FOLDER )
 
 # variable referenced in tests
 CATEGORY_VERSION_FILE = join( EBAY_FILES_FOLDER, 'Categories_Ver_%s.xml' )
@@ -120,7 +118,7 @@ def countCategories(
         #
     #
     if bSayCount:
-        print( 'CategoryCount line said', 
+        print( 'CategoryCount line said',
             ReadableNo( dTagsValues[ 'CategoryCount' ] ),
                 'categories, actully counted', ReadableNo( i ) )
     #
@@ -279,7 +277,7 @@ def _putCategoriesInDatabase(
         try:
             #
             oCategory = EbayCategory.objects.get(
-                iEbaySiteID     = oMarket, 
+                iEbaySiteID     = oMarket,
                 iCategoryID     = int( dCategory['CategoryID'] ) )
             #
         except ObjectDoesNotExist:
@@ -305,7 +303,7 @@ def _putCategoriesInDatabase(
         else:
             #
             oCategory.parent = EbayCategory.objects.get(
-                iEbaySiteID = oMarket, 
+                iEbaySiteID = oMarket,
                 iCategoryID = dCategory['CategoryParentID'],
                 iTreeVersion= iWantVersion )
             #
@@ -526,10 +524,10 @@ def _getCategoryHierarchyID(
             #
             iCatHeirarchy = dEbayCatHierarchies[ tCategoryID ]
             #
-            # bOkCatHeirarchy = 
+            # bOkCatHeirarchy =
             # CategoryHierarchy.objects.filter( pk = iCatHeirarchy ).exists()
             #
-        elif CategoryHierarchy.objects.filter( 
+        elif CategoryHierarchy.objects.filter(
                                 iCategoryID = iCategoryID,
                                 iEbaySiteID = iEbaySiteID ).exists():
             #
@@ -662,7 +660,7 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
 
 '''
 select "iCategoryID","cCategory","iCatHeirarchy_id","i2ndCategoryID","c2ndCategory","i2ndCatHeirarchy_id","iEbaySiteID_id" from itemsfound limit 2 ;
- iCategoryID |      cCategory      | iCatHeirarchy_id | i2ndCategoryID | c2ndCategory | i2ndCatHeirarchy_id | iEbaySiteID_id 
+ iCategoryID |      cCategory      | iCatHeirarchy_id | i2ndCategoryID | c2ndCategory | i2ndCatHeirarchy_id | iEbaySiteID_id
 -------------+---------------------+------------------+----------------+--------------+---------------------+----------------
        38034 | 1930-49             |                  |              0 |              |                     |              0
        73374 | Vintage Televisions |                  |              0 |              |                     |              0
@@ -713,7 +711,7 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
         else:
             #
             print('cannot get CatHeirarchy for iItemNumb: %s ' %
-                   oItem.iItemNumb )    
+                   oItem.iItemNumb )
             #
         #
         if oItem.i2ndCategoryID:
@@ -742,7 +740,7 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
             oItem.save()
             #
         #
-                
+
     #
     oProgressMeter.end( iSeq )
     #
