@@ -1,5 +1,6 @@
 from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
 
+from Dir.Get        import getMakeDir
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
 WORD_BOUNDARY_MAX   = 5
@@ -14,6 +15,8 @@ RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s_p_%s_.json'
 # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
 
 SEARCH_FILES_FOLDER  = '/tmp/searches'
+
+getMakeDir( SEARCH_FILES_FOLDER )
 
 d = dict
 
