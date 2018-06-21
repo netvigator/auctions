@@ -3,7 +3,7 @@ import logging
 from string             import ascii_letters, digits
 from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 
-from requests.exceptions import ConnectTimeout
+from requests.exceptions import ConnectTimeout, ReadTimeout
 
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -239,7 +239,10 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 # logger.error( 'ReadTimeoutError: %s' % e )
                 sResponse = 'ConnectTimeout: %s' % e
                 # connect timeout
-            #
+            except ReadTimeout as e:
+                # logger.error( 'ReadTimeoutError: %s' % e )
+                sResponse = 'ReadTimeout: %s' % e
+                # connect timeout
             #
             if dPagination.get( "iPages" ):
                 #
@@ -394,8 +397,8 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     '''high level script, does a search, catches exceptions, logs errors,
     stores results in file'''
     #
-    # ### sandbox returns zero items ### 
-    # ### use bUseSandbox = False    ### 
+    # ### sandbox returns zero items ###
+    # ### use bUseSandbox = False    ###
     #
     tSearchStart = timezone.now()
     #
@@ -429,8 +432,8 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         #
         t = _doSearchStoreInFile( iSearchID = iSearchID )
         #
-        # ### sandbox returns zero items ### 
-        # ### use bUseSandbox = False    ### 
+        # ### sandbox returns zero items ###
+        # ### use bUseSandbox = False    ###
         #
         sLastFile, sSearchName = t
         #
@@ -530,7 +533,7 @@ def storeSearchResultsInDB( iLogID,
                     continue
                     #
                 #
-                if ( u2ndCategoryID is not None and 
+                if ( u2ndCategoryID is not None and
                             ( iEbaySiteID, int( u2ndCategoryID ) )
                             not in setTestCategories ):
                     #
@@ -548,7 +551,7 @@ def storeSearchResultsInDB( iLogID,
                 #
                 if iItemNumb is None and not settings.TESTING:
                     #
-                    logger.warning( '%s -- %s' % 
+                    logger.warning( '%s -- %s' %
                                 ( '_storeItemFound() returned None',
                                   dItem['itemId'] ) )
                     #
