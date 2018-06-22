@@ -131,9 +131,6 @@ Tung-Sol 5881 (6L6WGB) amplifier tube. TV-7 test NOS. for Bendix USA SHIPS ONLY
 found 6L6WGB not 5881
 
 
-[2018-06-20 00:41:40,450: WARNING/ForkPoolWorker-1] iItemNumb -- <ul class="errorlist"><li>Item found with this Ebay item number already exists.</li></ul>
-[2018-06-20 00:41:40,450: WARNING/ForkPoolWorker-1] _storeItemFound() returned None -- 113080655087
-
 test:
 sEbayErrorResponse
 
