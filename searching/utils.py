@@ -531,34 +531,44 @@ def storeSearchResultsInDB( iLogID,
                     #
                 #
             #
-            iItemNumb = None
+            iItemNumb = int( dItem.get( 'itemId' ) )
             #
-            try:
+            bGotItem = ItemFound.objects.filter( pk = iItemNumb ).exists()
+            #
+            if not bGotItem:
                 #
-                iItemNumb = _storeItemFound(
-                                dItem, tSearchTime, dEbayCatHierarchies )
-                iStoreItems += 1
-                #
-                if iItemNumb is None and not settings.TESTING:
+                try:
                     #
-                    logger.warning( '%s -- %s' %
-                                ( '_storeItemFound() returned None',
-                                  dItem['itemId'] ) )
+                    iItemNumb = _storeItemFound(
+                                    dItem, tSearchTime, dEbayCatHierarchies )
+                    iStoreItems += 1
                     #
-                #
-            except ( IntegrityError, ItemAlreadyInTable ):
-                #
-                iItemNumb      = int( dItem['itemId'] )
-                #
-            except ValueError as e:
-                #
-                sMsg = 'ValueError: %s | %s' % ( str(e), repr(dItem) )
-                logger.error( sMsg)
-                #
-                print( sMsg )
+                    if iItemNumb is None and not settings.TESTING:
+                        #
+                        logger.warning( '%s -- %s' %
+                                    ( '_storeItemFound() returned None',
+                                    dItem['itemId'] ) )
+                        #
+                    #
+                except ( IntegrityError, ItemAlreadyInTable ):
+                    #
+                    iItemNumb      = int( dItem['itemId'] )
+                    #
+                except ValueError as e:
+                    #
+                    sMsg = 'ValueError: %s | %s' % ( str(e), repr(dItem) )
+                    logger.error( sMsg)
+                    #
+                    print( sMsg )
+                    #
                 #
             #
-            if iItemNumb is not None:
+            bGotUserItem = ( iItemNumb is not None and
+                             UserItemFound.objects.filter(
+                                iItemNumb   = iItemNumb,
+                                iUser       = oUser ).exists() )
+            #
+            if not ( bGotUserItem or iItemNumb is None ):
                 #
                 try:
                     #
