@@ -4,6 +4,7 @@ from os.path            import join
 
 from django.core.urlresolvers import reverse
 
+from django.test        import TestCase
 from django.utils       import timezone
 
 from core.utils_test    import setUpBrandsCategoriesModels
@@ -18,7 +19,8 @@ from ..utils            import storeSearchResultsInDB
 from .test_utils        import GetBrandsCategoriesModelsSetUp
 
 from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
-                                 findSearchHits, _getRowRegExpressions )
+                                 findSearchHits, _getRowRegExpressions,
+                                 getInParens )
 
 
 from brands.views       import BrandUpdateView
@@ -121,6 +123,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 162988530803,
                 232745789325,
                 283006362761,
+                162988285720,
+                162988285721
                 ) )
         #
         for oTemp in oUserItems:
@@ -267,11 +271,34 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ 283006362761 ]
         #
+        self.assertIsNotNone( oTest )
+        #
         self.assertEqual( oTest.iBrand.cTitle, 'Harman-Kardon' )
         #
         self.assertEqual( oTest.iModel.cTitle, 'Citation III-X' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
+        #
+        #
+        oTest = dItemsToTest[ 162988285720 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5881' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ 162988285721 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6L6WGB' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -385,32 +412,32 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertFalse( bInTitle     )
+        self.assertFalse( sInTitle     )
         self.assertTrue(  bExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         foundItem = dFinders[ self.oBrand.pk ]
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         self.assertIn(     self.oBrand.cRegExLook4Title,
@@ -431,32 +458,32 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'Gemini Jets 1/200 Delta MD-80 Widget Livery N956DL'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertFalse( bInTitle     )
+        self.assertFalse( sInTitle     )
         self.assertTrue(  bExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertFalse( bInTitle     )
+        self.assertFalse( sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         foundItem = dFinders[ self.oCategory.pk ]
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         self.assertIn(     self.oCategory.cRegExLook4Title,
@@ -476,39 +503,39 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertFalse( bInTitle     )
+        self.assertFalse( sInTitle     )
         self.assertTrue(  bExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertFalse( bInTitle     )
+        self.assertFalse( sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertFalse( bInTitle     )
+        self.assertFalse( sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         foundItem = dFinders[ self.oModel.pk ]
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        bInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
         #
-        self.assertTrue(  bInTitle     )
+        self.assertTrue(  sInTitle     )
         self.assertFalse( bExcludeThis )
         #
         self.assertIn(     self.oModel.cRegExLook4Title,
@@ -520,3 +547,16 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
+class GetTextInParensTest( TestCase ):
+    #
+    def test_got_text_in_parens_or_not( self ):
+        #
+        s1 = ( 'Tung-Sol 5881 (6L6WGB) amplifier tube. '
+               'TV-7 test NOS. for Bendix USA SHIPS ONLY' )
+        #
+        s2 = ( 'ALTEC LANSING N-800-8K CROSSOVER DIVIDING NETWORK '
+               '846B VALENCIA WORKING PAIR' )
+        #
+        self.assertEqual( getInParens( s1 ), '6L6WGB' )
+        #
+        self.assertIsNone( getInParens( s2 ) )
