@@ -6,239 +6,246 @@ tTimeEnd            | iItemNumb    | iHitStars
 2018-03-10 11:46:09 | 372238175241 | 270
 '''
 
+#### if you add a vacuum tube brand, ###
+####  you need a BrandCategory row   ###
+####    code is in test_utils.py     ###
+
 sBrands = \
 '''
-      cTitle       | iStars | cExcludeIf |  cLookFor  
+      cTitle       | iStars | cExcludeIf |  cLookFor 
 -------------------+--------+------------+------------
- Marantz           |     10 | Speaker\\rAV9000\\rreplica | 
- ACRO              |      9 |            | 
- Western Electric  |      9 |            | 
- Radio Craftsmen   |      8 |            | 
- Fairchild         |      8 |            | 
- Pilot             |      8 |            | 
- Langevin          |      8 |            | 
- UTC               |      8 |            | 
- Brook             |      8 |            | 
- EICO              |      7 |            | 
- Lafayette         |      7 |            | 
- Leak              |      7 |            | 
- McIntosh          |      6 |            | 
- Luxman            |      6 |            | 
- Quad              |      5 |            | 
- Ampex             |      5 |            | 
- Sherwood          |      5 |            | 
- Stromberg-Carlson |      5 |            | 
- Audio Research    |      5 |            | 
- Grommes           |      5 |            | 
- Regency           |      5 |            | 
- Bell              |      4 |            | 
- Sargent-Rayment   |      4 |            | 
- Knight            |      4 |            | 
- Interelectronics  |      3 |            | 
- PACO              |      2 |            | 
- Astronic          |      2 |            | 
- MFA               |      8 |            | 
- National          |      7 |            | 
- DuKane            |      7 |            | 
- Brociner          |      6 |            | 
+ ACRO              |      9 |            |
+ Addison           |      7 |            |
+ Allied            |      5 |            |
  Altec-Lansing     |     10 |            | Altec
- Fisher            |      9 |            | 
- Heathkit          |      8 |            | Heath
- Scott, H.H.       |      8 |            | Scott\\rH.H. Scott
- Harman-Kardon     |      7 |            | 
- Electro-Voice     |      7 |            | EV
- Klangfilm         |      6 |            | 
+ Ampex             |      5 |            |
+ Arvin             |      7 |            |
+ Astronic          |      2 |            |
+ Audio Research    |      5 |            |
+ Bell              |      4 |            |
+ Bendix            |      7 |            |
+ Bogen             |      1 |            |
+ Brociner          |      6 |            |
+ Brook             |      8 |            |
+ Coronado          |      7 |            |
+ Crosley           |      3 |            |
+ DeWald            |      4 |            |
+ DuKane            |      7 |            |
  Dynaco            |      5 |            | Dyna\\rDynakit
- Allied            |      5 |            | 
- Bogen             |      1 |            | 
- Garod             |      5 |            | Garol 
- Addison           |      7 |            | 
- Fada              |      8 |            | 
- Emerson           |      6 |            | 
- DeWald            |      4 |            | 
- Crosley           |      3 |            | 
- RCA               |      6 |            | 
- Radford           |      7 |            | 
- Bendix            |      7 |            | 
- Westinghouse      |      5 |            | 
+ EICO              |      7 |            |
+ Electro-Voice     |      7 |            | EV
+ Emerson           |      6 |            |
+ Fada              |      8 |            |
+ Fairchild         |      8 |            |
+ Fisher            |      9 |            |
+ Garod             |      5 |            | Garol
  GE                |      5 |            | General Electric
- Spartan           |      8 |            | 
- Coronado          |      7 |            | 
- Motorola          |      7 |            | 
- Arvin             |      7 |            | 
- Kadette           |      6 |            | 
- Sentinel          |      6 |            | 
- Silvertone        |      3 |            | 
+ Grommes           |      5 |            |
+ Harman-Kardon     |      7 |            |
+ Heathkit          |      8 |            | Heath
+ Interelectronics  |      3 |            |
+ Kadette           |      6 |            |
+ Klangfilm         |      6 |            |
+ Knight            |      4 |            |
+ Lafayette         |      7 |            |
+ Langevin          |      8 |            |
+ Leak              |      7 |            |
+ Luxman            |      6 |            |
+ Marantz           |     10 | Speaker\\rAV9000\\rreplica |
+ McIntosh          |      6 |            |
+ MFA               |      8 |            |
+ Motorola          |      7 |            |
+ National          |      7 |            |
+ PACO              |      2 |            |
+ Pilot             |      8 |            |
+ Quad              |      5 |            |
+ Radford           |      7 |            |
+ Radio Craftsmen   |      8 |            |
+ RCA               |      6 |            |
+ Regency           |      5 |            |
+ Sargent-Rayment   |      4 |            |
+ Scott, H.H.       |      8 |            | Scott\\rH.H. Scott
+ Sentinel          |      6 |            |
+ Sherwood          |      5 |            |
+ Silvertone        |      3 |            |
+ Spartan           |      8 |            |
+ Stromberg-Carlson |      5 |            |
+ Tung-Sol          |      6 |            |
+ UTC               |      8 |            |
+ Western Electric  |      9 |            |
+ Westinghouse      |      5 |            |
 '''
 
 sModels = \
 '''
-       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel 
+       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6WGB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
- 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | 
+ 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
- XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             | 
- HF-61A             |           |      6 | t            | EICO              |       Preamp |             | 
- HF-85              |           |      7 | f            | EICO              |       Preamp |             | 
- ST-84              |           |      7 | f            | EICO              |       Preamp |             | 
- 80-C               |           |      7 | f            | Fisher            |       Preamp |             | 
- 90-C               |           |      9 | f            | Fisher            |       Preamp |             | 
- PR-6               |           |      5 | f            | Fisher            |       Preamp |             | 
- PR-66              |           |      5 | f            | Fisher            |       Preamp |             | 
- C-20               |           |      6 | f            | McIntosh          |       Preamp |             | 
- C-11               |           |      7 | f            | McIntosh          |       Preamp |             | 
- 122                |           |      8 | f            | Scott, H.H.       |       Preamp |             | 
- C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp |             | 
- HF-65              |           |      7 | f            | EICO              |       Preamp |             | 
- PC-1               |           |      9 | f            | Electro-Voice     |       Preamp |             | 
- 210PA              |           |      6 | f            | Grommes           |       Preamp |             | 
- 212                |           |      5 | f            | Grommes           |       Preamp |             | 
- AP-426             |           |      5 | f            | Stromberg-Carlson |       Preamp |             | 
- Citation IV        |           |      9 | f            | Harman-Kardon     |       Preamp |             | 
+ XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             |
+ HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
+ HF-85              |           |      7 | f            | EICO              |       Preamp |             |
+ ST-84              |           |      7 | f            | EICO              |       Preamp |             |
+ 80-C               |           |      7 | f            | Fisher            |       Preamp |             |
+ 90-C               |           |      9 | f            | Fisher            |       Preamp |             |
+ PR-6               |           |      5 | f            | Fisher            |       Preamp |             |
+ PR-66              |           |      5 | f            | Fisher            |       Preamp |             |
+ C-20               |           |      6 | f            | McIntosh          |       Preamp |             |
+ C-11               |           |      7 | f            | McIntosh          |       Preamp |             |
+ 122                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
+ C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp |             |
+ HF-65              |           |      7 | f            | EICO              |       Preamp |             |
+ PC-1               |           |      9 | f            | Electro-Voice     |       Preamp |             |
+ 210PA              |           |      6 | f            | Grommes           |       Preamp |             |
+ 212                |           |      5 | f            | Grommes           |       Preamp |             |
+ AP-426             |           |      5 | f            | Stromberg-Carlson |       Preamp |             |
+ Citation IV        |           |      9 | f            | Harman-Kardon     |       Preamp |             |
  Citation III-X     |           |      8 | f            | Harman-Kardon     |        Tuner |             |
- SP-2               |           |      5 | f            | Heathkit          |       Preamp |             | 
- 440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             | 
- Point 1            |           |      8 | f            | Leak              |       Preamp |             | 
- AE-2               |           |      7 | f            | McIntosh          |       Preamp |             | 
- C-104              |           |      5 | f            | McIntosh          |       Preamp |             | 
- 445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             | 
- PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             | 
- PAS-2              |           |      4 | f            | Dynaco            |       Preamp |             | 
- A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             | 
- SP-6               |           |      9 | f            | Audio Research    |       Preamp |             | 
+ SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
+ 440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
+ Point 1            |           |      8 | f            | Leak              |       Preamp |             |
+ AE-2               |           |      7 | f            | McIntosh          |       Preamp |             |
+ C-104              |           |      5 | f            | McIntosh          |       Preamp |             |
+ 445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
+ PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             |
+ PAS-2              |           |      4 | f            | Dynaco            |       Preamp |             |
+ A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
+ SP-6               |           |      9 | f            | Audio Research    |       Preamp |             |
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
- SP-8               |           |      9 | f            | Audio Research    |       Preamp |             | 
- S1001              |           |      6 | f            | ACRO              |       Preamp |             | 
- 116B               |           |      9 | t            | Langevin          |       Preamp |             | 
- PR-100A            |           |      8 | t            | Bogen             |       Preamp |             | 
- Consolette         |           |      6 | f            | Interelectronics  |       Preamp |             | 
+ SP-8               |           |      9 | f            | Audio Research    |       Preamp |             |
+ S1001              |           |      6 | f            | ACRO              |       Preamp |             |
+ 116B               |           |      9 | t            | Langevin          |       Preamp |             |
+ PR-100A            |           |      8 | t            | Bogen             |       Preamp |             |
+ Consolette         |           |      6 | f            | Interelectronics  |       Preamp |             |
  400-C              |           |      7 | f            | Fisher            |       Preamp |             | 400-CX
- 130                |           |      8 | f            | Scott, H.H.       |       Preamp |             | 
+ 130                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
- WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             | 
- KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             | 
+ WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
+ KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
  4B                 |           |      7 | f            | Brook             |       Preamp |             | Bryston
- C-4                |           |      4 | f            | McIntosh          |       Preamp |             | 
- C-108H             |           |      4 | t            | McIntosh          |       Preamp |             | 
- CL-35              |           |      7 | f            | Luxman            |       Preamp |             | 
- Luminescence       |           |      9 | f            | MFA               |       Preamp |             | 
- SC2                |           |      7 | f            | Radford           |       Preamp |             | 
- C-32               |           |      7 | f            | Luxman            |       Preamp |             | 
- 50-C               |           |      7 | f            | Fisher            |       Preamp |             | 
- CL-32              |           |      8 | f            | Luxman            |       Preamp |             | 
+ C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
+ C-108H             |           |      4 | t            | McIntosh          |       Preamp |             |
+ CL-35              |           |      7 | f            | Luxman            |       Preamp |             |
+ Luminescence       |           |      9 | f            | MFA               |       Preamp |             |
+ SC2                |           |      7 | f            | Radford           |       Preamp |             |
+ C-32               |           |      7 | f            | Luxman            |       Preamp |             |
+ 50-C               |           |      7 | f            | Fisher            |       Preamp |             |
+ CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
  C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
- SP-1               |           |      9 | f            | Audio Research    |       Preamp |             | 
- SP-2               |           |      9 | f            | Audio Research    |       Preamp |             | 
- SP-3               |           |      9 | f            | Audio Research    |       Preamp |             | 
- SP-3A1             |           |      9 | f            | Audio Research    |       Preamp |             | 
- SP-11              |           |      9 | f            | Audio Research    |       Preamp |             | 
- SP-12              |           |      9 | f            | Audio Research    |       Preamp |             | 
- A100               |           |      5 | f            | Brociner          |       Preamp |             | 
- 12A3               |           |      8 | f            | Brook             |       Preamp |             | 
- A100PV             |           |      5 | f            | Brociner          |       Preamp |             | 
- A1005              |           |      5 | f            | Brociner          |       Preamp |             | 
- CA-2               |           |      5 | f            | Brociner          |       Preamp |             | 
- Mark 30C           |           |      5 | t            | Brociner          |       Preamp |             | 
- 3G                 |           |      7 | t            | Brook             |       Preamp |             | 
- ST-94              |           |      7 | f            | EICO              |       Preamp |             | 
+ SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
+ SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
+ SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
+ SP-3A1             |           |      9 | f            | Audio Research    |       Preamp |             |
+ SP-11              |           |      9 | f            | Audio Research    |       Preamp |             |
+ SP-12              |           |      9 | f            | Audio Research    |       Preamp |             |
+ A100               |           |      5 | f            | Brociner          |       Preamp |             |
+ 12A3               |           |      8 | f            | Brook             |       Preamp |             |
+ A100PV             |           |      5 | f            | Brociner          |       Preamp |             |
+ A1005              |           |      5 | f            | Brociner          |       Preamp |             |
+ CA-2               |           |      5 | f            | Brociner          |       Preamp |             |
+ Mark 30C           |           |      5 | t            | Brociner          |       Preamp |             |
+ 3G                 |           |      7 | t            | Brook             |       Preamp |             |
+ ST-94              |           |      7 | f            | EICO              |       Preamp |             |
  Varislope Mono     |           |      7 | f            | Leak              |       Preamp |             | Stereo
- Horizon 5          |           |      6 | t            | National          |       Preamp |             | 
- SP-215             |           |     10 | f            | Pilot             |       Preamp |             | 
- LC-21              |           |      8 | f            | Scott, H.H.       |       Preamp |             | 
- Quad 22            |           |      8 | f            | Quad              |       Preamp |             | 
- C-8S               |           |      5 | f            | McIntosh          |       Preamp |             | 
- SV-1               |           |      8 | f            | RCA               |       Preamp |             | 
- 121-C              |           |      9 | t            | Scott, H.H.       |       Preamp |             | 
+ Horizon 5          |           |      6 | t            | National          |       Preamp |             |
+ SP-215             |           |     10 | f            | Pilot             |       Preamp |             |
+ LC-21              |           |      8 | f            | Scott, H.H.       |       Preamp |             |
+ Quad 22            |           |      8 | f            | Quad              |       Preamp |             |
+ C-8S               |           |      5 | f            | McIntosh          |       Preamp |             |
+ SV-1               |           |      8 | f            | RCA               |       Preamp |             |
+ 121-C              |           |      9 | t            | Scott, H.H.       |       Preamp |             |
  C-22               |           |      7 | f            | McIntosh          |       Preamp |             | CM
- SP-210             |           |      8 | f            | Pilot             |       Preamp |             | 
+ SP-210             |           |      8 | f            | Pilot             |       Preamp |             |
  Verislope 3        |           |      8 | f            | Leak              |       Preamp | Verislope\\rVarislope\\rVeriscope\\rVariscope | Mono
- 240                |           |      9 | f            | Fairchild         |       Preamp |             | 
- QC II              |           |      8 | f            | Quad              |       Preamp |             | 
+ 240                |           |      9 | f            | Fairchild         |       Preamp |             |
+ QC II              |           |      8 | f            | Quad              |       Preamp |             |
  400-CX             |           |     10 | f            | Fisher            |       Preamp |             | 400-CX-2
  350-P              |           |      8 | f            | Regency           |       Preamp |             | AD1/350
  350                |           |      3 | f            | Ampex             |       Preamp |             | AD1/350
  7                  |           |      9 | f            | Brook             |       Preamp |             | Marantz
- Quad 33            |           |      2 | f            | Quad              |       Preamp |             | 
- PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             | 
+ Quad 33            |           |      2 | f            | Quad              |       Preamp |             |
+ PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
  Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
- 245                |           |      9 | f            | Fairchild         |       Preamp |             | 
+ 245                |           |      9 | f            | Fairchild         |       Preamp |             |
  7                  |           |     10 | f            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
- 400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             | 
- mirror             |           |      8 | f            | Spartan           |        Radio |             | 
- RC350              |           |      8 | f            | RCA               |        Radio |             | 
- 126                |           |      8 | f            | Garod             |        Radio |             | 
- R5A1               |           |      7 | f            | Addison           |        Radio |             | 
- 50XC               |           |      7 | f            | Motorola          |        Radio |             | 
- 1465               |           |      8 | f            | Crosley           |        Radio |             | 
- 66X8               |           |      8 | f            | RCA               |        Radio |             | 
- 43-8190            |           |      8 | f            | Coronado          |        Radio |             | 
- AX-235             |           |      8 | f            | Emerson           |        Radio |             | 
- A5                 |           |      8 | f            | Addison           |        Radio |             | 
- 526-C              |           |      7 | t            | Bendix            |        Radio |             | 
- E38                |           |      5 | f            | Lafayette         |        Radio |             | 
- 51x16 S            |           |      6 | f            | Motorola          |        Radio |             | 
- 284-N              |           |      7 | t            | Sentinel          |        Radio |             | 
- R5A3               |           |      9 | f            | Addison           |        Radio |             | 
- 51x16              |           |      6 | f            | Motorola          |        Radio |             | 
- A-502              |           |      8 | f            | DeWald            |        Radio |             | 
- L-570              |           |      8 | f            | GE                |        Radio |             | 
- 1B55L              |           |      8 | t            | Garod             |        Radio |             | 
- 557                |           |      8 | f            | Spartan           |        Radio |             | 
- L-622              |           |      8 | f            | GE                |        Radio |             | 
- 3284               |           |      5 | f            | Silvertone        |        Radio |             | 
- P38                |           |      4 | f            | Fada              |        Radio |             | 
- BT245              |           |      8 | f            | Emerson           |        Radio |             | 
- 558                |           |      8 | f            | Spartan           |        Radio |             | 
- 66X9               |           |      6 | f            | RCA               |        Radio |             | 
- EP-375             |           |      9 | f            | Emerson           |        Radio |             | 
- A-501              |           |      7 | f            | DeWald            |        Radio |             | 
- H136               |           |      8 | f            | Westinghouse      |        Radio |             | 
- V-3468             |           |      8 | f            | Westinghouse      |        Radio |             | 
- Bluebird           |           |      8 | f            | Spartan           |        Radio |             | 
- 520                |           |      7 | f            | Emerson           |        Radio |             | 
- 1450               |           |      8 | f            | Garod             |        Radio |             | 
- B501               |           |      7 | f            | DeWald            |        Radio |             | 
- A2A                |           |      7 | t            | Addison           |        Radio |             | 
- BM258              |           |      6 | t            | Emerson           |        Radio |             | 
- 50-X-C3            |           |      7 | t            | Motorola          |        Radio |             | 
- 50-XC4             |           |      9 | t            | Motorola          |        Radio |             | 
- 532                |           |      8 | f            | Arvin             |        Radio |             | 
- H126               |           |      8 | f            | Westinghouse      |        Radio |             | 
- 6AU-1              |           |      9 | t            | Garod             |        Radio |             | 
- AU-190             |           |      8 | f            | Emerson           |        Radio |             | 
- 2A                 |           |      8 | f            | Addison           |        Radio |             | 
- 700                |           |     10 | f            | Fada              |        Radio |             | 
- K25                |           |      7 | f            | Kadette           |        Radio |             | 
- 711                |           |      8 | f            | Fada              |        Radio |             | 
- 53X                |           |      8 | f            | Fada              |        Radio |             | 
- 652                |           |      0 | f            | Fada              |        Radio |             | 
- 400                |           |      7 | f            | Emerson           |        Radio |             | 
- 537                |           |      8 | f            | Spartan           |        Radio |             | 
- F55                |           |      8 | f            | Fada              |        Radio |             | 
- 51C                |           |      8 | t            | Motorola          |        Radio |             | 
+ 400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
+ mirror             |           |      8 | f            | Spartan           |        Radio |             |
+ RC350              |           |      8 | f            | RCA               |        Radio |             |
+ 126                |           |      8 | f            | Garod             |        Radio |             |
+ R5A1               |           |      7 | f            | Addison           |        Radio |             |
+ 50XC               |           |      7 | f            | Motorola          |        Radio |             |
+ 1465               |           |      8 | f            | Crosley           |        Radio |             |
+ 66X8               |           |      8 | f            | RCA               |        Radio |             |
+ 43-8190            |           |      8 | f            | Coronado          |        Radio |             |
+ AX-235             |           |      8 | f            | Emerson           |        Radio |             |
+ A5                 |           |      8 | f            | Addison           |        Radio |             |
+ 526-C              |           |      7 | t            | Bendix            |        Radio |             |
+ E38                |           |      5 | f            | Lafayette         |        Radio |             |
+ 51x16 S            |           |      6 | f            | Motorola          |        Radio |             |
+ 284-N              |           |      7 | t            | Sentinel          |        Radio |             |
+ R5A3               |           |      9 | f            | Addison           |        Radio |             |
+ 51x16              |           |      6 | f            | Motorola          |        Radio |             |
+ A-502              |           |      8 | f            | DeWald            |        Radio |             |
+ L-570              |           |      8 | f            | GE                |        Radio |             |
+ 1B55L              |           |      8 | t            | Garod             |        Radio |             |
+ 557                |           |      8 | f            | Spartan           |        Radio |             |
+ L-622              |           |      8 | f            | GE                |        Radio |             |
+ 3284               |           |      5 | f            | Silvertone        |        Radio |             |
+ P38                |           |      4 | f            | Fada              |        Radio |             |
+ BT245              |           |      8 | f            | Emerson           |        Radio |             |
+ 558                |           |      8 | f            | Spartan           |        Radio |             |
+ 66X9               |           |      6 | f            | RCA               |        Radio |             |
+ EP-375             |           |      9 | f            | Emerson           |        Radio |             |
+ A-501              |           |      7 | f            | DeWald            |        Radio |             |
+ H136               |           |      8 | f            | Westinghouse      |        Radio |             |
+ V-3468             |           |      8 | f            | Westinghouse      |        Radio |             |
+ Bluebird           |           |      8 | f            | Spartan           |        Radio |             |
+ 520                |           |      7 | f            | Emerson           |        Radio |             |
+ 1450               |           |      8 | f            | Garod             |        Radio |             |
+ B501               |           |      7 | f            | DeWald            |        Radio |             |
+ A2A                |           |      7 | t            | Addison           |        Radio |             |
+ BM258              |           |      6 | t            | Emerson           |        Radio |             |
+ 50-X-C3            |           |      7 | t            | Motorola          |        Radio |             |
+ 50-XC4             |           |      9 | t            | Motorola          |        Radio |             |
+ 532                |           |      8 | f            | Arvin             |        Radio |             |
+ H126               |           |      8 | f            | Westinghouse      |        Radio |             |
+ 6AU-1              |           |      9 | t            | Garod             |        Radio |             |
+ AU-190             |           |      8 | f            | Emerson           |        Radio |             |
+ 2A                 |           |      8 | f            | Addison           |        Radio |             |
+ 700                |           |     10 | f            | Fada              |        Radio |             |
+ K25                |           |      7 | f            | Kadette           |        Radio |             |
+ 711                |           |      8 | f            | Fada              |        Radio |             |
+ 53X                |           |      8 | f            | Fada              |        Radio |             |
+ 652                |           |      0 | f            | Fada              |        Radio |             |
+ 400                |           |      7 | f            | Emerson           |        Radio |             |
+ 537                |           |      8 | f            | Spartan           |        Radio |             |
+ F55                |           |      8 | f            | Fada              |        Radio |             |
+ 51C                |           |      8 | t            | Motorola          |        Radio |             |
  5                  |           |      9 | f            | Addison           |        Radio |             | 5 NOS\\r5 ea\\r5 each\\r5 pack\\r5 pair\\r5 pcs\\rbox of 5\\rqty 5
- 115                | Catalin   |      8 | f            | Fada              |        Radio |             | 
- 136                | Catalin   |      9 | f            | Fada              |        Radio |             | 
- 116                | Catalin   |      8 | f            | Fada              |        Radio |             | 
- 845                |           |      6 | f            | Fada              |        Radio |             | 
+ 115                | Catalin   |      8 | f            | Fada              |        Radio |             |
+ 136                | Catalin   |      9 | f            | Fada              |        Radio |             |
+ 116                | Catalin   |      8 | f            | Fada              |        Radio |             |
+ 845                |           |      6 | f            | Fada              |        Radio |             |
  1000               | Catalin   |      9 | f            | Fada              |        Radio |             | 115
- 511                |           |      8 | f            | Emerson           |        Radio |             | 
- 5F60               |           |      9 | f            | Fada              |        Radio |             | 
- L 56               |           |      8 | f            | Fada              |        Radio |             | 
- 5F50               |           |      7 | f            | Fada              |        Radio |             | 
- 526-MC             |           |      5 | f            | Bendix            |        Radio |             | 
- 248-NI             |           |     10 | f            | Sentinel          |        Radio |             | 
- 235                |           |      7 | f            | Emerson           |        Radio | Little Miracle | 
+ 511                |           |      8 | f            | Emerson           |        Radio |             |
+ 5F60               |           |      9 | f            | Fada              |        Radio |             |
+ L 56               |           |      8 | f            | Fada              |        Radio |             |
+ 5F50               |           |      7 | f            | Fada              |        Radio |             |
+ 526-MC             |           |      5 | f            | Bendix            |        Radio |             |
+ 248-NI             |           |     10 | f            | Sentinel          |        Radio |             |
+ 235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver | 603         |
 '''
 
@@ -660,7 +667,7 @@ sResponseSearchTooBroad = \
               "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
-           
+
            },{"itemId":["253486571279"],
               "title":["Vintage The Fisher XP-55B Speaker System-Pair"],
               "globalId":["EBAY-US"],
@@ -2362,6 +2369,24 @@ sResponseSearchTooBroad = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-03T21:20:25.000Z"],"endTime":["2018-03-10T21:20:25.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["162988285720"],
+              "title":["Tung-Sol 5881 (6L6WGB) amplifier tube. TV-7 test NOS. for Bendix USA SHIPS ONLY"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mBi0IeLkbbbJ_lrQVn0Q4Qw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/RCA-12SN7GT-Electron-Radiotron-Radio-Audio-Amp-Vacuum-Tube-Antique-TV-NOS-\/162988285720"],
+              "paymentMethod":["PayPal"],
+              "autoPay":["true"],
+              "postalCode":["15679"],
+              "location":["Ruffs Dale,PA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"sellingState":["Active"],"timeLeft":["P28DT4H58M34S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
            },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
