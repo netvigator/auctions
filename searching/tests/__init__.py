@@ -2388,6 +2388,24 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+           },{"itemId":["162988285721"],
+              "title":["Tung-Sol 6L6WGB 5881 amplifier tube. TV-7 test NOS. for Bendix USA SHIPS ONLY"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mBi0IeLkbbbJ_lrQVn0Q4Qw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/RCA-12SN7GT-Electron-Radiotron-Radio-Audio-Amp-Vacuum-Tube-Antique-TV-NOS-\/162988285720"],
+              "paymentMethod":["PayPal"],
+              "autoPay":["true"],
+              "postalCode":["15679"],
+              "location":["Ruffs Dale,PA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.0"}],"sellingState":["Active"],"timeLeft":["P28DT4H58M34S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],
+              "listingType":["StoreInventory"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
               "globalId":["EBAY-US"],
