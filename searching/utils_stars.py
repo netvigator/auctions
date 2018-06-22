@@ -118,6 +118,21 @@ def _getRegExSearchOrNone( s ):
         return oRegExObj.search
 
 
+_oParensSearcher = _getRegExSearchOrNone( r'(?<=\().*(?=\))' )
+
+def getInParens( s ):
+    #
+    oMatch = _oParensSearcher( s )
+    #
+    uReturn = None
+    #
+    if oMatch is not None:
+        #
+        uReturn = oMatch.group(0)
+        #
+    #
+    return uReturn
+
 
 def _getRegExObjOrNone( s ):
     #
@@ -125,6 +140,7 @@ def _getRegExObjOrNone( s ):
         oRegExObj = getRegExObj( s )
         #
         return oRegExObj
+
 
 
 
@@ -344,6 +360,8 @@ def findSearchHits(
             #print('Item 162988530803 is here' )
             #print('sRelevantTitle:', sRelevantTitle )
         #
+        sGotInParens = getInParens( sRelevantTitle )
+        #
         for oCategory in qsCategories:
             #
             foundItem = getFoundItemTester( oCategory, dFindersCategories )
@@ -429,7 +447,16 @@ def findSearchHits(
                         #
                         oTempItem.iStarsModel       = oModel.iStars
                         #
-                        oTempItem.iFoundModelLen    = getLen( sInTitle )
+                        # reduce the length boost if the match is in parens
+                        #
+                        if sGotInParens and sInTitle in sGotInParens:
+                            #
+                            oTempItem.iFoundModelLen= getLen( sInTitle ) // 3
+                            #
+                        else:
+                            #
+                            oTempItem.iFoundModelLen= getLen( sInTitle )
+                            #
                         #
                         iHitStars = oTempItem.iStarsCategory * oModel.iStars
                         #
