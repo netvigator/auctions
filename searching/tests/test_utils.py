@@ -746,6 +746,15 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         oBrandCategory.save()
         #
+        oBrand = Brand.objects.get( cTitle = 'Tung-Sol' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
+        #
 
 
 
@@ -763,7 +772,6 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         self.sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
         #
         super( DoSearchStoreResultsTests, self ).setUp()
-
 
     def test_already_stored_results( self ):
         #
