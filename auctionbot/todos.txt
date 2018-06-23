@@ -9,10 +9,10 @@ added model, hit save, when to model index instead of model detail, but cannot d
 in Search, max length for a single key word is 98
 
 
-searching SearchAddOrUpdateForm needs more testing between Create and Update 
+searching SearchAddOrUpdateForm needs more testing between Create and Update
 check Update remove category!
 
-searching should fail gracefully if violating duplicate search 
+searching should fail gracefully if violating duplicate search
 
 read up on testfixtures
 http://testfixtures.readthedocs.io/en/latest/django.html
@@ -23,8 +23,8 @@ if cannot, remove from requirements/local.txt
 find where the logs are stored!
 
 
-test save model (request.user problem saving new model), fixed by 
-1) in the views: adding get_form_kwargs() 
+test save model (request.user problem saving new model), fixed by
+1) in the views: adding get_form_kwargs()
 2) in the form __init__ method: self.user = kwargs.pop('user')
 
 
@@ -141,6 +141,11 @@ Model number or name*
 Considered a hit if this text is found (optional)
 L77
 cannot reverse Lancer 77 & L77
+
+got lots of ConnectTimeout errors, Max retries exceeded with url: /services/search/FindingService/v1 (finding URL)
+Caused by ConnectTimeoutError
+Connection to svcs.ebay.com timed out. (connect timeout=4)
+therefore need to paramaterize connect timeout, move from hardcoded in _postResponseEbayApi in ebay_api_calls.py to ebay.ini
 
 
 
