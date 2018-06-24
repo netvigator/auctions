@@ -1,7 +1,9 @@
-from os.path                import join
-
 import logging
 
+from os.path                import join
+from time                   import sleep
+
+from django.conf            import settings
 from django.utils           import timezone
 
 from core.ebay_api_calls    import getSingleItem
@@ -12,15 +14,17 @@ from archive                import EBAY_ITEMS_FOLDER, dItemFields as dFields
 from .forms                 import ItemForm
 from .models                import Item
 
+from core.utils             import getDownloadFileWriteToDisk
 from core.utils_ebay        import getValueOffItemDict
 
 from searching.models       import ItemFound, UserItemFound
 
 from Dir.Get                import getMakeDir
+from File.Test              import isFileThere
 from File.Write             import QuietDump
 from Time.Test              import isDateTimeObj
 from Time.Output            import getNowIsoDateTimeFileNameSafe
-
+from Web.Test               import isURL
 
 
 class GetSingleItemNotWorkingError(  Exception ): pass
@@ -31,9 +35,11 @@ logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
 
-
-
 getMakeDir( EBAY_ITEMS_FOLDER )
+
+ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Item_Pictures' )
+
+getMakeDir( ITEM_PICS_ROOT )
 
 
 def _writeResult( sContent, sFilePathName ):
@@ -72,7 +78,7 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
             #
         elif "Ack" in dResult:
             #
-            sFile = join( EBAY_ITEMS_FOLDER, 
+            sFile = join( EBAY_ITEMS_FOLDER,
                           'single_item_response_failure_%s_%s_.json'
                             % ( getNowIsoDateTimeFileNameSafe(), iItemNumb ) )
             #
@@ -411,3 +417,120 @@ def getItemsFoundForUpdate():
         #
     #
     return qsUserItemNumbs
+
+
+
+def _getPicExtension( sURL ):
+    #
+    from Web.Address import getFilePathNameOffURL
+    #
+    sPathNameExtn = getFilePathNameOffURL( sURL )
+    #
+    sNameExtn = sExtn = ''
+    #
+    if len( sPathNameExtn ) >= 2:
+        #
+        sNameExtn = sPathNameExtn[ -1 ]
+        #
+    #
+    lNameExtn = sNameExtn.split( '.' )
+    #
+    if len( lNameExtn ) >= 2:
+        #
+        sExtn = lNameExtn[ -1 ]
+        #
+    #
+    return sExtn.lower()
+
+
+def _getItemPicsSubDir( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    sItemNumb = str( uItemNumb )
+    #
+    sItemPicDirectory1st = sItemNumb[     : -10 ]
+    #
+    sItemPicDirectory2nd = sItemNumb[ -10 : -8 ]
+    #
+    sItemPicsSubDir      = join( sItemPicsRoot,
+                                 sItemPicDirectory1st,
+                                 sItemPicDirectory2nd )
+    #
+    getMakeDir( sItemPicsSubDir )
+    #
+    return sItemPicsSubDir
+
+
+
+def _getPicFileNameExtn( sURL, iItemNumb, iSeq ):
+    #
+    sExtn = _getPicExtension( sURL ) or 'jpg'
+    #
+    sNameExt = '%s-%s.%s' % ( iItemNumb, str( iSeq ).zfill( 2 ), sExtn )
+    #
+    return sNameExt
+
+
+
+def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
+    #
+    sNameExt = _getPicFileNameExtn( sURL, iItemNumb, iSeq )
+    #
+    sFilePathNameExtn = join( sItemPicsSubDir, sNameExt )
+    #
+    sResult = getDownloadFileWriteToDisk( sURL, sFilePathNameExtn )
+    #
+    return sResult
+
+
+
+
+
+def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    oItem = Item.objects.get( iItemNumb = iItemNumb )
+    #
+    sSubDir = _getItemPicsSubDir( iItemNumb, sItemPicsRoot )
+    #
+    lWantPics = [ s for s in oItem.cPictureURLs.split() if isURL( s ) ]
+    #
+    setGotPics = set( [] )
+    #
+    for iReTries in range( 5 ):
+        #
+        iSeq = 0
+        #
+        if iReTries: sleep( 2 )
+        #
+        for sURL in lWantPics:
+            #
+            if sURL not in setGotPics:
+                #
+                if iSeq: sleep( 1 )
+                #
+                sResult = _getItemPicture( sURL, iItemNumb, sSubDir, iSeq )
+                #
+                if isFileThere( sSubDir, sResult ):
+                    #
+                    setGotPics.add( sURL )
+                    #
+                elif iReTries == 4: # last try
+                    #
+                    logger.warning( 'cannot get pic from %s, got result: ' % ( sURL, sResult ) )
+                    #
+                #
+            #
+        #
+        bGotAllPics = len( lWantPics ) == len( setGotPics )
+        #
+        if bGotAllPics: break
+        #
+    #
+    if bGotAllPics:
+        #
+        oItem.bGotPictures = True
+        #
+    #
+    oItem.tGotPictures = timezone.now()
+    #
+    oItem.save()
+    #
