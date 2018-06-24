@@ -85,7 +85,7 @@ class getImportSearchResultsTests(TestCase):
         self.assertEqual( dThisItem["country"], "US" )
         self.assertEqual( dThisItem["postalCode"], "33570" )
         self.assertEqual( dThisItem["globalId"], "EBAY-US" )
-        self.assertEqual( dThisItem["galleryURL"], 
+        self.assertEqual( dThisItem["galleryURL"],
             "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" )
         self.assertEqual( dThisItem["viewItemURL"],
             "http://www.ebay.com/itm/Simpson-360-2-Digital-Volt-Ohm-"
@@ -107,7 +107,7 @@ class getImportSearchResultsTests(TestCase):
         #
         dSellingStatus  = dThisItem["sellingStatus"]
         self.assertEqual( dSellingStatus["sellingState"], "Active" )
-        
+
         dCurrentPrice   = dSellingStatus["currentPrice"]
         self.assertEqual( dCurrentPrice["@currencyId"], "USD" )
         self.assertEqual( dCurrentPrice["__value__"  ], "10.0")
@@ -250,7 +250,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
         #
         self.assertIs(
             dEbayCatHierarchies[ (iCategoryID, iEbaySiteUS) ], lOrigCatHeirarchy )
-        
+
         # try again a 3rd time
         #
         dEbayCatHierarchiesNew = {}
@@ -418,7 +418,7 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
     ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp(self):
-        # storeSearchResultsTests, self 
+        # storeSearchResultsTests, self
         #
         super( storeSearchResultsTestsSetUp, self ).setUp()
         #
@@ -452,6 +452,15 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
         #
         self.oSearchLog = oSearchLog
         #
+        self.t = storeSearchResultsInDB(
+                    self.oSearchLog.id,
+                    self.sMarket,
+                    self.user1.username,
+                    self.oSearch.id,
+                    self.oSearch.cTitle,
+                    self.setTestCategories,
+                    bCleanUpFiles = False )
+        #
 
     def tearDown(self):
         #
@@ -460,6 +469,7 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
 
 class storeSearchResultsTests(storeSearchResultsTestsSetUp):
     #
+
     def test_store_search_results(self):
         #
         ''' test storeSearchResultsInDB() with actual record'''
@@ -467,15 +477,7 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
         #print('')
         #print( 'self.oSearch.id:', self.oSearch.id )
         #
-        t = ( storeSearchResultsInDB(   self.oSearchLog.id,
-                                        self.sMarket,
-                                        self.user1.username,
-                                        self.oSearch.id,
-                                        self.oSearch.cTitle,
-                                        self.setTestCategories,
-                                        bCleanUpFiles = False ) )
-        #
-        iCountItems, iStoreItems, iStoreUsers = t
+        iCountItems, iStoreItems, iStoreUsers = self.t
         #
         self.assertEqual( ItemFound.objects.count(), iCountItems )
         self.assertEqual( ItemFound.objects.count(), iStoreItems )
@@ -799,7 +801,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         #
         if sSayLastEnd:
             print( '' )
-            print( sSayLastEnd )            
+            print( sSayLastEnd )
         #
         self.assertGreater( iDaysFromNow, 0,
                     msg = 'auction end dates are all past, API test is WAY OVERDUE!' )
@@ -871,7 +873,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
-            
+
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -939,7 +941,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
             iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
-            
+
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -947,7 +949,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
 class TestFindingResponseHelpers( TestCase ):
     #
     '''test the nifty finding response info extractors'''
-    
+
     def test_get_pagination( self ):
         #
         ''' test getPagination() '''
@@ -959,14 +961,14 @@ class TestFindingResponseHelpers( TestCase ):
                     'iEntriesPP'    :  100,
                     'iPageNumb'     :    1,
                     'iPages'        :   24 }
-    
+
         #
         self.assertEqual( dGot, dExpect )
         #
         dGot = getPagination( '' )
         #
         self.assertNotEquals( dGot, dExpect )
-            
+
     def test_get_success_or_not( self ):
         #
         ''' test getSuccessOrNot() '''
@@ -1111,13 +1113,13 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
 
 class FileNameUtilitiesTesting( TestCase ):
     '''test the file naming utilities'''
-    
+
     def test_put_number_in_file_name( self ):
         #
         sExampleFile = (
                 RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
                 ( 'EBAY-US', 'oUserOne', getSearchIdStr( 10 ), '000' ) )
-        
+
         sNewFileName = _putPageNumbInFileName( sExampleFile, 1 )
         #
         lParts = sNewFileName.split( '_' )
