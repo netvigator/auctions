@@ -1,6 +1,9 @@
 import logging
 
 from datetime           import timedelta
+from os.path            import dirname
+from shutil             import rmtree
+from time               import sleep
 
 from django.test        import TestCase
 from django.utils       import timezone
@@ -10,12 +13,19 @@ from archive            import getListAsLines
 from archive.tests      import ( s142766343340, s232742493872,
                                  s232709513135, s282330751118 )
 
-from core.utils_test    import getEbayCategoriesSetUp
+from core.utils_test    import ( getEbayCategoriesSetUp, AssertEmptyMixin,
+                                 AssertNotEmptyMixin )
 
 from ..models           import Item
 from ..utils            import ( _storeJsonSingleItemResponse,
                                  getSingleItemThenStore,
-                                 getItemsFoundForUpdate )
+                                 getItemsFoundForUpdate,
+                                 _getItemPicsSubDir,
+                                 _getPicExtension,
+                                 _getPicFileNameExtn,
+                                 ITEM_PICS_ROOT,
+                                 _getItemPicture,
+                                 getItemPictures )
 
 from ..utils_test       import getSingleItemResponseCandidate
 
@@ -25,7 +35,11 @@ from searching.utils    import _storeUserItemFound, _storeItemFound
 
 from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
 
+from Dir.Test           import isDirThere
+from File.Del           import DeleteIfExists
+from File.Test          import isFileThere
 from String.Get         import getTextAfter
+from Web.Test           import isURL
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +61,43 @@ class GetListAsLinesTest( TestCase ):
         from archive.tests  import sPicList, sExpectList # in __init__.py
         #
         self.assertEqual( getListAsLines( sPicList ), sExpectList )
+
+
+class GeneratePathFileNameExtensionTests( AssertEmptyMixin, TestCase ):
+    #
+    sURL = ( 'https://i.ebayimg.com/00/s/OTAwWDE2MDA=/'
+            'z/UTAAAOSwkV5aYX8~/$_57.JPG?set_id=8800005007' )
+    #
+
+    def test_get_pic_extension( self ):
+        #
+        self.assertEqual( _getPicExtension( self.sURL ), 'jpg' )
+        #
+        self.assertEmpty( _getPicExtension( 'xyz' ) )
+
+    def test_get_item_pics_sub_dirs( self ):
+        #
+        iItemNumb = 253313715173
+        #
+        sSubDir = _getItemPicsSubDir( iItemNumb, '/tmp' )
+        #
+        self.assertEqual( sSubDir, '/tmp/25/33' )
+        #
+        self.assertTrue( isDirThere( sSubDir ) )
+        #
+        sOneUpDir = dirname( sSubDir )
+        #
+        if isDirThere( sOneUpDir ): rmtree( sOneUpDir )
+
+    def test_get_pic_file_name_extn( self ):
+        #
+        iItemNumb = 253313715173
+        #
+        iSeq = 0
+        #
+        sPicFileNameExtn = _getPicFileNameExtn( self.sURL, iItemNumb, iSeq )
+        #
+        self.assertEqual( sPicFileNameExtn, '253313715173-00.jpg' )
 
 
 class SomeItemsTest( TestCase ):
@@ -78,6 +129,7 @@ class SomeItemsTest( TestCase ):
         iSavedRowID, sListingStatus = t
         #
         self.assertEqual( 232709513135, iSavedRowID )
+        #
 
 
 
@@ -129,38 +181,128 @@ class StoreItemsTest( TestCase ):
         self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
 
 
-class GetAndStoreSingleItemsTests( SetUpForKeyWordFindSearchHitsTests ):
+class GetAndStoreSingleItemsTests(
+            AssertNotEmptyMixin, SetUpForKeyWordFindSearchHitsTests ):
     '''class to test getSingleItemThenStore'''
+
+    def setUp( self ):
+        #
+        super( GetAndStoreSingleItemsTests, self ).setUp()
+        #
+        self.iItemNumb = None
+        #
+        for i in range(10): # do not want an infinite loop here!
+            #
+            d = getSingleItemResponseCandidate( bWantEnded = False )
+            #
+            if d is None: d = getSingleItemResponseCandidate()
+            #
+            iItemNumb = int( d[ 'iItemNumb' ] )
+            #
+            # need an ItemFound record here!
+            #
+            oItemFound = ItemFound.objects.all().first()
+            #
+            iOrigItemNumb = oItemFound.iItemNumb
+            #
+            oItemFound.iItemNumb = iItemNumb
+            oItemFound.save()
+            #
+            if iOrigItemNumb is not None:
+                #
+                qsUserItemFound = UserItemFound.objects.filter( iItemNumb = iOrigItemNumb )
+                #
+                for oUserItemFound in qsUserItemFound:
+                    oUserItemFound.iItemNumb = oItemFound
+                    oUserItemFound.save()
+                #
+            #
+            getSingleItemThenStore( iItemNumb )
+            #
+            qsItems = Item.objects.filter( pk = iItemNumb )
+            #
+            if not qsItems: continue
+            #
+            oItem = qsItems[0]
+            #
+            lPicURLS = oItem.cPictureURLs.split()
+            #
+            for sPicURL in lPicURLS:
+                #
+                if isURL( sPicURL ):
+                    #
+                    self.iItemNumb = iItemNumb
+                    #
+                    break
+                    #
+                #
+            #
+        #
+
+
+
+    def test_get_item_picture_hidden( self ):
+        #
+        iItemNumb = self.iItemNumb
+        #
+        oItem = Item.objects.get( iItemNumb = iItemNumb )
+        #
+        iSeq = 0
+        #
+        lPicURLS = oItem.cPictureURLs.split()
+        #
+        sItemPicsSubDir = _getItemPicsSubDir( iItemNumb, '/tmp' )
+        #
+        lResults = []
+        #
+        for sURL in lPicURLS:
+            #
+            if iSeq: sleep(1)
+            #
+            sResult = _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq )
+            #
+            lResults.append( sResult )
+            #
+            iSeq += 1
+            #
+            if iSeq > 3: break
+            #
+        #
+        for sResult in lResults:
+            #
+            self.assertTrue( isFileThere( sItemPicsSubDir, sResult ) )
+            #
+            DeleteIfExists( sItemPicsSubDir, sResult )
+            #
+        #
+        sOneUpDir = dirname( sItemPicsSubDir )
+        #
+        if isDirThere( sOneUpDir ): rmtree( sOneUpDir )
+        #
+
+    def test_get_item_pictures_importable( self ):
+        #
+        iItemNumb = self.iItemNumb
+        #
+        oItem = Item.objects.get( iItemNumb = iItemNumb )
+        #
+        getItemPictures( iItemNumb, sItemPicsRoot = '/tmp' )
+        #
+        oItem.refresh_from_db()
+        #
+        self.assertTrue( oItem.bGotPictures )
+        #
+        self.assertNotEmpty( oItem.tGotPictures )
+
+
+
 
     def test_get_single_active_item_then_store( self ):
         #
-        d = getSingleItemResponseCandidate( bWantEnded = False )
         #
-        if d is None: d = getSingleItemResponseCandidate()
-        #
-        iItemNumb = int( d[ 'iItemNumb' ] )
-        #
-        # need an ItemFound record here!
-        #
-        oItemFound = ItemFound.objects.all().first()
-        #
-        iOrigItemNumb = oItemFound.iItemNumb
-        #
-        oItemFound.iItemNumb = iItemNumb
-        oItemFound.save()
-        #
-        if iOrigItemNumb is not None:
-            oUserItemFound = UserItemFound.objects.get( iItemNumb = iOrigItemNumb )
-            oUserItemFound.iItemNumb = oItemFound
-            oUserItemFound.save()
-        #
-        getSingleItemThenStore( iItemNumb )
-        #
-        qsItem = Item.objects.filter( iItemNumb = iItemNumb )
+        qsItem = Item.objects.filter( iItemNumb = self.iItemNumb )
         #
         self.assertEqual( len( qsItem ), 1 )
-
-
 
 
 class StoreSingleItemTests( getEbayCategoriesSetUp ):
