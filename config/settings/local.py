@@ -67,8 +67,10 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # In development, all tasks will be executed locally by blocking until the task returns
 # CELERY_ALWAYS_EAGER = True
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#new-lowercase-settings
-task_always_eager = True
+# task_always_eager = True
 #### END CELERY ####
 
 # Your local stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+
+MEDIA_ROOT = '/home/Common/AuctionPics/Items'
