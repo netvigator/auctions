@@ -142,10 +142,6 @@ Considered a hit if this text is found (optional)
 L77
 cannot reverse Lancer 77 & L77
 
-got lots of ConnectTimeout errors, Max retries exceeded with url: /services/search/FindingService/v1 (finding URL)
-Caused by ConnectTimeoutError
-Connection to svcs.ebay.com timed out. (connect timeout=4)
-therefore need to paramaterize connect timeout, move from hardcoded in _postResponseEbayApi in ebay_api_calls.py to ebay.ini
 
 need to fill out test_get_single_active_item_then_store() in archive/test_utils.py
 
