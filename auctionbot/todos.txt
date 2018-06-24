@@ -147,7 +147,7 @@ Caused by ConnectTimeoutError
 Connection to svcs.ebay.com timed out. (connect timeout=4)
 therefore need to paramaterize connect timeout, move from hardcoded in _postResponseEbayApi in ebay_api_calls.py to ebay.ini
 
-
+need to fill out test_get_single_active_item_then_store() in archive/test_utils.py
 
 adding new brand, must do 2 steps, 1) add, 2) mark brand categories
 cannot do it in one step, get crash
