@@ -193,3 +193,36 @@ def getOldRecordToRecycleGenerator( oModel, iHowOld, sDateTimeField ):
         yield oRow
 
 
+def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
+    #
+    '''utility for fetching ebay item pictures'''
+    #
+    from shutil     import copyfileobj
+    from requests   import get
+    #
+    if sWriteToFile is None:
+        #
+        sWriteToFile = sURL.split('/')[-1]
+        #
+    #
+    sResult = 'unknown'
+    #
+    with get( sURL, stream=True ) as r:
+        #
+        if 'X-EBAY-C-EXTENSION' in r.headers:
+            #
+            sResult = r.headers[ 'X-EBAY-C-EXTENSION' ]
+            #
+        elif r.status_code != 200:
+            #
+            sResult = r.status_code
+            #
+        elif r.headers.get( 'Content-Type', '' ).startswith( 'image' ):
+            #
+            with open( sWriteToFile, 'wb' ) as f:
+                copyfileobj( r.raw, f )
+            #
+            sResult = sWriteToFile
+            #
+        #
+    return sResult
