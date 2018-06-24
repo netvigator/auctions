@@ -515,7 +515,9 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
                     #
                 elif iReTries == 4: # last try
                     #
-                    logger.warning( 'cannot get pic from %s, got result: ' % ( sURL, sResult ) )
+                    logger.warning(
+                        'cannot get pic from %s, got result: ' %
+                        ( sURL, sResult ) )
                     #
                 #
             #
