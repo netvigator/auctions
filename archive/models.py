@@ -97,6 +97,10 @@ class Item(models.Model):
 
     tModify         = models.DateTimeField( 'updated on', null = True )
 
+    bGotPictures    = models.BooleanField( 'pictures downloaded?',
+                        default = False )
+    tGotPictures    = models.DateTimeField( 'pictures downloaded',
+                        null = True )
 
     def __str__(self):
         return self.iItemNumb
@@ -115,7 +119,7 @@ class ItemImage(models.Model):
     coriginalurl    = models.TextField( 'original URL' )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
-    
+
     def __str__(self):
         return self.iItemNumb
 
