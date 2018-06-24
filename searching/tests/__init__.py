@@ -1,3 +1,4 @@
+# sItemHitLog is just a starter, the file is ItemHitsLog.log
 sItemHitLog = \
 '''
 tTimeEnd            | iItemNumb    | iHitStars
@@ -12,7 +13,7 @@ tTimeEnd            | iItemNumb    | iHitStars
 
 sBrands = \
 '''
-      cTitle       | iStars | cExcludeIf |  cLookFor 
+      cTitle       | iStars | cExcludeIf |  cLookFor
 -------------------+--------+------------+------------
  ACRO              |      9 |            |
  Addison           |      7 |            |
