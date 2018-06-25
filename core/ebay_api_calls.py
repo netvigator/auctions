@@ -10,7 +10,7 @@ import django
 from lxml               import etree
 import requests
 
-
+from Iter.AllVers       import tMap
 from File.Write         import QuietDump
 from Utils.Config       import getConfDict
 from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
@@ -136,8 +136,8 @@ def _getItemInfo( uItemNumb, sCallName,
     iSiteID     = dConfValues[ "call"     ][ "global_id"       ]
     sCompatible = dConfValues[ "call"     ][ "compatibility"   ]
     sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"     ]
-    iTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
-    iTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
+    sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
+    sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
     #
     dMore       = dict( appid   = sAppID,
                         siteid  = str( iSiteID ),
@@ -145,7 +145,7 @@ def _getItemInfo( uItemNumb, sCallName,
     #
     dParams.update( dMore )
     #
-    tTimeOuts   = ( iTimeOutConn, iTimeOutRead )
+    tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
     return _getResponseEbayApi( sEndPointURL, dParams, tTimeOuts )
 
@@ -184,8 +184,8 @@ def _getCategoriesOrVersion(
     sCertID     = dConfValues[ "keys"     ][ "ebay_certid"     ]
     sDevID      = dConfValues[ "keys"     ][ "ebay_dev_id"     ]
     sToken      = dConfValues[ "auth"     ][ "token"           ]
-    iTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
-    iTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
+    sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
+    sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
     #
     dHttpHeaders= {
             "X-EBAY-API-DEV-NAME"           : sDevID,
@@ -223,7 +223,7 @@ def _getCategoriesOrVersion(
                     xml_declaration = True,
                     encoding        = "utf-8" )
     #
-    tTimeOuts   = ( iTimeOutConn, iTimeOutRead )
+    tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
     return _postResponseEbayApi(
             'trading',
@@ -350,10 +350,10 @@ def findItems(
     #
     dConfValues = _getApiConfValues( bUseSandbox )
     #
-    iTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
-    iTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
+    sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
+    sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
     #
-    tTimeOuts   = ( iTimeOutConn, iTimeOutRead )
+    tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
     return _getDecoded(
                 _getEbayFindingResponse(
