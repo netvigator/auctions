@@ -423,6 +423,8 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         #
         self.assertFalse( findKeyWords( sAuctionTitle ) )
         #
+        self.oModel.refresh_from_db()
+        #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #
 
@@ -563,7 +565,7 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertIn(     self.oModel.cRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
         #
-        self.assertEqual( self.oModel.cRegExExclude, r'\bgolf\b' )
+        self.assertEqual( self.oModel.cRegExExclude, r'tournament|\bgolf\b' )
         self.assertEqual( self.oModel.cRegExKeyWords, 'Eldorado' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
