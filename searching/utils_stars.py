@@ -56,49 +56,61 @@ def _getRowRegExpressions( oTableRow,
     otherwise, generate the RegEx expressions, store them in the row,
     & return them'''
     #
+    bAnyUpdates = False
+    #
     bRowHasKeyWords = hasattr( oTableRow, 'cKeyWords' )
     #
-    sFindKeyWords = None
+    sFindTitle = sFindKeyWords = sFindExclude = None
     #
-    if oTableRow.cRegExLook4Title:
-        #
-        sFindTitle          = oTableRow.cRegExLook4Title
-        sFindExclude        = oTableRow.cRegExExclude
-        #
-        if bRowHasKeyWords:
-            sFindKeyWords   = oTableRow.cRegExKeyWords
-        #
-    else:
+    if not oTableRow.cRegExLook4Title:
         #
         sFindTitle = _getTitleRegExress( oTableRow,
                                          bAddDash     = bAddDash,
                                          bSubModelsOK = bSubModelsOK )
         #
-        sKeyWords = sFindKeyWords = sFindExclude = None
+        oTableRow.cRegExLook4Title = sFindTitle
         #
+        bAnyUpdates = True
         #
-        if bRowHasKeyWords: sKeyWords = oTableRow.cKeyWords
+    else:
         #
-        sExcludeIf = oTableRow.cExcludeIf
+        sFindTitle = oTableRow.cRegExLook4Title
         #
-        if sExcludeIf:
-            #
-            sFindExclude = getRegExpress(
-                            sExcludeIf,
-                            iWordBoundChrs = WORD_BOUNDARY_MAX )
-            #
-        if sKeyWords:
+    #
+    if bRowHasKeyWords:
+        #
+        if oTableRow.cKeyWords and not oTableRow.cRegExKeyWords:
             #
             sFindKeyWords = getRegExpress(
-                            sKeyWords,
+                            oTableRow.cKeyWords,
                             iWordBoundChrs = WORD_BOUNDARY_MAX )
             #
+            oTableRow.cRegExKeyWords = sFindKeyWords
+            #
+            bAnyUpdates = True
+            #
+        else:
+            #
+            sFindKeyWords = oTableRow.cRegExKeyWords
+            #
         #
-        oTableRow.cRegExLook4Title= sFindTitle
+    #
+    if oTableRow.cExcludeIf and not oTableRow.cRegExExclude:
+        #
+        sFindExclude = getRegExpress(
+                        oTableRow.cExcludeIf,
+                        iWordBoundChrs = WORD_BOUNDARY_MAX )
+        #
         oTableRow.cRegExExclude   = sFindExclude
         #
-        if bRowHasKeyWords:
-            oTableRow.cRegExKeyWords = sFindKeyWords
+        bAnyUpdates = True
+        #
+    else:
+        #
+        sFindExclude = oTableRow.cRegExExclude
+        #
+    #
+    if bAnyUpdates:
         #
         try:
             oTableRow.save()
@@ -216,7 +228,7 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
         #
         sReturn = 'heirarchy1'
         #
-    else: # bInHeirarchy2 
+    else: # bInHeirarchy2
         #
         sReturn = 'heirarchy2'
         #
@@ -253,10 +265,10 @@ def findSearchHits(
     # generate a list of the most recent SearchLogs for this user
     #
     qsSearchLogs = ( SearchLog.objects.filter(
-                        iSearch_id__in = 
+                        iSearch_id__in =
                             Search.objects.filter( iUser = oUser )
                             .values_list( 'id', flat=True ),
-                        tBegStore__in = 
+                        tBegStore__in =
                             SearchLog.objects.values( "iSearch_id" )
                             .annotate(
                                 tBegStore = Max( "tBegStore" )
@@ -680,4 +692,4 @@ def findSearchHits(
     #
 
 
- 
+
