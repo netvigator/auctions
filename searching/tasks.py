@@ -64,13 +64,15 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
         #
         if bOnlyList:
             #
+            sSearchID = str( oSearch.id ).zfill( 2 )
+            #
             print( 'would do %s "%s" search for %s ...' %
-                    ( oSearch.id, oSearch, oSearch.iUser.name ) )
+                    ( sSearchID, oSearch, oSearch.iUser.name ) )
             #
         else:
             #
             sLastFile = doTrySearchCatchExceptStoreInFileTask.delay(
-                            iSearchID = oSearch.id ) 
+                            iSearchID = oSearch.id )
             #
             if iSeq < iSearches: sleep( 1 )
             #
