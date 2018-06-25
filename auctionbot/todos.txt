@@ -147,3 +147,21 @@ need to fill out test_get_single_active_item_then_store() in archive/test_utils.
 
 adding new brand, must do 2 steps, 1) add, 2) mark brand categories
 cannot do it in one step, get crash
+
+FISHER CA 9025 100 WATT PER CHANNEL CLASS A STEREO AMPLIFIER AMP
+should be excluded, 9025 is on exclude list for Fisher 100
+
+NOS WESTERN ELECTRIC 300A 300B TUBES ORIGINAL BOXES
+153071850409
+removed?
+
+
+10 BLACK PLATE 6X4 6X4W MULLARD RCA TUNG SOL TUBES DYNACO HEATHKIT AMPS + 8 DGET
+should find 6X4 not 10
+
+Lot of 10 Vintage Vacuum Tubes - TUNG-SOL 6AU6A - Tested
+should find 6AU6A
+
+
+need to test _getRowRegExpressions, make sure cRegExExclude is stored
+(for tube type 10, cRegExExclude is not stored)
