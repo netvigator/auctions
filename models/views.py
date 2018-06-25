@@ -23,11 +23,11 @@ class ModelIndexView( GetPaginationExtraInfoInContext, TitleSearchMixin,
     # context_object_name = 'model_list' # default
     model = Model
     paginate_by = 100
-    
+
 
 
 class ModelDetailView( DetailViewGotModel ):
-    
+
     model   = Model
     template_name = 'models/detail.html'
 
@@ -51,10 +51,9 @@ class ModelUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel
     tRegExRelevantCols = (
         'cTitle',
         'cKeyWords',
-        #'bKeyWordRequired',
-        #'bSplitDigitsOK',
         'cLookFor',
-        'bSubModelsOK' )
+        'bSubModelsOK',
+        'cExcludeIf' )
 
 
 
