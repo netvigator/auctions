@@ -126,7 +126,7 @@ class getImportSearchResultsTests(TestCase):
             #
             iItems += 1
             #
-        self.assertEqual( iItems, 4 )
+        self.assertEqual( iItems, 6 )
         #
         # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
         #
@@ -494,7 +494,7 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
         #
         self.assertTrue( isISOdatetime( sBeforeDash ) )
         #
-        self.assertEqual( oSearchLog.iItems,      4 )
+        self.assertEqual( oSearchLog.iItems,      6 )
         self.assertEqual( oSearchLog.iStoreItems, 4 )
         self.assertEqual( oSearchLog.iStoreUsers, 4 )
         #
