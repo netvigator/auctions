@@ -19,7 +19,7 @@ from ebayinfo               import ( EBAY_US_CURRENT_VERSION,
 from ebayinfo.models        import EbayCategory, Market
 
 def getDefaultMarket():
-    
+
     if (        Market.objects.count() == 0 or
             not Market.objects.filter( pk = 3 ).exists() ):
         #
@@ -86,8 +86,8 @@ def queryGotUpdated( s ):
 
 
 class getSingleEbayCategoryMixin( object ):
-    
-    def setUp(self):        
+
+    def setUp(self):
         #
         super( getSingleEbayCategoryMixin, self ).setUp()
         #
@@ -110,7 +110,7 @@ class BaseUserTestCase( WebTest ):
     def setUp(self):
 
         self.factory = RequestFactory()
-        
+
         self.market  = getDefaultMarket()
 
         oUserModel = get_user_model()
@@ -128,7 +128,7 @@ class BaseUserTestCase( WebTest ):
         self.user2.first_name   = 'Joe'
         self.user2.last_name    = 'Blow'
         self.user2.save()
-        
+
         self.user3 = oUserModel.objects.create_user(
                                     'username3', 'email@hotmail.com' )
         self.user3.set_password( 'mypassword')
@@ -164,9 +164,9 @@ class BaseUserTestCase( WebTest ):
 
 
 class setUpBrandsCategoriesModels( BaseUserTestCase ):
-    
+
     ''' handy base class that sets up some models / tables '''
-    
+
     def setUp(self):
         #
         super( setUpBrandsCategoriesModels, self ).setUp()
@@ -196,7 +196,7 @@ class setUpBrandsCategoriesModels( BaseUserTestCase ):
             cTitle      = "Fleetwood",
             cLookFor    = "Woodie",
             cKeyWords   = 'Eldorado',
-            cExcludeIf  = 'golf',
+            cExcludeIf  = 'golf\rtournament', # used in tests/test_stars.py
             iStars      = 5,
             iBrand      = self.oBrand,
             iCategory   = self.oCategory,
@@ -335,7 +335,7 @@ class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
                     iCategoryID     =           iCategoryID,
                     name            =           lParts[2],
                     iLevel          = int(      lParts[3] ),
-                    
+
                     bLeafCategory   = getBool(  lParts[5] ),
                     iTreeVersion    = int(      lParts[6] ),
                     iEbaySiteID_id  =           iEbaySiteID, )
@@ -387,7 +387,7 @@ class AssertNotEmptyMixin( object ):
 '''
 oTest = {
     'cNationality': ('Nationality', 'C'),
-    'iUser_id': ('Owner', 1), 
+    'iUser_id': ('Owner', 1),
     'cLookFor': ('Considered A Hit If This Text Is Found (Each Line '
                  'Evaluated Separately, Put Different Look For Tests '
                  'On Different Lines)', None),
