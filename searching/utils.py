@@ -241,11 +241,14 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             #
             iRetries += 1
             #
-            sErrorFile = _putPageNumbInFileName( sErrorFile, iRetries )
-            #
-            QuietDump( sResponse, '/tmp', sErrorFile )
-            #
-            logger.warning( 'ebay api error in tmp file "%s"' % sErrorFile )
+            if iRetries == 5:
+                #
+                sErrorFile = _putPageNumbInFileName( sErrorFile, iRetries )
+                #
+                QuietDump( sResponse, '/tmp', sErrorFile )
+                #
+                logger.error( 'ebay api repeated failure error in tmp file "%s"' % sErrorFile )
+                #
             #
             sleep( 1 + iRetries )
             #
