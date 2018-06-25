@@ -124,7 +124,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 232745789325,
                 283006362761,
                 162988285720,
-                162988285721
+                162988285721,
+                142842525513,
+                263776955668
                 ) )
         #
         for oTemp in oUserItems:
@@ -300,6 +302,26 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
+        oTest = dItemsToTest[ 142842525513 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ 263776955668 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        # self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        #
+        # self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
@@ -307,10 +329,10 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
 
 
 class findersStorageTest( setUpBrandsCategoriesModels ):
-    
+
     #
     ''' test Finder Storage for Brands, Categories & Models '''
-    
+
     #
     #oBrand      = Model.objects.get(    cTitle = "Cadillac"  )
     #oCategory   = Category.objects.get( cTitle = "Widgets"   )
