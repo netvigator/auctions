@@ -24,6 +24,8 @@ dItemFoundFields = d(
     iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
     cTitle          = d( t = ( 'title',) ),
+    cSubTitle       = d( t = ( 'subtitle'),
+                         bOptional = True ),
     cLocation       = d( t = ( 'location',) ),
     cCountry        = d( t = ( 'country',) ),
     cMarket         = d( t = ( 'globalId',) ),
