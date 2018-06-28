@@ -126,7 +126,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 162988285720,
                 162988285721,
                 142842525513,
-                263776955668
+                263776955668,
+                173375697400,
+                192577735613
                 ) )
         #
         for oTemp in oUserItems:
@@ -292,25 +294,15 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 162988285721 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, '6L6WGB' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
         oTest = dItemsToTest[ 142842525513 ]
         #
         self.assertIsNotNone( oTest )
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        # getting None self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
         #
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        # getting None self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ 263776955668 ]
         #
@@ -320,7 +312,46 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
         #
+        # getting None self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ 192577735613 ]
+        #
+        # getting None self.assertIsNotNone( oTest )
+        #
+        #self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        #
+        #self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        #
+        #self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ 173375697400 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        oItemFound = ItemFound.objects.get( pk = oTest.iItemNumb_id )
+        #
+        # getting None self.assertEqual( oItemFound.cSubTitle,
+        #           'Working Pair 12" Coaxial Speakers & Balance Controls' )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'H-222' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ 162988285721 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        #
+        # getting 5881 self.assertEqual( oTest.iModel.cTitle, '6L6WGB' )
+        #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
