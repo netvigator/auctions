@@ -84,7 +84,9 @@ class Search(models.Model):
 class ItemFound(models.Model):
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
-    cTitle          = models.CharField( 'item title', max_length = 80 )
+    cTitle          = models.CharField( 'item title',     max_length = 80 )
+    cSubTitle       = models.CharField( 'item sub title', max_length = 80,
+                        null = True, blank = True )
     cLocation       = models.CharField( 'location',
                         max_length = 48 )
     cCountry        = CountryField( "country" )
@@ -170,7 +172,7 @@ class UserItemFound(models.Model):
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
     bGetPictures    = models.BooleanField( 'get description & pictures?',
-                        default = False )    
+                        default = False )
     tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
     iSearch         = models.ForeignKey( Search,
