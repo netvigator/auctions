@@ -165,3 +165,8 @@ should find 6AU6A
 
 need to test _getRowRegExpressions, make sure cRegExExclude is stored
 (for tube type 10, cRegExExclude is not stored)
+
+
+several non working tests commented out in:
+searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
+need to fix!
