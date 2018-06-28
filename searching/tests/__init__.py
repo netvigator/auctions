@@ -45,6 +45,7 @@ sBrands = \
  Harman-Kardon     |      7 |            |
  Heathkit          |      8 |            | Heath
  Interelectronics  |      3 |            |
+ Jensen            |      8 |            |
  Kadette           |      6 |            |
  Klangfilm         |      6 |            |
  Knight            |      4 |            |
@@ -248,6 +249,7 @@ sModels = \
  248-NI             |           |     10 | f            | Sentinel          |        Radio |             |
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver | 603         |
+ H-222              |           |      7 | t            | Jensen            |       Driver |             |
 '''
 
 
@@ -294,6 +296,9 @@ dSearchResult = \
  }
 
 
+#### do not add new test items here, add them below ###
+#### do not add new test items here, add them below ###
+#### do not add new test items here, add them below ###
 
 sExampleResponse = \
 '''{
@@ -436,57 +441,6 @@ sExampleResponse = \
                 "startTime":["2017-12-09T23:18:40.000Z" ],
                 "buyItNowAvailable":["true" ] } ]
 
-            },{"itemId":["142842525513"],
-               "title":["Lot of 10 Vintage Vacuum Tubes - TUNG-SOL 6AU6A - Tested "],
-               "globalId":["EBAY-US"],
-               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mYUzp63N0ufwx1E7i6fkvOA\/140.jpg"],
-               "viewItemURL":["http:\/\/www.ebay.com\/itm\/Lot-10-Vintage-Vacuum-Tubes-TUNG-SOL-6AU6A-Tested-\/142842525513"],
-               "paymentMethod":["PayPal"],"autoPay":["false"],
-               "postalCode":["51501"],
-               "location":["Council Bluffs,IA,USA"],
-               "country":["US"],
-               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
-               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5.0"}],
-               "bidCount":["0"],
-               "sellingState":["Active"],
-               "timeLeft":["P6DT3H12M26S"]}],
-               "listingInfo":[{"bestOfferEnabled":["false"],
-               "buyItNowAvailable":["false"],
-               "startTime":["2018-06-23T17:00:47.000Z"],
-               "endTime":["2018-06-30T17:00:47.000Z"],
-               "listingType":["Auction"],
-               "gift":["false"]}],
-               "returnsAccepted":["true"],
-               "isMultiVariationListing":["false"],
-               "topRatedListing":["false"]
-
-            },{"itemId":["263776955668"],
-               "title":["LOT OF 10 5823 NOS NATIONAL GENERAL ELECTRIC RCA AND AMPEREX"],
-               "globalId":["EBAY-US"],
-               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-               "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mOB9zh8Ul1-mB_H66hDsONg\/140.jpg"],
-               "viewItemURL":["http:\/\/www.ebay.com\/itm\/LOT-10-5823-NOS-NATIONAL-GENERAL-ELECTRIC-RCA-AND-AMPEREX-\/263776955668"],
-               "paymentMethod":["PayPal"],
-               "autoPay":["false"],
-               "postalCode":["14004"],
-               "location":["Alden,NY,USA"],
-               "country":["US"],
-               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["0"]}],
-               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"6.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"6.0"}],
-               "bidCount":["0"],
-               "sellingState":["Active"],
-               "timeLeft":["P6DT23H18M25S"]}],
-               "listingInfo":[{"bestOfferEnabled":["false"],
-               "buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"28.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"28.0"}],
-               "startTime":["2018-06-24T13:05:37.000Z"],
-               "endTime":["2018-07-01T13:05:37.000Z"],
-               "listingType":["AuctionWithBIN"],
-               "gift":["false"]}],
-               "returnsAccepted":["true"],
-               "isMultiVariationListing":["false"],
-               "topRatedListing":["false"]
-
             },{"itemId":["253295991282" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
@@ -531,6 +485,10 @@ sExampleResponse = \
       ],
       "version":["1.13.0" ] } ]
 }'''
+#### do not add new test items above, add them below ###
+#### do not add new test items above, add them below ###
+#### do not add new test items above, add them below ###
+
 
 # ###      if you add an item whose title includes a double quote,       ###
 # ### you must manually convert a signle backslash to a double backslash ###
@@ -2458,6 +2416,112 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+            },{"itemId":["142842525513"],
+               "title":["Lot of 10 Vintage Vacuum Tubes - TUNG-SOL 6AU6A - Tested "],
+               "globalId":["EBAY-US"],
+               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mYUzp63N0ufwx1E7i6fkvOA\/140.jpg"],
+               "viewItemURL":["http:\/\/www.ebay.com\/itm\/Lot-10-Vintage-Vacuum-Tubes-TUNG-SOL-6AU6A-Tested-\/142842525513"],
+               "paymentMethod":["PayPal"],"autoPay":["false"],
+               "postalCode":["51501"],
+               "location":["Council Bluffs,IA,USA"],
+               "country":["US"],
+               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5.0"}],
+               "bidCount":["0"],
+               "sellingState":["Active"],
+               "timeLeft":["P6DT3H12M26S"]}],
+               "listingInfo":[{"bestOfferEnabled":["false"],
+               "buyItNowAvailable":["false"],
+               "startTime":["2018-06-23T17:00:47.000Z"],
+               "endTime":["2018-06-30T17:00:47.000Z"],
+               "listingType":["Auction"],
+               "gift":["false"]}],
+               "returnsAccepted":["true"],
+               "isMultiVariationListing":["false"],
+               "topRatedListing":["false"]
+
+            },{"itemId":["263776955668"],
+               "title":["LOT OF 10 5823 NOS NATIONAL GENERAL ELECTRIC RCA AND AMPEREX"],
+               "globalId":["EBAY-US"],
+               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+               "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mOB9zh8Ul1-mB_H66hDsONg\/140.jpg"],
+               "viewItemURL":["http:\/\/www.ebay.com\/itm\/LOT-10-5823-NOS-NATIONAL-GENERAL-ELECTRIC-RCA-AND-AMPEREX-\/263776955668"],
+               "paymentMethod":["PayPal"],
+               "autoPay":["false"],
+               "postalCode":["14004"],
+               "location":["Alden,NY,USA"],
+               "country":["US"],
+               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["0"]}],
+               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"6.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"6.0"}],
+               "bidCount":["0"],
+               "sellingState":["Active"],
+               "timeLeft":["P6DT23H18M25S"]}],
+               "listingInfo":[{"bestOfferEnabled":["false"],
+               "buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"28.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"28.0"}],
+               "startTime":["2018-06-24T13:05:37.000Z"],
+               "endTime":["2018-07-01T13:05:37.000Z"],
+               "listingType":["AuctionWithBIN"],
+               "gift":["false"]}],
+               "returnsAccepted":["true"],
+               "isMultiVariationListing":["false"],
+               "topRatedListing":["false"]
+
+            },{"itemId":["173375697400"],
+               "title":["Pair (2)  '56 Jensen ST-875 \\/ H222 ~ Coaxial Hi-Fi Speaker & H.F. Balance p12 rp"],
+               "globalId":["EBAY-US"],
+               "subtitle":["Working Pair 12\\" Coaxial Speakers & Balance Controls"],
+               "primaryCategory":[{"categoryId":["50597"],
+               "categoryName":["Vintage Speakers"]}],
+               "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mBaZSgE-rozcGnSHXpkh9Ag\/140.jpg"],
+               "viewItemURL":["http:\/\/www.ebay.com\/itm\/Pair-2-56-Jensen-ST-875-H222-Coaxial-Hi-Fi-Speaker-H-F-Balance-p12-rp-\/173375697400"],
+               "paymentMethod":["PayPal"],
+               "autoPay":["false"],
+               "location":["USA"],
+               "country":["US"],
+               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"35.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"112.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"112.5"}],
+               "bidCount":["6"],
+               "sellingState":["Active"],
+               "timeLeft":["P6DT1H3M41S"]}],
+               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+               "startTime":["2018-06-25T00:00:19.000Z"],
+               "endTime":["2018-07-02T00:00:19.000Z"],
+               "listingType":["Auction"],
+               "gift":["false"],
+               "watchCount":["21"]}],
+               "returnsAccepted":["true"],
+               "isMultiVariationListing":["false"],
+               "topRatedListing":["true"]
+
+           },{"itemId":["192577735613"],
+              "title":["10 vintage tubes 6AU6 tubes Philips Mullard Super Radiotron tested NIB"],
+              "globalId":["EBAY-AU"],
+              "primaryCategory":[{"categoryId":["64627"],
+              "categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mJvSME4c-rA_rFIZsAFelhg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/10-vintage-tubes-6AU6-tubes-Philips-Mullard-Super-Radiotron-tested-NIB-\/192577735613"],
+              "paymentMethod":["PayPal","MoneyXferAccepted"],"autoPay":["false"],
+              "postalCode":["2000"],
+              "location":["Australia"],
+              "country":["AU"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"AUD","__value__":"20.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.84"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P5DT9H1M7S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-06-24T08:09:18.000Z"],
+              "endTime":["2018-07-01T08:09:18.000Z"],
+              "listingType":["Auction"],
+              "gift":["false"],
+              "watchCount":["3"]}],
+              "returnsAccepted":["true"],
+              "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/192577735613_1_1_1.jpg"],
+              "condition":[{"conditionId":["3000"],
+              "conditionDisplayName":["Used"]}],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
            },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
               "globalId":["EBAY-US"],
@@ -2481,6 +2545,10 @@ sResponseSearchTooBroad = \
    }
  ]
 }'''
+
+# ###      if you add an item whose title includes a double quote,       ###
+# ### you must manually convert a signle backslash to a double backslash ###
+# ###      also first item is tested in core.test_utils_ebay             ###
 
 
 sLastPageZeroEntries = \
