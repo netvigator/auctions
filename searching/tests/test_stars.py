@@ -596,7 +596,15 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertIn(     self.oModel.cRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
         #
-        self.assertEqual( self.oModel.cRegExExclude, r'tournament|\bgolf\b' )
+        # order can vary
+        #
+        # self.assertEqual( self.oModel.cRegExExclude, r'tournament|\bgolf\b' )
+        #
+        setRegExExclude = frozenset( self.oModel.cRegExExclude.split( '|' ) )
+        #
+        self.assertIn( 'tournament', setRegExExclude )
+        self.assertIn( r'\bgolf\b',  setRegExExclude )
+        #
         self.assertEqual( self.oModel.cRegExKeyWords, 'Eldorado' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
