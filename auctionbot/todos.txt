@@ -167,6 +167,21 @@ need to test _getRowRegExpressions, make sure cRegExExclude is stored
 (for tube type 10, cRegExExclude is not stored)
 
 
+KT88 JAN TESLA 1984 NOS Rare Joint Army Navy Distributed by RCA 6550 KT90
+should find KT88 not 6550
+EL34 AEG/TFK AEG/Telefunken power output tube 6CA7 2pc. matched pair
+should find EL34 not 6CA7
+RCA 5881 Vintage Vacuum Tube - Brown Base - 6L6WGB guitar amp radio
+should find 5881 not 6L6WGB
+2 NIB RCA 5881 (6L6GB)(6L6WGB) amplifier tubes. 1973 production. TV-7 test NOS.
+should find 5881 not 6L6WGB
+
+
+
+
+follow up on 372290232805 get brand (not WE)
+
+
 several non working tests commented out in:
 searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
 need to fix!
