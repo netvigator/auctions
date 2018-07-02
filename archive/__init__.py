@@ -42,10 +42,12 @@ def getListWithCommas( s ):
 
 d = dict
 
+# null = True, blank = True fields in model MUST be marked bOptional here!
 dItemFields = d(
     iItemNumb       = d( t = ( "ItemID",),
                          f = int ),
-    cDescription    = d( t = ( "Description",), ),
+    cDescription    = d( t = ( "Description",),
+                         bOptional = True ),
     bBestOfferable  = d( t = ( "BestOfferEnabled",),
                          f = getBoolOffYesNoTrueFalse ),
     tTimeEnd        = d( t = ( "EndTime",),

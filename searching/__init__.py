@@ -20,6 +20,7 @@ getMakeDir( SEARCH_FILES_FOLDER )
 
 d = dict
 
+# null = True, blank = True fields in model MUST be marked bOptional here!
 dItemFoundFields = d(
     iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
