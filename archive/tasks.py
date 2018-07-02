@@ -14,8 +14,13 @@ from celery.schedules       import crontab
 
 #from auctionbot             import celery_app as app # app = Celery()
 
+from core.utils             import sayIsoDateTimeNoTimeZone
+
+from .models                import Item
 from .utils                 import ( getSingleItemThenStore,
-                                     getItemsFoundForUpdate )
+                                     getItemsFoundForUpdate,
+                                     getItemPictures,
+                                     getItemsForPicsDownloading )
 
 from searching.models       import ItemFound, UserItemFound
 
@@ -78,8 +83,48 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
             doGetSingleItemThenStoreTask.delay( oItemFound.iItemNumb )
 
 
+@shared_task( name = 'archive.tasks.getItemPictures' )
+def getItemPicturesTask( iItemNumb ):
+    #
+    getItemPictures( iItemNumb )
 
-# from archive.tasks import doGetFetchUserItemsTasks
+
+@shared_task( name = 'archive.tasks.doGetItemPicturesTasks' )
+def doGetItemPicturesTasks( iLimit = 50,  bOnlySay = False ):
+    #
+    qsGetPics = getItemsForPicsDownloading( iLimit )
+    #
+    if bOnlySay:
+        #
+        print( 'would fetch pictures for %s items now'
+                % qsGetPics.count() )
+        #
+        if qsGetPics:
+            #
+            oFirst = Item.objects.get( iItemNumb = qsGetPics[0] )
+            #
+            for iItemNumb in qsGetPics: iLast = iItemNumb # negative indexing not supported!
+            #
+            oLast = Item.objects.get( iItemNumb = iLast )
+            #
+            print( 'items ending from %s to %s' %
+                    ( sayIsoDateTimeNoTimeZone( oFirst.tTimeEnd ),
+                      sayIsoDateTimeNoTimeZone( oLast.tTimeEnd  ) ) )
+            #
+        #
+    else:
+        #
+        for iItemNumb in qsGetPics:
+            #
+            getItemPicturesTask.delay( iItemNumb )
+            #
+        #
+    #
+
+
+
+# from archive.tasks import doGetFetchUserItemsTasks, doGetItemPicturesTasks
 # doGetFetchUserItemsTasks( bOnlySay = True )
 # doGetFetchUserItemsTasks( bDoFinalOnly = True )
 # doGetFetchUserItemsTasks()
+# doGetItemPicturesTasks( bOnlySay = True )
