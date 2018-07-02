@@ -503,6 +503,10 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
         #
         for sURL in lWantPics:
             #
+            # need to catch:
+            # cannot get pic from <URL>,
+            # got result: responsecode=404,responsemessage=Not Found
+            #
             if sURL not in setGotPics:
                 #
                 if iSeq: sleep( 1 )
@@ -532,7 +536,21 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
         oItem.bGotPictures = True
         #
     #
+    oItem.iGotPictures = len( setGotPics )
+    #
     oItem.tGotPictures = timezone.now()
     #
     oItem.save()
     #
+
+
+def getItemsForPicsDownloading( iLimit = 50 ):
+    #
+    qsGetPics = Item.objects.filter(
+                    tGotPictures__isnull = True
+                    ).order_by( 'tTimeEnd'
+                    ).values_list( 'iItemNumb', flat = True
+                    )[ : iLimit ]
+    #
+    return qsGetPics
+
