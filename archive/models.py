@@ -101,9 +101,12 @@ class Item(models.Model):
                         default = False )
     tGotPictures    = models.DateTimeField( 'pictures downloaded',
                         null = True )
+    iGotPictures    = models.PositiveSmallIntegerField(
+                        'how many pictures downloaded',
+                        null = True, blank = True )
 
     def __str__(self):
-        return self.iItemNumb
+        return str( self.iItemNumb )
 
     class Meta:
         verbose_name_plural = 'items'
