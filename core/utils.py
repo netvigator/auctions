@@ -142,13 +142,18 @@ def updateMemoryTableUpdated( sTable, sField = None ):
         #
 
 
+def sayIsoDateTimeNoTimeZone( tDateTime ):
+    #
+    return str( tDateTime )[:19]
+
+
 def getBegTime( bConsoleOut = False ):
     #
     tBeg = timezone.now()
     #
     if bConsoleOut:
         #
-        print( 'Beg:', str( tBeg )[:19] )
+        print( 'Beg:', sayIsoDateTimeNoTimeZone( tBeg ) )
         #
     #
     return tBeg
@@ -159,7 +164,7 @@ def sayDuration( tBeg ):
     #
     tEnd = timezone.now()
     #
-    print( 'End:', str( tEnd )[:19] )
+    print( 'End:', sayIsoDateTimeNoTimeZone( tEnd ) )
     #
     lDuration = str( tEnd - tBeg ).split( '.' )
     #
