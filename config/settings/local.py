@@ -73,4 +73,4 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # Your local stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
 
-MEDIA_ROOT = '/home/Common/AuctionPics/Items'
+MEDIA_ROOT = '/home/Common/AuctionPics'
