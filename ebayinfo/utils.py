@@ -4,9 +4,11 @@ from time                   import sleep
 
 from django.conf            import settings
 
+from psycopg2               import OperationalError
+
 import xml.etree.ElementTree as ET
 
-from core.utils             import getNamerSpacer
+from core.utils             import getNamerSpacer, getDownloadFileWriteToDisk
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
 
@@ -264,69 +266,78 @@ def _putCategoriesInDatabase(
         #
     iSeq = 0
     #
-    for dCategory in categoryDictIterable:
+    try:
         #
-        iSeq  += 1
-        #
-        oProgressMeter.update( iSeq )
-        #
-        sConfirmVersion = dCategory['CategoryVersion']
-        #
-        oCategory = EbayCategory()
-        #
-        try:
+        for dCategory in categoryDictIterable:
             #
-            oCategory = EbayCategory.objects.get(
-                iEbaySiteID     = oMarket,
-                iCategoryID     = int( dCategory['CategoryID'] ) )
+            iSeq  += 1
             #
-        except ObjectDoesNotExist:
+            oProgressMeter.update( iSeq )
             #
-            oCategory = EbayCategory(
-                iCategoryID     = int( dCategory['CategoryID'] ),
-                iEbaySiteID     = oMarket )
+            sConfirmVersion = dCategory['CategoryVersion']
+            #
+            oCategory = EbayCategory()
+            #
+            try:
+                #
+                oCategory = EbayCategory.objects.get(
+                    iEbaySiteID     = oMarket,
+                    iCategoryID     = int( dCategory['CategoryID'] ) )
+                #
+            except ObjectDoesNotExist:
+                #
+                oCategory = EbayCategory(
+                    iCategoryID     = int( dCategory['CategoryID'] ),
+                    iEbaySiteID     = oMarket )
+            #
+            sCategoryName = getChars4HtmlCodes( dCategory['CategoryName'] )
+            #
+            oCategory.name          = sCategoryName
+            oCategory.iLevel        = int( dCategory['CategoryLevel'   ] )
+            oCategory.bLeafCategory = bool(dCategory['LeafCategory'    ] )
+            oCategory.iTreeVersion  = iWantVersion
+            oCategory.iParentID     = int( dCategory['CategoryParentID'] )
+            #
+            if dCategory['CategoryID'] == dCategory['CategoryParentID']:
+                #
+                # level 1 category, CategoryID == CategoryParentID
+                #
+                oCategory.parent = oRoot
+                #
+            else:
+                #
+                oCategory.parent = EbayCategory.objects.get(
+                    iEbaySiteID = oMarket,
+                    iCategoryID = dCategory['CategoryParentID'],
+                    iTreeVersion= iWantVersion )
+                #
+            #
+            try:
+                oCategory.save()
+            except DataError:
+                raise DataError( 'too long: %s' % sCategoryName )
+            #
+            #
+            oProgressMeter.end( iSeq )
+            #
+            oMarket.iCategoryVer = int( sWantVersion )
+            #
+            oMarket.save()
+            #
+    except OperationalError: # downloaded file not complete!
         #
-        sCategoryName = getChars4HtmlCodes( dCategory['CategoryName'] )
+        sMessage = 'ebay categories file %s is incomplete!' % sFile
         #
-        oCategory.name          = sCategoryName
-        oCategory.iLevel        = int( dCategory['CategoryLevel'   ] )
-        oCategory.bLeafCategory = bool(dCategory['LeafCategory'    ] )
-        oCategory.iTreeVersion  = iWantVersion
-        oCategory.iParentID     = int( dCategory['CategoryParentID'] )
-        #
-        if dCategory['CategoryID'] == dCategory['CategoryParentID']:
-            #
-            # level 1 category, CategoryID == CategoryParentID
-            #
-            oCategory.parent = oRoot
-            #
-        else:
-            #
-            oCategory.parent = EbayCategory.objects.get(
-                iEbaySiteID = oMarket,
-                iCategoryID = dCategory['CategoryParentID'],
-                iTreeVersion= iWantVersion )
-            #
-        #
-        try:
-            oCategory.save()
-        except DataError:
-            raise DataError( 'too long: %s' % sCategoryName )
+        logger.error( sMessage )
         #
 
-    #
-    oProgressMeter.end( iSeq )
-    #
-    oMarket.iCategoryVer = int( sWantVersion )
-    #
-    oMarket.save()
 
 
 
 
 def getCategoryListThenStore(
             uMarket         = 'EBAY-US',
-            uWantVersion    = '117',
+            uWantVersion    = '118',
             bUseSandbox     = False,
             bShowProgress   = False ):
     #
@@ -610,7 +621,8 @@ def _getCategoryHierarchyID(
             sMessage = ( 'For market %s,  '
                         '%s does not exist' %
                             ( iEbaySiteID, iCategoryID ) )
-            logger.info( sMessage)
+            #
+            logger.info( sMessage )
             #
         #
     #
