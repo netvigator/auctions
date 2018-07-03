@@ -5,7 +5,7 @@ from os.path            import dirname
 from shutil             import rmtree
 from time               import sleep
 
-from django.test        import TestCase
+from django.test        import TestCase, tag
 from django.utils       import timezone
 
 from archive            import getListAsLines
@@ -240,7 +240,7 @@ class GetAndStoreSingleItemsTests(
         #
 
 
-
+    @tag('ebay_api')
     def test_get_item_picture_hidden( self ):
         #
         iItemNumb = self.iItemNumb
@@ -280,6 +280,7 @@ class GetAndStoreSingleItemsTests(
         if isDirThere( sOneUpDir ): rmtree( sOneUpDir )
         #
 
+    @tag('ebay_api')
     def test_get_item_pictures_importable( self ):
         #
         iItemNumb = self.iItemNumb
@@ -296,13 +297,13 @@ class GetAndStoreSingleItemsTests(
 
 
 
-
     def test_get_single_active_item_then_store( self ):
         #
         #
         qsItem = Item.objects.filter( iItemNumb = self.iItemNumb )
         #
         self.assertEqual( len( qsItem ), 1 )
+
 
 
 class StoreSingleItemTests( getEbayCategoriesSetUp ):
