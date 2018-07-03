@@ -493,7 +493,7 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
     lWantPics = [ s for s in oItem.cPictureURLs.split() if isURL( s ) ]
     #
-    setGotPics = set( [] )
+    dGotPics = { s : None for s in lWantPics }
     #
     for iReTries in range( 5 ):
         #
@@ -507,15 +507,22 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
             # cannot get pic from <URL>,
             # got result: responsecode=404,responsemessage=Not Found
             #
-            if sURL not in setGotPics:
+            if dGotPics[ sURL ] not in ( 'success', 'Not Found' ):
                 #
                 if iSeq: sleep( 1 )
                 #
                 sResult = _getItemPicture( sURL, iItemNumb, sSubDir, iSeq )
                 #
-                if isFileThere( sSubDir, sResult ):
+                if 'responsecode' in sResult and 'responsemessage' in sResult:
                     #
-                    setGotPics.add( sURL )
+                    if 'Not Found' in sResult:
+                        #
+                        dGotPics[ sURL ] = 'Not Found' # can quit trying
+                        #
+                    #
+                elif isFileThere( sSubDir, sResult ):
+                    #
+                    dGotPics[ sURL ] = 'success'
                     #
                 elif iReTries == 4: # last try
                     #
@@ -526,7 +533,7 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
                 #
             #
         #
-        bGotAllPics = len( lWantPics ) == len( setGotPics )
+        bGotAllPics = len( lWantPics ) == len( dGotPics )
         #
         if bGotAllPics: break
         #
@@ -536,7 +543,7 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
         oItem.bGotPictures = True
         #
     #
-    oItem.iGotPictures = len( setGotPics )
+    oItem.iGotPictures = len( dGotPics )
     #
     oItem.tGotPictures = timezone.now()
     #
