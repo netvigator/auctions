@@ -90,7 +90,7 @@ def getItemPicturesTask( iItemNumb ):
 
 
 @shared_task( name = 'archive.tasks.doGetItemPicturesTasks' )
-def doGetItemPicturesTasks( iLimit = 50,  bOnlySay = False ):
+def doGetItemPicturesTasks( iLimit = 100,  bOnlySay = False ):
     #
     qsGetPics = getItemsForPicsDownloading( iLimit )
     #
@@ -122,9 +122,32 @@ def doGetItemPicturesTasks( iLimit = 50,  bOnlySay = False ):
     #
 
 
+'''
+doGetFetchUserItemsTasks( bOnlySay = True )
+
+select count(*) from useritemsfound
+    where "bGetPictures" = true and "tRetrieved" is null ;
+
+select count(*) from itemsfound
+    where "tTimeEnd" < timestamp 'yesterday' and
+    "iItemNumb" in
+        ( select "iItemNumb_id" from useritemsfound
+          where "tRetrieved" is not null and "tRetrieveFinal" is null ) ;
+
+# doGetItemPicturesTasks( bOnlySay = True )
+
+select count(*) from items where "tGotPictures" is null  ;
+select "iItemNumb", "tTimeEnd" from items where "tGotPictures" is null order by "tTimeEnd" ;
+
+
+select "cTitle", "iGotPictures" from items where "tGotPictures" =
+    ( select max( "tGotPictures" ) from items ) ;
+
+'''
 
 # from archive.tasks import doGetFetchUserItemsTasks, doGetItemPicturesTasks
 # doGetFetchUserItemsTasks( bOnlySay = True )
 # doGetFetchUserItemsTasks( bDoFinalOnly = True )
 # doGetFetchUserItemsTasks()
 # doGetItemPicturesTasks( bOnlySay = True )
+# doGetItemPicturesTasks()
