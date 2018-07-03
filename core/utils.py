@@ -214,7 +214,7 @@ def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
     #
     with get( sURL, stream=True ) as r:
         #
-        if 'X-EBAY-C-EXTENSION' in r.headers: # error, returns dict
+        if 'X-EBAY-C-EXTENSION' in r.headers: # error, returns dict like str
             #
             sResult = r.headers[ 'X-EBAY-C-EXTENSION' ]
             #
