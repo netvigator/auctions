@@ -214,20 +214,20 @@ def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
     #
     with get( sURL, stream=True ) as r:
         #
-        if 'X-EBAY-C-EXTENSION' in r.headers:
+        if 'X-EBAY-C-EXTENSION' in r.headers: # error, returns dict
             #
             sResult = r.headers[ 'X-EBAY-C-EXTENSION' ]
             #
-        elif r.status_code != 200:
+        elif r.status_code != 200: # error, catch others?
             #
-            sResult = r.status_code
+            sResult = str( r.status_code )
             #
         elif r.headers.get( 'Content-Type', '' ).startswith( 'image' ):
             #
             with open( sWriteToFile, 'wb' ) as f:
                 copyfileobj( r.raw, f )
             #
-            sResult = sWriteToFile
+            sResult = sWriteToFile # file spec
             #
         #
-    return sResult
+    return sResult # file spec, dict as str or integer code as str
