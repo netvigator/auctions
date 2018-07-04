@@ -173,15 +173,19 @@ def doFindSearhHitsTasks(
 
 
 
+'''
+doSearchingPutResultsInFilesTasks() does NOT update database, only writes files
+watch file directory SEARCH_FILES_FOLDER and sort by date, most recent on top
 
-def doAllUnattended(): # example only!
-    #
-    doSearchingPutResultsInFiles( bOnlyList = True )
-    doPutSearchResultsInItemsFoundTasks()
-    doFindSearhHitsTasks( bConsoleOut = True )
+doPutSearchResultsInItemsFoundTasks()
+select count(*) from useritemsfound where "tLook4Hits" is null ;
+count should be zero at start, increase as process runs, then max out
 
+doFindSearhHits()
+select count(*) from useritemsfound where "tLook4Hits" is null ;
+count should decline to zero
 
-
+'''
 
 
 # workflow
