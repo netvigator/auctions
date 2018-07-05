@@ -199,3 +199,10 @@ need to fix!
 2018-07-04
 form did not save for item 283038891283
 [2018-07-03 23:25:26,553: WARNING/ForkPoolWorker-2] iItemNumb -- <ul class="errorlist"><li>Item found with this Ebay item number already exists.</li></ul>
+also
+[2018-07-03 23:25:41,005: ERROR/ForkPoolWorker-2] form did not save for item 362374670054
+
+
+getting pictures
+[2018-07-04 13:32:05,926: ERROR/ForkPoolWorker-2] Task archive.tasks.getItemPictures[60a6cb45-d7bf-4200-a08a-2306a98c7d4b] raised unexpected: ConnectionError(ProtocolError('Connection aborted.', OSError(0, 'Error')),)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', OSError(0, 'Error'))
