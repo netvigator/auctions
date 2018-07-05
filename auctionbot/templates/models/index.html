@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static i18n %}
-{% load getNbsp %} 
+{% load getNbsp %}
 {% block title %}Auction Shopping Bot Models{% endblock %}
 
 
@@ -8,14 +8,14 @@
   <h2>Models</h2>
 
     {% include "./add_search.html" %}
-    
+
     {% if object_list %}
         {# the pagination section #}
         {% if is_paginated %}
             <hr>
             <div class="basic">
-                {% include "../paginate.html" %}    
-            </div>            
+                {% include "../paginate.html" %}
+            </div>
         {% endif %}
         <div class="container">
         <div class="list-group">
@@ -26,6 +26,8 @@
         <th ALIGN=LEFT>Brand</th>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Category</th>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <th ALIGN=LEFT>Stars</th>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Comment</th>
         </tr>
@@ -39,6 +41,8 @@
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.iCategory.cTitle|getNbsp }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>{{ model.iStars}}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.cComment|truncatechars:45}}</td>
             </tr>
         {% endfor %}
@@ -49,13 +53,13 @@
         {% if is_paginated %}
             <hr>
             <div class="basic">
-                {% include "../paginate.html" %}    
-            </div>            
+                {% include "../paginate.html" %}
+            </div>
         {% endif %}
     {% else %} <!-- brand_list -->
         <p>No models are available.</p>
     {% endif %} <!-- brand_list -->
 
     {% include "./add_search.html" %}
-    
+
 {% endblock content %}
