@@ -555,7 +555,7 @@ def storeSearchResultsInDB( iLogID,
                     #
                 except ( IntegrityError, ItemAlreadyInTable ):
                     #
-                    iItemNumb      = int( dItem['itemId'] )
+                    iItemNumb      = int( dItem.get( 'itemId' ) )
                     #
                 except ValueError as e:
                     #
@@ -566,12 +566,13 @@ def storeSearchResultsInDB( iLogID,
                     #
                 #
             #
-            bGotUserItem = ( iItemNumb is not None and
-                             UserItemFound.objects.filter(
+            if iItemNumb is None: iItemNumb = int( dItem.get( 'itemId' ) )
+            #
+            bGotUserItem = ( UserItemFound.objects.filter(
                                 iItemNumb   = iItemNumb,
                                 iUser       = oUser ).exists() )
             #
-            if not ( bGotUserItem or iItemNumb is None ):
+            if not bGotUserItem:
                 #
                 try:
                     #
