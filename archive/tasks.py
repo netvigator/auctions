@@ -90,7 +90,7 @@ def getItemPicturesTask( iItemNumb ):
 
 
 @shared_task( name = 'archive.tasks.doGetItemPicturesTasks' )
-def doGetItemPicturesTasks( iLimit = 100,  bOnlySay = False ):
+def doGetItemPicturesTasks( iLimit = 50,  bOnlySay = False ):
     #
     qsGetPics = getItemsForPicsDownloading( iLimit )
     #
