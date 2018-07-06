@@ -542,6 +542,8 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
                     #
                 #
             #
+            iSeq += 1
+            #
         #
         bGotAllPics = len( lWantPics ) == len( dGotPics )
         #
