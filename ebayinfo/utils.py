@@ -759,10 +759,18 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
 '''
 
 
-# ### if any category versions are updated, call            ###
+# ### in production, if any category versions are updated,  ###
+# ###                        call                           ###
 # ### updateMemoryTableUpdated( 'markets', 'iCategoryVer' ) ###
 # ###                     in core.utils                     ###
 
+# ###      if you update categories for a market,           ###
+# ###    update sMarketsTable in ebayinfo/__init__.py       ###
+
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
+# from ebayinfo.utils import getWhetherAnyEbayCategoryListsAreUpdated
 
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
+
+# call getCategoryListThenStore() to update the categories for a market
+# from ebayinfo.utils import getCategoryListThenStore
