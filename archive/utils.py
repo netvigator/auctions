@@ -530,6 +530,10 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
                         'cannot get pic from %s, got result: %s' %
                         ( sURL, sResult ) )
                     #
+                elif sResult.startswith( 'ProtocolError' ):
+                    #
+                    pass # try again
+                    #
                 #
             #
         #
