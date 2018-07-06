@@ -177,6 +177,9 @@ def doFindSearhHitsTasks(
 doSearchingPutResultsInFilesTasks() does NOT update database, only writes files
 watch file directory SEARCH_FILES_FOLDER and sort by date, most recent on top
 
+select id, "cTitle", "tBegSearch", "tEndSearch", "cLastResult", "iUser_id" from searching ;
+select id, "cTitle", "tBegSearch", "tEndSearch", "cLastResult" from searching where "iUser_id" = 1 ;
+
 doPutSearchResultsInItemsFoundTasks()
 select count(*) from useritemsfound where "tLook4Hits" is null ;
 count should be zero at start, increase as process runs, then max out
