@@ -1,9 +1,11 @@
-# misc utils can go here
+from builtins               import ConnectionResetError
 from datetime               import timedelta, timezone
 from urllib3.exceptions     import ProtocolError
 
 from django.db.models       import ForeignKey
 from django.utils           import timezone
+
+from requests.exceptions    import ConnectionError
 
 from String.Find            import getFinderFindAll
 from String.Eat             import eatFromWithin
@@ -233,6 +235,14 @@ def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
                 sResult = sWriteToFile # file spec
                 #
             #
+        #
+    except ConnectionResetError as e:
+        #
+        sResult = 'ConnectionResetError: %s' % e
+        #
+    except ConnectionError as e:
+        #
+        sResult = 'ConnectionError: %s' % e
         #
     except ProtocolError as e:
         #
