@@ -44,12 +44,12 @@ class CatetoryListHasNewVers( Exception ): pass
 
 class TestCategoryVersionTest(TestCase):
     '''test _getCategoryVersionFromFile()'''
-    
+
     sFile = CATEGORY_VERSION_FILE % 'EBAY-US'
 
     def tearDown(self):
         DeleteIfExists( self.sFile )
-        
+
     def test_get_category_version(self):
         # create/destroy test file needs to be in here
         # test is run AFTER the last line in this file is executed
@@ -138,15 +138,15 @@ class _putCategoriesInDatabaseTest(TestCase):
             self.assertEqual( sMsg[ - len( sLong ) : ], sLong )
         else:
             self.assertTrue( False )
-        
-        
+
+
 
 
     def test_database_wrong_category_version(self):
         #
         sWrongVersion = sExampleCategoryList.replace(
                 'Version>117</Category', 'Version>116</Category' )
-        
+
         sFileName = '%s_WrongVersion' % self.sFile
         WriteText2File( sWrongVersion, sFileName )
         #
@@ -174,7 +174,7 @@ class _putCategoriesInDatabaseTest(TestCase):
 
 
 class TestHeirarchiesAreTheyCompleteTest( getEbayCategoriesSetUp ):
-    
+
     def test_are_heirarchies_complete( self ):
         #
         oLeaves = EbayCategory.objects.filter( bLeafCategory = True )
@@ -195,7 +195,7 @@ class TestHeirarchiesAreTheyCompleteTest( getEbayCategoriesSetUp ):
 
 
 
-    
+
 class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
     '''test getMarketsIntoDatabase()'''
     #
@@ -205,7 +205,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         iCount = Market.objects.all().count()
         #
         self.assertEqual( 23, iCount )
-        
+
     def test_got_market_info_right( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
@@ -270,6 +270,9 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         self.assertTrue( bool( lUpdated ) )
         #
         if lUpdated:
+            print( '')
+            print( '*** ebay has updated categories, '
+                   'you need to update local tables ***' )
             self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
             self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
             self.assertEqual( lUpdated[0].get('iEbayHas'),  118 )
