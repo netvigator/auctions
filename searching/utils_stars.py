@@ -1,3 +1,5 @@
+from collections            import OrderedDict
+
 from django.db.models       import Q, Max
 from django.contrib.auth    import get_user_model
 from django.utils           import timezone
@@ -240,7 +242,8 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
 def findSearchHits(
             iUser                   = oUserOne.id,
             bCleanUpAfterYourself   = True,
-            bShowProgress           = False ):
+            bShowProgress           = False,
+            bRecordSteps            = False ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -328,6 +331,11 @@ def findSearchHits(
     #
     qsBrands = Brand.objects.filter( iUser = oUser )
     #
+    dFindSteps = OrderedDict(
+        (   ( 'categories', [] ),
+            ( 'models',     [] ),
+            ( 'brands',     [] ) ) )
+    #
     for oItem in qsItems:
         #
         iSeq  += 1
@@ -374,6 +382,8 @@ def findSearchHits(
         #
         sGotInParens = getInParens( sRelevantTitle )
         #
+        lCategories = dFindSteps[ 'categories' ]
+        #
         for oCategory in qsCategories:
             #
             foundItem = getFoundItemTester( oCategory, dFindersCategories )
@@ -386,6 +396,11 @@ def findSearchHits(
             sInTitle, bExcludeThis = foundItem( sRelevantTitle )
             #
             if bExcludeThis:
+                #
+                if bRecordSteps:
+                    #
+                    lCategories.append( 'excluded: %s' % oCategory.cTitle )
+                    #
                 #
                 continue
                 #
@@ -408,6 +423,24 @@ def findSearchHits(
             bGotCategory = sInTitle or bInHeirarchy1 or bInHeirarchy2
             #
             if bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
+                #
+                if bRecordSteps:
+                    #
+                    if sInTitle:
+                        #
+                        lCategories.append( '%s in title' % sInTitle )
+                        #
+                    elif bInHeirarchy1:
+                        #
+                        lCategories.append(
+                            '%s in primary caregory' % oCategory.cTitle )
+                        #
+                    elif bInHeirarchy2:
+                        #
+                        lCategories.append(
+                            '%s in secondary caregory' % oCategory.cTitle )
+                        #
+                    #
                 #
                 sWhich = _whichGetsCredit(
                             sInTitle, bInHeirarchy1, bGotCategory )
@@ -433,6 +466,8 @@ def findSearchHits(
             #print('')
             #print('doing models now')
         #
+        lModels = dFindSteps[ 'models' ]
+        #
         for oModel in qsModels:
             #
             foundItem = getFoundItemTester( oModel, dFindersModels,
@@ -448,12 +483,41 @@ def findSearchHits(
                 #print('doing model 311-90 now')
                 #print('sInTitle, bExcludeThis:', sInTitle, bExcludeThis )
             #
-            if sInTitle and not bExcludeThis:
+            if bExcludeThis:
+                #
+                if bRecordSteps:
+                    #
+                    lModels.append( 'excluded: %s' % oCategory.oModel )
+                    #
+                #
+                continue
+                #
+            #
+            if sInTitle:
+                #
+                if bRecordSteps:
+                    #
+                    if sInTitle == oModel.cTitle:
+                        #
+                        lModels.append( '%s in title' % sInTitle )
+                        #
+                    else:
+                        #
+                        lModels.append(
+                            'for model "%s", "%s" is in title' %
+                            ( oModel.cTitle, sInTitle ) )
+                        #
+                    #
                 #
                 for oTempItem in lItemFoundTemp:
                     #
                     if    ( oModel.iCategory == oTempItem.iCategory and
                             oTempItem.iModel is None ):
+                        #
+                        if bRecordSteps:
+                            #
+                            lModels.append( 'item has category for model %s' % oModel.cTitle )
+                            #
                         #
                         oTempItem.iModel            = oModel
                         #
@@ -487,6 +551,11 @@ def findSearchHits(
                         #
                 #
                 if not bFoundCategoryForModel:
+                    #
+                    if bRecordSteps:
+                        #
+                        lModels.append( 'item does not have category for model %s' % oModel.cTitle )
+                        #
                     #
                     oTempItem = ItemFoundTemp(
                             iItemNumb       = oItemFound,
