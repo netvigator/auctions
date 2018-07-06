@@ -200,3 +200,6 @@ ConnectionResetError: [Errno 104] Connection reset by peer
 requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
 search failed
 should catch & retry
+
+getting pictures
+[2018-07-06 01:33:42,064: ERROR/ForkPoolWorker-1] Task archive.tasks.getItemPictures[f17634b2-fc5c-491b-91f4-2c20d24c3996] raised unexpected: ConnectionError(ProtocolError('Connection aborted.', OSError(0, 'Error')),)
