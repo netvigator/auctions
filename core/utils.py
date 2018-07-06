@@ -1,5 +1,6 @@
 # misc utils can go here
 from datetime               import timedelta, timezone
+from urllib3.exceptions     import ProtocolError
 
 from django.db.models       import ForeignKey
 from django.utils           import timezone
@@ -212,22 +213,30 @@ def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
     #
     sResult = 'unknown'
     #
-    with get( sURL, stream=True ) as r:
+    try:
         #
-        if 'X-EBAY-C-EXTENSION' in r.headers: # error, returns dict like str
+        with get( sURL, stream=True ) as r:
             #
-            sResult = r.headers[ 'X-EBAY-C-EXTENSION' ]
-            #
-        elif r.status_code != 200: # error, catch others?
-            #
-            sResult = str( r.status_code )
-            #
-        elif r.headers.get( 'Content-Type', '' ).startswith( 'image' ):
-            #
-            with open( sWriteToFile, 'wb' ) as f:
-                copyfileobj( r.raw, f )
-            #
-            sResult = sWriteToFile # file spec
+            if 'X-EBAY-C-EXTENSION' in r.headers: # error, returns dict like str
+                #
+                sResult = r.headers[ 'X-EBAY-C-EXTENSION' ]
+                #
+            elif r.status_code != 200: # error, catch others?
+                #
+                sResult = str( r.status_code )
+                #
+            elif r.headers.get( 'Content-Type', '' ).startswith( 'image' ):
+                #
+                with open( sWriteToFile, 'wb' ) as f:
+                    copyfileobj( r.raw, f )
+                #
+                sResult = sWriteToFile # file spec
+                #
             #
         #
+    except ProtocolError as e:
+        #
+        sResult = 'ProtocolError: %s' % e
+        #
+    #
     return sResult # file spec, dict as str or integer code as str
