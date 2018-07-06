@@ -89,6 +89,7 @@ sModels = \
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
