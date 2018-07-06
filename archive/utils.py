@@ -22,6 +22,7 @@ from searching.models       import ItemFound, UserItemFound
 from Dir.Get                import getMakeDir
 from File.Test              import isFileThere
 from File.Write             import QuietDump
+from String.Find            import getRegExObj
 from Time.Test              import isDateTimeObj
 from Time.Output            import getNowIsoDateTimeFileNameSafe
 from Web.Test               import isURL
@@ -41,6 +42,9 @@ ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Item_Pictures' )
 
 getMakeDir( ITEM_PICS_ROOT )
 
+
+oErrObj = getRegExObj(
+            r'^(?:ProtocolError|ConnectionError|ConnectionResetError)' )
 
 def _writeResult( sContent, sFilePathName ):
     #
@@ -530,7 +534,9 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
                         'cannot get pic from %s, got result: %s' %
                         ( sURL, sResult ) )
                     #
-                elif sResult.startswith( 'ProtocolError' ):
+                elif oErrObj.search( sResult ):
+                    #
+                    # ProtocolError|ConnectionError|ConnectionResetError
                     #
                     pass # try again
                     #
