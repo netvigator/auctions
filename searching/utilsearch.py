@@ -50,7 +50,7 @@ def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
     lAll.sort()
     #
     return tuple( ( ( s, s ) for s in lAll ) )
- 
+
 
 ALL_PRIORITIES = getPriorityChoices()
 
@@ -120,35 +120,43 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         #
     else:
         #
-        # ### form errors are common,
-        # ### not all real categories are in the test database
-        #
-        #
-        # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
-        #
-        if 'iItemNumb' in dNewResult:
-            sMsg = ('form did not save for item %s' % dNewResult['iItemNumb'] )
+        if (    settings.TESTING and
+                'iItemNumb' in form.errors and
+                len( form.errors ) == 1 ):
+            #
+            pass
+            #
         else:
-            sMsg = ('form did not save' )
-        logger.error( sMsg )
-        #print( '' )
-        #print( 'log this error, form did not save' )
-        #
-        if form.errors:
-            for k, v in form.errors.items():
-                logger.warning( '%s -- %s' % ( k, str(v) ) )
-                # print( k, ' -- ', str(v) )
-        else:
-            logger.info( 'no form errors at bottom!' )
-        #
-        #tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
-                      #'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
-                      #'i2ndCatHeirarchy', 'cCountry' )
-        ##
-        #print( '' )
-        #print( 'fields with errors:' )
-        #for sField in tProblems:
-            #print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
+            #
+            # ### form errors when testing are common,
+            # ### not all real categories are in the test database
+            #
+            # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
+            #
+            if 'iItemNumb' in dNewResult:
+                sMsg = ('form did not save for item %s' %
+                        dNewResult['iItemNumb'] )
+            else:
+                sMsg = ('form did not save' )
+            logger.error( sMsg )
+            #print( '' )
+            #print( 'log this error, form did not save' )
+            #
+            if form.errors:
+                for k, v in form.errors.items():
+                    logger.warning( '%s -- %s' % ( k, str(v) ) )
+                    # print( k, ' -- ', str(v) )
+            else:
+                logger.info( 'no form errors at bottom!' )
+            #
+            #tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
+                        #'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
+                        #'i2ndCatHeirarchy', 'cCountry' )
+            ##
+            #print( '' )
+            #print( 'fields with errors:' )
+            #for sField in tProblems:
+                #print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
     #
     return iSavedRowID
 
@@ -442,7 +450,7 @@ def _getReponseKeyValue( sContent, sSplitOn, uSplitterValue ):
             for sSplit in uSplitterValue:
                 #
                 sSubValueName, sValue = _getReponseKeyValue( sContent, sSplit, None )
-                #                
+                #
                 dSub[ sSubValueName ] = sValue
                 #
             #
@@ -497,7 +505,7 @@ def _getFindingResponseGenerator( sResponse ): # json.load is faster
                 dItem[ sValueName ] = uValue
             #
         #
-        
+
         yield dItem
 
 
