@@ -194,12 +194,3 @@ several non working tests commented out in:
 searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
 need to fix!
 
-2018-07-06 AM
-while searching and writing files, got:
-ConnectionResetError: [Errno 104] Connection reset by peer
-requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
-search failed
-should catch & retry
-
-getting pictures
-[2018-07-06 01:33:42,064: ERROR/ForkPoolWorker-1] Task archive.tasks.getItemPictures[f17634b2-fc5c-491b-91f4-2c20d24c3996] raised unexpected: ConnectionError(ProtocolError('Connection aborted.', OSError(0, 'Error')),)
