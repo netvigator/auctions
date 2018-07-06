@@ -300,22 +300,30 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
         #
-        # getting None self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
         #
-        # getting None self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ 263776955668 ]
         #
         self.assertIsNotNone( oTest )
         #
-        # self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        print('')
+        print('263776955668')
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
         #
-        # self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
-        #
+        print('should find category from ebay category heirarchy')
+        print('oTest.iCategory is None:', oTest.iCategory is None)
         # getting None self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        print('oTest.iModel is None:', oTest.iModel is None)
+        # self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
         #
         oTest = dItemsToTest[ 192577735613 ]
         #
+        print('')
+        print('192577735613')
+        print( 'oTest is None:', oTest is None )
         # getting None self.assertIsNotNone( oTest )
         #
         #self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
@@ -333,6 +341,10 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         # getting None self.assertEqual( oItemFound.cSubTitle,
         #           'Working Pair 12" Coaxial Speakers & Balance Controls' )
         #
+        print('')
+        print('173375697400')
+        print( 'cSubTitle is None:', oItemFound.cSubTitle is None )
+        #
         self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         #
         #
@@ -348,6 +360,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # getting 5881 self.assertEqual( oTest.iModel.cTitle, '6L6WGB' )
         #
+        print('')
+        print('162988285721')
+        print( oTest.iModel.cTitle )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
@@ -597,8 +612,6 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
         #
         # order can vary
-        #
-        # self.assertEqual( self.oModel.cRegExExclude, r'tournament|\bgolf\b' )
         #
         setRegExExclude = frozenset( self.oModel.cRegExExclude.split( '|' ) )
         #
