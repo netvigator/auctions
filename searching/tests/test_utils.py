@@ -582,7 +582,7 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         #
         oCategory   = Category( cTitle      = 'Vacuum Tube',
-                                cLookFor    = 'tube\rtubes',
+                                cLookFor    = 'tube\rtubes\rVintage Tubes',
                                 cExcludeIf  = 'tube radio\rtube clock radio\rtube portable radio',
                                 iStars      = 6,
                                 iUser       = self.user1 )
