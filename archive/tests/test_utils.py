@@ -1,6 +1,7 @@
 import logging
 
 from datetime           import timedelta
+from os                 import listdir
 from os.path            import dirname
 from shutil             import rmtree
 from time               import sleep
@@ -50,6 +51,8 @@ logging.basicConfig(
     format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
     level=logging.INFO)
 '''
+
+PIC_TEST_DIR = '/tmp/Item_Pictures'
 
 class GetListAsLinesTest( TestCase ):
     '''class for testing getListAsLines()'''
@@ -227,6 +230,8 @@ class GetAndStoreSingleItemsTests(
             #
             lPicURLS = oItem.cPictureURLs.split()
             #
+            if len( lPicURLS ) < 3: continue
+            #
             for sPicURL in lPicURLS:
                 #
                 if isURL( sPicURL ):
@@ -239,6 +244,12 @@ class GetAndStoreSingleItemsTests(
             #
         #
 
+    def tearDown( self ):
+        #
+        pass
+        #
+        # if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
+        #
 
     @tag('ebay_api')
     def test_get_item_picture_hidden( self ):
@@ -251,7 +262,8 @@ class GetAndStoreSingleItemsTests(
         #
         lPicURLS = oItem.cPictureURLs.split()
         #
-        sItemPicsSubDir = _getItemPicsSubDir( iItemNumb, '/tmp' )
+        sItemPicsSubDir = _getItemPicsSubDir(
+                                iItemNumb, PIC_TEST_DIR )
         #
         lResults = []
         #
@@ -275,9 +287,7 @@ class GetAndStoreSingleItemsTests(
             DeleteIfExists( sItemPicsSubDir, sResult )
             #
         #
-        sOneUpDir = dirname( sItemPicsSubDir )
-        #
-        if isDirThere( sOneUpDir ): rmtree( sOneUpDir )
+        if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
         #
 
     @tag('ebay_api')
@@ -287,14 +297,27 @@ class GetAndStoreSingleItemsTests(
         #
         oItem = Item.objects.get( iItemNumb = iItemNumb )
         #
-        getItemPictures( iItemNumb, sItemPicsRoot = '/tmp' )
+        getItemPictures( iItemNumb, sItemPicsRoot = PIC_TEST_DIR )
         #
         oItem.refresh_from_db()
         #
         self.assertTrue( oItem.bGotPictures )
         #
         self.assertNotEmpty( oItem.tGotPictures )
-
+        #
+        self.assertGreater( oItem.iGotPictures, 2 )
+        #
+        sItemPicsDir = _getItemPicsSubDir( iItemNumb, PIC_TEST_DIR )
+        #
+        setFilesNames = frozenset( listdir( sItemPicsDir ) )
+        #
+        for iSeq in range( oItem.iGotPictures ):
+            #
+            sFileNameJPG = _getPicFileNameExtn( None, iItemNumb, iSeq, 'jpg' )
+            sFileNamePNG = _getPicFileNameExtn( None, iItemNumb, iSeq, 'png' )
+            #
+            self.assertTrue( sFileNameJPG in setFilesNames or
+                             sFileNamePNG in setFilesNames )
 
 
     def test_get_single_active_item_then_store( self ):

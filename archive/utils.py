@@ -465,9 +465,9 @@ def _getItemPicsSubDir( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
 
 
 
-def _getPicFileNameExtn( sURL, iItemNumb, iSeq ):
+def _getPicFileNameExtn( sURL, iItemNumb, iSeq, sExtn = None ):
     #
-    sExtn = _getPicExtension( sURL ) or 'jpg'
+    if sExtn is None: sExtn = _getPicExtension( sURL ) or 'jpg'
     #
     sNameExt = '%s-%s.%s' % ( iItemNumb, str( iSeq ).zfill( 2 ), sExtn )
     #
