@@ -758,6 +758,11 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oBrandCategory.save()
         #
 
+    def test_generic_model_OK( self ):
+        #
+        oModel = Model.objects.get( cTitle = '6L6WGB' )
+        #
+        self.assertTrue( oModel.bGenericModel )
 
 
 class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
