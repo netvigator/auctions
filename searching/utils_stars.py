@@ -238,12 +238,38 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
     return sReturn
 
 
+def _printHitSearchSteps( iItemNumb, dFindSteps ):
+    #
+    print('')
+    print('Item %s Hit Search Steps:' % iItemNumb )
+    #
+    for k, v in dFindSteps.items():
+        #
+        print( '  %s' % k )
+        #
+        for s in v:
+            #
+            print( '    %s' % s )
+            #
+
+def getTitleOrNone( o ):
+    #
+    sTitle = 'None'
+    #
+    if hasattr( o, 'cTitle' ):
+        #
+        sTitle = o.cTitle
+        #
+    #
+    return sTitle
+
+
 
 def findSearchHits(
             iUser                   = oUserOne.id,
             bCleanUpAfterYourself   = True,
             bShowProgress           = False,
-            bRecordSteps            = False ):
+            setRecordStepsForThese  = () ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -334,7 +360,8 @@ def findSearchHits(
     dFindSteps = OrderedDict(
         (   ( 'categories', [] ),
             ( 'models',     [] ),
-            ( 'brands',     [] ) ) )
+            ( 'brands',     [] ),
+            ( 'selection',  [] ) ) )
     #
     for oItem in qsItems:
         #
@@ -349,6 +376,8 @@ def findSearchHits(
         oUserItem = None
         #
         lDeleteThese = []
+        #
+        bRecordSteps = oItem.iItemNumb in setRecordStepsForThese
         #
         for oNext in qsUserItems:
             #
@@ -487,7 +516,7 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    lModels.append( 'excluded: %s' % oCategory.oModel )
+                    lModels.append( 'excluded: %s' % oModel.cTitle )
                     #
                 #
                 continue
@@ -534,7 +563,9 @@ def findSearchHits(
                             oTempItem.iFoundModelLen= getLen( sInTitle )
                             #
                         #
-                        iHitStars = oTempItem.iStarsCategory * oModel.iStars
+                        iModelStars = oModel.iStars or 1
+                        #
+                        iHitStars = oTempItem.iStarsCategory * iModelStars
                         #
                         oTempItem.iHitStars         = iHitStars
                         #
@@ -576,6 +607,8 @@ def findSearchHits(
                 #
             #
         #
+        lBrands = dFindSteps[ 'brands' ]
+        #
         for oBrand in qsBrands:
             #
             foundItem = getFoundItemTester( oBrand, dFindersBrands )
@@ -587,10 +620,34 @@ def findSearchHits(
             #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE':
                 #print('brand GE')
             #
-            if sInTitle and not bExcludeThis:
+            if bExcludeThis:
+                #
+                if bRecordSteps:
+                    #
+                    lBrands.append( 'excluded: %s' % oBrand.cTitle )
+                    #
+                #
+                continue
+                #
+            #
+            if sInTitle:
                 #
                 #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE':
                     #print('sInTitle and not bExcludeThis')
+                #
+                if bRecordSteps:
+                    #
+                    if sInTitle == oBrand.cTitle:
+                        #
+                        lBrands.append( '%s in title' % sInTitle )
+                        #
+                    else:
+                        #
+                        lBrands.append(
+                            'for brand "%s", "%s" is in title' %
+                            ( oBrand.cTitle, sInTitle ) )
+                        #
+                    #
                 #
                 for oTempItem in lItemFoundTemp:
                     #
@@ -601,11 +658,23 @@ def findSearchHits(
                                 #oBrand.cTitle == 'GE' and
                                 #oTempItem.iModel.cTitle == '5R4GA' ):
                             #print('doing 5R4GA')
+                        #
                         bSaveBrand = False
+                        #
+                        bGotBrandForNonGenericModel = False
                         #
                         if oBrand == oTempItem.iModel.iBrand:
                             #
                             bSaveBrand = True
+                            #
+                            if bRecordSteps:
+                                #
+                                lBrands.append(
+                                    'found brand %s for model %s' %
+                                    ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                                #
+                            #
+                            bGotBrandForNonGenericModel = True
                             #
                         elif oTempItem.iModel.bGenericModel:
                             #
@@ -624,11 +693,23 @@ def findSearchHits(
                         #
                         if bSaveBrand:
                             #
+                            if (    bRecordSteps and
+                                    oTempItem.iModel.bGenericModel and
+                                    not bGotBrandForNonGenericModel ):
+                                #
+                                lBrands.append(
+                                    'found brand %s for generic model %s' %
+                                    ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                                #
+                            #
                             oTempItem.iStarsBrand  = oBrand.iStars
                             oTempItem.iBrand       = oBrand
                             #
-                            iHitStars = (   oTempItem.iStarsCategory *
-                                            oTempItem.iStarsModel *
+                            iStarsCategory  = oTempItem.iStarsCategory  or 1
+                            iStarsModel     = oTempItem.iStarsModel     or 1
+                            #
+                            iHitStars = (   iStarsCategory *
+                                            iStarsModel *
                                             oBrand.iStars )
                             #
                             oTempItem.iHitStars    = iHitStars
@@ -641,6 +722,13 @@ def findSearchHits(
                     #
                 #
                 if not bFoundBrandForModel:
+                    #
+                    if bRecordSteps:
+                        #
+                        lBrands.append(
+                            'did not find brand %s for any model found' %
+                            oBrand.cTitle )
+                        #
                     #
                     oTempItem = ItemFoundTemp(
                             iItemNumb       = oItem,
@@ -658,9 +746,16 @@ def findSearchHits(
         #
         tNow = timezone.now()
         #
+        lSelect = dFindSteps[ 'selection' ]
+        #
         if lItemFoundTemp:
             #
             if len( lItemFoundTemp ) > 1:
+                #
+                if bRecordSteps:
+                    #
+                    lSelect.append( 'selection scoring (total, hit stars, found length):' )
+                    #
                 #
                 lSortItems = []
                 #
@@ -671,12 +766,40 @@ def findSearchHits(
                     #
                     lSortItems.append( ( iScoreStars, i ) )
                     #
+                    if bRecordSteps:
+                        #
+                        lSelect.append(
+                            '%s, %s, %s - %s : %s : %s' %
+                            ( iScoreStars,
+                              lItemFoundTemp[i].iHitStars,
+                              lItemFoundTemp[i].iFoundModelLen,
+                              getTitleOrNone( lItemFoundTemp[i].iCategory ),
+                              getTitleOrNone( lItemFoundTemp[i].iModel ),
+                              getTitleOrNone( lItemFoundTemp[i].iBrand ) ) )
+                        #
+                    #
                 #
                 lSortItems.sort()
                 #
                 lSortItems.reverse()
                 #
                 lItemFoundTemp = [ lItemFoundTemp[ t[1] ] for t in lSortItems ]
+                #
+                if bRecordSteps:
+                    #
+                    lSelect.append(
+                        'on top: %s : %s : %s' %
+                        ( getTitleOrNone( lItemFoundTemp[i].iCategory ),
+                          getTitleOrNone( lItemFoundTemp[i].iModel ),
+                          getTitleOrNone( lItemFoundTemp[i].iBrand )) )
+                    #
+                #
+            else:
+                #
+                if bRecordSteps:
+                    #
+                    lSelect.append( 'only found one thing for this item, a no brainer!' )
+                    #
                 #
             #
             iItemsFoundTemp = 0
@@ -714,6 +837,13 @@ def findSearchHits(
                     #
                     # have complete hit, make an additional UserItem record
                     #
+                    if bRecordSteps:
+                        #
+                        lSelect.append( 'also storing: %s : %s : %s' %
+                                        (   getTitleOrNone( oTempItem.iCategory ),
+                                            getTitleOrNone( oTempItem.iModel ),
+                                            getTitleOrNone( oTempItem.iBrand )) )
+                        #
                     tNow = timezone.now()
                     #
                     oNewUserItem = UserItemFound(
@@ -739,9 +869,19 @@ def findSearchHits(
             #
         else: # not lItemFoundTemp
             #
+            if bRecordSteps:
+                #
+                lSelect.append( 'did not find anything for this item' )
+                #
+            #
             oUserItem.tLook4Hits = tNow
             #
             oUserItem.save()
+            #
+        #
+        if bRecordSteps:
+            #
+            _printHitSearchSteps( oItem.iItemNumb, dFindSteps )
             #
         #
     #
