@@ -194,5 +194,5 @@ several non working tests commented out in:
 searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
 need to fix!
 
+UserItemsFound.tGotPics is not implememted yet
 
-pic download testing needs to make sure all files are written and on the disk!
