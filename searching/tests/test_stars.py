@@ -54,7 +54,7 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
-
+setRecordStepsForThese = () # , 162988285721, 192577735613
 
 class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
     #
@@ -83,7 +83,9 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         iCountItems, iStoreItems, iStoreUsers = t
         #
         # bCleanUpAfterYourself must be False or tests will fail!
-        findSearchHits( self.user1.id, bCleanUpAfterYourself = False )
+        findSearchHits( self.user1.id,
+                        bCleanUpAfterYourself  = False,
+                        setRecordStepsForThese = setRecordStepsForThese )
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
@@ -306,18 +308,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ 263776955668 ]
         #
+        # Lot of 10 should not find vacuum tube type 10
+        #
         self.assertIsNotNone( oTest )
         #
-        print('')
-        print('263776955668')
-        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
-        #
-        print('should find category from ebay category heirarchy')
-        print('oTest.iCategory is None:', oTest.iCategory is None)
-        # getting None self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        print('oTest.iModel is None:', oTest.iModel is None)
-        # self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        self.assertIsNone( oTest.iModel )
         #
         oTest = dItemsToTest[ 192577735613 ]
         #
