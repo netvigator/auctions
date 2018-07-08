@@ -54,7 +54,7 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
-setRecordStepsForThese = () # , 162988285721, 192577735613
+setRecordStepsForThese = ()
 
 class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
     #
@@ -92,9 +92,10 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        pass # DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
 
+# setRecordStepsForThese is a page up from here
 
 class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
 
@@ -110,8 +111,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertGreater( iCount, 160 )
         #
-        oUserItems = UserItemFound.objects.filter(
-                        iUser = self.user1 ).order_by( '-iHitStars' )
+        qsUserItems = UserItemFound.objects.filter(
+                        iUser = self.user1,
+                        iHitStars__gt = 0 ).order_by( 'iHitStars' )
         #
         iCount = 0
         #
@@ -129,14 +131,14 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 162988285721,
                 142842525513,
                 263776955668,
+                192577735613,
                 173375697400,
-                192577735613
+                273340636575,
                 ) )
         #
-        for oTemp in oUserItems:
+        for oTemp in qsUserItems:
             #
-            #
-            if oTemp.iHitStars == 0: break
+            if oTemp.iHitStars == 0: continue
             #
             if oTemp.iItemNumb_id in dItemsToTest:
                 #
@@ -150,33 +152,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                     dItemsToTest[ oTemp.iItemNumb_id ] = oTemp
                     #
                 #
-                #print( '' )
-
-                #sSayModel = sSayBrand = sSayCategory = ''
-                ##
-                #if oTemp.iModel:
-                    #sSayModel = oTemp.iModel.cTitle
-                #if oTemp.iBrand:
-                    #sSayBrand = oTemp.iBrand.cTitle
-                #if oTemp.iCategory:
-                    #sSayCategory = oTemp.iCategory.cTitle
-
-                #print( 'Auction Title:', oTemp.iItemNumb.cTitle )
-
-                #print( 'ItemNumb     :', oTemp.iItemNumb.pk     )
-                #print( 'iHitStars    :', oTemp.iHitStars        )
-                #print( 'Model        :', sSayModel              )
-                #print( 'Brand        :', sSayBrand              )
-                #print( 'Category     :', sSayCategory           )
-                ##
-                #print( 'Search       :', oTemp.iSearch.cTitle   )
-                #print( 'WhereCategory:', oTemp.cWhereCategory   )
-                #print( 'Evaluated    :',
-                    #oTemp.tLook4Hits.strftime('%Y-%m-%d %H:%M:%S'))
-                #print( 'Auction End  :', oTemp.iItemNumb.tTimeEnd)
             #
             iCount += 1
-        #
+            #
         self.assertGreater( iCount, 38 )
         #
         oTest = dItemsToTest[ 253486571279 ]
@@ -316,16 +294,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ 192577735613 ]
         #
-        print('')
-        print('192577735613')
-        print( 'oTest is None:', oTest is None )
-        # getting None self.assertIsNotNone( oTest )
-        #
         #self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
         #
-        #self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
         #
-        #self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ 173375697400 ]
         #
@@ -353,12 +326,19 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
         #
-        # getting 5881 self.assertEqual( oTest.iModel.cTitle, '6L6WGB' )
+        self.assertEqual( oTest.iModel.cTitle, '6L6WGB' )
         #
-        print('')
-        print('162988285721')
-        print( oTest.iModel.cTitle )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ 273340636575 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Supreme' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'TV-7' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
         #
         # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
