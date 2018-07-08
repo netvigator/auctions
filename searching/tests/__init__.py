@@ -44,6 +44,7 @@ sBrands = \
  Grommes           |      5 |            |
  Harman-Kardon     |      7 |            |
  Heathkit          |      8 |            | Heath
+ Hickok            |      8 |            |
  Interelectronics  |      3 |            |
  Jensen            |      8 |            |
  Kadette           |      6 |            |
@@ -57,6 +58,7 @@ sBrands = \
  McIntosh          |      6 |            |
  MFA               |      8 |            |
  Motorola          |      7 |            |
+ Mullard           |      9 |            |
  National          |      7 |            |
  PACO              |      2 |            |
  Pilot             |      8 |            |
@@ -71,6 +73,7 @@ sBrands = \
  Sherwood          |      5 |            |
  Silvertone        |      3 |            |
  Spartan           |      8 |            |
+ Supreme           |      5 |            |
  Stromberg-Carlson |      5 |            |
  Tung-Sol          |      6 |            |
  UTC               |      8 |            |
@@ -90,6 +93,8 @@ sModels = \
  6L6WGB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
+ 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10    | t
+ TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
@@ -2404,7 +2409,7 @@ sResponseSearchTooBroad = \
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mBi0IeLkbbbJ_lrQVn0Q4Qw\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/RCA-12SN7GT-Electron-Radiotron-Radio-Audio-Amp-Vacuum-Tube-Antique-TV-NOS-\/162988285720"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/RCA-12SN7GT-Electron-Radiotron-Radio-Audio-Amp-Vacuum-Tube-Antique-TV-NOS-\/162988285721"],
               "paymentMethod":["PayPal"],
               "autoPay":["true"],
               "postalCode":["15679"],
@@ -2441,6 +2446,32 @@ sResponseSearchTooBroad = \
                "returnsAccepted":["true"],
                "isMultiVariationListing":["false"],
                "topRatedListing":["false"]
+
+            },{"itemId":["273340636575"],
+               "title":["Supreme TV-7 TUBE TESTER military vintage test western electric 300b"],
+               "globalId":["EBAY-US"],
+               "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mUPbClYdYXaa0OwqfcQKGVA\/140.jpg"],
+               "viewItemURL":["http:\/\/www.ebay.com\/itm\/military-TV-7-TUBE-TESTER-vintage-WORKING-CONDITION-test-western-electric-300b-\/273340636575"],
+               "paymentMethod":["PayPal"],"autoPay":["false"],
+               "postalCode":["17101"],
+               "location":["Harrisburg,PA,USA"],
+               "country":["US"],
+               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"39.8"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"51.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"51.0"}],
+               "bidCount":["5"],
+               "sellingState":["Active"],
+               "timeLeft":["P7DT19H15M26S"]}],
+               "listingInfo":[{"bestOfferEnabled":["false"],
+               "buyItNowAvailable":["false"],
+               "startTime":["2018-07-06T02:55:36.000Z"],
+               "endTime":["2018-07-16T02:55:36.000Z"],
+               "listingType":["Auction"],
+               "gift":["false"],
+               "watchCount":["53"]}],
+               "returnsAccepted":["true"],
+               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["263776955668"],
                "title":["LOT OF 10 5823 NOS NATIONAL GENERAL ELECTRIC RCA AND AMPEREX"],
@@ -2492,12 +2523,11 @@ sResponseSearchTooBroad = \
                "gift":["false"],
                "watchCount":["21"]}],
                "returnsAccepted":["true"],
-               "isMultiVariationListing":["false"],
-               "topRatedListing":["true"]
+               "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
            },{"itemId":["192577735613"],
               "title":["10 vintage tubes 6AU6 tubes Philips Mullard Super Radiotron tested NIB"],
-              "globalId":["EBAY-AU"],
+              "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],
               "categoryName":["Vintage Tubes & Tube Sockets"]}],
               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mJvSME4c-rA_rFIZsAFelhg\/140.jpg"],
@@ -2539,7 +2569,8 @@ sResponseSearchTooBroad = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],
               "returnsAccepted":["true"],
               "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/122988243137_1_0_1.jpg"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]}]}],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]}]
+           }],
 
         "paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["100"],"totalPages":["24"],"totalEntries":["2374"]}],
         "itemSearchURL":["http:\/\/www.ebay.com\/sch\/i.html?_nkw=catalin&_ddo=1&_ipg=100&_pgn=1"]
@@ -2551,6 +2582,49 @@ sResponseSearchTooBroad = \
 # ### you must manually convert a signle backslash to a double backslash ###
 # ###      also first item is tested in core.test_utils_ebay             ###
 
+# ###    if you add a new item, it will only show up in test_stars.py    ###
+# ###     if the category is among the test categories in ebay_info      ###
+
+
+sResponseNotWorking = \
+'''{"findItemsByKeywordsResponse":
+  [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2018-03-03T23:04:24.581Z"],
+    "searchResult":
+      [{"@count":"1",
+        "item":
+          [ {"itemId":["273340636575"],
+               "title":["Supreme TV-7 TUBE TESTER military vintage test western electric 300b"],
+               "globalId":["EBAY-US"],
+               "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mUPbClYdYXaa0OwqfcQKGVA\/140.jpg"],
+               "viewItemURL":["http:\/\/www.ebay.com\/itm\/military-TV-7-TUBE-TESTER-vintage-WORKING-CONDITION-test-western-electric-300b-\/273340636575"],
+               "paymentMethod":["PayPal"],"autoPay":["false"],
+               "postalCode":["17101"],
+               "location":["Harrisburg,PA,USA"],
+               "country":["US"],
+               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"39.8"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"51.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"51.0"}],
+               "bidCount":["5"],
+               "sellingState":["Active"],
+               "timeLeft":["P7DT19H15M26S"]}],
+               "listingInfo":[{"bestOfferEnabled":["false"],
+               "buyItNowAvailable":["false"],
+               "startTime":["2018-07-06T02:55:36.000Z"],
+               "endTime":["2018-07-16T02:55:36.000Z"],
+               "listingType":["Auction"],
+               "gift":["false"],
+               "watchCount":["53"]}],
+               "returnsAccepted":["true"],
+               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+               "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+            }],
+
+        "paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["1"],"totalPages":["2"],"totalEntries":["2374"]}],
+        "itemSearchURL":["http:\/\/www.ebay.com\/sch\/i.html?_nkw=catalin&_ddo=1&_ipg=100&_pgn=1"]
+   }
+ ]
+}'''
 
 sLastPageZeroEntries = \
 '''{"findItemsAdvancedResponse":
