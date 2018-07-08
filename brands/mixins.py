@@ -1,12 +1,13 @@
+from brands.models      import Brand
 from categories.models  import Category, BrandCategory
 
 from Object.Get         import QuickObject
 
 class GetContextForBrandCategoryList( object ):
     '''get the brand category list into the context'''
-    
+
     def get_context_data(self, **kwargs):
-        
+
         context = super(
             GetContextForBrandCategoryList, self
                 ).get_context_data( **kwargs )
@@ -65,6 +66,9 @@ class PostUpdateBrandCategoryList( object ):
 
     def post(self, request, *args, **kwargs):
         '''handle changes to brand categories'''
+
+        oReturn = oSaveBrand = None
+
         if "cancel" in request.POST:
             #
             pass
@@ -73,32 +77,63 @@ class PostUpdateBrandCategoryList( object ):
             #
             self.object = self.get_object()
             #
-            setIncluded     = frozenset( request.POST.getlist('bIncluded'   ) )            
-            setIncludedSet  = frozenset( request.POST.getlist('IncludedSet' ) )
+            oSaveBrand  = self.object
             #
-            setMustInclude  = setIncluded - setIncludedSet
-            setMustUnInclude= setIncludedSet - setIncluded
+            if self.success_message.startswith( 'New' ):
+                #
+                # this is a new record, row is not saved yet
+                #
+                oReturn = ( super( PostUpdateBrandCategoryList, self )
+                                   .post( request, *args, **kwargs ) )
+                #
+                # oReturn:
+                # <HttpResponseRedirect
+                    # status_code=302,
+                    # "text/html; charset=utf-8",
+                    # url="/brands/2139774154/?updated=2018-07-08_21.35.05">
+                #
+                if oReturn.status_code == 302:
+                    #
+                    sURL = oReturn.url
+                    #
+                    iBrandID    = int( sURL.split('/')[2] )
+                    #
+                    oSaveBrand = Brand.objects.get( pk = iBrandID )
+                    #
+                #
             #
-            self.object = self.get_object()
-            #
-            for sID in setMustInclude:
+            if oSaveBrand is not None:
                 #
-                oBrandCategory = BrandCategory(
-                        iBrand          = self.object,
-                        iCategory_id    = int( sID ),
-                        bWant           = True,
-                        iUser           = self.request.user )
+                setIncluded     = frozenset( request.POST.getlist('bIncluded'   ) )
+                setIncludedSet  = frozenset( request.POST.getlist('IncludedSet' ) )
                 #
-                oBrandCategory.save()
+                setMustInclude  = setIncluded - setIncludedSet
+                setMustUnInclude= setIncludedSet - setIncluded
                 #
-            #
-            if setMustUnInclude:
+                for sID in setMustInclude:
+                    #
+                    oBrandCategory = BrandCategory(
+                            iBrand          = oSaveBrand,
+                            iCategory_id    = int( sID ),
+                            bWant           = True,
+                            iUser           = self.request.user )
+                    #
+                    oBrandCategory.save()
+                    #
                 #
-                qsDelete = BrandCategory.objects.filter( 
-                        iBrand          = self.object,
-                        iCategory_id__in= setMustUnInclude,
-                        iUser           = self.request.user ).delete()
+                if setMustUnInclude:
+                    #
+                    qsDelete = BrandCategory.objects.filter(
+                            iBrand          = self.object,
+                            iCategory_id__in= setMustUnInclude,
+                            iUser           = self.request.user ).delete()
+                #
             #
         #
-        return ( super( PostUpdateBrandCategoryList, self )
-                    .post( request, *args, **kwargs ) )
+        if oReturn is None:
+            #
+            oReturn = ( super( PostUpdateBrandCategoryList, self )
+                                .post( request, *args, **kwargs ) )
+            #
+        #
+        return oReturn
