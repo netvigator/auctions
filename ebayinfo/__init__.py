@@ -47,7 +47,7 @@ dMarketsRelated = {
          23 : 123,  # EBAY-FRBE  : EBAY-NLBE
         123 :  23 } # EBAY-NLBE  : EBAY-FRBE
 
-# select "id","iCategoryID","name","iLevel","iParentID","bLeafCategory","iTreeVersion","iMarket_id"
+# select "id","iCategoryID","name","iLevel","iParentID","bLeafCategory","iTreeVersion","iEbaySiteID_id"
 
 sCategoryDump = \
 '''
@@ -133,6 +133,7 @@ sCategoryDump = \
 18746 |      171814 | Cables & Adapters             |      3 |     54968 | t             |          117 |          0
  8480 |       29833 | Other Vintage Radio, TV, Phone|      3 |     29832 | t             |          117 |          0
 
+
  5003 |       10804 | Signs                         |      4 |     13623 | f             |          117 |          0
  9881 |       67807 | Vintage Preamps & Tube Preamps|      4 |    175740 | t             |          117 |          0
  8464 |         934 | Manuals                       |      4 |       931 | t             |          117 |          0
@@ -166,7 +167,9 @@ sCategoryDump = \
 14500 |       21766 | Other Parts & Accessories     |      4 |    181224 | t             |          117 |          0
  3231 |       15252 | Movie Projectors              |      4 |     15250 | t             |          117 |          0
  9884 |       50597 | Vintage Speakers              |      4 |    175740 | t             |          117 |          0
+ 1468 |      181998 | Testers & Calibrators         |      4 |    181939 | f             |          117 |          0
 
+ 1478 |      170062 | Tube Testers                  |      5 |    181998 | t             |          117 |          0
  9893 |       67815 | Vintage Transformers          |      5 |    175741 | t             |          117 |          0
  9895 |      168088 | Other Vintage A/V Parts & Accs|      5 |    175741 | t             |          117 |          0
  5004 |       37840 | Original                      |      5 |     10804 | f             |          117 |          0
