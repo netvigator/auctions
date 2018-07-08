@@ -632,6 +632,10 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iUser       = self.user1 )
         oCategory.save()
         #
+        oCategory   = Category( cTitle      = 'Tube Tester',
+                                iStars      = 8,
+                                iUser       = self.user1 )
+        oCategory.save()
         #
         oTableIter = getTableFromScreenCaptureGenerator( sBrands )
         #
@@ -749,6 +753,15 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oBrandCategory.save()
         #
         oBrand = Brand.objects.get( cTitle = 'Tung-Sol' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
+        #
+        oBrand = Brand.objects.get( cTitle = 'Mullard' )
         #
         oBrandCategory = BrandCategory(
                                 iBrand      = oBrand,
