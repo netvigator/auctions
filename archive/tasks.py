@@ -90,7 +90,7 @@ def getItemPicturesTask( iItemNumb ):
 
 
 @shared_task( name = 'archive.tasks.doGetItemPicturesTasks' )
-def doGetItemPicturesTasks( iLimit = 50,  bOnlySay = False ):
+def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
     #
     qsGetPics = getItemsForPicsDownloading( iLimit )
     #
@@ -136,6 +136,7 @@ select count(*) from itemsfound
 
 # doGetItemPicturesTasks( bOnlySay = True )
 
+select count(*) from items where "iGotPictures" > 0 ;
 select count(*) from items where "tGotPictures" is null  ;
 select "iItemNumb", "tTimeEnd" from items where "tGotPictures" is null order by "tTimeEnd" ;
 
