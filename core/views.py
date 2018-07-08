@@ -33,14 +33,16 @@ class ListViewGotModel(
 
 
 
-class CreateViewCanCancel( LoginRequiredMixin, 
+class CreateViewCanCancel( LoginRequiredMixin,
             SuccessMessageMixin, FormValidMixin, GetFormMixin,
             CreateView ):
     '''
     Enhanced CreateView which includes crispy form Create and Cancel buttons.
     '''
 
+    # value accessed in subclass
     success_message = 'New record successfully saved!!!!'
+    # value accessed in subclass
 
     def get_object(self):
         '''work around obscure bug, sometimes CreateView requires a pk!'''
@@ -73,7 +75,7 @@ class DeleteViewGotModel( LoginRequiredMixin, GetModelInContextMixin,
     Enhanced DeleteView which also includes the model in the context data,
     so that the template has access to its model class.
     '''
- 
+
     success_message = 'Record successfully deleted!!!!'
 
 
@@ -104,6 +106,6 @@ class DetailViewGotModel( LoginRequiredMixin,
     Enhanced DetailView which also includes the model in the context data,
     so that the template has access to its model class.
     '''
- 
+
     pass
 
