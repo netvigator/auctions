@@ -92,7 +92,9 @@ class PostUpdateBrandCategoryList( object ):
                     # "text/html; charset=utf-8",
                     # url="/brands/2139774154/?updated=2018-07-08_21.35.05">
                 #
-                if oReturn.status_code == 302:
+                if oReturn.status_code == 302: # success
+                    #
+                    # 302 is redirect, to detail page
                     #
                     sURL = oReturn.url
                     #
