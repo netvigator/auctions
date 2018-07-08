@@ -6,7 +6,6 @@ from django.conf        import settings
 
 from ebayinfo.models    import EbayCategory
 
-from searching          import ItemAlreadyInTable
 
 # avoiding circular import problems!
 
@@ -20,6 +19,7 @@ logging.basicConfig(
 ''' prints logging messages to terminal
 '''
 
+class ItemAlreadyInTable(    Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
 
 def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
