@@ -28,9 +28,6 @@ test save model (request.user problem saving new model), fixed by
 2) in the form __init__ method: self.user = kwargs.pop('user')
 
 
-exclude for Reproduction not working
-search 17 item 112846965430
-
 searching/utils
 handle search executed OK but returned no items
 
@@ -145,9 +142,6 @@ cannot reverse Lancer 77 & L77
 
 need to fill out test_get_single_active_item_then_store() in archive/test_utils.py
 
-FISHER CA 9025 100 WATT PER CHANNEL CLASS A STEREO AMPLIFIER AMP
-should be excluded, 9025 is on exclude list for Fisher 100
-
 NOS WESTERN ELECTRIC 300A 300B TUBES ORIGINAL BOXES
 153071850409
 removed?
@@ -158,10 +152,6 @@ should find 6X4 not 10
 
 Lot of 10 Vintage Vacuum Tubes - TUNG-SOL 6AU6A - Tested
 should find 6AU6A
-
-
-need to test _getRowRegExpressions, make sure cRegExExclude is stored
-(for tube type 10, cRegExExclude is not stored)
 
 
 KT88 JAN TESLA 1984 NOS Rare Joint Army Navy Distributed by RCA 6550 KT90
