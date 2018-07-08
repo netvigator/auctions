@@ -17,9 +17,11 @@ from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
 from .models            import ItemFound, UserItemFound, SearchLog, Search
 from .utilsearch        import ( getSearchResultGenerator, getPagination,
-                                 storeEbayInfo, SearchGotZeroResults )
+                                 storeItemInfo, SearchGotZeroResults,
+                                 ItemAlreadyInTable )
 
-from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
+from searching          import ( RESULTS_FILE_NAME_PATTERN,
+                                 SEARCH_FILES_FOLDER )
 
 from Dir.Get            import getMakeDir
 from File.Del           import DeleteIfExists
@@ -41,7 +43,6 @@ logging.basicConfig(
     level=logging.INFO)
 
 class SearchNotWorkingError( Exception ): pass
-class ItemAlreadyInTable(    Exception ): pass
 
 getMakeDir( SEARCH_FILES_FOLDER )
 
@@ -336,7 +337,7 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
         #
     else:
         #
-        iSavedRowID = storeEbayInfo(
+        iSavedRowID = storeItemInfo(
                         dItem,
                         dItemFoundFields,
                         tSearchTime,
@@ -372,7 +373,7 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
     #
     bAuction = sListingType.startswith( 'Auction' )
     #
-    return storeEbayInfo(
+    return storeItemInfo(
                 dItem,
                 dUserItemFoundUploadFields,
                 tSearchTime,
