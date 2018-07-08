@@ -6,6 +6,8 @@ from django.conf        import settings
 
 from ebayinfo.models    import EbayCategory
 
+from searching          import ItemAlreadyInTable
+
 # avoiding circular import problems!
 
 logger = logging.getLogger(__name__)
@@ -57,7 +59,7 @@ ALL_PRIORITIES = getPriorityChoices()
 
 
 
-def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
+def storeItemInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
     #
     '''can store a row in either ItemFound or UserItemFound
     note that when testing against the live ebay api,
@@ -120,11 +122,11 @@ def storeEbayInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         #
     else:
         #
-        if (    settings.TESTING and
-                'iItemNumb' in form.errors and
+        if (    'iItemNumb' in form.errors and
                 len( form.errors ) == 1 ):
             #
-            pass
+            raise ItemAlreadyInTable(
+                'Item %s already in table' % dNewResult['iItemNumb'] )
             #
         else:
             #
