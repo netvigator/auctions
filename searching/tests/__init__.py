@@ -2586,45 +2586,6 @@ sResponseSearchTooBroad = \
 # ###     if the category is among the test categories in ebay_info      ###
 
 
-sResponseNotWorking = \
-'''{"findItemsByKeywordsResponse":
-  [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2018-03-03T23:04:24.581Z"],
-    "searchResult":
-      [{"@count":"1",
-        "item":
-          [ {"itemId":["273340636575"],
-               "title":["Supreme TV-7 TUBE TESTER military vintage test western electric 300b"],
-               "globalId":["EBAY-US"],
-               "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mUPbClYdYXaa0OwqfcQKGVA\/140.jpg"],
-               "viewItemURL":["http:\/\/www.ebay.com\/itm\/military-TV-7-TUBE-TESTER-vintage-WORKING-CONDITION-test-western-electric-300b-\/273340636575"],
-               "paymentMethod":["PayPal"],"autoPay":["false"],
-               "postalCode":["17101"],
-               "location":["Harrisburg,PA,USA"],
-               "country":["US"],
-               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"39.8"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
-               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"51.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"51.0"}],
-               "bidCount":["5"],
-               "sellingState":["Active"],
-               "timeLeft":["P7DT19H15M26S"]}],
-               "listingInfo":[{"bestOfferEnabled":["false"],
-               "buyItNowAvailable":["false"],
-               "startTime":["2018-07-06T02:55:36.000Z"],
-               "endTime":["2018-07-16T02:55:36.000Z"],
-               "listingType":["Auction"],
-               "gift":["false"],
-               "watchCount":["53"]}],
-               "returnsAccepted":["true"],
-               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-               "isMultiVariationListing":["false"],"topRatedListing":["false"]
-
-            }],
-
-        "paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["1"],"totalPages":["2"],"totalEntries":["2374"]}],
-        "itemSearchURL":["http:\/\/www.ebay.com\/sch\/i.html?_nkw=catalin&_ddo=1&_ipg=100&_pgn=1"]
-   }
- ]
-}'''
 
 sLastPageZeroEntries = \
 '''{"findItemsAdvancedResponse":
