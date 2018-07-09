@@ -219,7 +219,67 @@ class ItemFoundDetailView( DetailViewGotModel ):
     template_name   = 'searching/item_found_detail.html'
     form_class      = UserItemFoundForm
 
+    def get_context_data( self, **kwargs ):
+        '''
+        want more info to the context data.
+        '''
+        context = super(
+                ItemFoundDetailView, self
+                ).get_context_data( **kwargs )
 
+        # qsThisItem = UserItemFound.objects.filter(
+        #
+        '''
+        {'object': <UserItemFound: FISHER FM 200 B FM STEREO TUBE TUNER 200B>,
+         'useritemfound': <UserItemFound: FISHER FM 200 B FM STEREO TUBE TUNER 200B>,
+         'view': <searching.views.ItemFoundDetailView object at 0x7f0669fa63c8>,
+         'model': <class 'searching.models.UserItemFound'>,\
+         'parent': <class 'searching.models.ItemFound'>}
+        '''
+        #
+        qsThisItemAllHits = UserItemFound.objects.filter(
+                iItemNumb_id = context[ 'object' ].iItemNumb_id,
+                iUser        = context[ 'object' ].iUser )
+        #
+        qsThisItemOtherHits = qsThisItemAllHits.difference(
+                UserItemFound.objects.filter( id = context[ 'object' ].id ) )
+        #
+        if qsThisItemOtherHits:
+            #
+            sTableTemplate = '<table RULES=ROWS CELLPADDING=3>%s</table>'
+            #
+            sRowTemplate = (
+                '<TR>'
+                '<TD VALIGN=TOP>%s</TD>'
+                '<TD>&nbsp;&nbsp;</TD>'
+                '<TD VALIGN=TOP>%s</TD>'
+                '<TD>&nbsp;&nbsp;</TD>'
+                '<TD VALIGN=TOP>%s</TD>'
+                '<TD>&nbsp;&nbsp;</TD>'
+                '<TD VALIGN=TOP>%s</TD>'
+                '</TR>' )
+            #
+            sHeader = ( sRowTemplate %
+                        ( 'Model', 'Brand', 'Category', 'HitStars' ) )
+            #
+            lRows = [ sHeader ]
+            #
+            for o in qsThisItemOtherHits:
+                #
+                lRows.append( sRowTemplate %
+                        ( o.iModel, o.iBrand, o.iCategory, o.iHitStars ) )
+                #
+            #
+            sThisItemOtherHits = sTableTemplate % '\n'.join( lRows )
+            #
+        else:
+            #
+            sThisItemOtherHits = 'None'
+            #
+        #
+        context['OtherHits'] = sThisItemOtherHits
+        #
+        return context
 
 
 class ItemFoundUpdateView(
