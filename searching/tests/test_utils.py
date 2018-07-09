@@ -24,7 +24,8 @@ from ..models           import ( Search, ItemFound, UserItemFound,
 
 from ..tests            import dSearchResult # in __init__.py
 from ..tests            import ( sExampleResponse, sBrands, sModels,
-                                 sResponseSearchTooBroad )
+                                 sResponseSearchTooBroad,
+                                 setDoNotMentionThese )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInDB,
@@ -459,7 +460,8 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
                     self.oSearch.id,
                     self.oSearch.cTitle,
                     self.setTestCategories,
-                    bCleanUpFiles = False )
+                    bCleanUpFiles = False,
+                    setDoNotMentionThese = setDoNotMentionThese )
         #
 
     def tearDown(self):
@@ -500,12 +502,14 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
         #
         # try again with the same data
         #
-        t = ( storeSearchResultsInDB(   self.oSearchLog.id,
-                                        self.sMarket,
-                                        self.user1.username,
-                                        self.oSearch.id,
-                                        self.oSearch.cTitle,
-                                        self.setTestCategories ) )
+        t = ( storeSearchResultsInDB(
+                        self.oSearchLog.id,
+                        self.sMarket,
+                        self.user1.username,
+                        self.oSearch.id,
+                        self.oSearch.cTitle,
+                        self.setTestCategories,
+                        setDoNotMentionThese = setDoNotMentionThese ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -855,12 +859,14 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         sUserName   = oSearch.iUser.username
         sMarket     = oSearch.iUser.iEbaySiteID.cMarket
         #
-        t = storeSearchResultsInDB( iLogID,
-                                    sMarket,
-                                    sUserName,
-                                    iSearchID,
-                                    sSearchName,
-                                    self.setTestCategories )
+        t = storeSearchResultsInDB(
+                    iLogID,
+                    sMarket,
+                    sUserName,
+                    iSearchID,
+                    sSearchName,
+                    self.setTestCategories,
+                    setDoNotMentionThese = setDoNotMentionThese )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
@@ -923,12 +929,14 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         sUserName   = oSearch.iUser.username
         sMarket     = oSearch.iUser.iEbaySiteID.cMarket
         #
-        t = storeSearchResultsInDB( iLogID,
-                                    sMarket,
-                                    sUserName,
-                                    iSearchID,
-                                    sSearchName,
-                                    self.setTestCategories )
+        t = storeSearchResultsInDB(
+                iLogID,
+                sMarket,
+                sUserName,
+                iSearchID,
+                sSearchName,
+                self.setTestCategories,
+                setDoNotMentionThese = setDoNotMentionThese )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
