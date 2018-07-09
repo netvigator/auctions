@@ -866,7 +866,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                     iSearchID,
                     sSearchName,
                     self.setTestCategories,
-                    setDoNotMentionThese = setDoNotMentionThese )
+                    bDoNotMentionAny = True )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
@@ -936,7 +936,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
                 iSearchID,
                 sSearchName,
                 self.setTestCategories,
-                setDoNotMentionThese = setDoNotMentionThese )
+                bDoNotMentionAny = True )
         #
         iItems, iStoreItems, iStoreUsers = t
         #
