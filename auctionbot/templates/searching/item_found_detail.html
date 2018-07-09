@@ -9,10 +9,10 @@
 
     <!-- Action buttons -->
     <div class="basic">
-        {% include "./items_found_actions.html" %}    
-    </div>            
+        {% include "./items_found_actions.html" %}
+    </div>
     <!-- End Action buttons -->
-    
+
     <table RULES=ROWS CELLPADDING=10>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cListingType' %}</TD>
@@ -55,7 +55,7 @@
         <td><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
     </tr>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}</TD>
+        <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}:</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD VALIGN=TOP><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
     </TR>
@@ -64,6 +64,13 @@
         <td>&nbsp;&nbsp;</td>
         <td>{{ object.iHitStars }}</td>
     </tr>
+    <tr>
+        <td>Other Hits for this Item:</td>
+        <td>&nbsp;&nbsp;</td>
+        <td>
+        {{ OtherHits }}
+        </td>
+    </tr>
     <TR>
         <TD>{% field_name parent 'lCurrentPrice' %} ({{object.iItemNumb.lLocalCurrency}})</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -71,7 +78,7 @@
     </TR>
     {% if object.iItemNumb.lLocalCurrency != "USD" %}
     <TR>
-        <TD>{% field_name parent 'dCurrentPrice' %}</TD>
+        <TD>{% field_name parent 'dCurrentPrice' %}:</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
@@ -173,13 +180,13 @@
     </TR>
     </TR>
     </table>
-    
+
     <p>
 
     <!-- Action buttons -->
     <div class="basic">
-        {% include "./items_found_actions.html" %}    
-    </div>            
+        {% include "./items_found_actions.html" %}
+    </div>
     <!-- End Action buttons -->
 
 {% endblock %}
