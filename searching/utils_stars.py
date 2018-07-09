@@ -406,7 +406,8 @@ def findSearchHits(
         #
         lDeleteThese = []
         #
-        bRecordSteps = oItem.iItemNumb in setRecordStepsForThese
+        bRecordSteps = ( setRecordStepsForThese is not None and
+                         oItem.iItemNumb in setRecordStepsForThese )
         #
         for oNext in qsUserItems:
             #
