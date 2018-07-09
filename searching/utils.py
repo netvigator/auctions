@@ -463,7 +463,8 @@ def storeSearchResultsInDB( iLogID,
                             iSearchID,
                             sSearchName,
                             setTestCategories = None,
-                            bCleanUpFiles     = False ):
+                            bCleanUpFiles     = False,
+                            setDoNotMentionThese = None ):
     #
     '''high level script, accesses results in file(s)
     and stores in database'''
@@ -507,6 +508,8 @@ def storeSearchResultsInDB( iLogID,
             #
             iItems += 1
             #
+            iItemNumb = int( dItem.get( 'itemId' ) )
+            #
             if setTestCategories is not None:
                 #
                 # when testing, will skip items with categories
@@ -520,9 +523,22 @@ def storeSearchResultsInDB( iLogID,
                 #
                 if ( iEbaySiteID, iCategoryID ) not in setTestCategories:
                     #
-                    #print('')
-                    #print('discarded %s, category %s' %
-                            #( dItem['itemId'], str( ( iEbaySiteID, iCategoryID ) ) ) )
+                    if setDoNotMentionThese:
+                        #
+                        bSayDiscarded = iItemNumb not in setDoNotMentionThese
+                        #
+                    else:
+                        #
+                        bSayDiscarded = True
+                        #
+                    #
+                    if bSayDiscarded:
+                        #
+                        print('')
+                        print('discarded %s, category %s' %
+                                ( iItemNumb,
+                                  str( ( iEbaySiteID, iCategoryID ) ) ) )
+                        #
                     #
                     continue
                     #
@@ -534,8 +550,6 @@ def storeSearchResultsInDB( iLogID,
                     del dItem[ 'secondaryCategory' ] # 2nd category optional
                     #
                 #
-            #
-            iItemNumb = int( dItem.get( 'itemId' ) )
             #
             bGotItem = ItemFound.objects.filter( pk = iItemNumb ).exists()
             #
