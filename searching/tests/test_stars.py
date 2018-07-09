@@ -13,7 +13,9 @@ from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
-from ..tests            import sResponseSearchTooBroad
+from ..tests            import ( sResponseSearchTooBroad,
+                                 setRecordStepsForThese,
+                                 setDoNotMentionThese )
 from ..utils            import storeSearchResultsInDB
 
 from .test_utils        import GetBrandsCategoriesModelsSetUp
@@ -54,7 +56,7 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
-setRecordStepsForThese = ()
+# setRecordStepsForThese imported from __init__.py
 
 class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
     #
@@ -74,11 +76,14 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         #print( 'will QuietDump' )
         QuietDump( sResponseSearchTooBroad, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
-        t = ( storeSearchResultsInDB(   self.oSearchLog.id,
-                                        self.sMarket,
-                                        self.user1.username,
-                                        self.oSearch.id,
-                                        self.oSearch.cTitle ) )
+        t = ( storeSearchResultsInDB(
+                            self.oSearchLog.id,
+                            self.sMarket,
+                            self.user1.username,
+                            self.oSearch.id,
+                            self.oSearch.cTitle,
+                            self.setTestCategories,
+                            setDoNotMentionThese = setDoNotMentionThese ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -94,8 +99,8 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         #
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
+# setRecordStepsForThese imported from __init__.py
 
-# setRecordStepsForThese is a page up from here
 
 class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
 
@@ -134,6 +139,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 192577735613,
                 173375697400,
                 273340636575,
+                162112067911
                 ) )
         #
         for oTemp in qsUserItems:
@@ -340,6 +346,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
+        oTest = dItemsToTest[ 162112067911 ]
+        #
+        self.assertIsNone( oTest )
         #
         # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
         #
