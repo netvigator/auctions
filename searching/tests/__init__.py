@@ -1,3 +1,8 @@
+
+setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
+setRecordStepsForThese  = None # ( 162112067911, )
+
+
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
 sItemHitLog = \
 '''
@@ -584,22 +589,6 @@ sResponseSearchTooBroad = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-12T00:55:39.000Z"],"endTime":["2018-05-12T00:55:39.000Z"],
               "listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
-
-           },{"itemId":["282920157755"],
-              "title":["Hi-Fi NEWS magazine 5\/1997 MARANTZ CD Thorens AVI amplifier CD player CELESTION "],
-              "globalId":["EBAY-ENCA"],
-              "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
-              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mnmMxt603kKccodU-8VA8YQ\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Hi-Fi-NEWS-magazine-5-1997-MARANTZ-CD-Thorens-AVI-amplifier-CD-player-CELESTION-\/282920157755"],
-              "paymentMethod":["PayPal"],"autoPay":["false"],
-              "location":["Russian Federation"],
-              "country":["RU"],
-              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"13.52"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
-              "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"12.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.94"}],"sellingState":["Active"],"timeLeft":["P23DT20H24M12S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-11T07:06:04.000Z"],"endTime":["2018-05-11T07:06:04.000Z"],
-              "listingType":["StoreInventory"],"gift":["false"]}],
-              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
            },{"itemId":["183161209931"],
@@ -2354,22 +2343,6 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["false"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-            },{"itemId":["183157500032"],
-              "title":["KENWOOD Basic C1 Pre-Amp - NEEDS REPAIR - SOLD AS IS"],
-              "globalId":["EBAY-ENCA"],
-              "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
-              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/m3if_N_Ep7pS7UHSAtkcLgA\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/KENWOOD-Basic-C1-Pre-Amp-NEEDS-REPAIR-SOLD-\/183157500032"],
-              "paymentMethod":["PayPal"],"autoPay":["false"],
-              "postalCode":["B0K1X0"],
-              "location":["Canada"],
-              "country":["CA"],
-              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-              "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"50.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.13"}],"sellingState":["Active"],"timeLeft":["P24DT9H39M38S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-01T17:17:44.000Z"],"endTime":["2018-05-01T17:17:44.000Z"],
-              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["9"]}],
-              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
-
            },{"itemId":["372237637649"],
               "title":["GREEN CATALIN TAYLOR BAROMETER"],
               "globalId":["EBAY-US"],
@@ -2552,6 +2525,30 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],
               "conditionDisplayName":["Used"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["162112067911"],
+              "title":["Capacitor Wizard ESR Tester with CapWizSavr Installed (CAP1B & CAPSVR)"],
+              "globalId":["EBAY-US"],
+              "subtitle":["CapWiz \/ Test Capacitors In Circuit with ESR Analyzer"],
+              "primaryCategory":[{"categoryId":["126406"],"categoryName":["Electrical Testers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/muwE0ivtk6MQ-kqF4-Kn5vA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Capacitor-Wizard-ESR-Tester-CapWizSavr-Installed-CAP1B-CAPSVR-\/162112067911"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["67042"],
+              "location":["El Dorado,KS,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"209.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"209.0"}],"sellingState":["Active"],"timeLeft":["P3DT5H58M0S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2016-06-21T13:34:12.000Z"],
+              "endTime":["2018-07-11T13:34:12.000Z"],
+              "listingType":["StoreInventory"],
+              "gift":["false"],
+              "watchCount":["36"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
 
            },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
