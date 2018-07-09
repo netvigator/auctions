@@ -462,9 +462,10 @@ def storeSearchResultsInDB( iLogID,
                             sUserName,
                             iSearchID,
                             sSearchName,
-                            setTestCategories = None,
-                            bCleanUpFiles     = False,
-                            setDoNotMentionThese = None ):
+                            setTestCategories    = None,
+                            bCleanUpFiles        = False,
+                            setDoNotMentionThese = None,
+                            bDoNotMentionAny     = False ):
     #
     '''high level script, accesses results in file(s)
     and stores in database'''
@@ -523,7 +524,11 @@ def storeSearchResultsInDB( iLogID,
                 #
                 if ( iEbaySiteID, iCategoryID ) not in setTestCategories:
                     #
-                    if setDoNotMentionThese:
+                    if bDoNotMentionAny:
+                        #
+                        bSayDiscarded = False
+                        #
+                    elif setDoNotMentionThese:
                         #
                         bSayDiscarded = iItemNumb not in setDoNotMentionThese
                         #
