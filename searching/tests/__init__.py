@@ -2549,6 +2549,28 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
               "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
+           },{"itemId":["292640430401"],
+              "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],
+              "categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m9EwLRb7tw7RJxl7yvKTEgw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-SET-JENSEN-IMPERIAL-SPEAKER-CROSSOVER-NETWORK-A-61-A-402-M-1131-\/292640430401"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["60016"],
+              "location":["Des Plaines,IL,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"999.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"999.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P1DT12H49M31S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-14T01:06:44.000Z"],
+              "endTime":["2018-07-24T01:06:44.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["6"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["122988243137"],
               "title":["95 Vtg Bakelite Catalin Swirl Poker Chips 1-1\/2\\" across x 1\/8\\" thick Beautiful"],
