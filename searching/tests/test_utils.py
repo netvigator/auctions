@@ -641,6 +641,12 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iUser       = self.user1 )
         oCategory.save()
         #
+        oCategory   = Category( cTitle      = 'Choke',
+                                cLookFor    = 'crossover',
+                                iStars      = 7,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
         oTableIter = getTableFromScreenCaptureGenerator( sBrands )
         #
         lHeader = next( oTableIter )
