@@ -182,8 +182,3 @@ searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hit
 need to fix!
 
 UserItemsFound.tGotPics is not implememted yet
-
-
-Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131
-should find all 3
-292640430401
