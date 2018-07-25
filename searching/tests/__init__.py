@@ -1,6 +1,6 @@
 
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
-setRecordStepsForThese  = None # ( 162112067911, )
+setRecordStepsForThese  = None # ( 292640430401, ) # 162112067911,
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -261,6 +261,9 @@ sModels = \
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver | 603         |
  H-222              |           |      7 | t            | Jensen            |       Driver |             |
+ A-402              |           |      7 | t            | Jensen            |    Crossover |             |
+ A-61               |           |      7 | t            | Jensen            |    Crossover |             |
+ M1131              |           |      7 | t            | Jensen            |        Choke |             |
 '''
 
 
