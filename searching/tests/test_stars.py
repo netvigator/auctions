@@ -139,7 +139,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 192577735613,
                 173375697400,
                 273340636575,
-                162112067911
+                162112067911,
+                292640430401
                 ) )
         #
         for oTemp in qsUserItems:
@@ -350,6 +351,18 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertIsNone( oTest )
         #
+        oTest = dItemsToTest[ 292640430401 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'M1131' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
+        #
+
+
         # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
