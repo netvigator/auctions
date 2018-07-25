@@ -561,7 +561,8 @@ def findSearchHits(
                     if sInTitle == oModel.cTitle:
                         #
                         _appendIfNotAlreadyIn(
-                                lModels, 'model %s in title' % sInTitle )
+                                lModels, 'model %s (category %s) in title' %
+                                ( sInTitle, oModel.iCategory ) )
                         #
                     else:
                         #
@@ -585,8 +586,9 @@ def findSearchHits(
                     #
                     if      ( oModel.iCategory == oTempItem.iCategory and
                               oTempItem.iModel is not None and
-                              oTempItem.iModel != oModel and
-                              oTempItem.iModel.bGenericModel ):
+                              oTempItem.iModel != oModel ):
+                        #
+                        #  and oTempItem.iModel.bGenericModel
                         #
                         if bRecordSteps:
                             #
@@ -628,7 +630,8 @@ def findSearchHits(
                             #
                             _appendIfNotAlreadyIn(
                                     lModels,
-                                    'item has category for model %s' % oModel.cTitle )
+                                    'item has category %s for model %s' %
+                                    ( oTempItem.iCategory, oModel.cTitle ) )
                             #
                         #
                         oTempItem.iModel            = oModel
@@ -669,8 +672,8 @@ def findSearchHits(
                         #
                         _appendIfNotAlreadyIn(
                                 lModels,
-                                'item does not have category for model %s' %
-                                    oModel.cTitle )
+                                'item does not have category %s for model %s' %
+                                    ( oModel.iCategory, oModel.cTitle ) )
                         #
                     #
                     oTempItem = ItemFoundTemp(
