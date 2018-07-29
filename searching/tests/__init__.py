@@ -261,9 +261,9 @@ sModels = \
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver | 603         |
  H-222              |           |      7 | t            | Jensen            |       Driver |             |
- A-402              |           |      7 | t            | Jensen            |    Crossover |             |
+ A-402              |           |      8 | t            | Jensen            |    Crossover |             |
  A-61               |           |      7 | t            | Jensen            |    Crossover |             |
- M1131              |           |      7 | t            | Jensen            |        Choke |             |
+ M1131              |           |      6 | t            | Jensen            |        Choke |             |
 '''
 
 
