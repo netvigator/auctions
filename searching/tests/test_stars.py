@@ -143,28 +143,25 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 292640430401
                 ) )
         #
+        for iItemNumb in dItemsToTest:
+            #
+            dItemsToTest[ iItemNumb ] = [] # need unique list for each value!
+            #
+        #
         for oTemp in qsUserItems:
             #
             if oTemp.iHitStars == 0: continue
             #
             if oTemp.iItemNumb_id in dItemsToTest:
                 #
-                if (    dItemsToTest[ oTemp.iItemNumb_id ] and
-                        oTemp.iItemNumb_id == 282602694679 ):
-                    #
-                    dItemsToTest[ ( 282602694679, 2 ) ] = oTemp
-                    #
-                else:
-                    #
-                    dItemsToTest[ oTemp.iItemNumb_id ] = oTemp
-                    #
+                dItemsToTest[ oTemp.iItemNumb_id ].append( oTemp )
                 #
             #
             iCount += 1
             #
         self.assertGreater( iCount, 38 )
         #
-        oTest = dItemsToTest[ 253486571279 ]
+        oTest = dItemsToTest[ 253486571279 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -178,7 +175,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertTrue(   oTest.iHitStars > 100 )
         #
-        oTest = dItemsToTest[ 123046984227 ]
+        oTest = dItemsToTest[ 123046984227 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -192,7 +189,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertTrue(   oTest.iHitStars > 100 )
         #
-        oTest = dItemsToTest[ 162988285719 ]
+        oTest = dItemsToTest[ 162988285719 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -202,7 +199,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 282602694679 ]
+        oTest = dItemsToTest[ 282602694679 ][ 0 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -212,7 +209,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oAltecItem1 = oTest
         #
-        oTest = dItemsToTest[ ( 282602694679, 2 ) ]
+        oTest = dItemsToTest[ 282602694679 ][ 1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -226,7 +223,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertFalse( oAltecItem1.iCategory == oAltecItem2.iCategory )
         #
-        oTest = dItemsToTest[ 192509883813 ]
+        oTest = dItemsToTest[ 192509883813 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -236,7 +233,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
-        oTest = dItemsToTest[ 332618106572 ]
+        oTest = dItemsToTest[ 332618106572 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -248,7 +245,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle,    'RCA'    )
         #
-        oTest = dItemsToTest[ 162988530803 ]
+        oTest = dItemsToTest[ 162988530803 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -260,7 +257,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle,    'Altec-Lansing' )
         #
-        oTest = dItemsToTest[ 283006362761 ]
+        oTest = dItemsToTest[ 283006362761 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -271,7 +268,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
         #
         #
-        oTest = dItemsToTest[ 162988285720 ]
+        oTest = dItemsToTest[ 162988285720 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -281,7 +278,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 142842525513 ]
+        oTest = dItemsToTest[ 142842525513 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -291,7 +288,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 263776955668 ]
+        oTest = dItemsToTest[ 263776955668 ][ -1 ]
         #
         # Lot of 10 should not find vacuum tube type 10
         #
@@ -299,7 +296,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertIsNone( oTest.iModel )
         #
-        oTest = dItemsToTest[ 192577735613 ]
+        oTest = dItemsToTest[ 192577735613 ][ -1 ]
         #
         #self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
         #
@@ -307,7 +304,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 173375697400 ]
+        oTest = dItemsToTest[ 173375697400 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -327,7 +324,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        oTest = dItemsToTest[ 162988285721 ]
+        oTest = dItemsToTest[ 162988285721 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -337,7 +334,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 273340636575 ]
+        oTest = dItemsToTest[ 273340636575 ][ -1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -347,13 +344,13 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
-        oTest = dItemsToTest[ 162112067911 ]
+        #oTest = dItemsToTest[ 162112067911 ][ -1 ]
+        ##
+        #self.assertIsNone( oTest )
         #
-        self.assertIsNone( oTest )
+        self.assertEqual( len( dItemsToTest[ 162112067911 ] ), 0 )
         #
-        oTest = dItemsToTest[ 292640430401 ]
-        #
-        self.assertIsNotNone( oTest )
+        oTest = dItemsToTest[ 292640430401 ][ 0 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         #
@@ -361,7 +358,25 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
         #
-
+        oTest = dItemsToTest[ 292640430401 ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertIn( oTest.iModel.cTitle, 'A-61' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ 292640430401 ][ 2 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
 
         # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
         #
