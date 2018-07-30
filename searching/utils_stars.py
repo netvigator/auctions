@@ -101,7 +101,8 @@ def _getRowRegExpressions( oTableRow,
         #
         sFindExclude = getRegExpress(
                         oTableRow.cExcludeIf,
-                        iWordBoundChrs = WORD_BOUNDARY_MAX )
+                        iWordBoundChrs  = WORD_BOUNDARY_MAX,
+                        bEscBegEndOfStr = False )
         #
         oTableRow.cRegExExclude   = sFindExclude
         #
@@ -390,6 +391,7 @@ def findSearchHits(
         (   ( 'categories', [] ),
             ( 'models',     [] ),
             ( 'brands',     [] ),
+            ( 'candidates', [] ),
             ( 'selection',  [] ) ) )
     #
     for oItem in qsItems:
@@ -571,14 +573,13 @@ def findSearchHits(
                                 ( oModel.cTitle, sInTitle ) )
                         #
                     #
-                    #if oItem.iItemNumb == 162988285721 and oModel.cTitle == '6L6WGB':
-                        ##
-                        #print('')
-                        #print( 'lItemFoundTemp:' )
-                        #for o in lItemFoundTemp:
-                            #print( o.iCategory.cTitle )
-                        ##
-                    ##
+                    if oModel.cExcludeIf:
+                        #
+                        _appendIfNotAlreadyIn( lModels,
+                                'model "%s" excludes: %s' %
+                                ( oModel.cTitle, oModel.cRegExExclude ) )
+                        #
+                    #
                 #
                 lNewItemFoundTemp = []
                 #
@@ -827,7 +828,8 @@ def findSearchHits(
         #
         tNow = timezone.now()
         #
-        lSelect = dFindSteps[ 'selection' ]
+        lCandidates = dFindSteps[ 'candidates' ]
+        lSelect     = dFindSteps[ 'selection' ]
         #
         if lItemFoundTemp:
             #
@@ -835,7 +837,7 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    lSelect.append( 'selection scoring (total, hit stars, found length):' )
+                    lCandidates.append( 'scoring (total, hit stars, found length):' )
                     #
                 #
                 lSortItems = []
@@ -851,7 +853,7 @@ def findSearchHits(
                     #
                     if bRecordSteps:
                         #
-                        lSelect.append(
+                        lCandidates.append(
                             '%s, %s, %s - %s : %s : %s' %
                             ( iScoreStars,
                               lItemFoundTemp[i].iHitStars,
@@ -886,7 +888,7 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            lSelect.append( 'discounting Hit Stars for %s' % oItemTemp.iModel )
+                            lCandidates.append( 'discounting Hit Stars for %s' % oItemTemp.iModel )
                             #
                         #
                     #
