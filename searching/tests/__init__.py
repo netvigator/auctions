@@ -1,6 +1,6 @@
 
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
-setRecordStepsForThese  = None # ( 292640430401, ) # 162112067911,
+setRecordStepsForThese  = ( ) # 162988285721, 162112067911,
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -86,6 +86,7 @@ sBrands = \
  Westinghouse      |      5 |            |
 '''
 
+#### note column delimiter | must have a space on one side or the other
 sModels = \
 '''
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel
@@ -95,10 +96,10 @@ sModels = \
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6L6WGB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 6L6WGB             |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
- 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10    | t
+ 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\r^10 | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
