@@ -523,6 +523,8 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
 
 
 
+def fRt( s ): return s.replace( '\\r', '\r' )
+
 
 class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
     #
@@ -652,8 +654,6 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         lHeader = next( oTableIter )
         #
         d = getNamePositionDict( lHeader )
-        #
-        def fRt( s ): return s.replace( r'\\r', '\r' )
         #
         for lParts in oTableIter:
             #
