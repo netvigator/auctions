@@ -18,6 +18,11 @@ from ebayinfo               import ( EBAY_US_CURRENT_VERSION,
 
 from ebayinfo.models        import EbayCategory, Market
 
+from String.Find            import getRegExObj
+
+
+oFindColumnSplits          = getRegExObj( r'(?: \|)|(?:\| )' )
+
 def getDefaultMarket():
 
     if (        Market.objects.count() == 0 or
@@ -252,7 +257,7 @@ def getTableFromScreenCaptureGenerator( uScreenCapture ):
     #
     for sLine in oLines:
         #
-        lParts = list( getSeqStripped( sLine.split( '|' ) ) )
+        lParts = list( getSeqStripped( oFindColumnSplits.split( sLine ) ) )
         #
         if len( lParts ) == 1: continue
         #
