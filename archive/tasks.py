@@ -128,6 +128,8 @@ doGetFetchUserItemsTasks( bOnlySay = True )
 select count(*) from useritemsfound
     where "bGetPictures" = true and "tRetrieved" is null ;
 
+#### above count depends on items selected for downloading ###
+
 select count(*) from itemsfound
     where "tTimeEnd" < timestamp 'yesterday' and
     "iItemNumb" in
