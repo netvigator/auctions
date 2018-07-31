@@ -49,6 +49,10 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         #
         uValue = _dBlankValue.get( f )
         #
+    elif bOptional: # got Celery error for missing GalleryURL
+        #
+        uValue = None
+        #
     else:
         #
         sMsg = 'expecting key but did not find in info from ebay'
