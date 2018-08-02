@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( ) # 282602694679, 
+setRecordStepsForThese  = ( 153121548106, ) # 282602694679, 
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -540,6 +540,26 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+           },{"itemId":["153121548106"],
+              "title":["VINTAGE TANNOY GRF CORNER CABINET w. 15\" SILVER DUAL CONCENTRIC DRIVER LSU\/HF\/15"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mmMi8YwkhNGrJcHNUFZvR7g\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/VINTAGE-TANNOY-GRF-CORNER-CABINET-w-15-SILVER-DUAL-CONCENTRIC-DRIVER-LSU-HF-15-\/153121548106"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["80113"],
+              "location":["Englewood,CO,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5200.0"}],
+              "bidCount":["2"],
+              "sellingState":["Active"],
+              "timeLeft":["P8DT7H28M50S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-31T22:04:29.000Z"],
+              "endTime":["2018-08-10T22:04:29.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["22"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
            },{"itemId":["283006362761"],
               "title":["ITM#2 Harman Kardon CITATION III X Multiplex FM Stereo Vacuum TUBE TUNER Radio"],
