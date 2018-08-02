@@ -1,3 +1,5 @@
+import logging
+
 from django.core.urlresolvers   import reverse
 
 from core.utils_test            import BaseUserTestCase
@@ -51,6 +53,8 @@ class ModelViewsTests(BaseUserTestCase):
         """
         If models exist, an appropriate message is displayed.
         """
+        logging.disable(logging.CRITICAL)
+        
         #
         oModel  = Model(
                 cTitle      = "Crest",
@@ -109,6 +113,7 @@ class ModelViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/models/')
 
+        logging.disable(logging.NOTSET)
 
 
 

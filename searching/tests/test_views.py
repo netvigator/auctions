@@ -1,3 +1,5 @@
+import logging
+
 from django.core.urlresolvers   import reverse
 
 from core.utils_test            import BaseUserTestCase, setup_view_for_tests
@@ -127,6 +129,8 @@ class SearchViewsTests(BaseUserTestCase):
         """
         If no search exist, an appropriate message is displayed.
         """
+        logging.disable(logging.CRITICAL)
+        
         #
         self.client.login(username='username1', password='mypassword')
         #
@@ -184,6 +188,7 @@ class SearchViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/searching/')
 
+        logging.disable(logging.NOTSET)
 
 
 
