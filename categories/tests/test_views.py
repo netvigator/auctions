@@ -1,3 +1,5 @@
+import logging
+
 from django.core.urlresolvers   import reverse
 
 from core.utils_test            import BaseUserTestCase
@@ -36,6 +38,8 @@ class CategoryViewsTests(BaseUserTestCase):
         """
         If categories exist, an appropriate message is displayed.
         """
+        logging.disable(logging.CRITICAL)
+        
         self.client.login(username ='username1', password='mypassword')
         #
         oCategory = Category( cTitle = "Widgets", iUser = self.user1 )
@@ -91,6 +95,7 @@ class CategoryViewsTests(BaseUserTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/categories/')
 
+        logging.disable(logging.NOTSET)
 
 
 
