@@ -1,6 +1,6 @@
 
+setRecordStepsForThese  = ( ) # 282602694679, 
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
-setRecordStepsForThese  = ( ) # 162988285721, 162112067911,
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -11,6 +11,8 @@ tTimeEnd            | iItemNumb    | iHitStars
 2018-03-23 21:29:45 | 401354589892 | 200
 2018-03-10 11:46:09 | 372238175241 | 270
 '''
+
+#### categories for testing are in searching/tests/test_utils.py ###
 
 #### if you add a vacuum tube brand, ###
 ####  you need a BrandCategory row   ###
@@ -265,6 +267,12 @@ sModels = \
  A-402              |           |      8 | t            | Jensen            |    Crossover |             |
  A-61               |           |      7 | t            | Jensen            |    Crossover |             |
  M1131              |           |      6 | t            | Jensen            |        Choke |             |
+ 811B               |           |      6 | t            | Altec-Lansing     |         Horn | 811         |
+ 806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 601                |           |      8 | t            | Altec-Lansing     |    Enclosure | 601b        |
+ N-3000A            |           |      7 | t            | Altec-Lansing     |    Crossover |             |
+ 288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
 '''
 
 
@@ -549,6 +557,91 @@ sResponseSearchTooBroad = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-06-13T13:14:41.000Z"],"endTime":["2018-06-20T01:14:41.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["18"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["113173838358"],
+              "title":["Altec Lansing 806a Drivers  w 811 b Horns"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/meZzFAGRfBjJViF62YTgUXA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Altec-Lansing-806a-Drivers-w-811-b-Horns-\/113173838358"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["55347"],
+              "location":["Eden Prairie,MN,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"95.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"450.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"450.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P5DT0H46M18S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-29T02:15:47.000Z"],
+              "endTime":["2018-08-05T02:15:47.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["5"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["163167777899"],
+              "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],
+              "categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mcKbXFbyACk4LGBkautkHjw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-601B-Speaker-N-3000B-Crossover-Network-Cabinet-204781-\/163167777899"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["90278"],
+              "location":["Redondo Beach,CA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"325.8"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"325.8"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P1DT22H44M50S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-26T00:14:50.000Z"],
+              "endTime":["2018-08-02T00:14:50.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["4"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["292659341471"],
+              "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m9EwLRb7tw7RJxl7yvKTEgw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-SET-JENSEN-IMPERIAL-SPEAKER-CROSSOVER-NETWORK-A-61-A-402-M-1131-\/292659341471"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["60016"],
+              "location":["Des Plaines,IL,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"899.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"899.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P3DT0H41M6S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-29T02:11:13.000Z"],
+              "endTime":["2018-08-03T02:11:13.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["273380279306"],
+              "title":["Altec Lansing 288-8K High Frequency Drive MRII 542 Horn"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mzzZOca3bXrrfnX5YxJMrXA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Altec-Lansing-288-8K-High-Frequency-Drive-MRII-542-Horn-\/273380279306"],
+              "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+              "postalCode":["48824"],
+              "location":["East Lansing,MI,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Freight"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"100.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"100.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT13H56M13S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-30T15:25:42.000Z"],
+              "endTime":["2018-08-06T15:25:42.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["2"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
            },{"itemId":["232745789325"],
