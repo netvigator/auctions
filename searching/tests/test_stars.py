@@ -153,6 +153,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 163167777899,
                 292659341471,
                 273380279306,
+                153121548106,
                 292640430401
                 ) )
         #
@@ -546,6 +547,10 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
+        self.print_len( dItemsToTest[ 153121548106 ], 2 )
+        #
+        
+        
         #
         #oModel = Model.objects.get( cTitle = 'N-1500A' )
         #print( 'N-1500A:', oModel.cRegExLook4Title )
