@@ -21,7 +21,11 @@ from Utils.Progress         import TextMeter, DummyMeter
 from searching              import WORD_BOUNDARY_MAX
 
 
-def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
+def _getTitleRegExress(
+            oTableRow,
+            bAddDash     = False,
+            bSubModelsOK = False,
+            bPluralize   = False ):
     #
     '''gets the RegEx expression for title + look for
     (comibines title & look for into one RegEx expression)'''
@@ -31,7 +35,8 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
     sRegExpress = getRegExpress( sLook4Title,
                                  bAddDash       = bAddDash,
                                  bSubModelsOK   = bSubModelsOK,
-                                 iWordBoundChrs = WORD_BOUNDARY_MAX )
+                                 iWordBoundChrs = WORD_BOUNDARY_MAX,
+                                 bPluralize     = bPluralize )
     #
     if oTableRow.cLookFor is not None and oTableRow.cLookFor:
         #
@@ -52,7 +57,9 @@ def _getTitleRegExress( oTableRow, bAddDash = False, bSubModelsOK = False ):
 
 
 def _getRowRegExpressions( oTableRow,
-                           bAddDash = False, bSubModelsOK = False ):
+                           bAddDash     = False,
+                           bSubModelsOK = False,
+                           bPluralize   = False ):
     #
     '''if the row already has RegEx expressions stored, returns them;
     otherwise, generate the RegEx expressions, store them in the row,
@@ -68,7 +75,8 @@ def _getRowRegExpressions( oTableRow,
         #
         sFindTitle = _getTitleRegExress( oTableRow,
                                          bAddDash     = bAddDash,
-                                         bSubModelsOK = bSubModelsOK )
+                                         bSubModelsOK = bSubModelsOK,
+                                         bPluralize   = bPluralize )
         #
         oTableRow.cRegExLook4Title = sFindTitle
         #
@@ -169,7 +177,9 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
 
 
 def getFoundItemTester( oTableRow, dFinders,
-                        bAddDash = False, bSubModelsOK = False ):
+                        bAddDash     = False,
+                        bSubModelsOK = False,
+                        bPluralize   = False):
     #
     ''' pass model row instance, returns tester '''
     #
@@ -181,7 +191,8 @@ def getFoundItemTester( oTableRow, dFinders,
         #
         t = _getRowRegExpressions( oTableRow,
                                    bAddDash     = bAddDash,
-                                   bSubModelsOK = bSubModelsOK )
+                                   bSubModelsOK = bSubModelsOK,
+                                   bPluralize   = bPluralize )
         #
         t = tuple( map( _getRegExObjOrNone, t ) )
         #
@@ -447,7 +458,10 @@ def findSearchHits(
         #
         for oCategory in qsCategories:
             #
-            foundItem = getFoundItemTester( oCategory, dFindersCategories )
+            foundItem = getFoundItemTester(
+                            oCategory,
+                            dFindersCategories,
+                            bPluralize = True )
             #
             # the following are short circuiting --
             # if one is True, the following will be True
@@ -532,7 +546,9 @@ def findSearchHits(
         #
         for oModel in qsModels:
             #
-            foundItem = getFoundItemTester( oModel, dFindersModels,
+            foundItem = getFoundItemTester(
+                            oModel,
+                            dFindersModels,
                             bAddDash = True,
                             bSubModelsOK = oModel.bSubModelsOK )
             #
