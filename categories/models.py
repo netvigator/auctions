@@ -25,7 +25,9 @@ class Category(models.Model):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = sLookForHelpText % ( 'category', 'category', 'category' ) )
+        help_text = sLookForHelpText % ( 'category', 'category', 'category' ) +
+                        '<br/>No need for plural words: plural forms of common words '
+                        'in descriptioon or here will also be found.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
