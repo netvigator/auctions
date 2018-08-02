@@ -1,5 +1,7 @@
 # import inspect
 
+import logging
+
 from django.core.urlresolvers   import reverse
 
 from core.utils_test            import BaseUserTestCase
@@ -15,7 +17,6 @@ from .test_models               import ModelModelTest
 
 class BrandViewsTests(BaseUserTestCase):
     """Brand views tests."""
-    
         
     def test_no_brands_yet(self):
         #
@@ -39,6 +40,7 @@ class BrandViewsTests(BaseUserTestCase):
         """
         If brands exist, an appropriate message is displayed.
         """
+        logging.disable(logging.CRITICAL)
         
         self.client.login(username='username1', password='mypassword')
         #
@@ -101,7 +103,8 @@ class BrandViewsTests(BaseUserTestCase):
         #pprint( response )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-
+        #
+        logging.disable(logging.NOTSET)
 
 
 class BrandViewsHitButtons(ModelModelTest):
