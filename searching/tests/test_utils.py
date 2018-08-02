@@ -523,17 +523,20 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
 
 
 
-def fRt( s ): return s.replace( '\\r', '\r' )
-
 
 class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
     #
     ''' base class for testing trySearchCatchExceptStoreInFile() &
     storeSearchResultsInDB() store records '''
     #
+
+    def fRt( self, s ): return s.replace( '\\r', '\r' )
+
     def setUp(self):
         #
         super( GetBrandsCategoriesModelsSetUp, self ).setUp()
+        #
+        fRt     = self.fRt
         #
         sSearch = "Catalin Radios"
         sKeyWords = 'catalin radio'
@@ -604,7 +607,7 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oCategory.save()
         #
         oCategory   = Category( cTitle      = 'Driver',
-                                cLookFor    = 'speaker',
+                                cLookFor    = 'speaker\rdrive',
                                 iStars      = 8,
                                 iUser       = self.user1 )
         oCategory.save()
@@ -648,6 +651,13 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iStars      = 7,
                                 iUser       = self.user1 )
         oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Enclosure',
+                                cLookFor    = 'Speaker Enclosure\rcabinet',
+                                iStars      = 7,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
         #
         oTableIter = getTableFromScreenCaptureGenerator( sBrands )
         #
