@@ -129,7 +129,7 @@ def updateHitLogFile( oUserItems, sPathHere ):
         #
         lOut[0:0] = [ 'tTimeEnd            | iItemNumb    | iHitStars' ]
         #
-        sOut = '\n'.join( lOut )
+        sOut = '%s\n' % '\n'.join( lOut )
         #
         DeleteIfExists( sHitLogBack )
         #
