@@ -56,4 +56,6 @@ def getCategoryListsUpdated( bConsoleOut = False ):
 
 
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
+####  from ebayinfo.tasks import getWhetherAnyEbayCategoryListsAreUpdated, getCategoryListsUpdated
+# ### run getCategoryListsUpdated( bConsoleOut = True )     ###
 # ### run getCategoryListsUpdated() to update               ###
