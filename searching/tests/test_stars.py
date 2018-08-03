@@ -2,6 +2,8 @@
 
 from os.path            import join
 
+from json.decoder       import JSONDecodeError
+
 from django.core.urlresolvers import reverse
 
 from django.test        import TestCase
@@ -30,7 +32,6 @@ from models.models      import Model
 
 from File.Del           import DeleteIfExists
 from File.Write         import QuietDump
-
 
 
 def _getModelRegExFinders4Test( oModel ):
@@ -76,7 +77,8 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         #print( 'will QuietDump' )
         QuietDump( sResponseSearchTooBroad, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
-        t = ( storeSearchResultsInDB(
+        try:
+            t = ( storeSearchResultsInDB(
                             self.oSearchLog.id,
                             self.sMarket,
                             self.user1.username,
@@ -84,6 +86,15 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
                             self.oSearch.cTitle,
                             self.setTestCategories,
                             setDoNotMentionThese = setDoNotMentionThese ) )
+        #
+        except JSONDecodeError:
+            #
+            print('')
+            print(  '### maybe a new item title has a quote '
+                    'but only a single backslash ###' )
+            #
+            raise
+            #
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -549,11 +560,33 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ 153121548106 ], 2 )
         #
-        
+        oTest = dItemsToTest[ 153121548106 ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Tannoy' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'GRF' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        oTest = dItemsToTest[ 153121548106 ][ 1 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Tannoy' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '15" Silver' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #print( oTest.iBrand.cTitle )
+        #print( oTest.iModel.cTitle )
+        #print( oTest.iCategory.cTitle )
         
         #
-        #oModel = Model.objects.get( cTitle = 'N-1500A' )
-        #print( 'N-1500A:', oModel.cRegExLook4Title )
+        #oModel = Model.objects.get( cTitle = '15" Sliver' )
+        #print( '15" Sliver:', oModel.cRegExLook4Title )
 
 
         # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
