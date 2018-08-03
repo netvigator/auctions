@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 153121548106, ) # 282602694679, 
+setRecordStepsForThese  = () # 153121548106, 
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -82,6 +82,7 @@ sBrands = \
  Spartan           |      8 |            |
  Supreme           |      5 |            |
  Stromberg-Carlson |      5 |            |
+ Tannoy            |      7 |            |
  Tung-Sol          |      6 |            |
  UTC               |      8 |            |
  Western Electric  |      9 |            |
@@ -273,6 +274,8 @@ sModels = \
  N-3000A            |           |      7 | t            | Altec-Lansing     |    Crossover |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
+ 15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
+ GRF                |           |      7 | f            | Tannoy            |Speaker System|             |
 '''
 
 
@@ -542,7 +545,7 @@ sResponseSearchTooBroad = \
               "topRatedListing":["true"]
 
            },{"itemId":["153121548106"],
-              "title":["VINTAGE TANNOY GRF CORNER CABINET w. 15\" SILVER DUAL CONCENTRIC DRIVER LSU\/HF\/15"],
+              "title":["VINTAGE TANNOY GRF CORNER CABINET w. 15\\" SILVER DUAL CONCENTRIC DRIVER LSU\/HF\/15"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mmMi8YwkhNGrJcHNUFZvR7g\/140.jpg"],
