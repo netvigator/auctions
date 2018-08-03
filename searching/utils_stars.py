@@ -305,6 +305,8 @@ def _gotSubstringOfListItem( s, l ):
         if s in sL: return sL
     #
 
+_oForFitsFinder = getRegExObj( r' (?:for|fits|tests|test)' )
+
 
 def findSearchHits(
             iUser                   = oUserOne.id,
@@ -315,8 +317,6 @@ def findSearchHits(
     from brands.models      import Brand
     from categories.models  import Category
     from models.models      import Model
-    #
-    oForWithFinder = getRegExObj( r' (?:for|with|fits|tests|test)' )
     #
     oUserModel = get_user_model()
     #
@@ -445,7 +445,13 @@ def findSearchHits(
         # if title includes for or with, consider the part in front,
         # not what follows
         #
-        sRelevantTitle = oForWithFinder.split( oItem.cTitle )[0]
+        sRelevantTitle = _oForFitsFinder.split( oItem.cTitle )[0]
+        #
+        if bRecordSteps and len( oItem.cTitle ) > len( sRelevantTitle ):
+            #
+            _appendIfNotAlreadyIn(
+                    [], 'will search only this: %s' % bRecordSteps )
+            #
         #
         #if oItem.iItemNumb == 162988530803:
             #print('')
