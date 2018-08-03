@@ -317,13 +317,13 @@ def _putCategoriesInDatabase(
             except DataError:
                 raise DataError( 'too long: %s' % sCategoryName )
             #
-            #
-            oProgressMeter.end( iSeq )
-            #
             oMarket.iCategoryVer = int( sWantVersion )
             #
             oMarket.save()
             #
+        #
+        oProgressMeter.end( iSeq )
+        #
     except OperationalError: # downloaded file not complete!
         #
         sMessage = 'ebay categories file %s is incomplete!' % sFile
