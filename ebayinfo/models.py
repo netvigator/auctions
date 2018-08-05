@@ -84,7 +84,8 @@ class EbayCategory(MPTTModel):
     iCategoryID     = models.PositiveIntegerField( 'ebay category number',
                         db_index=True )
     name            = models.CharField(
-                        'ebay category description', max_length = 50 )
+                        'ebay category description', max_length = 58 )
+                        # 50 should be enough but hit error on Polish name
     iLevel          = models.PositiveSmallIntegerField(
                         'ebay level (top is 1, lower levels are bigger numbers)' )
     iParentID       = models.PositiveIntegerField( 'ebay parent category' )
