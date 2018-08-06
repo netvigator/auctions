@@ -38,10 +38,7 @@ def getAllMissingCategoryLists():
 
 
 @shared_task( name = 'ebayinfo.tasks.getCategoryListThenStore' )
-def getCategoryListThenStoreTask(
-                uMarket         = dSiteID2Market[ d['iSiteID'] ],
-                uWantVersion    = d['iEbayHas'],
-                bShowProgress   = False )
+def getCategoryListThenStoreTask( uMarket, uWantVersion, bShowProgress ):
     #
     getCategoryListThenStore(
             uMarket         = uMarket,
