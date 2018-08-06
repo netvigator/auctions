@@ -1,11 +1,13 @@
 
+from celery             import shared_task
+from celery.schedules   import crontab
 
-from .utils         import getWhetherAnyEbayCategoryListsAreUpdated
-from .utils         import getCategoryListThenStore, dSiteID2Market
+from .utils             import getWhetherAnyEbayCategoryListsAreUpdated
+from .utils             import getCategoryListThenStore, dSiteID2Market
 
-from .models        import Market, EbayCategory
+from .models            import Market, EbayCategory
 
-from core.utils     import getBegTime, sayDuration
+from core.utils         import getBegTime, sayDuration
 
 
 # ### l = getWhetherAnyEbayCategoryListsAreUpdated() ###
@@ -35,6 +37,20 @@ def getAllMissingCategoryLists():
             #
 
 
+@shared_task( name = 'ebayinfo.tasks.getCategoryListThenStore' )
+def getCategoryListThenStoreTask(
+                uMarket         = dSiteID2Market[ d['iSiteID'] ],
+                uWantVersion    = d['iEbayHas'],
+                bShowProgress   = False )
+    #
+    getCategoryListThenStore(
+            uMarket         = uMarket,
+            uWantVersion    = uWantVersion,
+            bShowProgress   = bShowProgress )
+    #
+
+
+
 def getCategoryListsUpdated( bConsoleOut = False ):
     #
     tBeg = getBegTime( bConsoleOut )
@@ -43,7 +59,7 @@ def getCategoryListsUpdated( bConsoleOut = False ):
     #
     for d in lNeedUpdates:
         #
-        getCategoryListThenStore(
+        getCategoryListThenStoreTask.delay(
                 uMarket         = dSiteID2Market[ d['iSiteID'] ],
                 uWantVersion    = d['iEbayHas'],
                 bShowProgress   = bConsoleOut )
@@ -53,6 +69,9 @@ def getCategoryListsUpdated( bConsoleOut = False ):
     if bConsoleOut:
         #
         sayDuration( tBeg )
+
+
+
 
 
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
