@@ -182,3 +182,13 @@ searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hit
 need to fix!
 
 UserItemsFound.tGotPics is not implememted yet
+
+recalculate hit stars option if you change the stars on a model/brand/category?
+
+Other Hits for this Item
+need links!
+
+
+FileExistsError: [Errno 17] File exists: '/home/rick/Devel/auctions/auctionbot/media/Item_Pictures/30/26'
+/home/Common/pyPacks/Dir/Get.py
+makedirs( sDir )
