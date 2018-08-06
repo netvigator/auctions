@@ -87,11 +87,12 @@ def storeSearchResultsInDbTask( iLogID,
                                 iSearchID,
                                 sSearchName ):
     #
-    t = storeSearchResultsInDB( iLogID,
-                                sMarket,
-                                sUserName,
-                                iSearchID,
-                                sSearchName )
+    t = storeSearchResultsInDB(
+            iLogID,
+            sMarket,
+            sUserName,
+            iSearchID,
+            sSearchName )
     #
 
 
@@ -118,11 +119,11 @@ def doPutSearchResultsInItemsFoundTasks():
         sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
         #
         storeSearchResultsInDbTask.delay(
-                                    iLogID,
-                                    sMarket,
-                                    sUserName,
-                                    iSearchID,
-                                    sSearchName )
+                    iLogID,
+                    sMarket,
+                    sUserName,
+                    iSearchID,
+                    sSearchName )
         #
 
 
@@ -133,9 +134,10 @@ def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
     if bShowProgress:
         print( 'calling findSearchHits() for user ID %s now ....' % iUser )
     #
-    findSearchHits( iUser,
-                    bCleanUpAfterYourself   = bCleanUp,
-                    bShowProgress           = bShowProgress )
+    findSearchHits(
+                iUser,
+                bCleanUpAfterYourself   = bCleanUp,
+                bShowProgress           = bShowProgress )
     #
 
 
