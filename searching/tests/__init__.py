@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = () # 153121548106, 
+setRecordStepsForThese  = ( 153124672147, ) #
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -543,6 +543,27 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+           },{"itemId":["153124672147"],
+              "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mcKbXFbyACk4LGBkautkHjw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-601B-Speaker-N-3000B-Crossover-Network-Cabinet-204781-\/153124672147"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["90278"],
+              "location":["Redondo Beach,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"309.51"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"309.51"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT4H57M42S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-03T04:39:01.000Z"],
+              "endTime":["2018-08-10T04:39:01.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["2"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
            },{"itemId":["153121548106"],
               "title":["VINTAGE TANNOY GRF CORNER CABINET w. 15\\" SILVER DUAL CONCENTRIC DRIVER LSU\/HF\/15"],
