@@ -317,12 +317,12 @@ def _putCategoriesInDatabase(
             except DataError:
                 raise DataError( 'too long: %s' % sCategoryName )
             #
-            oMarket.iCategoryVer = int( sWantVersion )
-            #
-            oMarket.save()
-            #
         #
         oProgressMeter.end( iSeq )
+        #
+        oMarket.iCategoryVer = int( sWantVersion )
+        #
+        oMarket.save()
         #
     except OperationalError: # downloaded file not complete!
         #
@@ -520,6 +520,16 @@ def getWhetherAnyEbayCategoryListsAreUpdated( bUseSandbox = False ):
 
 
 
+def getShowMarketsHaveNewerCategoryVersionLists():
+    #
+    lNewerCategories = getWhetherAnyEbayCategoryListsAreUpdated()
+    #
+    lOut = [ ( dSiteID2Market[ d['iSiteID'] ], d['iTableHas'], d['iEbayHas'] )
+             for d in lNewerCategories ]
+    #
+    lOut.sort()
+    #
+    return lOut
 
 
 def _getCategoryHierarchyID(
@@ -574,8 +584,9 @@ def _getCategoryHierarchyID(
             #
             lCatHeirarchy.reverse()
             #
-            sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
+            # sCatHeirarchy = '\r'.join( lCatHeirarchy ) # django uses return, but
             # return only does not work in shell, each line overwrites the prior one
+            sCatHeirarchy = ', '.join( lCatHeirarchy ) # should show better
             #
             oMarket = Market.objects.get( iEbaySiteID = iEbaySiteID )
             #
