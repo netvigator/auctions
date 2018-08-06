@@ -1,25 +1,29 @@
-from __future__     import absolute_import # celery absolutely needs this
+from __future__             import absolute_import # celery absolutely needs this
+
 import os
-from logging        import getLogger
+from logging                import getLogger
 
-from celery         import Celery
-from celery         import shared_task
+from celery                 import Celery
+from celery                 import shared_task
 
-from django.apps    import apps, AppConfig
-from django.conf    import settings
+from django.apps            import apps, AppConfig
+from django.conf            import settings
+
+from config.settings.base   import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
 
 if not settings.configured:
     # set the default Django settings module for the 'celery' program.
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')  # pragma: no cover
 
 logger = getLogger(__name__)
 
-
-app = Celery('auctionbot')
+app = Celery('auctionbot',
+            backend = CELERY_RESULT_BACKEND,
+            broker  = CELERY_BROKER_URL )
 
 class CeleryConfig(AppConfig):
-    name = 'auctionbot.taskapp'
-    verbose_name = 'Celery Config'
+    name            = 'auctionbot.taskapp'
+    verbose_name    = 'Celery Config'
 
     def ready(self):
         # Using a string here means the worker will not have to
