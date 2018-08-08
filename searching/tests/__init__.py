@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 153124672147, ) #
+setRecordStepsForThese  = ( 263861079618, ) #
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -543,6 +543,26 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+           },{"itemId":["263861079618"],
+              "title":["10 PIECE LOT OF ASSORTED RCA TUBES"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mPPUCMZIE64vn9WwzpeR0uQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/10-PIECE-LOT-ASSORTED-RCA-TUBES-\/263861079618"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["11766"],"location":["Mount Sinai,NY,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"39.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.95"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT8H16M20S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-05T20:53:36.000Z"],
+              "endTime":["2018-08-12T20:53:36.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
            },{"itemId":["153124672147"],
               "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
