@@ -55,7 +55,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
         #
         for iItemNumb in qsUserItemNumbs:
             #
-            doGetSingleItemThenStoreTask( iItemNumb )
+            doGetSingleItemThenStoreTask.delay( iItemNumb )
             #
     #
     # carry on, fetch final results
