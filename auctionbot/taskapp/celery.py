@@ -3,6 +3,8 @@ from __future__             import absolute_import # celery absolutely needs thi
 import os
 from logging                import getLogger
 
+from sys                    import argv
+
 from celery                 import Celery
 from celery                 import shared_task
 
@@ -11,9 +13,16 @@ from django.conf            import settings
 
 from config.settings.base   import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
 
+sConfig = 'config.settings.production'
+
+for sArg in argv:
+    if sArg.startswith( '--config=' ):
+        sConfig = sArg[ len( '--config=' ) : ]
+        break
+
 if not settings.configured:
     # set the default Django settings module for the 'celery' program.
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')  # pragma: no cover
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', sConfig ) # pragma: no cover
 
 logger = getLogger(__name__)
 
