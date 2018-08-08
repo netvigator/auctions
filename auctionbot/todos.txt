@@ -192,3 +192,9 @@ need links!
 FileExistsError: [Errno 17] File exists: '/home/rick/Devel/auctions/auctionbot/media/Item_Pictures/30/26'
 /home/Common/pyPacks/Dir/Get.py
 makedirs( sDir )
+
+
+set iOldCutOff in config rather than in archive/tasks.py
+
+archive.utils
+# 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
