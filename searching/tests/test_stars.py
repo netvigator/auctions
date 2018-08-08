@@ -602,6 +602,26 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         print( oTest.iModel.cTitle )
         print( oTest.iCategory.cTitle )
         
+        iThisOne = 292672067477
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        print( oTest.iBrand.cTitle )
+        print( oTest.iModel.cTitle )
+        print( oTest.iCategory.cTitle )
+        #
+        
+        iThisOne = 223093061969
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        print( oTest.iBrand.cTitle )
+        print( oTest.iModel.cTitle )
+        print( oTest.iCategory.cTitle )
         #
         #oModel = Model.objects.get( cTitle = '15" Sliver' )
         #print( '15" Sliver:', oModel.cRegExLook4Title )
