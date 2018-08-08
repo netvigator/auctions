@@ -234,7 +234,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
                     'Test Meters & Detectors',
                     'Capacitance & ESR Meters' ]
         #
-        sExpect = '\r'.join( lExpect )
+        sExpect = ', '.join( lExpect )
         #
         self.assertEqual( oCatHierarchy.cCatHierarchy, sExpect )
         #
