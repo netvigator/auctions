@@ -165,6 +165,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 292659341471,
                 273380279306,
                 153121548106,
+                153124672147,
+                263861079618,
                 292640430401
                 ) )
         #
@@ -580,9 +582,25 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        #print( oTest.iBrand.cTitle )
-        #print( oTest.iModel.cTitle )
-        #print( oTest.iCategory.cTitle )
+        iThisOne = 153124672147
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        print( oTest.iBrand.cTitle )
+        print( oTest.iModel.cTitle )
+        print( oTest.iCategory.cTitle )
+
+        iThisOne = 263861079618
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        print( oTest.iBrand.cTitle )
+        print( oTest.iModel.cTitle )
+        print( oTest.iCategory.cTitle )
         
         #
         #oModel = Model.objects.get( cTitle = '15" Sliver' )
