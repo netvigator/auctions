@@ -186,7 +186,7 @@ doPutSearchResultsInItemsFoundTasks()
 select count(*) from useritemsfound where "tLook4Hits" is null ;
 count should be zero at start, increase as process runs, then max out
 
-doFindSearhHits()
+doFindSearhHitsTasks()
 select count(*) from useritemsfound where "tLook4Hits" is null ;
 count should decline to zero
 
