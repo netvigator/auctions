@@ -267,6 +267,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     if iSavedRowID is not None or not bItemNumberStillGood:
         #
         # InvalidOrNonExistentItemError:
+        # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
         #
         oItemFound = ItemFound.objects.get( pk = iItemNumb )
         #
