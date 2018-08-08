@@ -510,7 +510,7 @@ def findSearchHits(
                     #
                     if sInTitle:
                         #
-                        _appendIfNotAlreadyIn( lCategories, 'category %s in title' % sInTitle )
+                        _appendIfNotAlreadyIn( lCategories, 'category %s in title' % oCategory )
                         #
                     elif bInHeirarchy1:
                         #
@@ -610,8 +610,6 @@ def findSearchHits(
                     if      ( oModel.iCategory == oTempItem.iCategory and
                               oTempItem.iModel is not None and
                               oTempItem.iModel != oModel ):
-                        #
-                        #  and oTempItem.iModel.bGenericModel
                         #
                         if bRecordSteps:
                             #
@@ -1037,6 +1035,11 @@ def findSearchHits(
             #
             _printHitSearchSteps( oItem.iItemNumb, dFindSteps )
             #
+            #print('')
+            #print('call stack:')
+            #for i in range( len( inspect.stack() ) ):
+                #if inspect.stack()[i][3].startswith( '__' ): break
+                #print( inspect.stack()[i][3] )
         #
     #
     oProgressMeter.end( iSeq )
