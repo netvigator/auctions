@@ -6,6 +6,7 @@ from datetime               import timedelta
 from time                   import sleep
 
 from django.contrib.auth    import get_user_model
+from django.db              import connection
 from django.db.models       import Q
 from django.utils           import timezone
 
@@ -41,6 +42,20 @@ def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
 
 
 
+@shared_task( name = 'archive.tasks.deleteOldItemsFound' )
+def deleteOldItemsFoundTask( iOldCutOff ):
+    #
+    cursor = connection.cursor()
+    #
+    sCommand = ( 'delete from itemsfound where "tTimeEnd" < '
+                 "now() - interval '%s days'" ) % iOldCutOff
+    #
+    cursor.execute( sCommand )
+    #
+
+
+
+
 @shared_task( name = 'archive.tasks.getFetchUserItems' )
 def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
@@ -60,7 +75,10 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     # carry on, fetch final results
     #
-    tYesterday = timezone.now() - timezone.timedelta(1)
+    tYesterday = timezone.now() - timezone.timedelta( 1 )
+    #
+    iOldCutOff = 100
+    tOldItems  = timezone.now() - timezone.timedelta( iOldCutOff )
     #
     qsItemsFinal = ItemFound.objects.filter(
                 tTimeEnd__lte = tYesterday,
@@ -69,10 +87,19 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
                                 tRetrieveFinal__isnull  = True )
                     .values_list( 'iItemNumb', flat = True ) )
     #
+    iOldItems = ItemFound.objects.filter(
+                tTimeEnd__lte = tOldItems ).count()
+    #
     if bOnlySay:
         #
         print( 'would fetch final resuls on %s items now'
                 % qsItemsFinal.count() )
+        #
+        if iOldItems:
+            #
+            print( 'would delete %s items older than %s days'
+                    % ( iOldItems, iOldCutOff ) )
+            #
         #
     else:
         #
@@ -81,6 +108,14 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
             # assign task
             #
             doGetSingleItemThenStoreTask.delay( oItemFound.iItemNumb )
+            #
+        #
+        if iOldItems:
+            #
+            deleteOldItemsFoundTask.delay( iOldCutOff )
+            #
+        #
+
 
 
 @shared_task( name = 'archive.tasks.getItemPictures' )
