@@ -167,6 +167,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 153121548106,
                 153124672147,
                 263861079618,
+                292672067477,
+                223093061969,
                 292640430401
                 ) )
         #
@@ -588,40 +590,74 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        print( oTest.iBrand.cTitle )
-        print( oTest.iModel.cTitle )
-        print( oTest.iCategory.cTitle )
-
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
         iThisOne = 263861079618
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        print( oTest.iBrand.cTitle )
-        print( oTest.iModel.cTitle )
-        print( oTest.iCategory.cTitle )
-        
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        #
+        self.assertIsNone( oTest.iModel )
+        #
+        #
         iThisOne = 292672067477
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        print( oTest.iBrand.cTitle )
-        print( oTest.iModel.cTitle )
-        print( oTest.iCategory.cTitle )
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         #
-        
+        self.assertEqual( oTest.iModel.cTitle, 'M1131' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-61' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
         iThisOne = 223093061969
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        print( oTest.iBrand.cTitle )
-        print( oTest.iModel.cTitle )
-        print( oTest.iCategory.cTitle )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        #
+        self.assertIsNone( oTest.iModel )
+        #
+        #print( oTest.iBrand.cTitle )
+        #print( oTest.iModel.cTitle )
+        #print( oTest.iCategory.cTitle )
         #
         #oModel = Model.objects.get( cTitle = '15" Sliver' )
         #print( '15" Sliver:', oModel.cRegExLook4Title )
