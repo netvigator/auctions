@@ -5,15 +5,6 @@
 # rabbitmq server for celery
 # rabbitmq needs esl-erlang
 
-# maybe trusty instead of xenial
-# echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | tee /etc/apt/sources.list.d/bintray.rabbitmq.list
-# wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | apt-key add -
-# cd /tmp
-# wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-# dpkg -i erlang-solutions_1.0_all.deb
-# apt-get update
-# sudo apt-get install erlang erlang-nox rabbitmq-server
-
 # are the requirements outdated?
 # take a look monthly:
 # https://pyup.io/account/repos/github/netvigator/auctions/
@@ -89,6 +80,9 @@ django-countries==5.3
 # for the ebay API
 lxml==4.2.1
 requests==2.18.4
+requests[security]==2.18.4
+# python3 -m pip install "requests[security]"
+
 
 # to handle the ebay category lists
 django-mptt==0.9.0
