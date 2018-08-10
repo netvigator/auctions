@@ -198,6 +198,18 @@ class setUpBrandsCategoriesModels( BaseUserTestCase ):
         self.CategoryID = self.oCategory.id
         #
         self.oModel = Model(
+            cTitle      = "601",
+            cLookFor    = "601b",
+            bSubModelsOK= True,
+            iStars      = 5,
+            iBrand      = self.oBrand,
+            iCategory   = self.oCategory,
+            iUser       = self.user1 )
+        self.oModel.save()
+        #
+        # overwrite
+        #
+        self.oModel = Model(
             cTitle      = "Fleetwood",
             cLookFor    = "Woodie",
             cKeyWords   = 'Eldorado',
@@ -207,6 +219,7 @@ class setUpBrandsCategoriesModels( BaseUserTestCase ):
             iCategory   = self.oCategory,
             iUser       = self.user1 )
         self.oModel.save()
+
 
 
 
