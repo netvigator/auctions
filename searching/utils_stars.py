@@ -24,11 +24,13 @@ from searching              import WORD_BOUNDARY_MAX
 def _getTitleRegExress(
             oTableRow,
             bAddDash     = False,
-            bSubModelsOK = False,
             bPluralize   = False ):
     #
     '''gets the RegEx expression for title + look for
     (comibines title & look for into one RegEx expression)'''
+    #
+    bSubModelsOK = ( hasattr( oTableRow, 'bSubModelsOK' ) and
+                     oTableRow.bSubModelsOK )
     #
     sLook4Title = getWhatsLeft( oTableRow.cTitle )
     #
@@ -38,7 +40,7 @@ def _getTitleRegExress(
                                  iWordBoundChrs = WORD_BOUNDARY_MAX,
                                  bPluralize     = bPluralize )
     #
-    if oTableRow.cLookFor is not None and oTableRow.cLookFor:
+    if oTableRow.cLookFor:
         #
         sLookFor = oTableRow.cLookFor.strip()
         #
@@ -46,10 +48,8 @@ def _getTitleRegExress(
                                     getRegExpress(
                                         sLookFor,
                                         bAddDash       = bAddDash,
+                                        bSubModelsOK   = bSubModelsOK,
                                         iWordBoundChrs = WORD_BOUNDARY_MAX ) ) )
-        #
-        # removed 2018-06-12 solve Altec 803 problem
-        #                               bSubModelsOK   = bSubModelsOK,
         #
     #
     return sRegExpress
@@ -58,7 +58,6 @@ def _getTitleRegExress(
 
 def _getRowRegExpressions( oTableRow,
                            bAddDash     = False,
-                           bSubModelsOK = False,
                            bPluralize   = False ):
     #
     '''if the row already has RegEx expressions stored, returns them;
@@ -75,7 +74,6 @@ def _getRowRegExpressions( oTableRow,
         #
         sFindTitle = _getTitleRegExress( oTableRow,
                                          bAddDash     = bAddDash,
-                                         bSubModelsOK = bSubModelsOK,
                                          bPluralize   = bPluralize )
         #
         oTableRow.cRegExLook4Title = sFindTitle
@@ -191,7 +189,6 @@ def getFoundItemTester( oTableRow, dFinders,
         #
         t = _getRowRegExpressions( oTableRow,
                                    bAddDash     = bAddDash,
-                                   bSubModelsOK = bSubModelsOK,
                                    bPluralize   = bPluralize )
         #
         t = tuple( map( _getRegExObjOrNone, t ) )
