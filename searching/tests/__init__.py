@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 263861079618, ) #
+setRecordStepsForThese  = ( ) # 263861079618,S
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -102,7 +102,7 @@ sModels = \
  6L6WGB             |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
- 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\r^10 | t
+ 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10 | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
