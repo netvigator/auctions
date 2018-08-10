@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from django.test        import TestCase
 from django.utils       import timezone
 
-from core.utils_test    import setUpBrandsCategoriesModels
+from core.utils_test    import setUpBrandsCategoriesModels, AssertEmptyMixin
 
 from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
@@ -671,7 +671,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
 
 
 
-class findersStorageTest( setUpBrandsCategoriesModels ):
+class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
 
     #
     ''' test Finder Storage for Brands, Categories & Models '''
@@ -918,6 +918,31 @@ class findersStorageTest( setUpBrandsCategoriesModels ):
         self.assertEqual( self.oModel.cRegExKeyWords, 'Eldorado' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+    def test_generic_model_finder_OK( self ):
+        #
+        oModel = Model.objects.get( cTitle = '601' )
+        #
+        self.assertIsNotNone( oModel )
+        #
+        dFinders = {}
+        #
+        foundItem = getFoundItemTester(
+                        oModel,
+                        dFinders,
+                        bAddDash = True )
+        #
+        sAuctionTitle = 'Altec 603 cabinet superb'
+        #
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertEmpty( sInTitle )
+        #
+        tFinders = ( r'\b601\b|\b601[- ]*[A-Z]\b',
+                     r'\b601[- ]*[A-Z]\b|\b601\b'  )
+        #
+        self.assertIn( oModel.cRegExLook4Title, tFinders )
+        #
 
 
 class GetTextInParensTest( TestCase ):
