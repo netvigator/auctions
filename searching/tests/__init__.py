@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( ) # 263861079618,S
+setRecordStepsForThese  = ( ) # 163167777899, 263861060179618
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -270,8 +270,9 @@ sModels = \
  M1131              |           |      6 | t            | Jensen            |        Choke |             |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn | 811         |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
- 601                |           |      8 | t            | Altec-Lansing     |    Enclosure | 601b        |
- N-3000A            |           |      7 | t            | Altec-Lansing     |    Crossover |             |
+ 601                |           |      8 | t            | Altec-Lansing     |       Driver | 601b        |
+ 601                |           |      7 | t            | Altec-Lansing     |    Enclosure | 601b        |
+ N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
@@ -543,6 +544,110 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+           },{"itemId":["292679662673"],
+              "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m9EwLRb7tw7RJxl7yvKTEgw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-SET-JENSEN-IMPERIAL-SPEAKER-CROSSOVER-NETWORK-A-61-A-402-M-1131-\/292679662673"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["60016"],
+              "location":["Des Plaines,IL,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"899.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"899.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P1DT16H29M0S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-13T02:25:07.000Z"],
+              "endTime":["2018-08-18T02:25:07.000Z"],
+              "listingType":["Auction"],
+              "gift":["false"],
+              "watchCount":["1"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["283100002617"],
+              "title":["Vintage Hickok 539b Tube Tester with Model CA-5 Universal Adapter"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mn4tv3wk4ff_mCAl8BbM73g\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Hickok-539b-Tube-Tester-Model-CA-5-Universal-Adapter-\/283100002617"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["08079"],"location":["Salem,NJ,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"410.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"410.0"}],
+              "bidCount":["11"],
+              "sellingState":["Active"],
+              "timeLeft":["P3DT5H49M44S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-12T15:44:30.000Z"],
+              "endTime":["2018-08-19T15:44:30.000Z"],
+              "listingType":["Auction"],
+              "gift":["false"],"watchCount":["36"]}],"returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["202401940540"],
+              "title":["JBL D130, 075 & N2600 X-Over"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mOIuVSDe4VN-zG-p6LCpjsw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/JBL-D130-075-N2600-X-Over-\/202401940540"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["10710"],
+              "location":["Yonkers,NY,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"218.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"218.5"}],
+              "bidCount":["5"],
+              "sellingState":["Active"],
+              "timeLeft":["P4DT9H40M12S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-08-13T19:34:58.000Z"],
+              "endTime":["2018-08-20T19:34:58.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["17"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+           },{"itemId":["263879319271"],
+              "title":["Marantz Model 240 Power Stereo Amplifier Vintage 120 Watts Working Silver Amp"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m_3PUvMt772FuZo1zKCGPPQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Marantz-Model-240-Power-Stereo-Amplifier-Vintage-120-Watts-Working-Silver-Amp-\/263879319271"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["17055"],"location":["Mechanicsburg,PA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P5DT14H35M14S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-15T00:29:53.000Z"],
+              "endTime":["2018-08-22T00:29:53.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["163199461416"],
+              "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mcKbXFbyACk4LGBkautkHjw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-601B-Speaker-N-3000B-Crossover-Network-Cabinet-204781-\/163199461416"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["90278"],
+              "location":["Redondo Beach,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"294.03"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"294.03"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P3DT19H46M20S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-13T05:41:31.000Z"],
+              "endTime":["2018-08-20T05:41:31.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["2"]}],"returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["263861079618"],
               "title":["10 PIECE LOT OF ASSORTED RCA TUBES"],
