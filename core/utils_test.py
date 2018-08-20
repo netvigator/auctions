@@ -197,7 +197,7 @@ class setUpBrandsCategoriesModels( BaseUserTestCase ):
         self.oCategory.save()
         self.CategoryID = self.oCategory.id
         #
-        self.oModel = Model(
+        oModel = Model(
             cTitle      = "601",
             cLookFor    = "601b",
             bSubModelsOK= True,
@@ -205,7 +205,16 @@ class setUpBrandsCategoriesModels( BaseUserTestCase ):
             iBrand      = self.oBrand,
             iCategory   = self.oCategory,
             iUser       = self.user1 )
-        self.oModel.save()
+        oModel.save()
+        #
+        oModel = Model(
+            cTitle      = "Model 2",
+            cLookFor    = "Model Two",
+            iStars      = 5,
+            iBrand      = self.oBrand,
+            iCategory   = self.oCategory,
+            iUser       = self.user1 )
+        oModel.save()
         #
         # overwrite
         #
