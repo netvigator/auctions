@@ -123,6 +123,17 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             print(lTest[0])
             print('%s length:' % lTest[0].iItemNumb_id, len( lTest ) )
             #
+            if len( lTest ) > 1 or len( lTest ) < iExpect:
+                for o in lTest:
+                    if o.iModel and o.iCategory:
+                        print( o.iModel.cTitle, o.iCategory.cTitle )
+                    elif o.iCategory:
+                        print( o.iCategory.cTitle )
+                    elif o.iModel:
+                        print( o.iModel.cTitle )
+                    elif o.iBrand:
+                        print( o.iBrand.cTitle )
+            #
 
     def test_find_search_hits_test(self):
         #
@@ -169,6 +180,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 263861079618,
                 292672067477,
                 223093061969,
+                263879319271,
+                163199461416,
+                202401940540,
+                283100002617,
+                292679662673,
                 292640430401
                 ) )
         #
@@ -485,7 +501,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #oTest = dItemsToTest[ 113173838358 ][ 1 ]
         #
         #
-        self.print_len( dItemsToTest[ 163167777899 ], 2 )
+        self.print_len( dItemsToTest[ 163167777899 ], 3 )
         #
         oTest = dItemsToTest[ 163167777899 ][ 0 ]
         #
@@ -493,17 +509,17 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        #self.assertEqual( oTest.iModel.cTitle, '601' )
+        ##
+        #self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
-        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
-        #
-        oTest = dItemsToTest[ 163167777899 ][ 1 ]
+        oTest = dItemsToTest[ 163167777899 ][ 2 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        ##
+        #self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
         #
         self.print_len( dItemsToTest[ 292659341471 ], 3 )
@@ -586,9 +602,17 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 153124672147
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
@@ -596,13 +620,14 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        self.assertEqual( oTest.iModel.cTitle, '601' )
         #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
         #
         #
         iThisOne = 263861079618
@@ -655,14 +680,68 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertIsNone( oTest.iModel )
         #
-        #print( oTest.iBrand.cTitle )
-        #print( oTest.iModel.cTitle )
-        #print( oTest.iCategory.cTitle )
+        iThisOne = 263879319271
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iBrand )
+        self.assertIsNone( oTest.iCategory )
+        #
+        #
+        iThisOne = 163199461416
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        iThisOne = 202401940540
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        #
+        iThisOne = 283100002617
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        #
+        iThisOne = 292679662673
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        #
+        #print('')
+        #if oTest.iBrand:    print( oTest.iBrand.cTitle )
+        #if oTest.iModel:
+            #print( oTest.iModel.cTitle, oTest.iModel.iCategory_id )
+        #if oTest.iCategory: print( oTest.iCategory.cTitle )
         #
         #oModel = Model.objects.get( cTitle = '15" Sliver' )
         #print( '15" Sliver:', oModel.cRegExLook4Title )
-
-
+        #
         # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
@@ -944,6 +1023,36 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
 
+    def test_model_endswith_digit( self ):
+        #
+        oModel = Model.objects.get( cTitle = 'Model 2' )
+        #
+        self.assertIsNotNone( oModel )
+        #
+        dFinders = {}
+        #
+        foundItem = getFoundItemTester(
+                        oModel,
+                        dFinders,
+                        bAddDash = True )
+        #
+        sAuctionTitle = 'Model 240 amplifier'
+        #
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertEmpty( sInTitle )
+        #
+        tFinders = ( r'Model[- ]*2\b|Model *Two',
+                     r'Model *Two|Model[- ]*2\b' )
+        #
+        self.assertIn( oModel.cRegExLook4Title, tFinders )
+        #
+        sAuctionTitle = 'Model 2 amplifier'
+        #
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertEqual( 'Model 2', sInTitle )
+        #
 
 class GetTextInParensTest( TestCase ):
     #
