@@ -163,12 +163,16 @@ class ItemsFoundIndexView(
             pass
         elif 'submit' in request.POST:
             #
-            setDelete  = frozenset( request.POST.getlist('bListExclude') )
+            setExclude = frozenset( request.POST.getlist('bListExclude') )
+            # check box end user can change
             setGetPics = frozenset( request.POST.getlist('bGetPictures') )
+            # check box end user can change
             setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
+            # hidden set if item has bGetPictures as True when page composed
             setExclSet = frozenset( request.POST.getlist('ExclSet'     ) )
+            # hidden set if item has bListExclude as True when page composed
             #
-            setCommon  = setGetPics.intersection( setDelete )
+            setCommon  = setGetPics.intersection( setExclude )
             #
             if setCommon:
                 #
@@ -177,33 +181,34 @@ class ItemsFoundIndexView(
                         'get pics and delete! Careful!' )
                 #
             else:
-
-                setNewDel  = setDelete.union( setExclSet )
-                setNewPics = setGetPics.union( setPicsSet )
                 #
-                qsNewDel = UserItemFound.objects.filter(
-                                iItemNumb_id__in = setNewDel,
+                setUnExcl  = setExclSet.difference( setExclude )
+                setUnPics  = setPicsSet.difference( setGetPics )
+                #
+                setNewExcl = setExclude.difference( setExclSet )
+                setNewPics = setGetPics.difference( setPicsSet )
+                #
+                setChanged = setUnExcl.union(
+                            setUnPics, setNewExcl, setNewPics )
+                #
+                qsChanged  = UserItemFound.objects.filter(
+                                iItemNumb_id__in = setChanged,
                                 iUser            = self.request.user )
                 #
-                for oItem in qsNewDel:
+                for oItem in qsChanged:
                     #
-                    if str( oItem.iItemNumb_id ) in setDelete:
-                        oItem.bListExclude = True
-                    else:
-                        oItem.bListExclude = False
-                    oItem.save()
+                    sItemNumb = str( oItem.iItemNumb_id )
                     #
-                #
-                qsNewPics = UserItemFound.objects.filter(
-                                iItemNumb_id__in = setNewPics,
-                                iUser            = self.request.user )
-                #
-                for oItem in qsNewPics:
-                    #
-                    if str( oItem.iItemNumb_id ) in setGetPics:
+                    if sItemNumb in setGetPics:
                         oItem.bGetPictures = True
-                    else:
+                    elif sItemNumb in setUnPics:
                         oItem.bGetPictures = False
+                    #
+                    if sItemNumb in setNewExcl:
+                        oItem.bListExclude = True
+                    elif sItemNumb in setUnExcl:
+                        oItem.bListExclude = False
+                    #
                     oItem.save()
                     #
                 #
