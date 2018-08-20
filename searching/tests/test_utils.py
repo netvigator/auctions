@@ -618,7 +618,7 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oCategory.save()
         #
         oCategory   = Category( cTitle      = 'Speaker System',
-                                cLookFor    = 'speakers',
+                                cLookFor    = 'speaker',
                                 iStars      = 9,
                                 iUser       = self.user1 )
         oCategory.save()
