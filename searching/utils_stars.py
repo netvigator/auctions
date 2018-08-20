@@ -299,10 +299,12 @@ def _gotSubstringOfListItem( s, l ):
     #
     for sL in l:
         #
-        if s in sL: return sL
+        if s in sL and len( s ) < len( sL ):
+            return sL
     #
 
-_oForFitsFinder = getRegExObj( r' (?:for|fits|tests|test)' )
+
+_oForFitsFinder = getRegExObj( r' (?:for|fits|tests|test|from)' )
 
 
 def findSearchHits(
