@@ -939,7 +939,7 @@ def findSearchHits(
                 #
                 iItemsFoundTemp += 1
                 #
-                if iItemsFoundTemp == 1:
+                if iItemsFoundTemp == 1: # store item on top here
                     #
                     oUserItem.iBrand        = oTempItem.iBrand
                     oUserItem.iCategory     = oTempItem.iCategory
@@ -971,7 +971,8 @@ def findSearchHits(
                     #
                     # have complete hit, make an additional UserItem record
                     #
-                    uLonger = _gotSubstringOfListItem( oTempItem.iModel.cTitle, lModelsStoredAlready )
+                    uLonger = _gotSubstringOfListItem(
+                                    oTempItem.iModel.cTitle, lModelsStoredAlready )
                     #
                     if uLonger:
                         #
@@ -986,16 +987,34 @@ def findSearchHits(
                         continue
                         #
                     #
-                    if bRecordSteps:
-                        #
-                        lSelect.append( 'also storing: %s : %s : %s' %
-                                        (   getTitleOrNone( oTempItem.iCategory ),
-                                            getTitleOrNone( oTempItem.iModel ),
-                                            getTitleOrNone( oTempItem.iBrand )) )
-                        #
                     tNow = timezone.now()
                     #
-                    oNewUserItem = UserItemFound(
+                    bAlready = UserItemFound.objects.filter(
+                        iItemNumb_id = oUserItem.iItemNumb,
+                        iUser_id     = oUser,
+                        iModel_id    = oTempItem.iModel ).exists()
+                    #
+                    if bAlready:
+                        #
+                        if bRecordSteps:
+                            #
+                            lSelect.append( 'already got model 4 item & user, not storing : %s : %s : %s' %
+                                            (   getTitleOrNone( oTempItem.iCategory ),
+                                                getTitleOrNone( oTempItem.iModel ),
+                                                getTitleOrNone( oTempItem.iBrand )) )
+                            #
+                        #
+                    else:
+                        #
+                        if bRecordSteps:
+                            #
+                            lSelect.append( 'also storing: %s : %s : %s' %
+                                            (   getTitleOrNone( oTempItem.iCategory ),
+                                                getTitleOrNone( oTempItem.iModel ),
+                                                getTitleOrNone( oTempItem.iBrand )) )
+                            #
+                        #
+                        oNewUserItem = UserItemFound(
                             iItemNumb       = oUserItem.iItemNumb,
                             iHitStars       = oTempItem.iHitStars,
                             iSearch         = oTempItem.iSearch,
@@ -1007,8 +1026,9 @@ def findSearchHits(
                             tCreate         = tNow,
                             tModify         = tNow,
                             iUser           = oUser )
-                    #
-                    oNewUserItem.save()
+                        #
+                        oNewUserItem.save()
+                        #
                     #
                     lModelsStoredAlready.append( oTempItem.iModel.cTitle )
                     #
