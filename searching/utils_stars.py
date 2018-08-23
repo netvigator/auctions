@@ -931,9 +931,11 @@ def findSearchHits(
                     #
                 #
             #
-            iItemsFoundTemp = 0
+            iItemsFoundTemp         = 0
             #
-            lModelsStoredAlready = []
+            setModelsStoredAlready  = set( [] )
+            #
+            lModelsStoredAlready    = []
             #
             for oTempItem in lItemFoundTemp:
                 #
@@ -954,7 +956,11 @@ def findSearchHits(
                     oUserItem.save()
                     #
                     if oTempItem.iModel:
+                        #
                         lModelsStoredAlready = [ oTempItem.iModel.cTitle ]
+                        #
+                        setModelsStoredAlready.add( oTempItem.iModel.id )
+                        #
                     #
                     oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
                     #
@@ -989,12 +995,8 @@ def findSearchHits(
                     #
                     tNow = timezone.now()
                     #
-                    bAlready = UserItemFound.objects.filter(
-                        iItemNumb_id = oUserItem.iItemNumb,
-                        iUser_id     = oUser,
-                        iModel_id    = oTempItem.iModel ).exists()
                     #
-                    if bAlready:
+                    if oTempItem.iModel.id in setModelsStoredAlready:
                         #
                         if bRecordSteps:
                             #
@@ -1028,6 +1030,11 @@ def findSearchHits(
                             iUser           = oUser )
                         #
                         oNewUserItem.save()
+                        #
+                        if oTempItem.iModel:
+                            #
+                            setModelsStoredAlready.add( oTempItem.iModel.id )
+                            #
                         #
                     #
                     lModelsStoredAlready.append( oTempItem.iModel.cTitle )
