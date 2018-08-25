@@ -545,6 +545,24 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+           },{"itemId":["192633431454"],
+              "title":["Spectacular JBL C38 Enclosure 2-Way Speakers D130, 075 & N2400"],
+              "globalId":["EBAY-US"],"subtitle":["Mid Century look speakers that will blow the roof off"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/m4S-D5lsR3xfRD7Ise4sQAQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Spectacular-JBL-C38-Enclosure-2-Way-Speakers-D130-075-N2400-\/192633431454"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["44708"],"location":["Canton,OH,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"500.0"}],
+              "bidCount":["14"],"sellingState":["Active"],
+              "timeLeft":["P4DT15H4M29S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-22T00:15:43.000Z"],
+              "endTime":["2018-08-29T00:15:43.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["45"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
            },{"itemId":["292679662673"],
               "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
               "globalId":["EBAY-US"],
