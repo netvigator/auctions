@@ -31,6 +31,14 @@ class ModelDetailView( DetailViewGotModel ):
     model   = Model
     template_name = 'models/detail.html'
 
+    def get_context_data(self, **kwargs):
+        #
+        context = super( ModelDetailView, self).get_context_data(**kwargs )
+        #
+        # context['items_list'] = \
+        #    self.object.getItemsForModel(self.object)
+        # Add in a QuerySet of all the models
+        return context
 
 class ModelCreateView( CreateViewCanCancel ):
 
