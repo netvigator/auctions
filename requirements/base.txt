@@ -2,8 +2,7 @@
 # python3
 # postgresql server (on server)
 # postgresql-client-common & postgresql-client-[n.n] on client
-# rabbitmq server for celery
-# rabbitmq needs esl-erlang
+# reddis server for celery
 
 # are the requirements outdated?
 # take a look monthly:
