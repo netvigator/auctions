@@ -1,5 +1,6 @@
 import logging
 
+from builtins           import ConnectionResetError
 from string             import ascii_letters, digits
 from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 
