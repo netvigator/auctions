@@ -1,8 +1,10 @@
 from Dir.Get import getMakeDir
 
-EBAY_SG_CURRENT_VERSION =  31
-EBAY_US_CURRENT_VERSION = 118
-EBAY_GB_CURRENT_VERSION = 109
+# ### on ebay category version update, ###
+# ### change these constants and the table below to test ###
+EBAY_SG_CURRENT_VERSION =  32
+EBAY_US_CURRENT_VERSION = 119
+EBAY_GB_CURRENT_VERSION = 110
 
 EBAY_FILES_FOLDER = '/tmp/ebay_files'
 
@@ -10,32 +12,34 @@ getMakeDir( EBAY_FILES_FOLDER )
 
 # select * from markets order by "iEbaySiteID" ;
 #
+# ### on ebay category version update, ###
+# ### change the constants above and this table to test ###
 sMarketsTable = \
 '''
   cMarket   | cCountry | cLanguage | iEbaySiteID | bHasCategories | iCategoryVer | cCurrencyDef | cUseCategoryID | iUtcPlusOrMinus
 ------------+----------+-----------+-------------+----------------+--------------+--------------+----------------+-----------------
- EBAY-US    | US       | en-US     |           0 | t              |          118 | USD          |                |              -8
- EBAY-ENCA  | CA       | en-CA     |           2 | t              |          116 | CAD          |                |              -8
- EBAY-GB    | GB       | en-GB     |           3 | t              |          109 | GBP          |                |               0
+ EBAY-US    | US       | en-US     |           0 | t              |          119 | USD          |                |              -8
+ EBAY-ENCA  | CA       | en-CA     |           2 | t              |          117 | CAD          |                |              -8
+ EBAY-GB    | GB       | en-GB     |           3 | t              |          110 | GBP          |                |               0
  EBAY-AU    | AU       | en-AU     |          15 | t              |          110 | AUD          |                |              10
- EBAY-AT    | AT       | de-AT     |          16 | t              |           87 | EUR          |                |               1
- EBAY-FRBE  | BE       | fr-BE     |          23 | f              |           82 | EUR          |                |               1
- EBAY-FR    | FR       | fr-FR     |          71 | t              |          106 | EUR          |                |               1
- EBAY-DE    | DE       | de-DE     |          77 | t              |          119 | EUR          |                |               1
- EBAY-MOTOR | US       | en-US     |         100 | t              |           74 | USD          |                |              -8
- EBAY-IT    | IT       | it-IT     |         101 | t              |           98 | EUR          |                |               1
- EBAY-NLBE  | BE       | nl-BE     |         123 | f              |           83 | EUR          |                |               1
- EBAY-NL    | NL       | nl-NL     |         146 | t              |           78 | EUR          |                |               1
- EBAY-ES    | ES       | es-ES     |         186 | t              |           83 | EUR          |                |               1
- EBAY-CH    | CH       | de-CH     |         193 | t              |           88 | CHF          |                |               1
- EBAY-HK    | HK       | zh-Hant   |         201 | t              |           21 | HKD          |                |               8
+ EBAY-AT    | AT       | de-AT     |          16 | t              |           88 | EUR          |                |               1
+ EBAY-FRBE  | BE       | fr-BE     |          23 | f              |           83 | EUR          |                |               1
+ EBAY-FR    | FR       | fr-FR     |          71 | t              |          107 | EUR          |                |               1
+ EBAY-DE    | DE       | de-DE     |          77 | t              |          120 | EUR          |                |               1
+ EBAY-MOTOR | US       | en-US     |         100 | t              |           75 | USD          |                |              -8
+ EBAY-IT    | IT       | it-IT     |         101 | t              |           99 | EUR          |                |               1
+ EBAY-NLBE  | BE       | nl-BE     |         123 | f              |           84 | EUR          |                |               1
+ EBAY-NL    | NL       | nl-NL     |         146 | t              |           79 | EUR          |                |               1
+ EBAY-ES    | ES       | es-ES     |         186 | t              |           84 | EUR          |                |               1
+ EBAY-CH    | CH       | de-CH     |         193 | t              |           89 | CHF          |                |               1
+ EBAY-HK    | HK       | zh-Hant   |         201 | t              |           22 | HKD          |                |               8
  EBAY-IN    | IN       | en-IN     |         203 | t              |           65 | INR          |                |               5
- EBAY-IE    | IE       | en-IE     |         205 | t              |           67 | EUR          |                |               1
- EBAY-MY    | MY       | en-MY     |         207 | t              |           32 | MYR          |                |               8
- EBAY-FRCA  | CA       | fr-CA     |         210 | f              |           69 | CAD          |                |              -8
- EBAY-PH    | PH       | en-PH     |         211 | t              |           32 | PHP          |                |               8
- EBAY-PL    | PL       | pl-PL     |         212 | t              |           51 | PLN          |                |               1
- EBAY-SG    | SG       | en-SG     |         216 | t              |           31 | SGD          |                |               8
+ EBAY-IE    | IE       | en-IE     |         205 | t              |           68 | EUR          |                |               1
+ EBAY-MY    | MY       | en-MY     |         207 | t              |           33 | MYR          |                |               8
+ EBAY-FRCA  | CA       | fr-CA     |         210 | f              |           70 | CAD          |                |              -8
+ EBAY-PH    | PH       | en-PH     |         211 | t              |           33 | PHP          |                |               8
+ EBAY-PL    | PL       | pl-PL     |         212 | t              |           52 | PLN          |                |               1
+ EBAY-SG    | SG       | en-SG     |         216 | t              |           32 | SGD          |                |               8
  EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
  '''
 
