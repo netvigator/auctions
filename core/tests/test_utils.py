@@ -31,7 +31,7 @@ class DateTimeTests(TestCase):
         sNow = _getIsoDateTimeOffDateTimeCol( oNow )
         #
         self.assertTrue( isISOdatetime( sNow, sFormatISOdateTimeNoColon ) )
-        
+
     def test_getReverseWithUpdatedQuery(self):
         #
         self.pk         = 1
@@ -49,7 +49,7 @@ class DateTimeTests(TestCase):
         #
         self.assertFalse( queryGotUpdated( tParts[0] ) )
 
-        
+
 class textProcessingTests(TestCase):
     '''text processing tests'''
 
@@ -60,7 +60,7 @@ class textProcessingTests(TestCase):
         s = 'This is for real (but not yet)'
         #
         self.assertEqual( getWhatsLeft(s), 'This is for real' )
-        
+
 
 
 class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
@@ -79,7 +79,7 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
         #
         iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertEqual( iDictVers, 118 )
+        self.assertEqual( iDictVers, EBAY_US_CURRENT_VERSION )
         #
         self.assertEqual( oUSA.iCategoryVer, iDictVers,
                           msg = 'table & memory values should be same' )
