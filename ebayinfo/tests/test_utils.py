@@ -253,7 +253,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        oUSA.iCategoryVer = 116 # current version is actually 118
+        oUSA.iCategoryVer = EBAY_US_CURRENT_VERSION - 1
         oUSA.save()
         #
         updateMemoryTableUpdated( 'markets', sField = 'iCategoryVer' )
@@ -269,12 +269,25 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         self.assertTrue( bool( lUpdated ) )
         #
-        if lUpdated:
-            print( '')
+        if len( lUpdated ) > 1:
+            print( '\n')
             print( '*** ebay has updated categories, '
                    'you need to update local tables ***' )
+            print( '\n')
+            #
+            lDecorated = [ ( d['iSiteID'], d ) for d in lUpdated ]
+            #
+            lDecorated.sort()
+            #
+            lDecorated[0]['iTableHas'] = EBAY_US_CURRENT_VERSION
+            #
+            for t in lDecorated:
+                #
+                print( t[1] )
+                #
+            #
             self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
-            self.assertEqual( lUpdated[0].get('iTableHas'), 116 )
-            self.assertEqual( lUpdated[0].get('iEbayHas'),  118 )
+            self.assertEqual( lUpdated[0].get('iTableHas'), EBAY_US_CURRENT_VERSION )
+            #self.assertEqual( lUpdated[0].get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
 
 
