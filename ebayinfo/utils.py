@@ -777,6 +777,8 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
 
 # ###      if you update categories for a market,           ###
 # ###    update sMarketsTable in ebayinfo/__init__.py       ###
+# ###    also update the constants just above the table     ###
+# ###         best to implement an email reminder           ###
 
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
 # from ebayinfo.utils import getWhetherAnyEbayCategoryListsAreUpdated
