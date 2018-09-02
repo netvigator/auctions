@@ -205,3 +205,8 @@ duplicate key value violates unique constraint "models_cTitle_iBrand_id_iCategor
 DETAIL:  Key ("cTitle", "iBrand_id", "iCategory_id", "iUser_id")=(CA-5, 930, 175, 1) already exists.
 
 should catch
+
+
+while running server and choosing items to archive, getting lots of errors
+[WARNING] get_response: Not Found: /favicon.ico
+but cannot find favicon.ico!
