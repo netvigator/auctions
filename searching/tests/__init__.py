@@ -545,6 +545,28 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+           },{"itemId":["232913976977"],
+              "title":["VINTAGE JBL 175 driver with 1217\/1290 HORNS!!SET OF TWO!!!! CLOSE NUMBERS!!!!"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m5TBfqaVG7aI2yrDrEvgkgQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/VINTAGE-JBL-175-driver-1217-1290-HORNS-SET-TWO-CLOSE-NUMBERS-\/232913976977"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["45387"],
+              "location":["Yellow Springs,OH,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"400.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"400.0"}],
+              "bidCount":["1"],
+              "sellingState":["Active"],
+              "timeLeft":["P4DT20H38M23S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-09-02T18:47:14.000Z"],
+              "endTime":["2018-09-09T18:47:14.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["1"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["192633431454"],
               "title":["Spectacular JBL C38 Enclosure 2-Way Speakers D130, 075 & N2400"],
               "globalId":["EBAY-US"],"subtitle":["Mid Century look speakers that will blow the roof off"],
