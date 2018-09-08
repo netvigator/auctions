@@ -745,6 +745,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
         #
+        iThisOne = 323425124965
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 5` )
+        #
+        #
 
         #print('')
         #if oTest.iBrand:    print( oTest.iBrand.cTitle )
