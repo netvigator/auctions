@@ -210,3 +210,7 @@ should catch
 while running server and choosing items to archive, getting lots of errors
 [WARNING] get_response: Not Found: /favicon.ico
 but cannot find favicon.ico!
+
+
+do a model search, if there are to many hits for one page, the link to page 2 forgets the query string
+must fix!
