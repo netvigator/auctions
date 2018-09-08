@@ -567,6 +567,24 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+           },{"itemId":["323425124965"],
+              "title":["Vintage Klipsch Heresy Red cloth Alnico horns, K-22 woofers, K-55V K700, K-77"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mcTIlJWajENQooFcAheZzTw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Klipsch-Heresy-Red-cloth-Alnico-horns-K-22-woofers-K-55V-K700-K-77-\/323425124965"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["98837"],"location":["Moses Lake,WA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1250.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT3H26M18S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"1635.5"}],
+              "convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"1635.5"}],
+              "startTime":["2018-09-01T23:10:51.000Z"],
+              "endTime":["2018-09-08T23:10:51.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],
+              "watchCount":["7"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["192633431454"],
               "title":["Spectacular JBL C38 Enclosure 2-Way Speakers D130, 075 & N2400"],
               "globalId":["EBAY-US"],"subtitle":["Mid Century look speakers that will blow the roof off"],
