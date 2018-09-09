@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( ) # 163167777899, 263861060179618
+setRecordStepsForThese  = ( 283100002617, ) # 202401940540, 163167777899, 263861060179618
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -53,6 +53,7 @@ sBrands = \
  Heathkit          |      8 |            | Heath
  Hickok            |      8 |            |
  Interelectronics  |      3 |            |
+ JBL               |      7 |            |
  Jensen            |      8 |            |
  Kadette           |      6 |            |
  Klangfilm         |      6 |            |
@@ -277,7 +278,16 @@ sModels = \
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
  GRF                |           |      7 | f            | Tannoy            |Speaker System|             |
-'''
+ 539-A              |           |      5 | f            | Hickok            |  Tube Tester |             |
+ 539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
+ 539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
+ 75                 |           |     10 | f            | JBL               |       Driver | 075         |
+ D-130              |           |      7 | f            | JBL               |       Driver |             |
+ N2400              |           |      6 | f            | JBL               |    Crossover |             |
+ N2600              |           |      6 | f            | JBL               |    Crossover |             |
+ C38 (Baron)        |           |      8 | f            | JBL               |    Enclosure | Baron       | S-38\\rBookshelf\\rN-38
+ CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
+ '''
 
 
 dSearchResult = \
