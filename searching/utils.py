@@ -211,8 +211,20 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                                 iPage       = iThisPage, # will ignore if < 1
                                 bUseSandbox = bUseSandbox )
                 #
-                dPagination = getPagination( sResponse )
+            except ConnectionResetError as e:
+                sResponse = 'ConnectionResetError: %s'  % e
+            except ConnectTimeoutError as e:
+                sResponse = 'ConnectTimeoutError: %s'   % e
+            except ReadTimeoutError as e:
+                sResponse = 'ReadTimeoutError: %s'      % e
+            except ConnectTimeout as e:
+                sResponse = 'ConnectTimeout: %s'        % e
+            except ReadTimeout as e:
+                sResponse = 'ReadTimeout: %s'           % e
+            #
+            else:
                 #
+                dPagination = getPagination( sResponse )
                 '''
                 dPagination = dict(
                     iCount          = int( sCount       ),
@@ -225,20 +237,11 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 iCount = 0, & all other values are None
                 actual example error message in core.tests.__init__.py
                 '''
-            except ConnectionResetError as e:
-                sResponse = 'ConnectionResetError: %s'  % e
-            except ConnectTimeoutError as e:
-                sResponse = 'ConnectTimeoutError: %s'   % e
-            except ReadTimeoutError as e:
-                sResponse = 'ReadTimeoutError: %s'      % e
-            except ConnectTimeout as e:
-                sResponse = 'ConnectTimeout: %s'        % e
-            except ReadTimeout as e:
-                sResponse = 'ReadTimeout: %s'           % e
-            #
-            if dPagination.get( "iPages" ):
                 #
-                break
+                if dPagination.get( "iPages" ):
+                    #
+                    break
+                    #
                 #
             #
             iRetries += 1
