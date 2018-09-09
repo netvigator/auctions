@@ -247,10 +247,11 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
     return sReturn
 
 
-def _printHitSearchSteps( iItemNumb, dFindSteps ):
+def _printHitSearchSteps( oItem, dFindSteps ):
     #
     print('')
-    print('Item %s Hit Search Steps:' % iItemNumb )
+    print('Item %s Hit Search Steps:' % oItem.iItemNumb )
+    print(' %s' % oItem.cTitle )
     #
     for k, v in dFindSteps.items():
         #
@@ -304,7 +305,7 @@ def _gotSubstringOfListItem( s, l ):
     #
 
 
-_oForFitsFinder = getRegExObj( r' (?:for|fits|tests|test|from)' )
+_oForFitsFinder = getRegExObj( r' (?:\bfor\b|\bfits\b|\btests*\b|\bfrom\b)' )
 
 
 def findSearchHits(
@@ -441,7 +442,7 @@ def findSearchHits(
         #
         oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
         #
-        # if title includes for or with, consider the part in front,
+        # if title includes for or fits, consider the part in front,
         # not what follows
         #
         sRelevantTitle = _oForFitsFinder.split( oItem.cTitle )[0]
@@ -561,9 +562,11 @@ def findSearchHits(
             #
             sInTitle, bExcludeThis = foundItem( sRelevantTitle )
             #
-            #if oItem.iItemNumb == 162988530803 and oModel.cTitle == '311-90':
+            #if oItem.iItemNumb == 283100002617 and oModel.cTitle == 'CA-5':
                 #print('')
-                #print('doing model 311-90 now')
+                #print('doing model CA-5 now')
+                #print('sRelevantTitle:', sRelevantTitle )
+                #print('oModel.cRegExLook4Title:', oModel.cRegExLook4Title )
                 #print('sInTitle, bExcludeThis:', sInTitle, bExcludeThis )
             #
             if bExcludeThis:
@@ -695,6 +698,12 @@ def findSearchHits(
                                 'item does not have category %s for model %s' %
                                     ( oModel.iCategory, oModel.cTitle ) )
                         #
+                        _appendIfNotAlreadyIn(
+                                lModels,
+                                'category look for: %s' % oModel.iCategory.cLookFor )
+                        _appendIfNotAlreadyIn(
+                                lModels,
+                                'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
                     #
                     oTempItem = ItemFoundTemp(
                             iItemNumb       = oItemFound,
@@ -1059,7 +1068,7 @@ def findSearchHits(
         #
         if bRecordSteps:
             #
-            _printHitSearchSteps( oItem.iItemNumb, dFindSteps )
+            _printHitSearchSteps( oItem, dFindSteps )
             #
             #print('')
             #print('call stack:')
