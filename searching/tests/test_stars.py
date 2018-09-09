@@ -124,15 +124,24 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             print('%s length:' % lTest[0].iItemNumb_id, len( lTest ) )
             #
             if len( lTest ) > 1 or len( lTest ) < iExpect:
+                #
                 for o in lTest:
-                    if o.iModel and o.iCategory:
-                        print( o.iModel.cTitle, o.iCategory.cTitle )
-                    elif o.iCategory:
-                        print( o.iCategory.cTitle )
-                    elif o.iModel:
-                        print( o.iModel.cTitle )
-                    elif o.iBrand:
-                        print( o.iBrand.cTitle )
+                    #
+                    lPrintThis = []
+                    #
+                    if o.iModel:
+                        lPrintThis.append( o.iModel.cTitle )
+                    if o.iBrand:
+                        lPrintThis.append( o.iBrand.cTitle )
+                    if o.iCategory:
+                        lPrintThis.append( o.iCategory.cTitle )
+                    #
+                    if lPrintThis:
+                        #
+                        print( ' | '.join( lPrintThis ) )
+                        #
+                    #
+                #
             #
 
     def test_find_search_hits_test(self):
@@ -187,6 +196,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 292679662673,
                 192633431454,
                 232913976977,
+                323425124965,
+                202430076409,
                 292640430401
                 ) )
         #
@@ -747,7 +758,12 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 323425124965
         #
-        self.print_len( dItemsToTest[ iThisOne ], 5` )
+        self.print_len( dItemsToTest[ iThisOne ], 5 )
+        #
+        #
+        iThisOne = 202430076409
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 5 )
         #
         #
 
@@ -1035,8 +1051,8 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'\b601\b|\b601[- ]*[A-Z]\b',
-                     r'\b601[- ]*[A-Z]\b|\b601\b'  )
+        tFinders = ( r'\b601\b|\b601[-/ ]*[A-Z]\b',
+                     r'\b601[-/ ]*[A-Z]\b|\b601\b'  )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
@@ -1060,8 +1076,8 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'Model[- ]*2\b|Model *Two',
-                     r'Model *Two|Model[- ]*2\b' )
+        tFinders = ( r'Model[-/ ]*2\b|Model *Two',
+                     r'Model *Two|Model[-/ ]*2\b' )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
