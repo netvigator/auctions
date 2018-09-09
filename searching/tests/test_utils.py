@@ -614,6 +614,7 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         oCategory   = Category( cTitle      = 'Crossover',
                                 iStars      = 7,
+                                cLookFor    = 'X-Over\rdividing network\rxover',
                                 iUser       = self.user1 )
         oCategory.save()
         #
@@ -655,6 +656,12 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oCategory   = Category( cTitle      = 'Enclosure',
                                 cLookFor    = 'Speaker Enclosure\rcabinet',
                                 iStars      = 7,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oCategory   = Category( cTitle      = 'Accessory',
+                                cLookFor    = 'adaptor\radapter',
+                                iStars      = 5,
                                 iUser       = self.user1 )
         oCategory.save()
         #
