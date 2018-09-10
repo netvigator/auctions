@@ -4,7 +4,7 @@ from builtins           import ConnectionResetError
 from string             import ascii_letters, digits
 from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 
-from requests.exceptions import ConnectTimeout, ReadTimeout
+from requests.exceptions import ConnectTimeout, ReadTimeout, ConnectionError
 
 from django.conf        import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -221,6 +221,8 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 sResponse = 'ConnectTimeout: %s'        % e
             except ReadTimeout as e:
                 sResponse = 'ReadTimeout: %s'           % e
+            except ConnectionError as e:
+                sLastResult = 'ConnectionError: %s'     % e
             #
             else:
                 #
@@ -445,6 +447,8 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         # logger.error( 'SearchGotZeroResults: %s' % e )
         sLastResult = 'SearchGotZeroResults: %s' % e
         # suggest sending an email to the owner
+    except ReadTimeoutError as e:
+        sLastResult = 'ReadTimeoutError: %s'    % e
     #
     tNow = timezone.now()
     #
