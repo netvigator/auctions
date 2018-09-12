@@ -577,6 +577,24 @@ sResponseSearchTooBroad = \
               "isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+           },{"itemId":["323437473473"],
+              "title":["JBL Metregon 205 - Time Capsule! (130A, 275, N500, H5040)"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m7ai837pzPZRjykJpFzcF3A\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/JBL-Metregon-205-Time-Capsule-130A-275-N500-H5040-\/323437473473"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["78735"],"location":["Austin,TX,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5399.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5399.99"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P5DT16H47M19S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2018-09-09T15:53:34.000Z"],
+              "endTime":["2018-09-16T15:53:34.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["13"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["202430076409"],
               "title":["Classic Western Electric KS-15874-L2 Cardmatic Tube Tester Made By Hickok Great!"],
               "globalId":["EBAY-US"],
