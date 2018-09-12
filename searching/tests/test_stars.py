@@ -198,6 +198,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 232913976977,
                 323425124965,
                 202430076409,
+                323437473473,
                 292640430401
                 ) )
         #
@@ -762,6 +763,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         #
         iThisOne = 202430076409
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 5 )
+        #
+        #
+        iThisOne = 323437473473
         #
         self.print_len( dItemsToTest[ iThisOne ], 5 )
         #
