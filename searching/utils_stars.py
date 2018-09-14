@@ -14,7 +14,7 @@ from categories.models      import BrandCategory
 
 from String.Count           import getAlphaNumCount as getLen
 from String.Get             import getTextBeforeC
-from String.Find            import getRegExpress, getRegExObj
+from String.Find            import getRegExpress, getRegExObj, oFinderCRorLF
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 
@@ -366,6 +366,9 @@ def findSearchHits(
     dFindersCategories  = {}
     dFindersModels      = {}
     #
+    dCategoryFamily     = {}
+    dFamilyCategory     = {}
+    #
     bExcludeThis        = False
     #
     if bShowProgress: # progress meter for running in shell, no need to test
@@ -391,6 +394,20 @@ def findSearchHits(
     iSeq = 0
     #
     qsCategories = Category.objects.filter( iUser = oUser )
+    #
+    for oCategory in qsCategories:
+        #
+        if oCategory.iFamily_id:
+            #
+            iFamily_id = oCategory.iFamily_id
+            #
+            dCategoryFamily[ oCategory.id ] = iFamily_id
+            #
+            setFamilyCategories = dFamilyCategory.setdefault( iFamily_id, set( [] ) )
+            #
+            setFamilyCategories.add( oCategory.id )
+            #
+        #
     #
     qsModels = ( Model.objects
                     .select_related('iBrand')
@@ -508,9 +525,18 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    if sInTitle:
+                    if sInTitle and sInTitle == oCategory.cTitle:
                         #
-                        _appendIfNotAlreadyIn( lCategories, 'category %s in title' % oCategory )
+                        _appendIfNotAlreadyIn(
+                                lCategories,
+                                'category %s in title' % oCategory )
+                        #
+                    elif sInTitle:
+                        #
+                        _appendIfNotAlreadyIn(
+                                lCategories,
+                                'category %s ("%s") in title' %
+                                    ( oCategory, sInTitle ) )
                         #
                     elif bInHeirarchy1:
                         #
@@ -607,27 +633,58 @@ def findSearchHits(
                 #
                 lNewItemFoundTemp = []
                 #
-                for oTempItem in lItemFoundTemp:
+                for oTempItem in lItemFoundTemp: # lists categories found
                     #
-                    if      ( oModel.iCategory == oTempItem.iCategory and
-                              oTempItem.iModel is not None and
-                              oTempItem.iModel != oModel ):
+                    bModelCategoryAlreadyFound = (
+                            oModel.iCategory == oTempItem.iCategory and
+                            oTempItem.iModel is not None and
+                            oTempItem.iModel != oModel )
+                    #
+                    bCategoryFamilyRelation = (
+                            oTempItem.iCategory and dCategoryFamily and
+                            oModel.iCategory_id != oTempItem.iCategory.id and
+                            oTempItem.iCategory.id in dCategoryFamily and
+                            oModel.iCategory_id in dCategoryFamily and
+                                dCategoryFamily[ oModel.iCategory_id ] ==
+                                dCategoryFamily[ oTempItem.iCategory.id ] )
+                    #
+                    if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
+                        #
+                        if bModelCategoryAlreadyFound:
+                            #
+                            oCategory = oTempItem.iCategory
+                            sWhereCategory = oTempItem.cWhereCategory
+                            #
+                        else: # bCategoryFamilyRelation
+                            #
+                            iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                            #
+                            oFamily = Category.objects.get( id = iFamily )
+                            #
+                            _appendIfNotAlreadyIn(
+                                    lModels,
+                                    'model category %s is a member of family %s' %
+                                        ( oModel.iCategory, oFamily.cTitle ) )
+                            #
+                            oCategory = oFamily
+                            #
+                            sWhereCategory = 'family'
+                            #
                         #
                         if bRecordSteps:
                             #
                             _appendIfNotAlreadyIn(
                                     lModels,
                                     'adding model %s for category %s' %
-                                    ( oModel.cTitle, oTempItem.iCategory ) )
-                            #
+                                    ( oModel.cTitle, oCategory ) )
                         #
                         oNewTempItem = ItemFoundTemp(
                                 iItemNumb       = oTempItem.iItemNumb,
                                 iStarsCategory  = oTempItem.iStarsCategory,
                                 iHitStars       = oTempItem.iHitStars,
                                 iSearch         = oTempItem.iSearch,
-                                iCategory       = oTempItem.iCategory,
-                                cWhereCategory  = oTempItem.cWhereCategory,
+                                iCategory       = oCategory,
+                                cWhereCategory  = sWhereCategory,
                                 iModel          = oModel,
                                 iStarsModel     = oModel.iStars)
                         #
@@ -683,10 +740,29 @@ def findSearchHits(
                         #
                         # break keep looking?
                         #
+                    #
                 #
                 if lNewItemFoundTemp:
                     #
                     lItemFoundTemp.extend( lNewItemFoundTemp )
+                    #
+                #
+                if not bFoundCategoryForModel:
+                    #
+                    if oModel.iCategory_id in dCategoryFamily:
+                        #
+                        iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                        #
+                        if iFamily in dFamilyCategory:
+                            #
+                            oFamily = Category.objects.get( id = iFamily )
+                            #
+                            _appendIfNotAlreadyIn(
+                                    lModels,
+                                    'model category %s is a member of family %s' %
+                                        ( oModel.iCategory, oFamily.cTitle ) )
+                            #
+                        #
                     #
                 #
                 if not bFoundCategoryForModel:
@@ -698,9 +774,17 @@ def findSearchHits(
                                 'item does not have category %s for model %s' %
                                     ( oModel.iCategory, oModel.cTitle ) )
                         #
-                        _appendIfNotAlreadyIn(
-                                lModels,
-                                'category look for: %s' % oModel.iCategory.cLookFor )
+                        if oModel.iCategory.cLookFor:
+                            #
+                            lLookFor = oFinderCRorLF.split( oModel.iCategory.cLookFor )
+                            #
+                            sayLookFor = ' | '.join( lLookFor )
+                            #
+                            _appendIfNotAlreadyIn(
+                                    lModels,
+                                    'category look for: %s' % sayLookFor )
+                            #
+                        #
                         _appendIfNotAlreadyIn(
                                 lModels,
                                 'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
@@ -925,18 +1009,21 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    lSelect.append(
-                        'on top:   %s : %s : %s' %
-                        ( getTitleOrNone( lItemFoundTemp[0].iCategory ),
-                          getTitleOrNone( lItemFoundTemp[0].iModel ),
-                          getTitleOrNone( lItemFoundTemp[0].iBrand )) )
+                    _appendIfNotAlreadyIn(
+                            lSelect,
+                            'on top:   %s : %s : %s' %
+                            ( getTitleOrNone( lItemFoundTemp[0].iCategory ),
+                              getTitleOrNone( lItemFoundTemp[0].iModel ),
+                              getTitleOrNone( lItemFoundTemp[0].iBrand )) )
                     #
                 #
             else:
                 #
                 if bRecordSteps:
                     #
-                    lSelect.append( 'only found one thing for this item, a no brainer!' )
+                    _appendIfNotAlreadyIn(
+                            lSelect,
+                            'only found one thing for this item, a no brainer!' )
                     #
                 #
             #
@@ -993,7 +1080,8 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            lSelect.append(
+                            _appendIfNotAlreadyIn(
+                                lSelect,
                                     'excluding %s because '
                                     'this is substring of %s' %
                                     ( oTempItem.iModel.cTitle, uLonger ) )
@@ -1009,7 +1097,9 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            lSelect.append( 'already got model 4 item & user, not storing : %s : %s : %s' %
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                'already got model 4 item & user, not storing : %s : %s : %s' %
                                             (   getTitleOrNone( oTempItem.iCategory ),
                                                 getTitleOrNone( oTempItem.iModel ),
                                                 getTitleOrNone( oTempItem.iBrand )) )
@@ -1019,10 +1109,12 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            lSelect.append( 'also storing: %s : %s : %s' %
-                                            (   getTitleOrNone( oTempItem.iCategory ),
-                                                getTitleOrNone( oTempItem.iModel ),
-                                                getTitleOrNone( oTempItem.iBrand )) )
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                'also storing: %s : %s : %s' %
+                                    (   getTitleOrNone( oTempItem.iCategory ),
+                                        getTitleOrNone( oTempItem.iModel ),
+                                        getTitleOrNone( oTempItem.iBrand )) )
                             #
                         #
                         oNewUserItem = UserItemFound(
@@ -1058,7 +1150,9 @@ def findSearchHits(
             #
             if bRecordSteps:
                 #
-                lSelect.append( 'did not find anything for this item' )
+                _appendIfNotAlreadyIn(
+                    lSelect,
+                    'did not find anything for this item' )
                 #
             #
             oUserItem.tLook4Hits = tNow
