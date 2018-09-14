@@ -606,21 +606,29 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iUser       = self.user1 )
         oCategory.save()
         #
+        oCategory   = Category( cTitle      = 'Speaker System',
+                                cLookFor    = 'speaker',
+                                iStars      = 9,
+                                iUser       = self.user1 )
+        oCategory.save()
+        #
+        oSpeakerSystem = oCategory
+        #
+        oCategory.iFamily_id                = oCategory.id
+        #
+        oCategory.save()
+        #
         oCategory   = Category( cTitle      = 'Driver',
                                 cLookFor    = 'speaker\rdrive',
                                 iStars      = 8,
+                                iFamily_id  = oSpeakerSystem.id,
                                 iUser       = self.user1 )
         oCategory.save()
         #
         oCategory   = Category( cTitle      = 'Crossover',
                                 iStars      = 7,
                                 cLookFor    = 'X-Over\rdividing network\rxover',
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Speaker System',
-                                cLookFor    = 'speaker',
-                                iStars      = 9,
+                                iFamily_id  = oSpeakerSystem.id,
                                 iUser       = self.user1 )
         oCategory.save()
         #
@@ -634,6 +642,7 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         oCategory   = Category( cTitle      = 'Horn',
                                 iStars      = 6,
+                                iFamily_id  = oSpeakerSystem.id,
                                 iUser       = self.user1 )
         oCategory.save()
         #
@@ -656,6 +665,7 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oCategory   = Category( cTitle      = 'Enclosure',
                                 cLookFor    = 'Speaker Enclosure\rcabinet',
                                 iStars      = 7,
+                                iFamily_id  = oSpeakerSystem.id,
                                 iUser       = self.user1 )
         oCategory.save()
         #
