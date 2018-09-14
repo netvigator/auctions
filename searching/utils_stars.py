@@ -453,6 +453,7 @@ def findSearchHits(
         oUserItem.iStarsModel = oUserItem.iHitStars      = 0
         #
         bGotCategory   = False
+        setGotCategories = set( [] )
         #
         oTempItem = None
         lItemFoundTemp = []
@@ -523,6 +524,8 @@ def findSearchHits(
             #
             if bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
                 #
+                setGotCategories.add( oCategory.id )
+                #
                 if bRecordSteps:
                     #
                     if sInTitle and sInTitle == oCategory.cTitle:
@@ -575,6 +578,8 @@ def findSearchHits(
             #print('doing models now')
         #
         lModels = dFindSteps[ 'models' ]
+        #
+        setModelsStoredAlready = set( [] )
         #
         for oModel in qsModels:
             #
@@ -633,20 +638,29 @@ def findSearchHits(
                 #
                 lNewItemFoundTemp = []
                 #
+                bModelCategoryAlreadyFound = (
+                        oModel.iCategory_id in setGotCategories )
+                #
                 for oTempItem in lItemFoundTemp: # lists categories found
                     #
-                    bModelCategoryAlreadyFound = (
-                            oModel.iCategory == oTempItem.iCategory and
-                            oTempItem.iModel is not None and
-                            oTempItem.iModel != oModel )
-                    #
-                    bCategoryFamilyRelation = (
+                    if  (   bModelCategoryAlreadyFound and
+                            oModel.iCategory != oTempItem.iCategory ):
+                        #
+                        continue
+                        #
+                    elif oModel.id in setModelsStoredAlready:
+                        #
+                        continue
+                        #
+                    else:
+                        #
+                        bCategoryFamilyRelation = (
                             oTempItem.iCategory and dCategoryFamily and
-                            oModel.iCategory_id != oTempItem.iCategory.id and
                             oTempItem.iCategory.id in dCategoryFamily and
                             oModel.iCategory_id in dCategoryFamily and
                                 dCategoryFamily[ oModel.iCategory_id ] ==
                                 dCategoryFamily[ oTempItem.iCategory.id ] )
+                        #
                     #
                     if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
                         #
@@ -666,7 +680,7 @@ def findSearchHits(
                                     'model category %s is a member of family %s' %
                                         ( oModel.iCategory, oFamily.cTitle ) )
                             #
-                            oCategory = oFamily
+                            oCategory = oModel.iCategory
                             #
                             sWhereCategory = 'family'
                             #
@@ -702,6 +716,8 @@ def findSearchHits(
                         bFoundCategoryForModel  = True
                         #
                         lNewItemFoundTemp.append( oNewTempItem )
+                        #
+                        setModelsStoredAlready.add( oModel.id )
                         #
                     elif    ( oModel.iCategory == oTempItem.iCategory and
                             oTempItem.iModel is None ):
@@ -1092,14 +1108,13 @@ def findSearchHits(
                     #
                     tNow = timezone.now()
                     #
-                    #
                     if oTempItem.iModel.id in setModelsStoredAlready:
                         #
                         if bRecordSteps:
                             #
                             _appendIfNotAlreadyIn(
                                 lSelect,
-                                'already got model 4 item & user, not storing : %s : %s : %s' %
+                                'already got model, not storing : %s : %s : %s' %
                                             (   getTitleOrNone( oTempItem.iCategory ),
                                                 getTitleOrNone( oTempItem.iModel ),
                                                 getTitleOrNone( oTempItem.iBrand )) )
