@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 283100002617, ) # 202401940540, 163167777899, 263861060179618
+setRecordStepsForThese  = ( 282602694679, ) #  323437473473, 283100002617, 202401940540, 163167777899, 263861060179618
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -57,6 +57,7 @@ sBrands = \
  Jensen            |      8 |            |
  Kadette           |      6 |            |
  Klangfilm         |      6 |            |
+ Klipsch           |      8 |            | Klipschorn
  Knight            |      4 |            |
  Lafayette         |      7 |            |
  Langevin          |      8 |            |
@@ -282,11 +283,25 @@ sModels = \
  539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
  539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
- D-130              |           |      7 | f            | JBL               |       Driver |             |
+ 175                |           |     10 | f            | JBL               |       Driver |             |
+ 275                |           |     10 | f            | JBL               |       Driver |             |
+ D-130              |           |      7 | f            | JBL               |       Driver | 130         |
+ D-130A             |           |      7 | f            | JBL               |       Driver | 130A        |
+ D-130B             |           |      7 | f            | JBL               |       Driver | 130B        |
+ 1217-1290          |           |      7 | f            | JBL               |         Horn |             |
+ H5040              |           |      7 | f            | JBL               |         Horn |             |
  N2400              |           |      6 | f            | JBL               |    Crossover |             |
  N2600              |           |      6 | f            | JBL               |    Crossover |             |
+ N500               |           |      6 | f            | JBL               |    Crossover |             |
  C38 (Baron)        |           |      8 | f            | JBL               |    Enclosure | Baron       | S-38\\rBookshelf\\rN-38
  CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
+ Heresy (H700)      |           |      6 | f            | Klipsch           |Speaker System|             |
+ K-22               |           |      6 | f            | Klipsch           |       Driver |             |
+ K-55-V             |           |      6 | f            | Klipsch           |       Driver |             |
+ K-77               |           |      6 | f            | Klipsch           |       Driver |             |
+ K-700              |           |      6 | f            | Klipsch           |         Horn |             |
+ KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
+ C45 (Metregon)     |           |      6 | f            | JBL               |    Enclosure | Metregon    |
  '''
 
 
