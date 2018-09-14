@@ -749,7 +749,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 192633431454
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        self.print_len( dItemsToTest[ iThisOne ], 4 )
         #
         #
         iThisOne = 232913976977
