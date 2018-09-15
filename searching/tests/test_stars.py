@@ -736,43 +736,193 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N2600' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'D-130' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '75' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         iThisOne = 283100002617
         #
         self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'CA-5' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Accessory' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '539-B' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
+        #
         #
         #
         iThisOne = 292679662673
         #
         self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'M1131' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-61' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
         #
         iThisOne = 192633431454
         #
         self.print_len( dItemsToTest[ iThisOne ], 4 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N2400' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
         #
         iThisOne = 232913976977
         #
         self.print_len( dItemsToTest[ iThisOne ], 2 )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '175' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '1217-1290' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        #
+        #
         #
         iThisOne = 323425124965
         #
         self.print_len( dItemsToTest[ iThisOne ], 5 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Klipsch' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'K-700' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'K-55-V' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'K-77' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'K-22' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 4 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Heresy (H700)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
         #
         #
         iThisOne = 202430076409
         #
         self.print_len( dItemsToTest[ iThisOne ], 1 )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KS-15874' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
+        #
         #
         iThisOne = 323437473473
         #
         self.print_len( dItemsToTest[ iThisOne ], 5 )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N500' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'H5040' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'D-130A' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '275' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 4 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
 
+        #print()
+        #print( iThisOne )
+        ##
+        #for oTest in dItemsToTest[ iThisOne ]:
+            ##
+            #print()
+            #print( oTest.iBrand.cTitle )
+            #print( oTest.iModel.cTitle )
+            #print( oTest.iCategory.cTitle )
+            #
+        #
+        #print()
+        #print( iThisOne )
+        ##
+        #for oTest in dItemsToTest[ iThisOne ]:
+            ##
+            #print()
+            #print( oTest.iBrand.cTitle )
+            #print( oTest.iModel.cTitle )
+            #print( oTest.iCategory.cTitle )
+            ##
         #print('')
         #if oTest.iBrand:    print( oTest.iBrand.cTitle )
         #if oTest.iModel:
