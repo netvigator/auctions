@@ -35,10 +35,11 @@ class ModelDetailView( DetailViewGotModel ):
         #
         context = super( ModelDetailView, self).get_context_data(**kwargs )
         #
-        # context['items_list'] = \
-        #    self.object.getItemsForModel(self.object)
-        # Add in a QuerySet of all the models
+        context['items_list'] = \
+            self.object.getItemsForModel( self.object )
+        #
         return context
+
 
 class ModelCreateView( CreateViewCanCancel ):
 
