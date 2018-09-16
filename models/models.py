@@ -114,13 +114,13 @@ class Model( models.Model ):
     def getItemsForModel( self, oModel ):
         #
         from searching.models import UserItemFound
-        from archive.models import Item
+        from keepers.models   import Keeper
         #
         qsUserItems = UserItemFound.objects.filter(
                 iUser  = self.request.user,
                 iModel = oModel ).only('iItemNumb_id').all()
 
-        oItems = Item.objects.filter(
+        oItems = Keeper.objects.filter(
                 iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 10 ]
         #
         return oItems
