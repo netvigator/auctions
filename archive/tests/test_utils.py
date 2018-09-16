@@ -52,7 +52,7 @@ logging.basicConfig(
     level=logging.INFO)
 '''
 
-PIC_TEST_DIR = '/tmp/Item_Pictures'
+PIC_TEST_DIR = '/tmp/pictures_test_directory'
 
 class GetListAsLinesTest( TestCase ):
     '''class for testing getListAsLines()'''
