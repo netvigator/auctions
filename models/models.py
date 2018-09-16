@@ -1,26 +1,27 @@
-from django.db                  import models
+from django.db              import models
 
-from crispy_forms.helper        import FormHelper
-from crispy_forms.layout        import Submit
+from crispy_forms.helper    import FormHelper
+from crispy_forms.layout    import Submit
 
-from django.contrib.auth        import get_user_model
-User = get_user_model()
+from django.contrib.auth    import get_user_model
 
-from core.models                import (
-                            gotSomethingOutsideTitleParensCharField,
-                            IntegerRangeField, sTitleHelpText,
-                            sKeyWordsHelpText, sLookForHelpText,
-                            sExcludeIfHelpText )
+from core.mixins            import FindUserMixin
 
-from core.utils                 import getReverseWithUpdatedQuery
+from core.models            import ( gotSomethingOutsideTitleParensCharField,
+                                     IntegerRangeField, sTitleHelpText,
+                                     sKeyWordsHelpText, sLookForHelpText,
+                                     sExcludeIfHelpText )
 
-from brands.models              import Brand
-from categories.models          import Category
+from core.utils             import getReverseWithUpdatedQuery
+
+from brands.models          import Brand
+from categories.models      import Category
 
 # ### models can be FAT but not too FAT! ###
 
+User = get_user_model()
 
-class Model( models.Model ):
+class Model( FindUserMixin, models.Model ):
     cTitle          = gotSomethingOutsideTitleParensCharField(
                         'model number or name',
                         max_length = 48, db_index = True,
@@ -116,8 +117,10 @@ class Model( models.Model ):
         from searching.models import UserItemFound
         from keepers.models   import Keeper
         #
+        oUser = self.findUser()
+        #
         qsUserItems = UserItemFound.objects.filter(
-                iUser  = self.request.user,
+                iUser  = oUser,
                 iModel = oModel ).only('iItemNumb_id').all()
 
         oItems = Keeper.objects.filter(
