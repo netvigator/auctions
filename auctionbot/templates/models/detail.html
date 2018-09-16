@@ -2,7 +2,7 @@
 {% load static %}
 {% load field_name %}
 
-{% block title %}Auction Shopping Bot | {{ object.iBrand|default_if_none:"" }} 
+{% block title %}Auction Shopping Bot | {{ object.iBrand|default_if_none:"" }}
                  Model {{ model }}{% endblock %}
 
 {% block content %}
@@ -10,13 +10,13 @@
 
     <!-- Action buttons -->
     <div class="basic">
-        {% include "./actions.html" %}    
-    </div>            
+        {% include "./actions.html" %}
+    </div>
     <!-- End Action buttons -->
 
     <table RULES=ROWS CELLPADDING=10>
     <TR>
-        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
+        <TD width = 300>{% field_name model 'cTitle' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
@@ -31,7 +31,7 @@
         <TD VALIGN=TOP>{{ object.iCategory }}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name model 'cKeyWords' %}</TD> 
+        <TD width = 300>{% field_name model 'cKeyWords' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cKeyWords|default_if_none:""}}</TD>
     </TR>
@@ -126,15 +126,27 @@
         <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
-    
+
     <p>
 
     <!-- Action buttons -->
     <div class="basic">
-        {% include "./actions.html" %}    
+        {% include "./actions.html" %}
     </div>
     <p/>
     <!-- End Action buttons -->
+
+    <div style="margin-left:20px;margin-top:20px">
+    {% if keepers_list %}
+        <h4>Keeper Items for {{ model }}</h4>
+        <UL>
+        {% for keeper in keepers_list %}
+            <LI><a href="{{ keeper.get_absolute_url }}">
+                {{ keeper }}</a></LI>
+        {% endfor %}
+        </UL>
+    {% endif %}
+    </div>
 
 </div>
 {% endblock content %}
