@@ -69,16 +69,16 @@ class Model( models.Model ):
                             on_delete=models.CASCADE )
     iCategory       = models.ForeignKey( Category, verbose_name = 'Category',
                             on_delete=models.CASCADE )
-    
+
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null = True, blank = True,
         help_text = sExcludeIfHelpText % 'model' )
-    
+
     cRegExLook4Title= models.TextField( null = True )
     cRegExExclude   = models.TextField( null = True )
     cRegExKeyWords  = models.TextField( null = True )
-    
+
     # maybe change to FilePathField later, it is not working now 2017-12-03
     # models.FilePathField()
     cFileSpec1      = models.CharField( 'file path & name for model picture 1',
@@ -91,7 +91,7 @@ class Model( models.Model ):
                         max_length = 48, null = True, blank = True )
     cFileSpec5      = models.CharField( 'file path & name for model picture 5',
                         max_length = 48, null = True, blank = True )
-    
+
     iLegacyKey      = models.PositiveIntegerField('legacy key', null=True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                         null = True )
@@ -101,7 +101,7 @@ class Model( models.Model ):
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
-    
+
     def __str__(self):
         return self.cTitle
 
@@ -110,6 +110,21 @@ class Model( models.Model ):
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
         unique_together     = ('cTitle','iBrand','iCategory','iUser')
+
+    def getItemsForModel( self, oModel ):
+        #
+        from searching.models import UserItemFound
+        from archive.models import Item
+        #
+        qsUserItems = UserItemFound.objects.filter(
+                iUser  = self.request.user,
+                iModel = oModel ).only('iItemNumb_id').all()
+
+        oItems = Item.objects.filter(
+                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 10 ]
+        #
+        return oItems
+
 
     def get_absolute_url(self):
         #
