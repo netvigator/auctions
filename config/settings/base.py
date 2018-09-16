@@ -121,7 +121,7 @@ LOCAL_APPS = [
     'models.apps.ModelsConfig',
     'ebayinfo.apps.EbayInfoConfig',
     'searching.apps.SearchingConfig',
-    'archive.apps.ArchiveConfig',
+    'keepers.apps.KeeperConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -356,7 +356,7 @@ LOGIN_URL = 'account_login'
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
-#### CELERY #### 
+#### CELERY ####
 
 INSTALLED_APPS += ['auctionbot.taskapp.celery.CeleryConfig']
 
@@ -395,3 +395,4 @@ countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States',
 
 # code can know if a test is being run
 TESTING = len(sys.argv) > 1 and 'test' in sys.argv[1]
+
