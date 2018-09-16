@@ -52,6 +52,20 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     #
     cursor.execute( sCommand )
     #
+    # now CAREFULLY delete unneeded useritemsfound rows!
+    #
+    sCommand = (
+        '''delete from useritemsfound uif
+                where not exists
+                    ( select 1 from
+                        (   select "iItemNumb" from itemsfound
+                            union
+                            select "iItemNumb" from keepers ) as combo
+                        where combo."iItemNumb" = uif."iItemNumb_id" ) ;
+        ''' )
+    #
+    cursor.execute( sCommand )
+    #
 
 
 
@@ -163,7 +177,7 @@ doGetFetchUserItemsTasks( bOnlySay = True )
 select count(*) from useritemsfound
     where "bGetPictures" = true and "tRetrieved" is null ;
 
-#### above count depends on items selected for downloading ###
+#### above count depends on keepers selected for downloading ###
 
 select count(*) from itemsfound
     where "tTimeEnd" < timestamp 'yesterday' and
@@ -173,13 +187,13 @@ select count(*) from itemsfound
 
 # doGetItemPicturesTasks( bOnlySay = True )
 
-select count(*) from items where "iGotPictures" > 0 ;
-select count(*) from items where "tGotPictures" is null  ;
-select "iItemNumb", "tTimeEnd" from items where "tGotPictures" is null order by "tTimeEnd" ;
+select count(*) from keepers where "iGotPictures" > 0 ;
+select count(*) from keepers where "tGotPictures" is null  ;
+select "iItemNumb", "tTimeEnd" from keepers where "tGotPictures" is null order by "tTimeEnd" ;
 
 
-select "cTitle", "iGotPictures" from items where "tGotPictures" =
-    ( select max( "tGotPictures" ) from items ) ;
+select "cTitle", "iGotPictures" from keepers where "tGotPictures" =
+    ( select max( "tGotPictures" ) from keepers ) ;
 
 '''
 
