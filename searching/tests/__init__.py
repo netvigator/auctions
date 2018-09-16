@@ -276,6 +276,8 @@ sModels = \
  601                |           |      7 | t            | Altec-Lansing     |    Enclosure | 601b        |
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  A-5                |           |      8 | t            | Altec-Lansing     |Speaker System|             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
@@ -296,7 +298,7 @@ sModels = \
  N500               |           |      6 | f            | JBL               |    Crossover |             |
  C38 (Baron)        |           |      8 | f            | JBL               |    Enclosure | Baron       | S-38\\rBookshelf\\rN-38
  CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
- CA-3               |           |      5 | f            | Hickok            |    Accessory |             | CA-5         | t
+ CA-3               |           |      5 | t            | Hickok            |    Accessory |             | CA-5
  Heresy (H700)      |           |      6 | f            | Klipsch           |Speaker System|             |
  K-22               |           |      6 | f            | Klipsch           |       Driver |             |
  K-55-V             |           |      6 | f            | Klipsch           |       Driver |             |
