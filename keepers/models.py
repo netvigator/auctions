@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 
-class Item(models.Model):
+class Keeper(models.Model):
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
     cDescription    = models.TextField( 'description',
@@ -109,12 +109,18 @@ class Item(models.Model):
         return str( self.iItemNumb )
 
     class Meta:
-        verbose_name_plural = 'items'
+        verbose_name_plural = 'keepers'
         db_table            = verbose_name_plural
 
+    def get_absolute_url(self):
+        #
+        return getReverse(
+                'keepers:detail',
+                kwargs = { 'pk': self.pk } )
+#
 
 
-class ItemImage(models.Model):
+class KeeperImage(models.Model):
     iItemNumb       = models.BigIntegerField(
                         'ebay item number', primary_key = True )
     isequence       = models.PositiveSmallIntegerField( 'sequence' )
@@ -127,7 +133,7 @@ class ItemImage(models.Model):
         return self.iItemNumb
 
     class Meta:
-        verbose_name_plural = 'itemimages'
+        verbose_name_plural = 'keeperimages'
         db_table            = verbose_name_plural
         unique_together     = ('iItemNumb', 'isequence',)
 #

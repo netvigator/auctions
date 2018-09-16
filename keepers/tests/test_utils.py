@@ -9,15 +9,15 @@ from time               import sleep
 from django.test        import TestCase, tag
 from django.utils       import timezone
 
-from archive            import getListAsLines
+from keepers            import getListAsLines
 
-from archive.tests      import ( s142766343340, s232742493872,
+from keepers.tests      import ( s142766343340, s232742493872,
                                  s232709513135, s282330751118 )
 
 from core.utils_test    import ( getEbayCategoriesSetUp, AssertEmptyMixin,
                                  AssertNotEmptyMixin )
 
-from ..models           import Item
+from ..models           import Keeper
 from ..utils            import ( _storeJsonSingleItemResponse,
                                  getSingleItemThenStore,
                                  getItemsFoundForUpdate,
@@ -61,7 +61,7 @@ class GetListAsLinesTest( TestCase ):
         '''test getListAsLines()'''
         #
         #
-        from archive.tests  import sPicList, sExpectList # in __init__.py
+        from keepers.tests  import sPicList, sExpectList # in __init__.py
         #
         self.assertEqual( getListAsLines( sPicList ), sExpectList )
 
@@ -146,9 +146,9 @@ class StoreItemsTest( TestCase ):
         #
         iOriginalSavedRowID, sListingStatus = t
         #
-        self.assertTrue( Item.objects.filter( pk = 142766343340 ).exists() )
+        self.assertTrue( Keeper.objects.filter( pk = 142766343340 ).exists() )
         #
-        oItem = Item.objects.get( pk = 142766343340 )
+        oItem = Keeper.objects.get( pk = 142766343340 )
         #
         self.assertEqual( oItem.iBidCount, 0 )
         #
@@ -172,7 +172,7 @@ class StoreItemsTest( TestCase ):
         #
         iSavedRowID, sListingStatus = t
         #
-        self.assertTrue( Item.objects.filter( pk = 232742493872 ).exists() )
+        self.assertTrue( Keeper.objects.filter( pk = 232742493872 ).exists() )
 
     def test_s232709513135( self ):
         '''test storing getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
@@ -181,7 +181,7 @@ class StoreItemsTest( TestCase ):
         #
         iSavedRowID, sListingStatus = t
         #
-        self.assertTrue( Item.objects.filter( pk = 232709513135 ).exists() )
+        self.assertTrue( Keeper.objects.filter( pk = 232709513135 ).exists() )
 
 
 class GetAndStoreSingleItemsTests(
@@ -222,7 +222,7 @@ class GetAndStoreSingleItemsTests(
             #
             getSingleItemThenStore( iItemNumb )
             #
-            qsItems = Item.objects.filter( pk = iItemNumb )
+            qsItems = Keeper.objects.filter( pk = iItemNumb )
             #
             if not qsItems: continue
             #
@@ -256,7 +256,7 @@ class GetAndStoreSingleItemsTests(
         #
         iItemNumb = self.iItemNumb
         #
-        oItem = Item.objects.get( iItemNumb = iItemNumb )
+        oItem = Keeper.objects.get( iItemNumb = iItemNumb )
         #
         iSeq = 0
         #
@@ -295,7 +295,7 @@ class GetAndStoreSingleItemsTests(
         #
         iItemNumb = self.iItemNumb
         #
-        oItem = Item.objects.get( iItemNumb = iItemNumb )
+        oItem = Keeper.objects.get( iItemNumb = iItemNumb )
         #
         getItemPictures( iItemNumb, sItemPicsRoot = PIC_TEST_DIR )
         #
@@ -323,7 +323,7 @@ class GetAndStoreSingleItemsTests(
     def test_get_single_active_item_then_store( self ):
         #
         #
-        qsItem = Item.objects.filter( iItemNumb = self.iItemNumb )
+        qsItem = Keeper.objects.filter( iItemNumb = self.iItemNumb )
         #
         self.assertEqual( len( qsItem ), 1 )
 
@@ -382,7 +382,7 @@ class StoreSingleItemTests( getEbayCategoriesSetUp ):
         #
         self.assertEqual( iSavedRowID, 282330751118 )
         #
-        oItem = Item.objects.get( pk = 282330751118 )
+        oItem = Keeper.objects.get( pk = 282330751118 )
         #
         self.assertEqual( oItem.cListingStatus, "Completed" )
         #

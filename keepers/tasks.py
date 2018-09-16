@@ -17,7 +17,7 @@ from celery.schedules       import crontab
 
 from core.utils             import sayIsoDateTimeNoTimeZone
 
-from .models                import Item
+from .models                import Keeper
 from .utils                 import ( getSingleItemThenStore,
                                      getItemsFoundForUpdate,
                                      getItemPictures,
@@ -35,14 +35,14 @@ logging_level = logging.INFO
 
 
 
-@shared_task( name = 'archive.tasks.getSingleItemThenStore' )
+@shared_task( name = 'keepers.tasks.getSingleItemThenStore' )
 def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
     #
     getSingleItemThenStore( iItemNumb, **kwargs )
 
 
 
-@shared_task( name = 'archive.tasks.deleteOldItemsFound' )
+@shared_task( name = 'keepers.tasks.deleteOldItemsFound' )
 def deleteOldItemsFoundTask( iOldCutOff ):
     #
     cursor = connection.cursor()
@@ -56,7 +56,7 @@ def deleteOldItemsFoundTask( iOldCutOff ):
 
 
 
-@shared_task( name = 'archive.tasks.getFetchUserItems' )
+@shared_task( name = 'keepers.tasks.getFetchUserItems' )
 def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     qsUserItemNumbs = getItemsFoundForUpdate()
@@ -118,13 +118,13 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
 
 
 
-@shared_task( name = 'archive.tasks.getItemPictures' )
+@shared_task( name = 'keepers.tasks.getItemPictures' )
 def getItemPicturesTask( iItemNumb ):
     #
     getItemPictures( iItemNumb )
 
 
-@shared_task( name = 'archive.tasks.doGetItemPicturesTasks' )
+@shared_task( name = 'keepers.tasks.doGetItemPicturesTasks' )
 def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
     #
     qsGetPics = getItemsForPicsDownloading( iLimit )
@@ -136,11 +136,11 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
         #
         if qsGetPics:
             #
-            oFirst = Item.objects.get( iItemNumb = qsGetPics[0] )
+            oFirst = Keeper.objects.get( iItemNumb = qsGetPics[0] )
             #
             for iItemNumb in qsGetPics: iLast = iItemNumb # negative indexing not supported!
             #
-            oLast = Item.objects.get( iItemNumb = iLast )
+            oLast = Keeper.objects.get( iItemNumb = iLast )
             #
             print( 'items ending from %s to %s' %
                     ( sayIsoDateTimeNoTimeZone( oFirst.tTimeEnd ),
@@ -183,7 +183,7 @@ select "cTitle", "iGotPictures" from items where "tGotPictures" =
 
 '''
 
-# from archive.tasks import doGetFetchUserItemsTasks, doGetItemPicturesTasks
+# from keepers.tasks import doGetFetchUserItemsTasks, doGetItemPicturesTasks
 # doGetFetchUserItemsTasks( bOnlySay = True )
 # doGetFetchUserItemsTasks( bDoFinalOnly = True )
 # doGetFetchUserItemsTasks()

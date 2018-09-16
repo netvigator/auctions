@@ -9,10 +9,10 @@ from django.utils           import timezone
 from core.ebay_api_calls    import getSingleItem
 
 # in __init__.py
-from archive                import EBAY_ITEMS_FOLDER, dItemFields as dFields
+from keepers                import EBAY_ITEMS_FOLDER, dItemFields as dFields
 
-from .forms                 import ItemForm
-from .models                import Item
+from .forms                 import KeeperForm
+from .models                import Keeper
 
 from core.utils             import getDownloadFileWriteToDisk
 from core.utils_ebay        import getValueOffItemDict
@@ -38,7 +38,7 @@ logging_level = logging.INFO
 
 getMakeDir( EBAY_ITEMS_FOLDER )
 
-ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Item_Pictures' )
+ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Keeper_Pictures' )
 
 getMakeDir( ITEM_PICS_ROOT )
 
@@ -139,13 +139,13 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     #
     iSavedRowID = sListingStatus = None
     #
-    if dGotItem and Item.objects.filter( pk = iItemNumb ).exists():
+    if dGotItem and Keeper.objects.filter( pk = iItemNumb ).exists():
         #
         bAnyChanged = False
         #
         iSavedRowID = dGotItem['iItemNumb']
         #
-        oItem = Item.objects.get( pk = iSavedRowID )
+        oItem = Keeper.objects.get( pk = iSavedRowID )
         #
         for sField in dGotItem:
             #
@@ -173,7 +173,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
         #
     elif dGotItem:
         #
-        form = ItemForm( data = dGotItem )
+        form = KeeperForm( data = dGotItem )
         #
         if form.is_valid():
             #
@@ -492,7 +492,7 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
 
 def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
-    oItem = Item.objects.get( iItemNumb = iItemNumb )
+    oItem = Keeper.objects.get( iItemNumb = iItemNumb )
     #
     sSubDir = _getItemPicsSubDir( iItemNumb, sItemPicsRoot )
     #
@@ -566,7 +566,7 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
 
 def getItemsForPicsDownloading( iLimit = 50 ):
     #
-    qsGetPics = Item.objects.filter(
+    qsGetPics = Keeper.objects.filter(
                     tGotPictures__isnull = True
                     ).order_by( 'tTimeEnd'
                     ).values_list( 'iItemNumb', flat = True
