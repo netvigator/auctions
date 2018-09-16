@@ -199,6 +199,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 323425124965,
                 202430076409,
                 323437473473,
+                192659380750,
+                183436307728,
                 292640430401
                 ) )
         #
@@ -901,6 +903,18 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
+        #
+        iThisOne = 192659380750
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 4 )
+        #
+        #
+        iThisOne = 183436307728
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        #
+
 
         #print()
         #print( iThisOne )
