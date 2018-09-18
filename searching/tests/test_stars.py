@@ -829,7 +829,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 323425124965
         #
-        self.print_len( dItemsToTest[ iThisOne ], 5 )
+        self.print_len( dItemsToTest[ iThisOne ], 5 ) # order not consistent
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -840,17 +840,19 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'K-55-V' )
+        setComponents = frozenset( ( 'K-77', 'K-55-V', 'K-22' ) )
+        #
+        self.assertIn( oTest.iModel.cTitle, setComponents )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'K-77' )
+        self.assertIn( oTest.iModel.cTitle, setComponents )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         oTest = dItemsToTest[ iThisOne ][ 3 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'K-22' )
+        self.assertIn( oTest.iModel.cTitle, setComponents )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         oTest = dItemsToTest[ iThisOne ][ 4 ]
@@ -885,18 +887,21 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'H5040' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        setComponents = frozenset( ( 'H5040', 'D-130A', '275' ) )
+        setCategories = frozenset( ( 'Horn', 'Driver' ) )
+        #
+        self.assertIn( oTest.iModel.cTitle, setComponents )
+        self.assertIn( oTest.iCategory.cTitle, setCategories )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'D-130A' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        self.assertIn( oTest.iModel.cTitle, setComponents )
+        self.assertIn( oTest.iCategory.cTitle, setCategories )
         #
         oTest = dItemsToTest[ iThisOne ][ 3 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '275' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        self.assertIn( oTest.iModel.cTitle, setComponents )
+        self.assertIn( oTest.iCategory.cTitle, setCategories )
         #
         oTest = dItemsToTest[ iThisOne ][ 4 ]
         #
@@ -906,12 +911,43 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 192659380750
         #
-        self.print_len( dItemsToTest[ iThisOne ], 4 )
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '288' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '515A' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-5' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
         #
         #
         iThisOne = 183436307728
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'CA-3' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Accessory' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '539-B' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
         #
 
