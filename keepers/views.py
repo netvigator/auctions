@@ -10,11 +10,11 @@ from .models            import Keeper
 
 
 
-class KeeperListView(
+class KeeperIndexView(
             GetPaginationExtraInfoInContext, ListViewGotModel ):
     model               = Keeper
-    template_name       = 'archive/items_index.html'
-    context_object_name = 'items_list'
+    template_name       = 'keeper/keepers_index.html'
+    context_object_name = 'keepers_list'
     paginate_by         = 100
 
 
