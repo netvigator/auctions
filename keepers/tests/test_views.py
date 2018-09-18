@@ -8,24 +8,24 @@ from core.utils                 import getExceptionMessageFromResponse
 
 from ..models                   import Keeper
 
-from ..views                    import KeeperListView
+from ..views                    import KeeperIndexView
 
 
 
 class KeepersViewsTests(BaseUserTestCase):
     """Item views tests."""
 
-    def not_yet_test_no_items_yet(self):
+    def test_no_items_yet(self):
         #
         """
         If no itemss exist, an appropriate message is displayed.
         """
         self.client.login(username='username1', password='mypassword')
         #
-        response = self.client.get(reverse('items:index'))
+        response = self.client.get(reverse('keepers:index'))
 
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['item_list'], [])
-        self.assertContains(response, "No items are available.")
+        self.assertQuerysetEqual(response.context['keepers_list'], [])
+        self.assertContains(response, "No keepers are available.")
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
