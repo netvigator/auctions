@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class KeeperConfig(AppConfig):
+class KeepersConfig(AppConfig):
     name = 'keepers'
