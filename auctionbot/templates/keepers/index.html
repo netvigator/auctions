@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% load getNbsp %}
+{% block title %}Auction Shopping Bot Keepers{% endblock %}
+
+
+{% block content %}
+  <h2>Keepers</h2>
+
+    {% include "./add_search.html" %}
+
+    {% if object_list %}
+        {# the pagination section #}
+        {% if is_paginated %}
+            <hr>
+            <div class="basic">
+                {% include "../paginate.html" %}
+            </div>
+        {% endif %}
+        <div class="container">
+        <div class="list-group">
+        <table class="bottomBorder">
+        <tr>
+        <th ALIGN=LEFT>ebay item</th>
+        </tr>
+        {% for item in object_list %}
+            <TR>
+                <TD>{% field_name parent 'iItemNumb' %}</TD>
+                <TD>&nbsp;&nbsp;&nbsp;</TD>
+                <TD VALIGN=TOP>{{ object.iItemNumb.iItemNumb }}</TD>
+            </TR>
+        {% endfor %}
+        </table>
+        </div>
+        </div>
+        {# the pagination section #}
+        {% if is_paginated %}
+            <hr>
+            <div class="basic">
+                {% include "../paginate.html" %}
+            </div>
+        {% endif %}
+    {% else %} <!-- brand_list -->
+        <p>No keepers are available.</p>
+    {% endif %} <!-- brand_list -->
+
+    {% include "./add_search.html" %}
+
+{% endblock content %}

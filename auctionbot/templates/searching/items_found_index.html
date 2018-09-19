@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Auction Shopping Bot | Items Found{% endblock %}
 
-{% block content %} 
+{% block content %}
 
     <h1>Items Found</h1>
 
     {% if items_found_list %}
         {# the pagination section #}
 
-        
         <form action="" method="post">
         {% csrf_token %}
         <table>
@@ -52,8 +51,8 @@
                 {% if is_paginated %}
                     <hr>
                     <div class="basic">
-                        {% include "../paginate.html" %}    
-                    </div>            
+                        {% include "../paginate.html" %}
+                    </div>
                 {% endif %}
             </td>
         </TR>
@@ -82,7 +81,7 @@
         {% for item in items_found_list %}
             <tr>
             <!--<td><input type="checkbox" value="{{ item.id }} name='get_pics'"></td>-->
-            <TD><input class="checkbox" name="bGetPictures" type="checkbox" 
+            <TD><input class="checkbox" name="bGetPictures" type="checkbox"
                     value={{ item.iItemNumb_id }} {% if item.bGetPictures %}checked{% endif %}></td>
             <!--<TD><INPUT TYPE="CHECKBOX" VALUE="{{ item.bGetPictures }}"></TD>-->
             <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -113,13 +112,59 @@
         </table>
         </div>
         </div>
-        {# the pagination section #}
-        {% if is_paginated %}
-            <hr>
-            <div class="basic">
-                {% include "../paginate.html" %}
-            </div>
-        {% endif %}
+
+        <p/>
+
+        <table>
+        <TR ALIGN=MIDDLE>
+            <td>
+                <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
+            </td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>
+                <input class='btn btn-primary btn-blue' type="submit" name="cancel" value=" Cancel " />
+            </td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>select items:</TD>
+            <!--<TD>-->
+                <!--<form action='{% url "searching:items_found_index" select='A' %}'>-->
+                    <!--<input type="submit" value=" all " />-->
+                <!--</form>-->
+            <!--</TD>-->
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>
+                <form action='{% url "searching:items_found_index" select='P' %}'>
+                    <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
+                </form>
+            </TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>
+                <form action='{% url "searching:items_found_index" select='D' %}'>
+                    <input class='btn btn-primary btn-blue' class='btn btn-primary btn-blue' type="submit" value=" deleted " />
+                </form>
+            </TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>
+                <form action='{% url "searching:items_found_index" select='Z' %}'>
+                    <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
+                </form>
+            </TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <TD>go to page:</TD>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td>
+                {% if is_paginated %}
+                    <hr>
+                    <div class="basic">
+                        {% include "../paginate.html" %}
+                    </div>
+                {% endif %}
+            </td>
+        </TR>
+        </table>
+
+        <p/>
+
         </form>
     {% else %}
         <p/>
