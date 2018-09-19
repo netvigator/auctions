@@ -24,8 +24,12 @@ class KeepersViewsTests(BaseUserTestCase):
         #
         response = self.client.get(reverse('keepers:index'))
 
+        print('')
+        print( response )
+        print('')
+
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['keepers_list'], [])
+        self.assertQuerysetEqual(response.context['keeper_list'], [])
         self.assertContains(response, "No keepers are available.")
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
