@@ -112,7 +112,10 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
- XP-55-B            |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-55-B            |           |      4 | t            | Fisher            |Speaker System| XP-55       |
+ XP-5-B             |           |      4 | t            | Fisher            |Speaker System| XP-5        |
+ XP-6-B             |           |      4 | t            | Fisher            |Speaker System| XP-6        |
+ XP-7-B             |           |      4 | t            | Fisher            |Speaker System| XP-7        |
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
  HF-85              |           |      7 | f            | EICO              |       Preamp |             |
  ST-84              |           |      7 | f            | EICO              |       Preamp |             |
@@ -592,6 +595,26 @@ sResponseSearchTooBroad = \
               "endTime":["2018-09-21T00:28:34.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],"returnsAccepted":["false"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["192660195679"],
+              "title":["Pair of Fisher XP6 10.5\" Woofers"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m-MOEX_hnwnYWaIgdzFtgpw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Pair-Fisher-XP6-10-5-Woofers-\/192660195679"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["05641"],
+              "location":["Barre,VT,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P0DT1H19M14S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"30.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"30.0"}],
+              "startTime":["2018-09-16T23:43:54.000Z"],
+              "endTime":["2018-09-19T23:43:54.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],
+              "watchCount":["2"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
            },{"itemId":["192659380750"],
