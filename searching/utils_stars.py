@@ -32,11 +32,28 @@ def _getTitleRegExress(
     bSubModelsOK = ( hasattr( oTableRow, 'bSubModelsOK' ) and
                      oTableRow.bSubModelsOK )
     #
-    sLook4Title = getWhatsLeft( oTableRow.cTitle )
+    bTitleSubModelsOK = bSubModelsOK
+    bLook4SubModelsOK = bSubModelsOK
+    #
+    sLook4Title       = getWhatsLeft( oTableRow.cTitle )
+    #
+    if bSubModelsOK and oTableRow.cLookFor:
+        #
+        if (    len( oTableRow.cLookFor ) > len( sLook4Title ) and
+                     oTableRow.cLookFor.startswith( sLook4Title ) ):
+            #
+            bTitleSubModelsOK = False
+            #
+        elif (  len( sLook4Title ) > len( oTableRow.cLookFor ) and
+                     sLook4Title.startswith( oTableRow.cLookFor ) ):
+            #
+            bLook4SubModelsOK = False
+            #
+        #
     #
     sRegExpress = getRegExpress( sLook4Title,
                                  bAddDash       = bAddDash,
-                                 bSubModelsOK   = bSubModelsOK,
+                                 bSubModelsOK   = bTitleSubModelsOK,
                                  iWordBoundChrs = WORD_BOUNDARY_MAX,
                                  bPluralize     = bPluralize )
     #
@@ -48,7 +65,7 @@ def _getTitleRegExress(
                                     getRegExpress(
                                         sLookFor,
                                         bAddDash       = bAddDash,
-                                        bSubModelsOK   = bSubModelsOK,
+                                        bSubModelsOK   = bLook4SubModelsOK,
                                         iWordBoundChrs = WORD_BOUNDARY_MAX ) ) )
         #
     #
@@ -215,7 +232,7 @@ def getFoundItemTester( oTableRow, dFinders,
                     bIncludeThis and
                     _gotKeyWordsOrNoKeyWords( s, searchKeyWords ) ):
                 #
-                return sFoundInTitle, not bIncludeThis
+                return sFoundInTitle.strip(), not bIncludeThis
                 #
             else:
                 #
