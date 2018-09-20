@@ -201,6 +201,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 323437473473,
                 192659380750,
                 183436307728,
+                192660195679,
                 292640430401
                 ) )
         #
@@ -913,16 +914,18 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
+        setComponents = frozenset( ( '288', '515A' ) )
+        #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '288' )
+        self.assertIn( oTest.iModel.cTitle, setComponents )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '515A' )
+        self.assertIn( oTest.iModel.cTitle, setComponents )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
@@ -953,7 +956,14 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 192660195679
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6-B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
         #
 
 
@@ -992,6 +1002,33 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
+    def test_sub_models_OK_finder( self ):
+        #
+        oModel = Model.objects.get( cTitle = '6L6WGB' )
+        #
+        self.assertIsNotNone( oModel )
+        #
+        dFinders = {}
+        #
+        foundItem = getFoundItemTester(
+                        oModel,
+                        dFinders,
+                        bAddDash = True )
+        #
+        sAuctionTitle = '"Tung-Sol 5881 6L6WG amplifier tube'
+        #
+        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        #
+        self.assertEqual( sInTitle, '6L6WG' )
+        #
+        sExpect = '6[-/ ]*L[-/ ]*6[-/ ]*WG[ A-Z]'
+        #
+        self.assertEqual( oModel.cRegExLook4Title, sExpect )
+        #
+        #print('')
+        #print( 'sInTitle:', sInTitle )
+        #print( 'oModel.cRegExLook4Title:', oModel.cRegExLook4Title )
+        #print('')
 
 
 
@@ -1262,8 +1299,8 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'\b601\b|\b601[-/ ]*[A-Z]\b',
-                     r'\b601[-/ ]*[A-Z]\b|\b601\b'  )
+        tFinders = ( r'\b601\b|\b601[-/ ]*[ A-Z]\b',
+                     r'\b601[-/ ]*[ A-Z]\b|\b601\b'  )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
@@ -1298,6 +1335,8 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         #
         self.assertEqual( 'Model 2', sInTitle )
         #
+
+
 
 class GetTextInParensTest( TestCase ):
     #
