@@ -282,7 +282,7 @@ sModels = \
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
  515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
- A-5                |           |      8 | t            | Altec-Lansing     |Speaker System|             |
+ A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
  GRF                |           |      7 | f            | Tannoy            |Speaker System|             |
  539-A              |           |      5 | f            | Hickok            |  Tube Tester |             |
@@ -598,7 +598,7 @@ sResponseSearchTooBroad = \
               "topRatedListing":["false"]
 
            },{"itemId":["192660195679"],
-              "title":["Pair of Fisher XP6 10.5\" Woofers"],
+              "title":["Pair of Fisher XP6 10.5\\" Woofers"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m-MOEX_hnwnYWaIgdzFtgpw\/140.jpg"],
