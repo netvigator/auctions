@@ -30,7 +30,7 @@ class KeeperIndexView( FindUserMixin,
                             .distinct() )
         #
         qsKeepers = Keeper.objects.filter(
-                            iItemNumb__in = qsUserItemNumbs )
-                        .order_by( '-tTimeEnd' )
+                            iItemNumb__in = qsUserItemNumbs
+                            ).order_by( '-tTimeEnd' )
         #
         return qsKeepers
