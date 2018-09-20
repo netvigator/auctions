@@ -950,6 +950,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
         #
+        #
+        iThisOne = 192660195679
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        #
 
 
         #print()
