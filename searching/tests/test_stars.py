@@ -1021,7 +1021,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( sInTitle, '6L6WG' )
         #
-        sExpect = '6[-/ ]*L[-/ ]*6[-/ ]*WG[ A-Z]'
+        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG[A-Z]{0,1}\b'
         #
         self.assertEqual( oModel.cRegExLook4Title, sExpect )
         #
@@ -1299,8 +1299,8 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'\b601\b|\b601[-/ ]*[ A-Z]\b',
-                     r'\b601[-/ ]*[ A-Z]\b|\b601\b'  )
+        tFinders = ( r'\b601\b|\b601(?:[-/ ]*[A-Z]){0,1}\b',
+                     r'\b601(?:[-/ ]*[A-Z]){0,1}\b|\b601\b'  )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
