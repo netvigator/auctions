@@ -577,6 +577,25 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+           },{"itemId":["173544935496"],
+              "title":["2 Metal RCA 6V6 VT-107 Vacuum Tubes Tested Guaranteed!"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/miEzQ8SxUW9cKuHB1wZTNlg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/2-Metal-RCA-6V6-VT-107-Vacuum-Tubes-Tested-Guaranteed-\/173544935496"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["98281"],"location":["Point Roberts,WA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"39.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT1H2M7S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-09-20T02:44:40.000Z"],
+              "endTime":["2018-09-27T02:44:40.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
            },{"itemId":["183436307728"],
               "title":["VINTAGE HICKOK MODEL 539B TUBE TESTER with CA-4 Adapter"],
               "globalId":["EBAY-US"],
