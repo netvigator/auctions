@@ -45,9 +45,13 @@ class Model( FindUserMixin, models.Model ):
     bSubModelsOK    = models.BooleanField(
                         'include sub models (suffix such as A, B, C, etc.)?',
                         default = False,
-        help_text = 'Set to False when you want to track the submodels '
-                    'separately (so you should enter a model record '
-                    'for each submodel)' )
+        help_text = 'Applies when the model name/number '
+                    'ends with a letter or number that varies.  '
+                    'If you want to track submodels separately, '
+                    'do not check this '
+                    'and enter a separate model record for each submodel.  '
+                    'Note that if the model number is 515b and the box is '
+                    'checked, bot will find both 515a and 515.' )
     bMustHaveBrand  = models.BooleanField(
                         'must have brand in aution title?', default = False,
         help_text = 'Bot will know item for sale is this model only if '
