@@ -64,6 +64,7 @@ sBrands = \
  Leak              |      7 |            |
  Luxman            |      6 |            |
  Marantz           |     10 | Speaker\\rAV9000\\rreplica |
+ Mazda             |      5 |            |
  McIntosh          |      6 |            |
  MFA               |      8 |            |
  Motorola          |      7 |            |
@@ -91,11 +92,15 @@ sBrands = \
  Westinghouse      |      5 |            |
 '''
 
+#### if you add a vacuum tube brand, ###
+####  you need a BrandCategory row   ###
+####    code is in test_utils.py     ###
+
 #### note column delimiter | must have a space on one side or the other
 sModels = \
 '''
-       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel
---------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+
+       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
+--------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
@@ -105,6 +110,16 @@ sModels = \
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
  10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10 | t
+ 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ VT-107 (6V6)       |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6V6 (metal can)    | metal\\rcan |    2 | f            |                   |  Vacuum Tube |             |
+ VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f             | t
+ 6V6G               | Sylvania\\rSilvertone | 8 | f     |                   |  Vacuum Tube |             |
+ 6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f             | t
+ 6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
