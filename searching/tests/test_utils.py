@@ -51,7 +51,7 @@ from File.Write         import QuietDump
 from String.Get         import getTextBefore
 from Time.Delta         import getDeltaDaysFromStrings
 from Time.Test          import isISOdatetime
-from Utils.Config       import getBoolOffYesNoTrueFalse as getB
+from Utils.Config       import getBoolOffYesNoTrueFalse
 
 
 logger = logging.getLogger(__name__)
@@ -63,6 +63,17 @@ logging.basicConfig(
     format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
     level=logging.INFO)
 '''
+
+def getB( sSomething ):
+    #
+    bReturn = False
+    #
+    if sSomething:
+        #
+        bReturn = getBoolOffYesNoTrueFalse( sSomething )
+        #
+    #
+    return bReturn
 
 
 sExampleFile = '/tmp/search_results_____0_.json'
@@ -752,18 +763,27 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
             try:
                 oCategory = Category.objects.get( cTitle = sCategory )
             except ObjectDoesNotExist:
-                print( 'not finding category %s for %s!' %
+                if sCategory and sBrand:
+                    print( 'not finding category %s for %s!' %
                         ( sCategory, sBrand ) )
+                elif sBrand:
+                    print(
+                        "need a category but ain't got one! (do got brand %s)" % sBrand )
+                else:
+                    print(
+                        "supposed to have a brand & category here "
+                        "but ain't got nothin!" )
                 raise
             #
             oModel = Model(
-                cTitle          =       lParts[ d['cTitle'       ] ],
-                cKeyWords       =       lParts[ d['cKeyWords'    ] ],
-                iStars          = int(  lParts[ d['iStars'       ] ] ),
-                bSubModelsOK    = getB( lParts[ d['bSubModelsOK' ] ] ),
-                cLookFor        = fRt(  lParts[ d['cLookFor'     ] ] ),
-                cExcludeIf      = fRt(  lParts[ d['cExcludeIf'   ] ] ),
-                bGenericModel   = getB( lParts[ d['bGenericModel'] ] ),
+                cTitle          =       lParts[ d['cTitle'        ] ],
+                cKeyWords       =       lParts[ d['cKeyWords'     ] ],
+                iStars          = int(  lParts[ d['iStars'        ] ] ),
+                bSubModelsOK    = getB( lParts[ d['bSubModelsOK'  ] ] ),
+                cLookFor        = fRt(  lParts[ d['cLookFor'      ] ] ),
+                cExcludeIf      = fRt(  lParts[ d['cExcludeIf'    ] ] ),
+                bGenericModel   = getB( lParts[ d['bGenericModel' ] ] ),
+                bMustHaveBrand  = getB( lParts[ d['bMustHaveBrand'] ] ),
                 iBrand          = oBrand,
                 iCategory       = oCategory,
                 iUser           = self.user1 )
@@ -799,6 +819,15 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         oBrandCategory.save()
         #
         oBrand = Brand.objects.get( cTitle = 'Mullard' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
+        #
+        oBrand = Brand.objects.get( cTitle = 'Mazda' )
         #
         oBrandCategory = BrandCategory(
                                 iBrand      = oBrand,
