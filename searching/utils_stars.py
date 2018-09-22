@@ -232,7 +232,7 @@ def getFoundItemTester( oTableRow, dFinders,
                     bIncludeThis and
                     _gotKeyWordsOrNoKeyWords( s, searchKeyWords ) ):
                 #
-                return sFoundInTitle.strip(), not bIncludeThis
+                return sFoundInTitle, not bIncludeThis
                 #
             else:
                 #
