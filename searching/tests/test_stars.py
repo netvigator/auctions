@@ -203,6 +203,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 183436307728,
                 192660195679,
                 173544935496,
+                192675470270,
+                153200191510,
                 292640430401
                 ) )
         #
@@ -976,8 +978,32 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-
-
+        #
+        iThisOne = 153200191510
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should find 604 8G only
+        self.assertEqual( oTest.iModel.cTitle, '604-8G' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        iThisOne = 192675470270
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should not find A-8
+        self.assertEqual(  oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertIsNone( oTest.iModel )
+        self.assertIsNone( oTest.iCategory )
+        #
+        #
+        #
         #print()
         #print( iThisOne )
         ##
@@ -1024,7 +1050,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         foundItem = getFoundItemTester(
                         oModel,
                         dFinders,
-                        bAddDash = True )
+                        bSubModelsOK = True,
+                        bAddDash     = True )
         #
         sAuctionTitle = '"Tung-Sol 5881 6L6WG amplifier tube'
         #
@@ -1032,7 +1059,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( sInTitle, '6L6WG' )
         #
-        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG[A-Z]{0,1}\b'
+        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG(?:[A-Z]){0,1}\b'
         #
         self.assertEqual( oModel.cRegExLook4Title, sExpect )
         #
