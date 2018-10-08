@@ -214,3 +214,6 @@ but cannot find favicon.ico!
 
 do a model search, if there are to many hits for one page, the link to page 2 forgets the query string
 must fix!
+
+if you edit an user item found and change to the model of an existing user item found for that item, you hit an error
+should handle gracefully
