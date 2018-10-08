@@ -295,6 +295,7 @@ sModels = \
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
  515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
@@ -580,6 +581,42 @@ sResponseSearchTooBroad = \
               "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["15085"],
+              "location":["Trafford,PA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
+              "topRatedListing":["true"]
+
+          },{ "itemId":["192675470270"],
+              "title":["University Sound Altec Audio Horn Model CIB-A8 w Mount White Tested Clean Used"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/University\/192675470270"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["15085"],
+              "location":["Trafford,PA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
+              "topRatedListing":["true"]
+
+          },{ "itemId":["153200191510"],
+              "title":["Rare!!! Vintage Altec Lansing 604 8G Studio Monitor Loud Speakers Pair 8 Ohms"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Altec\/153200191510"],
               "paymentMethod":["PayPal"],"autoPay":["false"],
               "postalCode":["15085"],
               "location":["Trafford,PA,USA"],
