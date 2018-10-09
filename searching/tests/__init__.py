@@ -593,6 +593,24 @@ sResponseSearchTooBroad = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+          },{ "itemId":["202462110744"],
+              "title":["Pair of Fisher XP6 10.5\\" Woofers"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/m-MOEX_hnwnYWaIgdzFtgpw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Pair-Fisher-XP6-10-5-Woofers-\/202462110744"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["05641"],
+              "location":["Barre,VT,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P4DT4H47M13S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],
+              "buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"20.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"20.0"}],"startTime":["2018-10-07T20:54:03.000Z"],"endTime":["2018-10-12T20:54:03.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
           },{ "itemId":["192675470270"],
               "title":["University Sound Altec Audio Horn Model CIB-A8 w Mount White Tested Clean Used"],
               "globalId":["EBAY-US"],
