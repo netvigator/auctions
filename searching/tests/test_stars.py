@@ -115,9 +115,18 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
 
 class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
 
-    def print_len( self, lTest, iExpect ):
+    def print_len( self, lTest, iExpect, iItemNumb = None ):
         #
-        if len( lTest ) != iExpect:
+        if not lTest:
+            #
+            print('')
+            #
+            if iItemNumb:
+                print( 'found nothing for %s' % iItemNumb )
+            else:
+                print( 'found nothing, iItemNumb not passed' )
+            #
+        elif len( lTest ) != iExpect:
             #
             print('')
             print(lTest[0])
@@ -205,6 +214,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 173544935496,
                 192675470270,
                 153200191510,
+                202462110744,
                 292640430401
                 ) )
         #
@@ -1001,6 +1011,18 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual(  oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertIsNone( oTest.iModel )
         self.assertIsNone( oTest.iCategory )
+        #
+        #
+        #
+        iThisOne = 202462110744
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6-B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
         #
