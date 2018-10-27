@@ -71,6 +71,7 @@ sBrands = \
  Mullard           |      9 |            |
  National          |      7 |            |
  PACO              |      2 |            |
+ Philips           |      7 |            |
  Pilot             |      8 |            |
  Quad              |      5 |            |
  Radford           |      7 |            |
@@ -102,6 +103,9 @@ sModels = \
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
+ 12AX7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7-WA           |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
@@ -129,8 +133,10 @@ sModels = \
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  XP-55-B            |           |      4 | t            | Fisher            |Speaker System| XP-55       |
  XP-5-B             |           |      4 | t            | Fisher            |Speaker System| XP-5        |
- XP-6-B             |           |      4 | t            | Fisher            |Speaker System| XP-6        |
+ XP-6-B             |           |      4 | t            | Fisher            |Speaker System|             |
  XP-7-B             |           |      4 | t            | Fisher            |Speaker System| XP-7        |
+ XP-8-B             |           |      4 | t            | Fisher            |Speaker System| XP-8        |
+ XP-9-B             |           |      4 | t            | Fisher            |Speaker System| XP-9        |
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
  HF-85              |           |      7 | f            | EICO              |       Preamp |             |
  ST-84              |           |      7 | f            | EICO              |       Preamp |             |
@@ -592,6 +598,48 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["352494035670"],
+              "title":["4 Vintage Philips ECG JAN 12AX7WA 7025 12ax7 Vacuum Tubes Tested Guaranteed!"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mjK7ij2AQ4faRT_Aaik45BQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/4-Vintage-Philips-ECG-JAN-12AX7WA-7025-12ax7-Vacuum-Tubes-Tested-Guaranteed-\/352494035670"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["98281"],
+              "location":["Point Roberts,WA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"88.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"88.88"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT7H36M59S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-10-23T01:11:36.000Z"],
+              "endTime":["2018-10-30T01:11:36.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["332849161811"],
+              "title":["The Fisher XP-1 Vintage Speakers *Local Pickup Only*"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/meJraUI67QUjC56uNbF-IDA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Fisher-XP-1-Vintage-Speakers-Local-Pickup-Only-\/332849161811"],
+              "charityId":["143709"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["20781"],
+              "location":["Hyattsville,MD,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P5DT4H49M58S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-10-21T22:25:16.000Z"],
+              "endTime":["2018-10-28T22:25:16.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["202462110744"],
               "title":["Pair of Fisher XP6 10.5\\" Woofers"],
