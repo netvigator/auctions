@@ -130,7 +130,10 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             #
             print('')
             print(lTest[0])
-            print('%s length:' % lTest[0].iItemNumb_id, len( lTest ) )
+            print( '%s length:' % lTest[0].iItemNumb_id,
+                   len( lTest ),
+                   'expected:',
+                   iExpect )
             #
             if len( lTest ) > 1 or len( lTest ) < iExpect:
                 #
@@ -215,6 +218,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 192675470270,
                 153200191510,
                 202462110744,
+                352494035670,
+                332849161811,
                 292640430401
                 ) )
         #
@@ -1025,7 +1030,17 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
+        iThisOne = 352494035670
         #
+        self.print_len( dItemsToTest[ iThisOne ], 5, iThisOne )
+        #
+        #
+        iThisOne = 332849161811
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+
+
         #print()
         #print( iThisOne )
         ##
