@@ -217,3 +217,8 @@ must fix!
 
 if you edit an user item found and change to the model of an existing user item found for that item, you hit an error
 should handle gracefully
+
+
+trying to correct capitalizaton:
+Title "5814A" already exists. (Info in parens about this entry can overcome this glitch.)
+
