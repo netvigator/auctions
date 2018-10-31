@@ -13,7 +13,7 @@ class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
     #
     '''base crispy form, can subclass to create or update'''
     #
-    
+
     def __init__( self, *args, **kwargs ):
         #
         self.request = kwargs.get( 'request' )
@@ -39,7 +39,7 @@ class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
         # self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         # and
         # self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
-    
+
 
 
 class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
@@ -59,12 +59,19 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         if ( self.Meta.model.objects.filter(
                 iUser           = self.user,
-                cTitle__iexact  = cTitle ).exists() ):
+                cTitle__exact   = cTitle ).exists() ):
             #
-            oInvalid = ValidationError('Title "%s" already exists. '
-                        '(Info in parens about this entry can '
-                        'overcome this glitch.)' % cTitle,
-                        code = 'title already exists' )
+            # using case sensitive here
+            # because sometimesyou want to
+            # change the capitalization.
+            #
+            sGotTitle = (
+                    'Title "%s" already exists. '
+                    '(Putting some info in parens can overcome this glitch.)' )
+            #
+            oInvalid = ValidationError(
+                    sGotTitle % cTitle,
+                    code = 'title already exists' )
             #
             self.add_error( 'cTitle', oInvalid )
             #
