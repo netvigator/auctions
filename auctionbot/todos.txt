@@ -177,10 +177,6 @@ should find 6520 not 6AS7G
 follow up on 372290232805 get brand (not WE)
 
 
-several non working tests commented out in:
-searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
-need to fix!
-
 UserItemsFound.tGotPics is not implememted yet
 
 recalculate hit stars option if you change the stars on a model/brand/category?
@@ -219,6 +215,6 @@ if you edit an user item found and change to the model of an existing user item 
 should handle gracefully
 
 
-trying to correct capitalizaton:
-Title "5814A" already exists. (Info in parens about this entry can overcome this glitch.)
+choose add a model, change mind, hit cancel, but cannot,
+screen insists title must be filled in
 
