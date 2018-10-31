@@ -105,7 +105,7 @@ sModels = \
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  12AX7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7-WA           |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
+ 12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
@@ -131,12 +131,16 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
- XP-55-B            |           |      4 | t            | Fisher            |Speaker System| XP-55       |
- XP-5-B             |           |      4 | t            | Fisher            |Speaker System| XP-5        |
+ XP-1               |           |      4 | f            | Fisher            |Speaker System|             |
+ XP-2-B             |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-3-B             |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-4-B             |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-5-B             |           |      4 | t            | Fisher            |Speaker System|             |
  XP-6-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-7-B             |           |      4 | t            | Fisher            |Speaker System| XP-7        |
- XP-8-B             |           |      4 | t            | Fisher            |Speaker System| XP-8        |
- XP-9-B             |           |      4 | t            | Fisher            |Speaker System| XP-9        |
+ XP-7-B             |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-8-B             |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-9-B             |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-55-B            |           |      4 | t            | Fisher            |Speaker System| XP-55       |
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
  HF-85              |           |      7 | f            | EICO              |       Preamp |             |
  ST-84              |           |      7 | f            | EICO              |       Preamp |             |
