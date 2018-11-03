@@ -75,10 +75,7 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         #print( 'will QuietDump' )
-        QuietDump(
-                sResponseSearchTooBroad,
-                SEARCH_FILES_FOLDER,
-                self.sExampleFile )
+        QuietDump( sResponseSearchTooBroad, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         try:
             t = ( storeSearchResultsInDB(
@@ -196,6 +193,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 273340636575,
                 162112067911,
                 113173838358,
+                163167777899,
                 292659341471,
                 273380279306,
                 153121548106,
@@ -204,6 +202,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 292672067477,
                 223093061969,
                 263879319271,
+                163199461416,
                 202401940540,
                 283100002617,
                 292679662673,
@@ -540,6 +539,34 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         #
         #
+        self.print_len( dItemsToTest[ 163167777899 ], 3 )
+        #
+        oTest = dItemsToTest[ 163167777899 ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ 163167777899 ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        ##
+        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        #
+        oTest = dItemsToTest[ 163167777899 ][ 2 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        ##
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
         #
         #
         self.print_len( dItemsToTest[ 292659341471 ], 3 )
@@ -710,6 +737,33 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertIsNone( oTest.iCategory )
         #
         #
+        iThisOne = 163199461416
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         iThisOne = 202401940540
         #
@@ -1068,7 +1122,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( sInTitle, '6L6WG' )
         #
-        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG[A-Z]{0,1}\b'
+        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG(?:[A-Z]){0,1}\b'
         #
         self.assertEqual( oModel.cRegExLook4Title, sExpect )
         #
