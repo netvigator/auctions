@@ -960,6 +960,27 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+           },{"itemId":["163199461416"],
+              "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mcKbXFbyACk4LGBkautkHjw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-601B-Speaker-N-3000B-Crossover-Network-Cabinet-204781-\/163199461416"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["90278"],
+              "location":["Redondo Beach,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"294.03"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"294.03"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P3DT19H46M20S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-08-13T05:41:31.000Z"],
+              "endTime":["2018-08-20T05:41:31.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["2"]}],"returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
            },{"itemId":["263861079618"],
               "title":["10 PIECE LOT OF ASSORTED RCA TUBES"],
               "globalId":["EBAY-US"],
@@ -1020,7 +1041,7 @@ sResponseSearchTooBroad = \
               "topRatedListing":["false"]
 
            },{"itemId":["153124672147"],
-              "title":["Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
+              "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mcKbXFbyACk4LGBkautkHjw\/140.jpg"],
@@ -1099,6 +1120,28 @@ sResponseSearchTooBroad = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["5"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+           },{"itemId":["163167777899"],
+              "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],
+              "categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mcKbXFbyACk4LGBkautkHjw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-601B-Speaker-N-3000B-Crossover-Network-Cabinet-204781-\/163167777899"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["90278"],
+              "location":["Redondo Beach,CA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"325.8"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"325.8"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P1DT22H44M50S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-07-26T00:14:50.000Z"],
+              "endTime":["2018-08-02T00:14:50.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["4"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
            },{"itemId":["292659341471"],
@@ -1519,6 +1562,23 @@ sResponseSearchTooBroad = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-06T01:00:36.000Z"],"endTime":["2018-03-08T01:00:36.000Z"],
               "listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/332542605606_1_0_1.jpg"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+            },{"itemId":["382396316470"],
+              "title":["VINTAGE CATALIN  ALPHABET LETTERS --67 TOTAL"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mthIl6RzIvR6RdUJhlknh-g\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/VINTAGE-CATALIN-ALPHABET-LETTERS-67-TOTAL-\/382396316470"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["60013"],
+              "location":["Cary,IL,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.85"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT21H35M21S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T20:39:45.000Z"],"endTime":["2018-03-08T20:39:45.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "returnsAccepted":["false"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["183104744162"],
@@ -2094,6 +2154,23 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["false"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
+            },{"itemId":["273091141755"],
+              "title":["4 \u201cRDC\u201d BAKELITE CATALIN MINT MAH JONGG MAHJONGG TILES Your Pick"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["19100"],"categoryName":["Vintage Manufacture"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mPf0L5HgJTzX8QiUfOfjB2A\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/4-RDC-BAKELITE-CATALIN-MINT-MAH-JONGG-MAHJONGG-TILES-Your-Pick-\/273091141755"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["11234"],
+              "location":["Brooklyn,NY,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.0"}],"sellingState":["Active"],"timeLeft":["P27DT22H40M42S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-01T21:45:06.000Z"],"endTime":["2018-03-31T21:45:06.000Z"],
+              "listingType":["FixedPrice"],"gift":["false"],"watchCount":["2"]}],
+              "returnsAccepted":["true"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
             },{"itemId":["273084559811"],
               "title":[" A Rare Art Deco Phenolic Catalin Dressing Table set, trinket boxes on a tray"],
               "globalId":["EBAY-GB"],
@@ -2431,6 +2508,22 @@ sResponseSearchTooBroad = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+            },{"itemId":["162919176989"],
+              "title":["LOOSE BEADS OLD DARK CHERRY OTTOMAN AMBER BAKELITE CATALİN FATURAN BEADS"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["10967"],"categoryName":["Other Art Deco Costume Jewelry"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mdnw7R9m5dodA6cwUMJYiCg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/LOOSE-BEADS-OLD-DARK-CHERRY-OTTOMAN-AMBER-BAKELITE-CATAL-N-FATURAN-BEADS-\/162919176989"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["06473"],
+              "location":["North Haven,CT,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"8.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"8.5"}],"bidCount":["5"],"sellingState":["Active"],"timeLeft":["P1DT2H14M48S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-26T01:19:12.000Z"],"endTime":["2018-03-05T01:19:12.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["401354589892"],
               "title":["Emerson \\"Little Miracle\\" Marbled Green White and Yellow Catalin Tube Radio AX235"],
