@@ -8,7 +8,9 @@ from psycopg2               import OperationalError
 
 import xml.etree.ElementTree as ET
 
-from core.utils             import getNamerSpacer, getDownloadFileWriteToDisk
+from core.utils             import ( getNamerSpacer,
+                                     getDownloadFileWriteToDisk )
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.db              import DataError
 
@@ -17,6 +19,7 @@ from ebayinfo               import dMarketsRelated, EBAY_FILES_FOLDER
 
 from .models                import EbayCategory, Market, CategoryHierarchy
 
+from File.Write             import QuietDump
 from String.Output          import ReadableNo
 from Utils.Progress         import TextMeter, DummyMeter
 from Web.HTML               import getChars4HtmlCodes
@@ -343,7 +346,6 @@ def getCategoryListThenStore(
     #
     from core.ebay_api_calls    import getMarketCategoriesGotGlobalID
     #
-    from File.Write             import QuietDump
     from File.Del               import DeleteIfExists
     #
     t = _getCategoryListParams( uMarket, uWantVersion )
@@ -450,7 +452,6 @@ def _getCheckCategoryVersion(
     from core.ebay_api_calls import ( getCategoryVersionGotSiteID,
                                       getCategoryVersionGotGlobalID )
     #
-    from File.Write import QuietDump
     from File.Del   import DeleteIfExists
     #
     # iSiteId = 0 aka sGlobalID = 'EBAY-US'
