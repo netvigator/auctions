@@ -1122,7 +1122,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( sInTitle, '6L6WG' )
         #
-        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG(?:[A-Z]){0,1}\b'
+        sExpect = r'6[-/ ]*L[-/ ]*6[-/ ]*WG[A-Z]{0,1}\b'
         #
         self.assertEqual( oModel.cRegExLook4Title, sExpect )
         #
