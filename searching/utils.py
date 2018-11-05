@@ -11,8 +11,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db          import DataError, IntegrityError
 from django.db.models   import Max
 from django.utils       import timezone
-from core.utils_ebay    import getValueOffItemDict
 
+from core.utils_ebay    import getValueOffItemDict
 
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
@@ -27,8 +27,8 @@ from searching          import ( RESULTS_FILE_NAME_PATTERN,
 from Dir.Get            import getMakeDir
 from File.Del           import DeleteIfExists
 from File.Get           import getFilesMatchingPattern
+from File.Write         import QuietDump
 from Numb.Get           import getHowManyDigitsNeeded
-
 
 
 logger = logging.getLogger(__name__)
@@ -121,7 +121,6 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     from ebayinfo.models        import Market
     #
-    from File.Write             import QuietDump
     from String.Split           import getWhiteCleaned
     #
     User = get_user_model()
@@ -274,7 +273,9 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             sFileName = _putPageNumbInFileName( sFileName, iThisPage )
         #
         if sFileName is not None:
+            #
             QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
+            #
         #
         iThisPage += 1
         #
