@@ -11,7 +11,7 @@ from lxml               import etree
 import requests
 
 from Iter.AllVers       import tMap
-from File.Write         import QuietDump
+
 from Utils.Config       import getConfDict
 from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
 
