@@ -131,16 +131,16 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
- XP-1               |           |      4 | f            | Fisher            |Speaker System|             |
- XP-2-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-3-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-4-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-5-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-6-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-7-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-8-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-9-B             |           |      4 | t            | Fisher            |Speaker System|             |
- XP-55-B            |           |      4 | t            | Fisher            |Speaker System| XP-55       |
+ XP-1A              |           |      4 | t            | Fisher            |Speaker System| XP-1        |
+ XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
+ XP-3B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
+ XP-4B              |           |      4 | t            | Fisher            |Speaker System| XP-4        |
+ XP-5B              |           |      4 | t            | Fisher            |Speaker System| XP-5        |
+ XP-6B              |           |      4 | t            | Fisher            |Speaker System| XP-6        |
+ XP-7A              |           |      4 | t            | Fisher            |Speaker System| XP-7        |
+ XP-8B              |           |      4 | t            | Fisher            |Speaker System| XP-8        |
+ XP-9B              |           |      4 | t            | Fisher            |Speaker System| XP-9        |
+ XP-55B             |           |      4 | t            | Fisher            |Speaker System| XP-55       |
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
  HF-85              |           |      7 | f            | EICO              |       Preamp |             |
  ST-84              |           |      7 | f            | EICO              |       Preamp |             |
@@ -300,8 +300,8 @@ sModels = \
  M1131              |           |      6 | t            | Jensen            |        Choke |             |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn | 811         |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
- 601                |           |      8 | t            | Altec-Lansing     |       Driver | 601b        |
- 601                |           |      7 | t            | Altec-Lansing     |    Enclosure | 601b        |
+ 601a               |           |      8 | t            | Altec-Lansing     |       Driver | 601         |
+ 601b               |           |      7 | t            | Altec-Lansing     |    Enclosure | 601         |
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
@@ -602,6 +602,50 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["323557043166"],
+              "title":["ONE SPEAKER The Fisher XP 1 Speakers Mid Century "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mQ3ZFTCSvtyA-CY8A15EyuA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ONE-SPEAKER-Fisher-XP-1-Speakers-Mid-Century-\/323557043166"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["92394"],
+              "location":["Victorville,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"40.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.99"}],
+              "convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P3DT20H39M34S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-11-18T18:22:11.000Z"],
+              "endTime":["2018-11-23T18:22:11.000Z"],
+              "listingType":["Auction"],
+              "gift":["false"],
+              "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["264048401593"],
+              "title":["Pair Vintage THE FISHER XP-7B  Speakers "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mzCZo9JGphropCodLx4xKug\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Pair-Vintage-FISHER-XP-7B-Speakers-\/264048401593"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["21921"],
+              "location":["Elkton,MD,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P2DT2H6M23S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2018-11-18T23:41:58.000Z"],
+              "endTime":["2018-11-21T23:41:58.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["352494035670"],
               "title":["4 Vintage Philips ECG JAN 12AX7WA 7025 12ax7 Vacuum Tubes Tested Guaranteed!"],
