@@ -65,7 +65,7 @@ def _getTitleRegExress(
                                     getRegExpress(
                                         sLookFor,
                                         bAddDash       = bAddDash,
-                                        bSubModelsOK   = bLook4SubModelsOK,
+                                        bSubModelsOK   = False,
                                         iWordBoundChrs = WORD_BOUNDARY_MAX ) ) )
         #
     #
