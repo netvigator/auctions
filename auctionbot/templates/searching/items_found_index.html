@@ -10,6 +10,7 @@
 
         <form action="" method="post">
         {% csrf_token %}
+        After selecting items, you must hit Submit or all changes will be lost!
         <table>
         <TR ALIGN=MIDDLE>
             <td>
@@ -115,7 +116,13 @@
 
         <p/>
 
+
         <table>
+        <TR ALIGN=LEFT>
+        <TD COLSPAN=7>
+        After selecting items, you must hit Submit or all changes will be lost!
+        </TD>
+        </TR>
         <TR ALIGN=MIDDLE>
             <td>
                 <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
