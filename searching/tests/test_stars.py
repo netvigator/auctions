@@ -220,6 +220,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 202462110744,
                 352494035670,
                 332849161811,
+                323557043166,
+                264048401593,
                 292640430401
                 ) )
         #
@@ -247,7 +249,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oTest.iModel.cTitle,    'XP-55-B' )
+        self.assertEqual( oTest.iModel.cTitle,    'XP-55B' )
         #
         self.assertEqual( oTest.iBrand.cTitle,    'Fisher'  )
         #
@@ -555,7 +557,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        self.assertEqual( oTest.iModel.cTitle, '601b' )
         ##
         self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
@@ -563,7 +565,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        self.assertEqual( oTest.iModel.cTitle, '601a' )
         ##
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -663,7 +665,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        self.assertEqual( oTest.iModel.cTitle, '601b' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
@@ -671,7 +673,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        self.assertEqual( oTest.iModel.cTitle, '601a' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -753,7 +755,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        self.assertEqual( oTest.iModel.cTitle, '601b' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
         #
@@ -761,7 +763,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601' )
+        self.assertEqual( oTest.iModel.cTitle, '601a' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -990,7 +992,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6-B' )
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6B' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
@@ -1037,7 +1039,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6-B' )
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6B' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
@@ -1060,10 +1062,30 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-1' )
+        self.assertEqual( oTest.iModel.cTitle, 'XP-1A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
+        #
+        iThisOne = 323557043166
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'XP-1A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        iThisOne = 264048401593
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'XP-7A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
 
 
@@ -1383,7 +1405,7 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
 
     def test_generic_model_finder_OK( self ):
         #
-        oModel = Model.objects.get( cTitle = '601' )
+        oModel = Model.objects.get( cTitle = '601b' )
         #
         self.assertIsNotNone( oModel )
         #
@@ -1400,8 +1422,7 @@ class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'\b601\b|\b601(?:[-/ ]*[A-Z]){0,1}\b',
-                     r'\b601(?:[-/ ]*[A-Z]){0,1}\b|\b601\b'  )
+        tFinders = ( r'\b601(?:[-/ ]*[A-Z]){0,1}\b', )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
