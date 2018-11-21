@@ -198,8 +198,7 @@ class setUpBrandsCategoriesModels( BaseUserTestCase ):
         self.CategoryID = self.oCategory.id
         #
         oModel = Model(
-            cTitle      = "601",
-            cLookFor    = "601b",
+            cTitle      = "601b",
             bSubModelsOK= True,
             iStars      = 5,
             iBrand      = self.oBrand,
