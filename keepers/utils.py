@@ -181,13 +181,14 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             iSavedRowID = oItemInstance.pk
             #
             sListingStatus = oItemInstance.cListingStatus
+            #
         else:
             #
             # ### form errors are common,
             # ### not all real categories are in the test database
             #
             # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
-            sMsg = ('form did not save' )
+            sMsg = 'in keepers: form did not save'
             #
             logger.error( sMsg )
             #print( '' )
