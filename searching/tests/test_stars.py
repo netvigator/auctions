@@ -222,6 +222,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 332849161811,
                 323557043166,
                 264048401593,
+                382632483507,
                 292640430401
                 ) )
         #
@@ -1078,6 +1079,16 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         iThisOne = 264048401593
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'XP-7A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        iThisOne = 382632483507
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
