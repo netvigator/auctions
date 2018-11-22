@@ -137,8 +137,8 @@ sModels = \
  XP-4B              |           |      4 | t            | Fisher            |Speaker System| XP-4        |
  XP-5B              |           |      4 | t            | Fisher            |Speaker System| XP-5        |
  XP-6B              |           |      4 | t            | Fisher            |Speaker System| XP-6        |
- XP-7A              |           |      4 | t            | Fisher            |Speaker System| XP-7        |
- XP-8B              |           |      4 | t            | Fisher            |Speaker System| XP-8        |
+ XP-7A              |           |      4 | t            | Fisher            |Speaker System|             |
+ XP-8A              |           |      4 | t            | Fisher            |Speaker System| XP-8        |
  XP-9B              |           |      4 | t            | Fisher            |Speaker System| XP-9        |
  XP-55B             |           |      4 | t            | Fisher            |Speaker System| XP-55       |
  HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
@@ -602,6 +602,28 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["382632483507"],
+              "title":["FISHER XP7-B speakers TESTED beautiful condition"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mIM4QJMG1AidGt82hcwoPfA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/FISHER-XP7-B-speakers-TESTED-beautiful-condition-\/382632483507"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["14850"],
+              "location":["Ithaca,NY,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.99"}],
+              "bidCount":["1"],
+              "sellingState":["Active"],
+              "timeLeft":["P5DT9H37M29S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-11-19T23:25:58.000Z"],
+              "endTime":["2018-11-26T23:25:58.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["323557043166"],
               "title":["ONE SPEAKER The Fisher XP 1 Speakers Mid Century "],
