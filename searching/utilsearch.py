@@ -139,7 +139,7 @@ def storeItemInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
                 sMsg = ('form did not save for item %s' %
                         dNewResult['iItemNumb'] )
             else:
-                sMsg = ('form did not save' )
+                sMsg = ('searching: form did not save' )
             logger.error( sMsg )
             #print( '' )
             #print( 'log this error, form did not save' )
