@@ -10,7 +10,7 @@
 # pytest-sugar==0.9.0
 
 # checks your code
-flake8==3.5.0
+flake8==3.6.0
 
 
-django-webtest==1.9.3
+django-webtest==1.9.4

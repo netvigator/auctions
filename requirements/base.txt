@@ -19,7 +19,7 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.31.1
+wheel==0.32.3
 
 
 # Bleeding edge Django
@@ -27,9 +27,8 @@ wheel==0.31.1
 django==1.11
 
 # Configuration
-django-environ==0.4.4
-whitenoise==3.3.1
-django-debug-toolbar==1.9.1
+django-environ==0.4.5
+whitenoise==4.1.2
 
 # Forms
 django-braces==1.13.0
@@ -39,36 +38,35 @@ django-crispy-forms==1.7.2
 django-model-utils==3.1.2
 
 # Images
-Pillow==5.1.0
+Pillow==5.3.0
 
 # Password storage
-argon2-cffi==18.1.0
+argon2-cffi==18.3.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.36.0
+django-allauth==0.38.0
 
 
 # Python-PostgreSQL Database Adapter
-# psycopg2==2.7.4 gives warning
-psycopg2==2.7.3.2
+psycopg2==2.7.6.1
 
 # Unicode slugification
 awesome-slugify==1.6.5
 
 # Time zones support
-pytz==2018.4
+pytz==2018.7
 
 # Redis support
-django-redis==4.9.0
-redis>=2.10.6
+django-redis==4.10.0
+redis>=3.0.1
 
 
 
 
 # Your custom requirements go here
 
-django-countries==5.3
+django-countries==5.3.2
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -77,14 +75,13 @@ django-countries==5.3
 
 
 # for the ebay API
-lxml==4.2.1
-requests==2.18.4
-requests[security]==2.18.4
-# python3 -m pip install "requests[security]"
+lxml==4.2.5
+requests==2.20.1
+requests[security]==2.20.1
 
 
 # to handle the ebay category lists
-django-mptt==0.9.0
+django-mptt==0.9.1
 
 # fake admin page
 django-admin-honeypot==1.1.0
@@ -94,8 +91,8 @@ django-admin-honeypot==1.1.0
 
 
 # task queue
-celery==4.1.1
+celery==4.2.1
 # redistools==0.1.7
 
 # users need to select their timezone
-django-timezone-field==2.1
+django-timezone-field==3.0
