@@ -223,6 +223,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 323557043166,
                 264048401593,
                 382632483507,
+                113392158472,
+                283272931267,
                 292640430401
                 ) )
         #
@@ -1097,6 +1099,22 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iModel.cTitle, 'XP-7A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        iThisOne = 113392158472
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should list 6L6GC, s/n list 6L6
+        #
+        iThisOne = 283272931267
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # also lists 6267?
         #
 
 

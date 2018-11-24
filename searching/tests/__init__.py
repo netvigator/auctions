@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ()
+setRecordStepsForThese  = ( 283272931267, )
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -602,6 +602,48 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["113392158472"],
+              "title":["ONE RAYTHEON REGISTERED 6L6 6L6GC Vacuum Tube  HICKOK 539C TESTED"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mGUQ5NxPMLfjDiKIvxeelcA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ONE-RAYTHEON-REGISTERED-6L6-6L6GC-Vacuum-Tube-HICKOK-539C-TESTED-\/113392158472"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["07026"],
+              "location":["Garfield,NJ,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT18H59M29S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-11-22T17:20:26.000Z"],
+              "endTime":["2018-11-29T17:20:26.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["283272931267"],
+              "title":["5 Tube  Tubes EF86 6CF8 Valvo Miniwatt Mullard Tube EF 86 tested"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mZAPDVsJgGXMRVp2X7IS5Lg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/5-Tube-Tubes-EF86-6CF8-Valvo-Miniwatt-Mullard-Tube-EF-86-tested-\/283272931267"],
+              "productId":[{"@type":"ReferenceID","__value__":"141057910"}],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "location":["Germany"],
+              "country":["DE"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"16.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT17H32M30S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-11-22T15:52:29.000Z"],
+              "endTime":["2018-11-29T15:52:29.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["382632483507"],
               "title":["FISHER XP7-B speakers TESTED beautiful condition"],
