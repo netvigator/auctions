@@ -604,7 +604,7 @@ sResponseSearchTooBroad = \
               "topRatedListing":["true"]
 
           },{ "itemId":["192737436300"],
-              "title":["Pair of Fisher XP6 10.5\" Woofers"],
+              "title":["Pair of Fisher XP6 10.5\\" Woofers"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/m-MOEX_hnwnYWaIgdzFtgpw\/140.jpg"],
