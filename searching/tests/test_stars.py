@@ -225,6 +225,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 382632483507,
                 113392158472,
                 283272931267,
+                312339506602,
                 292640430401
                 ) )
         #
@@ -1116,6 +1117,22 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # also lists 6267?
         #
+        iThisOne = 312339506602
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should get 1005 horn
+        #
+        iThisOne = 192737436300
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should get XP-6 not XP-8
+        
 
 
         #print()
