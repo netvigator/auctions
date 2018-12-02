@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 
-from core.utils             import getWhatsLeft
+from core.utils             import getWhatsNotInParens
 
 
 def gotTextOutsideParens( sTitle ):
@@ -12,7 +12,7 @@ def gotTextOutsideParens( sTitle ):
     raise ValidationError if everything is in parens
     '''
     #
-    sWhatsLeft = getWhatsLeft( sTitle )
+    sWhatsLeft = getWhatsNotInParens( sTitle )
     #
     if not sWhatsLeft:
         raise ValidationError(
