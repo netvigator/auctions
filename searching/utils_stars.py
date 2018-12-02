@@ -5,7 +5,7 @@ from django.contrib.auth    import get_user_model
 from django.utils           import timezone
 
 from core.user_one          import oUserOne
-from core.utils             import getWhatsLeft
+from core.utils             import getWhatsNotInParens
 
 from .models                import ( ItemFound, UserItemFound, ItemFoundTemp,
                                      Search, SearchLog )
@@ -35,7 +35,7 @@ def _getTitleRegExress(
     bTitleSubModelsOK = bSubModelsOK
     bLook4SubModelsOK = bSubModelsOK
     #
-    sLook4Title       = getWhatsLeft( oTableRow.cTitle )
+    sLook4Title       = getWhatsNotInParens( oTableRow.cTitle )
     #
     if bSubModelsOK and oTableRow.cLookFor:
         #
@@ -1087,7 +1087,7 @@ def findSearchHits(
                     if oTempItem.iModel:
                         #
                         lModelsStoredAlready = [
-                            getWhatsLeft( oTempItem.iModel.cTitle ) ]
+                            getWhatsNotInParens( oTempItem.iModel.cTitle ) ]
                         #
                         setModelsStoredAlready.add( oTempItem.iModel.id )
                         #
@@ -1107,7 +1107,7 @@ def findSearchHits(
                     #
                     # have complete hit, make an additional UserItem record
                     #
-                    sTitleLessParens = getWhatsLeft( oTempItem.iModel.cTitle )
+                    sTitleLessParens = getWhatsNotInParens( oTempItem.iModel.cTitle )
 
                     uLonger = _gotSubstringOfListItem(
                                     sTitleLessParens,
