@@ -1144,25 +1144,31 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # should list 6L6GC, s/n list 6L6
         #
-
-        print()
-        print( iThisOne )
+        self.assertEqual( oTest.iModel.cTitle, '6L6GC' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        for oTest in dItemsToTest[ iThisOne ]:
+        if False:
             #
             print()
-            if oTest and oTest.iBrand and oTest.iBrand.cTitle:
-                print( oTest.iBrand.cTitle )
-            else:
-                print( 'brand is None' )
-            if oTest and oTest.iModel and oTest.iModel.cTitle:
-                print( oTest.iModel.cTitle )
-            else:
-                print( 'model is None' )
-            if oTest and oTest.iCategory and oTest.iCategory.cTitle:
-                print( oTest.iCategory.cTitle )
-            else:
-                print( 'category is None' )
+            print( iThisOne )
+            #
+            for oTest in dItemsToTest[ iThisOne ]:
+                #
+                print()
+                if oTest and oTest.iBrand and oTest.iBrand.cTitle:
+                    print( oTest.iBrand.cTitle )
+                else:
+                    print( 'brand is None' )
+                if oTest and oTest.iModel and oTest.iModel.cTitle:
+                    print( oTest.iModel.cTitle )
+                else:
+                    print( 'model is None' )
+                if oTest and oTest.iCategory and oTest.iCategory.cTitle:
+                    print( oTest.iCategory.cTitle )
+                else:
+                    print( 'category is None' )
+                #
             #
         #
         #print()
