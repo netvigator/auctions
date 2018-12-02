@@ -1086,7 +1086,8 @@ def findSearchHits(
                     #
                     if oTempItem.iModel:
                         #
-                        lModelsStoredAlready = [ oTempItem.iModel.cTitle ]
+                        lModelsStoredAlready = [
+                            getWhatsLeft( oTempItem.iModel.cTitle ) ]
                         #
                         setModelsStoredAlready.add( oTempItem.iModel.id )
                         #
@@ -1106,8 +1107,11 @@ def findSearchHits(
                     #
                     # have complete hit, make an additional UserItem record
                     #
+                    sTitleLessParens = getWhatsLeft( oTempItem.iModel.cTitle )
+
                     uLonger = _gotSubstringOfListItem(
-                                    oTempItem.iModel.cTitle, lModelsStoredAlready )
+                                    sTitleLessParens,
+                                    lModelsStoredAlready )
                     #
                     if uLonger:
                         #
@@ -1117,7 +1121,7 @@ def findSearchHits(
                                 lSelect,
                                     'excluding %s because '
                                     'this is substring of %s' %
-                                    ( oTempItem.iModel.cTitle, uLonger ) )
+                                    ( sTitleLessParens, uLonger ) )
                             #
                         #
                         continue
