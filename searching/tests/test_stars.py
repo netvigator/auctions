@@ -1102,21 +1102,16 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
-        iThisOne = 113392158472
+        iThisOne = 192737436300
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should list 6L6GC, s/n list 6L6
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
-        iThisOne = 283272931267
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        # also lists 6267?
         #
         iThisOne = 312339506602
         #
@@ -1126,25 +1121,48 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # should get 1005 horn
         #
-        iThisOne = 192737436300
+        self.assertEqual( oTest.iModel.cTitle, '1005B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        iThisOne = 283272931267
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should get XP-6 not XP-8
+        # also listed 6267?, fixed in data
+        self.assertEqual( oTest.iModel.cTitle, 'EF86' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        iThisOne = 113392158472
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should list 6L6GC, s/n list 6L6
+        #
 
-
-
-        #print()
-        #print( iThisOne )
-        ##
-        #for oTest in dItemsToTest[ iThisOne ]:
-            ##
-            #print()
-            #print( oTest.iBrand.cTitle )
-            #print( oTest.iModel.cTitle )
-            #print( oTest.iCategory.cTitle )
+        print()
+        print( iThisOne )
+        #
+        for oTest in dItemsToTest[ iThisOne ]:
+            #
+            print()
+            if oTest and oTest.iBrand and oTest.iBrand.cTitle:
+                print( oTest.iBrand.cTitle )
+            else:
+                print( 'brand is None' )
+            if oTest and oTest.iModel and oTest.iModel.cTitle:
+                print( oTest.iModel.cTitle )
+            else:
+                print( 'model is None' )
+            if oTest and oTest.iCategory and oTest.iCategory.cTitle:
+                print( oTest.iCategory.cTitle )
+            else:
+                print( 'category is None' )
             #
         #
         #print()
