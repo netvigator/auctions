@@ -226,6 +226,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 113392158472,
                 283272931267,
                 312339506602,
+                192737436300,
                 292640430401
                 ) )
         #
@@ -1132,7 +1133,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         # should get XP-6 not XP-8
-        
+
 
 
         #print()
