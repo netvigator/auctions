@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 352494035670, )
+setRecordStepsForThese  = ()
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
