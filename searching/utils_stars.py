@@ -313,13 +313,23 @@ def _getModelFoundLen( sInTitle, sGotInParens ):
 
 
 
-def _gotSubstringOfListItem( s, l ):
+def _gotFullStringOrSubStringOfListItem( s, l ):
+    #
+    uGotSub  = None
+    uGotFull = None
     #
     for sL in l:
         #
-        if s in sL and len( s ) < len( sL ):
-            return sL
+        if s in sL:
+            #
+            if s == sL:
+                uGotFull = sL
+            else:
+                uGotSub  = sL
     #
+    return uGotFull, uGotSub
+
+
 
 
 _oForFitsFinder = getRegExObj( r' (?:\bfor\b|\bfits\b|\btests*\b|\bfrom\b)' )
@@ -1108,10 +1118,12 @@ def findSearchHits(
                     # have complete hit, make an additional UserItem record
                     #
                     sTitleLessParens = getWhatsNotInParens( oTempItem.iModel.cTitle )
-
-                    uLonger = _gotSubstringOfListItem(
-                                    sTitleLessParens,
-                                    lModelsStoredAlready )
+                    #
+                    #
+                    uExact, uLonger = _gotFullStringOrSubStringOfListItem(
+                                            sTitleLessParens,
+                                            lModelsStoredAlready )
+                    #
                     #
                     if uLonger:
                         #
@@ -1122,6 +1134,19 @@ def findSearchHits(
                                     'excluding %s because '
                                     'this is substring of %s' %
                                     ( sTitleLessParens, uLonger ) )
+                            #
+                        #
+                        continue
+                        #
+                    elif uExact:
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'excluding %s because '
+                                    'we already got %s' %
+                                    ( sTitleLessParens, uExact ) )
                             #
                         #
                         continue
