@@ -3,7 +3,7 @@ from django.utils       import timezone
 
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
-                                 getWhatsLeft )
+                                 getWhatsNotInParens )
 from ..utils_test       import ( getUrlQueryStringOff,
                                  queryGotUpdated )
 
@@ -53,13 +53,13 @@ class DateTimeTests(TestCase):
 class textProcessingTests(TestCase):
     '''text processing tests'''
 
-    def test_getWhatsLeft(self):
+    def test_getWhatsNotInParens(self):
         #
-        '''test getWhatsLeft()'''
+        '''test getWhatsNotInParens()'''
         #
         s = 'This is for real (but not yet)'
         #
-        self.assertEqual( getWhatsLeft(s), 'This is for real' )
+        self.assertEqual( getWhatsNotInParens(s), 'This is for real' )
 
 
 
