@@ -845,6 +845,15 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         oBrandCategory.save()
         #
+        oBrand = Brand.objects.get( cTitle = 'Raytheon' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
+        #
 
     def test_generic_model_OK( self ):
         #
