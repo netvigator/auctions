@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 283272931267, )
+setRecordStepsForThese  = ( 352494035670, )
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -76,6 +76,7 @@ sBrands = \
  Quad              |      5 |            |
  Radford           |      7 |            |
  Radio Craftsmen   |      8 |            |
+ Raytheon          |      7 |            |
  RCA               |      6 |            |
  Regency           |      5 |            |
  Sargent-Rayment   |      4 |            |
@@ -109,8 +110,6 @@ sModels = \
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
- 5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6L6WGB             |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
  10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10 | t
@@ -124,6 +123,14 @@ sModels = \
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f             | t
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |
+ 6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
+ 5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6GA              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6GB              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
+ EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
@@ -131,7 +138,7 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
- XP-1A              |           |      4 | t            | Fisher            |Speaker System| XP-1        |
+ XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
  XP-3B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
  XP-4B              |           |      4 | t            | Fisher            |Speaker System| XP-4        |
@@ -293,12 +300,13 @@ sModels = \
  526-MC             |           |      5 | f            | Bendix            |        Radio |             |
  248-NI             |           |     10 | f            | Sentinel          |        Radio |             |
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
- 603-b              |           |      7 | t            | Altec-Lansing     |       Driver | 603         |
+ 603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
  H-222              |           |      7 | t            | Jensen            |       Driver |             |
  A-402              |           |      8 | t            | Jensen            |    Crossover |             |
  A-61               |           |      7 | t            | Jensen            |    Crossover |             |
  M1131              |           |      6 | t            | Jensen            |        Choke |             |
- 811B               |           |      6 | t            | Altec-Lansing     |         Horn | 811         |
+ 811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
+ 1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  601a               |           |      8 | t            | Altec-Lansing     |       Driver | 601         |
  601b               |           |      7 | t            | Altec-Lansing     |    Enclosure | 601         |
