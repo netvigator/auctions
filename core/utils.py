@@ -120,7 +120,7 @@ def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
     return _getReverseWithQuery( lookup_view, *args, **kwargs )
 
 
-def getWhatsLeft( s ):
+def getWhatsNotInParens( s ):
     #
     return eatFromWithin( s, oInParensFinder ).strip()
 
