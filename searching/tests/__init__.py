@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ()
+setRecordStepsForThese  = ( 352535627937, )
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -64,6 +64,7 @@ sBrands = \
  Leak              |      7 |            |
  Luxman            |      6 |            |
  Marantz           |     10 | Speaker\\rAV9000\\rreplica |
+ Marconi           |      7 |            |
  Mazda             |      5 |            |
  McIntosh          |      6 |            |
  MFA               |      8 |            |
@@ -87,6 +88,7 @@ sBrands = \
  Spartan           |      8 |            |
  Supreme           |      5 |            |
  Stromberg-Carlson |      5 |            |
+ Sylvania          |      6 |            |
  Tannoy            |      7 |            |
  Tung-Sol          |      6 |            |
  UTC               |      8 |            |
@@ -610,6 +612,26 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["352535627937"],
+              "title":["1 NOS Sylvania 6V6G 6V6 Vacuum tube Tested Guaranteed! USA Marconi"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m0ftp77E26fMK9XoEOxOXaQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/1-NOS-Sylvania-6V6G-6V6-Vacuum-tube-Tested-Guaranteed-USA-Marconi-\/352535627937"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["98281"],
+              "location":["Point Roberts,WA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"28.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"28.88"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT3H47M45S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-12-04T23:35:02.000Z"],
+              "endTime":["2018-12-11T23:35:02.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["192737436300"],
               "title":["Pair of Fisher XP6 10.5\\" Woofers"],
