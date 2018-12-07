@@ -228,6 +228,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 312339506602,
                 192737436300,
                 352535627937,
+                192748960622,
+                192748949221,
                 292640430401
                 ) )
         #
@@ -1179,6 +1181,21 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                     print( 'category is None' )
                 #
             #
+        #
+        iThisOne = 192748949221
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should list XP-6 not XP-8
+        #
+        iThisOne = 192748960622
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        # should not list Sylvania 6SN7 GTB twice
+        #
         #
         #print()
         #print( iThisOne )
