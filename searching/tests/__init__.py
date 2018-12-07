@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 352535627937, )
+setRecordStepsForThese  = ( 192748960622, 192748949221, 352535627937, )
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -612,6 +612,48 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["192748960622"],
+              "title":["4 Qty. 6SN7 GTB Sylvania NIS, NIB"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/m6969Dt0cnZHFMU0LnYPRpQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/4-Qty-6SN7-GTB-Sylvania-NIS-NIB-\/192748960622"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["98248"],
+              "location":["Ferndale,WA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT10H31M39S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"52.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"52.0"}],
+              "startTime":["2018-12-05T23:01:21.000Z"],
+              "endTime":["2018-12-12T23:01:21.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["192748949221"],
+              "title":["Pair of Fisher XP6 Mid range speakers  5\""],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m467hMHEuzsMjLbrMOTVMEQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Pair-Fisher-XP6-Mid-range-speakers-5-\/192748949221"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["05641"],
+              "location":["Barre,VT,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"0.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"0.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P2DT10H21M54S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"10.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"10.0"}],
+              "startTime":["2018-12-05T22:46:58.000Z"],
+              "endTime":["2018-12-08T22:46:58.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["352535627937"],
               "title":["1 NOS Sylvania 6V6G 6V6 Vacuum tube Tested Guaranteed! USA Marconi"],
