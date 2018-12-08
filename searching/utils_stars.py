@@ -339,7 +339,7 @@ def findSearchHits(
             iUser                   = oUserOne.id,
             bCleanUpAfterYourself   = True,
             bShowProgress           = False,
-            setRecordStepsForThese  = () ):
+            iRecordStepsForThis     = None ):
     #
     from brands.models      import Brand
     from categories.models  import Category
@@ -463,8 +463,8 @@ def findSearchHits(
         #
         lDeleteThese = []
         #
-        bRecordSteps = ( setRecordStepsForThese is not None and
-                         oItem.iItemNumb in setRecordStepsForThese )
+        bRecordSteps = ( iRecordStepsForThis is not None and
+                         oItem.iItemNumb == iRecordStepsForThis )
         #
         for oNext in qsUserItems:
             #
@@ -570,13 +570,21 @@ def findSearchHits(
                         #
                     elif bInHeirarchy1:
                         #
+                        sInCategory1 = foundItem(
+                                        oItem.iCatHeirarchy.cCatHierarchy )[0]
+                        #
                         _appendIfNotAlreadyIn( lCategories,
-                            '%s in primary caregory' % oCategory.cTitle )
+                            '%s in primary caregory %s' %
+                            ( oCategory.cTitle, sInCategory1 ) )
                         #
                     elif bInHeirarchy2:
                         #
+                        sInCategory2 = foundItem(
+                                        oItem.i2ndCatHeirarchy.cCatHierarchy )[0]
+                        #
                         _appendIfNotAlreadyIn( lCategories,
-                            '%s in secondary caregory' % oCategory.cTitle )
+                            '%s in secondary caregory %s' %
+                            ( oCategory.cTitle, sInCategory2 ) )
                         #
                     #
                 #
@@ -702,10 +710,19 @@ def findSearchHits(
                             #
                             oFamily = Category.objects.get( id = iFamily )
                             #
+                            sSayFamily = 'a member'
+                            #
+                            if oModel.iCategory == iFamily:
+                                #
+                                sSayFamily = 'the head'
+                                #
+                            #
                             _appendIfNotAlreadyIn(
                                     lModels,
-                                    'model category %s is a member of family %s' %
-                                        ( oModel.iCategory, oFamily.cTitle ) )
+                                    'model category %s is %s  of family%s' %
+                                        ( oModel.iCategory,
+                                          sSayFamily,
+                                          oFamily.cTitle ) )
                             #
                             oCategory = oModel.iCategory
                             #
