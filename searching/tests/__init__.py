@@ -1,5 +1,5 @@
 
-setRecordStepsForThese  = ( 192748960622, 192748949221, 352535627937, )
+iRecordStepsForThis     =   352535627937    # 192748960622 192748949221
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -106,6 +106,8 @@ sModels = \
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
+ 6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
+ 6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12AX7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
@@ -145,7 +147,7 @@ sModels = \
  XP-3B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
  XP-4B              |           |      4 | t            | Fisher            |Speaker System| XP-4        |
  XP-5B              |           |      4 | t            | Fisher            |Speaker System| XP-5        |
- XP-6B              |           |      4 | t            | Fisher            |Speaker System| XP-6        |
+ XP-6A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-7A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-8A              |           |      4 | t            | Fisher            |Speaker System| XP-8        |
  XP-9B              |           |      4 | t            | Fisher            |Speaker System| XP-9        |
@@ -635,7 +637,7 @@ sResponseSearchTooBroad = \
               "topRatedListing":["false"]
 
           },{ "itemId":["192748949221"],
-              "title":["Pair of Fisher XP6 Mid range speakers  5\""],
+              "title":["Pair of Fisher XP6 Mid range speakers  5\\""],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m467hMHEuzsMjLbrMOTVMEQ\/140.jpg"],
