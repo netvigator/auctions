@@ -16,7 +16,7 @@ from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
 from ..tests            import ( sResponseSearchTooBroad,
-                                 setRecordStepsForThese,
+                                 iRecordStepsForThis,
                                  setDoNotMentionThese )
 from ..utils            import storeSearchResultsInDB
 
@@ -57,7 +57,7 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
-# setRecordStepsForThese imported from __init__.py
+# iRecordStepsForThis imported from __init__.py
 
 class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
     #
@@ -99,9 +99,11 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         iCountItems, iStoreItems, iStoreUsers = t
         #
         # bCleanUpAfterYourself must be False or tests will fail!
+        # iRecordStepsForThis imported from __init__.py
+        #
         findSearchHits( self.user1.id,
-                        bCleanUpAfterYourself  = False,
-                        setRecordStepsForThese = setRecordStepsForThese )
+                        bCleanUpAfterYourself   = False,
+                        iRecordStepsForThis     = iRecordStepsForThis )
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
@@ -110,7 +112,7 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         #
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
-# setRecordStepsForThese imported from __init__.py
+
 
 
 class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
@@ -1000,7 +1002,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6B' )
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
@@ -1047,7 +1049,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6B' )
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
@@ -1111,7 +1113,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6B' )
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
@@ -1153,13 +1155,13 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 352535627937
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should show both brands
+        # should show both brands, Sylvania & Marconi
         #
-        if True:
+        if False and True:
             #
             print()
             print( iThisOne )
