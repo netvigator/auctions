@@ -1,5 +1,5 @@
 
-iRecordStepsForThis     =   352535627937    # 192748960622 192748949221
+iRecordStepsForThis     =  None # 323589685342 352535627937 192748960622 192748949221
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -614,6 +614,26 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["323589685342"],
+              "title":["ONE SPEAKER The Fisher XP 1 Speakers Mid Century "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mQ3ZFTCSvtyA-CY8A15EyuA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ONE-SPEAKER-Fisher-XP-1-Speakers-Mid-Century-\/323589685342"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["92394"],
+              "location":["Victorville,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"40.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.99"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P4DT22H14M59S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-12-08T23:25:16.000Z"],
+              "endTime":["2018-12-13T23:25:16.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["192748960622"],
               "title":["4 Qty. 6SN7 GTB Sylvania NIS, NIB"],
