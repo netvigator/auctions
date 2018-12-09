@@ -190,10 +190,10 @@ select count(*) from itemsfound
 
 # doGetItemPicturesTasks( bOnlySay = True )
 
-select count(*) from keepers where "iGotPictures" > 0 ;
 select count(*) from keepers where "tGotPictures" is null  ;
-select "iItemNumb", "tTimeEnd" from keepers where "tGotPictures" is null order by "tTimeEnd" ;
+select "iItemNumb", "tTimeEnd" from keepers where "tGotPictures" is null order by "tTimeEnd" limit 1 ;
 
+select count(*) from keepers where "iGotPictures" > 0 ;
 
 select "cTitle", "iGotPictures" from keepers where "tGotPictures" =
     ( select max( "tGotPictures" ) from keepers ) ;
