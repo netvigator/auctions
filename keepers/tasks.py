@@ -174,16 +174,19 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
 '''
 doGetFetchUserItemsTasks( bOnlySay = True )
 
-select count(*) from useritemsfound
-    where "bGetPictures" = true and "tRetrieved" is null ;
-
-#### above count depends on keepers selected for downloading ###
+select count( DISTINCT "iItemNumb_id" )
+    from useritemsfound
+    where "bGetPictures" is true and  "tRetrieved" is null ;
 
 select count(*) from itemsfound
-    where "tTimeEnd" < timestamp 'yesterday' and
+    where "tTimeEnd" <= current_timestamp - interval '1 day' and
     "iItemNumb" in
-        ( select "iItemNumb_id" from useritemsfound
-          where "tRetrieved" is not null and "tRetrieveFinal" is null ) ;
+        ( select distinct "iItemNumb_id" from useritemsfound
+            where "tRetrieved" is not null and "tRetrieveFinal" is null );
+
+select count(*) from itemsfound
+    where "tTimeEnd" <= current_timestamp - interval '100 days' ;
+
 
 # doGetItemPicturesTasks( bOnlySay = True )
 
