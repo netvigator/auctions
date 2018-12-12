@@ -218,3 +218,5 @@ should handle gracefully
 choose add a model, change mind, hit cancel, but cannot,
 screen insists title must be filled in
 
+
+If you put in 12AX7A and turn on submodels OK, give error if Look For has 12AX7.
