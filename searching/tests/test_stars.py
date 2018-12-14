@@ -229,7 +229,6 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 283272931267,
                 312339506602,
                 192737436300,
-                352535627937,
                 192748960622,
                 192748949221,
                 352535627937,
@@ -1185,21 +1184,38 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 #
             #
         #
+        iThisOne = 192748960622
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        #
+        # fine point: should not list Sylvania 6SN7 GTB twice
+        # for now, TOO fine!!!
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GT (Sylvania)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
         iThisOne = 192748949221
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
         # should list XP-6 not XP-8
         #
-        iThisOne = 192748960622
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
-        #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should not list Sylvania 6SN7 GTB twice
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
         #
         iThisOne = 352535627937
         #
@@ -1207,20 +1223,20 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should list XP-1 not XP-8
+        # should list both Marconi and Sylvania
         #
+        print()
+        print( iThisOne )
         #
-        #print()
-        #print( iThisOne )
-        ##
-        #for oTest in dItemsToTest[ iThisOne ]:
-            ##
-            #print()
-            #print( oTest.iBrand.cTitle )
-            #print( oTest.iModel.cTitle )
-            #print( oTest.iCategory.cTitle )
-            ##
-        #print('')
+        for oTest in dItemsToTest[ iThisOne ]:
+            #
+            print()
+            print( oTest.iBrand.cTitle )
+            print( oTest.iModel.cTitle )
+            print( oTest.iCategory.cTitle )
+            #
+        print('')
+        #
         #if oTest.iBrand:    print( oTest.iBrand.cTitle )
         #if oTest.iModel:
             #print( oTest.iModel.cTitle, oTest.iModel.iCategory_id )
