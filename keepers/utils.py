@@ -138,6 +138,14 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     #
     iSavedRowID = sListingStatus = None
     #
+    # temporary work around, ebay glitch 2018-12-14,
+    # ebay returning CustomCode as country code for Serbia (instead of RS)
+    #
+    #if dGotItem['iItemNumb'] in ( 233042593418, 232966183543, 233006868409 ):
+        #
+        #dGotItem['cCountry'] = 'RS'
+        #
+    #
     if dGotItem and Keeper.objects.filter( pk = iItemNumb ).exists():
         #
         bAnyChanged = False
@@ -188,7 +196,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             # ### not all real categories are in the test database
             #
             # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
-            sMsg = 'in keepers: form did not save'
+            sMsg = 'in keepers: form did not save, item %s' % dGotItem['iItemNumb']
             #
             logger.error( sMsg )
             #print( '' )
