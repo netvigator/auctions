@@ -864,7 +864,16 @@ def findSearchHits(
                 #
             #
         #
+        if oItem.iItemNumb == 352535627937:
+            #
+            print('\n')
+            print(lItemFoundTemp)
+            print('\n')
+            #
+        #
         lBrands = dFindSteps[ 'brands' ]
+        #
+        bSayMoreSteps = False
         #
         for oBrand in qsBrands:
             #
@@ -910,13 +919,22 @@ def findSearchHits(
                 #
                 for oTempItem in lItemFoundTemp:
                     #
+                    if (    oItem.iItemNumb == 352535627937 and
+                            oTempItem.iBrand is not None    and
+                            oTempItem.iBrand == 'Sylvania'  and
+                            oTempItem.iModel is not None    and
+                            oTempItem.iModel.cTitle == '6V6G' ):
+                        print('\n\ndoing 6V6G\n')
+                        bSayMoreSteps = True
+                    else:
+                        bSayMoreSteps = False
+                    #
+                    if bSayMoreSteps:
+                        print( 'oTempItem.iModel is', oTempItem.iModel )
+                        print( 'oTempItem.iBrand is', oTempItem.iBrand )
+                    #
                     if (    oTempItem.iModel is not None and
                             oTempItem.iBrand is None ):
-                        #
-                        #if (    oItem.iItemNumb == 123046984227 and
-                                #oBrand.cTitle == 'GE' and
-                                #oTempItem.iModel.cTitle == '5R4GA' ):
-                            #print('doing 5R4GA')
                         #
                         bSaveBrand = False
                         #
