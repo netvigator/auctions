@@ -421,9 +421,17 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 192577735613
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1 )
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6AU6A' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
         #
@@ -1060,7 +1068,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '12AX7-WA (Philips)' )
+        # self.assertEqual( oTest.iModel.cTitle, '12AX7-WA (Philips)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -1153,36 +1161,20 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        iThisOne = 352535627937
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        #
+        iThisOne = 192748949221
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        # should list XP-6 not XP-8
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should show both brands, Sylvania & Marconi
+        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
-        if False and True:
-            #
-            print()
-            print( iThisOne )
-            #
-            for oTest in dItemsToTest[ iThisOne ]:
-                #
-                print()
-                if oTest and oTest.iBrand and oTest.iBrand.cTitle:
-                    print( oTest.iBrand.cTitle )
-                else:
-                    print( 'brand is None' )
-                if oTest and oTest.iModel and oTest.iModel.cTitle:
-                    print( oTest.iModel.cTitle )
-                else:
-                    print( 'model is None' )
-                if oTest and oTest.iCategory and oTest.iCategory.cTitle:
-                    print( oTest.iCategory.cTitle )
-                else:
-                    print( 'category is None' )
-                #
-            #
         #
         iThisOne = 192748960622
         #
@@ -1204,38 +1196,37 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
-        iThisOne = 192748949221
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
-        #
-        # should list XP-6 not XP-8
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
-        #
-        #
         iThisOne = 352535627937
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        #
+        # should show both brands, Sylvania & Marconi
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        # should list both Marconi and Sylvania
+        self.assertEqual( oTest.iModel.cTitle, '6V6G' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        print()
-        print( iThisOne )
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        for oTest in dItemsToTest[ iThisOne ]:
+        self.assertEqual( oTest.iModel.cTitle, '6V6G' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Marconi' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        if False:
             #
             print()
-            print( oTest.iBrand.cTitle )
-            print( oTest.iModel.cTitle )
-            print( oTest.iCategory.cTitle )
+            print( iThisOne )
             #
-        print('')
+            for oTest in dItemsToTest[ iThisOne ]:
+                #
+                print()
+                print( oTest.iBrand.cTitle )
+                print( oTest.iModel.cTitle )
+                print( oTest.iCategory.cTitle )
+                #
+            print('')
         #
         #if oTest.iBrand:    print( oTest.iBrand.cTitle )
         #if oTest.iModel:
