@@ -211,7 +211,7 @@ class UserItemFound(models.Model):
     class Meta:
         verbose_name_plural = 'useritemsfound'
         db_table            = verbose_name_plural
-        unique_together     = ('iItemNumb', 'iUser', 'iModel' )
+        unique_together     = ('iItemNumb', 'iUser', 'iModel', 'iBrand' )
 
     def get_absolute_url(self):
         #
