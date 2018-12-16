@@ -1,3 +1,5 @@
+from copy                   import copy
+
 from collections            import OrderedDict
 
 from django.db.models       import Q, Max
@@ -498,11 +500,6 @@ def findSearchHits(
                     [], 'will search only this: %s' % bRecordSteps )
             #
         #
-        #if oItem.iItemNumb == 162988530803:
-            #print('')
-            #print('Item 162988530803 is here' )
-            #print('sRelevantTitle:', sRelevantTitle )
-        #
         sGotInParens = getInParens( sRelevantTitle )
         #
         lCategories = dFindSteps[ 'categories' ]
@@ -603,14 +600,7 @@ def findSearchHits(
                 #
                 lItemFoundTemp.append( oTempItem )
                 #
-                #if oItem.iItemNumb == 162988530803:
-                    #print('')
-                    #print('Category:', oCategory.cTitle )
             #
-        #
-        #if oItem.iItemNumb == 162988530803:
-            #print('')
-            #print('doing models now')
         #
         lModels = dFindSteps[ 'models' ]
         #
@@ -627,13 +617,6 @@ def findSearchHits(
             bFoundCategoryForModel = False
             #
             sInTitle, bExcludeThis = foundItem( sRelevantTitle )
-            #
-            #if oItem.iItemNumb == 283100002617 and oModel.cTitle == 'CA-5':
-                #print('')
-                #print('doing model CA-5 now')
-                #print('sRelevantTitle:', sRelevantTitle )
-                #print('oModel.cRegExLook4Title:', oModel.cRegExLook4Title )
-                #print('sInTitle, bExcludeThis:', sInTitle, bExcludeThis )
             #
             if bExcludeThis:
                 #
@@ -793,13 +776,6 @@ def findSearchHits(
                         #
                         bFoundCategoryForModel      = True
                         #
-                        #if oItem.iItemNumb == 162988530803:
-                            #print('')
-                            #print('model found for caregory:',
-                                   #oModel.cTitle, oModel.iCategory.cTitle )
-                        #
-                        # break keep looking?
-                        #
                     #
                 #
                 if lNewItemFoundTemp:
@@ -864,16 +840,7 @@ def findSearchHits(
                 #
             #
         #
-        if oItem.iItemNumb == 352535627937:
-            #
-            print('\n')
-            print(lItemFoundTemp)
-            print('\n')
-            #
-        #
         lBrands = dFindSteps[ 'brands' ]
-        #
-        bSayMoreSteps = False
         #
         for oBrand in qsBrands:
             #
@@ -882,9 +849,6 @@ def findSearchHits(
             bFoundBrandForModel = False
             #
             sInTitle, bExcludeThis = foundItem( sRelevantTitle )
-            #
-            #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE':
-                #print('brand GE')
             #
             if bExcludeThis:
                 #
@@ -898,9 +862,6 @@ def findSearchHits(
                 #
             #
             if sInTitle:
-                #
-                #if oItem.iItemNumb == 123046984227 and oBrand.cTitle == 'GE':
-                    #print('sInTitle and not bExcludeThis')
                 #
                 if bRecordSteps:
                     #
@@ -919,21 +880,33 @@ def findSearchHits(
                 #
                 for oTempItem in lItemFoundTemp:
                     #
-                    if (    oItem.iItemNumb == 352535627937 and
+                    if (    oTempItem.iModel is not None    and
                             oTempItem.iBrand is not None    and
-                            oTempItem.iBrand == 'Sylvania'  and
-                            oTempItem.iModel is not None    and
-                            oTempItem.iModel.cTitle == '6V6G' ):
-                        print('\n\ndoing 6V6G\n')
-                        bSayMoreSteps = True
-                    else:
-                        bSayMoreSteps = False
-                    #
-                    if bSayMoreSteps:
-                        print( 'oTempItem.iModel is', oTempItem.iModel )
-                        print( 'oTempItem.iBrand is', oTempItem.iBrand )
-                    #
-                    if (    oTempItem.iModel is not None and
+                            oTempItem.iModel.bGenericModel  and
+                            oTempItem.iCategory is not None ):
+                        #
+
+                        bSaveBrand = BrandCategory.objects.filter(
+                            iUser     = oUser,
+                            iBrand    = oBrand,
+                            iCategory = oTempItem.iCategory ).exists()
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn( lBrands,
+                                    'found another brand %s for generic model %s' %
+                                    ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                            #
+                        #
+                        oAnotherTempItem = copy( oTempItem )
+                        #
+                        oAnotherTempItem.iBrand = None
+                        #
+                        lItemFoundTemp.append( oAnotherTempItem )
+                        #
+                        continue
+                        #
+                    elif (  oTempItem.iModel is not None and
                             oTempItem.iBrand is None ):
                         #
                         bSaveBrand = False
@@ -1027,7 +1000,9 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    lCandidates.append( 'scoring (total, hit stars, found length):' )
+                    lCandidates.append(
+                            'scoring (total, hit stars, found length): %s'
+                            % len( lItemFoundTemp ) )
                     #
                 #
                 lSortItems = []
@@ -1107,13 +1082,20 @@ def findSearchHits(
             #
             iItemsFoundTemp         = 0
             #
-            setModelsStoredAlready  = set( [] )
+            dModelsStoredAlready    = {}
             #
             lModelsStoredAlready    = []
             #
             for oTempItem in lItemFoundTemp:
                 #
                 iItemsFoundTemp += 1
+                #
+                sTitleLessParens = ''
+                #
+                if oTempItem.iModel:
+                    #
+                    sTitleLessParens = getWhatsNotInParens( oTempItem.iModel.cTitle )
+                    #
                 #
                 if iItemsFoundTemp == 1: # store item on top here
                     #
@@ -1131,10 +1113,12 @@ def findSearchHits(
                     #
                     if oTempItem.iModel:
                         #
-                        lModelsStoredAlready = [
-                            getWhatsNotInParens( oTempItem.iModel.cTitle ) ]
+                        lModelsStoredAlready.append( sTitleLessParens )
                         #
-                        setModelsStoredAlready.add( oTempItem.iModel.id )
+                        dModelsStoredAlready.setdefault(
+                            sTitleLessParens, [] ).append(
+                                ( oTempItem.iModel.bGenericModel,
+                                  oTempItem.iModel.iBrand ) )
                         #
                     #
                     oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
@@ -1152,13 +1136,24 @@ def findSearchHits(
                     #
                     # have complete hit, make an additional UserItem record
                     #
-                    sTitleLessParens = getWhatsNotInParens( oTempItem.iModel.cTitle )
-                    #
-                    #
                     uExact, uLonger = _gotFullStringOrSubStringOfListItem(
                                             sTitleLessParens,
                                             lModelsStoredAlready )
                     #
+                    bGotNonGenericForThis = False
+                    #
+                    if sTitleLessParens in dModelsStoredAlready:
+                        #
+                        for t in dModelsStoredAlready[ sTitleLessParens ]:
+                            #
+                            bThisIsGeneric, iThisBrand = t
+                            #
+                            bGotNonGenericForThis = (
+                                    not bThisIsGeneric and
+                                    iThisBrand == oTempItem.iBrand )
+                            #
+                            if bGotNonGenericForThis: break
+                        #
                     #
                     if uLonger:
                         #
@@ -1173,14 +1168,40 @@ def findSearchHits(
                         #
                         continue
                         #
+                    elif    (   uExact and
+                                oTempItem.iModel.bGenericModel and
+                                bGotNonGenericForThis ):
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'excluding generic model %s -- '
+                                    'already have a non generic' %
+                                    ( sTitleLessParens ) )
+                            #
+                        #
+                        continue
+                        #
+                    elif uExact and oTempItem.iModel.bGenericModel:
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'have generic model %s already, '
+                                    'but including again for %s' %
+                                    ( sTitleLessParens, oTempItem.iBrand ) )
+                            #
+                        #
                     elif uExact:
                         #
                         if bRecordSteps:
                             #
                             _appendIfNotAlreadyIn(
                                 lSelect,
-                                    'excluding %s because '
-                                    'we already got %s' %
+                                    'excluding %s '
+                                    'because we already got %s' %
                                     ( sTitleLessParens, uExact ) )
                             #
                         #
@@ -1189,49 +1210,38 @@ def findSearchHits(
                     #
                     tNow = timezone.now()
                     #
-                    if oTempItem.iModel.id in setModelsStoredAlready:
+                    #
+                    if bRecordSteps:
                         #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                'already got model, not storing : %s : %s : %s' %
-                                            (   getTitleOrNone( oTempItem.iCategory ),
-                                                getTitleOrNone( oTempItem.iModel ),
-                                                getTitleOrNone( oTempItem.iBrand )) )
-                            #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                            'also storing: %s : %s : %s' %
+                                (   getTitleOrNone( oTempItem.iCategory ),
+                                    getTitleOrNone( oTempItem.iModel ),
+                                    getTitleOrNone( oTempItem.iBrand )) )
                         #
-                    else:
+                    #
+                    oNewUserItem = UserItemFound(
+                        iItemNumb       = oUserItem.iItemNumb,
+                        iHitStars       = oTempItem.iHitStars,
+                        iSearch         = oTempItem.iSearch,
+                        iModel          = oTempItem.iModel,
+                        iBrand          = oTempItem.iBrand,
+                        iCategory       = oTempItem.iCategory,
+                        cWhereCategory  = oTempItem.cWhereCategory,
+                        tLook4Hits      = tNow,
+                        tCreate         = tNow,
+                        tModify         = tNow,
+                        iUser           = oUser )
+                    #
+                    oNewUserItem.save()
+                    #
+                    if oTempItem.iModel:
                         #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                'also storing: %s : %s : %s' %
-                                    (   getTitleOrNone( oTempItem.iCategory ),
-                                        getTitleOrNone( oTempItem.iModel ),
-                                        getTitleOrNone( oTempItem.iBrand )) )
-                            #
-                        #
-                        oNewUserItem = UserItemFound(
-                            iItemNumb       = oUserItem.iItemNumb,
-                            iHitStars       = oTempItem.iHitStars,
-                            iSearch         = oTempItem.iSearch,
-                            iModel          = oTempItem.iModel,
-                            iBrand          = oTempItem.iBrand,
-                            iCategory       = oTempItem.iCategory,
-                            cWhereCategory  = oTempItem.cWhereCategory,
-                            tLook4Hits      = tNow,
-                            tCreate         = tNow,
-                            tModify         = tNow,
-                            iUser           = oUser )
-                        #
-                        oNewUserItem.save()
-                        #
-                        if oTempItem.iModel:
-                            #
-                            setModelsStoredAlready.add( oTempItem.iModel.id )
-                            #
+                        dModelsStoredAlready.setdefault(
+                            sTitleLessParens, [] ).append(
+                                ( oTempItem.iModel.bGenericModel,
+                                oTempItem.iModel.iBrand ) )
                         #
                     #
                     lModelsStoredAlready.append( oTempItem.iModel.cTitle )
