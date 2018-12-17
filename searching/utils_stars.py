@@ -320,11 +320,15 @@ def _gotFullStringOrSubStringOfListItem( s, l ):
     uGotSub  = None
     uGotFull = None
     #
+    sUpper = s.upper()
+    #
     for sL in l:
         #
-        if s in sL:
+        sLupper = sL.upper()
+        #
+        if sUpper in sLupper:
             #
-            if s == sL:
+            if sUpper == sLupper:
                 uGotFull = sL
             else:
                 uGotSub  = sL
@@ -1090,11 +1094,14 @@ def findSearchHits(
                 #
                 iItemsFoundTemp += 1
                 #
-                sTitleLessParens = ''
+                sTitleLessParens = sTitleUPPER = ''
                 #
                 if oTempItem.iModel:
                     #
-                    sTitleLessParens = getWhatsNotInParens( oTempItem.iModel.cTitle )
+                    sTitleLessParens = getWhatsNotInParens(
+                            oTempItem.iModel.cTitle )
+                    #
+                    sTitleUPPER = sTitleLessParens.upper()
                     #
                 #
                 if iItemsFoundTemp == 1: # store item on top here
@@ -1113,10 +1120,10 @@ def findSearchHits(
                     #
                     if oTempItem.iModel:
                         #
-                        lModelsStoredAlready.append( sTitleLessParens )
+                        lModelsStoredAlready.append( sTitleUPPER )
                         #
                         dModelsStoredAlready.setdefault(
-                            sTitleLessParens, [] ).append(
+                            sTitleUPPER, [] ).append(
                                 ( oTempItem.iModel.bGenericModel,
                                   oTempItem.iModel.iBrand ) )
                         #
@@ -1137,14 +1144,14 @@ def findSearchHits(
                     # have complete hit, make an additional UserItem record
                     #
                     uExact, uLonger = _gotFullStringOrSubStringOfListItem(
-                                            sTitleLessParens,
+                                            sTitleUPPER,
                                             lModelsStoredAlready )
                     #
                     bGotNonGenericForThis = False
                     #
-                    if sTitleLessParens in dModelsStoredAlready:
+                    if sTitleUPPER in dModelsStoredAlready:
                         #
-                        for t in dModelsStoredAlready[ sTitleLessParens ]:
+                        for t in dModelsStoredAlready[ sTitleUPPER ]:
                             #
                             bThisIsGeneric, iThisBrand = t
                             #
@@ -1239,7 +1246,7 @@ def findSearchHits(
                     if oTempItem.iModel:
                         #
                         dModelsStoredAlready.setdefault(
-                            sTitleLessParens, [] ).append(
+                            sTitleUPPER, [] ).append(
                                 ( oTempItem.iModel.bGenericModel,
                                 oTempItem.iModel.iBrand ) )
                         #
