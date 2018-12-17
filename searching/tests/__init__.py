@@ -108,8 +108,8 @@ sModels = \
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
+ 12Ax7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
@@ -117,14 +117,14 @@ sModels = \
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
  10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10 | t
- 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
- VT-107 (6V6)       |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6V6 (metal can)    | metal\\rcan |    2 | f            |                   |  Vacuum Tube |             |
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f             | t
  6V6G               | Sylvania\\rSilvertone | 8 | f     |                   |  Vacuum Tube |             |
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ VT-107 (6V6)       |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6V6 (metal can)    | metal\\rcan |    2 | f            |                   |  Vacuum Tube |             |
+ 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f             | t
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |
  6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
