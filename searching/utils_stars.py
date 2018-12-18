@@ -508,6 +508,8 @@ def findSearchHits(
         #
         lCategories = dFindSteps[ 'categories' ]
         #
+        lCategoryFound = []
+        #
         for oCategory in qsCategories:
             #
             foundItem = getFoundItemTester(
@@ -603,6 +605,8 @@ def findSearchHits(
                 oTempItem.save()
                 #
                 lItemFoundTemp.append( oTempItem )
+                #
+                lCategoryFound.append( oCategory )
                 #
             #
         #
@@ -865,6 +869,8 @@ def findSearchHits(
                 continue
                 #
             #
+            setModelsBrands = set( [] )
+            #
             if sInTitle:
                 #
                 if bRecordSteps:
@@ -884,10 +890,13 @@ def findSearchHits(
                 #
                 for oTempItem in lItemFoundTemp:
                     #
+                    tModelBrand = ( oTempItem.iModel, oBrand )
+                    #
                     if (    oTempItem.iModel is not None    and
                             oTempItem.iBrand is not None    and
                             oTempItem.iModel.bGenericModel  and
-                            oTempItem.iCategory is not None ):
+                            oTempItem.iCategory is not None and
+                            tModelBrand not in setModelsBrands ):
                         #
 
                         bSaveBrand = BrandCategory.objects.filter(
@@ -904,7 +913,9 @@ def findSearchHits(
                         #
                         oAnotherTempItem = copy( oTempItem )
                         #
-                        oAnotherTempItem.iBrand = None
+                        oAnotherTempItem.iBrand      = None
+                        oAnotherTempItem.iStarsBrand = 0
+                        oAnotherTempItem.iHitStars   = 0
                         #
                         lItemFoundTemp.append( oAnotherTempItem )
                         #
@@ -938,7 +949,7 @@ def findSearchHits(
                                 iCategory = oTempItem.iCategory ).exists()
                             #
                         #
-                        if bSaveBrand:
+                        if bSaveBrand and tModelBrand not in setModelsBrands:
                             #
                             if (    bRecordSteps and
                                     oTempItem.iModel.bGenericModel and
@@ -965,10 +976,58 @@ def findSearchHits(
                             #
                             bFoundBrandForModel = True
                             #
+                            setModelsBrands.add( tModelBrand )
+                            #
                         #
                     #
                 #
-                if not bFoundBrandForModel:
+                bSaveBrand = False
+                #
+                for oCategory in lCategoryFound:
+                    #
+                    bSaveBrand = BrandCategory.objects.filter(
+                        iUser     = oUser,
+                        iBrand    = oBrand,
+                        iCategory = oCategory ).exists()
+                    #
+                    if bSaveBrand: break
+                    #
+                #
+                iBrandStars = oBrand.iStars or 1
+                #
+                if bSaveBrand and not bFoundBrandForModel:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn( lBrands,
+                                'brand %s has products in category %s' %
+                                ( oBrand.cTitle, oCategory.cTitle ) )
+                        #
+                    #
+                    oTempItem.iStarsBrand  = oBrand.iStars
+                    oTempItem.iBrand       = oBrand
+                    #
+                    iStarsCategory          = oCategory.iStars or 1
+                    #
+                    iHitStars = iStarsCategory * oBrand.iStars
+                    #
+                    oTempItem.iHitStars    = iHitStars
+                    #
+                    oTempItem = ItemFoundTemp(
+                            iItemNumb       = oItem,
+                            iBrand          = oBrand,
+                            iCategory       = oCategory,
+                            iStarsBrand     = iBrandStars,
+                            iStarsCategory  = iStarsCategory,
+                            iHitStars       = iHitStars,
+                            iSearch         = oUserItem.iSearch )
+                    #
+                    oTempItem.save()
+                    #
+                    lItemFoundTemp.append( oTempItem )
+                    #
+                    #
+                elif not bFoundBrandForModel:
                     #
                     if bRecordSteps:
                         #
@@ -976,8 +1035,6 @@ def findSearchHits(
                                 'did not find brand %s for any model found' %
                                 oBrand.cTitle )
                         #
-                    #
-                    iBrandStars = oBrand.iStars or 1
                     #
                     oTempItem = ItemFoundTemp(
                             iItemNumb       = oItem,
