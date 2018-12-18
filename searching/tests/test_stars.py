@@ -232,6 +232,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 192748960622,
                 192748949221,
                 352535627937,
+                123550734798,
                 292640430401
                 ) )
         #
@@ -704,6 +705,8 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         self.assertIsNone( oTest.iModel )
         #
@@ -1212,6 +1215,31 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '6V6G' )
         self.assertEqual( oTest.iBrand.cTitle, 'Marconi' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        iThisOne = 123550734798
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should get all 3 brands, Tung-Sol, RCA & Raytheon
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AX7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AX7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AX7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         if False:
