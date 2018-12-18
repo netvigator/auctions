@@ -8,13 +8,13 @@
 
     <!-- Action buttons -->
     <div class="basic">
-        {% include "./actions.html" %}    
-    </div>            
+        {% include "./actions.html" %}
+    </div>
     <!-- End Action buttons -->
-    
+
     <table RULES=ROWS CELLPADDING=10>
     <TR>
-        <TD width = 300>{% field_name model 'cTitle' %}</TD> 
+        <TD width = 300>{% field_name model 'cTitle' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
@@ -69,15 +69,15 @@
         <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
-    
+
     <p>
-    
+
     <!-- Action buttons -->
     <div class="basic">
-        {% include "./actions.html" %}    
-    </div>            
+        {% include "./actions.html" %}
+    </div>
     <!-- End Action buttons -->
-    
+
     <div style="margin-left:20px;margin-top:20px">
     {% if categories_list %}
         <h4>Categories for {{ brand }}</h4>
@@ -88,6 +88,7 @@
         {% endfor %}
         </UL>
     {% endif %}
+    It helps to indicate which categories apply to {{ brand }} (full explanation on edit page).
     </div>
 
     <div style="margin-left:20px;margin-top:20px">
@@ -105,5 +106,5 @@
         </table>
     {% endif %}
     </div>
-  
+
 {% endblock %}
