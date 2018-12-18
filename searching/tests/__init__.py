@@ -1,5 +1,5 @@
 
-iRecordStepsForThis     = None # 352535627937 352494035670 192748960622 323589685342
+iRecordStepsForThis     = None # 123550734798 352535627937 352494035670 192748960622 323589685342
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -78,7 +78,7 @@ sBrands = \
  Radford           |      7 |            |
  Radio Craftsmen   |      8 |            |
  Raytheon          |      7 |            |
- RCA               |      6 |            |
+ RCA               |      5 |            |
  Regency           |      5 |            |
  Sargent-Rayment   |      4 |            |
  Scott, H.H.       |      8 |            | Scott\\rH.H. Scott
@@ -108,7 +108,7 @@ sModels = \
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
- 12Ax7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7              |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
@@ -614,6 +614,23 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["123550734798"],
+              "title":["LOT OF 10 pcs 12ax7 ecc83 VACUUM TUBES TESTED GOOD VINTAGE RCA TUNG-SOL RAYTHEON"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mqBJKi745cX526lvoS4IxNA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/LOT-10-pcs-12ax7-ecc83-VACUUM-TUBES-TESTED-GOOD-VINTAGE-RCA-TUNG-SOL-RAYTHEON-\/123550734798"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["97496"],
+              "location":["Winston,OR,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.36"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["0"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"79.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"79.0"}],
+              "sellingState":["Active"],
+              "timeLeft":["P4DT22H6M47S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-12-18T00:31:46.000Z"],"endTime":["2018-12-23T00:31:46.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["323589685342"],
               "title":["ONE SPEAKER The Fisher XP 1 Speakers Mid Century "],
