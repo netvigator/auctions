@@ -1,5 +1,5 @@
 
-iRecordStepsForThis     = None # 303000971114 123550734798 352535627937 352494035670 192748960622 323589685342
+iRecordStepsForThis     = None # 303000959884 303000971114 123550734798 352535627937 352494035670 192748960622 323589685342
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -596,7 +596,7 @@ sExampleResponse = \
 # ### you must manually convert a signle backslash to a double backslash ###
 # ###      also first item is tested in core.test_utils_ebay             ###
 
-sResponseSearchTooBroad = \
+sResponseItems2Test = \
 '''{"findItemsByKeywordsResponse":
   [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2018-03-03T23:04:24.581Z"],
     "searchResult":
