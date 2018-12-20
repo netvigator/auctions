@@ -872,6 +872,14 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
         #
         oBrandCategory.save()
         #
+        oBrand = Brand.objects.get( cTitle = 'Matsushita' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+
 
     def test_generic_model_OK( self ):
         #
