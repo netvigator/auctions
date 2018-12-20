@@ -16,8 +16,7 @@ from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
 from ..tests            import ( sResponseSearchTooBroad,
-                                 iRecordStepsForThis,
-                                 setDoNotMentionThese )
+                                 iRecordStepsForThis )
 from ..utils            import storeSearchResultsInDB
 
 from .test_utils        import GetBrandsCategoriesModelsSetUp
@@ -84,8 +83,7 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
                             self.user1.username,
                             self.oSearch.id,
                             self.oSearch.cTitle,
-                            self.setTestCategories,
-                            setDoNotMentionThese = setDoNotMentionThese ) )
+                            self.setTestCategories ) )
         #
         except JSONDecodeError:
             #
@@ -176,80 +174,13 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iCount = 0
         #
-        dItemsToTest = dict.fromkeys(
-              ( 282602694679,
-                253486571279,
-                123046984227,
-                192509883813,
-                162988285719,
-                332618106572,
-                162988530803,
-                232745789325,
-                283006362761,
-                162988285720,
-                162988285721,
-                142842525513,
-                263776955668,
-                192577735613,
-                173375697400,
-                273340636575,
-                162112067911,
-                113173838358,
-                163167777899,
-                292659341471,
-                273380279306,
-                153121548106,
-                153124672147,
-                263861079618,
-                292672067477,
-                223093061969,
-                263879319271,
-                163199461416,
-                202401940540,
-                283100002617,
-                292679662673,
-                192633431454,
-                232913976977,
-                323425124965,
-                202430076409,
-                323437473473,
-                192659380750,
-                183436307728,
-                192660195679,
-                173544935496,
-                192675470270,
-                153200191510,
-                202462110744,
-                352494035670,
-                332849161811,
-                323557043166,
-                264048401593,
-                382632483507,
-                113392158472,
-                283272931267,
-                312339506602,
-                192737436300,
-                192748960622,
-                192748949221,
-                352535627937,
-                123550734798,
-                303000971114,
-                292640430401
-                ) )
-        #
-        for iItemNumb in dItemsToTest:
-            #
-            dItemsToTest[ iItemNumb ] = [] # need unique list for each value!
-            #
+        dItemsToTest = {}
         #
         for oTemp in qsUserItems:
             #
             if oTemp.iHitStars == 0: continue
             #
-            if oTemp.iItemNumb_id in dItemsToTest:
-                #
-                dItemsToTest[ oTemp.iItemNumb_id ].append( oTemp )
-                #
+            dItemsToTest.setdefault( oTemp.iItemNumb_id, [] ).append( oTemp )
             #
             iCount += 1
             #
@@ -500,10 +431,6 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
-        #
-        iThisOne = 162112067911
-        #
-        self.assertEqual( len( dItemsToTest[ iThisOne ] ), 0 )
         #
         #
         self.print_len( dItemsToTest[ 292640430401 ], 3 )
@@ -1186,6 +1113,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # fine point: should not list Sylvania 6SN7 GTB twice
         # for now, TOO fine!!!
+        # another too fine for now below
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -1246,11 +1174,110 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 303000971114
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         # should list 2 hits: 6CA7 & EL34
         #
-        if True:
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL34' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Matsushita' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6CA7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Matsushita' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        iThisOne = 173696834267
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        # d/n get into keepers
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AU7A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Westinghouse' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        iThisOne = 372536713027
+        #
+        # d/n get into keepers
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        iThisOne = 303000959884
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        #
+        # d/n get into keepers
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GT (Sylvania)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        # fine point: should not list Sylvania 6SN7 GTB twice
+        # for now, TOO fine!!!
+        # another too fine for now above
+        #
+        iThisOne = 173696832184
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 4, iThisOne )
+        #
+        # d/n get into keepers
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+
+
+        #
+        if False:
             #
             print()
             print( iThisOne )
@@ -1258,9 +1285,9 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
             for oTest in dItemsToTest[ iThisOne ]:
                 #
                 print()
-                print( oTest.iBrand.cTitle )
-                print( oTest.iModel.cTitle )
-                print( oTest.iCategory.cTitle )
+                if oTest.iBrand:    print( oTest.iBrand.cTitle )
+                if oTest.iModel:    print( oTest.iModel.cTitle )
+                if oTest.iCategory: print( oTest.iCategory.cTitle )
                 #
             print('')
         #
