@@ -4,7 +4,7 @@ from ..utils_ebay           import getValueOffItemDict
 from ..utils_test           import AssertEmptyMixin
 
 from searching              import dItemFoundFields         # in __init__.py
-from searching.tests        import sResponseSearchTooBroad  # in __init__.py
+from searching.tests        import sResponseItems2Test  # in __init__.py
 from searching.utilsearch   import getSearchResultGenerator
 
 
@@ -13,7 +13,7 @@ class GetValueOffItemDictTests( AssertEmptyMixin, TestCase ):
 
     def test_get_value_off_item_dict( self, **kwargs ):
         #
-        oItemIter = getSearchResultGenerator( '', 1, sResponseSearchTooBroad )
+        oItemIter = getSearchResultGenerator( '', 1, sResponseItems2Test )
         #
         dItem = next( oItemIter )
         #
