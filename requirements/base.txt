@@ -100,3 +100,6 @@ celery==4.2.1
 
 # users need to select their timezone
 django-timezone-field==3.0
+
+# need menus
+django-menu==0.1.12
