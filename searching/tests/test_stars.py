@@ -233,6 +233,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
                 192748949221,
                 352535627937,
                 123550734798,
+                303000971114,
                 292640430401
                 ) )
         #
@@ -1242,7 +1243,14 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        if False:
+        #
+        iThisOne = 303000971114
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        # should list 2 hits: 6CA7 & EL34
+        #
+        if True:
             #
             print()
             print( iThisOne )
