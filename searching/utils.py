@@ -473,7 +473,6 @@ def storeSearchResultsInDB( iLogID,
                             sSearchName,
                             setTestCategories    = None,
                             bCleanUpFiles        = False,
-                            setDoNotMentionThese = None,
                             bDoNotMentionAny     = False ):
     #
     '''high level script, accesses results in file(s)
@@ -536,10 +535,6 @@ def storeSearchResultsInDB( iLogID,
                     if bDoNotMentionAny:
                         #
                         bSayDiscarded = False
-                        #
-                    elif setDoNotMentionThese:
-                        #
-                        bSayDiscarded = iItemNumb not in setDoNotMentionThese
                         #
                     else:
                         #
