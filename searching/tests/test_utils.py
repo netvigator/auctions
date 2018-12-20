@@ -24,8 +24,7 @@ from ..models           import ( Search, ItemFound, UserItemFound,
 
 from ..tests            import dSearchResult # in __init__.py
 from ..tests            import ( sExampleResponse, sBrands, sModels,
-                                 sResponseSearchTooBroad,
-                                 setDoNotMentionThese )
+                                 sResponseSearchTooBroad )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInDB,
@@ -471,8 +470,7 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
                     self.oSearch.id,
                     self.oSearch.cTitle,
                     self.setTestCategories,
-                    bCleanUpFiles = False,
-                    setDoNotMentionThese = setDoNotMentionThese )
+                    bCleanUpFiles = False )
         #
 
     def tearDown(self):
@@ -519,8 +517,7 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
                         self.user1.username,
                         self.oSearch.id,
                         self.oSearch.cTitle,
-                        self.setTestCategories,
-                        setDoNotMentionThese = setDoNotMentionThese ) )
+                        self.setTestCategories ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
         #
@@ -878,6 +875,17 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iBrand      = oBrand,
                                 iCategory   = oVacuumTubes,
                                 iUser       = self.user1 )
+        #
+        oBrandCategory.save()
+        #
+        oBrand = Brand.objects.get( cTitle = 'Westinghouse' )
+        #
+        oBrandCategory = BrandCategory(
+                                iBrand      = oBrand,
+                                iCategory   = oVacuumTubes,
+                                iUser       = self.user1 )
+        #
+        oBrandCategory.save()
         #
 
 
