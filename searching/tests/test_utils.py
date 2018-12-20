@@ -24,7 +24,7 @@ from ..models           import ( Search, ItemFound, UserItemFound,
 
 from ..tests            import dSearchResult # in __init__.py
 from ..tests            import ( sExampleResponse, sBrands, sModels,
-                                 sResponseSearchTooBroad )
+                                 sResponseItems2Test )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInDB,
@@ -1094,7 +1094,7 @@ class TestFindingResponseHelpers( TestCase ):
         #
         ''' test getPagination() '''
         #
-        dGot = getPagination( sResponseSearchTooBroad )
+        dGot = getPagination( sResponseItems2Test )
         #
         dExpect = { 'iPageCount'    :  100,
                     'iTotalEntries' : 2374,
@@ -1113,7 +1113,7 @@ class TestFindingResponseHelpers( TestCase ):
         #
         ''' test getSuccessOrNot() '''
         #
-        self.assertTrue(  getSuccessOrNot( sResponseSearchTooBroad ) )
+        self.assertTrue(  getSuccessOrNot( sResponseItems2Test ) )
         self.assertFalse( getSuccessOrNot( '' ) )
 
 
@@ -1123,7 +1123,7 @@ def getResultGeneratorTheJsonWay():
     #
     from Dict.Maintain  import getDictValuesFromSingleElementLists
     #
-    dResponse       = getJsonFindingResponse( sResponseSearchTooBroad )
+    dResponse       = getJsonFindingResponse( sResponseItems2Test )
     #
     dPagination     = dResponse[  'dPagination']
     #
@@ -1161,10 +1161,10 @@ def getConsumedJsonItems():
 
 def getResultGeneratorMyWay():
     #
-    getSuccessOrNot( sResponseSearchTooBroad )
-    getPagination( sResponseSearchTooBroad )
+    getSuccessOrNot( sResponseItems2Test )
+    getPagination( sResponseItems2Test )
     #
-    return _getFindingResponseGenerator( sResponseSearchTooBroad )
+    return _getFindingResponseGenerator( sResponseItems2Test )
 
 
 def getConsumedMyWayItems():
@@ -1188,7 +1188,7 @@ def getJsonPagination():
 
 def getOnlyPagination():
     #
-    dOnlyPage = getPagination( sResponseSearchTooBroad )
+    dOnlyPage = getPagination( sResponseItems2Test )
 
 
 
@@ -1221,7 +1221,7 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
         #
         dPageJ = dItem["paginationOutput"]
         #
-        dOnlyPage = getPagination( sResponseSearchTooBroad )
+        dOnlyPage = getPagination( sResponseItems2Test )
         #
         self.assertEqual( dPageJ["iEntriesPP"],    dOnlyPage["iPageCount"] )
         self.assertEqual( dPageJ["iTotalEntries"], dOnlyPage["iTotalEntries"])
