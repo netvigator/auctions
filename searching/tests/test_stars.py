@@ -1109,19 +1109,13 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 192748960622
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # fine point: should not list Sylvania 6SN7 GTB twice
         # for now, TOO fine!!!
         # another too fine for now below
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6SN7GT (Sylvania)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
@@ -1219,17 +1213,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 303000959884
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # d/n get into keepers
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6SN7GT (Sylvania)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
