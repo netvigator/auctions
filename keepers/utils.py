@@ -141,9 +141,9 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     # temporary work around, ebay glitch 2018-12-14,
     # ebay returning CustomCode as country code for Serbia (instead of RS)
     #
-    #if dGotItem['iItemNumb'] in ( 233042593418, 232966183543, 233006868409 ):
+    if dGotItem['iItemNumb'] in ( 233042593418, 232966183543, 233006868409 ):
         #
-        #dGotItem['cCountry'] = 'RS'
+        dGotItem['cCountry'] = 'RS'
         #
     #
     if dGotItem and Keeper.objects.filter( pk = iItemNumb ).exists():
