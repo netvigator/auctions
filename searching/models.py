@@ -29,11 +29,14 @@ class Search(models.Model):
     cKeyWords       = models.TextField(
         'search for key words (maximum length 350 characters)',
         max_length = 350, null = True, blank = True,
-        help_text = 'Bot will search for these words in the auction titles '
-                    '-- TIPS: to exclude words, put a - in front '
+        help_text = 'What you type here will go into the ebay serch box '
+                    '-- mulitple terms will result in an AND search.  '
+                    'TIPS: to exclude words, put a - in front '
                     '(without any space), '
-                    'search for red or green handbags as follows: '
-                    'handbags (red, green)  350 characters MAX' )
+                    'search for red OR green handbags as follows: '
+                    'handbags (red,green)  search for handbags but '
+                    'exclude red and green as follows: '
+                    'handbags -(red,green)  350 characters MAX' )
     # max length for a single key word is 98
     #models.ForeignKey( EbayCategory, models.PositiveIntegerField(
     iEbayCategory   = models.ForeignKey( EbayCategory,
