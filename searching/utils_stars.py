@@ -319,6 +319,7 @@ def _gotFullStringOrSubStringOfListItem( s, l ):
     #
     uGotSub  = None
     uGotFull = None
+    uGotMore = None
     #
     sUpper = s.upper()
     #
@@ -332,8 +333,11 @@ def _gotFullStringOrSubStringOfListItem( s, l ):
                 uGotFull = sL
             else:
                 uGotSub  = sL
+        elif sLupper in sUpper:
+            uGotMore = sL
+        #
     #
-    return uGotFull, uGotSub
+    return uGotFull, uGotSub, uGotMore
 
 
 
@@ -1200,9 +1204,11 @@ def findSearchHits(
                     #
                     # have complete hit, make an additional UserItem record
                     #
-                    uExact, uLonger = _gotFullStringOrSubStringOfListItem(
-                                            sTitleUPPER,
-                                            lModelsStoredAlready )
+                    t = _gotFullStringOrSubStringOfListItem(
+                                sTitleUPPER,
+                                lModelsStoredAlready )
+                    #
+                    uExact, uLonger, uShort = t
                     #
                     bGotNonGenericForThis = False
                     #
@@ -1219,6 +1225,20 @@ def findSearchHits(
                             if bGotNonGenericForThis: break
                         #
                     #
+                    bGotBrand = False
+                    #
+                    if uShort:
+                        #
+                        for t in dModelsStoredAlready[ uShort ]:
+                            #
+                            bThisIsGeneric, iThisBrand = t
+                            #
+                            bGotBrand = ( iThisBrand == oTempItem.iBrand )
+                            #
+                            if bGotBrand: break
+                            #
+                        #
+                    #
                     if uLonger:
                         #
                         if bRecordSteps:
@@ -1228,6 +1248,19 @@ def findSearchHits(
                                     'excluding %s because '
                                     'this is substring of %s' %
                                     ( sTitleLessParens, uLonger ) )
+                            #
+                        #
+                        continue
+                        #
+                    elif uShort and bGotBrand:
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'excluding %s because '
+                                    'its root is %s' %
+                                    ( sTitleLessParens, uShort ) )
                             #
                         #
                         continue
