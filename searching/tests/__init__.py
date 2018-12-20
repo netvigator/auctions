@@ -1,5 +1,5 @@
 
-iRecordStepsForThis     = None # 123550734798 352535627937 352494035670 192748960622 323589685342
+iRecordStepsForThis     = 303000971114 # 123550734798 352535627937 352494035670 192748960622 323589685342
 setDoNotMentionThese    = ( 162112067911, ) # has ebay category not in test db
 
 
@@ -64,6 +64,7 @@ sBrands = \
  Leak              |      7 |            |
  Luxman            |      6 |            |
  Marantz           |     10 | Speaker\\rAV9000\\rreplica |
+ Matsushita        |      4 |            |
  Marconi           |      7 |            |
  Mazda             |      5 |            |
  McIntosh          |      6 |            |
@@ -614,6 +615,26 @@ sResponseSearchTooBroad = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["303000971114"],
+              "title":["3 Vintage Matsushita EL34 6CA7 Golden Series Tubes,1950s,Dual Getters,EX sound"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mhRk0qrgHQ1VbSvzq6WKaFQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/3-Vintage-Matsushita-EL34-6CA7-Golden-Series-Tubes-1950s-Dual-Getters-EX-sound-\/303000971114"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["32547"],
+              "location":["Fort Walton Beach,FL,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"168.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"168.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT16H50M51S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-12-18T03:36:20.000Z"],
+              "endTime":["2018-12-25T03:36:20.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["123550734798"],
               "title":["LOT OF 10 pcs 12ax7 ecc83 VACUUM TUBES TESTED GOOD VINTAGE RCA TUNG-SOL RAYTHEON"],
