@@ -238,6 +238,7 @@ def _getCategoriesOrVersion(
 def _getEbayFindingResponse(
             sKeyWords   = None,
             sCategoryID = None,
+            sListingType= ('Auction', 'AuctionWithBIN'),
             iPage       = 1,
             bUseSandbox = False,
             uTimeOuts   = ( 4, 10 ), # ( connect, read )
@@ -271,6 +272,12 @@ def _getEbayFindingResponse(
     if sCategoryID:
         oElement        = etree.SubElement( root, "categoryId" )
         oElement.text   = sCategoryID
+    #
+    #if sListingType:
+        #oElement        = etree.SubElement( root, "itemFilter" )
+        #oElement.text   = sCategoryID
+    #
+    # https://developer.ebay.com/DevZone/finding/CallRef/types/ItemFilterType.html
     #
     if iPage > 1:
         #
