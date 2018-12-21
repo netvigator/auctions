@@ -28,6 +28,14 @@ class InvalidParameters( Exception ): pass
 # django.setup()
 
 
+tEBAY_LISTING_TYPES = (
+      'Auction',
+      'AuctionWithBIN',
+      'Classified',
+      'FixedPrice',
+      'StoreInventory',
+      'All' )
+
 
 def _getConfValues():
     #
@@ -235,13 +243,45 @@ def _getCategoriesOrVersion(
 
 
 
+def _getListingTypeHeader( *tListingTypes ):
+    #
+    dHeader = {}
+    #
+    tValidTypes = tuple(
+            ( s for s in tListingTypes if s in tEBAY_LISTING_TYPES ) )
+    #
+    if (    tValidTypes == ( 'All', ) or
+            len( tValidTypes ) == len( tEBAY_LISTING_TYPES ) ):
+        #
+        pass
+        #
+    elif tValidTypes:
+        #
+        lListTypes = [ 'ListingType' ]
+        #
+        i = 0
+        #
+        for s in tValidTypes:
+            #
+            lListTypes.append(
+                '&itemFilter(0).value(%s)=%s' % ( i, s ) )
+            #
+            i += 1
+        #
+        dHeader = { 'itemFilter(0).name' : ''.join( lListTypes ) }
+    #
+    return dHeader
+
+
+
+
 def _getEbayFindingResponse(
-            sKeyWords   = None,
-            sCategoryID = None,
-            sListingType= ('Auction', 'AuctionWithBIN'),
-            iPage       = 1,
-            bUseSandbox = False,
-            uTimeOuts   = ( 4, 10 ), # ( connect, read )
+            sKeyWords       = None,
+            sCategoryID     = None,
+            tListingTypes   = ('Auction', 'AuctionWithBIN'),
+            iPage           = 1,
+            bUseSandbox     = False,
+            uTimeOuts       = ( 4, 10 ), # ( connect, read )
             **headers ):
     #
     if sKeyWords and sCategoryID:
@@ -304,10 +344,14 @@ def _getEbayFindingResponse(
             "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
             "X-EBAY-SOA-SECURITY-APPNAME" : sAppID }
 
-    headers.update( dHttpHeaders )
+    dHttpHeaders.update( headers )
+    #
+    dListingTypeHeader = _getListingTypeHeader( *tListingTypes )
+    #
+    dHttpHeaders.update( dListingTypeHeader )
     #
     return _postResponseEbayApi(
-                sCall, sEndPointURL, sRequest, uTimeOuts, **headers )
+                sCall, sEndPointURL, sRequest, uTimeOuts, **dHttpHeaders )
 
 
 
