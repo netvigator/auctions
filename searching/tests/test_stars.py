@@ -15,7 +15,7 @@ from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
 
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
-from ..tests            import ( sResponseSearchTooBroad,
+from ..tests            import ( sResponseItems2Test,
                                  iRecordStepsForThis )
 from ..utils            import storeSearchResultsInDB
 
@@ -74,7 +74,7 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         #print( 'will QuietDump' )
-        QuietDump( sResponseSearchTooBroad, SEARCH_FILES_FOLDER, self.sExampleFile )
+        QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         try:
             t = ( storeSearchResultsInDB(
