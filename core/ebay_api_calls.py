@@ -3,6 +3,8 @@ from os                 import environ
 from os.path            import join
 from sys                import path
 
+from pprint            import pprint
+
 from urllib.request     import urlopen, Request
 
 import django
@@ -100,9 +102,10 @@ def _postResponseEbayApi(
                     sEndPointURL,
                     data    = sRequest,
                     timeout = uTimeOuts,
-                    headers = dHttpHeaders )
+                    params  = dHttpHeaders )
     #
     return oResponse.text
+
 
 
 def _getResponseEbayApi(
@@ -243,34 +246,24 @@ def _getCategoriesOrVersion(
 
 
 
-def _getListingTypeHeader( *tListingTypes ):
+def _getListingTypeTuple( *tValues ):
     #
-    dHeader = {}
+    tListingTypes = ()
     #
     tValidTypes = tuple(
-            ( s for s in tListingTypes if s in tEBAY_LISTING_TYPES ) )
+            ( s for s in tValues if s in tEBAY_LISTING_TYPES ) )
     #
-    if (    tValidTypes == ( 'All', ) or
-            len( tValidTypes ) == len( tEBAY_LISTING_TYPES ) ):
+    if (    ( 'All', ) in tValidTypes or
+            len( tValidTypes ) >= len( tEBAY_LISTING_TYPES ) - 1 ):
         #
         pass
         #
     elif tValidTypes:
         #
-        lListTypes = [ 'ListingType' ]
+        tListingTypes = tValidTypes
         #
-        i = 0
-        #
-        for s in tValidTypes:
-            #
-            lListTypes.append(
-                '&itemFilter(0).value(%s)=%s' % ( i, s ) )
-            #
-            i += 1
-        #
-        dHeader = { 'itemFilter(0).name' : ''.join( lListTypes ) }
     #
-    return dHeader
+    return tListingTypes
 
 
 
@@ -313,12 +306,6 @@ def _getEbayFindingResponse(
         oElement        = etree.SubElement( root, "categoryId" )
         oElement.text   = sCategoryID
     #
-    #if sListingType:
-        #oElement        = etree.SubElement( root, "itemFilter" )
-        #oElement.text   = sCategoryID
-    #
-    # https://developer.ebay.com/DevZone/finding/CallRef/types/ItemFilterType.html
-    #
     if iPage > 1:
         #
         oElement        = etree.SubElement( root, "paginationInput" )
@@ -329,7 +316,30 @@ def _getEbayFindingResponse(
         oSubElement.text= str( iPage )
         #
     #
-    sRequest = etree.tostring( root, pretty_print = True )
+    tListingTypes = _getListingTypeTuple( *tListingTypes )
+    #
+    if tListingTypes:
+        #
+        oElement            = etree.SubElement( root, 'itemFilter' )
+        #
+        oSubElement         = etree.SubElement( oElement, "name" )
+        oSubElement.text    = 'ListingType'
+        #
+        i = 0
+        #
+        for s in tListingTypes:
+            #
+            oSubElement     = etree.SubElement( oElement, "value" )
+            oSubElement.text= s
+            #
+            i += 1
+            #
+        #
+    #
+    sRequest = etree.tostring(
+                    root,
+                    pretty_print    = False,
+                    encoding        = "utf-8" )
     #
     #
     ''' connect to ebay for finding, get response '''
@@ -346,12 +356,8 @@ def _getEbayFindingResponse(
 
     dHttpHeaders.update( headers )
     #
-    dListingTypeHeader = _getListingTypeHeader( *tListingTypes )
-    #
-    dHttpHeaders.update( dListingTypeHeader )
-    #
     return _postResponseEbayApi(
-                sCall, sEndPointURL, sRequest, uTimeOuts, **dHttpHeaders )
+              sCall, sEndPointURL, sRequest, uTimeOuts, **dHttpHeaders )
 
 
 
@@ -391,11 +397,12 @@ def _getMarketHeader( sMarketID ):
 
 
 def findItems(
-            sKeyWords   = None,
-            sCategoryID = None,
-            sMarketID   = 'EBAY-US',
-            iPage       = 1,
-            bUseSandbox = False ):
+            sKeyWords       = None,
+            sCategoryID     = None,
+            sMarketID       = 'EBAY-US',
+            iPage           = 1,
+            tListingTypes   = ('Auction', 'AuctionWithBIN'),
+            bUseSandbox     = False ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
@@ -408,11 +415,12 @@ def findItems(
     #
     return _getDecoded(
                 _getEbayFindingResponse(
-                    sKeyWords   = sKeyWords,
-                    sCategoryID = sCategoryID,
-                    iPage       = iPage,
-                    bUseSandbox = bUseSandbox,
-                    uTimeOuts   = tTimeOuts,
+                    sKeyWords       = sKeyWords,
+                    sCategoryID     = sCategoryID,
+                    iPage           = iPage,
+                    bUseSandbox     = bUseSandbox,
+                    tListingTypes   = tListingTypes,
+                    uTimeOuts       = tTimeOuts,
                     **dHeader ) )
 
 #sResults = findItems( sKeyWords = 'Simpson 360', '58277' )
@@ -448,6 +456,8 @@ def getCategoryVersionGotSiteID(
 
 def getCategoryVersionGotGlobalID(
         sGlobalID = 'EBAY-US', bUseSandbox = False ):
+    #
+    # called by ebayinfo/utils/getWhetherAnyEbayCategoryListsAreUpdated
     #
     iID = dMarket2SiteID[ sGlobalID ]
     #
