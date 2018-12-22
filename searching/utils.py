@@ -19,7 +19,8 @@ from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 from .models            import ItemFound, UserItemFound, SearchLog, Search
 from .utilsearch        import ( getSearchResultGenerator, getPagination,
                                  storeItemInfo, SearchGotZeroResults,
-                                 ItemAlreadyInTable )
+                                 ItemAlreadyInTable, getSearchResult,
+                                 getSuccessOrNot )
 
 from searching          import ( RESULTS_FILE_NAME_PATTERN,
                                  SEARCH_FILES_FOLDER )
@@ -29,6 +30,7 @@ from File.Del           import DeleteIfExists
 from File.Get           import getFilesMatchingPattern
 from File.Write         import QuietDump
 from Numb.Get           import getHowManyDigitsNeeded
+from Utils.Both2n3      import getStrGotBytes
 
 
 logger = logging.getLogger(__name__)
@@ -193,6 +195,8 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     iThisPage  = 0
     iWantPages = 1
     #
+    bHitErrorCancel = False
+    #
     while iThisPage <= iWantPages:
         #
         iRetries    = 0
@@ -239,7 +243,8 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
                 actual example error message in core.tests.__init__.py
                 '''
                 #
-                if dPagination.get( "iPages" ):
+
+                if dPagination.get( "iPages" ) or getSuccessOrNot( sResponse ):
                     #
                     break
                     #
@@ -247,13 +252,30 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             #
             iRetries += 1
             #
-            if iRetries == 5:
+            if (    iRetries == 5 or
+                    ( sResponse and
+                      getSearchResult(
+                          getStrGotBytes(
+                              sResponse ) ) in ( 'Error', 'error' ) ) ):
                 #
                 sErrorFile = _putPageNumbInFileName( sErrorFile, iRetries )
                 #
                 QuietDump( sResponse, '/tmp', sErrorFile )
                 #
-                logger.error( 'ebay api repeated failure error in tmp file "%s"' % sErrorFile )
+                if iRetries == 5:
+                    #
+                    sMsg = 'ebay api repeated failure error in tmp file "%s"'
+                    #
+                else:
+                    #
+                    sMsg = 'ebay api hit explicit error, in tmp file "%s"'
+                    #
+                #
+                logger.error( sMsg % sErrorFile )
+                #
+                bHitErrorCancel = True
+                #
+                break
                 #
             #
             sleep( 1 + iRetries )
@@ -282,8 +304,15 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         if iThisPage <= iWantPages: sleep(1)
         #
     #
-    logger.info(
-        'completed without error "%s" search (ID %s)' % tSearch )
+    if bHitErrorCancel:
+        #
+        sFileName = sErrorFile
+        #
+    else:
+        #
+        logger.info(
+            'completed without error "%s" search (ID %s)' % tSearch )
+        #
     #
     sFileName = join( SEARCH_FILES_FOLDER, sFileName )
     #
@@ -586,7 +615,6 @@ def storeSearchResultsInDB( iLogID,
                     sMsg = 'ValueError: %s | %s' % ( str(e), repr(dItem) )
                     logger.error( sMsg)
                     #
-                    print( sMsg )
                     #
                 #
             #
