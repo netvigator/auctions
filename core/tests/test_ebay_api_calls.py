@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from ..ebay_api_calls import _getApiConfValues, _getListingTypeHeader
+from ..ebay_api_calls import _getApiConfValues, _getListingTypeTuple
 
 
 class GetConfFileValuesTests(TestCase):
@@ -41,25 +41,25 @@ class GetConfFileValuesTests(TestCase):
 
 
 
-class TestListingTypeHeaderTests(TestCase):
+class TestListingTypeTupleTests(TestCase):
     '''test ebay API ListingType HTTP headers'''
 
-    def test_getListingTypeHeader(self):
+    def test_getListingTypeTupleDefault(self):
         #
-        dHeaders = _getListingTypeHeader( 'Auction', 'AuctionWithBIN' )
+        tGotTypes = _getListingTypeTuple( 'Auction', 'AuctionWithBIN' )
         #
-        sGotHeaders = (
-            '&%s=%s' % (
-                'itemFilter(0).name',
-                dHeaders['itemFilter(0).name'] ) )
+        tWantTypes = ( 'Auction', 'AuctionWithBIN' )
         #
-        sWantHeaders = (
-            '&itemFilter(0).name=ListingType'
-            '&itemFilter(0).value(0)=Auction'
-            '&itemFilter(0).value(1)=AuctionWithBIN' )
-        #
-        self.assertEqual( sGotHeaders, sWantHeaders )
+        self.assertEqual( tGotTypes , tWantTypes )
 
+
+    def test_getListingTypeTupleAll(self):
+        #
+        tGotTypes = _getListingTypeTuple( ('All',) )
+        #
+        tWantTypes = ()
+        #
+        self.assertEqual( tGotTypes , tWantTypes )
 
 
 '''
