@@ -6,6 +6,8 @@ from django.conf        import settings
 
 from ebayinfo.models    import EbayCategory
 
+from String.Get         import getContentOutOfDoubleQuotes
+
 
 # avoiding circular import problems!
 
@@ -248,9 +250,9 @@ def _getUpToDoubleQuote( s ):
 
 
 
-def getSuccessOrNot( sResponse ):
+def getSearchResult( sResponse ):
     #
-    '''determine whether the request was a success from the response text'''
+    '''retrieve the ack value from the response text'''
     #
     lParts      = sResponse.split( '"ack":["' )
     #
@@ -260,8 +262,25 @@ def getSuccessOrNot( sResponse ):
         #
         sSuccessOrNot = _getUpToDoubleQuote( lParts[1] )
         #
+    else:
+        #
+        lParts = sResponse.split( '"errorMessage"' )
+        #
+        if len( lParts ) > 1:
+            #
+            sSuccessOrNot = getContentOutOfDoubleQuotes( lParts[1] )
+            #
     #
-    return sSuccessOrNot == 'Success'
+    return sSuccessOrNot
+
+
+
+def getSuccessOrNot( sResponse ):
+    #
+    '''determine whether the request was a success from the response text'''
+    #
+    return getSearchResult( sResponse ) == 'Success'
+
 
 
 def getPagination( sResponse ):
