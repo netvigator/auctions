@@ -237,3 +237,7 @@ searching/utilsearch
 search executed OK but returned zero items
 now need to handle better, zero results are more common
 
+
+
+searching/utilsearch.py
+FixMe! zero results are more common now
