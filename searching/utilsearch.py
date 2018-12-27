@@ -581,6 +581,8 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
             #
         else:
             #
+            ## FixMe! zero results are more common now
+            #
             raise SearchGotZeroResults(
                         "search executed OK but returned zero items, "
                         "try this and look carefully: %s" %
