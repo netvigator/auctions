@@ -1259,8 +1259,11 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         #
         #
+        iThisOne = 312417181299
         #
+        self.print_len( dItemsToTest[ iThisOne ], 4, iThisOne )
         #
+        # says Marantz 240 s/n find Marantz 2
         #
 
 
