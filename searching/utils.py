@@ -197,6 +197,8 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     bHitErrorCancel = False
     #
+    sResponse = None # need to initialize if internet not working
+    #
     while iThisPage <= iWantPages:
         #
         iRetries    = 0
