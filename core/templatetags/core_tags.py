@@ -20,7 +20,14 @@ def getNbsp(value):
     '''substitute &nbsp; for spaces'''
     #
     return mark_safe("&nbsp;".join(value.split(' ')))
- 
+
+
+@register.filter()
+def getDashForReturn( s ):
+    #
+    '''html rendering ignores return characters, substitute dashes'''
+    #
+    return s.replace( '\r', ' - ' )
 
 
 @register.simple_tag
@@ -30,7 +37,7 @@ def model_name(value):
     '''
     if hasattr(value, 'model'):
         value = value.model
-    
+
     return value._meta.verbose_name.title()
 
 @register.simple_tag
@@ -40,7 +47,7 @@ def model_name_plural(value):
     '''
     if hasattr(value, 'model'):
         value = value.model
-    
+
     return value._meta.verbose_name_plural.title()
 
 @register.simple_tag
@@ -51,5 +58,14 @@ def field_name(value, field):
     '''
     if hasattr(value, 'model'):
         value = value.model
-    
+
     return value._meta.get_field(field).verbose_name.title()
+
+
+@register.assignment_tag
+def define(val=None):
+    #
+    '''set a variable on the fly in html
+    from https://stackoverflow.com/questions/1070398/how-to-set-a-value-of-a-variable-inside-a-template-code'''
+    #
+    return val
