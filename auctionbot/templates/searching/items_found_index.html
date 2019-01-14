@@ -1,64 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Auction Shopping Bot | Items Found{% endblock %}
+{% load define %}
 
 {% block content %}
 
     <h1>Items Found</h1>
 
     {% if items_found_list %}
-        {# the pagination section #}
 
+        {# the pagination section #}
         <form action="" method="post">
         {% csrf_token %}
         After selecting items, you must hit Submit or all changes will be lost!
-        <table>
-        <TR ALIGN=MIDDLE>
-             <!–– *** need Select All *** ––>
-            <td>
-                <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
-            </td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>
-                <input class='btn btn-primary btn-blue' type="submit" name="cancel" value=" Cancel " />
-            </td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>filter items:</TD>
-            <!--<TD>-->
-                <!--<form action='{% url "searching:items_found_index" select='A' %}'>-->
-                    <!--<input type="submit" value=" all " />-->
-                <!--</form>-->
-            <!--</TD>-->
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>
-                <form action='{% url "searching:items_found_index" select='P' %}'>
-                    <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
-                </form>
-            </TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>
-                <form action='{% url "searching:items_found_index" select='D' %}'>
-                    <input class='btn btn-primary btn-blue' class='btn btn-primary btn-blue' type="submit" value=" deleted " />
-                </form>
-            </TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>
-                <form action='{% url "searching:items_found_index" select='Z' %}'>
-                    <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
-                </form>
-            </TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>go to page:</TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>
-                {% if is_paginated %}
-                    <hr>
-                    <div class="basic">
-                        {% include "../paginate.html" %}
-                    </div>
-                {% endif %}
-            </td>
-        </TR>
-        </table>
+
+        {% include "./items_found_index_buttons.html" %}
 
         <div class="container">
         <div class="list-group">
@@ -109,6 +64,9 @@
             <TD><input name="ExclSet" type="checkbox" style="display:none;"
                  class="HIDDEN" value={{ item.iItemNumb_id }}
                  {% if item.bListExclude %}checked{% endif %}></td>
+            <TD><input name="AllItems" type="checkbox" style="display:none;"
+                 class="HIDDEN" value={{ item.iItemNumb_id }}
+                 {% if True %}checked{% endif %}></td>
             </tr>
         {% endfor %}
         </table>
@@ -116,60 +74,11 @@
         </div>
 
         <p/>
+        <p/>
 
-
-        <table>
-        <TR ALIGN=LEFT>
-        <TD COLSPAN=7>
         After selecting items, you must hit Submit or all changes will be lost!
-        </TD>
-        </TR>
-        <TR ALIGN=MIDDLE>
-            <td>
-                <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
-            </td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>
-                <input class='btn btn-primary btn-blue' type="submit" name="cancel" value=" Cancel " />
-            </td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>select items:</TD>
-            <!--<TD>-->
-                <!--<form action='{% url "searching:items_found_index" select='A' %}'>-->
-                    <!--<input type="submit" value=" all " />-->
-                <!--</form>-->
-            <!--</TD>-->
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>
-                <form action='{% url "searching:items_found_index" select='P' %}'>
-                    <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
-                </form>
-            </TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>
-                <form action='{% url "searching:items_found_index" select='D' %}'>
-                    <input class='btn btn-primary btn-blue' class='btn btn-primary btn-blue' type="submit" value=" deleted " />
-                </form>
-            </TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>
-                <form action='{% url "searching:items_found_index" select='Z' %}'>
-                    <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
-                </form>
-            </TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <TD>go to page:</TD>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>
-                {% if is_paginated %}
-                    <hr>
-                    <div class="basic">
-                        {% include "../paginate.html" %}
-                    </div>
-                {% endif %}
-            </td>
-        </TR>
-        </table>
+
+        {% include "./items_found_index_buttons.html" %}
 
         <p/>
 
