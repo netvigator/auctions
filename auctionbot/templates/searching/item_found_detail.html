@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load field_name %}
+{% load getDashForReturn %}
 
 {% block title %}Item Found {{ object.iItemNumb.cTitle }}{% endblock %}
 
@@ -141,7 +142,7 @@
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'iCatHeirarchy' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.iCatHeirarchy.cCatHierarchy}}</TD>
+        <TD VALIGN=TOP>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy|getDashForReturn }}</TD>
     </TR>
     <!-- <TR>
         <TD VALIGN=TOP>{% field_name parent 'i2ndCategoryID' %}</TD>
