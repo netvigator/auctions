@@ -161,10 +161,10 @@ class ItemsFoundIndexView(
         #
         if "selectall" in request.POST:
             #
-            setPageItems = frozenset( request.POST.getlist('AllItems') )
+            lPageItems = request.POST.getlist('AllItems')
             #
             qsChanged  = UserItemFound.objects.filter(
-                            iItemNumb_id__in = setPageItems,
+                            iItemNumb_id__in = lPageItems,
                             iUser            = self.request.user )
             #
             for oItem in qsChanged:
