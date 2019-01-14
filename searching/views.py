@@ -86,7 +86,7 @@ class ItemsFoundIndexView(
         #
         sSelect = self.kwargs.get('select', 'p' )
         #
-        if not sSelect: sSelect = 'p'
+        if not sSelect: sSelect = 'p' # change to P after non auctions are flushed
         #
         if sSelect == 'A': # all
             qsGot = UserItemFound.objects.select_related().filter(
@@ -94,7 +94,7 @@ class ItemsFoundIndexView(
                         bListExclude        = False,
                         tRetrieved__isnull  = True,
                         iHitStars__isnull   = False
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         elif sSelect == 'P': # postive (non-zero hit stars)
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
@@ -102,21 +102,21 @@ class ItemsFoundIndexView(
                         bListExclude        = False,
                         tRetrieved__isnull  = True,
                         iHitStars__gt       = 0
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         elif sSelect == 'D': # "deleted" (excluded from list)
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__isnull   = False,
                         tRetrieved__isnull  = True,
                         bListExclude        = True
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         elif sSelect == 'Z': # iHitStars = 0
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
                         iHitStars__eq       = 0,
                         tRetrieved__isnull  = True,
                         bListExclude        = False
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         if sSelect == 'a': # all auctions
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
@@ -124,7 +124,7 @@ class ItemsFoundIndexView(
                         bListExclude        = False,
                         tRetrieved__isnull  = True,
                         iHitStars__isnull   = False
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         elif sSelect == 'p': # postive (non-zero hit stars) auctions
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
@@ -133,7 +133,7 @@ class ItemsFoundIndexView(
                         bListExclude        = False,
                         tRetrieved__isnull  = True,
                         iHitStars__gt       = 0
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         elif sSelect == 'd': # "deleted" (excluded from list) auctions
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
@@ -141,7 +141,7 @@ class ItemsFoundIndexView(
                         iHitStars__isnull   = False,
                         tRetrieved__isnull  = True,
                         bListExclude        = True
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         elif sSelect == 's': # iHitStars = 0 auctions
             qsGot = UserItemFound.objects.select_related().filter(
                         iUser               = self.request.user,
@@ -149,7 +149,7 @@ class ItemsFoundIndexView(
                         iHitStars__eq       = 0,
                         tRetrieved__isnull  = True,
                         bListExclude        = False
-                    ).order_by('-iHitStars', 'tCreate')
+                    ).order_by( '-iHitStars', 'tCreate', 'iItemNumb' )
         #
         return qsGot
 
@@ -159,8 +159,25 @@ class ItemsFoundIndexView(
 
         url = request.build_absolute_uri()
         #
-        if "cancel" in request.POST:
-            pass
+        if "selectall" in request.POST:
+            #
+            setPageItems = frozenset( request.POST.getlist('AllItems') )
+            #
+            qsChanged  = UserItemFound.objects.filter(
+                            iItemNumb_id__in = setPageItems,
+                            iUser            = self.request.user )
+            #
+            for oItem in qsChanged:
+                #
+                #
+                oItem.bGetPictures = True
+                oItem.bListExclude = False
+                #
+                oItem.save()
+                #
+            #
+            return HttpResponseRedirect( url )
+            #
         elif 'submit' in request.POST:
             #
             setExclude = frozenset( request.POST.getlist('bListExclude') )
