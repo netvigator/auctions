@@ -21,7 +21,8 @@ class Keeper(models.Model):
     cEbayItemURL    = models.CharField( 'ebay item URL', max_length =188 )
     cListingType    = models.CharField( 'listing type', max_length = 15 )
     cLocation       = models.CharField( 'location', max_length = 48 )
-    cPaymentMethods = models.CharField( 'ebay item URL', max_length = 88 )
+    cPaymentMethods = models.CharField( 'ebay item URL',
+                        max_length = 88, null = True, blank = True )
     cGalleryURL     = models.CharField( 'gallery pic URL',
                         max_length = 88, null = True, blank = True )
     cPictureURLs    = models.TextField( 'picture URLs',
