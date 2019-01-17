@@ -1261,10 +1261,17 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 312417181299
         #
-        self.print_len( dItemsToTest[ iThisOne ], 4, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # says Marantz 240 s/n find Marantz 2
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '240' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertIsNone( oTest.iCategory )
+        #
+
 
 
         #
