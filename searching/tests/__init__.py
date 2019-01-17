@@ -1,5 +1,5 @@
 
-iRecordStepsForThis     = None # 303000959884 303000971114 123550734798 352535627937 352494035670 192748960622 323589685342
+iRecordStepsForThis = 312417181299
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -242,6 +242,7 @@ sModels = \
  Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
  245                |           |      9 | f            | Fairchild         |       Preamp |             |
  7                  |           |     10 | f            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
+ 2                  |           |     10 | f            | Marantz           |    Amplifier | Model Two\\rModel 2 |
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
  mirror             |           |      8 | f            | Spartan           |        Radio |             |
