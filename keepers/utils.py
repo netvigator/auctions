@@ -141,7 +141,10 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     # temporary work around, ebay glitch 2018-12-14,
     # ebay returning CustomCode as country code for Serbia (instead of RS)
     #
-    if dGotItem['iItemNumb'] in ( 233042593418, 232966183543, 233006868409 ):
+    # made more general 2019-01-21 cuz getting more items from Serbian seller
+    #
+    if (    dGotItem['cCountry'] == 'CustomCode' and
+            'Serbia' in dGotItem['cLocation'] ):
         #
         dGotItem['cCountry'] = 'RS'
         #
