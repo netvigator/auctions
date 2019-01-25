@@ -621,6 +621,27 @@ sResponseItems2Test = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+          },{ "itemId":["312436313310"],
+              "title":["MARANTZ  MODEL 240 POWER AMPLIFIER, USED, GOOD CONDITION, TESTED"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mnJntjWuIHESgT19YH31S8g\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/MARANTZ-MODEL-240-POWER-AMPLIFIER-USED-GOOD-CONDITION-TESTED-\/312436313310"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["30092"],
+              "location":["Norcross,GA,USA"],
+              "country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"990.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"990.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P4DT11H24M55S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-01-21T01:56:09.000Z"],
+              "endTime":["2019-01-27T13:56:09.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
           },{ "itemId":["312417181299"],
               "title":["MARANTZ  MODEL 240 POWER AMPLIFIER, USED, GOOD CONDITION"],
               "globalId":["EBAY-US"],
