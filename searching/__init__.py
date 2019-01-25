@@ -15,6 +15,8 @@ RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s_p_%s_.json'
 # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
 
 SEARCH_FILES_FOLDER  = '/tmp/searches'
+SEARCH_TESTS_FOLDER  = '/tmp/searches_test'
+
 
 getMakeDir( SEARCH_FILES_FOLDER )
 
