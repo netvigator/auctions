@@ -17,7 +17,8 @@ from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 #
 
-from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
+from searching          import RESULTS_FILE_NAME_PATTERN
+from searching          import SEARCH_TESTS_FOLDER as SEARCH_FILES_FOLDER
 
 from ..models           import ( Search, ItemFound, UserItemFound,
                                  ItemFoundTemp, SearchLog )
