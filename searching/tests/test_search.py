@@ -10,7 +10,8 @@ from core.utils_test    import ( setup_view_for_tests,
                                  getEbayCategoriesSetUp, AssertEmptyMixin )
 from core.utils         import getShrinkItemURL
 
-from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
+from searching          import RESULTS_FILE_NAME_PATTERN
+from searching          import SEARCH_TESTS_FOLDER as SEARCH_FILES_FOLDER
 
 from ..models           import Search
 from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
@@ -26,7 +27,7 @@ from File.Write         import QuietDump
 
 class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
     ''' test getHowManySearchDigitsNeeded() '''
-        
+
     def test_how_many_digits_needed( self ):
         #
         # several Searches could have been created & destroyed already
@@ -82,8 +83,8 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
         #
         self.assertEqual( getHowManySearchDigitsNeeded(), 3 )
         #
-        
-        
+
+
     def test_get_ID_str_zero_filled( self ):
         #
         self.assertEqual( getIdStrZeroFilled(   1, 3 ),  '001' )
@@ -92,7 +93,7 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
         #
         self.assertEqual( getIdStrZeroFilled( 100, 4 ), '0100' )
         #
-    
+
 
 class TestGetPriorityChoices( BaseUserTestCaseCanAddSearches ):
     ''' test getPriorityChoices() '''
