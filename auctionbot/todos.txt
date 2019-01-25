@@ -246,7 +246,6 @@ FixMe! zero results are more common now
 need to gracefully handle search failure when internet non-functioning
 
 
-running live tests s/n wipe out search files waiting!
 
 2019-01-21
 in UtilSearch:
