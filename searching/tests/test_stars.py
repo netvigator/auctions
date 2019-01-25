@@ -11,7 +11,8 @@ from django.utils       import timezone
 
 from core.utils_test    import setUpBrandsCategoriesModels, AssertEmptyMixin
 
-from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_FOLDER
+from searching          import RESULTS_FILE_NAME_PATTERN
+from searching          import SEARCH_TESTS_FOLDER as SEARCH_FILES_FOLDER
 
 from ..models           import ( ItemFound, UserItemFound,
                                  ItemFoundTemp )
@@ -1270,6 +1271,12 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.assertEqual( oTest.iModel.cTitle, '240' )
         self.assertIsNone( oTest.iBrand )
         self.assertIsNone( oTest.iCategory )
+        #
+        iThisOne = 312436313310
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        #
+        # says Marantz 240 s/n find Marantz 2
         #
 
 
