@@ -11,7 +11,7 @@ from core.utils_test    import ( setup_view_for_tests,
 from core.utils         import getShrinkItemURL
 
 from searching          import RESULTS_FILE_NAME_PATTERN
-from searching          import SEARCH_TESTS_FOLDER as SEARCH_FILES_FOLDER
+from searching          import SEARCH_FILES_FOLDER
 
 from ..models           import Search
 from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
