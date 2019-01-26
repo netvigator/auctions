@@ -24,7 +24,11 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
     #
     uValue = None
     #
-    if t and t[0] in dItem:
+    if bNotInItemDict and bOptional: # form will accept None
+        #
+        uValue = None
+        #
+    elif t and t[0] in dItem:
         #
         uValue  = dItem[ t[0] ]
         #
@@ -40,10 +44,6 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
     elif bNotInItemDict and t[0] in kwargs:
         #
         uValue  = kwargs[ t[0] ]
-        #
-    elif bNotInItemDict and bOptional: # form will accept None
-        #
-        uValue = None
         #
     elif bNotInItemDict:
         #
