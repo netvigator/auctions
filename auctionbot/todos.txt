@@ -267,3 +267,26 @@ Traceback (most recent call last):
   File "/home/rick/Devel/auctions/searching/utilsearch.py", line 589, in getSearchResultGenerator
     dResponse["itemSearchURL"][0] )
 searching.utilsearch.SearchGotZeroResults: search executed OK but returned zero items, try this and look carefully: http://www.ebay.com/sch/92074/i.html?LH_Auction=1&_nkw=FM+stereo+generator&_ddo=1&_ipg=100&_pgn=1
+
+
+
+should handle more gracefully:
+
+======================================================================
+ERROR: test_get_single_active_item_then_store (keepers.tests.test_utils.GetAndStoreSingleItemsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rick/Devel/auctions/keepers/tests/test_utils.py", line 199, in setUp
+    d = getSingleItemResponseCandidate( bWantEnded = False )
+  File "/home/rick/Devel/auctions/keepers/utils_test.py", line 54, in getSingleItemResponseCandidate
+    ( sayWhich, sHitLogFile ) )
+keepers.utils_test.NoExampleRecords: no active records in searching/tests/ItemHitsLog.log!
+
+======================================================================
+FAIL: test_already_stored_results (searching.tests.test_utils.DoSearchStoreResultsTests)
+test whether it has been a while since running the ebay API tests,
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rick/Devel/auctions/searching/tests/test_utils.py", line 944, in test_already_stored_results
+    msg = 'auction end dates are all past, API test is WAY OVERDUE!' )
+AssertionError: -2 not greater than 0 : auction end dates are all past, API test is WAY OVERDUE!
