@@ -35,7 +35,8 @@ class Keeper(models.Model):
                         max_length = 48 )
     iQuantity       = models.SmallIntegerField( 'quantity' )
     cSellerID       = models.CharField( 'seller user name', max_length = 48 )
-    iFeedbackScore  = models.BigIntegerField( 'seller feedback score' )
+    iFeedbackScore  = models.BigIntegerField( 'seller feedback score',
+                        null = True, blank = True )
     cFeedbackPercent= models.CharField( 'seller feedback percent', max_length = 8 )
     iBidCount       = models.SmallIntegerField( 'bid count' )
     dConvertPrice   = models.DecimalField( # form was throwing nonsense error
