@@ -222,7 +222,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
 
 
     @tag('ebay_api')
-    def test_got_current_category_version_list( self ):
+    def hold_test_got_current_category_version_list( self ):
         #
         from random import randrange
         #
@@ -249,7 +249,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
 
     @tag('ebay_api')
-    def test_check_whether_any_ebay_market_list_is_updated( self ):
+    def hold_test_check_whether_any_ebay_market_list_is_updated( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
