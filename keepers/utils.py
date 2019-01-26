@@ -143,10 +143,14 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     #
     # made more general 2019-01-21 cuz getting more items from Serbian seller
     #
-    if (    dGotItem['cCountry'] == 'CustomCode' and
-            'Serbia' in dGotItem['cLocation'] ):
+    if dGotItem['cCountry'] == 'CustomCode':
         #
-        dGotItem['cCountry'] = 'RS'
+        # print( '%s:' % dGotItem['iItemNumb'], dGotItem['cLocation'] )
+        #
+        if dGotItem['cLocation'] in ( 'Ritopek', 'Belgrade' ):
+            #
+            dGotItem['cCountry'] = 'RS'
+            #
         #
     #
     if dGotItem and Keeper.objects.filter( pk = iItemNumb ).exists():
