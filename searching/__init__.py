@@ -1,5 +1,7 @@
 from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
 
+from django.conf    import settings
+
 from Dir.Get        import getMakeDir
 from Utils.Config   import getBoolOffYesNoTrueFalse
 
@@ -14,11 +16,14 @@ RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s_p_%s_.json'
 # when selling on the ebay site, condition is optional
 # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
 
-SEARCH_FILES_FOLDER  = '/tmp/searches'
-SEARCH_TESTS_FOLDER  = '/tmp/searches_test'
+if settings.TESTING:
+    SEARCH_FILES_FOLDER  = '/tmp/searches-test'
+else:
+    SEARCH_FILES_FOLDER  = '/tmp/searches'
 
 
 getMakeDir( SEARCH_FILES_FOLDER )
+
 
 d = dict
 
