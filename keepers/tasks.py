@@ -174,9 +174,15 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
 '''
 doGetFetchUserItemsTasks( bOnlySay = True )
 
+
+would fetch resuls on how many items now?
+
 select count( DISTINCT "iItemNumb_id" )
     from useritemsfound
     where "bGetPictures" is true and  "tRetrieved" is null ;
+
+
+would fetch final resuls on how many items now?
 
 select count(*) from itemsfound
     where "tTimeEnd" <= current_timestamp - interval '1 day' and
@@ -184,8 +190,11 @@ select count(*) from itemsfound
         ( select distinct "iItemNumb_id" from useritemsfound
             where "tRetrieved" is not null and "tRetrieveFinal" is null );
 
+would delete how many items older than 100 days?
+
 select count(*) from itemsfound
     where "tTimeEnd" <= current_timestamp - interval '100 days' ;
+
 
 
 # doGetItemPicturesTasks( bOnlySay = True )
