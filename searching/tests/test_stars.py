@@ -507,7 +507,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '601b' )
         ##
-        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         oTest = dItemsToTest[ 163167777899 ][ 2 ]
         #
@@ -615,7 +615,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '601b' )
         #
-        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
@@ -707,7 +707,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '601b' )
         #
-        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
@@ -889,7 +889,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         oTest = dItemsToTest[ iThisOne ][ 4 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Enclosure' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         #
         iThisOne = 192659380750
@@ -1277,6 +1277,13 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         # says Marantz 240 s/n find Marantz 2
+        #
+        #
+        iThisOne = 223348187115
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        # expecting lots of stars for 606 cabinet
         #
 
 
