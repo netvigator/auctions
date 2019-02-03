@@ -671,11 +671,12 @@ class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
                                 iUser       = self.user1 )
         oCategory.save()
         #
-        oCategory   = Category( cTitle      = 'Enclosure',
-                                cLookFor    = 'Speaker Enclosure\rcabinet',
-                                iStars      = 7,
-                                iFamily_id  = oSpeakerSystem.id,
-                                iUser       = self.user1 )
+        oCategory   = Category(
+                cTitle      = 'Speaker Enclosure',
+                cLookFor    = 'Enclosure\rcabinet\rspeaker cabinet',
+                iStars      = 7,
+                iFamily_id  = oSpeakerSystem.id,
+                iUser       = self.user1 )
         oCategory.save()
         #
         oCategory   = Category( cTitle      = 'Accessory',
