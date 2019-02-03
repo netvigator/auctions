@@ -145,7 +145,10 @@ sModels = \
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
+ 602A               |           |      6 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ N-3900A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ 606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
@@ -318,8 +321,8 @@ sModels = \
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
- 601a               |           |      8 | t            | Altec-Lansing     |       Driver | 601         |
- 601b               |           |      7 | t            | Altec-Lansing     |    Enclosure | 601         |
+ 601a               |           |      8 | t            | Altec-Lansing     |       Driver |             |
+ 601b               |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
@@ -343,7 +346,7 @@ sModels = \
  N2400              |           |      6 | f            | JBL               |    Crossover |             |
  N2600              |           |      6 | f            | JBL               |    Crossover |             |
  N500               |           |      6 | f            | JBL               |    Crossover |             |
- C38 (Baron)        |           |      8 | f            | JBL               |    Enclosure | Baron       | S-38\\rBookshelf\\rN-38
+ C38 (Baron)        |           |      8 | f            | JBL               |Speaker Enclosure| Baron    | S-38\\rBookshelf\\rN-38
  CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
  CA-3               |           |      5 | t            | Hickok            |    Accessory |             | CA-5
  Heresy (H700)      |           |      6 | f            | Klipsch           |Speaker System|             |
@@ -352,7 +355,7 @@ sModels = \
  K-77               |           |      6 | f            | Klipsch           |       Driver |             |
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
- C45 (Metregon)     |           |      6 | f            | JBL               |    Enclosure | Metregon    |
+ C45 (Metregon)     |           |      6 | f            | JBL               |Speaker Enclosure| Metregon |
  '''
 
 
@@ -620,6 +623,26 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["223348187115"],
+              "title":["ALTEC Early Model 606 Corner Cabinet 602A 15\\" Duplex Speaker  N3000A "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mRhVzDgV_VpWwAb0mcui0ZQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ALTEC-Early-Model-606-Corner-Cabinet-602A-15-Duplex-Speaker-N3000A-\/223348187115"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["34684"],
+              "location":["Palm Harbor,FL,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1200.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P4DT2H57M42S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-01-28T02:03:19.000Z"],
+              "endTime":["2019-02-07T02:03:19.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["312436313310"],
               "title":["MARANTZ  MODEL 240 POWER AMPLIFIER, USED, GOOD CONDITION, TESTED"],
