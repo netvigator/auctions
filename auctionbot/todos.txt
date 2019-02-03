@@ -247,29 +247,6 @@ need to gracefully handle search failure when internet non-functioning
 
 
 
-2019-01-21
-in UtilSearch:
-raise SearchGotZeroResults
-called by doFindSearhHitsTasks()
-celery d/n handle well
-implement store data solution
-
-[2019-01-23 10:22:52,417: ERROR/ForkPoolWorker-3] Task searching.tasks.storeSearchResultsInDB[7fe5820a-5765-451e-9cd6-82e266ee1f2d] raised unexpected: SearchGotZeroResults('search executed OK but returned zero items, try this and look carefully: http://www.ebay.com/sch/92074/i.html?LH_Auction=1&_nkw=FM+stereo+generator&_ddo=1&_ipg=100&_pgn=1',)
-Traceback (most recent call last):
-  File "/home/rick/.virtualenvs/auctions/lib/python3.6/site-packages/celery/app/trace.py", line 375, in trace_task
-    R = retval = fun(*args, **kwargs)
-  File "/home/rick/.virtualenvs/auctions/lib/python3.6/site-packages/celery/app/trace.py", line 632, in __protected_call__
-    return self.run(*args, **kwargs)
-  File "/home/rick/Devel/auctions/searching/tasks.py", line 95, in storeSearchResultsInDbTask
-    sSearchName )
-  File "/home/rick/Devel/auctions/searching/utils.py", line 547, in storeSearchResultsInDB
-    for dItem in oItemIter:
-  File "/home/rick/Devel/auctions/searching/utilsearch.py", line 589, in getSearchResultGenerator
-    dResponse["itemSearchURL"][0] )
-searching.utilsearch.SearchGotZeroResults: search executed OK but returned zero items, try this and look carefully: http://www.ebay.com/sch/92074/i.html?LH_Auction=1&_nkw=FM+stereo+generator&_ddo=1&_ipg=100&_pgn=1
-
-
-
 should handle more gracefully:
 
 ======================================================================
