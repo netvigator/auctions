@@ -583,10 +583,12 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
             #
             ## FixMe! zero results are more common now
             #
-            raise SearchGotZeroResults(
-                        "search executed OK but returned zero items, "
-                        "try this and look carefully: %s" %
-                    dResponse["itemSearchURL"][0] )
+            # raise SearchGotZeroResults(
+            #            "search executed OK but returned zero items, "
+            #            "try this and look carefully: %s" %
+            #        dResponse["itemSearchURL"][0] )
+            #
+            lResults = () # empty tuple will raise StopIteration
             #
         #
     elif iPageCount == 0:
