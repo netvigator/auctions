@@ -3,7 +3,8 @@ from django.utils       import timezone
 
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
-                                 getWhatsNotInParens )
+                                 getWhatsNotInParens,
+                                 getShrinkItemURL )
 from ..utils_test       import ( getUrlQueryStringOff,
                                  queryGotUpdated )
 
@@ -61,6 +62,18 @@ class textProcessingTests(TestCase):
         #
         self.assertEqual( getWhatsNotInParens(s), 'This is for real' )
 
+    def test_getShrinkItemURL(self):
+        #
+        '''test getShrinkItemURL()'''
+        #
+        sLongURL = 'https://www.ebay.com/itm/Vintage-RCA-Tube-Amplifier/282772895981'
+        #
+        sWantShort = 'https://www.ebay.com/itm/282772895981'
+        #
+        sGotShort = getShrinkItemURL( sLongURL )
+        #
+        self.assertEqual( sWantShort, sGotShort )
+        #
 
 
 class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
