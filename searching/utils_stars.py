@@ -1111,6 +1111,8 @@ def findSearchHits(
                     #
                     if oItemTemp.iHitStars >= iTopHitStars:
                         #
+                        # FixMe! need substring test here!!!
+                        #
                         oItemTemp.iHitStars = (
                                 oItemTemp.iHitStars *
                                 iTopHitStars /
