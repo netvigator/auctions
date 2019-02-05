@@ -267,3 +267,8 @@ Traceback (most recent call last):
   File "/home/rick/Devel/auctions/searching/tests/test_utils.py", line 944, in test_already_stored_results
     msg = 'auction end dates are all past, API test is WAY OVERDUE!' )
 AssertionError: -2 not greater than 0 : auction end dates are all past, API test is WAY OVERDUE!
+
+
+
+searching title, already exclude what comes after "for"
+should also exclude what comes after "used with"
