@@ -180,7 +180,8 @@ def getShrinkItemURL( sURL ):
     #
     if lParts[3] == 'itm':
         #
-        lParts[4] = 'b'
+        # lParts[4] = 'b'
+        del lParts[4]
         #
     #
     return ( '/' ).join( lParts )
