@@ -1281,9 +1281,36 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 223348187115
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
         #
         # expecting lots of stars for 606 cabinet
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        print( 'Altec object:', oTest.__dict__ )
+        self.assertEqual( oTest.iModel.cTitle, '602A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '606' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
+        iThisOne = 323681140009
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # s/n find Marantz Model 1 !!!
+        #
         #
 
 
