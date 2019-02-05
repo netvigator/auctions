@@ -167,22 +167,6 @@ class TestGetPriorityChoices( BaseUserTestCaseCanAddSearches ):
 
 
 
-class TestGetShrinkItemURL( TestCase ):
-    #
-    ''' test getShrinkItemURL( sURL ) '''
-
-    def test_getShrinkItemURL( self ):
-        #
-        sURL = ( 'http://www.ebay.com/itm/2015-NEW-DIY-Marantz-7-m7-Tube-Pre-'
-                 'amplifier-Kit-6z5p-12ax7b-Tubes-Amp-J1510-2-/191863708651' )
-        #
-        sExpect = 'http://www.ebay.com/itm/b/191863708651'
-        #
-        self.assertEqual( getShrinkItemURL( sURL ), sExpect )
-        #
-
-
-
 
 class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, getEbayCategoriesSetUp ):
     #
