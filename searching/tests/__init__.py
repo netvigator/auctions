@@ -1,5 +1,5 @@
 
-iRecordStepsForThis = None # 312417181299
+iRecordStepsForThis = 223348187115
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -623,6 +623,28 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["323681140009"],
+              "title":["Marantz Model 140 Stereo Amp, 3200 Preamp and Model 112 Tuner - Complete Stack!"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mbdj0vd_Up5LY226wdJa1Qw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Marantz-Model-140-Stereo-Amp-3200-Preamp-and-Model-112-Tuner-Complete-Stack-\/323681140009"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["91205"],
+              "location":["Glendale,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"600.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"600.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P4DT10H51M2S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"1250.0"}],
+              "convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"1250.0"}],
+              "startTime":["2019-02-05T00:14:28.000Z"],
+              "endTime":["2019-02-10T00:14:28.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],
+              "watchCount":["14"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["223348187115"],
               "title":["ALTEC Early Model 606 Corner Cabinet 602A 15\\" Duplex Speaker  N3000A "],
