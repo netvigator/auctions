@@ -310,7 +310,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ 162988285720 ], 2 )
         #
-        oTest = dItemsToTest[ 162988285720 ][ 0 ]
+        oTest = dItemsToTest[ 162988285720 ][ 1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -320,7 +320,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ 162988285720 ][ 1 ]
+        oTest = dItemsToTest[ 162988285720 ][ 0 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -577,7 +577,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ 153121548106 ], 2 )
         #
-        oTest = dItemsToTest[ 153121548106 ][ 0 ]
+        oTest = dItemsToTest[ 153121548106 ][ 1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -587,7 +587,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
-        oTest = dItemsToTest[ 153121548106 ][ 1 ]
+        oTest = dItemsToTest[ 153121548106 ][ 0 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -782,27 +782,43 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ iThisOne ], 4 )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iModel.cTitle, 'N2400' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iModel.cTitle, 'C38 (Baron)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iModel.cTitle, 'D-130' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
         oTest = dItemsToTest[ iThisOne ][ 3 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'N2400' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        self.assertEqual( oTest.iModel.cTitle, '75' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
         iThisOne = 232913976977
         #
         self.print_len( dItemsToTest[ iThisOne ], 2 )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
         #
         self.assertEqual( oTest.iModel.cTitle, '175' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '1217-1290' )
         self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
@@ -865,13 +881,13 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
         #
-        self.assertEqual( oTest.iModel.cTitle, 'N500' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        setComponents = frozenset( ( 'H5040', 'D-130A', '275' ) )
-        setCategories = frozenset( ( 'Horn', 'Driver' ) )
+        setComponents = frozenset( ( 'H5040', 'D-130A', '275', 'N500' ) )
+        setCategories = frozenset( ( 'Horn', 'Driver', 'Crossover' ) )
         #
         self.assertIn( oTest.iModel.cTitle, setComponents )
         self.assertIn( oTest.iCategory.cTitle, setCategories )
@@ -888,8 +904,6 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 4 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         #
         iThisOne = 192659380750
@@ -1274,7 +1288,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 312436313310
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # says Marantz 240 s/n find Marantz 2
         #
@@ -1287,18 +1301,18 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        print( 'Altec object:', oTest.__dict__ )
+        # print( 'Altec object:', oTest.__dict__ )
         self.assertEqual( oTest.iModel.cTitle, '602A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '606' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
@@ -1307,7 +1321,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         iThisOne = 323681140009
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # s/n find Marantz Model 1 !!!
         #
