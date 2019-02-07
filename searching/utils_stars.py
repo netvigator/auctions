@@ -1098,20 +1098,35 @@ def findSearchHits(
                 #
                 lSortItems.reverse()
                 #
-                iTopScoreStars = iTopHitStars = None
+                iTopScoreStars = iTopHitStars = oTopStars = None
+                sTitle = sTopTitle = None
                 #
                 for i in range( len( lItemFoundTemp ) ):
                     #
                     oItemTemp = lItemFoundTemp[ lSortItems[i][1] ]
                     #
+                    if oTempItem.iModel:
+                        sTitle          = getWhatsNotInParens(
+                                            oTempItem.iModel.cTitle ).upper()
+                        if oTempItem.iModel.bSubModelsOK:
+                            sTitle      = sTitle[ : -1 ]
+                    #
                     if iTopScoreStars is None:
-                        iTopScoreStars = lSortItems[i][0]
-                        iTopHitStars   = oItemTemp.iHitStars
+                        #
+                        iTopScoreStars  = lSortItems[i][0]
+                        iTopHitStars    = oItemTemp.iHitStars
+                        oTopStars       = oItemTemp
+                        sTopTitle       = sTitle
+                        #
                         continue
                     #
-                    if oItemTemp.iHitStars >= iTopHitStars:
+                    if (    oItemTemp.iHitStars >= iTopHitStars and
+                            sTopTitle                           and
+                            sTitle                              and
+                            len( sTitle ) < len( sTopTitle )    and
+                            sTitle in sTopTitle ):
                         #
-                        # FixMe! need substring test here!!!
+                        # discount this
                         #
                         oItemTemp.iHitStars = (
                                 oItemTemp.iHitStars *
