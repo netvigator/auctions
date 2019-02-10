@@ -1,15 +1,16 @@
 from django.test            import TestCase
 
 from ..utils_ebay           import getValueOffItemDict
-from ..utils_test           import AssertEmptyMixin
+from ..utils_test           import AssertEmptyMixin, AssertNotEmptyMixin
 
 from searching              import dItemFoundFields         # in __init__.py
 from searching.tests        import sResponseItems2Test  # in __init__.py
 from searching.utilsearch   import getSearchResultGenerator
 
 
-class GetValueOffItemDictTests( AssertEmptyMixin, TestCase ):
-    '''need to test getValueOffItemDict()'''
+class GetValueOffItemDictTests(
+            AssertEmptyMixin, AssertNotEmptyMixin, TestCase ):
+    '''testing getValueOffItemDict()'''
 
     def test_get_value_off_item_dict( self, **kwargs ):
         #
@@ -28,3 +29,10 @@ class GetValueOffItemDictTests( AssertEmptyMixin, TestCase ):
         self.assertEqual( dNewResult.get( 'iCategoryID' ), 38034 )
         #
         self.assertEmpty( dNewResult.get( 'i2ndCatHeirarchy' ) )
+        #
+        # galleryURL is optional
+        #
+        self.assertIsNotNone( dNewResult.get( 'cGalleryURL' ) )
+        #
+        self.assertNotEmpty( dNewResult.get( 'cGalleryURL' ) )
+        #
