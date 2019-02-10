@@ -422,6 +422,14 @@ class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
             self.assertTrue( False ) # exception should have been raised
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #
+        oItem = ItemFound.objects.get( iItemNumb   = iItemNumb )
+        #
+        self.assertIsNotNone( oItem )
+        #
+        self.assertIsNotNone( oItem.cGalleryURL )
+        #
+        
 
 
 
