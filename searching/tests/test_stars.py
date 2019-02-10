@@ -782,29 +782,28 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ iThisOne ], 4 )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        gotComponents = set( [] )
+        gotCategories = set( [] )
         #
-        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
-        self.assertEqual( oTest.iModel.cTitle, 'N2400' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        setComponents = frozenset(
+                ( 'C38 (Baron)', 'N2400', 'D-130', '75' ) )
+        setCategories = frozenset(
+                ( 'Crossover', 'Speaker Enclosure', 'Driver' ) )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        for i in range( 4 ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+            #
+            self.assertIn( oTest.iModel.cTitle,    setComponents )
+            self.assertIn( oTest.iCategory.cTitle, setCategories )
+            #
+            gotComponents.add( oTest.iModel.cTitle    )
+            gotCategories.add( oTest.iCategory.cTitle )
         #
-        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
-        self.assertEqual( oTest.iModel.cTitle, 'C38 (Baron)' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
-        self.assertEqual( oTest.iModel.cTitle, 'D-130' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 3 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
-        self.assertEqual( oTest.iModel.cTitle, '75' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        self.assertEqual( gotComponents, setComponents )
+        self.assertEqual( gotCategories, setCategories )
         #
         #
         iThisOne = 232913976977
@@ -877,32 +876,31 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.print_len( dItemsToTest[ iThisOne ], 5 )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        gotComponents = set( [] )
+        gotCategories = set( [] )
         #
-        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        setComponents = frozenset(
+                ( 'C45 (Metregon)', 'H5040', 'D-130A', '275', 'N500' ) )
+        setCategories = frozenset(
+                ( 'Speaker Enclosure', 'Horn', 'Driver', 'Crossover' ) )
         #
-        self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        for i in range( 5 ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+            #
+            self.assertIn( oTest.iModel.cTitle,    setComponents )
+            self.assertIn( oTest.iCategory.cTitle, setCategories )
+            #
+            gotComponents.add( oTest.iModel.cTitle    )
+            gotCategories.add( oTest.iCategory.cTitle )
+            #
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        self.assertEqual( gotComponents, setComponents )
+        self.assertEqual( gotCategories, setCategories )
         #
-        setComponents = frozenset( ( 'H5040', 'D-130A', '275', 'N500' ) )
-        setCategories = frozenset( ( 'Horn', 'Driver', 'Crossover' ) )
         #
-        self.assertIn( oTest.iModel.cTitle, setComponents )
-        self.assertIn( oTest.iCategory.cTitle, setCategories )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
-        self.assertIn( oTest.iModel.cTitle, setComponents )
-        self.assertIn( oTest.iCategory.cTitle, setCategories )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 3 ]
-        #
-        self.assertIn( oTest.iModel.cTitle, setComponents )
-        self.assertIn( oTest.iCategory.cTitle, setCategories )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 4 ]
         #
         #
         #
