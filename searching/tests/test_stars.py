@@ -790,7 +790,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         setCategories = frozenset(
                 ( 'Crossover', 'Speaker Enclosure', 'Driver' ) )
         #
-        for i in range( 4 ):
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
             #
             oTest = dItemsToTest[ iThisOne ][ i ]
             #
@@ -884,7 +884,7 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         setCategories = frozenset(
                 ( 'Speaker Enclosure', 'Horn', 'Driver', 'Crossover' ) )
         #
-        for i in range( 5 ):
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
             #
             oTest = dItemsToTest[ iThisOne ][ i ]
             #
@@ -1297,24 +1297,29 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         # expecting lots of stars for 606 cabinet
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        gotComponents = set( [] )
+        gotCategories = set( [] )
         #
-        # print( 'Altec object:', oTest.__dict__ )
-        self.assertEqual( oTest.iModel.cTitle, '602A' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        setComponents = frozenset(
+                ( '602A', '606', 'N-3000A' ) )
+        setCategories = frozenset(
+                ( 'Speaker Enclosure', 'Driver', 'Crossover' ) )
         #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+            #
+            self.assertIn( oTest.iModel.cTitle,    setComponents )
+            self.assertIn( oTest.iCategory.cTitle, setCategories )
+            #
+            gotComponents.add( oTest.iModel.cTitle    )
+            gotCategories.add( oTest.iCategory.cTitle )
+            #
         #
-        self.assertEqual( oTest.iModel.cTitle, '606' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        self.assertEqual( gotComponents, setComponents )
+        self.assertEqual( gotCategories, setCategories )
         #
         #
         iThisOne = 323681140009
