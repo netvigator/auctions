@@ -25,3 +25,6 @@ raven==6.9.0
 
 # ubuntu package is old and has issues, install from pip instead
 mod_wsgi==4.6.5
+
+# need this 2019-02-13
+django-extensions==2.1.5
