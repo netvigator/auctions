@@ -45,16 +45,16 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         #
         uValue = _dBlankValue.get( f )
         #
-    elif bOptional: # got Celery error for missing GalleryURL
-        #
-        uValue = None
-        #
     elif bNotInItemDict and bOptional: # form will accept None
         #
         # 2019-02-10 had this condition on top of the if tests
         # BIG MISTAKE, all optional field data was dropped !!!!
         # I had moved it up for some reason ????
         # don't do that again !!!
+        #
+        uValue = None
+        #
+    elif bOptional: # got Celery error for missing GalleryURL
         #
         uValue = None
         #
