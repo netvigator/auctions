@@ -24,7 +24,11 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
     #
     uValue = None
     #
-    if t and t[0] in dItem:
+    if not t: # empty, IndexError
+        #
+        pass
+        #
+    elif t[0] in dItem:
         #
         uValue  = dItem[ t[0] ]
         #
@@ -33,17 +37,9 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         for sKey in tRest:
             uValue = uValue[ sKey ]
         #
-    elif not t: # empty, IndexError
-        #
-        pass
-        #
     elif bNotInItemDict and t[0] in kwargs:
         #
         uValue  = kwargs[ t[0] ]
-        #
-    elif bNotInItemDict:
-        #
-        uValue = _dBlankValue.get( f )
         #
     elif bNotInItemDict and bOptional: # form will accept None
         #
@@ -52,11 +48,15 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         # I had moved it up for some reason ????
         # don't do that again !!!
         #
-        uValue = None
+        pass
+        #
+    elif bNotInItemDict:
+        #
+        uValue = _dBlankValue.get( f )
         #
     elif bOptional: # got Celery error for missing GalleryURL
         #
-        uValue = None
+        pass
         #
     else:
         #
