@@ -2,10 +2,12 @@ from django.test            import TestCase
 
 from ..utils_ebay           import getValueOffItemDict
 from ..utils_test           import AssertEmptyMixin, AssertNotEmptyMixin
+from ..tests                import sResponse2ndCategoryItem
 
 from searching              import dItemFoundFields         # in __init__.py
 from searching.tests        import sResponseItems2Test  # in __init__.py
 from searching.utilsearch   import getSearchResultGenerator
+
 
 
 class GetValueOffItemDictTests(
@@ -14,12 +16,12 @@ class GetValueOffItemDictTests(
 
     def test_get_value_off_item_dict( self, **kwargs ):
         #
+        dFields     = dItemFoundFields
+        getValue    = getValueOffItemDict
+        #
         oItemIter = getSearchResultGenerator( '', 1, sResponseItems2Test )
         #
         dItem = next( oItemIter )
-        #
-        dFields     = dItemFoundFields
-        getValue    = getValueOffItemDict
         #
         dNewResult  = { k: getValue( dItem, k, v, **kwargs )
                         for k, v in dFields.items() }
@@ -28,11 +30,35 @@ class GetValueOffItemDictTests(
         #
         self.assertEqual( dNewResult.get( 'iCategoryID' ), 38034 )
         #
-        self.assertEmpty( dNewResult.get( 'i2ndCatHeirarchy' ) )
+        self.assertEmpty( dNewResult.get( 'i2ndCategoryID' ) )
+        #
+        #
+        #
         #
         # galleryURL is optional
         #
         self.assertIsNotNone( dNewResult.get( 'cGalleryURL' ) )
         #
         self.assertNotEmpty( dNewResult.get( 'cGalleryURL' ) )
+        #
+        #
+        #
+        oItemIter = getSearchResultGenerator( '', 1, sResponse2ndCategoryItem )
+        #
+        dItem = next( oItemIter )
+        #
+        #
+        dNewResult  = { k: getValue( dItem, k, v, **kwargs )
+                        for k, v in dFields.items() }
+        #
+        self.assertIsNotNone( dNewResult.get( 'iCategoryID' ) )
+        #
+        self.assertEqual( dNewResult.get( 'iCategoryID' ), 170062 )
+        #
+        self.assertIsNotNone( dNewResult.get( 'i2ndCategoryID' ) )
+        #
+        self.assertEqual( dNewResult.get( 'i2ndCategoryID' ), 7275 )
+        #
+        self.assertEqual( dNewResult.get( 'cGalleryURL' ),
+                         'http://thumbs2.ebaystatic.com/m/mgpbjxNWrOrRHjbTm5iC75w/140.jpg' )
         #
