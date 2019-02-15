@@ -272,3 +272,7 @@ AssertionError: -2 not greater than 0 : auction end dates are all past, API test
 
 searching title, already exclude what comes after "for"
 should also exclude what comes after "used with"
+
+2019-02-16
+on the item hit page, have total stars, give the multipliers for model brand & category
+on the model page, put separators between the different look fors
