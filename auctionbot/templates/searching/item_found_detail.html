@@ -63,7 +63,7 @@
     <tr>
         <td>{% field_name model 'iHitStars' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td>{{ object.iHitStars }}</td>
+        <td>{{ object.iHitStars }} ( {{ object.iModel.iStars }} * {{ object.iBrand.iStars }} * {{ object.iCategory.iStars }} )</td>
     </tr>
     <tr>
         <td>Other Hits for this Item:</td>
