@@ -63,7 +63,10 @@
     <tr>
         <td>{% field_name model 'iHitStars' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td>{{ object.iHitStars }} ( {{ object.iModel.iStars }} * {{ object.iBrand.iStars }} * {{ object.iCategory.iStars }} )</td>
+        <td>{{ object.iHitStars }} (
+          {{ object.iModel.iStars | default:"no model found" }} *
+          {{ object.iBrand.iStars |default:"no brand found" }} *
+          {{ object.iCategory.iStars | default:"no category found" }} )</td>
     </tr>
     <tr>
         <td>Other Hits for this Item:</td>
