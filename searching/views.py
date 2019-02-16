@@ -278,18 +278,26 @@ class ItemFoundDetailView( DetailViewGotModel ):
                 '<TD>&nbsp;&nbsp;</TD>'
                 '<TD VALIGN=TOP>%s</TD>'
                 '<TD>&nbsp;&nbsp;</TD>'
-                '<TD VALIGN=TOP>%s</TD>'
+                '<TD VALIGN=TOP>%s%s</TD>'
                 '</TR>' )
             #
             sHeader = ( sRowTemplate %
-                        ( 'Model', 'Brand', 'Category', 'HitStars' ) )
+                        ( 'Model', 'Brand', 'Category', 'HitStars', '' ) )
             #
             lRows = [ sHeader ]
             #
             for o in qsThisItemOtherHits:
                 #
+                sayStarsModel   = o.iModel.iStars    or 'no model found'
+                sayStarsBrand   = o.iBrand.iStars    or 'no brand found'
+                sayStarsCategory= o.iCategory.iStars or 'no category found'
+                #
+                tStars = ( sayStarsModel, sayStarsBrand, sayStarsCategory )
+                #
+                sDetail = ' ( %s * %s * %s )' % tStars
+                #
                 lRows.append( sRowTemplate %
-                        ( o.iModel, o.iBrand, o.iCategory, o.iHitStars ) )
+                        ( o.iModel, o.iBrand, o.iCategory, o.iHitStars, sDetail ) )
                 #
             #
             sThisItemOtherHits = sTableTemplate % '\n'.join( lRows )
