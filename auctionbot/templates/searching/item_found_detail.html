@@ -47,7 +47,7 @@
           <table>
           <tr>
           <td WIDTH=180><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
-          <td>{% if object.iModel %} ({{ object.iModel.iStars }} stars){% endif %}</td>
+          <td>{% if object.iModel %}{{ object.iModel.iStars }} stars{% endif %}</td>
           </tr>
           </table>
         </td>
@@ -59,7 +59,7 @@
           <table>
           <tr>
           <td WIDTH=180><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
-          <td>{% if object.iBrand %} ({{ object.iBrand.iStars }} stars){% endif %}</td>
+          <td>{% if object.iBrand %}{{ object.iBrand.iStars }} stars{% endif %}</td>
           </tr>
           </table>
         </td>
@@ -71,7 +71,7 @@
           <table>
           <tr>
           <td WIDTH=180><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
-          <td>{% if object.iCategory %} ({{ object.iCategory.iStars }} stars){% endif %}</td>
+          <td>{% if object.iCategory %}{{ object.iCategory.iStars }} stars{% endif %}</td>
           </tr>
           </table>
         </td>
@@ -88,10 +88,9 @@
           <table>
           <tr>
           <td WIDTH=180>{{ object.iHitStars }}</td>
-          <td>(
-          {{ object.iModel.iStars | default:"no model found" }} *
-          {{ object.iBrand.iStars |default:"no brand found" }} *
-          {{ object.iCategory.iStars | default:"no category found" }} )</td>
+          <td>{{ object.iModel.iStars | default:"no model found" }} *
+              {{ object.iBrand.iStars |default:"no brand found" }} *
+              {{ object.iCategory.iStars | default:"no category found" }}</td>
           </tr>
           </table>
         </td>
