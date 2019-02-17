@@ -43,17 +43,38 @@
     <tr>
         <td>{% field_name model 'iModel' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
+        <td>
+          <table>
+          <tr>
+          <td WIDTH=180><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
+          <td>{% if object.iModel %} ({{ object.iModel.iStars }} stars){% endif %}</td>
+          </tr>
+          </table>
+        </td>
     </tr>
     <tr>
         <td>{% field_name model 'iBrand' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
+        <td>
+          <table>
+          <tr>
+          <td WIDTH=180><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
+          <td>{% if object.iBrand %} ({{ object.iBrand.iStars }} stars){% endif %}</td>
+          </tr>
+          </table>
+        </td>
     </tr>
     <tr>
         <td>{% field_name model 'iCategory' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
+        <td>
+          <table>
+          <tr>
+          <td WIDTH=180><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
+          <td>{% if object.iCategory %} ({{ object.iCategory.iStars }} stars){% endif %}</td>
+          </tr>
+          </table>
+        </td>
     </tr>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}:</TD>
@@ -63,10 +84,17 @@
     <tr>
         <td>{% field_name model 'iHitStars' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td>{{ object.iHitStars }} (
+        <td>
+          <table>
+          <tr>
+          <td WIDTH=180>{{ object.iHitStars }}</td>
+          <td>(
           {{ object.iModel.iStars | default:"no model found" }} *
           {{ object.iBrand.iStars |default:"no brand found" }} *
           {{ object.iCategory.iStars | default:"no category found" }} )</td>
+          </tr>
+          </table>
+        </td>
     </tr>
     <tr>
         <td>Other Hits for this Item:</td>
@@ -90,7 +118,7 @@
     <tr>
         <td>{% field_name model 'bGetPictures' %}:</td>
         <td>&nbsp;&nbsp;</td>
-        <td>{{ object.bGetPictures }}</td>
+        <td>{{ object.bGetPictures|yesno:"Yes,No" }}</td>
     </tr>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cEbayItemURL' %}</TD>
