@@ -102,4 +102,5 @@ celery==4.2.1
 django-timezone-field==3.0
 
 # need menus
-django-menu==0.1.12
+# django-menu==0.1.13
+# should consider carefully
