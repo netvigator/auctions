@@ -14,6 +14,8 @@ from ebayinfo.models            import CategoryHierarchy, Market, EbayCategory
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 
+from searching                  import EBAY_SHIPPING_CHOICES
+
 from ebayinfo.models            import EbayCategory
 
 from Time.Output                import getIsoDateTimeFromDateTime
@@ -85,6 +87,9 @@ class Search(models.Model):
 # http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html
 
 class ItemFound(models.Model):
+
+    EBAY_SHIPPING_CHOICES = EBAY_SHIPPING_CHOICES
+
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
     cTitle          = models.CharField( 'item title',     max_length = 80 )
@@ -119,6 +124,9 @@ class ItemFound(models.Model):
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
                         db_index = False )                  # DecimalField
+    iShippingType   = models.PositiveSmallIntegerField(
+                        choices = EBAY_SHIPPING_CHOICES,
+                        null = True ) # legacy data d/n have
     iCategoryID     = models.ForeignKey( EbayCategory,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
