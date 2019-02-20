@@ -34,7 +34,7 @@ from searching.models   import ItemFound, UserItemFound, Search
 from searching.tests    import dSearchResult # in __init__.py
 from searching.utils    import _storeUserItemFound, _storeItemFound
 
-from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
+from searching.tests.test_stars import SetUpForHitStarsTests
 
 from Dir.Test           import isDirThere
 from File.Del           import DeleteIfExists
@@ -185,7 +185,7 @@ class StoreItemsTest( TestCase ):
 
 
 class GetAndStoreSingleItemsTests(
-            AssertNotEmptyMixin, SetUpForKeyWordFindSearchHitsTests ):
+            AssertNotEmptyMixin, SetUpForHitStarsTests ):
     '''class to test getSingleItemThenStore'''
 
     def setUp( self ):
