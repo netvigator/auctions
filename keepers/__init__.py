@@ -112,7 +112,7 @@ dItemFields = d(
     bGlobalShipping = d( t = ( "GlobalShipping",),
                          f = getBoolOffYesNoTrueFalse ),
 
-    bBuyItNowable   = d( t = ( "BuyItNowAvailable"),
+    bBuyItNowable   = d( t = ( "BuyItNowAvailable", ),
                          f = getBoolOffYesNoTrueFalse,
                          bOptional = True ),
     lBuyItNowPrice  = d( t = ( "BuyItNowPrice", "Value",),
