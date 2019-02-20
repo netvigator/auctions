@@ -32,9 +32,6 @@ class GetValueOffItemDictTests(
         #
         self.assertEmpty( dNewResult.get( 'i2ndCategoryID' ) )
         #
-        #
-        #
-        #
         # galleryURL is optional
         #
         self.assertIsNotNone( dNewResult.get( 'cGalleryURL' ) )
@@ -42,11 +39,18 @@ class GetValueOffItemDictTests(
         self.assertNotEmpty( dNewResult.get( 'cGalleryURL' ) )
         #
         #
+        # galleryURL is required but lots of legacy data d/n have
+        #
+        self.assertIsNotNone( dNewResult.get( 'iShippingType' ) )
+        #
+        self.assertEqual( dNewResult.get( 'iShippingType' ), 0 )
+        #
+        #
         #
         oItemIter = getSearchResultGenerator( '', 1, sResponse2ndCategoryItem )
         #
-        dItem = next( oItemIter )
         #
+        dItem = next( oItemIter )
         #
         dNewResult  = { k: getValue( dItem, k, v, **kwargs )
                         for k, v in dFields.items() }
@@ -61,4 +65,30 @@ class GetValueOffItemDictTests(
         #
         self.assertEqual( dNewResult.get( 'cGalleryURL' ),
                          'http://thumbs2.ebaystatic.com/m/mgpbjxNWrOrRHjbTm5iC75w/140.jpg' )
+        #
+        # galleryURL is required but lots of legacy data d/n have
+        #
+        self.assertIsNotNone( dNewResult.get( 'iShippingType' ) )
+        #
+        self.assertEqual( dNewResult.get( 'iShippingType' ), 0 )
+        #
+        #
+        dItem = next( oItemIter )
+        #
+        dNewResult  = { k: getValue( dItem, k, v, **kwargs )
+                        for k, v in dFields.items() }
+        #
+        self.assertIsNotNone( dNewResult.get( 'iCategoryID' ) )
+        #
+        self.assertEqual( dNewResult.get( 'iCategoryID' ), 50597 )
+        #
+        #
+        self.assertEqual( dNewResult.get( 'cGalleryURL' ),
+                         'http://thumbs2.ebaystatic.com/m/mAvNyg1TCZktrhVJMZZgiyw/140.jpg' )
+        #
+        # galleryURL is required but lots of legacy data d/n have
+        #
+        self.assertIsNotNone( dNewResult.get( 'iShippingType' ) )
+        #
+        self.assertEqual( dNewResult.get( 'iShippingType' ), 5 )
         #
