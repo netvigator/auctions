@@ -15,6 +15,9 @@ sEbayErrorResponse = \
 
 
 
+# ### append any new items to the bottom, test code takes items in order ###
+# ### append any new items to the bottom, test code takes items in order ###
+# ### append any new items to the bottom, test code takes items in order ###
 
 sResponse2ndCategoryItem = \
 '''{"findItemsByKeywordsResponse":
@@ -43,6 +46,25 @@ sResponse2ndCategoryItem = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["14"]}],"returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["254130264753"],
+              "title":["The Fisher 105 - 3 Way Speakers \u2013 Cool Latticework Grills - 12\\" Woofers        "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/mAvNyg1TCZktrhVJMZZgiyw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Fisher-105-3-Way-Speakers-Cool-Latticework-Grills-12-Woofers-\/254130264753"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["48072"],
+              "location":["Berkley,MI,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"35.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"35.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT22H11M59S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-02-18T19:34:33.000Z"],
+              "endTime":["2019-02-25T19:34:33.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
               }]
