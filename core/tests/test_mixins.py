@@ -12,14 +12,14 @@ from ..views                    import ListViewGotModel
 
 from searching.utils_stars      import getFoundItemTester
 from searching.views            import ItemsFoundIndexView
-from searching.tests.test_stars import SetUpForKeyWordFindSearchHitsTests
+from searching.tests.test_stars import SetUpForHitStarsTests
 
 from Object.Get                 import QuickObject
 
 
-class TestPagination( SetUpForKeyWordFindSearchHitsTests ):
+class TestPagination( SetUpForHitStarsTests ):
     '''class to test pagination thoroughly'''
-    
+
     def setUp( self ):
         #
         super( TestPagination, self ).setUp()
@@ -34,7 +34,7 @@ class TestPagination( SetUpForKeyWordFindSearchHitsTests ):
         self.view = ItemsFoundIndexView()
         #
         self.view.request = self.request
-        
+
 
 
     def test_pagination_tests( self ):
@@ -43,7 +43,7 @@ class TestPagination( SetUpForKeyWordFindSearchHitsTests ):
         self.view.kwargs = { 'select' : 'P' } # testing glitch workaround
 
         self.view.object_list = self.view.get_queryset()
-        
+
         context = self.view.get_context_data( object_list = range(1,10000) )
 
         oThisPage = deepcopy( context.get('page_obj') )
@@ -384,7 +384,7 @@ class TestPagination( SetUpForKeyWordFindSearchHitsTests ):
 class EditingTitleShouldBlankFinder( setUpBrandsCategoriesModels ):
     #
     ''' test WereAnyReleventRegExColsChangedMixin'''
-    
+
     #
     #oBrand      = Model.objects.get(    cTitle = "Cadillac"  )
     #oCategory   = Category.objects.get( cTitle = "Widgets"   )
