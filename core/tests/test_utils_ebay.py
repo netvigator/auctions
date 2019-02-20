@@ -4,6 +4,8 @@ from ..utils_ebay           import getValueOffItemDict
 from ..utils_test           import AssertEmptyMixin, AssertNotEmptyMixin
 from ..tests                import sResponse2ndCategoryItem
 
+from keepers                import dItemFields
+
 from searching              import dItemFoundFields         # in __init__.py
 from searching.tests        import sResponseItems2Test  # in __init__.py
 from searching.utilsearch   import getSearchResultGenerator
@@ -13,6 +15,26 @@ from searching.utilsearch   import getSearchResultGenerator
 class GetValueOffItemDictTests(
             AssertEmptyMixin, AssertNotEmptyMixin, TestCase ):
     '''testing getValueOffItemDict()'''
+
+    def dFieldsTester( self, dFields ):
+        #
+        '''tester - is supposed to be a tuple is actually a tuple?'''
+        #
+        for k, v in dFields.items():
+            #
+            self.assertIsInstance( v['t'], tuple )
+
+    def test_dItemFoundFields( self ):
+        #
+        ''' testing the dItemFoundFields dict from searching'''
+        #
+        self.dFieldsTester( dItemFoundFields )
+
+    def test_dItemFields( self ):
+        #
+        ''' testing the dItemFields dict from keepers'''
+        #
+        self.dFieldsTester( dItemFields )
 
     def test_get_value_off_item_dict( self, **kwargs ):
         #
@@ -91,4 +113,12 @@ class GetValueOffItemDictTests(
         self.assertIsNotNone( dNewResult.get( 'iShippingType' ) )
         #
         self.assertEqual( dNewResult.get( 'iShippingType' ), 5 )
+        #
+        #
+        dItem = next( oItemIter )
+        #
+        dNewResult  = { k: getValue( dItem, k, v, **kwargs )
+                        for k, v in dFields.items() }
+        #
+        self.assertIsNotNone( dNewResult.get( 'cSubTitle' ) ) #
         #
