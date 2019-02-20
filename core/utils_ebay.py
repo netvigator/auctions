@@ -13,6 +13,8 @@ _dBlankValue = { None: '', int: 0 }
 
 def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
     #
+    '''the test has a tester for the dThisField dict, best to use it!'''
+    #
     t = dThisField[ 't' ] # t is for tuple (of keys)
     #
     bOptional = dThisField.get( 'bOptional',  False )
