@@ -336,12 +336,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsTests ):
         #
         oItemFound = ItemFound.objects.get( pk = oTest.iItemNumb_id )
         #
-        # getting None self.assertEqual( oItemFound.cSubTitle,
-        #           'Working Pair 12" Coaxial Speakers & Balance Controls' )
-        #
-        print('')
-        print('173375697400')
-        print( 'cSubTitle is None:', oItemFound.cSubTitle is None )
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         #
