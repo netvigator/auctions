@@ -5,10 +5,24 @@ from django.test.client import Client
 from core.utils_test    import ( BaseUserTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
-from searching          import ( EBAY_SHIPPING_CHOICES, getChoiceCode,
-                                 dEBAY_SHIPPING_CHOICE_CODE )
+from json.decoder       import JSONDecodeError
 
-from ..models           import Search
+from searching          import ( EBAY_SHIPPING_CHOICES, getChoiceCode,
+                                 dEBAY_SHIPPING_CHOICE_CODE,
+                                 RESULTS_FILE_NAME_PATTERN,
+                                 SEARCH_FILES_FOLDER )
+
+from .test_utils        import GetBrandsCategoriesModelsSetUp
+
+from ..models           import ( Search, Model, ItemFound,
+                                 UserItemFound, ItemFoundTemp )
+
+from ..tests            import sResponseItems2Test
+from ..utils            import storeSearchResultsInDB
+
+from File.Del           import DeleteIfExists
+from File.Write         import QuietDump
+
 
 class SearchModelTest(BaseUserTestCase):
 
@@ -48,3 +62,72 @@ class TestChoices(TestCase):
     def test_getChoiceCode( self ):
         """ test the ebay shipping choice code function """
         self.assertEqual( getChoiceCode('FreePickup'), 5 )
+
+
+class PutSearchResultsInDatabase( GetBrandsCategoriesModelsSetUp ):
+    #
+    ''' class for testing storeSearchResultsInDB() store records '''
+    #
+    def setUp( self ):
+        #
+        super( PutSearchResultsInDatabase, self ).setUp()
+        #
+        self.sExampleFile = (
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+            ( 'EBAY-US', self.user1.username, self.oSearch.id, '000' ) )
+        #
+        #print( 'will DeleteIfExists' )
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        #print( 'will QuietDump' )
+        QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        try:
+            t = ( storeSearchResultsInDB(
+                            self.oSearchLog.id,
+                            self.sMarket,
+                            self.user1.username,
+                            self.oSearch.id,
+                            self.oSearch.cTitle,
+                            self.setTestCategories ) )
+        #
+        except JSONDecodeError:
+            #
+            print('')
+            print(  '### maybe a new item title has a quote '
+                    'but only a single backslash ###' )
+            #
+            raise
+            #
+        #
+        iCountItems, iStoreItems, iStoreUsers = t
+        #
+        iTempItems = ItemFoundTemp.objects.all().count()
+        iItemFound = ItemFound.objects.all().count()
+        #
+        # bCleanUpAfterYourself must be False or tests will fail!
+        # iRecordStepsForThis imported from __init__.py
+        #
+        # findSearchHits( self.user1.id,
+        #                 bCleanUpAfterYourself   = False,
+        #                 iRecordStepsForThis     = iRecordStepsForThis )
+        #
+        #print( '\n' )
+        #print( 'setting up KeyWordFindSearchHitsTests' )
+
+    def tearDown(self):
+        #
+        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+
+
+
+    def test_data_load( self ):
+        #
+        iItemFound = ItemFound.objects.all().count()
+        #
+        self.assertGreater( iItemFound, 60 )
+        #
+        iCount = Model.objects.all().count()
+        #
+        self.assertGreater( iCount, 160 )
+        #
