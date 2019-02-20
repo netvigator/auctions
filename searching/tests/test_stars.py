@@ -2,8 +2,6 @@
 
 from os.path            import join
 
-from json.decoder       import JSONDecodeError
-
 from django.core.urlresolvers import reverse
 
 from django.test        import TestCase
@@ -11,14 +9,9 @@ from django.utils       import timezone
 
 from core.utils_test    import setUpBrandsCategoriesModels, AssertEmptyMixin
 
-from searching          import RESULTS_FILE_NAME_PATTERN
-from searching          import SEARCH_FILES_FOLDER
+from ..models           import ( ItemFound, UserItemFound, ItemFoundTemp )
 
-from ..models           import ( ItemFound, UserItemFound,
-                                 ItemFoundTemp )
-from ..tests            import ( sResponseItems2Test,
-                                 iRecordStepsForThis )
-from ..utils            import storeSearchResultsInDB
+from .test_models       import PutSearchResultsInDatabase
 
 from .test_utils        import GetBrandsCategoriesModelsSetUp
 
@@ -26,12 +19,11 @@ from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
                                  findSearchHits, _getRowRegExpressions,
                                  getInParens )
 
+from searching.tests    import iRecordStepsForThis
 
 from brands.views       import BrandUpdateView
 from models.models      import Model
 
-from File.Del           import DeleteIfExists
-from File.Write         import QuietDump
 
 
 def _getModelRegExFinders4Test( oModel ):
@@ -59,43 +51,13 @@ def _getBrandRegExFinders4Test( oBrand ):
 
 # iRecordStepsForThis imported from __init__.py
 
-class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
+class SetUpForHitStarsTests( PutSearchResultsInDatabase ):
     #
-    ''' class for testing storeSearchResultsInDB() store records '''
+    ''' class for testing findSearchHits() hit star calculations '''
     #
     def setUp( self ):
         #
-        super( SetUpForKeyWordFindSearchHitsTests, self ).setUp()
-        #
-        self.sExampleFile = (
-            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-            ( 'EBAY-US', self.user1.username, self.oSearch.id, '000' ) )
-        #
-        #print( 'will DeleteIfExists' )
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
-        #
-        #print( 'will QuietDump' )
-        QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, self.sExampleFile )
-        #
-        try:
-            t = ( storeSearchResultsInDB(
-                            self.oSearchLog.id,
-                            self.sMarket,
-                            self.user1.username,
-                            self.oSearch.id,
-                            self.oSearch.cTitle,
-                            self.setTestCategories ) )
-        #
-        except JSONDecodeError:
-            #
-            print('')
-            print(  '### maybe a new item title has a quote '
-                    'but only a single backslash ###' )
-            #
-            raise
-            #
-        #
-        iCountItems, iStoreItems, iStoreUsers = t
+        super( SetUpForHitStarsTests, self ).setUp()
         #
         # bCleanUpAfterYourself must be False or tests will fail!
         # iRecordStepsForThis imported from __init__.py
@@ -107,14 +69,9 @@ class SetUpForKeyWordFindSearchHitsTests( GetBrandsCategoriesModelsSetUp ):
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
 
-    def tearDown(self):
-        #
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
 
-
-
-class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
+class KeyWordFindSearchHitsTests( SetUpForHitStarsTests ):
 
     def print_len( self, lTest, iExpect, iItemNumb = None ):
         #
@@ -165,9 +122,6 @@ class KeyWordFindSearchHitsTests( SetUpForKeyWordFindSearchHitsTests ):
         #
         self.assertGreater( iTempItems, 80 )
         #
-        iCount = Model.objects.all().count()
-        #
-        self.assertGreater( iCount, 160 )
         #
         qsUserItems = UserItemFound.objects.filter(
                         iUser = self.user1,
