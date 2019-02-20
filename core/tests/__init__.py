@@ -67,6 +67,27 @@ sResponse2ndCategoryItem = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
+           },{"itemId":["192659380750"],
+              "title":["Altec A5 Customized with sound nice so more than the original (515\/288\/2405)"],
+              "globalId":["EBAY-US"],
+              "subtitle":["A  version perfect with sound perfect"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/m_3eUK3d0hoGzu4TeKKtWUQ\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Altec-A5-Customized-sound-nice-so-more-than-original-515-288-2405-\/192659380750"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "location":["Vietnam"],"country":["VN"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"1792.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5000.0"}],
+              "convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5000.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT9H43M21S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2018-09-16T05:11:54.000Z"],
+              "endTime":["2018-09-23T05:11:54.000Z"],
+              "listingType":["Auction"],"gift":["false"],
+              "watchCount":["7"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
               }]
 
            }],
