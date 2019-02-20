@@ -131,3 +131,60 @@ class PutSearchResultsInDatabase( GetBrandsCategoriesModelsSetUp ):
         #
         self.assertGreater( iCount, 160 )
         #
+
+
+    def test_shipping_option_choices( self ):
+        #
+        '''test shipping choice'''
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 254130264753 )
+        #
+        self.assertEqual( oItem.iShippingType, 5 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Free Pick up' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 323681140009 )
+        #
+        self.assertEqual( oItem.iShippingType, 0 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Calculated' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 173696834267 )
+        #
+        self.assertEqual( oItem.iShippingType, 1 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(),
+                         'Calculated Domestic Flat International' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 323589685342 )
+        #
+        self.assertEqual( oItem.iShippingType, 2 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Flat' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 162988285719 )
+        #
+        self.assertEqual( oItem.iShippingType, 3 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(),
+                         'Flat Domestic Calculated International' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 312436313310 )
+        #
+        self.assertEqual( oItem.iShippingType, 4 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Free' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 273380279306 )
+        #
+        self.assertEqual( oItem.iShippingType, 6 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Freight' )
+        #
+        # find no examples of FreightFlat & NotSpecified
