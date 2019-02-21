@@ -125,8 +125,9 @@ class ItemFound(models.Model):
                         max_digits=10, decimal_places=2,    # but not for
                         db_index = False )                  # DecimalField
     iShippingType   = models.PositiveSmallIntegerField(
+                        'shipping type',
                         choices = EBAY_SHIPPING_CHOICES,
-                        null = True ) # legacy data d/n have
+                        null = True ) # data prior to Feb 2019 d/n have
     iCategoryID     = models.ForeignKey( EbayCategory,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
