@@ -1,10 +1,10 @@
 from django.db                  import models
+from django.contrib.auth        import get_user_model
+from django.core.urlresolvers   import reverse
+
 from django_countries.fields    import CountryField
 
-# Create your models here.
-
-from django.contrib.auth        import get_user_model
-
+# not sure this is needed
 User = get_user_model()
 
 
@@ -116,9 +116,7 @@ class Keeper(models.Model):
 
     def get_absolute_url(self):
         #
-        return getReverse(
-                'keepers:detail',
-                kwargs = { 'pk': self.pk } )
+        return reverse( 'keepers:detail', kwargs = { 'pk': self.pk } )
 #
 
 
