@@ -124,14 +124,14 @@ class Model( FindUserMixin, models.Model ):
         from searching.models import UserItemFound
         from keepers.models   import Keeper
         #
-        oUser = self.findUser()
+        oUser = oModel.iUser
         #
         qsUserItems = UserItemFound.objects.filter(
                 iUser  = oUser,
-                iModel = oModel ).only('iItemNumb_id').all()
-
+                iModel = oModel ).values_list( 'iItemNumb_id', flat=True )
+        #
         oItems = Keeper.objects.filter(
-                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 10 ]
+                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
         #
         return oItems
 
