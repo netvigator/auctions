@@ -35,7 +35,7 @@ class ModelDetailView( DetailViewGotModel ):
         #
         context = super( ModelDetailView, self).get_context_data(**kwargs )
         #
-        context['items_list'] = \
+        context['keepers_list'] = \
             self.object.getItemsForModel( self.object )
         #
         return context
