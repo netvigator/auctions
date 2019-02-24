@@ -91,6 +91,9 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
 
     def clean(self):
         #
+        '''on edit, usually check whether title is already in database
+        tested in categories/test_forms'''
+        #
         cleaned         = super( ModelFormValidatesTitle, self ).clean()
         #
         bCreating       = ( self.which == 'Create' )
