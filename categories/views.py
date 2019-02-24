@@ -15,17 +15,26 @@ from .models            import Category
 # ### keep views thin! ###
 
 
-class CategoryIndexView( ListViewGotModel ):  
+class CategoryIndexView( ListViewGotModel ):
     template_name = 'categories/index.html'
     # context_object_name = 'category_list' # default
     model = Category
     paginate_by = 100
-    
+
 
 class CategoryDetailView( DetailViewGotModel ):
-    
+
     model   = Category
     template_name = 'categories/detail.html'
+
+    def get_context_data(self, **kwargs):
+        #
+        context = super( CategoryDetailView, self).get_context_data(**kwargs )
+        #
+        context['keepers_list'] = \
+            self.object.getItemsForCategory( self.object )
+        #
+        return context
 
 
 class CategoryCreateView( CreateViewCanCancel ):
