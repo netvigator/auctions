@@ -16,9 +16,11 @@ from ..models                   import Search, ItemFound
 
 
 class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
-    
+
     ''' Search Form Tests '''
-    
+    # helpful:
+    # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit '''
+
     def setUp(self):
         #
         super( TestFormValidation, self ).setUp()
@@ -40,7 +42,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         form.request        = self.request
         form.instance.iUser = self.user1
         self.assertTrue( form.is_valid() )
-        
+
         # test save
         form.save()
         oSearch = Search.objects.get( cTitle = 'Great Widget 1' )
@@ -119,7 +121,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         form = CreateSearchForm(data=dData)
         form.request            = self.request
         form.instance.iUser     = self.user1
-        form.save()        
+        form.save()
         #
         dData = dict(
                 cTitle          = "Very clever search 1",
@@ -142,7 +144,7 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserTestCase ):
         form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertTrue( form.is_valid() ) # not comparing sets yet
-        
+
         #
         '''
         if form.errors:
