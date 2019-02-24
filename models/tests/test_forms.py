@@ -11,8 +11,10 @@ from ..models                   import Model
 
 
 class TestFormValidation(setUpBrandsCategoriesModels):
-    
+
     ''' Model Form Tests '''
+    # helpful:
+    # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
 
     def test_Title_got_outside_parens(self):
         #
