@@ -84,7 +84,7 @@
     <TR>
         <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:"" }}</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:""|getDashForReturn }}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'cFileSpec1' %}</TD>
@@ -127,39 +127,20 @@
         <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
-
-    <p>
-
     <!-- Action buttons -->
+    <p/>
+    <hr>
     <div class="basic">
         {% include "./actions.html" %}
     </div>
     <p/>
+    <hr>
     <!-- End Action buttons -->
 
-    <div style="margin-left:20px;margin-top:20px">
-    {% if keepers_list %}
-        <h4>Recent Keeper Items for {{ object.cTitle }}</h4>
-        <table>
-        <tr>
-        <td>Item Number</td><TD>&nbsp;&nbsp;&nbsp;
-        </TD><td>Title</td><TD>&nbsp;&nbsp;&nbsp;
-        </TD><td>End Date</td>
-        </tr>
-        {% for keeper in keepers_list %}
-            <tr>
-            <td VALIGN=TOP>{{ keeper }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td VALIGN=TOP>{{ keeper.cTitle }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td VALIGN=TOP>
-              <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
-            </td>
-            </tr>
-        {% endfor %}
-        </table>
-    {% endif %}
+    <div class="basic">
+        {% include "../keepers_list.html" %}
     </div>
+
     <p/>
     <hr>
 
