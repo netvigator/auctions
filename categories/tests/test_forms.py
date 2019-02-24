@@ -7,9 +7,11 @@ from ..forms                    import CreateCategoryForm, UpdateCategoryForm
 
 
 class TestFormValidation(BaseUserTestCase):
-    
+
     ''' Category Form Tests '''
-    
+    # helpful:
+    # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
+
     def setUp(self):
         #
         super( TestFormValidation, self ).setUp()
@@ -19,6 +21,53 @@ class TestFormValidation(BaseUserTestCase):
         oCategory = Category(
             cTitle = "Gadget", cLookFor = "thingamajig", iUser = self.user1 )
         oCategory.save()
+        #
+        self.iCategoryID = oCategory.id
+
+    def test_swap_title_and_lookfor( self ):
+        #
+        '''should swap title and look for without error'''
+        #
+        self.loginWebTest()
+        #
+        sUpdateURL  = reverse( 'categories:edit', args=(self.iCategoryID,) )
+        #
+        #oResponse   = self.client.get( sUpdateURL )
+        ##
+        #form        = oResponse.context['form'] # retrieve form data as dict
+        ##
+        #data = form.initial # form is unbound but contains data
+        ##
+        #print()
+        #print( 'initial data:', data )
+        ##
+        #data['cTitle']   = 'thingamajig'
+        #data['cLookFor'] = 'Gadget'
+        ##
+        #print()
+        #print( 'updated data:', data )
+        ##
+        #oResponse = self.client.post( sUpdateURL, data )
+        ##
+        #print( 'form.is_valid():', form.is_valid() )
+        ##
+        #print( 'form.non_field_errors:', form.non_field_errors() )
+        ## retrieve again
+        #oResponse = self.client.get( sUpdateURL )
+        ##
+        #self.assertEqual(oResponse.context['form'].initial['cTitle'], 'thingamajig')
+        #
+        # webtest style
+        oForm = self.app.get( sUpdateURL ).form
+        #
+        oForm['cTitle']   = 'thingamajig'
+        oForm['cLookFor'] = 'Gadget'
+        #
+        oResponse = oForm.submit()
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'thingamajig' )
+        self.assertEqual( oForm['cLookFor'].value, 'Gadget'      )
+
 
     def test_Title_got_outside_parens(self):
         #
@@ -61,7 +110,7 @@ class TestFormValidation(BaseUserTestCase):
         form = CreateCategoryForm(data=form_data)
         form.request = self.request
         self.assertTrue(form.is_valid())
-        # 
+        #
         form.instance.iUser = self.user1
         form.save()
         oCategory = Category.objects.get( cTitle = 'Widget' )
