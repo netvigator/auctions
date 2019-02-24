@@ -139,15 +139,29 @@
 
     <div style="margin-left:20px;margin-top:20px">
     {% if keepers_list %}
-        <h4>Keeper Items for {{ model }}</h4>
-        <UL>
+        <h4>Recent Keeper Items for {{ object.cTitle }}</h4>
+        <table>
+        <tr>
+        <td>Item Number</td><TD>&nbsp;&nbsp;&nbsp;
+        </TD><td>Title</td><TD>&nbsp;&nbsp;&nbsp;
+        </TD><td>End Date</td>
+        </tr>
         {% for keeper in keepers_list %}
-            <LI><a href="{{ keeper.get_absolute_url }}">
-                {{ keeper }}</a></LI>
+            <tr>
+            <td VALIGN=TOP>{{ keeper }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td VALIGN=TOP>{{ keeper.cTitle }}</td>
+            <TD>&nbsp;&nbsp;&nbsp;</TD>
+            <td VALIGN=TOP>
+              <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
+            </td>
+            </tr>
         {% endfor %}
-        </UL>
+        </table>
     {% endif %}
     </div>
+    <p/>
+    <hr>
 
 </div>
 {% endblock content %}
