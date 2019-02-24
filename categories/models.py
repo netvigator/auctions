@@ -58,7 +58,7 @@ class Category(models.Model):
     cRegExLook4Title= models.TextField( null = True )
     cRegExExclude   = models.TextField( null = True )
     cRegExKeyWords  = models.TextField( null = True )
-    
+
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                                                     null = True )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
@@ -67,15 +67,34 @@ class Category(models.Model):
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
-    
+
     def __str__(self):
         return self.cTitle
-    
+
     class Meta:
         verbose_name_plural = 'categories'
         ordering            = ('cTitle',)
         db_table            = verbose_name_plural
         unique_together     = ('cTitle','iUser')
+
+
+    def getItemsForCategory( self, oCategory ):
+        #
+        from searching.models import UserItemFound
+        from keepers.models   import Keeper
+        #
+        oUser = oCategory.iUser
+        #
+        qsUserItems = UserItemFound.objects.filter(
+                iUser       = oUser,
+                iCategory   = oCategory
+                    ).values_list( 'iItemNumb_id', flat=True )
+        #
+        oItems = Keeper.objects.filter(
+                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
+        #
+        return oItems
+
 
     def get_absolute_url(self):
         #
@@ -94,7 +113,7 @@ class BrandCategory(models.Model):
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                             on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
-    
+
     class Meta:
         verbose_name_plural = 'brandcategories'
         db_table            = verbose_name_plural
