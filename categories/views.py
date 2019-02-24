@@ -47,7 +47,8 @@ class CategoryCreateView( CreateViewCanCancel ):
 
 
 
-class CategoryUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
+class CategoryUpdateView(
+        WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
 
     form_class      = UpdateCategoryForm
     model           = Category

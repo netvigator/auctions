@@ -91,34 +91,31 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
 
     def clean(self):
         #
-        cleaned     = super( ModelFormValidatesTitle, self ).clean()
+        cleaned         = super( ModelFormValidatesTitle, self ).clean()
         #
-        bCreating   = ( self.which == 'Create' )
+        bCreating       = ( self.which == 'Create' )
         #
-        bEditing    = not bCreating
+        bEditing        = not bCreating
         #
         # does the title already exist?
         #
-        cTitle      = cleaned.get( 'cTitle'   )
-        cLookFor    = cleaned.get( 'cLookFor' )
+        cTitle          = cleaned.get( 'cTitle'   )
+        cLookFor        = cleaned.get( 'cLookFor' )
         #
-        doCheckTitle = bCreating or self.instance.cTitle != cTitle
-        #
-        bRearrange = False
-        #
-        if bEditing:
+        if cTitle: # cTitle can be None if field invalid
             #
-            bRearrange = ( self.instance.cTitle in cLookFor and
-                           cTitle in self.instance.cLookFor )
-            #
-        #
-        if bRearrange:
-            #
-            pass # no need to check the changed value against the database
-            #
-        elif cTitle and doCheckTitle: # cTitle can be None if field invalid
-            #
-            self.gotTitleAready( cTitle )
+            if bEditing and ( self.instance.cTitle in cLookFor and
+                              cTitle in self.instance.cLookFor ):
+                #
+                pass # just rearranged, no need to query database
+                #
+            else:
+                #
+                if bCreating or self.instance.cTitle != cTitle:
+                    #
+                    self.gotTitleAready( cTitle )
+                    #
+                #
             #
         #
         return cleaned
