@@ -14,9 +14,11 @@ from ..models           import Brand
 
 
 class TestFormValidation(BaseUserTestCase):
-    
+
     ''' Brand Form Tests '''
-    
+    # helpful:
+    # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
+
     def setUp(self):
         #
         super( TestFormValidation, self ).setUp()
