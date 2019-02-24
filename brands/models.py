@@ -41,10 +41,10 @@ class Brand(models.Model):
                         'Not a hit if this text is found (optional)',
                         null=True, blank = True,
         help_text = sExcludeIfHelpText % 'brand' )
-    
+
     cRegExLook4Title= models.TextField( null = True )
     cRegExExclude   = models.TextField( null = True )
-    
+
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
                         null=True, blank = True )
@@ -58,7 +58,7 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.cTitle
-    
+
     class Meta:
         verbose_name        = 'brand name'
         verbose_name_plural = 'brands'
@@ -88,6 +88,23 @@ class Brand(models.Model):
         l = [ ( oModel, oModel.iCategory ) for oModel in oModels ]
         #
         return l
+
+    def getItemsForBrand( self, oBrand ):
+        #
+        from searching.models import UserItemFound
+        from keepers.models   import Keeper
+        #
+        oUser = oBrand.iUser
+        #
+        qsUserItems = UserItemFound.objects.filter(
+                iUser  = oUser,
+                iBrand = oBrand ).values_list( 'iItemNumb_id', flat=True )
+        #
+        oItems = Keeper.objects.filter(
+                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
+        #
+        return oItems
+
 
 
     def get_absolute_url(self):
