@@ -46,7 +46,7 @@ class BrandDeleteView( DeleteViewGotModel ):
 
 
 class BrandDetailView( DetailViewGotModel ):
-    
+
     model   = Brand
     template_name = 'brands/detail.html'
 
@@ -66,7 +66,11 @@ class BrandDetailView( DetailViewGotModel ):
         context['models_list'    ] = \
             self.object.getModelsForBrand(    self.object )
         #
+        context['keepers_list'] = \
+            self.object.getItemsForBrand( self.object )
+        #
         return context
+
 
 
 class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
@@ -89,8 +93,8 @@ class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
 
 
 
-class BrandIndexView( TitleSearchMixin, ListViewGotModel ):  
+class BrandIndexView( TitleSearchMixin, ListViewGotModel ):
     template_name = 'brands/index.html'
     # context_object_name = 'brand_list' # default
     model = Brand
-    
+
