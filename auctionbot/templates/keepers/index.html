@@ -23,11 +23,11 @@
         <tr>
         <th ALIGN=LEFT>ebay item</th>
         </tr>
-        {% for item in object_list %}
+        {% for keeper in object_list %}
             <TR>
-                <TD>{% field_name parent 'iItemNumb' %}</TD>
+                <TD>{% field_name model 'iItemNumb' %}</TD>
                 <TD>&nbsp;&nbsp;&nbsp;</TD>
-                <TD VALIGN=TOP>{{ object.iItemNumb.iItemNumb }}</TD>
+                <TD VALIGN=TOP>{{ keeper.iItemNumb }}</TD>
             </TR>
         {% endfor %}
         </table>
