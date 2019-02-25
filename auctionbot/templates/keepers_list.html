@@ -9,7 +9,9 @@
       </tr>
       {% for keeper in keepers_list %}
           <tr>
-          <td VALIGN=TOP>{{ keeper }}</td>
+          <td VALIGN=TOP>
+            <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
+            {{ keeper.iItemNumb }}</a></td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td VALIGN=TOP>{{ keeper.cTitle }}</td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -23,4 +25,4 @@
       No Keepers for {{ object.cTitle }} yet!
   {% endif %}
 </div>
-
+<p>
