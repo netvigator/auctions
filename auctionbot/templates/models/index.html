@@ -2,6 +2,7 @@
 {% load static i18n %}
 {% load getNbsp %}
 {% block title %}Auction Shopping Bot Models{% endblock %}
+{% load getDashForReturn %}
 
 
 {% block content %}
@@ -43,7 +44,7 @@
             <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.iStars}}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ model.cComment|truncatechars:45}}</td>
+            <td>{{ model.cComment|getDashForReturn|truncatechars:45}}</td>
             </tr>
         {% endfor %}
         </table>
