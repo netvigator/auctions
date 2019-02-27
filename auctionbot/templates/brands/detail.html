@@ -42,7 +42,7 @@
     <TR>
         <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cComment|default_if_none:""}}</TD>
+        <TD VALIGN=TOP>{{object.cComment|default_if_none:""|getDashForReturn}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'cNationality' %}</TD>
