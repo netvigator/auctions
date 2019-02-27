@@ -2,12 +2,12 @@
 {% block title %}Auction Shopping Bot Brands{% endblock %}
 {% load getNbsp %}
 
-{% block content %} 
+{% block content %}
 
     <h1>Brands</h1>
 
     {% include "./add_search.html" %}
-    
+
     {% if brand_list %}
         <table>
         <tr>
@@ -29,7 +29,7 @@
             <TD></TD>
             <td>{{ brand.cNationality.name|getNbsp }}</td>
             <TD>&nbsp;&nbsp;&nbsp;</TD>
-            <td>{{ brand.cComment|truncatechars:60 }}</td>
+            <td>{{ brand.cComment|getDashForReturn|truncatechars:60 }}</td>
             </tr>
         {% endfor %}
         </table>
@@ -38,5 +38,5 @@
     {% endif %}
 
     {% include "./add_search.html" %}
-    
+
 {% endblock %}
