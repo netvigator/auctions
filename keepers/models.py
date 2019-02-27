@@ -76,9 +76,9 @@ class Keeper(models.Model):
     cCondition      = models.CharField( 'condition display name',
                         max_length = 28, null = True, blank = True )
     bGlobalShipping = models.BooleanField( 'Global Shipping', default=False )
-
-    bBuyItNowable   = models.BooleanField(
-                        'buy it now enabled?',default = False )
+    bBuyItNowable   = models.NullBooleanField(
+                        'buy it now enabled?', default = False,
+                        null = True, blank = True )
     lBuyItNowPrice  = models.DecimalField( 'buy it now price (local currency)',
                         max_digits = 10, decimal_places = 2,
                         null = True, blank = True )
