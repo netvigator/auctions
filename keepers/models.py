@@ -21,7 +21,7 @@ class Keeper(models.Model):
     cEbayItemURL    = models.CharField( 'ebay item URL', max_length =188 )
     cListingType    = models.CharField( 'listing type', max_length = 15 )
     cLocation       = models.CharField( 'location', max_length = 48 )
-    cPaymentMethods = models.CharField( 'ebay item URL',
+    cPaymentMethods = models.CharField( 'Payment methods',
                         max_length = 88, null = True, blank = True )
     cGalleryURL     = models.CharField( 'gallery pic URL',
                         max_length = 88, null = True, blank = True )
@@ -31,8 +31,6 @@ class Keeper(models.Model):
                         null = True, blank = True )
     iCategoryID     = models.PositiveIntegerField( 'primary category ID',
                         null = True, blank = True )
-    cCategory       = models.CharField( 'primary category',
-                        max_length = 48 )
     iQuantity       = models.SmallIntegerField( 'quantity' )
     cSellerID       = models.CharField( 'seller user name', max_length = 48 )
     iFeedbackScore  = models.BigIntegerField( 'seller feedback score',
@@ -56,7 +54,6 @@ class Keeper(models.Model):
     iQuantitySold   = models.SmallIntegerField( 'quantity sold' )
     cShipToLocations= models.TextField( 'ship to locations' )
     cSite           = models.CharField( 'Site', max_length = 14 )
-    cTimeLeft       = models.CharField( 'time left', max_length =18 )
     cTitle          = models.CharField( 'item title',
                         max_length = 80 )
     iHitCount       = models.SmallIntegerField( 'Hit Count',
@@ -118,6 +115,8 @@ class Keeper(models.Model):
         #
         return reverse( 'keepers:detail', kwargs = { 'pk': self.pk } )
 #
+
+
 
 
 class KeeperImage(models.Model):
