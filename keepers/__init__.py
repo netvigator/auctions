@@ -89,7 +89,6 @@ dItemFields = d(
     cShipToLocations= d( t = ( "ShipToLocations",),
                          f = getListWithCommas ),
     cSite           = d( t = ( "Site",), ),
-    cTimeLeft       = d( t = ( "TimeLeft",), ),
     cTitle          = d( t = ( "Title",), ),
     iHitCount       = d( t = ( "HitCount",),
                          f = int,
