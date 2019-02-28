@@ -52,7 +52,9 @@ s142766343340 = '''{
         "Country":"US",
         "ReturnPolicy":{"ReturnsAccepted":"ReturnsNotAccepted"},
         "AutoPay":false,"PaymentAllowedSite":[],
-        "IntegratedMerchantCreditCardEnabled":false,"HandlingTime":2,"ConditionID":3000,"ConditionDisplayName":"Used",
+        "IntegratedMerchantCreditCardEnabled":false,"HandlingTime":2,
+        "ConditionID":3000,
+        "ConditionDisplayName":"Used",
         "GlobalShipping":false,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
