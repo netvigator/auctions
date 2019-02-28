@@ -13,7 +13,7 @@
             <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
             {{ keeper.iItemNumb }}</a></td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
-          <td VALIGN=TOP>{{ keeper.cTitle }}</td>
+          <td VALIGN=TOP WIDTH=200><a href="{{ keeper.get_absolute_url }}/">{{ keeper.cTitle }}</a></td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td VALIGN=TOP>
             <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
