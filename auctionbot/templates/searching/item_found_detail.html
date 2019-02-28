@@ -23,7 +23,10 @@
     <TR>
         <TD>{% field_name parent 'iItemNumb' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iItemNumb.iItemNumb }}</TD>
+        <TD VALIGN=TOP>
+              <a href="https://www.ebay.com/itm/{{object.iItemNumb.iItemNumb}}/">
+                      {{ object.iItemNumb.iItemNumb }}</a></TD>
+
     </TR>
     <TR>
         <TD VALIGN=TOP>{% field_name parent 'cLocation' %}</TD>
