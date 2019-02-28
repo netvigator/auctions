@@ -12,11 +12,18 @@ from .models            import Keeper
 
 
 
+
+class KeeperDetailView( DetailViewGotModel ):
+
+    model   = Keeper
+    template_name = 'keepers/detail.html'
+
+
+
 class KeeperIndexView( FindUserMixin,
             GetPaginationExtraInfoInContext, ListViewGotModel ):
     model               = Keeper
     template_name       = 'keepers/index.html'
-    template_name       = 'brands/index.html'
     context_object_name = 'keeper_list'
     paginate_by         = 100
 
