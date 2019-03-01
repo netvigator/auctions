@@ -139,12 +139,25 @@ class SomeItemsTest( TestCase ):
 class StoreItemsTest( TestCase ):
     '''test storing some getSingleItem imports in the table'''
 
-    def test_s142766343340( self ):
-        '''test storing getSingleItem 1946 Bendix Catalin including update'''
+    def setUp( self ):
+        #
+        super( StoreItemsTest, self ).setUp()
         #
         t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
         #
-        iOriginalSavedRowID, sListingStatus = t
+        self.iOriginalSavedRowID, sListingStatus = t
+        #
+        t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        #
+        iSavedRowID, sListingStatus = t
+        #
+        t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        #
+        iSavedRowID, sListingStatus = t
+
+
+    def test_s142766343340( self ):
+        '''test storing getSingleItem 1946 Bendix Catalin including update'''
         #
         self.assertTrue( Keeper.objects.filter( pk = 142766343340 ).exists() )
         #
@@ -160,7 +173,7 @@ class StoreItemsTest( TestCase ):
         #
         oItem.refresh_from_db()
         #
-        self.assertEqual( iOriginalSavedRowID, iNewSavedRowID )
+        self.assertEqual( self.iOriginalSavedRowID, iNewSavedRowID )
         #
         self.assertEqual( oItem.iBidCount, 5 )
 
@@ -168,18 +181,11 @@ class StoreItemsTest( TestCase ):
     def test_s232742493872( self ):
         '''test storing getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
         #
-        t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
-        #
-        iSavedRowID, sListingStatus = t
         #
         self.assertTrue( Keeper.objects.filter( pk = 232742493872 ).exists() )
 
     def test_s232709513135( self ):
         '''test storing getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
-        #
-        t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
-        #
-        iSavedRowID, sListingStatus = t
         #
         self.assertTrue( Keeper.objects.filter( pk = 232709513135 ).exists() )
 
