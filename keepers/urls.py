@@ -12,7 +12,7 @@ urlpatterns = [
         view    = views.KeeperIndexView.as_view(),
         name    = 'index' ),
     url(
-        regex   = r'^(?P<pk>[0-9]+)/*$',
+        regex   = r'^(?P<pk>[0-9]+)/$',
         view    = views.KeeperDetailView.as_view(),
         name    = 'detail'),
 
