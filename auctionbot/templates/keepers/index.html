@@ -7,8 +7,6 @@
 {% block content %}
   <h2>Keepers</h2>
 
-    {% include "./add_search.html" %}
-
     {% if object_list %}
         {# the pagination section #}
         {% if is_paginated %}
@@ -43,7 +41,5 @@
     {% else %} <!-- brand_list -->
         <p>No keepers are available.</p>
     {% endif %} <!-- brand_list -->
-
-    {% include "./add_search.html" %}
 
 {% endblock content %}
