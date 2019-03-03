@@ -5,8 +5,6 @@ from crispy_forms.layout    import Submit
 
 from django.contrib.auth    import get_user_model
 
-from core.mixins            import FindUserMixin
-
 from core.models            import ( gotSomethingOutsideTitleParensCharField,
                                      IntegerRangeField, sTitleHelpText,
                                      sKeyWordsHelpText, sLookForHelpText,
@@ -21,7 +19,7 @@ from categories.models      import Category
 
 User = get_user_model()
 
-class Model( FindUserMixin, models.Model ):
+class Model( models.Model ):
     cTitle          = gotSomethingOutsideTitleParensCharField(
                         'model number or name',
                         max_length = 48, db_index = True,
@@ -119,12 +117,12 @@ class Model( FindUserMixin, models.Model ):
         db_table            = verbose_name_plural
         unique_together     = ('cTitle','iBrand','iCategory','iUser')
 
-    def getItemsForModel( self, oModel ):
+    def getItemsForModel( self, oModel, request ):
         #
         from searching.models import UserItemFound
         from keepers.models   import Keeper
         #
-        oUser = oModel.iUser
+        oUser = request.user
         #
         qsUserItems = UserItemFound.objects.filter(
                 iUser  = oUser,
