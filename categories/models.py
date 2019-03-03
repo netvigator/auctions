@@ -78,12 +78,12 @@ class Category(models.Model):
         unique_together     = ('cTitle','iUser')
 
 
-    def getItemsForCategory( self, oCategory ):
+    def getItemsForCategory( self, oCategory, request ):
         #
         from searching.models import UserItemFound
         from keepers.models   import Keeper
         #
-        oUser = oCategory.iUser
+        oUser = request.user
         #
         qsUserItems = UserItemFound.objects.filter(
                 iUser       = oUser,
