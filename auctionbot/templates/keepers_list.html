@@ -1,11 +1,14 @@
 <div style="margin-left:20px;margin-top:20px">
   {% if keepers_list %}
-      <h4>Recent Keepers for {{ object.cTitle }}</h4>
+      <h4>Recent {{ object.cTitle }} Keepers</h4>
       <table>
       <tr>
-      <td>Item Number</td><TD>&nbsp;&nbsp;&nbsp;
-      </TD><td>Title</td><TD>&nbsp;&nbsp;&nbsp;
-      </TD><td>End Date</td>
+      <td>Item Number</td><TD>&nbsp;&nbsp;&nbsp;</TD>
+      <td>Title</td><TD>&nbsp;&nbsp;&nbsp;</TD>
+      <td ALIGN=RIGHT>Price</td><TD>&nbsp;&nbsp;&nbsp;</TD>
+      <td ALIGN=RIGHT>Bid Count</td><TD>&nbsp;&nbsp;&nbsp;</TD>
+      <td ALIGN=RIGHT>Status</td><TD>&nbsp;&nbsp;&nbsp;</TD>
+      <td ALIGN=RIGHT>End Date</td>
       </tr>
       {% for keeper in keepers_list %}
           <tr>
@@ -13,7 +16,13 @@
             <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
             {{ keeper.iItemNumb }}</a></td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
-          <td VALIGN=TOP WIDTH=200><a href="{{ keeper.get_absolute_url }}/">{{ keeper.cTitle }}</a></td>
+          <td VALIGN=TOP><a href="{{ keeper.get_absolute_url }}">{{ keeper.cTitle }}</a></td>
+          <TD>&nbsp;&nbsp;&nbsp;</TD>
+          <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.dConvertPrice }}</td>
+          <TD>&nbsp;&nbsp;&nbsp;</TD>
+          <td  ALIGN=RIGHT VALIGN=TOP>{{ keeper.iBidCount }}</td>
+          <TD>&nbsp;&nbsp;&nbsp;</TD>
+          <td  ALIGN=RIGHT VALIGN=TOP>{{ keeper.cListingStatus }}</td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td VALIGN=TOP>
             <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
