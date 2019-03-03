@@ -7,14 +7,14 @@ from Collect.Test           import ContainsAny
 
 
 class DoesLoggedInUserOwnThisRowMixin(object):
-    
+
     '''
     For some tables (Brands, Categories, Models, Searches, Items, and more),
     users should ONLY be able to their own records (rows).
     So we will overried get_object() and test there.
     This is tested in the Brands app!
     '''
-    
+
     def get_object(self):
         '''only allow owner (or superuser) to access the table row'''
         obj = super(DoesLoggedInUserOwnThisRowMixin, self).get_object()
@@ -28,16 +28,16 @@ class DoesLoggedInUserOwnThisRowMixin(object):
 
 
 class WereAnyReleventColsChangedBase(object):
-    
+
     '''
-    for testing whether any relevant fields have changed 
+    for testing whether any relevant fields have changed
     '''
     def _getIsDataChangedTester( self, form ):
-        
+
         def _isFormDataChanged( self, sCol ):
             #
             return sCol in form.changed_data
-    
+
     def anyReleventColsChanged( self, form, tCols ):
         #
         isFormDataChanged = self._getIsDataChangedTester( form )
@@ -47,7 +47,7 @@ class WereAnyReleventColsChangedBase(object):
 
 class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
     '''
-    for testing whether any RegEx relevant fields have changed 
+    for testing whether any RegEx relevant fields have changed
     '''
     setLook4TitleFields = frozenset( ( 'cTitle', 'cLookFor', 'bSubModelsOK' ) )
     #
@@ -63,7 +63,7 @@ class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
             form.instance.cRegExKeyWords    = None
         if 'cExcludeIf' in form.changed_data :
             form.instance.cRegExExclude     = None
-    
+
     def form_valid( self, form ):
         #
         if self.anyReleventColsChanged( form, self.tRegExRelevantCols ):
@@ -76,7 +76,7 @@ class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
 
 
 class TitleSearchMixin(object):
-    
+
     def get_queryset( self ):
         #
         # fetch the queryset from the parent's get_queryset
@@ -110,7 +110,7 @@ class FormValidMixin( object ):
 
 class GetModelInContextMixin( object ):
     '''more DRY, move some copied and pasted code here'''
-    
+
     def get_context_data(self, **kwargs):
         '''
         Adds the model to the context data.
@@ -156,33 +156,6 @@ class GetFormMixin( object ):
         return form
 
 
-class FindUserMixin( object ):
-
-    ''' find the user object '''
-
-    def findUser( self, **kwargs  ):
-
-        ''' method to find the user object '''
-
-        oUser = None
-
-        if hasattr( self, 'user' ) and self.user is not None:
-            oUser = self.user
-        elif ( hasattr( self, 'request' ) and
-               hasattr( self.request, 'user' ) and
-               self.request.user is not None ):
-            oUser = self.request.user
-        elif ( hasattr( self, 'instance' ) and
-               hasattr( self.instance, 'user' ) and
-               self.instance.user is not None ):
-            oUser = self.instance.user
-        elif ( hasattr( self, 'instance' ) and
-               hasattr( self.instance, 'iUser' ) and
-               self.instance.iUser is not None ): # testing
-            oUser = self.instance.iUser
-        #
-        return oUser
-
 
 class GetPaginationExtraInfoInContext( object ):
     ''' get info into context for bisect style page choices'''
@@ -192,7 +165,7 @@ class GetPaginationExtraInfoInContext( object ):
         Adds pagination info to the context data.
         '''
         sPrevPage = self.request.GET.get( 'previous', None )
-        
+
         if sPrevPage is None and 'sPrevPage' in kwargs:
             #
             sPrevPage = kwargs.pop( 'sPrevPage' )
