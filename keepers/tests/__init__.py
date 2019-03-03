@@ -18,7 +18,8 @@ s142766343340 = '''{
     "Build":"E1057_CORE_APILW_18679933_R1",
     "Version":"1057",
     "Item":{
-        "BestOfferEnabled":true,"Description":"1946 Bendix Catalin Radio Model 506MC. The radio is in excellent condition. It has no cracks and has all original parts. The radio is in working condition. The case has a rich green marble finish. This is a very nice Catalin radio that shows extremely well, Packaged with care and ships quickly. Thank you for your interest.",
+        "BestOfferEnabled":true,
+        "Description":"1946 Bendix Catalin Radio Model 506MC. The radio is in excellent condition. It has no cracks and has all original parts. The radio is in working condition. The case has a rich green marble finish. This is a very nice Catalin radio that shows extremely well, Packaged with care and ships quickly. Thank you for your interest.",
         "ItemID":"142766343340",
         "EndTime":"2018-05-22T00:09:44.000Z",
         "StartTime":"2018-04-22T00:09:44.000Z",
