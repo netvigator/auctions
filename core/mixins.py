@@ -117,10 +117,12 @@ class GetModelInContextMixin( object ):
         '''
         context = super(
                 GetModelInContextMixin, self).get_context_data(**kwargs)
+        #
         context['model'] = self.model
+        #
         if hasattr( self, 'parent' ):
             context['parent'] = self.parent
-        # context['model_fields'] = self.model._meta.get_fields()
+        #
         return context
 
 
