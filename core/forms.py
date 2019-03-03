@@ -6,10 +6,8 @@ from core.validators        import gotTextOutsideParens
 from crispy_forms.helper    import FormHelper
 from crispy_forms.layout    import Submit
 
-from .mixins                import FindUserMixin
 
-
-class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
+class BaseModelFormGotCrispy( ModelForm ):
     #
     '''base crispy form, can subclass to create or update'''
     #
@@ -19,13 +17,35 @@ class BaseModelFormGotCrispy( FindUserMixin, ModelForm ):
         self.request = kwargs.get( 'request' )
         # Voila, now you can access request via self.request!
         #
+        self.user = None
+        #
         if 'user' in kwargs:
             #
             self.user = kwargs.pop( 'user' ) # super crashes if kwarg includes
             #
-        elif not hasattr( self, 'user' ) or self.user is None:
+        elif self.request is not None:
             #
-            self.user = self.findUser( **kwargs )
+            self.user = self.request.user
+            #
+        elif 'iUser' in kwargs:
+            #
+            self.user = kwargs.pop( 'iUser' )
+            #
+        elif hasattr( self, 'user' ) and self.user is not None:
+            #
+            self.user = self.user
+            #
+        elif ( hasattr( self, 'instance' ) and
+               hasattr( self.instance, 'user' ) and
+               self.instance.user is not None ):
+            #
+            self.user = self.instance.user
+            #
+        elif ( hasattr( self, 'instance' ) and
+               hasattr( self.instance, 'iUser' ) and
+               self.instance.iUser is not None ): # testing
+            #
+            self.user = self.instance.iUser
             #
         #
         super( BaseModelFormGotCrispy, self ).__init__( *args, **kwargs )
@@ -54,8 +74,6 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
 
     def gotTitleAready( self, cTitle ):
-        #
-        # oUser = self.FindUserMixin()
         #
         if ( self.Meta.model.objects.filter(
                 iUser           = self.user,
