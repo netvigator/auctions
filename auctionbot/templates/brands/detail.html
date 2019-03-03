@@ -32,7 +32,7 @@
     <TR>
         <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cLookFor|default_if_none:""|getDashForReturn}}</TD>
+        <TD VALIGN=TOP>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'iStars' %}</TD>
@@ -42,7 +42,7 @@
     <TR>
         <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cComment|default_if_none:""|getDashForReturn}}</TD>
+        <TD VALIGN=TOP>{{object.cComment|getDashForReturn}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'cNationality' %}</TD>
@@ -52,7 +52,7 @@
     <TR>
         <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cExcludeIf|default_if_none:""|getDashForReturn}}</TD>
+        <TD VALIGN=TOP>{{object.cExcludeIf|getDashForReturn}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'iUser' %}</TD>
