@@ -27,7 +27,10 @@ def getDashForReturn( s ):
     #
     '''html rendering ignores return characters, substitute dashes'''
     #
-    return s.replace( '\r', ' - ' )
+    if s:
+        return s.replace( '\r', ' - ' )
+    else:
+        return '' # run replace on None and you get an error
 
 
 @register.simple_tag
