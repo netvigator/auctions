@@ -67,7 +67,7 @@ class BrandDetailView( DetailViewGotModel ):
             self.object.getModelsForBrand(    self.object )
         #
         context['keepers_list'] = \
-            self.object.getItemsForBrand( self.object )
+            self.object.getItemsForBrand( self.object, self.request )
         #
         return context
 
