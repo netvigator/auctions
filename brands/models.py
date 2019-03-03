@@ -89,12 +89,12 @@ class Brand(models.Model):
         #
         return l
 
-    def getItemsForBrand( self, oBrand ):
+    def getItemsForBrand( self, oBrand, request ):
         #
         from searching.models import UserItemFound
         from keepers.models   import Keeper
         #
-        oUser = oBrand.iUser
+        oUser = request.user
         #
         qsUserItems = UserItemFound.objects.filter(
                 iUser  = oUser,
