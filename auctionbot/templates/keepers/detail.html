@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <h2>{{ object.cTitle }} -- Details</h2>
+    <h4>{{ object.cTitle }} -- Details</h4>
 
     <table RULES=ROWS CELLPADDING=10>
     <TR>
@@ -34,6 +34,11 @@
         <TD width = 300>{% field_name model 'cListingType' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cListingType}}</TD>
+    </TR>
+    <TR>
+        <TD width = 300>{% field_name model 'cCountry' %}</TD>
+        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{{object.cCountry}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'cLocation' %}</TD>
@@ -88,7 +93,7 @@
     <TR>
         <TD width = 300>{% field_name model 'cHighBidder' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cHighBidder|default_if_none:"no bidders"}}</TD>
+        <TD>{{object.cHighBidder|default_if_none:"not available"}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'cListingStatus' %}</TD>
@@ -104,11 +109,6 @@
         <TD width = 300>{% field_name model 'cCategoryNames' %}</TD>
         <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.cCategoryNames}}</TD>
-    </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cCountry' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD>{{object.cCountry}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'cBidCurrency' %}</TD>
