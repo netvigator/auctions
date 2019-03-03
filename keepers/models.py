@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 
-class Keeper(models.Model):
+class Keeper( models.Model ):
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
     cDescription    = models.TextField( 'description',
@@ -110,6 +110,18 @@ class Keeper(models.Model):
     class Meta:
         verbose_name_plural = 'keepers'
         db_table            = verbose_name_plural
+
+    def getUserItemsFoundForKeeper( self, oKeeper, request ):
+        #
+        from searching.models import UserItemFound
+        #
+        oUser = request.user
+        #
+        qsUserItems = UserItemFound.objects.filter(
+                iUser       = oUser,
+                iItemNumb   = oKeeper.iItemNumb )
+        #
+        return qsUserItems
 
     def get_absolute_url(self):
         #
