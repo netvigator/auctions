@@ -23,6 +23,7 @@ from Dir.Get            import getMakeDir
 from File.Test          import isFileThere
 from File.Write         import QuietDump
 from String.Find        import getRegExObj
+from String.Output      import StrPadZero
 from Time.Test          import isDateTimeObj
 from Time.Output        import getNowIsoDateTimeFileNameSafe
 from Web.Test           import isURL
@@ -467,13 +468,19 @@ def _getItemPicsSubDir( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
     sItemNumb = str( uItemNumb )
     #
-    sItemPicDirectory1st = sItemNumb[     : -10 ]
+    sItemPicDirectory1st = StrPadZero( sItemNumb[     : -10 ], 2 )
     #
-    sItemPicDirectory2nd = sItemNumb[ -10 : -8 ]
+    sItemPicDirectory2nd = StrPadZero( sItemNumb[ -10 :  -8 ], 2 )
+    #
+    sItemPicDirectory3rd = StrPadZero( sItemNumb[  -8 :  -6 ], 2 )
+    #
+    sItemPicDirectory4th = StrPadZero( sItemNumb[  -6 :  -4 ], 2 )
     #
     sItemPicsSubDir      = join( sItemPicsRoot,
                                  sItemPicDirectory1st,
-                                 sItemPicDirectory2nd )
+                                 sItemPicDirectory2nd,
+                                 sItemPicDirectory3rd,
+                                 sItemPicDirectory4th )
     #
     getMakeDir( sItemPicsSubDir )
     #
