@@ -84,7 +84,7 @@ class GeneratePathFileNameExtensionTests( AssertEmptyMixin, TestCase ):
         #
         sSubDir = _getItemPicsSubDir( iItemNumb, '/tmp' )
         #
-        self.assertEqual( sSubDir, '/tmp/25/33' )
+        self.assertEqual( sSubDir, '/tmp/25/33/13/71' )
         #
         self.assertTrue( isDirThere( sSubDir ) )
         #
