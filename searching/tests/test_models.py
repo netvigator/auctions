@@ -53,7 +53,7 @@ class TestChoices(TestCase):
 
     def test_CHOICES( self ):
         """ test the ebay shipping choices tuple """
-        self.assertEqual( EBAY_SHIPPING_CHOICES[5], ( 5, 'Free Pick up' ) )
+        self.assertEqual( EBAY_SHIPPING_CHOICES[5], ( 5, 'Pick Up ONLY!' ) )
 
     def test_dCHOICE_CODES( self ):
         """ test the ebay shipping choices dictionary """
@@ -141,7 +141,7 @@ class PutSearchResultsInDatabase( GetBrandsCategoriesModelsSetUp ):
         #
         self.assertEqual( oItem.iShippingType, 5 )
         #
-        self.assertEqual( oItem.get_iShippingType_display(), 'Free Pick up' )
+        self.assertEqual( oItem.get_iShippingType_display(), 'Pick Up ONLY!' )
         #
         #
         oItem = ItemFound.objects.get( iItemNumb = 323681140009 )
