@@ -111,7 +111,7 @@ class SomeItemsTest( TestCase ):
         #
         t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
         #
-        iSavedRowID, sListingStatus = t
+        iSavedRowID, sListingStatus, oItemFound = t
         #
         self.assertEqual( 142766343340, iSavedRowID )
 
@@ -120,7 +120,7 @@ class SomeItemsTest( TestCase ):
         #
         t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
         #
-        iSavedRowID, sListingStatus = t
+        iSavedRowID, sListingStatus, oItemFound = t
         #
         self.assertEqual( 232742493872, iSavedRowID )
 
@@ -129,7 +129,7 @@ class SomeItemsTest( TestCase ):
         #
         t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
         #
-        iSavedRowID, sListingStatus = t
+        iSavedRowID, sListingStatus, oItemFound = t
         #
         self.assertEqual( 232709513135, iSavedRowID )
         #
@@ -145,15 +145,15 @@ class StoreItemsTest( TestCase ):
         #
         t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
         #
-        self.iOriginalSavedRowID, sListingStatus = t
+        self.iOriginalSavedRowID, sListingStatus, oItemFound = t
         #
         t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
         #
-        iSavedRowID, sListingStatus = t
+        iSavedRowID, sListingStatus, oItemFound = t
         #
         t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
         #
-        iSavedRowID, sListingStatus = t
+        iSavedRowID, sListingStatus, oItemFound = t
 
 
     def test_s142766343340( self ):
@@ -169,7 +169,7 @@ class StoreItemsTest( TestCase ):
         #
         t = _storeJsonSingleItemResponse( 142766343340, new142766343340 )
         #
-        iNewSavedRowID, sListingStatus = t
+        iNewSavedRowID, sListingStatus, oItemFound = t
         #
         oItem.refresh_from_db()
         #
@@ -384,7 +384,7 @@ class StoreSingleItemTests( getEbayCategoriesSetUp ):
         #
         t = _storeJsonSingleItemResponse( 282330751118, s282330751118 )
         #
-        iSavedRowID, sListingStatus = t
+        iSavedRowID, sListingStatus, oItemFound = t
         #
         self.assertEqual( iSavedRowID, 282330751118 )
         #
