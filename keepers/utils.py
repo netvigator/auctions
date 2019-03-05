@@ -288,8 +288,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             bItemNumberStillGood = False
             #
         #
+        #
     #
-    if iSavedRowID is not None or not bItemNumberStillGood:
+    if oItemFound is not None and (
+            iSavedRowID is not None or not bItemNumberStillGood ):
         #
         # InvalidOrNonExistentItemError:
         # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
@@ -326,6 +328,8 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             oItemFound.save()
             #
             # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
             #
             if bAlreadyRetrieved:
                 #
@@ -351,6 +355,8 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             oItemFound.save()
             #
+            # next: queryset update method
+            # next: queryset update method
             # next: queryset update method
             #
             if bItemNumberStillGood:
