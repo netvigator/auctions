@@ -4,12 +4,17 @@ from django.core.urlresolvers   import reverse
 
 from django_countries.fields    import CountryField
 
+from searching                  import EBAY_SHIPPING_CHOICES
+
 # not sure this is needed
 User = get_user_model()
 
 
 
 class Keeper( models.Model ):
+
+    EBAY_SHIPPING_CHOICES = EBAY_SHIPPING_CHOICES
+
     iItemNumb       = models.BigIntegerField( 'ebay item number',
                         primary_key = True )
     cDescription    = models.TextField( 'description',
@@ -72,6 +77,10 @@ class Keeper( models.Model ):
                         null = True, blank = True )
     cCondition      = models.CharField( 'condition display name',
                         max_length = 28, null = True, blank = True )
+    iShippingType   = models.PositiveSmallIntegerField(
+                        'shipping type',            # not in result info
+                        choices = EBAY_SHIPPING_CHOICES,
+                        null = True, blank = True ) # comes from item found
     bGlobalShipping = models.BooleanField( 'Global Shipping', default=False )
     bBuyItNowable   = models.NullBooleanField(
                         'buy it now enabled?', default = False,
