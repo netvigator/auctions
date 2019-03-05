@@ -3,6 +3,7 @@
       <h4>Recent {{ object.cTitle }} Keepers</h4>
       <table>
       <tr>
+      <th><i class="fas fa-trash-alt"></i></th><TD>&nbsp;&nbsp;&nbsp;</TD>
       <td>Item Number</td><TD>&nbsp;&nbsp;&nbsp;</TD>
       <td>Title</td><TD>&nbsp;&nbsp;&nbsp;</TD>
       <td ALIGN=RIGHT>Price</td><TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -12,6 +13,8 @@
       </tr>
       {% for keeper in keepers_list %}
           <tr>
+          <TD><input class="checkbox" name="bTrashThis" type="checkbox" value={{ keeper.iItemNumb }}></td>
+          <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td VALIGN=TOP>
             <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
             {{ keeper.iItemNumb }}</a></td>
@@ -30,8 +33,22 @@
           </tr>
       {% endfor %}
       </table>
+      <p/>
+      <table>
+        <TR ALIGN=MIDDLE>
+          <td>
+              <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
+          </td>
+          <TD>&nbsp;&nbsp;&nbsp;</TD>
+          <td>
+              After selecting items, you must hit Submit or all changes will be lost!
+          </td>
+        </TR>
+      </table>
+
   {% else %}
       No Keepers for {{ object.cTitle }} yet!
   {% endif %}
 </div>
 <p>
+<p/>
