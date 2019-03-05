@@ -38,7 +38,7 @@ tEBAY_SHIPPING_TYPES = (
     ( 4,    'Free',
             'Free' ),
     ( 5,    'FreePickup',
-            'Free Pick up' ),
+            'Pick Up ONLY!' ),
     ( 6,    'Freight',
             'Freight' ),
     ( 7,    'FreightFlat',
