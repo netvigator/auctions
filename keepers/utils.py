@@ -124,7 +124,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
     #
     '''
     gets single item result from ebay API (can pass response for testing)
-    stores response in items but does NOT store in itemsfound or useritemsfound
+    stores response in keepers but NOT in itemsfound or useritemsfound
     '''
     #
     if 'tNow' in kwargs:
@@ -154,24 +154,33 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             #
         #
     #
+    oItemFound = None # testing without an ItemFound
+    #
+    qsItemFound = ItemFound.objects.filter( pk = iItemNumb )
+    #
+    if qsItemFound: oItemFound = qsItemFound[0]
+    #
+    if oItemFound:
+        dGotItem['iShippingType'] = oItemFound.iShippingType
+    #
     if dGotItem and Keeper.objects.filter( pk = iItemNumb ).exists():
         #
         bAnyChanged = False
         #
         iSavedRowID = dGotItem['iItemNumb']
         #
-        oItem = Keeper.objects.get( pk = iSavedRowID )
+        oItemKeep = Keeper.objects.get( pk = iSavedRowID )
         #
         for sField in dGotItem:
             #
-            sValTable  = getattr( oItem, sField )
+            sValTable  = getattr( oItemKeep, sField )
             #
             sValImport = dGotItem[ sField ]
             #
             if (    ( sValTable or sValImport ) and
                       sValTable != sValImport ):
                 #
-                setattr( oItem, sField, sValImport )
+                setattr( oItemKeep, sField, sValImport )
                 #
                 bAnyChanged = True
                 #
@@ -179,12 +188,12 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
         #
         if bAnyChanged:
             #
-            oItem.tModify = tNow
+            oItemKeep.tModify = tNow
             #
-            oItem.save()
+            oItemKeep.save()
             #
         #
-        sListingStatus = oItem.cListingStatus
+        sListingStatus = oItemKeep.cListingStatus
         #
     elif dGotItem:
         #
@@ -192,11 +201,11 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
         #
         if form.is_valid():
             #
-            oItemInstance = form.save()
+            oItemKeepInstance = form.save()
             #
-            iSavedRowID = oItemInstance.pk
+            iSavedRowID = oItemKeepInstance.pk
             #
-            sListingStatus = oItemInstance.cListingStatus
+            sListingStatus = oItemKeepInstance.cListingStatus
             #
         else:
             #
@@ -228,7 +237,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             #
         #
     #
-    return iSavedRowID, sListingStatus
+    return iSavedRowID, sListingStatus, oItemFound
 
 
 
@@ -239,7 +248,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     stores response in items, itemsfound and useritemsfound
     '''
     #
-    sContent = iSavedRowID = sListingStatus = None
+    sContent = iSavedRowID = sListingStatus = oItemFound = None
     #
     bItemNumberStillGood = True
     #
@@ -272,7 +281,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             t = _storeJsonSingleItemResponse(
                         iItemNumb, sContent, tNow = tNow )
             #
-            iSavedRowID, sListingStatus = t
+            iSavedRowID, sListingStatus, oItemFound = t
             #
         except InvalidOrNonExistentItemError:
             #
@@ -285,7 +294,9 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         # InvalidOrNonExistentItemError:
         # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
         #
-        oItemFound = ItemFound.objects.get( pk = iItemNumb )
+        # oItemFound = ItemFound.objects.get( pk = iItemNumb )
+        #
+        # moved to _storeJsonSingleItemResponse() 2019.03.06
         #
         if sListingStatus is not None:
             #
