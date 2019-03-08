@@ -265,7 +265,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         except Exception as e:
             #
             logger.info(
-                    'Exception for %s', str( iItemNumb ), exc_info = e )
+                    'Exception for %s (%s)', str( iItemNumb ), exc_info = e )
             #
         #
     #
@@ -290,8 +290,14 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         #
     #
-    if oItemFound is not None and (
-            iSavedRowID is not None or not bItemNumberStillGood ):
+    if oItemFound is None:
+        #
+        if not settings.TESTING:
+            #
+            logger.info( 'oItemFound is None! %s', str( iItemNumb ) )
+            #
+        #
+    elif iSavedRowID is not None or not bItemNumberStillGood:
         #
         # InvalidOrNonExistentItemError:
         # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
