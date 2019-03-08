@@ -624,6 +624,27 @@ sResponseItems2Test = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+          },{ "itemId":["254154293727"],
+              "title":["vintage klipsch Lascalas"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mHmtp3VufMhrZzkpVJ0QB6A\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/vintage-klipsch-Lascalas-\/254154293727"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["27332"],
+              "location":["Sanford,NC,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
+              "shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"650.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"650.0"}],
+              "bidCount":["0"],
+              "sellingState":["Active"],
+              "timeLeft":["P6DT14H4M30S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-03-07T13:14:25.000Z"],
+              "endTime":["2019-03-14T13:14:25.000Z"],
+              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
           },{ "itemId":["254130264753"],
               "title":["The Fisher 105 - 3 Way Speakers \u2013 Cool Latticework Grills - 12\\" Woofers        "],
               "globalId":["EBAY-US"],
