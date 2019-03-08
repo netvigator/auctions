@@ -50,7 +50,7 @@ def getSingleItemResponseCandidate( bWantEnded = True ):
         #
         sayWhich = 'ended' if bWantEnded else 'active'
         #
-        raise NoExampleRecords( 'no %s records in %s!' %
+        raise NoExampleRecords( 'no %s records in %s! Run live searching tests!' %
                                ( sayWhich, sHitLogFile ) )
         #
     #
