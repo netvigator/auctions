@@ -532,6 +532,53 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
     return sResult
 
 
+def movePicsLower():
+    #
+    '''now putting pics deeper, move existing pics'''
+    #
+    from os         import listdir
+    from os.path    import isfile, join
+    #
+    class Finished4Now( Exception ): pass
+    #
+    lTopDirs = listdir( ITEM_PICS_ROOT )
+    #
+    try:
+        #
+        for sTopDir in lTopDirs:
+            #
+            sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
+            #
+            for s2ndTier in listdir( sTopDirFullPath ):
+                #
+                s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
+                #
+                if isfile( s2ndTierFullPath ): continue # should be dir only
+                #
+                for s3rdTier in listdir( s2ndTierFullPath ):
+                    #
+                    s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
+                    #
+                    if not isfile( s3rdTierFullPath ): continue # only want files
+                    #
+                    sItemNumb = s3rdTier.split('-')[0]
+                    #
+                    print( s3rdTierFullPath )
+                    sSubDir = _getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+                    print( sSubDir )
+                    #
+                    raise Finished4Now
+                #
+            #
+    except Finished4Now:
+        pass
+    #
+
+
+
+
+
+
 
 
 
