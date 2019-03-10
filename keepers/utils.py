@@ -487,7 +487,7 @@ def _getPicExtension( sURL ):
     return sExtn.lower()
 
 
-def _getItemPicsSubDir( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+def getItemPicsSubDir( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
     sItemNumb = str( uItemNumb )
     #
@@ -536,42 +536,37 @@ def movePicsLower():
     #
     '''now putting pics deeper, move existing pics'''
     #
-    from os         import listdir
+    from os         import listdir, rename
     from os.path    import isfile, join
-    #
-    class Finished4Now( Exception ): pass
     #
     lTopDirs = listdir( ITEM_PICS_ROOT )
     #
-    try:
+    for sTopDir in lTopDirs:
         #
-        for sTopDir in lTopDirs:
+        sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
+        #
+        for s2ndTier in listdir( sTopDirFullPath ):
             #
-            sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
+            s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
             #
-            for s2ndTier in listdir( sTopDirFullPath ):
+            if isfile( s2ndTierFullPath ): continue # should be dir only
+            #
+            for s3rdTier in listdir( s2ndTierFullPath ):
                 #
-                s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
+                s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
                 #
-                if isfile( s2ndTierFullPath ): continue # should be dir only
+                if not isfile( s3rdTierFullPath ): continue # only want files
                 #
-                for s3rdTier in listdir( s2ndTierFullPath ):
-                    #
-                    s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
-                    #
-                    if not isfile( s3rdTierFullPath ): continue # only want files
-                    #
-                    sItemNumb = s3rdTier.split('-')[0]
-                    #
-                    print( s3rdTierFullPath )
-                    sSubDir = _getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
-                    print( sSubDir )
-                    #
-                    raise Finished4Now
+                sItemNumb = s3rdTier.split('-')[0]
+                #
+                sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+                #
+                sWantMoved = join( sSubDir, s3rdTier )
+                #
+                rename( s3rdTierFullPath, sWantMoved )
                 #
             #
-    except Finished4Now:
-        pass
+        #
     #
 
 
@@ -586,7 +581,7 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
     oItem = Keeper.objects.get( iItemNumb = iItemNumb )
     #
-    sSubDir = _getItemPicsSubDir( iItemNumb, sItemPicsRoot )
+    sSubDir = getItemPicsSubDir( iItemNumb, sItemPicsRoot )
     #
     lWantPics = [ s for s in oItem.cPictureURLs.split() if isURL( s ) ]
     #
