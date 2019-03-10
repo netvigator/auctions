@@ -16,6 +16,8 @@ from core.utils_ebay    import getValueOffItemDict
 
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
+from keepers.utils      import ITEM_PICS_ROOT, getItemPicsSubDir
+
 from .models            import ItemFound, UserItemFound, SearchLog, Search
 from .utilsearch        import ( getSearchResultGenerator, getPagination,
                                  storeItemInfo, SearchGotZeroResults,
@@ -665,3 +667,57 @@ def storeSearchResultsInDB( iLogID,
         #
     #
     return iItems, iStoreItems, iStoreUsers
+
+
+def deleteUserItem( iItemNumb, oUser ):
+    #
+    from glob       import glob
+    from os         import listdir, remove
+    from os.path    import isfile, join
+    #
+    qsDumpThese = UserItemFound.objects.filter(
+                    iItemNumb = iItemNumb, iUser = oUser )
+    #
+    print( 'len( qsDumpThese ):', len( qsDumpThese ) )
+    #
+    sItemNumb = str( iItemNumb )
+    #
+    sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+    #
+    sFileSpec = '%s*' % join( sSubDir, sItemNumb )
+    #
+    print( 'sFileSpec:', sFileSpec )
+    #
+    lFiles = glob( sFileSpec )
+    #
+    #
+    print( 'found %s files for item %s' % ( len( lFiles ), iItemNumb ) )
+    #
+    qsOtherUsersForThis = UserItemFound.objects.filter(
+                    iItemNumb = iItemNumb ).exclude(
+                    iUser     = oUser)
+    #
+    if qsOtherUsersForThis:
+        #
+        print( 'got other users for item %s' % iItemNumb )
+        #
+        # pass # keep the pictures and ItemFound row
+        #
+    else:
+        #
+        for sFile in lFiles:
+            #
+            print( 'would delete %s' % sFile )
+            #
+            # remove( sFile )
+            #
+        #
+        print( 'ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()' )
+        #
+        # ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()
+        #
+
+
+
+
+
