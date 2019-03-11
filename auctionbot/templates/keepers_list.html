@@ -1,5 +1,7 @@
 <div style="margin-left:20px;margin-top:20px">
   {% if keepers_list %}
+      <form action="" method="post">
+      {% csrf_token %}
       <h4>Recent {{ object.cTitle }} Keepers</h4>
       <table>
       <tr>
@@ -45,6 +47,7 @@
           </td>
         </TR>
       </table>
+      </form>
 
   {% else %}
       No Keepers for {{ object.cTitle }} yet!
