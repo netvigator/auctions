@@ -85,10 +85,14 @@ class Category(models.Model):
         #
         oUser = request.user
         #
-        qsUserItems = UserItemFound.objects.filter(
+        qsUserItems = (
+            UserItemFound.objects.filter(
                 iUser       = oUser,
                 iCategory   = oCategory
-                    ).values_list( 'iItemNumb_id', flat=True )
+                                ).exclude(
+                    bListExclude = True
+                                ).values_list(
+                        'iItemNumb_id', flat=True ) )
         #
         oItems = Keeper.objects.filter(
                 iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
