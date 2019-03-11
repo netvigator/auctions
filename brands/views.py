@@ -16,6 +16,7 @@ from .models            import Brand
 
 from categories.models  import Category, BrandCategory
 from models.models      import Model
+from keepers.utils      import deleteKeeperUserItem
 
 # ### keep views thin! ###
 
@@ -71,6 +72,21 @@ class BrandDetailView( DetailViewGotModel ):
         #
         return context
 
+    def post(self, request, *args, **kwargs):
+
+        url = request.build_absolute_uri()
+        #
+        if 'submit' in request.POST:
+            #
+            setTrash = tuple( request.POST.getlist('bTrashThis') )
+            #
+            for sItemNumb in setTrash:
+                #
+                deleteKeeperUserItem( sItemNumb, self.request.user )
+                #
+            #
+        #
+        return HttpResponseRedirect( url )
 
 
 class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
