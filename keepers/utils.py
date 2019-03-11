@@ -7,12 +7,13 @@ from django.conf            import settings
 from django.utils           import timezone
 
 from core.ebay_api_calls    import getSingleItem
+from core.utils             import getPriorDateTime
 
 # in __init__.py
 from keepers            import EBAY_ITEMS_FOLDER, dItemFields as dFields
 
 from .forms             import KeeperForm
-from .models            import Keeper
+from .models            import Keeper, KeeperImage
 
 from core.utils         import getDownloadFileWriteToDisk
 from core.utils_ebay    import getValueOffItemDict
@@ -660,4 +661,111 @@ def getItemsForPicsDownloading( iLimit = 50 ):
                     )[ : iLimit ]
     #
     return qsGetPics
+
+
+
+def deleteKeeperUserItem( uItemNumb, oUser ):
+    #
+    from glob       import glob
+    from os         import listdir, remove
+    from os.path    import isfile, join
+    #
+    sItemNumb = str( uItemNumb )
+    iItemNumb = int( uItemNumb )
+    #
+    tYesterday = getPriorDateTime( iDaysAgo = 1 )
+    #
+    bTooNewToDelete = False
+    #
+    qsItem = ItemFound.objects.filter( iItemNumb = iItemNumb )
+    #
+    if qsItem:
+        #
+        bTooNewToDelete = qsItem[0].tTimeEnd >= tYesterday
+        #
+    #
+    qsDumpThese = UserItemFound.objects.filter(
+                    iItemNumb = iItemNumb, iUser = oUser )
+    #
+    print( 'len( qsDumpThese ):', len( qsDumpThese ) )
+    #
+    sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+    #
+    sFileSpec = '%s*' % join( sSubDir, sItemNumb )
+    #
+    print( 'sFileSpec:', sFileSpec )
+    #
+    lFiles = glob( sFileSpec )
+    #
+    #
+    print( 'found %s files for item %s' % ( len( lFiles ), iItemNumb ) )
+    #
+    if bTooNewToDelete:
+        #
+        print( 'too early to delete UserItem:', iItemNumb )
+        #
+    #
+    qsOtherUsersForThis = UserItemFound.objects.filter(
+                iItemNumb = iItemNumb, bListExclude = False ).exclude(
+                iUser     = oUser)
+    #
+    if qsOtherUsersForThis:
+        #
+        print( 'got other user who wants item %s' % iItemNumb )
+        #
+        # pass # keep the pictures and ItemFound row
+        #
+    else:
+        #
+        if lFiles:
+            #
+            lFiles.sort()
+            #
+            for sFile in lFiles:
+                #
+                print( 'would delete %s' % sFile )
+                #
+                # remove( sFile )
+                #
+            #
+            print( 'KeeperImage.objects.filter(' )
+            print( '        iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+            #
+            # KeeperImage.objects.filter(
+            #         iItemNumb = iItemNumb, iUser = oUser ).delete()
+            #
+        #
+        if bTooNewToDelete:
+            #
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
+            #
+            print( 'too new to delete, instead would call queryset '
+                   'update method setting bListExclude to True' )
+            #
+            # UserItemFound.objects.filter(
+            #     iItemNumb = iItemNumb, iUser = oUser
+            #         ).update( bListExclude = True )
+            #
+        else:
+            #
+            print( 'ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()' )
+            #
+            # ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()
+            #
+            print( 'UserItemFound.objects.filter(' )
+            print( '    iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+            #
+            # UserItemFound.objects.filter(
+            #    iItemNumb = iItemNumb, iUser = oUser ).delete()
+            #
+        #
+        print( 'Keeper.objects.filter( iItemNumb = iItemNumb ).delete()' )
+        #
+        # Keeper.objects.filter( iItemNumb = iItemNumb ).delete()
+        #
+
+
+
 
