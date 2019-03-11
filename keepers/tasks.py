@@ -8,14 +8,13 @@ from time                   import sleep
 from django.contrib.auth    import get_user_model
 from django.db              import connection
 from django.db.models       import Q
-from django.utils           import timezone
 
 from celery                 import shared_task
 from celery.schedules       import crontab
 
 #from auctionbot             import celery_app as app # app = Celery()
 
-from core.utils             import sayIsoDateTimeNoTimeZone
+from core.utils             import sayIsoDateTimeNoTimeZone, getPriorDateTime
 
 from .models                import Keeper
 from .utils                 import ( getSingleItemThenStore,
@@ -89,10 +88,10 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     # carry on, fetch final results
     #
-    tYesterday = timezone.now() - timezone.timedelta( 1 )
+    tYesterday = getPriorDateTime( iDaysAgo = 1 )
     #
     iOldCutOff = 100
-    tOldItems  = timezone.now() - timezone.timedelta( iOldCutOff )
+    tOldItems  = getPriorDateTime( iDaysAgo = iOldCutOff )
     #
     qsItemsFinal = ItemFound.objects.filter(
                 tTimeEnd__lte = tYesterday,
