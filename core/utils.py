@@ -174,6 +174,11 @@ def sayDuration( tBeg ):
     print( 'Duration:', lDuration[0] )
 
 
+def getPriorDateTime( iDaysAgo = 1 ):
+    #
+    return timezone.now() - timezone.timedelta( iDaysAgo )
+
+
 def getShrinkItemURL( sURL ):
     #
     lParts = sURL.split( '/' )
