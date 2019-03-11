@@ -124,9 +124,13 @@ class Model( models.Model ):
         #
         oUser = request.user
         #
-        qsUserItems = UserItemFound.objects.filter(
+        qsUserItems = (
+            UserItemFound.objects.filter(
                 iUser  = oUser,
-                iModel = oModel ).values_list( 'iItemNumb_id', flat=True )
+                iModel = oModel ).exclude(
+                    bListExclude = True
+                                ).values_list(
+                        'iItemNumb_id', flat=True ) )
         #
         oItems = Keeper.objects.filter(
                 iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
