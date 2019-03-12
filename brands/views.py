@@ -52,7 +52,6 @@ class BrandDetailView( DetailViewGotModelAlsoPost ):
     model   = Brand
     template_name = 'brands/detail.html'
 
-
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(BrandDetailView, self).get_context_data(**kwargs)
@@ -68,8 +67,7 @@ class BrandDetailView( DetailViewGotModelAlsoPost ):
         context['models_list'    ] = \
             self.object.getModelsForBrand(    self.object )
         #
-        context['keepers_list'] = \
-            self.object.getItemsForBrand( self.object, self.request )
+        # in DetailViewGotModelAlsoPost: context['keepers_list'] = oItems
         #
         return context
 
