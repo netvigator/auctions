@@ -7,8 +7,9 @@ from core.mixins        import ( WereAnyReleventRegExColsChangedMixin,
                                  TitleSearchMixin )
 
 from core.views         import (
-                    CreateViewCanCancel, DeleteViewGotModel,
-                    DetailViewGotModel, ListViewGotModel, UpdateViewCanCancel )
+                            CreateViewCanCancel, DeleteViewGotModel,
+                            ListViewGotModel, UpdateViewCanCancel,
+                            DetailViewGotModelAlsoPost )
 
 from .forms             import CreateModelForm, UpdateModelForm
 from .models            import Model
@@ -26,7 +27,7 @@ class ModelIndexView( GetPaginationExtraInfoInContext, TitleSearchMixin,
 
 
 
-class ModelDetailView( DetailViewGotModel ):
+class ModelDetailView( DetailViewGotModelAlsoPost ):
 
     model   = Model
     template_name = 'models/detail.html'
