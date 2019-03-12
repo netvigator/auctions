@@ -5,9 +5,10 @@ from django.urls            import reverse_lazy
 from core.mixins            import ( WereAnyReleventRegExColsChangedMixin,
                                      TitleSearchMixin )
 from core.utils             import model_to_dict
-from core.views         import (
-                    CreateViewCanCancel, DeleteViewGotModel,
-                    DetailViewGotModel,  ListViewGotModel, UpdateViewCanCancel )
+from core.views             import (
+                                CreateViewCanCancel, DeleteViewGotModel,
+                                ListViewGotModel, UpdateViewCanCancel,
+                                DetailViewGotModelAlsoPost )
 
 from .forms             import CreateBrandForm, UpdateBrandForm
 from .mixins            import ( GetContextForBrandCategoryList,
@@ -46,7 +47,7 @@ class BrandDeleteView( DeleteViewGotModel ):
 
 
 
-class BrandDetailView( DetailViewGotModel ):
+class BrandDetailView( DetailViewGotModelAlsoPost ):
 
     model   = Brand
     template_name = 'brands/detail.html'
@@ -72,21 +73,6 @@ class BrandDetailView( DetailViewGotModel ):
         #
         return context
 
-    def post(self, request, *args, **kwargs):
-
-        url = request.build_absolute_uri()
-        #
-        if 'submit' in request.POST:
-            #
-            setTrash = tuple( request.POST.getlist('bTrashThis') )
-            #
-            for sItemNumb in setTrash:
-                #
-                deleteKeeperUserItem( sItemNumb, self.request.user )
-                #
-            #
-        #
-        return HttpResponseRedirect( url )
 
 
 class BrandUpdateView( WereAnyReleventRegExColsChangedMixin,
