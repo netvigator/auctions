@@ -28,14 +28,6 @@ class CategoryDetailView( DetailViewGotModelAlsoPost ):
     model   = Category
     template_name = 'categories/detail.html'
 
-    def get_context_data(self, **kwargs):
-        #
-        context = super( CategoryDetailView, self).get_context_data(**kwargs )
-        #
-        context['keepers_list'] = \
-            self.object.getItemsForCategory( self.object, self.request )
-        #
-        return context
 
 
 class CategoryCreateView( CreateViewCanCancel ):
