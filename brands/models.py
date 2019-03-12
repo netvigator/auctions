@@ -4,19 +4,21 @@ from django.core.exceptions     import FieldDoesNotExist
 
 # Create your models here.
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from django.contrib.auth        import get_user_model
 
 from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sLookForHelpText, sExcludeIfHelpText )
 
+from core.mixins                import GetKeepersForSomething
+
 from core.utils                 import getReverseWithUpdatedQuery
 
+User = get_user_model()
 
 # ### models can be FAT but not too FAT! ###
 
 
-class Brand(models.Model):
+class Brand( GetKeepersForSomething, models.Model ):
     cTitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True,
         help_text = sTitleHelpText % 'brand' )
@@ -89,12 +91,10 @@ class Brand(models.Model):
         #
         return l
 
-    def getItemsForBrand( self, oBrand, request ):
+
+    def getUserItemsForThis( self, oBrand, oUser ):
         #
         from searching.models import UserItemFound
-        from keepers.models   import Keeper
-        #
-        oUser = request.user
         #
         qsUserItems = (
             UserItemFound.objects.filter(
@@ -104,10 +104,8 @@ class Brand(models.Model):
                                 ).values_list(
                         'iItemNumb_id', flat=True ) )
         #
-        oItems = Keeper.objects.filter(
-                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
-        #
-        return oItems
+        return qsUserItems
+
 
 
 
