@@ -6,8 +6,9 @@ from django.urls        import reverse_lazy
 from core.mixins        import WereAnyReleventRegExColsChangedMixin
 
 from core.views         import (
-                    CreateViewCanCancel, DeleteViewGotModel,
-                    DetailViewGotModel,  ListViewGotModel, UpdateViewCanCancel )
+                            CreateViewCanCancel, DeleteViewGotModel,
+                            ListViewGotModel, UpdateViewCanCancel,
+                            DetailViewGotModelAlsoPost )
 
 from .forms             import UpdateCategoryForm, CreateCategoryForm
 from .models            import Category
@@ -22,7 +23,7 @@ class CategoryIndexView( ListViewGotModel ):
     paginate_by = 100
 
 
-class CategoryDetailView( DetailViewGotModel ):
+class CategoryDetailView( DetailViewGotModelAlsoPost ):
 
     model   = Category
     template_name = 'categories/detail.html'
