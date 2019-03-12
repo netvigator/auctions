@@ -21,7 +21,7 @@ from ..models           import Keeper
 from ..utils            import ( _storeJsonSingleItemResponse,
                                  getSingleItemThenStore,
                                  getItemsFoundForUpdate,
-                                 _getItemPicsSubDir,
+                                 getItemPicsSubDir,
                                  _getPicExtension,
                                  _getPicFileNameExtn,
                                  ITEM_PICS_ROOT,
@@ -82,7 +82,7 @@ class GeneratePathFileNameExtensionTests( AssertEmptyMixin, TestCase ):
         #
         iItemNumb = 253313715173
         #
-        sSubDir = _getItemPicsSubDir( iItemNumb, '/tmp' )
+        sSubDir = getItemPicsSubDir( iItemNumb, '/tmp' )
         #
         self.assertEqual( sSubDir, '/tmp/25/33/13/71' )
         #
@@ -268,7 +268,7 @@ class GetAndStoreSingleItemsTests(
         #
         lPicURLS = oItem.cPictureURLs.split()
         #
-        sItemPicsSubDir = _getItemPicsSubDir(
+        sItemPicsSubDir = getItemPicsSubDir(
                                 iItemNumb, PIC_TEST_DIR )
         #
         lResults = []
@@ -313,7 +313,7 @@ class GetAndStoreSingleItemsTests(
         #
         self.assertGreater( oItem.iGotPictures, 2 )
         #
-        sItemPicsDir = _getItemPicsSubDir( iItemNumb, PIC_TEST_DIR )
+        sItemPicsDir = getItemPicsSubDir( iItemNumb, PIC_TEST_DIR )
         #
         setFilesNames = frozenset( listdir( sItemPicsDir ) )
         #
