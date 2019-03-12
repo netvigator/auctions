@@ -113,6 +113,8 @@ class DetailViewGotModel( LoginRequiredMixin,
 
 class DetailViewGotModelAlsoPost( DetailViewGotModel ):
 
+    '''detail view for Brands, Categories & Models shows Keepers'''
+
     def post(self, request, *args, **kwargs):
 
         url = request.build_absolute_uri()
@@ -128,3 +130,22 @@ class DetailViewGotModelAlsoPost( DetailViewGotModel ):
             #
         #
         return HttpResponseRedirect( url )
+
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(
+            DetailViewGotModelAlsoPost, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the categories
+        #
+        t = self.object.getKeepersForThis( self.object, self.request )
+        #
+        sHowMany, iUserItems, oItems = t
+        #
+        context['keepers_list'] = oItems
+        context['sHowMany']     = sHowMany
+        #
+        return context
+
+
+
