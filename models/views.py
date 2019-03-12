@@ -32,14 +32,6 @@ class ModelDetailView( DetailViewGotModelAlsoPost ):
     model   = Model
     template_name = 'models/detail.html'
 
-    def get_context_data(self, **kwargs):
-        #
-        context = super( ModelDetailView, self).get_context_data(**kwargs )
-        #
-        context['keepers_list'] = \
-            self.object.getItemsForModel( self.object, self.request )
-        #
-        return context
 
 
 class ModelCreateView( CreateViewCanCancel ):
