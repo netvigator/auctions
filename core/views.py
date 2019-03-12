@@ -109,3 +109,22 @@ class DetailViewGotModel( LoginRequiredMixin,
 
     pass
 
+
+
+class DetailViewGotModelAlsoPost( DetailViewGotModel ):
+
+    def post(self, request, *args, **kwargs):
+
+        url = request.build_absolute_uri()
+        #
+        if 'submit' in request.POST:
+            #
+            setTrash = tuple( request.POST.getlist('bTrashThis') )
+            #
+            for sItemNumb in setTrash:
+                #
+                deleteKeeperUserItem( sItemNumb, self.request.user )
+                #
+            #
+        #
+        return HttpResponseRedirect( url )
