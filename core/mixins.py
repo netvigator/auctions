@@ -258,3 +258,34 @@ class GetPaginationExtraInfoInContext( object ):
         return context
 
 
+class GetKeepersForSomething( object ):
+    '''get keepers for Brand, Category or Model, DRY'''
+
+    def getKeepersForThis( self, oThis, request ):
+        #
+        from keepers.models   import Keeper
+        #
+        oUser = request.user
+        #
+        qsUserItems = self.getUserItemsForThis( oThis, oUser )
+        #
+        iUserItems = len( qsUserItems )
+        #
+        if iUserItems > 50:
+            #
+            sHowMany = 'Recent'
+            #
+            oItems = Keeper.objects.filter(
+                iItemNumb__in = qsUserItems ).order_by(
+                    '-tTimeEnd' )[ : 20 ]
+            #
+        else:
+            #
+            sHowMany = 'All'
+            #
+            oItems = Keeper.objects.filter(
+                iItemNumb__in = qsUserItems ).order_by(
+                    '-tTimeEnd' )
+            #
+        #
+        return sHowMany, len( qsUserItems ), oItems
