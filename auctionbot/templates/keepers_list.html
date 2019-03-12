@@ -2,7 +2,7 @@
   {% if keepers_list %}
       <form action="" method="post">
       {% csrf_token %}
-      <h4>Recent {{ object.cTitle }} Keepers</h4>
+      <h4>{{ sHowMany }} {{ object.cTitle }} Keepers</h4>
       <table>
       <tr>
       <th><i class="fas fa-trash-alt"></i></th><TD>&nbsp;&nbsp;&nbsp;</TD>
@@ -43,7 +43,7 @@
           </td>
           <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td>
-              After selecting items, you must hit Submit or all changes will be lost!
+              After selecting items for the trash, you must hit Submit or all changes will be lost!
           </td>
         </TR>
       </table>
