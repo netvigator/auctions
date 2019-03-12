@@ -1,19 +1,22 @@
 from django.db                  import models
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from django.contrib.auth        import get_user_model
 
 from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sKeyWordsHelpText, sLookForHelpText,
                                          sExcludeIfHelpText )
 
+from core.mixins                import GetKeepersForSomething
+
 from core.utils                 import getReverseWithUpdatedQuery
 
 from brands.models              import Brand
 
+User = get_user_model()
+
 # ### models can be FAT but not too FAT! ###
 
-class Category(models.Model):
+class Category( GetKeepersForSomething, models.Model ):
     cTitle          = models.CharField(
                         'category description',
                         max_length = 48, db_index = True,
@@ -78,12 +81,9 @@ class Category(models.Model):
         unique_together     = ('cTitle','iUser')
 
 
-    def getItemsForCategory( self, oCategory, request ):
+    def getUserItemsForThis( self, oCategory, oUser ):
         #
         from searching.models import UserItemFound
-        from keepers.models   import Keeper
-        #
-        oUser = request.user
         #
         qsUserItems = (
             UserItemFound.objects.filter(
@@ -94,10 +94,7 @@ class Category(models.Model):
                                 ).values_list(
                         'iItemNumb_id', flat=True ) )
         #
-        oItems = Keeper.objects.filter(
-                iItemNumb__in = qsUserItems ).order_by( '-tTimeEnd' )[ : 20 ]
-        #
-        return oItems
+        return qsUserItems
 
 
     def get_absolute_url(self):
