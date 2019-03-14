@@ -341,6 +341,7 @@ sModels = \
  D-130              |           |      7 | f            | JBL               |       Driver | 130         |
  D-130A             |           |      7 | f            | JBL               |       Driver | 130A        |
  D-130B             |           |      7 | f            | JBL               |       Driver | 130B        |
+ LE5-5              |           |      5 | t            | JBL               |       Driver |             |
  1217-1290          |           |      7 | f            | JBL               |         Horn |             |
  H5040              |           |      7 | f            | JBL               |         Horn |             |
  N2400              |           |      6 | f            | JBL               |    Crossover |             |
@@ -623,6 +624,23 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["293004871422"],
+              "title":["Jbl L65 Jubal Le5-12 Mids Pair Working Nice! See Pictures"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mx1gcC1mBLST_B8i3qWAYpg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Jbl-L65-Jubal-Le5-5-Mids-Pair-Working-Nice-See-Pictures-\/293004871422"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["08096"],
+              "location":["Woodbury,NJ,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"100.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"100.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT5H38M58S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2019-03-13T02:46:55.000Z"],"endTime":["2019-03-20T02:46:55.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["254154293727"],
               "title":["vintage klipsch Lascalas"],
