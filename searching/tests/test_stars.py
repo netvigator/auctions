@@ -1274,7 +1274,25 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsTests ):
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
         # s/n find Marantz Model 1 !!!
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Marantz' )
+        self.assertIsNone( oTest.iModel )
+        self.assertIsNone( oTest.iCategory )
+        #
+        iThisOne = 293004871422
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
+        # should find LE-5
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'LE5-5' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
 
