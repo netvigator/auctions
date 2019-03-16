@@ -6,15 +6,14 @@
     <p/>
     <table>
     <tr>
-        <th>include?</th><th>&nbsp;&nbsp;&nbsp;</th><th>Category</th>
+        <th>include?</th><th>Category</th>
     </tr>
-    
+
     {% for category in all_categories_list %}
         <tr>
             <td><input class="checkbox" name="bIncluded" type="checkbox"
                 value={{ category.id }}
                 {% if category.bIncluded %}checked{% endif %}></td>
-            <td>&nbsp;&nbsp;&nbsp;</td>
             <td>{{ category.cTitle }}</td>
             <td><input name="IncludedSet" type="checkbox" style="display:none;"
                 class="HIDDEN" value={{ category.id }}
