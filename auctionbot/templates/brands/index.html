@@ -13,22 +13,16 @@
         <tr>
         <th ALIGN=LEFT>Brand Name</th>
         <th ALIGN=LEFT>Wanted?</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Want everything?</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Nationality</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>comment</th>
         </tr>
         {% for brand in brand_list %}
             <tr>
             <td><a href="{{ brand.get_absolute_url }}/">{{ brand.cTitle }}</a></td>
             <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
-            <TD></TD>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
-            <TD></TD>
             <td>{{ brand.cNationality.name|getNbsp }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ brand.cComment|getDashForReturn|truncatechars:60 }}</td>
             </tr>
         {% endfor %}
