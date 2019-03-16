@@ -13,61 +13,50 @@
     </div>
     <!-- End Action buttons -->
 
-    <table RULES=ROWS CELLPADDING=10>
+    <table RULES=ROWS>
     <TR>
-        <TD width = 300>{% field_name model 'cTitle' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
+        <TD>{% field_name model 'cTitle' %}</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'bWanted' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.bWanted|yesno:"Yes,No" }}</TD>
+        <TD>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'bAllOfInterest' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
+        <TD>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
-        <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cLookFor|getDashForReturn}}</TD>
+        <TD>{% field_name model 'cLookFor' %}</TD>
+        <TD>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
     <TR>
-        <TD width = 300>{% field_name model 'iStars' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iStars}}</TD>
+        <TD>{% field_name model 'iStars' %}</TD>
+        <TD>{{object.iStars}}</TD>
     </TR>
     <TR>
-        <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cComment|getDashForReturn}}</TD>
+        <TD>{% field_name model 'cComment' %}</TD>
+        <TD>{{object.cComment|getDashForReturn}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'cNationality' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.cNationality.name }}</TD>
+        <TD>{{ object.cNationality.name }}</TD>
     </TR>
     <TR>
-        <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.cExcludeIf|getDashForReturn}}</TD>
+        <TD>{% field_name model 'cExcludeIf' %}</TD>
+        <TD>{{object.cExcludeIf|getDashForReturn}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'iUser' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iUser}}</TD>
+        <TD>{{object.iUser}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tCreate' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
+        <TD>{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tModify' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
+        <TD>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
 
@@ -104,7 +93,6 @@
             <tr>
                 <td><a href="{{ model.get_absolute_url }}">
                     {{ model }}</a></td>
-                <TD>&nbsp;&nbsp;&nbsp;</TD>
                 <td>{{category}}</td>
             </tr>
         {% endfor %}
