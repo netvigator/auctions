@@ -698,7 +698,7 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
     lFiles = glob( sFileSpec )
     #
     #
-    print( 'found %s files for item %s' % ( len( lFiles ), iItemNumb ) )
+    print( 'found %s files for item %s' % ( len( lFiles ), sItemNumb ) )
     #
     if bTooNewToDelete:
         #
