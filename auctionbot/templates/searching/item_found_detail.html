@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load field_name %}
 {% load getDashForReturn %}
+{% load getNbsp %}
 
 {% block title %}Item Found {{ object.iItemNumb.cTitle }}{% endblock %}
 
@@ -13,216 +14,172 @@
         {% include "./items_found_actions.html" %}
     </div>
     <!-- End Action buttons -->
+    <hr>
 
-    <table RULES=ROWS CELLPADDING=10>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cListingType' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cListingType}}</TD>
+    <table>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cListingType' %}</TD>
+        <TD>{{object.iItemNumb.cListingType}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'iItemNumb' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>
+        <TD>
               <a href="https://www.ebay.com/itm/{{object.iItemNumb.iItemNumb}}/">
                       {{ object.iItemNumb.iItemNumb }}</a></TD>
 
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cLocation' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cLocation}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cLocation' %}</TD>
+        <TD>{{object.iItemNumb.cLocation}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cCountry' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cCountry}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cCountry' %}</TD>
+        <TD>{{object.iItemNumb.cCountry}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'cMarket' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iItemNumb.cMarket }}</TD>
+        <TD>{{ object.iItemNumb.cMarket }}</TD>
     </TR>
     <tr>
-        <td>{% field_name model 'iModel' %}:</td>
-        <td>&nbsp;&nbsp;</td>
-        <td>
-          <table>
-          <tr>
-          <td WIDTH=200><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
-          <td>{% if object.iModel %}{{ object.iModel.iStars }} stars{% endif %}</td>
-          </tr>
-          </table>
+        <td NOWRAP>
+          {% field_name model 'iModel' %}:
+          <br>
+          {% field_name model 'iBrand' %}
+          <br>
+          {% field_name model 'iCategory' %}
+          <br>
+          {% field_name model 'iHitStars' %}
         </td>
-    </tr>
-    <tr>
-        <td>{% field_name model 'iBrand' %}:</td>
-        <td>&nbsp;&nbsp;</td>
         <td>
           <table>
-          <tr>
-          <td WIDTH=200><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
-          <td>{% if object.iBrand %}{{ object.iBrand.iStars }} stars{% endif %}</td>
-          </tr>
-          </table>
-        </td>
-    </tr>
-    <tr>
-        <td>{% field_name model 'iCategory' %}:</td>
-        <td>&nbsp;&nbsp;</td>
-        <td>
-          <table>
-          <tr>
-          <td WIDTH=200><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
-          <td>{% if object.iCategory %}{{ object.iCategory.iStars }} stars{% endif %}</td>
-          </tr>
+            <tr>
+              <td NOWRAP><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
+              <td>{% if object.iModel %}{{ object.iModel.iStars }} stars{% endif %}</td>
+            </tr>
+            <tr>
+              <td NOWRAP><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
+              <td>{% if object.iBrand %}{{ object.iBrand.iStars }} stars{% endif %}</td>
+            </tr>
+            <tr>
+              <td NOWRAP><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
+              <td>{% if object.iCategory %}{{ object.iCategory.iStars }} stars{% endif %}</td>
+            </tr>
+            <tr>
+              <td>{{ object.iHitStars }}</td>
+              <td>{{ object.iModel.iStars | default:"no model found" }} *
+                  {{ object.iBrand.iStars |default:"no brand found" }} *
+                  {{ object.iCategory.iStars | default:"no category found" }}</td>
+            </tr>
           </table>
         </td>
     </tr>
     <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cGalleryURL' %}:</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
+        <TD>{% field_name parent 'cGalleryURL' %}:</TD>
+        <TD><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
     </TR>
-    <tr>
-        <td>{% field_name model 'iHitStars' %}:</td>
-        <td>&nbsp;&nbsp;</td>
-        <td>
-          <table>
-          <tr>
-          <td WIDTH=200>{{ object.iHitStars }}</td>
-          <td>{{ object.iModel.iStars | default:"no model found" }} *
-              {{ object.iBrand.iStars |default:"no brand found" }} *
-              {{ object.iCategory.iStars | default:"no category found" }}</td>
-          </tr>
-          </table>
-        </td>
-    </tr>
     <tr>
         <td>{% field_name parent 'iShippingType' %}:</td>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iItemNumb.get_iShippingType_display }}</TD>
+
+        <TD>{{ object.iItemNumb.get_iShippingType_display }}</TD>
         </td>
     </tr>
     <tr>
         <td>Other Hits for this Item:</td>
-        <td>&nbsp;&nbsp;</td>
         <td>
         {{ OtherHits | safe }}
         </td>
     </tr>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'lCurrentPrice' %} ({{object.iItemNumb.lLocalCurrency}})</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
     </TR>
     {% if object.iItemNumb.lLocalCurrency != "USD" %}
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'dCurrentPrice' %}:</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
     {% endif %}
     <tr>
         <td>{% field_name model 'bGetPictures' %}:</td>
-        <td>&nbsp;&nbsp;</td>
         <td>{{ object.bGetPictures|yesno:"Yes,No" }}</td>
     </tr>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cEbayItemURL' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP><A HREF="{{object.iItemNumb.cEbayItemURL}}">{{object.iItemNumb.cEbayItemURL}}</A></TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cEbayItemURL' %}</TD>
+
+        <TD><A HREF="{{object.iItemNumb.cEbayItemURL}}">{{object.iItemNumb.cEbayItemURL}}</A></TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'tTimeBeg' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.tTimeBeg|date:"d M Y  P"}}</TD>
+        <TD>{{object.iItemNumb.tTimeBeg|date:"d M Y  P"}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'tTimeEnd' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.tTimeEnd|date:"d M Y  P"}}</TD>
+        <TD>{{object.iItemNumb.tTimeEnd|date:"d M Y  P"}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'bBestOfferable' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iItemNumb.bBestOfferable|yesno:"Yes,No" }}</TD>
+        <TD>{{ object.iItemNumb.bBestOfferable|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'bBuyItNowable' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iItemNumb.bBuyItNowable|yesno:"Yes,No" }}</TD>
+        <TD>{{ object.iItemNumb.bBuyItNowable|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'lLocalCurrency' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.lLocalCurrency}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'lLocalCurrency' %}</TD>
+        <TD>{{object.iItemNumb.lLocalCurrency}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'lCurrentPrice' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.lCurrentPrice}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'lCurrentPrice' %}</TD>
+        <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'dCurrentPrice' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.dCurrentPrice}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'dCurrentPrice' %}</TD>
+        <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
-    <!-- <TR>
-        <TD VALIGN=TOP>{% field_name parent 'iCategoryID' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.iCategoryID}}</TD>
+    <!-- <TR VALIGN=TOP>
+        <TD>{% field_name parent 'iCategoryID' %}</TD>
+        <TD>{{object.iItemNumb.iCategoryID}}</TD>
     </TR>-->
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cCategory' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cCategory}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cCategory' %}</TD>
+        <TD>{{object.iItemNumb.cCategory}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'iCatHeirarchy' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy|getDashForReturn }}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'iCatHeirarchy' %}</TD>
+        <TD>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy | getDashForReturn }}</TD>
     </TR>
-    <!-- <TR>
-        <TD VALIGN=TOP>{% field_name parent 'i2ndCategoryID' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.i2ndCategoryID}}</TD>
+    <!-- <TR VALIGN=TOP>
+        <TD>{% field_name parent 'i2ndCategoryID' %}</TD>
+        <TD>{{object.iItemNumb.i2ndCategoryID}}</TD>
     </TR>-->
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'c2ndCategory' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.c2ndCategory}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'c2ndCategory' %}</TD>
+        <TD>{{object.iItemNumb.c2ndCategory}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
+        <TD>{{object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'iConditionID' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.iConditionID}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'iConditionID' %}</TD>
+        <TD>{{object.iItemNumb.iConditionID}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cCondition' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cCondition}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cCondition' %}</TD>
+        <TD>{{object.iItemNumb.cCondition}}</TD>
     </TR>
-    <TR>
-        <TD VALIGN=TOP>{% field_name parent 'cSellingState' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.cSellingState}}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name parent 'cSellingState' %}</TD>
+        <TD>{{object.iItemNumb.cSellingState}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name parent 'tCreate' %}</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
-        <TD VALIGN=TOP>{{object.iItemNumb.tCreate|date:"d M Y  P"}}</TD>
+        <TD>{{object.iItemNumb.tCreate|date:"d M Y  P"}}</TD>
     </TR>
     </TR>
     </table>
 
-    <p>
-
+    <hr>
     <!-- Action buttons -->
     <div class="basic">
         {% include "./items_found_actions.html" %}
