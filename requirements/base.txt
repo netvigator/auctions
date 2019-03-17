@@ -38,27 +38,27 @@ django-crispy-forms==1.7.2
 django-model-utils==3.1.2
 
 # Images
-Pillow==5.3.0
+Pillow==5.4.1
 
 # Password storage
-argon2-cffi==18.3.0
+argon2-cffi==19.1.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.38.0
+django-allauth==0.39.1
 
 
 # Python-PostgreSQL Database Adapter
 # psycopg2==2.7.6.1
 # UserWarning: The psycopg2 wheel package will be renamed from release 2.8
 # in order to keep installing from binary please use "pip install psycopg2-binary" instead.
-psycopg2-binary==2.7.6.1
+psycopg2-binary==2.7.7
 
 # Unicode slugification
 awesome-slugify==1.6.5
 
 # Time zones support
-pytz==2018.7
+pytz==2018.9
 
 # Redis support
 django-redis==4.10.0
@@ -70,7 +70,7 @@ redis==2.10.6
 
 # Your custom requirements go here
 
-django-countries==5.3.2
+django-countries==5.3.3
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -79,9 +79,9 @@ django-countries==5.3.2
 
 
 # for the ebay API
-lxml==4.2.5
-requests==2.20.1
-requests[security]==2.20.1
+lxml==4.3.2
+requests==2.21.0
+requests[security]==2.21.0
 
 
 # to handle the ebay category lists
