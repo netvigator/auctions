@@ -1,24 +1,20 @@
 <table>
 <TR ALIGN=MIDDLE>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:edit" pk=search.id %}'>
             <input class='btn btn-primary btn-blue' type="submit" value=" edit " />
         </form>
     </td>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:delete" pk=search.id %}'>
             <input class='btn btn-primary btn-blue' type="submit" value=" delete " />
         </form>
     </td>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:add" %}'>
             <input class='btn btn-primary btn-blue' type="submit" value=" add a new search " />
         </form>
     </td>
-    <TD>&nbsp;&nbsp;&nbsp;</TD>
     <td>
         <form action='{% url "searching:index" %}'>
             <input class='btn btn-primary btn-blue' type="submit" value=" go to search list " />
