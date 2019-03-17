@@ -23,13 +23,9 @@
         <table class="bottomBorder">
         <tr>
         <th ALIGN=LEFT>Model Name/Number</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Brand</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Category</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Stars</th>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <th ALIGN=LEFT>Comment</th>
         </tr>
         {% for model in object_list %}
@@ -37,13 +33,9 @@
             <td><a href="{{ model.get_absolute_url }}">
                 {{ model.cTitle|getNbsp }}</a>
             </td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.iBrand.cTitle|getNbsp }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.iCategory.cTitle|getNbsp }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.iStars}}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ model.cComment|getDashForReturn|truncatechars:45}}</td>
             </tr>
         {% endfor %}
