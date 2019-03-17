@@ -13,57 +13,58 @@
         {% include "./actions.html" %}
     </div>
     <!-- End Action buttons -->
+    <hr>
 
-    <table RULES=ROWS>
-    <TR>
+    <table>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cTitle' %}</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cKeyWords' %}</TD>
         <TD>{{object.cKeyWords|getDashForReturn}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD VALIGN=TOP>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iStars' %}</TD>
         <TD VALIGN=TOP>{{object.iStars}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bAllOfInterest' %}</TD>
         <TD VALIGN=TOP>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bWantPair' %}</TD>
         <TD VALIGN=TOP>{{ object.bWantPair|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bComponent' %}</TD>
         <TD VALIGN=TOP>{{ object.bComponent|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iFamily' %}</TD>
         <TD VALIGN=TOP>{{ object.iFamily}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bModelsShared' %}</TD>
         <TD VALIGN=TOP>{{ object.bModelsShared|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD VALIGN=TOP>{{object.cExcludeIf|getDashForReturn}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iUser' %}</TD>
         <TD VALIGN=TOP>{{object.iUser}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'tCreate' %}</TD>
         <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'tModify' %}</TD>
         <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
@@ -83,7 +84,7 @@
 
     <!-- Keepers List -->
     <div class="basic">
-        {% include "../keepers_list.html" %}
+        {% include "../keepers/keepers_list_under_detail.html" %}
     </div>
 
 </div>
