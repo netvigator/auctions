@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Auction Shopping Bot | Searching{% endblock %}
 
-{% block content %} 
+{% block content %}
 
     <h1>Searches</h1>
 
@@ -14,29 +14,19 @@
         <table>
         <tr>
         <th ALIGN=LEFT>Search Name</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>ebay category</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>priority</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>key words</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>last search start</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
         <th ALIGN=LEFT>last search end</th>
         </tr>
         {% for search in search_list %}
             <tr>
             <td><a href="{{ search.get_absolute_url }}/">{{ search.cTitle }}</a></td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.iEbayCategory.name }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.cPriority }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.cKeyWords|truncatechars:65 }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.tBegSearch|date:'Y-m-d H:i:s' }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ search.tEndSearch|date:'Y-m-d H:i:s' }}</td>
             </tr>
         {% endfor %}
