@@ -12,49 +12,50 @@
         {% include "./actions.html" %}
     </div>
     <!-- End Action buttons -->
+    <hr>
 
-    <table RULES=ROWS>
-    <TR>
+    <table>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cTitle' %}</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bWanted' %}</TD>
         <TD>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bAllOfInterest' %}</TD>
         <TD>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cLookFor' %}</TD>
         <TD>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iStars' %}</TD>
         <TD>{{object.iStars}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cComment' %}</TD>
         <TD>{{object.cComment|getDashForReturn}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cNationality' %}</TD>
         <TD>{{ object.cNationality.name }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'cExcludeIf' %}</TD>
         <TD>{{object.cExcludeIf|getDashForReturn}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iUser' %}</TD>
         <TD>{{object.iUser}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'tCreate' %}</TD>
         <TD>{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'tModify' %}</TD>
         <TD>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
@@ -103,7 +104,7 @@
 
     <!-- Keepers List -->
     <div class="basic">
-        {% include "../keepers_list.html" %}
+        {% include "../keepers/keepers_list_under_detail.html" %}
     </div>
 
 {% endblock %}
