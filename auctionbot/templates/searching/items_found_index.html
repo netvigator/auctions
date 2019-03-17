@@ -19,21 +19,14 @@
         <div class="list-group">
         <table class="bottomBorder">
         <tr>
-        <th ALIGN=LEFT>get<p>pics</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th><i class="fas fa-trash-alt"></i></th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>ebay item</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>title</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>market</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>type</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th ALIGN=LEFT>ending</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th><i class="far fa-star"></i></th>
+          <th ALIGN=LEFT>get<p>pics</th>
+          <th><i class="fas fa-trash-alt"></i></th>
+          <th ALIGN=LEFT>ebay item</th>
+          <th ALIGN=LEFT>title</th>
+          <th ALIGN=LEFT>market</th>
+          <th ALIGN=LEFT>type</th>
+          <th ALIGN=LEFT>ending</th>
+          <th><i class="far fa-star"></i></th>
         </tr>
         {% for item in items_found_list %}
             <tr>
@@ -41,22 +34,15 @@
             <TD><input class="checkbox" name="bGetPictures" type="checkbox"
                     value={{ item.iItemNumb_id }} {% if item.bGetPictures %}checked{% endif %}></td>
             <!--<TD><INPUT TYPE="CHECKBOX" VALUE="{{ item.bGetPictures }}"></TD>-->
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <!--<td><input type="checkbox" value="{{ item.id }} name='delete'"></td>-->
             <TD><input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}></td>
             <!--<TD><INPUT TYPE="CHECKBOX" VALUE="{{ item.bListExclude }}"></TD>-->
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td><a href="https://www.ebay.com/itm/{{item.iItemNumb.iItemNumb}}/">
                             {{ item.iItemNumb.iItemNumb }}</a></td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td><a href="{{ item.get_absolute_url }}">{{ item.iItemNumb.cTitle }}</a></td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iItemNumb.cMarket }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iItemNumb.cListingType }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
-            <TD>&nbsp;&nbsp;&nbsp;</TD>
             <td>{{ item.iHitStars }}</td>
             <TD><input name="PicsSet" type="checkbox" style="display:none;"
                  class="HIDDEN" value={{ item.iItemNumb_id }}
