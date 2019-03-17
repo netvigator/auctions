@@ -3,38 +3,31 @@
         <td>
             <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
         </td>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <td>
             <input class='btn btn-primary btn-blue' type="submit" name="selectall" value=" Select All " />
         </td>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>filter items:</TD>
         <!--<TD>-->
             <!--<form action='{% url "searching:items_found_index" select='A' %}'>-->
                 <!--<input type="submit" value=" all " />-->
             <!--</form>-->
         <!--</TD>-->
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>
             <form action='{% url "searching:items_found_index" select='P' %}'>
                 <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
             </form>
         </TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>
             <form action='{% url "searching:items_found_index" select='D' %}'>
                 <input class='btn btn-primary btn-blue' class='btn btn-primary btn-blue' type="submit" value=" deleted " />
             </form>
         </TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>
             <form action='{% url "searching:items_found_index" select='Z' %}'>
                 <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
             </form>
         </TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <TD>go to page:</TD>
-        <TD>&nbsp;&nbsp;&nbsp;</TD>
         <td>
             {% if is_paginated %}
                 <hr>
