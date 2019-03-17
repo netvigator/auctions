@@ -5,30 +5,24 @@
       <h4>{{ sHowMany }} {{ object.cTitle }} Keepers</h4>
       <table>
       <tr>
-      <th><i class="fas fa-trash-alt"></i></th><TD>&nbsp;&nbsp;&nbsp;</TD>
-      <td>Item Number</td><TD>&nbsp;&nbsp;&nbsp;</TD>
-      <td>Title</td><TD>&nbsp;&nbsp;&nbsp;</TD>
-      <td ALIGN=RIGHT>Price</td><TD>&nbsp;&nbsp;&nbsp;</TD>
-      <td ALIGN=RIGHT>Bid Count</td><TD>&nbsp;&nbsp;&nbsp;</TD>
-      <td ALIGN=RIGHT>Status</td><TD>&nbsp;&nbsp;&nbsp;</TD>
+      <th><i class="fas fa-trash-alt"></i></th>
+      <td>Item Number</td>
+      <td>Title</td>
+      <td ALIGN=RIGHT>Price</td>
+      <td ALIGN=RIGHT>Bid Count</td>
+      <td ALIGN=RIGHT>Status</td>
       <td ALIGN=RIGHT>End Date</td>
       </tr>
       {% for keeper in keepers_list %}
           <tr>
           <TD VALIGN=TOP><input class="checkbox" name="bTrashThis" type="checkbox" value={{ keeper.iItemNumb }}></td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td VALIGN=TOP>
             <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
             {{ keeper.iItemNumb }}</a></td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td VALIGN=TOP><a href="{{ keeper.get_absolute_url }}">{{ keeper.cTitle }}</a></td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.dConvertPrice }}</td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
-          <td  ALIGN=RIGHT VALIGN=TOP>{{ keeper.iBidCount }}</td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
-          <td  ALIGN=RIGHT VALIGN=TOP>{{ keeper.cListingStatus }}</td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
+          <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.iBidCount }}</td>
+          <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.cListingStatus }}</td>
           <td VALIGN=TOP>
             <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
           </td>
@@ -41,7 +35,6 @@
           <td>
               <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
           </td>
-          <TD>&nbsp;&nbsp;&nbsp;</TD>
           <td>
               After selecting items for the trash, you must hit Submit or all changes will be lost!
           </td>
