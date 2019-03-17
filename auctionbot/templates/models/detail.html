@@ -14,93 +14,94 @@
         {% include "./actions.html" %}
     </div>
     <!-- End Action buttons -->
+    <hr>
 
-    <table RULES=ROWS CELLPADDING=10>
-    <TR>
-        <TD width = 300>{% field_name model 'cTitle' %}</TD>
+    <table>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cTitle' %}</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iBrand' %}</TD>
         <TD VALIGN=TOP>{{ object.iBrand|default_if_none:"" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iCategory' %}</TD>
         <TD VALIGN=TOP>{{ object.iCategory }}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cKeyWords' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cKeyWords' %}</TD>
         <TD>{{object.cKeyWords|getDashForReturn}}</TD>
     </TR>
-    <TR>
-        <TD width = 300 VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
+    <TR VALIGN=TOP>
+        <TD VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
         <TD VALIGN=TOP>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'iStars' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'iStars' %}</TD>
         <TD VALIGN=TOP>{{object.iStars}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bSubModelsOK' %}</TD>
         <TD VALIGN=TOP>{{ object.bSubModelsOK|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bMustHaveBrand' %}</TD>
         <TD VALIGN=TOP>{{ object.bMustHaveBrand|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bWanted' %}</TD>
         <TD VALIGN=TOP>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bGenericModel' %}</TD>
         <TD VALIGN=TOP>{{ object.bGenericModel|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bGetPictures' %}</TD>
         <TD VALIGN=TOP>{{ object.bGetPictures|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'bGetDescription' %}</TD>
         <TD VALIGN=TOP>{{ object.bGetDescription|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
         <TD VALIGN=TOP>{{object.cComment|getDashForReturn}}</TD>
     </TR>
-    <TR>
-        <TD width = 300 VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
+    <TR VALIGN=TOP>
+        <TD VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
         <TD VALIGN=TOP>{{object.cExcludeIf|getDashForReturn }}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cFileSpec1' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cFileSpec1' %}</TD>
         <TD VALIGN=TOP>{{object.cFileSpec1|default_if_none:"" }}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cFileSpec2' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cFileSpec2' %}</TD>
         <TD VALIGN=TOP>{{object.cFileSpec2|default_if_none:"" }}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cFileSpec3' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cFileSpec3' %}</TD>
         <TD VALIGN=TOP>{{object.cFileSpec3|default_if_none:"" }}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cFileSpec4' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cFileSpec4' %}</TD>
         <TD VALIGN=TOP>{{object.cFileSpec4|default_if_none:"" }}</TD>
     </TR>
-    <TR>
-        <TD width = 300>{% field_name model 'cFileSpec5' %}</TD>
+    <TR VALIGN=TOP>
+        <TD>{% field_name model 'cFileSpec5' %}</TD>
         <TD VALIGN=TOP>{{object.cFileSpec5|default_if_none:"" }}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'iUser' %}</TD>
         <TD VALIGN=TOP>{{object.iUser}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'tCreate' %}</TD>
         <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
-    <TR>
+    <TR VALIGN=TOP>
         <TD>{% field_name model 'tModify' %}</TD>
         <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
@@ -117,7 +118,7 @@
 
     <!-- Keepers List -->
     <div class="basic">
-        {% include "../keepers_list.html" %}
+        {% include "../keepers/keepers_list_under_detail.html" %}
     </div>
 
     <p/>
