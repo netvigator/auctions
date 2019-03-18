@@ -59,7 +59,7 @@ def getItemHitsLog( sPathFile ):
     #
     for lParts in oHitsLogIter:
         #
-        dRow = dict( 
+        dRow = dict(
                 iItemNumb   = lParts[ d['iItemNumb'] ],
                 tTimeEnd    = lParts[ d['tTimeEnd' ] ],
                 iHitStars   = lParts[ d['iHitStars'] ] )
@@ -76,7 +76,7 @@ def updateHitLogFile( oUserItems, sPathHere ):
     #
     sHitLogFile = join( sPathHere, 'ItemHitsLog.log' )
     sHitLogBack = join( sPathHere, 'ItemHitsLog.bak' )
-    #            
+    #
     if not isFileThere( sHitLogFile ):
         #
         QuietDump( sItemHitLog, sHitLogFile )
@@ -98,24 +98,28 @@ def updateHitLogFile( oUserItems, sPathHere ):
     #
     iNew = 0
     #
-    for oItemHit in oUserItems:
+    tTargetStars = ( 400, 350, 300, 250, 200 )
+    #
+    for iTargetStars in tTargetStars:
         #
-        if oItemHit.iItemNumb_id in setItemNumbsAlready: continue
-        #
-        if oItemHit.iHitStars < 400: continue
-        #
-        dRow = dict(
-            iItemNumb   = str(      oItemHit.iItemNumb_id ),
-            tTimeEnd    = getIsoDT( oItemHit.iItemNumb.tTimeEnd ),
-            iHitStars   = str(      oItemHit.iHitStars ) )
-        #
-        lItemHits.append( dRow )
-        #
-        setItemNumbsAlready.add( oItemHit.iItemNumb_id )
-        #
-        iNew += 1
-        #
-        if iNew >= 5: break
+        for oItemHit in oUserItems:
+            #
+            if oItemHit.iItemNumb_id in setItemNumbsAlready: continue
+            #
+            if oItemHit.iHitStars < iTargetStars: continue
+            #
+            dRow = dict(
+                iItemNumb   = str(      oItemHit.iItemNumb_id ),
+                tTimeEnd    = getIsoDT( oItemHit.iItemNumb.tTimeEnd ),
+                iHitStars   = str(      oItemHit.iHitStars ) )
+            #
+            lItemHits.append( dRow )
+            #
+            setItemNumbsAlready.add( oItemHit.iItemNumb_id )
+            #
+            iNew += 1
+            #
+            if iNew >= 5: break
         #
     #
     if iNew > 0:
