@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load field_name %}
-{% load getDashForReturn %}
+{% load getDashForReturnButDropLast %}
+
 {% load getNbsp %}
 
 {% block title %}Item Found {{ object.iItemNumb.cTitle }}{% endblock %}
@@ -146,20 +147,20 @@
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name parent 'iCatHeirarchy' %}</TD>
-        <TD>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy | getDashForReturn }}</TD>
+        <TD>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy | getDashForReturnButDropLast }}</TD>
     </TR>
-    <!-- <TR VALIGN=TOP>
-        <TD>{% field_name parent 'i2ndCategoryID' %}</TD>
-        <TD>{{object.iItemNumb.i2ndCategoryID}}</TD>
-    </TR>-->
-    <TR VALIGN=TOP>
-        <TD>{% field_name parent 'c2ndCategory' %}</TD>
-        <TD>{{object.iItemNumb.c2ndCategory}}</TD>
-    </TR>
-    <TR VALIGN=TOP>
-        <TD>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
-        <TD>{{object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy}}</TD>
-    </TR>
+
+    {% if object.iItemNumb.c2ndCategory %}
+      <TR VALIGN=TOP>
+          <TD>{% field_name parent 'c2ndCategory' %}</TD>
+          <TD>{{object.iItemNumb.c2ndCategory}}</TD>
+      </TR>
+      <TR VALIGN=TOP>
+          <TD>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
+          <TD>{{ object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy | getDashForReturnButDropLast }}</TD>
+      </TR>
+    {% endif %}
+
     <TR VALIGN=TOP>
         <TD>{% field_name parent 'iConditionID' %}</TD>
         <TD>{{object.iItemNumb.iConditionID}}</TD>
