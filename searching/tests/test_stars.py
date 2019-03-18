@@ -17,7 +17,7 @@ from .test_utils        import GetBrandsCategoriesModelsSetUp
 
 from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
                                  findSearchHits, _getRowRegExpressions,
-                                 getInParens )
+                                 getInParens, _getRelevantTitle )
 
 from searching.tests    import iRecordStepsForThis
 
@@ -1675,3 +1675,52 @@ class GetTextInParensTest( TestCase ):
         self.assertEqual( getInParens( s1 ), '6L6WGB' )
         #
         self.assertIsNone( getInParens( s2 ) )
+
+
+
+class GetRelevantTitleTests( TestCase ):
+    #
+    def test_get_relevant_title( self ):
+        #
+        sWantTitle = "ALTEC LANSING 311-90 Horn"
+        sFullTitle = "ALTEC LANSING 311-90 Horn for 288 290 291 292 299 drivers"
+        #
+        sRetnTitle = _getRelevantTitle( sFullTitle ).strip()
+        #
+        self.assertEqual( sRetnTitle, sWantTitle )
+        #
+        sFullTitle = "ALTEC LANSING 311-90 Horn fits Voice of Theather Speaker System"
+        #
+        sRetnTitle = _getRelevantTitle( sFullTitle ).strip()
+        #
+        self.assertEqual( sRetnTitle, sWantTitle )
+        #
+        sFullTitle = "ALTEC LANSING 311-90 Horn from Voice of Theather Speaker System"
+        #
+        sRetnTitle = _getRelevantTitle( sFullTitle ).strip()
+        #
+        self.assertEqual( sRetnTitle, sWantTitle )
+        #
+        sFullTitle = "ALTEC LANSING 311-90 Horn used with Voice of Theather Speaker System"
+        #
+        sRetnTitle = _getRelevantTitle( sFullTitle ).strip()
+        #
+        self.assertEqual( sRetnTitle, sWantTitle )
+        #
+        #
+        sWantTitle = "Supreme TV-7 TUBE TESTER military vintage"
+        sFullTitle = "Supreme TV-7 TUBE TESTER military vintage test western electric 300b"
+        #
+        sRetnTitle = _getRelevantTitle( sFullTitle ).strip()
+        #
+        self.assertEqual( sRetnTitle, sWantTitle )
+        #
+        #
+        sWantTitle = "PIONEER / LAFAYETTE HW-7 SUPER HORN TWEETER -"
+        sFullTitle = "PIONEER / LAFAYETTE HW-7 SUPER HORN TWEETER - similar to Jensen RP302"
+        #
+        sRetnTitle = _getRelevantTitle( sFullTitle ).strip()
+        #
+        self.assertEqual( sRetnTitle, sWantTitle )
+        #
+
