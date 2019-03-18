@@ -341,8 +341,19 @@ def _gotFullStringOrSubStringOfListItem( s, l ):
 
 
 
+_oDropAfterThisFinder = getRegExObj(
+        r' (?:\bfor\b|'
+            r'\bfits\b|'
+            r'\btests*\b|'
+            r'\btested (?:on|with)\b|'
+            r'\bfrom\b)|'
+            r'\bused with\b|'
+            r'\bsimilar to\b' ) # formerly oForFitsFinder
 
-_oForFitsFinder = getRegExObj( r' (?:\bfor\b|\bfits\b|\btests*\b|\bfrom\b)' )
+def _getRelevantTitle( sTitle ):
+    #
+    return _oDropAfterThisFinder.split( sTitle )[0]
+
 
 
 def findSearchHits(
@@ -500,7 +511,7 @@ def findSearchHits(
         # if title includes for or fits, consider the part in front,
         # not what follows
         #
-        sRelevantTitle = _oForFitsFinder.split( oItem.cTitle )[0]
+        sRelevantTitle = _getRelevantTitle( oItem.cTitle )
         #
         if bRecordSteps and len( oItem.cTitle ) > len( sRelevantTitle ):
             #
