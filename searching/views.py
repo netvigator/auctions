@@ -268,16 +268,13 @@ class ItemFoundDetailView( DetailViewGotModel ):
         #
         if qsThisItemOtherHits:
             #
-            sTableTemplate = '<table RULES=ROWS CELLPADDING=3>%s</table>'
+            sTableTemplate = '<table RULES=ROWS>%s</table>'
             #
             sRowTemplate = (
                 '<TR>'
                 '<TD VALIGN=TOP>%s</TD>'
-                '<TD>&nbsp;&nbsp;</TD>'
                 '<TD VALIGN=TOP>%s</TD>'
-                '<TD>&nbsp;&nbsp;</TD>'
                 '<TD VALIGN=TOP>%s</TD>'
-                '<TD>&nbsp;&nbsp;</TD>'
                 '<TD VALIGN=TOP>%s%s</TD>'
                 '</TR>' )
             #
