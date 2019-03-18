@@ -1,7 +1,10 @@
 from django import template
 from django.utils.safestring import mark_safe
 
+from String.Find import oFinderCRorLF
 from Time.Output import getIsoDateTimeFromDateTime
+
+# ### if you add a tag, you must register it in config/settings.base!!! ###
 
 register = template.Library()
 
@@ -28,9 +31,32 @@ def getDashForReturn( s ):
     '''html rendering ignores return characters, substitute dashes'''
     #
     if s:
-        return s.replace( '\r', ' - ' )
+        #
+        l = oFinderCRorLF.split( s )
+        #
+        return ' - '.join( l )
+        #
     else:
         return '' # run replace on None and you get an error
+
+
+
+@register.filter()
+def getDashForReturnButDropLast( s ):
+    #
+    '''html rendering ignores return characters, substitute dashes,
+       but drop what is after the last return character'''
+    #
+    if s:
+        #
+        l = oFinderCRorLF.split( s )
+        #
+        return ' - '.join( l[:-1] )
+        #
+    else:
+        #
+        return '' # run replace on None and you get an error
+
 
 
 @register.simple_tag
