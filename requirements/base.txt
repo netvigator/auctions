@@ -63,8 +63,8 @@ pytz==2018.9
 # Redis support
 django-redis==4.10.0
 # pin redis 3 crashes celery
-redis==2.10.6
-
+# redis==2.10.6
+redis==3.2.1
 
 
 
@@ -104,3 +104,7 @@ django-timezone-field==3.0
 # need menus
 # django-menu==0.1.13
 # should consider carefully
+
+# celery cannot start
+# https://github.com/pydanny/cookiecutter-django/issues/1954
+kombu==4.3.0
