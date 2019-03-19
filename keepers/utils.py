@@ -533,42 +533,43 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
     return sResult
 
 
-def movePicsLower():
-    #
-    '''now putting pics deeper, move existing pics'''
-    #
-    from os         import listdir, rename
-    from os.path    import isfile, join
-    #
-    lTopDirs = listdir( ITEM_PICS_ROOT )
-    #
-    for sTopDir in lTopDirs:
-        #
-        sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
-        #
-        for s2ndTier in listdir( sTopDirFullPath ):
-            #
-            s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
-            #
-            if isfile( s2ndTierFullPath ): continue # should be dir only
-            #
-            for s3rdTier in listdir( s2ndTierFullPath ):
-                #
-                s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
-                #
-                if not isfile( s3rdTierFullPath ): continue # only want files
-                #
-                sItemNumb = s3rdTier.split('-')[0]
-                #
-                sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
-                #
-                sWantMoved = join( sSubDir, s3rdTier )
-                #
-                rename( s3rdTierFullPath, sWantMoved )
-                #
-            #
-        #
-    #
+# one off change 2019-03-08 or thereabouts
+#def movePicsLower():
+#    #
+#    '''now putting pics deeper, move existing pics'''
+#    #
+#    from os         import listdir, rename
+#    from os.path    import isfile, join
+#    #
+#    lTopDirs = listdir( ITEM_PICS_ROOT )
+#    #
+#    for sTopDir in lTopDirs:
+#        #
+#        sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
+#        #
+#        for s2ndTier in listdir( sTopDirFullPath ):
+#            #
+#            s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
+#            #
+#            if isfile( s2ndTierFullPath ): continue # should be dir only
+#            #
+#            for s3rdTier in listdir( s2ndTierFullPath ):
+#                #
+#                s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
+#                #
+#                if not isfile( s3rdTierFullPath ): continue # only want files
+#                #
+#                sItemNumb = s3rdTier.split('-')[0]
+#                #
+#                sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+#                #
+#                sWantMoved = join( sSubDir, s3rdTier )
+#                #
+#                rename( s3rdTierFullPath, sWantMoved )
+#                #
+#            #
+#        #
+#    #
 
 
 
