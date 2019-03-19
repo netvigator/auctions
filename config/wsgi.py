@@ -20,10 +20,16 @@ from django.core.wsgi import get_wsgi_application
 
 # This allows easy placement of apps within the interior
 # auctionbot directory.
-# app_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
 app_path = os.path.dirname(os.path.dirname(__file__))
-# sys.path.append(os.path.join(app_path, 'auctionbot'))
 sys.path.append( app_path )
+
+# appending py3_path enhancement suggested by:
+# https://www.metaltoad.com/blog/hosting-django-sites-apache
+
+py3_path = os.path.join(
+        app_path.replace( 'Devel', '.virtualenvs' ), 'bin/python' )
+
+sys.path.append( py3_path )
 
 # if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
 if 'APACHE_RUN_USER' in os.environ:
@@ -39,7 +45,18 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
-application = get_wsgi_application()
+
+# try/except enhancement suggested by:
+# https://www.metaltoad.com/blog/hosting-django-sites-apache
+
+try:
+    application = get_wsgi_application()
+except Exception:
+    # Error loading applications
+    if 'mod_wsgi' in sys.modules:
+        traceback.print_exc()
+        os.kill(os.getpid(), signal.SIGINT)
+        time.sleep(2.5)
 
 #if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
 if 'APACHE_RUN_USER' in os.environ:
