@@ -2,10 +2,11 @@ from django.contrib.auth    import get_user_model
 from django.core.urlresolvers import reverse
 from django.db.utils        import IntegrityError
 from django.http.request    import HttpRequest
-from django.test            import TestCase, RequestFactory
+from django.test            import RequestFactory
 from django.test.client     import Client
 
 from django_webtest         import WebTest
+from test_plus.test         import TestCase as TestCasePlus
 
 from config.settings.base   import LOGIN_URL
 
@@ -19,6 +20,22 @@ from ebayinfo               import ( EBAY_US_CURRENT_VERSION,
 from ebayinfo.models        import EbayCategory, Market
 
 from String.Find            import getRegExObj
+
+
+class TestCase( TestCasePlus ):
+    """subclass of test_plus.test TestCase
+    allows implementation of project specific helper methods"""
+    #
+    pass
+
+
+class PlusUserTestCase( TestCase ):
+
+    def setUp(self):
+        #
+        self.user1 = self.make_user( 'u1' )
+        self.user2 = self.make_user( 'u2' )
+
 
 
 oFindColumnSplits          = getRegExObj( r'(?: \|)|(?:\| )' )
