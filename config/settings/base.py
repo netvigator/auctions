@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 '''
 
 import environ
+import os
 import sys
 
 from logging import getLogger
@@ -398,5 +399,5 @@ countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States',
                                          'AN':'Netherlands Antilles' }
 
 # code can know if a test is being run
-TESTING = len(sys.argv) > 1 and 'test' in sys.argv[1]
-
+TESTING  = len(sys.argv) > 1 and 'test' in sys.argv[1]
+COVERAGE = '_' in os.environ and os.environ['_'].endswith( 'coverage' )
