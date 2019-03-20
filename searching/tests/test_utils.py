@@ -429,7 +429,7 @@ class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
         #
         self.assertIsNotNone( oItem.cGalleryURL )
         #
-        
+
 
 
 
@@ -954,7 +954,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         #
 
 
-    @tag('ebay_api')
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_key_word_only_search_store_results( self ):
         #
         '''test key words only search
@@ -1026,7 +1026,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-    @tag('ebay_api')
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_category_only_search_store_results( self ):
         #
         '''test category only search
