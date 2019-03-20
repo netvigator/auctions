@@ -2,6 +2,7 @@ from copy                   import copy
 
 from collections            import OrderedDict
 
+from django.conf            import settings
 from django.db.models       import Q, Max
 from django.contrib.auth    import get_user_model
 from django.utils           import timezone
@@ -268,18 +269,20 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 def _printHitSearchSteps( oItem, dFindSteps ):
     #
-    print('')
-    print('Item %s Hit Search Steps:' % oItem.iItemNumb )
-    print(' %s' % oItem.cTitle )
-    #
-    for k, v in dFindSteps.items():
+    if not settings.COVERAGE:
         #
-        print( '  %s' % k )
+        print('')
+        print('Item %s Hit Search Steps:' % oItem.iItemNumb )
+        print(' %s' % oItem.cTitle )
         #
-        for s in v:
+        for k, v in dFindSteps.items():
             #
-            print( '    %s' % s )
+            print( '  %s' % k )
             #
+            for s in v:
+                #
+                print( '    %s' % s )
+                #
 
 def getTitleOrNone( o ):
     #
