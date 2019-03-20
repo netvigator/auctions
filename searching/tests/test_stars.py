@@ -2,8 +2,8 @@
 
 from os.path            import join
 
+from django.conf        import settings
 from django.core.urlresolvers import reverse
-
 from django.test        import TestCase
 from django.utils       import timezone
 
@@ -57,7 +57,14 @@ class SetUpForHitStarsTests( PutSearchResultsInDatabase ):
     #
     def setUp( self ):
         #
+        global iRecordStepsForThis
+        #
         super( SetUpForHitStarsTests, self ).setUp()
+        #
+        if settings.COVERAGE and not iRecordStepsForThis:
+            #
+            iRecordStepsForThis = 122990519283
+            #
         #
         # bCleanUpAfterYourself must be False or tests will fail!
         # iRecordStepsForThis imported from __init__.py
