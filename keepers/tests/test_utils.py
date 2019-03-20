@@ -257,7 +257,7 @@ class GetAndStoreSingleItemsTests(
         # if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
         #
 
-    @tag('ebay_api')
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_get_item_picture_hidden( self ):
         #
         iItemNumb = self.iItemNumb
@@ -296,7 +296,7 @@ class GetAndStoreSingleItemsTests(
         if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
         #
 
-    @tag('ebay_api')
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_get_item_pictures_importable( self ):
         #
         iItemNumb = self.iItemNumb
