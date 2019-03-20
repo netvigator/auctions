@@ -221,7 +221,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
 
 
-    @tag('ebay_api')
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def hold_test_got_current_category_version_list( self ):
         #
         from random import randrange
@@ -248,7 +248,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
         #
 
-    @tag('ebay_api')
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def hold_test_check_whether_any_ebay_market_list_is_updated( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
