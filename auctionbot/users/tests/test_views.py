@@ -1,16 +1,11 @@
 from django.test        import RequestFactory
 
-from test_plus.test     import TestCase as TestPlusCase
+from core.utils_test    import getDefaultMarket, TestCasePlus
 
-from core.utils_test    import getDefaultMarket
-
-from ..views import (
-    UserRedirectView,
-    UserUpdateView
-)
+from ..views            import UserRedirectView, UserUpdateView
 
 
-class BaseUserTestPlusCase( TestPlusCase ):
+class BaseUserTestCasePlus( TestCasePlus ):
 
     def setUp(self):
         self.market = getDefaultMarket()
@@ -18,7 +13,7 @@ class BaseUserTestPlusCase( TestPlusCase ):
         self.factory= RequestFactory()
 
 
-class TestUserRedirectView( BaseUserTestPlusCase ):
+class TestUserRedirectView( BaseUserTestCasePlus ):
 
     def test_get_redirect_url(self):
         # Instantiate the view directly. Never do this outside a test!
@@ -37,10 +32,10 @@ class TestUserRedirectView( BaseUserTestPlusCase ):
         )
 
 
-class TestUserUpdateView( BaseUserTestPlusCase ):
+class TestUserUpdateView( BaseUserTestCasePlus ):
 
     def setUp(self):
-        # call BaseUserTestPlusCase.setUp()
+        # call BaseUserTestCasePlus.setUp()
         super(TestUserUpdateView, self).setUp()
         # Instantiate the view directly. Never do this outside a test!
         self.view = UserUpdateView()
