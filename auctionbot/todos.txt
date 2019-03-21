@@ -251,7 +251,7 @@ need to gracefully handle search failure when internet non-functioning
 should handle more gracefully:
 
 ======================================================================
-ERROR: test_get_single_active_item_then_store (keepers.tests.test_utils.GetAndStoreSingleItemsTests)
+ERROR: test_get_single_active_item_then_store (keepers.tests.test_utils.GetAndStoreSingleItemsWebTests)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "/home/rick/Devel/auctions/keepers/tests/test_utils.py", line 199, in setUp

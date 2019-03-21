@@ -1,4 +1,3 @@
-from django.test        import TestCase
 from django.utils       import timezone
 
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
@@ -7,6 +6,8 @@ from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getShrinkItemURL )
 from ..utils_test       import ( getUrlQueryStringOff,
                                  queryGotUpdated )
+
+from core.utils_test    import TestCasePlus
 
 from ebayinfo           import EBAY_US_CURRENT_VERSION
 
@@ -20,7 +21,7 @@ from Time.Test          import isISOdatetime
 
 
 
-class DateTimeTests(TestCase):
+class DateTimeTests( TestCasePlus ):
     '''date time function tests'''
 
     def test_getIsoDateTimeOffDateTimeCol(self):
@@ -51,7 +52,7 @@ class DateTimeTests(TestCase):
         self.assertFalse( queryGotUpdated( tParts[0] ) )
 
 
-class textProcessingTests(TestCase):
+class textProcessingTests( TestCasePlus ):
     '''text processing tests'''
 
     def test_getWhatsNotInParens(self):
