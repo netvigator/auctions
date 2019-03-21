@@ -2,7 +2,7 @@ import logging
 
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserTestCase
+from core.utils_test            import BaseUserWebTestCase
 
 from core.utils                 import getExceptionMessageFromResponse
 
@@ -10,11 +10,11 @@ from ..models                   import Category
 from ..views                    import CategoryCreateView
 
 
-class CategoryViewsTests(BaseUserTestCase):
+class CategoryViewsTests( BaseUserWebTestCase ):
     """Category views tests."""
-    
+
     urls = '.urls'
-    
+
     def test_no_categories_yet(self):
         #
         """
@@ -24,22 +24,22 @@ class CategoryViewsTests(BaseUserTestCase):
         #
         response = self.client.get(reverse('categories:index'))
         #response = self.client.get('/categories/')
-        
+
         #pprint( 'printing response:')
         #pprint( response )
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['category_list'], [])
         self.assertContains(response, "No categories are available.")
-    
-        
+
+
     def test_got_categories(self):
         #
         """
         If categories exist, an appropriate message is displayed.
         """
         logging.disable(logging.CRITICAL)
-        
+
         self.client.login(username ='username1', password='mypassword')
         #
         oCategory = Category( cTitle = "Widgets", iUser = self.user1 )
@@ -51,7 +51,7 @@ class CategoryViewsTests(BaseUserTestCase):
 
         response = self.client.get(reverse('categories:index'))
         #response = self.client.get('/categories/')
-        
+
         #pprint( 'printing response:')
         #pprint( response )
 
@@ -60,17 +60,17 @@ class CategoryViewsTests(BaseUserTestCase):
                 ['<Category: Widgets>', '<Category: Gadget>'],
                 ordered=False )
         self.assertContains(response, "Gadget")
-        
+
         #print( 'iGadgetID:', iGadgetID )
-        
+
         response = self.client.get(
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Gadget")
-        
+
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
-        
+
         response = self.client.get(
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
 
@@ -81,7 +81,7 @@ class CategoryViewsTests(BaseUserTestCase):
 
         self.client.logout()
         self.client.login(username='username3', password='mypassword')
-        
+
         response = self.client.get(
                 reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
         self.assertEqual(response.status_code, 200)
@@ -99,7 +99,7 @@ class CategoryViewsTests(BaseUserTestCase):
 
 
 
-class CategoryViewsHitButtons(BaseUserTestCase):
+class CategoryViewsHitButtons( BaseUserWebTestCase ):
     """
     Test Save and Cancel
     """
