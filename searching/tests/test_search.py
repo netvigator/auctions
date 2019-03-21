@@ -1,13 +1,15 @@
 from os.path            import join
 
-from django.core.urlresolvers   import reverse
+from django.core.urlresolvers import reverse
+
 from django.db.models   import Max
 from django.http        import HttpResponseRedirect
-from django.test        import TestCase
 from django.urls        import reverse_lazy
 
 from core.utils_test    import ( setup_view_for_tests,
-                                 GetEbayCategoriesWebTestSetUp, AssertEmptyMixin )
+                                 GetEbayCategoriesWebTestSetUp,
+                                 AssertEmptyMixin )
+
 from core.utils         import getShrinkItemURL
 
 from searching          import RESULTS_FILE_NAME_PATTERN
