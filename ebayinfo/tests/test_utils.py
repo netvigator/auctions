@@ -4,7 +4,7 @@ from django.db      import DataError
 from django.test    import TestCase, tag
 
 from core.utils     import updateMemoryTableUpdated
-from core.utils_test import getDefaultMarket, getEbayCategoriesSetUp
+from core.utils_test import getDefaultMarket, getEbayCategoriesWebTestSetUp
 
 from ebayinfo       import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
 
@@ -173,7 +173,7 @@ class _putCategoriesInDatabaseTest(TestCase):
         self.assertEqual( iTags, '19188' ) # str count in the original file
 
 
-class TestHeirarchiesAreTheyCompleteTest( getEbayCategoriesSetUp ):
+class TestHeirarchiesAreTheyCompleteTest( getEbayCategoriesWebTestSetUp ):
 
     def test_are_heirarchies_complete( self ):
         #
