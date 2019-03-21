@@ -1,5 +1,3 @@
-from django.test        import TestCase
-
 from django.test.client import Client
 
 from core.utils_test    import ( BaseUserWebTestCase,
@@ -7,12 +5,14 @@ from core.utils_test    import ( BaseUserWebTestCase,
 
 from json.decoder       import JSONDecodeError
 
+from core.utils_test    import TestCasePlus
+
 from searching          import ( EBAY_SHIPPING_CHOICES, getChoiceCode,
                                  dEBAY_SHIPPING_CHOICE_CODE,
                                  RESULTS_FILE_NAME_PATTERN,
                                  SEARCH_FILES_FOLDER )
 
-from .test_utils        import GetBrandsCategoriesModelsSetUp
+from .test_utils        import GetBrandsCategoriesModelsWebTestSetUp
 
 from ..models           import ( Search, Model, ItemFound,
                                  UserItemFound, ItemFoundTemp )
@@ -49,7 +49,7 @@ class SearchModelTest( BaseUserWebTestCase ):
         self.assertFalse( queryGotUpdated( tParts[0] ) )
 
 
-class TestChoices(TestCase):
+class TestChoices(TestCasePlus):
 
     def test_CHOICES( self ):
         """ test the ebay shipping choices tuple """
@@ -64,13 +64,13 @@ class TestChoices(TestCase):
         self.assertEqual( getChoiceCode('FreePickup'), 5 )
 
 
-class PutSearchResultsInDatabase( GetBrandsCategoriesModelsSetUp ):
+class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp( self ):
         #
-        super( PutSearchResultsInDatabase, self ).setUp()
+        super( PutSearchResultsInDatabaseWebTest, self ).setUp()
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
