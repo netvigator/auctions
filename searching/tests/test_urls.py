@@ -1,10 +1,10 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from django.test                import TestCase
+from core.utils_test            import TestCasePlus
 
 
 
-class TestURLs(TestCase):
+class TestURLs( TestCasePlus ):
 
     def test_list_reverse(self):
         """searching:index should reverse to /searching/."""
