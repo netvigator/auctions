@@ -7,7 +7,7 @@ from django.test        import TestCase
 from django.urls        import reverse_lazy
 
 from core.utils_test    import ( setup_view_for_tests,
-                                 getEbayCategoriesSetUp, AssertEmptyMixin )
+                                 GetEbayCategoriesWebTestSetUp, AssertEmptyMixin )
 from core.utils         import getShrinkItemURL
 
 from searching          import RESULTS_FILE_NAME_PATTERN
@@ -168,7 +168,7 @@ class TestGetPriorityChoices( BaseUserWebTestCaseCanAddSearches ):
 
 
 
-class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, getEbayCategoriesSetUp ):
+class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
@@ -210,7 +210,7 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, getEbayCa
 
 
 
-class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, getEbayCategoriesSetUp ):
+class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
