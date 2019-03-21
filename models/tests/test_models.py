@@ -1,11 +1,11 @@
-from core.utils_test    import ( BaseUserTestCase,
+from core.utils_test    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
 from categories.models  import Category
 
 from ..models           import Model
 
-class ModelModelTest(BaseUserTestCase):
+class ModelModelTest( BaseUserWebTestCase ):
 
     def test_string_representation(self):
         sModel = "My model name/number"
