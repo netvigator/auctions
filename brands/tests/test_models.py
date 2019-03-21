@@ -1,6 +1,6 @@
 # import inspect
 
-from core.utils_test    import ( BaseUserTestCase,
+from core.utils_test    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
 # Create your tests here.
@@ -8,11 +8,11 @@ from core.utils_test    import ( BaseUserTestCase,
 from ..models           import Brand
 
 
-class ModelModelTest(BaseUserTestCase):
+class BrandModelWebTest( BaseUserWebTestCase ):
 
     def setUp( self ):
         #
-        super( ModelModelTest, self ).setUp()
+        super( BrandModelWebTest, self ).setUp()
         #
         self.client.login(username ='username1', password='mypassword')
         #
@@ -44,4 +44,4 @@ class ModelModelTest(BaseUserTestCase):
         self.assertFalse( queryGotUpdated( tParts[0] ) )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-        
+
