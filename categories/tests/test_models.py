@@ -1,10 +1,10 @@
-from core.utils_test    import ( BaseUserTestCase,
+from core.utils_test    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
 from ..models           import Category
 
 
-class CategoryModelTest(BaseUserTestCase):
+class CategoryModelTest( BaseUserWebTestCase ):
 
     def test_string_representation(self):
         sCategory = "This category"
