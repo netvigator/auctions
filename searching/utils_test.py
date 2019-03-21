@@ -2,7 +2,7 @@ from os                 import rename
 from os.path            import realpath, join
 
 from core.utils_test    import ( getTableFromScreenCaptureGenerator,
-                                 getNamePositionDict, BaseUserTestCase )
+                                 getNamePositionDict, BaseUserWebTestCase )
 
 from .models            import Search
 from .tests             import sItemHitLog # in __init__.py
@@ -17,12 +17,12 @@ from Time.Delta         import getIsoDateTimeNowPlus
 from Time.Output        import getIsoDateTimeFromDateTime as getIsoDT
 
 
-class BaseUserTestCaseCanAddSearches( BaseUserTestCase ):
+class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
     ''' test getPriorityChoices() '''
     #
     def setUp( self ):
         #
-        super( BaseUserTestCaseCanAddSearches, self ).setUp()
+        super( BaseUserWebTestCaseCanAddSearches, self ).setUp()
         #
         self.client.login(username='username1', password='mypassword')
         #
