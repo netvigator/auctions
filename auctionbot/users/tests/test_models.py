@@ -1,8 +1,8 @@
-from test_plus.test     import TestCase
-from core.utils_test    import getDefaultMarket
+
+from core.utils_test    import getDefaultMarket, TestCasePlus
 
 
-class TestUser(TestCase):
+class TestUser( TestCasePlus ):
 
     def setUp(self):
 
