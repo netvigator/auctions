@@ -2,7 +2,7 @@ import logging
 
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserTestCase
+from core.utils_test            import BaseUserWebTestCase
 
 from core.utils                 import getExceptionMessageFromResponse
 
@@ -15,9 +15,9 @@ from ..views                    import ModelCreateView
 
 
 
-class ModelViewsTests(BaseUserTestCase):
+class ModelViewsTests( BaseUserWebTestCase ):
     """Model views tests."""
-    
+
     def setUp(self):
         #
         super( ModelViewsTests, self ).setUp()
@@ -38,23 +38,23 @@ class ModelViewsTests(BaseUserTestCase):
         """
         response = self.client.get(reverse('models:index'))
         #response = self.client.get('/models/')
-        
+
         #pprint( 'printing response:')
         #pprint( response )
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['model_list'], [])
         self.assertContains(response, "No models are available.")
-    
-    
-        
+
+
+
     def test_got_models(self):
         #
         """
         If models exist, an appropriate message is displayed.
         """
         logging.disable(logging.CRITICAL)
-        
+
         #
         oModel  = Model(
                 cTitle      = "Crest",
@@ -72,10 +72,10 @@ class ModelViewsTests(BaseUserTestCase):
 
         response = self.client.get(reverse('models:index'))
         #response = self.client.get('/models/')
-        
+
         #pprint( 'printing response:')
         #pprint( response )
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['model_list'],
                 ['<Model: Colgate>', '<Model: Crest>'] )
@@ -85,10 +85,10 @@ class ModelViewsTests(BaseUserTestCase):
                 reverse( 'models:detail', kwargs={ 'pk': iLeverID } ) )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Colgate")
-        
+
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
-        
+
         response = self.client.get(
                 reverse( 'models:detail', kwargs={ 'pk': iLeverID } ) )
 
@@ -99,7 +99,7 @@ class ModelViewsTests(BaseUserTestCase):
 
         self.client.logout()
         self.client.login(username='username3', password='mypassword')
-        
+
         response = self.client.get(
                 reverse( 'models:detail', kwargs={ 'pk': iLeverID } ) )
         self.assertEqual(response.status_code, 200)
@@ -117,7 +117,7 @@ class ModelViewsTests(BaseUserTestCase):
 
 
 
-class ModelViewsHitButtons(BaseUserTestCase):
+class ModelViewsHitButtons( BaseUserWebTestCase ):
     """
     Test Save and Cancel
     """
