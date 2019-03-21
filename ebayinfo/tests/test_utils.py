@@ -1,12 +1,14 @@
 from os             import rename
 
 from django.db      import DataError
-from django.test    import TestCase, tag
+from django.test    import tag
 
 from core.utils     import updateMemoryTableUpdated
 from core.utils_test import getDefaultMarket, GetEbayCategoriesWebTestSetUp
 
 from ebayinfo       import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
+
+from core.utils_test import TestCasePlus
 
 from ..models       import EbayCategory, Market
 
@@ -42,7 +44,7 @@ class CatetoryListHasNewVers( Exception ): pass
 
 
 
-class TestCategoryVersionTest(TestCase):
+class TestCategoryVersionTest( TestCasePlus ):
     '''test _getCategoryVersionFromFile()'''
 
     sFile = CATEGORY_VERSION_FILE % 'EBAY-US'
@@ -99,7 +101,7 @@ class TestCategoryVersionTest(TestCase):
 
 
 
-class _putCategoriesInDatabaseTest(TestCase):
+class _putCategoriesInDatabaseTest( TestCasePlus ):
     '''test _getCategoryVersionFromFile()'''
 
     sFile = CATEGORY_LISTING_FILE % 'EBAY-US'
