@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.test        import TestCase, tag
 from django.utils       import timezone
 from core.utils_test    import ( getDefaultMarket,
-                                 getEbayCategoriesSetUp,
+                                 GetEbayCategoriesWebTestSetUp,
                                  getTableFromScreenCaptureGenerator,
                                  getNamePositionDict )
 
@@ -164,7 +164,7 @@ class getImportSearchResultsTests(TestCase):
 '''
 
 
-class storeItemFoundTests( getEbayCategoriesSetUp ):
+class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeItemFound() '''
 
@@ -180,7 +180,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
         #
         lHeader = next( oTableIter )
         #
-        iExpect = 2 # getEbayCategoriesSetUp above adds root categories
+        iExpect = 2 # GetEbayCategoriesWebTestSetUp above adds root categories
         #
         for lParts in oTableIter: iExpect += 1
         #
@@ -350,7 +350,7 @@ class storeItemFoundTests( getEbayCategoriesSetUp ):
 
 
 
-class storeUserItemFoundButDontTestYet( getEbayCategoriesSetUp ):
+class storeUserItemFoundButDontTestYet( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeUserItemFound() '''
 
@@ -433,14 +433,14 @@ class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
 
 
 
-class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
+class StoreSearchResultsTestsSetUp( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp(self):
         # storeSearchResultsTests, self
         #
-        super( storeSearchResultsTestsSetUp, self ).setUp()
+        super( StoreSearchResultsTestsSetUp, self ).setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
@@ -487,7 +487,7 @@ class storeSearchResultsTestsSetUp(getEbayCategoriesSetUp):
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
 
-class storeSearchResultsTests(storeSearchResultsTestsSetUp):
+class storeSearchResultsTests(StoreSearchResultsTestsSetUp):
     #
 
     def test_store_search_results(self):
@@ -541,7 +541,7 @@ class storeSearchResultsTests(storeSearchResultsTestsSetUp):
 
 
 
-class GetBrandsCategoriesModelsSetUp(storeSearchResultsTestsSetUp):
+class GetBrandsCategoriesModelsSetUp(StoreSearchResultsTestsSetUp):
     #
     ''' base class for testing trySearchCatchExceptStoreInFile() &
     storeSearchResultsInDB() store records '''
