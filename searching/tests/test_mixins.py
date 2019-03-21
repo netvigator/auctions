@@ -2,13 +2,13 @@ from django.core.urlresolvers import reverse
 
 from ..models           import UserItemFound
 
-from .test_utils        import storeUserItemFoundButDontTestYet
+from .test_utils        import storeUserItemFoundButDontWebTestYet
 
 from models.models      import Model
 
 
 
-class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontTestYet ):
+class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontWebTestYet ):
     #
     ''' test AnyReleventHitStarColsChangedMixin'''
 
