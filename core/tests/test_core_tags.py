@@ -1,8 +1,9 @@
-from django.test                import TestCase
+from core.utils_test            import TestCasePlus
+
 from ..templatetags.core_tags   import ( getDashForReturn,
                                          getDashForReturnButDropLast )
 
-class GetDashForReturnTests(TestCase):
+class GetDashForReturnTests( TestCasePlus ):
     '''get dash for return tests'''
 
     def test_get_dash_for_return(self):
