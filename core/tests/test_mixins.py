@@ -4,8 +4,7 @@ from django.core.urlresolvers   import reverse
 from django.http.request        import HttpRequest
 from django.test                import RequestFactory
 
-from core.utils_test            import ( setUpBrandsCategoriesModels,
-                                         BaseUserTestCase )
+from core.utils_test            import SetUpBrandsCategoriesModelsWebTest
 
 from ..mixins                   import GetPaginationExtraInfoInContext
 from ..views                    import ListViewGotModel
@@ -381,7 +380,7 @@ class TestPagination( SetUpForHitStarsTests ):
 
 
 
-class EditingTitleShouldBlankFinder( setUpBrandsCategoriesModels ):
+class EditingTitleShouldBlankFinder( SetUpBrandsCategoriesModelsWebTest ):
     #
     ''' test WereAnyReleventRegExColsChangedMixin'''
 
