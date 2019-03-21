@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.test        import TestCase, tag
 from django.utils       import timezone
-from core.utils_test    import ( BaseUserTestCase, getDefaultMarket,
+from core.utils_test    import ( getDefaultMarket,
                                  getEbayCategoriesSetUp,
                                  getTableFromScreenCaptureGenerator,
                                  getNamePositionDict )
