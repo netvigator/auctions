@@ -11,12 +11,12 @@ from ..views                    import ListViewGotModel
 
 from searching.utils_stars      import getFoundItemTester
 from searching.views            import ItemsFoundIndexView
-from searching.tests.test_stars import SetUpForHitStarsTests
+from searching.tests.test_stars import SetUpForHitStarsWebTests
 
 from Object.Get                 import QuickObject
 
 
-class TestPagination( SetUpForHitStarsTests ):
+class TestPagination( SetUpForHitStarsWebTests ):
     '''class to test pagination thoroughly'''
 
     def setUp( self ):
