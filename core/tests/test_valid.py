@@ -1,10 +1,11 @@
 from django.core.exceptions     import ValidationError
-from django.test                import TestCase
+
+from core.utils_test            import TestCasePlus
 
 from ..validators               import gotTextOutsideParens
 
 
-class GotTextOutsideParensTests(TestCase):
+class GotTextOutsideParensTests( TestCasePlus ):
     #
     ''' test the gotTextOutsideParens() validator '''
     #
