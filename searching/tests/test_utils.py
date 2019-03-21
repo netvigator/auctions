@@ -6,12 +6,14 @@ from datetime           import timedelta
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from django.test        import TestCase, tag
+from django.test        import tag
 from django.utils       import timezone
 from core.utils_test    import ( getDefaultMarket,
                                  GetEbayCategoriesWebTestSetUp,
                                  getTableFromScreenCaptureGenerator,
                                  getNamePositionDict )
+
+from core.utils_test    import TestCasePlus
 
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
@@ -78,7 +80,7 @@ def getB( sSomething ):
 
 sExampleFile = '/tmp/search_results_____0_.json'
 
-class getImportSearchResultsTests(TestCase):
+class getImportSearchResultsTests( TestCasePlus ):
     #
     def test_get_search_results(self):
         '''test readin an example search results file'''
@@ -350,7 +352,7 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
 
 
 
-class storeUserItemFoundButDontTestYet( GetEbayCategoriesWebTestSetUp ):
+class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeUserItemFound() '''
 
@@ -358,7 +360,7 @@ class storeUserItemFoundButDontTestYet( GetEbayCategoriesWebTestSetUp ):
         #
         '''set up to test _storeUserItemFound() with actual record'''
         #
-        super( storeUserItemFoundButDontTestYet, self ).setUp()
+        super( storeUserItemFoundButDontWebTestYet, self ).setUp()
         #
         class ThisShouldNotBeHappening( Exception ): pass
         #
@@ -383,7 +385,7 @@ class storeUserItemFoundButDontTestYet( GetEbayCategoriesWebTestSetUp ):
         self.tNow       = tNow
 
 
-class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
+class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
     #
     ''' class for testing _storeUserItemFound() '''
 
@@ -433,14 +435,13 @@ class storeUserItemFoundTests( storeUserItemFoundButDontTestYet ):
 
 
 
-class StoreSearchResultsTestsSetUp( GetEbayCategoriesWebTestSetUp ):
+class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInDB() store records '''
     #
     def setUp(self):
-        # storeSearchResultsTests, self
         #
-        super( StoreSearchResultsTestsSetUp, self ).setUp()
+        super( StoreSearchResultsTestsWebTestSetUp, self ).setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
@@ -487,7 +488,7 @@ class StoreSearchResultsTestsSetUp( GetEbayCategoriesWebTestSetUp ):
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
 
 
-class storeSearchResultsTests(StoreSearchResultsTestsSetUp):
+class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
     #
 
     def test_store_search_results(self):
@@ -541,7 +542,7 @@ class storeSearchResultsTests(StoreSearchResultsTestsSetUp):
 
 
 
-class GetBrandsCategoriesModelsSetUp(StoreSearchResultsTestsSetUp):
+class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp ):
     #
     ''' base class for testing trySearchCatchExceptStoreInFile() &
     storeSearchResultsInDB() store records '''
@@ -551,7 +552,7 @@ class GetBrandsCategoriesModelsSetUp(StoreSearchResultsTestsSetUp):
 
     def setUp(self):
         #
-        super( GetBrandsCategoriesModelsSetUp, self ).setUp()
+        super( GetBrandsCategoriesModelsWebTestSetUp, self ).setUp()
         #
         fRt     = self.fRt
         #
@@ -906,7 +907,7 @@ class GetBrandsCategoriesModelsSetUp(StoreSearchResultsTestsSetUp):
         self.assertTrue( oModel.bGenericModel )
 
 
-class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
+class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
     #
     ''' class for testing trySearchCatchExceptStoreInFile() &
     storeSearchResultsInDB() store records '''
@@ -1096,7 +1097,7 @@ class DoSearchStoreResultsTests(GetBrandsCategoriesModelsSetUp):
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-class TestFindingResponseHelpers( TestCase ):
+class TestFindingResponseHelpers( TestCasePlus ):
     #
     '''test the nifty finding response info extractors'''
 
@@ -1202,7 +1203,7 @@ def getOnlyPagination():
 
 
 
-class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
+class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCasePlus ):
     '''do a time trial, compare loading & using Json load with home brew job'''
 
     def name_must_start_with_test_to_do_time_trial( self ):
@@ -1261,7 +1262,7 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCase ):
                                dItemJsonWay["sellingStatus"] )
 
 
-class FileNameUtilitiesTesting( TestCase ):
+class FileNameUtilitiesTesting( TestCasePlus ):
     '''test the file naming utilities'''
 
     def test_put_number_in_file_name( self ):
