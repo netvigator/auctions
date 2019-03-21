@@ -1,19 +1,19 @@
-from django.test            import TestCase
-
 from ..utils_ebay           import getValueOffItemDict
 from ..utils_test           import AssertEmptyMixin, AssertNotEmptyMixin
 from ..tests                import sResponse2ndCategoryItem
 
+from core.utils_test        import TestCasePlus
+
 from keepers                import dItemFields
 
-from searching              import dItemFoundFields         # in __init__.py
+from searching              import dItemFoundFields     # in __init__.py
 from searching.tests        import sResponseItems2Test  # in __init__.py
 from searching.utilsearch   import getSearchResultGenerator
 
 
 
 class GetValueOffItemDictTests(
-            AssertEmptyMixin, AssertNotEmptyMixin, TestCase ):
+            AssertEmptyMixin, AssertNotEmptyMixin, TestCasePlus ):
     '''testing getValueOffItemDict()'''
 
     def dFieldsTester( self, dFields ):
