@@ -1,12 +1,12 @@
-from test_plus.test     import TestCase
 
 from ..admin            import MyUserCreationForm
-from core.utils_test    import getDefaultMarket
+
+from core.utils_test    import getDefaultMarket, TestCasePlus
 
 
-class TestMyUserCreationForm(TestCase):
+class TestMyUserCreationForm( TestCasePlus ):
 
-        
+
     def setUp(self):
         self.market = getDefaultMarket()
         self.user   = self.make_user('notalamode', 'notalamodespassword')
