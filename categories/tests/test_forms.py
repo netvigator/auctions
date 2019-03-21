@@ -1,12 +1,12 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserTestCase, getUrlQueryStringOff
+from core.utils_test            import BaseUserWebTestCase, getUrlQueryStringOff
 
 from ..models                   import Category
 from ..forms                    import CreateCategoryForm, UpdateCategoryForm
 
 
-class TestFormValidation(BaseUserTestCase):
+class TestFormValidation( BaseUserWebTestCase ):
 
     ''' Category Form Tests '''
     # helpful:
