@@ -2,15 +2,13 @@
 
 from django.core.urlresolvers   import reverse, resolve
 
-from django.test                import TestCase
-
-# Create your tests here.
+from core.utils_test            import TestCasePlus
 
 from ..models                   import Brand
 
 
 
-class TestURLs(TestCase):
+class TestURLs( TestCasePlus ):
 
     def test_list_reverse(self):
         """brands:index should reverse to /brands/."""
