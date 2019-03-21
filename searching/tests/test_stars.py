@@ -7,7 +7,8 @@ from django.core.urlresolvers import reverse
 from django.test        import TestCase
 from django.utils       import timezone
 
-from core.utils_test    import setUpBrandsCategoriesModels, AssertEmptyMixin
+from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
+                                 AssertEmptyMixin )
 
 from ..models           import ( ItemFound, UserItemFound, ItemFoundTemp )
 
@@ -1364,7 +1365,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsTests ):
 
 
 
-class findersStorageTest( AssertEmptyMixin, setUpBrandsCategoriesModels ):
+class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest ):
 
     #
     ''' test Finder Storage for Brands, Categories & Models '''
