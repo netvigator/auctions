@@ -2,7 +2,7 @@ from django.test        import TestCase
 
 from django.test.client import Client
 
-from core.utils_test    import ( BaseUserTestCase,
+from core.utils_test    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
 from json.decoder       import JSONDecodeError
@@ -24,7 +24,7 @@ from File.Del           import DeleteIfExists
 from File.Write         import QuietDump
 
 
-class SearchModelTest(BaseUserTestCase):
+class SearchModelTest( BaseUserWebTestCase ):
 
     def test_string_representation(self):
         sSearch = "My clever search 2"
