@@ -1,11 +1,12 @@
 from celery.contrib.testing.worker  import start_worker
-from django.test                    import SimpleTestCase
+
+from core.utils_test                import TestCasePlus
 
 from .celery                        import app
 
 from .tasks                         import add
 
-class BatchSimulationTestCase(SimpleTestCase):
+class BatchSimulationTestCase( TestCasePlus ):
     allow_database_queries = True
 
     @classmethod
@@ -26,6 +27,6 @@ class BatchSimulationTestCase(SimpleTestCase):
     def skip_test_my_function(self):
         # can hang unittests if celery not running
         add.delay( 8, 8 )
-        
+
 
 
