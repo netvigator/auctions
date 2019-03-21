@@ -1,14 +1,12 @@
-from django.test        import TestCase
-
 from ..models           import Keeper
 
-from core.utils_test    import AssertEmptyMixin
+from core.utils_test    import AssertEmptyMixin, TestCasePlus
 
 from File.Get           import getListOffFileLines
 from String.Get         import getTextBefore
 
 
-class MakeSureAllFieldsAreInTableTest( AssertEmptyMixin, TestCase ):
+class MakeSureAllFieldsAreInTableTest( AssertEmptyMixin, TestCasePlus ):
     '''make sure all dItemFields are in the items table'''
 
     def test_make_sure_all_fields_are_in_table( self ):
