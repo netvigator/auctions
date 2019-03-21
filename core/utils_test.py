@@ -127,7 +127,7 @@ class getSingleEbayCategoryMixin( object ):
 
 
 
-class BaseUserTestCase( WebTest ):
+class BaseUserWebTestCase( WebTest ):
 
     def setUp(self):
 
@@ -185,13 +185,13 @@ class BaseUserTestCase( WebTest ):
         #
 
 
-class setUpBrandsCategoriesModels( BaseUserTestCase ):
+class SetUpBrandsCategoriesModelsWebTest( BaseUserWebTestCase ):
 
     ''' handy base class that sets up some models / tables '''
 
     def setUp(self):
         #
-        super( setUpBrandsCategoriesModels, self ).setUp()
+        super( SetUpBrandsCategoriesModelsWebTest, self ).setUp()
         #
         self.client.login(username ='username1', password='mypassword')
         #
@@ -303,11 +303,11 @@ def getTableFromScreenCaptureGenerator( uScreenCapture ):
 
 
 
-class getEbayCategoriesSetUp( setUpBrandsCategoriesModels ):
+class getEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
 
     def setUp(self):
         #
-        super( getEbayCategoriesSetUp, self ).setUp()
+        super( getEbayCategoriesWebTestSetUp, self ).setUp()
         #
         from ebayinfo           import sCategoryDump # in __init__.py
         #
