@@ -14,7 +14,7 @@ from keepers            import getListAsLines
 from keepers.tests      import ( s142766343340, s232742493872,
                                  s232709513135, s282330751118 )
 
-from core.utils_test    import ( getEbayCategoriesSetUp, AssertEmptyMixin,
+from core.utils_test    import ( getEbayCategoriesWebTestSetUp, AssertEmptyMixin,
                                  AssertNotEmptyMixin )
 
 from ..models           import Keeper
@@ -335,7 +335,7 @@ class GetAndStoreSingleItemsTests(
 
 
 
-class StoreSingleItemTests( getEbayCategoriesSetUp ):
+class StoreSingleItemTests( getEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeItemFound() '''
     #
