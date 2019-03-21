@@ -10,7 +10,7 @@ from ..user_one                 import oUserOne
 from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
 
 from ..utils_test               import (getUrlQueryStringOff,
-                                        getEbayCategoriesSetUp,
+                                        GetEbayCategoriesWebTestSetUp,
                                         queryGotUpdated, getDefaultMarket )
 
 from ebayinfo.models            import EbayCategory, Market
@@ -59,7 +59,7 @@ class CoreMarketTests(TestCase):
     #
     def setUp(self):
         self.market = getDefaultMarket()
-    
+
     def test_default_market( self ):
         #
         self.assertIsNotNone( self.market.pk )
@@ -75,9 +75,9 @@ class CoreUserTests(TestCase):
 
     def setUp(self):
         self.market = getDefaultMarket()
-    
+
     def test_get_user(self):
-        
+
         self.assertEqual( oUserOne.username, 'netvigator')
 
 
@@ -98,7 +98,7 @@ class NbspTests(TestCase):
                            "how&nbsp;now&nbsp;brown&nbsp;cow" )
 
 
-class TestEbayCategoriesSetUp(getEbayCategoriesSetUp):
+class TestEbayCategoriesSetUp( GetEbayCategoriesWebTestSetUp ):
 
     def test_set_up_categories( self ):
         #
