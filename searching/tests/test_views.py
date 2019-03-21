@@ -2,7 +2,7 @@ import logging
 
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserTestCase, setup_view_for_tests
+from core.utils_test            import BaseUserWebTestCase, setup_view_for_tests
 from core.utils                 import getExceptionMessageFromResponse
 
 from ..forms                    import CreateSearchForm, UpdateSearchForm
@@ -17,7 +17,7 @@ from ..views                    import ( SearchCreateView, SearchIndexView,
 
 # Create your tests here.
 
-class SearchViewsHitButtons(BaseUserTestCase):
+class SearchViewsHitButtons( BaseUserWebTestCase ):
     """
     Test Save and Cancel
     """
@@ -63,12 +63,12 @@ class SearchViewsHitButtons(BaseUserTestCase):
 
         #request = self.factory.get(reverse('searching:add'))
         #request.user = self.user1
-        
+
         #response = self.client.post( request, data )
-        
+
         #print( 'response.status_code:', response.status_code )
 
-        
+
     def test_add_hit_cancel(self):
         #
         """
@@ -86,7 +86,7 @@ class SearchViewsHitButtons(BaseUserTestCase):
         #pprint( response.__dict__ )
         self.assertEqual( response.status_code, 200 )
         # self.assertRedirects( response, reverse( 'searching:index' ) )
-        
+
     def test_search_create_view(self):
         #
         request = self.factory.get(reverse('searching:add'))
@@ -104,7 +104,7 @@ class SearchViewsHitButtons(BaseUserTestCase):
         #
     #
 
-class SearchViewsTests(BaseUserTestCase):
+class SearchViewsTests( BaseUserWebTestCase ):
 
     def test_no_search_yet(self):
         #
@@ -116,10 +116,10 @@ class SearchViewsTests(BaseUserTestCase):
         #
         response = self.client.get(reverse('searching:index'))
         #response = self.client.get('/searching/')
-        
+
         #pprint( 'printing response:')
         #pprint( response )
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['search_list'], [])
         self.assertContains(response, "No searches are available.")
@@ -130,14 +130,14 @@ class SearchViewsTests(BaseUserTestCase):
         If no search exist, an appropriate message is displayed.
         """
         logging.disable(logging.CRITICAL)
-        
+
         #
         self.client.login(username='username1', password='mypassword')
         #
         sSearch = "Great Widget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
-        
+
         sSearch = "Phenominal Gadget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
@@ -145,11 +145,11 @@ class SearchViewsTests(BaseUserTestCase):
 
         response = self.client.get(reverse('searching:index'))
         #response = self.client.get('/searching/')
-        
+
         #print( 'printing response:')
         #pprint( response.context )
         #print( response.context['search_list'])
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['search_list'],
                 ['<Search: Phenominal Gadget>', '<Search: Great Widget>'],
@@ -160,10 +160,10 @@ class SearchViewsTests(BaseUserTestCase):
                 reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Phenominal Gadget")
-        
+
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
-        
+
         response = self.client.get(
                 reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
 
@@ -174,7 +174,7 @@ class SearchViewsTests(BaseUserTestCase):
 
         self.client.logout()
         self.client.login(username='username3', password='mypassword')
-        
+
         response = self.client.get(
                 reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
         self.assertEqual(response.status_code, 200)
@@ -192,13 +192,13 @@ class SearchViewsTests(BaseUserTestCase):
 
 
 
-class SearchUpdateViewTests(BaseUserTestCase):
+class SearchUpdateViewTests( BaseUserWebTestCase ):
 
     ''' test SearchUpdateView View '''
-    
+
     def setUp(self):
 
-        # call BaseUserTestCase.setUp()
+        # call BaseUserWebTestCase.setUp()
         super(SearchUpdateViewTests, self).setUp()
         #
         sSearch = "Great Widget"
@@ -228,13 +228,13 @@ class SearchUpdateViewTests(BaseUserTestCase):
         self.assertEqual( self.form.which, "Update" )
         #
         self.assertEqual( self.view.model, Search )
-        
 
 
-class SearchCreateViewTests(BaseUserTestCase):
+
+class SearchCreateViewTests( BaseUserWebTestCase ):
 
     ''' test SearchUpdateView View '''
-    
+
     def setUp(self):
         #
         super(SearchCreateViewTests, self).setUp()
@@ -274,8 +274,8 @@ class SearchCreateViewTests(BaseUserTestCase):
         #
         #print( 'response:' )
         #pprint( response )
-     
-        
+
+
 
     def test_create_view_not_cancelled(self):
         #
