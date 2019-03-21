@@ -1,11 +1,10 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from test_plus.test             import TestCase
-
-from core.utils_test            import getDefaultMarket
+from core.utils_test    import getDefaultMarket, TestCasePlus
 
 
-class TestUserURLs(TestCase):
+
+class TestUserURLs( TestCasePlus ):
     """Test URL patterns for users app."""
 
     def setUp(self):
