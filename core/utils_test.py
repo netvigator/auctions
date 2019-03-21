@@ -303,11 +303,11 @@ def getTableFromScreenCaptureGenerator( uScreenCapture ):
 
 
 
-class getEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
+class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
 
     def setUp(self):
         #
-        super( getEbayCategoriesWebTestSetUp, self ).setUp()
+        super( GetEbayCategoriesWebTestSetUp, self ).setUp()
         #
         from ebayinfo           import sCategoryDump # in __init__.py
         #
