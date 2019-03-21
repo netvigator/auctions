@@ -2,7 +2,7 @@
 
 from django.urls        import reverse
 
-from core.utils_test    import BaseUserTestCase, getUrlQueryStringOff
+from core.utils_test    import BaseUserWebTestCase, getUrlQueryStringOff
 
 
 # Create your tests here.
@@ -13,7 +13,7 @@ from ..models           import Brand
 
 
 
-class TestFormValidation(BaseUserTestCase):
+class TestFormValidation( BaseUserWebTestCase ):
 
     ''' Brand Form Tests '''
     # helpful:
