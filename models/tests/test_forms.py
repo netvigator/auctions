@@ -1,6 +1,7 @@
 from django.core.urlresolvers   import reverse
 
-from core.utils_test import setUpBrandsCategoriesModels, getUrlQueryStringOff
+from core.utils_test            import ( SetUpBrandsCategoriesModelsWebTest,
+                                         getUrlQueryStringOff )
 
 from categories.models          import Category
 
@@ -10,7 +11,7 @@ from ..models                   import Model
 # Create your tests here.
 
 
-class TestFormValidation(setUpBrandsCategoriesModels):
+class TestFormValidation( SetUpBrandsCategoriesModelsWebTest ):
 
     ''' Model Form Tests '''
     # helpful:
