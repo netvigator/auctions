@@ -6,7 +6,7 @@ from django.test            import RequestFactory
 from django.test.client     import Client
 
 from django_webtest         import WebTest
-from test_plus.test         import TestCase as TestCasePlus
+from test_plus.test         import TestCase
 
 from config.settings.base   import LOGIN_URL
 
@@ -22,14 +22,14 @@ from ebayinfo.models        import EbayCategory, Market
 from String.Find            import getRegExObj
 
 
-class TestCase( TestCasePlus ):
+class TestCasePlus( TestCase ):
     """subclass of test_plus.test TestCase
     allows implementation of project specific helper methods"""
     #
     pass
 
 
-class PlusUserTestCase( TestCase ):
+class PlusUserTestCase( TestCasePlus ):
 
     def setUp(self):
         #
