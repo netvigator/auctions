@@ -18,14 +18,14 @@ from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
 from ..utils            import ( getIdStrZeroFilled, getSearchIdStr,
                                  getHowManySearchDigitsNeeded )
 from ..utilsearch       import getPriorityChoices, getSearchResultGenerator
-from ..utils_test       import BaseUserTestCaseCanAddSearches
+from ..utils_test       import BaseUserWebTestCaseCanAddSearches
 from ..views            import SearchCreateView
 
 from File.Del           import DeleteIfExists
 from File.Write         import QuietDump
 
 
-class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
+class TestHowManyUserDigitsNeeded( BaseUserWebTestCaseCanAddSearches ):
     ''' test getHowManySearchDigitsNeeded() '''
 
     def test_how_many_digits_needed( self ):
@@ -95,7 +95,7 @@ class TestHowManyUserDigitsNeeded( BaseUserTestCaseCanAddSearches ):
         #
 
 
-class TestGetPriorityChoices( BaseUserTestCaseCanAddSearches ):
+class TestGetPriorityChoices( BaseUserWebTestCaseCanAddSearches ):
     ''' test getPriorityChoices() '''
     #
     def test_getPriorityChoices( self ):
