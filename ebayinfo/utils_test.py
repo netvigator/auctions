@@ -1,11 +1,11 @@
-from django.test    import TestCase
+from core.utils_test    import ( getTableFromScreenCaptureGenerator,
+                                 getNamePositionDict )
 
-from core.utils_test import ( getTableFromScreenCaptureGenerator,
-                              getNamePositionDict )
+from core.utils_test    import TestCasePlus
 
-from ebayinfo       import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
+from ebayinfo           import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
 
-from .models        import Market
+from .models            import Market
 
 def getMarketsIntoDatabase():
     #
@@ -42,10 +42,10 @@ def getMarketsIntoDatabase():
             oMarket.cUseCategoryID=         lParts[ d['cUseCategoryID' ] ]
         #
         oMarket.save()
-        
 
 
-class PutMarketsInDatabaseTest(TestCase):
+
+class PutMarketsInDatabaseTest( TestCasePlus ):
     '''test getMarketsIntoDatabase()'''
     #
     def setUp(self):
@@ -59,7 +59,7 @@ class PutMarketsInDatabaseTest(TestCase):
         iCount = Market.objects.all().count()
         #
         self.assertEqual( 23, iCount )
-        
+
     def test_got_market_info_right( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
