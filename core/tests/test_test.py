@@ -1,9 +1,8 @@
 from datetime                   import datetime, timezone
 
 from django.core.exceptions     import ValidationError
-from django.test                import TestCase
 
-# Create your tests here.
+from core.utils_test            import TestCasePlus
 
 from ..templatetags.core_tags   import getNbsp
 from ..user_one                 import oUserOne
@@ -16,7 +15,7 @@ from ..utils_test               import (getUrlQueryStringOff,
 from ebayinfo.models            import EbayCategory, Market
 
 
-class TestingHelperTests(TestCase):
+class TestingHelperTests( TestCasePlus ):
     #
     ''' test the testing helpers above (here)  '''
     #
@@ -53,7 +52,7 @@ class TestingHelperTests(TestCase):
 
 
 
-class CoreMarketTests(TestCase):
+class CoreMarketTests( TestCasePlus ):
     #
     ''' need the default market '''
     #
@@ -70,7 +69,7 @@ class CoreMarketTests(TestCase):
 
 
 
-class CoreUserTests(TestCase):
+class CoreUserTests( TestCasePlus ):
     """ User tests."""
 
     def setUp(self):
@@ -82,7 +81,7 @@ class CoreUserTests(TestCase):
 
 
 
-class DateTimeImportTests(TestCase):
+class DateTimeImportTests( TestCasePlus ):
     '''test converting ebay string dates into python datetime objects'''
     def test_convert_ebay_string_DateTime(self):
         #
@@ -90,7 +89,7 @@ class DateTimeImportTests(TestCase):
                 getDateTime( "2017-12-15T05:22:47.000Z" ),
                 datetime(2017, 12, 15, 5, 22, 47, 0, timezone.utc ) )
 
-class NbspTests(TestCase):
+class NbspTests( TestCasePlus ):
     '''test substituting &nbsp; for spaces'''
     def test_Nbsp(self):
         #
