@@ -4,7 +4,7 @@ import logging
 
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserTestCase
+from core.utils_test            import BaseUserWebTestCase
 
 from core.utils                 import getExceptionMessageFromResponse
 
@@ -13,11 +13,11 @@ from core.utils                 import getExceptionMessageFromResponse
 from ..models                   import Brand
 from ..views                    import BrandCreateView
 
-from .test_models               import ModelModelTest
+from .test_models               import BrandModelWebTest
 
-class BrandViewsTests(BaseUserTestCase):
+class BrandViewsTests( BaseUserWebTestCase ):
     """Brand views tests."""
-        
+
     def test_no_brands_yet(self):
         #
         """
@@ -26,28 +26,28 @@ class BrandViewsTests(BaseUserTestCase):
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('brands:index'))
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['brand_list'], [])
         self.assertContains(response, "No brands are available.")
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-    
-    
-        
+
+
+
     def test_got_brands(self):
         #
         """
         If brands exist, an appropriate message is displayed.
         """
         logging.disable(logging.CRITICAL)
-        
+
         self.client.login(username='username1', password='mypassword')
         #
         sBrand = "Proctor & Gamble"
         oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
         oBrand.save()
-        
+
         sBrand = "Cadillac"
         oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
         oBrand.save()
@@ -55,10 +55,10 @@ class BrandViewsTests(BaseUserTestCase):
 
         response = self.client.get(reverse('brands:index'))
         #response = self.client.get('/brands/')
-        
+
         #pprint( 'printing response:')
         #pprint( response )
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['brand_list'],
                 ['<Brand: Cadillac>', '<Brand: Proctor & Gamble>'] )
@@ -68,11 +68,11 @@ class BrandViewsTests(BaseUserTestCase):
                 reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Cadillac")
-        
+
         self.client.logout()
         self.client.login(username='username2', password='mypassword')
         # print( 'logged out of user1, logged into user 2')
-        
+
         response = self.client.get(
                 reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
 
@@ -107,7 +107,7 @@ class BrandViewsTests(BaseUserTestCase):
         logging.disable(logging.NOTSET)
 
 
-class BrandViewsHitButtons(ModelModelTest):
+class BrandViewsHitButtons( BrandModelWebTest ):
     """
     Test Save and Cancel
     """
