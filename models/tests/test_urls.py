@@ -1,21 +1,11 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from django.test                import TestCase
+from core.utils_test            import TestCasePlus
 
 from ..models                   import Model
 
-# Create your tests here.
 
-'''
-no views implemented yet
-class ModelsViewsTestCase(TestCase):
-    def test_index(self):
-        resp = self.client.get('/models/')
-        self.assertEqual(resp.status_code, 200)
-'''
-
-
-class TestURLs(TestCase):
+class TestURLs( TestCasePlus ):
 
     def test_list_reverse(self):
         """models:index should reverse to /models/."""
