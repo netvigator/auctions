@@ -1,9 +1,10 @@
-from django.test import TestCase
+
+from core.utils_test  import TestCasePlus
 
 from ..ebay_api_calls import _getApiConfValues, _getListingTypeTuple
 
 
-class GetConfFileValuesTests(TestCase):
+class GetConfFileValuesTests( TestCasePlus ):
     '''ebay API conf file values tests'''
 
     def test_ini_values(self):
@@ -41,7 +42,7 @@ class GetConfFileValuesTests(TestCase):
 
 
 
-class TestListingTypeTupleTests(TestCase):
+class TestListingTypeTupleTests( TestCasePlus ):
     '''test ebay API ListingType HTTP headers'''
 
     def test_getListingTypeTupleDefault(self):
