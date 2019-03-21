@@ -6,7 +6,7 @@ from os.path            import dirname
 from shutil             import rmtree
 from time               import sleep
 
-from django.test        import TestCase, tag
+from django.test        import tag
 from django.utils       import timezone
 
 from keepers            import getListAsLines
@@ -14,8 +14,9 @@ from keepers            import getListAsLines
 from keepers.tests      import ( s142766343340, s232742493872,
                                  s232709513135, s282330751118 )
 
-from core.utils_test    import ( GetEbayCategoriesWebTestSetUp, AssertEmptyMixin,
-                                 AssertNotEmptyMixin )
+from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
+                                 AssertEmptyMixin, AssertNotEmptyMixin,
+                                 TestCasePlus )
 
 from ..models           import Keeper
 from ..utils            import ( _storeJsonSingleItemResponse,
@@ -34,7 +35,7 @@ from searching.models   import ItemFound, UserItemFound, Search
 from searching.tests    import dSearchResult # in __init__.py
 from searching.utils    import _storeUserItemFound, _storeItemFound
 
-from searching.tests.test_stars import SetUpForHitStarsTests
+from searching.tests.test_stars import SetUpForHitStarsWebTests
 
 from Dir.Test           import isDirThere
 from File.Del           import DeleteIfExists
@@ -54,7 +55,7 @@ logging.basicConfig(
 
 PIC_TEST_DIR = '/tmp/pictures_test_directory'
 
-class GetListAsLinesTest( TestCase ):
+class GetListAsLinesTest( TestCasePlus ):
     '''class for testing getListAsLines()'''
 
     def test_getListAsLines( self ):
@@ -66,7 +67,7 @@ class GetListAsLinesTest( TestCase ):
         self.assertEqual( getListAsLines( sPicList ), sExpectList )
 
 
-class GeneratePathFileNameExtensionTests( AssertEmptyMixin, TestCase ):
+class GeneratePathFileNameExtensionTests( AssertEmptyMixin, TestCasePlus ):
     #
     sURL = ( 'https://i.ebayimg.com/00/s/OTAwWDE2MDA=/'
             'z/UTAAAOSwkV5aYX8~/$_57.JPG?set_id=8800005007' )
@@ -103,7 +104,7 @@ class GeneratePathFileNameExtensionTests( AssertEmptyMixin, TestCase ):
         self.assertEqual( sPicFileNameExtn, '253313715173-00.jpg' )
 
 
-class SomeItemsTest( TestCase ):
+class SomeItemsTest( TestCasePlus ):
     '''test some getSingleItem imports'''
 
     def test_s142766343340( self ):
@@ -136,12 +137,12 @@ class SomeItemsTest( TestCase ):
 
 
 
-class StoreItemsTest( TestCase ):
+class StoreItemsTestPlus( TestCasePlus ):
     '''test storing some getSingleItem imports in the table'''
 
     def setUp( self ):
         #
-        super( StoreItemsTest, self ).setUp()
+        super( StoreItemsTestPlus, self ).setUp()
         #
         t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
         #
@@ -190,13 +191,13 @@ class StoreItemsTest( TestCase ):
         self.assertTrue( Keeper.objects.filter( pk = 232709513135 ).exists() )
 
 
-class GetAndStoreSingleItemsTests(
-            AssertNotEmptyMixin, SetUpForHitStarsTests ):
+class GetAndStoreSingleItemsWebTests(
+            AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
     '''class to test getSingleItemThenStore'''
 
     def setUp( self ):
         #
-        super( GetAndStoreSingleItemsTests, self ).setUp()
+        super( GetAndStoreSingleItemsWebTests, self ).setUp()
         #
         self.iItemNumb = None
         #
