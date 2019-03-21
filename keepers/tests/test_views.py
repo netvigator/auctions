@@ -2,7 +2,7 @@ import logging
 
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserTestCase
+from core.utils_test            import BaseUserWebTestCase
 
 from core.utils                 import getExceptionMessageFromResponse
 
@@ -12,7 +12,7 @@ from ..views                    import KeeperIndexView
 
 
 
-class KeepersViewsTests(BaseUserTestCase):
+class KeepersViewsTests( BaseUserWebTestCase ):
     """Item views tests."""
 
     def test_no_items_yet(self):
