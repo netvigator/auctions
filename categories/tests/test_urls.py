@@ -1,14 +1,12 @@
 from django.core.urlresolvers   import reverse, resolve
 
-from django.test                import TestCase
+from core.utils_test            import TestCasePlus
 
 from ..models                   import Category
 
 
-# Create your tests here.
 
-
-class TestURLs(TestCase):
+class TestURLs( TestCasePlus ):
 
     def test_list_reverse(self):
         """categories:index should reverse to /categories/."""
