@@ -4,17 +4,14 @@ from os.path            import join
 
 from django.conf        import settings
 from django.core.urlresolvers import reverse
-from django.test        import TestCase
 from django.utils       import timezone
 
 from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
-                                 AssertEmptyMixin )
+                                 AssertEmptyMixin, TestCasePlus )
 
 from ..models           import ( ItemFound, UserItemFound, ItemFoundTemp )
 
-from .test_models       import PutSearchResultsInDatabase
-
-from .test_utils        import GetBrandsCategoriesModelsSetUp
+from .test_models       import PutSearchResultsInDatabaseWebTest
 
 from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
                                  findSearchHits, _getRowRegExpressions,
@@ -52,7 +49,7 @@ def _getBrandRegExFinders4Test( oBrand ):
 
 # iRecordStepsForThis imported from __init__.py
 
-class SetUpForHitStarsTests( PutSearchResultsInDatabase ):
+class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTest ):
     #
     ''' class for testing findSearchHits() hit star calculations '''
     #
@@ -60,7 +57,7 @@ class SetUpForHitStarsTests( PutSearchResultsInDatabase ):
         #
         global iRecordStepsForThis
         #
-        super( SetUpForHitStarsTests, self ).setUp()
+        super( SetUpForHitStarsWebTests, self ).setUp()
         #
         if settings.COVERAGE and not iRecordStepsForThis:
             #
@@ -79,7 +76,7 @@ class SetUpForHitStarsTests( PutSearchResultsInDatabase ):
 
 
 
-class KeyWordFindSearchHitsTests( SetUpForHitStarsTests ):
+class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
 
     def print_len( self, lTest, iExpect, iItemNumb = None ):
         #
@@ -1670,7 +1667,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
 
 
 
-class GetTextInParensTest( TestCase ):
+class GetTextInParensTest( TestCasePlus ):
     #
     def test_got_text_in_parens_or_not( self ):
         #
@@ -1686,7 +1683,7 @@ class GetTextInParensTest( TestCase ):
 
 
 
-class GetRelevantTitleTests( TestCase ):
+class GetRelevantTitleTests( TestCasePlus ):
     #
     def test_get_relevant_title( self ):
         #
