@@ -74,3 +74,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # ------------------------------------------------------------------------------
 
 MEDIA_ROOT = '/home/Common/AuctionPics'
+
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
