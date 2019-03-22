@@ -5,10 +5,11 @@ from django.http.request    import HttpRequest
 from django.test            import RequestFactory
 from django.test.client     import Client
 
-from django_webtest         import WebTest
+from django_webtest         import WebTest, TestApp
 from test_plus.test         import TestCase
 
 from config.settings.base   import LOGIN_URL
+from config.wsgi            import application
 
 from brands.models          import Brand
 from categories.models      import Category
@@ -29,12 +30,22 @@ class TestCasePlus( TestCase ):
     pass
 
 
-class PlusUserTestCase( TestCasePlus ):
+class BaseUserTestPlusCase( TestCasePlus ):
 
     def setUp(self):
         #
         self.user1 = self.make_user( 'u1' )
         self.user2 = self.make_user( 'u2' )
+        #
+        self.market  = getDefaultMarket()
+        #
+        self.login( self.user1 )
+        #
+
+
+
+oAuctionBotApp = TestApp( application )
+
 
 
 
@@ -162,17 +173,6 @@ class BaseUserWebTestCase( WebTest ):
         self.request = HttpRequest()
         self.request.user = self.user1
         #
-        if (  ( not isinstance( self.market, Market ) ) or
-              ( not Market.objects.get( pk = 0 ) ) ):
-            self.market = Market(
-                cMarket     = 'EBAY-US',
-                cCountry    = 'US',
-                iEbaySiteID = 0,
-                cLanguage   = 'en-US',
-                iCategoryVer= EBAY_US_CURRENT_VERSION,
-                cCurrencyDef= 'USD' )
-            self.market.save()
-        #
         self.client.login(username ='username1', password='mypassword')
         #
 
@@ -185,15 +185,11 @@ class BaseUserWebTestCase( WebTest ):
         #
 
 
-class SetUpBrandsCategoriesModelsWebTest( BaseUserWebTestCase ):
-
-    ''' handy base class that sets up some models / tables '''
-
-    def setUp(self):
-        #
-        super( SetUpBrandsCategoriesModelsWebTest, self ).setUp()
-        #
-        self.client.login(username ='username1', password='mypassword')
+class SetUpBrandsCategoriesModelsMixin( object ):
+    #
+    '''reuse setup code for WebTest and TestCasePlus '''
+    #
+    def setUpBrandsCategoriesModels( self ):
         #
         self.oBrand = Brand(
             cTitle      = "Cadillac",
@@ -245,6 +241,30 @@ class SetUpBrandsCategoriesModelsWebTest( BaseUserWebTestCase ):
             iUser       = self.user1 )
         self.oModel.save()
 
+
+
+class SetUpBrandsCategoriesModelsWebTest(
+            SetUpBrandsCategoriesModelsMixin, BaseUserWebTestCase ):
+
+    ''' handy base class that sets up some models / tables '''
+
+    def setUp(self):
+        #
+        super( SetUpBrandsCategoriesModelsWebTest, self ).setUp()
+        #
+        self.setUpBrandsCategoriesModels()
+
+
+class SetUpBrandsCategoriesModelsTestPlus(
+            SetUpBrandsCategoriesModelsMixin, BaseUserTestPlusCase ):
+
+    ''' handy base class that sets up some models / tables '''
+
+    def setUp(self):
+        #
+        super( SetUpBrandsCategoriesModelsTestPlus, self ).setUp()
+        #
+        self.setUpBrandsCategoriesModels()
 
 
 
