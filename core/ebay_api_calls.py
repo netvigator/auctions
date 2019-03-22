@@ -98,6 +98,13 @@ def _postResponseEbayApi(
     #
     dHttpHeaders.update( headers )
     #
+    #print('')
+    #print('sEndPointURL', sEndPointURL)
+    #print('type(sRequest)', type(sRequest))
+    #print('sRequest')
+    #pprint(sRequest)
+    #print('dHttpHeaders')
+    #pprint(dHttpHeaders)
     oResponse = requests.post(
                     sEndPointURL,
                     data    = sRequest,
@@ -145,7 +152,7 @@ def _getItemInfo( uItemNumb, sCallName,
     #
     sEndPointURL= dConfValues[ "endpoints"][ 'shopping'        ]
     iSiteID     = dConfValues[ "call"     ][ "global_id"       ]
-    sCompatible = dConfValues[ "call"     ][ "compatibility"   ]
+    sCompatible = dConfValues[ "shopping" ][ "compatibility"   ]
     sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"     ]
     sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
     sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
@@ -179,7 +186,6 @@ def getItemStatus( uItemNumb, bUseSandbox = False ):
                          bUseSandbox = bUseSandbox )
 
 
-
 def _getCategoriesOrVersion(
             iSiteId      = 0,
             sDetailLevel = None,
@@ -190,7 +196,7 @@ def _getCategoriesOrVersion(
     dConfValues = _getApiConfValues( bUseSandbox )
     #
     sEndPointURL= dConfValues[ "endpoints"][ 'trading'         ]
-    sCompatible = dConfValues[ "call"     ][ "compatibility"   ]
+    sCompatible = dConfValues[ "trading"  ][ "compatibility"   ]
     sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"     ]
     sCertID     = dConfValues[ "keys"     ][ "ebay_certid"     ]
     sDevID      = dConfValues[ "keys"     ][ "ebay_dev_id"     ]
@@ -207,6 +213,11 @@ def _getCategoriesOrVersion(
             "X-EBAY-API-COMPATIBILITY-LEVEL": sCompatible,
             "Content-Type"                  : "text/xml" }
     #
+    #print()
+    #print( 'dHttpHeaders:' )
+    #pprint( dHttpHeaders )
+    #print( 'headers:' )
+    #pprint( headers )
     dHttpHeaders.update( headers )
     #
     root = etree.Element( "GetCategoriesRequest",
@@ -232,8 +243,10 @@ def _getCategoriesOrVersion(
                     root,
                     pretty_print    = False,
                     xml_declaration = True,
-                    encoding        = "utf-8" )
+                    encoding        = "utf-8" ).decode('utf-8')
     #
+    print('')
+    print('decoded the string')
     tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
     return _postResponseEbayApi(
@@ -339,8 +352,10 @@ def _getEbayFindingResponse(
     sRequest = etree.tostring(
                     root,
                     pretty_print    = False,
-                    encoding        = "utf-8" )
+                    encoding        = "utf-8" ).decode('utf-8')
     #
+    print('')
+    print('decoded the string')
     #
     ''' connect to ebay for finding, get response '''
     #
