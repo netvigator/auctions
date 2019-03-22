@@ -4,10 +4,9 @@ from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
                                  getWhatsNotInParens,
                                  getShrinkItemURL )
-from ..utils_test       import ( getUrlQueryStringOff,
-                                 queryGotUpdated )
 
-from core.utils_test    import TestCasePlus
+from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
+                                 queryGotUpdated, oAuctionBotApp )
 
 from ebayinfo           import EBAY_US_CURRENT_VERSION
 
@@ -18,6 +17,32 @@ from ebayinfo.utils_test import ( getMarketsIntoDatabase,
 
 from Time               import sFormatISOdateTimeNoColon
 from Time.Test          import isISOdatetime
+
+
+class BasicAppTestsDjangoStyle( TestCasePlus ):
+
+    def test_basic_function( self ):
+        #
+        oResponse = oAuctionBotApp.get( '/' )
+        #
+        self.assertEqual( oResponse.status,         '200 OK'    )
+        self.assertEqual( oResponse.status_int,      200        )
+        self.assertEqual( oResponse.content_type,   'text/html' )
+        self.assertTrue(  oResponse.mustcontain,    '<html'     )
+        self.assertTrue(  oResponse.mustcontain,    '</html>'   )
+
+
+class BasicAppTestCasePlus( TestCasePlus ):
+
+    def test_testplus_get( self ):
+        self.get( '/' )
+        self.response_200()
+        self.assertInContext( 'STATIC_URL' )
+
+
+    def test_testplus_get_quick( self ):
+        response = self.get_check_200( '/' )
+        self.assertInContext( 'STATIC_URL' )
 
 
 
