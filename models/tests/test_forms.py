@@ -1,6 +1,7 @@
 from django.core.urlresolvers   import reverse
 
 from core.utils_test            import ( SetUpBrandsCategoriesModelsWebTest,
+                                         SetUpBrandsCategoriesModelsTestPlus,
                                          getUrlQueryStringOff )
 
 from categories.models          import Category
@@ -8,14 +9,9 @@ from categories.models          import Category
 from ..forms                    import CreateModelForm, UpdateModelForm
 from ..models                   import Model
 
-# Create your tests here.
 
 
-class TestFormValidation( SetUpBrandsCategoriesModelsWebTest ):
-
-    ''' Model Form Tests '''
-    # helpful:
-    # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
+class TestFormValidationMixin( object ):
 
     def test_Title_got_outside_parens(self):
         #
@@ -97,4 +93,20 @@ class TestFormValidation( SetUpBrandsCategoriesModelsWebTest ):
         form = CreateModelForm(data=form_data)
         form.request = self.request
         self.assertFalse(form.is_valid())
+
+
+class WebTestFormValidation(
+        TestFormValidationMixin, SetUpBrandsCategoriesModelsWebTest ):
+
+    ''' Model Form Tests '''
+    # helpful:
+    # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
+    pass
+
+
+
+class TestPlusFormValidation(
+        TestFormValidationMixin, SetUpBrandsCategoriesModelsTestPlus ):
+    pass
+
 
