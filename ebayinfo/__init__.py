@@ -21,7 +21,7 @@ sMarketsTable = \
  EBAY-US    | US       | en-US     |           0 | t              |          119 | USD          |                |              -8
  EBAY-ENCA  | CA       | en-CA     |           2 | t              |          117 | CAD          |                |              -8
  EBAY-GB    | GB       | en-GB     |           3 | t              |          110 | GBP          |                |               0
- EBAY-AU    | AU       | en-AU     |          15 | t              |          110 | AUD          |                |              10
+ EBAY-AU    | AU       | en-AU     |          15 | t              |          111 | AUD          |                |              10
  EBAY-AT    | AT       | de-AT     |          16 | t              |           88 | EUR          |                |               1
  EBAY-FRBE  | BE       | fr-BE     |          23 | f              |           83 | EUR          |                |               1
  EBAY-FR    | FR       | fr-FR     |          71 | t              |          107 | EUR          |                |               1
