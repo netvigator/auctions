@@ -224,7 +224,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
 
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
-    def hold_test_got_current_category_version_list( self ):
+    def test_got_current_category_version_list( self ):
         #
         from random import randrange
         #
@@ -251,7 +251,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
-    def hold_test_check_whether_any_ebay_market_list_is_updated( self ):
+    def test_check_whether_any_ebay_market_list_is_updated( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
@@ -274,22 +274,23 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         if len( lUpdated ) > 1:
             print( '\n')
             print( '*** ebay has updated categories, '
-                   'you need to update local tables ***' )
+                   'you need to update local table in '
+                   'ebayinfo/__init__.py ***' )
             print( '\n')
             #
             lDecorated = [ ( d['iSiteID'], d ) for d in lUpdated ]
             #
             lDecorated.sort()
             #
-            lDecorated[0]['iTableHas'] = EBAY_US_CURRENT_VERSION
+            #lDecorated[0]['iTableHas'] = EBAY_US_CURRENT_VERSION
             #
             for t in lDecorated:
                 #
                 print( t[1] )
                 #
             #
-            self.assertEqual( lUpdated[0].get('iSiteID'),   oUSA.iEbaySiteID )
-            self.assertEqual( lUpdated[0].get('iTableHas'), EBAY_US_CURRENT_VERSION )
-            #self.assertEqual( lUpdated[0].get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
-
-
+            d = lDecorated[0][1]
+            #
+            self.assertEqual( d.get('iSiteID'),   oUSA.iEbaySiteID        )
+            self.assertEqual( d.get('iTableHas'), EBAY_US_CURRENT_VERSION )
+            self.assertEqual( d.get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
