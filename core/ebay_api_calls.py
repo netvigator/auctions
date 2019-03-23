@@ -29,6 +29,10 @@ class InvalidParameters( Exception ): pass
 
 # django.setup()
 
+'''
+for troubleshooting:
+https://developer.ebay.com/DevZone/build-test/test-tool/
+'''
 
 tEBAY_LISTING_TYPES = (
       'Auction',
@@ -78,7 +82,8 @@ def _postResponseEbayApi(
         sEndPointURL,
         sRequest,
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
-        **headers ):
+        bMoreHeaders = True,
+        **dHttpHeaders ):
     #
     ''' connect to ebay, do a POST, get response '''
     #
@@ -92,19 +97,22 @@ def _postResponseEbayApi(
     #
     # can set to 0.001 for testing timed out response
     #
-    dHttpHeaders= {
+    if bMoreHeaders:
+        #
+        dMoreHeaders = {
             "X-EBAY-SOA-OPERATION-NAME"      : sOperation,
             "X-EBAY-SOA-RESPONSE-DATA-FORMAT": 'json' }
+        #
+        dHttpHeaders.update( dMoreHeaders )
+        #
     #
-    dHttpHeaders.update( headers )
-    #
-    #print('')
-    #print('sEndPointURL', sEndPointURL)
-    #print('type(sRequest)', type(sRequest))
-    #print('sRequest')
-    #pprint(sRequest)
-    #print('dHttpHeaders')
-    #pprint(dHttpHeaders)
+    print('')
+    print('sEndPointURL', sEndPointURL)
+    print('type(sRequest)', type(sRequest))
+    print('sRequest')
+    print(sRequest)
+    print('dHttpHeaders')
+    pprint(dHttpHeaders)
     oResponse = requests.post(
                     sEndPointURL,
                     data    = sRequest,
@@ -205,13 +213,15 @@ def _getCategoriesOrVersion(
     sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
     #
     dHttpHeaders= {
-            "X-EBAY-API-DEV-NAME"           : sDevID,
-            "X-EBAY-API-APP-NAME"           : sAppID,
-            "X-EBAY-API-CERT-NAME"          : sCertID,
+            #"X-EBAY-API-DEV-NAME"           : sDevID,
+            #"X-EBAY-API-APP-NAME"           : sAppID,
+            #"X-EBAY-API-CERT-NAME"          : sCertID,
+            #"Content-Type"                  : "text/xml" ,
+            #"X-EBAY-API-IAF-TOKEN"          : sToken,
             "X-EBAY-API-CALL-NAME"          : 'GetCategories',
             "X-EBAY-API-SITEID"             : str( iSiteId ),
             "X-EBAY-API-COMPATIBILITY-LEVEL": sCompatible,
-            "Content-Type"                  : "text/xml" }
+            }
     #
     #print()
     #print( 'dHttpHeaders:' )
@@ -228,12 +238,22 @@ def _getCategoriesOrVersion(
     oElement = etree.SubElement( oCredentials, "eBayAuthToken")
     oElement.text = sToken
     #
-    oElement = etree.SubElement(root, "CategorySiteID")
-    oElement.text = str( iSiteId )
+    oElement = etree.SubElement(root, "ErrorLanguage")
+    oElement.text = 'en_US'
+    #
+    oElement = etree.SubElement(root, "WarningLevel")
+    oElement.text = 'High'
     #
     if sDetailLevel:
+        #
         oElement = etree.SubElement( root, "DetailLevel" )
         oElement .text = sDetailLevel
+        #
+    else:
+        #
+        oElement = etree.SubElement( root, "ViewAllNodes" )
+        oElement .text = 'false'
+        #
     #
     if iLevelLimit:
         oElement = etree.SubElement(root, "LevelLimit")
@@ -241,7 +261,7 @@ def _getCategoriesOrVersion(
     #
     sRequest    = etree.tostring(
                     root,
-                    pretty_print    = False,
+                    pretty_print    = True,
                     xml_declaration = True,
                     encoding        = "utf-8" ).decode('utf-8')
     #
@@ -252,6 +272,7 @@ def _getCategoriesOrVersion(
             sEndPointURL,
             sRequest,
             tTimeOuts,
+            bMoreHeaders = False,
             **dHttpHeaders )
 
 
@@ -442,9 +463,10 @@ def getCategoryVersionGotSiteID(
             iSiteId = 0, bUseSandbox = False ): # ID for EBAY-US
     #
     oVersion = _getCategoriesOrVersion(
-                    iSiteId     = iSiteId,
-                    iLevelLimit = 1,
-                    bUseSandbox = bUseSandbox )
+                    iSiteId      = iSiteId,
+                    iLevelLimit  = 1,
+                    sDetailLevel = 'ReturnAll',
+                    bUseSandbox  = bUseSandbox )
     #
     return _getDecoded( oVersion )
 
