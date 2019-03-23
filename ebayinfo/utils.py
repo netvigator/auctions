@@ -171,6 +171,9 @@ returns
 
 def _getCategoryListParams( uMarket, uWantVersion ):
     #
+    '''pass market name (such as EBAY-US) and version you want
+    returns tuple (market query object, market name, string version)'''
+    #
     if isinstance( uMarket, str ):
         oMarket = Market.objects.get( cMarket = uMarket )
         sMarket = uMarket
@@ -190,8 +193,8 @@ def _getCategoryListParams( uMarket, uWantVersion ):
 
 
 def _putCategoriesInDatabase(
-            uMarket         = 'EBAY-US',
-            uWantVersion    = '117',
+            uMarket         = 'EBAY-US', # expect str but obj OK
+            uWantVersion    = '117',     # expect str but int OK
             bShowProgress   = False,
             sFile           = None ):
     #
@@ -339,8 +342,8 @@ def _putCategoriesInDatabase(
 
 
 def getCategoryListThenStore(
-            uMarket         = 'EBAY-US',
-            uWantVersion    = '118',
+            uMarket         = 'EBAY-US', # expect str but obj OK
+            uWantVersion    = '119',     # expect str but int OK
             bUseSandbox     = False,
             bShowProgress   = False ):
     #
