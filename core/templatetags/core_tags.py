@@ -34,7 +34,7 @@ def getDashForReturn( s ):
         #
         l = oFinderCRorLF.split( s )
         #
-        return ' - '.join( l )
+        return ' - '.join( ( s for s in l if s ) )
         #
     else:
         return '' # run replace on None and you get an error
