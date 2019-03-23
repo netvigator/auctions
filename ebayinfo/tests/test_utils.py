@@ -5,10 +5,10 @@ from django.test    import tag
 
 from core.utils     import updateMemoryTableUpdated
 from core.utils_test import getDefaultMarket, GetEbayCategoriesWebTestSetUp
+from core.utils_test import TestCasePlus
 
 from ebayinfo       import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
 
-from core.utils_test import TestCasePlus
 
 from ..models       import EbayCategory, Market
 
