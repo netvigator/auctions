@@ -106,18 +106,18 @@ def _postResponseEbayApi(
         dHttpHeaders.update( dMoreHeaders )
         #
     #
-    print('')
-    print('sEndPointURL', sEndPointURL)
-    print('type(sRequest)', type(sRequest))
-    print('sRequest')
-    print(sRequest)
-    print('dHttpHeaders')
-    pprint(dHttpHeaders)
+    #print('')
+    #print('sEndPointURL', sEndPointURL)
+    #print('type(sRequest)', type(sRequest))
+    #print('sRequest')
+    #print(sRequest)
+    #print('dHttpHeaders')
+    #pprint(dHttpHeaders)
     oResponse = requests.post(
                     sEndPointURL,
                     data    = sRequest,
                     timeout = uTimeOuts,
-                    params  = dHttpHeaders )
+                    headers = dHttpHeaders ) # params is for query string!!!
     #
     return oResponse.text
 
@@ -464,8 +464,6 @@ def getCategoryVersionGotSiteID(
     #
     oVersion = _getCategoriesOrVersion(
                     iSiteId      = iSiteId,
-                    iLevelLimit  = 1,
-                    sDetailLevel = 'ReturnAll',
                     bUseSandbox  = bUseSandbox )
     #
     return _getDecoded( oVersion )
