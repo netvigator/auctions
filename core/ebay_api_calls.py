@@ -80,7 +80,7 @@ def _getApiConfValues( bUseSandbox ):
 def _postResponseEbayApi(
         sOperation,
         sEndPointURL,
-        sRequest,
+        sBody,
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
         bMoreHeaders = True,
         **dHttpHeaders ):
@@ -108,14 +108,14 @@ def _postResponseEbayApi(
     #
     #print('')
     #print('sEndPointURL', sEndPointURL)
-    #print('type(sRequest)', type(sRequest))
-    #print('sRequest')
-    #print(sRequest)
+    #print('type(sBody)', type(sBody))
+    #print('sBody')
+    #print(sBody)
     #print('dHttpHeaders')
     #pprint(dHttpHeaders)
     oResponse = requests.post(
                     sEndPointURL,
-                    data    = sRequest,
+                    data    = sBody,
                     timeout = uTimeOuts,
                     headers = dHttpHeaders ) # params is for query string!!!
     #
@@ -259,18 +259,18 @@ def _getCategoriesOrVersion(
         oElement = etree.SubElement(root, "LevelLimit")
         oElement.text = str( iLevelLimit )
     #
-    sRequest    = etree.tostring(
-                    root,
-                    pretty_print    = True,
-                    xml_declaration = True,
-                    encoding        = "utf-8" ).decode('utf-8')
+    sBody = etree.tostring(
+                root,
+                pretty_print    = True,
+                xml_declaration = True,
+                encoding        = "utf-8" ).decode('utf-8')
     #
     tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
     return _postResponseEbayApi(
             'trading',
             sEndPointURL,
-            sRequest,
+            sBody,
             tTimeOuts,
             bMoreHeaders = False,
             **dHttpHeaders )
@@ -368,10 +368,10 @@ def _getEbayFindingResponse(
             #
         #
     #
-    sRequest = etree.tostring(
-                    root,
-                    pretty_print    = False,
-                    encoding        = "utf-8" ).decode('utf-8')
+    sBody = etree.tostring(
+                root,
+                pretty_print    = False,
+                encoding        = "utf-8" ).decode('utf-8')
     #
     ''' connect to ebay for finding, get response '''
     #
@@ -388,7 +388,7 @@ def _getEbayFindingResponse(
     dHttpHeaders.update( headers )
     #
     return _postResponseEbayApi(
-              sCall, sEndPointURL, sRequest, uTimeOuts, **dHttpHeaders )
+              sCall, sEndPointURL, sBody, uTimeOuts, **dHttpHeaders )
 
 
 
