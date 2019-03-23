@@ -245,8 +245,6 @@ def _getCategoriesOrVersion(
                     xml_declaration = True,
                     encoding        = "utf-8" ).decode('utf-8')
     #
-    print('')
-    print('decoded the string')
     tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
     return _postResponseEbayApi(
@@ -353,9 +351,6 @@ def _getEbayFindingResponse(
                     root,
                     pretty_print    = False,
                     encoding        = "utf-8" ).decode('utf-8')
-    #
-    print('')
-    print('decoded the string')
     #
     ''' connect to ebay for finding, get response '''
     #
