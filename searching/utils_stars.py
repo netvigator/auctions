@@ -350,7 +350,7 @@ _oDropAfterThisFinder = getRegExObj(
             r'\btests*\b|'
             r'\btested (?:on|with)\b|'
             r'\bfrom\b)|'
-            r'\bused with\b|'
+            r'\bused (?:with|in)\b|'
             r'\bsimilar to\b' ) # formerly oForFitsFinder
 
 def _getRelevantTitle( sTitle ):
