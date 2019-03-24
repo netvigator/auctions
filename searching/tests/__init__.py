@@ -619,7 +619,9 @@ sResponseItems2Test = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-02-27T02:42:38.000Z"],
+              "endTime":["2018-03-04T02:42:38.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
@@ -638,7 +640,9 @@ sResponseItems2Test = \
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"100.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"100.0"}],
               "bidCount":["0"],"sellingState":["Active"],
               "timeLeft":["P6DT5H38M58S"]}],
-              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2019-03-13T02:46:55.000Z"],"endTime":["2019-03-20T02:46:55.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-03-13T02:46:55.000Z"],
+              "endTime":["2019-03-20T02:46:55.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
@@ -877,7 +881,9 @@ sResponseItems2Test = \
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"79.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"79.0"}],
               "sellingState":["Active"],
               "timeLeft":["P4DT22H6M47S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-12-18T00:31:46.000Z"],"endTime":["2018-12-23T00:31:46.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-12-18T00:31:46.000Z"],
+              "endTime":["2018-12-23T00:31:46.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
@@ -1169,7 +1175,9 @@ sResponseItems2Test = \
               "sellingState":["Active"],
               "timeLeft":["P4DT4H47M13S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],
-              "buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"20.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"20.0"}],"startTime":["2018-10-07T20:54:03.000Z"],"endTime":["2018-10-12T20:54:03.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"]}],
+              "buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"20.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"20.0"}],
+              "startTime":["2018-10-07T20:54:03.000Z"],
+              "endTime":["2018-10-12T20:54:03.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
           },{ "itemId":["192675470270"],
@@ -1184,7 +1192,9 @@ sResponseItems2Test = \
               "country":["US"],
               "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2018-02-27T02:42:38.000Z"],
+              "endTime":["2018-03-04T02:42:38.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
