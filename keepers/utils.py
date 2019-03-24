@@ -296,6 +296,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         # InvalidOrNonExistentItemError:
         # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
         #
+        # next: queryset update method
+        # next: queryset update method
+        # next: queryset update method
+        #
         ItemFound.objects.filter(
                 iItemNumb = iItemNumb ).update(
                     tRetrieveFinal = tNow,
