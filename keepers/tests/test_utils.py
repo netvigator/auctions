@@ -12,7 +12,12 @@ from django.utils       import timezone
 from keepers            import getListAsLines
 
 from keepers.tests      import ( s142766343340, s232742493872,
-                                 s232709513135, s282330751118 )
+                                 s232709513135, s282330751118,
+                                 s293004871422,
+                                 s254154293727, s254130264753,
+                                 s223348187115, s173696834267,
+                                 s372536713027, s173696832184,
+                                 s303000971114, s323589685342 )
 
 from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
@@ -191,6 +196,8 @@ class StoreItemsTestPlus( TestCasePlus ):
         self.assertTrue( Keeper.objects.filter( pk = 232709513135 ).exists() )
 
 
+
+
 class GetAndStoreSingleItemsWebTests(
             AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
     '''class to test getSingleItemThenStore'''
@@ -198,6 +205,21 @@ class GetAndStoreSingleItemsWebTests(
     def setUp( self ):
         #
         super( GetAndStoreSingleItemsWebTests, self ).setUp()
+        #
+        d = {   293004871422 : s293004871422,
+                254154293727 : s254154293727,
+                254130264753 : s254130264753,
+                223348187115 : s223348187115,
+                173696834267 : s173696834267,
+                372536713027 : s372536713027,
+                173696832184 : s173696832184,
+                303000971114 : s303000971114,
+                323589685342 : s323589685342 }
+        #
+        for k, v in d.items():
+            #
+            getSingleItemThenStore( k, sContent = v )
+            #
         #
         self.iItemNumb = None
         #
