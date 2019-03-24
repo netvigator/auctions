@@ -291,17 +291,29 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         #
     #
-    if oItemFound is None:
+    if not bItemNumberStillGood:
+        #
+        # InvalidOrNonExistentItemError:
+        # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
+        #
+        ItemFound.objects.filter(
+                iItemNumb = iItemNumb ).update(
+                    tRetrieveFinal = tNow,
+                    bCancelledItem = True )
+        #
+        UserItemFound.objects.filter(
+                iItemNumb = iItemNumb ).update(
+                        tRetrieveFinal = tNow,
+                        tRetrieved     = tNow )
+        #
+    elif oItemFound is None:
         #
         if not settings.TESTING:
             #
             logger.info( 'oItemFound is None! %s', str( iItemNumb ) )
             #
         #
-    elif iSavedRowID is not None or not bItemNumberStillGood:
-        #
-        # InvalidOrNonExistentItemError:
-        # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
+    elif iSavedRowID is not None:
         #
         # oItemFound = ItemFound.objects.get( pk = iItemNumb )
         #
@@ -330,7 +342,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
                 bAlreadyRetrieved = False
                 #
             #
-            oItemFound.bCancelledItem = not bItemNumberStillGood
+            oItemFound.bCancelledItem = False
             #
             oItemFound.save()
             #
@@ -355,29 +367,14 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             oItemFound.tRetrieved = tNow
             #
-            if not bItemNumberStillGood:
-                #
-                oItemFound.tRetrieveFinal = tNow
-                #
-            #
             oItemFound.save()
             #
             # next: queryset update method
             # next: queryset update method
             # next: queryset update method
             #
-            if bItemNumberStillGood:
-                #
-                UserItemFound.objects.filter(
-                        iItemNumb = iItemNumb ).update( tRetrieved = tNow )
-                #
-            else:
-                #
-                UserItemFound.objects.filter(
-                        iItemNumb = iItemNumb ).update(
-                                tRetrieveFinal = tNow,
-                                tRetrieved     = tNow )
-                #
+            UserItemFound.objects.filter(
+                    iItemNumb = iItemNumb ).update( tRetrieved = tNow )
             #
         #
     #
