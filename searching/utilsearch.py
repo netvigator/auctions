@@ -111,6 +111,7 @@ def storeItemInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         #print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
     #
     dNewResult['tCreate'] = tSearchTime
+    # 2019-03-25 cannot! auto_now_add, hope to get consistent index listings
     #
     form = Form( data = dNewResult )
     #
