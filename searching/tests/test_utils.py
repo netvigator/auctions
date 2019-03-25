@@ -298,9 +298,7 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #
         dEbayCatHierarchies = {}
         #
-        tNow = timezone.now()
-        #
-        iItemNumb = _storeItemFound( dSearchResult, tNow, dEbayCatHierarchies )
+        iItemNumb = _storeItemFound( dSearchResult, dEbayCatHierarchies )
         #
         iCategoryID = int(
                 dSearchResult.get( 'primaryCategory' ).get( 'categoryId' ) )
@@ -333,10 +331,8 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #
         #self.assertEqual( oResultRow.iCatHeirarchy.cCatHierarchy, sExpect )
         #
-        tNow = timezone.now()
-        #
         try: # again
-            _storeItemFound( dSearchResult, tNow )
+            _storeItemFound( dSearchResult )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
@@ -370,14 +366,14 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
         #
         tNow = timezone.now()
         #
-        iItemNumb = _storeItemFound( dSearchResult, tNow, {} )
+        iItemNumb = _storeItemFound( dSearchResult, {} )
         #
         if iItemNumb is None:
             raise ThisShouldNotBeHappening
         #
         try:
             _storeUserItemFound(
-                dSearchResult, iItemNumb, tNow, self.user1, self.oSearch.id )
+                dSearchResult, iItemNumb, self.user1, self.oSearch.id )
         except ItemAlreadyInTable:
             pass
         #
@@ -404,7 +400,6 @@ class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
         ''' test _storeUserItemFound() with actual record'''
         #
         iItemNumb   = self.iItemNumb
-        tNow        = self.tNow
         #
         oResultRow = UserItemFound.objects.filter(
                             iItemNumb   = iItemNumb,
@@ -414,7 +409,7 @@ class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
         #
         try: # again
             _storeUserItemFound(
-                dSearchResult, iItemNumb, tNow, self.user1, self.oSearch.id )
+                dSearchResult, iItemNumb, self.user1, self.oSearch.id )
         except ItemAlreadyInTable as e:
             self.assertEqual(
                     str(e),
