@@ -3,6 +3,7 @@ import logging
 from string             import ascii_uppercase, digits
 
 from django.conf        import settings
+from django.utils       import timezone
 
 from ebayinfo.models    import EbayCategory
 
@@ -61,7 +62,7 @@ ALL_PRIORITIES = getPriorityChoices()
 
 
 
-def storeItemInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
+def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     '''can store a row in either ItemFound or UserItemFound
     note that when testing against the live ebay api,
@@ -110,7 +111,7 @@ def storeItemInfo( dItem, dFields, tSearchTime, Form, getValue, **kwargs ):
         #print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
         #print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
     #
-    dNewResult['tCreate'] = tSearchTime
+    dNewResult['tCreate'] = timezone.now()
     # 2019-03-25 cannot! auto_now_add, hope to get consistent index listings
     #
     form = Form( data = dNewResult )
