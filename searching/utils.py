@@ -339,7 +339,7 @@ def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
 
 
 
-def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
+def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
     from .forms         import ItemFoundForm
     #
@@ -380,7 +380,6 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
         iSavedRowID = storeItemInfo(
                         dItem,
                         dItemFoundFields,
-                        tSearchTime,
                         ItemFoundForm,
                         getValueOffItemDict,
                         iCatHeirarchy   = tCatHeirarchies[0],
@@ -393,7 +392,7 @@ def _storeItemFound( dItem, tSearchTime, dEbayCatHierarchies = {} ):
 
 
 
-def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
+def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
     #
     from .forms     import UserItemFoundUploadForm
     from searching  import dUserItemFoundUploadFields # in __init__.py
@@ -416,7 +415,6 @@ def _storeUserItemFound( dItem, iItemNumb, tSearchTime, oUser, iSearch ):
     return storeItemInfo(
                 dItem,
                 dUserItemFoundUploadFields,
-                tSearchTime,
                 UserItemFoundUploadForm,
                 _getValueUserOrOther,
                 oUser       = oUser,
@@ -513,7 +511,7 @@ def storeSearchResultsInDB( iLogID,
     #
     from django.contrib.auth    import get_user_model
     #
-    tSearchTime = tBegStore = timezone.now()
+    tBegStore = timezone.now()
     #
     sFilePattern = (
             RESULTS_FILE_NAME_PATTERN %
@@ -599,8 +597,8 @@ def storeSearchResultsInDB( iLogID,
                 #
                 try:
                     #
-                    iItemNumb = _storeItemFound(
-                                    dItem, tSearchTime, dEbayCatHierarchies )
+                    iItemNumb = _storeItemFound( dItem, dEbayCatHierarchies )
+                    #
                     iStoreItems += 1
                     #
                     if iItemNumb is None and not settings.TESTING:
@@ -632,8 +630,7 @@ def storeSearchResultsInDB( iLogID,
                 #
                 try:
                     #
-                    _storeUserItemFound(
-                            dItem, iItemNumb, tSearchTime, oUser, iSearchID )
+                    _storeUserItemFound( dItem, iItemNumb, oUser, iSearchID )
                     #
                     iStoreUsers += 1
                     #
