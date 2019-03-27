@@ -1300,6 +1300,24 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
+        iThisOne = 133004653920
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should find driver and crossover
+        #
+        #
+        iThisOne = 202636634682
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should not find AR-2
+        #
+        #
 
 
 
