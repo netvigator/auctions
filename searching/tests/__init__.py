@@ -147,6 +147,7 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  602A               |           |      6 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3900A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
@@ -209,6 +210,7 @@ sModels = \
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
  C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
+ 2a                 |           |      6 | t            | Audio Research    |Speaker System|             | LST-2\\r2 way\\r(2)
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -626,6 +628,45 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["202636634682"],
+              "title":["Vintage Acoustic Research SAT 660 Speakers(2)"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],
+              "categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/m3umS-mQ2uZGxFZW3o91ycw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Acoustic-Research-SAT-660-Speakers-2-\/202636634682"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["23456"],
+              "location":["Virginia Beach,VA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"44.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"21.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"21.99"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P4DT7H13M45S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-03-27T02:54:18.000Z"],
+              "endTime":["2019-04-01T02:54:18.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+          },{ "itemId":["133004653920"],
+              "title":["VINTAGE ALTEC LANSING 604D DUPLEX SPEAKER, With N-1600B CROSSOVER."],
+              "globalId":["EBAY-US"],
+              "subtitle":["Near mint condition .. in original 1950s packaging"],
+              "primaryCategory":[{"categoryId":["50597"],
+              "categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mh3UMGjtjfTEMMB3R2kpP-Q\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/VINTAGE-ALTEC-LANSING-604D-DUPLEX-SPEAKER-N-1600B-CROSSOVER-\/133004653920"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["11103"],
+              "location":["Astoria,NY,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1000.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT20H52M39S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"1350.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"1350.0"}],
+              "startTime":["2019-03-27T16:34:17.000Z"],
+              "endTime":["2019-04-03T16:34:17.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
           },{ "itemId":["293004871422"],
               "title":["Jbl L65 Jubal Le5-12 Mids Pair Working Nice! See Pictures"],
