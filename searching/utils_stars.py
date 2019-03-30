@@ -9,6 +9,7 @@ from django.utils           import timezone
 
 from core.user_one          import oUserOne
 from core.utils             import getWhatsNotInParens
+from core.templatetags      import getDashForReturn
 
 from .models                import ( ItemFound, UserItemFound, ItemFoundTemp,
                                      Search, SearchLog )
@@ -674,9 +675,13 @@ def findSearchHits(
                     #
                     if oModel.cExcludeIf:
                         #
+                        sSayExclude = getDashForReturn( oModel.cExcludeIf )
                         _appendIfNotAlreadyIn( lModels,
-                                'model "%s" excludes: %s' %
-                                ( oModel.cTitle, oModel.cRegExExclude ) )
+                                'model "%s" excludes: %s (RegEx: %s)' %
+                                ( oModel.cTitle,
+                                  sSayExclude,
+                                  oModel.cRegExExclude ) )
+                        #
                         #
                     #
                 #
