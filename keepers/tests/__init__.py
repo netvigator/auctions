@@ -1,14 +1,26 @@
 sExampleErrorNoMoreItem = '''{
-    'Version': '1063',
-    'Timestamp': '2018-06-03T13:40:05.704Z',
-    'Build': 'E1063_CORE_APILW_18716243_R1',
-    'Ack': 'Failure',
-    'Errors': [
-        {'ShortMessage': 'Invalid item ID.',
-        'ErrorCode': '10.12',
-        'SeverityCode': 'Error',
-        'ErrorClassification': 'RequestError',
-        'LongMessage': 'Invalid or non-existent item ID.'}]}'''
+    "Version": "1063",
+    "Timestamp": "2018-06-03T13:40:05.704Z",
+    "Build": "E1063_CORE_APILW_18716243_R1",
+    "Ack": "Failure",
+    "Errors": [
+        {"ShortMessage": "Invalid item ID.",
+        "ErrorCode": "10.12",
+        "SeverityCode": "Error",
+        "ErrorClassification": "RequestError",
+        "LongMessage": "Invalid or non-existent item ID."}]}'''
+
+sMissingItemIdErrorGotAck = '''{
+    "Version": "1063",
+    "Timestamp": "2018-06-03T13:40:05.704Z",
+    "Build": "E1063_CORE_APILW_18716243_R1",
+    "Ack": "Failure",
+    "Errors": [
+        {"ShortMessage": "Missing item ID.",
+        "ErrorCode": "10.13",
+        "SeverityCode": "Error",
+        "ErrorClassification": "RequestError",
+        "LongMessage": "Missing item ID."}]}'''
 
 
 s293004871422 = '''{
@@ -439,7 +451,7 @@ s232742493872 = '''{
         "StartTime":"2018-04-22T03:37:05.000Z",
         "ViewItemURLForNaturalSearch":"http://www.ebay.com/itm/SUPERB-1940s-JAN-6SL7GT-VT-229-AMPLIFER-TUBES-TESTED-NOS-/232742493872",
         "ListingType":"Chinese",
-        "Location":"Bremerton, Washington",
+        "Location":"Belgrade",
         "PaymentMethods":["PayPal"],
         "GalleryURL":"http://thumbs1.ebaystatic.com/pict/2327424938728080_1.jpg",
         "PictureURL":["http://i.ebayimg.com/00/s/NDgwWDY0MA==/z/-qUAAOSwIM9a3ANg/$_1.JPG?set_id=8800005007"],
@@ -460,7 +472,7 @@ s232742493872 = '''{
         "Title":"SUPERB 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES ! TESTED NOS",
         "HitCount":6,
         "PrimaryCategoryIDPath":"293:183077:175740:175741:64627",
-        "Country":"US",
+        "Country":"CustomCode",
         "ReturnPolicy":{"ReturnsAccepted":"ReturnsNotAccepted"},
         "MinimumToBid":{"Value":100.0,"CurrencyID":"USD"},
         "AutoPay":false,
