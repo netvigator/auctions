@@ -23,14 +23,11 @@ class KeepersViewsTests( BaseUserWebTestCase ):
         self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('keepers:index'))
-
-        print('')
-        print( response )
-        print('')
-
+        #
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['keeper_list'], [])
         #
-        # not working yet!? self.assertContains(response, "No keepers are available.")
+        # not working yet!?
+        self.assertContains(response, "No keepers are available.")
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
