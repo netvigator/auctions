@@ -1302,11 +1302,21 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 133004653920
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         # should find driver and crossover
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-1600A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '604D' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
         iThisOne = 202636634682
