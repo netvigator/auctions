@@ -23,7 +23,8 @@ from ..tests            import ( s142766343340, s232742493872,
                                  s223348187115, s173696834267,
                                  s372536713027, s173696832184,
                                  s303000971114, s323589685342,
-                                 sMissingItemIdErrorGotAck )
+                                 sMissingItemIdErrorGotAck,
+                                 sMadeUpErrorNoAck )
 from ..utils            import ( _storeJsonSingleItemResponse,
                                  getSingleItemThenStore,
                                  getItemsFoundForUpdate,
@@ -205,7 +206,6 @@ class StoreItemsTestPlus( TestCasePlus ):
         try:
             t = _storeJsonSingleItemResponse(
                     142766343340, sMissingItemIdErrorGotAck )
-            self.iOriginalSavedRowID, sListingStatus, oItemFound = t
         except GetSingleItemNotWorkingError as e:
             self.assertIn(
                     'getSingleItem failure, check file', str( e ) )
@@ -214,6 +214,19 @@ class StoreItemsTestPlus( TestCasePlus ):
         else:
             self.fail( 'did not catch GetSingleItemNotWorkingError!' )
 
+
+    def test_invalid_item( self ):
+        #
+        try:
+            t = _storeJsonSingleItemResponse(
+                    142766343340, sMadeUpErrorNoAck )
+        except GetSingleItemNotWorkingError as e:
+            self.assertIn(
+                    'unexpected content from getSingleItem, check', str( e ) )
+        except Exception as e:
+            self.fail('Unexpected exception raised:', e)
+        else:
+            self.fail( 'did not catch GetSingleItemNotWorkingError!' )
 
 
 
