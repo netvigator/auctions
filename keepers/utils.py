@@ -406,16 +406,14 @@ def getItemsFoundForUpdate():
     #
     qsAlreadyFetched = ( ItemFound.objects
                             .filter( iItemNumb__in = qsUserItemNumbs )
-                            .filter( tRetrieved__isnull = False )
-                            .prefetch_related(
-                                    'tRetrieved', 'tRetrieveFinal' ) )
+                            .filter( tRetrieved__isnull = False ) )
     #
     # update useritemsfound, step thru selected itemsfound,
     # mark useritemsfound that have results fetched already
     #
     for oItemFound in qsAlreadyFetched:
         #
-        qsUserItemFound = UserItemFound.filter(
+        qsUserItemFound = UserItemFound.objects.filter(
                                 iItemNumb = oItemFound.iItemNumb )
         #
         for oUserItemFound in qsUserItemFound:
@@ -431,16 +429,15 @@ def getItemsFoundForUpdate():
     # select itemsfound for which we have final results
     #
     qsAlreadyFinal = ( ItemFound.objects
-                            .filter( iItemNumb__in = qsUserItemNumbs )
-                            .filter( tRetrieveFinal__isnull = False )
-                            .prefetch_related( 'tRetrieveFinal' ) )
+                            .filter( iItemNumb__in = qsUserItemNumbs,
+                                     tRetrieveFinal__isnull = False ) )
     #
     # update useritemsfound, step thru itemsfound,
     # mark useritemsfound for which we have final results
     #
     for oItemFound in qsAlreadyFinal:
         #
-        qsUserItemFound = UserItemFound.filter(
+        qsUserItemFound = UserItemFound.objects.filter(
                                 iItemNumb = oItemFound.iItemNumb )
         #
         for oUserItemFound in qsUserItemFound:
