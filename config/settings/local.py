@@ -61,7 +61,8 @@ INSTALLED_APPS += ['django_extensions', ]
 
 # TESTING
 # ------------------------------------------------------------------------------
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+#TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+TEST_RUNNER = 'test_plus.runner.NoLoggingRunner'
 
 #### CELERY ####
 # In development, all tasks will be executed locally by blocking until the task returns
