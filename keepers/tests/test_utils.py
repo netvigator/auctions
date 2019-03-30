@@ -11,19 +11,19 @@ from django.utils       import timezone
 
 from keepers            import getListAsLines
 
-from keepers.tests      import ( s142766343340, s232742493872,
-                                 s232709513135, s282330751118,
-                                 s293004871422,
-                                 s254154293727, s254130264753,
-                                 s223348187115, s173696834267,
-                                 s372536713027, s173696832184,
-                                 s303000971114, s323589685342 )
-
 from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
                                  TestCasePlus )
 
 from ..models           import Keeper
+from ..tests            import ( s142766343340, s232742493872,
+                                 s232709513135, s282330751118,
+                                 s293004871422,
+                                 s254154293727, s254130264753,
+                                 s223348187115, s173696834267,
+                                 s372536713027, s173696832184,
+                                 s303000971114, s323589685342,
+                                 sMissingItemIdErrorGotAck )
 from ..utils            import ( _storeJsonSingleItemResponse,
                                  getSingleItemThenStore,
                                  getItemsFoundForUpdate,
@@ -32,7 +32,8 @@ from ..utils            import ( _storeJsonSingleItemResponse,
                                  _getPicFileNameExtn,
                                  ITEM_PICS_ROOT,
                                  _getItemPicture,
-                                 getItemPictures )
+                                 getItemPictures,
+                                 GetSingleItemNotWorkingError )
 
 from ..utils_test       import getSingleItemResponseCandidate
 
@@ -129,6 +130,10 @@ class SomeItemsTest( TestCasePlus ):
         iSavedRowID, sListingStatus, oItemFound = t
         #
         self.assertEqual( 232742493872, iSavedRowID )
+        #
+        oKeeper = Keeper.objects.get( iItemNumb = 232742493872 )
+        #
+        self.assertEqual( oKeeper.cCountry, 'RS' )
 
     def test_s232709513135( self ):
         '''test getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
@@ -194,6 +199,20 @@ class StoreItemsTestPlus( TestCasePlus ):
         '''test storing getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
         self.assertTrue( Keeper.objects.filter( pk = 232709513135 ).exists() )
+
+    def test_missing_item( self ):
+        #
+        try:
+            t = _storeJsonSingleItemResponse(
+                    142766343340, sMissingItemIdErrorGotAck )
+            self.iOriginalSavedRowID, sListingStatus, oItemFound = t
+        except GetSingleItemNotWorkingError as e:
+            self.assertIn(
+                    'getSingleItem failure, check file', str( e ) )
+        except Exception as e:
+            self.fail('Unexpected exception raised:', e)
+        else:
+            self.fail( 'did not catch GetSingleItemNotWorkingError!' )
 
 
 
@@ -279,6 +298,41 @@ class GetAndStoreSingleItemsWebTests(
         #
         # if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
         #
+
+    def test_getItemsFoundForUpdate( self ):
+        #
+        # mark all UserItemFound rows to fetch pictures
+        UserItemFound.objects.all().update(
+            bGetPictures = True,
+            tRetrieved   = None )
+        #
+        # mark two UserItemFound rows as pictures already fetched
+        qsAllItemsFound = ItemFound.objects.all().values_list(
+                'iItemNumb', flat = True )
+        #
+        qsSomeUserItemNumbs = UserItemFound.objects.filter(
+                iItemNumb__in = qsAllItemsFound )[:2].values_list(
+                'iItemNumb', flat = True )
+        #
+        UserItemFound.objects.filter(
+            iItemNumb__in = qsSomeUserItemNumbs ) .update(
+                                    tRetrieved = timezone.now() )
+        #
+        # mark corresponding ItemFound row
+        qsUserItemNumbs = ( UserItemFound.objects.filter(
+                                bGetPictures        = True,
+                                tRetrieved__isnull  = False )
+                            .values_list( 'iItemNumb', flat = True )
+                            .distinct() )
+        #
+        ItemFound.objects.filter(
+                iItemNumb__in = qsUserItemNumbs ).update(
+                                        tRetrieved = timezone.now() )
+        #
+        qsUserItemNumbs = getItemsFoundForUpdate()
+        #
+        self.assertNotEmpty( qsUserItemNumbs )
+
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_get_item_picture_hidden( self ):
@@ -377,7 +431,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         tBefore = timezone.now() - timezone.timedelta( days = 20 )
         #
-        iItemNumb = _storeItemFound( dSearchResult, tBefore, {} )
+        iItemNumb = _storeItemFound( dSearchResult, {} )
         #
         if iItemNumb is None:
             raise ThisShouldNotBeHappening
@@ -385,7 +439,6 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         _storeUserItemFound(
                 dSearchResult,
                 iItemNumb,
-                tBefore,
                 self.user1,
                 self.oSearch.id )
         #
