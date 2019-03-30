@@ -144,6 +144,8 @@ sModels = \
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
+ 604                |           |     10 | f            | Altec-Lansing     |       Driver |             |
+ 604D               |           |      8 | f            | Altec-Lansing     |       Driver |             |
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  602A               |           |      6 | f            | Altec-Lansing     |       Driver |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
