@@ -23,6 +23,19 @@ sMissingItemIdErrorGotAck = '''{
         "LongMessage": "Missing item ID."}]}'''
 
 
+sMadeUpErrorNoAck = '''{
+    "Version": "1063",
+    "Timestamp": "2018-06-03T13:40:05.704Z",
+    "Build": "E1063_CORE_APILW_18716243_R1",
+    "Ich": "Failure",
+    "Errors": [
+        {"ShortMessage": "Missing item ID.",
+        "ErrorCode": "10.13",
+        "SeverityCode": "Error",
+        "ErrorClassification": "RequestError",
+        "LongMessage": "Missing item ID."}]}'''
+
+
 s293004871422 = '''{
     "Timestamp":"2019-03-24T02:07:10.877Z",
     "Ack":"Success",
