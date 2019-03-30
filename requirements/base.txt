@@ -23,7 +23,7 @@ wheel==0.32.3
 
 
 # LTS Django
-django==1.11
+django==1.11.19
 
 # Configuration
 django-environ==0.4.5
