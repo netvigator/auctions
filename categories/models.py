@@ -18,7 +18,7 @@ User = get_user_model()
 
 class Category( GetKeepersForSomething, models.Model ):
     cTitle          = models.CharField(
-                        'category description',
+                        'category description', # test_core_tags expects this
                         max_length = 48, db_index = True,
         help_text = sTitleHelpText % 'category' )
     cKeyWords       = models.TextField(
