@@ -30,11 +30,11 @@
         <TD VALIGN=TOP>{{ object.iCategory }}</TD>
     </TR>
     <TR VALIGN=TOP>
-        <TD>{% field_name model 'cKeyWords' %}</TD>
+        <TD NOWRAP>{% field_name model 'cKeyWords' %}</TD>
         <TD>{{object.cKeyWords|getDashForReturn}}</TD>
     </TR>
     <TR VALIGN=TOP>
-        <TD VALIGN=TOP>{% field_name model 'cLookFor' %}</TD>
+        <TD VALIGN=TOP NOWRAP>{% field_name model 'cLookFor' %}</TD>
         <TD VALIGN=TOP>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
     <TR VALIGN=TOP>
@@ -42,7 +42,7 @@
         <TD VALIGN=TOP>{{object.iStars}}</TD>
     </TR>
     <TR VALIGN=TOP>
-        <TD>{% field_name model 'bSubModelsOK' %}</TD>
+        <TD NOWRAP>{% field_name model 'bSubModelsOK' %}</TD>
         <TD VALIGN=TOP>{{ object.bSubModelsOK|yesno:"Yes,No" }}</TD>
     </TR>
     <TR VALIGN=TOP>
@@ -67,7 +67,7 @@
     </TR>
     <TR VALIGN=TOP>
         <TD VALIGN=TOP>{% field_name model 'cComment' %}</TD>
-        <TD VALIGN=TOP>{{object.cComment|getDashForReturn}}</TD>
+        <TD VALIGN=TOP>{{ object.cComment | getLineBreakForReturn | safe }}</TD>
     </TR>
     <TR VALIGN=TOP>
         <TD VALIGN=TOP>{% field_name model 'cExcludeIf' %}</TD>
