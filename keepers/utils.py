@@ -37,7 +37,13 @@ logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
 
+if settings.TESTING: # logging during tests
+    errorLogger = logger.info # does not output to screen during tests
+else:
+    errorLogger = logger.error # outputs to screen during tests
+
 getMakeDir( EBAY_ITEMS_FOLDER )
+
 
 ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Keeper_Pictures' )
 
@@ -107,7 +113,7 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
             sMsg = ( 'unexpected content from getSingleItem, check %s'
                     % sFile )
             #
-            logger.error( sMsg )
+            errorLogger( sMsg )
             #
             _writeResult( repr( dResult ), sFile )
             #
@@ -216,7 +222,7 @@ def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
             # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
             sMsg = 'in keepers: form did not save, item %s' % dGotItem['iItemNumb']
             #
-            logger.error( sMsg )
+            errorLogger( sMsg )
             #print( '' )
             #print( 'log this error, form did not save' )
             #
