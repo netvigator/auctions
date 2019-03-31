@@ -25,19 +25,29 @@ def getNbsp(value):
     return mark_safe("&nbsp;".join(value.split(' ')))
 
 
+def _getSubstituteForReturn( s, sSub, bOmitLast = False ):
+    #
+    if s:
+        #
+        l = [ s for s in oFinderCRorLF.split( s ) if s ]
+        #
+        if bOmitLast:
+            #
+            del l[-1]
+            #
+        #
+        return sSub.join( l )
+        #
+    else:
+        return '' # run replace on None and you get an error
+
+
 @register.filter()
 def getDashForReturn( s ):
     #
     '''html rendering ignores return characters, substitute dashes'''
     #
-    if s:
-        #
-        l = oFinderCRorLF.split( s )
-        #
-        return ' - '.join( ( s for s in l if s ) )
-        #
-    else:
-        return '' # run replace on None and you get an error
+    return _getSubstituteForReturn( s, ' - ' )
 
 
 
@@ -47,15 +57,7 @@ def getDashForReturnButDropLast( s ):
     '''html rendering ignores return characters, substitute dashes,
        but drop what is after the last return character'''
     #
-    if s:
-        #
-        l = oFinderCRorLF.split( s )
-        #
-        return ' - '.join( l[:-1] )
-        #
-    else:
-        #
-        return '' # run replace on None and you get an error
+    return _getSubstituteForReturn( s, ' - ', bOmitLast = True )
 
 
 @register.filter()
@@ -63,14 +65,7 @@ def getLineBreakForReturn( s ):
     #
     '''html rendering ignores return characters, substitute <BR>'''
     #
-    if s:
-        #
-        l = oFinderCRorLF.split( s )
-        #
-        return '<BR>'.join( ( s for s in l if s ) )
-        #
-    else:
-        return '' # run replace on None and you get an error
+    return _getSubstituteForReturn( s, '<BR>' )
 
 
 @register.simple_tag
