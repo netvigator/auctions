@@ -1,11 +1,17 @@
-from django.utils               import timezone
+from django.utils                   import timezone
 
-from core.utils_test            import TestCasePlus
+from core.utils_test                import TestCasePlus
 
-from ..templatetags.core_tags   import ( getIsoDateTime,
-                                         getDashForReturn,
-                                         getLineBreakForReturn,
-                                         getDashForReturnButDropLast )
+from categories.models              import Category
+from categories.tests.test_forms    import TestFormValidation
+
+from ..templatetags.core_tags       import ( getIsoDateTime,
+                                             getDashForReturn,
+                                             getLineBreakForReturn,
+                                             getDashForReturnButDropLast,
+                                             model_name,
+                                             model_name_plural,
+                                             field_name )
 
 from Time.Test      import isISOdatetime
 
@@ -56,3 +62,26 @@ class MiscCoreTagTests( TestCasePlus ):
         ##
         #self.assertEqual( getNbsp( "how now brown cow" ),
                            #"how&nbsp;now&nbsp;brown&nbsp;cow" )
+
+
+class TestNameFilters( TestFormValidation ):
+    ''' test model_name, model_name_plural & field_name '''
+
+    def setUp( self ):
+        #
+        super( TestNameFilters, self ).setUp()
+        #
+        self.oCategory = Category.objects.get( id = self.iCategoryID )
+
+    def test_model_name( self ):
+        #
+        self.assertEquals( model_name( self.oCategory ), 'Category' )
+
+    def test_model_name_plural( self ):
+        #
+        self.assertEquals( model_name_plural( self.oCategory ), 'Categories' )
+
+    def test_field_name( self ):
+        #
+        self.assertEquals( field_name( self.oCategory, 'cTitle' ),
+                           'Category Description' )
