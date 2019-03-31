@@ -37,7 +37,7 @@
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name model 'cComment' %}</TD>
-        <TD>{{object.cComment|getDashForReturn}}</TD>
+        <TD>{{ object.cComment | getLineBreakForReturn | safe }}</TD>
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name model 'cNationality' %}</TD>
