@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static i18n %}
-{% load getNbsp %}
 {% block title %}Auction Shopping Bot Categories{% endblock %}
 
 {% block content %}
@@ -30,8 +29,8 @@
         </tr>
         {% for category in category_list %}
             <tr>
-            <td><a href="{{ category.get_absolute_url }}">
-                <h4 class="list-group-item-heading">{{ category.cTitle|getNbsp }}</h4></a>
+            <td NOWRAP><a href="{{ category.get_absolute_url }}">
+                <h4 class="list-group-item-heading">{{ category.cTitle }}</h4></a>
             </td>
             <td align=right>{{ category.iStars }}</td>
             <td>{{ category.cKeyWords|default_if_none:""}}</td>
