@@ -4,7 +4,6 @@ from django.core.exceptions     import ValidationError
 
 from core.utils_test            import TestCasePlus
 
-from ..templatetags.core_tags   import getNbsp
 from ..user_one                 import oUserOne
 from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
 
@@ -89,12 +88,6 @@ class DateTimeImportTests( TestCasePlus ):
                 getDateTime( "2017-12-15T05:22:47.000Z" ),
                 datetime(2017, 12, 15, 5, 22, 47, 0, timezone.utc ) )
 
-class NbspTests( TestCasePlus ):
-    '''test substituting &nbsp; for spaces'''
-    def test_Nbsp(self):
-        #
-        self.assertEqual( getNbsp( "how now brown cow" ),
-                           "how&nbsp;now&nbsp;brown&nbsp;cow" )
 
 
 class TestEbayCategoriesSetUp( GetEbayCategoriesWebTestSetUp ):
