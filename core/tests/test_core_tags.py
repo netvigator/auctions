@@ -1,8 +1,13 @@
+from django.utils               import timezone
+
 from core.utils_test            import TestCasePlus
 
-from ..templatetags.core_tags   import ( getDashForReturn,
+from ..templatetags.core_tags   import ( getIsoDateTime,
+                                         getDashForReturn,
                                          getLineBreakForReturn,
                                          getDashForReturnButDropLast )
+
+from Time.Test      import isISOdatetime
 
 class GetDashForReturnTests( TestCasePlus ):
     '''get dash for return tests'''
@@ -29,3 +34,25 @@ class GetDashForReturnTests( TestCasePlus ):
         sExpect = 'abc<BR>def<BR>ghi<BR>klm'
         #
         self.assertEqual( getLineBreakForReturn( self.s ), sExpect )
+
+class MiscCoreTagTests( TestCasePlus ):
+    ''' test getIsoDateTime '''
+
+    def test_get_ISO_date_time( self ):
+        #
+        self.assertTrue( isISOdatetime( getIsoDateTime( timezone.now() ) ) )
+        #
+
+    #def test_get_nbsp( self ):
+        ##
+        #s = 'a b c d e'
+        ##
+        #self.assertEquals( getNbsp(s), 'a&nbsp;b&nbsp;c&nbsp;d&nbsp;e' )
+        ##
+
+#class NbspTests( TestCasePlus ):
+    #'test substituting &nbsp; for spaces'
+    #def test_Nbsp(self):
+        ##
+        #self.assertEqual( getNbsp( "how now brown cow" ),
+                           #"how&nbsp;now&nbsp;brown&nbsp;cow" )
