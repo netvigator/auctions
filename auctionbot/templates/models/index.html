@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static i18n %}
-{% load getNbsp %}
 {% block title %}Auction Shopping Bot Models{% endblock %}
 {% load getDashForReturn %}
 
@@ -30,11 +29,11 @@
         </tr>
         {% for model in object_list %}
             <tr>
-            <td><a href="{{ model.get_absolute_url }}">
-                {{ model.cTitle|getNbsp }}</a>
+            <td NOWRAP><a href="{{ model.get_absolute_url }}">
+                {{ model.cTitle }}</a>
             </td>
-            <td>{{ model.iBrand.cTitle|getNbsp }}</td>
-            <td>{{ model.iCategory.cTitle|getNbsp }}</td>
+            <td NOWRAP>{{ model.iBrand.cTitle }}</td>
+            <td NOWRAP>{{ model.iCategory.cTitle }}</td>
             <td>{{ model.iStars}}</td>
             <td>{{ model.cComment|getDashForReturn|truncatechars:45}}</td>
             </tr>
