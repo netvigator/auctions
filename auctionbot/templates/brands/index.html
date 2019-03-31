@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Auction Shopping Bot Brands{% endblock %}
-{% load getNbsp %}
 
 {% block content %}
 
@@ -22,7 +21,7 @@
             <td><a href="{{ brand.get_absolute_url }}/">{{ brand.cTitle }}</a></td>
             <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
-            <td>{{ brand.cNationality.name|getNbsp }}</td>
+            <td NOWRAP>{{ brand.cNationality.name }}</td>
             <td>{{ brand.cComment|getDashForReturn|truncatechars:60 }}</td>
             </tr>
         {% endfor %}
