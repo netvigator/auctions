@@ -58,6 +58,20 @@ def getDashForReturnButDropLast( s ):
         return '' # run replace on None and you get an error
 
 
+@register.filter()
+def getLineBreakForReturn( s ):
+    #
+    '''html rendering ignores return characters, substitute <BR>'''
+    #
+    if s:
+        #
+        l = oFinderCRorLF.split( s )
+        #
+        return '<BR>'.join( ( s for s in l if s ) )
+        #
+    else:
+        return '' # run replace on None and you get an error
+
 
 @register.simple_tag
 def model_name(value):
