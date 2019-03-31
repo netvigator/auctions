@@ -1323,10 +1323,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # should not find AR-2
         #
+        self.assertEqual( oTest.iModel.cTitle, '2' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertIsNone( oTest.iCategory )
         #
 
 
