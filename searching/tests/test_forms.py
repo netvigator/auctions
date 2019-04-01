@@ -21,12 +21,6 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserWebTestCase ):
     # helpful:
     # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit '''
 
-    def setUp(self):
-        #
-        super( TestFormValidation, self ).setUp()
-        #
-        self.client.login(username ='username1', password='mypassword')
-
     def test_save_redirect(self):
         #
         '''after saving the form, next page should be the detail'''
