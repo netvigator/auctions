@@ -28,8 +28,6 @@ class ModelViewsTests( BaseUserWebTestCase ):
         #
         self.oCategory = oCategory
         #
-        self.client.login(username='username1', password='mypassword')
-        #
 
     def test_no_models_yet(self):
         #
@@ -131,7 +129,6 @@ class ModelViewsHitButtons( BaseUserWebTestCase ):
         #
         self.oCategory = oCategory
         #
-        self.client.login(username ='username1', password='mypassword')
 
 
 
