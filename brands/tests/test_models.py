@@ -14,8 +14,6 @@ class BrandModelWebTest( BaseUserWebTestCase ):
         #
         super( BrandModelWebTest, self ).setUp()
         #
-        self.client.login(username ='username1', password='mypassword')
-        #
         oBrand = Brand(
             cTitle          = "My premium brand",
             iUser           = self.user1,
