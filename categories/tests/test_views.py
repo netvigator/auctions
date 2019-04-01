@@ -20,7 +20,6 @@ class CategoryViewsTests( BaseUserWebTestCase ):
         """
         If no categories exist, an appropriate message is displayed.
         """
-        self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('categories:index'))
         #response = self.client.get('/categories/')
@@ -39,8 +38,6 @@ class CategoryViewsTests( BaseUserWebTestCase ):
         If categories exist, an appropriate message is displayed.
         """
         logging.disable(logging.CRITICAL)
-
-        self.client.login(username ='username1', password='mypassword')
         #
         oCategory = Category( cTitle = "Widgets", iUser = self.user1 )
         oCategory.save()
@@ -103,12 +100,6 @@ class CategoryViewsHitButtons( BaseUserWebTestCase ):
     """
     Test Save and Cancel
     """
-    def setUp(self):
-        #
-        super( CategoryViewsHitButtons, self ).setUp()
-        #
-        self.client.login(username ='username1', password='mypassword')
-
 
 
     def test_get(self):
