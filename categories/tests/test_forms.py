@@ -16,8 +16,6 @@ class TestFormValidation( BaseUserWebTestCase ):
         #
         super( TestFormValidation, self ).setUp()
         #
-        self.client.login(username ='username1', password='mypassword')
-        #
         oCategory = Category(
             cTitle = "Gadget", cLookFor = "thingamajig", iUser = self.user1 )
         oCategory.save()
