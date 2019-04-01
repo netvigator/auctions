@@ -24,6 +24,7 @@ from models.models      import Model
 
 
 
+
 def _getModelRegExFinders4Test( oModel ):
     #
     t = _getRowRegExpressions( oModel, bAddDash = True )
@@ -47,22 +48,45 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
-# iRecordStepsForThis imported from __init__.py
 
-class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTest ):
+class SetUpForFindSearchHitsTest( PutSearchResultsInDatabaseWebTest ):
+    #
+    ''' class for testing findSearchHits() '''
+    #
+    def setUp( self ):
+        #
+        super( SetUpForFindSearchHitsTest, self ).setUp()
+        #
+
+    def test_find_search_hits( self ):
+        #
+        if settings.COVERAGE and not iRecordStepsForThis:
+            #
+            # coverage needs to test recording steps
+            iRecordSteps = 122990519283
+            #
+        else:
+            #
+            iRecordSteps = iRecordStepsForThis
+            #
+        #
+        findSearchHits( self.user1.id,
+                        bCleanUpAfterYourself   = True,
+                        iRecordStepsForThis     = iRecordSteps )
+        #
+        self.assertGreater(
+            len( UserItemFound.objects.filter(
+                tLook4Hits__isnull = False ) ), 100 )
+
+
+
+class SetUpForHitStarsWebTests( SetUpForFindSearchHitsTest ):
     #
     ''' class for testing findSearchHits() hit star calculations '''
     #
     def setUp( self ):
         #
-        global iRecordStepsForThis
-        #
-        super( SetUpForHitStarsWebTests, self ).setUp()
-        #
-        if settings.COVERAGE and not iRecordStepsForThis:
-            #
-            iRecordStepsForThis = 122990519283
-            #
+        super( SetUpForFindSearchHitsTest, self ).setUp()
         #
         # bCleanUpAfterYourself must be False or tests will fail!
         # iRecordStepsForThis imported from __init__.py
