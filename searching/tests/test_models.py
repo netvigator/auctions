@@ -33,8 +33,6 @@ class SearchModelTest( BaseUserWebTestCase ):
 
     def test_get_absolute_url(self):
         #
-        self.client.login(username='username1', password='mypassword')
-        #
         sSearch     = "My clever search 1"
         oSearch     = Search( cTitle= sSearch, iUser = self.user1 )
         oSearch.save()
