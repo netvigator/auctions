@@ -41,8 +41,6 @@ set up search tips page!
 check whether submodel functionality will id A-326B as Altec 326
 check whether itemsfound & useritemsfound 162946585770 get processed (entered manually)
 
-maybe overdone:
-self.client.login(username ='username1', password='mypassword')
 
 had single form per model, now have 2, create & update, only testing create, need to test update
 
