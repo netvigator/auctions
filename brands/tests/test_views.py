@@ -23,7 +23,6 @@ class BrandViewsTests( BaseUserWebTestCase ):
         """
         If no brands exist, an appropriate message is displayed.
         """
-        self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('brands:index'))
 
@@ -42,7 +41,6 @@ class BrandViewsTests( BaseUserWebTestCase ):
         """
         logging.disable(logging.CRITICAL)
 
-        self.client.login(username='username1', password='mypassword')
         #
         sBrand = "Proctor & Gamble"
         oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
@@ -111,13 +109,6 @@ class BrandViewsHitButtons( BrandModelWebTest ):
     """
     Test Save and Cancel
     """
-    def setUp(self):
-        #
-        super( BrandViewsHitButtons, self ).setUp()
-        #
-        self.client.login(username ='username1', password='mypassword')
-
-
 
     def test_get(self):
         """
