@@ -20,7 +20,6 @@ class KeepersViewsTests( BaseUserWebTestCase ):
         """
         If no itemss exist, an appropriate message is displayed.
         """
-        self.client.login(username='username1', password='mypassword')
         #
         response = self.client.get(reverse('keepers:index'))
         #
