@@ -23,8 +23,6 @@ class TestFormValidation( BaseUserWebTestCase ):
         #
         super( TestFormValidation, self ).setUp()
         #
-        self.client.login(username ='username1', password='mypassword')
-        #
         oBrand = Brand(
             cTitle = "Cadillac", cLookFor = "Caddy", iUser = self.user1 )
         oBrand.save()
