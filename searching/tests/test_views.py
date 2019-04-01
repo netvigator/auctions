@@ -2,15 +2,25 @@ import logging
 
 from django.core.urlresolvers   import reverse
 
-from core.utils_test            import BaseUserWebTestCase, setup_view_for_tests
+from core.utils_test            import ( SetUpBrandsCategoriesModelsTestPlus,
+                                         BaseUserWebTestCase,
+                                         setup_view_for_tests )
+
 from core.utils                 import getExceptionMessageFromResponse
 
 from ..forms                    import CreateSearchForm, UpdateSearchForm
 from ..models                   import Search
 
-from ..views                    import ( SearchCreateView, SearchIndexView,
-                                         SearchDetailView, SearchDeleteView,
-                                         SearchUpdateView )
+from ..views                    import ( SearchCreateView,
+                                         SearchIndexView,
+                                         SearchDetailView,
+                                         SearchDeleteView,
+                                         SearchUpdateView,
+                                         ItemsFoundIndexView,
+                                         ItemFoundDetailView,
+                                         ItemFoundUpdateView )
+
+from .test_stars                import SetUpForHitStarsWebTests
 
 
 #from pprint import pprint
@@ -21,13 +31,6 @@ class SearchViewsHitButtons( BaseUserWebTestCase ):
     """
     Test Save and Cancel
     """
-    def setUp(self):
-        #
-        super( SearchViewsHitButtons, self ).setUp()
-        #
-        self.client.login(username ='username1', password='mypassword')
-
-
 
     def test_get(self):
         """
@@ -112,8 +115,6 @@ class SearchViewsTests( BaseUserWebTestCase ):
         If no search exists, an appropriate message is displayed.
         """
         #
-        self.client.login(username='username1', password='mypassword')
-        #
         response = self.client.get(reverse('searching:index'))
         #response = self.client.get('/searching/')
 
@@ -130,9 +131,6 @@ class SearchViewsTests( BaseUserWebTestCase ):
         If no search exist, an appropriate message is displayed.
         """
         logging.disable(logging.CRITICAL)
-
-        #
-        self.client.login(username='username1', password='mypassword')
         #
         sSearch = "Great Widget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
@@ -213,8 +211,6 @@ class SearchUpdateViewTests( BaseUserWebTestCase ):
         #
         self.view = setup_view_for_tests( SearchUpdateView(), self.request )
         #
-        self.client.login(username='username1', password='mypassword')
-        #
 
     #def test_form_dot_save_called_with_user(self):
         #self.view.form_valid(self.form)
@@ -252,8 +248,6 @@ class SearchCreateViewTests( BaseUserWebTestCase ):
         #
         self.view = setup_view_for_tests( SearchCreateView(), self.request )
         #
-        self.client.login(username='username1', password='mypassword')
-
 
     def test_create_view_cancelled(self):
         #
@@ -289,3 +283,11 @@ class SearchCreateViewTests( BaseUserWebTestCase ):
         #
         self.assertEqual(response.status_code, 200 )
 
+
+
+class ItemsFoundViewsTests( SetUpForHitStarsWebTests ):
+    ''' test the items found views '''
+
+    def test_items_found_view( self ):
+        #
+        pass
