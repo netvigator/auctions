@@ -20,10 +20,19 @@ from String.Count           import getAlphaNumCount as getLen
 from String.Get             import getTextBeforeC
 from String.Find            import getRegExpress, getRegExObj, oFinderCRorLF
 from String.Output          import ReadableNo
-from Utils.Progress         import TextMeter, DummyMeter
 
 from searching              import WORD_BOUNDARY_MAX
 
+if settings.COVERAGE:
+    #
+    # want to test all lines without printing anything
+    #
+    def maybePrint( *args ): pass
+    #
+else:
+    #
+    maybePrint = print
+    #
 
 def _getTitleRegExress(
             oTableRow,
@@ -270,20 +279,18 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
 
 def _printHitSearchSteps( oItem, dFindSteps ):
     #
-    if not settings.COVERAGE:
+    maybePrint('')
+    maybePrint('Item %s Hit Search Steps:' % oItem.iItemNumb )
+    maybePrint(' %s' % oItem.cTitle )
+    #
+    for k, v in dFindSteps.items():
         #
-        print('')
-        print('Item %s Hit Search Steps:' % oItem.iItemNumb )
-        print(' %s' % oItem.cTitle )
+        maybePrint( '  %s' % k )
         #
-        for k, v in dFindSteps.items():
+        for s in v:
             #
-            print( '  %s' % k )
+            maybePrint( '    %s' % s )
             #
-            for s in v:
-                #
-                print( '    %s' % s )
-                #
 
 def getTitleOrNone( o ):
     #
@@ -363,7 +370,6 @@ def _getRelevantTitle( sTitle ):
 def findSearchHits(
             iUser                   = oUserOne.id,
             bCleanUpAfterYourself   = True,
-            bShowProgress           = False,
             iRecordStepsForThis     = None ):
     #
     from brands.models      import Brand
@@ -373,16 +379,6 @@ def findSearchHits(
     oUserModel = get_user_model()
     #
     oUser = oUserModel.objects.get( id = iUser )
-    #
-    if (    bShowProgress and
-            UserItemFound.objects.filter(
-                    iUser = oUser,
-                    tLook4Hits__isnull = True ).exists() ):
-        #
-        # no need to test
-        #
-        print( 'doing some big queries ...' )
-        #
     #
     # generate a list of the most recent SearchLogs for this user
     #
@@ -423,28 +419,6 @@ def findSearchHits(
     #
     bExcludeThis        = False
     #
-    if bShowProgress: # progress meter for running in shell, no need to test
-        #
-        oProgressMeter = TextMeter()
-        #
-        print( 'counting items found ...' )
-        #
-        iItemsFound = len( qsItems )
-        #
-        sLineB4 = ( 'determining items found hit stars for %s ...' %
-                    oUser.username )
-        #
-        sOnLeft = "%s %s" % ( ReadableNo( iItemsFound ), 'items found' )
-        #
-        oProgressMeter.start( iItemsFound, sOnLeft, sLineB4 )
-        #
-    else:
-        #
-        oProgressMeter = DummyMeter()
-        #
-    #
-    iSeq = 0
-    #
     qsCategories = Category.objects.filter( iUser = oUser )
     #
     for oCategory in qsCategories:
@@ -475,10 +449,6 @@ def findSearchHits(
             ( 'selection',  [] ) ) )
     #
     for oItem in qsItems:
-        #
-        iSeq  += 1
-        #
-        oProgressMeter.update( iSeq )
         #
         qsUserItems = UserItemFound.objects.filter(
                 iItemNumb   = oItem.iItemNumb,
@@ -1403,14 +1373,7 @@ def findSearchHits(
             #
             _printHitSearchSteps( oItem, dFindSteps )
             #
-            #print('')
-            #print('call stack:')
-            #for i in range( len( inspect.stack() ) ):
-                #if inspect.stack()[i][3].startswith( '__' ): break
-                #print( inspect.stack()[i][3] )
         #
-    #
-    oProgressMeter.end( iSeq )
     #
     for oSearchLog in dSearchLogs.values():
         #
