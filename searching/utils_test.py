@@ -24,8 +24,6 @@ class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
         #
         super( BaseUserWebTestCaseCanAddSearches, self ).setUp()
         #
-        self.client.login(username='username1', password='mypassword')
-        #
         self.addSearch( "My clever search c", 'C1', self.user1 )
         #
         self.addSearch( "My clever search D", 'D2', self.user1 )
