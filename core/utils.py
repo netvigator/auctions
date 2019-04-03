@@ -256,3 +256,18 @@ def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
         #
     #
     return sResult # file spec, dict as str or integer code as str
+
+
+
+def getLink( o ):
+    #
+    if o is None:
+        #
+        sReturn = 'None'
+        #
+    else:
+        #
+        sReturn = '<a href="%s">%s</a>' % ( o.get_absolute_url(), o.cTitle )
+        #
+    #
+    return sReturn
