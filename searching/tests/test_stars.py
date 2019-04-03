@@ -1355,7 +1355,16 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertIsNone( oTest.iBrand )
         self.assertIsNone( oTest.iCategory )
         #
-
+        #
+        iThisOne = 192878961826
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should find speaker system and tweeter
+        # can use to test delete speaker system keep tweeter
+        #
 
 
         #
