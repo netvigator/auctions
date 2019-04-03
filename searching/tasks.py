@@ -134,10 +134,7 @@ def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
     if bShowProgress:
         print( 'calling findSearchHits() for user ID %s now ....' % iUser )
     #
-    findSearchHits(
-                iUser,
-                bCleanUpAfterYourself   = bCleanUp,
-                bShowProgress           = bShowProgress )
+    findSearchHits( iUser, bCleanUpAfterYourself = bCleanUp )
     #
 
 
