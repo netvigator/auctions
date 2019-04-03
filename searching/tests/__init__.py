@@ -631,6 +631,26 @@ sResponseItems2Test = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+          },{ "itemId":["192878961826"],
+              "title":["Jensen RP-302A Vintage Super Tweeter 16 ohm 1957 Jensen Imperial"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],
+              "categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mFAahvarZOHmg7clSWXlgpg\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Jensen-RP-302A-Vintage-Super-Tweeter-16-ohm-1957-Jensen-Imperial-\/192878961826"],
+              "paymentMethod":["PayPal"],"autoPay":["true"],
+              "postalCode":["49316"],
+              "location":["Caledonia,MI,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"165.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"165.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT5H2M45S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"220.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"220.0"}],
+              "startTime":["2019-04-03T02:15:10.000Z"],
+              "endTime":["2019-04-10T02:15:10.000Z"],
+              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
           },{ "itemId":["202636634682"],
               "title":["Vintage Acoustic Research SAT 660 Speakers(2)"],
               "globalId":["EBAY-US"],
