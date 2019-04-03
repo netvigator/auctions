@@ -290,3 +290,9 @@ test each and every template tag!!!!
 
 look up cancelled item
 <p class="error-header__headline">We looked everywhere.</p><h1>Looks like this page is missing. If you still need help, visit our
+
+
+glitch on edit of new Hickok tube tester model
+put in 605, then realized it should be 605A with generic model
+tried to edit, but error 605A already exists,
+but it already existed for Altec driver, not Hickok tube tester
