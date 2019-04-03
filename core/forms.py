@@ -125,7 +125,8 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         if cTitle: # cTitle can be None if field invalid
             #
-            if bEditing and ( self.instance.cTitle in cLookFor and
+            if bEditing and ( self.instance.cLookFor is not None and
+                              self.instance.cTitle in cLookFor and
                               cTitle in self.instance.cLookFor ):
                 #
                 pass # just rearranged, no need to query database
