@@ -6,14 +6,18 @@ from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getShrinkItemURL )
 
 from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
-                                 queryGotUpdated, oAuctionBotApp )
+                                 queryGotUpdated, oAuctionBotApp,
+                                 getLink )
 
 from ebayinfo           import EBAY_US_CURRENT_VERSION
 
 from ebayinfo.models    import Market
 
 from ebayinfo.utils_test import ( getMarketsIntoDatabase,
-                                  PutMarketsInDatabaseTest )
+                                  PutMarketsInDatabaseTest,
+                                  SetUpBrandsCategoriesModelsWebTest)
+
+from models.models      import Model
 
 from Time               import sFormatISOdateTimeNoColon
 from Time.Test          import isISOdatetime
@@ -158,3 +162,10 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
         #
 
 
+class TestGetLinksForObjects( SetUpBrandsCategoriesModelsWebTest ):
+
+    def test_get_link( self ):
+        #
+        oModel = Model.objects.all()[0]
+        #
+        print( oModel )
