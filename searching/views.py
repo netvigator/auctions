@@ -19,6 +19,7 @@ from .models        import Search, ItemFound, UserItemFound
 from .utils         import getHowManySearchDigitsNeeded
 
 from core.mixins    import GetPaginationExtraInfoInContext
+from core.utils     import getLink
 
 from models.models  import Model
 
@@ -293,8 +294,12 @@ class ItemFoundDetailView( DetailViewGotModel ):
                 #
                 sDetail = ' ( %s * %s * %s )' % tStars
                 #
+                sModel    = getLink( o.iModel    )
+                sBrand    = getLink( o.iBrand    )
+                sCategory = getLink( o.iCategory )
+                #
                 lRows.append( sRowTemplate %
-                        ( o.iModel, o.iBrand, o.iCategory, o.iHitStars, sDetail ) )
+                        ( sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
                 #
             #
             sThisItemOtherHits = sTableTemplate % '\n'.join( lRows )
