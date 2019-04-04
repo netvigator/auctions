@@ -3,19 +3,18 @@ from django.utils       import timezone
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
                                  getWhatsNotInParens,
-                                 getShrinkItemURL )
+                                 getShrinkItemURL, getLink )
 
 from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
                                  queryGotUpdated, oAuctionBotApp,
-                                 getLink )
+                                 SetUpBrandsCategoriesModelsWebTest )
 
 from ebayinfo           import EBAY_US_CURRENT_VERSION
 
 from ebayinfo.models    import Market
 
 from ebayinfo.utils_test import ( getMarketsIntoDatabase,
-                                  PutMarketsInDatabaseTest,
-                                  SetUpBrandsCategoriesModelsWebTest)
+                                  PutMarketsInDatabaseTest )
 
 from models.models      import Model
 
