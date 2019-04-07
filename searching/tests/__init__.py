@@ -318,10 +318,12 @@ sModels = \
  248-NI             |           |     10 | f            | Sentinel          |        Radio |             |
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
- H-222              |           |      7 | t            | Jensen            |       Driver |             |
- A-402              |           |      8 | t            | Jensen            |    Crossover |             |
- A-61               |           |      7 | t            | Jensen            |    Crossover |             |
- M1131              |           |      6 | t            | Jensen            |        Choke |             |
+ H-222              |           |      7 | f            | Jensen            |       Driver |             |
+ A-402              |           |      8 | f            | Jensen            |    Crossover |             |
+ A-61               |           |      7 | f            | Jensen            |    Crossover |             |
+ M1131              |           |      6 | f            | Jensen            |        Choke |             |
+ RP-302A            |           |      6 | t            | Jensen            |       Driver |             |
+ Imperial           |           |      9 | f            | Jensen            |Speaker System|             |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
@@ -1459,27 +1461,6 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["45"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
-           },{"itemId":["292679662673"],
-              "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
-              "globalId":["EBAY-US"],
-              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
-              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m9EwLRb7tw7RJxl7yvKTEgw\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-SET-JENSEN-IMPERIAL-SPEAKER-CROSSOVER-NETWORK-A-61-A-402-M-1131-\/292679662673"],
-              "paymentMethod":["PayPal"],"autoPay":["false"],
-              "postalCode":["60016"],
-              "location":["Des Plaines,IL,USA"],"country":["US"],
-              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"899.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"899.0"}],
-              "bidCount":["0"],
-              "sellingState":["Active"],
-              "timeLeft":["P1DT16H29M0S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-              "startTime":["2018-08-13T02:25:07.000Z"],
-              "endTime":["2018-08-18T02:25:07.000Z"],
-              "listingType":["Auction"],
-              "gift":["false"],
-              "watchCount":["1"]}],"returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
            },{"itemId":["283100002617"],
               "title":["Vintage Hickok 539b Tube Tester with Model CA-5 Universal Adapter"],
@@ -1601,26 +1582,6 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
-           },{"itemId":["292672067477"],
-              "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
-              "globalId":["EBAY-US"],
-              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
-              "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m9EwLRb7tw7RJxl7yvKTEgw\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-SET-JENSEN-IMPERIAL-SPEAKER-CROSSOVER-NETWORK-A-61-A-402-M-1131-\/292672067477"],
-              "paymentMethod":["PayPal"],"autoPay":["false"],
-              "postalCode":["60016"],"location":["Des Plaines,IL,USA"],"country":["US"],
-              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"899.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"899.0"}],
-              "bidCount":["0"],
-              "sellingState":["Active"],
-              "timeLeft":["P4DT15H31M47S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-              "startTime":["2018-08-08T02:22:55.000Z"],
-              "endTime":["2018-08-13T02:22:55.000Z"],
-              "listingType":["Auction"],"gift":["false"],
-              "watchCount":["1"]}],
-              "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
 
            },{"itemId":["153124672147"],
               "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
@@ -1726,24 +1687,6 @@ sResponseItems2Test = \
               "watchCount":["4"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
-           },{"itemId":["292659341471"],
-              "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
-              "globalId":["EBAY-US"],
-              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
-              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m9EwLRb7tw7RJxl7yvKTEgw\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-SET-JENSEN-IMPERIAL-SPEAKER-CROSSOVER-NETWORK-A-61-A-402-M-1131-\/292659341471"],
-              "paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["60016"],
-              "location":["Des Plaines,IL,USA"],"country":["US"],
-              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"899.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"899.0"}],
-              "bidCount":["0"],
-              "sellingState":["Active"],
-              "timeLeft":["P3DT0H41M6S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-              "startTime":["2018-07-29T02:11:13.000Z"],
-              "endTime":["2018-08-03T02:11:13.000Z"],
-              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
 
            },{"itemId":["273380279306"],
               "title":["Altec Lansing 288-8K High Frequency Drive MRII 542 Horn"],
