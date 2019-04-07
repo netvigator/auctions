@@ -411,7 +411,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        self.print_len( dItemsToTest[ 292640430401 ], 3 )
+        self.print_len( dItemsToTest[ 292640430401 ], 4 )
         #
         oTest = dItemsToTest[ 292640430401 ][ 0 ]
         #
@@ -442,6 +442,16 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iModel.cTitle, 'A-402' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ 292640430401 ][ 3 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
+        #
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
         self.print_len( dItemsToTest[ 113173838358 ], 2 )
@@ -496,37 +506,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        self.print_len( dItemsToTest[ 292659341471 ], 3 )
-        #
-        oTest = dItemsToTest[ 292659341471 ][ 0 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'M1131' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
-        #
-        oTest = dItemsToTest[ 292659341471 ][ 1 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'A-61' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
-        #
-        oTest = dItemsToTest[ 292659341471 ][ 2 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
         #
         self.print_len( dItemsToTest[ 273380279306 ], 2 )
@@ -617,33 +596,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertIsNone( oTest.iModel )
         #
         #
-        iThisOne = 292672067477
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'M1131' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'A-61' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
         #
         iThisOne = 223093061969
@@ -733,26 +685,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 292679662673
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'M1131' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Choke' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'A-61' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
         #
         iThisOne = 192633431454
@@ -1360,12 +1292,23 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         # should find speaker system and tweeter
         # can use to test delete speaker system keep tweeter
         #
-
+        self.assertEqual( oTest.iModel.cTitle, 'RP-302A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
 
         #
         if False:
