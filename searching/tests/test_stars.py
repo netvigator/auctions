@@ -168,6 +168,33 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
             #
             iCount += 1
             #
+        #
+        dTitles = {}
+        #
+        for iItemNumb in dItemsToTest.keys():
+            #
+            oItem = ItemFound.objects.get( iItemNumb = iItemNumb )
+            #
+            sTitle = oItem.cTitle.upper()
+            #
+            dTitles.setdefault( sTitle, [] ).append( iItemNumb )
+            #
+        #
+        lDupes = []
+        #
+        for sTitle, lItemNumbs in dTitles.items():
+            #
+            if len( lItemNumbs ) > 1:
+                #
+                lDupes.append( sTitle )
+            #
+        #
+        if lDupes:
+            #
+            print()
+            print( 'Duplicated test titles:', '\n', '\n'.join( lDupes ) )
+            #
+        #
         self.assertGreater( iCount, 38 )
         #
         self.print_len( dItemsToTest[ 253486571279 ], 1 )
@@ -476,33 +503,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        self.print_len( dItemsToTest[ 163167777899 ], 3 )
-        #
-        oTest = dItemsToTest[ 163167777899 ][ 0 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
-        #
-        oTest = dItemsToTest[ 163167777899 ][ 1 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, '601b' )
-        ##
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
-        #
-        oTest = dItemsToTest[ 163167777899 ][ 2 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, '601a' )
-        ##
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
         #
@@ -553,33 +553,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        iThisOne = 153124672147
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, '601b' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertEqual( oTest.iModel.cTitle, '601a' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
         #
@@ -618,7 +591,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertIsNone( oTest.iCategory )
         #
         #
-        iThisOne = 163199461416
+        iThisOne = 163199461416 # keep this
         #
         self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
@@ -857,7 +830,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 192660195679
+        iThisOne = 192660195679 # keep this one
         #
         self.print_len( dItemsToTest[ iThisOne ], 1 )
         #
@@ -904,15 +877,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 202462110744
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
         iThisOne = 352494035670
@@ -938,7 +902,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
-        iThisOne = 323557043166
+        iThisOne = 323589685342 # also accessed in test_models.py
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
@@ -968,15 +932,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
-        iThisOne = 192737436300
-        #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-6A' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
         iThisOne = 312339506602
