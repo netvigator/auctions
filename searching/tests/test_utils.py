@@ -1016,6 +1016,13 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
             #
             iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
+            if iBegLines + min( iLen, 5 ) < iEndLines:
+                #
+                print()
+                print( 'iBegLines:', iBegLines )
+                print( 'iLen     :', iLen      )
+                print( 'iEndLines:', iEndLines )
+                #
             self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
 
         #
