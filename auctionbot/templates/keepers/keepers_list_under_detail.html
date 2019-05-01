@@ -3,6 +3,9 @@
       <form action="" method="post">
       {% csrf_token %}
       <h4>{{ sHowMany }} {{ object.cTitle }} Keepers</h4>
+      <div class="basic">
+          {% include "./keepers_list_under_detail_submit.html" %}
+      </div>
       <table>
       <tr>
       <th><i class="fas fa-trash-alt"></i></th>
@@ -30,16 +33,10 @@
       {% endfor %}
       </table>
       <p/>
-      <table>
-        <TR ALIGN=MIDDLE>
-          <td>
-              <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
-          </td>
-          <td>
-              After selecting items for the trash, you must hit Submit or all changes will be lost!
-          </td>
-        </TR>
-      </table>
+      <div class="basic">
+          {% include "./keepers_list_under_detail_submit.html" %}
+      </div>
+
       </form>
 
   {% else %}
