@@ -7,7 +7,7 @@
     </td>
     <td>
         <form action='{% url "brands:delete" pk=brand.id %}'>
-            <input class='btn btn-primary btn-blue' type="submit" value=" delete " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" delete {{ object }} brand" />
         </form>
     </td>
     <td>
