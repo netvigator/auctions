@@ -4,10 +4,10 @@
 {% load getDashForReturn %}
 
 {% block title %}Auction Shopping Bot | {{ object.iBrand|default_if_none:"" }}
-                 Model {{ model }}{% endblock %}
+                 Model {{ object }}{% endblock %}
 
 {% block content %}
-    <h1>Model {{ model }} Details</h1>
+    <h1>Model {{ object }} Details</h1>
 
     <!-- Action buttons -->
     <div class="basic">
