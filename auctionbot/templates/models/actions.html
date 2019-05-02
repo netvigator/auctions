@@ -7,7 +7,7 @@
     </td>
     <td>
         <form action='{% url "models:delete" pk=object.id %}'>
-            <input class='btn btn-primary btn-blue' type="submit" value=" delete " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" delete {{ object }} model " />
         </form>
     </td>
     <td>
