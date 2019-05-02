@@ -296,3 +296,7 @@ glitch on edit of new Hickok tube tester model
 put in 605, then realized it should be 605A with generic model
 tried to edit, but error 605A already exists,
 but it already existed for Altec driver, not Hickok tube tester
+
+2019-05-03
+editing item, move it to different brand and model, must move to different brand first
+if the model + new brand already exists, app crashes, need to check first and handle better
