@@ -7,7 +7,7 @@
     </td>
     <td>
         <form action='{% url "categories:delete" pk=category.id %}'>
-            <input class='btn btn-primary btn-blue' type="submit" value=" delete " />
+            <input class='btn btn-primary btn-blue' type="submit" value=" delete {{ category }} category " />
         </form>
     </td>
     <td>
