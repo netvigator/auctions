@@ -40,7 +40,7 @@ class BrandCreateView( GetContextForBrandCategoryList,
 class BrandDeleteView( DeleteViewGotModel ):
 
     model           = Brand
-    template_name   = 'confirm_delete.html'
+    template_name   = 'brands/confirm_delete.html'
     success_message = 'Brand record successfully deleted!!!!'
     success_url     = reverse_lazy('brands:index')
 

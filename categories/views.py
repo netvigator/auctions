@@ -62,7 +62,7 @@ class CategoryUpdateView(
 class CategoryDeleteView( DeleteViewGotModel ):
 
     model           = Category
-    template_name   = 'confirm_delete.html'
+    template_name   = 'categories/confirm_delete.html'
     success_url     = reverse_lazy('categories:index')
     success_message = 'Category record successfully deleted!!!!'
 

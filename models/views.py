@@ -63,7 +63,7 @@ class ModelUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel
 class ModelDeleteView( DeleteViewGotModel ):
 
     model           = Model
-    template_name   = 'confirm_delete.html'
+    template_name   = 'models/confirm_delete.html'
     success_url     = reverse_lazy('models:index')
     success_message = 'Model record successfully deleted!!!!'
 
