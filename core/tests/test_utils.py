@@ -167,4 +167,4 @@ class TestGetLinksForObjects( SetUpBrandsCategoriesModelsWebTest ):
         #
         oModel = Model.objects.all()[0]
         #
-        print( oModel )
+        self.assertIsNotNone( oModel )
