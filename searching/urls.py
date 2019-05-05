@@ -27,19 +27,6 @@ urlpatterns = [
         regex   = r'^(?P<pk>[0-9]+)/edit/$',
         view    = views.SearchUpdateView.as_view(),
         name    = 'edit' ),
-    url(
-        regex   = r'item_found/(?P<pk>[0-9]+)/edit/$',
-        view    = views.ItemFoundUpdateView.as_view(),
-        name    = 'item_found_edit' ),
-    url(
-        regex   = r'items_found/(?P<select>[ADPZadpz]){0,1}/{0,1}$', # testing cannot
-        view    = views.ItemsFoundIndexView.as_view(),
-        name    = 'items_found_index' ),
-    url(
-        regex   = r'item_found/(?P<pk>[0-9]+)/*$',
-        view    = views.ItemFoundDetailView.as_view(),
-        name    = 'item_found_detail' ),
-
 ]
 
 '''
