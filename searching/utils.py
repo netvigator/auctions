@@ -1,7 +1,9 @@
 import logging
 
+
 from builtins           import ConnectionResetError
 from string             import ascii_letters, digits
+from os.path            import join
 from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 
 from requests.exceptions import ConnectTimeout, ReadTimeout, ConnectionError
@@ -16,9 +18,11 @@ from core.utils_ebay    import getValueOffItemDict
 
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
+from finders.models     import ItemFound, UserItemFound
+
 from keepers.utils      import ITEM_PICS_ROOT, getItemPicsSubDir
 
-from .models            import ItemFound, UserItemFound, SearchLog, Search
+from .models            import SearchLog, Search
 from .utilsearch        import ( getSearchResultGenerator, getPagination,
                                  storeItemInfo, SearchGotZeroResults,
                                  ItemAlreadyInTable, getSearchResult,
@@ -116,7 +120,6 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response'''
     #
-    from os.path                import join
     from time                   import sleep
     #
     from django.contrib.auth    import get_user_model
@@ -341,9 +344,9 @@ def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
 
 def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
-    from .forms         import ItemFoundForm
+    from finders.forms   import ItemFoundForm
     #
-    from searching      import dItemFoundFields # in __init__.py
+    from finders         import dItemFoundFields # in __init__.py
     #
     from ebayinfo.models import CategoryHierarchy
     #
@@ -394,8 +397,8 @@ def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
 
 def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
     #
-    from .forms     import UserItemFoundUploadForm
-    from searching  import dUserItemFoundUploadFields # in __init__.py
+    from finders.forms  import UserItemFoundUploadForm
+    from finders        import dUserItemFoundUploadFields # in __init__.py
     #
     bAlreadyInTable = UserItemFound.objects.filter(
                             iItemNumb   = iItemNumb,
@@ -523,7 +526,7 @@ def storeSearchResultsInDB( iLogID,
         #
         logger.warning(
                 'storeSearchResultsInDB() did not find file "%s"!'
-                % sFilePattern )
+                % join( SEARCH_FILES_FOLDER, sFilePattern ) )
         #
         return 0, 0, 0
         #
