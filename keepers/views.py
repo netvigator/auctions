@@ -6,7 +6,7 @@ from core.mixins        import GetPaginationExtraInfoInContext
 from core.views         import ( DeleteViewGotModel,
                                  DetailViewGotModel,  ListViewGotModel )
 
-from searching.models   import UserItemFound
+from finders.models     import UserItemFound
 
 from .models            import Keeper
 
