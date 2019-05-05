@@ -20,7 +20,7 @@ from core.mixins    import GetPaginationExtraInfoInContext
 class ItemsFoundIndexView(
             GetPaginationExtraInfoInContext, ListViewGotModel ):
 
-    template_name       = 'index.html'
+    template_name       = 'finders/index.html'
     model               = UserItemFound
     context_object_name = 'finders_list'
     paginate_by         = 100
@@ -186,7 +186,7 @@ class ItemFoundDetailView( DetailViewGotModel ):
 
     model           = UserItemFound
     parent          = ItemFound
-    template_name   = 'detail.html'
+    template_name   = 'finders/detail.html'
     form_class      = UserItemFoundForm
 
     def get_context_data( self, **kwargs ):
@@ -266,7 +266,7 @@ class ItemFoundUpdateView(
 
     model           = UserItemFound
     parent          = ItemFound
-    template_name   = 'edit.html'
+    template_name   = 'finders/edit.html'
     success_message = 'Item Found record update successfully saved!!!!'
     form_class      = UserItemFoundForm
 
