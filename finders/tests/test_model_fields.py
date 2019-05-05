@@ -1,5 +1,5 @@
 
-from ..models           import ItemFound
+from finders.models     import ItemFound
 
 from core.utils_test    import AssertEmptyMixin, TestCasePlus
 
@@ -14,7 +14,7 @@ class MakeSureAllFieldsAreInTableTest( AssertEmptyMixin, TestCasePlus ):
     def test_make_sure_all_fields_are_in_table( self ):
         '''test to make sure all dItemFields are in the items table'''
         #
-        lLines = getListOffFileLines( 'searching/__init__.py' )
+        lLines = getListOffFileLines( 'finders/__init__.py' )
         #
         lItemsFoundLines = []
         #
