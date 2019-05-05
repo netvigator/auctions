@@ -4,7 +4,7 @@ from django.core.urlresolvers   import reverse
 
 from django_countries.fields    import CountryField
 
-from searching                  import EBAY_SHIPPING_CHOICES
+from finders                    import EBAY_SHIPPING_CHOICES
 
 # not sure this is needed
 User = get_user_model()
@@ -122,7 +122,7 @@ class Keeper( models.Model ):
 
     def getUserItemsFoundForKeeper( self, oKeeper, request ):
         #
-        from searching.models import UserItemFound
+        from finders.models import UserItemFound
         #
         oUser = request.user
         #
