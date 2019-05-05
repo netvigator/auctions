@@ -10,14 +10,17 @@
     {% if iBeg >= 1 %}
         <li><a href="?previous={{page_obj.number}}&page=1">1&nbsp;</a></li>
     {% endif %}
-    
-    {% if iMidLeft > 0 %}
+
+    {% if iMidLeft > 2 %}
         <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft|add:'-1' }}">&hellip;</a></li>
+    {% endif %}
+
+    {% if iMidLeft > 0 %}
         <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft }}">&nbsp;{{ iMidLeft }}&nbsp;</a></li>
     {% endif %}
-    
-    {% if page_obj.number|add:'-2' > 1 %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'-3' }}">&hellip;</a></li>
+
+    {% if page_obj.number|add:'-2' > iMidLeft %}
+        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'-2' }}">&hellip;</a></li>
     {% endif %}
 
     {% for i in show_range %}
@@ -36,7 +39,7 @@
         <li><a href="?previous={{page_obj.number}}&page={{ iMidRight }}">&nbsp;{{ iMidRight }}&nbsp;</a></li>
         <li><a href="?previous={{page_obj.number}}&page={{ iMidRight|add:'1' }}">&hellip;</a></li>
     {% endif %}
-    
+
     {% if iMaxPage >= iEnd %}
             <li><a href="?previous={{page_obj.number}}&page={{ iMaxPage }}">&nbsp;{{ iMaxPage }}</a></li>
     {% endif %}
