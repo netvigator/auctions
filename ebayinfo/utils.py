@@ -694,7 +694,7 @@ select "iCategoryID","cCategory","iCatHeirarchy_id","i2ndCategoryID","c2ndCatego
 
 def _fillInCategoryHierarchiesObliteratedByMistake():
     #
-    from searching.models import ItemFound
+    from finders.models import ItemFound
     #
     dEbayCatHierarchies = {}
     #
