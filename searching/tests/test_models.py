@@ -7,18 +7,21 @@ from json.decoder       import JSONDecodeError
 
 from core.utils_test    import TestCasePlus
 
-from searching          import ( EBAY_SHIPPING_CHOICES, getChoiceCode,
-                                 dEBAY_SHIPPING_CHOICE_CODE,
-                                 RESULTS_FILE_NAME_PATTERN,
-                                 SEARCH_FILES_FOLDER )
+from searching          import ( SEARCH_FILES_FOLDER,
+                                 RESULTS_FILE_NAME_PATTERN )
+
+from finders            import ( EBAY_SHIPPING_CHOICES, getChoiceCode,
+                                 dEBAY_SHIPPING_CHOICE_CODE )
 
 from .test_utils        import GetBrandsCategoriesModelsWebTestSetUp
 
-from ..models           import ( Search, Model, ItemFound,
-                                 UserItemFound, ItemFoundTemp )
+from ..models           import Search
 
 from ..tests            import sResponseItems2Test
-from ..utils            import storeSearchResultsInDB
+from ..utils            import storeSearchResultsInDB, getSearchIdStr
+
+from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
+from models.models      import Model
 
 from File.Del           import DeleteIfExists
 from File.Write         import QuietDump
@@ -72,7 +75,10 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         #
         self.sExampleFile = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-            ( 'EBAY-US', self.user1.username, self.oSearch.id, '000' ) )
+            ( 'EBAY-US',
+              self.user1.username,
+              getSearchIdStr( self.oSearch.id ),
+              '000' ) )
         #
         #print( 'will DeleteIfExists' )
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
@@ -88,7 +94,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
                             self.oSearch.id,
                             self.oSearch.cTitle,
                             self.setTestCategories ) )
-        #
+            #
         except JSONDecodeError:
             #
             print('')
