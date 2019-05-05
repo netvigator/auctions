@@ -11,10 +11,11 @@ from core.user_one          import oUserOne
 from core.utils             import getWhatsNotInParens
 from core.templatetags.core_tags import getDashForReturn
 
-from .models                import ( ItemFound, UserItemFound, ItemFoundTemp,
-                                     Search, SearchLog )
+from .models                import Search, SearchLog
 
 from categories.models      import BrandCategory
+
+from finders.models         import ItemFound, UserItemFound, ItemFoundTemp
 
 from String.Count           import getAlphaNumCount as getLen
 from String.Get             import getTextBeforeC
