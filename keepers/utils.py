@@ -18,7 +18,7 @@ from .models            import Keeper, KeeperImage
 from core.utils         import getDownloadFileWriteToDisk
 from core.utils_ebay    import getValueOffItemDict
 
-from searching.models   import ItemFound, UserItemFound
+from finders.models     import ItemFound, UserItemFound
 
 from Dir.Get            import getMakeDir
 from File.Test          import isFileThere
