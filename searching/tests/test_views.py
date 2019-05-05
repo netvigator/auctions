@@ -1,26 +1,22 @@
 import logging
 
-from django.core.urlresolvers   import reverse
+from core.dj_import     import reverse
 
-from core.utils_test            import ( SetUpBrandsCategoriesModelsTestPlus,
-                                         BaseUserWebTestCase,
-                                         setup_view_for_tests )
+from core.utils_test    import ( SetUpBrandsCategoriesModelsTestPlus,
+                                 BaseUserWebTestCase, setup_view_for_tests )
 
-from core.utils                 import getExceptionMessageFromResponse
+from core.utils         import getExceptionMessageFromResponse
 
-from ..forms                    import CreateSearchForm, UpdateSearchForm
-from ..models                   import Search
+from ..forms            import CreateSearchForm, UpdateSearchForm
+from ..models           import Search
 
-from ..views                    import ( SearchCreateView,
-                                         SearchIndexView,
-                                         SearchDetailView,
-                                         SearchDeleteView,
-                                         SearchUpdateView,
-                                         ItemsFoundIndexView,
-                                         ItemFoundDetailView,
-                                         ItemFoundUpdateView )
+from ..views            import ( SearchCreateView,
+                                 SearchIndexView,
+                                 SearchDetailView,
+                                 SearchDeleteView,
+                                 SearchUpdateView )
 
-from .test_stars                import SetUpForHitStarsWebTests
+from .test_stars        import SetUpForHitStarsWebTests
 
 
 #from pprint import pprint
@@ -283,11 +279,3 @@ class SearchCreateViewTests( BaseUserWebTestCase ):
         #
         self.assertEqual(response.status_code, 200 )
 
-
-
-class ItemsFoundViewsTests( SetUpForHitStarsWebTests ):
-    ''' test the items found views '''
-
-    def test_items_found_view( self ):
-        #
-        pass
