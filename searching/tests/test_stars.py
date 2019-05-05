@@ -3,13 +3,13 @@
 from os.path            import join
 
 from django.conf        import settings
-from django.core.urlresolvers import reverse
+from core.dj_import     import reverse
 from django.utils       import timezone
 
 from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
                                  AssertEmptyMixin, TestCasePlus )
 
-from ..models           import ( ItemFound, UserItemFound, ItemFoundTemp )
+from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
 
 from .test_models       import PutSearchResultsInDatabaseWebTest
 
