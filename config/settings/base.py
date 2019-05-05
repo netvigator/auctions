@@ -117,11 +117,12 @@ LOCAL_APPS = [
     # custom users app
     'auctionbot.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'ebayinfo.apps.EbayInfoConfig',
     'brands.apps.BrandsConfig',
     'categories.apps.CategoriesConfig',
     'models.apps.ModelsConfig',
-    'ebayinfo.apps.EbayInfoConfig',
     'searching.apps.SearchingConfig',
+    'finders.apps.FindersConfig',
     'keepers.apps.KeepersConfig',
 ]
 
