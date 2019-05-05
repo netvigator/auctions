@@ -9,8 +9,9 @@ from core.utils_test            import SetUpBrandsCategoriesModelsWebTest
 from ..mixins                   import GetPaginationExtraInfoInContext
 from ..views                    import ListViewGotModel
 
+from finders.views              import ItemsFoundIndexView
+
 from searching.utils_stars      import getFoundItemTester
-from searching.views            import ItemsFoundIndexView
 from searching.tests.test_stars import SetUpForHitStarsWebTests
 
 from Object.Get                 import QuickObject
@@ -26,7 +27,7 @@ class TestPagination( SetUpForHitStarsWebTests ):
         self.factory = RequestFactory()
         #
         self.request = self.factory.get(reverse(
-                'searching:items_found_index' ) )
+                'finders:index' ) )
         #
         self.request.user = self.user1
         #
@@ -408,7 +409,7 @@ class EditingTitleShouldBlankFinder( SetUpBrandsCategoriesModelsWebTest ):
         update_url = reverse( 'brands:edit', args=(self.oBrand.id,) )
         #
         # GET the form
-        r = self.client.get(update_url)
+        r = self.client.get( update_url )
         #
         form = r.context['form']
         data = form.initial # form is unbound but contains data
@@ -422,7 +423,7 @@ class EditingTitleShouldBlankFinder( SetUpBrandsCategoriesModelsWebTest ):
         r = self.client.post(update_url, data)
         #
         # retrieve again
-        r = self.client.get(update_url)
+        r = self.client.get( update_url )
         #
         self.assertEqual(r.context['form'].initial['cLookFor'], '')
         #
