@@ -1,8 +1,8 @@
-from django.core.urlresolvers import reverse
+from core.dj_import     import reverse
 
 from ..models           import UserItemFound
 
-from .test_utils        import storeUserItemFoundButDontWebTestYet
+from searching.tests.test_utils import storeUserItemFoundButDontWebTestYet
 
 from models.models      import Model
 
@@ -56,7 +56,11 @@ class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontWebTestYe
         self.assertEqual( oUserItemFound.iHitStars, iExpectStars )
         #
         update_url = reverse(
-                'searching:item_found_edit', args=(oUserItemFound.id,) )
+                'finders:edit', args=(oUserItemFound.id,) )
+        #
+        #print('')
+        #print('update_url:', update_url )
+        # update_url: /finders/1/edit/
         #
         # GET the form
         r = self.client.get( update_url )
