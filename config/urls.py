@@ -22,11 +22,12 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
 
-    url(r'^brands/',    include('brands.urls',      namespace="brands")),
     url(r'^ebayinfo/',  include('ebayinfo.urls',    namespace="ebayinfo")),
+    url(r'^brands/',    include('brands.urls',      namespace="brands")),
     url(r'^models/',    include('models.urls',      namespace="models")),
     url(r'^categories/',include('categories.urls',  namespace="categories")),
     url(r'^searching/', include('searching.urls',   namespace="searching")),
+    url(r'^finders/',   include('finders.urls',     namespace="finders")),
     url(r'^keepers/',   include('keepers.urls',     namespace="keepers")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
