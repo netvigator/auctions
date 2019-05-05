@@ -1,13 +1,14 @@
-from django.core.urlresolvers   import reverse, resolve
-from django.http.request        import HttpRequest
-from django.test.client         import Client
+from core.dj_import     import reverse, resolve, HttpRequest
+from django.test.client import Client
 
-from core.utils_test            import ( BaseUserWebTestCase,
-                                         getSingleEbayCategoryMixin,
-                                         getUrlQueryStringOff )
+from core.utils_test    import ( BaseUserWebTestCase,
+                                 getSingleEbayCategoryMixin,
+                                 getUrlQueryStringOff )
 
-from ..forms                    import CreateSearchForm, UpdateSearchForm
-from ..models                   import Search, ItemFound
+from ..forms            import CreateSearchForm, UpdateSearchForm
+from ..models           import Search
+
+from finders.models     import ItemFound
 
 # from pprint import pprint
 
