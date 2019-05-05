@@ -22,7 +22,7 @@ from .utils                 import ( getSingleItemThenStore,
                                      getItemPictures,
                                      getItemsForPicsDownloading )
 
-from searching.models       import ItemFound, UserItemFound
+from finders.models         import ItemFound, UserItemFound
 
 logger = logging.getLogger(__name__)
 
