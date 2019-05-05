@@ -2,7 +2,8 @@ from os.path                import join
 
 from core.ebay_api_calls    import getSingleItem
 
-from searching.models       import ItemFound
+from finders.models         import ItemFound
+
 from searching.utils_test   import getItemHitsLog
 
 from Numb.Get               import getRandomDigits
