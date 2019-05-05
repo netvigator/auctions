@@ -300,3 +300,7 @@ but it already existed for Altec driver, not Hickok tube tester
 2019-05-03
 editing item, move it to different brand and model, must move to different brand first
 if the model + new brand already exists, app crashes, need to check first and handle better
+
+
+2019-05-05 too long and redundant
+from core.templatetags.core_tags
