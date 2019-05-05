@@ -94,7 +94,7 @@ class Brand( GetKeepersForSomething, models.Model ):
 
     def getUserItemsForThis( self, oBrand, oUser ):
         #
-        from searching.models import UserItemFound
+        from finders.models import UserItemFound
         #
         qsUserItems = (
             UserItemFound.objects.filter(
