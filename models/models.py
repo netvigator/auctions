@@ -123,7 +123,7 @@ class Model( GetKeepersForSomething, models.Model ):
 
     def getUserItemsForThis( self, oModel, oUser ):
         #
-        from searching.models import UserItemFound
+        from finders.models import UserItemFound
         #
         qsUserItems = (
             UserItemFound.objects.filter(
