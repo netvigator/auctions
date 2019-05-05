@@ -22,8 +22,7 @@ from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 from searching          import RESULTS_FILE_NAME_PATTERN
 from searching          import SEARCH_FILES_FOLDER
 
-from ..models           import ( Search, ItemFound, UserItemFound,
-                                 ItemFoundTemp, SearchLog )
+from ..models           import Search, SearchLog
 
 from ..tests            import dSearchResult # in __init__.py
 from ..tests            import ( sExampleResponse, sBrands, sModels,
@@ -41,10 +40,11 @@ from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
                                  getPagination, _getFindingResponseGenerator,
                                  getSearchResultGenerator )
 
-
 from brands.models      import Brand
 from categories.models  import Category, BrandCategory
 from models.models      import Model
+
+from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
 
 from File.Del           import DeleteIfExists
 from File.Spec          import getPathNameExt
