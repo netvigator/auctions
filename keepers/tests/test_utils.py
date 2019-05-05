@@ -38,7 +38,9 @@ from ..utils            import ( _storeJsonSingleItemResponse,
 
 from ..utils_test       import getSingleItemResponseCandidate
 
-from searching.models   import ItemFound, UserItemFound, Search
+from finders.models     import ItemFound, UserItemFound
+
+from searching.models   import Search
 from searching.tests    import dSearchResult # in __init__.py
 from searching.utils    import _storeUserItemFound, _storeItemFound
 
