@@ -1,7 +1,6 @@
-from django.core.urlresolvers   import reverse, resolve
+from core.dj_import     import reverse, resolve
 
-from core.utils_test            import TestCasePlus
-
+from core.utils_test    import TestCasePlus
 
 
 class TestURLs( TestCasePlus ):
