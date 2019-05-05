@@ -83,7 +83,7 @@ class Category( GetKeepersForSomething, models.Model ):
 
     def getUserItemsForThis( self, oCategory, oUser ):
         #
-        from searching.models import UserItemFound
+        from finders.models import UserItemFound
         #
         qsUserItems = (
             UserItemFound.objects.filter(
