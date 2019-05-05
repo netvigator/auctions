@@ -6,7 +6,8 @@ from core.utils_test        import TestCasePlus
 
 from keepers                import dItemFields
 
-from searching              import dItemFoundFields     # in __init__.py
+from finders                import dItemFoundFields     # in __init__.py
+
 from searching.tests        import sResponseItems2Test  # in __init__.py
 from searching.utilsearch   import getSearchResultGenerator
 
@@ -26,7 +27,7 @@ class GetValueOffItemDictTests(
 
     def test_dItemFoundFields( self ):
         #
-        ''' testing the dItemFoundFields dict from searching'''
+        ''' testing the dItemFoundFields dict from finders'''
         #
         self.dFieldsTester( dItemFoundFields )
 
