@@ -1,6 +1,6 @@
 from os.path            import join
 
-from django.core.urlresolvers import reverse
+from core.dj_import     import reverse
 
 from django.db.models   import Max
 from django.http        import HttpResponseRedirect
