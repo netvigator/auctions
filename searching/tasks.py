@@ -11,11 +11,13 @@ from celery.schedules       import crontab
 
 #from auctionbot             import celery_app as app # app = Celery()
 
-from .models                import Search, SearchLog, UserItemFound
+from .models                import Search, SearchLog
 
 from .utils                 import ( trySearchCatchExceptStoreInFile,
                                      storeSearchResultsInDB )
 from .utils_stars           import findSearchHits
+
+from finders.models         import UserItemFound
 
 from core.utils             import getBegTime
 
