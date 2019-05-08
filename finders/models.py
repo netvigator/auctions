@@ -104,7 +104,6 @@ class ItemFound(models.Model):
     tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
                         null = True, blank = True )
 
-
     def __str__(self):
         return self.cTitle
 
