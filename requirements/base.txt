@@ -11,8 +11,7 @@
 
 # any changes?
 # pip install -r requirements/local.txt
-# pip install -r requirements/test.txt
-# don't do this one, do one or both of the above
+# don't do this one, pip install -r requirements/test.txt
 
 
 # Wheel 0.25+ needed to install certain packages on CPython 3.5+
@@ -108,3 +107,6 @@ django-timezone-field==3.0
 # celery cannot start
 # https://github.com/pydanny/cookiecutter-django/issues/1954
 kombu==4.3.0
+
+# need this 2019-02-13
+django-extensions==2.1.6
