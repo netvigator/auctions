@@ -11,7 +11,8 @@ gevent==1.4.0
 
 # Static and Media Storage
 # ------------------------------------------------
-boto==2.49.0
+#boto==2.49.0
+boto3==1.9.146
 django-storages==1.7.1
 
 
