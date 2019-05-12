@@ -10,7 +10,9 @@ Production Configurations
 
 """
 
-from boto.s3.connection import OrdinaryCallingFormat
+# boto deprecated, now they recommend boto3
+# from boto.s3.connection import OrdinaryCallingFormat
+
 
 import logging # maybe also need
 from logging import getLogger
@@ -86,7 +88,7 @@ INSTALLED_APPS += ['storages', ]
 #AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
 AWS_AUTO_CREATE_BUCKET = True
 AWS_QUERYSTRING_AUTH = False
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+# AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat() # comes from boto3, deprecated
 
 # AWS cache settings, don't change unless you know what you're doing:
 AWS_EXPIRY = 60 * 60 * 24 * 7
@@ -94,10 +96,13 @@ AWS_EXPIRY = 60 * 60 * 24 * 7
 # TODO See: https://github.com/jschneier/django-storages/issues/47
 # Revert the following and use str after the above-mentioned bug is fixed in
 # either django-storage-redux or boto
+# update 2019-05-12
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
 control = 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIRY, AWS_EXPIRY)
-AWS_HEADERS = {
-    'Cache-Control': bytes(control, encoding='latin-1')
-}
+#AWS_HEADERS = {
+    #'Cache-Control': bytes(control, encoding='latin-1')
+#}
+AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
 
 # URL that handles the media served from MEDIA_ROOT, used for managing
 # stored files.
