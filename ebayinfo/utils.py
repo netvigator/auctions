@@ -1,28 +1,27 @@
-from logging                import getLogger
-from os.path                import join
-from time                   import sleep
+from logging            import getLogger
+from os.path            import join
+from time               import sleep
 
-from django.conf            import settings
+from django.conf        import settings
+from django.db          import DataError
 
-from psycopg2               import OperationalError
+from core.dj_import     import ET # xml.etree.ElementTree
+from core.dj_import     import ObjectDoesNotExist
 
-import xml.etree.ElementTree as ET
+from psycopg2           import OperationalError
 
-from core.utils             import ( getNamerSpacer,
-                                     getDownloadFileWriteToDisk )
-
-from django.core.exceptions import ObjectDoesNotExist
-from django.db              import DataError
+from core.utils         import ( getNamerSpacer,
+                                 getDownloadFileWriteToDisk )
 
 # in __init__.py
-from ebayinfo               import dMarketsRelated, EBAY_FILES_FOLDER
+from ebayinfo           import dMarketsRelated, EBAY_FILES_FOLDER
 
-from .models                import EbayCategory, Market, CategoryHierarchy
+from .models            import EbayCategory, Market, CategoryHierarchy
 
-from File.Write             import QuietDump
-from String.Output          import ReadableNo
-from Utils.Progress         import TextMeter, DummyMeter
-from Web.HTML               import getChars4HtmlCodes
+from pyPks.File.Write   import QuietDump
+from pyPks.String.Output import ReadableNo
+from pyPks.Utils.Progress import TextMeter, DummyMeter
+from pyPks.Web.HTML     import getChars4HtmlCodes
 
 logger = getLogger(__name__)
 
@@ -111,7 +110,7 @@ def countCategories(
         sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117',
         bSayCount = False ):
     #
-    from String.Output import ReadableNo
+    from pyPks.String.Output import ReadableNo
     #
     oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
     #
@@ -347,9 +346,9 @@ def getCategoryListThenStore(
             bUseSandbox     = False,
             bShowProgress   = False ):
     #
-    from core.ebay_api_calls    import getMarketCategoriesGotGlobalID
+    from core.ebay_api_calls import getMarketCategoriesGotGlobalID
     #
-    from File.Del               import DeleteIfExists
+    from pyPks.File.Del      import DeleteIfExists
     #
     t = _getCategoryListParams( uMarket, uWantVersion )
     #
@@ -398,7 +397,7 @@ def _getCategoryVersionFromFile(
 
 def _getDictMarket2SiteID():
     #
-    from Dict.Get import getReverseDictGotUniqueItems
+    from pyPks.Dict.Get import getReverseDictGotUniqueItems
     #
     dMarket2SiteID   = {}
     dSiteID2ListVers = {}
@@ -455,7 +454,7 @@ def _getCheckCategoryVersion(
     from core.ebay_api_calls import ( getCategoryVersionGotSiteID,
                                       getCategoryVersionGotGlobalID )
     #
-    from File.Del   import DeleteIfExists
+    from pyPks.File.Del      import DeleteIfExists
     #
     # iSiteId = 0 aka sGlobalID = 'EBAY-US'
     #
