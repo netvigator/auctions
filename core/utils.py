@@ -7,8 +7,8 @@ from django.utils           import timezone
 
 from requests.exceptions    import ConnectionError
 
-from String.Find            import getFinderFindAll
-from String.Eat             import eatFromWithin
+from pyPks.String.Find      import getFinderFindAll
+from pyPks.String.Eat       import eatFromWithin
 
 #                "2017-12-15T05:22:47.000Z"
 EBAY_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
@@ -32,7 +32,7 @@ def getDateTimeObjGotEbayStr( sDateTime ):
     #
     '''convert ebay string dates into python datetime objects'''
     #
-    from Time.Convert import getDateTimeObjFromString
+    from pyPks.Time.Convert import getDateTimeObjFromString
     #
     #
     return getDateTimeObjFromString(
@@ -90,7 +90,7 @@ def _getReverseWithQuery( lookup_view, *args, **kwargs ):
 
 def _getIsoDateTimeOffDateTimeCol( tDateTime ):
     #
-    from Time           import sFormatISOdateTimeNoColon
+    from pyPks.Time import sFormatISOdateTimeNoColon
     #
     return tDateTime.strftime( sFormatISOdateTimeNoColon )
 
@@ -107,7 +107,7 @@ def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
     voila! browser lack-of-refresh problem solved!
     #'''
     #
-    from Time.Output import getNowIsoDateTimeFileNameSafe
+    from pyPks.Time.Output import getNowIsoDateTimeFileNameSafe
     #
     kwargs = kwargs.get( 'kwargs', {} ) # !!!
     #
