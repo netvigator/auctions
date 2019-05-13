@@ -18,8 +18,8 @@ from ebayinfo.utils_test import ( getMarketsIntoDatabase,
 
 from models.models      import Model
 
-from Time               import sFormatISOdateTimeNoColon
-from Time.Test          import isISOdatetime
+from pyPks.Time         import sFormatISOdateTimeNoColon
+from pyPks.Time.Test    import isISOdatetime
 
 
 class BasicAppTestsDjangoStyle( TestCasePlus ):
