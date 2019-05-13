@@ -1,4 +1,4 @@
-from Dir.Get import getMakeDir
+from pyPks.Dir.Get import getMakeDir
 
 # ### on ebay category version update, ###
 # ### change these constants and the table below to test ###
