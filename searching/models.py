@@ -1,13 +1,13 @@
-from django.db                  import models
+from django.db          import models
 
-from core.utils                 import getReverseWithUpdatedQuery
+from core.utils         import getReverseWithUpdatedQuery
 
-from ebayinfo.models            import EbayCategory
+from ebayinfo.models    import EbayCategory
 
-from django.contrib.auth        import get_user_model
+from core.dj_import     import get_user_model
 User = get_user_model()
 
-from Time.Output                import getIsoDateTimeFromDateTime
+from pyPks.Time.Output  import getIsoDateTimeFromDateTime
 
 
 # ### models can be FAT but not too FAT! ###

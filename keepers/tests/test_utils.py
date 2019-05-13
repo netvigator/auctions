@@ -46,11 +46,11 @@ from searching.utils    import _storeUserItemFound, _storeItemFound
 
 from searching.tests.test_stars import SetUpForHitStarsWebTests
 
-from Dir.Test           import isDirThere
-from File.Del           import DeleteIfExists
-from File.Test          import isFileThere
-from String.Get         import getTextAfter
-from Web.Test           import isURL
+from pyPks.Dir.Test     import isDirThere
+from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Test    import isFileThere
+from pyPks.String.Get   import getTextAfter
+from pyPks.Web.Test     import isURL
 
 logger = logging.getLogger(__name__)
 

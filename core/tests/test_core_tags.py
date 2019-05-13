@@ -13,7 +13,7 @@ from ..templatetags.core_tags       import ( getIsoDateTime,
                                              model_name_plural,
                                              field_name )
 
-from Time.Test      import isISOdatetime
+from pyPks.Time.Test                import isISOdatetime
 
 class GetDashForReturnTests( TestCasePlus ):
     '''get dash for return tests'''

@@ -6,8 +6,8 @@ from finders.models         import ItemFound
 
 from searching.utils_test   import getItemHitsLog
 
-from Numb.Get               import getRandomDigits
-from Time.Delta             import getIsoDateTimeNowPlus, getDeltaDaysFromISOs
+from pyPks.Numb.Get         import getRandomDigits
+from pyPks.Time.Delta       import getIsoDateTimeNowPlus, getDeltaDaysFromISOs
 
 class NoExampleRecords( Exception ): pass
 

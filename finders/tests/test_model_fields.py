@@ -4,8 +4,8 @@ from finders.models     import ItemFound
 from core.utils_test    import AssertEmptyMixin, TestCasePlus
 
 
-from File.Get           import getListOffFileLines
-from String.Get         import getTextBefore
+from pyPks.File.Get     import getListOffFileLines
+from pyPks.String.Get   import getTextBefore
 
 
 class MakeSureAllFieldsAreInTableTest( AssertEmptyMixin, TestCasePlus ):

@@ -3,8 +3,6 @@ from os                 import environ
 from os.path            import join
 from sys                import path
 
-from pprint            import pprint
-
 from urllib.request     import urlopen, Request
 
 import django
@@ -12,10 +10,10 @@ import django
 from lxml               import etree
 import requests
 
-from Iter.AllVers       import tMap
+from pyPks.Iter.AllVers import tMap
 
-from Utils.Config       import getConfDict
-from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+from pyPks.Utils.Config import getConfDict
+from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 from ebayinfo.models    import Market
 from ebayinfo.utils     import dMarket2SiteID
@@ -106,13 +104,6 @@ def _postResponseEbayApi(
         dHttpHeaders.update( dMoreHeaders )
         #
     #
-    #print('')
-    #print('sEndPointURL', sEndPointURL)
-    #print('type(sBody)', type(sBody))
-    #print('sBody')
-    #print(sBody)
-    #print('dHttpHeaders')
-    #pprint(dHttpHeaders)
     oResponse = requests.post(
                     sEndPointURL,
                     data    = sBody,
@@ -213,21 +204,11 @@ def _getCategoriesOrVersion(
     sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
     #
     dHttpHeaders= {
-            #"X-EBAY-API-DEV-NAME"           : sDevID,
-            #"X-EBAY-API-APP-NAME"           : sAppID,
-            #"X-EBAY-API-CERT-NAME"          : sCertID,
-            #"Content-Type"                  : "text/xml" ,
-            #"X-EBAY-API-IAF-TOKEN"          : sToken,
             "X-EBAY-API-CALL-NAME"          : 'GetCategories',
             "X-EBAY-API-SITEID"             : str( iSiteId ),
             "X-EBAY-API-COMPATIBILITY-LEVEL": sCompatible,
             }
     #
-    #print()
-    #print( 'dHttpHeaders:' )
-    #pprint( dHttpHeaders )
-    #print( 'headers:' )
-    #pprint( headers )
     dHttpHeaders.update( headers )
     #
     root = etree.Element( "GetCategoriesRequest",

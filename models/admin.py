@@ -1,17 +1,16 @@
-from django.contrib import admin
+from django.contrib     import admin
 
-# Register your models here.
+from core.admin         import admin_method_attributes
 
-from core.admin import admin_method_attributes
+from .models            import Model
 
-from .models import Model
+from pyPks.Utils.Output import getSayYesOrNo
+from pyPks.String.Get   import getUpToLenSplitOnWhite
 
-from Utils.Output   import getSayYesOrNo
-from String.Get     import getUpToLenSplitOnWhite
 
 class ModelAdmin(admin.ModelAdmin):
     list_display = (
-        "cTitle", 
+        "cTitle",
         "_cKeyWords", "_iStars", "_iBrand", "_iCategory",
         "_cComment" )
     readonly_fields = (
@@ -39,12 +38,12 @@ class ModelAdmin(admin.ModelAdmin):
         return str( obj.iCategory ).replace( ' ', '&nbsp;' )
 
     def _cComment(self, obj):
-        
+
         sComment = str( obj.cComment )
-        
+
         if len( sComment ) > 80:
             sComment = getUpToLenSplitOnWhite( sComment, 76 ) + ' ...'
-                    
+
         return sComment
 
 

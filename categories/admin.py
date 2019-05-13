@@ -1,16 +1,14 @@
-from django.contrib import admin
+from django.contrib     import admin
 
-# Register your models here.
+from .models            import Category
 
-from .models import Category
+from core.admin         import admin_method_attributes
 
-from core.admin import admin_method_attributes
-
-from Utils.Output import getSayYesOrNo
+from pyPks.Utils.Output import getSayYesOrNo
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        "cTitle", 
+        "cTitle",
         "_cKeyWords", "_bAllOfInterest", "_iStars",
         "_bWantPair", "_bAccessory", "_bComponent", "_iFamily" )
     readonly_fields = (

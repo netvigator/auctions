@@ -1,6 +1,6 @@
-from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
+from core.utils         import getDateTimeObjGotEbayStr, getShrinkItemURL
 
-from Utils.Config   import getBoolOffYesNoTrueFalse
+from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
 
 # https://developer.ebay.com/devzone/finding/callref/types/ShippingInfo.html

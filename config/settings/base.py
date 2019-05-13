@@ -12,15 +12,13 @@ import environ
 import os
 import sys
 
-from logging import getLogger
+from logging            import getLogger
 
 logger = getLogger(__name__)
 
-from django.core.exceptions import ImproperlyConfigured
+from core.dj_import     import ImproperlyConfigured, countriesSettings
 
-from django_countries.conf  import settings as countriesSettings
-
-from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
+from pyPks.Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
 dSecretsConf = getConf( 'Secrets.ini', tWantSections = ( 'email', 'sentry' ) )
 
@@ -124,6 +122,7 @@ LOCAL_APPS = [
     'searching.apps.SearchingConfig',
     'finders.apps.FindersConfig',
     'keepers.apps.KeepersConfig',
+    'pyPks',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

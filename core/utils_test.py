@@ -1,26 +1,24 @@
-from django.contrib.auth    import get_user_model
-from django.core.urlresolvers import reverse
-from django.db.utils        import IntegrityError
-from django.http.request    import HttpRequest
-from django.test            import RequestFactory
-from django.test.client     import Client
+from core.dj_import     import reverse, HttpRequest, get_user_model
+from django.db.utils    import IntegrityError
+from django.test        import RequestFactory
+from django.test.client import Client
 
-from django_webtest         import WebTest, TestApp
-from test_plus.test         import TestCase
+from django_webtest     import WebTest, TestApp
+from test_plus.test     import TestCase
 
-from config.settings.base   import LOGIN_URL
-from config.wsgi            import application
+from config.settings.base import LOGIN_URL
+from config.wsgi        import application
 
-from brands.models          import Brand
-from categories.models      import Category
-from models.models          import Model
+from brands.models      import Brand
+from categories.models  import Category
+from models.models      import Model
 
-from ebayinfo               import ( EBAY_US_CURRENT_VERSION,
-                                     EBAY_GB_CURRENT_VERSION )
+from ebayinfo           import ( EBAY_US_CURRENT_VERSION,
+                                 EBAY_GB_CURRENT_VERSION )
 
-from ebayinfo.models        import EbayCategory, Market
+from ebayinfo.models    import EbayCategory, Market
 
-from String.Find            import getRegExObj
+from pyPks.String.Find  import getRegExObj
 
 
 class TestCasePlus( TestCase ):
@@ -107,8 +105,8 @@ def getUrlQueryStringOff( sURL ):
 
 def queryGotUpdated( s ):
     #
-    from String.Get import getTextAfter, getTextBefore
-    from Time.Test  import isISOdatetimeFileNameSafe
+    from pyPks.String.Get import getTextAfter, getTextBefore
+    from pyPks.Time.Test  import isISOdatetimeFileNameSafe
     #
     sQueryUTC = getTextBefore(
                     getTextAfter( s, 'updated=' ),
@@ -331,7 +329,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         from ebayinfo           import sCategoryDump # in __init__.py
         #
-        from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+        from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
         #
         self.iCategories = 0
         #
