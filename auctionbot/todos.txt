@@ -304,3 +304,7 @@ if the model + new brand already exists, app crashes, need to check first and ha
 
 2019-05-05 too long and redundant
 from core.templatetags.core_tags
+
+2019-05-12
+already had 604-16X, should not be able to add 604-16x
+should be able to edit model/brand/category from keepers list!
