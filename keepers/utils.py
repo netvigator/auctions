@@ -1,13 +1,13 @@
 import logging
 
-from os.path                import join
-from time                   import sleep
+from os.path            import join
+from time               import sleep
 
-from django.conf            import settings
-from django.utils           import timezone
+from django.conf        import settings
+from django.utils       import timezone
 
-from core.ebay_api_calls    import getSingleItem
-from core.utils             import getPriorDateTime
+from core.ebay_api_calls import getSingleItem
+from core.utils         import getPriorDateTime
 
 # in __init__.py
 from keepers            import EBAY_ITEMS_FOLDER, dItemFields as dFields
@@ -20,14 +20,13 @@ from core.utils_ebay    import getValueOffItemDict
 
 from finders.models     import ItemFound, UserItemFound
 
-from Dir.Get            import getMakeDir
-from File.Test          import isFileThere
-from File.Write         import QuietDump
-from String.Find        import getRegExObj
-from String.Output      import StrPadZero
-from Time.Test          import isDateTimeObj
-from Time.Output        import getNowIsoDateTimeFileNameSafe
-from Web.Test           import isURL
+from pyPks.Dir.Get      import getMakeDir
+from pyPks.File.Test    import isFileThere
+from pyPks.File.Write   import QuietDump
+from pyPks.String.Find  import getRegExObj
+from pyPks.String.Output import StrPadZero
+from pyPks.Time.Output  import getNowIsoDateTimeFileNameSafe
+from pyPks.Web.Test     import isURL
 
 class GetSingleItemNotWorkingError(  Exception ): pass
 class InvalidOrNonExistentItemError( Exception ): pass
@@ -64,9 +63,7 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
     returns the resonse dictionary dResponse
     which includes dPagination for convenience'''
     #
-    from json           import loads
-    #
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
+    from json import loads
     #
     dResult = loads( sContent ) # this is for strings
     #
@@ -471,7 +468,7 @@ def getItemsFoundForUpdate():
 
 def _getPicExtension( sURL ):
     #
-    from Web.Address import getFilePathNameOffURL
+    from pyPks.Web.Address import getFilePathNameOffURL
     #
     sPathNameExtn = getFilePathNameOffURL( sURL )
     #
