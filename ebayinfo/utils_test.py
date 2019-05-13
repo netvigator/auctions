@@ -16,7 +16,7 @@ def getMarketsIntoDatabase():
     from ebayinfo           import sMarketsTable # in __init__.py
     #
     #
-    from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
+    from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
     #
     oTableIter = getTableFromScreenCaptureGenerator( sMarketsTable )
     #
