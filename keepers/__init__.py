@@ -1,7 +1,7 @@
-from core.utils     import getDateTimeObjGotEbayStr, getShrinkItemURL
+from core.utils         import getDateTimeObjGotEbayStr, getShrinkItemURL
 
-from Dir.Get        import getMakeDir
-from Utils.Config   import getBoolOffYesNoTrueFalse
+from pyPks.Dir.Get      import getMakeDir
+from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
 EBAY_ITEMS_FOLDER = '/tmp/ebay_items'
 
