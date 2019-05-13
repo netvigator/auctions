@@ -23,8 +23,8 @@ from ..utilsearch       import getPriorityChoices, getSearchResultGenerator
 from ..utils_test       import BaseUserWebTestCaseCanAddSearches
 from ..views            import SearchCreateView
 
-from File.Del           import DeleteIfExists
-from File.Write         import QuietDump
+from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Write   import QuietDump
 
 
 class TestHowManyUserDigitsNeeded( BaseUserWebTestCaseCanAddSearches ):

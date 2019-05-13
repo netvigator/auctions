@@ -9,7 +9,7 @@ from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
 from requests.exceptions import ConnectTimeout, ReadTimeout, ConnectionError
 
 from django.conf        import settings
-from django.core.exceptions import ObjectDoesNotExist
+from core.dj_import     import ObjectDoesNotExist
 from django.db          import DataError, IntegrityError
 from django.db.models   import Max
 from django.utils       import timezone
@@ -31,12 +31,12 @@ from .utilsearch        import ( getSearchResultGenerator, getPagination,
 from searching          import ( RESULTS_FILE_NAME_PATTERN,
                                  SEARCH_FILES_FOLDER )
 
-from Dir.Get            import getMakeDir
-from File.Del           import DeleteIfExists
-from File.Get           import getFilesMatchingPattern
-from File.Write         import QuietDump
-from Numb.Get           import getHowManyDigitsNeeded
-from Utils.Both2n3      import getStrGotBytes
+from pyPks.Dir.Get      import getMakeDir
+from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Get     import getFilesMatchingPattern
+from pyPks.File.Write   import QuietDump
+from pyPks.Numb.Get     import getHowManyDigitsNeeded
+from pyPks.Utils.Both2n3 import getStrGotBytes
 
 
 logger = logging.getLogger(__name__)
@@ -128,7 +128,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     from ebayinfo.models        import Market
     #
-    from String.Split           import getWhiteCleaned
+    from pyPks.String.Split     import getWhiteCleaned
     #
     User = get_user_model()
     #

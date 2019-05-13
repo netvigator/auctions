@@ -23,8 +23,8 @@ from ..utils            import storeSearchResultsInDB, getSearchIdStr
 from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
 from models.models      import Model
 
-from File.Del           import DeleteIfExists
-from File.Write         import QuietDump
+from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Write   import QuietDump
 
 
 class SearchModelTest( BaseUserWebTestCase ):

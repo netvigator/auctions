@@ -7,7 +7,7 @@ from django.utils       import timezone
 
 from ebayinfo.models    import EbayCategory
 
-from String.Get         import getContentOutOfDoubleQuotes
+from pyPks.String.Get   import getContentOutOfDoubleQuotes
 
 
 # avoiding circular import problems!
@@ -176,10 +176,10 @@ def getJsonFindingResponse( uContent ):
     returns the resonse dictionary dResponse
     which includes dPagination for convenience'''
     #
-    from json           import load, loads
+    from json                   import load, loads
     #
-    from Dict.Get       import getAnyValue
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
+    from pyPks.Dict.Get         import getAnyValue
+    from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
     #
     try:
         dResults = load(  uContent ) # this is for file pointers
@@ -539,10 +539,10 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
     in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
     '''
     #
-    from .utils         import getPageNumbOffFileName
+    from .utils                 import getPageNumbOffFileName
     #
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
-    from File.Get       import getFileSpecHereOrThere
+    from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
+    from pyPks.File.Get         import getFileSpecHereOrThere
     #
     if sContent is None:
         #
