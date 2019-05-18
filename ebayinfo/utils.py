@@ -2,27 +2,28 @@ from logging                import getLogger
 from os.path                import join
 from time                   import sleep
 
+import xml.etree.ElementTree as ET
+
 from django.conf            import settings
+from django.core.exceptions import ObjectDoesNotExist
+from django.db              import DataError
 
 from psycopg2               import OperationalError
 
-import xml.etree.ElementTree as ET
-
 from core.utils             import ( getNamerSpacer,
                                      getDownloadFileWriteToDisk )
-
-from django.core.exceptions import ObjectDoesNotExist
-from django.db              import DataError
 
 # in __init__.py
 from ebayinfo               import dMarketsRelated, EBAY_FILES_FOLDER
 
 from .models                import EbayCategory, Market, CategoryHierarchy
 
-from File.Write             import QuietDump
-from String.Output          import ReadableNo
-from Utils.Progress         import TextMeter, DummyMeter
-from Web.HTML               import getChars4HtmlCodes
+from pyPks.Dict.Get         import getReverseDictGotUniqueItems
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Write       import QuietDump
+from pyPks.String.Output    import ReadableNo
+from pyPks.Utils.Progress   import TextMeter, DummyMeter
+from pyPks.Web.HTML         import getChars4HtmlCodes
 
 logger = getLogger(__name__)
 
@@ -110,8 +111,6 @@ def getCategoryIterable(
 def countCategories(
         sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117',
         bSayCount = False ):
-    #
-    from String.Output import ReadableNo
     #
     oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
     #
@@ -347,9 +346,8 @@ def getCategoryListThenStore(
             bUseSandbox     = False,
             bShowProgress   = False ):
     #
-    from core.ebay_api_calls    import getMarketCategoriesGotGlobalID
-    #
-    from File.Del               import DeleteIfExists
+    # circular import problem, this must be here not at top
+    from core.ebay_api_calls import getMarketCategoriesGotGlobalID
     #
     t = _getCategoryListParams( uMarket, uWantVersion )
     #
@@ -397,8 +395,6 @@ def _getCategoryVersionFromFile(
 
 
 def _getDictMarket2SiteID():
-    #
-    from Dict.Get import getReverseDictGotUniqueItems
     #
     dMarket2SiteID   = {}
     dSiteID2ListVers = {}
@@ -452,11 +448,9 @@ def _getCheckCategoryVersion(
     #
     '''call the ebay API to get the info, extract the version from that'''
     #
-    from core.ebay_api_calls import ( getCategoryVersionGotSiteID,
-                                      getCategoryVersionGotGlobalID )
-    #
-    from File.Del   import DeleteIfExists
-    #
+    # circular import problem, this must be here not at top
+    from core.ebay_api_calls    import ( getCategoryVersionGotGlobalID,
+                                         getCategoryVersionGotSiteID )
     # iSiteId = 0 aka sGlobalID = 'EBAY-US'
     #
     if sGlobalID  is None:
