@@ -15,12 +15,17 @@ from brands.models          import Brand
 from categories.models      import Category
 from models.models          import Model
 
+# in __init__.py
 from ebayinfo               import ( EBAY_US_CURRENT_VERSION,
-                                     EBAY_GB_CURRENT_VERSION )
+                                     EBAY_GB_CURRENT_VERSION,
+                                     sCategoryDump )
 
 from ebayinfo.models        import EbayCategory, Market
 
-from String.Find            import getRegExObj
+from pyPks.String.Find      import getRegExObj
+from pyPks.String.Get       import getTextAfter, getTextBefore
+from pyPks.Time.Test        import isISOdatetimeFileNameSafe
+from pyPks.Utils.Config     import getBoolOffYesNoTrueFalse as getBool
 
 
 class TestCasePlus( TestCase ):
@@ -106,9 +111,6 @@ def getUrlQueryStringOff( sURL ):
 
 
 def queryGotUpdated( s ):
-    #
-    from String.Get import getTextAfter, getTextBefore
-    from Time.Test  import isISOdatetimeFileNameSafe
     #
     sQueryUTC = getTextBefore(
                     getTextAfter( s, 'updated=' ),
@@ -328,10 +330,6 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
     def setUp(self):
         #
         super( GetEbayCategoriesWebTestSetUp, self ).setUp()
-        #
-        from ebayinfo           import sCategoryDump # in __init__.py
-        #
-        from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
         #
         self.iCategories = 0
         #
