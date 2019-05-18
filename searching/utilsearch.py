@@ -1,16 +1,20 @@
 import logging
 
+from json               import load, loads
+
 from string             import ascii_uppercase, digits
 
 from django.conf        import settings
 from django.utils       import timezone
 
-from ebayinfo.models    import EbayCategory
+from ebayinfo.models    import EbayCategory, CategoryHierarchy
 
-from String.Get         import getContentOutOfDoubleQuotes
+from pyPks.Dict.Get      import getAnyValue
+from pyPks.Dict.Maintain import ( getDictValuesFromSingleElementLists,
+                                  getDictValuesFromSingleElementLists )
+from pyPks.File.Get      import getFileSpecHereOrThere
+from pyPks.String.Get    import getContentOutOfDoubleQuotes
 
-
-# avoiding circular import problems!
 
 logger = logging.getLogger(__name__)
 
@@ -68,8 +72,6 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     note that when testing against the live ebay api,
     form errors are common,
     not all real categories are in the test database'''
-    #
-    from ebayinfo.models import CategoryHierarchy
     #
     dNewResult = { k: getValue( dItem, k, v, **kwargs )
                    for k, v in dFields.items() }
@@ -175,11 +177,6 @@ def getJsonFindingResponse( uContent ):
     '''pass in the response
     returns the resonse dictionary dResponse
     which includes dPagination for convenience'''
-    #
-    from json           import load, loads
-    #
-    from Dict.Get       import getAnyValue
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
     #
     try:
         dResults = load(  uContent ) # this is for file pointers
@@ -539,10 +536,8 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
     in __init__.py: RESULTS_FILE_NAME_PATTERN = 'Search_%s_%s_ID_%s.json'
     '''
     #
-    from .utils         import getPageNumbOffFileName
-    #
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
-    from File.Get       import getFileSpecHereOrThere
+    # circular import problem, this must be here not at top
+    from .utils import getPageNumbOffFileName
     #
     if sContent is None:
         #
