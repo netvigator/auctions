@@ -8,13 +8,13 @@ from .models            import Search
 from .tests             import sItemHitLog # in __init__.py
 from .utilsearch        import getPriorityChoices
 
-from File.Del           import DeleteIfExists
-from File.Test          import isFileThere
-from File.Write         import QuietDump
+from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Test    import isFileThere
+from pyPks.File.Write   import QuietDump
 
-from Time.Convert       import getDateTimeObjFromString   as getDate
-from Time.Delta         import getIsoDateTimeNowPlus
-from Time.Output        import getIsoDateTimeFromDateTime as getIsoDT
+from pyPks.Time.Convert import getDateTimeObjFromString   as getDate
+from pyPks.Time.Delta   import getIsoDateTimeNowPlus
+from pyPks.Time.Output  import getIsoDateTimeFromDateTime as getIsoDT
 
 
 class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
