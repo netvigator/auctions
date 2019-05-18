@@ -1,4 +1,5 @@
 from os             import rename
+from random         import randrange
 
 from django.db      import DataError
 from django.test    import tag
@@ -25,9 +26,9 @@ from ..utils        import ( CATEGORY_VERSION_FILE,
 
 from ..utils_test   import getMarketsIntoDatabase, PutMarketsInDatabaseTest
 
-from File.Del       import DeleteIfExists
-from File.Write     import WriteText2File
-
+from pyPks.File.Del   import DeleteIfExists
+from pyPks.File.Write import WriteText2File
+from pyPks.Utils.Get  import getRandomTrueOrFalse
 
 sMessedCategoryVersion = sExampleCategoryVersion.replace(
         'GetCategoriesResponse', 'ResponseGetCategories' )
@@ -225,10 +226,6 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_got_current_category_version_list( self ):
-        #
-        from random import randrange
-        #
-        from Utils.Get import getRandomTrueOrFalse
         #
         iCount = Market.objects.all().count()
         #
