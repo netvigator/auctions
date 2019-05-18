@@ -3,7 +3,7 @@ from os                 import environ
 from os.path            import join
 from sys                import path
 
-from pprint            import pprint
+#from pprint            import pprint
 
 from urllib.request     import urlopen, Request
 
@@ -12,13 +12,12 @@ import django
 from lxml               import etree
 import requests
 
-from Iter.AllVers       import tMap
-
-from Utils.Config       import getConfDict
-from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
-
 from ebayinfo.models    import Market
 from ebayinfo.utils     import dMarket2SiteID
+
+from pyPks.Iter.AllVers import tMap
+from pyPks.Utils.Config import getConfDict
+from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 
 path.append('~/Devel/auctions')
