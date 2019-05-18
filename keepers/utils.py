@@ -1,6 +1,9 @@
 import logging
 
-from os.path                import join
+from glob                   import glob
+from json                   import loads
+from os                     import listdir, remove
+from os.path                import isfile, join
 from time                   import sleep
 
 from django.conf            import settings
@@ -20,14 +23,16 @@ from core.utils_ebay    import getValueOffItemDict
 
 from finders.models     import ItemFound, UserItemFound
 
-from Dir.Get            import getMakeDir
-from File.Test          import isFileThere
-from File.Write         import QuietDump
-from String.Find        import getRegExObj
-from String.Output      import StrPadZero
-from Time.Test          import isDateTimeObj
-from Time.Output        import getNowIsoDateTimeFileNameSafe
-from Web.Test           import isURL
+from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
+from pyPks.Dir.Get       import getMakeDir
+from pyPks.File.Test     import isFileThere
+from pyPks.File.Write    import QuietDump
+from pyPks.String.Find   import getRegExObj
+from pyPks.String.Output import StrPadZero
+from pyPks.Time.Test     import isDateTimeObj
+from pyPks.Time.Output   import getNowIsoDateTimeFileNameSafe
+from pyPks.Web.Address   import getFilePathNameOffURL
+from pyPks.Web.Test      import isURL
 
 class GetSingleItemNotWorkingError(  Exception ): pass
 class InvalidOrNonExistentItemError( Exception ): pass
@@ -63,10 +68,6 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
     '''pass in the response
     returns the resonse dictionary dResponse
     which includes dPagination for convenience'''
-    #
-    from json           import loads
-    #
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
     #
     dResult = loads( sContent ) # this is for strings
     #
@@ -471,8 +472,6 @@ def getItemsFoundForUpdate():
 
 def _getPicExtension( sURL ):
     #
-    from Web.Address import getFilePathNameOffURL
-    #
     sPathNameExtn = getFilePathNameOffURL( sURL )
     #
     sNameExtn = sExtn = ''
@@ -670,10 +669,6 @@ def getItemsForPicsDownloading( iLimit = 50 ):
 
 
 def deleteKeeperUserItem( uItemNumb, oUser ):
-    #
-    from glob       import glob
-    from os         import listdir, remove
-    from os.path    import isfile, join
     #
     sItemNumb = str( uItemNumb )
     iItemNumb = int( uItemNumb )
