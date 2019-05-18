@@ -2,8 +2,8 @@ from django.core.exceptions import PermissionDenied
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
-from Collect.Query          import get1stThatMeets
-from Collect.Test           import ContainsAny
+from pyPks.Collect.Query    import get1stThatMeets
+from pyPks.Collect.Test     import ContainsAny
 
 
 class DoesLoggedInUserOwnThisRowMixin(object):
