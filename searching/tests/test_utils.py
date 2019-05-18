@@ -46,14 +46,15 @@ from models.models      import Model
 
 from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
 
-from File.Del           import DeleteIfExists
-from File.Spec          import getPathNameExt
-from File.Test          import isFileThere
-from File.Write         import QuietDump
-from String.Get         import getTextBefore
-from Time.Delta         import getDeltaDaysFromStrings
-from Time.Test          import isISOdatetime
-from Utils.Config       import getBoolOffYesNoTrueFalse
+from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
+from pyPks.File.Del      import DeleteIfExists
+from pyPks.File.Spec     import getPathNameExt
+from pyPks.File.Test     import isFileThere
+from pyPks.File.Write    import QuietDump
+from pyPks.String.Get    import getTextBefore
+from pyPks.Time.Delta    import getDeltaDaysFromStrings
+from pyPks.Time.Test     import isISOdatetime
+from pyPks.Utils.Config  import getBoolOffYesNoTrueFalse
 
 
 logger = logging.getLogger(__name__)
@@ -1016,14 +1017,14 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
             #
             iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
-            if iBegLines + min( iLen, 5 ) < iEndLines:
+            if iBegLines + max( iLen, 5 ) < iEndLines:
                 #
                 print()
                 print( 'iBegLines:', iBegLines )
                 print( 'iLen     :', iLen      )
                 print( 'iEndLines:', iEndLines )
                 #
-            self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
+            self.assertGreaterEqual( iBegLines + max( iLen, 5 ), iEndLines )
 
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
@@ -1134,8 +1135,6 @@ class TestFindingResponseHelpers( TestCasePlus ):
 
 def getResultGeneratorTheJsonWay():
     #
-    from Dict.Maintain  import getDictValuesFromSingleElementLists
-    #
     dResponse       = getJsonFindingResponse( sResponseItems2Test )
     #
     dPagination     = dResponse[  'dPagination']
@@ -1210,7 +1209,7 @@ class DoTimeTrialBetweenJsonLoadAndMechanicalWay( TestCasePlus ):
 
     def name_must_start_with_test_to_do_time_trial( self ):
         #
-        from Utils.TimeTrial import TimeTrial
+        from pyPks.Utils.TimeTrial import TimeTrial
         #
         print( '' )
         print( 'using getJsonFindingResponse ...' )
