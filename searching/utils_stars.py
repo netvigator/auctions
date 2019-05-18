@@ -17,12 +17,12 @@ from categories.models      import BrandCategory
 
 from finders.models         import ItemFound, UserItemFound, ItemFoundTemp
 
-from String.Count           import getAlphaNumCount as getLen
-from String.Get             import getTextBeforeC
-from String.Find            import getRegExpress, getRegExObj, oFinderCRorLF
-from String.Output          import ReadableNo
-
 from searching              import WORD_BOUNDARY_MAX
+
+from pyPks.String.Count     import getAlphaNumCount as getLen
+from pyPks.String.Get       import getTextBeforeC
+from pyPks.String.Find      import getRegExpress, getRegExObj, oFinderCRorLF
+from pyPks.String.Output    import ReadableNo
 
 if settings.COVERAGE:
     #
