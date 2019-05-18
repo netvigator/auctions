@@ -1,7 +1,7 @@
 from brands.models      import Brand
 from categories.models  import Category, BrandCategory
 
-from Object.Get         import QuickObject
+from pyPks.Object.Get   import QuickObject
 
 class GetContextForBrandCategoryList( object ):
     '''get the brand category list into the context'''
