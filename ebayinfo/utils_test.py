@@ -3,9 +3,15 @@ from core.utils_test    import ( getTableFromScreenCaptureGenerator,
 
 from core.utils_test    import TestCasePlus
 
-from ebayinfo           import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
+# in __init__.py
+from ebayinfo           import ( EBAY_US_CURRENT_VERSION,
+                                 EBAY_SG_CURRENT_VERSION,
+                                 sMarketsTable )
 
 from .models            import Market
+
+from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
+
 
 def getMarketsIntoDatabase():
     #
@@ -13,10 +19,8 @@ def getMarketsIntoDatabase():
     uses that to populate the markets table.
     useful for testing, where the database starts empty.'''
     #
-    from ebayinfo           import sMarketsTable # in __init__.py
     #
     #
-    from Utils.Config       import getBoolOffYesNoTrueFalse as getBool
     #
     oTableIter = getTableFromScreenCaptureGenerator( sMarketsTable )
     #
