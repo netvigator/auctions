@@ -1,5 +1,5 @@
 from django             import template
-from django.utils.safestring import mark_safe
+from core.dj_import     import mark_safe
 
 from pyPks.String.Find  import oFinderCRorLF
 from pyPks.Time.Output  import getIsoDateTimeFromDateTime

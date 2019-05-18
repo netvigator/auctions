@@ -10,11 +10,12 @@ from time               import sleep
 from requests.exceptions import ConnectTimeout, ReadTimeout, ConnectionError
 
 from django.conf        import settings
-from django.contrib.auth    import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
+
 from django.db          import DataError, IntegrityError
 from django.db.models   import Max
 from django.utils       import timezone
+
+from core.dj_import     import ObjectDoesNotExist, get_user_model
 
 from core.utils_ebay    import getValueOffItemDict
 from core.ebay_api_calls import findItems
@@ -45,7 +46,6 @@ from pyPks.File.Write    import QuietDump
 from pyPks.Numb.Get      import getHowManyDigitsNeeded
 from pyPks.String.Split  import getWhiteCleaned
 from pyPks.Utils.Both2n3 import getStrGotBytes
-
 
 logger = logging.getLogger(__name__)
 

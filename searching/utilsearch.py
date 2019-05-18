@@ -7,11 +7,10 @@ from string             import ascii_uppercase, digits
 from django.conf        import settings
 from django.utils       import timezone
 
-from ebayinfo.models    import EbayCategory, CategoryHierarchy
+from ebayinfo.models    import EbayCategory
 
 from pyPks.Dict.Get      import getAnyValue
-from pyPks.Dict.Maintain import ( getDictValuesFromSingleElementLists,
-                                  getDictValuesFromSingleElementLists )
+from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
 from pyPks.File.Get      import getFileSpecHereOrThere
 from pyPks.String.Get    import getContentOutOfDoubleQuotes
 

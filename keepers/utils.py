@@ -6,11 +6,11 @@ from os                     import listdir, remove
 from os.path                import isfile, join
 from time                   import sleep
 
-from django.conf            import settings
-from django.utils           import timezone
+from django.conf        import settings
+from django.utils       import timezone
 
-from core.ebay_api_calls    import getSingleItem
-from core.utils             import getPriorDateTime
+from core.ebay_api_calls import getSingleItem
+from core.utils         import getPriorDateTime
 
 # in __init__.py
 from keepers            import EBAY_ITEMS_FOLDER, dItemFields as dFields

@@ -19,9 +19,6 @@ def getMarketsIntoDatabase():
     uses that to populate the markets table.
     useful for testing, where the database starts empty.'''
     #
-    #
-    #
-    #
     oTableIter = getTableFromScreenCaptureGenerator( sMarketsTable )
     #
     lHeader = next( oTableIter )

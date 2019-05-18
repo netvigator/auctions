@@ -1,20 +1,19 @@
-from copy                       import deepcopy
+from copy               import deepcopy
 
-from django.core.urlresolvers   import reverse
-from django.http.request        import HttpRequest
-from django.test                import RequestFactory
+from core.dj_import     import reverse, HttpRequest
+from django.test        import RequestFactory
 
-from core.utils_test            import SetUpBrandsCategoriesModelsWebTest
+from core.utils_test    import SetUpBrandsCategoriesModelsWebTest
 
-from ..mixins                   import GetPaginationExtraInfoInContext
-from ..views                    import ListViewGotModel
+from ..mixins           import GetPaginationExtraInfoInContext
+from ..views            import ListViewGotModel
 
-from finders.views              import ItemsFoundIndexView
+from finders.views      import ItemsFoundIndexView
 
 from searching.utils_stars      import getFoundItemTester
 from searching.tests.test_stars import SetUpForHitStarsWebTests
 
-from pyPks.Object.Get           import QuickObject
+from pyPks.Object.Get   import QuickObject
 
 
 class TestPagination( SetUpForHitStarsWebTests ):

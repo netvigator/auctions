@@ -1,7 +1,5 @@
 from django.contrib     import admin
 
-# Register your models here.
-
 from core.admin         import admin_method_attributes
 
 from .models            import Model
