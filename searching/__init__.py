@@ -1,6 +1,6 @@
 from django.conf    import settings
 
-from Dir.Get        import getMakeDir
+from pyPks.Dir.Get  import getMakeDir
 
 WORD_BOUNDARY_MAX   = 5
 
