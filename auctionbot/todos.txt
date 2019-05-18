@@ -304,3 +304,9 @@ if the model + new brand already exists, app crashes, need to check first and ha
 
 2019-05-05 too long and redundant
 from core.templatetags.core_tags
+
+
+2019-05-17 email from Sentry
+AttributeError: module 'anymail.backends.mailgun' has no attribute 'MailgunBackend'
+  File "django/utils/module_loading.py", line 23, in import_string
+    return getattr(module, class_name)
