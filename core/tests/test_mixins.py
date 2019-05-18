@@ -14,7 +14,7 @@ from finders.views              import ItemsFoundIndexView
 from searching.utils_stars      import getFoundItemTester
 from searching.tests.test_stars import SetUpForHitStarsWebTests
 
-from Object.Get                 import QuickObject
+from pyPks.Object.Get           import QuickObject
 
 
 class TestPagination( SetUpForHitStarsWebTests ):
