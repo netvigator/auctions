@@ -7,7 +7,7 @@ from ebayinfo.models            import EbayCategory
 from django.contrib.auth        import get_user_model
 User = get_user_model()
 
-from Time.Output                import getIsoDateTimeFromDateTime
+from pyPks.Time.Output          import getIsoDateTimeFromDateTime
 
 
 # ### models can be FAT but not too FAT! ###
