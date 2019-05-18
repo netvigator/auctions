@@ -5,38 +5,46 @@ from builtins           import ConnectionResetError
 from string             import ascii_letters, digits
 from os.path            import join
 from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
+from time               import sleep
 
 from requests.exceptions import ConnectTimeout, ReadTimeout, ConnectionError
 
 from django.conf        import settings
+from django.contrib.auth    import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db          import DataError, IntegrityError
 from django.db.models   import Max
 from django.utils       import timezone
 
 from core.utils_ebay    import getValueOffItemDict
+from core.ebay_api_calls import findItems
 
+from ebayinfo.models    import Market, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
+# in __init__.py
+from finders            import dItemFoundFields, dUserItemFoundUploadFields
+from finders.forms      import ItemFoundForm, UserItemFoundUploadForm
 from finders.models     import ItemFound, UserItemFound
 
 from keepers.utils      import ITEM_PICS_ROOT, getItemPicsSubDir
 
 from .models            import SearchLog, Search
-from .utilsearch        import ( getSearchResultGenerator, getPagination,
-                                 storeItemInfo, SearchGotZeroResults,
-                                 ItemAlreadyInTable, getSearchResult,
-                                 getSuccessOrNot )
+from .utilsearch        import ( ItemAlreadyInTable, getSearchResult,
+                                 getSuccessOrNot, storeItemInfo,
+                                 getPagination, SearchGotZeroResults,
+                                 getSearchResultGenerator )
 
 from searching          import ( RESULTS_FILE_NAME_PATTERN,
                                  SEARCH_FILES_FOLDER )
 
-from Dir.Get            import getMakeDir
-from File.Del           import DeleteIfExists
-from File.Get           import getFilesMatchingPattern
-from File.Write         import QuietDump
-from Numb.Get           import getHowManyDigitsNeeded
-from Utils.Both2n3      import getStrGotBytes
+from pyPks.Dir.Get       import getMakeDir
+from pyPks.File.Del      import DeleteIfExists
+from pyPks.File.Get      import getFilesMatchingPattern
+from pyPks.File.Write    import QuietDump
+from pyPks.Numb.Get      import getHowManyDigitsNeeded
+from pyPks.String.Split  import getWhiteCleaned
+from pyPks.Utils.Both2n3 import getStrGotBytes
 
 
 logger = logging.getLogger(__name__)
@@ -119,16 +127,6 @@ def getPageNumbOffFileName( sFileName ):
 def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response'''
-    #
-    from time                   import sleep
-    #
-    from django.contrib.auth    import get_user_model
-    #
-    from core.ebay_api_calls    import findItems
-    #
-    from ebayinfo.models        import Market
-    #
-    from String.Split           import getWhiteCleaned
     #
     User = get_user_model()
     #
@@ -344,13 +342,6 @@ def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
 
 def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
-    from finders.forms   import ItemFoundForm
-    #
-    from finders         import dItemFoundFields # in __init__.py
-    #
-    from ebayinfo.models import CategoryHierarchy
-    #
-    #
     iItemID         = int(            dItem['itemId'  ] )
     iSiteID         = dMarket2SiteID[ dItem['globalId'] ]
     #
@@ -396,9 +387,6 @@ def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
 
 
 def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
-    #
-    from finders.forms  import UserItemFoundUploadForm
-    from finders        import dUserItemFoundUploadFields # in __init__.py
     #
     bAlreadyInTable = UserItemFound.objects.filter(
                             iItemNumb   = iItemNumb,
@@ -511,8 +499,6 @@ def storeSearchResultsInDB( iLogID,
     #
     '''high level script, accesses results in file(s)
     and stores in database'''
-    #
-    from django.contrib.auth    import get_user_model
     #
     tBegStore = timezone.now()
     #
