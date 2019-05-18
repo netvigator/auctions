@@ -20,7 +20,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 from django_countries.conf  import settings as countriesSettings
 
-from Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
+from pyPks.Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
 
 dSecretsConf = getConf( 'Secrets.ini', tWantSections = ( 'email', 'sentry' ) )
 
@@ -124,6 +124,7 @@ LOCAL_APPS = [
     'searching.apps.SearchingConfig',
     'finders.apps.FindersConfig',
     'keepers.apps.KeepersConfig',
+    'pyPks'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
