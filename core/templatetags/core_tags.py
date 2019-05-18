@@ -1,8 +1,8 @@
-from django         import template
+from django             import template
 from django.utils.safestring import mark_safe
 
-from String.Find    import oFinderCRorLF
-from Time.Output    import getIsoDateTimeFromDateTime
+from pyPks.String.Find  import oFinderCRorLF
+from pyPks.Time.Output  import getIsoDateTimeFromDateTime
 
 # ### if you add a tag, you must register it in config/settings.base!!! ###
 
