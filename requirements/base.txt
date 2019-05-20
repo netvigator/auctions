@@ -110,3 +110,6 @@ kombu==4.3.0
 
 # need this 2019-02-13
 django-extensions==2.1.6
+
+# cron job scheduling 2019-05-21
+django-chroniker==1.0.12
