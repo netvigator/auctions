@@ -14,7 +14,7 @@ from celery.schedules       import crontab
 from .models                import Search, SearchLog
 
 from .utils                 import ( trySearchCatchExceptStoreInFile,
-                                     storeSearchResultsInDB )
+                                     storeSearchResultsInFinders )
 from .utils_stars           import findSearchHits
 
 from finders.models         import UserItemFound
@@ -82,14 +82,14 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
 
 
-@shared_task( name = 'searching.tasks.storeSearchResultsInDB' )
+@shared_task( name = 'searching.tasks.storeSearchResultsInFinders' )
 def storeSearchResultsInDbTask( iLogID,
                                 sMarket,
                                 sUserName,
                                 iSearchID,
                                 sSearchName ):
     #
-    t = storeSearchResultsInDB(
+    t = storeSearchResultsInFinders(
             iLogID,
             sMarket,
             sUserName,
@@ -99,8 +99,8 @@ def storeSearchResultsInDbTask( iLogID,
 
 
 # called as a hourly (periodic) task
-@shared_task( name = 'searching.tasks.doPutSearchResultsInItemsFoundTasks' )
-def doPutSearchResultsInItemsFoundTasks():
+@shared_task( name = 'searching.tasks.doPutSearchResultsInFindersTasks' )
+def doPutSearchResultsInFindersTasks():
     #
     qsLogSearches = (
             SearchLog.objects
@@ -181,7 +181,7 @@ watch file directory SEARCH_FILES_FOLDER and sort by date, most recent on top
 select id, "cTitle", "tBegSearch", "tEndSearch", "cLastResult", "iUser_id" from searching ;
 select id, "cTitle", "tBegSearch", "tEndSearch", "cLastResult" from searching where "iUser_id" = 1 ;
 
-doPutSearchResultsInItemsFoundTasks()
+doPutSearchResultsInFindersTasks()
 select count(*) from useritemsfound where "tLook4Hits" is null ;
 count should be zero at start, increase as process runs, then max out
 
@@ -195,6 +195,6 @@ count should decline to zero
 # workflow
 # 30 mins per user doSearchingPutResultsInFiles
 #                  doSearchingPutResultsInFilesTasks( bOnlyList = True )
-# 40 mins per user putSearchResultsInItemsFound
+# 40 mins per user putSearchResultsInFinders
 # 90 mins per user doFindSearhHits
-# from searching.tasks import doSearchingPutResultsInFilesTasks, doPutSearchResultsInItemsFoundTasks, doFindSearhHitsTasks
+# from searching.tasks import doSearchingPutResultsInFilesTasks, doPutSearchResultsInFindersTasks, doFindSearhHitsTasks
