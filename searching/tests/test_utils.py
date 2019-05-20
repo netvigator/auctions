@@ -29,7 +29,7 @@ from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseItems2Test )
 from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils_stars      import getFoundItemTester, findSearchHits
-from ..utils            import ( storeSearchResultsInDB,
+from ..utils            import ( storeSearchResultsInFinders,
                                  ItemAlreadyInTable,
                                  _putPageNumbInFileName,
                                  trySearchCatchExceptStoreInFile,
@@ -433,7 +433,7 @@ class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
 
 class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     #
-    ''' class for testing storeSearchResultsInDB() store records '''
+    ''' class for testing storeSearchResultsInFinders() store records '''
     #
     def setUp(self):
         #
@@ -469,7 +469,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         self.oSearchLog = oSearchLog
         #
-        self.t = storeSearchResultsInDB(
+        self.t = storeSearchResultsInFinders(
                     self.oSearchLog.id,
                     self.sMarket,
                     self.user1.username,
@@ -489,7 +489,7 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
 
     def test_store_search_results(self):
         #
-        ''' test storeSearchResultsInDB() with actual record'''
+        ''' test storeSearchResultsInFinders() with actual record'''
         #
         #print('')
         #print( 'self.oSearch.id:', self.oSearch.id )
@@ -517,7 +517,7 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         # try again with the same data
         #
-        t = ( storeSearchResultsInDB(
+        t = ( storeSearchResultsInFinders(
                         self.oSearchLog.id,
                         self.sMarket,
                         self.user1.username,
@@ -541,7 +541,7 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
 class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp ):
     #
     ''' base class for testing trySearchCatchExceptStoreInFile() &
-    storeSearchResultsInDB() store records '''
+    storeSearchResultsInFinders() store records '''
     #
 
     def fRt( self, s ): return s.replace( '\\r', '\r' )
@@ -906,7 +906,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
 class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
     #
     ''' class for testing trySearchCatchExceptStoreInFile() &
-    storeSearchResultsInDB() store records '''
+    storeSearchResultsInFinders() store records '''
     #
     def setUp( self ):
         #
@@ -980,7 +980,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
         sUserName   = oSearch.iUser.username
         sMarket     = oSearch.iUser.iEbaySiteID.cMarket
         #
-        t = storeSearchResultsInDB(
+        t = storeSearchResultsInFinders(
                     iLogID,
                     sMarket,
                     sUserName,
@@ -1057,7 +1057,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
         sUserName   = oSearch.iUser.username
         sMarket     = oSearch.iUser.iEbaySiteID.cMarket
         #
-        t = storeSearchResultsInDB(
+        t = storeSearchResultsInFinders(
                 iLogID,
                 sMarket,
                 sUserName,
