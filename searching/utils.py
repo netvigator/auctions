@@ -488,7 +488,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
 
 
 
-def storeSearchResultsInDB( iLogID,
+def storeSearchResultsInFinders( iLogID,
                             sMarket,
                             sUserName,
                             iSearchID,
@@ -511,7 +511,7 @@ def storeSearchResultsInDB( iLogID,
     if not lGotFiles:
         #
         logger.warning(
-                'storeSearchResultsInDB() did not find file "%s"!'
+                'storeSearchResultsInFinders() did not find file "%s"!'
                 % join( SEARCH_FILES_FOLDER, sFilePattern ) )
         #
         return 0, 0, 0
