@@ -314,3 +314,5 @@ AttributeError: module 'anymail.backends.mailgun' has no attribute 'MailgunBacke
   File "django/utils/module_loading.py", line 23, in import_string
     return getattr(module, class_name)
 
+2019-05-19
+already had 4300A, could add another without warning
