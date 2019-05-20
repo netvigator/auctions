@@ -108,6 +108,7 @@ THIRD_PARTY_APPS = [
     'mptt',
     'admin_honeypot',
     'timezone_field',
+    'chroniker',
 ]
 
 # Apps specific for this project go here.
