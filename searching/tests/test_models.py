@@ -18,7 +18,7 @@ from .test_utils        import GetBrandsCategoriesModelsWebTestSetUp
 from ..models           import Search
 
 from ..tests            import sResponseItems2Test
-from ..utils            import storeSearchResultsInDB, getSearchIdStr
+from ..utils            import storeSearchResultsInFinders, getSearchIdStr
 
 from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
 from models.models      import Model
@@ -67,7 +67,7 @@ class TestChoices(TestCasePlus):
 
 class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp ):
     #
-    ''' class for testing storeSearchResultsInDB() store records '''
+    ''' class for testing storeSearchResultsInFinders() store records '''
     #
     def setUp( self ):
         #
@@ -87,7 +87,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         try:
-            t = ( storeSearchResultsInDB(
+            t = ( storeSearchResultsInFinders(
                             self.oSearchLog.id,
                             self.sMarket,
                             self.user1.username,
