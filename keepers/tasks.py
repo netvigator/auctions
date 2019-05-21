@@ -76,7 +76,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     if bOnlySay or bDoFinalOnly:
         #
-        print( 'would fetch resuls on %s items now'
+        print( 'would fetch results on %s items now'
                 % qsUserItemNumbs.count() )
         #
     else:
@@ -105,7 +105,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     if bOnlySay:
         #
-        print( 'would fetch final resuls on %s items now'
+        print( 'would fetch final results on %s items now'
                 % qsItemsFinal.count() )
         #
         if iOldItems:
@@ -174,14 +174,14 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
 doGetFetchUserItemsTasks( bOnlySay = True )
 
 
-would fetch resuls on how many items now?
+would fetch results on how many items now?
 
 select count( DISTINCT "iItemNumb_id" )
     from useritemsfound
     where "bGetPictures" is true and  "tRetrieved" is null ;
 
 
-would fetch final resuls on how many items now?
+would fetch final results on how many items now?
 
 select count(*) from itemsfound
     where "tTimeEnd" <= current_timestamp - interval '1 day' and
