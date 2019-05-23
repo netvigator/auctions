@@ -376,9 +376,11 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_TASK_DEFAULT_RATE_LIMIT = '1/s'
 #task_default_rate_limit = '1/s'
 
-# CELERY_RESULT_BACKEND = 'amqp'
-#result_backend = 'amqp'
-CELERY_RESULT_BACKEND = 'redis'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Hong_Kong'
 
 #### END CELERY
 
