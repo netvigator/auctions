@@ -19,12 +19,15 @@
         <div class="list-group">
         <table class="bottomBorder">
         <tr>
-        <th ALIGN=LEFT>ebay item</th>
+          <th ALIGN=LEFT>{% field_name model 'tTimeEnd'  %}</th>
+          <th ALIGN=LEFT>{% field_name model 'cTitle'    %}</th>
+          <th ALIGN=LEFT>{% field_name model 'iItemNumb' %}</th>
         </tr>
         {% for keeper in object_list %}
             <TR>
-                <TD>{% field_name model 'iItemNumb' %}</TD>
-                <TD VALIGN=TOP>{{ keeper.iItemNumb }}</TD>
+                <TD VALIGN=TOP>{{ keeper.tTimeEnd|date:'Y-m-d H:i:s' }}</TD>
+                <td><a href="{{ keeper.get_absolute_url }}">{{ keeper.cTitle }}</a></td>
+                <TD VALIGN=TOP><a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">{{ keeper.iItemNumb }}</TD>
             </TR>
         {% endfor %}
         </table>
