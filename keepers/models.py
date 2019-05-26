@@ -15,7 +15,7 @@ class Keeper( models.Model ):
 
     EBAY_SHIPPING_CHOICES = EBAY_SHIPPING_CHOICES
 
-    iItemNumb       = models.BigIntegerField( 'ebay item number',
+    iItemNumb       = models.BigIntegerField( 'item number',
                         primary_key = True )
     cDescription    = models.TextField( 'description',
                         null = True, blank = True ) # d/n always get
@@ -142,7 +142,7 @@ class Keeper( models.Model ):
 
 class KeeperImage(models.Model):
     iItemNumb       = models.BigIntegerField(
-                        'ebay item number', primary_key = True )
+                        'item number', primary_key = True )
     isequence       = models.PositiveSmallIntegerField( 'sequence' )
     cfilename       = models.CharField( 'local file name', max_length = 28 )
     coriginalurl    = models.TextField( 'original URL' )

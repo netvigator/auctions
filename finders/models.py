@@ -26,7 +26,7 @@ class ItemFound(models.Model):
 
     EBAY_SHIPPING_CHOICES = EBAY_SHIPPING_CHOICES
 
-    iItemNumb       = models.BigIntegerField( 'ebay item number',
+    iItemNumb       = models.BigIntegerField( 'item number',
                         primary_key = True )
     cTitle          = models.CharField( 'item title',     max_length = 80 )
     cSubTitle       = models.CharField( 'item sub title', max_length = 80,
