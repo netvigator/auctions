@@ -2,6 +2,10 @@ from django.core.exceptions import PermissionDenied
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
+from core                   import sUserItemTableTemplate, sUserItemRowTemplate
+
+from core.utils             import getLink
+
 from pyPks.Collect.Query    import get1stThatMeets
 from pyPks.Collect.Test     import ContainsAny
 
@@ -289,3 +293,43 @@ class GetKeepersForSomething( object ):
             #
         #
         return sHowMany, len( qsUserItems ), oItems
+
+
+class GetUserItemsTableMixin( object ):
+    '''get table of user items, DRY'''
+
+    def getUserItemsTable( self, qs ):
+        #
+        if qs:
+            #
+            sHeader = ( sUserItemRowTemplate %
+                        ( 'Model', 'Brand', 'Category', 'HitStars', '' ) )
+            #
+            lRows = [ sHeader ]
+            #
+            for o in qs:
+                #
+                sayStarsModel   = o.iModel.iStars    or 'no model found'
+                sayStarsBrand   = o.iBrand.iStars    or 'no brand found'
+                sayStarsCategory= o.iCategory.iStars or 'no category found'
+                #
+                tStars = ( sayStarsModel, sayStarsBrand, sayStarsCategory )
+                #
+                sDetail = ' ( %s * %s * %s )' % tStars
+                #
+                sModel    = getLink( o.iModel    )
+                sBrand    = getLink( o.iBrand    )
+                sCategory = getLink( o.iCategory )
+                #
+                lRows.append( sUserItemRowTemplate %
+                        ( sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
+                #
+            #
+            sThisItemHitsTable = sUserItemTableTemplate % '\n'.join( lRows )
+            #
+        else:
+            #
+            sThisItemHitsTable = 'None'
+            #
+        #
+        return sThisItemHitsTable
