@@ -10,7 +10,9 @@ from .mixins        import AnyReleventHitStarColsChangedMixin
 
 from .models        import ItemFound, UserItemFound
 
-from core.mixins    import GetPaginationExtraInfoInContext
+from core.mixins    import ( GetPaginationExtraInfoInContext,
+                             GetUserItemsTableMixin )
+
 from core.utils     import getLink
 
 # ### keep views thin! ###
@@ -182,7 +184,7 @@ class ItemsFoundIndexView(
 
 
 
-class ItemFoundDetailView( DetailViewGotModel ):
+class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
 
     model           = UserItemFound
     parent          = ItemFound
@@ -214,47 +216,7 @@ class ItemFoundDetailView( DetailViewGotModel ):
         qsThisItemOtherHits = qsThisItemAllHits.difference(
                 UserItemFound.objects.filter( id = context[ 'object' ].id ) )
         #
-        if qsThisItemOtherHits:
-            #
-            sTableTemplate = '<table RULES=ROWS>%s</table>'
-            #
-            sRowTemplate = (
-                '<TR>'
-                '<TD VALIGN=TOP>%s</TD>'
-                '<TD VALIGN=TOP>%s</TD>'
-                '<TD VALIGN=TOP>%s</TD>'
-                '<TD VALIGN=TOP>%s%s</TD>'
-                '</TR>' )
-            #
-            sHeader = ( sRowTemplate %
-                        ( 'Model', 'Brand', 'Category', 'HitStars', '' ) )
-            #
-            lRows = [ sHeader ]
-            #
-            for o in qsThisItemOtherHits:
-                #
-                sayStarsModel   = o.iModel.iStars    or 'no model found'
-                sayStarsBrand   = o.iBrand.iStars    or 'no brand found'
-                sayStarsCategory= o.iCategory.iStars or 'no category found'
-                #
-                tStars = ( sayStarsModel, sayStarsBrand, sayStarsCategory )
-                #
-                sDetail = ' ( %s * %s * %s )' % tStars
-                #
-                sModel    = getLink( o.iModel    )
-                sBrand    = getLink( o.iBrand    )
-                sCategory = getLink( o.iCategory )
-                #
-                lRows.append( sRowTemplate %
-                        ( sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
-                #
-            #
-            sThisItemOtherHits = sTableTemplate % '\n'.join( lRows )
-            #
-        else:
-            #
-            sThisItemOtherHits = 'None'
-            #
+        sThisItemOtherHits = self.getUserItemsTable( qsThisItemOtherHits )
         #
         context['OtherHits'] = sThisItemOtherHits
         #
