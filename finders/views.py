@@ -13,8 +13,6 @@ from .models        import ItemFound, UserItemFound
 from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetUserItemsTableMixin )
 
-from core.utils     import getLink
-
 # ### keep views thin! ###
 
 
