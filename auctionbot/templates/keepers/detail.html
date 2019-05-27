@@ -26,6 +26,12 @@
         <TD>{% field_name model 'tTimeEnd' %}</TD>
         <TD>{{object.tTimeEnd}}</TD>
     </TR>
+    <tr>
+        <td valign=top>Hits for this Item:</td>
+        <td>
+        {{ UserItemsTable | safe }}
+        </td>
+    </tr>
     <TR>
         <TD>{% field_name model 'cListingType' %}</TD>
         <TD>{{object.cListingType}}</TD>
