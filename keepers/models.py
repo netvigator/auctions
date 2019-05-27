@@ -127,8 +127,9 @@ class Keeper( models.Model ):
         oUser = request.user
         #
         qsUserItems = UserItemFound.objects.filter(
-                iUser       = oUser,
-                iItemNumb   = oKeeper.iItemNumb )
+                        iUser       = oUser,
+                        iItemNumb   = oKeeper.iItemNumb
+                    ).order_by( '-iHitStars' )
         #
         return qsUserItems
 
