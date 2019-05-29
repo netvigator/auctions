@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load field_name %}
 {% load getDashForReturn %}
+{% load getLineBreakForReturn %}
 
 {% block title %}Auction Shopping Bot | Keeper {{ object.cTitle }}{% endblock %}
 
@@ -11,7 +12,7 @@
     <table>
     <TR VALIGN=TOP>
         <TD valign=top>{% field_name model 'cDescription' %}</TD>
-        <TD>{{object.cDescription}}</TD>
+        <TD>{{ object.cDescription | getLineBreakForReturn }}</TD>
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name model 'iItemNumb' %}</TD>
