@@ -23,11 +23,11 @@
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name model 'iBrand' %}</TD>
-        <TD VALIGN=TOP>{{ object.iBrand|default_if_none:"" }}</TD>
+        <TD VALIGN=TOP NOWRAP><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand|default_if_none:"" }}</a></TD>
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name model 'iCategory' %}</TD>
-        <TD VALIGN=TOP>{{ object.iCategory }}</TD>
+        <TD NOWRAP><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></TD>
     </TR>
     <TR VALIGN=TOP>
         <TD NOWRAP>{% field_name model 'cKeyWords' %}</TD>
