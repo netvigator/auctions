@@ -1,6 +1,6 @@
-sUserItemTableTemplate = '<table RULES=ROWS>%s</table>'
+sTableTemplateRowRules = '<table RULES=ROWS>%s</table>'
 
-sUserItemRowTemplate = (
+sRowTemplate4ColsValignTop = (
     '<TR>'
     '<TD VALIGN=TOP>%s</TD>'
     '<TD VALIGN=TOP>%s</TD>'

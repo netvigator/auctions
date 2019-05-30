@@ -2,7 +2,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
-from core                   import sUserItemTableTemplate, sUserItemRowTemplate
+from core                   import sTableTemplateRowRules, sRowTemplate4ColsValignTop
 
 from core.utils             import getLink
 
@@ -302,7 +302,7 @@ class GetUserItemsTableMixin( object ):
         #
         if qs:
             #
-            sHeader = ( sUserItemRowTemplate %
+            sHeader = ( sRowTemplate4ColsValignTop %
                         ( 'Model', 'Brand', 'Category', 'HitStars', '' ) )
             #
             lRows = [ sHeader ]
@@ -321,11 +321,11 @@ class GetUserItemsTableMixin( object ):
                 sBrand    = getLink( o.iBrand    )
                 sCategory = getLink( o.iCategory )
                 #
-                lRows.append( sUserItemRowTemplate %
+                lRows.append( sRowTemplate4ColsValignTop %
                         ( sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
                 #
             #
-            sThisItemHitsTable = sUserItemTableTemplate % '\n'.join( lRows )
+            sThisItemHitsTable = sTableTemplateRowRules % '\n'.join( lRows )
             #
         else:
             #
