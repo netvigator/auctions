@@ -23,6 +23,12 @@ from brands.views       import BrandUpdateView
 from models.models      import Model
 
 
+if settings.COVERAGE and not iRecordStepsForThis:
+    #
+    # coverage needs to test recording steps
+    #
+    iRecordStepsForThis = 133004653920
+
 
 
 def _getModelRegExFinders4Test( oModel ):
@@ -60,19 +66,9 @@ class SetUpForFindSearchHitsTest( PutSearchResultsInDatabaseWebTest ):
 
     def test_find_search_hits( self ):
         #
-        if settings.COVERAGE and not iRecordStepsForThis:
-            #
-            # coverage needs to test recording steps
-            iRecordSteps = 122990519283
-            #
-        else:
-            #
-            iRecordSteps = iRecordStepsForThis
-            #
-        #
         findSearchHits( self.user1.id,
                         bCleanUpAfterYourself   = True,
-                        iRecordStepsForThis     = iRecordSteps )
+                        iRecordStepsForThis     = iRecordStepsForThis )
         #
         self.assertGreater(
             len( UserItemFound.objects.filter(
