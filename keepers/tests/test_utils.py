@@ -1,4 +1,5 @@
 import logging
+import inspect
 
 from datetime           import timedelta
 from os                 import listdir
@@ -124,6 +125,8 @@ class SomeItemsTest( TestCasePlus ):
         iSavedRowID, sListingStatus, oItemFound = t
         #
         self.assertEqual( 142766343340, iSavedRowID )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_s232742493872( self ):
         '''test getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
@@ -137,6 +140,8 @@ class SomeItemsTest( TestCasePlus ):
         oKeeper = Keeper.objects.get( iItemNumb = 232742493872 )
         #
         self.assertEqual( oKeeper.cCountry, 'RS' )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_s232709513135( self ):
         '''test getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
@@ -147,6 +152,7 @@ class SomeItemsTest( TestCasePlus ):
         #
         self.assertEqual( 232709513135, iSavedRowID )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -168,6 +174,8 @@ class StoreItemsTestPlus( TestCasePlus ):
         t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_s142766343340( self ):
@@ -190,6 +198,8 @@ class StoreItemsTestPlus( TestCasePlus ):
         self.assertEqual( self.iOriginalSavedRowID, iNewSavedRowID )
         #
         self.assertEqual( oItem.iBidCount, 5 )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_s232742493872( self ):
@@ -197,11 +207,15 @@ class StoreItemsTestPlus( TestCasePlus ):
         #
         #
         self.assertTrue( Keeper.objects.filter( pk = 232742493872 ).exists() )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_s232709513135( self ):
         '''test storing getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
         self.assertTrue( Keeper.objects.filter( pk = 232709513135 ).exists() )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_missing_item( self ):
         #
@@ -215,6 +229,8 @@ class StoreItemsTestPlus( TestCasePlus ):
             self.fail('Unexpected exception raised:', e)
         else:
             self.fail( 'did not catch GetSingleItemNotWorkingError!' )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_invalid_item( self ):
@@ -229,6 +245,8 @@ class StoreItemsTestPlus( TestCasePlus ):
             self.fail('Unexpected exception raised:', e)
         else:
             self.fail( 'did not catch GetSingleItemNotWorkingError!' )
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -347,6 +365,8 @@ class GetAndStoreSingleItemsWebTests(
         qsUserItemNumbs = getItemsFoundForUpdate()
         #
         self.assertNotEmpty( qsUserItemNumbs )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
@@ -387,6 +407,7 @@ class GetAndStoreSingleItemsWebTests(
         #
         if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_get_item_pictures_importable( self ):
@@ -416,6 +437,8 @@ class GetAndStoreSingleItemsWebTests(
             #
             self.assertTrue( sFileNameJPG in setFilesNames or
                              sFileNamePNG in setFilesNames )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_get_single_active_item_then_store( self ):
@@ -424,6 +447,8 @@ class GetAndStoreSingleItemsWebTests(
         qsItem = Keeper.objects.filter( iItemNumb = self.iItemNumb )
         #
         self.assertEqual( len( qsItem ), 1 )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -485,6 +510,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.assertEqual( oItem.cListingStatus, sListingStatus )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_store_item_found_fetched_single_item( self ):
@@ -495,6 +521,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.assertEqual( oItemFound.cSellingState, "Completed" )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_update_user_items_found_code( self ):
         #
@@ -517,3 +544,4 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         self.assertEqual( oUserItemFound.tRetrieved,    tNow )
         self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
