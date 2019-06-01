@@ -246,7 +246,7 @@ class StoreItemsTestPlus( TestCasePlus ):
         else:
             self.fail( 'did not catch GetSingleItemNotWorkingError!' )
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
