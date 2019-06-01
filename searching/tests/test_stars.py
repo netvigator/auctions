@@ -23,11 +23,9 @@ from brands.views       import BrandUpdateView
 from models.models      import Model
 
 
-if settings.COVERAGE and not iRecordStepsForThis:
-    #
-    # coverage needs to test recording steps
-    #
-    iRecordStepsForThis = 133004653920
+# coverage needs to test recording steps and should test anyway
+#
+iRecordStepsForThis = 133004653920
 
 
 
