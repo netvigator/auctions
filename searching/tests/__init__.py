@@ -141,17 +141,34 @@ sModels = \
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
- 311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
+ 1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
+ 288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
+ 440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
+ 445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
+ 515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
+ 542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
+ 601a               |           |      8 | t            | Altec-Lansing     |       Driver |             |
+ 601b               |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
+ 602A               |           |      6 | f            | Altec-Lansing     |       Driver |             |
  604                |           |     10 | f            | Altec-Lansing     |       Driver |             |
  604D               |           |      8 | f            | Altec-Lansing     |       Driver |             |
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
- 602A               |           |      6 | f            | Altec-Lansing     |       Driver |             |
+ 604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
+ 806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
+ 811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
+ A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
+ A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3900A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
- 606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
+ 603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
@@ -182,14 +199,11 @@ sModels = \
  Citation IV        |           |      9 | f            | Harman-Kardon     |       Preamp |             |
  Citation III-X     |           |      8 | f            | Harman-Kardon     |        Tuner |             |
  SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
- 440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
  Point 1            |           |      8 | f            | Leak              |       Preamp |             |
  AE-2               |           |      7 | f            | McIntosh          |       Preamp |             |
  C-104              |           |      5 | f            | McIntosh          |       Preamp |             |
- 445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
  PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             |
  PAS-2              |           |      4 | f            | Dynaco            |       Preamp |             |
- A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
  SP-6               |           |      9 | f            | Audio Research    |       Preamp |             |
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
  SP-8               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -317,25 +331,12 @@ sModels = \
  526-MC             |           |      5 | f            | Bendix            |        Radio |             |
  248-NI             |           |     10 | f            | Sentinel          |        Radio |             |
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
- 603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
  H-222              |           |      7 | f            | Jensen            |       Driver |             |
  A-402              |           |      8 | f            | Jensen            |    Crossover |             |
  A-61               |           |      7 | f            | Jensen            |    Crossover |             |
  M1131              |           |      6 | f            | Jensen            |        Choke |             |
  RP-302A            |           |      6 | t            | Jensen            |       Driver |             |
  Imperial           |           |      9 | f            | Jensen            |Speaker System|             |
- 811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
- 1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
- 806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
- 601a               |           |      8 | t            | Altec-Lansing     |       Driver |             |
- 601b               |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
- N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
- 288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
- 288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
- 604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
- 515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
- 542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
- A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
  GRF                |           |      7 | f            | Tannoy            |Speaker System|             |
  539-A              |           |      5 | f            | Hickok            |  Tube Tester |             |
@@ -632,6 +633,25 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["401777677255"],
+              "title":["Vintage  Altec Lansing Dividing Network Crossover N-3000G, 890B Bolero Speaker "],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mw6zn8PUSc4pEnF3uHu7JWA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-Lansing-Dividing-Network-Crossover-N-3000G-890B-Bolero-Speaker-\/401777677255"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["54904"],
+              "location":["Oshkosh,WI,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.95"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P5DT21H7M14S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2019-05-31T17:19:27.000Z"],
+              "endTime":["2019-06-07T17:19:27.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["192878961826"],
               "title":["Jensen RP-302A Vintage Super Tweeter 16 ohm 1957 Jensen Imperial"],
