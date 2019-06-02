@@ -23,9 +23,11 @@ from brands.views       import BrandUpdateView
 from models.models      import Model
 
 
-# coverage needs to test recording steps and should test anyway
-#
-iRecordStepsForThis = 133004653920
+if settings.COVERAGE and not iRecordStepsForThis:
+    #
+    # coverage needs to test recording steps
+    #
+    iRecordStepsForThis = 133004653920
 
 
 
@@ -1254,9 +1256,29 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        iThisOne = 401777677255
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle, '890' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        #
         #
 
         #
