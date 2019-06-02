@@ -250,13 +250,13 @@ class StoreItemsTestPlus( TestCasePlus ):
 
 
 
-class GetAndStoreSingleItemsWebTests(
+class StoreSingleKeepersWebTests(
             AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
-    '''class to test getSingleItemThenStore'''
+    '''class to have some test keepers for other test classes'''
 
     def setUp( self ):
         #
-        super( GetAndStoreSingleItemsWebTests, self ).setUp()
+        super( StoreSingleKeepersWebTests, self ).setUp()
         #
         d = {   293004871422 : s293004871422,
                 254154293727 : s254154293727,
@@ -332,9 +332,9 @@ class GetAndStoreSingleItemsWebTests(
         # if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
         #
 
-    def test_getItemsFoundForUpdate( self ):
-        #
+    def mark_all_finders_to_fetch_pictures( self ):
         # mark all UserItemFound rows to fetch pictures
+        #
         UserItemFound.objects.all().update(
             bGetPictures = True,
             tRetrieved   = None )
@@ -361,6 +361,14 @@ class GetAndStoreSingleItemsWebTests(
         ItemFound.objects.filter(
                 iItemNumb__in = qsUserItemNumbs ).update(
                                         tRetrieved = timezone.now() )
+        #
+
+
+def GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
+
+    def test_getItemsFoundForUpdate( self ):
+        #
+        self.mark_all_finders_to_fetch_pictures()
         #
         qsUserItemNumbs = getItemsFoundForUpdate()
         #
