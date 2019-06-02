@@ -44,6 +44,10 @@ class BaseUserTestPlusCase( TestCasePlus ):
         #
         self.login( self.user1 )
         #
+        self.factory = RequestFactory()
+        #
+        self.market  = getDefaultMarket()
+
 
 
 
