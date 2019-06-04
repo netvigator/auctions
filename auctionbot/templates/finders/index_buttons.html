@@ -14,7 +14,7 @@
         </TD>
         <TD>
             <form action='{% url "finders:index" select='D' %}'>
-                <input class='btn btn-primary btn-blue' class='btn btn-primary btn-blue' type="submit" value=" deleted " />
+                <input class='btn btn-primary btn-blue' type="submit" value=" deleted " />
             </form>
         </TD>
         <TD>
@@ -25,10 +25,7 @@
         <TD>go to page:</TD>
         <td>
             {% if is_paginated %}
-                <hr>
-                <div class="basic">
-                    {% include "../paginate.html" %}
-                </div>
+                {% include "../paginate.html" %}
             {% endif %}
         </td>
     </TR>
