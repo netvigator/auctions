@@ -319,3 +319,6 @@ already had 4300A, could add another without warning
 
 2019-05-26 message from Sentry.io
 Invalid HTTP_HOST header: 'linksman.ru'. You may need to add 'linksman.ru' to ALLOWED_HOSTS.
+
+
+2019-06-04 hit Select All while browsing finders with zero stars, need UnSelect All option
