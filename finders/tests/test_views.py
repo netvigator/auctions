@@ -80,7 +80,7 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
         #
         #
         response = self.client.get(
-                reverse('finders:index', kwargs = {'select': 'A'} ) )
+                reverse('finders:index', kwargs = {'select': 'P'} ) )
         #
         self.assertEqual(response.status_code, 200)
         #
