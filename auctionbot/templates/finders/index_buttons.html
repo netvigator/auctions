@@ -8,25 +8,29 @@
         </td>
         <TD>filter items:</TD>
         <TD>
-            <form action='{% url "finders:index" select='P' %}'>
+            <form action='{% url "finders:index" %}P/' method="POST">
+                {% csrf_token %}
                 <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
             </form>
         </TD>
         <TD>
-            <form action='{% url "finders:index" select='D' %}'>
+            <form action='{% url "finders:index" %}D/' method="POST">
+                {% csrf_token %}
                 <input class='btn btn-primary btn-blue' type="submit" value=" deleted " />
             </form>
         </TD>
         <TD>
-            <form action='{% url "finders:index" select='Z' %}'>
+            <form action='{% url "finders:index" %}Z/' method="POST">
+                {% csrf_token %}
                 <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
             </form>
         </TD>
-        <TD>go to page:</TD>
-        <td>
-            {% if is_paginated %}
-                {% include "../paginate.html" %}
-            {% endif %}
-        </td>
+        {% if is_paginated %}
+          <TD>go to page:</TD>
+          <td>
+              <p>
+              {% include "../paginate.html" %}
+          </td>
+        {% endif %}
     </TR>
 </table>
