@@ -26,11 +26,11 @@ class ItemsFoundIndexView(
     paginate_by         = 100
     #form_class          = ItemsFoundIndexForm
 
-    def get_queryset(self):
+    def get_queryset( self ):
         #
         # ADPZ
         # qs = super( ItemsFoundIndexView, self ).get_queryset()
-        #sSelect = 'P'
+        # sSelect = 'P'
         #
         sSelect = self.kwargs.get('select', 'P' )
         #
