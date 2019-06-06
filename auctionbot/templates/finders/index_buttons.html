@@ -6,6 +6,11 @@
         <td>
             <input class='btn btn-primary btn-blue' type="submit" name="selectall" value=" Select All " />
         </td>
+        <TD>
+            <!-- first button does not work, so put a non displaying button first  -->
+            <form action='{% url "finders:index" %}P/' method="POST">
+            </form>
+        </TD>
         <TD>filter items:</TD>
         <TD>
             <form action='{% url "finders:index" %}P/' method="POST">
