@@ -107,10 +107,15 @@ should find crossover
 pair heavy factory jbl c36 speaker cabinets with 075, d131? d130? + crossovers
 should find c36
 
-
+updated 2019-06-07
+change a model brand or category:
 IntegrityError at /searching/item_found/269093/edit/
 duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iModel_id_53e6b351_uniq"
 DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id")=(283006335023, 1, 3598) already exists.
+
+also:
+duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iM_42d93cee_uniq"
+DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id", "iBrand_id")=(323727674061, 1, 4449, 952) already exists.
 
 
 form error (cannot search in auctions code)
