@@ -295,6 +295,17 @@ class GetKeepersForSomething( object ):
         return sHowMany, len( qsUserItems ), oItems
 
 
+
+def _sayStars( o, sName ):
+    #
+    if o is None:
+        sSayStars = 'no %s found' % sName
+    else:
+        sSayStars = str( o.iStars )
+    #
+    return sSayStars
+
+
 class GetUserItemsTableMixin( object ):
     '''get table of user items, DRY'''
 
@@ -309,9 +320,9 @@ class GetUserItemsTableMixin( object ):
             #
             for o in qs:
                 #
-                sayStarsModel   = o.iModel.iStars    or 'no model found'
-                sayStarsBrand   = o.iBrand.iStars    or 'no brand found'
-                sayStarsCategory= o.iCategory.iStars or 'no category found'
+                sayStarsModel   = _sayStars( o.iModel,    'model'    )
+                sayStarsBrand   = _sayStars( o.iBrand,    'brand'    )
+                sayStarsCategory= _sayStars( o.iCategory, 'category' )
                 #
                 tStars = ( sayStarsModel, sayStarsBrand, sayStarsCategory )
                 #
