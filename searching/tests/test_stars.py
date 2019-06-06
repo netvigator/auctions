@@ -1280,7 +1280,27 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         #
-
+        iThisOne = 123790646318
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should find 601A driver not 601 enclosure!!!
+        #
+        #
+        iThisOne = 223539937147
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should find both 601A driver and 601 enclosure
+        # should Altec Lansing not Lansing
+        #
+        #
+        iThisOne = 173922031351
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 5, iThisOne )
+        #
+        # should find Jim Lansing driver
+        #
         #
         if False:
             #
