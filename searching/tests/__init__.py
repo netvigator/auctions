@@ -152,8 +152,8 @@ sModels = \
  515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  601a               |           |      8 | t            | Altec-Lansing     |       Driver |             |
- 601b               |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
- 602A               |           |      6 | f            | Altec-Lansing     |       Driver |             |
+ 601B               |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
+ 602A               |           |      6 | t            | Altec-Lansing     |       Driver |             |
  604                |           |     10 | f            | Altec-Lansing     |       Driver |             |
  604D               |           |      8 | f            | Altec-Lansing     |       Driver |             |
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
@@ -633,6 +633,62 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["123790646318"],
+              "title":["Altec 601A Speaker with N3000A Crossover"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs3.ebaystatic.com\/m\/mJw19gfwAj4D08Wx9k2uNXA\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Altec-601A-Speaker-N3000A-Crossover-\/123790646318"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["95062"],
+              "location":["Santa Cruz,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"249.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"249.0"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P6DT5H50M27S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2019-06-03T02:07:40.000Z"],
+              "endTime":["2019-06-13T02:07:40.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["223539937147"],
+              "title":["Vintage Altec Lansing 601A Duplex speaker Co-axial woofer"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mkYUCr_YypsxGxWSSemBnog\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Vintage-Altec-Lansing-601A-Duplex-speaker-Co-axial-woofer-\/223539937147"],
+              "paymentMethod":["PayPal","VisaMC","AmEx","Discover"],"autoPay":["false"],
+              "postalCode":["22182"],"location":["Vienna,VA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.0"}],
+              "bidCount":["1"],"sellingState":["Active"],
+              "timeLeft":["P1DT22H25M1S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2019-06-03T18:41:52.000Z"],
+              "endTime":["2019-06-08T18:41:52.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
+          },{ "itemId":["173922031351"],
+              "title":["JBL JBL early \\"Jim\\" Lansing 150-4B 15\\" AlNiCo Paragon Hartsfield woofer 32 ohm"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mrnJ0EkiQY7_3OS-5tryJug\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/JBL-JBL-early-Jim-Lansing-150-4B-15-AlNiCo-Paragon-Hartsfield-woofer-32-ohm-\/173922031351"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["12144"],
+              "location":["Rensselaer,NY,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"202.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"202.5"}],
+              "bidCount":["5"],"sellingState":["Active"],
+              "timeLeft":["P3DT15H7M25S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2019-06-03T11:24:38.000Z"],
+              "endTime":["2019-06-10T11:24:38.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{ "itemId":["401777677255"],
               "title":["Vintage  Altec Lansing Dividing Network Crossover N-3000G, 890B Bolero Speaker "],
