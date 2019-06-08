@@ -84,7 +84,8 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual(response.status_code, 200)
         #
-        print('')
-        print( "len( response.context['finders_list'] ):" )
-        print( len( response.context['finders_list'] ) )
+        self.assertGreater( len( response.context['finders_list'] ), 80 )
+        #print('')
+        #print( "len( response.context['finders_list'] ):" )
+        #print( len( response.context['finders_list'] ) )
         #
