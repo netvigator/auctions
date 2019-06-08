@@ -19,11 +19,17 @@ from finders.models         import ItemFound, UserItemFound, ItemFoundTemp
 
 from searching              import WORD_BOUNDARY_MAX
 
+from pyPks.File.Get         import getListFromFileLines
+from pyPks.File.Test        import isFileThere
+from pyPks.File.Write       import QuickDumpLines
+
 from pyPks.String.Count     import getAlphaNumCount as getLen
 from pyPks.String.Get       import getTextBeforeC
 from pyPks.String.Find      import getRegExpress, getRegExObj, oFinderCRorLF
 from pyPks.String.Output    import ReadableNo
 
+SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
+#
 if settings.COVERAGE:
     #
     # want to test all lines without printing anything
@@ -449,6 +455,17 @@ def findSearchHits(
             ( 'candidates', [] ),
             ( 'selection',  [] ) ) )
     #
+    lScriptTested = []
+    #
+    if isFileThere( SCRIPT_TEST_FILE ):
+        #
+        lScriptTested = [ s for s in
+                          getListFromFileLines( SCRIPT_TEST_FILE )
+                          if s ]
+        #
+    #
+    setScriptTested = set( lScriptTested )
+    #
     for oItem in qsItems:
         #
         qsUserItems = UserItemFound.objects.filter(
@@ -459,8 +476,19 @@ def findSearchHits(
         #
         lDeleteThese = []
         #
-        bRecordSteps = ( iRecordStepsForThis is not None and
-                         oItem.iItemNumb == iRecordStepsForThis )
+        bRecordSteps = False
+        #
+        if (    oItem.iItemNumb == iRecordStepsForThis and
+                str( iRecordStepsForThis ) not in setScriptTested ):
+            #
+            lScriptTested.append( str( iRecordStepsForThis ) )
+            #
+            QuickDumpLines( lScriptTested, SCRIPT_TEST_FILE )
+            #
+            setScriptTested.add( str( iRecordStepsForThis ) )
+            #
+            bRecordSteps = True
+            #
         #
         for oNext in qsUserItems:
             #
@@ -704,7 +732,7 @@ def findSearchHits(
                             #
                             _appendIfNotAlreadyIn(
                                     lModels,
-                                    'model category %s is %s  of family%s' %
+                                    'category %s is %s of family %s' %
                                         ( oModel.iCategory,
                                           sSayFamily,
                                           oFamily.cTitle ) )
@@ -797,7 +825,7 @@ def findSearchHits(
                             #
                             _appendIfNotAlreadyIn(
                                     lModels,
-                                    'model category %s is a member of family %s' %
+                                    'category %s is head of family %s' %
                                         ( oModel.iCategory, oFamily.cTitle ) )
                             #
                         #
