@@ -1282,23 +1282,17 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 123790646318
         #
-        self.print_len( dItemsToTest[ iThisOne ], 4, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
         #
         # should find 601A driver not 601 enclosure!!!
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '601a' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
         self.assertEqual( oTest.iModel.cTitle, 'N-3000A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertIsNotNone( oTest )
         #
@@ -1306,11 +1300,17 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '601a' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
         #
         #
         iThisOne = 223539937147
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         # should find both 601A driver and 601 enclosure
         # should Altec Lansing not Lansing
@@ -1333,9 +1333,15 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 173922031351
         #
-        self.print_len( dItemsToTest[ iThisOne ], 5, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # should find Jim Lansing driver
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '150-4B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
         if False:
