@@ -1,5 +1,5 @@
 
-iRecordStepsForThis = None # 223348187115
+iRecordStepsForThis = 123790646318
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -60,6 +60,7 @@ sBrands = \
  Knight            |      4 |            |
  Lafayette         |      7 |            |
  Langevin          |      8 |            |
+ Lansing           |      9 |            | Jim Lansing\\rJames B. Lansing
  Leak              |      7 |            |
  Luxman            |      6 |            |
  Marantz           |     10 | Speaker\\rAV9000\\rreplica |
@@ -169,6 +170,7 @@ sModels = \
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3900A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 150-4B             |           |      9 | t            | Lansing           |       Driver |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
