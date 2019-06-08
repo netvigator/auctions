@@ -110,11 +110,6 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         iItemFound = ItemFound.objects.all().count()
         #
         # bCleanUpAfterYourself must be False or tests will fail!
-        # iRecordStepsForThis imported from __init__.py
-        #
-        # findSearchHits( self.user1.id,
-        #                 bCleanUpAfterYourself   = False,
-        #                 iRecordStepsForThis     = iRecordStepsForThis )
         #
         #print( '\n' )
         #print( 'setting up KeyWordFindSearchHitsTests' )
