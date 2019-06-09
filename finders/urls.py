@@ -16,7 +16,7 @@ urlpatterns = [
         view    = views.ItemFoundUpdateView.as_view(),
         name    = 'edit' ),
     url(
-        regex = r'(?P<select>[DPZ]){0,1}/{0,1}$',
+        regex = r'(?P<select>[ADPZ]){0,1}/{0,1}$',
         view    = views.ItemsFoundIndexView.as_view(),
         name    = 'index' ),
 
