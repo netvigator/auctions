@@ -66,7 +66,7 @@ def _getConfValues():
 oConfValues = _getConfValues()
 
 
-def _getApiConfValues( bUseSandbox ):
+def _getApiConfValues( bUseSandbox = False ):
     #
     if bUseSandbox:
         dUseThis = oConfValues.dEbaySandbox
