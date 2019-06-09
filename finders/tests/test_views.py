@@ -85,6 +85,24 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
         self.assertEqual(response.status_code, 200)
         #
         self.assertGreater( len( response.context['finders_list'] ), 80 )
+        #
+        #
+        response = self.client.get(
+                reverse('finders:index', kwargs = {'select': 'Z'} ) )
+        #
+        self.assertEqual(response.status_code, 200)
+        #
+        self.assertEqual( len( response.context['finders_list'] ), 2 )
+        #
+        #
+        response = self.client.get(
+                reverse('finders:index', kwargs = {'select': 'A'} ) )
+        #
+        self.assertEqual(response.status_code, 200)
+        #
+        self.assertGreater( len( response.context['finders_list'] ), 90 )
+        #
+        #
         #print('')
         #print( "len( response.context['finders_list'] ):" )
         #print( len( response.context['finders_list'] ) )
