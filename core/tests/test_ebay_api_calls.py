@@ -1,15 +1,23 @@
 
-from core.utils_test  import TestCasePlus
+from core.utils_test        import TestCasePlus
 
-from ..ebay_api_calls import _getApiConfValues, _getListingTypeTuple
+from ..ebay_api_calls       import _getApiConfValues, _getListingTypeTuple
+
+from pyPks.Time.Convert     import getDateTimeObjFromString
+from pyPks.Time.Delta       import getDeltaDaysFromObjs
 
 
 class GetConfFileValuesTests( TestCasePlus ):
     '''ebay API conf file values tests'''
 
+    def setUp( self ):
+        #
+        self.dConfValues = _getApiConfValues()
+
+
     def test_ini_values(self):
 
-        dConfValues = _getApiConfValues( False )
+        dConfValues = self.dConfValues
 
         self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
@@ -25,7 +33,7 @@ class GetConfFileValuesTests( TestCasePlus ):
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
                 sTokenStart )
 
-        dConfValues = _getApiConfValues( True )
+        dConfValues = _getApiConfValues( bUseSandbox = True )
 
         self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
@@ -40,6 +48,30 @@ class GetConfFileValuesTests( TestCasePlus ):
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
                 sTokenStart )
 
+    def test_token_expiration( self ):
+        '''tokens expire, keep tabs'''
+        #
+        sExpiration     = self.dConfValues['auth']['expires']
+        #
+        oExpiration     = getDateTimeObjFromString( sExpiration )
+        #
+        iDaysTillExpire = - int( getDeltaDaysFromObjs( oExpiration ) )
+        #
+        self.assertGreater( iDaysTillExpire, 15 )
+        #
+        if iDaysTillExpire <= 0:
+            #
+            print('')
+            print( '### eBay AUTH token has expired or will soon!!! ###' )
+            print( '### obtain new one from eBay developer webiste! ###' )
+            print('')
+            #
+        elif iDaysTillExpire < 32:
+            #
+            print('')
+            print( '### eBay AUTH token expires in %s days!!! ###' % iDaysTillExpire )
+            print( '### obtain new one from eBay developer webiste! ###' )
+            print('')
 
 
 class TestListingTypeTupleTests( TestCasePlus ):
