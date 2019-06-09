@@ -603,7 +603,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601B' )
+        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
@@ -611,7 +611,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601a' )
+        self.assertEqual( oTest.iModel.cTitle, '601a (driver)' )
         #
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -1296,13 +1296,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601B' )
+        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '601a' )
+        self.assertEqual( oTest.iModel.cTitle, '601a (driver)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -1317,7 +1317,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '601B' )
+        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
@@ -1325,7 +1325,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601a' )
+        self.assertEqual( oTest.iModel.cTitle, '601a (driver)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
