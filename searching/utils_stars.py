@@ -478,7 +478,11 @@ def findSearchHits(
         #
         bRecordSteps = False
         #
-        if (    oItem.iItemNumb == iRecordStepsForThis and
+        if settings.COVERAGE:
+            #
+            bRecordSteps = True
+            #
+        elif (       oItem.iItemNumb == iRecordStepsForThis and
                 str( iRecordStepsForThis ) not in setScriptTested ):
             #
             lScriptTested.append( str( iRecordStepsForThis ) )
