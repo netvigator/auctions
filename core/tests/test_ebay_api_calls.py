@@ -19,7 +19,7 @@ class GetConfFileValuesTests( TestCasePlus ):
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
-        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**m1'
+        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
         self.assertEqual(
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
@@ -33,7 +33,7 @@ class GetConfFileValuesTests( TestCasePlus ):
         self.assertEqual( dConfValues['endpoints']['finding'],
                     'http://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
 
-        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**/0'
+        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
         self.assertEqual(
