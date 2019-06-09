@@ -1,5 +1,5 @@
 
-iRecordStepsForThis = 123790646318
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -152,8 +152,8 @@ sModels = \
  445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
  515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
- 601a               |           |      8 | t            | Altec-Lansing     |       Driver |             |
- 601B               |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
+ 601a (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
+ 601B (enclosure)   |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
  602A               |           |      6 | t            | Altec-Lansing     |       Driver |             |
  604                |           |     10 | f            | Altec-Lansing     |       Driver |             |
  604D               |           |      8 | f            | Altec-Lansing     |       Driver |             |
