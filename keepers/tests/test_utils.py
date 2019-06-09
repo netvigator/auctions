@@ -364,7 +364,7 @@ class StoreSingleKeepersWebTests(
         #
 
 
-def GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
+class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
 
     def test_getItemsFoundForUpdate( self ):
         #
@@ -446,7 +446,8 @@ def GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
             self.assertTrue( sFileNameJPG in setFilesNames or
                              sFileNamePNG in setFilesNames )
         #
-        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        #print()
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_get_single_active_item_then_store( self ):
