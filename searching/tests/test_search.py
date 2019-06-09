@@ -33,9 +33,9 @@ class TestHowManyUserDigitsNeeded( BaseUserWebTestCaseCanAddSearches ):
     def test_how_many_digits_needed( self ):
         #
         # several Searches could have been created & destroyed already
-        # pk gets incrememted, could be over 10
+        # pk gets incrememted, could be over 100!
         #
-        self.assertIn( getHowManySearchDigitsNeeded(), (1,2) )
+        self.assertIn( getHowManySearchDigitsNeeded(), (1,2,3) )
         #
         for i in range( 3, 10 ):
             #
