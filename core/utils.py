@@ -1,5 +1,5 @@
 from builtins               import ConnectionResetError
-from datetime               import timedelta, timezone
+from datetime               import timedelta
 from urllib3.exceptions     import ProtocolError
 
 from django.db.models       import ForeignKey
