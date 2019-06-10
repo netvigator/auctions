@@ -1,5 +1,6 @@
 from copy                   import copy
 
+
 from collections            import OrderedDict
 
 from django.conf            import settings
@@ -40,6 +41,24 @@ else:
     #
     maybePrint = print
     #
+
+
+_oDropAfterThisFinder = getRegExObj(
+        r' (?:\bfor\b|'
+            r'\bfits\b|'
+            r'\btests*\b|'
+            r'\btested (?:on|with)\b|'
+            r'\bfrom\b)|'
+            r'\bused (?:with|in)\b|'
+            r'\bsame as\b|'
+            r'\bsimilar to\b' ) # formerly oForFitsFinder
+
+
+def _getRelevantTitle( sTitle ):
+    #
+    return _oDropAfterThisFinder.split( sTitle )[0]
+
+
 
 def _getTitleRegExress(
             oTableRow,
@@ -288,7 +307,7 @@ def _printHitSearchSteps( oItem, dFindSteps ):
     #
     maybePrint('')
     maybePrint('Item %s Hit Search Steps:' % oItem.iItemNumb )
-    maybePrint(' %s' % oItem.cTitle )
+    maybePrint( oItem.cTitle )
     #
     for k, v in dFindSteps.items():
         #
@@ -356,22 +375,6 @@ def _gotFullStringOrSubStringOfListItem( s, l ):
         #
     #
     return uGotFull, uGotSub, uGotMore
-
-
-
-_oDropAfterThisFinder = getRegExObj(
-        r' (?:\bfor\b|'
-            r'\bfits\b|'
-            r'\btests*\b|'
-            r'\btested (?:on|with)\b|'
-            r'\bfrom\b)|'
-            r'\bused (?:with|in)\b|'
-            r'\bsimilar to\b' ) # formerly oForFitsFinder
-
-def _getRelevantTitle( sTitle ):
-    #
-    return _oDropAfterThisFinder.split( sTitle )[0]
-
 
 
 def findSearchHits(
@@ -449,7 +452,8 @@ def findSearchHits(
     qsBrands = Brand.objects.filter( iUser = oUser )
     #
     dFindSteps = OrderedDict(
-        (   ( 'categories', [] ),
+        (   ( 'preliminary',[] ),
+            ( 'categories', [] ),
             ( 'models',     [] ),
             ( 'brands',     [] ),
             ( 'candidates', [] ),
@@ -480,7 +484,8 @@ def findSearchHits(
         #
         if settings.COVERAGE:
             #
-            bRecordSteps = True
+            bRecordSteps        = True
+            iRecordStepsForThis = oItem.iItemNumb
             #
         elif (       oItem.iItemNumb == iRecordStepsForThis and
                 str( iRecordStepsForThis ) not in setScriptTested ):
@@ -522,8 +527,15 @@ def findSearchHits(
         #
         if bRecordSteps and len( oItem.cTitle ) > len( sRelevantTitle ):
             #
+            lPreliminary = dFindSteps[ 'preliminary' ]
+            #
             _appendIfNotAlreadyIn(
-                    [], 'will search only this: %s' % bRecordSteps )
+                    lPreliminary, 'will search only this: %s' % sRelevantTitle )
+            #
+            sLoppedOff = oItem.cTitle[ len( sRelevantTitle ) : ]
+            #
+            _appendIfNotAlreadyIn(
+                    lPreliminary, '(will ignore: %s)' % sLoppedOff )
             #
         #
         sGotInParens = getInParens( sRelevantTitle )
