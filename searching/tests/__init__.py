@@ -636,6 +636,26 @@ sResponseItems2Test = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+          },{"itemId":["123795331323"],
+              "title":["ALTEC 755A Loudspeaker Unit same as Western Electric 755A"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/m9jykf7R3tNKXA-Dg6zJh6w\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/ALTEC-755A-Loudspeaker-Unit-same-Western-Electric-755A-\/123795331323"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "location":["Taiwan"],"country":["TW"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"38.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"540.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"540.0"}],
+              "bidCount":["15"],"sellingState":["Active"],
+              "timeLeft":["P4DT21H22M10S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2019-06-07T17:55:54.000Z"],
+              "endTime":["2019-06-14T17:55:54.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["41"]}],"returnsAccepted":["true"],
+              "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/123795331323_1_0_1.jpg"],
+              "isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
+
           },{ "itemId":["123790646318"],
               "title":["Altec 601A Speaker with N3000A Crossover"],
               "globalId":["EBAY-US"],
