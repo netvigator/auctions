@@ -1344,6 +1344,15 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
+        #
+        iThisOne = 123795331323
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # ALTEC 755A Loudspeaker Unit same as Western Electric 755A
+        # got Altec so "same as" should exclude WE
+        #
+        #
         if False:
             #
             print()
