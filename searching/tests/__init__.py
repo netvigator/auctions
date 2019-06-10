@@ -160,6 +160,7 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
  606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
+ 755A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -365,6 +366,7 @@ sModels = \
  K-77               |           |      6 | f            | Klipsch           |       Driver |             |
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
+ 755A               |           |      8 | t            | Western Electric  |       Driver |             |
  C45 (Metregon)     |           |      6 | f            | JBL               |Speaker Enclosure| Metregon |
  '''
 
