@@ -2,7 +2,6 @@
 
 from os.path            import join
 
-from django.conf        import settings
 from core.dj_import     import reverse
 from django.utils       import timezone
 
@@ -22,12 +21,6 @@ from searching.tests    import iRecordStepsForThis
 from brands.views       import BrandUpdateView
 from models.models      import Model
 
-
-if settings.COVERAGE and not iRecordStepsForThis:
-    #
-    # coverage needs to test recording steps
-    #
-    iRecordStepsForThis = 133004653920
 
 
 
@@ -1347,10 +1340,18 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 123795331323
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
         #
         # ALTEC 755A Loudspeaker Unit same as Western Electric 755A
         # got Altec so "same as" should exclude WE
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '755A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
         #
         #
         if False:
