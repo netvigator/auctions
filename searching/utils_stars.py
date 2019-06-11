@@ -311,6 +311,10 @@ def _printHitSearchSteps( oItem, dFindSteps ):
     #
     for k, v in dFindSteps.items():
         #
+        if  k == 'preliminary' and not v: continue
+        #
+        # most items will not have any preliminary content
+        #
         maybePrint( '  %s' % k )
         #
         for s in v:
@@ -530,7 +534,7 @@ def findSearchHits(
             lPreliminary = dFindSteps[ 'preliminary' ]
             #
             _appendIfNotAlreadyIn(
-                    lPreliminary, 'will search only this: %s' % sRelevantTitle )
+                    lPreliminary, 'will consider only: %s' % sRelevantTitle )
             #
             sLoppedOff = oItem.cTitle[ len( sRelevantTitle ) : ]
             #
