@@ -311,7 +311,7 @@ def _printHitSearchSteps( oItem, dFindSteps ):
     #
     for k, v in dFindSteps.items():
         #
-        if  k == 'preliminary' and not v: continue
+        if not v: continue
         #
         # most items will not have any preliminary content
         #
