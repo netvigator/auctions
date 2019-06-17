@@ -44,13 +44,14 @@ logging_level = logging.INFO
 
 if settings.TESTING: # logging during tests
     errorLogger = logger.info # does not output to screen during tests
+    ITEM_PICS_ROOT = '/tmp/pictures_test_directory'
 else:
     errorLogger = logger.error # outputs to screen during tests
+    ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Keeper_Pictures' )
 
 getMakeDir( EBAY_ITEMS_FOLDER )
 
 
-ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Keeper_Pictures' )
 
 getMakeDir( ITEM_PICS_ROOT )
 
