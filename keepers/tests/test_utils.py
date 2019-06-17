@@ -3,7 +3,7 @@ import inspect
 
 from datetime           import timedelta
 from os                 import listdir
-from os.path            import dirname
+from os.path            import dirname, join
 from shutil             import rmtree
 from time               import sleep
 
@@ -35,7 +35,9 @@ from ..utils            import ( _storeJsonSingleItemResponse,
                                  ITEM_PICS_ROOT,
                                  _getItemPicture,
                                  getItemPictures,
-                                 GetSingleItemNotWorkingError )
+                                 GetSingleItemNotWorkingError,
+                                 getItemsForPicsDownloading,
+                                 deleteKeeperUserItem )
 
 from ..utils_test       import getSingleItemResponseCandidate
 
@@ -49,6 +51,7 @@ from searching.tests.test_stars import SetUpForHitStarsWebTests
 
 from pyPks.Dir.Test     import isDirThere
 from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Get     import Touch
 from pyPks.File.Test    import isFileThere
 from pyPks.String.Get   import getTextAfter
 from pyPks.Web.Test     import isURL
@@ -63,7 +66,7 @@ logging.basicConfig(
     level=logging.INFO)
 '''
 
-PIC_TEST_DIR = '/tmp/pictures_test_directory'
+# ITEM_PICS_ROOT = '/tmp/pictures_test_directory'
 
 class GetListAsLinesTest( TestCasePlus ):
     '''class for testing getListAsLines()'''
@@ -329,7 +332,7 @@ class StoreSingleKeepersWebTests(
         #
         pass
         #
-        # if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
+        # if isDirThere( ITEM_PICS_ROOT ): rmtree( ITEM_PICS_ROOT )
         #
 
     def mark_all_finders_to_fetch_pictures( self ):
@@ -389,7 +392,7 @@ class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
         lPicURLS = oItem.cPictureURLs.split()
         #
         sItemPicsSubDir = getItemPicsSubDir(
-                                iItemNumb, PIC_TEST_DIR )
+                                iItemNumb, ITEM_PICS_ROOT )
         #
         lResults = []
         #
@@ -413,7 +416,7 @@ class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
             DeleteIfExists( sItemPicsSubDir, sResult )
             #
         #
-        if isDirThere( PIC_TEST_DIR ): rmtree( PIC_TEST_DIR )
+        if isDirThere( ITEM_PICS_ROOT ): rmtree( ITEM_PICS_ROOT )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -424,7 +427,7 @@ class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
         #
         oItem = Keeper.objects.get( iItemNumb = iItemNumb )
         #
-        getItemPictures( iItemNumb, sItemPicsRoot = PIC_TEST_DIR )
+        getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT )
         #
         oItem.refresh_from_db()
         #
@@ -434,7 +437,7 @@ class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
         #
         self.assertGreater( oItem.iGotPictures, 2 )
         #
-        sItemPicsDir = getItemPicsSubDir( iItemNumb, PIC_TEST_DIR )
+        sItemPicsDir = getItemPicsSubDir( iItemNumb, ITEM_PICS_ROOT )
         #
         setFilesNames = frozenset( listdir( sItemPicsDir ) )
         #
@@ -554,3 +557,59 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+
+class UserItemsTests( StoreSingleItemTests ):
+
+    def setUp( self ):
+        #
+        super( UserItemsTests, self ).setUp()
+        #
+        self.tSeveral = (
+            ( 142766343340, s142766343340 ),
+            ( 232742493872, s232742493872 ),
+            ( 232709513135, s232709513135 ),
+            ( 282330751118, s282330751118 ),
+            ( 293004871422, s293004871422 ),
+            ( 254154293727, s254154293727 ),
+            ( 254130264753, s254130264753 ), )
+        #
+        for t in self.tSeveral:
+            #
+            _storeJsonSingleItemResponse( *t )
+            #
+        #
+
+
+
+    def test_got_items_for_pic_downloading( self ):
+        #
+        qsGetPics = getItemsForPicsDownloading()
+        #
+        self.assertEqual( len( qsGetPics ), len( self.tSeveral ) )
+
+    def test_delete_Keeper_User_Item( self ):
+        #
+        for t in self.tSeveral:
+            #
+            iItemNumb = t[0]
+            #
+            iWantPics = int( str( iItemNumb )[ -1 ] )
+            #
+            if not iWantPics: iWantPics = 10
+            #
+            sItemPicsSubDir = getItemPicsSubDir( iItemNumb, ITEM_PICS_ROOT )
+            #
+            sURL = 'http://www.google.com/pictures/xyz.jpg'
+            #
+            for i in range( iWantPics ):
+                #
+                sNameExt = _getPicFileNameExtn( sURL, iItemNumb, i )
+                #
+                sFilePathNameExtn = join( sItemPicsSubDir, sNameExt )
+                #
+                Touch( sFilePathNameExtn )
+            #
+        #
+
