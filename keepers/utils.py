@@ -770,3 +770,88 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
 
 
 
+def findPicsPopulateTable():
+    #
+    '''I think we want table rows for existing pics'''
+    #
+    from os         import listdir, rename
+    from os.path    import isfile, join
+    #
+    lTopDirs = listdir( ITEM_PICS_ROOT )
+    #
+    for sTopDir in lTopDirs:
+        #
+        sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
+        #
+        for s2ndTier in listdir( sTopDirFullPath ):
+            #
+            s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
+            #
+            for s3rdTier in listdir( s2ndTierFullPath ):
+                #
+                s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
+                #
+                for s4thTier in listdir( s3rdTierFullPath ):
+                    #
+                    s4thTierFullPath = join( s3rdTierFullPath, s4thTier )
+                    #
+                    for s5thTier in listdir( s4thTierFullPath ):
+                        #
+                        s5thTierFullPath = join( s4thTierFullPath, s5thTier )
+                        #
+                        if not isfile( s5thTierFullPath ): continue # only want files
+                        #
+                        sItemNumb = s5thTier.split('-')[0]
+                        #
+                        iItemNumb = int( sItemNumb )
+                        #
+                        qsUsers4This = UserItemFound.objects.filter( iItemNumb = iItemNumb )
+                        #
+                        #
+
+
+                #
+            #
+        #
+    #
+'''
+ITEM_PICS_ROOT = '/home/Common/AuctionPics/Keeper_Pictures'
+from os         import listdir, rename
+from os.path    import isfile, join
+lTopDirs = listdir( ITEM_PICS_ROOT )
+lTopDirs
+sTopDir = lTopDirs[0]
+sTopDir
+sTopDirFullPath = join( ITEM_PICS_ROOT, sTopDir )
+sTopDirFullPath
+l2ndTier = listdir( sTopDirFullPath )
+l2ndTier
+s2ndTier = l2ndTier[0]
+s2ndTier
+s2ndTierFullPath = join( sTopDirFullPath, s2ndTier )
+s2ndTierFullPath
+l3rdTier = listdir( s2ndTierFullPath )
+l3rdTier
+s3rdTier = l3rdTier[0]
+s3rdTier
+s3rdTierFullPath = join( s2ndTierFullPath, s3rdTier )
+s3rdTierFullPath
+l4thTier = listdir( s3rdTierFullPath )
+l4thTier
+s4thTier = l4thTier[0]
+s4thTier
+s4thTierFullPath = join( s3rdTierFullPath, s4thTier )
+s4thTierFullPath
+l5thTier = listdir( s4thTierFullPath )
+l5thTier
+s5thTier = l5thTier[0]
+s5thTier
+s5thTierFullPath = join( s4thTierFullPath, s5thTier )
+s5thTierFullPath
+isfile( s5thTierFullPath )
+sItemNumb = s5thTier.split('-')[0]
+sItemNumb
+iItemNumb = int( sItemNumb )
+iItemNumb
+qsUsers4This = UserItemFound.objects.filter( iItemNumb = iItemNumb )
+'''
