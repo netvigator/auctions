@@ -610,6 +610,8 @@ class UserItemsTests( StoreSingleItemTests ):
                 sFilePathNameExtn = join( sItemPicsSubDir, sNameExt )
                 #
                 Touch( sFilePathNameExtn )
+                #
+                # add KeeperImage record?!
             #
         #
 
