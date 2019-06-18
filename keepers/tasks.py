@@ -46,6 +46,9 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     #
     cursor = connection.cursor()
     #
+    # not carefull enough!!!
+    # this seems to be deleing rows for which useritemsfound rows exist!!!
+    #
     sCommand = ( 'delete from itemsfound where "tTimeEnd" < '
                  "now() - interval '%s days'" ) % iOldCutOff
     #
