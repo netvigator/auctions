@@ -300,7 +300,7 @@ class StoreSingleKeepersWebTests(
                 qsUserItemFound = UserItemFound.objects.filter( iItemNumb = iOrigItemNumb )
                 #
                 for oUserItemFound in qsUserItemFound:
-                    oUserItemFound.iItemNumb = oItemFound.iItemNumb
+                    oUserItemFound.iItemNumb = oItemFound
                     oUserItemFound.save()
                 #
             #
@@ -504,7 +504,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.assertEqual( oItemFound.cSellingState, 'Active' )
         #
-        oUserItemFound = UserItemFound.objects.get( iItemNumb = 282330751118 )
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
         #
         self.assertIsNone( oUserItemFound.tRetrieved )
         self.assertIsNone( oUserItemFound.tRetrieveFinal )
@@ -536,7 +537,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
 
     def test_update_user_items_found_code( self ):
         #
-        oUserItemFound = UserItemFound.objects.get( iItemNumb = 282330751118 )
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
         #
         tNow = timezone.now()
         #
@@ -548,7 +550,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.assertEqual( oItemFound.cSellingState, 'Completed' )
         #
-        oUserItemFound = UserItemFound.objects.get( iItemNumb = 282330751118 )
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
         #
         self.assertEqual( oUserItemFound.tRetrieved,    tNow )
         self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
