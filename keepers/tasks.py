@@ -46,8 +46,9 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     #
     cursor = connection.cursor()
     #
-    # not carefull enough!!!
-    # this seems to be deleing rows for which useritemsfound rows exist!!!
+    # this deletes rows for which useritemsfound rows exist!!!
+    # cuz keeper is the table for keepers
+    # need useritemsfound rows for keepers rows
     #
     sCommand = ( 'delete from itemsfound where "tTimeEnd" < '
                  "now() - interval '%s days'" ) % iOldCutOff
@@ -63,7 +64,7 @@ def deleteOldItemsFoundTask( iOldCutOff ):
                         (   select "iItemNumb" from itemsfound
                             union
                             select "iItemNumb" from keepers ) as combo
-                        where combo."iItemNumb" = uif."iItemNumb_id" ) ;
+                        where combo."iItemNumb" = uif."iItemNumb" ) ;
         ''' )
     #
     cursor.execute( sCommand )
@@ -179,7 +180,7 @@ doGetFetchUserItemsTasks( bOnlySay = True )
 
 would fetch results on how many items now?
 
-select count( DISTINCT "iItemNumb_id" )
+select count( DISTINCT "iItemNumb" )
     from useritemsfound
     where "bGetPictures" is true and  "tRetrieved" is null ;
 
@@ -189,7 +190,7 @@ would fetch final results on how many items now?
 select count(*) from itemsfound
     where "tTimeEnd" <= current_timestamp - interval '1 day' and
     "iItemNumb" in
-        ( select distinct "iItemNumb_id" from useritemsfound
+        ( select distinct "iItemNumb" from useritemsfound
             where "tRetrieved" is not null and "tRetrieveFinal" is null );
 
 would delete how many items older than 100 days?
