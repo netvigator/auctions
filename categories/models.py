@@ -92,7 +92,7 @@ class Category( GetKeepersForSomething, models.Model ):
                                 ).exclude(
                     bListExclude = True
                                 ).values_list(
-                        'iItemNumb', flat=True ) )
+                        'iItemNumb_id', flat=True ) )
         #
         return qsUserItems
 
