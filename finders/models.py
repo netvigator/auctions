@@ -114,7 +114,8 @@ class ItemFound(models.Model):
 
 
 class UserItemFound(models.Model):
-    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
+    iItemNumb       = models.ForeignKey( ItemFound, blank=True, null=True,
+                        on_delete=models.PROTECT )
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
