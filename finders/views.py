@@ -112,7 +112,7 @@ class ItemsFoundIndexView(
             lPageItems = request.POST.getlist('AllItems')
             #
             qsChanged  = UserItemFound.objects.filter(
-                            iItemNumb_id__in = lPageItems,
+                            iItemNumb__in = lPageItems,
                             iUser            = self.request.user )
             #
             for oItem in qsChanged:
@@ -157,12 +157,12 @@ class ItemsFoundIndexView(
                             setUnPics, setNewExcl, setNewPics )
                 #
                 qsChanged  = UserItemFound.objects.filter(
-                                iItemNumb_id__in = setChanged,
+                                iItemNumb__in = setChanged,
                                 iUser            = self.request.user )
                 #
                 for oItem in qsChanged:
                     #
-                    sItemNumb = str( oItem.iItemNumb_id )
+                    sItemNumb = str( oItem.iItemNumb )
                     #
                     if sItemNumb in setGetPics:
                         oItem.bGetPictures = True
@@ -208,7 +208,7 @@ class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
         '''
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
-                iItemNumb_id = context[ 'object' ].iItemNumb_id,
+                iItemNumb = context[ 'object' ].iItemNumb,
                 iUser        = context[ 'object' ].iUser )
         #
         qsThisItemOtherHits = qsThisItemAllHits.difference(
