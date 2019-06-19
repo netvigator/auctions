@@ -63,9 +63,8 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
                 #response.context['finders_list'],
                #'Altec 603 B 15" Speaker 604 803 Vintage' )
         #
-        #self.assertContains( response, "Altec 603" )
-        #self.assertContains( response, "Speaker 604 803 Vintage" )
-        # todo: must troubleshoot this test
+        self.assertContains(response, "Altec 603" )
+        self.assertContains(response, "Speaker 604 803 Vintage" )
 
 
     def test_finders_view_pass_params( self ):
