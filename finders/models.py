@@ -114,11 +114,7 @@ class ItemFound(models.Model):
 
 
 class UserItemFound(models.Model):
-    # iItemNumb     = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
-    # will keep UserItemFound row for keeper row
-    # itemfound row will get flushed
-    # so ForeignKey does not work here 2019-06-18
-    iItemNumb       = models.BigIntegerField( 'item number' )
+    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
@@ -157,10 +153,7 @@ class UserItemFound(models.Model):
                         null = True, blank = True )
 
     def __str__(self):
-        #
-        oItem = ItemFound.objects.get( pk = self.iItemNumb )
-        #
-        return oItem.cTitle
+        return self.iItemNumb.cTitle
 
     class Meta:
         verbose_name_plural = 'useritemsfound'
