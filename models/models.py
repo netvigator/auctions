@@ -131,7 +131,7 @@ class Model( GetKeepersForSomething, models.Model ):
                 iModel = oModel ).exclude(
                     bListExclude = True
                                 ).values_list(
-                        'iItemNumb_id', flat=True ) )
+                        'iItemNumb', flat=True ) )
         #
         return qsUserItems
 
