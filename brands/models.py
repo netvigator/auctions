@@ -102,7 +102,7 @@ class Brand( GetKeepersForSomething, models.Model ):
                 iBrand = oBrand ).exclude(
                     bListExclude = True
                                 ).values_list(
-                        'iItemNumb', flat=True ) )
+                        'iItemNumb_id', flat=True ) )
         #
         return qsUserItems
 
