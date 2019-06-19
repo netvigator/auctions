@@ -102,18 +102,18 @@ def updateHitLogFile( oUserItems, sPathHere ):
         #
         for oItemHit in oUserItems:
             #
-            if oItemHit.iItemNumb_id in setItemNumbsAlready: continue
+            if oItemHit.iItemNumb in setItemNumbsAlready: continue
             #
             if oItemHit.iHitStars < iTargetStars: continue
             #
             dRow = dict(
-                iItemNumb   = str(      oItemHit.iItemNumb_id ),
+                iItemNumb   = str(      oItemHit.iItemNumb ),
                 tTimeEnd    = getIsoDT( oItemHit.iItemNumb.tTimeEnd ),
                 iHitStars   = str(      oItemHit.iHitStars ) )
             #
             lItemHits.append( dRow )
             #
-            setItemNumbsAlready.add( oItemHit.iItemNumb_id )
+            setItemNumbsAlready.add( oItemHit.iItemNumb )
             #
             iNew += 1
             #
