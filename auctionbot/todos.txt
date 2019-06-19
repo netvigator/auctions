@@ -112,12 +112,10 @@ change a model brand or category:
 IntegrityError at /searching/item_found/269093/edit/
 duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iModel_id_53e6b351_uniq"
 DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id")=(283006335023, 1, 3598) already exists.
-*** no more iItemNumb_id, use iItemNumb ***
 
 also:
 duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iM_42d93cee_uniq"
 DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id", "iBrand_id")=(323727674061, 1, 4449, 952) already exists.
-*** no more iItemNumb_id, use iItemNumb ***
 
 
 form error (cannot search in auctions code)
@@ -329,7 +327,3 @@ Invalid HTTP_HOST header: 'linksman.ru'. You may need to add 'linksman.ru' to AL
 
 
 2019-06-04 hit Select All while browsing finders with zero stars, need UnSelect All option
-
-
-in finders.tests.test_views.py:
-# todo: must troubleshoot this test
