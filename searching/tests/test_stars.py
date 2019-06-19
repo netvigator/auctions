@@ -106,7 +106,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
             #
             print('')
             print(lTest[0])
-            print( '%s length:' % lTest[0].iItemNumb,
+            print( '%s length:' % lTest[0].iItemNumb_id,
                    len( lTest ),
                    'expected:',
                    iExpect )
@@ -153,7 +153,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
             #
             if oTemp.iHitStars == 0: continue
             #
-            dItemsToTest.setdefault( oTemp.iItemNumb, [] ).append( oTemp )
+            dItemsToTest.setdefault( oTemp.iItemNumb_id, [] ).append( oTemp )
             #
             iCount += 1
             #
@@ -379,7 +379,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertIsNotNone( oTest )
         #
-        oItemFound = ItemFound.objects.get( pk = oTest.iItemNumb )
+        oItemFound = ItemFound.objects.get( pk = oTest.iItemNumb_id )
         #
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
