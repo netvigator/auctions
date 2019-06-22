@@ -92,17 +92,14 @@ class Brand( GetKeepersForSomething, models.Model ):
         return l
 
 
-    def getUserItemsForThis( self, oBrand, oUser ):
+    def getUserKeepersForThis( self, oBrand, oUser ):
         #
-        from finders.models import UserItemFound
+        from keepers.models import UserKeeper
         #
         qsUserItems = (
-            UserItemFound.objects.filter(
+            UserKeeper.objects.filter(
                 iUser  = oUser,
-                iBrand = oBrand ).exclude(
-                    bListExclude = True
-                                ).values_list(
-                        'iItemNumb_id', flat=True ) )
+                iBrand = oBrand ) )
         #
         return qsUserItems
 
