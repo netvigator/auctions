@@ -121,17 +121,14 @@ class Model( GetKeepersForSomething, models.Model ):
 
 
 
-    def getUserItemsForThis( self, oModel, oUser ):
+    def getUserKeepersForThis( self, oModel, oUser ):
         #
-        from finders.models import UserItemFound
+        from keepers.models import UserKeeper
         #
         qsUserItems = (
-            UserItemFound.objects.filter(
+            UserKeeper.objects.filter(
                 iUser  = oUser,
-                iModel = oModel ).exclude(
-                    bListExclude = True
-                                ).values_list(
-                        'iItemNumb_id', flat=True ) )
+                iModel = oModel ) )
         #
         return qsUserItems
 
