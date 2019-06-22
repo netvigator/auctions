@@ -114,8 +114,7 @@ class ItemFound(models.Model):
 
 
 class UserItemFound(models.Model):
-    iItemNumb       = models.ForeignKey( ItemFound, blank=True, null=True,
-                        on_delete=models.PROTECT )
+    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
@@ -140,8 +139,8 @@ class UserItemFound(models.Model):
                         max_length = 10 ) # title heirarchy1 heirarchy2
     bListExclude    = models.BooleanField( 'exclude from listing?',
                         default = False )
-    tGotPics        = models.DateTimeField( 'got pictures',
-                        null = True, blank = True )
+    # tGotPics      = models.DateTimeField( 'got pictures',
+    #                   null = True, blank = True )
     bAuction        = models.BooleanField(
                         'Auction or Auction with Buy It Now',default = False )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
