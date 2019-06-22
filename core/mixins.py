@@ -271,7 +271,7 @@ class GetKeepersForSomething( object ):
         #
         oUser = request.user
         #
-        qsUserItems = self.getUserItemsForThis( oThis, oUser )
+        qsUserItems = self.getUserKeepersForThis( oThis, oUser )
         #
         iUserItems = len( qsUserItems )
         #
