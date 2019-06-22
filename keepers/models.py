@@ -4,7 +4,15 @@ from django.core.urlresolvers   import reverse
 
 from django_countries.fields    import CountryField
 
+from core.models                import IntegerRangeField
+
 from finders                    import EBAY_SHIPPING_CHOICES
+
+from models.models          import Model
+from brands.models          import Brand
+from categories.models      import Category
+
+from searching.models           import Search
 
 # not sure this is needed
 User = get_user_model()
@@ -112,6 +120,10 @@ class Keeper( models.Model ):
     iGotPictures    = models.PositiveSmallIntegerField(
                         'how many pictures downloaded',
                         null = True, blank = True )
+    tRetrieved      = models.DateTimeField( 'retrieved info',
+                        null = True, blank = True )
+    tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
+                        null = True, blank = True )
 
     def __str__(self):
         return str( self.iItemNumb )
@@ -120,13 +132,11 @@ class Keeper( models.Model ):
         verbose_name_plural = 'keepers'
         db_table            = verbose_name_plural
 
-    def getUserItemsFoundForKeeper( self, oKeeper, request ):
-        #
-        from finders.models import UserItemFound
+    def getUsersForKeeper( self, oKeeper, request ):
         #
         oUser = request.user
         #
-        qsUserItems = UserItemFound.objects.filter(
+        qsUserItems = UserKeeper.objects.filter(
                         iUser       = oUser,
                         iItemNumb   = oKeeper.iItemNumb
                     ).order_by( '-iHitStars' )
@@ -137,6 +147,62 @@ class Keeper( models.Model ):
         #
         return reverse( 'keepers:detail', kwargs = { 'pk': self.pk } )
 #
+
+
+class UserKeeper(models.Model):
+    iItemNumb       = models.ForeignKey( Keeper, on_delete=models.PROTECT )
+    iHitStars       = IntegerRangeField(
+                        'hit stars', null = True, db_index = True,
+                        min_value = 0, max_value = 1000, default = 0 )
+    bGetPictures    = models.BooleanField( 'get description & pictures?',
+                        default = False )
+    tLook4Hits      = models.DateTimeField(
+                        'assessed interest date/time', null = True )
+    iSearch         = models.ForeignKey( Search,
+                        verbose_name = 'Search that first found this item',
+                        on_delete=models.CASCADE )
+    iModel          = models.ForeignKey( Model,    null = True, blank = True,
+                        verbose_name = 'Model Name/Number',
+                        on_delete=models.CASCADE )
+    iBrand          = models.ForeignKey( Brand,    null = True, blank = True,
+                        verbose_name = 'Brand',
+                        on_delete=models.CASCADE )
+    iCategory       = models.ForeignKey( Category, null = True, blank = True,
+                        verbose_name = 'Category',
+                        on_delete=models.CASCADE )
+    cWhereCategory  = models.CharField( 'where category was found',
+                        default = 'title',
+                        max_length = 10 ) # title heirarchy1 heirarchy2
+    # bListExclude  = models.BooleanField( 'exclude from listing?',
+    #                   default = False )
+    # tGotPics      = models.DateTimeField( 'got pictures',
+    #                   null = True, blank = True )
+    bAuction        = models.BooleanField(
+                        'Auction or Auction with Buy It Now',default = False )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
+                        on_delete=models.CASCADE )
+    tCreate         = models.DateTimeField( 'created on', db_index = True )
+    tModify         = models.DateTimeField( 'updated on', auto_now = True )
+    tRetrieved      = models.DateTimeField( 'retrieved info',
+                        null = True, blank = True )
+    tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
+                        null = True, blank = True )
+
+    def __str__(self):
+        return self.iItemNumb.cTitle
+
+    class Meta:
+        verbose_name_plural = 'userkeepers'
+        db_table            = verbose_name_plural
+        unique_together     = ('iItemNumb', 'iUser', 'iModel', 'iBrand' )
+
+    def get_absolute_url(self):
+        #
+        return getReverseWithUpdatedQuery(
+                'keepers:detail',
+                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
+
+
 
 
 
