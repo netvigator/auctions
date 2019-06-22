@@ -81,18 +81,14 @@ class Category( GetKeepersForSomething, models.Model ):
         unique_together     = ('cTitle','iUser')
 
 
-    def getUserItemsForThis( self, oCategory, oUser ):
+    def getUserKeepersForThis( self, oCategory, oUser ):
         #
-        from finders.models import UserItemFound
+        from keepers.models import UserKeeper
         #
         qsUserItems = (
-            UserItemFound.objects.filter(
+            UserKeeper.objects.filter(
                 iUser       = oUser,
-                iCategory   = oCategory
-                                ).exclude(
-                    bListExclude = True
-                                ).values_list(
-                        'iItemNumb_id', flat=True ) )
+                iCategory   = oCategory ) )
         #
         return qsUserItems
 
