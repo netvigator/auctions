@@ -16,7 +16,7 @@ from core.utils         import getPriorDateTime
 from keepers            import EBAY_ITEMS_FOLDER, dItemFields as dFields
 
 from .forms             import KeeperForm
-from .models            import Keeper, KeeperImage
+from .models            import Keeper, UserKeeper, KeeperImage
 
 from core.utils         import getDownloadFileWriteToDisk
 from core.utils_ebay    import getValueOffItemDict
@@ -818,6 +818,7 @@ def findPicsPopulateTable():
 ITEM_PICS_ROOT = '/home/Common/AuctionPics/Keeper_Pictures'
 from os         import listdir, rename
 from os.path    import isfile, join
+from keepers.models import UserKeeper
 lTopDirs = listdir( ITEM_PICS_ROOT )
 lTopDirs
 sTopDir = lTopDirs[0]
@@ -853,5 +854,22 @@ sItemNumb = s5thTier.split('-')[0]
 sItemNumb
 iItemNumb = int( sItemNumb )
 iItemNumb
-qsUsers4This = UserItemFound.objects.filter( iItemNumb = iItemNumb )
+qsUsers4This = UserKeeper.objects.filter( iItemNumb = iItemNumb )
+len( qsUsers4This )
+
+
+def _updateRetrieved():
+    #
+    for oKeeper in Keeper.objects.all():
+        #
+        qsUserKeeper = UserKeeper.objects.filter( iItemNumb = oKeeper.iItemNumb )
+        #
+        if qsUserKeeper:
+            #
+            oUserKeeper = qsUserKeeper[0]
+            #
+            oKeeper.tRetrieved      = oUserKeeper.tRetrieved
+            oKeeper.tRetrieveFinal  = oUserKeeper.tRetrieveFinal
+            #
+            oKeeper.save()
 '''
