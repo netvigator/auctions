@@ -18,7 +18,7 @@ from core.utils             import sayIsoDateTimeNoTimeZone, getPriorDateTime
 
 from .models                import Keeper
 from .utils                 import ( getSingleItemThenStore,
-                                     getItemsFoundForUpdate,
+                                     getFindersForResultsFetching,
                                      getItemPictures,
                                      getItemsForPicsDownloading )
 
@@ -75,7 +75,7 @@ def deleteOldItemsFoundTask( iOldCutOff ):
 @shared_task( name = 'keepers.tasks.getFetchUserItems' )
 def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
-    qsUserItemNumbs = getItemsFoundForUpdate()
+    qsUserItemNumbs = getFindersForResultsFetching()
     #
     if bOnlySay or bDoFinalOnly:
         #
