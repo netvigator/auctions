@@ -7,9 +7,7 @@ from core.mixins        import ( GetPaginationExtraInfoInContext,
 from core.views         import ( DeleteViewGotModel,
                                  DetailViewGotModel,  ListViewGotModel )
 
-from finders.models     import UserItemFound
-
-from .models            import Keeper
+from .models            import Keeper, UserKeeper
 
 
 
@@ -41,13 +39,13 @@ class KeeperIndexView( GetPaginationExtraInfoInContext, ListViewGotModel ):
         #
         oUser = self.request.user
         #
-        qsUserItemNumbs = ( UserItemFound.objects.filter(
+        qsUserKeeperNumbs = ( UserKeeper.objects.filter(
                                 iUser = oUser )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() )
         #
         qsKeepers = Keeper.objects.filter(
-                            iItemNumb__in = qsUserItemNumbs
+                            iItemNumb__in = qsUserKeeperNumbs
                             ).order_by( '-tTimeEnd' )
         #
         return qsKeepers
