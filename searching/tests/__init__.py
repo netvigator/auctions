@@ -161,11 +161,14 @@ sModels = \
  604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
  606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
  755A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 803A (driver)      |           |      7 | t            | Altec-Lansing     |       Driver |             | horn         |
+ 803B (horn)        |           |      7 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
  A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
  A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
+ N-500B             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
@@ -637,6 +640,24 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+          },{ "itemId":["293128761816"],
+              "title":["VINTAGE LOT ALTEC LANSING N-500-C NETWORK CROSSOVER w\/803B WOOFER SPEAKER+ HORN"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/m2Y7tJD2s1iy1NWonZyFIPw\/140.jpg"],
+              "viewItemURL":["http:\/\/www.ebay.com\/itm\/VINTAGE-LOT-ALTEC-LANSING-N-500-C-NETWORK-CROSSOVER-w-803B-WOOFER-SPEAKER-HORN-\/293128761816"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["92707"],"location":["Santa Ana,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["true"],"handlingTime":["1"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"699.98"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"699.98"}],
+              "bidCount":["0"],"sellingState":["Active"],
+              "timeLeft":["P8DT14H17M43S"]}],
+              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2019-06-21T17:02:01.000Z"],
+              "endTime":["2019-07-01T17:02:01.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+              "topRatedListing":["false"]
 
           },{"itemId":["123795331323"],
               "title":["ALTEC 755A Loudspeaker Unit same as Western Electric 755A"],
