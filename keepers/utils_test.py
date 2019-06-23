@@ -23,11 +23,11 @@ def getSingleItemResponseCandidate( bWantEnded = True ):
         #
         if bWantEnded:
             #
-            bWantThis = int( getDeltaDaysFromISOs( sDate ) ) > 1
+            bWantThis = int( getDeltaDaysFromISOs( sDate ) ) >= 1
             #
         else:
             #
-            bWantThis = int( getDeltaDaysFromISOs( sDate ) ) < -1
+            bWantThis = int( getDeltaDaysFromISOs( sDate ) ) <= -1
             #
         #
         return bWantThis
