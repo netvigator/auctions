@@ -1353,6 +1353,12 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 293128761816
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # should find ALTEC N-500-C NETWORK CROSSOVER w/803B WOOFER
+        #
         #
         if False:
             #
