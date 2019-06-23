@@ -26,9 +26,9 @@ from ..tests            import ( s142766343340, s232742493872,
                                  s303000971114, s323589685342,
                                  sMissingItemIdErrorGotAck,
                                  sMadeUpErrorNoAck )
-from ..utils            import ( _storeJsonSingleItemResponse,
+from ..utils            import ( _storeOneJsonItemInKeepers,
                                  getSingleItemThenStore,
-                                 getItemsFoundForUpdate,
+                                 getFindersForResultsFetching,
                                  getItemPicsSubDir,
                                  _getPicExtension,
                                  _getPicFileNameExtn,
@@ -123,7 +123,7 @@ class SomeItemsTest( TestCasePlus ):
     def test_s142766343340( self ):
         '''test getSingleItem 1946 Bendix Catalin'''
         #
-        t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
+        t = _storeOneJsonItemInKeepers( 142766343340, s142766343340 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
         #
@@ -134,7 +134,7 @@ class SomeItemsTest( TestCasePlus ):
     def test_s232742493872( self ):
         '''test getSingleItem 1940's JAN 6SL7GT VT-229 AMPLIFER TUBES'''
         #
-        t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        t = _storeOneJsonItemInKeepers( 232742493872, s232742493872 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
         #
@@ -149,7 +149,7 @@ class SomeItemsTest( TestCasePlus ):
     def test_s232709513135( self ):
         '''test getSingleItem Fisher 400C 'Stereophonic' Tube Pre-Amplifier'''
         #
-        t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        t = _storeOneJsonItemInKeepers( 232709513135, s232709513135 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
         #
@@ -166,15 +166,15 @@ class StoreItemsTestPlus( TestCasePlus ):
         #
         super( StoreItemsTestPlus, self ).setUp()
         #
-        t = _storeJsonSingleItemResponse( 142766343340, s142766343340 )
+        t = _storeOneJsonItemInKeepers( 142766343340, s142766343340 )
         #
         self.iOriginalSavedRowID, sListingStatus, oItemFound = t
         #
-        t = _storeJsonSingleItemResponse( 232742493872, s232742493872 )
+        t = _storeOneJsonItemInKeepers( 232742493872, s232742493872 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
         #
-        t = _storeJsonSingleItemResponse( 232709513135, s232709513135 )
+        t = _storeOneJsonItemInKeepers( 232709513135, s232709513135 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
         #
@@ -192,7 +192,7 @@ class StoreItemsTestPlus( TestCasePlus ):
         #
         new142766343340 = s142766343340.replace( '"BidCount":0,', '"BidCount":5,' )
         #
-        t = _storeJsonSingleItemResponse( 142766343340, new142766343340 )
+        t = _storeOneJsonItemInKeepers( 142766343340, new142766343340 )
         #
         iNewSavedRowID, sListingStatus, oItemFound = t
         #
@@ -223,7 +223,7 @@ class StoreItemsTestPlus( TestCasePlus ):
     def test_missing_item( self ):
         #
         try:
-            t = _storeJsonSingleItemResponse(
+            t = _storeOneJsonItemInKeepers(
                     142766343340, sMissingItemIdErrorGotAck )
         except GetSingleItemNotWorkingError as e:
             self.assertIn(
@@ -239,7 +239,7 @@ class StoreItemsTestPlus( TestCasePlus ):
     def test_invalid_item( self ):
         #
         try:
-            t = _storeJsonSingleItemResponse(
+            t = _storeOneJsonItemInKeepers(
                     142766343340, sMadeUpErrorNoAck )
         except GetSingleItemNotWorkingError as e:
             self.assertIn(
@@ -369,11 +369,11 @@ class StoreSingleKeepersWebTests(
 
 class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
 
-    def test_getItemsFoundForUpdate( self ):
+    def test_getFindersForResultsFetching( self ):
         #
         self.mark_all_finders_to_fetch_pictures()
         #
-        qsUserItemNumbs = getItemsFoundForUpdate()
+        qsUserItemNumbs = getFindersForResultsFetching()
         #
         self.assertNotEmpty( qsUserItemNumbs )
         #
@@ -510,7 +510,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         self.assertIsNone( oUserItemFound.tRetrieved )
         self.assertIsNone( oUserItemFound.tRetrieveFinal )
         #
-        t = _storeJsonSingleItemResponse( 282330751118, s282330751118 )
+        t = _storeOneJsonItemInKeepers( 282330751118, s282330751118 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
         #
@@ -577,11 +577,9 @@ class UserItemsTests( StoreSingleItemTests ):
         #
         for t in self.tSeveral:
             #
-            _storeJsonSingleItemResponse( *t )
+            _storeOneJsonItemInKeepers( *t )
             #
         #
-
-
 
     def test_got_items_for_pic_downloading( self ):
         #
