@@ -139,44 +139,48 @@ class ItemsFoundIndexView(
             #
             setCommon  = setGetPics.intersection( setExclude )
             #
+            setUnExcl  = setExclSet.difference( setExclude )
+            setUnPics  = setPicsSet.difference( setGetPics )
+            #
+            setNewExcl = setExclude.difference( setExclSet )
+            setNewPics = setGetPics.difference( setPicsSet )
+            #
+            setChanged = setUnExcl.union(
+                        setUnPics, setNewExcl, setNewPics )
+            #
+            qsChanged  = UserItemFound.objects.filter(
+                            iItemNumb_id__in = setChanged,
+                            iUser            = self.request.user )
+            #
+            for oItem in qsChanged:
+                #
+                if str( oItem.iItemNumb_id ) in setCommon: continue
+                #
+                sItemNumb = str( oItem.iItemNumb_id )
+                #
+                if sItemNumb in setGetPics:
+                    oItem.bGetPictures = True
+                elif sItemNumb in setUnPics:
+                    oItem.bGetPictures = False
+                #
+                if sItemNumb in setNewExcl:
+                    oItem.bListExclude = True
+                elif sItemNumb in setUnExcl:
+                    oItem.bListExclude = False
+                #
+                oItem.save()
+                #
             if setCommon:
                 #
-                messages.error( request,
+                sMessage = (
                         'Error! On a row, it is invalid set both '
                         'get pics and delete! Careful!' )
                 #
-            else:
+                messages.error( request, sMessage )
                 #
-                setUnExcl  = setExclSet.difference( setExclude )
-                setUnPics  = setPicsSet.difference( setGetPics )
-                #
-                setNewExcl = setExclude.difference( setExclSet )
-                setNewPics = setGetPics.difference( setPicsSet )
-                #
-                setChanged = setUnExcl.union(
-                            setUnPics, setNewExcl, setNewPics )
-                #
-                qsChanged  = UserItemFound.objects.filter(
-                                iItemNumb_id__in = setChanged,
-                                iUser            = self.request.user )
-                #
-                for oItem in qsChanged:
-                    #
-                    sItemNumb = str( oItem.iItemNumb_id )
-                    #
-                    if sItemNumb in setGetPics:
-                        oItem.bGetPictures = True
-                    elif sItemNumb in setUnPics:
-                        oItem.bGetPictures = False
-                    #
-                    if sItemNumb in setNewExcl:
-                        oItem.bListExclude = True
-                    elif sItemNumb in setUnExcl:
-                        oItem.bListExclude = False
-                    #
-                    oItem.save()
-                    #
-                #
+                for sItemNumb in setCommon:
+                    oItem = ItemFound.objects.get( iItemNumb = int( sItemNumb ) )
+                    messages.error( request, '%s -- %s' % ( sItemNumb, oItem.cTitle ) )
             #
         return HttpResponseRedirect( url )
 
