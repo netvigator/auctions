@@ -6,33 +6,33 @@ from os                     import listdir, remove
 from os.path                import isfile, join
 from time                   import sleep
 
-from django.conf        import settings
-from django.utils       import timezone
+from django.conf            import settings
+from django.utils           import timezone
 
-from core.ebay_api_calls import getSingleItem
-from core.utils         import getPriorDateTime
+from core.ebay_api_calls    import getSingleItem
+from core.utils             import getPriorDateTime
 
 # in __init__.py
-from keepers            import EBAY_ITEMS_FOLDER, dItemFields as dFields
+from keepers                import EBAY_ITEMS_FOLDER, dItemFields as dFields
 
-from .forms             import KeeperForm
-from .models            import Keeper, UserKeeper, KeeperImage
+from .forms                 import KeeperForm
+from .models                import Keeper, UserKeeper, KeeperImage
 
-from core.utils         import getDownloadFileWriteToDisk
-from core.utils_ebay    import getValueOffItemDict
+from core.utils             import getDownloadFileWriteToDisk
+from core.utils_ebay        import getValueOffItemDict
 
-from finders.models     import ItemFound, UserItemFound
+from finders.models         import ItemFound, UserItemFound
 
-from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
-from pyPks.Dir.Get       import getMakeDir
-from pyPks.File.Test     import isFileThere
-from pyPks.File.Write    import QuietDump
-from pyPks.String.Find   import getRegExObj
-from pyPks.String.Output import StrPadZero
-from pyPks.Time.Test     import isDateTimeObj
-from pyPks.Time.Output   import getNowIsoDateTimeFileNameSafe
-from pyPks.Web.Address   import getFilePathNameOffURL
-from pyPks.Web.Test      import isURL
+from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
+from pyPks.Dir.Get          import getMakeDir
+from pyPks.File.Test        import isFileThere
+from pyPks.File.Write       import QuietDump
+from pyPks.String.Find      import getRegExObj
+from pyPks.String.Output    import StrPadZero
+from pyPks.Time.Test        import isDateTimeObj
+from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
+from pyPks.Web.Address      import getFilePathNameOffURL
+from pyPks.Web.Test         import isURL
 
 class GetSingleItemNotWorkingError(  Exception ): pass
 class InvalidOrNonExistentItemError( Exception ): pass
@@ -129,7 +129,7 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
 
 
 
-def _storeJsonSingleItemResponse( iItemNumb, sContent, **kwargs ):
+def _storeOneJsonItemInKeepers( iItemNumb, sContent, **kwargs ):
     #
     '''
     gets single item result from ebay API (can pass response for testing)
@@ -254,7 +254,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     '''
     gets single item result from ebay API (can pass response for testing)
-    stores response in items, itemsfound and useritemsfound
+    stores response in keepers, userkeepers, itemsfound and useritemsfound
     '''
     #
     sContent = iSavedRowID = sListingStatus = oItemFound = None
@@ -287,7 +287,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         try:
             #
-            t = _storeJsonSingleItemResponse(
+            t = _storeOneJsonItemInKeepers(
                         iItemNumb, sContent, tNow = tNow )
             #
             iSavedRowID, sListingStatus, oItemFound = t
@@ -329,7 +329,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         # oItemFound = ItemFound.objects.get( pk = iItemNumb )
         #
-        # moved to _storeJsonSingleItemResponse() 2019.03.06
+        # moved to _storeOneJsonItemInKeepers() 2019.03.06
         #
         if sListingStatus is not None:
             #
@@ -368,12 +368,22 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
                         iItemNumb = iItemNumb ).update(
                                 tRetrieveFinal = tNow )
                 #
+                UserKeeper.objects.filter(
+                        iItemNumb = iItemNumb ).update(
+                                tRetrieveFinal = tNow )
+                #
             else:
                 #
                 UserItemFound.objects.filter(
                         iItemNumb = iItemNumb ).update(
                                 tRetrieveFinal = tNow,
                                 tRetrieved     = tNow )
+                #
+                UserKeeper.objects.filter(
+                        iItemNumb = iItemNumb ).update(
+                                tRetrieveFinal = tNow,
+                                tRetrieved     = tNow )
+                #
             #
         elif not oItemFound.tRetrieved:
             #
@@ -392,7 +402,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
 
 
-def getItemsFoundForUpdate():
+def getFindersForResultsFetching():
     #
     # preliminary job:
     # do this before fetching single item results
@@ -431,6 +441,9 @@ def getItemsFoundForUpdate():
             #
             oUserItemFound.save()
             #
+            # look for row in Keepers, and if one exists,
+            # create or update row in UserKeepers
+            #
         #
     #
     # for the useritemsfound that have not been marked as fetched yet,
@@ -454,18 +467,21 @@ def getItemsFoundForUpdate():
             #
             oUserItemFound.save()
             #
+            # look for row in Keepers, and if one exists,
+            # create or update row in UserKeepers
+            #
         #
     #
-    if qsAlreadyFetched.exists() or qsAlreadyFinal.exists():
-        #
-        # select useritemsfound for which we need to fetch results
-        #
-        qsUserItemNumbs = ( UserItemFound.objects.filter(
-                                    bGetPictures        = True,
-                                    tRetrieved__isnull  = True )
-                                .values_list( 'iItemNumb', flat = True )
-                                .distinct() )
-        #
+    # if qsAlreadyFetched.exists() or qsAlreadyFinal.exists():
+    #
+    # select useritemsfound for which we need to fetch results
+    #
+    qsUserItemNumbs = ( UserItemFound.objects.filter(
+                                bGetPictures        = True,
+                                tRetrieved__isnull  = True )
+                            .values_list( 'iItemNumb', flat = True )
+                            .distinct() )
+    #
     #
     return qsUserItemNumbs
 
@@ -685,7 +701,7 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
         bTooNewToDelete = qsItem[0].tTimeEnd >= tYesterday
         #
     #
-    qsDumpThese = UserItemFound.objects.filter(
+    qsDumpThese = UserKeeper.objects.filter(
                     iItemNumb = iItemNumb, iUser = oUser )
     #
     print( 'len( qsDumpThese ):', len( qsDumpThese ) )
@@ -706,7 +722,7 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
         print( 'too early to delete UserItem:', iItemNumb )
         #
     #
-    qsOtherUsersForThis = UserItemFound.objects.filter(
+    qsOtherUsersForThis = UserKeeper.objects.filter(
                 iItemNumb = iItemNumb, bListExclude = False ).exclude(
                 iUser     = oUser)
     #
@@ -745,7 +761,7 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
             print( 'too new to delete, instead would call queryset '
                    'update method setting bListExclude to True' )
             #
-            # UserItemFound.objects.filter(
+            # UserKeeper.objects.filter(
             #     iItemNumb = iItemNumb, iUser = oUser
             #         ).update( bListExclude = True )
             #
@@ -755,10 +771,10 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
             #
             # ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()
             #
-            print( 'UserItemFound.objects.filter(' )
+            print( 'UserKeeper.objects.filter(' )
             print( '    iItemNumb = iItemNumb, iUser = oUser ).delete()' )
             #
-            # UserItemFound.objects.filter(
+            # UserKeeper.objects.filter(
             #    iItemNumb = iItemNumb, iUser = oUser ).delete()
             #
         #
@@ -805,7 +821,7 @@ def findPicsPopulateTable():
                         #
                         iItemNumb = int( sItemNumb )
                         #
-                        qsUsers4This = UserItemFound.objects.filter( iItemNumb = iItemNumb )
+                        qsUsers4This = UserKeeper.objects.filter( iItemNumb = iItemNumb )
                         #
                         #
 
