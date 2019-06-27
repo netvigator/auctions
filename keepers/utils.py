@@ -299,7 +299,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         #
     #
-    if not bItemNumberStillGood:
+    if not bItemNumberStillGood: # this item was purged for some reason
         #
         # InvalidOrNonExistentItemError:
         # 2018-08-08 DoesNotExist: ItemFound matching query does not exist.
@@ -441,9 +441,6 @@ def getFindersForResultsFetching():
             #
             oUserItemFound.save()
             #
-            # look for row in Keepers, and if one exists,
-            # create or update row in UserKeepers
-            #
         #
     #
     # for the useritemsfound that have not been marked as fetched yet,
@@ -466,9 +463,6 @@ def getFindersForResultsFetching():
             oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
             #
             oUserItemFound.save()
-            #
-            # look for row in Keepers, and if one exists,
-            # create or update row in UserKeepers
             #
         #
     #
