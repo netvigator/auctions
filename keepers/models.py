@@ -183,10 +183,13 @@ class UserKeeper(models.Model):
                         on_delete=models.CASCADE )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
     tModify         = models.DateTimeField( 'updated on', auto_now = True )
-    tRetrieved      = models.DateTimeField( 'retrieved info',
-                        null = True, blank = True )
-    tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
-                        null = True, blank = True )
+
+    #
+    # more normalized to store this info in keepers only -- OK?
+    # tRetrieved    = models.DateTimeField( 'retrieved info',
+    #                   null = True, blank = True )
+    # tRetrieveFinal= models.DateTimeField( 'retrieved info after end',
+    #                   null = True, blank = True )
 
     def __str__(self):
         return self.iItemNumb.cTitle
