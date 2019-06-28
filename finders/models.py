@@ -151,6 +151,8 @@ class UserItemFound(models.Model):
                         null = True, blank = True )
     tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
                         null = True, blank = True )
+    tPutInKeepers  = models.DateTimeField( 'User has Keeper row',
+                        null = True, blank = True )
 
     def __str__(self):
         return self.iItemNumb.cTitle
