@@ -779,6 +779,48 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
 
 
 
+def _makeUserKeeperRow( oUserFinder ):
+    #
+    qsAlreadyGotUserKeeper = UserKeeper.objects.filter(
+            iItemNumb_id= oUserFinder.iItemNumb_id,
+            iUser       = oUserFinder.iUser,
+            iModel      = oUserFinder.iModel,
+            iBrand      = oUserFinder.iBrand )
+    #
+    if not qsAlreadyGotUserKeeper:
+        #
+        oNewUserKeeper = UserKeeper()
+        #
+        for oField in oUserFinder._meta.fields:
+            #
+            setattr( oNewUserKeeper,
+                     oField.name,
+                     getattr( oUserFinder, oField.name ) )
+            #
+        #
+        oNewUserKeeper.save()
+        #
+    #
+
+
+
+def makeUserKeeperRows():
+    #
+    qsNotDoneYet = UserItemFound.objects.filter(
+            tRetrieveFinal__isnull = False,
+            tPutInKeepers__isnull  = True )
+    #
+    for oUserFinder in qsNotDoneYet:
+        #
+        _makeUserKeeperRow( oUserFinder )
+        #
+        oUserFinder.tPutInKeepers = timezone.now()
+        #
+        oUserFinder.save()
+        #
+    #
+
+
 
 def findPicsPopulateTable():
     #
