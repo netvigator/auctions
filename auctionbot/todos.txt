@@ -327,3 +327,10 @@ Invalid HTTP_HOST header: 'linksman.ru'. You may need to add 'linksman.ru' to AL
 
 
 2019-06-04 hit Select All while browsing finders with zero stars, need UnSelect All option
+
+
+2019-06-30 huge bug!
+had 192961084641 Electro-Voice EV T-25A Mid Range Driver Pair with EV 8HD horns + mounts
+had both EV Drivers T-25A & T-25-A
+deleted T-25A
+now cannot access 192961084641 Electro-Voice EV T-25A Mid Range Driver Pair with EV 8HD horns + mounts
