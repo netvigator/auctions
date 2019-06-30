@@ -361,6 +361,7 @@ sModels = \
  N2600              |           |      6 | f            | JBL               |    Crossover |             |
  N500               |           |      6 | f            | JBL               |    Crossover |             |
  C38 (Baron)        |           |      8 | f            | JBL               |Speaker Enclosure| Baron    | S-38\\rBookshelf\\rN-38
+ C45 (Metregon)     |           |      6 | f            | JBL               |Speaker Enclosure| Metregon |
  CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
  CA-3               |           |      5 | t            | Hickok            |    Accessory |             | CA-5
  Heresy (H700)      |           |      6 | f            | Klipsch           |Speaker System|             |
@@ -370,7 +371,8 @@ sModels = \
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
- C45 (Metregon)     |           |      6 | f            | JBL               |Speaker Enclosure| Metregon |
+ 300B (etched base) | etched\\rengraved | 8 | t         | Western Electric  |  Vacuum Tube |             |
+ 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
  '''
 
 
@@ -640,6 +642,24 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["223562235449"],
+             "title":["WESTERN ELECTRIC 300B ENGRAVED BASE TUBE TESTED 3500\/2900"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m7QG5OQ7lhm7qGEtZRJgWSQ\/140.jpg"],
+             "viewItemURL":["http:\/\/www.ebay.com\/itm\/WESTERN-ELECTRIC-300B-ENGRAVED-BASE-TUBE-TESTED-3500-2900-\/223562235449"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["New Zealand"],"country":["NZ"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2015.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2015.0"}],
+             "bidCount":["10"],"sellingState":["Active"],
+             "timeLeft":["P0DT8H26M39S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-06-23T07:41:22.000Z"],
+             "endTime":["2019-06-30T07:41:22.000Z"],"listingType":["Auction"],"gift":["false"],
+             "watchCount":["33"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
+             "topRatedListing":["false"]
 
           },{ "itemId":["293128761816"],
               "title":["VINTAGE LOT ALTEC LANSING N-500-C NETWORK CROSSOVER w\/803B WOOFER SPEAKER+ HORN"],
