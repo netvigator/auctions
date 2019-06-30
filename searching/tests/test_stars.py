@@ -1360,6 +1360,14 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         # should find ALTEC N-500-C NETWORK CROSSOVER w/803B WOOFER
         #
         #
+        iThisOne = 223562235449
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # WESTERN ELECTRIC 300B ENGRAVED BASE TUBE TESTED
+        # should find etched base 300B
+        #
+        #
         if False:
             #
             print()
