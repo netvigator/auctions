@@ -947,7 +947,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
             print( sSayLastEnd )
         #
         self.assertGreater( iDaysFromNow, 0,
-                    msg = 'auction end dates are all past, API test is WAY OVERDUE!' )
+                    msg = 'got no future auction end dates, API test is WAY OVERDUE!' )
         #
 
 
