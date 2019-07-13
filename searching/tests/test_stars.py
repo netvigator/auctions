@@ -1368,6 +1368,14 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         # should find etched base 300B
         #
         #
+        iThisOne = 264395445356
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        #
+        # 2 RCA Type 83 JAN mil grade rectifier tubes.For Hickok,TV-7 tube testers
+        # should not find TV-7
+        #
+        #
         if False:
             #
             print()
