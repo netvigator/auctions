@@ -643,6 +643,27 @@ sResponseItems2Test = \
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
 
+         },{ "itemId":["264395445356"],
+             "title":["2 RCA Type 83 JAN mil grade rectifier tubes.For Hickok,TV-7 tube testers & more."],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mLRC8iWJU9BY0KaYooEEu9w\/140.jpg"],
+             "viewItemURL":["http:\/\/www.ebay.com\/itm\/2-RCA-Type-83-JAN-mil-grade-rectifier-tubes-For-Hickok-TV-7-tube-testers-more-\/264395445356"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["34234"],
+             "location":["Sarasota,FL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
+             "bidCount":["0"],
+             "sellingState":["Active"],
+             "timeLeft":["P9DT3H33M0S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-07-12T02:07:44.000Z"],
+             "endTime":["2019-07-22T02:07:44.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
+             "topRatedListing":["false"]
+
          },{ "itemId":["223562235449"],
              "title":["WESTERN ELECTRIC 300B ENGRAVED BASE TUBE TESTED 3500\/2900"],
              "globalId":["EBAY-US"],
