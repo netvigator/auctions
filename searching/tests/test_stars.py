@@ -91,7 +91,7 @@ class SetUpForHitStarsWebTests( SetUpForFindSearchHitsTest ):
 
 class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
 
-    def print_len( self, lTest, iExpect, iItemNumb = None ):
+    def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
         #
         if not lTest:
             #
@@ -131,6 +131,8 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
                     #
                 #
             #
+            if sExplain is not None:
+                print( sExplain )
 
     def test_find_search_hits_test(self):
         #
@@ -1355,25 +1357,30 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 293128761816
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find ALTEC N-500-C NETWORK CROSSOVER w/803B WOOFER' )
         #
-        # should find ALTEC N-500-C NETWORK CROSSOVER w/803B WOOFER
+        #
         #
         #
         iThisOne = 223562235449
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find etched base 300B' )
         #
         # WESTERN ELECTRIC 300B ENGRAVED BASE TUBE TESTED
-        # should find etched base 300B
         #
         #
         iThisOne = 264395445356
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should not find TV-7' )
         #
         # 2 RCA Type 83 JAN mil grade rectifier tubes.For Hickok,TV-7 tube testers
-        # should not find TV-7
+        #
         #
         #
         if False:
