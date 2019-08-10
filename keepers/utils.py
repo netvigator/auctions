@@ -362,15 +362,18 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             # next: queryset update method
             # next: queryset update method
             #
+            # below is commented cuz tRetrieveFinal & tRetrieved
+            # no longer stored in UserKeeper
+            #
             if bAlreadyRetrieved:
                 #
                 UserItemFound.objects.filter(
                         iItemNumb = iItemNumb ).update(
                                 tRetrieveFinal = tNow )
                 #
-                UserKeeper.objects.filter(
-                        iItemNumb = iItemNumb ).update(
-                                tRetrieveFinal = tNow )
+                # UserKeeper.objects.filter(
+                #         iItemNumb = iItemNumb ).update(
+                #                 tRetrieveFinal = tNow )
                 #
             else:
                 #
@@ -379,10 +382,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
                                 tRetrieveFinal = tNow,
                                 tRetrieved     = tNow )
                 #
-                UserKeeper.objects.filter(
-                        iItemNumb = iItemNumb ).update(
-                                tRetrieveFinal = tNow,
-                                tRetrieved     = tNow )
+                # UserKeeper.objects.filter(
+                #         iItemNumb = iItemNumb ).update(
+                #                 tRetrieveFinal = tNow,
+                #                 tRetrieved     = tNow )
                 #
             #
         elif not oItemFound.tRetrieved:
