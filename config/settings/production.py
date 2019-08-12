@@ -70,6 +70,7 @@ X_FRAME_OPTIONS = 'DENY'
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
                          default=[ '59.148.236.215',
                                    '192.168.8.48',
+                                   '192.168.0.1',
                                    'auctionshoppingbot.com', ])
 # END SITE CONFIGURATION
 
