@@ -176,7 +176,11 @@ def _getCategoryListParams( uMarket, uWantVersion ):
     '''pass market name (such as EBAY-US) and version you want
     returns tuple (market query object, market name, string version)'''
     #
-    if isinstance( uMarket, str ):
+    if isinstance( uMarket, int ):
+        oMarket = Market.objects.get( iEbaySiteID = uMarket )
+        sMarket = oMarket.cMarket
+        # uMarket = sMarket
+    elif isinstance( uMarket, str ):
         oMarket = Market.objects.get( cMarket = uMarket )
         sMarket = uMarket
     else:
@@ -344,7 +348,7 @@ def _putCategoriesInDatabase(
 
 
 def getCategoryListThenStore(
-            uMarket         = 'EBAY-US', # expect str but obj OK
+            uMarket         = 'EBAY-US', # expect str but int or obj OK
             uWantVersion    = '119',     # expect str but int OK
             bUseSandbox     = False,
             bShowProgress   = False ):
@@ -786,5 +790,6 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
 
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
 
-# call getCategoryListThenStore() to update the categories for a market
+# call getCategoryListThenStore( id, iWantVersion, bShowProgress = True )
+# to update the categories for a market
 # from ebayinfo.utils import getCategoryListThenStore
