@@ -39,13 +39,13 @@ class KeeperIndexView( GetPaginationExtraInfoInContext, ListViewGotModel ):
         #
         oUser = self.request.user
         #
-        qsUserKeeperNumbs = ( UserKeeper.objects.filter(
+        lUserKeeperNumbs = ( UserKeeper.objects.filter(
                                 iUser = oUser )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() )
         #
         qsKeepers = Keeper.objects.filter(
-                            iItemNumb__in = qsUserKeeperNumbs
+                            iItemNumb__in = lUserKeeperNumbs
                             ).order_by( '-tTimeEnd' )
         #
         return qsKeepers
