@@ -334,3 +334,10 @@ had 192961084641 Electro-Voice EV T-25A Mid Range Driver Pair with EV 8HD horns 
 had both EV Drivers T-25A & T-25-A
 deleted T-25A
 now cannot access 192961084641 Electro-Voice EV T-25A Mid Range Driver Pair with EV 8HD horns + mounts
+
+
+2019-08-26
+core.mixins.FormValidMixin: how to return invalid cuz of IntegrityError (unique constraint violation)?
+
+click on keeper
+'Keeper' object has no attribute 'getUserItemsFoundForKeeper'
