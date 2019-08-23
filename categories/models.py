@@ -6,7 +6,7 @@ from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sKeyWordsHelpText, sLookForHelpText,
                                          sExcludeIfHelpText )
 
-from core.mixins                import GetKeepersForSomething
+from core.mixins                import GetItemsForSomething
 
 from core.utils                 import getReverseWithUpdatedQuery
 
@@ -16,7 +16,7 @@ User = get_user_model()
 
 # ### models can be FAT but not too FAT! ###
 
-class Category( GetKeepersForSomething, models.Model ):
+class Category( GetItemsForSomething, models.Model ):
     cTitle          = models.CharField(
                         'category description', # test_core_tags expects this
                         max_length = 48, db_index = True,
@@ -89,6 +89,23 @@ class Category( GetKeepersForSomething, models.Model ):
             UserKeeper.objects.filter(
                 iUser       = oUser,
                 iCategory   = oCategory ) )
+        #
+        return qsUserItems
+
+
+
+    def getUserFindersForThis( self, oBrand, oUser ):
+        #
+        from finders.models import UserItemFound
+        #
+        qsUserItems = (
+            UserItemFound.objects.filter(
+                iUser  = oUser,
+                iCategory   = oCategory ).filter(
+                iItemNumb__in = (
+                    ItemFound.objects.filter(
+                        tTimeEnd__gt = timezone.now()
+                        ).values_list( 'iItemNumb', flat=True ) ) ) )
         #
         return qsUserItems
 
