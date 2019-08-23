@@ -44,7 +44,8 @@ class ItemFound(models.Model):
     cEbayItemURL    = models.CharField( 'ebay item URL',
                         max_length =188 )
     tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
-    tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True )
+    tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True,
+                        db_index=True )
     bBestOfferable  = models.BooleanField(
                         'best offer enabled?', default = False )
     bBuyItNowable   = models.BooleanField(
