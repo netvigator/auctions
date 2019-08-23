@@ -1,6 +1,7 @@
 from django.db                  import models
 from django_countries.fields    import CountryField
 from django.core.exceptions     import FieldDoesNotExist
+from django.utils               import timezone
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ from django.contrib.auth        import get_user_model
 from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sLookForHelpText, sExcludeIfHelpText )
 
-from core.mixins                import GetKeepersForSomething
+from core.mixins                import GetItemsForSomething
 
 from core.utils                 import getReverseWithUpdatedQuery
 
@@ -18,7 +19,7 @@ User = get_user_model()
 # ### models can be FAT but not too FAT! ###
 
 
-class Brand( GetKeepersForSomething, models.Model ):
+class Brand( GetItemsForSomething, models.Model ):
     cTitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True,
         help_text = sTitleHelpText % 'brand' )
@@ -104,6 +105,21 @@ class Brand( GetKeepersForSomething, models.Model ):
         return qsUserItems
 
 
+
+    def getUserFindersForThis( self, oBrand, oUser ):
+        #
+        from finders.models import UserItemFound
+        #
+        qsUserItems = (
+            UserItemFound.objects.filter(
+                iUser  = oUser,
+                iBrand = oBrand ).filter(
+                iItemNumb__in = (
+                    ItemFound.objects.filter(
+                        tTimeEnd__gt = timezone.now()
+                        ).values_list( 'iItemNumb', flat=True ) ) ) )
+        #
+        return qsUserItems
 
 
     def get_absolute_url(self):
