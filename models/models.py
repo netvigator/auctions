@@ -10,7 +10,7 @@ from core.models            import ( gotSomethingOutsideTitleParensCharField,
                                      sKeyWordsHelpText, sLookForHelpText,
                                      sExcludeIfHelpText )
 
-from core.mixins            import GetKeepersForSomething
+from core.mixins            import GetItemsForSomething
 
 from core.utils             import getReverseWithUpdatedQuery
 
@@ -21,7 +21,7 @@ from categories.models      import Category
 
 User = get_user_model()
 
-class Model( GetKeepersForSomething, models.Model ):
+class Model( GetItemsForSomething, models.Model ):
     cTitle          = gotSomethingOutsideTitleParensCharField(
                         'model number or name',
                         max_length = 48, db_index = True,
@@ -131,6 +131,24 @@ class Model( GetKeepersForSomething, models.Model ):
                 iModel = oModel ) )
         #
         return qsUserItems
+
+
+    def getUserFindersForThis( self, oBrand, oUser ):
+        #
+        from finders.models import UserItemFound
+        #
+        qsUserItems = (
+            UserItemFound.objects.filter(
+                iUser  = oUser,
+                iModel = oModel ).filter(
+                iItemNumb__in = (
+                    ItemFound.objects.filter(
+                        tTimeEnd__gt = timezone.now()
+                        ).values_list( 'iItemNumb', flat=True ) ) ) )
+        #
+        return qsUserItems
+
+
 
 
     def get_absolute_url(self):
