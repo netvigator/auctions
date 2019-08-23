@@ -1,4 +1,5 @@
 from django.core.exceptions import PermissionDenied
+from django.db              import IntegrityError
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
@@ -108,8 +109,11 @@ class FormValidMixin( object ):
         obj = form.save( commit = False )
         obj.user = self.user = self.request.user
         form.instance.iUser  = self.request.user
+        #try:
+            #return super(FormValidMixin, self).form_valid(form)
+        #except IntegrityError:
+            #return self
         return super(FormValidMixin, self).form_valid(form)
-
 
 
 class GetModelInContextMixin( object ):
@@ -262,7 +266,7 @@ class GetPaginationExtraInfoInContext( object ):
         return context
 
 
-class GetKeepersForSomething( object ):
+class GetItemsForSomething( object ):
     '''get keepers for Brand, Category or Model, DRY'''
 
     def getKeepersForThis( self, oThis, request ):
@@ -271,16 +275,20 @@ class GetKeepersForSomething( object ):
         #
         oUser = request.user
         #
-        qsUserItems = self.getUserKeepersForThis( oThis, oUser )
+        lUserItems = self.getUserKeepersForThis(
+                oThis, oUser
+                ).values_list( 'iItemNumb', flat=True ).distinct()
         #
-        iUserItems = len( qsUserItems )
+        iUserItems = len( lUserItems )
+        #
+        print( 'len( iUserItems ):', iUserItems )
         #
         if iUserItems > 50:
             #
             sHowMany = 'Recent'
             #
             oItems = Keeper.objects.filter(
-                iItemNumb__in = qsUserItems ).order_by(
+                iItemNumb__in = lUserItems ).order_by(
                     '-tTimeEnd' )[ : 20 ]
             #
         else:
@@ -288,11 +296,51 @@ class GetKeepersForSomething( object ):
             sHowMany = 'All'
             #
             oItems = Keeper.objects.filter(
-                iItemNumb__in = qsUserItems ).order_by(
+                iItemNumb__in = lUserItems ).order_by(
                     '-tTimeEnd' )
             #
         #
-        return sHowMany, len( qsUserItems ), oItems
+        # print( 'len( oItems ):', len( oItems ) )
+        #
+        return sHowMany, len( lUserItems ), oItems
+
+
+
+    def getFindersForThis( self, oThis, request ):
+        #
+        from finders.models   import UserItemFound
+        #
+        oUser = request.user
+        #
+        lUserItems = self.getUserFindersForThis(
+                oThis, oUser
+                ).values_list( 'iItemNumb', flat=True ).distinct()
+        #
+        iUserItems = len( lUserItems )
+        #
+        # print( 'len( iUserItems ):', iUserItems )
+        #
+        if iUserItems > 50:
+            #
+            sHowMany = 'Recent'
+            #
+            oItems = UserItemFound.objects.filter(
+                iItemNumb__in = lUserItems ).order_by(
+                    '-tTimeEnd' )[ : 20 ]
+            #
+        else:
+            #
+            sHowMany = 'All'
+            #
+            oItems = UserItemFound.objects.filter(
+                iItemNumb__in = lUserItems ).order_by(
+                    '-tTimeEnd' )
+            #
+        #
+        # print( 'len( oItems ):', len( oItems ) )
+        #
+        return sHowMany, len( lUserItems ), oItems
+
 
 
 
