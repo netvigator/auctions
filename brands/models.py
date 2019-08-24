@@ -110,14 +110,23 @@ class Brand( GetItemsForSomething, models.Model ):
         #
         from finders.models import UserItemFound
         #
+        # ugh!
+        # solution: denormalize, also keep tTimeEnd in UserItemFound
+        #
+        # qsUserItems = (
+        #     UserItemFound.objects.filter(
+        #         iUser  = oUser,
+        #         iBrand = oBrand ).filter(
+        #         iItemNumb__in = (
+        #             ItemFound.objects.filter(
+        #                 tTimeEnd__gt = timezone.now()
+        #                 ).values_list( 'iItemNumb', flat=True ) ) ) )
+        #
         qsUserItems = (
             UserItemFound.objects.filter(
-                iUser  = oUser,
-                iBrand = oBrand ).filter(
-                iItemNumb__in = (
-                    ItemFound.objects.filter(
-                        tTimeEnd__gt = timezone.now()
-                        ).values_list( 'iItemNumb', flat=True ) ) ) )
+                iUser           = oUser,
+                iBrand          = oBrand,
+                tTimeEnd__gt    = timezone.now() ) )
         #
         return qsUserItems
 
