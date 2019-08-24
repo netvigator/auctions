@@ -98,14 +98,23 @@ class Category( GetItemsForSomething, models.Model ):
         #
         from finders.models import UserItemFound
         #
+        # ugh!
+        # solution: denormalize, also keep tTimeEnd in UserItemFound
+        #
+        # qsUserItems = (
+        #     UserItemFound.objects.filter(
+        #         iUser  = oUser,
+        #         iCategory   = oCategory ).filter(
+        #         iItemNumb__in = (
+        #             ItemFound.objects.filter(
+        #                 tTimeEnd__gt = timezone.now()
+        #                 ).values_list( 'iItemNumb', flat=True ) ) ) )
+        #
         qsUserItems = (
             UserItemFound.objects.filter(
-                iUser  = oUser,
-                iCategory   = oCategory ).filter(
-                iItemNumb__in = (
-                    ItemFound.objects.filter(
-                        tTimeEnd__gt = timezone.now()
-                        ).values_list( 'iItemNumb', flat=True ) ) ) )
+                iUser        = oUser,
+                iCategory    = oCategory,
+                tTimeEnd__gt = timezone.now() ) )
         #
         return qsUserItems
 
