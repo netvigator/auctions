@@ -133,18 +133,27 @@ class Model( GetItemsForSomething, models.Model ):
         return qsUserItems
 
 
-    def getUserFindersForThis( self, oBrand, oUser ):
+    def getUserFindersForThis( self, oModel, oUser ):
         #
         from finders.models import UserItemFound
         #
+        # ugh!
+        # solution: denormalize, also keep tTimeEnd in UserItemFound
+        #
+        # qsUserItems = (
+        #     UserItemFound.objects.filter(
+        #         iUser  = oUser,
+        #         iModel = oModel ).filter(
+        #         iItemNumb__in = (
+        #             ItemFound.objects.filter(
+        #                 tTimeEnd__gt = timezone.now()
+        #                 ).values_list( 'iItemNumb', flat=True ) ) ) )
+        #
         qsUserItems = (
             UserItemFound.objects.filter(
-                iUser  = oUser,
-                iModel = oModel ).filter(
-                iItemNumb__in = (
-                    ItemFound.objects.filter(
-                        tTimeEnd__gt = timezone.now()
-                        ).values_list( 'iItemNumb', flat=True ) ) ) )
+                iUser           = oUser,
+                iModel          = oModel,
+                tTimeEnd__gt    = timezone.now() ) )
         #
         return qsUserItems
 
