@@ -44,8 +44,7 @@ class ItemFound(models.Model):
     cEbayItemURL    = models.CharField( 'ebay item URL',
                         max_length =188 )
     tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
-    tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True,
-                        db_index=True )
+    tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True )
     bBestOfferable  = models.BooleanField(
                         'best offer enabled?', default = False )
     bBuyItNowable   = models.BooleanField(
@@ -146,6 +145,19 @@ class UserItemFound(models.Model):
                         'Auction or Auction with Buy It Now',default = False )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
+    #
+    # yes the col below repeats the col in ItemFound, the normalized place
+    # but after writing the query to get the open auctions for a user, and
+    # after considering that query's load if this project is a success,
+    # it is clear that de-normalization is the way to go!!!
+    # besides, time end is fixed when a seller puts up an item for auction
+    # this is not a variable that will ever be maintained, once set, it is
+    # absolutely fixed - seller's only option is to cancel and resubmit
+    # 2019-08-27
+    #
+    tTimeEnd        = models.DateTimeField( 'ending date/time',
+                        null=True, db_index = True  )
+    #
     tCreate         = models.DateTimeField( 'created on', db_index = True )
     tModify         = models.DateTimeField( 'updated on', auto_now = True )
     tRetrieved      = models.DateTimeField( 'retrieved info',
