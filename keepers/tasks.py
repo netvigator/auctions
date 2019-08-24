@@ -44,10 +44,12 @@ def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
 @shared_task( name = 'keepers.tasks.deleteOldItemsFound' )
 def deleteOldItemsFoundTask( iOldCutOff ):
     #
-    cursor = connection.cursor()
+    # itemsfound is for temporary holding
+    # if the item is not put in keepers while ebay info is available,
+    # (about 90 days after auction end),
+    # can delete itemsfound and useritemsfound
     #
-    # not carefull enough!!!
-    # this seems to be deleing rows for which useritemsfound rows exist!!!
+    cursor = connection.cursor()
     #
     sCommand = ( 'delete from itemsfound where "tTimeEnd" < '
                  "now() - interval '%s days'" ) % iOldCutOff
@@ -56,14 +58,24 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     #
     # now CAREFULLY delete unneeded useritemsfound rows!
     #
+    # now that userkeepers is implemented,
+    # no need to keep useritemsfound that are in keepers but not itemsfound
+    #
+    # sCommand = (
+    #     '''delete from useritemsfound uif
+    #             where not exists
+    #                 ( select 1 from
+    #                     (   select "iItemNumb" from itemsfound
+    #                         union
+    #                         select "iItemNumb" from keepers ) as combo
+    #                     where combo."iItemNumb" = uif."iItemNumb_id" ) ;
+    #     ''' )
+    #
     sCommand = (
         '''delete from useritemsfound uif
                 where not exists
-                    ( select 1 from
-                        (   select "iItemNumb" from itemsfound
-                            union
-                            select "iItemNumb" from keepers ) as combo
-                        where combo."iItemNumb" = uif."iItemNumb_id" ) ;
+                    ( select 1 from itemsfound if
+                        where if."iItemNumb" = uif."iItemNumb_id" ) ;
         ''' )
     #
     cursor.execute( sCommand )
@@ -128,7 +140,8 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
         #
         if iOldItems:
             #
-            deleteOldItemsFoundTask.delay( iOldCutOff )
+            deleteOldItemsFoundTask.apply_async(
+                    queue='low_priority', args = (iOldCutOff,) )
             #
         #
 
