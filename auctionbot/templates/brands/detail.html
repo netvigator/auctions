@@ -66,7 +66,7 @@
 
     <!-- Action buttons -->
     <p/>
-    <hr>
+
     <div class="basic">
         {% include "./actions.html" %}
     </div>
@@ -87,6 +87,8 @@
     It helps to indicate which categories apply to {{ brand }} (full explanation on edit page).
     </div>
 
+    <hr>
+
     <div style="margin-left:20px;margin-top:20px">
     {% if models_list %}
         <h4>{{ brand }} Models</h4>
@@ -102,11 +104,14 @@
     {% endif %}
     </div>
 
+    <hr>
 
     <!-- Keepers List -->
     <div class="basic">
         {% include "../keepers/keepers_list_under_detail.html" %}
     </div>
+
+    <hr>
 
     <!-- Finders List -->
     <div class="basic">
