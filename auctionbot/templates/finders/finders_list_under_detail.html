@@ -1,0 +1,35 @@
+<div style="margin-left:20px;margin-top:20px">
+  {% if finders_list %}
+      <form action="" method="post">
+      {% csrf_token %}
+      <h4>{{ sHowManyFinders }} {{ object.cTitle }} Finders</h4>
+      <table>
+      <tr>
+      <th><i class="fas fa-trash-alt"></i></th>
+      <td>Item Number</td>
+      <td>Title</td>
+      <td ALIGN=RIGHT>End Date</td>
+      </tr>
+      {% for finder in finders_list %}
+          <tr>
+          <TD VALIGN=TOP><input class="checkbox" name="bTrashThis" type="checkbox" value={{ finder.iItemNumb }}></td>
+          <td VALIGN=TOP>
+            <a href="https://www.ebay.com/itm/{{finder.iItemNumb}}/">
+            {{ finder.iItemNumb }}</a></td>
+          <td VALIGN=TOP><a href="{{ finder.get_absolute_url }}">{{ finder.cTitle }}</a></td>
+          <td VALIGN=TOP>
+            <span style="white-space: nowrap;">{{ finder.tTimeEnd | date:'Y-m-d' }}</span>
+          </td>
+          </tr>
+      {% endfor %}
+      </table>
+      <p/>
+
+      </form>
+
+  {% else %}
+      No Finders for {{ object.cTitle }} at the moment!
+  {% endif %}
+</div>
+<p>
+<p/>
