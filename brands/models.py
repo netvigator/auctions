@@ -93,7 +93,7 @@ class Brand( GetItemsForSomething, models.Model ):
         return l
 
 
-    def getUserKeepersForThis( self, oBrand, oUser ):
+    def getKeeperQsetForThis( self, oBrand, oUser ):
         #
         from keepers.models import UserKeeper
         #
@@ -106,7 +106,7 @@ class Brand( GetItemsForSomething, models.Model ):
 
 
 
-    def getUserFindersForThis( self, oBrand, oUser ):
+    def getFinderQsetForThis( self, oBrand, oUser ):
         #
         from finders.models import UserItemFound
         #
