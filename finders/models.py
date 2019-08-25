@@ -1,22 +1,23 @@
-from django.db              import models
+from django.db                  import models
+from django.core.urlresolvers   import reverse
 
-from django_countries       import fields
+from django_countries           import fields
 
-from core.models            import IntegerRangeField
-from core.utils             import getReverseWithUpdatedQuery
+from core.models                import IntegerRangeField
+from core.utils                 import getReverseWithUpdatedQuery
 
-from models.models          import Model
-from brands.models          import Brand
-from categories.models      import Category
+from models.models              import Model
+from brands.models              import Brand
+from categories.models          import Category
 
-from searching.models       import Search
+from searching.models           import Search
 
-from ebayinfo.models        import CategoryHierarchy, Market, EbayCategory
+from ebayinfo.models            import CategoryHierarchy, Market, EbayCategory
 
-from django.contrib.auth    import get_user_model
+from django.contrib.auth        import get_user_model
 User = get_user_model()
 
-from finders                import EBAY_SHIPPING_CHOICES
+from finders                    import EBAY_SHIPPING_CHOICES
 
 
 # Item IDs are unique across all eBay sites
@@ -106,6 +107,11 @@ class ItemFound(models.Model):
 
     def __str__(self):
         return self.cTitle
+
+    def get_absolute_url(self):
+        #
+        return reverse(
+                'finders:detail', kwargs = { 'pk': self.pk } )
 
     class Meta:
         verbose_name_plural = 'itemsfound'
