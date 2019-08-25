@@ -2,7 +2,7 @@
   {% if keepers_list %}
       <form action="" method="post">
       {% csrf_token %}
-      <h4>{{ sHowMany }} {{ object.cTitle }} Keepers</h4>
+      <h4>{{ sHowManyKeepers }} {{ object.cTitle }} Keepers</h4>
       <div class="basic">
           {% include "./keepers_list_under_detail_submit.html" %}
       </div>
