@@ -267,13 +267,11 @@ class GetPaginationExtraInfoInContext( object ):
 
 
 class GetItemsForSomething( object ):
-    '''get keepers for Brand, Category or Model, DRY'''
+    '''get finders & keepers for Brand, Category or Model, DRY'''
 
-    def getKeepersForThis( self, oThis, request ):
+    def getKeepersForThis( self, oThis, oUser ):
         #
         from keepers.models   import Keeper
-        #
-        oUser = request.user
         #
         lUserItems = self.getUserKeepersForThis(
                 oThis, oUser
@@ -281,7 +279,7 @@ class GetItemsForSomething( object ):
         #
         iUserItems = len( lUserItems )
         #
-        print( 'len( iUserItems ):', iUserItems )
+        # print( 'len( iUserItems ):', iUserItems )
         #
         if iUserItems > 50:
             #
@@ -302,15 +300,13 @@ class GetItemsForSomething( object ):
         #
         # print( 'len( oItems ):', len( oItems ) )
         #
-        return sHowMany, len( lUserItems ), oItems
+        return sHowMany, iUserItems, oItems
 
 
 
-    def getFindersForThis( self, oThis, request ):
+    def getFindersForThis( self, oThis, oUser ):
         #
         from finders.models   import UserItemFound
-        #
-        oUser = request.user
         #
         lUserItems = self.getUserFindersForThis(
                 oThis, oUser
@@ -337,9 +333,7 @@ class GetItemsForSomething( object ):
                     '-tTimeEnd' )
             #
         #
-        # print( 'len( oItems ):', len( oItems ) )
-        #
-        return sHowMany, len( lUserItems ), oItems
+        return sHowMany, iUserItems, oItems
 
 
 
