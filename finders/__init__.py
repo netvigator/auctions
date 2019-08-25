@@ -91,6 +91,8 @@ dItemFoundFields = d(
 dUserItemFoundUploadFields = d(
     iItemNumb       = d( t = ( 'itemId',),
                          f = int ),
+    tTimeEnd        = d( t = ( 'listingInfo','endTime'),
+                         f = getDateTimeObjGotEbayStr ),
     iSearch         = d( t = () ),
     iUser           = d( t = () ),
     tCreate         = d( t = () ), # why does this not work for tCreate?
