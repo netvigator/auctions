@@ -306,7 +306,7 @@ class GetItemsForSomething( object ):
 
     def getFinderContextForThis( self, oThis, oUser ):
         #
-        from finders.models   import UserItemFound
+        from finders.models   import ItemFound
         #
         lUserItems = self.getFinderQsetForThis(
                 oThis, oUser
@@ -320,7 +320,7 @@ class GetItemsForSomething( object ):
             #
             sHowMany = 'Recent'
             #
-            oItems = UserItemFound.objects.filter(
+            oItems = ItemFound.objects.filter(
                 iItemNumb__in = lUserItems ).order_by(
                     '-tTimeEnd' )[ : 20 ]
             #
@@ -328,7 +328,7 @@ class GetItemsForSomething( object ):
             #
             sHowMany = 'All'
             #
-            oItems = UserItemFound.objects.filter(
+            oItems = ItemFound.objects.filter(
                 iItemNumb__in = lUserItems ).order_by(
                     '-tTimeEnd' )
             #
