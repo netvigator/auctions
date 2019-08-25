@@ -1,4 +1,5 @@
 from django.db                  import models
+from django.utils               import timezone
 
 from django.contrib.auth        import get_user_model
 
@@ -94,7 +95,7 @@ class Category( GetItemsForSomething, models.Model ):
 
 
 
-    def getFinderQsetForThis( self, oBrand, oUser ):
+    def getFinderQsetForThis( self, oCategory, oUser ):
         #
         from finders.models import UserItemFound
         #
