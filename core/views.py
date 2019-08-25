@@ -138,14 +138,16 @@ class DetailViewGotModelAlsoPost( DetailViewGotModel ):
             DetailViewGotModelAlsoPost, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
         #
-        t = self.object.getKeepersForThis( self.object, self.request )
+        oUser = self.request.user
+        #
+        t = self.object.getKeepersForThis( self.object, oUser )
         #
         sHowManyKeepers, iUserItems, oItems = t
         #
         context['keepers_list']     = oItems
         context['sHowManyKeepers']  = sHowManyKeepers
         #
-        t = self.object.getUserFindersForThis( self.object, self.request )
+        t = self.object.getFindersForThis( self.object, oUser )
         #
         sHowManyFinders, iUserItems, oItems = t
         #
