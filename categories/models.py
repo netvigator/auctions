@@ -81,7 +81,7 @@ class Category( GetItemsForSomething, models.Model ):
         unique_together     = ('cTitle','iUser')
 
 
-    def getUserKeepersForThis( self, oCategory, oUser ):
+    def getKeeperQsetForThis( self, oCategory, oUser ):
         #
         from keepers.models import UserKeeper
         #
@@ -94,7 +94,7 @@ class Category( GetItemsForSomething, models.Model ):
 
 
 
-    def getUserFindersForThis( self, oBrand, oUser ):
+    def getFinderQsetForThis( self, oBrand, oUser ):
         #
         from finders.models import UserItemFound
         #
