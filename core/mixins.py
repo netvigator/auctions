@@ -269,11 +269,11 @@ class GetPaginationExtraInfoInContext( object ):
 class GetItemsForSomething( object ):
     '''get finders & keepers for Brand, Category or Model, DRY'''
 
-    def getKeepersForThis( self, oThis, oUser ):
+    def getKeeperContextForThis( self, oThis, oUser ):
         #
         from keepers.models   import Keeper
         #
-        lUserItems = self.getUserKeepersForThis(
+        lUserItems = self.getKeeperQsetForThis(
                 oThis, oUser
                 ).values_list( 'iItemNumb', flat=True ).distinct()
         #
@@ -300,15 +300,15 @@ class GetItemsForSomething( object ):
         #
         # print( 'len( oItems ):', len( oItems ) )
         #
-        return sHowMany, iUserItems, oItems
+        return sHowMany, oItems
 
 
 
-    def getFindersForThis( self, oThis, oUser ):
+    def getFinderContextForThis( self, oThis, oUser ):
         #
         from finders.models   import UserItemFound
         #
-        lUserItems = self.getUserFindersForThis(
+        lUserItems = self.getFinderQsetForThis(
                 oThis, oUser
                 ).values_list( 'iItemNumb', flat=True ).distinct()
         #
@@ -333,7 +333,7 @@ class GetItemsForSomething( object ):
                     '-tTimeEnd' )
             #
         #
-        return sHowMany, iUserItems, oItems
+        return sHowMany, oItems
 
 
 
