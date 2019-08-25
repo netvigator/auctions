@@ -121,7 +121,7 @@ class Model( GetItemsForSomething, models.Model ):
 
 
 
-    def getUserKeepersForThis( self, oModel, oUser ):
+    def getKeeperQsetForThis( self, oModel, oUser ):
         #
         from keepers.models import UserKeeper
         #
@@ -133,7 +133,7 @@ class Model( GetItemsForSomething, models.Model ):
         return qsUserItems
 
 
-    def getUserFindersForThis( self, oModel, oUser ):
+    def getFinderQsetForThis( self, oModel, oUser ):
         #
         from finders.models import UserItemFound
         #
