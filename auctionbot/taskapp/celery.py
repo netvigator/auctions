@@ -33,6 +33,9 @@ app = Celery('auctionbot',
 # https://pawelzny.com/python/celery/2017/08/14/celery-4-tasks-best-practices/
 app.conf.task_create_missing_queues = True
 
+# https://medium.com/@taylorhughes/three-quick-tips-from-two-years-with-celery-c05ff9d7f9eb
+CELERYD_TASK_SOFT_TIME_LIMIT = 600
+
 class CeleryConfig(AppConfig):
     name            = 'auctionbot.taskapp'
     verbose_name    = 'Celery Config'
