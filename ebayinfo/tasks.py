@@ -61,6 +61,12 @@ def getCategoryListsUpdated( bConsoleOut = False ):
                 uWantVersion    = d['iEbayHas'],
                 bShowProgress   = bConsoleOut )
         #
+        # getCategoryListThenStoreTask.apply_async(
+        #     queue='low_priority', kwargs = {
+        #         uMarket         : dSiteID2Market[ d['iSiteID'] ],
+        #         uWantVersion    : d['iEbayHas'],
+        #         bShowProgress   : bConsoleOut } )
+        #
     #
     #
     if bConsoleOut:
@@ -72,6 +78,6 @@ def getCategoryListsUpdated( bConsoleOut = False ):
 
 
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
-####  from ebayinfo.tasks import getWhetherAnyEbayCategoryListsAreUpdated, getCategoryListsUpdated
+# ### from ebayinfo.tasks import getWhetherAnyEbayCategoryListsAreUpdated, getCategoryListsUpdated
 # ### run getCategoryListsUpdated( bConsoleOut = True )     ###
 # ### run getCategoryListsUpdated() to update               ###
