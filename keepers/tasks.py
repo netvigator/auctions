@@ -140,8 +140,10 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
         #
         if iOldItems:
             #
-            deleteOldItemsFoundTask.apply_async(
-                    queue='low_priority', args = (iOldCutOff,) )
+            # deleteOldItemsFoundTask.apply_async(
+            #         queue='low_priority', args = (iOldCutOff,) )
+            #
+            deleteOldItemsFoundTask.delay( iOldCutOff )
             #
         #
 
