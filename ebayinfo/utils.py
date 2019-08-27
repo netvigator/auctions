@@ -220,7 +220,7 @@ def _putCategoriesInDatabase(
     #
     if bShowProgress: # progress meter for running in shell, no need to test
         #
-        oProgressMeter = TextMeter()
+        oProgressMeter = TextMeter( use_hours = True )
         #
         print( 'counting categories ...' )
         #
