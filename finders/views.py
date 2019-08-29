@@ -128,6 +128,35 @@ class ItemsFoundIndexView(
             #
         elif 'submit' in request.POST:
             #
+            # handle items listed more than once on a page
+            # user may not mark each one.
+            # QUICK (and dirty): ignore items listed more than once on a page
+            #
+            lAllItems   = request.POST.getlist('AllItems')
+            #
+            setAllItems = frozenset( lAllItems )
+            #
+            if len( lAllItems ) == len( setAllItems ):
+                #
+                setMultiple = frozenset( [] )
+                #
+            else:
+                #
+                setGotItems = set( [] )
+                setMultiple = set( [] )
+                #
+                for sI in lAllItems:
+                    #
+                    if sI in setGotItems:
+                        #
+                        setMultiple.add( sI )
+                        #
+                    else:
+                        #
+                        setGotItems.add( sI )
+                        #
+                #
+            #
             setExclude = frozenset( request.POST.getlist('bListExclude') )
             # check box end user can change
             setGetPics = frozenset( request.POST.getlist('bGetPictures') )
@@ -170,8 +199,15 @@ class ItemsFoundIndexView(
                 #
                 oItem.save()
                 #
+            #
+            for sItemNumb in setMultiple:
+                #
+                setCommon.remove( sItemNumb )
+                #
+            #
             if setCommon:
                 #
+
                 sMessage = (
                         'Error! On a row, it is invalid set both '
                         'get pics and delete! Careful!' )
