@@ -181,13 +181,15 @@ class ItemsFoundIndexView(
                             iItemNumb_id__in = setChanged,
                             iUser            = self.request.user )
             #
+            setCommon.difference_update( setMultiple )
+            #
             for oItem in qsChanged:
                 #
                 if str( oItem.iItemNumb_id ) in setCommon: continue
                 #
                 sItemNumb = str( oItem.iItemNumb_id )
                 #
-                if sItemNumb in setGetPics:
+                if sItemNumb in setGetPics and sItemNumb not in setNewExcl:
                     oItem.bGetPictures = True
                 elif sItemNumb in setUnPics:
                     oItem.bGetPictures = False
@@ -200,14 +202,8 @@ class ItemsFoundIndexView(
                 oItem.save()
                 #
             #
-            for sItemNumb in setMultiple:
-                #
-                setCommon.remove( sItemNumb )
-                #
-            #
             if setCommon:
                 #
-
                 sMessage = (
                         'Error! On a row, it is invalid set both '
                         'get pics and delete! Careful!' )
