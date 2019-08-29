@@ -22,6 +22,7 @@ from categories.models      import Category
 
 User = get_user_model()
 
+
 class Model( GetItemsForSomething, models.Model ):
     cTitle          = gotSomethingOutsideTitleParensCharField(
                         'model number or name',
