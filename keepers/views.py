@@ -21,9 +21,9 @@ class KeeperDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
         #
         context = super( KeeperDetailView, self).get_context_data(**kwargs )
         #
-        qs = self.object.getKeepersForThis( self.object, self.request )
+        #qs = self.object.getKeepersForThis( self.object, self.request )
         #
-        context['UserItemsTable'] = self.getUserItemsTable( qs )
+        #context['UserItemsTable'] = self.getUserItemsTable( qs )
         #
         return context
 
