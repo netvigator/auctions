@@ -11,6 +11,7 @@ from .mixins        import AnyReleventHitStarColsChangedMixin
 from .models        import ItemFound, UserItemFound
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
+                             GetFindersSelectionsOnPost,
                              GetUserItemsTableMixin )
 
 # ### keep views thin! ###
@@ -18,7 +19,8 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
 
 
 class ItemsFoundIndexView(
-            GetPaginationExtraInfoInContext, ListViewGotModel ):
+            GetFindersSelectionsOnPost, GetPaginationExtraInfoInContext,
+            ListViewGotModel ):
 
     template_name       = 'finders/index.html'
     model               = UserItemFound
@@ -101,120 +103,6 @@ class ItemsFoundIndexView(
         #
         return qsGot
 
-
-
-    def post(self, request, *args, **kwargs):
-
-        url = request.build_absolute_uri()
-        #
-        if "selectall" in request.POST:
-            #
-            lPageItems = request.POST.getlist('AllItems')
-            #
-            qsChanged  = UserItemFound.objects.filter(
-                            iItemNumb_id__in = lPageItems,
-                            iUser            = self.request.user )
-            #
-            for oItem in qsChanged:
-                #
-                #
-                oItem.bGetPictures = True
-                oItem.bListExclude = False
-                #
-                oItem.save()
-                #
-            #
-            return HttpResponseRedirect( url )
-            #
-        elif 'submit' in request.POST:
-            #
-            # handle items listed more than once on a page
-            # user may not mark each one.
-            # QUICK (and dirty): ignore items listed more than once on a page
-            #
-            lAllItems   = request.POST.getlist('AllItems')
-            #
-            setAllItems = frozenset( lAllItems )
-            #
-            if len( lAllItems ) == len( setAllItems ):
-                #
-                setMultiple = frozenset( [] )
-                #
-            else:
-                #
-                setGotItems = set( [] )
-                setMultiple = set( [] )
-                #
-                for sI in lAllItems:
-                    #
-                    if sI in setGotItems:
-                        #
-                        setMultiple.add( sI )
-                        #
-                    else:
-                        #
-                        setGotItems.add( sI )
-                        #
-                #
-            #
-            setExclude = frozenset( request.POST.getlist('bListExclude') )
-            # check box end user can change
-            setGetPics = frozenset( request.POST.getlist('bGetPictures') )
-            # check box end user can change
-            setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
-            # hidden set if item has bGetPictures as True when page composed
-            setExclSet = frozenset( request.POST.getlist('ExclSet'     ) )
-            # hidden set if item has bListExclude as True when page composed
-            #
-            setCommon  = setGetPics.intersection( setExclude )
-            #
-            setUnExcl  = setExclSet.difference( setExclude )
-            setUnPics  = setPicsSet.difference( setGetPics )
-            #
-            setNewExcl = setExclude.difference( setExclSet )
-            setNewPics = setGetPics.difference( setPicsSet )
-            #
-            setChanged = setUnExcl.union(
-                        setUnPics, setNewExcl, setNewPics )
-            #
-            qsChanged  = UserItemFound.objects.filter(
-                            iItemNumb_id__in = setChanged,
-                            iUser            = self.request.user )
-            #
-            setCommon.difference_update( setMultiple )
-            #
-            for oItem in qsChanged:
-                #
-                if str( oItem.iItemNumb_id ) in setCommon: continue
-                #
-                sItemNumb = str( oItem.iItemNumb_id )
-                #
-                if sItemNumb in setGetPics and sItemNumb not in setNewExcl:
-                    oItem.bGetPictures = True
-                elif sItemNumb in setUnPics:
-                    oItem.bGetPictures = False
-                #
-                if sItemNumb in setNewExcl:
-                    oItem.bListExclude = True
-                elif sItemNumb in setUnExcl:
-                    oItem.bListExclude = False
-                #
-                oItem.save()
-                #
-            #
-            if setCommon:
-                #
-                sMessage = (
-                        'Error! On a row, it is invalid set both '
-                        'get pics and delete! Careful!' )
-                #
-                messages.error( request, sMessage )
-                #
-                for sItemNumb in setCommon:
-                    oItem = ItemFound.objects.get( iItemNumb = int( sItemNumb ) )
-                    messages.error( request, '%s -- %s' % ( sItemNumb, oItem.cTitle ) )
-            #
-        return HttpResponseRedirect( url )
 
 
 
