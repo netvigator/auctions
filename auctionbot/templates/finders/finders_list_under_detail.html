@@ -1,27 +1,39 @@
 <div style="margin-left:20px;margin-top:20px">
   {% if finders_list %}
+
       <form action="" method="post">
       {% csrf_token %}
       <h4>{{ sHowManyFinders }} {{ object.cTitle }} Finders</h4>
       <table>
-      <tr>
-      <th><i class="fas fa-trash-alt"></i></th>
-      <td>Item Number</td>
-      <td>Title</td>
-      <td ALIGN=RIGHT>End Date</td>
-      </tr>
-      {% for finder in finders_list %}
-          <tr>
-          <TD VALIGN=TOP><input class="checkbox" name="bTrashThis" type="checkbox" value={{ finder.iItemNumb }}></td>
-          <td VALIGN=TOP>
-            <a href="https://www.ebay.com/itm/{{finder.iItemNumb}}/">
-            {{ finder.iItemNumb }}</a></td>
-          <td VALIGN=TOP><a href="{{ finder.get_absolute_url }}">{{ finder.cTitle }}</a></td>
-          <td VALIGN=TOP>
-            <span style="white-space: nowrap;">{{ finder.tTimeEnd | date:'Y-m-d' }}</span>
-          </td>
-          </tr>
-      {% endfor %}
+        <tr>
+          <th ALIGN=LEFT>get<p>pics</th>
+          <th><i class="fas fa-trash-alt"></i></th>
+          <th ALIGN=LEFT>ebay item</th>
+          <th ALIGN=LEFT>title</th>
+          <th ALIGN=LEFT>ending</th>
+          <th ALIGN=LEFT>market</th>
+          <th ALIGN=LEFT>type</th>
+          <th ALIGN=LEFT>ending</th>
+          <th><i class="far fa-star"></i></th>
+        </tr>
+        {% for item in finders_list %}
+            <tr>
+              <TD VALIGN=TOP><input class="checkbox" name="bGetPictures" type="checkbox"
+                      value={{ item.iItemNumb_id }} {% if item.iItemNumb.bGetPictures %}checked{% endif %}></td>
+              <TD VALIGN=TOP><input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}></td>
+              <td VALIGN=TOP>
+                <a href="https://www.ebay.com/itm/{{item.iItemNumb_id}}/">
+                {{ item.iItemNumb_id }}</a></td>
+              <td VALIGN=TOP><a href="{{ item.get_absolute_url }}">{{ item.iItemNumb.cTitle }}</a></td>
+              <td VALIGN=TOP>
+                <span style="white-space: nowrap;">{{ item.tTimeEnd | date:'Y-m-d' }}</span>
+              </td>
+              <td>{{ item.iItemNumb.cMarket }}</td>
+              <td>{{ item.iItemNumb.cListingType }}</td>
+              <td>{{ item.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
+              <td>{{ item.iHitStars }}</td>
+            </tr>
+        {% endfor %}
       </table>
       <p/>
 
