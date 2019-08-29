@@ -387,6 +387,8 @@ class GetItemsForSomething( object ):
 
     def getKeeperContextForThis( self, oThis, oUser ):
         #
+        # actual keepers, not userkeepers
+        #
         from keepers.models   import Keeper
         #
         lUserItems = self.getKeeperQsetForThis(
@@ -422,31 +424,24 @@ class GetItemsForSomething( object ):
 
     def getFinderContextForThis( self, oThis, oUser ):
         #
-        from finders.models   import ItemFound
+        # actually userfinders not finders
         #
-        lUserItems = self.getFinderQsetForThis(
-                oThis, oUser
-                ).values_list( 'iItemNumb', flat=True ).distinct()
+        qsUserItems = self.getFinderQsetForThis(
+                        oThis, oUser ).order_by( '-tTimeEnd' )
         #
-        iUserItems = len( lUserItems )
-        #
-        # print( 'len( iUserItems ):', iUserItems )
+        iUserItems = len( qsUserItems )
         #
         if iUserItems > 50:
             #
             sHowMany = 'Recent'
             #
-            oItems = ItemFound.objects.filter(
-                iItemNumb__in = lUserItems ).order_by(
-                    '-tTimeEnd' )[ : 20 ]
+            oItems = qsUserItems[ : 20 ]
             #
         else:
             #
             sHowMany = 'All'
             #
-            oItems = ItemFound.objects.filter(
-                iItemNumb__in = lUserItems ).order_by(
-                    '-tTimeEnd' )
+            oItems = qsUserItems
             #
         #
         return sHowMany, oItems
