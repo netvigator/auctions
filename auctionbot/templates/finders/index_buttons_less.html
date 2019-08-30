@@ -1,0 +1,24 @@
+After selecting individual items, you must hit Submit or all changes will be lost!
+
+<table>
+    <TR ALIGN=MIDDLE>
+        <td>
+            <input class='btn btn-primary btn-blue' type="submit" name="submit" value=" Submit " />
+        </td>
+        <td>
+            <input class='btn btn-primary btn-blue' type="submit" name="selectall" value=" Select All " />
+        </td>
+        <TD>
+            <!-- first button does not work, so put a non displaying button first  -->
+            <form action='{% url "finders:index" %}P/' method="POST">
+            </form>
+        </TD>
+        {% if is_paginated %}
+          <TD>go to page:</TD>
+          <td>
+              <p>
+              {% include "../paginate.html" %}
+          </td>
+        {% endif %}
+    </TR>
+</table>
