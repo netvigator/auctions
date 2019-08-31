@@ -341,3 +341,8 @@ core.mixins.FormValidMixin: how to return invalid cuz of IntegrityError (unique 
 
 click on keeper
 'Keeper' object has no attribute 'getUserItemsFoundForKeeper'
+
+
+2019-09-01
+# ### after updating ebay categories, check whether        ###
+# ### searches that were connected are still connected !!! ###
