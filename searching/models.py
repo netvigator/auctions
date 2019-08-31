@@ -36,6 +36,8 @@ class Search(models.Model):
         help_text = 'Limit search to items listed in this category '
                     '-- (key words OR ebay category required!) '
                     '(Both are OK)', on_delete=models.DO_NOTHING )
+    # ### after updating ebay categories, check whether        ###
+    # ### searches that were connected are still connected !!! ###
     iDummyCategory  = models.PositiveIntegerField( 'ebay category number',
                                 null = True, blank = True,
         help_text = 'Limit search to items listed in this category '
