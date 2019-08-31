@@ -8,9 +8,9 @@ from core.models                import IntegerRangeField
 
 from finders                    import EBAY_SHIPPING_CHOICES
 
-from models.models          import Model
-from brands.models          import Brand
-from categories.models      import Category
+from models.models              import Model
+from brands.models              import Brand
+from categories.models          import Category
 
 from searching.models           import Search
 
@@ -150,7 +150,7 @@ class Keeper( models.Model ):
 
 
 class UserKeeper(models.Model):
-    iItemNumb       = models.ForeignKey( Keeper, on_delete=models.PROTECT )
+    iItemNumb       = models.ForeignKey( Keeper, on_delete=models.CASCADE )
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
