@@ -774,6 +774,8 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
     #
 '''
 
+# ### after updating ebay categories, check whether         ###
+# ### searches that were connected are still connected !!!  ###
 
 # ### in production, if any category versions are updated,  ###
 # ###                        call                           ###
