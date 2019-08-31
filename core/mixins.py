@@ -269,8 +269,10 @@ class GetPaginationExtraInfoInContext( object ):
 class GetFindersSelectionsOnPost( object ):
     #
     def post(self, request, *args, **kwargs):
-
+        #
         url = request.build_absolute_uri()
+        #
+        from finders.models import UserItemFound # got circular import problem
         #
         if "selectall" in request.POST:
             #
@@ -324,7 +326,7 @@ class GetFindersSelectionsOnPost( object ):
             #
             setExclude = frozenset( request.POST.getlist('bListExclude') )
             # check box end user can change
-            setGetPics = frozenset( request.POST.getlist('bGetPictures') )
+            setGetPics =       set( request.POST.getlist('bGetPictures') )
             # check box end user can change
             setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
             # hidden set if item has bGetPictures as True when page composed
@@ -389,7 +391,7 @@ class GetItemsForSomething( object ):
         #
         # actual keepers, not userkeepers
         #
-        from keepers.models   import Keeper
+        from keepers.models import Keeper # got circular import problem
         #
         lUserItems = self.getKeeperQsetForThis(
                 oThis, oUser
