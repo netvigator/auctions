@@ -68,14 +68,14 @@ class ItemFound(models.Model):
     iCategoryID     = models.ForeignKey( EbayCategory,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
-                        on_delete=models.CASCADE,
+                        on_delete=models.DO_NOTHING,
                         null = True, blank = True ) # need for testing
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
                         verbose_name = 'category hierarchy (primary)',
                         related_name = 'primary_category',
-                        null = True, blank = True, on_delete=models.CASCADE )
+                        null = True, blank = True, on_delete=models.DO_NOTHING )
     i2ndCategoryID  = models.ForeignKey( EbayCategory,
                         verbose_name = 'secondary category ID (optional)',
                         related_name = 'ebay_secondary_category',
@@ -85,7 +85,7 @@ class ItemFound(models.Model):
     i2ndCatHeirarchy= models.ForeignKey( CategoryHierarchy,
                         verbose_name = 'category hierarchy (secondary)',
                         related_name = 'secondary_category',
-                        null = True, blank = True, on_delete=models.CASCADE )
+                        null = True, blank = True, on_delete=models.DO_NOTHING )
 
     # condition is optional but may become required in the future
     # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
