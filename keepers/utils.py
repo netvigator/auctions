@@ -720,7 +720,7 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
         #
     #
     qsOtherUsersForThis = UserKeeper.objects.filter(
-                iItemNumb = iItemNumb, bListExclude = False ).exclude(
+                iItemNumb = iItemNumb ).exclude(
                 iUser     = oUser)
     #
     if qsOtherUsersForThis:
