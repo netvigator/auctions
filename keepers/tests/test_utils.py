@@ -612,4 +612,12 @@ class UserItemsTests( StoreSingleItemTests ):
                 # add KeeperImage record?!
             #
         #
+        for t in self.tSeveral:
+            #
+            iItemNumb = t[0]
+            #
+            deleteKeeperUserItem( iItemNumb, self.user1 )
+            #
+            break
+
 
