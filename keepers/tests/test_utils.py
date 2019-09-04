@@ -273,7 +273,10 @@ class StoreSingleKeepersWebTests(
         #
         for k, v in d.items():
             #
+            # populates UserKeeper
+            #
             getSingleItemThenStore( k, sContent = v )
+            #
             #
         #
         self.iItemNumb = None
@@ -559,33 +562,33 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-
-class UserItemsTests( StoreSingleItemTests ):
+# StoreSingleItemTests
+class UserItemsTests( StoreSingleKeepersWebTests ):
 
     def setUp( self ):
         #
         super( UserItemsTests, self ).setUp()
         #
         self.tSeveral = (
-            ( 142766343340, s142766343340 ),
-            ( 232742493872, s232742493872 ),
-            ( 232709513135, s232709513135 ),
-            ( 282330751118, s282330751118 ),
+            ( 223348187115, s223348187115 ),
+            ( 173696834267, s173696834267 ),
+            ( 372536713027, s372536713027 ),
+            ( 173696832184, s173696832184 ),
             ( 293004871422, s293004871422 ),
             ( 254154293727, s254154293727 ),
             ( 254130264753, s254130264753 ), )
         #
-        for t in self.tSeveral:
-            #
-            _storeOneJsonItemInKeepers( *t )
-            #
+        #for t in self.tSeveral:
+            ##
+            #_storeOneJsonItemInKeepers( *t )
+            ##
         #
 
     def test_got_items_for_pic_downloading( self ):
         #
         qsGetPics = getItemsForPicsDownloading()
         #
-        self.assertEqual( len( qsGetPics ), len( self.tSeveral ) )
+        self.assertGreater( len( qsGetPics ), len( self.tSeveral ) )
 
     def test_delete_Keeper_User_Item( self ):
         #
