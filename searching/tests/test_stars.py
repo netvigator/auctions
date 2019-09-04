@@ -75,7 +75,7 @@ class SetUpForHitStarsWebTests( SetUpForFindSearchHitsTest ):
     #
     def setUp( self ):
         #
-        super( SetUpForFindSearchHitsTest, self ).setUp()
+        super( SetUpForHitStarsWebTests, self ).setUp()
         #
         # bCleanUpAfterYourself must be False or tests will fail!
         # iRecordStepsForThis imported from __init__.py
