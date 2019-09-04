@@ -250,6 +250,39 @@ def _storeOneJsonItemInKeepers( iItemNumb, sContent, **kwargs ):
 
 
 
+
+def _makeUserKeeperRow( oUserFinder ):
+    #
+    qsAlreadyGotUserKeeper = UserKeeper.objects.filter(
+            iItemNumb_id= oUserFinder.iItemNumb_id,
+            iUser       = oUserFinder.iUser,
+            iModel      = oUserFinder.iModel,
+            iBrand      = oUserFinder.iBrand )
+    #
+    if not qsAlreadyGotUserKeeper:
+        #
+        oNewUserKeeper = UserKeeper()
+        #
+        for oField in oUserFinder._meta.fields:
+            #
+            if oField.name == 'iItemNumb':
+                #
+                oNewUserKeeper.iItemNumb_id = oUserFinder.iItemNumb_id
+                #
+            else:
+                #
+                setattr( oNewUserKeeper,
+                        oField.name,
+                        getattr( oUserFinder, oField.name ) )
+                #
+            #
+        #
+        oNewUserKeeper.save()
+        #
+    #
+
+
+
 def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     '''
@@ -400,6 +433,13 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             UserItemFound.objects.filter(
                     iItemNumb = iItemNumb ).update( tRetrieved = tNow )
+            #
+        #
+        qsUserItems = UserItemFound.objects.filter( iItemNumb = iItemNumb )
+        #
+        for oUserFinder in qsUserItems:
+            #
+            _makeUserKeeperRow( oUserFinder )
             #
         #
     #
@@ -719,6 +759,12 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
         print( 'too early to delete UserItem:', iItemNumb )
         #
     #
+    qsAllUsersForThis = UserKeeper.objects.filter(
+                iItemNumb = iItemNumb )
+    #
+    print( 'got %s user(s) in keepers who want item %s' %
+            ( len( qsAllUsersForThis ), iItemNumb ) )
+    #
     qsOtherUsersForThis = UserKeeper.objects.filter(
                 iItemNumb = iItemNumb ).exclude(
                 iUser     = oUser)
@@ -782,36 +828,15 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
 
 
 
-def _makeUserKeeperRow( oUserFinder ):
-    #
-    qsAlreadyGotUserKeeper = UserKeeper.objects.filter(
-            iItemNumb_id= oUserFinder.iItemNumb_id,
-            iUser       = oUserFinder.iUser,
-            iModel      = oUserFinder.iModel,
-            iBrand      = oUserFinder.iBrand )
-    #
-    if not qsAlreadyGotUserKeeper:
-        #
-        oNewUserKeeper = UserKeeper()
-        #
-        for oField in oUserFinder._meta.fields:
-            #
-            setattr( oNewUserKeeper,
-                     oField.name,
-                     getattr( oUserFinder, oField.name ) )
-            #
-        #
-        oNewUserKeeper.save()
-        #
-    #
-
-
-
 def makeUserKeeperRows():
+    #
+    lKeeperNumbs = ( Keeper.objects.all().values_list(
+                        'iItemNumb', flat = True ) )
     #
     qsNotDoneYet = UserItemFound.objects.filter(
             tRetrieveFinal__isnull = False,
-            tPutInKeepers__isnull  = True )
+            tPutInKeepers__isnull  = True,
+            iItemNumb__in = ( lKeeperNumbs ) )
     #
     for oUserFinder in qsNotDoneYet:
         #
@@ -822,6 +847,7 @@ def makeUserKeeperRows():
         oUserFinder.save()
         #
     #
+
 
 
 
