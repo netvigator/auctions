@@ -15,6 +15,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              GetModelInContextMixin,
                                              DoPostCanCancelMixin )
 
+from keepers.utils                  import deleteKeeperUserItem
+
 # ### keep views thin! ###
 
 
