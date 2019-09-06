@@ -125,6 +125,9 @@ class Keeper( models.Model ):
     tRetrieveFinal  = models.DateTimeField( 'retrieved info after end',
                         null = True, blank = True )
 
+    bDeleteMaybe    = models.BooleanField( 'delete later if nobody wants',
+                        default=False )
+
     def __str__(self):
         return str( self.iItemNumb )
 
