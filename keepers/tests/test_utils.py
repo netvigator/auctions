@@ -30,6 +30,7 @@ from ..utils            import ( _storeOneJsonItemInKeepers,
                                  getSingleItemThenStore,
                                  getFindersForResultsFetching,
                                  getItemPicsSubDir,
+                                 getPicFileList,
                                  _getPicExtension,
                                  _getPicFileNameExtn,
                                  ITEM_PICS_ROOT,
@@ -271,9 +272,13 @@ class StoreSingleKeepersWebTests(
                 303000971114 : s303000971114,
                 323589685342 : s323589685342 }
         #
+        iCount = 0
+        #
         for k, v in d.items():
             #
-            # populates UserKeeper
+            # populates UserKeeper, ports record from UserItemFound
+            #
+            # for testing, make some userFinders for another user HERE
             #
             getSingleItemThenStore( k, sContent = v )
             #
@@ -394,8 +399,7 @@ class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
         #
         lPicURLS = oItem.cPictureURLs.split()
         #
-        sItemPicsSubDir = getItemPicsSubDir(
-                                iItemNumb, ITEM_PICS_ROOT )
+        sItemPicsSubDir = getItemPicsSubDir( iItemNumb, ITEM_PICS_ROOT )
         #
         lResults = []
         #
@@ -570,18 +574,10 @@ class UserItemsTests( StoreSingleKeepersWebTests ):
         super( UserItemsTests, self ).setUp()
         #
         self.tSeveral = (
-            ( 223348187115, s223348187115 ),
-            ( 173696834267, s173696834267 ),
-            ( 372536713027, s372536713027 ),
-            ( 173696832184, s173696832184 ),
-            ( 293004871422, s293004871422 ),
-            ( 254154293727, s254154293727 ),
-            ( 254130264753, s254130264753 ), )
-        #
-        #for t in self.tSeveral:
-            ##
-            #_storeOneJsonItemInKeepers( *t )
-            ##
+            ( 223348187115, s223348187115 ), # 3 users
+            ( 173696834267, s173696834267 ), # 1 user
+            ( 372536713027, s372536713027 ), # 1 user
+            ( 173696832184, s173696832184 )) # 4 users
         #
 
     def test_got_items_for_pic_downloading( self ):
@@ -621,6 +617,9 @@ class UserItemsTests( StoreSingleKeepersWebTests ):
             #
             deleteKeeperUserItem( iItemNumb, self.user1 )
             #
-            break
+            # break
+        #
+
+        #
 
 
