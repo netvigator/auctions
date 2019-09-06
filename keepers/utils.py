@@ -721,49 +721,32 @@ def getItemsForPicsDownloading( iLimit = 50 ):
     return qsGetPics
 
 
+def getPicFileList( uItemNumb, ITEM_PICS_ROOT ):
+    #
+    sItemNumb = str( uItemNumb )
+    #
+    sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+    #
+    return glob( '%s*' % join( sSubDir, sItemNumb ) )
+
+
 
 def deleteKeeperUserItem( uItemNumb, oUser ):
+    #
+    '''
+    delete the userKeepr row now, so user gets instant result (last step)
+    finished if any other user wants to keep this one
+    if auction is over, delete the keeper row and pictures, hide useritemsfound
+    if auction aint over yet, mark keeper row with bDeleteMaybe = True
+      dont delete yet cuz later, another user might want to keep that item
+    daily or so, after fetching final results,
+      query keeper ended auctions for rows marked with bDeleteMaybe = True
+      if any found, delete pictures and keeper rows
+    '''
     #
     sItemNumb = str( uItemNumb )
     iItemNumb = int( uItemNumb )
     #
-    tYesterday = getPriorDateTime( iDaysAgo = 1 )
-    #
-    bTooNewToDelete = False
-    #
-    qsItem = ItemFound.objects.filter( iItemNumb = iItemNumb )
-    #
-    if qsItem:
-        #
-        bTooNewToDelete = qsItem[0].tTimeEnd >= tYesterday
-        #
-    #
-    qsDumpThese = UserKeeper.objects.filter(
-                    iItemNumb = iItemNumb, iUser = oUser )
-    #
-    print( 'len( qsDumpThese ):', len( qsDumpThese ) )
-    #
-    sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
-    #
-    sFileSpec = '%s*' % join( sSubDir, sItemNumb )
-    #
-    print( 'sFileSpec:', sFileSpec )
-    #
-    lFiles = glob( sFileSpec )
-    #
-    #
-    print( 'found %s files for item %s' % ( len( lFiles ), sItemNumb ) )
-    #
-    if bTooNewToDelete:
-        #
-        print( 'too early to delete UserItem:', iItemNumb )
-        #
-    #
-    qsAllUsersForThis = UserKeeper.objects.filter(
-                iItemNumb = iItemNumb )
-    #
-    print( 'got %s user(s) in keepers who want item %s' %
-            ( len( qsAllUsersForThis ), iItemNumb ) )
     #
     qsOtherUsersForThis = UserKeeper.objects.filter(
                 iItemNumb = iItemNumb ).exclude(
@@ -773,58 +756,79 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
         #
         print( 'got other user who wants item %s' % iItemNumb )
         #
-        # pass # keep the pictures and ItemFound row
+        # pass # keep the pictures and Keeper row for now
         #
     else:
         #
-        if lFiles:
+        #
+        tAncientHistory = getPriorDateTime( iDaysAgo = 10 )
+        #
+        bTooNewToDelete = False
+        #
+        qsItem = Keeper.objects.filter( iItemNumb = iItemNumb )
+        #
+        if qsItem:
             #
-            lFiles.sort()
-            #
-            for sFile in lFiles:
-                #
-                print( 'would delete %s' % sFile )
-                #
-                # remove( sFile )
-                #
-            #
-            print( 'KeeperImage.objects.filter(' )
-            print( '        iItemNumb = iItemNumb, iUser = oUser ).delete()' )
-            #
-            # KeeperImage.objects.filter(
-            #         iItemNumb = iItemNumb, iUser = oUser ).delete()
+            bTooNewToDelete = qsItem[0].tTimeEnd >= tAncientHistory
             #
         #
         if bTooNewToDelete:
             #
+            # print( 'too early to delete UserItem:', iItemNumb )
+            #
             # next: queryset update method
             # next: queryset update method
             # next: queryset update method
             #
-            print( 'too new to delete, instead would call queryset '
-                   'update method setting bListExclude to True' )
+            Keeper.objects.filter( iItemNumb = iItemNumb
+                                ).update( bDeleteMaybe = True )
             #
-            # UserKeeper.objects.filter(
-            #     iItemNumb = iItemNumb, iUser = oUser
-            #         ).update( bListExclude = True )
+        else: # old enough to dump
             #
-        else:
+            lFiles = getPicFileList( uItemNumb, ITEM_PICS_ROOT )
             #
-            print( 'ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()' )
+            if lFiles:
+                #
+                lFiles.sort()
+                #
+                for sFile in lFiles:
+                    #
+                    # print( 'would delete %s' % sFile )
+                    #
+                    # remove( sFile )
+                    #
+                    pass
+                    #
+                #
+                # print( 'KeeperImage.objects.filter(' )
+                # print( '        iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+                #
+                KeeperImage.objects.filter(
+                        iItemNumb = iItemNumb, iUser = oUser ).delete()
+                #
             #
-            # ItemFound.objects.filter( iItemNumb = iItemNumb ).delete()
+            # print( 'Keeper.objects.filter( iItemNumb = iItemNumb ).delete()' )
             #
-            print( 'UserKeeper.objects.filter(' )
-            print( '    iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
             #
-            # UserKeeper.objects.filter(
-            #    iItemNumb = iItemNumb, iUser = oUser ).delete()
+            Keeper.objects.filter( iItemNumb = iItemNumb ).delete()
+            #
+            # print( 'len( qsDumpThese ):', len( qsDumpThese ) )
+            #
+            #
+            UserItemFound.objects.filter(
+                iItemNumb = iItemNumb, iUser = oUser
+                    ).update( bListExclude = True )
             #
         #
-        print( 'Keeper.objects.filter( iItemNumb = iItemNumb ).delete()' )
-        #
-        # Keeper.objects.filter( iItemNumb = iItemNumb ).delete()
-        #
+    #
+    # print( 'UserKeeper.objects.filter(' )
+    # print( '    iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+    #
+    UserKeeper.objects.filter( iItemNumb = iItemNumb, iUser = oUser ).delete()
+    #
 
 
 
