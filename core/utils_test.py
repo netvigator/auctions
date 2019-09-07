@@ -39,6 +39,7 @@ class BaseUserTestPlusCase( TestCasePlus ):
         #
         self.user1 = self.make_user( 'u1' )
         self.user2 = self.make_user( 'u2' )
+        self.user3 = self.make_user( 'u3' )
         #
         self.market  = getDefaultMarket()
         #
@@ -193,14 +194,14 @@ class SetUpBrandsCategoriesModelsMixin( object ):
     #
     '''reuse setup code for WebTest and TestCasePlus '''
     #
-    def setUpBrandsCategoriesModels( self ):
+    def setUpBrandsCategoriesModels( self, oUser ):
         #
         self.oBrand = Brand(
             cTitle      = "Cadillac",
             cLookFor    = "Caddy",
             cExcludeIf  = 'golf',
             iStars      = 5,
-            iUser = self.user1 )
+            iUser       = oUser )
         #
         self.oBrand.save()
         #
@@ -210,9 +211,12 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             cLookFor    = "Gizmo",
             cExcludeIf  = 'Delta',
             iStars      = 5,
-            iUser       = self.user1 )
+            iUser       = oUser )
         self.oCategory.save()
+        #
+        #
         self.CategoryID = self.oCategory.id
+        #
         #
         oModel = Model(
             cTitle      = "601b",
@@ -220,7 +224,7 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iStars      = 5,
             iBrand      = self.oBrand,
             iCategory   = self.oCategory,
-            iUser       = self.user1 )
+            iUser       = oUser )
         oModel.save()
         #
         oModel = Model(
@@ -229,7 +233,7 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iStars      = 5,
             iBrand      = self.oBrand,
             iCategory   = self.oCategory,
-            iUser       = self.user1 )
+            iUser       = oUser )
         oModel.save()
         #
         # overwrite
@@ -242,7 +246,7 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iStars      = 5,
             iBrand      = self.oBrand,
             iCategory   = self.oCategory,
-            iUser       = self.user1 )
+            iUser       = oUser )
         self.oModel.save()
 
 
@@ -256,7 +260,13 @@ class SetUpBrandsCategoriesModelsWebTest(
         #
         super( SetUpBrandsCategoriesModelsWebTest, self ).setUp()
         #
-        self.setUpBrandsCategoriesModels()
+        self.setUpBrandsCategoriesModels( self.user3 )
+        #
+        self.setUpBrandsCategoriesModels( self.user2 )
+        #
+        self.setUpBrandsCategoriesModels( self.user1 )
+        #
+        # putting user1 last saves the user1 records in self
 
 
 class SetUpBrandsCategoriesModelsTestPlus(
@@ -268,7 +278,13 @@ class SetUpBrandsCategoriesModelsTestPlus(
         #
         super( SetUpBrandsCategoriesModelsTestPlus, self ).setUp()
         #
-        self.setUpBrandsCategoriesModels()
+        self.setUpBrandsCategoriesModels( self.user3 )
+        #
+        self.setUpBrandsCategoriesModels( self.user2 )
+        #
+        self.setUpBrandsCategoriesModels( self.user1 )
+        #
+        # putting user1 last saves the user1 records in self
 
 
 
