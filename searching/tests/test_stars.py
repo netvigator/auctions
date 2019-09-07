@@ -1691,7 +1691,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
 
     def test_generic_model_finder_OK( self ):
         #
-        oModel = Model.objects.get( cTitle = '601b' )
+        oModel = Model.objects.get( cTitle = '601b', iUser = self.user1 )
         #
         self.assertIsNotNone( oModel )
         #
@@ -1715,7 +1715,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
 
     def test_model_endswith_digit( self ):
         #
-        oModel = Model.objects.get( cTitle = 'Model 2' )
+        oModel = Model.objects.get( cTitle = 'Model 2', iUser = self.user1 )
         #
         self.assertIsNotNone( oModel )
         #
