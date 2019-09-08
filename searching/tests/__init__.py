@@ -371,7 +371,7 @@ sModels = \
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
- 300B (etched base) | etched\\rengraved | 8 | t         | Western Electric  |  Vacuum Tube |             |
+ 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
  '''
 
