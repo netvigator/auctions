@@ -48,6 +48,8 @@ class BaseUserTestPlusCase( TestCasePlus ):
         self.factory = RequestFactory()
         #
         self.market  = getDefaultMarket()
+        #
+        self.tUsers = ( self.user1, self.user2, self.user3 )
 
 
 
@@ -179,6 +181,8 @@ class BaseUserWebTestCase( WebTest ):
         self.request.user = self.user1
         #
         self.client.login(username ='username1', password='mypassword')
+        #
+        self.tUsers = ( self.user1, self.user2, self.user3 )
         #
 
     def loginWebTest( self, username ='username1', password = 'mypassword' ):
