@@ -1366,12 +1366,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 223562235449
         #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find etched base 300B' )
-        #
         # WESTERN ELECTRIC 300B ENGRAVED BASE TUBE TESTED
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '300B (etched base)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         iThisOne = 264395445356
         #
@@ -1426,7 +1427,9 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         sAuctionTitle = '"Tung-Sol 5881 6L6WG amplifier tube'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertEqual( sInTitle, '6L6WG' )
         #
@@ -1549,33 +1552,41 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertFalse( sInTitle     )
-        self.assertTrue(  bExcludeThis )
+        self.assertTrue(  uExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         foundItem = dFinders[ self.oBrand.pk ]
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         self.assertIn(     self.oBrand.cRegExLook4Title,
                             ( r'Cadillac|\bCaddy\b', r'\bCaddy\b|Cadillac') )
@@ -1595,33 +1606,41 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         sAuctionTitle = 'Gemini Jets 1/200 Delta MD-80 Widget Livery N956DL'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertFalse( sInTitle     )
-        self.assertTrue(  bExcludeThis )
+        self.assertTrue(  uExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertFalse( sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         foundItem = dFinders[ self.oCategory.pk ]
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         self.assertIn(     self.oCategory.cRegExLook4Title,
                                 ( r'\bGizmo\b|Widget', r'Widget|\bGizmo\b' ) )
@@ -1640,40 +1659,50 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         sAuctionTitle = 'Easy Trek, Remote Controlled Caddy by Spin It Golf (Black)'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertFalse( sInTitle     )
-        self.assertTrue(  bExcludeThis )
+        self.assertTrue(  uExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertFalse( sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertFalse( sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         foundItem = dFinders[ self.oModel.pk ]
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertTrue(  sInTitle     )
-        self.assertFalse( bExcludeThis )
+        self.assertFalse( uExcludeThis )
         #
         self.assertIn(     self.oModel.cRegExLook4Title,
                                 ( 'Woodie|Fleetwood', 'Fleetwood|Woodie' ) )
@@ -1704,7 +1733,9 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sAuctionTitle = 'Altec 603 cabinet superb'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertEmpty( sInTitle )
         #
@@ -1728,7 +1759,9 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sAuctionTitle = 'Model 240 amplifier'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertEmpty( sInTitle )
         #
@@ -1739,7 +1772,9 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sAuctionTitle = 'Model 2 amplifier'
         #
-        sInTitle, bExcludeThis = foundItem( sAuctionTitle )
+        t = foundItem( sAuctionTitle )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertEqual( 'Model 2', sInTitle )
         #
