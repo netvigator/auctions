@@ -11,9 +11,8 @@ from django.utils       import timezone
 from core.utils_test    import ( getDefaultMarket,
                                  GetEbayCategoriesWebTestSetUp,
                                  getTableFromScreenCaptureGenerator,
-                                 getNamePositionDict )
-
-from core.utils_test    import TestCasePlus
+                                 getNamePositionDict,
+                                 TestCasePlus )
 
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
@@ -30,13 +29,13 @@ from ..tests            import ( sExampleResponse, sBrands, sModels,
 from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInFinders,
-                                 ItemAlreadyInTable,
                                  _putPageNumbInFileName,
                                  trySearchCatchExceptStoreInFile,
                                  getSearchIdStr,
                                  _storeUserItemFound, _storeItemFound )
 
 from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
+                                 ItemAlreadyInTable,
                                  getPagination, _getFindingResponseGenerator,
                                  getSearchResultGenerator )
 
@@ -361,25 +360,31 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
         #
         class ThisShouldNotBeHappening( Exception ): pass
         #
-        sSearch         = "My clever search 1"
-        self.oSearch    = Search( cTitle= sSearch, iUser = self.user1 )
-        self.oSearch.save()
-        #
-        tNow = timezone.now()
-        #
-        iItemNumb = _storeItemFound( dSearchResult, {} )
-        #
-        if iItemNumb is None:
-            raise ThisShouldNotBeHappening
-        #
-        try:
-            _storeUserItemFound(
-                dSearchResult, iItemNumb, self.user1, self.oSearch.id )
-        except ItemAlreadyInTable:
-            pass
-        #
-        self.iItemNumb  = iItemNumb
-        self.tNow       = tNow
+        for oUser in self.tUsers:
+            #
+            sSearch         = "My clever search 1"
+            self.oSearch    = Search( cTitle= sSearch, iUser = oUser )
+            self.oSearch.save()
+            #
+            tNow = timezone.now()
+            #
+            try:
+                iItemNumb = _storeItemFound( dSearchResult, {} )
+            except ItemAlreadyInTable:
+                iItemNumb = int( dSearchResult['itemId' ] )
+            #
+            if iItemNumb is None:
+                raise ThisShouldNotBeHappening
+            #
+            try:
+                _storeUserItemFound(
+                    dSearchResult, iItemNumb, oUser, self.oSearch.id )
+            except ItemAlreadyInTable:
+                pass
+            #
+            self.iItemNumb  = iItemNumb
+            self.tNow       = tNow
+            #
 
 
 class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
@@ -402,32 +407,33 @@ class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
         #
         iItemNumb   = self.iItemNumb
         #
-        oResultRow = UserItemFound.objects.filter(
-                            iItemNumb   = iItemNumb,
-                            iUser       = self.user1 ).first()
-        #
-        self.assertIsNotNone( oResultRow )
-        #
-        try: # again
-            _storeUserItemFound(
-                dSearchResult, iItemNumb, self.user1, self.oSearch.id )
-        except ItemAlreadyInTable as e:
-            self.assertEqual(
-                    str(e),
-                    'ItemFound %s is already in the UserItemFound table for %s' %
-                    ( iItemNumb, self.user1.username ) )
-        else:
-            self.assertTrue( False ) # exception should have been raised
-        #
-        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-        #
-        oItem = ItemFound.objects.get( iItemNumb   = iItemNumb )
-        #
-        self.assertIsNotNone( oItem )
-        #
-        self.assertIsNotNone( oItem.cGalleryURL )
-        #
-
+        for oUser in self.tUsers:
+            #
+            oResultRow = UserItemFound.objects.filter(
+                                iItemNumb   = iItemNumb,
+                                iUser       = oUser ).first()
+            #
+            self.assertIsNotNone( oResultRow )
+            #
+            try: # again
+                _storeUserItemFound(
+                    dSearchResult, iItemNumb, oUser, self.oSearch.id )
+            except ItemAlreadyInTable as e:
+                self.assertEqual(
+                        str(e),
+                        'ItemFound %s is already in the UserItemFound table for %s' %
+                        ( iItemNumb, oUser.username ) )
+            else:
+                self.assertTrue( False ) # exception should have been raised
+            #
+            #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+            #
+            oItem = ItemFound.objects.get( iItemNumb   = iItemNumb )
+            #
+            self.assertIsNotNone( oItem )
+            #
+            self.assertIsNotNone( oItem.cGalleryURL )
+            #
 
 
 
@@ -544,13 +550,9 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
     storeSearchResultsInFinders() store records '''
     #
 
-    def fRt( self, s ): return s.replace( '\\r', '\r' )
-
     def setUp(self):
         #
         super( GetBrandsCategoriesModelsWebTestSetUp, self ).setUp()
-        #
-        fRt     = self.fRt
         #
         sSearch = "Catalin Radios"
         sKeyWords = 'catalin radio'
@@ -702,8 +704,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oBrand = Brand(
                 cTitle      =      lParts[ d['cTitle'    ] ],
                 iStars      = int( lParts[ d['iStars'    ] ] ),
-                cExcludeIf  = fRt( lParts[ d['cExcludeIf'] ] ),
-                cLookFor    = fRt( lParts[ d['cLookFor'  ] ] ),
+                cExcludeIf  =      lParts[ d['cExcludeIf'] ],
+                cLookFor    =      lParts[ d['cLookFor'  ] ],
                 iUser       = self.user1 )
             #
             oBrand.save()
@@ -784,8 +786,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                 cKeyWords       =       lParts[ d['cKeyWords'     ] ],
                 iStars          = int(  lParts[ d['iStars'        ] ] ),
                 bSubModelsOK    = getB( lParts[ d['bSubModelsOK'  ] ] ),
-                cLookFor        = fRt(  lParts[ d['cLookFor'      ] ] ),
-                cExcludeIf      = fRt(  lParts[ d['cExcludeIf'    ] ] ),
+                cLookFor        =       lParts[ d['cLookFor'      ] ],
+                cExcludeIf      =       lParts[ d['cExcludeIf'    ] ],
                 bGenericModel   = getB( lParts[ d['bGenericModel' ] ] ),
                 bMustHaveBrand  = getB( lParts[ d['bMustHaveBrand'] ] ),
                 iBrand          = oBrand,
