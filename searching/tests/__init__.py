@@ -1,4 +1,3 @@
-
 iRecordStepsForThis = None
 
 
@@ -141,6 +140,7 @@ sModels = \
  6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
