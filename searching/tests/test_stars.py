@@ -578,8 +578,12 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
+        self.assertEqual( oTest.iModel.cTitle, '240' )
         self.assertIsNone( oTest.iBrand )
         self.assertIsNone( oTest.iCategory )
+        #self.assertIsNone( oTest.iModel )
+        #self.assertEqual( oTest.iBrand.cTitle, 'Marantz' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #
         #
         iThisOne = 163199461416 # keep this
@@ -1139,6 +1143,8 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertIsNone( oTest.iBrand )
         self.assertIsNone( oTest.iCategory )
         #
+        #
+        #
         iThisOne = 312436313310
         #
         self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
@@ -1361,6 +1367,17 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find ALTEC N-500-C NETWORK CROSSOVER w/803B WOOFER' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '803B (horn)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-500B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
         #
         #
         #
@@ -1377,10 +1394,17 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         iThisOne = 264395445356
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should not find TV-7' )
         #
         # 2 RCA Type 83 JAN mil grade rectifier tubes.For Hickok,TV-7 tube testers
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '83' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
         #
         #
         #
