@@ -1,5 +1,5 @@
 from copy                   import copy
-
+from pprint                 import pprint
 
 from collections            import OrderedDict
 
@@ -26,7 +26,8 @@ from pyPks.File.Write       import QuickDumpLines
 
 from pyPks.String.Count     import getAlphaNumCount as getLen
 from pyPks.String.Get       import getTextBeforeC
-from pyPks.String.Find      import getRegExpress, getRegExObj, oFinderCRorLF
+from pyPks.String.Find      import getRegExpress, getRegExObj
+from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Output    import ReadableNo
 
 SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
@@ -44,14 +45,16 @@ else:
 
 
 _oDropAfterThisFinder = getRegExObj(
-        r' (?:\bfor\b|'
-            r'\bfits\b|'
-            r'\btests*\b|'
-            r'\btested (?:on|with)\b|'
-            r'\bfrom\b)|'
-            r'\bused (?:with|in)\b|'
-            r'\bsame as\b|'
-            r'\bsimilar to\b' ) # formerly oForFitsFinder
+    '(?<=[\W.,!?:;])'  # look back for this if u find any of the following
+    '(?:'              # non grouping (saves CPU ticks)
+        r'for\b|'
+        r'fits\b|'
+        r'tests*\b|'
+        r'tested (?:on|with)\b|'
+        r'from\b|'
+        r'used (?:with|in|on)\b|'
+        r'same as\b|'
+        r'similar to\b)' ) # formerly oForFitsFinder
 
 
 def _getRelevantTitle( sTitle ):
@@ -62,8 +65,9 @@ def _getRelevantTitle( sTitle ):
 
 def _getTitleRegExress(
             oTableRow,
-            bAddDash     = False,
-            bPluralize   = False ):
+            bAddDash        = False,
+            bPluralize      = False,
+            bExplainVerbose = False ):
     #
     '''gets the RegEx expression for title + look for
     (comibines title & look for into one RegEx expression)'''
@@ -100,21 +104,29 @@ def _getTitleRegExress(
         #
         sLookFor = oTableRow.cLookFor.strip()
         #
-        sRegExpress = '|'.join( (   sRegExpress,
-                                    getRegExpress(
-                                        sLookFor,
-                                        bAddDash       = bAddDash,
-                                        bSubModelsOK   = False,
-                                        iWordBoundChrs = WORD_BOUNDARY_MAX ) ) )
+        sLook4Express = getRegExpress(
+                                sLookFor,
+                                bAddDash       = bAddDash,
+                                bSubModelsOK   = False,
+                                iWordBoundChrs = WORD_BOUNDARY_MAX )
         #
+        sRegExpress = '|'.join( ( sRegExpress, sLook4Express ) )
+        #
+        #if bExplainVerbose:
+            #print('')
+            #print('sLookFor:', sLookFor)
+            #print('sLook4Express:', sLook4Express)
     #
     return sRegExpress
 
 
 
+
+
 def _getRowRegExpressions( oTableRow,
-                           bAddDash     = False,
-                           bPluralize   = False ):
+                           bAddDash         = False,
+                           bPluralize       = False,
+                           bExplainVerbose  = False ):
     #
     '''if the row already has RegEx expressions stored, returns them;
     otherwise, generate the RegEx expressions, store them in the row,
@@ -129,8 +141,9 @@ def _getRowRegExpressions( oTableRow,
     if not oTableRow.cRegExLook4Title:
         #
         sFindTitle = _getTitleRegExress( oTableRow,
-                                         bAddDash     = bAddDash,
-                                         bPluralize   = bPluralize )
+                                         bAddDash        = bAddDash,
+                                         bPluralize      = bPluralize,
+                                         bExplainVerbose = bExplainVerbose )
         #
         oTableRow.cRegExLook4Title = sFindTitle
         #
@@ -153,6 +166,10 @@ def _getRowRegExpressions( oTableRow,
             #
             bAnyUpdates = True
             #
+            #if 'etched' in oTableRow.cExcludeIf:
+                #print('')
+                #print( 'sFindKeyWords:', sFindKeyWords )
+            #
         else:
             #
             sFindKeyWords = oTableRow.cRegExKeyWords
@@ -162,9 +179,9 @@ def _getRowRegExpressions( oTableRow,
     if oTableRow.cExcludeIf and not oTableRow.cRegExExclude:
         #
         sFindExclude = getRegExpress(
-                        oTableRow.cExcludeIf,
-                        iWordBoundChrs  = WORD_BOUNDARY_MAX,
-                        bEscBegEndOfStr = False )
+                            oTableRow.cExcludeIf,
+                            iWordBoundChrs  = WORD_BOUNDARY_MAX,
+                            bEscBegEndOfStr = False )
         #
         oTableRow.cRegExExclude   = sFindExclude
         #
@@ -190,6 +207,7 @@ def _getRowRegExpressions( oTableRow,
 def _getRegExSearchOrNone( s ):
     #
     if s:
+        #
         oRegExObj = getRegExObj( s )
         #
         return oRegExObj.search
@@ -211,19 +229,27 @@ def getInParens( s ):
     return uReturn
 
 
+
 def _getRegExObjOrNone( s ):
     #
     if s:
+        #
         oRegExObj = getRegExObj( s )
         #
         return oRegExObj
 
 
 
-
-def _includeNotExclude( s, findExclude ):
+def _includeOrExclude( s, findExclude ):
     #
-    return findExclude is None or not findExclude( s )
+    if findExclude is None:
+        #
+        return False
+        #
+    else:
+        #
+        return findExclude( s )
+
 
 def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
     #
@@ -231,9 +257,10 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
 
 
 def getFoundItemTester( oTableRow, dFinders,
-                        bAddDash     = False,
-                        bSubModelsOK = False,
-                        bPluralize   = False):
+                        bAddDash        = False,
+                        bSubModelsOK    = False,
+                        bPluralize      = False,
+                        bExplainVerbose = False ):
     #
     ''' pass model row instance, returns tester '''
     #
@@ -243,11 +270,13 @@ def getFoundItemTester( oTableRow, dFinders,
         #
     else:
         #
-        t = _getRowRegExpressions( oTableRow,
-                                   bAddDash     = bAddDash,
-                                   bPluralize   = bPluralize )
+        tOrig = _getRowRegExpressions(
+                        oTableRow,
+                        bAddDash        = bAddDash,
+                        bPluralize      = bPluralize,
+                        bExplainVerbose = bExplainVerbose )
         #
-        t = tuple( map( _getRegExObjOrNone, t ) )
+        t = tuple( map( _getRegExObjOrNone, tOrig ) )
         #
         findTitle, findExclude, findKeyWords = t
         #
@@ -257,7 +286,7 @@ def getFoundItemTester( oTableRow, dFinders,
         if findExclude  is not None: searchExclude   = findExclude.search
         if findKeyWords is not None: searchKeyWords  = findKeyWords.search
         #
-        def foundItemTester( s ):
+        def foundItemTester( s, bExplainVerbose = False ):
             #
             sFoundInTitle = ''
             #
@@ -265,17 +294,28 @@ def getFoundItemTester( oTableRow, dFinders,
             #
             if oTitleMatch: sFoundInTitle = oTitleMatch.group(0)
             #
-            bIncludeThis = _includeNotExclude( s, searchExclude )
+            uExcludeThis = _includeOrExclude( s, searchExclude )
+            #
+            #if bExplainVerbose:
+                #print('')
+                #print('sFoundInTitle:', sFoundInTitle )
+                #print('findTitle:', findTitle )
+                #print('findTitle.pattern:', findTitle.pattern )
+                #print('oTableRow.cLookFor:', oTableRow.cLookFor )
+                # print('oTableRow.cExcludeIf:', oTableRow.cExcludeIf )
+                #
+            #
+            uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
             #
             if (    sFoundInTitle and
-                    bIncludeThis and
-                    _gotKeyWordsOrNoKeyWords( s, searchKeyWords ) ):
+                    uGotKeyWordsOrNoKeyWords and
+                    not uExcludeThis ):
                 #
-                return sFoundInTitle, not bIncludeThis
+                return sFoundInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis
                 #
             else:
                 #
-                return '', not bIncludeThis
+                return '', uGotKeyWordsOrNoKeyWords, uExcludeThis
                 #
             #
         #
@@ -560,14 +600,17 @@ def findSearchHits(
             # and the string will not be searched
             # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
             #
-            sInTitle, bExcludeThis = foundItem( sRelevantTitle )
+            t = foundItem( sRelevantTitle )
             #
-            if bExcludeThis:
+            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
+            #
+            if uExcludeThis:
                 #
                 if bRecordSteps:
                     #
                     _appendIfNotAlreadyIn(
-                            lCategories, 'excluded: %s' % oCategory.cTitle )
+                            lCategories, 'excluded: %s cuz found %s' %
+                            ( oCategory.cTitle, uExcludeThis ) )
                     #
                 #
                 continue
@@ -654,22 +697,28 @@ def findSearchHits(
         #
         for oModel in qsModels:
             #
+            bExplainVerbose = False and oModel.cTitle == '2'
+            #
             foundItem = getFoundItemTester(
                             oModel,
                             dFindersModels,
                             bAddDash = True,
-                            bSubModelsOK = oModel.bSubModelsOK )
+                            bSubModelsOK = oModel.bSubModelsOK,
+                            bExplainVerbose = bExplainVerbose )
             #
             bFoundCategoryForModel = False
             #
-            sInTitle, bExcludeThis = foundItem( sRelevantTitle )
+            t = foundItem( sRelevantTitle, bExplainVerbose )
             #
-            if bExcludeThis:
+            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
+            #
+            if uExcludeThis:
                 #
                 if bRecordSteps:
                     #
                     _appendIfNotAlreadyIn(
-                            lModels, 'excluded: %s' % oModel.cTitle )
+                            lModels, 'excluded: %s cuz found %s' %
+                            ( oModel.cTitle, uExcludeThis ) )
                     #
                 #
                 continue
@@ -679,7 +728,17 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    if sInTitle == oModel.cTitle:
+                    if (    uGotKeyWordsOrNoKeyWords and
+                            type( uGotKeyWordsOrNoKeyWords ) is not bool ):
+                        #
+                        _appendIfNotAlreadyIn( lModels,
+                                'for model "%s", "%s" is in title '
+                                'and have key word(s) "%s"' %
+                                (   oModel.cTitle,
+                                    sInTitle,
+                                    uGotKeyWordsOrNoKeyWords.group(0)) )
+                        #
+                    elif sInTitle == oModel.cTitle:
                         #
                         _appendIfNotAlreadyIn(
                                 lModels, 'model %s (category %s) in title' %
@@ -898,14 +957,17 @@ def findSearchHits(
             #
             bFoundBrandForModel = False
             #
-            sInTitle, bExcludeThis = foundItem( sRelevantTitle )
+            t = foundItem( sRelevantTitle )
             #
-            if bExcludeThis:
+            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
+            #
+            if uExcludeThis:
                 #
                 if bRecordSteps:
                     #
                     _appendIfNotAlreadyIn(
-                            lBrands, 'excluded: %s' % oBrand.cTitle )
+                            lBrands, 'excluded: %s cuz found %s' %
+                            ( oBrand.cTitle, uExcludeThis ) )
                     #
                 #
                 continue
