@@ -1369,15 +1369,15 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '803B (horn)' )
+        self.assertIn(    oTest.iModel.cTitle, ( '803B (horn)', 'N-500B' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        self.assertIn(    oTest.iCategory.cTitle, ( 'Horn', 'Crossover' ) )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'N-500B' )
+        self.assertIn(    oTest.iModel.cTitle, ( '803B (horn)', 'N-500B' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        self.assertIn(    oTest.iCategory.cTitle, ( 'Horn', 'Crossover' ) )
         #
         #
         #
@@ -1437,7 +1437,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
 
     def test_sub_models_OK_finder( self ):
         #
-        oModel = Model.objects.get( cTitle = '6L6WGB' )
+        oModel = Model.objects.get( cTitle = '6L6WGB', iUser = self.user1 )
         #
         self.assertIsNotNone( oModel )
         #
