@@ -9,7 +9,8 @@ from core.dj_import     import ET # xml.etree.ElementTree
 from core.dj_import     import ObjectDoesNotExist
 
 from core.utils         import ( getNamerSpacer,
-                                 getDownloadFileWriteToDisk )
+                                 getDownloadFileWriteToDisk,
+                                 getBegTime, sayDuration )
 
 from psycopg2           import OperationalError
 
@@ -683,6 +684,27 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
         #
     #
     return iCatHeirarchy, i2ndCatHeirarchy
+
+
+
+
+def getCategoryListsUpdated( bConsoleOut = False ):
+    #
+    tBeg = getBegTime( bConsoleOut )
+    #
+    lNeedUpdates = getWhetherAnyEbayCategoryListsAreUpdated()
+    #
+    for d in lNeedUpdates:
+        #
+        getCategoryListThenStore(
+                uMarket         = d['iSiteID'],
+                uWantVersion    = d['iEbayHas'],
+                bShowProgress   = bConsoleOut )
+    #
+    #
+    if bConsoleOut:
+        #
+        sayDuration( tBeg )
 
 
 
