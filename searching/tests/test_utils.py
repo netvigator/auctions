@@ -554,353 +554,370 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
         #
         super( GetBrandsCategoriesModelsWebTestSetUp, self ).setUp()
         #
-        sSearch = "Catalin Radios"
-        sKeyWords = 'catalin radio'
-        #
-        if Search.objects.filter( cKeyWords = sKeyWords ).exists():
+        for oUser in self.tUsers:
             #
-            self.oCatalinSearch = Search.objects.get(
-                                    cKeyWords = sKeyWords ).first()
+            sSearch = "Catalin Radios"
+            sKeyWords = 'catalin radio'
             #
-        else:
-            #
-            self.oCatalinSearch = Search(
-                            cTitle      = sSearch,
-                            cKeyWords   = sKeyWords,
-                            iUser       = self.user1 )
-            #
-            self.oCatalinSearch.save()
-            #
-        #
-        sSearch         = 'Tube Preamps'
-        iEbayCategory   = 67807
-        #
-        if Search.objects.filter( cTitle = sSearch ).exists():
-            #
-            self.oPreampSearch = Search.objects.get(
-                                    cTitle = sSearch ).first()
-            #
-        else:
-            #
-            oEbayCateID = EbayCategory.objects.get(
-                    name = 'Vintage Preamps & Tube Preamps' )
-            #
-            self.oPreampSearch = Search(
-                            cTitle          = sSearch,
-                            iEbayCategory   = oEbayCateID,
-                            iUser           = self.user1 )
-            #
-            self.oPreampSearch.save()
-            #
-        #
-        oCategory   = Category( cTitle      = 'Radio',
-                                iStars      = 9,
-                                cExcludeIf  = 'reproduction',
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        #
-        oCategory   = Category( cTitle      = 'Preamp',
-                                iStars      = 9,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        #
-        oCategory   = Category( cTitle      = 'Vacuum Tube',
-                                cLookFor    = 'tube\rtubes\rVintage Tubes',
-                                cExcludeIf  = 'tube radio\rtube clock radio\rtube portable radio',
-                                iStars      = 6,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oVacuumTubes = oCategory
-        #
-        oCategory   = Category( cTitle      = 'Book',
-                                cLookFor    = 'tube\rtubes',
-                                cExcludeIf  = 'book shelf\rdigital',
-                                iStars      = 5,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Speaker System',
-                                cLookFor    = 'speaker',
-                                iStars      = 9,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oSpeakerSystem = oCategory
-        #
-        oCategory.iFamily_id                = oCategory.id
-        #
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Driver',
-                                cLookFor    = 'speaker\rdrive\rwoofer',
-                                iStars      = 8,
-                                iFamily_id  = oSpeakerSystem.id,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Crossover',
-                                iStars      = 7,
-                                cLookFor    = 'X-Over\rdividing network\rxover',
-                                iFamily_id  = oSpeakerSystem.id,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Amplifier',
-                                cLookFor    = 'amp',
-                                cExcludeIf  = 'Table Radio\rPre-amplifier\r'
-                                              'Pre-amp\rFuse Holder\rCapacitor',
-                                iStars      = 10,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Horn',
-                                iStars      = 6,
-                                iFamily_id  = oSpeakerSystem.id,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Tuner',
-                                iStars      = 8,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Tube Tester',
-                                iStars      = 8,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Choke',
-                                cLookFor    = 'crossover',
-                                iStars      = 7,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category(
-                cTitle      = 'Speaker Enclosure',
-                cLookFor    = 'Enclosure\rcabinet\rspeaker cabinet',
-                iStars      = 7,
-                iFamily_id  = oSpeakerSystem.id,
-                iUser       = self.user1 )
-        oCategory.save()
-        #
-        oCategory   = Category( cTitle      = 'Accessory',
-                                cLookFor    = 'adaptor\radapter',
-                                iStars      = 5,
-                                iUser       = self.user1 )
-        oCategory.save()
-        #
-        #
-        oTableIter = getTableFromScreenCaptureGenerator( sBrands )
-        #
-        lHeader = next( oTableIter )
-        #
-        d = getNamePositionDict( lHeader )
-        #
-        for lParts in oTableIter:
-            #
-            oBrand = Brand(
-                cTitle      =      lParts[ d['cTitle'    ] ],
-                iStars      = int( lParts[ d['iStars'    ] ] ),
-                cExcludeIf  =      lParts[ d['cExcludeIf'] ],
-                cLookFor    =      lParts[ d['cLookFor'  ] ],
-                iUser       = self.user1 )
-            #
-            oBrand.save()
-            #
-        #
-        oTableIter = getTableFromScreenCaptureGenerator( sModels )
-        #
-        lHeader = next( oTableIter )
-        #
-        d = getNamePositionDict( lHeader )
-        #
-        iHeaderLen = len( lHeader )
-        #
-        for lParts in oTableIter:
-            #
-            if len( lParts ) < iHeaderLen:
+            if Search.objects.filter(
+                    cKeyWords = sKeyWords,
+                    iUser = oUser ).exists():
                 #
-                lRest = lHeader[ len( lParts ) : ]
+                self.oCatalinSearch = Search.objects.filter(
+                                        cKeyWords = sKeyWords,
+                                        iUser = oUser ).first()
                 #
-                for sHead in lRest:
+            else:
+                #
+                self.oCatalinSearch = Search(
+                                cTitle      = sSearch,
+                                cKeyWords   = sKeyWords,
+                                iUser       = oUser )
+                #
+                self.oCatalinSearch.save()
+                #
+            #
+            sSearch         = 'Tube Preamps'
+            iEbayCategory   = 67807
+            #
+            if Search.objects.filter(
+                    cTitle = sSearch,
+                    iUser = oUser  ).exists():
+                #
+                self.oPreampSearch = Search.objects.filter(
+                                        cTitle = sSearch,
+                                        iUser = oUser ).first()
+                #
+            else:
+                #
+                oEbayCateID = EbayCategory.objects.get(
+                        name = 'Vintage Preamps & Tube Preamps' )
+                #
+                self.oPreampSearch = Search(
+                                cTitle          = sSearch,
+                                iEbayCategory   = oEbayCateID,
+                                iUser           = oUser )
+                #
+                self.oPreampSearch.save()
+                #
+            #
+            oCategory   = Category( cTitle      = 'Radio',
+                                    iStars      = 9,
+                                    cExcludeIf  = 'reproduction',
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            #
+            oCategory   = Category( cTitle      = 'Preamp',
+                                    iStars      = 9,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            #
+            oCategory   = Category( cTitle      = 'Vacuum Tube',
+                                    cLookFor    = 'tube\rtubes\rVintage Tubes',
+                                    cExcludeIf  = 'tube radio\rtube clock radio\rtube portable radio',
+                                    iStars      = 6,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oVacuumTubes = oCategory
+            #
+            oCategory   = Category( cTitle      = 'Book',
+                                    cLookFor    = 'tube\rtubes',
+                                    cExcludeIf  = 'book shelf\rdigital',
+                                    iStars      = 5,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Speaker System',
+                                    cLookFor    = 'speaker',
+                                    iStars      = 9,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oSpeakerSystem = oCategory
+            #
+            oCategory.iFamily_id                = oCategory.id
+            #
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Driver',
+                                    cLookFor    = 'speaker\rdrive\rwoofer',
+                                    iStars      = 8,
+                                    iFamily_id  = oSpeakerSystem.id,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Crossover',
+                                    iStars      = 7,
+                                    cLookFor    = 'X-Over\rdividing network\rxover',
+                                    iFamily_id  = oSpeakerSystem.id,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Amplifier',
+                                    cLookFor    = 'amp',
+                                    cExcludeIf  = 'Table Radio\rPre-amplifier\r'
+                                                'Pre-amp\rFuse Holder\rCapacitor',
+                                    iStars      = 10,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Horn',
+                                    iStars      = 6,
+                                    iFamily_id  = oSpeakerSystem.id,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Tuner',
+                                    iStars      = 8,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Tube Tester',
+                                    iStars      = 8,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Choke',
+                                    cLookFor    = 'crossover',
+                                    iStars      = 7,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oCategory   = Category(
+                    cTitle      = 'Speaker Enclosure',
+                    cLookFor    = 'Enclosure\rcabinet\rspeaker cabinet',
+                    iStars      = 7,
+                    iFamily_id  = oSpeakerSystem.id,
+                    iUser       = oUser )
+            #
+            oCategory.save()
+            #
+            oCategory   = Category( cTitle      = 'Accessory',
+                                    cLookFor    = 'adaptor\radapter',
+                                    iStars      = 5,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            #
+            oTableIter = getTableFromScreenCaptureGenerator( sBrands )
+            #
+            lHeader = next( oTableIter )
+            #
+            d = getNamePositionDict( lHeader )
+            #
+            for lParts in oTableIter:
+                #
+                oBrand = Brand(
+                    cTitle      =      lParts[ d['cTitle'    ] ],
+                    iStars      = int( lParts[ d['iStars'    ] ] ),
+                    cExcludeIf  =      lParts[ d['cExcludeIf'] ],
+                    cLookFor    =      lParts[ d['cLookFor'  ] ],
+                    iUser       = oUser )
+                #
+                oBrand.save()
+                #
+            #
+            oTableIter = getTableFromScreenCaptureGenerator( sModels )
+            #
+            lHeader = next( oTableIter )
+            #
+            d = getNamePositionDict( lHeader )
+            #
+            iHeaderLen = len( lHeader )
+            #
+            for lParts in oTableIter:
+                #
+                if len( lParts ) < iHeaderLen:
                     #
-                    if sHead.startswith( 'b' ):
+                    lRest = lHeader[ len( lParts ) : ]
+                    #
+                    for sHead in lRest:
                         #
-                        lParts.append( 'f' ) # for getBoolOffYesNoTrueFalse()
+                        if sHead.startswith( 'b' ):
+                            #
+                            lParts.append( 'f' ) # for getBoolOffYesNoTrueFalse()
+                            #
+                        else:
+                            #
+                            lParts.append( '' )
+                            #
+                        #
+                    #
+                #
+                sBrand    = lParts[ d['Brand'   ] ]
+                sCategory = lParts[ d['Category'] ]
+                #
+                if sBrand:
+                    #
+                    bHaveBrand = Brand.objects.filter(
+                                    cTitle = sBrand,
+                                    iUser = oUser ).exists()
+                    #
+                    if bHaveBrand:
+                        #
+                        oBrand = Brand.objects.filter(
+                                    cTitle = sBrand,
+                                    iUser = oUser )
+                        #
+                        if len( oBrand ) > 1:
+                            print( '' )
+                            print( 'got more than one brand %s' % sBrand )
+                        #
+                        oBrand = oBrand.first()
                         #
                     else:
                         #
-                        lParts.append( '' )
-                        #
-                    #
-                #
-            #
-            sBrand    = lParts[ d['Brand'   ] ]
-            sCategory = lParts[ d['Category'] ]
-            #
-            if sBrand:
-                #
-                bHaveBrand = Brand.objects.filter( cTitle = sBrand ).exists()
-                #
-                if bHaveBrand:
-                    #
-                    oBrand = Brand.objects.filter( cTitle = sBrand )
-                    #
-                    if len( oBrand ) > 1:
                         print( '' )
-                        print( 'got more than one brand %s' % sBrand )
+                        print( 'do not have brand %s' % sBrand )
+                        oBrand = None
+                        #
+                else: # not sBrand, blank, generic model
                     #
-                    oBrand = oBrand.first()
-                    #
-                else:
-                    #
-                    print( '' )
-                    print( 'do not have brand %s' % sBrand )
                     oBrand = None
                     #
-            else: # not sBrand, blank, generic model
                 #
-                oBrand = None
+                try:
+                    oCategory = Category.objects.get(
+                                    cTitle = sCategory,
+                                    iUser = oUser )
+                except ObjectDoesNotExist:
+                    if sCategory and sBrand:
+                        print( 'not finding category %s for %s!' %
+                            ( sCategory, sBrand ) )
+                    elif sBrand:
+                        print(
+                            "need a category but ain't got one! (do got brand %s)" % sBrand )
+                    else:
+                        print(
+                            "supposed to have a brand & category here "
+                            "but ain't got nothin!" )
+                    raise
+                #
+                oModel = Model(
+                    cTitle          =       lParts[ d['cTitle'        ] ],
+                    cKeyWords       =       lParts[ d['cKeyWords'     ] ],
+                    iStars          = int(  lParts[ d['iStars'        ] ] ),
+                    bSubModelsOK    = getB( lParts[ d['bSubModelsOK'  ] ] ),
+                    cLookFor        =       lParts[ d['cLookFor'      ] ],
+                    cExcludeIf      =       lParts[ d['cExcludeIf'    ] ],
+                    bGenericModel   = getB( lParts[ d['bGenericModel' ] ] ),
+                    bMustHaveBrand  = getB( lParts[ d['bMustHaveBrand'] ] ),
+                    iBrand          = oBrand,
+                    iCategory       = oCategory,
+                    iUser           = oUser )
+                #
+                oModel.save()
                 #
             #
-            try:
-                oCategory = Category.objects.get( cTitle = sCategory )
-            except ObjectDoesNotExist:
-                if sCategory and sBrand:
-                    print( 'not finding category %s for %s!' %
-                        ( sCategory, sBrand ) )
-                elif sBrand:
-                    print(
-                        "need a category but ain't got one! (do got brand %s)" % sBrand )
-                else:
-                    print(
-                        "supposed to have a brand & category here "
-                        "but ain't got nothin!" )
-                raise
+            oBrand = Brand.objects.get( cTitle = 'GE', iUser = oUser )
             #
-            oModel = Model(
-                cTitle          =       lParts[ d['cTitle'        ] ],
-                cKeyWords       =       lParts[ d['cKeyWords'     ] ],
-                iStars          = int(  lParts[ d['iStars'        ] ] ),
-                bSubModelsOK    = getB( lParts[ d['bSubModelsOK'  ] ] ),
-                cLookFor        =       lParts[ d['cLookFor'      ] ],
-                cExcludeIf      =       lParts[ d['cExcludeIf'    ] ],
-                bGenericModel   = getB( lParts[ d['bGenericModel' ] ] ),
-                bMustHaveBrand  = getB( lParts[ d['bMustHaveBrand'] ] ),
-                iBrand          = oBrand,
-                iCategory       = oCategory,
-                iUser           = self.user1 )
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
             #
-            oModel.save()
+            oBrandCategory.save()
             #
-        #
-        oBrand = Brand.objects.get( cTitle = 'GE' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'RCA' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Philips' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Tung-Sol' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Mullard' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Mazda' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Raytheon' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Sylvania' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Marconi' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Matsushita' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
-        oBrand = Brand.objects.get( cTitle = 'Westinghouse' )
-        #
-        oBrandCategory = BrandCategory(
-                                iBrand      = oBrand,
-                                iCategory   = oVacuumTubes,
-                                iUser       = self.user1 )
-        #
-        oBrandCategory.save()
-        #
+            oBrand = Brand.objects.get( cTitle = 'RCA', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Philips', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Tung-Sol', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Mullard', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Mazda', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Raytheon', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Sylvania', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Marconi', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Matsushita', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Westinghouse', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
 
 
     def test_generic_model_OK( self ):
         #
-        oModel = Model.objects.get( cTitle = '6L6WGB' )
+        oModel = Model.objects.get(
+                        cTitle = '6L6WGB',
+                        iUser  = self.user1 )
         #
         self.assertTrue( oModel.bGenericModel )
 
