@@ -73,50 +73,58 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         #
         super( PutSearchResultsInDatabaseWebTest, self ).setUp()
         #
-        self.sExampleFile = (
-            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-            ( 'EBAY-US',
-              self.user1.username,
-              getSearchIdStr( self.oSearch.id ),
-              '000' ) )
+        self.dExampleFiles = {}
         #
-        #print( 'will DeleteIfExists' )
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
-        #
-        #print( 'will QuietDump' )
-        QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, self.sExampleFile )
-        #
-        try:
-            t = ( storeSearchResultsInFinders(
-                            self.oSearchLog.id,
-                            self.sMarket,
-                            self.user1.username,
-                            self.oSearch.id,
-                            self.oSearch.cTitle,
-                            self.setTestCategories ) )
+        for oUser in self.tUsers:
             #
-        except JSONDecodeError:
+            sExampleFile = (
+                RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( 'EBAY-US',
+                oUser.username,
+                getSearchIdStr( self.oSearch.id ),
+                '000' ) )
             #
-            print('')
-            print(  '### maybe a new item title has a quote '
-                    'but only a single backslash ###' )
+            self.dExampleFiles[ oUser.id ] = sExampleFile
             #
-            raise
+            #print( 'will DeleteIfExists' )
+            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
             #
-        #
-        iCountItems, iStoreItems, iStoreUsers = t
-        #
-        iTempItems = ItemFoundTemp.objects.all().count()
-        iItemFound = ItemFound.objects.all().count()
-        #
-        # bCleanUpAfterYourself must be False or tests will fail!
-        #
-        #print( '\n' )
-        #print( 'setting up KeyWordFindSearchHitsTests' )
+            #print( 'will QuietDump' )
+            QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
+            #
+            try:
+                t = ( storeSearchResultsInFinders(
+                                self.oSearchLog.id,
+                                self.sMarket,
+                                oUser.username,
+                                self.oSearch.id,
+                                self.oSearch.cTitle,
+                                self.setTestCategories ) )
+                #
+            except JSONDecodeError:
+                #
+                print('')
+                print(  '### maybe a new item title has a quote '
+                        'but only a single backslash ###' )
+                #
+                raise
+                #
+            #
+            #iCountItems, iStoreItems, iStoreUsers = t
+            #
+            #iTempItems = ItemFoundTemp.objects.all().count()
+            #iItemFound = ItemFound.objects.all().count()
+            #
+            # bCleanUpAfterYourself must be False or tests will fail!
+            #
+            #print( '\n' )
+            #print( 'setting up KeyWordFindSearchHitsTests' )
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        for sExampleFile in self.dExampleFiles.values():
+            #
+            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
 
 
 
