@@ -694,13 +694,26 @@ def getCategoryListsUpdated( bConsoleOut = False ):
     #
     lNeedUpdates = getWhetherAnyEbayCategoryListsAreUpdated()
     #
+    if lNeedUpdates:
+        #
+        print('')
+        print('Need updates for:')
+        #
+        for d in lNeedUpdates:
+            #
+            print('  %s' % dSiteID2Market[ d['iSiteID'] ] )
+            #
+        #
+        print('')
+        #
+    #
     for d in lNeedUpdates:
         #
         getCategoryListThenStore(
                 uMarket         = d['iSiteID'],
                 uWantVersion    = d['iEbayHas'],
                 bShowProgress   = bConsoleOut )
-    #
+        #
     #
     if bConsoleOut:
         #
