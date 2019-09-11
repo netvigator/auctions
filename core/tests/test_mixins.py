@@ -400,7 +400,9 @@ class EditingTitleShouldBlankFinder( SetUpBrandsCategoriesModelsWebTest ):
         #
         foundItem = getFoundItemTester( self.oBrand, dFinders )
         #
-        bInTitle, bExcludeThis = foundItem( self.oBrand.cTitle )
+        t = foundItem( self.oBrand.cTitle )
+        #
+        # sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
         #
         self.assertIn( self.oBrand.cRegExLook4Title,
                             ( r'Cadillac|\bCaddy\b', r'\bCaddy\b|Cadillac') )
