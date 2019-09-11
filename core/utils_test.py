@@ -49,7 +49,9 @@ class BaseUserTestPlusCase( TestCasePlus ):
         #
         self.market  = getDefaultMarket()
         #
-        self.tUsers = ( self.user1, self.user2, self.user3 )
+        self.tUsers = ( self.user3, self.user2, self.user1 )
+        #
+        # putting user1 last saves the user1 records in self
 
 
 
@@ -182,7 +184,9 @@ class BaseUserWebTestCase( WebTest ):
         #
         self.client.login(username ='username1', password='mypassword')
         #
-        self.tUsers = ( self.user1, self.user2, self.user3 )
+        # putting user1 last saves the user1 records in self
+        #
+        self.tUsers = ( self.user3, self.user2, self.user1 )
         #
 
     def loginWebTest( self, username ='username1', password = 'mypassword' ):
@@ -198,6 +202,17 @@ class SetUpBrandsCategoriesModelsMixin( object ):
     #
     '''reuse setup code for WebTest and TestCasePlus '''
     #
+    def setUp(self):
+        #
+        super( SetUpBrandsCategoriesModelsMixin, self ).setUp()
+        #
+        for oUser in self.tUsers:
+            #
+            self.setUpBrandsCategoriesModels( oUser )
+            #
+            # putting user1 last saves the user1 records in self
+
+
     def setUpBrandsCategoriesModels( self, oUser ):
         #
         self.oBrand = Brand(
@@ -255,6 +270,8 @@ class SetUpBrandsCategoriesModelsMixin( object ):
 
 
 
+
+
 class SetUpBrandsCategoriesModelsWebTest(
             SetUpBrandsCategoriesModelsMixin, BaseUserWebTestCase ):
 
@@ -264,13 +281,9 @@ class SetUpBrandsCategoriesModelsWebTest(
         #
         super( SetUpBrandsCategoriesModelsWebTest, self ).setUp()
         #
-        self.setUpBrandsCategoriesModels( self.user3 )
-        #
-        self.setUpBrandsCategoriesModels( self.user2 )
-        #
-        self.setUpBrandsCategoriesModels( self.user1 )
-        #
         # putting user1 last saves the user1 records in self
+        #
+
 
 
 class SetUpBrandsCategoriesModelsTestPlus(
@@ -282,13 +295,8 @@ class SetUpBrandsCategoriesModelsTestPlus(
         #
         super( SetUpBrandsCategoriesModelsTestPlus, self ).setUp()
         #
-        self.setUpBrandsCategoriesModels( self.user3 )
-        #
-        self.setUpBrandsCategoriesModels( self.user2 )
-        #
-        self.setUpBrandsCategoriesModels( self.user1 )
-        #
         # putting user1 last saves the user1 records in self
+        #
 
 
 
