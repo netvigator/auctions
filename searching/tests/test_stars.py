@@ -1407,6 +1407,28 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 352786860975
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find AR-2 & AR-2ax' )
+        #
+        #
+        #
+        iThisOne = 183953915448
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should should be local pickup only' )
+        #
+        #
+        iThisOne = 183952461011
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should should NOT be local pickup only' )
+        #
+        #
         #
         if False:
             #
