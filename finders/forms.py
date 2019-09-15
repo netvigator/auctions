@@ -85,7 +85,8 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
         #
         self.fields['gModel'].required = False
         #
-        if self.instance.iModel.bGenericModel:
+        # model could be None
+        if self.instance.iModel and self.instance.iModel.bGenericModel:
             #
             self.fields['gModel'].initial = self.instance.iModel_id
             #
