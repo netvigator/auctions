@@ -337,6 +337,11 @@ def _putCategoriesInDatabase(
         #
         oMarket.save()
         #
+        # list is updated, must redo store hierarchies
+        #
+        CategoryHierarchy.objects.filter( iEbaySiteID = oMarket ).delete()
+        #
+        #
     except OperationalError: # downloaded file not complete!
         #
         sMessage = 'ebay categories file %s is incomplete!' % sFile
