@@ -17,8 +17,8 @@ from core.utils_test    import ( getDefaultMarket,
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 
-from ebayinfo.tests.test_utils import LiveTestPutMarketsInDatabaseTest
-#
+from ebayinfo.tests.test_utils import LiveTestGotCurrentEbayCategories
+# imported live test will run automatically when running live test
 
 from searching          import RESULTS_FILE_NAME_PATTERN
 from searching          import SEARCH_FILES_FOLDER
