@@ -271,7 +271,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
 
 
-class LiveTestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
+class LiveTestGotCurrentEbayCategories(PutMarketsInDatabaseTest):
     '''test getMarketsIntoDatabase()'''
     #
 
@@ -289,7 +289,16 @@ class LiveTestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         if len( lUpdated ) == 0:
             #
             print( '*** project ebay categories are up to date ***' )
-
+            #
+            oUSA = Market.objects.get( cMarket = 'EBAY-US' )
+            #
+            self.assertEqual( d.get('iSiteID'),   oUSA.iEbaySiteID        )
+            #
+            d = lDecorated[0][1]
+            #
+            self.assertEqual( d.get('iTableHas'), EBAY_US_CURRENT_VERSION )
+            self.assertEqual( d.get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
+            #
         else:
             #
             print( '*** ebay has updated categories, '
@@ -306,12 +315,6 @@ class LiveTestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
                 #
                 print( t[1] )
                 #
-            #
-            d = lDecorated[0][1]
-            #
-            self.assertEqual( d.get('iSiteID'),   oUSA.iEbaySiteID        )
-            self.assertEqual( d.get('iTableHas'), EBAY_US_CURRENT_VERSION )
-            self.assertEqual( d.get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
             #
         #
         print( '')
