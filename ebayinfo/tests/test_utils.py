@@ -247,12 +247,13 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
         #
 
-    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
-    def test_check_whether_any_ebay_market_list_is_updated( self ):
+
+    def test_whether_ebay_market_updated_test_is_working( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
         oUSA.iCategoryVer = EBAY_US_CURRENT_VERSION - 1
+        #
         oUSA.save()
         #
         updateMemoryTableUpdated( 'markets', sField = 'iCategoryVer' )
@@ -268,12 +269,32 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         self.assertTrue( bool( lUpdated ) )
         #
-        if len( lUpdated ) > 1:
-            print( '\n')
+
+
+class LiveTestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
+    '''test getMarketsIntoDatabase()'''
+    #
+
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
+    def test_check_whether_any_ebay_market_list_is_updated( self ):
+        #
+        lUpdated = getWhetherAnyEbayCategoryListsAreUpdated(
+                        bUseSandbox = False )
+        #
+        # sandbox can be ahead of the production site
+        #
+        #
+        print( '')
+        #
+        if len( lUpdated ) == 0:
+            #
+            print( '*** project ebay categories are up to date ***' )
+
+        else:
+            #
             print( '*** ebay has updated categories, '
                    'you need to update local table in '
                    'ebayinfo/__init__.py ***' )
-            print( '\n')
             #
             lDecorated = [ ( d['iSiteID'], d ) for d in lUpdated ]
             #
@@ -291,3 +312,6 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
             self.assertEqual( d.get('iSiteID'),   oUSA.iEbaySiteID        )
             self.assertEqual( d.get('iTableHas'), EBAY_US_CURRENT_VERSION )
             self.assertEqual( d.get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
+            #
+        #
+        print( '')
