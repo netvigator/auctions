@@ -16,6 +16,8 @@ from core.utils_test    import ( getDefaultMarket,
 
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
+
+from ebayinfo.tests.test_utils import LiveTestPutMarketsInDatabaseTest
 #
 
 from searching          import RESULTS_FILE_NAME_PATTERN
