@@ -201,7 +201,7 @@ def _getCategoryListParams( uMarket, uWantVersion ):
 
 def _putCategoriesInDatabase(
             uMarket         = 'EBAY-US', # expect str but obj OK
-            uWantVersion    = '117',     # expect str but int OK
+            uWantVersion    = '120',     # expect str but int OK
             bShowProgress   = False,
             sFile           = None ):
     #
