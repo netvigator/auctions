@@ -812,6 +812,62 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
     #
     oProgressMeter.end( iSeq )
     #
+
+goal: update ebay_categories on a server other than the live one
+so instead of bogging down the live server for weeks,
+a dedicated server is devoted to this job
+then take the live server down for maintenance and update:
+1) markets
+2) ebay_categories
+3) category_hierarchies
+
+markets referenced by:
+
+TABLE "category_hierarchies" CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") DEFERRABLE INITIALLY DEFERRED
+
+TABLE "itemsfound" CONSTRAINT "itemsfound_iEbaySiteID_id_306e5c7e_fk_markets_iEbaySiteID" FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") DEFERRABLE INITIALLY DEFERRED
+
+
+ebay_categories
+
+Foreign-key constraints:
+"ebay_categories_parent_id_7e1b74c0_fk_ebay_categories_id" FOREIGN KEY (parent_id) REFERENCES ebay_categories(id) DEFERRABLE INITIALLY DEFERRED
+
+referenced by:
+
+TABLE "itemsfound" CONSTRAINT "itemsfound_i2ndCategoryID_id_e82cd6de_fk_ebay_categories_id" FOREIGN KEY ("i2ndCategoryID_id") REFERENCES ebay_categories(id) DEFERRABLE INITIALLY DEFERRED
+
+TABLE "itemsfound" CONSTRAINT "itemsfound_iCategoryID_id_67c1d3f6_fk_ebay_categories_id" FOREIGN KEY ("iCategoryID_id") REFERENCES ebay_categories(id) DEFERRABLE INITIALLY DEFERRED
+
+TABLE "searching" CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_ebay_categories_id" FOREIGN KEY ("iEbayCategory_id") REFERENCES ebay_categories(id) DEFERRABLE INITIALLY DEFERRED
+
+markets referenced by:
+
+TABLE "category_hierarchies" CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") DEFERRABLE INITIALLY DEFERRED
+
+TABLE "itemsfound" CONSTRAINT "itemsfound_iEbaySiteID_id_306e5c7e_fk_markets_iEbaySiteID" FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") DEFERRABLE INITIALLY DEFERRED
+
+category_hierarchies
+
+Foreign-key constraints:
+"category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") DEFERRABLE INITIALLY DEFERRED
+
+Referenced by:
+TABLE "itemsfound" CONSTRAINT "itemsfound_i2ndCatHeirarchy_id_2557c784_fk_category_" FOREIGN KEY ("i2ndCatHeirarchy_id") REFERENCES category_hierarchies(id) DEFERRABLE INITIALLY DEFERRED
+TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_hierarchies_id" FOREIGN KEY ("iCatHeirarchy_id") REFERENCES category_hierarchies(id) DEFERRABLE INITIALLY DEFERRED
+
+
+
+ALTER TABLE child_table
+DROP CONSTRAINT constraint_fkey;
+
+ALTER TABLE child_table
+ADD CONSTRAINT constraint_fk
+FOREIGN KEY (c1)
+REFERENCES parent_table(p1)
+ON DELETE do.nothing ;
+
+
 '''
 
 # ### after updating ebay categories, check whether         ###
