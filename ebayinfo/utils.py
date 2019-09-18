@@ -821,6 +821,11 @@ then take the live server down for maintenance and update:
 2) ebay_categories
 3) category_hierarchies
 
+
+get commands from office datbase server:
+pg_dump --data-only --table=tablename sourcedb > onetable.pg
+
+
 markets referenced by:
 
 TABLE "category_hierarchies" CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") DEFERRABLE INITIALLY DEFERRED
@@ -858,15 +863,38 @@ TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_
 
 
 
-ALTER TABLE child_table
-DROP CONSTRAINT constraint_fkey;
+ALTER TABLE "category_hierarchies" DROP CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" ;
+ALTER TABLE "itemsfound" DROP CONSTRAINT "itemsfound_iEbaySiteID_id_306e5c7e_fk_markets_iEbaySiteID" ;
+ALTER TABLE "itemsfound" DROP CONSTRAINT "itemsfound_iCategoryID_id_67c1d3f6_fk_ebay_categories_id" ;
+ALTER TABLE "itemsfound" DROP CONSTRAINT "itemsfound_i2ndCategoryID_id_e82cd6de_fk_ebay_categories_id" ;
+ALTER TABLE "searching" DROP CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_ebay_categories_id" ;
 
-ALTER TABLE child_table
-ADD CONSTRAINT constraint_fk
-FOREIGN KEY (c1)
-REFERENCES parent_table(p1)
-ON DELETE do.nothing ;
+truncate table ebay_categories ;
+truncate table markets ;
 
+psql -h 192.168.8.88 -p 5432 -U minion auctions < markets.pg
+psql -h 192.168.8.88 -p 5432 -U minion auctions < ebay_categories.pg
+
+ALTER TABLE "category_hierarchies" ADD CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i"
+ FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") ON DELETE NO ACTION ;
+ALTER TABLE "itemsfound" ADD CONSTRAINT "itemsfound_iEbaySiteID_id_306e5c7e_fk_markets_iEbaySiteID"
+ FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") ON DELETE NO ACTION ;
+ALTER TABLE "itemsfound" ADD CONSTRAINT "itemsfound_iCategoryID_id_67c1d3f6_fk_ebay_categories_id"
+ FOREIGN KEY ("iCategoryID_id") REFERENCES ebay_categories(id) ON DELETE NO ACTION ;
+ALTER TABLE "itemsfound" ADD CONSTRAINT "itemsfound_i2ndCategoryID_id_e82cd6de_fk_ebay_categories_id"
+ FOREIGN KEY ("i2ndCategoryID_id") REFERENCES ebay_categories(id) ON DELETE NO ACTION ;
+ALTER TABLE "searching" ADD CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_ebay_categories_id"
+ FOREIGN KEY ("iEbayCategory_id") REFERENCES ebay_categories(id) ON DELETE NO ACTION ;
+
+select c1."cMarket", c2.name, p."iCategoryID", p."cCatHierarchy"
+from category_hierarchies p
+left outer join markets c1 on c1."iEbaySiteID" = p."iEbaySiteID_id"
+left outer join ebay_categories c2
+on c2."iCategoryID" = p."iCategoryID" and c2."iEbaySiteID_id" = p."iEbaySiteID_id"
+where p."cCatHierarchy" not like '%' || c2.name ;
+
+
+select * from ebay_categories where "iSupercededBy" is not null ;
 
 '''
 
