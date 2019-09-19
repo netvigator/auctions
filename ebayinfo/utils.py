@@ -3,7 +3,7 @@ from os.path            import join
 from time               import sleep
 
 from django.conf        import settings
-from django.db          import DataError
+from django.db          import DataError, connection
 
 from core.dj_import     import ET # xml.etree.ElementTree
 from core.dj_import     import ObjectDoesNotExist
@@ -726,6 +726,44 @@ def getCategoryListsUpdated( bConsoleOut = False ):
 
 
 
+def updateCategoryHierarchies(): # run after ebay category update
+    #
+    sCommand = (
+     """select p."iCategoryID", p."iEbaySiteID_id", c.name
+        from category_hierarchies p
+        left outer join ebay_categories c
+            on  c."iCategoryID" = p."iCategoryID" and
+                c."iEbaySiteID_id" = p."iEbaySiteID_id"
+            where p."cCatHierarchy" not like '%' || c.name ;""" )
+    #
+    cursor = connection.cursor()
+    cursor.execute( sCommand )
+    #
+    lNeedUpdates = cursor.fetchall()
+    #
+    dEbayCatHierarchies = {}
+    #
+    for t in lNeedUpdates:
+        #
+        iCategoryID, iEbaySiteID, sCategoryName = t
+        #
+        CategoryHierarchy.objects.filter(
+                                    iCategoryID = iCategoryID,
+                                    iEbaySiteID = iEbaySiteID ).delete()
+        #
+        if iEbaySiteID in dMarketsRelated: # EBAY-US : EBAY-MOTOR & vice versa
+            #
+            CategoryHierarchy.objects.filter(
+                    iCategoryID = iCategoryID,
+                    iEbaySiteID = dMarketsRelated.get( iEbaySiteID ) ).delete()
+            #
+        #
+        _getCategoryHierarchyID(
+                iCategoryID, sCategoryName, iEbaySiteID, dEbayCatHierarchies )
+        #
+
+
+
 '''
 select "iCategoryID","cCategory","iCatHeirarchy_id","i2ndCategoryID","c2ndCategory","i2ndCatHeirarchy_id","iEbaySiteID_id" from itemsfound limit 2 ;
  iCategoryID |      cCategory      | iCatHeirarchy_id | i2ndCategoryID | c2ndCategory | i2ndCatHeirarchy_id | iEbaySiteID_id
@@ -886,12 +924,23 @@ ALTER TABLE "itemsfound" ADD CONSTRAINT "itemsfound_i2ndCategoryID_id_e82cd6de_f
 ALTER TABLE "searching" ADD CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_ebay_categories_id"
  FOREIGN KEY ("iEbayCategory_id") REFERENCES ebay_categories(id) ON DELETE NO ACTION ;
 
+human friendly:
 select c1."cMarket", c2.name, p."iCategoryID", p."cCatHierarchy"
 from category_hierarchies p
 left outer join markets c1 on c1."iEbaySiteID" = p."iEbaySiteID_id"
 left outer join ebay_categories c2
 on c2."iCategoryID" = p."iCategoryID" and c2."iEbaySiteID_id" = p."iEbaySiteID_id"
 where p."cCatHierarchy" not like '%' || c2.name ;
+
+the real query:
+select p."iCategoryID", p."iEbaySiteID_id", c.name
+from category_hierarchies p
+left outer join ebay_categories c
+on c."iCategoryID" = p."iCategoryID" and c."iEbaySiteID_id" = p."iEbaySiteID_id"
+where p."cCatHierarchy" not like '%' || c.name ;
+
+
+RUN updateCategoryHierarchies()
 
 
 select * from ebay_categories where "iSupercededBy" is not null ;
