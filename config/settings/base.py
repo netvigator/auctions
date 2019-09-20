@@ -261,6 +261,8 @@ TEMPLATES = [
                 'getDashForReturn'  : 'core.templatetags.core_tags',
                 'getDashForReturnButDropLast' :
                                       'core.templatetags.core_tags',
+                'getLastDroppedFromCommaSeparatedString' :
+                                      'core.templatetags.core_tags',
                 'getLineBreakForReturn' :
                                       'core.templatetags.core_tags',
                 'define'            : 'core.templatetags.core_tags',
