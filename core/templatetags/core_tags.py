@@ -31,7 +31,7 @@ def _getSubstituteForReturn( s, sSub, bOmitLast = False ):
         #
         l = [ s for s in oFinderCRorLF.split( s ) if s ]
         #
-        if bOmitLast:
+        if bOmitLast and len( l ) > 1:
             #
             del l[-1]
             #
@@ -58,6 +58,21 @@ def getDashForReturnButDropLast( s ):
        but drop what is after the last return character'''
     #
     return _getSubstituteForReturn( s, ' - ', bOmitLast = True )
+
+
+
+@register.filter()
+def getLastDroppedFromCommaSeparatedString( s ):
+    #
+    l = s.split( ', ' )
+    #
+    if len( l ) > 1:
+        #
+        del l[-1]
+        #
+    #
+    return ', '.join( l )
+
 
 
 @register.filter()
