@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load field_name %}
-{% load getDashForReturnButDropLast %}
+{% load getLastDroppedFromCommaSeparatedString %}
 
 {% block title %}Finder {{ object.iItemNumb.cTitle }}{% endblock %}
 
@@ -145,7 +145,7 @@
     </TR>
     <TR VALIGN=TOP>
         <TD>{% field_name parent 'iCatHeirarchy' %}</TD>
-        <TD>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy | getDashForReturnButDropLast }}</TD>
+        <TD>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy | getLastDroppedFromCommaSeparatedString }}</TD>
     </TR>
 
     {% if object.iItemNumb.c2ndCategory %}
@@ -155,7 +155,7 @@
       </TR>
       <TR VALIGN=TOP>
           <TD>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
-          <TD>{{ object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy | getDashForReturnButDropLast }}</TD>
+          <TD>{{ object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy | getLastDroppedFromCommaSeparatedString }}</TD>
       </TR>
     {% endif %}
 
