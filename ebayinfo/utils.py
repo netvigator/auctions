@@ -736,6 +736,8 @@ def updateCategoryHierarchies(): # run after ebay category update
                 c."iEbaySiteID_id" = p."iEbaySiteID_id"
             where p."cCatHierarchy" not like '%' || c.name ;""" )
     #
+    # select right( 'Business & Industrial, Electrical & Test Equipment, Test, Measurement & Inspection, Test Meters & Detectors, LCR & Impedance Meters', position( ' ,' in  reverse( 'Business & Industrial, Electrical & Test Equipment, Test, Measurement & Inspection, Test Meters & Detectors, LCR & Impedance Meters' ) ) ) ;
+    #
     cursor = connection.cursor()
     cursor.execute( sCommand )
     #
