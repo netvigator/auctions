@@ -128,6 +128,10 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
             print( 'would delete %s items older than %s days'
                     % ( iOldItems, iOldCutOff ) )
             #
+        else:
+            #
+            print( 'no older items to delete at this moment' )
+            #
         #
     else:
         #
