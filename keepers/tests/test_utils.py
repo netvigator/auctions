@@ -17,6 +17,7 @@ from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  TestCasePlus )
 
 from ..models           import Keeper
+
 from ..tests            import ( s142766343340, s232742493872,
                                  s232709513135, s282330751118,
                                  s293004871422,
@@ -280,8 +281,14 @@ class StoreSingleKeepersWebTests(
             #
             # for testing, make some userFinders for another user HERE
             #
-            getSingleItemThenStore( k, sContent = v )
+            if iCount % 3 == 0:
+                #
+                pass
+                #
             #
+            iCount += 1
+            #
+            getSingleItemThenStore( k, sContent = v )
             #
         #
         self.iItemNumb = None
