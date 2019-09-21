@@ -292,12 +292,7 @@ class LiveTestGotCurrentEbayCategories(PutMarketsInDatabaseTest):
             #
             oUSA = Market.objects.get( cMarket = 'EBAY-US' )
             #
-            self.assertEqual( d.get('iSiteID'),   oUSA.iEbaySiteID        )
-            #
-            d = lDecorated[0][1]
-            #
-            self.assertEqual( d.get('iTableHas'), EBAY_US_CURRENT_VERSION )
-            self.assertEqual( d.get('iEbayHas'),  EBAY_US_CURRENT_VERSION )
+            self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
             #
         else:
             #
