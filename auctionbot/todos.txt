@@ -346,3 +346,6 @@ click on keeper
 2019-09-01
 # ### after updating ebay categories, check whether        ###
 # ### searches that were connected are still connected !!! ###
+
+2019-09-22
+still working on implememting keepers/tests/test_utils.py
