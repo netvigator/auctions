@@ -580,7 +580,8 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '240' )
         self.assertIsNone( oTest.iBrand )
-        self.assertIsNone( oTest.iCategory )
+        self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
+        #self.assertIsNone( oTest.iCategory )
         #self.assertIsNone( oTest.iModel )
         #self.assertEqual( oTest.iBrand.cTitle, 'Marantz' )
         #self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
@@ -1141,7 +1142,8 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '240' )
         self.assertIsNone( oTest.iBrand )
-        self.assertIsNone( oTest.iCategory )
+        self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
+        #self.assertIsNone( oTest.iCategory )
         #
         #
         #
@@ -1430,6 +1432,15 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 323923889701
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should 3 Fisher models FM-1000 400-CX & SA-1000' )
+        #
+        #
+        #
+
         if False:
             #
             print()
