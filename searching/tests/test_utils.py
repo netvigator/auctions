@@ -610,8 +610,17 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            oCategory   = Category( cTitle      = 'Stereo System',
+                                    iStars      = 3,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oStereoSystem = oCategory
+            #
+            #
             oCategory   = Category( cTitle      = 'Preamp',
                                     iStars      = 9,
+                                    iFamily_id  = oStereoSystem.id,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -634,6 +643,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oCategory   = Category( cTitle      = 'Speaker System',
                                     cLookFor    = 'speaker',
+                                    iFamily_id  = oStereoSystem.id,
                                     iStars      = 9,
                                     iUser       = oUser )
             oCategory.save()
@@ -663,6 +673,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     cExcludeIf  = 'Table Radio\rPre-amplifier\r'
                                                 'Pre-amp\rFuse Holder\rCapacitor',
                                     iStars      = 10,
+                                    iFamily_id  = oStereoSystem.id,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -674,6 +685,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oCategory   = Category( cTitle      = 'Tuner',
                                     iStars      = 8,
+                                    iFamily_id  = oStereoSystem.id,
                                     iUser       = oUser )
             oCategory.save()
             #
