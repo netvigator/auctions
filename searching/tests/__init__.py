@@ -272,6 +272,8 @@ sModels = \
  2                  |           |     10 | f            | Marantz           |    Amplifier | Model Two\\rModel 2 |
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
+ FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
+ SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
  mirror             |           |      8 | f            | Spartan           |        Radio |             |
  RC350              |           |      8 | f            | RCA               |        Radio |             |
  126                |           |      8 | f            | Garod             |        Radio |             |
@@ -642,6 +644,25 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["323923889701"],
+             "title":["Fisher FM-1000, 400-CX, SA-1000, stereo component set - vintage tube electronics"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mDQS9V998VJKBx0P7r3McPQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-FM-1000-400-CX-SA-1000-stereo-component-set-vintage-tube-electronics-\/323923889701"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["19464"],"location":["Pottstown,PA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"4100.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"4100.0"}],
+             "bidCount":["3"],"sellingState":["Active"],
+             "timeLeft":["P1DT3H29M33S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-09-22T00:40:15.000Z"],
+             "endTime":["2019-09-27T00:40:15.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["53"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
+             "topRatedListing":["false"]
 
          },{ "itemId":["352786860975"],
              "title":["Vintage Pair of Acoustic Research EARLY AR-2\/AR-2x Speakers PLEASE READ"],
