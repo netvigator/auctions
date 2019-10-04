@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = 383183181329
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -21,10 +21,13 @@ sBrands = \
       cTitle       | iStars | cExcludeIf |  cLookFor
 -------------------+--------+------------+------------
  ACRO              |      9 |            |
+ Acoustic Research |      7 |            |
  Addison           |      7 |            |
  Allied            |      5 |            |
  Altec-Lansing     |     10 |            | Altec
  Ampex             |      5 |            |
+ Amperex Bugle Boy |      9 |            | Amperex BB
+ Amperex           |      8 |            |
  Arvin             |      7 |            |
  Astronic          |      2 |            |
  Audio Research    |      5 |            |
@@ -91,6 +94,7 @@ sBrands = \
  Sylvania          |      6 |            |
  Tannoy            |      7 |            |
  Tung-Sol          |      6 |            |
+ University        |      5 |            |
  UTC               |      8 |            |
  Western Electric  |      9 |            |
  Westinghouse      |      5 |            |
@@ -109,6 +113,7 @@ sModels = \
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            |                   |  Vacuum Tube |             |              | t
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
@@ -232,7 +237,9 @@ sModels = \
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
  C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
- 2a                 |           |      6 | t            | Audio Research    |Speaker System|             | LST-2\\r2 way\\r(2)
+ 2                  |           |      6 | f            | Acoustic Research |Speaker System|             | LST-2\\r2 way\\r(2)
+ 2a                 |           |      6 | f            | Acoustic Research |Speaker System|             | LST-2\\r2 way\\r(2)
+ 2ax                |           |      6 | f            | Acoustic Research |Speaker System|             | LST-2\\r2 way\\r(2)
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -373,6 +380,7 @@ sModels = \
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
+ T-35               |           |      6 | f            | University        |       Driver |             |
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
  '''
@@ -644,6 +652,41 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["143400343473"],
+             "title":["Klipsch K-77\/ EV\/ University T35 Tweeters Heresy La Scala Set Made 09\/07\/2012"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/muevptjC4711kmZ34vt9MaA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Klipsch-K-77-EV-University-T35-Tweeters-Heresy-Scala-Set-Made-09-07-2012-\/143400343473"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["48350"],"location":["Davisburg,MI,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"85.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"85.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P6DT8H24M56S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-10-03T02:00:19.000Z"],
+             "endTime":["2019-10-10T02:00:19.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+             "topRatedListing":["true"]
+
+         },{ "itemId":["383183181329"],
+             "title":["Amperex Bugle Boy 6DJ8 ECC88 Vacuum Tube Tested 100%"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mfjAsnwTSE908ASn6GeyuTQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Amperex-Bugle-Boy-6DJ8-ECC88-Vacuum-Tube-Tested-100-\/383183181329"],
+             "paymentMethod":["PayPal"],"autoPay":["true"],
+             "location":["Canada"],"country":["CA"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P3DT7H16M25S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"15.0"}],
+             "startTime":["2019-09-30T00:52:19.000Z"],
+             "endTime":["2019-10-07T00:52:19.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
+             "topRatedListing":["false"]
 
          },{ "itemId":["323923889701"],
              "title":["Fisher FM-1000, 400-CX, SA-1000, stereo component set - vintage tube electronics"],
