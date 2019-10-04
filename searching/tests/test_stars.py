@@ -1421,14 +1421,14 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should should be local pickup only' )
+                'should be local pickup only' )
         #
         #
         iThisOne = 183952461011
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should should NOT be local pickup only' )
+                'should NOT be local pickup only' )
         #
         #
         #
@@ -1436,7 +1436,22 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should 3 Fisher models FM-1000 400-CX & SA-1000' )
+                'should find 3 Fisher models FM-1000 400-CX & SA-1000' )
+        #
+        #
+        iThisOne = 383183181329
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Aperex BB brand and 6DJ8 BB' )
+        #
+        #
+        iThisOne = 143400343473
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Klipsch K-77 and University T35' )
+        #
         #
         #
         #
