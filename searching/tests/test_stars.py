@@ -1413,7 +1413,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find AR-2 & AR-2ax' )
+                'should find AR-2 & AR-2x' )
         #
         #
         #
@@ -1438,6 +1438,31 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find 3 Fisher models FM-1000 400-CX & SA-1000' )
         #
+        gotComponents = set( [] )
+        gotCategories = set( [] )
+        #
+        setComponents = frozenset(
+                ( 'FM-1000', 'SA-1000', '400-CX' ) )
+        setCategories = frozenset(
+                ( 'Tuner', 'Amplifier', 'Preamp' ) )
+        #
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+            #
+            self.assertIn( oTest.iModel.cTitle,    setComponents )
+            self.assertIn( oTest.iCategory.cTitle, setCategories )
+            #
+            gotComponents.add( oTest.iModel.cTitle    )
+            gotCategories.add( oTest.iCategory.cTitle )
+            #
+        #
+        self.assertEqual( gotComponents, setComponents )
+        self.assertEqual( gotCategories, setCategories )
+        #
+        #
         #
         iThisOne = 383183181329
         #
@@ -1450,8 +1475,65 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Klipsch K-77 and University T35' )
+                'should find Klipsch K-77 & Heresy and University T35' )
         #
+        gotComponents   = set( [] )
+        gotCategories   = set( [] )
+        gotBrands       = set( [] )
+        #
+        setComponents   = frozenset(
+                ( 'T-35', 'K-77', 'Heresy (H700)' ) )
+        setCategories   = frozenset(
+                ( 'Driver', 'Speaker System' ) )
+        #
+        setBrands       = frozenset(
+                ( 'Klipsch', 'University' ) )
+        #
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertIn( oTest.iBrand.cTitle,    setBrands     )
+            self.assertIn( oTest.iModel.cTitle,    setComponents )
+            self.assertIn( oTest.iCategory.cTitle, setCategories )
+            #
+            gotComponents.add( oTest.iModel.cTitle    )
+            gotCategories.add( oTest.iCategory.cTitle )
+            gotBrands.add(     oTest.iBrand.cTitle    )
+            #
+        #
+        self.assertEqual( gotComponents, setComponents )
+        self.assertEqual( gotCategories, setCategories )
+        self.assertEqual( gotBrands,     setBrands     )
+        #
+        #
+        #
+        #
+        iThisOne = 283636126401
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find LE5-9 midrange' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'LE5-5' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        iThisOne = 202796135729
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find LK-72 integrated amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'LK-72' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Scott, H.H.' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Integrated Amp' )
         #
         #
         #
