@@ -1,4 +1,4 @@
-iRecordStepsForThis = 383183181329
+iRecordStepsForThis = 352786860975
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -237,9 +237,10 @@ sModels = \
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
  C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
- 2                  |           |      6 | f            | Acoustic Research |Speaker System|             | LST-2\\r2 way\\r(2)
- 2a                 |           |      6 | f            | Acoustic Research |Speaker System|             | LST-2\\r2 way\\r(2)
- 2ax                |           |      6 | f            | Acoustic Research |Speaker System|             | LST-2\\r2 way\\r(2)
+ 2                  |           |      6 | f            | Acoustic Research |Speaker System| AR-2        | LST-2\\r2 way\\r(2)
+ 2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
+ 2ax                |           |      6 | f            | Acoustic Research |Speaker System| AR-2ax      |
+ 2x                 |           |      5 | f            | Acoustic Research |Speaker System| AR-2x       |
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -383,6 +384,7 @@ sModels = \
  T-35               |           |      6 | f            | University        |       Driver |             |
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
+ LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
  '''
 
 
@@ -652,6 +654,44 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["283636126401"],
+             "title":[" JBL L220 Oracle Speakers  076 Cat Eye Tweeters, LE14A Woofer, LE5-9 midrange"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mzXvV40uV4jEI_fTC8ilbYQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-L220-Oracle-Speakers-076-Cat-Eye-Tweeters-LE14A-Woofer-LE5-9-midrange-\/283636126401"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["21539"],"location":["Lonaconing,MD,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2600.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2600.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P6DT7H20M36S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-10-07T14:47:42.000Z"],
+             "endTime":["2019-10-17T14:47:42.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["202796135729"],
+             "title":["SCOTT LK-72 Tube Amplifier 7199 GE 7591 Mullard 5AR4 Bench Checked and Serviced"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m01pFLziBNbX_qzSeWs97GA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/SCOTT-LK-72-Tube-Amplifier-7199-GE-7591-Mullard-5AR4-Bench-Checked-and-Serviced-\/202796135729"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["94588"],"location":["Pleasanton,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT20H37M33S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2019-10-09T04:04:32.000Z"],
+             "endTime":["2019-10-16T04:04:32.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["33"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["143400343473"],
              "title":["Klipsch K-77\/ EV\/ University T35 Tweeters Heresy La Scala Set Made 09\/07\/2012"],
