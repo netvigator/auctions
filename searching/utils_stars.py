@@ -17,6 +17,7 @@ from .models                import Search, SearchLog
 from categories.models      import BrandCategory
 
 from finders.models         import ItemFound, UserItemFound, ItemFoundTemp
+from models.models          import Model
 
 from searching              import WORD_BOUNDARY_MAX
 
@@ -396,26 +397,34 @@ def _getModelFoundLen( sInTitle, sGotInParens ):
 
 
 
-def _gotFullStringOrSubStringOfListItem( s, l ):
+def _gotFullStringOrSubStringOfListItem( sTitle, lGotModels ):
     #
     uGotSub  = None
     uGotFull = None
     uGotMore = None
     #
-    sUpper = s.upper()
+    sTitleUpper = sTitle.upper()
     #
-    for sL in l:
+    for sGotModel in lGotModels:
         #
-        sLupper = sL.upper()
+        sUpperModel = sGotModel.upper()
         #
-        if sUpper in sLupper:
+        if sTitleUpper in sUpperModel:
             #
-            if sUpper == sLupper:
-                uGotFull = sL
+            if sTitleUpper == sUpperModel:
+                uGotFull = sGotModel
             else:
-                uGotSub  = sL
-        elif sLupper in sUpper:
-            uGotMore = sL
+                uGotSub  = sGotModel
+            #
+        elif sUpperModel in sTitleUpper:
+            #
+            lParts = sTitleUpper.split( sUpperModel )
+            #
+            if len( lParts ) == 2:
+                #
+                uGotMore = sGotModel
+                #
+            #
         #
     #
     return uGotFull, uGotSub, uGotMore
@@ -810,7 +819,7 @@ def findSearchHits(
                                 #
                             #
                             _appendIfNotAlreadyIn(
-                                    lModels,
+                                    lCategories,
                                     'category %s is %s of family %s' %
                                         ( oModel.iCategory,
                                           sSayFamily,
@@ -903,7 +912,7 @@ def findSearchHits(
                             oFamily = Category.objects.get( id = iFamily )
                             #
                             _appendIfNotAlreadyIn(
-                                    lModels,
+                                    lCategories,
                                     'category %s is head of family %s' %
                                         ( oModel.iCategory, oFamily.cTitle ) )
                             #
@@ -996,6 +1005,12 @@ def findSearchHits(
                     #
                     tModelBrand = ( oTempItem.iModel, oBrand )
                     #
+                    oItemFoundTempModel = None
+                    #
+                    if oTempItem.iModel is not None:
+                        oItemFoundTempModel = Model.objects.get(
+                                                id = oTempItem.iModel.id )
+                    #
                     if (    oTempItem.iModel is not None    and
                             oTempItem.iBrand is not None    and
                             oTempItem.iModel.bGenericModel  and
@@ -1025,13 +1040,15 @@ def findSearchHits(
                         #
                         continue
                         #
-                    elif (  oTempItem.iModel is not None and
-                            oTempItem.iBrand is None ):
+                    elif (      oTempItem.iModel is not None and
+                            (   oTempItem.iBrand is None or
+                                oTempItem.iBrand != oBrand ) ):
                         #
                         bSaveBrand = False
                         #
                         bGotBrandForNonGenericModel = False
                         #
+
                         if oBrand == oTempItem.iModel.iBrand:
                             #
                             bSaveBrand = True
@@ -1044,6 +1061,14 @@ def findSearchHits(
                                 #
                             #
                             bGotBrandForNonGenericModel = True
+                            #
+                        elif    (   oItemFoundTempModel is not None and
+                                    oItemFoundTempModel.iBrand == oBrand and
+                                    oTempItem.iBrand != oBrand ):
+                            #
+                            oTempItem.iBrand = oBrand
+                            #
+                            bSaveBrand = True
                             #
                         elif oTempItem.iModel.bGenericModel and oTempItem.iCategory is not None:
                             #
@@ -1363,7 +1388,7 @@ def findSearchHits(
                             _appendIfNotAlreadyIn(
                                 lSelect,
                                     'excluding %s because '
-                                    'this is substring of %s' %
+                                    'this is a substring of %s' %
                                     ( sTitleLessParens, uLonger ) )
                             #
                         #
