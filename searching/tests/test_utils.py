@@ -715,6 +715,13 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             oCategory.save()
             #
+            oCategory   = Category(
+                    cTitle      = 'Integrated Amp',
+                    cLookFor    = 'Amp\rAmplifier',
+                                    iStars      = 5,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
             #
             oTableIter = getTableFromScreenCaptureGenerator( sBrands )
             #
