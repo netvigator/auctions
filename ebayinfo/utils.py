@@ -853,6 +853,10 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
     oProgressMeter.end( iSeq )
     #
 
+
+from ebayinfo.utils import getCategoryListsUpdated
+getCategoryListsUpdated( bConsoleOut = True )
+
 goal: update ebay_categories on a server other than the live one
 so instead of bogging down the live server for weeks,
 a dedicated server is devoted to this job
