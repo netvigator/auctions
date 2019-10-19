@@ -580,11 +580,11 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '240' )
         self.assertIsNone( oTest.iBrand )
-        self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
+        # self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #self.assertIsNone( oTest.iCategory )
         #self.assertIsNone( oTest.iModel )
         #self.assertEqual( oTest.iBrand.cTitle, 'Marantz' )
-        #self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
         #
         #
         iThisOne = 163199461416 # keep this
@@ -1142,7 +1142,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, '240' )
         self.assertIsNone( oTest.iBrand )
-        self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #self.assertIsNone( oTest.iCategory )
         #
         #
@@ -1409,26 +1409,20 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 352786860975
+        iThisOne = 383183181329
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find AR-2 & AR-2x' )
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find Aperex BB brand and 6DJ8 BB' )
         #
+        for i in range( 2 ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertIn(    oTest.iModel.cTitle, ( '6DJ8', '6DJ8 (Bugle Boy)' ) )
+            self.assertEqual( oTest.iBrand.cTitle, 'Amperex Bugle Boy' )
+            self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
         #
-        #
-        iThisOne = 183953915448
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should be local pickup only' )
-        #
-        #
-        iThisOne = 183952461011
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should NOT be local pickup only' )
         #
         #
         #
@@ -1461,14 +1455,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual( gotComponents, setComponents )
         self.assertEqual( gotCategories, setCategories )
-        #
-        #
-        #
-        iThisOne = 383183181329
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Aperex BB brand and 6DJ8 BB' )
         #
         #
         iThisOne = 143400343473
@@ -1508,7 +1494,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-        #
         iThisOne = 283636126401
         #
         self.print_len(
@@ -1537,7 +1522,55 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
-
+        iThisOne = 233369497398
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Pilot 240 integrated amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '240' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Pilot' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Integrated Amp' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 352786860975
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find AR-2 & AR-2x' )
+        #
+        #
+        #
+        iThisOne = 183953915448
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should be local pickup only' )
+        #
+        #
+        iThisOne = 183952461011
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should NOT be local pickup only' )
+        #
+        #
+        iThisOne = 153684782088
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Heath AS-21' )
+        #
+        #
+        #
+        #
         if False:
             #
             print()
