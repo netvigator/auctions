@@ -1,5 +1,8 @@
 from pyPks.Dir.Get import getMakeDir
 
+# ### notes on how to update ebay categories ###
+# ### at the bottom of ebayinfo/utils.py     ###
+
 # ### on ebay category version update, ###
 # ### change these constants and the table below to test ###
 EBAY_SG_CURRENT_VERSION =  33
