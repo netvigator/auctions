@@ -718,7 +718,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory   = Category(
                     cTitle      = 'Integrated Amp',
                     cLookFor    = 'Amp\rAmplifier',
-                                    iStars      = 5,
+                                    iStars      = 4,
                                     iUser       = oUser )
             oCategory.save()
             #
