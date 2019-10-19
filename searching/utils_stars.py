@@ -53,6 +53,7 @@ _oDropAfterThisFinder = getRegExObj(
         r'tests*\b|'
         r'tested (?:on|with)\b|'
         r'from\b|'
+        r'ala\b|'
         r'used (?:with|in|on)\b|'
         r'same as\b|'
         r'similar to\b)' ) # formerly oForFitsFinder
@@ -779,6 +780,8 @@ def findSearchHits(
                 #
                 for oTempItem in lItemFoundTemp: # lists categories found
                     #
+                    bCategoryFamilyRelation = False
+                    #
                     if  (   bModelCategoryAlreadyFound and
                             oModel.iCategory != oTempItem.iCategory ):
                         #
@@ -788,7 +791,9 @@ def findSearchHits(
                         #
                         continue
                         #
-                    else:
+                    else: # catches related items in title,
+                        #
+                        # like a crossover w drivers
                         #
                         bCategoryFamilyRelation = (
                             oTempItem.iCategory and dCategoryFamily and
@@ -901,7 +906,7 @@ def findSearchHits(
                     lItemFoundTemp.extend( lNewItemFoundTemp )
                     #
                 #
-                if not bFoundCategoryForModel:
+                if bCategoryFamilyRelation and not bFoundCategoryForModel:
                     #
                     if oModel.iCategory_id in dCategoryFamily:
                         #
