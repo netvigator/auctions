@@ -778,6 +778,8 @@ def findSearchHits(
                 bModelCategoryAlreadyFound = (
                         oModel.iCategory_id in setGotCategories )
                 #
+                bCategoryFamilyRelation = False
+                #
                 for oTempItem in lItemFoundTemp: # lists categories found
                     #
                     bCategoryFamilyRelation = False
