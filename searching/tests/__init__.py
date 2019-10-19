@@ -1,4 +1,4 @@
-iRecordStepsForThis = 352786860975
+iRecordStepsForThis = None # 263879319271
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -153,9 +153,10 @@ sModels = \
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
+ 414E               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
  445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
- 515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         |
+ 515A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  601a (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
  601B (enclosure)   |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
@@ -168,6 +169,7 @@ sModels = \
  755A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  803A (driver)      |           |      7 | t            | Altec-Lansing     |       Driver |             | horn         |
  803B (horn)        |           |      7 | t            | Altec-Lansing     |         Horn |             |
+ 804A (horn)        |           |      6 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -241,6 +243,7 @@ sModels = \
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
  2ax                |           |      6 | f            | Acoustic Research |Speaker System| AR-2ax      |
  2x                 |           |      5 | f            | Acoustic Research |Speaker System| AR-2x       |
+ AS-21              |           |      8 | f            | Heathkit          |Speaker System|             |
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -385,6 +388,8 @@ sModels = \
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
  LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
+ 240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
+ 240                |           |      6 | f            | Pilot             |Integrated Amp|             |
  '''
 
 
@@ -654,6 +659,44 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["153684782088"],
+             "title":["Vintage Heathkit AS-21 (Legato Compact) Altec 414a's (2) & 804a Drivers \/ Beauty"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mpfSRzlRS2wM9TTEjdV-DlA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Heathkit-AS-21-Legato-Compact-Altec-414as-2-804a-Drivers-Beauty-\/153684782088"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["27608"],"location":["Raleigh,NC,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"500.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT7H58M28S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-10-14T20:51:04.000Z"],
+             "endTime":["2019-10-19T20:51:04.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["233369497398"],
+             "title":["Pilot 240 tube integrated amp stereo WORKING ala Fisher Scott"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mr0dbGK4-GgoqBEJmw635GA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Pilot-240-tube-integrated-amp-stereo-WORKING-ala-Fisher-Scott-\/233369497398"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["53217"],"location":["Milwaukee,WI,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"45.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"360.0"}],
+             "convertedCurrentPrice":[{"@currencyId":"USD","__value__":"360.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT13H6M26S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-10-15T01:58:55.000Z"],
+             "endTime":["2019-10-20T01:58:55.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["283636126401"],
              "title":[" JBL L220 Oracle Speakers  076 Cat Eye Tweeters, LE14A Woofer, LE5-9 midrange"],
