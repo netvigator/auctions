@@ -16,7 +16,7 @@ from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
                                  TestCasePlus )
 
-from ..models           import Keeper
+from ..models           import Keeper, UserKeeper, KeeperImage
 
 from ..tests            import ( s142766343340, s232742493872,
                                  s232709513135, s282330751118,
@@ -255,8 +255,8 @@ class StoreItemsTestPlus( TestCasePlus ):
 
 
 
-class StoreSingleKeepersWebTests(
-            AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
+class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
+            SetUpForHitStarsWebTests ):
     '''class to have some test keepers for other test classes'''
 
     def setUp( self ):
@@ -581,10 +581,10 @@ class UserItemsTests( StoreSingleKeepersWebTests ):
         super( UserItemsTests, self ).setUp()
         #
         self.tSeveral = (
-            ( 223348187115, s223348187115 ), # 3 users
-            ( 173696834267, s173696834267 ), # 1 user
-            ( 372536713027, s372536713027 ), # 1 user
-            ( 173696832184, s173696832184 )) # 4 users
+            ( 223348187115, s223348187115 ),
+            ( 173696834267, s173696834267 ),
+            ( 372536713027, s372536713027 ),
+            ( 173696832184, s173696832184 ))
         #
 
     def test_got_items_for_pic_downloading( self ):
@@ -594,6 +594,8 @@ class UserItemsTests( StoreSingleKeepersWebTests ):
         self.assertGreater( len( qsGetPics ), len( self.tSeveral ) )
 
     def test_delete_Keeper_User_Item( self ):
+        #
+        # make some "picture" files
         #
         for t in self.tSeveral:
             #
@@ -607,6 +609,8 @@ class UserItemsTests( StoreSingleKeepersWebTests ):
             #
             sURL = 'http://www.google.com/pictures/xyz.jpg'
             #
+            qsUsersForThis = UserKeeper.objects.filter( iItemNumb = iItemNumb )
+            #
             for i in range( iWantPics ):
                 #
                 sNameExt = _getPicFileNameExtn( sURL, iItemNumb, i )
@@ -616,17 +620,58 @@ class UserItemsTests( StoreSingleKeepersWebTests ):
                 Touch( sFilePathNameExtn )
                 #
                 # add KeeperImage record?!
+                #
+                for oUserKeeper in qsUsersForThis:
+                    #
+                    oKeeperImage = KeeperImage(
+                            iItemNumb       = iItemNumb,
+                            isequence       = i,
+                            cfilename       = sNameExt,
+                            coriginalurl    = sURL,
+                            iUser           = oUserKeeper.iUser,
+                            tCreate         = timezone.now() )
+                    #
+                    oKeeperImage.save()
+                    #
             #
         #
-        for t in self.tSeveral:
+        for t in self.tSeveral: # should have pics for all test items
             #
             iItemNumb = t[0]
             #
-            deleteKeeperUserItem( iItemNumb, self.user1 )
+            lGotPics = getPicFileList( iItemNumb, ITEM_PICS_ROOT )
             #
-            # break
+            self.assertNotEmpty( lGotPics )
+            #
         #
-
+        for oUser in self.tUsers:
+            #
+            for t in self.tSeveral:
+                #
+                iItemNumb = t[0]
+                #
+                deleteKeeperUserItem( iItemNumb, oUser )
+                #
+                qsUsersForThis = UserKeeper.objects.filter(
+                        iItemNumb = iItemNumb )
+                #
+                if qsUsersForThis: # still have at least one user for this one
+                    #
+                    lGotPics = getPicFileList( iItemNumb, ITEM_PICS_ROOT )
+                    #
+                    self.assertNotEmpty( lGotPics )
+                    #
+                #
+            #
+        #
+        for t in self.tSeveral: # pics should be gone
+            #
+            iItemNumb = t[0]
+            #
+            lGotPics = getPicFileList( iItemNumb, ITEM_PICS_ROOT )
+            #
+            self.assertEmpty( lGotPics )
+            #
         #
 
 

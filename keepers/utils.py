@@ -754,9 +754,9 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
     #
     if qsOtherUsersForThis:
         #
-        print( 'got other user who wants item %s' % iItemNumb )
+        # print( 'got other user who wants item %s' % iItemNumb )
         #
-        # pass # keep the pictures and Keeper row for now
+        pass # keep the pictures and Keeper row for now
         #
     else:
         #
@@ -795,13 +795,17 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
                     #
                     # print( 'would delete %s' % sFile )
                     #
-                    # remove( sFile )
+                    remove( sFile )
                     #
-                    pass
+                    # pass
                     #
                 #
                 # print( 'KeeperImage.objects.filter(' )
                 # print( '        iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+                #
+                # next: queryset delete method
+                # next: queryset delete method
+                # next: queryset delete method
                 #
                 KeeperImage.objects.filter(
                         iItemNumb = iItemNumb, iUser = oUser ).delete()
@@ -809,14 +813,18 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
             #
             # print( 'Keeper.objects.filter( iItemNumb = iItemNumb ).delete()' )
             #
-            # next: queryset update method
-            # next: queryset update method
-            # next: queryset update method
+            # next: queryset delete method
+            # next: queryset delete method
+            # next: queryset delete method
             #
             Keeper.objects.filter( iItemNumb = iItemNumb ).delete()
             #
             # print( 'len( qsDumpThese ):', len( qsDumpThese ) )
             #
+            #
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
             #
             UserItemFound.objects.filter(
                 iItemNumb = iItemNumb, iUser = oUser
@@ -826,6 +834,10 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
     #
     # print( 'UserKeeper.objects.filter(' )
     # print( '    iItemNumb = iItemNumb, iUser = oUser ).delete()' )
+    #
+    # next: queryset delete method
+    # next: queryset delete method
+    # next: queryset delete method
     #
     UserKeeper.objects.filter( iItemNumb = iItemNumb, iUser = oUser ).delete()
     #
