@@ -339,7 +339,9 @@ def _putCategoriesInDatabase(
         #
         # list is updated, must redo store hierarchies
         #
-        CategoryHierarchy.objects.filter( iEbaySiteID = oMarket ).delete()
+        # CategoryHierarchy.objects.filter( iEbaySiteID = oMarket ).delete()
+        #
+        # cannot delete!!!  rows may be referenced by itemsfound!!!
         #
         #
     except OperationalError: # downloaded file not complete!
