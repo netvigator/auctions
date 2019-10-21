@@ -127,7 +127,8 @@ class DetailViewGotModelAlsoPost( DetailViewGotModel ):
             #
             for sItemNumb in setTrash:
                 #
-                deleteKeeperUserItem( sItemNumb, self.request.user )
+                # deleteKeeperUserItem( sItemNumb, self.request.user )
+                print( 'would delete keeper %s' % sItemNumb )
                 #
             #
         #
