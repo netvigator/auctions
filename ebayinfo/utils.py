@@ -857,6 +857,12 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
 from ebayinfo.utils import getCategoryListsUpdated
 getCategoryListsUpdated( bConsoleOut = True )
 
+
+CRASH 2019-10-19 after updating EBAY-AU
+IntegrityError: update or delete on table "category_hierarchies" violates foreign key constraint "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_hierarchies_id" on table "itemsfound"
+DETAIL:  Key (id)=(473) is still referenced from table "itemsfound".
+
+
 goal: update ebay_categories on a server other than the live one
 so instead of bogging down the live server for weeks,
 a dedicated server is devoted to this job
