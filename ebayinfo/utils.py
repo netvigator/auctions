@@ -864,6 +864,12 @@ CRASH 2019-10-19 after updating EBAY-AU
 IntegrityError: update or delete on table "category_hierarchies" violates foreign key constraint "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_hierarchies_id" on table "itemsfound"
 DETAIL:  Key (id)=(473) is still referenced from table "itemsfound".
 
+check whether there are unreferenced rows:
+
+select count("iCategoryID") from category_hierarchies where "iCategoryID" not in
+    ( select "iCatHeirarchy_id" as icathei from itemsfound
+      union
+      select "i2ndCatHeirarchy_id" as icathei from itemsfound ) ;
 
 goal: update ebay_categories on a server other than the live one
 so instead of bogging down the live server for weeks,
