@@ -22,7 +22,6 @@ from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 path.append('~/Devel/auctions')
 
-environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
 class InvalidParameters( Exception ): pass
 
