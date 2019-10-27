@@ -7,6 +7,7 @@ from django.utils           import timezone
 
 from requests.exceptions    import ConnectionError
 
+from pyPks.Collect.Output   import getTextSequence
 from pyPks.String.Find      import getFinderFindAll
 from pyPks.String.Eat       import eatFromWithin
 from pyPks.Time             import sFormatISOdateTimeNoColon
@@ -267,3 +268,8 @@ def getLink( o ):
         #
     #
     return sReturn
+
+
+def getSaySequence( l ):
+    #
+    return getTextSequence( l, sAnd = '&' )
