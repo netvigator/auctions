@@ -723,6 +723,14 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            oCategory   = Category(
+                    cTitle      = 'Theater Amp',
+                    cLookFor    = 'Amp\rAmplifier',
+                                    iStars      = 9,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            #
             oTableIter = getTableFromScreenCaptureGenerator( sBrands )
             #
             lHeader = next( oTableIter )
