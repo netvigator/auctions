@@ -348,6 +348,6 @@ click on keeper
 # ### searches that were connected are still connected !!! ###
 
 
-2019-10-20
-deleteKeeperUserItem() tested, but not for newer items
+2019-10-27
+deleteKeeperUserItem() implemented, but flash message not working
 does code flush formerly newer items that were not deleted?
