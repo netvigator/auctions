@@ -181,6 +181,7 @@ sModels = \
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3900A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 1569A              |           |      9 | t            | Altec-Lansing     |  Theater Amp |             |
  150-4B             |           |      9 | t            | Lansing           |       Driver |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
@@ -390,6 +391,11 @@ sModels = \
  LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
  240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
+ Patrician          |           |      9 | f            | Electro-Voice     |Speaker System|             |
+ 18WK               |           |      8 | f            | Electro-Voice     |       Driver |             |
+ T-25-A             |           |      7 | t            | Electro-Voice     |       Driver |             |
+ 828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
+ 6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  '''
 
 
@@ -659,6 +665,42 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["123950129789"],
+             "title":["Pair of Altec 1569A Theater EL34 Tube Amplifiers (Western Electric Era) Peerless"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mO4GkuCYtYjJp2POZ5ppkWQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Pair-Altec-1569A-Theater-EL34-Tube-Amplifiers-Western-Electric-Era-Peerless-\/123950129789"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["600**"],"location":["Crystal Lake,IL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"200.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1800.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1800.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P6DT22H7M53S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"2350.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"2350.0"}],
+             "startTime":["2019-10-23T20:24:29.000Z"],
+             "endTime":["2019-11-02T20:24:29.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["6"]}],
+             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["383228212021"],
+             "title":["Pair Electro-Voice EV The Patrician Premium System 18Wk, (2)828HF, T25A\/6HD T35"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mP2IjzOioHltNi7n205w8Zg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Pair-Electro-Voice-EV-Patrician-Premium-System-18Wk-2-828HF-T25A-6HD-T35-\/383228212021"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["600**"],"location":["Crystal Lake,IL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"2000.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15000.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P6DT20H49M15S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"19500.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"19500.0"}],
+             "startTime":["2019-10-23T19:06:07.000Z"],
+             "endTime":["2019-11-02T19:06:07.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["153684782088"],
              "title":["Vintage Heathkit AS-21 (Legato Compact) Altec 414a's (2) & 804a Drivers \/ Beauty"],

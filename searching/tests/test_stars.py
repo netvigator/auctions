@@ -1536,6 +1536,34 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 123950129789
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Altec 1569A Amps' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '1569A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Theater Amp' )
+        #
+        #
+        #
+        iThisOne = 383228212021
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 5, iThisOne,
+                'should find Patrician speaker system' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 4 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Patrician' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
         #
         #
         #
@@ -1567,8 +1595,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find Heath AS-21' )
-        #
-        #
         #
         #
         if False:

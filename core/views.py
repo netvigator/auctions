@@ -15,6 +15,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              GetModelInContextMixin,
                                              DoPostCanCancelMixin )
 
+from .utils                         import getSaySequence
+
 from keepers.utils                  import deleteKeeperUserItem
 
 # ### keep views thin! ###
@@ -113,7 +115,7 @@ class DetailViewGotModel( LoginRequiredMixin,
 
 
 
-class DetailViewGotModelAlsoPost( DetailViewGotModel ):
+class DetailViewGotModelAlsoPost( SuccessMessageMixin, DetailViewGotModel ):
 
     '''detail view for Brands, Categories & Models shows Keepers'''
 
@@ -123,13 +125,31 @@ class DetailViewGotModelAlsoPost( DetailViewGotModel ):
         #
         if 'submit' in request.POST:
             #
-            setTrash = tuple( request.POST.getlist('bTrashThis') )
+            tTrash = tuple( request.POST.getlist('bTrashThis') )
             #
-            for sItemNumb in setTrash:
+            for sItemNumb in tTrash:
                 #
-                # deleteKeeperUserItem( sItemNumb, self.request.user )
-                print( 'would delete keeper %s' % sItemNumb )
+                deleteKeeperUserItem( sItemNumb, self.request.user )
+                # print( 'would delete keeper %s' % sItemNumb )
                 #
+            #
+            if tTrash:
+                #
+                if len( tTrash ) == 1:
+                    #
+                    sPart = ' %s' % tTrash[0]
+                    #
+                else:
+                    #
+                    sPart = 's %s' % getSaySequence( tTrash )
+                    #
+                #
+                sMessage = 'Keeper item%s successfully trashed!!!!' % sPart
+                #
+                success_message = sMessage
+                #
+                # print( sMessage )
+                # message display not working 2019-10-27
             #
         #
         return HttpResponseRedirect( url )

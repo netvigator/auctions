@@ -3,7 +3,8 @@ from django.utils       import timezone
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
                                  getWhatsNotInParens,
-                                 getShrinkItemURL, getLink )
+                                 getShrinkItemURL, getLink,
+                                 getSaySequence )
 
 from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
                                  queryGotUpdated, oAuctionBotApp,
@@ -103,6 +104,12 @@ class textProcessingTests( TestCasePlus ):
         #
         self.assertEqual( sWantShort, sGotShort )
         #
+
+    def test_get_text_sequence( self ):
+        #
+        t = ( 'Moe', 'Larry', 'Curly' )
+        #
+        self.assertEqual( getSaySequence( t ), 'Moe, Larry & Curly' )
 
 
 class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
