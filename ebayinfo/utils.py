@@ -881,7 +881,12 @@ then take the live server down for maintenance and update:
 
 
 get commands from office datbase server:
-pg_dump --data-only --table=tablename sourcedb > onetable.pg
+generic example: pg_dump --data-only --table=tablename sourcedb > onetable.pg
+
+
+pg_dump --data-only --table=markets auctions > markets.pg
+pg_dump --data-only --table=ebay_categories auctions > ebay_categories.pg
+pg_dump --data-only --table=category_hierarchies auctions > category_hierarchies.pg
 
 
 markets referenced by:
