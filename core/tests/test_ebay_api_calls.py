@@ -23,7 +23,7 @@ class GetConfFileValuesTests( TestCasePlus ):
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
 
         self.assertEqual( dConfValues['endpoints']['finding'],
-                    'http://svcs.ebay.com/services/search/FindingService/v1' )
+                    'https://svcs.ebay.com/services/search/FindingService/v1' )
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
