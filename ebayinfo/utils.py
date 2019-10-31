@@ -886,7 +886,6 @@ generic example: pg_dump --data-only --table=tablename sourcedb > onetable.pg
 
 pg_dump --data-only --table=markets auctions > markets.pg
 pg_dump --data-only --table=ebay_categories auctions > ebay_categories.pg
-pg_dump --data-only --table=category_hierarchies auctions > category_hierarchies.pg
 
 
 markets referenced by:
@@ -935,8 +934,13 @@ ALTER TABLE "searching" DROP CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_
 truncate table ebay_categories ;
 truncate table markets ;
 
+BKK
 psql -h 192.168.8.88 -p 5432 -U minion auctions < markets.pg
 psql -h 192.168.8.88 -p 5432 -U minion auctions < ebay_categories.pg
+
+HK
+psql -h 192.168.0.88 -p 5432 -U minion auctions < markets.pg
+psql -h 192.168.0.88 -p 5432 -U minion auctions < ebay_categories.pg
 
 ALTER TABLE "category_hierarchies" ADD CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i"
  FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") ON DELETE NO ACTION ;
