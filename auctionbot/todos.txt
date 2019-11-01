@@ -353,23 +353,7 @@ deleteKeeperUserItem() implemented, but flash message not working
 does code flush formerly newer items that were not deleted?
 
 
-{'iSiteID': 0, 'iEbayHas': 121, 'iTableHas': 115}
-{'iSiteID': 2, 'iEbayHas': 119, 'iTableHas': 118}
-{'iSiteID': 3, 'iEbayHas': 112, 'iTableHas': 111}
-{'iSiteID': 15, 'iEbayHas': 113, 'iTableHas': 112}
-{'iSiteID': 16, 'iEbayHas': 90, 'iTableHas': 89}
-{'iSiteID': 23, 'iEbayHas': 85, 'iTableHas': 84}
-{'iSiteID': 71, 'iEbayHas': 109, 'iTableHas': 108}
-{'iSiteID': 77, 'iEbayHas': 122, 'iTableHas': 121}
-{'iSiteID': 101, 'iEbayHas': 101, 'iTableHas': 100}
-{'iSiteID': 123, 'iEbayHas': 86, 'iTableHas': 85}
-{'iSiteID': 146, 'iEbayHas': 81, 'iTableHas': 80}
-{'iSiteID': 186, 'iEbayHas': 86, 'iTableHas': 85}
-{'iSiteID': 193, 'iEbayHas': 91, 'iTableHas': 90}
-{'iSiteID': 201, 'iEbayHas': 24, 'iTableHas': 23}
-{'iSiteID': 205, 'iEbayHas': 70, 'iTableHas': 69}
-{'iSiteID': 207, 'iEbayHas': 35, 'iTableHas': 34}
-{'iSiteID': 210, 'iEbayHas': 72, 'iTableHas': 71}
-{'iSiteID': 211, 'iEbayHas': 35, 'iTableHas': 34}
-{'iSiteID': 212, 'iEbayHas': 54, 'iTableHas': 53}
-{'iSiteID': 216, 'iEbayHas': 34, 'iTableHas': 33}
+2019-11-01
+get 
+133218233627
+should find A7
