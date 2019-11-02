@@ -151,13 +151,14 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
                           iDictVers,
                           msg = 'table has 116, dict updated' )
         #
-        oUSA.iCategoryVer = 115
+        oUSA.iCategoryVer = EBAY_US_CURRENT_VERSION
         oUSA.save()
         #
         iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
         self.assertNotEqual( oUSA.iCategoryVer, iDictVers,
-                             msg = 'table has 115, dict not updated yet' )
+                             msg = 'table has %s, dict not updated yet' %
+                                    EBAY_US_CURRENT_VERSION )
         #
         #
         updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
