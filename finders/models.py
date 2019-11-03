@@ -188,6 +188,29 @@ class UserItemFound(models.Model):
                 kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 
 
+class UserFinder(models.Model):
+    #
+    # not normalized but this allows fast selection of finders for a user
+    # one row per item
+    # 2019-11-03
+    #
+    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
+    iMaxStars       = IntegerRangeField(
+                        'hit stars', null = True,
+                        min_value = 0, max_value = 1000, default = 0 )
+    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
+                        on_delete=models.CASCADE )
+    bListExclude    = models.BooleanField( 'exclude from listing?',
+                        default = False )
+    #
+    def __str__(self):
+        return '%s - %s' % ( self.iItemNumb, self.iUser )
+
+    class Meta:
+        verbose_name_plural = 'userfinders'
+        db_table            = verbose_name_plural
+        unique_together     = ('iItemNumb', 'iUser' )
+
 
 class ItemFoundTemp(models.Model):
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
