@@ -200,8 +200,10 @@ class UserFinder(models.Model):
                         min_value = 0, max_value = 1000, default = 0 )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
-    bListExclude    = models.BooleanField( 'exclude from listing?',
-                        default = False )
+    bGetPictures    = models.NullBooleanField( 'get description & pictures?',
+                        null = True, default = False )
+    bListExclude    = models.NullBooleanField( 'exclude from listing?',
+                        null = True, default = False )
     #
     def __str__(self):
         return '%s - %s' % ( self.iItemNumb, self.iUser )
@@ -211,6 +213,31 @@ class UserFinder(models.Model):
         db_table            = verbose_name_plural
         unique_together     = ('iItemNumb', 'iUser' )
 
+'''
+insert into userfinders ( "iItemNumb_id", "iUser_id" ) select distinct "iItemNumb_id", "iUser_id" from useritemsfound ;
+
+update userfinders f
+  set "iMaxStars" =
+  ( select max( i."iHitStars" ) from useritemsfound i
+    where i."iItemNumb_id" = f."iItemNumb_id" and i."iUser_id" = f."iUser_id" ) ;
+
+update userfinders f
+  set "bGetPictures" = true where exists
+  ( select 1 from useritemsfound i
+    where
+      i."iItemNumb_id" = f."iItemNumb_id" and
+      i."iUser_id" = f."iUser_id" and
+      i."bGetPictures" = true ) ;
+
+update userfinders f
+  set "bListExclude" = true where exists
+  ( select 1 from useritemsfound i
+    where
+      i."iItemNumb_id" = f."iItemNumb_id" and
+      i."iUser_id" = f."iUser_id" and
+      i."bListExclude" = true ) ;
+
+'''
 
 class ItemFoundTemp(models.Model):
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
