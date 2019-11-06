@@ -932,7 +932,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 312339506602
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -941,6 +941,16 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iModel.cTitle, '1005B' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        # should get 1005 horn
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
         #
         iThisOne = 283272931267
         #
@@ -1497,7 +1507,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         iThisOne = 283636126401
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 4, iThisOne,
                 'should find LE5-9 midrange' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -1565,6 +1575,35 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 133227447968
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Altec A7' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        iThisOne = 113945886050
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 4, iThisOne,
+                'should find JBL L220' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'L220 (Oracle)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -1595,6 +1634,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find Heath AS-21' )
+        #
         #
         #
         if False:
