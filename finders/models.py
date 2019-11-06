@@ -193,6 +193,7 @@ class UserFinder(models.Model):
     # not normalized but this allows fast selection of finders for a user
     # one row per item
     # 2019-11-03
+    # 2019-11-07 add title market type ending
     #
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
     iMaxStars       = IntegerRangeField(
