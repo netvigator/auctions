@@ -1158,7 +1158,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
             #
             iEndLines = len( getItemHitsLog( self.sHitLogFile ) )
             #
-            self.assertGreaterEqual( iBegLines + min( iLen, 5 ), iEndLines )
+            self.assertGreaterEqual( iBegLines + min( iLen, 8 ), iEndLines )
 
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
