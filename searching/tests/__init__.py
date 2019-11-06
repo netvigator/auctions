@@ -1,4 +1,4 @@
-iRecordStepsForThis = None # 263879319271
+iRecordStepsForThis = 352786860975
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -154,8 +154,10 @@ sModels = \
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  414E               |           |      5 | t            | Altec-Lansing     |       Driver |             |
+ 416A               |           |      7 | f            | Altec-Lansing     |       Driver |             |
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
  445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
+ 511A               |           |      6 | f            | Altec-Lansing     |         Horn |             |
  515A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  601a (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
@@ -175,6 +177,7 @@ sModels = \
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
  A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
  A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
+ A-7                |           |      6 | f            | Altec-Lansing     |Speaker System|             |
  N-500B             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
@@ -242,8 +245,8 @@ sModels = \
  C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
  2                  |           |      6 | f            | Acoustic Research |Speaker System| AR-2        | LST-2\\r2 way\\r(2)
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
- 2ax                |           |      6 | f            | Acoustic Research |Speaker System| AR-2ax      |
- 2x                 |           |      5 | f            | Acoustic Research |Speaker System| AR-2x       |
+ 2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
+ 2ax                |           |      8 | f            | Acoustic Research |Speaker System| AR-2ax      |
  AS-21              |           |      8 | f            | Heathkit          |Speaker System|             |
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -363,12 +366,14 @@ sModels = \
  539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
  539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
+ 76                 |           |      6 | f            | JBL               |       Driver | 076         |
  175                |           |     10 | f            | JBL               |       Driver |             |
  275                |           |     10 | f            | JBL               |       Driver |             |
  D-130              |           |      7 | f            | JBL               |       Driver | 130         |
  D-130A             |           |      7 | f            | JBL               |       Driver | 130A        |
  D-130B             |           |      7 | f            | JBL               |       Driver | 130B        |
  LE5-5              |           |      5 | t            | JBL               |       Driver |             |
+ LE14A              |           |      8 | f            | JBL               |       Driver |             |
  1217-1290          |           |      7 | f            | JBL               |         Horn |             |
  H5040              |           |      7 | f            | JBL               |         Horn |             |
  N2400              |           |      6 | f            | JBL               |    Crossover |             |
@@ -376,6 +381,7 @@ sModels = \
  N500               |           |      6 | f            | JBL               |    Crossover |             |
  C38 (Baron)        |           |      8 | f            | JBL               |Speaker Enclosure| Baron    | S-38\\rBookshelf\\rN-38
  C45 (Metregon)     |           |      6 | f            | JBL               |Speaker Enclosure| Metregon |
+ L220 (Oracle)      |           |      6 | f            | JBL               |Speaker System|             |
  CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
  CA-3               |           |      5 | t            | Hickok            |    Accessory |             | CA-5
  Heresy (H700)      |           |      6 | f            | Klipsch           |Speaker System|             |
@@ -635,6 +641,7 @@ sExampleResponse = \
 #### do not add new test items above, add them below ###
 #### do not add new test items above, add them below ###
 
+# helpful useful regex re for splitting item info: .(?=,")
 
 # ###      if you add an item whose title includes a double quote,       ###
 # ### you must manually convert a signle backslash to a double backslash ###
@@ -665,6 +672,44 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["133227447968"],
+             "title":["Altec Lansing Big A7 Speakers Pair. Early Green Drivers 511b Horn 416A N-500-G"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mShLMJQ8bune5GoD83DrduA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-Big-A7-Speakers-Pair-Early-Green-Drivers-511b-Horn-416A-N-500-G-\/133227447968"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["N8N***"],"location":["Canada"],"country":["CA"],
+             "shippingInfo":[{"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"3999.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"3999.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT3H19M18S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2019-11-03T17:00:03.000Z"],
+             "endTime":["2019-11-10T17:00:03.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["113945886050"],
+             "title":["JBL L220 Walnut Excellent with 076 Cats-eye, LE5-9, LE14A Aquaplas Cone all OEM"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mV1S7g2zHkDygyIeVzPf0QA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-L220-Walnut-Excellent-076-Cats-eye-LE5-9-LE14A-Aquaplas-Cone-all-OEM-\/113945886050"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["774**"],"location":["Richmond,TX,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P2DT9H8M54S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"3250.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"3250.0"}],
+             "startTime":["2019-11-01T22:47:21.000Z"],
+             "endTime":["2019-11-08T22:47:21.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["123950129789"],
              "title":["Pair of Altec 1569A Theater EL34 Tube Amplifiers (Western Electric Era) Peerless"],
