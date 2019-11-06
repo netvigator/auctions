@@ -288,7 +288,7 @@ class LiveTestGotCurrentEbayCategories(PutMarketsInDatabaseTest):
         #
         if len( lUpdated ) == 0:
             #
-            print( '*** project ebay categories are up to date ***' )
+            print( '*** auctionbot ebay categories are up to date ***' )
             #
             oUSA = Market.objects.get( cMarket = 'EBAY-US' )
             #
