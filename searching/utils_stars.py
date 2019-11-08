@@ -1304,14 +1304,14 @@ def findSearchHits(
                 #
                 iItemsFoundTemp += 1
                 #
-                sTitleLessParens = sTitleUPPER = ''
+                sModelTitleLessParens = sModelTitleUPPER = ''
                 #
                 if oTempItem.iModel:
                     #
-                    sTitleLessParens = getWhatsNotInParens(
+                    sModelTitleLessParens = getWhatsNotInParens(
                             oTempItem.iModel.cTitle )
                     #
-                    sTitleUPPER = sTitleLessParens.upper()
+                    sModelTitleUPPER = sModelTitleLessParens.upper()
                     #
                 #
                 if iItemsFoundTemp == 1: # store item on top here
@@ -1330,12 +1330,13 @@ def findSearchHits(
                     #
                     if oTempItem.iModel:
                         #
-                        lModelsStoredAlready.append( sTitleUPPER )
+                        lModelsStoredAlready.append( sModelTitleUPPER )
                         #
                         dModelsStoredAlready.setdefault(
-                            sTitleUPPER, [] ).append(
+                            sModelTitleUPPER, [] ).append(
                                 ( oTempItem.iModel.bGenericModel,
-                                  oTempItem.iModel.iBrand ) )
+                                  oTempItem.iModel.iBrand,
+                                  oTempItem.iModel.bSubModelsOK ) )
                         #
                     #
                     oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
@@ -1354,18 +1355,18 @@ def findSearchHits(
                     # have complete hit, make an additional UserItem record
                     #
                     t = _gotFullStringOrSubStringOfListItem(
-                                sTitleUPPER,
+                                sModelTitleUPPER,
                                 lModelsStoredAlready )
                     #
                     uExact, uLonger, uShort = t
                     #
                     bGotNonGenericForThis = False
                     #
-                    if sTitleUPPER in dModelsStoredAlready:
+                    if sModelTitleUPPER in dModelsStoredAlready:
                         #
-                        for t in dModelsStoredAlready[ sTitleUPPER ]:
+                        for t in dModelsStoredAlready[ sModelTitleUPPER ]:
                             #
-                            bThisIsGeneric, iThisBrand = t
+                            bThisIsGeneric, iThisBrand, bSubModelsOK = t
                             #
                             bGotNonGenericForThis = (
                                     not bThisIsGeneric and
@@ -1380,7 +1381,7 @@ def findSearchHits(
                         #
                         for t in dModelsStoredAlready[ uShort ]:
                             #
-                            bThisIsGeneric, iThisBrand = t
+                            bThisIsGeneric, iThisBrand, bSubModelsOK = t
                             #
                             bGotBrand = ( iThisBrand == oTempItem.iBrand )
                             #
@@ -1388,15 +1389,56 @@ def findSearchHits(
                             #
                         #
                     #
+                    # exclude if uLonger unless
+                    # both longer string and shorter substring
+                    # are BOTH in title
+                    # carry on / continue here
+                    #
+                    bGotLongGotShort = False
+                    #
                     if uLonger:
+                        #
+                        lParts = getRegExObj(
+                            getRegExpress( uLonger, bSubModelsOK = True )
+                            ).split( sRelevantTitle )
+                        #
+                        sWithout = ' '.join( lParts )
+                        #
+                        bSubModelsOK = False
+                        #
+                        if sModelTitleUPPER in dModelsStoredAlready:
+                            #
+                            t = dModelsStoredAlready[ sModelTitleUPPER ]
+                            #
+                            bThisIsGeneric, iThisBrand, bSubModelsOK = t
+                            #
+                        #
+                        bGotLongGotShort = getRegExObj(
+                            getRegExpress(
+                                sModelTitleLessParens, bSubModelsOK = bSubModelsOK )
+                            ).search( sWithout )
+                        #
+                    #
+                    if uLonger and bGotLongGotShort:
                         #
                         if bRecordSteps:
                             #
                             _appendIfNotAlreadyIn(
                                 lSelect,
-                                    'excluding %s because '
-                                    'this is a substring of %s' %
-                                    ( sTitleLessParens, uLonger ) )
+                                    'keeping %s because this and '
+                                    '%s both are in the title' %
+                                    ( sModelTitleLessParens, uLonger ) )
+                            #
+                        #
+                    elif uLonger:
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'excluding %s '
+                                    'because this is a substring of %s' %
+                                    ( sModelTitleLessParens, uLonger ) )
                             #
                         #
                         continue
@@ -1409,7 +1451,7 @@ def findSearchHits(
                                 lSelect,
                                     'excluding %s because '
                                     'its root is %s' %
-                                    ( sTitleLessParens, uShort ) )
+                                    ( sModelTitleLessParens, uShort ) )
                             #
                         #
                         continue
@@ -1424,7 +1466,7 @@ def findSearchHits(
                                 lSelect,
                                     'excluding generic model %s -- '
                                     'already have a non generic' %
-                                    ( sTitleLessParens ) )
+                                    ( sModelTitleLessParens ) )
                             #
                         #
                         continue
@@ -1437,7 +1479,7 @@ def findSearchHits(
                                 lSelect,
                                     'have generic model %s already, '
                                     'but including again for %s' %
-                                    ( sTitleLessParens, oTempItem.iBrand ) )
+                                    ( sModelTitleLessParens, oTempItem.iBrand ) )
                             #
                         #
                     elif uExact:
@@ -1448,7 +1490,7 @@ def findSearchHits(
                                 lSelect,
                                     'excluding %s '
                                     'because we already got %s' %
-                                    ( sTitleLessParens, uExact ) )
+                                    ( sModelTitleLessParens, uExact ) )
                             #
                         #
                         continue
@@ -1485,9 +1527,10 @@ def findSearchHits(
                     if oTempItem.iModel:
                         #
                         dModelsStoredAlready.setdefault(
-                            sTitleUPPER, [] ).append(
+                            sModelTitleUPPER, [] ).append(
                                 ( oTempItem.iModel.bGenericModel,
-                                oTempItem.iModel.iBrand ) )
+                                  oTempItem.iModel.iBrand,
+                                  oTempItem.iModel.bSubModelsOK ) )
                         #
                     #
                     lModelsStoredAlready.append( oTempItem.iModel.cTitle )
