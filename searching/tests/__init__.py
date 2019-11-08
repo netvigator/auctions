@@ -155,6 +155,8 @@ sModels = \
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  414E               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  416A               |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 421                |           |      5 | f            | Altec-Lansing     |       Driver |             | 421A         |
+ 421A               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
  445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
  511A               |           |      6 | f            | Altec-Lansing     |         Horn |             |
@@ -672,6 +674,43 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["193189027590"],
+             "title":["Altec Lansing 604D Duplex 15\u201d Single Speaker & N-1600-B Crossover"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/miONH0xBkHYtmSJUx8CBwJA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-604D-Duplex-15-Single-Speaker-N-1600-B-Crossover-\/193189027590"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["956**"],"location":["Davis,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"800.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P3DT0H37M24S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-11-02T14:15:40.000Z"],
+             "endTime":["2019-11-09T14:15:40.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["153708457263"],
+             "title":["ALTEC LANSING 421 A DIA CONE Vintage Bass Musical Instrument Speaker 1 PAIR"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mVckBMHub-1h42wP2RTaVKA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/ALTEC-LANSING-421-DIA-CONE-Vintage-Bass-Musical-Instrument-Speaker-1-PAIR-\/153708457263"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["600**"],"location":["Wauconda,IL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"67.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.95"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P6DT9H31M44S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-11-02T23:10:03.000Z"],
+             "endTime":["2019-11-12T23:10:03.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["133227447968"],
              "title":["Altec Lansing Big A7 Speakers Pair. Early Green Drivers 511b Horn 416A N-500-G"],
