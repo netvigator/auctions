@@ -192,13 +192,19 @@ class UserFinder(models.Model):
     #
     # not normalized but this allows fast selection of finders for a user
     # one row per item
-    # 2019-11-03
-    # 2019-11-07 add title market type ending
+    # this table can now drive the finder listing for a user all by itself
     #
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
     iMaxStars       = IntegerRangeField(
                         'hit stars', null = True,
                         min_value = 0, max_value = 1000, default = 0 )
+    cTitle          = models.CharField( 'item title',
+                                         max_length = 80, null=True )
+    cMarket         = models.CharField( 'market Global ID',
+                                         max_length = 14, null=True )
+    cListingType    = models.CharField( 'listing type',
+                                         max_length = 15, null=True )
+    tTimeEnd        = models.DateTimeField( 'ending date/time', null=True )
     iUser           = models.ForeignKey( User, verbose_name = 'Owner',
                         on_delete=models.CASCADE )
     bGetPictures    = models.NullBooleanField( 'get description & pictures?',
@@ -217,26 +223,34 @@ class UserFinder(models.Model):
 '''
 insert into userfinders ( "iItemNumb_id", "iUser_id" ) select distinct "iItemNumb_id", "iUser_id" from useritemsfound ;
 
-update userfinders f
+update userfinders uf
   set "iMaxStars" =
-  ( select max( i."iHitStars" ) from useritemsfound i
-    where i."iItemNumb_id" = f."iItemNumb_id" and i."iUser_id" = f."iUser_id" ) ;
+  ( select max( uif."iHitStars" ) from useritemsfound uif
+    where uif."iItemNumb_id" = uf."iItemNumb_id" and uif."iUser_id" = uf."iUser_id" ) ;
 
-update userfinders f
+update userfinders uf
   set "bGetPictures" = true where exists
-  ( select 1 from useritemsfound i
+  ( select 1 from useritemsfound uif
     where
-      i."iItemNumb_id" = f."iItemNumb_id" and
-      i."iUser_id" = f."iUser_id" and
-      i."bGetPictures" = true ) ;
+      uif."iItemNumb_id" = uf."iItemNumb_id" and
+      uif."iUser_id" = uf."iUser_id" and
+      uif."bGetPictures" = true ) ;
 
-update userfinders f
+update userfinders uf
   set "bListExclude" = true where exists
-  ( select 1 from useritemsfound i
+  ( select 1 from useritemsfound uif
     where
-      i."iItemNumb_id" = f."iItemNumb_id" and
-      i."iUser_id" = f."iUser_id" and
-      i."bListExclude" = true ) ;
+      uif."iItemNumb_id" = uf."iItemNumb_id" and
+      uif."iUser_id" = uf."iUser_id" and
+      uif."bListExclude" = true ) ;
+
+update userfinders uf
+  set "cTitle"       = if."cTitle",
+      "cMarket"      = if."cMarket",
+      "cListingType" = if."cListingType",
+      "tTimeEnd"     = if."tTimeEnd"
+from itemsfound if
+  where if."iItemNumb" = uf."iItemNumb_id" ;
 
 '''
 
