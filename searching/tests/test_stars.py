@@ -965,9 +965,9 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 113392158472
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         # should list 6L6GC, s/n list 6L6
         #
@@ -1604,6 +1604,33 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 193189027590
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find 604D & N-1600-B' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '604D' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        iThisOne = 153708457263
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 421A not 421' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '421A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
         #
         #
         #
@@ -1612,6 +1639,8 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find AR-2 & AR-2x' )
+        #
+        #
         #
         #
         #
@@ -1634,6 +1663,8 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find Heath AS-21' )
+        #
+        #
         #
         #
         #
