@@ -221,6 +221,8 @@ class UserFinder(models.Model):
         unique_together     = ('iItemNumb', 'iUser' )
 
 '''
+truncate table userfinders ;
+
 insert into userfinders ( "iItemNumb_id", "iUser_id" ) select distinct "iItemNumb_id", "iUser_id" from useritemsfound ;
 
 update userfinders uf
