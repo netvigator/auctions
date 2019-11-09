@@ -1336,7 +1336,8 @@ def findSearchHits(
                             sModelTitleUPPER, [] ).append(
                                 ( oTempItem.iModel.bGenericModel,
                                   oTempItem.iModel.iBrand,
-                                  oTempItem.iModel.bSubModelsOK ) )
+                                  oTempItem.iModel.bSubModelsOK,
+                                  oTempItem.iModel.cRegExLook4Title ) )
                         #
                     #
                     oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
@@ -1366,7 +1367,7 @@ def findSearchHits(
                         #
                         for t in dModelsStoredAlready[ sModelTitleUPPER ]:
                             #
-                            bThisIsGeneric, iThisBrand, bSubModelsOK = t
+                            bThisIsGeneric, iThisBrand, bSubModelsOK, cRegExLook4Title = t
                             #
                             bGotNonGenericForThis = (
                                     not bThisIsGeneric and
@@ -1381,7 +1382,7 @@ def findSearchHits(
                         #
                         for t in dModelsStoredAlready[ uShort ]:
                             #
-                            bThisIsGeneric, iThisBrand, bSubModelsOK = t
+                            bThisIsGeneric, iThisBrand, bSubModelsOK, cRegExLook4Title = t
                             #
                             bGotBrand = ( iThisBrand == oTempItem.iBrand )
                             #
@@ -1398,25 +1399,24 @@ def findSearchHits(
                     #
                     if uLonger:
                         #
+                        cRegExLook4Title = uLonger
+                        bSubModelsOK     = True
+                        #
+                        if sModelTitleUPPER in dModelsStoredAlready:
+                            #
+                            t = dModelsStoredAlready[ sModelTitleUPPER ][0]
+                            #
+                            bThisIsGeneric, iThisBrand, bSubModelsOK, cRegExLook4Title = t
+                            #
+                        #
                         lParts = getRegExObj(
-                            getRegExpress( uLonger, bSubModelsOK = True )
+                            getRegExpress(
+                                cRegExLook4Title, bSubModelsOK = bSubModelsOK )
                             ).split( sRelevantTitle )
                         #
                         sWithout = ' '.join( lParts )
                         #
-                        bSubModelsOK = False
-                        #
-                        if sModelTitleUPPER in dModelsStoredAlready:
-                            #
-                            t = dModelsStoredAlready[ sModelTitleUPPER ]
-                            #
-                            bThisIsGeneric, iThisBrand, bSubModelsOK = t
-                            #
-                        #
-                        bGotLongGotShort = getRegExObj(
-                            getRegExpress(
-                                sModelTitleLessParens, bSubModelsOK = bSubModelsOK )
-                            ).search( sWithout )
+                        bGotLongGotShort = sModelTitleLessParens in sWithout
                         #
                     #
                     if uLonger and bGotLongGotShort:
@@ -1434,6 +1434,18 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
+                            print( 'sModelTitleUPPER:', sModelTitleUPPER )
+                            print( 'uExact, uLonger, uShort:', uExact, uLonger, uShort )
+                            print( 'dModelsStoredAlready:' )
+                            pprint( dModelsStoredAlready )
+                            #
+                            #sModelTitleUPPER: 2
+                            #uExact, uLonger, uShort: None 2X None
+                            #dModelsStoredAlready:
+                            #{'2X': [(False,
+                                    #<Brand: Acoustic Research>,
+                                    #False,
+                                    #'\\b2[-/ ]*x\\b|\\bAR[-/ ]*2[-/ ]*x\\b')]}
                             _appendIfNotAlreadyIn(
                                 lSelect,
                                     'excluding %s '
@@ -1530,7 +1542,8 @@ def findSearchHits(
                             sModelTitleUPPER, [] ).append(
                                 ( oTempItem.iModel.bGenericModel,
                                   oTempItem.iModel.iBrand,
-                                  oTempItem.iModel.bSubModelsOK ) )
+                                  oTempItem.iModel.bSubModelsOK,
+                                  oTempItem.iModel.cRegExLook4Title ) )
                         #
                     #
                     lModelsStoredAlready.append( oTempItem.iModel.cTitle )
