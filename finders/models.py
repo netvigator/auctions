@@ -276,7 +276,9 @@ class ItemFoundTemp(models.Model):
                         min_value = 0, max_value = 10, default = 1 )
     iStarsCategory  = IntegerRangeField( null = True,
                         min_value = 0, max_value = 10, default = 1 )
-
+    cFoundModel     = models.CharField(
+                        'model name/number found in auction title',
+                        max_length = 24,            null = True )
     iFoundModelLen  = models.PositiveSmallIntegerField( default = 0 )
 
     cWhereCategory  = models.CharField( 'where category was found',
