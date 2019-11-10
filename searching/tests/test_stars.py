@@ -589,7 +589,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 163199461416 # keep this
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2 )
+        self.print_len( dItemsToTest[ iThisOne ], 3 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -601,13 +601,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        #self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        #self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
+        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
         #
-        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
-        #oTest = dItemsToTest[ iThisOne ][ 2 ]
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
@@ -1295,7 +1295,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 123790646318
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
         #
         # should find 601A driver not 601 enclosure!!!
         #
@@ -1307,13 +1307,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        #self.assertIsNotNone( oTest )
+        self.assertIsNotNone( oTest )
         #
-        #self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
-        #self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
-        #oTest = dItemsToTest[ iThisOne ][ 2 ]
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '601a (driver)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
@@ -1399,7 +1399,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '300B (etched base)' )
+        # self.assertEqual( oTest.iModel.cTitle, '300B (etched base)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -1637,8 +1637,30 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         iThisOne = 352786860975
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find AR-2 & AR-2x' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '2x' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Acoustic Research' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        iThisOne = 153684782088
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Heath AS-21' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'AS-21' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
         #
         #
         #
@@ -1656,15 +1678,6 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should NOT be local pickup only' )
-        #
-        #
-        iThisOne = 153684782088
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Heath AS-21' )
-        #
-        #
         #
         #
         #
