@@ -1507,7 +1507,7 @@ def findSearchHits(
                                 oModelStored and
                                 oModelStored.iCategoryID and
                                 oTempItem.iCategory and
-                                oModelStored.iCategoryID != oTempItem.iCategory ):
+                                oModelStored.iCategoryID != oTempItem.iCategory.id ):
                         #
                         if bRecordSteps:
                             #
