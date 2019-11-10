@@ -589,7 +589,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 163199461416 # keep this
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -601,13 +601,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
+        #self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
         #
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         #
@@ -877,11 +877,11 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 352494035670
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        # self.assertEqual( oTest.iModel.cTitle, '12AX7-WA (Philips)' )
+        self.assertEqual( oTest.iModel.cTitle, '12AX7-WA (Philips)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -1295,7 +1295,7 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         iThisOne = 123790646318
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
         #
         # should find 601A driver not 601 enclosure!!!
         #
@@ -1307,13 +1307,13 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertIsNotNone( oTest )
+        #self.assertIsNotNone( oTest )
         #
-        self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        #self.assertEqual( oTest.iModel.cTitle, '601B (enclosure)' )
+        #self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '601a (driver)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
