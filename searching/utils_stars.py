@@ -446,6 +446,7 @@ def _updateModelsStoredAlready(
         iModelBrand     = oTempItem.iModel.iBrand,
         bSubModelsOK    = oTempItem.iModel.bSubModelsOK,
         iModelID        = oTempItem.iModel.id,
+        iHitStars       = oTempItem.iHitStars,
         iCategoryID     = iCategoryID )
     #
     dModelsStoredAlready.setdefault(
@@ -1571,6 +1572,17 @@ def findSearchHits(
                     #
                 #
             #
+            # before going on, update userFinder, dModelsStoredAlready has the info
+            #
+            # seqHitStars = [float(y) for x in l for y in x]
+            seqHitStars = ( o.iHitStars for l in dModelsStoredAlready.values() for o in l )
+            #
+            if bRecordSteps:
+                #
+                print( 'seqHitStars:', tuple( seqHitStars ) )
+                #
+            #
+
         else: # not lItemFoundTemp
             #
             if bRecordSteps:
