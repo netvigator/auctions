@@ -16,7 +16,9 @@ from .models                import Search, SearchLog
 
 from categories.models      import BrandCategory
 
-from finders.models         import ItemFound, UserItemFound, ItemFoundTemp
+from finders.models         import ( ItemFound, UserItemFound, ItemFoundTemp,
+                                     UserFinder )
+
 from models.models          import Model
 
 from searching              import WORD_BOUNDARY_MAX
@@ -1574,15 +1576,42 @@ def findSearchHits(
             #
             # before going on, update userFinder, dModelsStoredAlready has the info
             #
-            # seqHitStars = [float(y) for x in l for y in x]
-            seqHitStars = ( o.iHitStars for l in dModelsStoredAlready.values() for o in l )
+            tHitStars = tuple( ( o.iHitStars for l in dModelsStoredAlready.values() for o in l ) )
             #
-            if bRecordSteps:
+            if tHitStars:
                 #
-                print( 'seqHitStars:', tuple( seqHitStars ) )
+                iMaxStars = max( tHitStars )
+                #
+                if iMaxStars:
+                    #
+                    bGotUserFinder = UserFinder.objects.filter(
+                                        iItemNumb = oItem.iItemNumb,
+                                        iUser     = oUser ).exists()
+                    #
+                    if bGotUserFinder:
+                        #
+                        oUserFinder = UserFinder.objects.get(
+                                        iItemNumb = oItem.iItemNumb,
+                                        iUser     = oUser )
+                        #
+                        oUserFinder.iMaxStars = iMaxStars
+                        #
+                    else:
+                        #
+                        oUserFinder = UserFinder(
+                            iItemNumb       = oItem,
+                            iMaxStars       = iMaxStars,
+                            cTitle          = oItem.cTitle,
+                            cMarket         = oItem.cMarket,
+                            cListingType    = oItem.cListingType,
+                            tTimeEnd        = oItem.tTimeEnd,
+                            iUser           = oUser )
+                        #
+                    #
+                    oUserFinder.save()
+                    #
                 #
             #
-
         else: # not lItemFoundTemp
             #
             if bRecordSteps:
