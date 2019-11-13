@@ -456,6 +456,19 @@ def _updateModelsStoredAlready(
     #
 
 
+def _getMaxHitStars( dModelsStoredAlready ):
+    #
+    iMaxStars = 0
+    #
+    tHitStars = tuple( ( o.iHitStars for l in dModelsStoredAlready.values() for o in l ) )
+    #
+    if tHitStars:
+        #
+        iMaxStars = max( tHitStars )
+        #
+    #
+    return iMaxStars
+
 
 def findSearchHits(
             iUser                   = oUserOne.id,
@@ -1576,40 +1589,21 @@ def findSearchHits(
             #
             # before going on, update userFinder, dModelsStoredAlready has the info
             #
-            tHitStars = tuple( ( o.iHitStars for l in dModelsStoredAlready.values() for o in l ) )
+            iMaxStars = _getMaxHitStars( dModelsStoredAlready )
             #
-            if tHitStars:
+            if iMaxStars:
                 #
-                iMaxStars = max( tHitStars )
+                oUserFinder = UserFinder(
+                        iItemNumb       = oItem,
+                        iMaxStars       = iMaxStars,
+                        cTitle          = oItem.cTitle,
+                        cMarket         = oItem.cMarket,
+                        cListingType    = oItem.cListingType,
+                        tTimeEnd        = oItem.tTimeEnd,
+                        iUser           = oUser )
+                    #
                 #
-                if iMaxStars:
-                    #
-                    bGotUserFinder = UserFinder.objects.filter(
-                                        iItemNumb = oItem.iItemNumb,
-                                        iUser     = oUser ).exists()
-                    #
-                    if bGotUserFinder:
-                        #
-                        oUserFinder = UserFinder.objects.get(
-                                        iItemNumb = oItem.iItemNumb,
-                                        iUser     = oUser )
-                        #
-                        oUserFinder.iMaxStars = iMaxStars
-                        #
-                    else:
-                        #
-                        oUserFinder = UserFinder(
-                            iItemNumb       = oItem,
-                            iMaxStars       = iMaxStars,
-                            cTitle          = oItem.cTitle,
-                            cMarket         = oItem.cMarket,
-                            cListingType    = oItem.cListingType,
-                            tTimeEnd        = oItem.tTimeEnd,
-                            iUser           = oUser )
-                        #
-                    #
-                    oUserFinder.save()
-                    #
+                oUserFinder.save()
                 #
             #
         else: # not lItemFoundTemp
