@@ -88,7 +88,8 @@ class Brand( GetItemsForSomething, models.Model ):
         #
         oModels = Model.objects.filter( iBrand = oBrand ).order_by( 'cTitle' )
         #
-        l = [ ( oModel, oModel.iCategory ) for oModel in oModels ]
+        l = [ ( oModel, oModel.iStars, oModel.iCategory )
+              for oModel in oModels ]
         #
         return l
 
