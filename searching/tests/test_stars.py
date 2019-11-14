@@ -2,13 +2,17 @@
 
 from os.path            import join
 
+from pprint             import pprint
+
 from core.dj_import     import reverse
 from django.utils       import timezone
 
 from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
-                                 AssertEmptyMixin, TestCasePlus )
+                                 AssertEmptyMixin, AssertNotEmptyMixin,
+                                 TestCasePlus )
 
-from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
+from finders.models     import ( ItemFound, UserItemFound, ItemFoundTemp,
+                                 UserFinder )
 
 from .test_models       import PutSearchResultsInDatabaseWebTest
 
@@ -89,7 +93,8 @@ class SetUpForHitStarsWebTests( SetUpForFindSearchHitsTest ):
 
 
 
-class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
+class KeyWordFindSearchHitsTests(
+        AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
 
     def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
         #
@@ -1680,6 +1685,18 @@ class KeyWordFindSearchHitsTests( SetUpForHitStarsWebTests ):
                 'should NOT be local pickup only' )
         #
         #
+        qsUserFinders = UserFinder.objects.all()
+        #
+        self.assertGreater( len( qsUserFinders ), 78 )
+        #
+        oUserFinder = UserFinder.objects.get(
+                iItemNumb = iThisOne, iUser = self.user1 )
+        #
+        self.assertGreater(  oUserFinder.iMaxStars,   2 )
+        self.assertNotEmpty( oUserFinder.cTitle         )
+        self.assertNotEmpty( oUserFinder.cMarket        )
+        self.assertNotEmpty( oUserFinder.cListingType   )
+        self.assertNotEmpty( oUserFinder.tTimeEnd       )
         #
         if False:
             #
