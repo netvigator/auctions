@@ -93,10 +93,11 @@
     {% if models_list %}
         <h4>{{ brand }} Models</h4>
         <table>
-        {% for model, category in models_list%}
+        {% for model, stars, category in models_list%}
             <tr>
                 <td><a href="{{ model.get_absolute_url }}">
                     {{ model }}</a></td>
+                <td align=right>{{stars}}</td>
                 <td>{{category}}</td>
             </tr>
         {% endfor %}
