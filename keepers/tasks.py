@@ -2,17 +2,9 @@ from __future__ import absolute_import
 
 import logging
 
-from datetime               import timedelta
-from time                   import sleep
-
-from django.contrib.auth    import get_user_model
 from django.db              import connection
-from django.db.models       import Q
 
 from celery                 import shared_task
-from celery.schedules       import crontab
-
-#from auctionbot             import celery_app as app # app = Celery()
 
 from core.utils             import sayIsoDateTimeNoTimeZone, getPriorDateTime
 
@@ -23,6 +15,9 @@ from .utils                 import ( getSingleItemThenStore,
                                      getItemsForPicsDownloading )
 
 from finders.models         import ItemFound, UserItemFound
+
+from pyPks.Time.Delta       import getIsoDateTimeNowPlus
+
 
 logger = logging.getLogger(__name__)
 
@@ -51,8 +46,16 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     #
     cursor = connection.cursor()
     #
+    sPastDate = getIsoDateTimeNowPlus(
+                    iDays = - iOldCutOff, bWantLocal  = False )
+    #
+    sCommand = ( 'delete from userfinders where "tTimeEnd" < '
+                 "'%s'" ) % sPastDate
+    #
+    cursor.execute( sCommand )
+    #
     sCommand = ( 'delete from itemsfound where "tTimeEnd" < '
-                 "now() - interval '%s days'" ) % iOldCutOff
+                 "'%s'" ) % sPastDate
     #
     cursor.execute( sCommand )
     #
