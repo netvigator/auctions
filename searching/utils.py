@@ -316,7 +316,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     else:
         #
         logger.info(
-            'completed without error "%s" search (ID %s)' % tSearch )
+            'completed "%s" search (ID %s) without error' % tSearch )
         #
     #
     sFileName = join( SEARCH_FILES_FOLDER, sFileName )
