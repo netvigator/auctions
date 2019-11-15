@@ -19,7 +19,7 @@ from ebayinfo.utils_test import ( getMarketsIntoDatabase,
 
 from models.models      import Model
 
-from pyPks.Time         import sFormatISOdateTimeNoColon
+from pyPks.Time         import _sFormatISOdateTimeNoColon
 from pyPks.Time.Test    import isISOdatetime
 
 
@@ -61,7 +61,7 @@ class DateTimeTests( TestCasePlus ):
         #
         sNow = _getIsoDateTimeOffDateTimeCol( oNow )
         #
-        self.assertTrue( isISOdatetime( sNow, sFormatISOdateTimeNoColon ) )
+        self.assertTrue( isISOdatetime( sNow, _sFormatISOdateTimeNoColon ) )
 
     def test_getReverseWithUpdatedQuery(self):
         #
