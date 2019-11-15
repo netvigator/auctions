@@ -10,7 +10,7 @@ from requests.exceptions    import ConnectionError
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.String.Find      import getFinderFindAll
 from pyPks.String.Eat       import eatFromWithin
-from pyPks.Time             import sFormatISOdateTimeNoColon
+from pyPks.Time             import _sFormatISOdateTimeNoColon
 from pyPks.Time.Convert     import getDateTimeObjFromString
 from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
 
@@ -91,7 +91,7 @@ def _getReverseWithQuery( lookup_view, *args, **kwargs ):
 
 def _getIsoDateTimeOffDateTimeCol( tDateTime ):
     #
-    return tDateTime.strftime( sFormatISOdateTimeNoColon )
+    return tDateTime.strftime( _sFormatISOdateTimeNoColon )
 
 
 def getReverseWithUpdatedQuery( lookup_view, *args, **kwargs ):
