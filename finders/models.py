@@ -254,6 +254,10 @@ update userfinders uf
 from itemsfound if
   where if."iItemNumb" = uf."iItemNumb_id" ;
 
+double chek for strays:
+select count(*) from userfinders where "tTimeEnd" = null ;
+
+
 '''
 
 class ItemFoundTemp(models.Model):
