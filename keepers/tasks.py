@@ -16,8 +16,6 @@ from .utils                 import ( getSingleItemThenStore,
 
 from finders.models         import ItemFound, UserItemFound
 
-from pyPks.Time.Delta       import getIsoDateTimeNowPlus
-
 
 logger = logging.getLogger(__name__)
 
@@ -40,14 +38,14 @@ def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
 def deleteOldItemsFoundTask( iOldCutOff ):
     #
     # itemsfound is for temporary holding
-    # if the item is not put in keepers while ebay info is available,
+    # AFTER ebay info is no longer available,
     # (about 90 days after auction end),
-    # can delete itemsfound and useritemsfound
+    # can delete userfinders itemsfound and useritemsfound
     #
     cursor = connection.cursor()
     #
-    sPastDate = getIsoDateTimeNowPlus(
-                    iDays = - iOldCutOff, bWantLocal  = False )
+    sPastDate = sayIsoDateTimeNoTimeZone(
+                    getPriorDateTime( iDaysAgo = iOldCutOff )
     #
     sCommand = ( 'delete from userfinders where "tTimeEnd" < '
                  "'%s'" ) % sPastDate
@@ -60,19 +58,6 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     cursor.execute( sCommand )
     #
     # now CAREFULLY delete unneeded useritemsfound rows!
-    #
-    # now that userkeepers is implemented,
-    # no need to keep useritemsfound that are in keepers but not itemsfound
-    #
-    # sCommand = (
-    #     '''delete from useritemsfound uif
-    #             where not exists
-    #                 ( select 1 from
-    #                     (   select "iItemNumb" from itemsfound
-    #                         union
-    #                         select "iItemNumb" from keepers ) as combo
-    #                     where combo."iItemNumb" = uif."iItemNumb_id" ) ;
-    #     ''' )
     #
     sCommand = (
         '''delete from useritemsfound uif
