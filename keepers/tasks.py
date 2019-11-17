@@ -45,7 +45,7 @@ def deleteOldItemsFoundTask( iOldCutOff ):
     cursor = connection.cursor()
     #
     sPastDate = sayIsoDateTimeNoTimeZone(
-                    getPriorDateTime( iDaysAgo = iOldCutOff )
+                    getPriorDateTime( iDaysAgo = iOldCutOff ) )
     #
     sCommand = ( 'delete from userfinders where "tTimeEnd" < '
                  "'%s'" ) % sPastDate
