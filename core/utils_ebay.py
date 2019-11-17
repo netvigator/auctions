@@ -36,8 +36,15 @@ def getValueOffItemDict( dItem, k, dThisField, **kwargs ):
         #
         tRest   = t[ 1 : ]
         #
-        for sKey in tRest:
-            uValue = uValue[ sKey ]
+        if bOptional and tRest and not tRest[0] in uValue:
+            #
+            uValue = None
+            #
+        else:
+            #
+            for sKey in tRest:
+                uValue = uValue[ sKey ]
+            #
         #
     elif bNotInItemDict and t[0] in kwargs:
         #
