@@ -121,5 +121,14 @@ class GetValueOffItemDictTests(
         dNewResult  = { k: getValue( dItem, k, v, **kwargs )
                         for k, v in dFields.items() }
         #
-        self.assertIsNotNone( dNewResult.get( 'cSubTitle' ) ) #
+        self.assertIsNotNone( dNewResult.get( 'cSubTitle' ) )
+        #
+        self.assertEmpty( dNewResult.get( 'dBuyItNowPrice' ) )
+        #
+        dItem = next( oItemIter )
+        #
+        dNewResult  = { k: getValue( dItem, k, v, **kwargs )
+                        for k, v in dFields.items() }
+        #
+        self.assertEqual( dNewResult.get( 'dBuyItNowPrice', 0 ), 3250.0 )
         #
