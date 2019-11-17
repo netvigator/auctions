@@ -18,6 +18,9 @@ sEbayErrorResponse = \
 # ### append any new items to the bottom, test code takes items in order ###
 # ### append any new items to the bottom, test code takes items in order ###
 # ### append any new items to the bottom, test code takes items in order ###
+# ### append any new items to the bottom, test code takes items in order ###
+# ### append any new items to the bottom, test code takes items in order ###
+# ### append any new items to the bottom, test code takes items in order ###
 
 sResponse2ndCategoryItem = \
 '''{"findItemsByKeywordsResponse":
@@ -87,6 +90,25 @@ sResponse2ndCategoryItem = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["7"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
+
+         },{ "itemId":["113945886050"],
+             "title":["JBL L220 Walnut Excellent with 076 Cats-eye, LE5-9, LE14A Aquaplas Cone all OEM"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mV1S7g2zHkDygyIeVzPf0QA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-L220-Walnut-Excellent-076-Cats-eye-LE5-9-LE14A-Aquaplas-Cone-all-OEM-\/113945886050"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["774**"],"location":["Richmond,TX,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P2DT9H8M54S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"3250.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"3250.0"}],
+             "startTime":["2019-11-01T22:47:21.000Z"],
+             "endTime":["2019-11-08T22:47:21.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
               }]
 
