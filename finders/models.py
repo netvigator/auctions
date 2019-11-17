@@ -61,6 +61,13 @@ class ItemFound(models.Model):
                         'current price (converted to USD)', # for MoneyField
                         max_digits=10, decimal_places=2,    # but not for
                         db_index = False )                  # DecimalField
+    lBuyItNowPrice  = models.DecimalField( 'buy it now price',
+                        max_digits = 10, decimal_places = 2,
+                        null = True, blank = True )
+    dBuyItNowPrice  = models.DecimalField(
+                        'buy it now price (converted to USD)',
+                        max_digits=10, decimal_places=2,
+                        null = True, blank = True )
     iShippingType   = models.PositiveSmallIntegerField(
                         'shipping type',
                         choices = EBAY_SHIPPING_CHOICES,
@@ -133,6 +140,9 @@ class UserItemFound(models.Model):
                         on_delete=models.CASCADE )
     iModel          = models.ForeignKey( Model,    null = True, blank = True,
                         verbose_name = 'Model Name/Number',
+                        help_text = 'You can display models for a particular '
+                        'brand by changing to that brand (just below), '
+                        'hit save, then edit again',
                         on_delete=models.CASCADE )
     iBrand          = models.ForeignKey( Brand,    null = True, blank = True,
                         verbose_name = 'Brand',
@@ -228,7 +238,9 @@ insert into userfinders ( "iItemNumb_id", "iUser_id" ) select distinct "iItemNum
 update userfinders uf
   set "iMaxStars" =
   ( select max( uif."iHitStars" ) from useritemsfound uif
-    where uif."iItemNumb_id" = uf."iItemNumb_id" and uif."iUser_id" = uf."iUser_id" ) ;
+    where
+        uif."iItemNumb_id" = uf."iItemNumb_id" and
+        uif."iUser_id" = uf."iUser_id" ) ;
 
 update userfinders uf
   set "bGetPictures" = true where exists
