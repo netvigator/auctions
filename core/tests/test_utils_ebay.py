@@ -95,6 +95,8 @@ class GetValueOffItemDictTests(
         #
         self.assertEqual( dNewResult.get( 'iShippingType' ), 0 )
         #
+        self.assertEqual( dNewResult.get( 'iHandlingTime' ), 1 )
+        #
         #
         dItem = next( oItemIter )
         #
@@ -114,6 +116,8 @@ class GetValueOffItemDictTests(
         self.assertIsNotNone( dNewResult.get( 'iShippingType' ) )
         #
         self.assertEqual( dNewResult.get( 'iShippingType' ), 5 )
+        #
+        self.assertEmpty( dNewResult.get( 'iHandlingTime' ) )
         #
         #
         dItem = next( oItemIter )
