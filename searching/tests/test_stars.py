@@ -1584,7 +1584,7 @@ class KeyWordFindSearchHitsTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Altec A7' )
+                'should find Altec A-7' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
@@ -1668,6 +1668,33 @@ class KeyWordFindSearchHitsTests(
         #
         #
         #
+        iThisOne = 392536575491
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find JBL 175 not LE-175' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '1217-1290' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '175' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        iThisOne = 184032120009
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
+        #
+        #
         #
         #
         #
@@ -1676,6 +1703,7 @@ class KeyWordFindSearchHitsTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should be local pickup only' )
+        #
         #
         #
         iThisOne = 183952461011
