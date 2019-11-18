@@ -22,7 +22,11 @@ tEBAY_SHIPPING_TYPES = (
     ( 7,    'FreightFlat',
             'Freight Flat' ),
     ( 8,    'NotSpecified',
-            'Not Specified' ) )
+            'Not Specified' ),
+    ( 9,    'FreePickupOption',
+            'Free Pick Up Option' ) )
+# latter added, some but not all FreePickup items are pick up only!
+
 
 EBAY_SHIPPING_CHOICES = tuple(
         [ ( t[0], t[2] ) for t in tEBAY_SHIPPING_TYPES ] )
@@ -75,6 +79,9 @@ dItemFoundFields = d(
                          f = float ),
     iShippingType   = d( t = ( 'shippingInfo', 'shippingType'),
                          f = getChoiceCode ),
+    iHandlingTime   = d( t = ( 'shippingInfo', 'handlingTime'),
+                         f = int,
+                         bOptional = True ),
     iCategoryID     = d( t = ( 'primaryCategory','categoryId'),
                          f = int ),
     cCategory       = d( t = ( 'primaryCategory','categoryName') ),
