@@ -1434,6 +1434,16 @@ def findSearchHits(
                     bGotLongGotShort = False
                     oModelStored     = None
                     #
+                    '''
+                    if bRecordSteps:
+                        #
+                        print()
+                        print('uExact, uLonger, uShort:', t )
+                        print('dModelsStoredAlready:')
+                        pprint( dModelsStoredAlready )
+                        #
+                    '''
+                    #
                     if uExact and uExact in dModelsStoredAlready:
                         #
                         oModelStored = dModelsStoredAlready[ uExact ][0]
