@@ -358,3 +358,4 @@ if user already has A-7 (name), d/n let user add A-7 or A7
 if user already has A-7, d/n let user add A-7 (name)
 
 2019-11-17 need to handle tRetrieved for user finders!
+maybe in keepers.utils.getSingleItemThenStore
