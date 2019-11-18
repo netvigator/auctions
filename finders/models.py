@@ -72,6 +72,9 @@ class ItemFound(models.Model):
                         'shipping type',
                         choices = EBAY_SHIPPING_CHOICES,
                         null = True ) # data prior to Feb 2019 d/n have
+    iHandlingTime   = models.PositiveSmallIntegerField(
+                        'hangling time',
+                        null = True, blank = True ) # optional
     iCategoryID     = models.ForeignKey( EbayCategory,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
