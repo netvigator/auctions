@@ -288,6 +288,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     '''
     gets single item result from ebay API (can pass response for testing)
     stores response in keepers, userkeepers, itemsfound and useritemsfound
+    todo: remove the item from user finders
     '''
     #
     sContent = iSavedRowID = sListingStatus = oItemFound = None
