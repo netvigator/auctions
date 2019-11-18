@@ -1,4 +1,4 @@
-iRecordStepsForThis = None # 223562235449
+iRecordStepsForThis = 184032120009
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -180,6 +180,7 @@ sModels = \
  A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
  A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
  A-7                |           |      6 | f            | Altec-Lansing     |Speaker System|             |
+ A7-500-II          |           |      6 | f            | Altec-Lansing     |Speaker System| Magnificent |
  N-500B             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
@@ -370,6 +371,7 @@ sModels = \
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
  76                 |           |      6 | f            | JBL               |       Driver | 076         |
  175                |           |     10 | f            | JBL               |       Driver |             |
+ LE-175             |           |      8 | f            | JBL               |       Driver |             |
  275                |           |     10 | f            | JBL               |       Driver |             |
  D-130              |           |      7 | f            | JBL               |       Driver | 130         |
  D-130A             |           |      7 | f            | JBL               |       Driver | 130A        |
@@ -674,6 +676,45 @@ sResponseItems2Test = \
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
               "topRatedListing":["true"]
+
+         },{ "itemId":["392536575491"],
+             "title":["JBL 175 DRIVER 1217-1290 HORN LENS SPEAKER "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mYJuXDBQZOz6la3hKGXFCvA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-175-DRIVER-1217-1290-HORN-LENS-SPEAKER-\/392536575491"],
+             "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+             "postalCode":["330**"],"location":["Pompano Beach,FL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"45.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT7H51M30S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-11-15T03:00:09.000Z"],
+             "endTime":["2019-11-22T03:00:09.000Z"],
+             "listingType":["Auction"],"gift":["false"],
+             "watchCount":["1"]}],"returnsAccepted":["false"],
+             "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/392536575491_1_0_1.jpg"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["184032120009"],
+             "title":["Altec Lansing Magnificent A7-500-II Speakers pair "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m0a1Hqce6_Ma7FBur2qj22w\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-Magnificent-A7-500-II-Speakers-pair-\/184032120009"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["330**"],"location":["Hallandale,FL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1250.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P0DT20H21M42S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2019-11-11T15:30:14.000Z"],
+             "endTime":["2019-11-18T15:30:14.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["193189027590"],
              "title":["Altec Lansing 604D Duplex 15\u201d Single Speaker & N-1600-B Crossover"],
