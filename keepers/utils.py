@@ -21,7 +21,7 @@ from .models                import Keeper, UserKeeper, KeeperImage
 from core.utils             import getDownloadFileWriteToDisk
 from core.utils_ebay        import getValueOffItemDict
 
-from finders.models         import ItemFound, UserItemFound
+from finders.models         import ItemFound, UserItemFound, UserFinder
 
 from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
 from pyPks.Dir.Get          import getMakeDir
@@ -288,7 +288,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     '''
     gets single item result from ebay API (can pass response for testing)
     stores response in keepers, userkeepers, itemsfound and useritemsfound
-    todo: remove the item from user finders
+    if results have been retrieved, removes the item from user finders
+
+    todo ?:
+    ### for useritemsfound and userkeepers, should be user specific !!! ###
     '''
     #
     sContent = iSavedRowID = sListingStatus = oItemFound = None
@@ -351,6 +354,9 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
                 iItemNumb = iItemNumb ).update(
                         tRetrieveFinal = tNow,
                         tRetrieved     = tNow )
+        #
+        UserFinder.objects.filter(
+                iItemNumb = iItemNumb ).delete()
         #
     elif oItemFound is None:
         #
@@ -435,8 +441,13 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             UserItemFound.objects.filter(
                     iItemNumb = iItemNumb ).update( tRetrieved = tNow )
             #
+            UserFinder.objects.filter(
+                    iItemNumb = iItemNumb ).delete()
+            #
         #
-        qsUserItems = UserItemFound.objects.filter( iItemNumb = iItemNumb )
+        qsUserItems = UserItemFound.objects.filter(
+                iItemNumb          = iItemNumb,
+                tRetrieved__isnull = True )
         #
         for oUserFinder in qsUserItems:
             #
