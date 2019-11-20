@@ -236,7 +236,13 @@ class UserFinder(models.Model):
 '''
 truncate table userfinders ;
 
-insert into userfinders ( "iItemNumb_id", "iUser_id" ) select distinct "iItemNumb_id", "iUser_id" from useritemsfound ;
+insert into userfinders ( "iItemNumb_id", "iUser_id" )
+    select distinct "iItemNumb_id", "iUser_id" from useritemsfound uif
+    where exists
+    ( select 1 from itemsfound if
+      where
+        if."iItemNumb"  = uif."iItemNumb_id" and
+        if."tRetrieved" is null ) ;
 
 update userfinders uf
   set "iMaxStars" =
