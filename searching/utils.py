@@ -136,7 +136,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         #
     else:
         #
-        # Two Sccops recommends AGAINST passin objects to async processes
+        # Two Sccops recommends AGAINST passing objects to async processes
         # instead, only pass json serializable values
         # (integers, floats, strings, lists, tuples and dictionaries)
         # so passing a user object is not good.
@@ -403,7 +403,7 @@ def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
     #
     bAuction = sListingType.startswith( 'Auction' )
     #
-    return storeItemInfo(
+    iSavedRowID = storeItemInfo(
                 dItem,
                 dUserItemFoundUploadFields,
                 UserItemFoundUploadForm,
@@ -412,6 +412,10 @@ def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
                 iItemNumb   = iItemNumb,
                 iSearch     = iSearch,
                 bAuction    = bAuction )
+    #
+    # store userfinder in utils_stars.findSearchHits()
+    #
+    return iSavedRowID
 
 
 
