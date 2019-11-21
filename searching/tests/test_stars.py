@@ -1713,9 +1713,39 @@ class KeyWordFindSearchHitsTests(
                 'should NOT be local pickup only' )
         #
         #
+        #
+        iThisOne = 233407527461
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find both 6V6 and 6V6GTA' )
+        #
+        #
+        #
+        iThisOne = 323984684424
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should be local pickup only' )
+        #
+        #
+        #
+        iThisOne = 153723814561
+        #
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should NOT be local pickup only -- '
+                'ships to USA w local p/u option' )
+        #
+        #
+        #
+        #
         qsUserFinders = UserFinder.objects.all()
         #
         self.assertGreater( len( qsUserFinders ), 78 )
+        #
+        iThisOne = 392536575491
         #
         oUserFinder = UserFinder.objects.get(
                 iItemNumb = iThisOne, iUser = self.user1 )
