@@ -72,7 +72,7 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     form errors are common,
     not all real categories are in the test database'''
     #
-    fBeforeForm = kwargs.pop( 'fBeforeForm' )
+    fBeforeForm = kwargs.pop( 'fBeforeForm', None )
     #
     dNewResult = { k: getValue( dItem, k, v, **kwargs )
                    for k, v in dFields.items() }
