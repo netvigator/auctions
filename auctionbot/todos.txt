@@ -359,3 +359,8 @@ if user already has A-7, d/n let user add A-7 (name)
 
 2019-11-20 keepers.getSingleItemThenStore()
 for useritemsfound and userkeepers, should be user specific !!!
+
+2019-11-22 finders: if shippingType is FreePickup, it means
+Free Local Pick Up is optional if handlingTime is set, but`
+Pick Up ONLY! if handlingTime is not set
+(needs to be tested in searching/tests/test_models.py)
