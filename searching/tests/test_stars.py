@@ -1710,7 +1710,8 @@ class KeyWordFindSearchHitsTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should NOT be local pickup only' )
+                'should NOT be local pickup only -- '
+                'ships to USA w local p/u option' )
         #
         #
         #
