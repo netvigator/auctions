@@ -6,7 +6,7 @@ def setShippingTypeLocalPickupOptional( dNewResult ):
     9 Free Local Pick Up is optional if handlingTime is set, but`
     Pick Up ONLY! if handlingTime is not set
     this needs to be set after reading the api data and before the form
-    tested in searching/test_Utils.py
+    tested in searching/tests/test_models.py
     '''
     #
     iShippingType = dNewResult.get( 'iShippingType' )
