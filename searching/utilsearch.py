@@ -72,6 +72,8 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     form errors are common,
     not all real categories are in the test database'''
     #
+    fBeforeForm = kwargs.pop( 'fBeforeForm' )
+    #
     dNewResult = { k: getValue( dItem, k, v, **kwargs )
                    for k, v in dFields.items() }
     #
@@ -114,6 +116,8 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     dNewResult['tCreate'] = timezone.now()
     # 2019-03-25 cannot! auto_now_add, hope to get consistent index listings
+    #
+    if fBeforeForm: fBeforeForm( dNewResult )
     #
     form = Form( data = dNewResult )
     #
