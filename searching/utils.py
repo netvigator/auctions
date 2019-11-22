@@ -27,6 +27,7 @@ from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
 from finders            import dItemFoundFields, dUserItemFoundUploadFields
 from finders.forms      import ItemFoundForm, UserItemFoundUploadForm
 from finders.models     import ItemFound, UserItemFound
+from finders.utils      import setShippingTypeLocalPickupOptional
 
 from keepers.utils      import ITEM_PICS_ROOT, getItemPicsSubDir
 
@@ -337,9 +338,6 @@ def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
 
 
 
-
-
-
 def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
     #
     iItemID         = int(            dItem['itemId'  ] )
@@ -378,7 +376,8 @@ def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
                         getValueOffItemDict,
                         iCatHeirarchy   = tCatHeirarchies[0],
                         i2ndCatHeirarchy= tCatHeirarchies[1],
-                        iEbaySiteID     = iSiteID )
+                        iEbaySiteID     = iSiteID,
+                        fBeforeForm     = setShippingTypeLocalPickupOptional )
         #
     #
     return iSavedRowID
