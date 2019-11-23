@@ -1,4 +1,4 @@
-iRecordStepsForThis = 184032120009
+iRecordStepsForThis = 153723814561
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -132,8 +132,8 @@ sModels = \
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f             | t
  6V6G               | Sylvania\\rSilvertone | 8 | f     |                   |  Vacuum Tube |             |
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- VT-107 (6V6)       |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6V6 (metal can)    | metal\\rcan |    2 | f            |                   |  Vacuum Tube |             |
+ VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
+ 6V6 (metal can)    |           |      2 | f            |                   |  Vacuum Tube |             |              | t
  6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f             | t
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |
@@ -291,6 +291,7 @@ sModels = \
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
  FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
+ R-200              |           |      8 | f            | Fisher            |        Tuner |             |
  SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
  mirror             |           |      8 | f            | Spartan           |        Radio |             |
  RC350              |           |      8 | f            | RCA               |        Radio |             |
@@ -657,25 +658,22 @@ sResponseItems2Test = \
     "searchResult":
       [{"@count":"100",
         "item":
-          [ { "itemId":["122990519283"],
-              "title":["Garol 6AU-1 Catalin Radio "],
-              "globalId":["EBAY-US"],
-              "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
-              "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
-              "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
-              "paymentMethod":["PayPal"],"autoPay":["false"],
-              "postalCode":["15085"],
-              "location":["Trafford,PA,USA"],
-              "country":["US"],
-              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
-              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
-              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-              "startTime":["2018-02-27T02:42:38.000Z"],
-              "endTime":["2018-03-04T02:42:38.000Z"],
-              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
-              "returnsAccepted":["true"],
-              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-              "topRatedListing":["true"]
+         [ { "itemId":["122990519283"],
+             "title":["Garol 6AU-1 Catalin Radio "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+             "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
+             "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["15085"],"location":["Trafford,PA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2018-02-27T02:42:38.000Z"],
+             "endTime":["2018-03-04T02:42:38.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
          },{ "itemId":["153723814561"],
              "title":["FISHER R-200 TUBE TUNER~PHENOMENAL SOUND & CONDITION~TELFUNKEN~MULLARD~TUBE AMP"],
