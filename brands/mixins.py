@@ -104,7 +104,7 @@ class PostUpdateBrandCategoryList( object ):
                     #
                 #
             #
-            if oSaveBrand is not None:
+            if oSaveBrand:
                 #
                 setIncluded     = frozenset( request.POST.getlist('bIncluded'   ) )
                 setIncludedSet  = frozenset( request.POST.getlist('IncludedSet' ) )
