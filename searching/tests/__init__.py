@@ -1,4 +1,4 @@
-iRecordStepsForThis = 153723814561
+iRecordStepsForThis = 184032120009
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -403,6 +403,7 @@ sModels = \
  240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
  Patrician          |           |      9 | f            | Electro-Voice     |Speaker System|             |
+ Regency            |           |      7 | f            | Electro-Voice     |Speaker System|             |
  18WK               |           |      8 | f            | Electro-Voice     |       Driver |             |
  T-25-A             |           |      7 | t            | Electro-Voice     |       Driver |             |
  828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
