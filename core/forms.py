@@ -23,7 +23,7 @@ class BaseModelFormGotCrispy( ModelForm ):
             #
             self.user = kwargs.pop( 'user' ) # super crashes if kwarg includes
             #
-        elif self.request is not None:
+        elif self.request:
             #
             self.user = self.request.user
             #
@@ -31,19 +31,19 @@ class BaseModelFormGotCrispy( ModelForm ):
             #
             self.user = kwargs.pop( 'iUser' )
             #
-        elif hasattr( self, 'user' ) and self.user is not None:
+        elif hasattr( self, 'user' ) and self.user:
             #
             self.user = self.user
             #
         elif ( hasattr( self, 'instance' ) and
                hasattr( self.instance, 'user' ) and
-               self.instance.user is not None ):
+               self.instance.user ):
             #
             self.user = self.instance.user
             #
         elif ( hasattr( self, 'instance' ) and
                hasattr( self.instance, 'iUser' ) and
-               self.instance.iUser is not None ): # testing
+               self.instance.iUser ): # testing
             #
             self.user = self.instance.iUser
             #
@@ -125,7 +125,7 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         if cTitle: # cTitle can be None if field invalid
             #
-            if bEditing and ( self.instance.cLookFor is not None and
+            if bEditing and ( self.instance.cLookFor           and
                               self.instance.cTitle in cLookFor and
                               cTitle in self.instance.cLookFor ):
                 #
