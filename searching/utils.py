@@ -74,7 +74,7 @@ def getHowManySearchDigitsNeeded( iID = None ):
         except ObjectDoesNotExist: # testing and no search objects yet
             pass
     #
-    if iID is not None:
+    if iID:
         #
         iNeedDigits = getHowManyDigitsNeeded( iID )
         #
@@ -300,7 +300,7 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         if iThisPage > 0 and iWantPages > 1:
             sFileName = _putPageNumbInFileName( sFileName, iThisPage )
         #
-        if sFileName is not None:
+        if sFileName:
             #
             QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
             #
@@ -542,7 +542,7 @@ def storeSearchResultsInFinders( iLogID,
             #
             iItemNumb = int( dItem.get( 'itemId' ) )
             #
-            if setTestCategories is not None:
+            if setTestCategories:
                 #
                 # when testing, will skip items with categories
                 # not in the abbreviated category table
@@ -575,7 +575,7 @@ def storeSearchResultsInFinders( iLogID,
                     continue
                     #
                 #
-                if ( u2ndCategoryID is not None and
+                if ( u2ndCategoryID and
                             ( iEbaySiteID, int( u2ndCategoryID ) )
                             not in setTestCategories ):
                     #
