@@ -195,3 +195,32 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         self.assertEqual( oItem.get_iShippingType_display(), 'Freight' )
         #
         # find no examples of FreightFlat & NotSpecified
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 183953915448 )
+        #
+        self.assertEqual( oItem.iShippingType, 5 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Pick Up ONLY!' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 183952461011 )
+        #
+        self.assertEqual( oItem.iShippingType, 9 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Free Pick Up Option' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 323984684424 )
+        #
+        self.assertEqual( oItem.iShippingType, 5 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Pick Up ONLY!' )
+        #
+        #
+        oItem = ItemFound.objects.get( iItemNumb = 153723814561 )
+        #
+        self.assertEqual( oItem.iShippingType, 9 )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(), 'Free Pick Up Option' )
+        #
+        #
