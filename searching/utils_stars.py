@@ -221,13 +221,15 @@ def _getRegExSearchOrNone( s ):
 
 _oParensSearcher = _getRegExSearchOrNone( r'(?<=\().*(?=\))' )
 
+
+
 def getInParens( s ):
     #
     oMatch = _oParensSearcher( s )
     #
     uReturn = None
     #
-    if oMatch is not None:
+    if oMatch:
         #
         uReturn = oMatch.group(0)
         #
@@ -288,9 +290,9 @@ def getFoundItemTester( oTableRow, dFinders,
         #
         searchTitle = searchExclude = searchKeyWords = None
         #
-        if findTitle    is not None: searchTitle     = findTitle.search
-        if findExclude  is not None: searchExclude   = findExclude.search
-        if findKeyWords is not None: searchKeyWords  = findKeyWords.search
+        if findTitle    : searchTitle     = findTitle.search
+        if findExclude  : searchExclude   = findExclude.search
+        if findKeyWords : searchKeyWords  = findKeyWords.search
         #
         def foundItemTester( s, bExplainVerbose = False ):
             #
@@ -1055,14 +1057,21 @@ def findSearchHits(
                     #
                     oItemFoundTempModel = None
                     #
-                    if oTempItem.iModel is not None:
+                    if oTempItem.iModel:
                         oItemFoundTempModel = Model.objects.get(
                                                 id = oTempItem.iModel.id )
                     #
-                    if (    oTempItem.iModel is not None    and
-                            oTempItem.iBrand is not None    and
+                    if   (      oTempItem.iModel                and
+                            not oTempItem.iModel.bGenericModel  and
+                            oItemFoundTempModel                 and
+                            oItemFoundTempModel.iBrand == oTempItem.iBrand ):
+                        #
+                        bFoundBrandForModel = True
+                        #
+                    elif (  oTempItem.iModel                and
+                            oTempItem.iBrand                and
                             oTempItem.iModel.bGenericModel  and
-                            oTempItem.iCategory is not None and
+                            oTempItem.iCategory             and
                             tModelBrand not in setModelsBrands ):
                         #
 
@@ -1088,7 +1097,7 @@ def findSearchHits(
                         #
                         continue
                         #
-                    elif (      oTempItem.iModel is not None and
+                    elif (      oTempItem.iModel and
                             (   oTempItem.iBrand is None or
                                 oTempItem.iBrand != oBrand ) ):
                         #
@@ -1113,7 +1122,7 @@ def findSearchHits(
                             #
                             bFoundBrandForModel = True
                             #
-                        elif    (   oItemFoundTempModel is not None and
+                        elif    (   oItemFoundTempModel                  and
                                     oItemFoundTempModel.iBrand == oBrand and
                                     oTempItem.iBrand != oBrand ):
                             #
@@ -1123,7 +1132,7 @@ def findSearchHits(
                             #
                             bFoundBrandForModel = True
                             #
-                        elif oTempItem.iModel.bGenericModel and oTempItem.iCategory is not None:
+                        elif oTempItem.iModel.bGenericModel and oTempItem.iCategory:
                             #
                             bSaveBrand = BrandCategory.objects.filter(
                                 iUser     = oUser,
