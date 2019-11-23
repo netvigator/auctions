@@ -310,7 +310,7 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
             oItemFound.iItemNumb = iItemNumb
             oItemFound.save()
             #
-            if iOrigItemNumb is not None:
+            if iOrigItemNumb:
                 #
                 qsUserItemFound = UserItemFound.objects.filter( iItemNumb = iOrigItemNumb )
                 #
