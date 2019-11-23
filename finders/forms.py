@@ -65,7 +65,7 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
         #
         super( UserItemFoundForm, self ).__init__( *args, **kwargs )
         #
-        if self.instance.iBrand is not None:
+        if self.instance.iBrand:
             self.fields["iModel"].queryset = (
                     Model.objects.filter(
                             iUser  = self.user,
