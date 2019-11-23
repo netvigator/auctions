@@ -844,9 +844,9 @@ class KeyWordFindSearchHitsTests(
         #
         iThisOne = 173544935496
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1 )
+        self.print_len( dItemsToTest[ iThisOne ], 2 )
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'VT-107 (6V6)' )
         self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
@@ -1012,17 +1012,17 @@ class KeyWordFindSearchHitsTests(
         #
         iThisOne = 352535627937
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 4, iThisOne )
         #
         # should show both brands, Sylvania & Marconi
         #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6V6G' )
         self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6V6G' )
         self.assertEqual( oTest.iBrand.cTitle, 'Marconi' )
@@ -1709,7 +1709,7 @@ class KeyWordFindSearchHitsTests(
         iThisOne = 183952461011
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should NOT be local pickup only -- '
                 'ships to USA w local p/u option' )
         #
@@ -1719,20 +1719,20 @@ class KeyWordFindSearchHitsTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find both 6V6 and 6V6GTA' )
+                'should find both 6V6 and 6V6GT' )
         #
         #
         #
         iThisOne = 323984684424
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should be local pickup only' )
         #
         #
         #
-        iThisOne = 153723814561
         #
+        iThisOne = 153723814561
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
