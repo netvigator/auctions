@@ -199,7 +199,7 @@ class GetPaginationExtraInfoInContext( object ):
 
         iMidLeft = iMidRight = 0
 
-        if iPageNumb > 1 and sPrevPage is not None:
+        if iPageNumb > 1 and sPrevPage:
             #
             iPrevPage = int( sPrevPage )
 
