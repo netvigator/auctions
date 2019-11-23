@@ -27,6 +27,7 @@ tEBAY_SHIPPING_TYPES = (
             'Free Pick Up Option' ) )
 # latter added, some but not all FreePickup items are pick up only!
 # utils.setShippingTypeLocalPickupOptional() accesses this info
+# tested in searching/tests/test_models.py
 
 EBAY_SHIPPING_CHOICES = tuple(
         [ ( t[0], t[2] ) for t in tEBAY_SHIPPING_TYPES ] )
