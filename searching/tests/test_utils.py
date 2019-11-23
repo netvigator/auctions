@@ -619,6 +619,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             #
             oCategory   = Category( cTitle      = 'Preamp',
+                                    cLookFor    = 'preamplifier\r'
+                                                  'master control\rpre amp',
                                     iStars      = 9,
                                     iFamily_id  = oStereoSystem.id,
                                     iUser       = oUser )
@@ -627,7 +629,9 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oCategory   = Category( cTitle      = 'Vacuum Tube',
                                     cLookFor    = 'tube\rtubes\rVintage Tubes',
-                                    cExcludeIf  = 'tube radio\rtube clock radio\rtube portable radio',
+                                    cExcludeIf  = 'tube radio\r'
+                                                   'tube clock radio\r'
+                                                   'tube portable radio',
                                     iStars      = 6,
                                     iUser       = oUser )
             oCategory.save()
