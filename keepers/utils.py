@@ -320,7 +320,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     else:
         tNow = timezone.now()
     #
-    if sContent is not None:
+    if sContent:
         #
         try:
             #
@@ -365,13 +365,13 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             logger.info( 'oItemFound is None! %s', str( iItemNumb ) )
             #
         #
-    elif iSavedRowID is not None:
+    elif iSavedRowID:
         #
         # oItemFound = ItemFound.objects.get( pk = iItemNumb )
         #
         # moved to _storeOneJsonItemInKeepers() 2019.03.06
         #
-        if sListingStatus is not None:
+        if sListingStatus:
             #
             oItemFound.cSellingState = sListingStatus
             #
