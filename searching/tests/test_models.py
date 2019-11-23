@@ -207,7 +207,8 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         #
         self.assertEqual( oItem.iShippingType, 9 )
         #
-        self.assertEqual( oItem.get_iShippingType_display(), 'Free Pick Up Option' )
+        self.assertEqual( oItem.get_iShippingType_display(),
+                          'Free Pick Up Option' ) # local pick up option
         #
         #
         oItem = ItemFound.objects.get( iItemNumb = 323984684424 )
@@ -221,6 +222,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         #
         self.assertEqual( oItem.iShippingType, 9 )
         #
-        self.assertEqual( oItem.get_iShippingType_display(), 'Free Pick Up Option' )
+        self.assertEqual( oItem.get_iShippingType_display(),
+                          'Free Pick Up Option' )
         #
         #
