@@ -129,10 +129,9 @@ def getSeqStripped( l ): return ( s.strip() for s in l )
 
 def updateMemoryTableUpdated( sTable, sField = None ):
     #
-    if (    sTable == 'markets' and
-            sField is not None  and sField == 'iCategoryVer' ):
-        #
-        import ebayinfo.utils
+    import ebayinfo.utils
+    #
+    if ( sTable == 'markets' and sField and sField == 'iCategoryVer' ):
         #
         t = ebayinfo.utils._getDictMarket2SiteID()
         #
