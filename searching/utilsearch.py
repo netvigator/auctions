@@ -44,7 +44,7 @@ def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
     else:
         def doOmitFromChoices( s ): return True
     #
-    if oUser is not None and oModel is not None:
+    if oUser and oModel:
         #
         oSearches = oModel.objects.filter( iUser = oUser )
         #
