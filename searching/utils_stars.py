@@ -1096,8 +1096,9 @@ def findSearchHits(
                         #
                         bGotBrandForNonGenericModel = False
                         #
-
                         if oBrand == oTempItem.iModel.iBrand:
+                            #
+                            oTempItem.iBrand = oBrand
                             #
                             bSaveBrand = True
                             #
@@ -1110,6 +1111,8 @@ def findSearchHits(
                             #
                             bGotBrandForNonGenericModel = True
                             #
+                            bFoundBrandForModel = True
+                            #
                         elif    (   oItemFoundTempModel is not None and
                                     oItemFoundTempModel.iBrand == oBrand and
                                     oTempItem.iBrand != oBrand ):
@@ -1117,6 +1120,8 @@ def findSearchHits(
                             oTempItem.iBrand = oBrand
                             #
                             bSaveBrand = True
+                            #
+                            bFoundBrandForModel = True
                             #
                         elif oTempItem.iModel.bGenericModel and oTempItem.iCategory is not None:
                             #
