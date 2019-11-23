@@ -144,7 +144,7 @@ class laxCompressedManifestStaticFilesStorage( CompressedManifestStaticFilesStor
                 content.close()
         path, filename = os.path.split(clean_name)
         root, ext = os.path.splitext(filename)
-        if file_hash is not None:
+        if file_hash:
             file_hash = ".%s" % file_hash
         hashed_name = os.path.join(path, "%s%s%s" %
                                    (root, file_hash, ext))
