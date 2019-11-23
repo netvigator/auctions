@@ -136,8 +136,8 @@ class KeyWordFindSearchHitsTests(
                     #
                 #
             #
-            if sExplain is not None:
-                print( sExplain )
+            if sExplain: print( sExplain )
+            #
 
     def test_find_search_hits_test(self):
         #
@@ -848,7 +848,7 @@ class KeyWordFindSearchHitsTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'VT-107 (6V6)' )
+        self.assertEqual( oTest.iModel.cTitle, 'VT-107 (6V6 metal)' )
         self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -1688,6 +1688,40 @@ class KeyWordFindSearchHitsTests(
         #
         #
         #
+        iThisOne = 183953915448
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should be local pickup only' )
+        #
+        # tested in searching/tests/test_models.py
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Regency' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        iThisOne = 153723814561
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should NOT be local pickup only -- '
+                'ships to USA w local p/u option' )
+        #
+        # tested in searching/tests/test_models.py
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'R-200' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
+        #
+        #
+        #
+        #
         iThisOne = 184032120009
         #
         self.print_len(
@@ -1695,14 +1729,6 @@ class KeyWordFindSearchHitsTests(
                 'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
         #
         #
-        #
-        #
-        #
-        iThisOne = 183953915448
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should be local pickup only' )
         #
         #
         #
@@ -1728,16 +1754,6 @@ class KeyWordFindSearchHitsTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should be local pickup only' )
-        #
-        #
-        #
-        #
-        iThisOne = 153723814561
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should NOT be local pickup only -- '
-                'ships to USA w local p/u option' )
         #
         #
         #
