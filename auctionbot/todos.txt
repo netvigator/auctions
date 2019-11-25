@@ -360,3 +360,4 @@ if user already has A-7, d/n let user add A-7 (name)
 2019-11-20 keepers.getSingleItemThenStore()
 for useritemsfound and userkeepers, should be user specific !!!
 
+2019-11-25 refine ModelFormValidatesTitle in core/forms.py
