@@ -1016,13 +1016,13 @@ class KeyWordFindSearchHitsTests(
         #
         # should show both brands, Sylvania & Marconi
         #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6V6G' )
         self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6V6G' )
         self.assertEqual( oTest.iBrand.cTitle, 'Marconi' )
@@ -1728,6 +1728,15 @@ class KeyWordFindSearchHitsTests(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
         #
+        #
+        #
+        #
+        #
+        iThisOne = 123987878353
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Altec 415C not Lansing 415' )
         #
         #
         #
