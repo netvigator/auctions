@@ -305,7 +305,9 @@ class ItemFoundTemp(models.Model):
                         'model name/number found in auction title',
                         max_length = 24,            null = True )
     iFoundModelLen  = models.PositiveSmallIntegerField( default = 0 )
-
+    cModelAlphaNum  = models.CharField(
+                        'model name/number alpha num only',
+                        max_length = 24,            null = True )
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
