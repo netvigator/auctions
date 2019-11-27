@@ -30,6 +30,7 @@ from pyPks.File.Write       import QuickDumpLines
 from pyPks.Object.Get       import ValueContainer
 
 from pyPks.String.Count     import getAlphaNumCount as getLen
+from pyPks.String.Dumpster  import getAlphaNumCleanNoSpaces
 from pyPks.String.Get       import getTextBeforeC
 from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
@@ -221,6 +222,8 @@ def _getRegExSearchOrNone( s ):
 
 _oParensSearcher = _getRegExSearchOrNone( r'(?<=\().*(?=\))' )
 
+
+def _getAlphaNum( s ): return getAlphaNumCleanNoSpaces( s ).upper()
 
 
 def getInParens( s ):
@@ -470,6 +473,109 @@ def _getMaxHitStars( dModelsStoredAlready ):
         #
     #
     return iMaxStars
+
+
+
+def _getBoosterOffPair( oLongr, oShort ):
+    #
+    iLongerLen = oLongr.iFoundModelLen or 1
+    iShortrLen = oShort.iFoundModelLen or 1
+    #
+    iLongerStars = oLongr.iHitStars or 1
+    iShortrStars = oShort.iHitStars or 1
+    #
+    nBoost = ( ( float( iShortrStars ) * iShortrLen ) /
+               ( iLongerStars * iLongerLen ) ) ** 0.5
+    #
+    return nBoost
+
+
+def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
+    #
+    # if 415-C in title, want 415-C to get higher score than 415
+    # especially when 415 has more stars than 415-C
+    #
+    iFoundModelBooster = 1
+    #
+    lAllFoundIns = []
+    #
+    iMaxLen = 0
+    #
+    for i in range( len( lItemFoundTemp ) ):
+        #
+        o = lItemFoundTemp[ i ]
+        #
+        if o.iFoundModelLen:
+            #
+            lAllFoundIns.append( ( o.iFoundModelLen, i ) )
+            #
+            iMaxLen = max( iMaxLen, o.iFoundModelLen )
+            #
+        #
+    #
+    #
+    #
+    if len( lAllFoundIns ) < 2: return 1, iMaxLen
+    #
+    #
+    #
+    lAllFoundIns.sort()
+    lAllFoundIns.reverse()
+    #
+    lGotModelOverlap = []
+    #
+    for iOut in range( len( lAllFoundIns ) ):
+        #
+        for iIn in range( iOut + 1, len( lAllFoundIns ) ):
+            #
+            oLongr = lItemFoundTemp[ lAllFoundIns[ iOut ][ 1 ] ]
+            oShort = lItemFoundTemp[ lAllFoundIns[ iIn  ][ 1 ] ]
+            #
+            if (    oShort.iHitStars > oLongr.iHitStars
+                    and
+                    oLongr.iFoundModelLen > oShort.iFoundModelLen
+                    and
+                    oLongr.cModelAlphaNum.startswith(
+                    oShort.cModelAlphaNum ) ):
+                #
+                lGotModelOverlap.append( ( oLongr, oShort ) )
+                #
+                if bRecordSteps:
+                    #
+                    print()
+                    print( 'oLongr.iHitStars     :', oLongr.iHitStars      )
+                    print( 'oShort.iHitStars     :', oShort.iHitStars      )
+                    print( 'oLongr.cModelAlphaNum:', oLongr.cModelAlphaNum )
+                    print( 'oShort.cModelAlphaNum:', oShort.cModelAlphaNum )
+                    #
+            #
+        #
+    #
+    #
+    #
+    if not lGotModelOverlap: return 1, iMaxLen
+    #
+    #
+    #
+    nBoost = iMaxLen = 0
+    #
+    for t in lGotModelOverlap:
+        #
+        oLongr, oShort = t
+        #
+        nBoost  = max( nBoost, _getBoosterOffPair( oLongr, oShort ) )
+        #
+        iMaxLen = max( iMaxLen, oLongr.iFoundModelLen )
+    #
+    if bRecordSteps:
+        #
+        print()
+        print( 'nBoost :', nBoost )
+        print( 'iMaxLen:', iMaxLen )
+        #
+    #
+    return nBoost, iMaxLen
+
 
 
 def findSearchHits(
@@ -777,6 +883,8 @@ def findSearchHits(
             #
             if sInTitle:
                 #
+                sModelAlphaNum  = _getAlphaNum( sInTitle )
+                #
                 if bRecordSteps:
                     #
                     if (    uGotKeyWordsOrNoKeyWords and
@@ -894,7 +1002,8 @@ def findSearchHits(
                                 cWhereCategory  = sWhereCategory,
                                 iModel          = oModel,
                                 iStarsModel     = oModel.iStars,
-                                cFoundModel     = sInTitle )
+                                cFoundModel     = sInTitle,
+                                cModelAlphaNum  = sModelAlphaNum )
                         #
                         iModelStars = oModel.iStars or 1
                         #
@@ -997,7 +1106,8 @@ def findSearchHits(
                             iHitStars       = oModel.iStars,
                             iStarsModel     = oModel.iStars,
                             cFoundModel     = sInTitle,
-                            iFoundModelLen  = getLen( sInTitle ),
+                            cModelAlphaNum  = sModelAlphaNum,
+                            iFoundModelLen  = len( sModelAlphaNum ),
                             iSearch         = oUserItem.iSearch,
                             iModel          = oModel )
                     #
@@ -1257,14 +1367,36 @@ def findSearchHits(
                             % len( lItemFoundTemp ) )
                     #
                 #
+                nFoundModelBoost, iMaxLen = _getFoundModelBooster(
+                                                lItemFoundTemp, bRecordSteps )
+                #
+                if bRecordSteps and nFoundModelBoost > 1:
+                    #
+                    lCandidates.append(
+                            'giving the longest title a boost: %s'
+                            % nFoundModelBoost )
+                    #
+                #
                 lSortItems = []
                 #
                 for i in range( len( lItemFoundTemp ) ):
                     #
-                    iFoundModelMultiplier = lItemFoundTemp[i].iFoundModelLen or 1
+                    oTempItem = lItemFoundTemp[ i ]
                     #
-                    iScoreStars = ( iFoundModelMultiplier *
-                                    lItemFoundTemp[i].iHitStars )
+                    iFoundModelMultiplier = oTempItem.iFoundModelLen or 1
+                    #
+                    if oTempItem.iFoundModelLen == iMaxLen:
+                        #
+                        iScoreStars = round( (
+                            iFoundModelMultiplier * oTempItem.iHitStars
+                            ) * nFoundModelBoost )
+                        #
+                    else:
+                        #
+                        iScoreStars = int( (
+                            iFoundModelMultiplier * oTempItem.iHitStars
+                            ) / nFoundModelBoost )
+                        #
                     #
                     lSortItems.append( ( iScoreStars, i ) )
                     #
@@ -1273,11 +1405,11 @@ def findSearchHits(
                         lCandidates.append(
                             '%s, %s, %s - %s : %s : %s' %
                             ( iScoreStars,
-                              lItemFoundTemp[i].iHitStars,
-                              lItemFoundTemp[i].iFoundModelLen,
-                              getTitleOrNone( lItemFoundTemp[i].iCategory ),
-                              getTitleOrNone( lItemFoundTemp[i].iModel ),
-                              getTitleOrNone( lItemFoundTemp[i].iBrand ) ) )
+                              oTempItem.iHitStars,
+                              oTempItem.iFoundModelLen,
+                              getTitleOrNone( oTempItem.iCategory ),
+                              getTitleOrNone( oTempItem.iModel ),
+                              getTitleOrNone( oTempItem.iBrand ) ) )
                         #
                     #
                 #
@@ -1306,6 +1438,15 @@ def findSearchHits(
                         sTopTitle       = sTitle
                         #
                         continue
+                    #
+                    if False and bRecordSteps and sTopTitle and sTitle:
+                        #
+                        print()
+                        print( 'iTopHitStars:', iTopHitStars )
+                        print( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
+                        print( 'sTopTitle:', sTopTitle)
+                        print( 'sTitle:', sTitle)
+                        #
                     #
                     if (    oItemTemp.iHitStars >= iTopHitStars and
                             sTopTitle                           and
@@ -1370,7 +1511,19 @@ def findSearchHits(
                     #
                     # sModelTitleUPPER = sModelTitleLessParens.upper()
                     #
+                    # sModelTitleUPPER = oTempItem.cModelAlphaNum
                     sModelTitleUPPER = oTempItem.cFoundModel.upper()
+                #
+                if bRecordSteps:
+                    #
+                    print()
+                    print( 'temp item      #:', iItemsFoundTemp )
+                    print( 'model           :', oTempItem.iModel )
+                    print( 'brand           :', oTempItem.iBrand )
+                    print( 'category        :', oTempItem.iCategory)
+                    print( 'sModelTitleUPPER:', sModelTitleUPPER )
+                    print()
+                    #
                 #
                 if iItemsFoundTemp == 1: # store item on top here
                     #
@@ -1448,15 +1601,24 @@ def findSearchHits(
                     bGotLongGotShort = False
                     oModelStored     = None
                     #
-                    '''
+                    # '''
                     if bRecordSteps:
                         #
                         print()
                         print('uExact, uLonger, uShort:', t )
                         print('dModelsStoredAlready:')
-                        pprint( dModelsStoredAlready )
+                        for k, l in dModelsStoredAlready.items():
+                            print( '%s:' % k )
+                            i = -1
+                            for o in l:
+                                i += 1
+                                if len( l ) > 1:
+                                    print( '%s:' % i )
+                                else:
+                                    print( 'only one hit:' )
+                                print( o )
                         #
-                    '''
+                    # '''
                     #
                     if uExact and uExact in dModelsStoredAlready:
                         #
@@ -1510,8 +1672,8 @@ def findSearchHits(
                             #
                             _appendIfNotAlreadyIn(
                                 lSelect,
-                                    'excluding %s because '
-                                    'its root is %s' %
+                                    'excluding %s '
+                                    'because its root is %s' %
                                     ( sModelTitleLessParens, uShort ) )
                             #
                         #
