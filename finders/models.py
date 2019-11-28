@@ -308,6 +308,8 @@ class ItemFoundTemp(models.Model):
     cModelAlphaNum  = models.CharField(
                         'model name/number alpha num only',
                         max_length = 24,            null = True )
+    cTitleLeftOver  = models.CharField( 'item title less model match',
+                        max_length = 80,            null = True )
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
