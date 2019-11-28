@@ -34,6 +34,7 @@ from pyPks.String.Dumpster  import getAlphaNumCleanNoSpaces
 from pyPks.String.Get       import getTextBeforeC
 from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
+from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo
 
 SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
@@ -318,15 +319,23 @@ def getFoundItemTester( oTableRow, dFinders,
             #
             uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
             #
+            sWhatRemains = ''
+            #
             if (    sFoundInTitle and
                     uGotKeyWordsOrNoKeyWords and
                     not uExcludeThis ):
                 #
-                return sFoundInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis
+                sWhatRemains = getSpaceForWhiteAlsoStrip(
+                                    ' '.join( findTitle.split( s ) ) )
+                #
+                return ( sFoundInTitle,
+                         uGotKeyWordsOrNoKeyWords,
+                         uExcludeThis,
+                         sWhatRemains )
                 #
             else:
                 #
-                return '', uGotKeyWordsOrNoKeyWords, uExcludeThis
+                return '', uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains
                 #
             #
         #
@@ -454,6 +463,7 @@ def _updateModelsStoredAlready(
         bSubModelsOK    = oTempItem.iModel.bSubModelsOK,
         iModelID        = oTempItem.iModel.id,
         iHitStars       = oTempItem.iHitStars,
+        sTitleLeftOver  = oTempItem.cTitleLeftOver,
         iCategoryID     = iCategoryID )
     #
     dModelsStoredAlready.setdefault(
@@ -540,7 +550,7 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
                 #
                 lGotModelOverlap.append( ( oLongr, oShort ) )
                 #
-                if bRecordSteps:
+                if False and bRecordSteps:
                     #
                     print()
                     print( 'oLongr.iHitStars     :', oLongr.iHitStars      )
@@ -567,7 +577,7 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
         #
         iMaxLen = max( iMaxLen, oLongr.iFoundModelLen )
     #
-    if bRecordSteps:
+    if False and bRecordSteps:
         #
         print()
         print( 'nBoost :', nBoost )
@@ -759,7 +769,7 @@ def findSearchHits(
             #
             t = foundItem( sRelevantTitle )
             #
-            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
+            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
             if uExcludeThis:
                 #
@@ -867,7 +877,7 @@ def findSearchHits(
             #
             t = foundItem( sRelevantTitle, bExplainVerbose )
             #
-            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
+            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
             if uExcludeThis:
                 #
@@ -1003,7 +1013,8 @@ def findSearchHits(
                                 iModel          = oModel,
                                 iStarsModel     = oModel.iStars,
                                 cFoundModel     = sInTitle,
-                                cModelAlphaNum  = sModelAlphaNum )
+                                cModelAlphaNum  = sModelAlphaNum,
+                                cTitleLeftOver  = sWhatRemains )
                         #
                         iModelStars = oModel.iStars or 1
                         #
@@ -1128,7 +1139,7 @@ def findSearchHits(
             #
             t = foundItem( sRelevantTitle )
             #
-            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis = t
+            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
             if uExcludeThis:
                 #
@@ -1424,11 +1435,25 @@ def findSearchHits(
                     #
                     oItemTemp = lItemFoundTemp[ lSortItems[i][1] ]
                     #
+                    sTitle = None
+                    #
                     if oTempItem.iModel:
                         sTitle          = getWhatsNotInParens(
                                             oTempItem.iModel.cTitle ).upper()
                         if oTempItem.iModel.bSubModelsOK:
                             sTitle      = sTitle[ : -1 ]
+                    #
+                    if ( bRecordSteps and
+                            ( iTopScoreStars is None or ( sTopTitle and sTitle) ) ):
+                        #
+                        print()
+                        print( 'i:', i )
+                        print( 'oTempItem.iModel.bSubModelsOK:', oTempItem.iModel.bSubModelsOK )
+                        print( 'iScoreStars:', lSortItems[i][0] )
+                        print( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
+                        print( 'sTopTitle:', sTopTitle)
+                        print( 'sTitle:', sTitle)
+                        #
                     #
                     if iTopScoreStars is None:
                         #
@@ -1438,15 +1463,6 @@ def findSearchHits(
                         sTopTitle       = sTitle
                         #
                         continue
-                    #
-                    if False and bRecordSteps and sTopTitle and sTitle:
-                        #
-                        print()
-                        print( 'iTopHitStars:', iTopHitStars )
-                        print( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
-                        print( 'sTopTitle:', sTopTitle)
-                        print( 'sTitle:', sTitle)
-                        #
                     #
                     if (    oItemTemp.iHitStars >= iTopHitStars and
                             sTopTitle                           and
@@ -1468,19 +1484,26 @@ def findSearchHits(
                         #
                     #
                 #
-                lItemFoundTemp = [ lItemFoundTemp[ t[1] ] for t in lSortItems ]
+                # sort lItemFoundTemp, more stars on top, fewer stars on bottom
+                #
+                lItemFoundSort = [ lItemFoundTemp[ t[1] ] for t in lSortItems ]
                 #
                 if bRecordSteps:
                     #
                     _appendIfNotAlreadyIn(
                             lSelect,
                             'on top:   %s : %s : %s' %
-                            ( getTitleOrNone( lItemFoundTemp[0].iCategory ),
-                              getTitleOrNone( lItemFoundTemp[0].iModel ),
-                              getTitleOrNone( lItemFoundTemp[0].iBrand )) )
+                            ( getTitleOrNone( lItemFoundSort[0].iCategory ),
+                              getTitleOrNone( lItemFoundSort[0].iModel ),
+                              getTitleOrNone( lItemFoundSort[0].iBrand )) )
+                    #
+                    #print()
+                    #print( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
                     #
                 #
             else:
+                #
+                lItemFoundSort = lItemFoundTemp
                 #
                 if bRecordSteps:
                     #
@@ -1496,7 +1519,7 @@ def findSearchHits(
             #
             lModelsStoredAlready    = []
             #
-            for oTempItem in lItemFoundTemp:
+            for oTempItem in lItemFoundSort:
                 #
                 iItemsFoundTemp += 1
                 #
@@ -1578,7 +1601,7 @@ def findSearchHits(
                                     oModelStored.iModelBrand == oTempItem.iBrand and
                                     not oModelStored.bGenericModel )
                             #
-                            if bGotNonGenericForThis: break
+                            if bGotNonGenericForThis: continue
                         #
                     #
                     bGotBrand = False
@@ -1589,7 +1612,7 @@ def findSearchHits(
                             #
                             bGotBrand = ( oModelStored.iModelBrand == oTempItem.iBrand )
                             #
-                            if bGotBrand: break
+                            if bGotBrand: continue
                             #
                         #
                     #
@@ -1602,7 +1625,7 @@ def findSearchHits(
                     oModelStored     = None
                     #
                     # '''
-                    if bRecordSteps:
+                    if False and bRecordSteps:
                         #
                         print()
                         print('uExact, uLonger, uShort:', t )
@@ -1627,16 +1650,18 @@ def findSearchHits(
                     #
                     if uLonger and uLonger in dModelsStoredAlready:
                         #
-                        foundItem = dFindersModels[
-                                dModelsStoredAlready[ uLonger ][0].iModelID ]
-                        #
-                        t = foundItem( sRelevantTitle )
-                        #
-                        sInTitle, uGotKeyWords, uExcludeThis = t
-                        #
-                        lParts = sRelevantTitle.split( sInTitle )
-                        #
-                        sWithout = ' '.join( lParts )
+                        sWithout = dModelsStoredAlready[
+                                    uLonger ][0].sTitleLeftOver or ''
+                        ##
+                        #t = foundItem( sRelevantTitle )
+                        ##
+                        #sInTitle, uGotKeyWords, uExcludeThis, sWhatRemains = t
+                        ##
+                        #lParts = sRelevantTitle.split( sInTitle )
+                        ##
+                        #sWithout = ' '.join( lParts )
+                        ##
+                        #sWithout = oTempItem.cTitleLeftOver or ''
                         #
                         bGotLongGotShort = (
                                 sModelTitleLessParens in sWithout )
@@ -1645,6 +1670,9 @@ def findSearchHits(
                     if uLonger and bGotLongGotShort:
                         #
                         if bRecordSteps:
+                            #
+                            print()
+                            print( 'sWithout:', sWithout )
                             #
                             _appendIfNotAlreadyIn(
                                 lSelect,
@@ -1733,6 +1761,15 @@ def findSearchHits(
                         #
                         continue
                         #
+                    else:
+                        #
+                        if bRecordSteps:
+                            #
+                            print()
+                            print( 'satisfied no elif conditions' )
+                            print()
+                            #
+                        #
                     #
                     tNow = timezone.now()
                     #
@@ -1766,10 +1803,6 @@ def findSearchHits(
                             dModelsStoredAlready, oTempItem, sModelTitleUPPER )
                     #
                     lModelsStoredAlready.append( sModelTitleUPPER )
-                    #
-                else:
-                    #
-                    break
                     #
                 #
             #
