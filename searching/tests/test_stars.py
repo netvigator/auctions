@@ -1737,6 +1737,52 @@ class KeyWordFindSearchHitsTests(
         #
         #
         #
+        iThisOne = 233407527461
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 6, iThisOne,
+                'should find both 6V6 and 6V6GT' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6 (metal can)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6 (metal can)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6 (metal can)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6GTA' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 4 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6GTA' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 5 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6GTA' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        '''
+        '''
+        #
+        #
         #
         iThisOne = 184032120009
         #
@@ -1755,22 +1801,6 @@ class KeyWordFindSearchHitsTests(
                 'should NOT be local pickup only -- '
                 'ships to USA w local p/u option' )
         #
-        #
-        #
-        iThisOne = 233407527461
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 7, iThisOne,
-                'should find both 6V6 and 6V6GT' )
-        #
-        '''
-        6V6 (metal can) | GE | Vacuum Tube
-        6V6 (metal can) | RCA | Vacuum Tube
-        6V6 (metal can) | Tung-Sol | Vacuum Tube
-        6V6GTA | GE | Vacuum Tube
-        6V6GTA | RCA | Vacuum Tube
-        6V6GTA | Tung-Sol | Vacuum Tube
-        '''
         #
         #
         iThisOne = 323984684424
