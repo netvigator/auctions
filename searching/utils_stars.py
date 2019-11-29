@@ -121,9 +121,9 @@ def _getTitleRegExress(
         sRegExpress = '|'.join( ( sRegExpress, sLook4Express ) )
         #
         #if bExplainVerbose:
-            #print('')
-            #print('sLookFor:', sLookFor)
-            #print('sLook4Express:', sLook4Express)
+            #maybePrint('')
+            #maybePrint('sLookFor:', sLookFor)
+            #maybePrint('sLook4Express:', sLook4Express)
     #
     return sRegExpress
 
@@ -175,8 +175,8 @@ def _getRowRegExpressions( oTableRow,
             bAnyUpdates = True
             #
             #if 'etched' in oTableRow.cExcludeIf:
-                #print('')
-                #print( 'sFindKeyWords:', sFindKeyWords )
+                #maybePrint('')
+                #maybePrint( 'sFindKeyWords:', sFindKeyWords )
             #
         else:
             #
@@ -309,12 +309,12 @@ def getFoundItemTester( oTableRow, dFinders,
             uExcludeThis = _includeOrExclude( s, searchExclude )
             #
             #if bExplainVerbose:
-                #print('')
-                #print('sFoundInTitle:', sFoundInTitle )
-                #print('findTitle:', findTitle )
-                #print('findTitle.pattern:', findTitle.pattern )
-                #print('oTableRow.cLookFor:', oTableRow.cLookFor )
-                # print('oTableRow.cExcludeIf:', oTableRow.cExcludeIf )
+                #maybePrint('')
+                #maybePrint('sFoundInTitle:', sFoundInTitle )
+                #maybePrint('findTitle:', findTitle )
+                #maybePrint('findTitle.pattern:', findTitle.pattern )
+                #maybePrint('oTableRow.cLookFor:', oTableRow.cLookFor )
+                # maybePrint('oTableRow.cExcludeIf:', oTableRow.cExcludeIf )
                 #
             #
             uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
@@ -511,15 +511,23 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
     #
     iMaxLen = 0
     #
+    dModelMaxStars = dict.fromkeys(
+            ( o.cModelAlphaNum for o in lItemFoundTemp ), 0 )
+    #
     for i in range( len( lItemFoundTemp ) ):
         #
         o = lItemFoundTemp[ i ]
         #
         if o.iFoundModelLen:
             #
-            lAllFoundIns.append( ( o.iFoundModelLen, i ) )
+            lAllFoundIns.append(
+                ( o.iFoundModelLen, i, o.cModelAlphaNum, o.iHitStars ) )
             #
             iMaxLen = max( iMaxLen, o.iFoundModelLen )
+            #
+            dModelMaxStars[ o.cModelAlphaNum ] = (
+                    max( dModelMaxStars[ o.cModelAlphaNum ],
+                         o.iHitStars ) )
             #
         #
     #
@@ -532,6 +540,14 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
     lAllFoundIns.sort()
     lAllFoundIns.reverse()
     #
+    #
+    if settings.COVERAGE and bRecordSteps:
+        #
+        maybePrint()
+        maybePrint( 'lAllFoundIns:' )
+        pprint( lAllFoundIns )
+        #
+    #
     lGotModelOverlap = []
     #
     for iOut in range( len( lAllFoundIns ) ):
@@ -541,7 +557,9 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
             oLongr = lItemFoundTemp[ lAllFoundIns[ iOut ][ 1 ] ]
             oShort = lItemFoundTemp[ lAllFoundIns[ iIn  ][ 1 ] ]
             #
-            if (    oShort.iHitStars > oLongr.iHitStars
+            if (    oLongr.iHitStars == dModelMaxStars[ oLongr.cModelAlphaNum ]
+                    and
+                    oShort.iHitStars > oLongr.iHitStars
                     and
                     oLongr.iFoundModelLen > oShort.iFoundModelLen
                     and
@@ -550,13 +568,13 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
                 #
                 lGotModelOverlap.append( ( oLongr, oShort ) )
                 #
-                if False and bRecordSteps:
+                if bRecordSteps:
                     #
-                    print()
-                    print( 'oLongr.iHitStars     :', oLongr.iHitStars      )
-                    print( 'oShort.iHitStars     :', oShort.iHitStars      )
-                    print( 'oLongr.cModelAlphaNum:', oLongr.cModelAlphaNum )
-                    print( 'oShort.cModelAlphaNum:', oShort.cModelAlphaNum )
+                    maybePrint()
+                    maybePrint( 'oLongr.iHitStars     :', oLongr.iHitStars      )
+                    maybePrint( 'oShort.iHitStars     :', oShort.iHitStars      )
+                    maybePrint( 'oLongr.cModelAlphaNum:', oLongr.cModelAlphaNum )
+                    maybePrint( 'oShort.cModelAlphaNum:', oShort.cModelAlphaNum )
                     #
             #
         #
@@ -577,11 +595,11 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
         #
         iMaxLen = max( iMaxLen, oLongr.iFoundModelLen )
     #
-    if False and bRecordSteps:
+    if settings.COVERAGE and bRecordSteps:
         #
-        print()
-        print( 'nBoost :', nBoost )
-        print( 'iMaxLen:', iMaxLen )
+        maybePrint()
+        maybePrint( 'nBoost :', nBoost )
+        maybePrint( 'iMaxLen:', iMaxLen )
         #
     #
     return nBoost, iMaxLen
@@ -1443,16 +1461,16 @@ def findSearchHits(
                         if oTempItem.iModel.bSubModelsOK:
                             sTitle      = sTitle[ : -1 ]
                     #
-                    if ( bRecordSteps and
+                    if (    settings.COVERAGE and
+                            bRecordSteps and
                             ( iTopScoreStars is None or ( sTopTitle and sTitle) ) ):
                         #
-                        print()
-                        print( 'i:', i )
-                        print( 'oTempItem.iModel.bSubModelsOK:', oTempItem.iModel.bSubModelsOK )
-                        print( 'iScoreStars:', lSortItems[i][0] )
-                        print( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
-                        print( 'sTopTitle:', sTopTitle)
-                        print( 'sTitle:', sTitle)
+                        maybePrint()
+                        maybePrint( 'i:', i )
+                        maybePrint( 'iScoreStars:', lSortItems[i][0] )
+                        maybePrint( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
+                        maybePrint( 'sTopTitle:', sTopTitle)
+                        maybePrint( 'sTitle:', sTitle)
                         #
                     #
                     if iTopScoreStars is None:
@@ -1497,8 +1515,8 @@ def findSearchHits(
                               getTitleOrNone( lItemFoundSort[0].iModel ),
                               getTitleOrNone( lItemFoundSort[0].iBrand )) )
                     #
-                    #print()
-                    #print( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
+                    #maybePrint()
+                    #maybePrint( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
                     #
                 #
             else:
@@ -1537,15 +1555,15 @@ def findSearchHits(
                     # sModelTitleUPPER = oTempItem.cModelAlphaNum
                     sModelTitleUPPER = oTempItem.cFoundModel.upper()
                 #
-                if bRecordSteps:
+                if settings.COVERAGE and bRecordSteps:
                     #
-                    print()
-                    print( 'temp item      #:', iItemsFoundTemp )
-                    print( 'model           :', oTempItem.iModel )
-                    print( 'brand           :', oTempItem.iBrand )
-                    print( 'category        :', oTempItem.iCategory)
-                    print( 'sModelTitleUPPER:', sModelTitleUPPER )
-                    print()
+                    maybePrint()
+                    maybePrint( 'temp item      #:', iItemsFoundTemp )
+                    maybePrint( 'model           :', oTempItem.iModel )
+                    maybePrint( 'brand           :', oTempItem.iBrand )
+                    maybePrint( 'category        :', oTempItem.iCategory)
+                    maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
+                    maybePrint()
                     #
                 #
                 if iItemsFoundTemp == 1: # store item on top here
@@ -1625,21 +1643,21 @@ def findSearchHits(
                     oModelStored     = None
                     #
                     # '''
-                    if False and bRecordSteps:
+                    if settings.COVERAGE and bRecordSteps:
                         #
-                        print()
-                        print('uExact, uLonger, uShort:', t )
-                        print('dModelsStoredAlready:')
+                        maybePrint()
+                        maybePrint('uExact, uLonger, uShort:', t )
+                        maybePrint('dModelsStoredAlready:')
                         for k, l in dModelsStoredAlready.items():
-                            print( '%s:' % k )
+                            maybePrint( '%s:' % k )
                             i = -1
                             for o in l:
                                 i += 1
                                 if len( l ) > 1:
-                                    print( '%s:' % i )
+                                    maybePrint( '%s:' % i )
                                 else:
-                                    print( 'only one hit:' )
-                                print( o )
+                                    maybePrint( 'only one hit:' )
+                                maybePrint( o )
                         #
                     # '''
                     #
@@ -1671,8 +1689,8 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            print()
-                            print( 'sWithout:', sWithout )
+                            #maybePrint()
+                            #maybePrint( 'sWithout:', sWithout )
                             #
                             _appendIfNotAlreadyIn(
                                 lSelect,
@@ -1765,9 +1783,9 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            print()
-                            print( 'satisfied no elif conditions' )
-                            print()
+                            maybePrint()
+                            maybePrint( 'satisfied no elif conditions' )
+                            maybePrint()
                             #
                         #
                     #
