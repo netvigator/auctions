@@ -23,6 +23,8 @@ from models.models          import Model
 
 from searching              import WORD_BOUNDARY_MAX
 
+from pyPks.Collect.Output   import getTextSequence
+
 from pyPks.File.Get         import getListFromFileLines
 from pyPks.File.Test        import isFileThere
 from pyPks.File.Write       import QuickDumpLines
@@ -308,15 +310,6 @@ def getFoundItemTester( oTableRow, dFinders,
             #
             uExcludeThis = _includeOrExclude( s, searchExclude )
             #
-            if settings.COVERAGE and bExplainVerbose:
-                maybePrint('')
-                maybePrint('sFoundInTitle:', sFoundInTitle )
-                maybePrint('findTitle:', findTitle )
-                maybePrint('findTitle.pattern:', findTitle.pattern )
-                maybePrint('oTableRow.cLookFor:', oTableRow.cLookFor )
-                maybePrint('oTableRow.cExcludeIf:', oTableRow.cExcludeIf )
-                #
-            #
             uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
             #
             sWhatRemains = ''
@@ -328,6 +321,18 @@ def getFoundItemTester( oTableRow, dFinders,
                 #
                 sWhatRemains = getSpaceForWhiteAlsoStrip(
                                     ' '.join( findTitle.split( s ) ) )
+                #
+            #
+            if settings.COVERAGE and bExplainVerbose: #
+                maybePrint('')
+                maybePrint('sFoundInTitle           :', sFoundInTitle )
+                maybePrint('findTitle               :', findTitle )
+                maybePrint('findTitle.pattern       :', findTitle.pattern )
+                maybePrint('oTableRow.cLookFor      :', oTableRow.cLookFor )
+                maybePrint('oTableRow.cExcludeIf    :', oTableRow.cExcludeIf )
+                maybePrint('oTableRow.cKeyWords     :', oTableRow.cKeyWords )
+                maybePrint('uGotKeyWordsOrNoKeyWords:', uGotKeyWordsOrNoKeyWords )
+                maybePrint('sWhatRemains            :', sWhatRemains )
                 #
             #
             return (    sFoundInTitle,
@@ -786,36 +791,54 @@ def findSearchHits(
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
-            if uExcludeThis:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lCategories, 'excluded: %s cuz found %s' %
-                            ( oCategory.cTitle, uExcludeThis ) )
-                    #
-                #
-                continue
-                #
-            else:
-                #
-                bInHeirarchy1  = ( # will be True if sInTitle is True
-                        sInTitle or
-                        ( oItem.iCatHeirarchy and # can be None
-                          foundItem(
-                              oItem.iCatHeirarchy.cCatHierarchy )[0] ) )
-                #
-                bInHeirarchy2  = ( # will be True if either are True
-                        sInTitle or
-                        bInHeirarchy1 or
-                        ( oItem.i2ndCatHeirarchy and
-                          foundItem(
-                              oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
-                #
+            #
+            bInHeirarchy1  = ( # will be True if sInTitle is True
+                    sInTitle or
+                    ( oItem.iCatHeirarchy and # can be None
+                        foundItem(
+                            oItem.iCatHeirarchy.cCatHierarchy )[0] ) )
+            #
+            bInHeirarchy2  = ( # will be True if either are True
+                    sInTitle or
+                    bInHeirarchy1 or
+                    ( oItem.i2ndCatHeirarchy and
+                        foundItem(
+                            oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
+            #
             #
             bGotCategory = sInTitle or bInHeirarchy1 or bInHeirarchy2
             #
             if bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
+                #
+                if uExcludeThis:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                                lCategories, 'excluded: %s cuz found %s' %
+                                ( oCategory.cTitle, uExcludeThis ) )
+                        #
+                    #
+                    continue
+                    #
+                elif oCategory.cKeyWords and not uGotKeyWordsOrNoKeyWords:
+                    #
+                    if bRecordSteps:
+                        #
+                        lKeyWords = oFinderCRorLF.split( oCategory.cKeyWords )
+                        #
+                        sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                        #
+                        sPlural = 's' if len( lKeyWords ) > 1 else ''
+                        #
+                        _appendIfNotAlreadyIn(
+                                lModels,
+                                'excluded: %s cuz aint got key word%s %s' %
+                                ( oCategory.cTitle, sPlural, sSayKeyWords ) )
+                        #
+                    #
+                    continue
+                    #
                 #
                 setGotCategories.add( oCategory.id )
                 #
@@ -879,28 +902,47 @@ def findSearchHits(
         #
         for oModel in qsModels:
             #
-            bExplainVerbose = False and oModel.cTitle == '2'
-            #
             foundItem = getFoundItemTester(
                             oModel,
                             dFindersModels,
                             bAddDash = True,
                             bSubModelsOK = oModel.bSubModelsOK,
-                            bExplainVerbose = bExplainVerbose )
+                            bExplainVerbose = False )
             #
             bFoundCategoryForModel = False
+            #
+            bExplainVerbose = ( bRecordSteps and
+                                oModel.cTitle == '6DJ8 (Bugle Boy)' )
             #
             t = foundItem( sRelevantTitle, bExplainVerbose )
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
-            if uExcludeThis:
+            if sInTitle and uExcludeThis:
                 #
                 if bRecordSteps:
                     #
                     _appendIfNotAlreadyIn(
                             lModels, 'excluded: %s cuz found %s' %
                             ( oModel.cTitle, uExcludeThis ) )
+                    #
+                #
+                continue
+                #
+            if sInTitle and not uGotKeyWordsOrNoKeyWords:
+                #
+                if bRecordSteps:
+                    #
+                    lKeyWords = oFinderCRorLF.split( oModel.cKeyWords )
+                    #
+                    sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                    #
+                    sPlural = 's' if len( lKeyWords ) > 1 else ''
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'excluded: %s cuz aint got key word%s %s' %
+                            ( oModel.cTitle, sPlural, sSayKeyWords ) )
                     #
                 #
                 continue
@@ -1156,7 +1198,7 @@ def findSearchHits(
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
-            if uExcludeThis:
+            if sInTitle and uExcludeThis:
                 #
                 if bRecordSteps:
                     #
@@ -1389,7 +1431,8 @@ def findSearchHits(
                 if bRecordSteps:
                     #
                     lCandidates.append(
-                            'scoring (total, hit stars, found length): %s'
+                            'scoring (total, hit stars, found length): '
+                            '%s candidates'
                             % len( lItemFoundTemp ) )
                     #
                 #
