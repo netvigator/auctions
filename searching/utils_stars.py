@@ -319,23 +319,21 @@ def getFoundItemTester( oTableRow, dFinders,
             #
             uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
             #
+            sWhatRemains = ''
             #
             if (    sFoundInTitle and
                     uGotKeyWordsOrNoKeyWords and
+                    isinstance( oTableRow, Model ) and
                     not uExcludeThis ):
                 #
                 sWhatRemains = getSpaceForWhiteAlsoStrip(
                                     ' '.join( findTitle.split( s ) ) )
                 #
-                return ( sFoundInTitle,
-                         uGotKeyWordsOrNoKeyWords,
-                         uExcludeThis,
-                         sWhatRemains )
-                #
-            else:
-                #
-                return '', uGotKeyWordsOrNoKeyWords, uExcludeThis, ''
-                #
+            #
+            return (    sFoundInTitle,
+                        uGotKeyWordsOrNoKeyWords,
+                        uExcludeThis,
+                        sWhatRemains )
             #
         #
         dFinders[ oTableRow.pk ] = foundItemTester
