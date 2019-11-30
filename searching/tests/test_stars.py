@@ -1045,13 +1045,13 @@ class KeyWordFindSearchHitsTests(
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '12AX7' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        self.assertIn( oTest.iBrand.cTitle, ( 'Raytheon', 'Tung-Sol' ) )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '12AX7' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
+        self.assertIn( oTest.iBrand.cTitle, ( 'Raytheon', 'Tung-Sol' ) )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
