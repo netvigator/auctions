@@ -2010,8 +2010,8 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
         #
-        self.assertFalse( sInTitle     )
-        self.assertTrue(  uExcludeThis )
+        self.assertEqual( sInTitle, 'Caddy' )
+        self.assertTrue( uExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
         #
@@ -2064,7 +2064,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
         #
-        self.assertFalse( sInTitle     )
+        self.assertEqual( sInTitle, 'Widget' )
         self.assertTrue(  uExcludeThis )
         #
         sAuctionTitle = 'Elvis Presley 1955 Pink Caddy Fleetwood Series 60, Greenlight 12950 1/18 Diecast'
@@ -2073,7 +2073,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
         #
-        self.assertFalse( sInTitle     )
+        self.assertFalse( sInTitle )
         self.assertFalse( uExcludeThis )
         #
         foundItem = dFinders[ self.oCategory.pk ]
@@ -2129,7 +2129,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
         #
-        self.assertFalse( sInTitle     )
+        self.assertEqual( sInTitle, 'Fleetwood' )
         self.assertFalse( uExcludeThis )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
