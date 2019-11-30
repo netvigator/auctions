@@ -81,7 +81,7 @@ sBrands = \
  Radford           |      7 |            |
  Radio Craftsmen   |      8 |            |
  Raytheon          |      7 |            |
- RCA               |      5 |            |
+ RCA               |      6 |            |
  Regency           |      5 |            |
  Sargent-Rayment   |      4 |            |
  Scott, H.H.       |      8 |            | Scott\\rH.H. Scott
@@ -93,7 +93,7 @@ sBrands = \
  Stromberg-Carlson |      5 |            |
  Sylvania          |      6 |            |
  Tannoy            |      7 |            |
- Tung-Sol          |      6 |            |
+ Tung-Sol          |      7 |            |
  University        |      5 |            |
  UTC               |      8 |            |
  Western Electric  |      9 |            |
