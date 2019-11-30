@@ -308,18 +308,17 @@ def getFoundItemTester( oTableRow, dFinders,
             #
             uExcludeThis = _includeOrExclude( s, searchExclude )
             #
-            #if bExplainVerbose:
-                #maybePrint('')
-                #maybePrint('sFoundInTitle:', sFoundInTitle )
-                #maybePrint('findTitle:', findTitle )
-                #maybePrint('findTitle.pattern:', findTitle.pattern )
-                #maybePrint('oTableRow.cLookFor:', oTableRow.cLookFor )
-                # maybePrint('oTableRow.cExcludeIf:', oTableRow.cExcludeIf )
+            if settings.COVERAGE and bExplainVerbose:
+                maybePrint('')
+                maybePrint('sFoundInTitle:', sFoundInTitle )
+                maybePrint('findTitle:', findTitle )
+                maybePrint('findTitle.pattern:', findTitle.pattern )
+                maybePrint('oTableRow.cLookFor:', oTableRow.cLookFor )
+                maybePrint('oTableRow.cExcludeIf:', oTableRow.cExcludeIf )
                 #
             #
             uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
             #
-            sWhatRemains = ''
             #
             if (    sFoundInTitle and
                     uGotKeyWordsOrNoKeyWords and
@@ -335,7 +334,7 @@ def getFoundItemTester( oTableRow, dFinders,
                 #
             else:
                 #
-                return '', uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains
+                return '', uGotKeyWordsOrNoKeyWords, uExcludeThis, ''
                 #
             #
         #
@@ -1778,15 +1777,6 @@ def findSearchHits(
                             #
                         #
                         continue
-                        #
-                    else:
-                        #
-                        if bRecordSteps:
-                            #
-                            maybePrint()
-                            maybePrint( 'satisfied no elif conditions' )
-                            maybePrint()
-                            #
                         #
                     #
                     tNow = timezone.now()
