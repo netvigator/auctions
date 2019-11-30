@@ -1,4 +1,4 @@
-iRecordStepsForThis = 173696832184
+iRecordStepsForThis = 184032120009
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -28,6 +28,7 @@ sBrands = \
  Ampex             |      5 |            |
  Amperex Bugle Boy |      9 |            | Amperex BB
  Amperex           |      8 |            |
+ Amperex PQ        |      9 |            |
  Arvin             |      7 |            |
  Astronic          |      2 |            |
  Audio Research    |      5 |            |
@@ -146,6 +147,8 @@ sModels = \
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
+ 7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
@@ -677,6 +680,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["133251370953"],
+             "title":["1x 7308 AMPEREX PQ USA Gold Pin HiFi Amplifier Vacuum Tube - TESTED"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mCCFdNED1217-e2edWxW5mw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/1x-7308-AMPEREX-PQ-USA-Gold-Pin-HiFi-Amplifier-Vacuum-Tube-TESTED-\/133251370953"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["851**"],"location":["Apache Junction,AZ,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"13.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"13.5"}],
+             "bidCount":["5"],"sellingState":["Active"],
+             "timeLeft":["P0DT18H15M10S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-11-25T15:56:31.000Z"],
+             "endTime":["2019-11-30T15:56:31.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["123987878353"],
              "title":["Single Altec Lansing 415C 415-C Biflex 15 inch Speaker for Parts or Repair "],
