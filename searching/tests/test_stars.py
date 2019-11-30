@@ -1784,6 +1784,21 @@ class KeyWordFindSearchHitsTests(
         #
         #
         #
+        iThisOne = 133251370953
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should match up PQ brand and model' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7308 (Amperex PQ)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex PQ' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
         iThisOne = 184032120009
         #
         self.print_len(
