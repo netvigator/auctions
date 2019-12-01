@@ -23,20 +23,49 @@ from categories.models      import Category
 User = get_user_model()
 
 
+
+
+_sExplainMore = (
+        '%%s<br/>Bot expands hyphens, spaces and number/letter boundaries,<br/>'
+        '"208A" will %s 208A, 208 A and 208-A<br/>'
+        '"208 A" will %s 208A, 208 A and 208-A<br/>'
+        '"208-A" will %s 208A, 208 A and 208-A' )
+
+_sExplainMoreFinding = _sExplainMore % ( 'find', 'find', 'find' )
+
+_sExplainMoreExclude = _sExplainMore % ( 'exclude', 'exclude', 'exclude' )
+
+_sHelpTextModelTitle = (
+        _sExplainMoreFinding %
+        ( sTitleHelpText % 'model number or' ) )
+
+_sHelpTextModelKeyWords = (
+        _sExplainMoreFinding %
+        ( sKeyWordsHelpText % ( 'model number or', 'model' ) ) )
+
+_sHelpTextModelLookFor = (
+        _sExplainMoreFinding %
+        ( sLookForHelpText %
+            ( 'model numbers or', 'model number or', 'model' ) ) )
+
+_sHelpTextModelExcludeIf = (
+        _sExplainMoreExclude %
+        ( sExcludeIfHelpText % 'model' ) )
+
+
 class Model( GetItemsForSomething, models.Model ):
     cTitle          = gotSomethingOutsideTitleParensCharField(
                         'model number or name',
                         max_length = 48, db_index = True,
-        help_text = sTitleHelpText % 'model number or' )
+        help_text   = _sHelpTextModelTitle )
     cKeyWords       = models.TextField(
                         'model key words',
                         null = True, blank = True,
-        help_text = sKeyWordsHelpText % ( 'model number or', 'model' ) )
+        help_text   = _sHelpTextModelKeyWords )
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = sLookForHelpText % (
-                            'model numbers or', 'model number or', 'model' ) )
+        help_text   = _sHelpTextModelLookFor )
     iStars          = IntegerRangeField(
                         'desireability, 10 star model is most desireable',
                         min_value = 0, max_value = 10, default = 5,
@@ -83,7 +112,7 @@ class Model( GetItemsForSomething, models.Model ):
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null = True, blank = True,
-        help_text = sExcludeIfHelpText % 'model' )
+        help_text   = _sHelpTextModelExcludeIf )
 
     cRegExLook4Title= models.TextField( null = True )
     cRegExExclude   = models.TextField( null = True )
