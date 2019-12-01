@@ -215,6 +215,24 @@ class SetUpBrandsCategoriesModelsMixin( object ):
 
     def setUpBrandsCategoriesModels( self, oUser ):
         #
+        self.oBrand_hp = Brand(
+            cTitle      = "Hewlett-Packard",
+            cLookFor    = "hp",
+            cExcludeIf  = '',
+            iStars      = 5,
+            iUser       = oUser )
+        #
+        self.oBrand_hp.save()
+        #
+        self.oBrand_GT = Brand(
+            cTitle      = "Groove Tube",
+            cLookFor    = "Groove Tubes",
+            cExcludeIf  = '',
+            iStars      = 4,
+            iUser       = oUser )
+        #
+        self.oBrand_GT.save()
+        #
         self.oBrand = Brand(
             cTitle      = "Cadillac",
             cLookFor    = "Caddy",
