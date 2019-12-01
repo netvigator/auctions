@@ -170,7 +170,8 @@ def _getRowRegExpressions( oTableRow,
             #
             sFindKeyWords = getRegExpress(
                             oTableRow.cKeyWords,
-                            iWordBoundChrs = WORD_BOUNDARY_MAX )
+                            bAddDash        = bAddDash,
+                            iWordBoundChrs  = WORD_BOUNDARY_MAX )
             #
             oTableRow.cRegExKeyWords = sFindKeyWords
             #
@@ -190,6 +191,7 @@ def _getRowRegExpressions( oTableRow,
         #
         sFindExclude = getRegExpress(
                             oTableRow.cExcludeIf,
+                            bAddDash        = bAddDash,
                             iWordBoundChrs  = WORD_BOUNDARY_MAX,
                             bEscBegEndOfStr = False )
         #
@@ -1190,7 +1192,8 @@ def findSearchHits(
         #
         for oBrand in qsBrands:
             #
-            foundItem = getFoundItemTester( oBrand, dFindersBrands )
+            foundItem = getFoundItemTester(
+                            oBrand, dFindersBrands, bAddDash = True )
             #
             bFoundBrandForModel = False
             #
