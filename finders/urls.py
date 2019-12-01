@@ -3,6 +3,8 @@ from django.conf.urls import url
 from . import views
 
 
+#        view    = views.ItemsFoundIndexView.as_view(),
+
 
 app_name = "finders"
 
@@ -17,7 +19,7 @@ urlpatterns = [
         name    = 'edit' ),
     url(
         regex = r'(?P<select>[ADPZ]){0,1}/{0,1}$',
-        view    = views.ItemsFoundIndexView.as_view(),
+        view    = views.FindersIndexView.as_view(),
         name    = 'index' ),
 
 ]
