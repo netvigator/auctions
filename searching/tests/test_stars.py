@@ -44,7 +44,7 @@ def _getCategoryRegExFinders4Test( oCategory ):
 
 def _getBrandRegExFinders4Test( oBrand ):
     #
-    t = _getRowRegExpressions( oBrand )
+    t = _getRowRegExpressions( oBrand, bAddDash = True  )
     #
     sFindTitle, sFindExclude, sFindKeyWords = t
     #
@@ -1934,6 +1934,38 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         self.assertTrue(  findTitle(    sAuctionTitle ) )
         #
+        t = _getBrandRegExFinders4Test( self.oBrand_hp )
+        #
+        findTitle, findExclude = t
+        #
+        sAuctionTitle = 'Vintage Hewlett Packard 200C Audio Oscillator'
+        #
+        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        #
+        sAuctionTitle = 'Vintage Hewlett-Packard 200C Audio Oscillator'
+        #
+        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        #
+        sAuctionTitle = 'Vintage HewlettPackard 200C Audio Oscillator'
+        #
+        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        #
+        t = _getBrandRegExFinders4Test( self.oBrand_GT )
+        #
+        findTitle, findExclude = t
+        #
+        sAuctionTitle = 'Groove Tubes Microphone GT55 Professional Condenser Mic'
+        #
+        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        #
+        sAuctionTitle = 'Groove-Tube Microphone GT55 Professional Condenser Mic'
+        #
+        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        #
+        sAuctionTitle = 'GrooveTubes Microphone GT55 Professional Condenser Mic'
+        #
+        self.assertTrue(  findTitle(    sAuctionTitle ) )
+        #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
@@ -2228,8 +2260,8 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'Model[-/ ]*2\b|Model *Two',
-                     r'Model *Two|Model[-/ ]*2\b' )
+        tFinders = ( r'Model[-/ ]*2\b|Model[-/ ]*Two',
+                     r'Model[-/ ]*Two|Model[-/ ]*2\b' )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
         #
