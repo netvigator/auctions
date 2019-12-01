@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Auction Shopping Bot | Items Found{% endblock %}
+{% load define %}
+
+{% block content %}
+
+    <h1>Finders (Items Found)</h1>
+
+    {% if finders_list %}
+
+      <form action="" method="post">
+        {% csrf_token %}
+
+        {% include "./index_buttons_more.html" %}
+
+        <div class="basic">
+          {% include "./fFinders_list_table.html" %}
+        </div>
+
+        <p/>
+        <p/>
+
+        {% include "./index_buttons_more.html" %}
+
+        <p/>
+      </form>
+
+    {% else %}
+        <p/>
+        <p>No items have been found.</p>
+    {% endif %}
+
+{% endblock %}
