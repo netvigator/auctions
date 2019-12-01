@@ -8,13 +8,59 @@ from .forms         import ItemFoundForm, UserItemFoundForm
 
 from .mixins        import AnyReleventHitStarColsChangedMixin
 
-from .models        import ItemFound, UserItemFound
+from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetFindersSelectionsOnPost,
                              GetUserItemsTableMixin )
 
 # ### keep views thin! ###
+
+
+class FindersIndexView(
+            GetFindersSelectionsOnPost, GetPaginationExtraInfoInContext,
+            ListViewGotModel ):
+
+    template_name       = 'finders/fIndex.html'
+    model               = UserFinder
+    context_object_name = 'finders_list'
+    paginate_by         = 100
+
+    def get_queryset( self ):
+        #
+        # ADPZ
+        # qs = super( ItemsFoundIndexView, self ).get_queryset()
+        # sSelect = 'P'
+        #
+        sSelect = self.kwargs.get('select', 'P' )
+        #
+        if not sSelect: sSelect = 'P'
+        #
+        if sSelect == 'A': # all
+            qsGot = UserFinder.objects.filter(
+                        iUser               = self.request.user,
+                        bListExclude        = False,
+                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+        elif sSelect == 'P': # postive (non-zero hit stars)
+            qsGot = UserFinder.objects.filter(
+                        iUser               = self.request.user,
+                        iMaxStars__isnull   = False,
+                        bListExclude        = False,
+                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+        elif sSelect == 'D': # "deleted" (excluded from list)
+            qsGot = UserFinder.objects.filter(
+                        iUser               = self.request.user,
+                        iMaxStars__isnull   = False,
+                        bListExclude        = True
+                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+        elif sSelect == 'Z': # iMaxStars = 0
+            qsGot = UserFinder.objects.filter(
+                        iUser               = self.request.user,
+                        iMaxStars           = 0,
+                        bListExclude        = False
+                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+        #
+        return qsGot
 
 
 
