@@ -19,10 +19,34 @@ User = get_user_model()
 # ### models can be FAT but not too FAT! ###
 
 
+_sExplainMore = (
+        '%%s<br/>Bot expands spaces and hyphens,<br/>'
+        '"Hewlett-Packard" will %s Hewlett-Packard, Hewlett Packard and HewlettPackard,<br/>'
+        '"Hewlett Packard" will %s Hewlett Packard, Hewlett-Packard and HewlettPackard' )
+
+_sExplainMoreFinding = _sExplainMore % ( 'find', 'find' )
+
+_sExplainMoreExclude = _sExplainMore % ( 'exclude', 'exclude' )
+
+
+_sHelpTextBrandTitle = (
+        _sExplainMoreFinding %
+        ( sTitleHelpText % 'brand' ) )
+
+_sHelpTextBrandLookFor = (
+        _sExplainMoreFinding %
+        ( sLookForHelpText %
+            ( 'brand', 'brand', 'brand' ) ) )
+
+_sHelpTextBrandExcludeIf = (
+        _sExplainMoreExclude %
+        ( sExcludeIfHelpText % 'brand' ) )
+
+
 class Brand( GetItemsForSomething, models.Model ):
     cTitle          = models.CharField(
                         'brand name', max_length = 48, db_index = True,
-        help_text = sTitleHelpText % 'brand' )
+        help_text   = _sHelpTextBrandTitle )
     bWanted         = models.BooleanField(
                         'want anything from this brand?', default = True,
         help_text = 'Bot will only download full descriptions and pictures '
@@ -33,7 +57,7 @@ class Brand( GetItemsForSomething, models.Model ):
     cLookFor        = models.TextField(
                         'Considered a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = sLookForHelpText % ( 'brand', 'brand', 'brand' ) )
+        help_text   = _sHelpTextBrandLookFor )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
@@ -43,7 +67,7 @@ class Brand( GetItemsForSomething, models.Model ):
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null=True, blank = True,
-        help_text = sExcludeIfHelpText % 'brand' )
+        help_text   = _sHelpTextBrandExcludeIf )
 
     cRegExLook4Title= models.TextField( null = True )
     cRegExExclude   = models.TextField( null = True )
