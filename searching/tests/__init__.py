@@ -165,7 +165,7 @@ sModels = \
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
  445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
  511A               |           |      6 | f            | Altec-Lansing     |         Horn |             |
- 515A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         | 515B\\r515C  |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  601a (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
  601B (enclosure)   |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
