@@ -24,6 +24,7 @@ from models.models          import Model
 from searching              import WORD_BOUNDARY_MAX
 
 from pyPks.Collect.Output   import getTextSequence
+from pyPks.Collect.Query    import get1stThatMeets
 
 from pyPks.File.Get         import getListFromFileLines
 from pyPks.File.Test        import isFileThere
@@ -477,16 +478,27 @@ def _updateModelsStoredAlready(
 
 def _getMaxHitStars( dModelsStoredAlready ):
     #
-    iMaxStars = 0
+    iMaxStars = iMaxModel = 0
     #
-    tHitStars = tuple( ( o.iHitStars for l in dModelsStoredAlready.values() for o in l ) )
+    tHitStarsModels = tuple(    ( o.iHitStars, o.iModelID )
+                                for l in dModelsStoredAlready.values()
+                                for o in l )
     #
-    if tHitStars:
+    if tHitStarsModels:
         #
-        iMaxStars = max( tHitStars )
+        iMaxStars = max( ( t[0] for t in tHitStarsModels ) )
         #
     #
-    return iMaxStars
+    if iMaxStars:
+        #
+        def gotMax( t ): return t[0] == iMaxStars
+        #
+        tMax  = get1stThatMeets( tHitStarsModels, gotMax )
+        #
+        iMaxModel = tMax[1]
+        #
+    #
+    return iMaxStars, iMaxModel
 
 
 
@@ -1860,13 +1872,14 @@ def findSearchHits(
             #
             # before going on, update userFinder, dModelsStoredAlready has the info
             #
-            iMaxStars = _getMaxHitStars( dModelsStoredAlready )
+            iMaxStars, iMaxModel = _getMaxHitStars( dModelsStoredAlready )
             #
             if iMaxStars:
                 #
                 oUserFinder = UserFinder(
                         iItemNumb       = oItem,
                         iMaxStars       = iMaxStars,
+                        iMaxModel       = iMaxModel,
                         cTitle          = oItem.cTitle,
                         cMarket         = oItem.cMarket,
                         cListingType    = oItem.cListingType,
