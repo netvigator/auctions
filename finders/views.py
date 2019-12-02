@@ -40,25 +40,25 @@ class FindersIndexView(
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
                         bListExclude        = False,
-                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
         elif sSelect == 'P': # postive (non-zero hit stars)
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
                         iMaxStars__isnull   = False,
                         bListExclude        = False,
-                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
         elif sSelect == 'D': # "deleted" (excluded from list)
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
                         iMaxStars__isnull   = False,
                         bListExclude        = True
-                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
         elif sSelect == 'Z': # iMaxStars = 0
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
                         iMaxStars           = 0,
                         bListExclude        = False
-                    ).order_by( '-iMaxStars', 'tTimeEnd' )
+                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
         #
         return qsGot
 
@@ -152,7 +152,46 @@ class ItemsFoundIndexView(
 
 
 
+
+
+
+
 class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
+
+    model           = ItemFound
+    template_name   = 'finders/fDetail.html'
+    form_class      = ItemFoundForm
+
+    def get_context_data( self, **kwargs ):
+        '''
+        want more info to the context data.
+        '''
+        context = super(
+                ItemFoundDetailView, self
+                ).get_context_data( **kwargs )
+
+        # qsThisItem = UserItemFound.objects.filter(
+        #
+        '''
+        {'object': <UserItemFound: FISHER FM 200 B FM STEREO TUBE TUNER 200B>,
+         'useritemfound': <UserItemFound: FISHER FM 200 B FM STEREO TUBE TUNER 200B>,
+         'view': <finders.views.ItemFoundDetailView object at 0x7f0669fa63c8>,
+         'model': <class 'finders.models.UserItemFound'>,\
+         'parent': <class 'finders.models.ItemFound'>}
+        '''
+        #
+        qsThisItemAllHits = UserItemFound.objects.filter(
+                iItemNumb_id = context[ 'object' ].iItemNumb,
+                iUser        = self.request.user )
+        #
+        sThisItemAllHits = self.getUserItemsTable( qsThisItemAllHits )
+        #
+        context['AllHits'] = sThisItemAllHits
+        #
+        return context
+
+
+class uItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
 
     model           = UserItemFound
     parent          = ItemFound
