@@ -1841,6 +1841,11 @@ class KeyWordFindSearchHitsTests(
         self.assertNotEmpty( oUserFinder.cMarket        )
         self.assertNotEmpty( oUserFinder.cListingType   )
         self.assertNotEmpty( oUserFinder.tTimeEnd       )
+        self.assertNotEmpty( oUserFinder.iMaxModel      )
+        #
+        oMaxModel = Model.objects.filter( pk = oUserFinder.iMaxModel )
+        #
+        self.assertNotEmpty( oMaxModel                  )
         #
         if False:
             #
