@@ -224,6 +224,8 @@ class UserFinder(models.Model):
                         null = True, default = False )
     bListExclude    = models.NullBooleanField( 'exclude from listing?',
                         null = True, default = False )
+    iMaxModel       = models.IntegerField( 'model hit with most stars',
+                        null = True, default = False )
     #
     def __str__(self):
         return '%s - %s' % ( self.iItemNumb, self.iUser )
@@ -232,6 +234,12 @@ class UserFinder(models.Model):
         verbose_name_plural = 'userfinders'
         db_table            = verbose_name_plural
         unique_together     = ('iItemNumb', 'iUser' )
+
+    def get_absolute_url(self):
+        #
+        return reverse(
+                'finders:detail', kwargs = { 'pk': self.iItemNumb_id } )
+
 
 '''
 truncate table userfinders ;
@@ -246,10 +254,20 @@ insert into userfinders ( "iItemNumb_id", "iUser_id" )
 
 update userfinders uf
   set "iMaxStars" =
-  ( select max( uif."iHitStars" ) from useritemsfound uif
+  ( select max( uif."iHitStars" )
+    from useritemsfound uif
     where
         uif."iItemNumb_id" = uf."iItemNumb_id" and
         uif."iUser_id" = uf."iUser_id" ) ;
+
+update userfinders uf
+  set "iMaxModel" =
+  ( select distinct on (uif."iHitStars") uif."iModel_id"
+    from useritemsfound uif
+    where
+        uif."iItemNumb_id" = uf."iItemNumb_id" and
+        uif."iUser_id" = uf."iUser_id" and
+        uif."iHitStars" = uf."iMaxStars" ) ;
 
 update userfinders uf
   set "bGetPictures" = true where exists
