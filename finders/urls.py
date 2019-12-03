@@ -4,6 +4,7 @@ from . import views
 
 
 #        view    = views.ItemsFoundIndexView.as_view(),
+#        view    = views.FindersIndexView.as_view(),
 
 
 app_name = "finders"
