@@ -158,9 +158,10 @@ class ItemsFoundIndexView(
 
 class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
 
-    model           = ItemFound
+    model           = UserFinder
+    parent          = ItemFound
     template_name   = 'finders/fDetail.html'
-    form_class      = ItemFoundForm
+    form_class      = UserItemFoundForm
 
     def get_context_data( self, **kwargs ):
         '''
