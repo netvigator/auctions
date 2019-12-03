@@ -238,7 +238,7 @@ class UserFinder(models.Model):
     def get_absolute_url(self):
         #
         return reverse(
-                'finders:detail', kwargs = { 'pk': self.iItemNumb_id } )
+                'finders:detail', kwargs = { 'pk': self.pk } )
 
 
 '''
