@@ -3,8 +3,7 @@ from core.utils_test    import ( getTableFromScreenCaptureGenerator,
 
 from core.utils_test    import TestCasePlus
 
-# in __init__.py
-from ebayinfo           import ( EBAY_US_CURRENT_VERSION,
+from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
                                  EBAY_SG_CURRENT_VERSION,
                                  sMarketsTable )
 
