@@ -272,13 +272,18 @@ class GetFindersSelectionsOnPost( object ):
         #
         url = request.build_absolute_uri()
         #
-        from finders.models import UserItemFound # got circular import problem
+        # from finders.models import UserItemFound # got circular import problem
+        from finders.models import UserFinder # got circular import problem
         #
         if "selectall" in request.POST:
             #
             lPageItems = request.POST.getlist('AllItems')
             #
-            qsChanged  = UserItemFound.objects.filter(
+            # qsChanged  = UserItemFound.objects.filter(
+            #                 iItemNumb_id__in = lPageItems,
+            #                 iUser            = self.request.user )
+            #
+            qsChanged  = UserFinder.objects.filter(
                             iItemNumb_id__in = lPageItems,
                             iUser            = self.request.user )
             #
@@ -344,7 +349,11 @@ class GetFindersSelectionsOnPost( object ):
             setChanged = setUnExcl.union(
                         setUnPics, setNewExcl, setNewPics )
             #
-            qsChanged  = UserItemFound.objects.filter(
+            # qsChanged  = UserItemFound.objects.filter(
+            #                 iItemNumb_id__in = setChanged,
+            #                 iUser            = self.request.user )
+            #
+            qsChanged  = UserFinder.objects.filter(
                             iItemNumb_id__in = setChanged,
                             iUser            = self.request.user )
             #
