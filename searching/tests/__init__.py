@@ -418,46 +418,46 @@ sModels = \
 
 dSearchResult = \
 {'autoPay': 'false',
- 'condition': {'conditionDisplayName': 'New', 'conditionId': '1000'
-}, 'country': 'US',
+ 'condition': {'conditionDisplayName': 'New', 'conditionId': '1000'},
+ 'country': 'US',
  'galleryURL': 'http://thumbs3.ebaystatic.com/m/mutHoe85kv1_SUEGG3k1yBw/140.jpg',
  'globalId': 'EBAY-US',
  'isMultiVariationListing': 'false',
  'itemId': '282330751118',
- 'listingInfo': {'bestOfferEnabled': 'true',
-  'buyItNowAvailable': 'false',
-  'endTime': '2018-02-13T00:34:26.000Z',
-  'gift': 'false',
-  'listingType': 'Auction',
-  'startTime': '2017-01-19T00:34:26.000Z',
-  'watchCount': '19'
-}, 'location': 'Staten Island,NY,USA',
- 'paginationOutput': {'entriesPerPage': '100',
-  'pageNumber': '1',
-  'thisEntry': '1',
-  'totalEntries': '1320',
-  'totalPages': '14'
-}, 'paymentMethod': 'PayPal',
+ 'listingInfo': {
+     'bestOfferEnabled': 'true',
+    'buyItNowAvailable': 'false',
+    'endTime': '2018-02-13T00:34:26.000Z',
+    'gift': 'false',
+    'listingType': 'Auction',
+    'startTime': '2017-01-19T00:34:26.000Z',
+    'watchCount': '19'},
+ 'location': 'Staten Island,NY,USA',
+ 'paginationOutput': {
+     'entriesPerPage': '100',
+    'pageNumber': '1',
+    'thisEntry': '1',
+    'totalEntries': '1320',
+    'totalPages': '14'},
+ 'paymentMethod': 'PayPal',
  'postalCode': '10303',
- 'primaryCategory': {'categoryId': '73160',
-  'categoryName': 'Capacitance & ESR Meters'
-}, 'returnsAccepted': 'true',
- 'sellingStatus': {'convertedCurrentPrice': {'@currencyId': 'USD',
-   '__value__': '27.99'
-},  'currentPrice': {'@currencyId': 'USD', '__value__': '27.99'
-},  'sellingState': 'Active',
-  'timeLeft': 'P13DT6H33M56S'
-}, 'shippingInfo': {'expeditedShipping': 'false',
+ 'primaryCategory': {'categoryId': '73160','categoryName': 'Capacitance & ESR Meters'},
+ 'returnsAccepted': 'true',
+ 'sellingStatus': {
+    'convertedCurrentPrice': {'@currencyId': 'USD','__value__': '27.99'},
+    'currentPrice': {'@currencyId': 'USD', '__value__': '27.99'},
+    'sellingState': 'Active',
+    'timeLeft': 'P13DT6H33M56S'},
+    'shippingInfo': {'expeditedShipping': 'false',
   'handlingTime': '1',
   'oneDayShippingAvailable': 'false',
   'shipToLocations': 'Worldwide',
-  'shippingServiceCost': {'@currencyId': 'USD', '__value__': '0.0'
-},  'shippingType': 'Free'
-}, 'title': 'Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF',
+  'shippingServiceCost': {'@currencyId': 'USD', '__value__': '0.0'},
+  'shippingType': 'Free'},
+ 'title': 'Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF',
  'topRatedListing': 'true',
  'viewItemURL': 'http://www.ebay.com/itm/Digital-Capacitance-Tester-Capacitor-Meter-Auto-Range-MultimeterChecker-470mF-/282330751118'
  }
-
 
 #### do not add new test items here, add them below ###
 #### do not add new test items here, add them below ###
@@ -515,6 +515,26 @@ sExampleResponse = \
                 "startTime":["2017-12-15T05:22:47.000Z" ],
                 "buyItNowAvailable":["false" ],
                 "endTime":["2018-01-14T05:22:47.000Z" ] } ]
+
+            },{ "itemId":["233420619849"],
+                "title":["6GM8 / ECC86 Vacuum Tube, New Tested "],
+                "globalId":["EBAY-US"],
+                "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+                "secondaryCategory":[{"categoryId":["80741"],"categoryName":["Radio & Speaker Systems"]}],
+                "galleryURL":["https://thumbs2.ebaystatic.com/m/mES0laZ3ya2KZIT9Jp4TPFg/140.jpg"],
+                "viewItemURL":["https://www.ebay.com/itm/6GM8-ECC86-Vacuum-Tube-New-Tested-/233420619849"],
+                "paymentMethod":["PayPal"],"autoPay":["false"],
+                "postalCode":["239**"],"location":["Clarksville,VA,USA"],"country":["US"],
+                "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+                "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.95"}],
+                "bidCount":["0"],"sellingState":["Active"],
+                "timeLeft":["P4DT20H53M9S"]}],
+                "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+                "startTime":["2019-12-01T19:16:01.000Z"],
+                "endTime":["2019-12-08T19:16:01.000Z"],
+                "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+                "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+                "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["132401762082" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
@@ -644,7 +664,7 @@ sExampleResponse = \
                 "startTime":["2017-12-05T14:01:02.000Z" ],
                 "buyItNowAvailable":["false" ],
                 "endTime":["2018-01-04T14:01:02.000Z" ] } ] } ],
-          "@count": "4" }
+          "@count": "5" }
       ],
       "version":["1.13.0" ] } ]
 }'''
