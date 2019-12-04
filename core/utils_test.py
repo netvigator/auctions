@@ -13,8 +13,7 @@ from brands.models      import Brand
 from categories.models  import Category
 from models.models      import Model
 
-# in __init__.py
-from ebayinfo           import ( EBAY_US_CURRENT_VERSION,
+from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
                                  EBAY_GB_CURRENT_VERSION,
                                  sCategoryDump )
 
@@ -60,7 +59,7 @@ oAuctionBotApp = TestApp( application )
 
 
 
-
+# must have space before or after bar "|"
 oFindColumnSplits          = getRegExObj( r'(?: \|)|(?:\| )' )
 
 def getDefaultMarket():
@@ -453,11 +452,21 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
                 oCategory.iParentID = oRootCategory.iCategoryID
                 oCategory.parent    = oRootCategory
             else:
+                #
                 oCategory.iParentID = int(     lParts[4] )
                 #
-                if EbayCategory.objects.filter(
+                bGotCategory4Market = False
+                #
+                try:
+                    bGotCategory4Market = EbayCategory.objects.filter(
                                 iCategoryID = int( lParts[4] ),
-                                iEbaySiteID = oCategory.iEbaySiteID ).exists():
+                                iEbaySiteID = oCategory.iEbaySiteID ).exists()
+                except:
+                    print()
+                    print( 'iCategoryID:', lParts[4] )
+                    print( 'oCategory.iEbaySiteID:', oCategory.iEbaySiteID )
+                #
+                if bGotCategory4Market:
                     #
                     oCategory.parent = EbayCategory.objects.get(
                                     iCategoryID = int( lParts[4] ),
@@ -479,6 +488,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         self.setTestCategories = frozenset( setTestCategories )
         #
+
 
 
 class AssertEmptyMixin( object ):
