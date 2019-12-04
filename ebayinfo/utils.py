@@ -985,7 +985,7 @@ select * from ebay_categories where "iSupercededBy" is not null ;
 # ###                     in core.utils                     ###
 
 # ###      if you update categories for a market,           ###
-# ###    update sMarketsTable in ebayinfo/__init__.py       ###
+# ###  update sMarketsTable in ebayinfo/tests/__init__.py   ###
 # ###    also update the constants just above the table     ###
 # ###         best to implement an email reminder           ###
 
