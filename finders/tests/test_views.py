@@ -92,7 +92,7 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
         #
         self.assertEqual(response.status_code, 200)
         #
-        self.assertEqual( len( response.context['finders_list'] ), 2 )
+        self.assertEqual( len( response.context['finders_list'] ), 0 )
         #
         #
         response = self.client.get(
