@@ -29,11 +29,9 @@
         </tr>
         {% for model in object_list %}
             <tr>
-            <td NOWRAP><a href="{{ model.get_absolute_url }}">
-                {{ model.cTitle }}</a>
-            </td>
-            <td NOWRAP>{{ model.iBrand.cTitle }}</td>
-            <td NOWRAP>{{ model.iCategory.cTitle }}</td>
+            <td NOWRAP><a href="{{ model.get_absolute_url }}">{{ model.cTitle }}</a></td>
+            <td NOWRAP><a href="{{ model.iBrand.get_absolute_url }}/">{{ model.iBrand }}</a></td>
+            <td NOWRAP><a href="{{ model.iCategory.get_absolute_url }}/">{{ model.iCategory }}</td>
             <td>{{ model.iStars}}</td>
             <td>{{ model.cComment|getDashForReturn|truncatechars:45}}</td>
             </tr>
