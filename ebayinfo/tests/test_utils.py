@@ -9,13 +9,12 @@ from core.utils         import updateMemoryTableUpdated
 from core.utils_test    import getDefaultMarket, GetEbayCategoriesWebTestSetUp
 from core.utils_test    import TestCasePlus
 
-from ebayinfo           import EBAY_US_CURRENT_VERSION, EBAY_SG_CURRENT_VERSION
-
-
 from ..models           import EbayCategory, Market
 
 # the following are in the tests __init__.py file
-from ..tests            import sExampleCategoryVersion, sExampleCategoryList
+from ..tests            import ( sExampleCategoryVersion, sExampleCategoryList,
+                                 EBAY_US_CURRENT_VERSION,
+                                 EBAY_SG_CURRENT_VERSION )
 
 from ..utils            import ( CATEGORY_VERSION_FILE,
                                  _getCategoryVersionFromFile,
