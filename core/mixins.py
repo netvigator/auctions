@@ -3,7 +3,7 @@ from django.db              import IntegrityError
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
-from core                   import sTableTemplateRowRules, sRowTemplate4ColsValignTop
+from core                   import sTableTemplateRowRules, sRowTemplate6ColsValignTop
 
 from core.utils             import getLink
 
@@ -470,6 +470,8 @@ def _sayStars( o, sName ):
     return sSayStars
 
 
+_sTrashCheckBox = '<input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}'
+
 class GetUserItemsTableMixin( object ):
     '''get table of user items, DRY'''
 
@@ -477,8 +479,8 @@ class GetUserItemsTableMixin( object ):
         #
         if qs:
             #
-            sHeader = ( sRowTemplate4ColsValignTop %
-                        ( 'Model', 'Brand', 'Category', 'HitStars', '' ) )
+            sHeader = ( sRowTemplate6ColsValignTop %
+                        ( 'Edit', 'Trash', 'Model', 'Brand', 'Category', 'HitStars', '' ) )
             #
             lRows = [ sHeader ]
             #
@@ -496,8 +498,10 @@ class GetUserItemsTableMixin( object ):
                 sBrand    = getLink( o.iBrand    )
                 sCategory = getLink( o.iCategory )
                 #
-                lRows.append( sRowTemplate4ColsValignTop %
-                        ( sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
+                sUserItemLink = '<a href="%s">View</a>' % o.get_absolute_url()
+                #
+                lRows.append( sRowTemplate6ColsValignTop %
+                        ( sUserItemLink, _sTrashCheckBox, sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
                 #
             #
             sThisItemHitsTable = sTableTemplateRowRules % '\n'.join( lRows )
