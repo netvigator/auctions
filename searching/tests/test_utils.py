@@ -136,23 +136,25 @@ class getImportSearchResultsTests( TestCasePlus ):
         self.assertEqual( dPagination["totalEntries"], "4" )
         self.assertEqual( dPagination["thisEntry"   ], "1" )
         #
-        dThisItem = next( itemResultsIterator )
+        iItems = 1
         #
-        dPrimaryCategory= dThisItem["primaryCategory"]
-        self.assertEqual( dPrimaryCategory["categoryId"  ], "64627"       )
-        self.assertEqual( dPrimaryCategory["categoryName"], "Vintage Tubes & Tube Sockets" )
-        #
-        dSecondyCategory= dThisItem["secondaryCategory"]
-        self.assertEqual( dSecondyCategory["categoryId"  ], "80741"       )
-        self.assertEqual( dSecondyCategory["categoryName"], "Radio & Speaker Systems" )
-        #
-        iItems = 2
+        #dThisItem = next( itemResultsIterator )
+        ##
+        #dPrimaryCategory= dThisItem["primaryCategory"]
+        #self.assertEqual( dPrimaryCategory["categoryId"  ], "64627"       )
+        #self.assertEqual( dPrimaryCategory["categoryName"], "Vintage Tubes & Tube Sockets" )
+        ##
+        #dSecondyCategory= dThisItem["secondaryCategory"]
+        #self.assertEqual( dSecondyCategory["categoryId"  ], "80741"       )
+        #self.assertEqual( dSecondyCategory["categoryName"], "Radio & Speaker Systems" )
+        ##
+        #iItems = 2
         #
         for dThisItem in itemResultsIterator:
             #
             iItems += 1
             #
-        self.assertEqual( iItems, 5 )
+        self.assertEqual( iItems, 4 )
         #
         # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
         #
