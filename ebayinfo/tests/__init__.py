@@ -4,6 +4,7 @@
 EBAY_SG_CURRENT_VERSION =  34
 EBAY_US_CURRENT_VERSION = 121
 EBAY_GB_CURRENT_VERSION = 112
+EBAY_Mo_CURRENT_VERSION =  75
 
 prior_EBAY_SG_CURRENT_VERSION =  33
 prior_EBAY_US_CURRENT_VERSION = 120
@@ -217,8 +218,11 @@ sCategoryDump = \
 221826|       10073 | Vintage Car & Truck Parts     |      3 |      6028 | f             |           75 |        100
 221907|       80741 | Radio & Speaker Systems       |      4 |     10073 | t             |           75 |        100
 
+
 '''
 
+'''
+'''
 
 # actually for 'EBAY-US' as of 2017-12
 sExampleCategoryVersion = \
