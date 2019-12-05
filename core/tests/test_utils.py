@@ -10,8 +10,7 @@ from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
                                  queryGotUpdated, oAuctionBotApp,
                                  SetUpBrandsCategoriesModelsWebTest )
 
-from ebayinfo           import EBAY_US_CURRENT_VERSION
-
+from ebayinfo.tests     import EBAY_US_CURRENT_VERSION
 from ebayinfo.models    import Market
 
 from ebayinfo.utils_test import ( getMarketsIntoDatabase,
