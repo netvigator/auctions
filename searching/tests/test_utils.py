@@ -136,25 +136,24 @@ class getImportSearchResultsTests( TestCasePlus ):
         self.assertEqual( dPagination["totalEntries"], "4" )
         self.assertEqual( dPagination["thisEntry"   ], "1" )
         #
-        iItems = 1
+        dThisItem = next( itemResultsIterator )
         #
-        #dThisItem = next( itemResultsIterator )
-        ##
-        #dPrimaryCategory= dThisItem["primaryCategory"]
-        #self.assertEqual( dPrimaryCategory["categoryId"  ], "64627"       )
-        #self.assertEqual( dPrimaryCategory["categoryName"], "Vintage Tubes & Tube Sockets" )
-        ##
-        #dSecondyCategory= dThisItem["secondaryCategory"]
-        #self.assertEqual( dSecondyCategory["categoryId"  ], "80741"       )
-        #self.assertEqual( dSecondyCategory["categoryName"], "Radio & Speaker Systems" )
-        ##
-        #iItems = 2
+        dPrimaryCategory= dThisItem["primaryCategory"]
+        self.assertEqual( dPrimaryCategory["categoryId"  ], "64627"       )
+        self.assertEqual( dPrimaryCategory["categoryName"], "Vintage Tubes & Tube Sockets" )
+        #
+        dSecondyCategory= dThisItem["secondaryCategory"]
+        self.assertEqual( dSecondyCategory["categoryId"  ], "80741"       )
+        self.assertEqual( dSecondyCategory["categoryName"], "Radio & Speaker Systems" )
+        #
+        iItems = 2
         #
         for dThisItem in itemResultsIterator:
             #
             iItems += 1
             #
-        self.assertEqual( iItems, 4 )
+        #
+        self.assertEqual( iItems, 5 )
         #
         # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
         #
@@ -196,7 +195,7 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #
         lHeader = next( oTableIter )
         #
-        iExpect = 2 # GetEbayCategoriesWebTestSetUp above adds root categories
+        iExpect = 3 # GetEbayCategoriesWebTestSetUp above adds root categories
         #
         for lParts in oTableIter: iExpect += 1
         #
@@ -531,9 +530,9 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         self.assertTrue( isISOdatetime( sBeforeDash ) )
         #
-        self.assertEqual( oSearchLog.iItems,      4 )
-        self.assertEqual( oSearchLog.iStoreItems, 4 )
-        self.assertEqual( oSearchLog.iStoreUsers, 4 )
+        self.assertEqual( oSearchLog.iItems,      5 )
+        self.assertEqual( oSearchLog.iStoreItems, 5 )
+        self.assertEqual( oSearchLog.iStoreUsers, 5 )
         #
         # try again with the same data
         #
