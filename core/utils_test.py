@@ -15,6 +15,7 @@ from models.models      import Model
 
 from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
                                  EBAY_GB_CURRENT_VERSION,
+                                 EBAY_Mo_CURRENT_VERSION,
                                  sCategoryDump )
 
 from ebayinfo.models    import EbayCategory, Market
@@ -77,11 +78,19 @@ def getDefaultMarket():
         market.cLanguage   = 'en-UK'
         market.save()
         #
-    else:
+    if (        Market.objects.count() == 0 or
+            not Market.objects.filter( pk = 3 ).exists() ):
         #
-        market = Market.objects.get( pk = 0 )
+        market = Market()
         #
-    #
+        market.cMarket     = 'EBAY-MOTOR'
+        market.cCountry    = 'US'
+        market.iEbaySiteID = 100
+        market.iCategoryVer= EBAY_Mo_CURRENT_VERSION
+        market.cCurrencyDef= 'USD'
+        market.cLanguage   = 'en-US'
+        market.save()
+        #
     if (        Market.objects.count() == 0 or
             not Market.objects.filter( pk = 0 ).exists() ):
         #
@@ -414,6 +423,22 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         oRootCategory.save()
         #
+        sMarket, sWantVersion = 'EBAY-MOTOR', '75'
+        #
+        iWantVersion = int( sWantVersion )
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iEbaySiteID_id  = 100,
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
         oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
         #
         lHeader = next( oTableIter )
@@ -422,11 +447,21 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         setTestCategories = set( [] )
         #
+        oPriorRoot = oRootCategory
+        #
+        bPrintParts = False
+        print()
+        #
+        oPriorCategory = None
+        #
         for lParts in oTableIter:
             #
             iCategoryID             = int( lParts[1] )
             iEbaySiteID             = int( lParts[7] )
             #
+            if bPrintParts: print( lParts )
+            #
+            if bPrintParts: print( 'if EbayCategory.objects.filter(' )
             if EbayCategory.objects.filter(
                         iCategoryID     = iCategoryID,
                         iEbaySiteID_id  = iEbaySiteID ).exists():
@@ -439,38 +474,78 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
             #
             setTestCategories.add( ( iEbaySiteID, iCategoryID ) )
             #
+            iThisLevel              = int(      lParts[3] )
+            #
+            if bPrintParts: print( 'oCategory = EbayCategory(' )
             oCategory = EbayCategory(
                     iCategoryID     =           iCategoryID,
                     name            =           lParts[2],
-                    iLevel          = int(      lParts[3] ),
-
+                    iLevel          =           iThisLevel,
                     bLeafCategory   = getBool(  lParts[5] ),
                     iTreeVersion    = int(      lParts[6] ),
-                    iEbaySiteID_id  =           iEbaySiteID, )
+                    iEbaySiteID_id  =           iEbaySiteID )
             #
-            if lParts[3] == '1': # top level iParentID
+            if iThisLevel == 1: # top level iParentID
+                #
+                if oPriorRoot.iEbaySiteID_id != iEbaySiteID:
+                    #
+                    oRootCategory = EbayCategory.objects.get(
+                        iEbaySiteID_id  = iEbaySiteID,
+                        iLevel          = 0 )
+                    #
+                    oPriorRoot = oRootCategory
+                    #
+                #
                 oCategory.iParentID = oRootCategory.iCategoryID
                 oCategory.parent    = oRootCategory
+                #
             else:
                 #
-                oCategory.iParentID = int(     lParts[4] )
+                iParentOfThis       = int(     lParts[4] )
+                #
+                if bPrintParts: print( 'oParent         = EbayCategory.objects.get(' )
+                try:
+                    oParent         = EbayCategory.objects.get(
+                                        iCategoryID     = iParentOfThis,
+                                        iEbaySiteID_id  = iEbaySiteID )
+                except:
+                    print()
+                    print( 'iParentOfThis:', iParentOfThis )
+                #
+                oCategory.iParentID = iParentOfThis
                 #
                 bGotCategory4Market = False
                 #
+                if bPrintParts: print( 'bGotCategory4Market = EbayCategory.objects.filter(' )
                 try:
                     bGotCategory4Market = EbayCategory.objects.filter(
-                                iCategoryID = int( lParts[4] ),
-                                iEbaySiteID = oCategory.iEbaySiteID ).exists()
+                        iCategoryID     = iParentOfThis,
+                        iEbaySiteID_id  = iEbaySiteID ).exists()
                 except:
                     print()
-                    print( 'iCategoryID:', lParts[4] )
-                    print( 'oCategory.iEbaySiteID:', oCategory.iEbaySiteID )
+                    print( 'iCategoryID   :', iParentOfThis )
+                    print( 'iEbaySiteID_id:', iEbaySiteID )
                 #
                 if bGotCategory4Market:
                     #
-                    oCategory.parent = EbayCategory.objects.get(
-                                    iCategoryID = int( lParts[4] ),
-                                    iEbaySiteID = oCategory.iEbaySiteID )
+                    if bPrintParts:
+                        print( 'oCategory.parent = EbayCategory.objects.get(' )
+                        print( 'iParentOfThis:', iParentOfThis)
+                        print( 'iEbaySiteID  :', iEbaySiteID )
+                    if (    oPriorCategory and
+                            oPriorCategory.iEbaySiteID == iEbaySiteID and
+                            oPriorCategory.iCategoryID == iParentOfThis ):
+                        #
+                        oCategory.parent_id = oPriorCategory.id
+                        #
+                    else:
+                        #
+                        oParent = EbayCategory.objects.get(
+                                iCategoryID     = iParentOfThis,
+                                iEbaySiteID_id  = iEbaySiteID )
+                        #
+                        oCategory.parent_id = oParent.id
+                        #
                     #
                 else:
                     #
@@ -480,6 +555,23 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
                 #
             #
             oCategory.save()
+            #
+            oPriorCategory = oCategory
+            #
+            if lParts[1] == '10073':
+                #
+                print()
+                print( 'oCategory:' )
+                print( 'iCategoryID :', oCategory.iCategoryID )
+                print( 'name        :', oCategory.name )
+                print( 'iLevel      :', oCategory.iLevel )
+                print( 'bLeafCategor:', oCategory.bLeafCategory )
+                print( 'iTreeVersion:', oCategory.iTreeVersion )
+                print( 'iEbaySiteID :', oCategory.iEbaySiteID_id )
+                print( 'iParentID   :', oCategory.iParentID )
+                print( 'parent      :', oCategory.parent )
+                #
+                bPrintParts = True
             #
             iCategories += 1
             #
