@@ -459,9 +459,32 @@ dSearchResult = \
  'viewItemURL': 'http://www.ebay.com/itm/Digital-Capacitance-Tester-Capacitor-Meter-Auto-Range-MultimeterChecker-470mF-/282330751118'
  }
 
-#### do not add new test items here, add them below ###
-#### do not add new test items here, add them below ###
-#### do not add new test items here, add them below ###
+#### do not add new test items above, add them below ###
+#### do not add new test items above, add them below ###
+#### do not add new test items above, add them below ###
+
+'''
+            },{ "itemId":["233420619849"],
+                "title":["6GM8 / ECC86 Vacuum Tube, New Tested "],
+                "globalId":["EBAY-US"],
+                "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+                "secondaryCategory":[{"categoryId":["80741"],"categoryName":["Radio & Speaker Systems"]}],
+                "galleryURL":["https://thumbs2.ebaystatic.com/m/mES0laZ3ya2KZIT9Jp4TPFg/140.jpg"],
+                "viewItemURL":["https://www.ebay.com/itm/6GM8-ECC86-Vacuum-Tube-New-Tested-/233420619849"],
+                "paymentMethod":["PayPal"],"autoPay":["false"],
+                "postalCode":["239**"],"location":["Clarksville,VA,USA"],"country":["US"],
+                "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+                "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.95"}],
+                "bidCount":["0"],"sellingState":["Active"],
+                "timeLeft":["P4DT20H53M9S"]}],
+                "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+                "startTime":["2019-12-01T19:16:01.000Z"],
+                "endTime":["2019-12-08T19:16:01.000Z"],
+                "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+                "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+                "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+'''
 
 sExampleResponse = \
 '''{
@@ -515,26 +538,6 @@ sExampleResponse = \
                 "startTime":["2017-12-15T05:22:47.000Z" ],
                 "buyItNowAvailable":["false" ],
                 "endTime":["2018-01-14T05:22:47.000Z" ] } ]
-
-            },{ "itemId":["233420619849"],
-                "title":["6GM8 / ECC86 Vacuum Tube, New Tested "],
-                "globalId":["EBAY-US"],
-                "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-                "secondaryCategory":[{"categoryId":["80741"],"categoryName":["Radio & Speaker Systems"]}],
-                "galleryURL":["https://thumbs2.ebaystatic.com/m/mES0laZ3ya2KZIT9Jp4TPFg/140.jpg"],
-                "viewItemURL":["https://www.ebay.com/itm/6GM8-ECC86-Vacuum-Tube-New-Tested-/233420619849"],
-                "paymentMethod":["PayPal"],"autoPay":["false"],
-                "postalCode":["239**"],"location":["Clarksville,VA,USA"],"country":["US"],
-                "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-                "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.95"}],
-                "bidCount":["0"],"sellingState":["Active"],
-                "timeLeft":["P4DT20H53M9S"]}],
-                "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-                "startTime":["2019-12-01T19:16:01.000Z"],
-                "endTime":["2019-12-08T19:16:01.000Z"],
-                "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
-                "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-                "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
             },{"itemId":["132401762082" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
