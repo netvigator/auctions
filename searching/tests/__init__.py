@@ -20,7 +20,7 @@ sBrands = \
 '''
       cTitle       | iStars | cExcludeIf |  cLookFor
 -------------------+--------+------------+------------
- ACRO              |      9 |            |
+ ACRO              |      9 |            | Acrosound
  Acoustic Research |      7 |            |
  Addison           |      7 |            |
  Allied            |      5 |            |
@@ -240,6 +240,7 @@ sModels = \
  130                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
+ W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
  4B                 |           |      7 | f            | Brook             |       Preamp |             | Bryston
  C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
@@ -413,6 +414,7 @@ sModels = \
  T-25-A             |           |      7 | t            | Electro-Voice     |       Driver |             |
  828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
  6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
+ TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  '''
 
 
@@ -701,6 +703,25 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["163972543321"],
+             "title":["Acrosound TO-300  Output Tranformers, Pair, one mounted on Heathkit W3M Chassis."],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mSPg_dRt3U0UT5vz_T0l9Ww\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Acrosound-TO-300-Output-Tranformers-Pair-one-mounted-Heathkit-W3M-Chassis-\/163972543321"],
+             "paymentMethod":["PayPal"],"autoPay":["true"],
+             "postalCode":["088**"],"location":["South Amboy,NJ,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"249.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"249.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P2DT14H21M21S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"349.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"349.0"}],
+             "startTime":["2019-12-03T14:13:56.000Z"],
+             "endTime":["2019-12-10T14:13:56.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["133251370953"],
              "title":["1x 7308 AMPEREX PQ USA Gold Pin HiFi Amplifier Vacuum Tube - TESTED"],
