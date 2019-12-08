@@ -22,6 +22,10 @@ urlpatterns = [
         regex = r'(?P<select>[ADPZ]){0,1}/{0,1}$',
         view    = views.FindersIndexView.as_view(),
         name    = 'index' ),
+    url(
+        regex   = r'^hit/(?P<pk>[0-9]+)/$',
+        view    = views.ItemFoundHitView.as_view(),
+        name    = 'hit' ),
 
 ]
 
