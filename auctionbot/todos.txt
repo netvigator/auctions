@@ -361,3 +361,11 @@ if user already has A-7, d/n let user add A-7 (name)
 for useritemsfound and userkeepers, should be user specific !!!
 
 2019-11-25 refine ModelFormValidatesTitle in core/forms.py
+
+2019-12-08
+form did not save for item 233420619849
+i2ndCatHeirarchy -- <ul class="errorlist"><li>Select a valid choice. That choice is not one of the available choices.</li></ul>
+_storeItemFound() returned None -- 233420619849
+error line above in searching/utils.py
+item in searching/tests/__init__.py
+need to test save
