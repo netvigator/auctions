@@ -192,7 +192,7 @@ class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
         return context
 
 
-class uItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
+class ItemFoundHitView( GetUserItemsTableMixin, DetailViewGotModel ):
 
     model           = UserItemFound
     parent          = ItemFound
@@ -204,7 +204,7 @@ class uItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
         want more info to the context data.
         '''
         context = super(
-                ItemFoundDetailView, self
+                ItemFoundHitView, self
                 ).get_context_data( **kwargs )
 
         # qsThisItem = UserItemFound.objects.filter(
