@@ -1779,8 +1779,17 @@ class KeyWordFindSearchHitsTests(
         self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        '''
-        '''
+        iThisOne = 323984684424
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should be local pickup only' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '2' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Marantz' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #
         #
         #
@@ -1798,13 +1807,17 @@ class KeyWordFindSearchHitsTests(
         #
         #
         #
-        #
-        iThisOne = 184032120009
+        iThisOne = 163972543321
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find Acro TO-300' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'TO-300' )
+        self.assertEqual( oTest.iBrand.cTitle, 'ACRO' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Output Transformer' )
         #
         #
         #
@@ -1816,13 +1829,29 @@ class KeyWordFindSearchHitsTests(
                 'should NOT be local pickup only -- '
                 'ships to USA w local p/u option' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Tung-Sol' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
-        iThisOne = 323984684424
+        #
+        #
+        #
+        iThisOne = 184032120009
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
-                'should be local pickup only' )
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
+        #
+        #
+        #
+        #
+        #
+        '''
+        '''
+        #
         #
         #
         #
