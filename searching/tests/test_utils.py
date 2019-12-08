@@ -670,7 +670,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             oCategory   = Category( cTitle      = 'Driver',
-                                    cLookFor    = 'speaker\rdrive\rwoofer',
+                                    cLookFor    = 'speaker\rdrive\rwoofer\r'
+                                                  'horn driver',
                                     iStars      = 8,
                                     iFamily_id  = oSpeakerSystem.id,
                                     iUser       = oUser )
@@ -693,6 +694,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             oCategory   = Category( cTitle      = 'Horn',
+                                    cExcludeIf  = 'horn driver',
                                     iStars      = 6,
                                     iFamily_id  = oSpeakerSystem.id,
                                     iUser       = oUser )
