@@ -197,7 +197,7 @@ class UserItemFound(models.Model):
     def get_absolute_url(self):
         #
         return getReverseWithUpdatedQuery(
-                'finders:detail',
+                'finders:hit',
                 kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 
 
