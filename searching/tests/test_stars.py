@@ -1838,13 +1838,29 @@ class KeyWordFindSearchHitsTests(
         #
         #
         #
+        iThisOne = 153747946010
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Altec driver not horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '808-8A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         iThisOne = 184032120009
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
-        #
         #
         #
         #

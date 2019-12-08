@@ -180,6 +180,7 @@ sModels = \
  803B (horn)        |           |      7 | t            | Altec-Lansing     |         Horn |             |
  804A (horn)        |           |      6 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 808-8A             |           |      5 | t            | Altec-Lansing     |       Driver |             |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
  A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
@@ -703,6 +704,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["153747946010"],
+             "title":["ALTEC LANSING 808 8A HORN Driver Symbiotik from HAMMOND B3 Leslie 122 Speaker"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mMYmKuGIEx2YuQX0RHH4r1Q\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/ALTEC-LANSING-808-8A-HORN-Driver-Symbiotik-HAMMOND-B3-Leslie-122-Speaker-\/153747946010"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["600**"],"location":["Wauconda,IL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"57.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"249.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"249.95"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT4H5M57S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-03T03:58:40.000Z"],
+             "endTime":["2019-12-13T03:58:40.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
+             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["163972543321"],
              "title":["Acrosound TO-300  Output Tranformers, Pair, one mounted on Heathkit W3M Chassis."],
