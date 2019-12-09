@@ -72,7 +72,6 @@ class ItemsFoundIndexView(
     model               = UserItemFound
     context_object_name = 'finders_list'
     paginate_by         = 100
-    #form_class          = ItemsFoundIndexForm
 
     def get_queryset( self ):
         #
