@@ -65,8 +65,7 @@ oFindColumnSplits          = getRegExObj( r'(?: \|)|(?:\| )' )
 
 def getDefaultMarket():
 
-    if (        Market.objects.count() == 0 or
-            not Market.objects.filter( pk = 3 ).exists() ):
+    if Market.objects.count() == 0:
         #
         market = Market()
         #
@@ -78,8 +77,6 @@ def getDefaultMarket():
         market.cLanguage   = 'en-UK'
         market.save()
         #
-    if (        Market.objects.count() == 0 or
-            not Market.objects.filter( pk = 3 ).exists() ):
         #
         market = Market()
         #
@@ -91,8 +88,6 @@ def getDefaultMarket():
         market.cLanguage   = 'en-US'
         market.save()
         #
-    if (        Market.objects.count() == 0 or
-            not Market.objects.filter( pk = 0 ).exists() ):
         #
         market = Market()
         #
