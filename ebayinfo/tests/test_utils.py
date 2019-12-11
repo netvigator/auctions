@@ -193,7 +193,9 @@ class TestHeirarchiesAreTheyCompleteTest( GetEbayCategoriesWebTestSetUp ):
                 globalId            = oLeaf.iEbaySiteID.cMarket )
             #
             t = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
+            #
         #
+        self.assertEqual( len( oLeaves ), len( dEbayCatHierarchies ) )
 
 
 
