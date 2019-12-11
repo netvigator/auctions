@@ -162,7 +162,6 @@ sCategoryDump = \
 18746 |      171814 | Cables & Adapters             |      3 |     54968 | t             |          117 |          0
  8480 |       29833 | Other Vintage Radio, TV, Phone|      3 |     29832 | t             |          117 |          0
 
-
  5003 |       10804 | Signs                         |      4 |     13623 | f             |          117 |          0
  9881 |       67807 | Vintage Preamps & Tube Preamps|      4 |    175740 | t             |          117 |          0
  8464 |         934 | Manuals                       |      4 |       931 | t             |          117 |          0
