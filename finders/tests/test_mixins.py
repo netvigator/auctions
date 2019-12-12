@@ -1,4 +1,4 @@
-from core.dj_import     import reverse
+from django.urls        import reverse
 
 from ..models           import UserItemFound
 
