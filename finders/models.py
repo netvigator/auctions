@@ -1,23 +1,25 @@
-from django.db                  import models
-from django.core.urlresolvers   import reverse
+from django.db          import models
+# django 2 made obsolete from django.core.urlresolvers   import reverse
 
-from django_countries           import fields
+from django.urls        import reverse
 
-from core.models                import IntegerRangeField
-from core.utils                 import getReverseWithUpdatedQuery
+from django_countries   import fields
 
-from models.models              import Model
-from brands.models              import Brand
-from categories.models          import Category
+from core.dj_import     import get_user_model
+from core.models        import IntegerRangeField
+from core.utils         import getReverseWithUpdatedQuery
 
-from searching.models           import Search
+from models.models      import Model
+from brands.models      import Brand
+from categories.models  import Category
 
-from ebayinfo.models            import CategoryHierarchy, Market, EbayCategory
+from searching.models   import Search
 
-from django.contrib.auth        import get_user_model
+from ebayinfo.models    import CategoryHierarchy, Market, EbayCategory
+
+from finders            import EBAY_SHIPPING_CHOICES
+
 User = get_user_model()
-
-from finders                    import EBAY_SHIPPING_CHOICES
 
 
 # Item IDs are unique across all eBay sites
@@ -37,9 +39,8 @@ class ItemFound(models.Model):
     cCountry        = fields.CountryField( "country" )
     cMarket         = models.CharField( 'market Global ID',
                         max_length = 14 )
-    iEbaySiteID     = models.ForeignKey( Market,
-                        verbose_name = 'ebay site ID (PK)', db_index=True,
-                        on_delete=models.CASCADE )
+    iEbaySiteID     = models.ForeignKey( Market, on_delete=models.CASCADE,
+                        verbose_name = 'ebay site ID (PK)', db_index=True )
     cGalleryURL     = models.CharField( 'gallery pic URL',
                         max_length = 88, null = True, blank = True )
     cEbayItemURL    = models.CharField( 'ebay item URL',
@@ -76,26 +77,29 @@ class ItemFound(models.Model):
                         'hangling time',
                         null = True, blank = True ) # optional
     iCategoryID     = models.ForeignKey( EbayCategory,
+                        on_delete=models.DO_NOTHING,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
-                        on_delete=models.DO_NOTHING,
                         null = True, blank = True ) # need for testing
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
+                        on_delete=models.DO_NOTHING,
                         verbose_name = 'category hierarchy (primary)',
                         related_name = 'primary_category',
-                        null = True, blank = True, on_delete=models.DO_NOTHING )
+                        null = True, blank = True )
     i2ndCategoryID  = models.ForeignKey( EbayCategory,
+                        on_delete=models.CASCADE,
                         verbose_name = 'secondary category ID (optional)',
                         related_name = 'ebay_secondary_category',
                         null = True, blank = True )
     c2ndCategory    = models.CharField( 'secondary category (optional)',
                         max_length = 48, null = True, blank = True )
     i2ndCatHeirarchy= models.ForeignKey( CategoryHierarchy,
+                        on_delete=models.DO_NOTHING,
                         verbose_name = 'category hierarchy (secondary)',
                         related_name = 'secondary_category',
-                        null = True, blank = True, on_delete=models.DO_NOTHING )
+                        null = True, blank = True )
 
     # condition is optional but may become required in the future
     # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
@@ -139,20 +143,19 @@ class UserItemFound(models.Model):
     tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
     iSearch         = models.ForeignKey( Search,
-                        verbose_name = 'Search that first found this item',
-                        on_delete=models.CASCADE )
-    iModel          = models.ForeignKey( Model,    null = True, blank = True,
+                        on_delete=models.CASCADE,
+                        verbose_name = 'Search that first found this item' )
+    iModel          = models.ForeignKey( Model, on_delete=models.CASCADE,
+                        null = True, blank = True,
                         verbose_name = 'Model Name/Number',
                         help_text = 'You can display models for a particular '
                         'brand by changing to that brand (just below), '
-                        'hit save, then edit again',
-                        on_delete=models.CASCADE )
-    iBrand          = models.ForeignKey( Brand,    null = True, blank = True,
-                        verbose_name = 'Brand',
-                        on_delete=models.CASCADE )
-    iCategory       = models.ForeignKey( Category, null = True, blank = True,
-                        verbose_name = 'Category',
-                        on_delete=models.CASCADE )
+                        'hit save, then edit again' )
+    iBrand          = models.ForeignKey( Brand,  on_delete=models.CASCADE,
+                        null = True, blank = True, verbose_name = 'Brand' )
+    iCategory       = models.ForeignKey( Category,  on_delete=models.CASCADE,
+                        null = True, blank = True,
+                        verbose_name = 'Category' )
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
@@ -162,8 +165,8 @@ class UserItemFound(models.Model):
     #                   null = True, blank = True )
     bAuction        = models.BooleanField(
                         'Auction or Auction with Buy It Now',default = False )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
-                        on_delete=models.CASCADE )
+    iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
+                        verbose_name = 'Owner')
     #
     # yes the col below repeats the col in ItemFound, the normalized place
     # but after writing the query to get the open auctions for a user, and
@@ -218,8 +221,8 @@ class UserFinder(models.Model):
     cListingType    = models.CharField( 'listing type',
                                          max_length = 15, null=True )
     tTimeEnd        = models.DateTimeField( 'ending date/time', null=True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
-                        on_delete=models.CASCADE )
+    iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
+                        verbose_name = 'Owner' )
     bGetPictures    = models.NullBooleanField( 'get description & pictures?',
                         null = True, default = False )
     bListExclude    = models.NullBooleanField( 'exclude from listing?',
@@ -304,15 +307,14 @@ class ItemFoundTemp(models.Model):
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    iSearch         = models.ForeignKey( Search,
-                        verbose_name = 'Search that first found this item',
-                        on_delete=models.CASCADE )
-    iModel          = models.ForeignKey( Model,     null = True,
-                        on_delete=models.CASCADE )
-    iBrand          = models.ForeignKey( Brand,     null = True,
-                        on_delete=models.CASCADE )
-    iCategory       = models.ForeignKey( Category,  null = True,
-                        on_delete=models.CASCADE )
+    iSearch         = models.ForeignKey( Search,  on_delete=models.CASCADE,
+                        verbose_name = 'Search that first found this item' )
+    iModel          = models.ForeignKey( Model, on_delete=models.CASCADE,
+                        null = True )
+    iBrand          = models.ForeignKey( Brand, on_delete=models.CASCADE,
+                        null = True )
+    iCategory       = models.ForeignKey( Category, on_delete=models.CASCADE,
+                        null = True )
     iStarsModel     = IntegerRangeField( null = True,
                         min_value = 0, max_value = 10, default = 1 )
     iStarsBrand     = IntegerRangeField( null = True,
