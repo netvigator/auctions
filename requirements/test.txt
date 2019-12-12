@@ -10,6 +10,6 @@
 # pytest-sugar==0.9.0
 
 # checks your code
-flake8==3.7.8
+flake8==3.7.9
 
 
