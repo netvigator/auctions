@@ -1,14 +1,14 @@
 import logging
 
-from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from core.utils_test            import BaseUserWebTestCase
+from core.utils_test    import BaseUserWebTestCase
 
-from core.utils                 import getExceptionMessageFromResponse
+from core.utils         import getExceptionMessageFromResponse
 
-from ..models                   import Keeper
+from ..models           import Keeper
 
-from ..views                    import KeeperIndexView
+from ..views            import KeeperIndexView
 
 
 
