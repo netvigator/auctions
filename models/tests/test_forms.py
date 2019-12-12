@@ -1,13 +1,13 @@
-from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from core.utils_test            import ( SetUpBrandsCategoriesModelsWebTest,
-                                         SetUpBrandsCategoriesModelsTestPlus,
-                                         getUrlQueryStringOff )
+from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
+                                 SetUpBrandsCategoriesModelsTestPlus,
+                                 getUrlQueryStringOff )
 
-from categories.models          import Category
+from categories.models  import Category
 
-from ..forms                    import CreateModelForm, UpdateModelForm
-from ..models                   import Model
+from ..forms            import CreateModelForm, UpdateModelForm
+from ..models           import Model
 
 
 
