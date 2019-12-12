@@ -1,19 +1,20 @@
 import logging
 
 
-from django.core.urlresolvers   import reverse
+# django 2 made obsolete from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from core.utils_test            import ( SetUpBrandsCategoriesModelsTestPlus,
-                                         BaseUserWebTestCase,
-                                         setup_view_for_tests )
+from core.utils_test    import ( SetUpBrandsCategoriesModelsTestPlus,
+                                 BaseUserWebTestCase,
+                                 setup_view_for_tests )
 
-from core.utils                 import getExceptionMessageFromResponse
+from core.utils         import getExceptionMessageFromResponse
 
 from searching.tests.test_stars import SetUpForHitStarsWebTests
 
-from ..views                    import ( ItemsFoundIndexView,
-                                         ItemFoundDetailView,
-                                         ItemFoundUpdateView )
+from ..views            import ( ItemsFoundIndexView,
+                                 ItemFoundDetailView,
+                                 ItemFoundUpdateView )
 
 
 from pprint import pprint
