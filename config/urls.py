@@ -14,7 +14,7 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
 
-    url(r'^admin/',     include( ('admin_honeypot.urls','admin_honeypot') ), ),
+    url(r'^admin/',     include( 'admin_honeypot.urls','admin_honeypot' ), ),
     # User management
     url(r'^users/',     include(('auctionbot.users.urls',), namespace='users') ),
     url(r'^accounts/',  include('allauth.urls')),
