@@ -4,7 +4,7 @@ from os.path            import join
 
 from pprint             import pprint
 
-from core.dj_import     import reverse
+from django.urls        import reverse
 from django.utils       import timezone
 
 from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
