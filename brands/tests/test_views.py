@@ -2,18 +2,18 @@
 
 import logging
 
-from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from core.utils_test            import BaseUserWebTestCase
+from core.utils_test    import BaseUserWebTestCase
 
-from core.utils                 import getExceptionMessageFromResponse
+from core.utils         import getExceptionMessageFromResponse
+
+from ..models           import Brand
+from ..views            import BrandCreateView
+
+from .test_models       import BrandModelWebTest
 
 # Create your tests here.
-
-from ..models                   import Brand
-from ..views                    import BrandCreateView
-
-from .test_models               import BrandModelWebTest
 
 class BrandViewsTests( BaseUserWebTestCase ):
     """Brand views tests."""
