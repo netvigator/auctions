@@ -1,4 +1,4 @@
-from core.dj_import     import reverse, resolve
+from django.urls        import reverse, resolve
 
 from core.utils_test    import TestCasePlus
 
