@@ -52,7 +52,7 @@ class Market(Model):
 
     def __str__(self):
         return self.cMarket
-    
+
     class Meta:
         verbose_name_plural = 'markets'
         ordering            = ('cMarket',)
@@ -61,9 +61,9 @@ class Market(Model):
 
 '''
 iCategoryID,
-cTitle, 
-iLevel, 
-iParent_ID, 
+cTitle,
+iLevel,
+iParent_ID,
 bLeafCategory,
 iTreeVersion,
 imarket,
@@ -76,7 +76,7 @@ iSupercededBy
 # if the context was postgresql only,
 # category number + market ID could be the (compound) primary key
 # BUT
-# 1) django does not support compound primary keys, 
+# 1) django does not support compound primary keys,
 # and
 # 2) MPTT requires parent, which refers to id
 
@@ -90,28 +90,27 @@ class EbayCategory(MPTTModel):
                         'ebay level (top is 1, lower levels are bigger numbers)' )
     iParentID       = models.PositiveIntegerField( 'ebay parent category' )
     bLeafCategory   = models.BooleanField( 'leaf category?' )
-    iTreeVersion    = models.PositiveSmallIntegerField( 
+    iTreeVersion    = models.PositiveSmallIntegerField(
                         'category tree version' )
     #models.ForeignKey( Market, PositiveIntegerField
-    iEbaySiteID     = models.ForeignKey( Market,
-                        verbose_name = 'ebay market', db_index=True,
-                        on_delete=models.CASCADE )
+    iEbaySiteID     = models.ForeignKey( Market, on_delete=models.CASCADE,
+                        verbose_name = 'ebay market', db_index=True )
     iSupercededBy   = models.PositiveIntegerField(
                         'superceded by this ebay category', null = True )
-    parent          = TreeForeignKey( 'self',
+    parent          = TreeForeignKey( 'self', on_delete=models.DO_NOTHING,
                         null=True, blank=True, related_name='children',
-                        db_index=True)
-    
+                        db_index=True )
+
     '''
     column required by mptt:
     parent
-    
+
     columns added by mptt:
     level
     lft
     rght
     tree_id
-    
+
     changing the subject:
     if there are lots of superceded categories, can do this manually via psql:
     CREATE INDEX ON "ebay categories" ("iSupercededBy") WHERE "iSupercededBy" IS NOT NULL;
@@ -120,7 +119,7 @@ class EbayCategory(MPTTModel):
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name_plural = 'ebay categories'
         db_table            = 'ebay_categories'
@@ -140,7 +139,7 @@ class CategoryHierarchy(models.Model):
                         on_delete=models.CASCADE )
     cCatHierarchy   = models.TextField( 'category hierarchy',
                         null = True, blank = True)
-    
+
     class Meta:
         verbose_name_plural = 'category hierarchies'
         db_table            = 'category_hierarchies'
@@ -156,7 +155,7 @@ class Condition(models.Model):
 
     def __str__(self):
         return self.cTitle
-    
+
     class Meta:
         verbose_name_plural = 'ebay condition descriptions'
         db_table            = 'conditions'
