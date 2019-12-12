@@ -1,4 +1,5 @@
-from django.core.urlresolvers   import reverse, resolve
+# django 2 made obsolete from django.core.urlresolvers   import reverse, resolve
+from django.urls        import reverse, resolve
 
 from core.utils_test    import getDefaultMarket, TestCasePlus
 
