@@ -1,13 +1,13 @@
 import logging
 
-from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from core.utils_test            import BaseUserWebTestCase
+from core.utils_test    import BaseUserWebTestCase
 
-from core.utils                 import getExceptionMessageFromResponse
+from core.utils         import getExceptionMessageFromResponse
 
-from ..models                   import Category
-from ..views                    import CategoryCreateView
+from ..models           import Category
+from ..views            import CategoryCreateView
 
 
 class CategoryViewsTests( BaseUserWebTestCase ):
