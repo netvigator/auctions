@@ -1,10 +1,9 @@
-from django.core.urlresolvers   import reverse
-from django.http                import HttpResponseRedirect
-from django.urls                import reverse_lazy
+from django.http    import HttpResponseRedirect
+from django.urls    import reverse, reverse_lazy
 
-from core.mixins                import WereAnyReleventColsChangedBase
+from core.mixins    import WereAnyReleventColsChangedBase
 
-from .models                    import Search
+from .models        import Search
 
 
 
