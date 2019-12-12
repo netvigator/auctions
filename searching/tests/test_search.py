@@ -1,10 +1,8 @@
 from os.path            import join
 
-from core.dj_import     import reverse
-
 from django.db.models   import Max
 from django.http        import HttpResponseRedirect
-from django.urls        import reverse_lazy
+from django.urls        import reverse, reverse_lazy
 
 from core.utils_test    import ( setup_view_for_tests,
                                  GetEbayCategoriesWebTestSetUp,
