@@ -1,6 +1,6 @@
 import logging
 
-from core.dj_import     import reverse
+from django.urls        import reverse
 
 from core.utils_test    import ( SetUpBrandsCategoriesModelsTestPlus,
                                  BaseUserWebTestCase, setup_view_for_tests )
