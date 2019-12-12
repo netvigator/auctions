@@ -115,12 +115,12 @@ def field_name(value, field):
     return value._meta.get_field(field).verbose_name.title()
 
 
-@register.assignment_tag
-def define(val=None):
-    #
-    '''
-    set a variable on the fly in html
-    from https://stackoverflow.com/questions/1070398/how-to-set-a-value-of-a-variable-inside-a-template-code
-    '''
-    #
-    return val
+#@register.assignment_tag does not work under django 2.0 and later
+#def define(val=None):
+    ##
+    #'''
+    #set a variable on the fly in html
+    #from https://stackoverflow.com/questions/1070398/how-to-set-a-value-of-a-variable-inside-a-template-code
+    #'''
+    ##
+    #return val
