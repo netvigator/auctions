@@ -1,8 +1,9 @@
-from django.core.urlresolvers   import reverse, resolve
 
-from core.utils_test            import TestCasePlus
+from django.urls        import reverse, resolve
 
-from ..models                   import Category
+from core.utils_test    import TestCasePlus
+
+from ..models           import Category
 
 
 
