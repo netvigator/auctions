@@ -1,18 +1,17 @@
-from django.db                  import models
-from django.contrib.auth        import get_user_model
-from django.core.urlresolvers   import reverse
+from django.db          import models
+# django 2 made obsolete from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from django_countries.fields    import CountryField
+from core.dj_import     import CountryField, get_user_model
+from core.models        import IntegerRangeField
 
-from core.models                import IntegerRangeField
+from finders            import EBAY_SHIPPING_CHOICES
 
-from finders                    import EBAY_SHIPPING_CHOICES
+from models.models      import Model
+from brands.models      import Brand
+from categories.models  import Category
 
-from models.models              import Model
-from brands.models              import Brand
-from categories.models          import Category
-
-from searching.models           import Search
+from searching.models   import Search
 
 # not sure this is needed
 User = get_user_model()
@@ -161,18 +160,15 @@ class UserKeeper(models.Model):
                         default = False )
     tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
-    iSearch         = models.ForeignKey( Search,
-                        verbose_name = 'Search that first found this item',
-                        on_delete=models.CASCADE )
-    iModel          = models.ForeignKey( Model,    null = True, blank = True,
-                        verbose_name = 'Model Name/Number',
-                        on_delete=models.CASCADE )
-    iBrand          = models.ForeignKey( Brand,    null = True, blank = True,
-                        verbose_name = 'Brand',
-                        on_delete=models.CASCADE )
-    iCategory       = models.ForeignKey( Category, null = True, blank = True,
-                        verbose_name = 'Category',
-                        on_delete=models.CASCADE )
+    iSearch         = models.ForeignKey( Search, on_delete=models.CASCADE,
+                        verbose_name = 'Search that first found this item' )
+    iModel          = models.ForeignKey( Model, on_delete=models.CASCADE,
+                        null = True, blank = True,
+                        verbose_name = 'Model Name/Number' )
+    iBrand          = models.ForeignKey( Brand, on_delete=models.CASCADE,
+                        null = True, blank = True, verbose_name = 'Brand' )
+    iCategory       = models.ForeignKey( Category, on_delete=models.CASCADE,
+                        null = True, blank = True, verbose_name = 'Category' )
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
@@ -182,8 +178,8 @@ class UserKeeper(models.Model):
     #                   null = True, blank = True )
     bAuction        = models.BooleanField(
                         'Auction or Auction with Buy It Now',default = False )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
-                        on_delete=models.CASCADE )
+    iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
+                        verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
     tModify         = models.DateTimeField( 'updated on', auto_now = True )
 
@@ -219,7 +215,8 @@ class KeeperImage(models.Model):
     isequence       = models.PositiveSmallIntegerField( 'sequence' )
     cfilename       = models.CharField( 'local file name', max_length = 28 )
     coriginalurl    = models.TextField( 'original URL' )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner' )
+    iUser           = models.ForeignKey( User,  on_delete=models.CASCADE,
+                            verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
 
     def __str__(self):
