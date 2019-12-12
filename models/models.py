@@ -103,12 +103,11 @@ class Model( GetItemsForSomething, models.Model ):
         help_text = 'Bot will download full descriptions only if '
                     'you do want them' )
     cComment        = models.TextField( 'comments', null = True, blank = True )
-    iBrand          = models.ForeignKey( Brand, verbose_name = 'Brand',
-                            null = True, blank = True,
-                            on_delete=models.CASCADE )
-    iCategory       = models.ForeignKey( Category, verbose_name = 'Category',
-                            on_delete=models.CASCADE )
-
+    iBrand          = models.ForeignKey( Brand, on_delete=models.CASCADE,
+                            verbose_name = 'Brand',
+                            null = True, blank = True )
+    iCategory       = models.ForeignKey( Category, on_delete=models.CASCADE,
+                            verbose_name = 'Category' )
     cExcludeIf      = models.TextField(
                         'Not a hit if this text is found (optional)',
                         null = True, blank = True,
@@ -136,8 +135,8 @@ class Model( GetItemsForSomething, models.Model ):
                         null = True )
     tLegacyModify   = models.DateTimeField( 'legacy row updated on',
                         null = True, blank = True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
-                        on_delete=models.CASCADE )
+    iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
+                        verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
 
