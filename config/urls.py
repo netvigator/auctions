@@ -14,21 +14,20 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
 
-    url(r'^admin/',     include('admin_honeypot.urls',
-                                    namespace='admin_honeypot')),
+    url(r'^admin/',     include( ('admin_honeypot.urls','admin_honeypot') ), ),
     # User management
-    url(r'^users/',     include('auctionbot.users.urls', namespace='users')),
+    url(r'^users/',     include(('auctionbot.users.urls',), namespace='users') ),
     url(r'^accounts/',  include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
 
-    url(r'^ebayinfo/',  include('ebayinfo.urls',    namespace="ebayinfo")),
-    url(r'^brands/',    include('brands.urls',      namespace="brands")),
-    url(r'^models/',    include('models.urls',      namespace="models")),
-    url(r'^categories/',include('categories.urls',  namespace="categories")),
-    url(r'^searching/', include('searching.urls',   namespace="searching")),
-    url(r'^finders/',   include('finders.urls',     namespace="finders")),
-    url(r'^keepers/',   include('keepers.urls',     namespace="keepers")),
+    url(r'^ebayinfo/',  include( ('ebayinfo.urls',),  namespace="ebayinfo")),
+    url(r'^brands/',    include( ('brands.urls',),    namespace="brands")),
+    url(r'^models/',    include( ('models.urls',),    namespace="models")),
+    url(r'^categories/',include( ('categories.urls',),namespace="categories")),
+    url(r'^searching/', include( ('searching.urls',), namespace="searching")),
+    url(r'^finders/',   include( ('finders.urls',),   namespace="finders")),
+    url(r'^keepers/',   include( ('keepers.urls',),   namespace="keepers")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
