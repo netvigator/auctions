@@ -1,10 +1,13 @@
-from core.dj_import     import reverse, HttpRequest, get_user_model
+from django.urls        import reverse
+
 from django.db.utils    import IntegrityError
 from django.test        import RequestFactory
 from django.test.client import Client
 
 from django_webtest     import WebTest, TestApp
 from test_plus.test     import TestCase
+
+from core.dj_import     import HttpRequest, get_user_model
 
 from config.settings.base import LOGIN_URL
 from config.wsgi        import application
