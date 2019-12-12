@@ -2,8 +2,11 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+
+
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(
@@ -16,20 +19,23 @@ urlpatterns = [
 
     url(r'^admin/',     include( 'admin_honeypot.urls','admin_honeypot' ), ),
     # User management
-    url(r'^users/',     include(('auctionbot.users.urls',), namespace='users') ),
+    url(r'^users/',     include(('auctionbot.users.urls', 'users')) ),
     url(r'^accounts/',  include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
 
-    url(r'^ebayinfo/',  include( ('ebayinfo.urls',),  namespace="ebayinfo")),
-    url(r'^brands/',    include( ('brands.urls',),    namespace="brands")),
-    url(r'^models/',    include( ('models.urls',),    namespace="models")),
-    url(r'^categories/',include( ('categories.urls',),namespace="categories")),
-    url(r'^searching/', include( ('searching.urls',), namespace="searching")),
-    url(r'^finders/',   include( ('finders.urls',),   namespace="finders")),
-    url(r'^keepers/',   include( ('keepers.urls',),   namespace="keepers")),
+    url(r'^ebayinfo/',  include( 'ebayinfo.urls',    namespace="ebayinfo")),
+    url(r'^brands/',    include( 'brands.urls',      namespace="brands")),
+    url(r'^models/',    include( 'models.urls',      namespace="models")),
+    url(r'^categories/',include( 'categories.urls',  namespace="categories")),
+    url(r'^searching/', include( 'searching.urls',   namespace="searching")),
+    url(r'^finders/',   include( 'finders.urls',     namespace="finders")),
+    url(r'^keepers/',   include( 'keepers.urls',     namespace="keepers")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
 
 
 if settings.DEBUG:
