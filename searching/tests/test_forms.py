@@ -1,4 +1,6 @@
-from core.dj_import     import reverse, resolve, HttpRequest
+from django.urls        import reverse, resolve
+
+from core.dj_import     import HttpRequest
 from django.test.client import Client
 
 from core.utils_test    import ( BaseUserWebTestCase,
