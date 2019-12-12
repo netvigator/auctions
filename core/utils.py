@@ -4,6 +4,8 @@ from urllib3.exceptions     import ProtocolError
 
 from django.db.models       import ForeignKey
 from django.utils           import timezone
+from django.urls            import reverse
+from django.utils.http      import urlencode
 
 from requests.exceptions    import ConnectionError
 
@@ -73,9 +75,6 @@ def model_to_dict(instance):
 
 
 def _getReverseWithQuery( lookup_view, *args, **kwargs ):
-    #
-    from django.core.urlresolvers   import reverse
-    from django.utils.http          import urlencode
     #
     query = kwargs.pop( 'query' )
     #
