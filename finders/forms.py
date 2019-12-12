@@ -56,7 +56,7 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
     #
     '''using a form on the edit user item found page'''
     #
-    gModel = forms.ChoiceField( (),
+    gModel = forms.ChoiceField(
                     label='Generic Models '
                           '(more than one brand may offer this model)' )
 
