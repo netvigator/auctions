@@ -10,6 +10,7 @@
 # use github login (d/n need separate login)
 
 # any changes?
+# 1st, "workon auctions" -- load the virtual environment!!!
 # pip install -r requirements/local.txt
 # don't do this one, pip install -r requirements/test.txt
 
