@@ -1,10 +1,10 @@
 # import inspect
 
-from django.core.urlresolvers   import reverse, resolve
+from django.urls        import reverse, resolve
 
-from core.utils_test            import TestCasePlus
+from core.utils_test    import TestCasePlus
 
-from ..models                   import Brand
+from ..models           import Brand
 
 
 
