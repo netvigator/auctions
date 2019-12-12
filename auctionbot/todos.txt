@@ -369,3 +369,5 @@ _storeItemFound() returned None -- 233420619849
 error line above in searching/utils.py
 item in searching/tests/__init__.py
 need to test save
+
+2019-12-11 learn from test_urls.py, update
