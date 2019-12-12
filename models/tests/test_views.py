@@ -1,16 +1,17 @@
 import logging
 
-from django.core.urlresolvers   import reverse
+# django 2 made obsolete from django.core.urlresolvers   import reverse
+from django.urls        import reverse
 
-from core.utils_test            import BaseUserWebTestCase
+from core.utils_test    import BaseUserWebTestCase
 
-from core.utils                 import getExceptionMessageFromResponse
+from core.utils         import getExceptionMessageFromResponse
 
-from categories.models          import Category
+from categories.models  import Category
 
-from ..models                   import Model
+from ..models           import Model
 
-from ..views                    import ModelCreateView
+from ..views            import ModelCreateView
 # Create your tests here.
 
 
