@@ -31,11 +31,12 @@ class Search(models.Model):
     # max length for a single key word is 98
     #models.ForeignKey( EbayCategory, models.PositiveIntegerField(
     iEbayCategory   = models.ForeignKey( EbayCategory,
+                        on_delete=models.CASCADE,
                         verbose_name = 'ebay category (optional)',
                         null = True, blank = True,
         help_text = 'Limit search to items listed in this category '
                     '-- (key words OR ebay category required!) '
-                    '(Both are OK)', on_delete=models.DO_NOTHING )
+                    '(Both are OK)' )
     # ### after updating ebay categories, check whether        ###
     # ### searches that were connected are still connected !!! ###
     iDummyCategory  = models.PositiveIntegerField( 'ebay category number',
@@ -51,8 +52,8 @@ class Search(models.Model):
     tEndSearch      = models.DateTimeField( 'last search completed',
                                            null = True )
     cLastResult     = models.TextField( 'last search outcome', null = True )
-    iUser           = models.ForeignKey( User, verbose_name = 'Owner',
-                            on_delete=models.CASCADE )
+    iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
+                                          verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', auto_now_add= True )
     tModify         = models.DateTimeField( 'updated on', auto_now    = True )
 
@@ -76,9 +77,8 @@ class Search(models.Model):
 
 
 class SearchLog(models.Model):
-    iSearch     = models.ForeignKey( Search,
-                        verbose_name = 'Search that first found this item',
-                        on_delete=models.CASCADE )
+    iSearch     = models.ForeignKey( Search, on_delete=models.CASCADE,
+                        verbose_name = 'Search that first found this item' )
     tBegSearch  = models.DateTimeField( 'search started',
                         db_index = True )
     tEndSearch  = models.DateTimeField( 'search completed',
