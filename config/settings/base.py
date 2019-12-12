@@ -14,11 +14,14 @@ import sys
 
 from logging            import getLogger
 
-logger = getLogger(__name__)
-
-from core.dj_import     import ImproperlyConfigured, countriesSettings
+# cannot import from core.dj_import, get circular import error (sort of)
+# from core.dj_import     import ImproperlyConfigured, countriesSettings
+from django.core.exceptions     import ImproperlyConfigured
+from django_countries.conf      import settings as countriesSettings
 
 from pyPks.Utils.Config import getConfMainIsDefaultHostnameVaries as getConf
+
+logger = getLogger(__name__)
 
 dSecretsConf = getConf( 'Secrets.ini', tWantSections = ( 'email', 'sentry' ) )
 
