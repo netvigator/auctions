@@ -3,8 +3,9 @@ from django.db              import IntegrityError
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
-from core                   import sTableTemplateRowRules, sRowTemplate6ColsValignTop
+from django.contrib         import messages
 
+from core                   import sTableTemplateRowRules, sRowTemplate6ColsValignTop
 from core.utils             import getLink
 
 from pyPks.Collect.Query    import get1stThatMeets
