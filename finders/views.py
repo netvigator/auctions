@@ -1,7 +1,6 @@
 from core.views     import ( DetailViewGotModel,  ListViewGotModel,
                              UpdateViewCanCancel )
 
-from django.contrib import messages
 from django.http    import HttpResponseRedirect
 
 from .forms         import ItemFoundForm, UserItemFoundForm
