@@ -499,7 +499,7 @@ class GetUserItemsTableMixin( object ):
                 sBrand    = getLink( o.iBrand    )
                 sCategory = getLink( o.iCategory )
                 #
-                sUserItemLink = '<a href="%s">View</a>' % o.get_absolute_url()
+                sUserItemLink = '<a href="%s">Edit</a>' % o.get_absolute_url()
                 #
                 lRows.append( sRowTemplate6ColsValignTop %
                         ( sUserItemLink, _sTrashCheckBox, sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
