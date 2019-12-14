@@ -6,6 +6,7 @@ from . import views
 app_name = "finders"
 
 urlpatterns = [
+    # maybe not used any more, can delete?
     url( # this one needs to be above the index url !!!!
         regex   = r'^hit/(?P<pk>[0-9]+)/$',
         view    = views.ItemFoundHitView.as_view(),
