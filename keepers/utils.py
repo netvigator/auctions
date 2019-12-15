@@ -469,16 +469,25 @@ def getFindersForResultsFetching():
     #
     # select useritemsfound that have not been marked as fetched yet
     #
-    qsUserItemNumbs = ( UserItemFound.objects.filter(
-                                bGetPictures        = True,
-                                tRetrieved__isnull  = True )
+    # qsUserItemNumbs = ( UserItemFound.objects.filter(
+    #                             bGetPictures        = True,
+    #                             tRetrieved__isnull  = True )
+    #                         .values_list( 'iItemNumb', flat = True )
+    #                         .distinct() )
+    #
+    qsUserFinderNumbs = ( UserFinder.objects.filter(
+                                bGetPictures = True )
                             .values_list( 'iItemNumb', flat = True )
-                            .distinct() )
+                            .distinct() ) # UserFinder anit got tRetrieved
     #
     # for those item numbers, select itemsfound that have been fetched already
     #
+    # qsAlreadyFetched = ( ItemFound.objects
+    #                         .filter( iItemNumb__in = qsUserItemNumbs )
+    #                         .filter( tRetrieved__isnull = False ) )
+    #
     qsAlreadyFetched = ( ItemFound.objects
-                            .filter( iItemNumb__in = qsUserItemNumbs )
+                            .filter( iItemNumb__in = qsUserFinderNumbs )
                             .filter( tRetrieved__isnull = False ) )
     #
     # update useritemsfound, step thru selected itemsfound,
@@ -497,12 +506,19 @@ def getFindersForResultsFetching():
             oUserItemFound.save()
             #
         #
+        qsUserFinder = UserFinder.objects.filter(
+                            iItemNumb = oItemFound.iItemNumb ).delete()
+        #
     #
     # for the useritemsfound that have not been marked as fetched yet,
     # select itemsfound for which we have final results
     #
+    # qsAlreadyFinal = ( ItemFound.objects
+    #                         .filter( iItemNumb__in = qsUserItemNumbs,
+    #                                  tRetrieveFinal__isnull = False ) )
+    #
     qsAlreadyFinal = ( ItemFound.objects
-                            .filter( iItemNumb__in = qsUserItemNumbs,
+                            .filter( iItemNumb__in = qsUserFinderNumbs,
                                      tRetrieveFinal__isnull = False ) )
     #
     # update useritemsfound, step thru itemsfound,
@@ -510,10 +526,20 @@ def getFindersForResultsFetching():
     #
     for oItemFound in qsAlreadyFinal:
         #
-        qsUserItemFound = UserItemFound.objects.filter(
+        # qsUserItemFound = UserItemFound.objects.filter(
+        #                         iItemNumb = oItemFound.iItemNumb )
+        #
+        # for oUserItemFound in qsUserItemFound:
+        #     #
+        #     oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
+        #     #
+        #     oUserItemFound.save()
+        #     #
+        #
+        qsUserFinder = UserItemFound.objects.filter(
                                 iItemNumb = oItemFound.iItemNumb )
         #
-        for oUserItemFound in qsUserItemFound:
+        for oUserItemFound in qsUserFinder:
             #
             oUserItemFound.tRetrieveFinal = oItemFound.tRetrieveFinal
             #
@@ -525,14 +551,19 @@ def getFindersForResultsFetching():
     #
     # select useritemsfound for which we need to fetch results
     #
-    qsUserItemNumbs = ( UserItemFound.objects.filter(
-                                bGetPictures        = True,
-                                tRetrieved__isnull  = True )
+    # qsUserItemNumbs = ( UserItemFound.objects.filter(
+    #                             bGetPictures        = True,
+    #                             tRetrieved__isnull  = True )
+    #                         .values_list( 'iItemNumb', flat = True )
+    #                         .distinct() )
+    #
+    qsUserFinderNumbs = ( UserFinder.objects.filter(
+                                bGetPictures = True )
                             .values_list( 'iItemNumb', flat = True )
-                            .distinct() )
+                            .distinct() ) # UserFinder aint got tRetrieved
     #
     #
-    return qsUserItemNumbs
+    return qsUserFinderNumbs
 
 
 
