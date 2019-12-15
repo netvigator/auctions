@@ -78,7 +78,7 @@ sPriorMarketsTable = \
 
 # select "id","iCategoryID","name","iLevel","iParentID","bLeafCategory","iTreeVersion","iEbaySiteID_id"
 
-sCategoryDump = \
+sEbayCategoryDump = \
 '''
   id  | iCategoryID |           name                | iLevel | iParentID | bLeafCategory | iTreeVersion | iEbaySiteID_id
 ------+-------------+--------------------------+--------+-----------+---------------+--------------+------------+----
