@@ -412,7 +412,7 @@ def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
                 iSearch     = iSearch,
                 bAuction    = bAuction )
     #
-    # store userfinder in utils_stars.findSearchHits()
+    # ### store userfinder in utils_stars.findSearchHits() ###
     #
     return iSavedRowID
 
