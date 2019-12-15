@@ -263,6 +263,8 @@ update userfinders uf
         uif."iItemNumb_id" = uf."iItemNumb_id" and
         uif."iUser_id" = uf."iUser_id" ) ;
 
+delete from userfinders where "iMaxStars" = 0 ;
+
 update userfinders uf
   set "iMaxModel" =
   ( select distinct on (uif."iHitStars") uif."iModel_id"
