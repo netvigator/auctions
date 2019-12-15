@@ -49,6 +49,7 @@ from searching.models   import Search
 from searching.tests    import dSearchResult # in __init__.py
 from searching.utils    import _storeUserItemFound, _storeItemFound
 
+from searching.utils_stars      import findSearchHits
 from searching.tests.test_stars import SetUpForHitStarsWebTests
 
 from pyPks.Dir.Test     import isDirThere
@@ -536,6 +537,11 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.iItemNumb  = iItemNumb
         self.tNow       = tBefore
+        #
+        # populate UserFinder
+        #
+        findSearchHits( iUser = self.user1 )
+        #
 
 
     def test_store_fetched_single_item( self ):
@@ -585,6 +591,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         oUserFinder = UserFinder.objects.get(
                                 iItemNumb_id = 282330751118 )
         #
+        self.assertIsNotNone( oUserFinder )
+        #
         tNow = timezone.now()
         #
         getSingleItemThenStore( 282330751118,
@@ -595,17 +603,16 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.assertEqual( oItemFound.cSellingState, 'Completed' )
         #
-        # oUserItemFound = UserItemFound.objects.get(
-        #                         iItemNumb_id = 282330751118 )
+        oUserItemFound = UserItemFound.objects.get(
+                                iItemNumb_id = 282330751118 )
+
+        self.assertEqual( oUserItemFound.tRetrieved,    tNow )
+        self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
         #
-        # self.assertEqual( oUserItemFound.tRetrieved,    tNow )
-        # self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
-        #
-        oUserFinder = UserFinder.objects.get(
+        oUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        self.assertEqual( oUserFinder.tRetrieved,    tNow )
-        self.assertEqual( oUserFinder.tRetrieveFinal,tNow )
+        self.assertIsNone( oUserFinder )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
