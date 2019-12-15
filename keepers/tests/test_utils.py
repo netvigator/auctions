@@ -43,7 +43,7 @@ from ..utils            import ( _storeOneJsonItemInKeepers,
 
 from ..utils_test       import getSingleItemResponseCandidate
 
-from finders.models     import ItemFound, UserItemFound
+from finders.models     import ItemFound, UserItemFound, UserFinder
 
 from searching.models   import Search
 from searching.tests    import dSearchResult # in __init__.py
@@ -312,11 +312,17 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
             #
             if iOrigItemNumb:
                 #
-                qsUserItemFound = UserItemFound.objects.filter( iItemNumb = iOrigItemNumb )
+                # qsUserItemFound = UserItemFound.objects.filter( iItemNumb = iOrigItemNumb )
                 #
-                for oUserItemFound in qsUserItemFound:
-                    oUserItemFound.iItemNumb = oItemFound
-                    oUserItemFound.save()
+                # for oUserItemFound in qsUserItemFound:
+                #     oUserItemFound.iItemNumb = oItemFound
+                #     oUserItemFound.save()
+                #
+                qsUserFinder = UserKeeper.objects.filter( iItemNumb = iOrigItemNumb )
+                #
+                for oUserFinder in qsUserFinder:
+                    oUserFinder.iItemNumb = oItemFound
+                    oUserFinder.save()
                 #
             #
             getSingleItemThenStore( iItemNumb )
@@ -353,28 +359,48 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
     def mark_all_finders_to_fetch_pictures( self ):
         # mark all UserItemFound rows to fetch pictures
         #
-        UserItemFound.objects.all().update(
-            bGetPictures = True,
-            tRetrieved   = None )
+        # UserItemFound.objects.all().update(
+        #     bGetPictures = True,
+        #     tRetrieved   = None )
+        #
+        UserFinder.objects.all().update(
+            bGetPictures = True ) # aint got tRetrieved
         #
         # mark two UserItemFound rows as pictures already fetched
         qsAllItemsFound = ItemFound.objects.all().values_list(
                 'iItemNumb', flat = True )
         #
-        qsSomeUserItemNumbs = UserItemFound.objects.filter(
+        #
+        # qsSomeUserItemNumbs = UserItemFound.objects.filter(
+        #         iItemNumb__in = qsAllItemsFound )[:2].values_list(
+        #         'iItemNumb', flat = True )
+        #
+        qsSomeUserFinderNumbs = UserFinder.objects.filter(
                 iItemNumb__in = qsAllItemsFound )[:2].values_list(
                 'iItemNumb', flat = True )
         #
-        UserItemFound.objects.filter(
-            iItemNumb__in = qsSomeUserItemNumbs ) .update(
-                                    tRetrieved = timezone.now() )
+        # UserItemFound.objects.filter(
+        #     iItemNumb__in = qsSomeUserItemNumbs ) .update(
+        #                             tRetrieved = timezone.now() )
+        #
+        UserFinder.objects.filter(
+            iItemNumb__in = qsSomeUserFinderNumbs ).delete()
         #
         # mark corresponding ItemFound row
-        qsUserItemNumbs = ( UserItemFound.objects.filter(
-                                bGetPictures        = True,
-                                tRetrieved__isnull  = False )
+        # qsUserItemNumbs = ( UserItemFound.objects.filter(
+        #                         bGetPictures        = True,
+        #                         tRetrieved__isnull  = False )
+        #                     .values_list( 'iItemNumb', flat = True )
+        #                     .distinct() )
+        #
+        qsUserItemNumbs = ( UserFinder.objects.filter(
+                                bGetPictures = True )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() )
+        #
+        # ItemFound.objects.filter(
+        #         iItemNumb__in = qsUserItemNumbs ).update(
+        #                                 tRetrieved = timezone.now() )
         #
         ItemFound.objects.filter(
                 iItemNumb__in = qsUserItemNumbs ).update(
@@ -524,6 +550,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         self.assertIsNone( oUserItemFound.tRetrieved )
         self.assertIsNone( oUserItemFound.tRetrieveFinal )
         #
+        # ### store userfinder in utils_stars.findSearchHits() ###
+        #
         t = _storeOneJsonItemInKeepers( 282330751118, s282330751118 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
@@ -551,7 +579,10 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
 
     def test_update_user_items_found_code( self ):
         #
-        oUserItemFound = UserItemFound.objects.get(
+        # oUserItemFound = UserItemFound.objects.get(
+        #                         iItemNumb_id = 282330751118 )
+        #
+        oUserFinder = UserFinder.objects.get(
                                 iItemNumb_id = 282330751118 )
         #
         tNow = timezone.now()
@@ -564,11 +595,17 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         self.assertEqual( oItemFound.cSellingState, 'Completed' )
         #
-        oUserItemFound = UserItemFound.objects.get(
+        # oUserItemFound = UserItemFound.objects.get(
+        #                         iItemNumb_id = 282330751118 )
+        #
+        # self.assertEqual( oUserItemFound.tRetrieved,    tNow )
+        # self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
+        #
+        oUserFinder = UserFinder.objects.get(
                                 iItemNumb_id = 282330751118 )
         #
-        self.assertEqual( oUserItemFound.tRetrieved,    tNow )
-        self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
+        self.assertEqual( oUserFinder.tRetrieved,    tNow )
+        self.assertEqual( oUserFinder.tRetrieveFinal,tNow )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
