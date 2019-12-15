@@ -281,6 +281,9 @@ update userfinders uf
       uif."bGetPictures" = true ) ;
 
 update userfinders uf
+  set "bListExclude" = false ;
+
+update userfinders uf
   set "bListExclude" = true where exists
   ( select 1 from useritemsfound uif
     where
