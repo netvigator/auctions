@@ -19,7 +19,7 @@ from models.models      import Model
 from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
                                  EBAY_GB_CURRENT_VERSION,
                                  EBAY_Mo_CURRENT_VERSION,
-                                 sCategoryDump )
+                                 sEbayCategoryDump )
 
 from ebayinfo.models    import EbayCategory, Market
 
@@ -249,6 +249,15 @@ class SetUpBrandsCategoriesModelsMixin( object ):
         self.oBrand.save()
         #
         self.oCategory = Category(
+            cTitle      = "Capacitor Checker",
+            cLookFor    = "Capacitor Tester\r"
+                          "Capacitance Checker\r"
+                          "Capacitance Tester",
+            iStars      = 5,
+            iUser       = oUser )
+        self.oCategory.save()
+        #
+        self.oCategory = Category(
             cTitle      = "Widget",
             cKeyWords   = 'Gadget',
             cLookFor    = "Gizmo",
@@ -437,7 +446,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         oRootCategory.save()
         #
-        oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
+        oTableIter = getTableFromScreenCaptureGenerator( sEbayCategoryDump )
         #
         lHeader = next( oTableIter )
         #
