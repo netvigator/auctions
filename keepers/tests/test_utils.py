@@ -614,10 +614,10 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         self.assertEqual( oUserItemFound.tRetrieved,    tNow )
         self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
         #
-        oUserFinder = UserFinder.objects.filter(
+        qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        self.assertIsNone( oUserFinder )
+        self.assertFalse( qsUserFinder.exists() )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
