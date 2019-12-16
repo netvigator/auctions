@@ -3,8 +3,6 @@ from django.urls        import reverse, resolve
 
 from core.utils_test    import TestCasePlus
 
-from ..models           import Category
-
 
 
 class TestURLs( TestCasePlus ):
@@ -30,23 +28,23 @@ class TestURLs( TestCasePlus ):
     def test_edit_reverse(self):
         """categories:edit should reverse to /categories/edit/."""
         self.assertEqual(reverse('categories:edit', kwargs={ 'pk': 1 }),
-                         '/categories/1/edit/')
+                         '/categories/edit/1/')
 
     def test_edit_resolve(self):
         """/categories/<pk>/edit/ should resolve to categories:edit."""
         self.assertEqual(
-            resolve('/categories/1/edit/').view_name,
+            resolve('/categories/edit/1/').view_name,
             'categories:edit' )
 
     def test_delete_reverse(self):
         """categories:delete should reverse to /categories/<pk>/delete/."""
         self.assertEqual(reverse('categories:delete', kwargs={ 'pk': 1 }),
-                         '/categories/1/delete/')
+                         '/categories/delete/1/')
 
     def test_delete_resolve(self):
         """/categories/<pk>/delete/ should resolve to categories:delete."""
         self.assertEqual(
-            resolve('/categories/1/delete/').view_name,
+            resolve('/categories/delete/1/').view_name,
             'categories:delete' )
 
     def test_add_reverse(self):
