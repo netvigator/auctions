@@ -15,7 +15,9 @@ from core.utils_test    import ( getDefaultMarket,
                                  TestCasePlus )
 
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
+from ebayinfo.tests     import sEbayCategoryDump
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
+        #
 
 from ebayinfo.tests.test_utils import LiveTestGotCurrentEbayCategories
 # imported live test will run automatically when running live test
@@ -187,11 +189,9 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #
         ''' testing the ebay item categories '''
         #
-        from ebayinfo.tests import sCategoryDump
-        #
         iTableCount = EbayCategory.objects.all().count()
         #
-        oTableIter = getTableFromScreenCaptureGenerator( sCategoryDump )
+        oTableIter = getTableFromScreenCaptureGenerator( sEbayCategoryDump )
         #
         lHeader = next( oTableIter )
         #
