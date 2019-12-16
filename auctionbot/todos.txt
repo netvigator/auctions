@@ -371,3 +371,19 @@ item in searching/tests/__init__.py
 need to test save
 
 2019-12-11 learn from test_urls.py, update
+
+2019-12-16
+finders/models.py
+on finders list for models, categories and brands, want the link to go to the view not edit, not right, still troubleshooting
++    #def get_absolute_url(self):
++        ##
++        #return getReverseWithUpdatedQuery(
++                #'finders:edit',
++                #kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
++
+     def get_absolute_url(self):
+         #
+-        return getReverseWithUpdatedQuery(
+-                'finders:edit',
+-                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
++        return reverse( 'finders:hit', kwargs = { 'pk': self.pk } )
