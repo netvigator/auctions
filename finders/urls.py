@@ -16,7 +16,7 @@ urlpatterns = [
         view    = views.ItemFoundDetailView.as_view(),
         name    = 'detail' ),
     url(
-        regex   = r'(?P<pk>[0-9]+)/edit/$',
+        regex   = r'edit/(?P<pk>[0-9]+)/$',
         view    = views.ItemFoundUpdateView.as_view(),
         name    = 'edit' ),
     url( # if above, this regex will intercept the hit url !
