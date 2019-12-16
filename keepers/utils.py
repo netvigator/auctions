@@ -441,9 +441,13 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             UserItemFound.objects.filter(
                     iItemNumb = iItemNumb ).update( tRetrieved = tNow )
             #
-            UserFinder.objects.filter(
-                    iItemNumb = iItemNumb ).delete()
-            #
+        #
+        print()
+        print( 'for %s before:' % iItemNumb )
+        print( 'len( UserFinder.objects.filter( iItemNumb_id = iItemNumb ) )', len( UserFinder.objects.filter( iItemNumb_id = iItemNumb ) ) )
+        UserFinder.objects.filter( iItemNumb_id = iItemNumb ).delete()
+        print( 'after:' )
+        print( 'len( UserFinder.objects.filter( iItemNumb_id = iItemNumb ) )', len( UserFinder.objects.filter( iItemNumb_id = iItemNumb ) ) )
         #
         qsUserItems = UserItemFound.objects.filter(
                 iItemNumb          = iItemNumb,
