@@ -4,8 +4,6 @@ from django.urls        import reverse, resolve
 
 from core.utils_test    import TestCasePlus
 
-from ..models           import Brand
-
 
 
 class TestURLs( TestCasePlus ):
@@ -39,14 +37,14 @@ class TestURLs( TestCasePlus ):
     def test_edit_reverse(self):
         """brands:edit should reverse to /brands/edit/."""
         self.assertEqual(reverse('brands:edit', kwargs={ 'pk': 1 }),
-                         '/brands/1/edit/')
+                         '/brands/edit/1/')
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_edit_resolve(self):
         """/brands/<pk>/edit/ should resolve to brands:edit."""
         self.assertEqual(
-            resolve('/brands/1/edit/').view_name,
+            resolve('/brands/edit/1/').view_name,
             'brands:edit' )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
@@ -54,14 +52,14 @@ class TestURLs( TestCasePlus ):
     def test_delete_reverse(self):
         """brands:delete should reverse to /brands/<pk>/delete/."""
         self.assertEqual(reverse('brands:delete', kwargs={ 'pk': 1 }),
-                         '/brands/1/delete/')
+                         '/brands/delete/1/')
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_delete_resolve(self):
         """/brands/<pk>/delete/ should resolve to brands:delete."""
         self.assertEqual(
-            resolve('/brands/1/delete/').view_name,
+            resolve('/brands/delete/1/').view_name,
             'brands:delete' )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
