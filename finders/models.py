@@ -197,11 +197,15 @@ class UserItemFound(models.Model):
         db_table            = verbose_name_plural
         unique_together     = ('iItemNumb', 'iUser', 'iModel', 'iBrand' )
 
+    #def get_absolute_url(self):
+        ##
+        #return getReverseWithUpdatedQuery(
+                #'finders:edit',
+                #kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
+
     def get_absolute_url(self):
         #
-        return getReverseWithUpdatedQuery(
-                'finders:edit',
-                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
+        return reverse( 'finders:hit', kwargs = { 'pk': self.pk } )
 
 
 class UserFinder(models.Model):
