@@ -394,7 +394,7 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         #                     .values_list( 'iItemNumb', flat = True )
         #                     .distinct() )
         #
-        qsUserItemNumbs = ( UserFinder.objects.filter(
+        qsUserFinderNumbs = ( UserFinder.objects.filter(
                                 bGetPictures = True )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() )
@@ -404,7 +404,7 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         #                                 tRetrieved = timezone.now() )
         #
         ItemFound.objects.filter(
-                iItemNumb__in = qsUserItemNumbs ).update(
+                iItemNumb__in = qsUserFinderNumbs ).update(
                                         tRetrieved = timezone.now() )
         #
 
@@ -415,9 +415,14 @@ class GetAndStoreSingleItemsWebTests( StoreSingleKeepersWebTests ):
         #
         self.mark_all_finders_to_fetch_pictures()
         #
-        qsUserItemNumbs = getFindersForResultsFetching()
+        qsAlreadyFetched = ItemFound.objects.filter( tRetrieved__isnull = False )
         #
-        self.assertNotEmpty( qsUserItemNumbs )
+        # must do this for test to pass
+        ItemFound.objects.all().update( tRetrieved = None )
+        #
+        qsUserFinderNumbs = getFindersForResultsFetching()
+        #
+        self.assertNotEmpty( qsUserFinderNumbs )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -540,7 +545,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         # populate UserFinder
         #
-        findSearchHits( iUser = self.user1 )
+        findSearchHits( iUser = self.user1.id )
         #
 
 
@@ -588,7 +593,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         # oUserItemFound = UserItemFound.objects.get(
         #                         iItemNumb_id = 282330751118 )
         #
-        oUserFinder = UserFinder.objects.get(
+        oUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
         self.assertIsNotNone( oUserFinder )
