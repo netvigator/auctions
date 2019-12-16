@@ -26,23 +26,23 @@ class TestURLs( TestCasePlus ):
     def test_edit_reverse(self):
         """searching:edit should reverse to /searching/edit/."""
         self.assertEqual(reverse('searching:edit', kwargs={ 'pk': 1 }),
-                         '/searching/1/edit/')
+                         '/searching/edit/1/')
 
     def test_edit_resolve(self):
         """/searching/<pk>/edit/ should resolve to searching:edit."""
         self.assertEqual(
-            resolve('/searching/1/edit/').view_name,
+            resolve('/searching/edit/1/').view_name,
             'searching:edit' )
 
     def test_delete_reverse(self):
         """searching:delete should reverse to /searching/<pk>/delete/."""
         self.assertEqual(reverse('searching:delete', kwargs={ 'pk': 1 }),
-                         '/searching/1/delete/')
+                         '/searching/delete/1/')
 
     def test_delete_resolve(self):
         """/searching/<pk>/delete/ should resolve to searching:delete."""
         self.assertEqual(
-            resolve('/searching/1/delete/').view_name,
+            resolve('/searching/delete/1/').view_name,
             'searching:delete' )
 
     def test_add_reverse(self):
