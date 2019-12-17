@@ -17,14 +17,14 @@
 
     <table>
     <TR VALIGN=TOP>
-        <TD>{% field_name parent 'cListingType' %}</TD>
-        <TD>{{object.iItemNumb.cListingType}}</TD>
+        <TD>{% field_name object 'cListingType' %}</TD>
+        <TD>{{object.cListingType}}</TD>
     </TR>
     <TR VALIGN=TOP>
-        <TD>{% field_name parent 'iItemNumb' %}</TD>
+        <TD>{% field_name object 'iItemNumb_id' %}</TD>
         <TD>
               <a href="https://www.ebay.com/itm/{{object.iItemNumb.iItemNumb}}/">
-                      {{ object.iItemNumb.iItemNumb }}</a></TD>
+                      {{ object.iItemNumb_id }}</a></TD>
 
     </TR>
     <TR VALIGN=TOP>
@@ -36,7 +36,7 @@
         <TD>{{object.iItemNumb.cCountry}}</TD>
     </TR>
     <TR VALIGN=TOP>
-        <TD>{% field_name model 'cMarket' %}</TD>
+        <TD>{% field_name object 'cMarket' %}</TD>
         <TD>{{ object.cMarket }}</TD>
     </TR>
     <TR>
@@ -45,7 +45,6 @@
     </TR>
     <tr>
         <td>{% field_name parent 'iShippingType' %}:</td>
-
         <TD>{{ object.iItemNumb.get_iShippingType_display }}</TD>
         </td>
     </tr>
@@ -66,12 +65,11 @@
     </TR>
     {% endif %}
     <tr>
-        <td>{% field_name model 'bGetPictures' %}:</td>
+        <td>{% field_name object 'bGetPictures' %}:</td>
         <td>{{ object.bGetPictures|yesno:"Yes,No" }}</td>
     </tr>
     <TR VALIGN=TOP>
         <TD>{% field_name parent 'cEbayItemURL' %}</TD>
-
         <TD><A HREF="{{object.iItemNumb.cEbayItemURL}}">{{object.iItemNumb.cEbayItemURL}}</A></TD>
     </TR>
     <TR VALIGN=TOP>
@@ -79,7 +77,7 @@
         <TD>{{object.iItemNumb.tTimeBeg|date:"d M Y  P"}}</TD>
     </TR>
     <TR VALIGN=TOP>
-        <TD>{% field_name model 'tTimeEnd' %}</TD>
+        <TD>{% field_name object 'tTimeEnd' %}</TD>
         <TD>{{object.tTimeEnd|date:"d M Y  P"}}</TD>
     </TR>
     <TR VALIGN=TOP>
