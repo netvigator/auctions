@@ -213,7 +213,8 @@ class UserFinder(models.Model):
     # one row per item
     # this table can now drive the finder listing for a user all by itself
     #
-    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
+    iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE,
+                        verbose_name = 'eBay Item Number' )
     iMaxStars       = IntegerRangeField(
                         'hit stars', null = True,
                         min_value = 0, max_value = 1000, default = 0 )
@@ -234,7 +235,8 @@ class UserFinder(models.Model):
                         null = True, default = False )
     #
     def __str__(self):
-        return '%s - %s' % ( self.iItemNumb, self.iUser )
+        # return '%s - %s' % ( self.iItemNumb, self.iUser )
+        return self.cTitle
 
     class Meta:
         verbose_name_plural = 'userfinders'
