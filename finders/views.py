@@ -180,12 +180,14 @@ class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
         '''
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
-                iItemNumb_id = context[ 'object' ].iItemNumb,
-                iUser        = self.request.user )
+                iItemNumb_id        = context[ 'object' ].iItemNumb,
+                tRetrieved__isnull  = True,
+                iUser               = self.request.user )
         #
         sThisItemAllHits = self.getUserItemsTable( qsThisItemAllHits )
         #
-        context['AllHits'] = sThisItemAllHits
+        context['AllHits']          = sThisItemAllHits
+        context['qsAllHits']        = qsThisItemAllHits
         #
         return context
 
