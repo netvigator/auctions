@@ -547,6 +547,12 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         findSearchHits( iUser = self.user1.id )
         #
+        qsUserFinder = UserFinder.objects.filter(
+                                iItemNumb_id = 282330751118 )
+        #
+        print()
+        print( 'len( qsUserFinder ):', len( qsUserFinder ) )
+
 
 
     def test_store_fetched_single_item( self ):
@@ -593,10 +599,12 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         # oUserItemFound = UserItemFound.objects.get(
         #                         iItemNumb_id = 282330751118 )
         #
-        oUserFinder = UserFinder.objects.filter(
+        qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        self.assertIsNotNone( oUserFinder )
+        print()
+        print( 'len( qsUserFinder ):', len( qsUserFinder ) )
+        self.assertIsNotNone( qsUserFinder )
         #
         tNow = timezone.now()
         #
@@ -617,7 +625,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        self.assertFalse( qsUserFinder.exists() )
+        #
+        self.assertTrue( qsUserFinder.exists() )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
