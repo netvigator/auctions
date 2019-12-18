@@ -72,7 +72,7 @@ class MakeSureExampleItemGetsHit( storeUserItemFoundButDontWebTestYet ):
                             iItemNumb_id    = 282330751118,
                             iUser           = self.user1 )
         #
-        self.assertGreater( len( qsUserFinder ), 0 )
+        self.assertTrue( len( qsUserFinder.exists() )
         #
         qsUserItemFound = UserItemFound.objects.filter(
                             iItemNumb_id    = 282330751118,
@@ -100,7 +100,7 @@ class SetUpForFindSearchHitsTest( PutSearchResultsInDatabaseWebTest ):
                 tLook4Hits__isnull = False ) ), 100 )
         #
         self.assertGreater(
-            len( UserFinder.objects.filter( iUser = self.user1 ) ), 90 )
+            len( UserFinder.objects.filter( iUser = self.user1 ) ), 80 )
         #
 
 
