@@ -257,6 +257,25 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iUser       = oUser )
         self.oCategory.save()
         #
+        oBrand = Brand(
+            cTitle      = "Digital",
+            cLookFor    = "",
+            cExcludeIf  = '',
+            iStars      = 4,
+            iUser       = oUser )
+        #
+        oBrand.save()
+        #
+        oModel = Model(
+            cTitle      = "470mF",
+            bSubModelsOK= False,
+            iStars      = 4,
+            iBrand      = oBrand,
+            iCategory   = self.oCategory,
+            iUser       = oUser )
+        oModel.save()
+        #
+
         self.oCategory = Category(
             cTitle      = "Widget",
             cKeyWords   = 'Gadget',
