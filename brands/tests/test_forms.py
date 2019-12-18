@@ -2,8 +2,8 @@
 
 from django.urls        import reverse
 
-from core.utils_test    import BaseUserWebTestCase, getUrlQueryStringOff
-
+from core.utils_test    import ( BaseUserWebTestCase, getUrlQueryStringOff
+                                 maybePrint )
 
 # Create your tests here.
 
@@ -44,9 +44,9 @@ class TestFormValidation( BaseUserWebTestCase ):
         '''
         if form.errors:
             for k, v in form.errors.items():
-                print( k, ' -- ', v )
+                maybePrint( k, ' -- ', v )
         else:
-            print( 'no form errors above!' )
+            maybePrint( 'no form errors above!' )
         '''
         #
         form_data['cTitle'] = 'Chevrolet'
@@ -90,7 +90,7 @@ class TestFormValidation( BaseUserWebTestCase ):
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        # print( 'test_add_Title_already_there' )
+        # maybePrint( 'test_add_Title_already_there' )
         form = CreateBrandForm(data=form_data)
         form.request = self.request
         form.user    = self.user1
@@ -108,13 +108,13 @@ class TestFormValidation( BaseUserWebTestCase ):
         self.assertFalse( form.is_valid() )
         #
         ''' yes the errors are there
-        print('')
-        print( 'form.is_valid() returns', form.is_valid() )
+        maybePrint('')
+        maybePrint( 'form.is_valid() returns', form.is_valid() )
         if form.errors:
             for k, v in form.errors.items():
-                print( k, ' -- ', v )
+                maybePrint( k, ' -- ', v )
         else:
-            print( 'no form errors at bottom!' )
+            maybePrint( 'no form errors at bottom!' )
         '''
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
