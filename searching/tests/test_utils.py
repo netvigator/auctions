@@ -377,10 +377,11 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
         #
         tNow        = timezone.now()
         #
+        sSearch     = "My clever search 1"
+        #
         for oUser in self.tUsers:
             #
-            sSearch     = "My clever search 1"
-            oSearch     = Search( cTitle= sSearch, iUser = oUser )
+            oSearch = Search( cTitle = sSearch, iUser = oUser )
             oSearch.save()
             #
             if self.oSearch is None: self.oSearch = oSearch
@@ -405,13 +406,14 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
         #
         tBefore     = tNow - timezone.timedelta( minutes = 5 )
         #
-        self.oSearchLog = SearchLog(
+        oSearchLog = SearchLog(
                 iSearch_id  = self.oSearch.id,
                 tBegSearch  = tBefore,
                 tEndSearch  = tNow,
+                tBegStore   = tNow,
                 cResult     = 'Success' )
         #
-        self.oSearchLog.save()
+        oSearchLog.save()
         #
 
 
