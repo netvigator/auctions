@@ -16,6 +16,8 @@ from finders.models     import ( ItemFound, UserItemFound, ItemFoundTemp,
 
 from .test_models       import PutSearchResultsInDatabaseWebTest
 
+from .test_utils        import storeUserItemFoundButDontWebTestYet
+
 from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
                                  findSearchHits, _getRowRegExpressions,
                                  getInParens, _getRelevantTitle )
@@ -51,16 +53,46 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
+class MakeSureExampleItemGetsHit( storeUserItemFoundButDontWebTestYet ):
+    #
+    ''' class for testing dSearchResult in __init__  '''
+    #
+
+    def test_find_search_hits( self ):
+        #
+        print()
+        qsUserItemFound = UserItemFound.objects.filter(
+                            iItemNumb_id    = 282330751118,
+                            iUser           = self.user1 )
+        #
+        print( 'before len( qsUserItemFound ):', len( qsUserItemFound ) )
+        #
+        for o in qsUserItemFound: pprint( o )
+        #
+        findSearchHits( self.user1.id,
+                        bCleanUpAfterYourself   = True,
+                        iRecordStepsForThis     = iRecordStepsForThis )
+        #
+        qsUserFinder = UserFinder.objects.filter(
+                            iItemNumb_id    = 282330751118,
+                            iUser           = self.user1 )
+        #
+        qsUserItemFound = UserItemFound.objects.filter(
+                            iItemNumb_id    = 282330751118,
+                            iUser           = self.user1 )
+        #
+        print( 'after len( qsUserItemFound ):', len( qsUserItemFound ) )
+        print( 'len( qsUserFinder ):', len( qsUserFinder ) )
+        #
+        self.assertGreater(
+            len( UserItemFound.objects.filter(
+                tLook4Hits__isnull = False ) ), 0 )
+        #
 
 class SetUpForFindSearchHitsTest( PutSearchResultsInDatabaseWebTest ):
     #
     ''' class for testing findSearchHits() '''
     #
-    def setUp( self ):
-        #
-        super( SetUpForFindSearchHitsTest, self ).setUp()
-        #
-
     def test_find_search_hits( self ):
         #
         findSearchHits( self.user1.id,
@@ -70,6 +102,10 @@ class SetUpForFindSearchHitsTest( PutSearchResultsInDatabaseWebTest ):
         self.assertGreater(
             len( UserItemFound.objects.filter(
                 tLook4Hits__isnull = False ) ), 100 )
+        #
+        self.assertGreater(
+            len( UserFinder.objects.filter( iUser = self.user1 ) ), 90 )
+        #
 
 
 
