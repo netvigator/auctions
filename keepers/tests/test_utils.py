@@ -550,8 +550,6 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        maybePrint()
-        maybePrint( 'len( qsUserFinder ):', len( qsUserFinder ) )
 
 
 
@@ -602,10 +600,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        maybePrint()
-        maybePrint( 'len( qsUserFinder ):', len( qsUserFinder ) )
-        #
-        self.assertIsTrue( qsUserFinder.count() )
+        self.assertTrue( qsUserFinder.exists() )
         #
         tNow = timezone.now()
         #
@@ -623,11 +618,12 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         self.assertEqual( oUserItemFound.tRetrieved,    tNow )
         self.assertEqual( oUserItemFound.tRetrieveFinal,tNow )
         #
+        # storing results deletes the finder row
+        #
         qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        #
-        self.assertTrue( qsUserFinder.exists() )
+        self.assertFalse( qsUserFinder.exists() )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
