@@ -1,5 +1,7 @@
 from django.utils       import timezone
 
+from django_webtest     import TestApp
+
 from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getReverseWithUpdatedQuery,
                                  getWhatsNotInParens,
@@ -7,8 +9,10 @@ from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
                                  getSaySequence )
 
 from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
-                                 queryGotUpdated, oAuctionBotApp,
+                                 queryGotUpdated,
                                  SetUpBrandsCategoriesModelsWebTest )
+
+from config.wsgi        import application
 
 from ebayinfo.tests     import EBAY_US_CURRENT_VERSION
 from ebayinfo.models    import Market
@@ -18,8 +22,12 @@ from ebayinfo.utils_test import ( getMarketsIntoDatabase,
 
 from models.models      import Model
 
+
 from pyPks.Time         import _sFormatISOdateTimeNoColon
 from pyPks.Time.Test    import isISOdatetime
+
+
+oAuctionBotApp = TestApp( application )
 
 
 class BasicAppTestsDjangoStyle( TestCasePlus ):
