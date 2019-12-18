@@ -5,13 +5,12 @@ from django.db.utils    import IntegrityError
 from django.test        import RequestFactory
 from django.test.client import Client
 
-from django_webtest     import WebTest, TestApp
+from django_webtest     import WebTest
 from test_plus.test     import TestCase
 
 from core.dj_import     import HttpRequest, get_user_model
 
 from config.settings.base import LOGIN_URL
-from config.wsgi        import application
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -68,10 +67,6 @@ class BaseUserTestPlusCase( TestCasePlus ):
         #
         # putting user1 last saves the user1 records in self
 
-
-
-
-oAuctionBotApp = TestApp( application )
 
 
 
