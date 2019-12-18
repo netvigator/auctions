@@ -373,13 +373,17 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
         #
         class ThisShouldNotBeHappening( Exception ): pass
         #
+        self.oSearch = None
+        #
+        tNow        = timezone.now()
+        #
         for oUser in self.tUsers:
             #
-            sSearch         = "My clever search 1"
-            self.oSearch    = Search( cTitle= sSearch, iUser = oUser )
-            self.oSearch.save()
+            sSearch     = "My clever search 1"
+            oSearch     = Search( cTitle= sSearch, iUser = oUser )
+            oSearch.save()
             #
-            tNow = timezone.now()
+            if self.oSearch is None: self.oSearch = oSearch
             #
             try:
                 iItemNumb = _storeItemFound( dSearchResult, {} )
@@ -391,13 +395,24 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
             #
             try:
                 _storeUserItemFound(
-                    dSearchResult, iItemNumb, oUser, self.oSearch.id )
+                    dSearchResult, iItemNumb, oUser, oSearch.id )
             except ItemAlreadyInTable:
                 pass
             #
             self.iItemNumb  = iItemNumb
             self.tNow       = tNow
             #
+        #
+        tBefore     = tNow - timezone.timedelta( minutes = 5 )
+        #
+        self.oSearchLog = SearchLog(
+                iSearch_id  = self.oSearch.id,
+                tBegSearch  = tBefore,
+                tEndSearch  = tNow,
+                cResult     = 'Success' )
+        #
+        self.oSearchLog.save()
+        #
 
 
 class storeUserItemFoundTests( storeUserItemFoundButDontWebTestYet ):
