@@ -9,7 +9,7 @@ from django.utils       import timezone
 
 from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
-                                 TestCasePlus )
+                                 TestCasePlus, maybePrint )
 
 from finders.models     import ( ItemFound, UserItemFound, ItemFoundTemp,
                                  UserFinder )
@@ -60,14 +60,9 @@ class MakeSureExampleItemGetsHit( storeUserItemFoundButDontWebTestYet ):
 
     def test_find_search_hits( self ):
         #
-        print()
         qsUserItemFound = UserItemFound.objects.filter(
                             iItemNumb_id    = 282330751118,
                             iUser           = self.user1 )
-        #
-        print( 'before len( qsUserItemFound ):', len( qsUserItemFound ) )
-        #
-        for o in qsUserItemFound: pprint( o )
         #
         findSearchHits( self.user1.id,
                         bCleanUpAfterYourself   = True,
@@ -77,12 +72,13 @@ class MakeSureExampleItemGetsHit( storeUserItemFoundButDontWebTestYet ):
                             iItemNumb_id    = 282330751118,
                             iUser           = self.user1 )
         #
+        self.assertGreater( len( qsUserFinder ), 0 )
+        #
         qsUserItemFound = UserItemFound.objects.filter(
                             iItemNumb_id    = 282330751118,
                             iUser           = self.user1 )
         #
-        print( 'after len( qsUserItemFound ):', len( qsUserItemFound ) )
-        print( 'len( qsUserFinder ):', len( qsUserFinder ) )
+        self.assertGreater( len( qsUserItemFound ), 0 )
         #
         self.assertGreater(
             len( UserItemFound.objects.filter(
@@ -136,18 +132,18 @@ class KeyWordFindSearchHitsTests(
         #
         if not lTest:
             #
-            print('')
+            maybePrint('')
             #
             if iItemNumb:
-                print( 'found nothing for %s' % iItemNumb )
+                maybePrint( 'found nothing for %s' % iItemNumb )
             else:
-                print( 'found nothing, iItemNumb not passed' )
+                maybePrint( 'found nothing, iItemNumb not passed' )
             #
         elif len( lTest ) != iExpect:
             #
-            print('')
-            print(lTest[0])
-            print( '%s length:' % lTest[0].iItemNumb_id,
+            maybePrint('')
+            maybePrint(lTest[0])
+            maybePrint( '%s length:' % lTest[0].iItemNumb_id,
                    len( lTest ),
                    'expected:',
                    iExpect )
@@ -167,12 +163,12 @@ class KeyWordFindSearchHitsTests(
                     #
                     if lPrintThis:
                         #
-                        print( ' | '.join( lPrintThis ) )
+                        maybePrint( ' | '.join( lPrintThis ) )
                         #
                     #
                 #
             #
-            if sExplain: print( sExplain )
+            if sExplain: maybePrint( sExplain )
             #
 
     def test_find_search_hits_test(self):
@@ -223,8 +219,8 @@ class KeyWordFindSearchHitsTests(
         #
         if lDupes:
             #
-            print()
-            print( 'Duplicated test titles:', '\n', '\n'.join( lDupes ) )
+            maybePrint()
+            maybePrint( 'Duplicated test titles:', '\n', '\n'.join( lDupes ) )
             #
         #
         self.assertGreater( iCount, 38 )
@@ -1930,17 +1926,17 @@ class KeyWordFindSearchHitsTests(
         #
         if False:
             #
-            print()
-            print( iThisOne )
+            maybePrint()
+            maybePrint( iThisOne )
             #
             for oTest in dItemsToTest[ iThisOne ]:
                 #
-                print()
-                if oTest.iBrand:    print( oTest.iBrand.cTitle )
-                if oTest.iModel:    print( oTest.iModel.cTitle )
-                if oTest.iCategory: print( oTest.iCategory.cTitle )
+                maybePrint()
+                if oTest.iBrand:    maybePrint( oTest.iBrand.cTitle )
+                if oTest.iModel:    maybePrint( oTest.iModel.cTitle )
+                if oTest.iCategory: maybePrint( oTest.iCategory.cTitle )
                 #
-            print('')
+            maybePrint()
         #
         #if oTest.iBrand:    print( oTest.iBrand.cTitle )
         #if oTest.iModel:
