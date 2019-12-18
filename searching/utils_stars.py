@@ -1610,7 +1610,7 @@ def findSearchHits(
                     # sModelTitleUPPER = oTempItem.cModelAlphaNum
                     sModelTitleUPPER = oTempItem.cFoundModel.upper()
                 #
-                if settings.COVERAGE and bRecordSteps:
+                if settings.COVERAGE or bRecordSteps:
                     #
                     maybePrint()
                     maybePrint( 'temp item      #:', iItemsFoundTemp )
@@ -1618,6 +1618,7 @@ def findSearchHits(
                     maybePrint( 'brand           :', oTempItem.iBrand )
                     maybePrint( 'category        :', oTempItem.iCategory)
                     maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
+                    maybePrint( 'iHitStars       :', oTempItem.iHitStars )
                     maybePrint()
                     #
                 #
@@ -1874,6 +1875,11 @@ def findSearchHits(
             #
             iMaxStars, iMaxModel = _getMaxHitStars( dModelsStoredAlready )
             #
+            if settings.COVERAGE or bRecordSteps:
+                #
+                maybePrint('')
+                maybePrint('iMaxStars:', iMaxStars )
+                #
             if iMaxStars:
                 #
                 oUserFinder = UserFinder(
