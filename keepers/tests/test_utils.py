@@ -14,7 +14,7 @@ from keepers            import getListAsLines
 
 from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
-                                 TestCasePlus )
+                                 TestCasePlus, maybePrint )
 
 from ..models           import Keeper, UserKeeper, KeeperImage
 
@@ -550,8 +550,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        print()
-        print( 'len( qsUserFinder ):', len( qsUserFinder ) )
+        maybePrint()
+        maybePrint( 'len( qsUserFinder ):', len( qsUserFinder ) )
 
 
 
@@ -602,9 +602,10 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         qsUserFinder = UserFinder.objects.filter(
                                 iItemNumb_id = 282330751118 )
         #
-        print()
-        print( 'len( qsUserFinder ):', len( qsUserFinder ) )
-        self.assertIsNotNone( qsUserFinder )
+        maybePrint()
+        maybePrint( 'len( qsUserFinder ):', len( qsUserFinder ) )
+        #
+        self.assertIsTrue( qsUserFinder.count() )
         #
         tNow = timezone.now()
         #
