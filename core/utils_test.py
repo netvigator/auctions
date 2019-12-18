@@ -1,5 +1,6 @@
 from django.urls        import reverse
 
+from django.conf        import settings
 from django.db.utils    import IntegrityError
 from django.test        import RequestFactory
 from django.test.client import Client
@@ -27,6 +28,17 @@ from pyPks.String.Find  import getRegExObj
 from pyPks.String.Get   import getTextAfter, getTextBefore
 from pyPks.Time.Test    import isISOdatetimeFileNameSafe
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
+
+if settings.COVERAGE:
+    #
+    # want to test all lines without printing anything
+    #
+    def maybePrint( *args ): pass
+    #
+else:
+    #
+    maybePrint = print
+    #
 
 
 class TestCasePlus( TestCase ):
