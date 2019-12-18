@@ -638,11 +638,6 @@ def findSearchHits(
                                 tBegStore = Max( "tBegStore" )
                                 ).values_list( "tBegStore", flat = True ) ) )
     #
-    if not qsSearchLogs.count(): # for testing
-        #
-        qsSearchLogs = SearchLog.objects.all()[:10]
-        #
-    #
     for oSearchLog in qsSearchLogs:
         #
         oSearchLog.iOrigHits = oSearchLog.iItemHits
@@ -1640,12 +1635,35 @@ def findSearchHits(
                                 dModelsStoredAlready, oTempItem, sModelTitleUPPER )
                         #
                     #
-                    oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
+                    # testing problem work around 2019-12-18
                     #
-                    if oSearchLog is None: # for testing
+                    if oTempItem.iSearch_id in dSearchLogs:
                         #
-                        oSearchLog = dSearchLogs[
-                                        next( iter( dSearchLogs.keys() ) ) ]
+                        oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
+                        #
+                    else:
+                        #
+                        try:
+                            oSearchLog = SearchLog.objects.get( iSearch = oTempItem.iSearch )
+                        except:
+                            #
+                            if settings.TESTING:
+                                #
+                                oSearchLog = SearchLog(
+                                                iSearch_id  = oTempItem.iSearch_id,
+                                                tBegSearch  = tNow,
+                                                cResult     = 'Success' )
+                                #
+                            else:
+                                #
+                                raise
+                                #
+                            #
+                        #
+                        oSearchLog.iOrigHits = oSearchLog.iItemHits
+                        oSearchLog.iItemHits = 0
+                        #
+                        dSearchLogs[ oTempItem.iSearch_id ] = oSearchLog
                         #
                     #
                     if (    oTempItem.iBrand and
