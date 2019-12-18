@@ -10,6 +10,7 @@ from django.utils           import timezone
 
 from core.user_one          import oUserOne
 from core.utils             import getWhatsNotInParens
+from core.utils_test        import maybePrint
 from core.templatetags.core_tags import getDashForReturn
 
 from .models                import Search, SearchLog
@@ -42,16 +43,6 @@ from pyPks.String.Output    import ReadableNo
 
 SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
 #
-if settings.COVERAGE:
-    #
-    # want to test all lines without printing anything
-    #
-    def maybePrint( *args ): pass
-    #
-else:
-    #
-    maybePrint = print
-    #
 
 
 _oDropAfterThisFinder = getRegExObj(
@@ -646,6 +637,11 @@ def findSearchHits(
                             .annotate(
                                 tBegStore = Max( "tBegStore" )
                                 ).values_list( "tBegStore", flat = True ) ) )
+    #
+    if not qsSearchLogs.count(): # for testing
+        #
+        qsSearchLogs = SearchLog.objects.all()[:10]
+        #
     #
     for oSearchLog in qsSearchLogs:
         #
@@ -1645,6 +1641,12 @@ def findSearchHits(
                         #
                     #
                     oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
+                    #
+                    if oSearchLog is None: # for testing
+                        #
+                        oSearchLog = dSearchLogs[
+                                        next( iter( dSearchLogs.keys() ) ) ]
+                        #
                     #
                     if (    oTempItem.iBrand and
                             oTempItem.iCategory and
