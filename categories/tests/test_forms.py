@@ -1,6 +1,7 @@
 from django.urls        import reverse
 
-from core.utils_test    import BaseUserWebTestCase, getUrlQueryStringOff
+from core.utils_test    import ( BaseUserWebTestCase, getUrlQueryStringOff,
+                                 maybePrint )
 
 from ..models           import Category
 from ..forms            import CreateCategoryForm, UpdateCategoryForm
@@ -84,9 +85,9 @@ class TestFormValidation( BaseUserWebTestCase ):
         '''
         if form.errors:
             for k, v in form.errors.items():
-                print( k, ' -- ', v )
+                maybePrint( k, ' -- ', v )
         else:
-            print( 'no form errors above!' )
+            maybePrint( 'no form errors above!' )
         '''
         #
         form_data['cTitle'] = 'Widget'
@@ -144,12 +145,12 @@ class TestFormValidation( BaseUserWebTestCase ):
         self.assertFalse( isFormValid )
         #
         '''
-        print('')
-        print( 'isFormValid:', isFormValid )
+        maybePrint('')
+        maybePrint( 'isFormValid:', isFormValid )
         if form.errors:
             for k, v in form.errors.items():
-                print( k, ' -- ', v )
+                maybePrint( k, ' -- ', v )
         else:
-            print( 'no form errors at bottom!' )
+            maybePrint( 'no form errors at bottom!' )
         '''
 
