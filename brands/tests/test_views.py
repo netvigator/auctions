@@ -4,6 +4,8 @@ import logging
 
 from django.urls        import reverse
 
+from psycopg2.errors    import UniqueViolation
+
 from core.utils_test    import BaseUserWebTestCase
 
 from core.utils         import getExceptionMessageFromResponse
@@ -195,8 +197,15 @@ class BrandViewsHitButtons( BrandModelWebTest ):
         """
         Test post requests
         """
-        sBrand = "Proctor & Gamble"
-        oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
+        # except UniqueViolation: # huh? hitting an error
+        # see
+        # https://stackoverflow.com/questions/34695323/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint/59401538#59401538
+        #
+        iOneMore = Brand.objects.last().id + 1
+        #
+        oBrand = Brand( id      = iOneMore,
+                        cTitle  = "Proctor & Gamble",
+                        iUser   = self.user1 )
         oBrand.save()
         #
         data = dict(
@@ -216,8 +225,16 @@ class BrandViewsHitButtons( BrandModelWebTest ):
         """
         Hit cancel when adding
         """
-        sBrand = "Proctor & Gamble"
-        oBrand = Brand( cTitle= sBrand, iUser = self.user1 )
+        # except UniqueViolation: # huh? hitting an error
+        # see
+        # https://stackoverflow.com/questions/34695323/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint/59401538#59401538
+        #
+        iOneMore = Brand.objects.last().id + 1
+        #
+        oBrand = Brand( id      = iOneMore,
+                        cTitle  = "Proctor & Gamble",
+                        iUser   = self.user1 )
+        #
         oBrand.save()
         #
         data = dict(
