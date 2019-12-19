@@ -18,6 +18,19 @@ tModelFields = (
     'cExcludeIf' )
 
 
+def _getLayout():
+    #
+    return Layout(
+            'cTitle',
+            'bWanted',
+            'bAllOfInterest',
+            Field('cLookFor', rows='2'),
+            'iStars',
+            Field('cComment', rows='2'),
+            'cNationality',
+            Field('cExcludeIf', rows='2') )
+
+
 class CreateBrandForm( ModelFormValidatesTitle ):
     #
 
@@ -29,15 +42,7 @@ class CreateBrandForm( ModelFormValidatesTitle ):
         #self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         #self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
-        self.helper.layout = Layout(
-                'cTitle',
-                'bWanted',
-                'bAllOfInterest',
-                'cLookFor',
-                'iStars',
-                'cComment',
-                'cNationality',
-                Field('cExcludeIf', rows='2') )
+        self.helper.layout = _getLayout()
 
     class Meta:
         model  = Brand
@@ -56,6 +61,9 @@ class UpdateBrandForm( ModelFormValidatesTitle ):
         #self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         #self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+        self.helper.layout = _getLayout()
+        #
+
 
     class Meta:
         model  = Brand
