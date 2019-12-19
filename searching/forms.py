@@ -24,6 +24,15 @@ tSearchFields = (
     'cPriority', )
 
 
+def _getLayout():
+    #
+    return Layout(
+            'cTitle',
+            Field('cKeyWords', rows='2'),
+            'iDummyCategory',
+            'cPriority' )
+
+
 class BaseSearchForm( BaseModelFormGotCrispy ):
     '''
     using a form to get extra validation
@@ -182,6 +191,7 @@ class CreateSearchForm( BaseSearchForm ):
         self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+        self.helper.layout = _getLayout()
 
 
 
@@ -198,6 +208,7 @@ class UpdateSearchForm( BaseSearchForm ):
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+        self.helper.layout = _getLayout()
 
 
 
