@@ -28,9 +28,10 @@ from pyPks.Dir.Get          import getMakeDir
 from pyPks.File.Test        import isFileThere
 from pyPks.File.Write       import QuietDump
 from pyPks.String.Find      import getRegExObj
-from pyPks.String.Output    import StrPadZero
+from pyPks.String.Output    import StrPadZero, ReadableNo
 from pyPks.Time.Test        import isDateTimeObj
 from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
+from pyPks.Utils.Progress   import TextMeter
 from pyPks.Web.Address      import getFilePathNameOffURL
 from pyPks.Web.Test         import isURL
 
@@ -254,12 +255,18 @@ def _storeOneJsonItemInKeepers( iItemNumb, sContent, **kwargs ):
 def _makeUserKeeperRow( oUserFinder ):
     #
     qsAlreadyGotUserKeeper = UserKeeper.objects.filter(
-            iItemNumb_id= oUserFinder.iItemNumb_id,
-            iUser       = oUserFinder.iUser,
-            iModel      = oUserFinder.iModel,
-            iBrand      = oUserFinder.iBrand )
+            iItemNumb_id    = oUserFinder.iItemNumb_id,
+            iUser           = oUserFinder.iUser,
+            iModel          = oUserFinder.iModel,
+            iBrand          = oUserFinder.iBrand )
     #
-    if not qsAlreadyGotUserKeeper:
+    bUpdateUserFinder = False
+    #
+    if qsAlreadyGotUserKeeper:
+        #
+        bUpdateUserFinder = not oUserFinder.tPutInKeepers
+        #
+    else: # not qsAlreadyGotUserKeeper
         #
         oNewUserKeeper = UserKeeper()
         #
@@ -278,6 +285,15 @@ def _makeUserKeeperRow( oUserFinder ):
             #
         #
         oNewUserKeeper.save()
+        #
+        bUpdateUserFinder = True
+        #
+    #
+    if bUpdateUserFinder:
+        #
+        oUserFinder.tPutInKeepers = timezone.now()
+        #
+        oUserFinder.save()
         #
     #
 
@@ -886,22 +902,38 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
 
 def makeUserKeeperRows():
     #
+    print()
+    print( 'counting keepers & user items ...' )
+    #
     lKeeperNumbs = ( Keeper.objects.all().values_list(
                         'iItemNumb', flat = True ) )
     #
+    #        tRetrieveFinal__isnull = False,
     qsNotDoneYet = UserItemFound.objects.filter(
-            tRetrieveFinal__isnull = False,
             tPutInKeepers__isnull  = True,
             iItemNumb__in = ( lKeeperNumbs ) )
     #
+    oProgressMeter = TextMeter()
+    #
+    iCount = len( qsNotDoneYet )
+    #
+    sLineB4 = 'stepping thru User Items Found ...'
+    sOnLeft = "%s %s" % ( ReadableNo( iCount ), 'user items' )
+    #
+    oProgressMeter.start( iCount, sOnLeft, sLineB4 )
+    #
+    iSeq = 0
+    #
     for oUserFinder in qsNotDoneYet:
+        #
+        iSeq  += 1
+        #
+        oProgressMeter.update( iSeq )
         #
         _makeUserKeeperRow( oUserFinder )
         #
-        oUserFinder.tPutInKeepers = timezone.now()
-        #
-        oUserFinder.save()
-        #
+    #
+    oProgressMeter.end( iSeq )
     #
 
 
