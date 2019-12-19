@@ -31,12 +31,14 @@ _sExplainMoreExclude = _sExplainMore % ( 'exclude', 'exclude' )
 
 _sHelpTextBrandTitle = (
         _sExplainMoreFinding %
-        ( sTitleHelpText % 'brand' ) )
+        ( sTitleHelpText % ( 'brand', '' ) ) )
+
+sExample = "For example, if the brand is Chevrolet, put 'Chevy' here<br>"
 
 _sHelpTextBrandLookFor = (
         _sExplainMoreFinding %
         ( sLookForHelpText %
-            ( 'brand', 'brand', 'brand' ) ) )
+            ( 'brand', 'brand', sExample, 'brand' ) ) )
 
 _sHelpTextBrandExcludeIf = (
         _sExplainMoreExclude %
