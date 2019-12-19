@@ -82,9 +82,9 @@ class Model( GetItemsForSomething, models.Model ):
                     'and enter a separate model record for each submodel.  '
                     'Note that if the model number is 515b and the box is '
                     'checked, bot will find both 515a and 515.  '
-                    'Note this option only applies to '
+                    'Also note this option only applies to '
                     'the model number or name above, NOT to lines under '
-                    '"Considered a hit if this text is found (optional)"')
+                    '"Considered a hit if this text is found ..." below.')
     bMustHaveBrand  = models.BooleanField(
                         'must have brand in aution title?', default = False,
         help_text = 'Bot will know item for sale is this model only if '
