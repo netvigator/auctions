@@ -1,10 +1,9 @@
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.forms           import ModelForm
 
 from core.validators        import gotTextOutsideParens
 
 from crispy_forms.helper    import FormHelper
-from crispy_forms.layout    import Submit
 
 
 class BaseModelFormGotCrispy( ModelForm ):
