@@ -27,13 +27,14 @@ class ModelCanYieldFieldNamesAndValuesMixin( object ):
 
 sTitleHelpText = (
     'Put the %s name here -- '
-    'Bot will search for this in the auction titles.<br/>'
+    'Bot will search for this in the auction title %sfor each item found.<br/>'
     'Optionally, you can put additional description in parentheses ().  '
     'While searching auction titles, bot will ignore anything in parentheses.' )
 
 sLookForHelpText = (
     'Put nick names, common misspellings and alternate %s names here -- '
     'leave blank if Bot only needs to look for the %s name.<br>'
+    '%s'
     'Each line is evaluated separately, '
     'Bot will know item is in this %s if any one line matches.' )
 
