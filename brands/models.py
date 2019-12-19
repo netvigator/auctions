@@ -8,7 +8,8 @@ from django.utils               import timezone
 from django.contrib.auth        import get_user_model
 
 from core.models                import ( IntegerRangeField, sTitleHelpText,
-                                         sLookForHelpText, sExcludeIfHelpText )
+                                         sLookForHelpText, sExcludeIfHelpText,
+                                         sLookForHeading )
 
 from core.mixins                import GetItemsForSomething
 
@@ -56,8 +57,7 @@ class Brand( GetItemsForSomething, models.Model ):
     bAllOfInterest  = models.BooleanField(
                         'want everything from this brand?', default = True,
         help_text = 'Definitely set to True for desireable & rare brands' )
-    cLookFor        = models.TextField(
-                        'Considered a hit if this text is found (optional)',
+    cLookFor        = models.TextField( sLookForHeading,
                         null=True, blank = True,
         help_text   = _sHelpTextBrandLookFor )
     iStars          = IntegerRangeField(
