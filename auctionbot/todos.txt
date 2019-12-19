@@ -387,3 +387,12 @@ on finders list for models, categories and brands, want the link to go to the vi
 -                'finders:edit',
 -                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
 +        return reverse( 'finders:hit', kwargs = { 'pk': self.pk } )
+
+2109-12-20 update:
+on finders list for models, categories and brands, want the link to go to the same view as on the finders index
+
+2109-12-20
+if you edit a useritemfound and the stars get updated, must update user finder!!!
+or even add a user finder if one does not exist yet!!!
+184083500388
+
