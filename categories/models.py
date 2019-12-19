@@ -5,7 +5,7 @@ from django.contrib.auth        import get_user_model
 
 from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sKeyWordsHelpText, sLookForHelpText,
-                                         sExcludeIfHelpText )
+                                         sExcludeIfHelpText, sLookForHeading )
 
 from core.mixins                import GetItemsForSomething
 
@@ -21,15 +21,14 @@ class Category( GetItemsForSomething, models.Model ):
     cTitle          = models.CharField(
                         'category description', # test_core_tags expects this
                         max_length = 48, db_index = True,
-        help_text = sTitleHelpText % 'category' )
+        help_text = sTitleHelpText % ( 'category', '<em>AND</em> category heirachy ' ) )
     cKeyWords       = models.TextField(
                         'category key words',
                         null = True, blank = True,
         help_text = sKeyWordsHelpText % ( 'category', 'category' ) )
-    cLookFor        = models.TextField(
-                        'Considered a hit if this text is found (optional)',
+    cLookFor        = models.TextField( sLookForHeading,
                         null=True, blank = True,
-        help_text = sLookForHelpText % ( 'category', 'category', 'category' ) +
+        help_text = sLookForHelpText % ( 'category', 'category', '', 'category' ) +
                         '<br/>No need for plural words: plural forms of common words '
                         'in description or here will also be found.' )
     iStars          = IntegerRangeField(
