@@ -1601,7 +1601,7 @@ def findSearchHits(
                     # sModelTitleUPPER = oTempItem.cModelAlphaNum
                     sModelTitleUPPER = oTempItem.cFoundModel.upper()
                 #
-                if settings.COVERAGE or bRecordSteps:
+                if settings.COVERAGE and bRecordSteps:
                     #
                     maybePrint()
                     maybePrint( 'temp item      #:', iItemsFoundTemp )
@@ -1895,7 +1895,7 @@ def findSearchHits(
             #
             iMaxStars, iMaxModel = _getMaxHitStars( dModelsStoredAlready )
             #
-            if settings.COVERAGE or bRecordSteps:
+            if settings.COVERAGE and bRecordSteps:
                 #
                 maybePrint('')
                 maybePrint('iMaxStars:', iMaxStars )
