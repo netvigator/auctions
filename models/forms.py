@@ -1,4 +1,4 @@
-from crispy_forms.layout    import Submit
+from crispy_forms.layout    import Field, Layout, Submit
 
 from core.forms             import ModelFormValidatesTitle
 from .models                import Model
@@ -26,9 +26,32 @@ tModelFields = (
     )
 
 
+def _getLayout():
+    #
+    return Layout(
+            'cTitle',
+            Field('cLookFor', rows='2'),
+            'bSubModelsOK',
+            'iBrand',
+            'bGenericModel',
+            'iCategory',
+            Field('cKeyWords', rows='2'),
+            'iStars',
+            'bMustHaveBrand',
+            'bWanted',
+            'bGetPictures',
+            'bGetDescription',
+            Field('cComment', rows='2'),
+            Field('cExcludeIf', rows='2'),
+            'cFileSpec1',
+            'cFileSpec2',
+            'cFileSpec3',
+            'cFileSpec4',
+            'cFileSpec5' )
+
+
 class CreateModelForm( ModelFormValidatesTitle ):
     #
-
     def __init__( self, *args, **kwargs ):
         #
         super( CreateModelForm, self ).__init__( *args, **kwargs )
@@ -36,6 +59,7 @@ class CreateModelForm( ModelFormValidatesTitle ):
         self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+        self.helper.layout = _getLayout()
 
     class Meta:
         model   = Model
@@ -53,6 +77,7 @@ class UpdateModelForm( ModelFormValidatesTitle ):
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
+        self.helper.layout = _getLayout()
 
     class Meta:
         model   = Model
