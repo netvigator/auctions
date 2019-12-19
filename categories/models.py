@@ -25,7 +25,8 @@ class Category( GetItemsForSomething, models.Model ):
     cKeyWords       = models.TextField(
                         'category key words',
                         null = True, blank = True,
-        help_text = sKeyWordsHelpText % ( 'category', 'category' ) )
+        help_text = sKeyWordsHelpText % (
+                        'or category heirachy ', 'category', 'category' ) )
     cLookFor        = models.TextField( sLookForHeading,
                         null=True, blank = True,
         help_text = sLookForHelpText % ( 'category', 'category', '', 'category' ) +

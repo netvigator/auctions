@@ -43,7 +43,7 @@ sLookForHelpText = (
 sKeyWordsHelpText = (
     'Putting text here is optional, '
     'but if there is text here, robot will consider it REQUIRED '
-    '-- must be found in the title '
+    '-- must be found in the title %s'
     '<b>IN ADDITION TO</b> %s name.<br>'
     'Put alternate key words on separate lines -- '
     'Bot will know item is for this %s if words '

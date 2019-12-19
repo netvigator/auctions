@@ -41,7 +41,7 @@ _sHelpTextModelTitle = (
 
 _sHelpTextModelKeyWords = (
         _sExplainMoreFinding %
-        ( sKeyWordsHelpText % ( 'model number or', 'model' ) ) )
+        ( sKeyWordsHelpText % ( '', 'model number or', 'model' ) ) )
 
 _sHelpTextModelLookFor = (
         _sExplainMoreFinding %
