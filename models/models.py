@@ -9,7 +9,7 @@ from django.contrib.auth    import get_user_model
 from core.models            import ( gotSomethingOutsideTitleParensCharField,
                                      IntegerRangeField, sTitleHelpText,
                                      sKeyWordsHelpText, sLookForHelpText,
-                                     sExcludeIfHelpText )
+                                     sExcludeIfHelpText, sLookForHeading )
 
 from core.mixins            import GetItemsForSomething
 
@@ -37,7 +37,7 @@ _sExplainMoreExclude = _sExplainMore % ( 'exclude', 'exclude', 'exclude' )
 
 _sHelpTextModelTitle = (
         _sExplainMoreFinding %
-        ( sTitleHelpText % 'model number or' ) )
+        ( sTitleHelpText % ( 'model number or', '' ) ) )
 
 _sHelpTextModelKeyWords = (
         _sExplainMoreFinding %
@@ -46,7 +46,7 @@ _sHelpTextModelKeyWords = (
 _sHelpTextModelLookFor = (
         _sExplainMoreFinding %
         ( sLookForHelpText %
-            ( 'model numbers or', 'model number or', 'model' ) ) )
+            ( 'model numbers or', 'model number or', '', 'model' ) ) )
 
 _sHelpTextModelExcludeIf = (
         _sExplainMoreExclude %
@@ -62,8 +62,7 @@ class Model( GetItemsForSomething, models.Model ):
                         'model key words',
                         null = True, blank = True,
         help_text   = _sHelpTextModelKeyWords )
-    cLookFor        = models.TextField(
-                        'Considered a hit if this text is found (optional)',
+    cLookFor        = models.TextField( sLookForHeading,
                         null=True, blank = True,
         help_text   = _sHelpTextModelLookFor )
     iStars          = IntegerRangeField(
