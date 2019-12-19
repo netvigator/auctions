@@ -24,6 +24,8 @@ class ModelCanYieldFieldNamesAndValuesMixin( object ):
 
 
 
+sLookForHeading = ( 'Considered a hit if this text is found '
+    '(optional -- if you include, bot will also search for this)' )
 
 sTitleHelpText = (
     'Put the %s name here -- '
