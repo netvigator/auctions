@@ -5,8 +5,8 @@ from .models                import Model
 
 tModelFields = (
     'cTitle',
-    'cLookFor',
     'bSubModelsOK',
+    'cLookFor',
     'iBrand',
     'bGenericModel',
     'iCategory',
@@ -30,8 +30,8 @@ def _getLayout():
     #
     return Layout(
             'cTitle',
-            Field('cLookFor', rows='2'),
             'bSubModelsOK',
+            Field('cLookFor', rows='2'),
             'iBrand',
             'bGenericModel',
             'iCategory',
