@@ -121,11 +121,11 @@ class SetUpForHitStarsWebTests( SetUpForFindSearchHitsTest ):
                         iRecordStepsForThis     = iRecordStepsForThis )
         #
         #print( '\n' )
-        #print( 'setting up KeyWordFindSearchHitsTests' )
+        #print( 'setting up KeyWordFindSearchHitsWebTests' )
 
 
 
-class KeyWordFindSearchHitsTests(
+class KeyWordFindSearchHitsWebTests(
         AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
 
     def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
@@ -1945,8 +1945,6 @@ class KeyWordFindSearchHitsTests(
         #
         #oModel = Model.objects.get( cTitle = '15" Sliver' )
         #print( '15" Sliver:', oModel.cRegExLook4Title )
-        #
-        # pmt searching.tests.tests.test_stars.KeyWordFindSearchHitsTests.test_find_search_hits_test
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
