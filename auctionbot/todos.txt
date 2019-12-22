@@ -396,3 +396,27 @@ if you edit a useritemfound and the stars get updated, must update user finder!!
 or even add a user finder if one does not exist yet!!!
 184083500388
 
+
+2019-12-22 have some orphan keepers -- keepers with no userkeeper row
+all are old -- there is no row in itemsfound
+
+create temp table of orphan keepers:
+
+create table temp_orphan_keepers as
+select "iItemNumb" from keepers k
+    where not exists
+    ( select 1 from userkeepers uk where uk."iItemNumb_id" = k."iItemNumb" ) ;
+
+verify there are no itemsfound for the oprhans:
+
+SELECT
+    count(*)
+FROM
+    itemsfound if
+    WHERE
+    EXISTS (
+        SELECT 1
+        FROM temp_orphan_keepers tok
+        WHERE tok."iItemNumb" = if."iItemNumb" ) ;
+
+challenge: find hits for orphan keepers
