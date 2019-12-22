@@ -3,6 +3,10 @@ from core.utils         import getDateTimeObjGotEbayStr, getShrinkItemURL
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
 
+# ### tested in searching.tests.test_models ###
+# ### tested in searching.tests.test_models ###
+# ### tested in searching.tests.test_models ###
+# ### tested in searching.tests.test_models ###
 # https://developer.ebay.com/devzone/finding/callref/types/ShippingInfo.html
 tEBAY_SHIPPING_TYPES = (
     ( 0,    'Calculated',
