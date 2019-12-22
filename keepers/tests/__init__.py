@@ -35,7 +35,7 @@ sMadeUpErrorNoAck = '''{
         "ErrorClassification": "RequestError",
         "LongMessage": "Missing item ID."}]}'''
 
-
+# among sResponseItems2Test
 s293004871422 = '''{
     "Timestamp":"2019-03-24T02:07:10.877Z",
     "Ack":"Success",
@@ -81,7 +81,7 @@ s293004871422 = '''{
         "PaymentAllowedSite":[],"IntegratedMerchantCreditCardEnabled":false,
         "HandlingTime":3,"GlobalShipping":true,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
-
+# among sResponseItems2Test
 s254154293727 = '''{
     "Timestamp":"2019-03-24T02:17:18.596Z",
     "Ack":"Success",
@@ -126,7 +126,7 @@ s254154293727 = '''{
         "MinimumToBid":{"Value":650.0,"CurrencyID":"USD"},"AutoPay":false,
         "PaymentAllowedSite":[],"IntegratedMerchantCreditCardEnabled":false,"GlobalShipping":false,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
-
+# among sResponseItems2Test
 s254130264753 = '''{
     "Timestamp":"2019-03-24T02:18:42.807Z",
     "Ack":"Success",
@@ -174,7 +174,7 @@ s254130264753 = '''{
         "MinimumToBid":{"Value":35.0,"CurrencyID":"USD"},"AutoPay":false,
         "PaymentAllowedSite":[],"IntegratedMerchantCreditCardEnabled":false,"GlobalShipping":false,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
-
+# among sResponseItems2Test
 s223348187115 = '''{
     "Timestamp":"2019-03-24T02:20:05.333Z",
     "Ack":"Success",
@@ -218,6 +218,7 @@ s223348187115 = '''{
         "PaymentAllowedSite":[],"IntegratedMerchantCreditCardEnabled":false,"ExcludeShipToLocation":["PO Box"],"GlobalShipping":false,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
+# among sResponseItems2Test
 s173696834267 = '''{
     "Timestamp":"2019-03-24T02:21:45.250Z",
     "Ack":"Success",
@@ -257,6 +258,7 @@ s173696834267 = '''{
         "ConditionDescription":"Fully Tested Guaranteed Vacuum tubes.","QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
+# among sResponseItems2Test
 s372536713027 = '''{
     "Timestamp":"2019-03-24T02:23:07.637Z",
     "Ack":"Success",
@@ -299,6 +301,7 @@ s372536713027 = '''{
         "HandlingTime":0,"GlobalShipping":false,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
+# among sResponseItems2Test
 s173696832184 = '''{
     "Timestamp":"2019-03-24T02:24:39.595Z",
     "Ack":"Success",
@@ -346,6 +349,7 @@ s173696832184 = '''{
         "ConditionDescription":"Fully Tested Guaranteed Vacuum tubes.","QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
+# among sResponseItems2Test
 s303000971114 = '''{
     "Timestamp":"2019-03-24T02:26:25.111Z",
     "Ack":"Success",
@@ -386,6 +390,7 @@ s303000971114 = '''{
         "ConditionDescription":"They all 3 test very strong on my B&K Mutual Conductance Tube tester, early version flat top 1950s Golden Series, Ex sound, JAPAN","QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
+# among sResponseItems2Test
 s323589685342 = '''{
     "Timestamp":"2019-03-24T02:32:28.518Z",
     "Ack":"Failure",
@@ -397,7 +402,7 @@ s323589685342 = '''{
     "Build":"E1089_CORE_APILW_18879361_R1",
     "Version":"1089"}'''
 
-
+# not among sResponseItems2Test
 s142766343340 = '''{
     "Timestamp":"2018-04-28T01:09:38.251Z",
     "Ack":"Success",
@@ -449,6 +454,7 @@ s142766343340 = '''{
         "GlobalShipping":false,"QuantitySoldByPickupInStore":0,"NewBestOffer":false}}'''
 
 
+# not among sResponseItems2Test
 s232742493872 = '''{
     "Timestamp":"2018-04-25T21:34:30.002Z",
     "Ack":"Success",
@@ -499,6 +505,7 @@ s232742493872 = '''{
 
 
 
+# not among sResponseItems2Test
 s232709513135 = '''{
     "Timestamp":"2018-04-25T21:05:51.846Z",
     "Ack":"Success",
@@ -555,6 +562,7 @@ s232709513135 = '''{
         "QuantitySoldByPickupInStore":0,
         "NewBestOffer":false}}'''
 
+# this is dSearchResult item
 s282330751118 = '''{
     "Timestamp":"2018-06-17T02:46:33.737Z",
     "Ack":"Success",
