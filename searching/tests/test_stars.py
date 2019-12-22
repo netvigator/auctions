@@ -7,9 +7,10 @@ from pprint             import pprint
 from django.urls        import reverse
 from django.utils       import timezone
 
+from core.utils         import maybePrint
 from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
-                                 TestCasePlus, maybePrint )
+                                 TestCasePlus )
 
 from finders.models     import ( ItemFound, UserItemFound, ItemFoundTemp,
                                  UserFinder )
