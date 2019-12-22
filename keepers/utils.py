@@ -902,6 +902,14 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
 
 def makeUserKeeperRows():
     #
+    '''
+    this is a utility to fix keepers that
+    for some reason do not have any userkeeper row
+    implemented Dec 2019
+    next step: implement testing to make sure
+    newly created keepers have user keeper rows
+    '''
+    #
     print()
     print( 'counting keepers & user items ...' )
     #
@@ -911,7 +919,7 @@ def makeUserKeeperRows():
     #        tRetrieveFinal__isnull = False,
     qsNotDoneYet = UserItemFound.objects.filter(
             tPutInKeepers__isnull  = True,
-            iItemNumb__in = ( lKeeperNumbs ) )
+            iItemNumb__in = lKeeperNumbs )
     #
     oProgressMeter = TextMeter()
     #
