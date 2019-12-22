@@ -345,15 +345,20 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #self.assertEqual( oResultRow.iCatHeirarchy.cCatHierarchy, sExpect )
         #
         try: # again
-            _storeItemFound( dSearchResult )
+            #
+            _storeItemFound( dSearchResult, dEbayCatHierarchies )
+            #
         except ItemAlreadyInTable as e:
+            #
             self.assertEqual(
                     str(e),
                     'ItemID %s is already in the ItemFound table' %
                     dSearchResult['itemId'] )
+            #
         else:
+            #
             self.assertTrue( False ) # exception should hve been raised
-        #
+            #
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
         #

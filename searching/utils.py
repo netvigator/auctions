@@ -340,6 +340,9 @@ def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
 
 def _storeItemFound( dItem, dEbayCatHierarchies ):
     #
+    # dEbayCatHierarchies is now a required parameter !!!
+    # but can pass {} for testing
+    #
     iItemID         = int(            dItem['itemId'  ] )
     iSiteID         = dMarket2SiteID[ dItem['globalId'] ]
     #
