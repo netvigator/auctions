@@ -420,3 +420,6 @@ FROM
         WHERE tok."iItemNumb" = if."iItemNumb" ) ;
 
 challenge: find hits for orphan keepers
+
+
+2019-12-23 is bMustHaveBrand redundant?  is bGenericModel enough?
