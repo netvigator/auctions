@@ -12,9 +12,10 @@ from django.utils       import timezone
 
 from keepers            import getListAsLines
 
+from core.utils         import maybePrint
 from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
-                                 TestCasePlus, maybePrint )
+                                 TestCasePlus )
 
 from ..models           import Keeper, UserKeeper, KeeperImage
 
