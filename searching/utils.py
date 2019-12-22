@@ -338,7 +338,7 @@ def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
 
 
 
-def _storeItemFound( dItem, dEbayCatHierarchies = {} ):
+def _storeItemFound( dItem, dEbayCatHierarchies ):
     #
     iItemID         = int(            dItem['itemId'  ] )
     iSiteID         = dMarket2SiteID[ dItem['globalId'] ]
