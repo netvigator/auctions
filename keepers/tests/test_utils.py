@@ -191,6 +191,8 @@ class StoreItemsTestPlus( TestCasePlus ):
         #
         oItem = Keeper.objects.get( pk = 142766343340 )
         #
+        self.assertEqual( oItem.cListingStatus, 'Active' )
+        #
         self.assertEqual( oItem.iBidCount, 0 )
         #
         new142766343340 = s142766343340.replace( '"BidCount":0,', '"BidCount":5,' )
@@ -547,9 +549,6 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         findSearchHits( iUser = self.user1.id )
         #
-        qsUserFinder = UserFinder.objects.filter(
-                                iItemNumb_id = 282330751118 )
-        #
 
 
 
@@ -584,11 +583,34 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
 
     def test_store_item_found_fetched_single_item( self ):
         #
+        # tRetrieved set in getSingleItemThenStore()
+        # (after _storeOneJsonItemInKeepers() )
+        #
         getSingleItemThenStore( 282330751118, sContent = s282330751118 )
         #
         oItemFound = ItemFound.objects.get( pk = 282330751118 )
         #
+        self.assertIsNotNone( oItemFound.tRetrieved )
+        #
         self.assertEqual( oItemFound.cSellingState, "Completed" )
+        #
+        # _makeUserKeeperRow() is called in getSingleItemThenStore()
+        # (after _storeOneJsonItemInKeepers() )
+        #
+        # if results have been retrieved,
+        # getSingleItemThenStore()
+        # add user keepers row(s)
+        # removes the item from user finders
+        #
+        qsUserKeepers = UserKeeper.objects.filter(
+                            iItemNumb_id = 282330751118 )
+        #
+        self.assertTrue( qsUserKeepers.exists() )
+        #
+        qsUserFinders = UserFinder.objects.filter(
+                            iItemNumb_id = 282330751118 )
+        #
+        self.assertFalse( qsUserFinders.exists() )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
