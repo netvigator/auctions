@@ -108,4 +108,4 @@ class TestNameFilters( TestFormValidation ):
     def test_field_name( self ):
         #
         self.assertEquals( field_name( self.oCategory, 'cTitle' ),
-                           'Category Description' )
+                           'Category Name' )
