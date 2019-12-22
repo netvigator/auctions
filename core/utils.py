@@ -2,6 +2,7 @@ from builtins               import ConnectionResetError
 from datetime               import timedelta
 from urllib3.exceptions     import ProtocolError
 
+from django.conf            import settings
 from django.db.models       import ForeignKey
 from django.utils           import timezone
 from django.urls            import reverse
@@ -20,6 +21,17 @@ from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
 EBAY_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
 
 oInParensFinder = getFinderFindAll( '\(.*\)' )
+
+if settings.COVERAGE: # ### server crashes if this is in utils_test ###
+    #
+    # want to test all lines without printing anything
+    #
+    def maybePrint( *args ): pass
+    #
+else:
+    #
+    maybePrint = print
+    #
 
 def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' ):
     #
