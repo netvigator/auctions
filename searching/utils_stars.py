@@ -9,8 +9,7 @@ from django.contrib.auth    import get_user_model
 from django.utils           import timezone
 
 from core.user_one          import oUserOne
-from core.utils             import getWhatsNotInParens
-from core.utils_test        import maybePrint
+from core.utils             import getWhatsNotInParens, maybePrint
 from core.templatetags.core_tags import getDashForReturn
 
 from .models                import Search, SearchLog
