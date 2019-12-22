@@ -118,7 +118,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
             # bCleanUpAfterYourself must be False or tests will fail!
             #
             #print( '\n' )
-            #print( 'setting up KeyWordFindSearchHitsTests' )
+            #print( 'setting up PutSearchResultsInDatabaseWebTest' )
 
     def tearDown(self):
         #
