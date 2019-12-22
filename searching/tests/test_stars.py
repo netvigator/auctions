@@ -1461,10 +1461,10 @@ class KeyWordFindSearchHitsWebTests(
         iThisOne = 383183181329
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 2, iThisOne,
-                'should find Aperex BB brand and 6DJ8 BB' )
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'finding only Aperex BB brand & 6DJ8 BB is ideal' )
         #
-        for i in range( 2 ):
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
             #
             oTest = dItemsToTest[ iThisOne ][ i ]
             #
@@ -1882,6 +1882,36 @@ class KeyWordFindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, '808-8A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        iThisOne = 184089371148
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 12AT7 (BB) & Amperex BB' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AT7 (Bugle Boy)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex Bugle Boy' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        iThisOne = 184092262958
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should be local pick up option' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '8417' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
