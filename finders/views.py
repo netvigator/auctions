@@ -181,7 +181,8 @@ class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
                 iItemNumb_id        = context[ 'object' ].iItemNumb,
-                iUser               = self.request.user )
+                iUser               = self.request.user
+                ).order_by( '-iHitStars' )
         #
         sThisItemAllHits = self.getUserItemsTable( qsThisItemAllHits )
         #
