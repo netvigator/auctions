@@ -388,9 +388,13 @@ class storeUserItemFoundButDontWebTestYet( GetEbayCategoriesWebTestSetUp ):
             if self.oSearch is None: self.oSearch = oSearch
             #
             try:
+                #
                 iItemNumb = _storeItemFound( dSearchResult, {} )
+                #
             except ItemAlreadyInTable:
+                #
                 iItemNumb = int( dSearchResult['itemId' ] )
+                #
             #
             if iItemNumb is None:
                 raise ThisShouldNotBeHappening
