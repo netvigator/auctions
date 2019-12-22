@@ -226,3 +226,15 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
                           'Free Pick Up Option' )
         #
         #
+        oItem = ItemFound.objects.get( iItemNumb = 184092262958 )
+        #
+        print()
+        print( 'item 184092262958' )
+        print( 'oItem.iShippingType:', oItem.iShippingType )
+        print( oItem.get_iShippingType_display() )
+        #
+        self.assertEqual( oItem.get_iShippingType_display(),
+                          'Free Pick Up Option' )
+        #
+        self.assertEqual( oItem.iShippingType, 9 )
+        #
