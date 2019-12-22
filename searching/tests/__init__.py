@@ -114,14 +114,16 @@ sModels = \
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            |                   |  Vacuum Tube |             |              | t
+ 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
+ 12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             |              | t
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f             | t
+ 12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
@@ -130,13 +132,13 @@ sModels = \
  10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10 | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f             | t
- 6V6G               | Sylvania\\rSilvertone | 8 | f     |                   |  Vacuum Tube |             |
+ 6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f
+ 6V6G (Sylvania)    | Sylvania\\rSilvertone | 8 | f     | Sylvania          |  Vacuum Tube |             |              | f
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  6V6 (metal can)    |           |      2 | f            |                   |  Vacuum Tube |             |              | t
  6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
- 6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f             | t
+ 6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |
  6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -149,8 +151,9 @@ sModels = \
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |
+ 8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
- 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100
+ 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
@@ -704,6 +707,42 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["184092262958"],
+             "title":["VINTAGE PAIR OF GE 8417 AMP TUBES KZ 188-5"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mFRj9h_R05DCfrd1VSq1iyA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/VINTAGE-PAIR-GE-8417-AMP-TUBES-KZ-188-5-\/184092262958"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["460**"],"location":["Fishers,IN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT22H29M12S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-21T20:41:58.000Z"],
+             "endTime":["2019-12-28T20:41:58.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+             "returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["184089371148"],
+             "title":["Amperex\/Bugle Boy 12AT7 vacuum tube made in W. Germany"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mgbaP_7gBLbLZr7_6pozyKA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Amperex-Bugle-Boy-12AT7-vacuum-tube-made-W-Germany-\/184089371148"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["620**"],"location":["Granite City,IL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"20.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"20.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT2H0M56S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-20T00:14:58.000Z"],
+             "endTime":["2019-12-27T00:14:58.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["153747946010"],
              "title":["ALTEC LANSING 808 8A HORN Driver Symbiotik from HAMMOND B3 Leslie 122 Speaker"],
