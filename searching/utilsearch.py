@@ -4,6 +4,8 @@ from json               import load, loads
 
 from string             import ascii_uppercase, digits
 
+from pprint             import pprint
+
 from django.conf        import settings
 from django.utils       import timezone
 
@@ -85,7 +87,7 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
         #  # False form.is_valid() but category is in table
         #
         #if not hasattr( dNewResult, 'iCategoryID' ):
-            #
+            ##
             #print('')
             #print('no iCategoryID for %s' % dNewResult.get( 'iItemNumb' ) )
             #
@@ -95,7 +97,13 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
                 iCategoryID    = dNewResult['iCategoryID'],
                 iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists() ):
             #
-            # if dNewResult['iCategoryID'] == 73160: print( 'not OK:', 73160 )
+            #if not hasattr( dNewResult, 'iCategoryID' ):
+                ##
+                #print()
+                #print( 'dNewResult:' )
+                #pprint( dNewResult )
+                ##
+            #elif dNewResult['iCategoryID'] == 73160: print( 'not OK:', 73160 )
             #
             dNewResult['iCategoryID'] = None
             #
