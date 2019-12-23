@@ -4,8 +4,6 @@ import logging
 from os.path            import realpath, join
 from datetime           import timedelta
 
-from django.core.exceptions import ObjectDoesNotExist
-
 from django.test        import tag
 from django.utils       import timezone
 from core.utils_test    import ( getDefaultMarket,
@@ -14,10 +12,12 @@ from core.utils_test    import ( getDefaultMarket,
                                  getNamePositionDict,
                                  TestCasePlus )
 
+# from django.core.exceptions import ObjectDoesNotExist
+from core.dj_import     import ObjectDoesNotExist
+
 from ebayinfo.models    import EbayCategory, CategoryHierarchy
 from ebayinfo.tests     import sEbayCategoryDump
 from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
-        #
 
 from ebayinfo.tests.test_utils import LiveTestGotCurrentEbayCategories
 # imported live test will run automatically when running live test
