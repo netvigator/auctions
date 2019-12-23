@@ -5,9 +5,10 @@ from django.contrib.auth        import get_user_model
 # from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import AbstractUser
 from django.utils.encoding      import python_2_unicode_compatible
-from django.core.exceptions     import ObjectDoesNotExist, ImproperlyConfigured
-# django 2 made obsolete from django.core.urlresolvers   import reverse, resolve
-# from django.urls                import reverse, resolve, reverse_lazy
+from django.core.exceptions     import ( ObjectDoesNotExist,
+                                         ImproperlyConfigured,
+                                         ValidationError )
+
 from django.http.request        import HttpRequest
 from django.utils.safestring    import mark_safe
 from django.utils.translation   import ugettext_lazy as _
