@@ -708,6 +708,25 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["324020037678"],
+             "title":["Altec Lansing Model 17 Custom Speakers 620 Cabinets with 604-8G"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mN9zuHyw9VC9f_g8FgaceGA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-Model-17-Custom-Speakers-620-Cabinets-604-8G-\/324020037678"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["570**"],"location":["Tea,SD,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"379.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"379.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P6DT1H37M25S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-21T23:49:44.000Z"],
+             "endTime":["2019-12-28T23:49:44.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
+             "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["184092262958"],
              "title":["VINTAGE PAIR OF GE 8417 AMP TUBES KZ 188-5"],
              "globalId":["EBAY-US"],
