@@ -5,7 +5,7 @@ from django.urls        import reverse
 from core.dj_import     import CountryField, get_user_model
 from core.models        import IntegerRangeField
 
-from finders            import EBAY_SHIPPING_CHOICES
+from ebayinfo           import EBAY_SHIPPING_CHOICES
 
 from models.models      import Model
 from brands.models      import Brand
