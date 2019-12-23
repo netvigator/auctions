@@ -9,6 +9,10 @@ from core.utils         import updateMemoryTableUpdated
 from core.utils_test    import getDefaultMarket, GetEbayCategoriesWebTestSetUp
 from core.utils_test    import TestCasePlus
 
+from ebayinfo           import (  EBAY_SHIPPING_CHOICES,
+                                 dEBAY_SHIPPING_CHOICE_CODE,
+                                 getEbayShippingChoiceCode )
+
 from ..models           import EbayCategory, Market
 
 # the following are in the tests __init__.py file
@@ -42,6 +46,23 @@ sExampleWrongChildTag = sExampleCategoryVersion.replace(
 
 class CatetoryVersionMissing( Exception ): pass
 class CatetoryListHasNewVers( Exception ): pass
+
+
+
+class TestEbayShippingChoices(TestCasePlus):
+
+    def test_CHOICES( self ):
+        """ test the ebay shipping choices tuple """
+        self.assertEqual( EBAY_SHIPPING_CHOICES[5], ( 5, 'Pick Up ONLY!' ) )
+
+    def test_dCHOICE_CODES( self ):
+        """ test the ebay shipping choices dictionary """
+        self.assertEqual( dEBAY_SHIPPING_CHOICE_CODE['FreePickup'], 5 )
+
+    def test_getEbayShippingChoiceCode( self ):
+        """ test the ebay shipping choice code function """
+        self.assertEqual( getEbayShippingChoiceCode('FreePickup'), 5 )
+
 
 
 class TestCategoryVersionTest( TestCasePlus ):
