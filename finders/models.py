@@ -15,9 +15,9 @@ from categories.models  import Category
 
 from searching.models   import Search
 
+from ebayinfo           import EBAY_SHIPPING_CHOICES
 from ebayinfo.models    import CategoryHierarchy, Market, EbayCategory
 
-from finders            import EBAY_SHIPPING_CHOICES
 
 User = get_user_model()
 
