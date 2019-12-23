@@ -1,46 +1,10 @@
 from core.utils         import getDateTimeObjGotEbayStr, getShrinkItemURL
 
+from ebayinfo           import getEbayShippingChoiceCode
+
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
 
-# ### tested in searching.tests.test_models ###
-# ### tested in searching.tests.test_models ###
-# ### tested in searching.tests.test_models ###
-# ### tested in searching.tests.test_models ###
-# https://developer.ebay.com/devzone/finding/callref/types/ShippingInfo.html
-tEBAY_SHIPPING_TYPES = (
-    ( 0,    'Calculated',
-            'Calculated' ),
-    ( 1,    'CalculatedDomesticFlatInternational',
-            'Calculated Domestic Flat International' ),
-    ( 2,    'Flat',
-            'Flat' ),
-    ( 3,    'FlatDomesticCalculatedInternational',
-            'Flat Domestic Calculated International' ),
-    ( 4,    'Free',
-            'Free' ),
-    ( 5,    'FreePickup',
-            'Pick Up ONLY!' ),
-    ( 6,    'Freight',
-            'Freight' ),
-    ( 7,    'FreightFlat',
-            'Freight Flat' ),
-    ( 8,    'NotSpecified',
-            'Not Specified' ),
-    ( 9,    'FreePickupOption',
-            'Free Pick Up Option' ) )
-# latter added, some but not all FreePickup items are pick up only!
-# utils.setShippingTypeLocalPickupOptional() accesses this info
-# tested in searching/tests/test_models.py
-
-EBAY_SHIPPING_CHOICES = tuple(
-        [ ( t[0], t[2] ) for t in tEBAY_SHIPPING_TYPES ] )
-
-dEBAY_SHIPPING_CHOICE_CODE = dict(
-        [ ( t[1], t[0] ) for t in tEBAY_SHIPPING_TYPES ] )
-
-
-def getChoiceCode( sChoice ): return dEBAY_SHIPPING_CHOICE_CODE.get( sChoice )
 
 d = dict
 
@@ -83,7 +47,7 @@ dItemFoundFields = d(
                                'convertedCurrentPrice','__value__'),
                          f = float ),
     iShippingType   = d( t = ( 'shippingInfo', 'shippingType'),
-                         f = getChoiceCode ),
+                         f = getEbayShippingChoiceCode ),
     iHandlingTime   = d( t = ( 'shippingInfo', 'handlingTime'),
                          f = int,
                          bOptional = True ),
