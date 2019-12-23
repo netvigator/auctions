@@ -1916,6 +1916,11 @@ class KeyWordFindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 324020037678
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find 604-8G! no time to investigate now, do it later!' )
         #
         #
         #
