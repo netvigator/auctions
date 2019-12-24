@@ -1,19 +1,18 @@
-from django                 import forms
+from django             import forms
 
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.forms           import ModelForm, CheckboxInput
+from django.forms       import ModelForm, CheckboxInput
 
-from crispy_forms.layout    import Field, Layout, Submit
+from core.crispy        import Field, Layout, Submit
+from core.forms         import BaseModelFormGotCrispy
+from core.dj_import     import ValidationError, ObjectDoesNotExist
 
-from core.forms             import BaseModelFormGotCrispy
+from models.models      import Model
 
-from models.models          import Model
+from .models            import Search
+from .utilsearch        import getPriorityChoices, ALL_PRIORITIES
+from .validators        import isPriorityValid
 
-from .models                import Search
-from .utilsearch            import getPriorityChoices, ALL_PRIORITIES
-from .validators            import isPriorityValid
-
-from ebayinfo.models        import EbayCategory
+from ebayinfo.models    import EbayCategory
 
 
 
