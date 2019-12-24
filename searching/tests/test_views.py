@@ -16,7 +16,6 @@ from ..views            import ( SearchCreateView,
                                  SearchDeleteView,
                                  SearchUpdateView )
 
-from .test_stars        import SetUpForHitStarsWebTests
 
 
 #from pprint import pprint
