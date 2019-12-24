@@ -124,7 +124,18 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
 
     def test_shipping_option_choices( self ):
         #
-        '''test shipping choice'''
+        '''test shipping choice
+        called by
+        searching.tests.test_stars.SetUpForHitStarsWebTests
+        core.tests.test_mixins.TestPagination
+        finders.tests.test_views.FindersViewsTests
+        keepers.tests.test_utils.GetAndStoreSingleItemsWebTests
+        keepers.tests.test_utils.StoreSingleKeepersWebTests
+        keepers.tests.test_utils.UserItemsTests
+        searching.tests.test_models.PutSearchResultsInDatabaseWebTest
+        searching.tests.test_stars.KeyWordFindSearchHitsWebTests
+        searching.tests.test_stars.SetUpForFindSearchHitsTest
+        '''
         #
         oItem = ItemFound.objects.get( iItemNumb = 254130264753 )
         #
@@ -210,13 +221,9 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         #
         oItem = ItemFound.objects.get( iItemNumb = 184092262958 )
         #
-        print()
-        print( 'item 184092262958' )
-        print( 'oItem.iShippingType:', oItem.iShippingType )
-        print( oItem.get_iShippingType_display() )
+        self.assertEqual( oItem.get_iShippingType_display(), 'Pick Up ONLY!' )
         #
-        self.assertEqual( oItem.get_iShippingType_display(),
-                          'Free Pick Up Option' )
+        self.assertEqual( oItem.iShippingType, 5 )
         #
-        self.assertEqual( oItem.iShippingType, 9 )
+        #
         #
