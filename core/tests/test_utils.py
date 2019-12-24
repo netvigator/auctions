@@ -1,30 +1,28 @@
-from django.utils       import timezone
+from django.utils           import timezone
 
-from django_webtest     import TestApp
+from django_webtest         import TestApp
 
-from ..utils            import ( _getIsoDateTimeOffDateTimeCol,
-                                 getReverseWithUpdatedQuery,
-                                 getWhatsNotInParens,
-                                 getShrinkItemURL, getLink,
-                                 getSaySequence )
+from ..utils                import ( _getIsoDateTimeOffDateTimeCol,
+                                     getReverseWithUpdatedQuery,
+                                     getWhatsNotInParens,
+                                     getShrinkItemURL, getLink,
+                                     getSaySequence )
 
-from ..utils_test       import ( getUrlQueryStringOff, TestCasePlus,
-                                 queryGotUpdated,
-                                 SetUpBrandsCategoriesModelsWebTest )
+from ..utils_test           import ( getUrlQueryStringOff, TestCasePlus,
+                                     queryGotUpdated,
+                                     SetUpBrandsCategoriesModelsWebTest )
 
-from config.wsgi        import application
+from config.wsgi            import application
 
-from ebayinfo.tests     import EBAY_US_CURRENT_VERSION
-from ebayinfo.models    import Market
+from ebayinfo.models        import Market
+from ebayinfo.tests         import EBAY_US_CURRENT_VERSION
+from ebayinfo.tests.base    import PutMarketsInDatabaseTestBase
+from ebayinfo.utils_test    import getMarketsIntoDatabase
 
-from ebayinfo.utils_test import ( getMarketsIntoDatabase,
-                                  PutMarketsInDatabaseTest )
+from models.models          import Model
 
-from models.models      import Model
-
-
-from pyPks.Time         import _sFormatISOdateTimeNoColon
-from pyPks.Time.Test    import isISOdatetime
+from pyPks.Time             import _sFormatISOdateTimeNoColon
+from pyPks.Time.Test        import isISOdatetime
 
 
 oAuctionBotApp = TestApp( application )
@@ -119,7 +117,7 @@ class textProcessingTests( TestCasePlus ):
         self.assertEqual( getSaySequence( t ), 'Moe, Larry & Curly' )
 
 
-class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTest ):
+class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTestBase ):
     #
     def test_get_dict_siteID_2_list_vers( self ):
         #
