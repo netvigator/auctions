@@ -13,15 +13,24 @@ from models.models      import Model
 from searching          import RESULTS_FILE_NAME_PATTERN
 from searching          import SEARCH_FILES_FOLDER
 
+from searching.tests    import iRecordStepsForThis
+
 from ..models           import Search, SearchLog
-from ..tests            import sExampleResponse, sBrands, sModels
+from ..tests            import ( sExampleResponse, sBrands, sModels,
+                                 sResponseItems2Test,
+                                 dSearchResult ) # in __init__.py
 
 from ..utils            import ( storeSearchResultsInFinders,
-                                 getSearchIdStr )
+                                 getSearchIdStr,
+                                 _storeUserItemFound, _storeItemFound )
 
-from pyPks.File.Del      import DeleteIfExists
-from pyPks.File.Write    import QuietDump
-from pyPks.Utils.Config  import getBoolOffYesNoTrueFalse
+from ..utils_stars      import findSearchHits
+
+from ..utilsearch       import ItemAlreadyInTable
+
+from pyPks.File.Del     import DeleteIfExists
+from pyPks.File.Write   import QuietDump
+from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
 class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     #
@@ -511,4 +520,146 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iCategory   = oVacuumTubes,
                                     iUser       = oUser )
             #
+
+
+class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSetUp ):
+    #
+    ''' class for testing storeSearchResultsInFinders() store records '''
+    #
+    def setUp( self ):
+        #
+        super( PutSearchResultsInDatabaseWebTestBase, self ).setUp()
+        #
+        self.dExampleFiles = {}
+        #
+        for oUser in self.tUsers:
+            #
+            sExampleFile = (
+                RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( 'EBAY-US',
+                oUser.username,
+                getSearchIdStr( self.oSearch.id ),
+                '000' ) )
+            #
+            self.dExampleFiles[ oUser.id ] = sExampleFile
+            #
+            #print( 'will DeleteIfExists' )
+            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+            #
+            #print( 'will QuietDump' )
+            QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
+            #
+            try:
+                t = ( storeSearchResultsInFinders(
+                                self.oSearchLog.id,
+                                self.sMarket,
+                                oUser.username,
+                                self.oSearch.id,
+                                self.oSearch.cTitle,
+                                self.setTestCategories ) )
+                #
+            except JSONDecodeError:
+                #
+                print('')
+                print(  '### maybe a new item title has a quote '
+                        'but only a single backslash ###' )
+                #
+                raise
+                #
+            #
+            #iCountItems, iStoreItems, iStoreUsers = t
+            #
+            #iTempItems = ItemFoundTemp.objects.all().count()
+            #iItemFound = ItemFound.objects.all().count()
+            #
+            # bCleanUpAfterYourself must be False or tests will fail!
+            #
+            #print( '\n' )
+            #print( 'setting up PutSearchResultsInDatabaseWebTest' )
+
+    def tearDown(self):
+        #
+        for sExampleFile in self.dExampleFiles.values():
+            #
+            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+
+
+
+class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
+    #
+    ''' class for testing findSearchHits() hit star calculations '''
+    #
+    def setUp( self ):
+        #
+        super( SetUpForHitStarsWebTests, self ).setUp()
+        #
+        # bCleanUpAfterYourself must be False or tests will fail!
+        # iRecordStepsForThis imported from __init__.py
+        #
+        findSearchHits( self.user1.id,
+                        bCleanUpAfterYourself   = False,
+                        iRecordStepsForThis     = iRecordStepsForThis )
+        #
+        #print( '\n' )
+        #print( 'setting up KeyWordFindSearchHitsWebTests' )
+
+
+
+class StoreUserItemFoundWebTestBase( GetEbayCategoriesWebTestSetUp ):
+    #
+    ''' class for testing _storeUserItemFound() '''
+
+    def setUp( self ):
+        #
+        '''set up to test _storeUserItemFound() with actual record'''
+        #
+        super( StoreUserItemFoundWebTestBase, self ).setUp()
+        #
+        class ThisShouldNotBeHappening( Exception ): pass
+        #
+        self.oSearch = None
+        #
+        tNow        = timezone.now()
+        tBefore     = tNow - timezone.timedelta( minutes = 5 )
+        #
+        sSearch     = "My clever search 1"
+        #
+        for oUser in self.tUsers:
+            #
+            oSearch = Search( cTitle = sSearch, iUser = oUser )
+            oSearch.save()
+            #
+            if self.oSearch is None: self.oSearch = oSearch
+            #
+            try:
+                #
+                iItemNumb = _storeItemFound( dSearchResult, {} )
+                #
+            except ItemAlreadyInTable:
+                #
+                iItemNumb = int( dSearchResult['itemId' ] )
+                #
+            #
+            if iItemNumb is None:
+                raise ThisShouldNotBeHappening
+            #
+            try:
+                _storeUserItemFound(
+                    dSearchResult, iItemNumb, oUser, oSearch.id )
+            except ItemAlreadyInTable:
+                pass
+            #
+            self.iItemNumb  = iItemNumb
+            self.tNow       = tNow
+            #
+            oSearchLog = SearchLog(
+                    iSearch_id  = oSearch.id,
+                    tBegSearch  = tBefore,
+                    tEndSearch  = tNow,
+                    tBegStore   = tNow,
+                    cResult     = 'Success' )
+            #
+            oSearchLog.save()
+            #
+        #
 
