@@ -28,7 +28,9 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                                  getWhetherAnyEbayCategoryListsAreUpdated,
                                  getEbayCategoryHierarchies )
 
-from ..utils_test       import getMarketsIntoDatabase, PutMarketsInDatabaseTest
+from ..utils_test       import getMarketsIntoDatabase
+
+from .base              import PutMarketsInDatabaseTestBase
 
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Write   import WriteText2File
@@ -221,6 +223,34 @@ class TestHeirarchiesAreTheyCompleteTest( GetEbayCategoriesWebTestSetUp ):
 
 
 
+
+class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
+    '''test getMarketsIntoDatabase()'''
+    #
+
+    def test_market_count( self ):
+        #
+        iCount = Market.objects.all().count()
+        #
+        self.assertEqual( 23, iCount )
+
+    def test_got_market_info_right( self ):
+        #
+        oUSA = Market.objects.get( cMarket = 'EBAY-US' )
+        #
+        self.assertEqual( oUSA.iEbaySiteID, 0 )
+        #
+        self.assertEqual( oUSA.cCurrencyDef, 'USD' )
+        #
+        self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
+        #
+        oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
+        #
+        self.assertEqual( oSG.iEbaySiteID, 216 )
+        #
+        self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
+
+
 class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
     '''test getMarketsIntoDatabase()'''
     #
@@ -270,6 +300,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
 
 
+    @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_whether_ebay_market_updated_test_is_working( self ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
@@ -293,7 +324,7 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
 
 
-class LiveTestGotCurrentEbayCategories(PutMarketsInDatabaseTest):
+class LiveTestGotCurrentEbayCategories( PutMarketsInDatabaseTest ):
     '''test getMarketsIntoDatabase()'''
     #
 
