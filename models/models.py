@@ -1,22 +1,19 @@
-from django.db              import models
-from django.utils           import timezone
+from django.db          import models
+from django.utils       import timezone
 
-from crispy_forms.helper    import FormHelper
-from crispy_forms.layout    import Submit
+from core.dj_import     import get_user_model
 
-from django.contrib.auth    import get_user_model
+from core.models        import ( gotSomethingOutsideTitleParensCharField,
+                                 IntegerRangeField, sTitleHelpText,
+                                 sKeyWordsHelpText, sLookForHelpText,
+                                 sExcludeIfHelpText, sLookForHeading )
 
-from core.models            import ( gotSomethingOutsideTitleParensCharField,
-                                     IntegerRangeField, sTitleHelpText,
-                                     sKeyWordsHelpText, sLookForHelpText,
-                                     sExcludeIfHelpText, sLookForHeading )
+from core.mixins        import GetItemsForSomething
 
-from core.mixins            import GetItemsForSomething
+from core.utils         import getReverseWithUpdatedQuery
 
-from core.utils             import getReverseWithUpdatedQuery
-
-from brands.models          import Brand
-from categories.models      import Category
+from brands.models      import Brand
+from categories.models  import Category
 
 # ### models can be FAT but not too FAT! ###
 
