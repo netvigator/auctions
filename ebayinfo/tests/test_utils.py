@@ -28,8 +28,6 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                                  getWhetherAnyEbayCategoryListsAreUpdated,
                                  getEbayCategoryHierarchies )
 
-from ..utils_test       import getMarketsIntoDatabase
-
 from .base              import PutMarketsInDatabaseTestBase
 
 from pyPks.File.Del     import DeleteIfExists
@@ -250,11 +248,6 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
         #
         self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
 
-
-class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
-    '''test getMarketsIntoDatabase()'''
-    #
-
     def test_market_count( self ):
         #
         iCount = Market.objects.all().count()
@@ -275,6 +268,11 @@ class TestPutMarketsInDatabaseTest(PutMarketsInDatabaseTest):
         #
         self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
 
+
+
+class TestPutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
+    '''test getMarketsIntoDatabase()'''
+    #
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_got_current_category_version_list( self ):
