@@ -1,7 +1,7 @@
-from crispy_forms.layout    import Field, Layout, Submit
+from core.crispy    import Field, Layout, Submit
+from core.forms     import ModelFormValidatesTitle
 
-from core.forms             import ModelFormValidatesTitle
-from .models                import Category
+from .models        import Category
 
 
 tModelFields = (
