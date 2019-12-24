@@ -162,7 +162,7 @@ class PutSearchResultsInDatabaseWebTest( PutSearchResultsInDatabaseWebTestBase )
         #
         self.assertEqual( oItem.get_iShippingType_display(), 'Pick Up ONLY!' )
         #
-        self.assertEqual( oItem.iShippingType, 9 )
+        self.assertEqual( oItem.iShippingType, 5 )
         #
         #
         #
