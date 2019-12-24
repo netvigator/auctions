@@ -1,14 +1,14 @@
-from django.urls        import reverse
+from django.urls            import reverse
 
-from ..models           import UserItemFound
+from ..models               import UserItemFound
 
-from searching.tests.test_utils import storeUserItemFoundButDontWebTestYet
+from searching.tests.base   import StoreUserItemFoundWebTestBase
 
-from models.models      import Model
+from models.models          import Model
 
 
 
-class EditingUserItemFoundShouldRedoHitStars( storeUserItemFoundButDontWebTestYet ):
+class EditingUserItemFoundShouldRedoHitStars( StoreUserItemFoundWebTestBase ):
     #
     ''' test AnyReleventHitStarColsChangedMixin'''
 
