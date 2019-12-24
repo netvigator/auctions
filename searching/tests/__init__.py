@@ -489,12 +489,12 @@ sExampleResponse = \
               "globalId":["EBAY-US" ],
               "title":["Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" ],
               "country":["US" ],
-              "shippingInfo":[
-                { "expeditedShipping":["false" ],
+              "shippingInfo":[{
+                "expeditedShipping":["false" ],
                 "shippingType":["Calculated" ],
                 "handlingTime":["3" ],
                 "shipToLocations":["Worldwide" ],
-                "oneDayShippingAvailable":["false" ] } ],
+                "oneDayShippingAvailable":["false" ]}],
               "galleryURL":["http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" ],
               "autoPay":["false" ],
               "location":["Ruskin,FL,USA" ],
@@ -548,11 +548,10 @@ sExampleResponse = \
               "globalId":["EBAY-US" ],
               "title":["Simpson 360 Digital Multi Meter Volt Ohm Milliameter Working" ],
               "country":["US" ],
-              "shippingInfo":[
-                { "expeditedShipping":["false" ],
+              "shippingInfo":[{
+                "expeditedShipping":["false" ],
                 "handlingTime":["2" ],
-                "shippingServiceCost":[
-                    { "@currencyId": "USD", "__value__": "0.0" } ],
+                "shippingServiceCost":[{"@currencyId": "USD", "__value__": "0.0"}],
                 "oneDayShippingAvailable":["false" ],
                 "shipToLocations":["Worldwide" ],
                 "shippingType":["Free" ] } ],
@@ -562,12 +561,10 @@ sExampleResponse = \
               "postalCode":["11710" ],
               "returnsAccepted":["false" ],
               "viewItemURL":["http://www.ebay.com/itm/Simpson-360-Digital-Multi-Meter-Volt-Ohm-Milliameter-Working-/132401762082" ],
-              "sellingStatus":[
-                { "currentPrice":[
-                    { "@currencyId": "USD", "__value__": "79.99" } ],
+              "sellingStatus":[{
+                "currentPrice":[{ "@currencyId": "USD", "__value__": "79.99" } ],
                 "timeLeft":["P1DT6H52M48S" ],
-                "convertedCurrentPrice":[
-                    { "@currencyId": "USD", "__value__": "79.99" } ],
+                "convertedCurrentPrice":[{ "@currencyId": "USD", "__value__": "79.99"}],
                 "sellingState":["Active" ] } ],
               "paymentMethod":["PayPal" ],
               "primaryCategory":[
@@ -593,8 +590,7 @@ sExampleResponse = \
               "shippingInfo":[
                 { "expeditedShipping":["true" ],
                 "handlingTime":["3" ],
-                "shippingServiceCost":[
-                    { "@currencyId": "USD", "__value__": "0.0" } ],
+                "shippingServiceCost":[{ "@currencyId": "USD", "__value__": "0.0" }],
                 "oneDayShippingAvailable":["false" ],
                 "shipToLocations":["Worldwide" ],
                 "shippingType":["FreePickup" ] } ],
@@ -639,8 +635,7 @@ sExampleResponse = \
               "shippingInfo":[
                 { "expeditedShipping":["false" ],
                 "handlingTime":["2" ],
-                "shippingServiceCost":[
-                    { "@currencyId": "USD", "__value__": "10.0" } ],
+                "shippingServiceCost":[{ "@currencyId": "USD", "__value__": "10.0" }],
                 "oneDayShippingAvailable":["false" ],
                 "shipToLocations":["Worldwide" ],
                 "shippingType":["Flat" ] } ],
@@ -735,7 +730,12 @@ sResponseItems2Test = \
              "viewItemURL":["https:\/\/www.ebay.com\/itm\/VINTAGE-PAIR-GE-8417-AMP-TUBES-KZ-188-5-\/184092262958"],
              "paymentMethod":["PayPal"],"autoPay":["false"],
              "postalCode":["460**"],"location":["Fishers,IN,USA"],"country":["US"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "shippingInfo":[{
+                "shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
+                "shippingType":["FreePickup"],
+                "shipToLocations":["Worldwide"],
+                "expeditedShipping":["false"],
+                "oneDayShippingAvailable":["false"]}],
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],
              "bidCount":["0"],"sellingState":["Active"],
              "timeLeft":["P5DT22H29M12S"]}],
@@ -844,10 +844,13 @@ sResponseItems2Test = \
              "viewItemURL":["https:\/\/www.ebay.com\/itm\/FISHER-R-200-TUBE-TUNER-PHENOMENAL-SOUND-CONDITION-TELFUNKEN-MULLARD-TUBE-AMP-\/153723814561"],
              "paymentMethod":["PayPal"],"autoPay":["true"],
              "postalCode":["951**"],"location":["San Jose,CA,USA"],"country":["US"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
-             "shippingType":["FreePickup"],
-             "shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],
-             "handlingTime":["3"]}],
+             "shippingInfo":[{
+                "shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
+                "shippingType":["FreePickup"],
+                "shipToLocations":["Worldwide"],
+                "expeditedShipping":["false"],
+                "oneDayShippingAvailable":["false"],
+                "handlingTime":["3"]}],
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"199.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"199.99"}],
              "bidCount":["1"],"sellingState":["Active"],
              "timeLeft":["P3DT23H52M0S"]}],
@@ -1230,9 +1233,13 @@ sResponseItems2Test = \
              "paymentMethod":["PayPal"],"autoPay":["false"],
              "postalCode":["49047"],
              "location":["Dowagiac,MI,USA"],"country":["US"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
-             "shippingType":["FreePickup"],
-             "shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "shippingInfo":[{
+                "shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
+                "shippingType":["FreePickup"],
+                "shipToLocations":["Worldwide"],
+                "expeditedShipping":["false"],
+                "oneDayShippingAvailable":["false"],
+                "handlingTime":["3"]}],
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.0"}],
              "bidCount":["0"],"sellingState":["Active"],
              "timeLeft":["P5DT0H41M31S"]}],
@@ -1502,7 +1509,12 @@ sResponseItems2Test = \
               "paymentMethod":["PayPal"],"autoPay":["false"],
               "postalCode":["48072"],
               "location":["Berkley,MI,USA"],"country":["US"],
-              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "shippingInfo":[{
+                    "shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],
+                    "shippingType":["FreePickup"],
+                    "shipToLocations":["Worldwide"],
+                    "expeditedShipping":["false"],
+                    "oneDayShippingAvailable":["false"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"35.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"35.0"}],
               "bidCount":["0"],"sellingState":["Active"],
               "timeLeft":["P6DT22H11M59S"]}],
