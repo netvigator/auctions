@@ -21,13 +21,13 @@ from core.utils_ebay    import getValueOffItemDict
 from core.ebay_api_calls import findItems
 
 from ebayinfo.models    import Market, CategoryHierarchy
-from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
+from ebayinfo.utils     import ( dMarket2SiteID, getEbayCategoryHierarchies,
+                                 setShippingTypeLocalPickupOptional )
 
 # in __init__.py
 from finders            import dItemFoundFields, dUserItemFoundUploadFields
 from finders.forms      import ItemFoundForm, UserItemFoundUploadForm
 from finders.models     import ItemFound, UserItemFound
-from finders.utils      import setShippingTypeLocalPickupOptional
 
 from keepers.utils      import ITEM_PICS_ROOT, getItemPicsSubDir
 
