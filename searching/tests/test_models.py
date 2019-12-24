@@ -10,9 +10,6 @@ from core.utils_test    import TestCasePlus
 from searching          import ( SEARCH_FILES_FOLDER,
                                  RESULTS_FILE_NAME_PATTERN )
 
-from finders            import ( EBAY_SHIPPING_CHOICES, getChoiceCode,
-                                 dEBAY_SHIPPING_CHOICE_CODE )
-
 from .test_utils        import GetBrandsCategoriesModelsWebTestSetUp
 
 from ..models           import Search
@@ -48,21 +45,6 @@ class SearchModelTest( BaseUserWebTestCase ):
         self.assertTrue( queryGotUpdated( tParts[1] ) )
         #
         self.assertFalse( queryGotUpdated( tParts[0] ) )
-
-
-class TestChoices(TestCasePlus):
-
-    def test_CHOICES( self ):
-        """ test the ebay shipping choices tuple """
-        self.assertEqual( EBAY_SHIPPING_CHOICES[5], ( 5, 'Pick Up ONLY!' ) )
-
-    def test_dCHOICE_CODES( self ):
-        """ test the ebay shipping choices dictionary """
-        self.assertEqual( dEBAY_SHIPPING_CHOICE_CODE['FreePickup'], 5 )
-
-    def test_getChoiceCode( self ):
-        """ test the ebay shipping choice code function """
-        self.assertEqual( getChoiceCode('FreePickup'), 5 )
 
 
 class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp ):
