@@ -17,6 +17,8 @@ from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
                                  TestCasePlus )
 
+from .base              import StoreItemsTestPlusBase
+
 from ..models           import Keeper, UserKeeper, KeeperImage
 
 from ..tests            import ( s142766343340, s232742493872,
@@ -50,8 +52,8 @@ from searching.models   import Search
 from searching.tests    import dSearchResult # in __init__.py
 from searching.utils    import _storeUserItemFound, _storeItemFound
 
-from searching.utils_stars      import findSearchHits
-from searching.tests.test_stars import SetUpForHitStarsWebTests
+from searching.utils_stars  import findSearchHits
+from searching.tests.base   import SetUpForHitStarsWebTests
 
 from pyPks.Dir.Test     import isDirThere
 from pyPks.File.Del     import DeleteIfExists
@@ -162,27 +164,7 @@ class SomeItemsTest( TestCasePlus ):
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-
-class StoreItemsTestPlus( TestCasePlus ):
-    '''test storing some getSingleItem imports in the table'''
-
-    def setUp( self ):
-        #
-        super( StoreItemsTestPlus, self ).setUp()
-        #
-        t = _storeOneJsonItemInKeepers( 142766343340, s142766343340 )
-        #
-        self.iOriginalSavedRowID, sListingStatus, oItemFound = t
-        #
-        t = _storeOneJsonItemInKeepers( 232742493872, s232742493872 )
-        #
-        iSavedRowID, sListingStatus, oItemFound = t
-        #
-        t = _storeOneJsonItemInKeepers( 232709513135, s232709513135 )
-        #
-        iSavedRowID, sListingStatus, oItemFound = t
-        #
-        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+class StoreItemsTestPlus( StoreItemsTestPlusBase ):
 
 
     def test_s142766343340( self ):
