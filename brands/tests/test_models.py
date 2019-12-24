@@ -1,27 +1,11 @@
 # import inspect
 
-from core.utils_test    import ( BaseUserWebTestCase,
-                                 getUrlQueryStringOff, queryGotUpdated )
+from core.utils_test    import getUrlQueryStringOff, queryGotUpdated
 
-# Create your tests here.
-
-from ..models           import Brand
+from .base              import BrandModelWebTestBase
 
 
-class BrandModelWebTest( BaseUserWebTestCase ):
-
-    def setUp( self ):
-        #
-        super( BrandModelWebTest, self ).setUp()
-        #
-        oBrand = Brand(
-            cTitle          = "My premium brand",
-            iUser           = self.user1,
-            id              = 1 )
-        #
-        oBrand.save()
-        #
-        self.oBrand = oBrand
+class BrandModelWebTest( BrandModelWebTestBase ):
 
 
     def test_string_representation(self):
