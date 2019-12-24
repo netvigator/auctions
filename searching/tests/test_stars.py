@@ -15,9 +15,9 @@ from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
 from finders.models     import ( ItemFound, UserItemFound, ItemFoundTemp,
                                  UserFinder )
 
-from .test_models       import PutSearchResultsInDatabaseWebTest
-
-from .test_utils        import storeUserItemFoundButDontWebTestYet
+from .base              import ( PutSearchResultsInDatabaseWebTestBase,
+                                 SetUpForHitStarsWebTests,
+                                 StoreUserItemFoundWebTestBase )
 
 from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
                                  findSearchHits, _getRowRegExpressions,
@@ -54,7 +54,7 @@ def _getBrandRegExFinders4Test( oBrand ):
     return tuple( map( _getRegExSearchOrNone, t[:2] ) )
 
 
-class MakeSureExampleItemGetsHit( storeUserItemFoundButDontWebTestYet ):
+class MakeSureExampleItemGetsHit( StoreUserItemFoundWebTestBase ):
     #
     ''' class for testing dSearchResult in __init__  '''
     #
@@ -86,43 +86,6 @@ class MakeSureExampleItemGetsHit( storeUserItemFoundButDontWebTestYet ):
                 tLook4Hits__isnull = False ).exists() )
         #
 
-class SetUpForFindSearchHitsTest( PutSearchResultsInDatabaseWebTest ):
-    #
-    ''' class for testing findSearchHits() '''
-    #
-    def test_find_search_hits( self ):
-        #
-        findSearchHits( self.user1.id,
-                        bCleanUpAfterYourself   = True,
-                        iRecordStepsForThis     = iRecordStepsForThis )
-        #
-        self.assertGreater(
-            len( UserItemFound.objects.filter(
-                tLook4Hits__isnull = False ) ), 100 )
-        #
-        self.assertGreater(
-            len( UserFinder.objects.filter( iUser = self.user1 ) ), 80 )
-        #
-
-
-
-class SetUpForHitStarsWebTests( SetUpForFindSearchHitsTest ):
-    #
-    ''' class for testing findSearchHits() hit star calculations '''
-    #
-    def setUp( self ):
-        #
-        super( SetUpForHitStarsWebTests, self ).setUp()
-        #
-        # bCleanUpAfterYourself must be False or tests will fail!
-        # iRecordStepsForThis imported from __init__.py
-        #
-        findSearchHits( self.user1.id,
-                        bCleanUpAfterYourself   = False,
-                        iRecordStepsForThis     = iRecordStepsForThis )
-        #
-        #print( '\n' )
-        #print( 'setting up KeyWordFindSearchHitsWebTests' )
 
 
 
@@ -171,6 +134,17 @@ class KeyWordFindSearchHitsWebTests(
             #
             if sExplain: maybePrint( sExplain )
             #
+
+    def test_find_search_hits_count( self ):
+        #
+        self.assertGreater(
+            len( UserItemFound.objects.filter(
+                tLook4Hits__isnull = False ) ), 100 )
+        #
+        self.assertGreater(
+            len( UserFinder.objects.filter( iUser = self.user1 ) ), 80 )
+        #
+
 
     def test_find_search_hits_test(self):
         #
