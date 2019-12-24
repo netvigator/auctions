@@ -768,6 +768,30 @@ def updateCategoryHierarchies(): # run after ebay category update
 
 
 
+def setShippingTypeLocalPickupOptional( dNewResult ):
+    #
+    '''
+    if shippingType is 5 FreePickup, it means
+      "Free Local Pick Up" is optional if handlingTime is set, but
+      "Local Pick Up ONLY" if handlingTime is not set
+    this needs to be set after reading the api data and before the form
+    tested in searching/tests/test_models.py (odd location) BECAUSE
+    cannot test in tests/test_utils.py BECAUSE
+    circular import problem, neither works --
+    searching/tests/test_utils.py imports LiveTestGotCurrentEbayCategories
+    (the convenient result is test for status of sample live items)
+    '''
+    #
+    iShippingType = dNewResult.get( 'iShippingType' )
+    iHandlingTime = dNewResult.get( 'iHandlingTime' )
+    #
+    if iShippingType == 5 and iHandlingTime and iHandlingTime > 0:
+        #
+        dNewResult[ 'iShippingType' ] = 9
+        #
+    #
+
+
 '''
 select "iCategoryID","cCategory","iCatHeirarchy_id","i2ndCategoryID","c2ndCategory","i2ndCatHeirarchy_id","iEbaySiteID_id" from itemsfound limit 2 ;
  iCategoryID |      cCategory      | iCatHeirarchy_id | i2ndCategoryID | c2ndCategory | i2ndCatHeirarchy_id | iEbaySiteID_id
