@@ -11,8 +11,8 @@ from ..views            import ListViewGotModel
 
 from finders.views      import ItemsFoundIndexView
 
-from searching.utils_stars      import getFoundItemTester
-from searching.tests.test_stars import SetUpForHitStarsWebTests
+from searching.utils_stars  import getFoundItemTester
+from searching.tests.base   import SetUpForHitStarsWebTests
 
 from pyPks.Object.Get   import QuickObject
 
