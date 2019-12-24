@@ -10,7 +10,7 @@ from core.utils_test    import TestCasePlus
 from searching          import ( SEARCH_FILES_FOLDER,
                                  RESULTS_FILE_NAME_PATTERN )
 
-from .test_utils        import GetBrandsCategoriesModelsWebTestSetUp
+from .base              import GetBrandsCategoriesModelsWebTestSetUp
 
 from ..models           import Search
 
