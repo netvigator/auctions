@@ -13,7 +13,7 @@ from core.utils         import getExceptionMessageFromResponse
 from ..models           import Brand
 from ..views            import BrandCreateView
 
-from .test_models       import BrandModelWebTest
+from .base              import BrandModelWebTestBase
 
 # Create your tests here.
 
@@ -107,7 +107,7 @@ class BrandViewsTests( BaseUserWebTestCase ):
         logging.disable(logging.NOTSET)
 
 
-class BrandViewsHitButtons( BrandModelWebTest ):
+class BrandViewsHitButtons( BrandModelWebTestBase ):
     """
     Test Save and Cancel
     """
