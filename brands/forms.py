@@ -1,10 +1,10 @@
-from core.forms             import ModelFormValidatesTitle
-from django.forms           import ModelForm, formset_factory, BooleanField
+from core.forms         import ModelFormValidatesTitle
+from django.forms       import ModelForm, formset_factory, BooleanField
 
-from crispy_forms.layout    import Field, Layout, Submit
-from .models                import Brand
+from core.crispy        import Field, Layout, Submit
+from .models            import Brand
 
-from categories.models      import Category
+from categories.models  import Category
 
 
 tModelFields = (
