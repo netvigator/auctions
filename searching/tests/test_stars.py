@@ -1919,13 +1919,13 @@ class KeyWordFindSearchHitsWebTests(
         iThisOne = 324020037678
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], , iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find 604-8G! production missed this recently!' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '604-8G' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec Lansing' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         #
