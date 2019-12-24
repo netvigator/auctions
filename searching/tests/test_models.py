@@ -10,11 +10,10 @@ from core.utils_test    import TestCasePlus
 from searching          import ( SEARCH_FILES_FOLDER,
                                  RESULTS_FILE_NAME_PATTERN )
 
-from .base              import GetBrandsCategoriesModelsWebTestSetUp
+from .base              import PutSearchResultsInDatabaseWebTestBase
 
 from ..models           import Search
 
-from ..tests            import sResponseItems2Test
 from ..utils            import storeSearchResultsInFinders, getSearchIdStr
 
 from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
@@ -47,68 +46,9 @@ class SearchModelTest( BaseUserWebTestCase ):
         self.assertFalse( queryGotUpdated( tParts[0] ) )
 
 
-class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp ):
-    #
-    ''' class for testing storeSearchResultsInFinders() store records '''
-    #
-    def setUp( self ):
-        #
-        super( PutSearchResultsInDatabaseWebTest, self ).setUp()
-        #
-        self.dExampleFiles = {}
-        #
-        for oUser in self.tUsers:
-            #
-            sExampleFile = (
-                RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
-                ( 'EBAY-US',
-                oUser.username,
-                getSearchIdStr( self.oSearch.id ),
-                '000' ) )
-            #
-            self.dExampleFiles[ oUser.id ] = sExampleFile
-            #
-            #print( 'will DeleteIfExists' )
-            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
-            #
-            #print( 'will QuietDump' )
-            QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
-            #
-            try:
-                t = ( storeSearchResultsInFinders(
-                                self.oSearchLog.id,
-                                self.sMarket,
-                                oUser.username,
-                                self.oSearch.id,
-                                self.oSearch.cTitle,
-                                self.setTestCategories ) )
-                #
-            except JSONDecodeError:
-                #
-                print('')
-                print(  '### maybe a new item title has a quote '
-                        'but only a single backslash ###' )
-                #
-                raise
-                #
-            #
-            #iCountItems, iStoreItems, iStoreUsers = t
-            #
-            #iTempItems = ItemFoundTemp.objects.all().count()
-            #iItemFound = ItemFound.objects.all().count()
-            #
-            # bCleanUpAfterYourself must be False or tests will fail!
-            #
-            #print( '\n' )
-            #print( 'setting up PutSearchResultsInDatabaseWebTest' )
-
-    def tearDown(self):
-        #
-        for sExampleFile in self.dExampleFiles.values():
-            #
-            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
 
 
+class PutSearchResultsInDatabaseWebTest( PutSearchResultsInDatabaseWebTestBase ):
 
     def test_data_load( self ):
         #
@@ -125,8 +65,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
     def test_shipping_option_choices( self ):
         #
         '''test shipping choice
-        called by
-        searching.tests.test_stars.SetUpForHitStarsWebTests
+        was called over and over by
         core.tests.test_mixins.TestPagination
         finders.tests.test_views.FindersViewsTests
         keepers.tests.test_utils.GetAndStoreSingleItemsWebTests
@@ -134,7 +73,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         keepers.tests.test_utils.UserItemsTests
         searching.tests.test_models.PutSearchResultsInDatabaseWebTest
         searching.tests.test_stars.KeyWordFindSearchHitsWebTests
-        searching.tests.test_stars.SetUpForFindSearchHitsTest
+        and some others
         '''
         #
         oItem = ItemFound.objects.get( iItemNumb = 254130264753 )
@@ -223,7 +162,7 @@ class PutSearchResultsInDatabaseWebTest( GetBrandsCategoriesModelsWebTestSetUp )
         #
         self.assertEqual( oItem.get_iShippingType_display(), 'Pick Up ONLY!' )
         #
-        self.assertEqual( oItem.iShippingType, 5 )
+        self.assertEqual( oItem.iShippingType, 9 )
         #
         #
         #
