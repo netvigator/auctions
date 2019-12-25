@@ -267,14 +267,13 @@ class GetPaginationExtraInfoInContext( object ):
         return context
 
 
-class GetFindersSelectionsOnPost( object ):
+class GetUserSelectionsOnPost( object ):
     #
-    def post(self, request, *args, **kwargs):
+    def post( self, request, *args, **kwargs ):
         #
         url = request.build_absolute_uri()
         #
-        # from finders.models import UserItemFound # got circular import problem
-        from finders.models import UserFinder # got circular import problem
+        # from finders.models import UserFinder # got circular import problem
         #
         if "selectall" in request.POST:
             #
@@ -284,7 +283,7 @@ class GetFindersSelectionsOnPost( object ):
             #                 iItemNumb_id__in = lPageItems,
             #                 iUser            = self.request.user )
             #
-            qsChanged  = UserFinder.objects.filter(
+            qsChanged  = self.UserItem.objects.filter(
                             iItemNumb_id__in = lPageItems,
                             iUser            = self.request.user )
             #
@@ -354,7 +353,7 @@ class GetFindersSelectionsOnPost( object ):
             #                 iItemNumb_id__in = setChanged,
             #                 iUser            = self.request.user )
             #
-            qsChanged  = UserFinder.objects.filter(
+            qsChanged  = self.UserItem.objects.filter(
                             iItemNumb_id__in = setChanged,
                             iUser            = self.request.user )
             #
@@ -392,6 +391,38 @@ class GetFindersSelectionsOnPost( object ):
                     messages.error( request, '%s -- %s' % ( sItemNumb, oItem.cTitle ) )
             #
         return HttpResponseRedirect( url )
+
+
+class GetFindersSelectionsOnPost( GetUserSelectionsOnPost ):
+    #
+    def post( self, request, *args, **kwargs ):
+        #
+        # this import must be burried here to avoid a circular import problem
+        #
+        from finders.models import UserFinder
+        #
+        self.UserItem = UserFinder
+        #
+        return super(
+                GetFindersSelectionsOnPost, self
+                ).post( request, *args, **kwargs )
+
+
+class GetUserItemsSelectionsOnPost( GetUserSelectionsOnPost ):
+    #
+    def post( self, request, *args, **kwargs ):
+        #
+        # this import must be burried here to avoid a circular import problem
+        #
+        from finders.models import UserItemFound
+        #
+        self.UserItem = UserItemFound
+        #
+        return super(
+                GetFindersSelectionsOnPost, self
+                ).post( request, *args, **kwargs )
+
+
 
 
 class GetItemsForSomething( object ):
@@ -471,7 +502,9 @@ def _sayStars( o, sName ):
     return sSayStars
 
 
-_sTrashCheckBox = '<input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}'
+_sTrashCheckBox = ( '<input class="checkbox" name="bListExclude" '
+                    'type="checkbox" value={{ item.iItemNumb_id }}' )
+
 
 class GetUserItemsTableMixin( object ):
     '''get table of user items, DRY'''
