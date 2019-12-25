@@ -5,7 +5,7 @@ from django.test        import RequestFactory
 from django.test.client import Client
 
 from django_webtest     import WebTest
-from test_plus.test     import TestCase
+from test_plus.test     import TestCase, CBVTestCase
 
 from core.dj_import     import HttpRequest, get_user_model
 
@@ -28,6 +28,48 @@ from pyPks.Time.Test    import isISOdatetimeFileNameSafe
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 
+class UserSetUpMixin( object ):
+
+    def setUp(self):
+
+        self.factory = RequestFactory()
+
+        self.market  = getDefaultMarket()
+
+        oUserModel = get_user_model()
+
+        self.user1 = oUserModel.objects.create_user(
+                                    'username1', 'email@ymail.com')
+        self.user1.set_password( 'mypassword')
+        self.user1.first_name   = 'John'
+        self.user1.last_name    = 'Citizen'
+        self.user1.save()
+
+        self.user2 = oUserModel.objects.create_user(
+                                    'username2', 'email@gmail.com')
+        self.user2.set_password( 'mypassword')
+        self.user2.first_name   = 'Joe'
+        self.user2.last_name    = 'Blow'
+        self.user2.save()
+
+        self.user3 = oUserModel.objects.create_user(
+                                    'username3', 'email@hotmail.com' )
+        self.user3.set_password( 'mypassword')
+        self.user3.first_name   = 'Oscar'
+        self.user3.last_name    = 'Zilch'
+        self.user3.is_superuser = True
+        self.user3.save()
+        #
+        self.request = HttpRequest()
+        self.request.user = self.user1
+        #
+        self.client.login(username ='username1', password='mypassword')
+        #
+        # putting user1 last saves the user1 records in self
+        #
+        self.tUsers = ( self.user3, self.user2, self.user1 )
+        #
+
 
 class TestCasePlus( TestCase ):
     """subclass of test_plus.test TestCase
@@ -36,25 +78,14 @@ class TestCasePlus( TestCase ):
     pass
 
 
-class BaseUserTestPlusCase( TestCasePlus ):
+class BaseUserTestPlusCase( UserSetUpMixin, TestCasePlus ):
 
-    def setUp(self):
-        #
-        self.user1 = self.make_user( 'u1' )
-        self.user2 = self.make_user( 'u2' )
-        self.user3 = self.make_user( 'u3' )
-        #
-        self.market  = getDefaultMarket()
-        #
-        self.login( self.user1 )
-        #
-        self.factory = RequestFactory()
-        #
-        self.market  = getDefaultMarket()
-        #
-        self.tUsers = ( self.user3, self.user2, self.user1 )
-        #
-        # putting user1 last saves the user1 records in self
+    pass
+
+
+class BaseUserViewTestPlusCase( UserSetUpMixin, CBVTestCase ):
+
+    pass
 
 
 
@@ -129,6 +160,7 @@ def queryGotUpdated( s ):
     return isISOdatetimeFileNameSafe( sQueryUTC )
 
 
+
 class getSingleEbayCategoryMixin( object ):
 
     def setUp(self):
@@ -149,47 +181,8 @@ class getSingleEbayCategoryMixin( object ):
 
 
 
-class BaseUserWebTestCase( WebTest ):
 
-    def setUp(self):
-
-        self.factory = RequestFactory()
-
-        self.market  = getDefaultMarket()
-
-        oUserModel = get_user_model()
-
-        self.user1 = oUserModel.objects.create_user(
-                                    'username1', 'email@ymail.com')
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
-
-        self.user2 = oUserModel.objects.create_user(
-                                    'username2', 'email@gmail.com')
-        self.user2.set_password( 'mypassword')
-        self.user2.first_name   = 'Joe'
-        self.user2.last_name    = 'Blow'
-        self.user2.save()
-
-        self.user3 = oUserModel.objects.create_user(
-                                    'username3', 'email@hotmail.com' )
-        self.user3.set_password( 'mypassword')
-        self.user3.first_name   = 'Oscar'
-        self.user3.last_name    = 'Zilch'
-        self.user3.is_superuser = True
-        self.user3.save()
-        #
-        self.request = HttpRequest()
-        self.request.user = self.user1
-        #
-        self.client.login(username ='username1', password='mypassword')
-        #
-        # putting user1 last saves the user1 records in self
-        #
-        self.tUsers = ( self.user3, self.user2, self.user1 )
-        #
+class BaseUserWebTestCase( UserSetUpMixin, WebTest ):
 
     def loginWebTest( self, username ='username1', password = 'mypassword' ):
         #
@@ -325,12 +318,8 @@ class SetUpBrandsCategoriesModelsWebTest(
 
     ''' handy base class that sets up some models / tables '''
 
-    def setUp(self):
-        #
-        super( SetUpBrandsCategoriesModelsWebTest, self ).setUp()
-        #
-        # putting user1 last saves the user1 records in self
-        #
+    #
+    pass # putting user1 last saves the user1 records in self
 
 
 
@@ -339,19 +328,26 @@ class SetUpBrandsCategoriesModelsTestPlus(
 
     ''' handy base class that sets up some models / tables '''
 
-    def setUp(self):
-        #
-        super( SetUpBrandsCategoriesModelsTestPlus, self ).setUp()
-        #
-        # putting user1 last saves the user1 records in self
-        #
+    #
+    pass # putting user1 last saves the user1 records in self
+
+
+
+class SetUpBrandsCategoriesModelsViewTestPlus(
+            SetUpBrandsCategoriesModelsMixin, BaseUserViewTestPlusCase ):
+
+    ''' handy base class that sets up some models / tables '''
+
+    #
+    pass # putting user1 last saves the user1 records in self
 
 
 
 def setup_view_for_tests( view, request, *args, **kwargs ):
+    #
     """
     Mimic as_view() returned callable, but returns view instance.
-    args and kwargs are the same you would pass to ``reverse()``
+    args and kwargs are the same you would pass to reverse()``
     """
     #
     view.request= request
