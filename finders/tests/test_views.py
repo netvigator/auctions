@@ -1,7 +1,5 @@
 import logging
 
-
-# django 2 made obsolete from django.core.urlresolvers   import reverse
 from django.urls            import reverse
 
 from core.utils_test        import ( SetUpBrandsCategoriesModelsTestPlus,
@@ -12,15 +10,11 @@ from core.utils             import getExceptionMessageFromResponse
 
 from searching.tests.base   import SetUpForHitStarsWebTests
 
-from ..views                import ( ItemsFoundIndexView,
-                                     ItemFoundDetailView,
-                                     ItemFoundUpdateView )
-
 
 from pprint import pprint
 
 class FindersNotYetViewTest( BaseUserWebTestCase ):
-    """Brand views tests."""
+    """Finders views tests."""
 
     def test_no_finders_yet(self):
         #
