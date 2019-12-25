@@ -252,24 +252,7 @@ need to gracefully handle search failure when internet non-functioning
 
 
 should handle more gracefully:
-
-======================================================================
-ERROR: test_get_single_active_item_then_store (keepers.tests.test_utils.GetAndStoreSingleItemsWebTests)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/rick/Devel/auctions/keepers/tests/test_utils.py", line 199, in setUp
-    d = getSingleItemResponseCandidate( bWantEnded = False )
-  File "/home/rick/Devel/auctions/keepers/utils_test.py", line 54, in getSingleItemResponseCandidate
-    ( sayWhich, sHitLogFile ) )
-keepers.utils_test.NoExampleRecords: no active records in searching/tests/ItemHitsLog.log!
-
-======================================================================
-FAIL: test_already_stored_results (searching.tests.test_utils.DoSearchStoreResultsTests)
-test whether it has been a while since running the ebay API tests,
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/rick/Devel/auctions/searching/tests/test_utils.py", line 944, in test_already_stored_results
-    msg = 'auction end dates are all past, API test is WAY OVERDUE!' )
+no active records in searching/tests/ItemHitsLog.log!
 AssertionError: -2 not greater than 0 : auction end dates are all past, API test is WAY OVERDUE!
 
 
