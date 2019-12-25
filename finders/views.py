@@ -28,7 +28,7 @@ class FindersIndexView(
     def get_queryset( self ):
         #
         # ADPZ
-        # qs = super( ItemsFoundIndexView, self ).get_queryset()
+        # qs = super( FindersIndexView, self ).get_queryset()
         # sSelect = 'P'
         #
         sSelect = self.kwargs.get('select', 'P' )
