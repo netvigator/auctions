@@ -13,7 +13,8 @@ from django.views.generic.edit      import CreateView, UpdateView, DeleteView
 from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              FormValidMixin, GetFormMixin,
                                              GetModelInContextMixin,
-                                             DoPostCanCancelMixin )
+                                             DoPostCanCancelMixin,
+                                             GetUserItemsSelectionsOnPost )
 
 from .utils                         import getSaySequence
 
@@ -115,11 +116,14 @@ class DetailViewGotModel( LoginRequiredMixin,
 
 
 
-class DetailViewGotModelAlsoPost( SuccessMessageMixin, DetailViewGotModel ):
+class DetailViewGotModelAlsoPost(
+            SuccessMessageMixin,
+            GetUserItemsSelectionsOnPost,
+            DetailViewGotModel ):
 
     '''detail view for Brands, Categories & Models shows Keepers'''
 
-    def post(self, request, *args, **kwargs):
+    def post( self, request, *args, **kwargs ):
 
         url = request.build_absolute_uri()
         #
