@@ -406,3 +406,6 @@ challenge: find hits for orphan keepers
 
 
 2019-12-23 is bMustHaveBrand redundant?  is bGenericModel enough?
+
+2019-12-26 TestPlus has CBVTestCase for testing views, maybe better than WebTest
+to be implemented: SetUpBrandsCategoriesModelsViewTestPlus in core.utils_test
