@@ -1,6 +1,5 @@
 import logging
 
-# django 2 made obsolete from django.core.urlresolvers   import reverse
 from django.urls        import reverse
 
 from core.utils_test    import BaseUserWebTestCase
