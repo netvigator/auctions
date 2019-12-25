@@ -44,23 +44,24 @@ from ..utils            import ( _storeOneJsonItemInKeepers,
                                  getItemsForPicsDownloading,
                                  deleteKeeperUserItem )
 
-from ..utils_test       import getSingleItemResponseCandidate
-
 from finders.models     import ItemFound, UserItemFound, UserFinder
 
 from searching.models   import Search
 from searching.tests    import dSearchResult # in __init__.py
 from searching.utils    import _storeUserItemFound, _storeItemFound
 
+from searching.tests.base   import SetUpForHitStarsWebTests, getItemHitsLog
 from searching.utils_stars  import findSearchHits
-from searching.tests.base   import SetUpForHitStarsWebTests
 
 from pyPks.Dir.Test     import isDirThere
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Get     import Touch
 from pyPks.File.Test    import isFileThere
+from pyPks.Numb.Get     import getRandomDigits
 from pyPks.String.Get   import getTextAfter
+from pyPks.Time.Delta   import getIsoDateTimeNowPlus, getDeltaDaysFromISOs
 from pyPks.Web.Test     import isURL
+
 
 logger = logging.getLogger(__name__)
 
@@ -281,9 +282,9 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         #
         for i in range(10): # do not want an infinite loop here!
             #
-            d = getSingleItemResponseCandidate( bWantEnded = False )
+            d = self.getSingleItemResponseCandidate( bWantEnded = False )
             #
-            if d is None: d = getSingleItemResponseCandidate()
+            if d is None: d = self.getSingleItemResponseCandidate()
             #
             iItemNumb = int( d[ 'iItemNumb' ] )
             #
@@ -341,6 +342,79 @@ class StoreSingleKeepersWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         #
         # if isDirThere( ITEM_PICS_ROOT ): rmtree( ITEM_PICS_ROOT )
         #
+
+    def getSingleItemResponseCandidate( self, bWantEnded = True ):
+        #
+        sStillAvailableDate = getIsoDateTimeNowPlus( -89 )
+        #
+        sHitLogFile = join( 'searching', 'tests', 'ItemHitsLog.log' )
+        #
+        def getActiveOrEnded( sDate ):
+            #
+            if bWantEnded:
+                #
+                bWantThis = int( getDeltaDaysFromISOs( sDate ) ) >= 1
+                #
+            else:
+                #
+                bWantThis = int( getDeltaDaysFromISOs( sDate ) ) <= -1
+                #
+            #
+            return bWantThis
+        #
+        lItemHits = [ d for d in getItemHitsLog( sHitLogFile )
+                    if ( d[ 'tTimeEnd' ] > sStillAvailableDate and
+                        getActiveOrEnded( d[ 'tTimeEnd' ] ) ) ]
+        #
+        lPrioritySelect = []
+        #
+        for i in range( len( lItemHits ) ):
+            #
+            d = lItemHits[ i ]
+            #
+            iDaysAgo = int( getDeltaDaysFromISOs( d[ 'tTimeEnd' ] ) )
+            #
+            lPrioritySelect.append( ( iDaysAgo * 3 + int( d[ 'iHitStars' ] ), i ) )
+            #
+        #
+        if not lPrioritySelect:
+            #
+            sayWhich = 'ended' if bWantEnded else 'active'
+            #
+            raise NoExampleRecords( 'no %s records in %s! Run live searching tests!' %
+                                ( sayWhich, sHitLogFile ) )
+            #
+        #
+        lPrioritySelect.sort()
+        lPrioritySelect.reverse()
+        #
+        iTryThis = len( lPrioritySelect ) + 1
+        #
+        dTryThis = None
+        #
+        if lPrioritySelect:
+            #
+            for d in lItemHits:
+                #
+                while iTryThis > len( lPrioritySelect ):
+                    #
+                    iTryThis = int( getRandomDigits(1) )
+                    #
+                #
+                if (    len( lPrioritySelect ) > iTryThis and
+                        lPrioritySelect[ iTryThis ][1] < len( lItemHits ) ):
+                    #
+                    dTryThis = lItemHits[ lPrioritySelect[ iTryThis ][1] ]
+                    #
+                    break
+                    #
+                #
+            #
+        #
+        # s = getSingleItem( dTryThis[ 'iItemNumb' ] )
+        #
+        return dTryThis
+
 
     def mark_all_finders_to_fetch_pictures( self ):
         # mark all UserItemFound rows to fetch pictures
