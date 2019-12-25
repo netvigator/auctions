@@ -32,6 +32,32 @@ from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Write   import QuietDump
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
+
+
+def getItemHitsLog( sPathFile ):
+    #
+    oHitsLogIter = getTableFromScreenCaptureGenerator( open( sPathFile ) )
+    #
+    lHeader = next( oHitsLogIter )
+    #
+    d = getNamePositionDict( lHeader )
+    #
+    lItemHits = []
+    #
+    for lParts in oHitsLogIter:
+        #
+        dRow = dict(
+                iItemNumb   = lParts[ d['iItemNumb'] ],
+                tTimeEnd    = lParts[ d['tTimeEnd' ] ],
+                iHitStars   = lParts[ d['iHitStars'] ] )
+        #
+        lItemHits.append( dRow )
+        #
+    #
+    return lItemHits
+
+
+
 class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInFinders() store records '''
