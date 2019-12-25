@@ -1,6 +1,7 @@
 import inspect
 import logging
 
+from os                 import rename
 from os.path            import realpath, join
 from datetime           import timedelta
 
@@ -26,12 +27,12 @@ from searching          import SEARCH_FILES_FOLDER
 
 from .base              import ( StoreSearchResultsTestsWebTestSetUp,
                                  GetBrandsCategoriesModelsWebTestSetUp,
-                                 StoreUserItemFoundWebTestBase )
+                                 StoreUserItemFoundWebTestBase,
+                                 getItemHitsLog )
 
 from ..models           import Search, SearchLog
-from ..tests            import dSearchResult # in __init__.py
+from ..tests            import dSearchResult, sItemHitLog # in __init__.py
 from ..tests            import sExampleResponse, sResponseItems2Test
-from ..utils_test       import getItemHitsLog, updateHitLogFile
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInFinders,
                                  _putPageNumbInFileName,
@@ -55,8 +56,11 @@ from pyPks.File.Spec     import getPathNameExt
 from pyPks.File.Test     import isFileThere
 from pyPks.File.Write    import QuietDump
 from pyPks.String.Get    import getTextBefore
-from pyPks.Time.Delta    import getDeltaDaysFromStrings
+from pyPks.Time.Convert  import getDateTimeObjFromString   as getDate
+from pyPks.Time.Delta    import getDeltaDaysFromStrings, getIsoDateTimeNowPlus
+from pyPks.Time.Output   import getIsoDateTimeFromDateTime as getIsoDT
 from pyPks.Time.Test     import isISOdatetime
+
 
 
 logger = logging.getLogger(__name__)
@@ -70,6 +74,81 @@ logging.basicConfig(
 '''
 
 sExampleFile = '/tmp/search_results_____0_.json'
+
+
+
+def updateHitLogFile( oUserItems, sPathHere ):
+    #
+    sHitLogFile = join( sPathHere, 'ItemHitsLog.log' )
+    sHitLogBack = join( sPathHere, 'ItemHitsLog.bak' )
+    #
+    if not isFileThere( sHitLogFile ):
+        #
+        QuietDump( sItemHitLog, sHitLogFile )
+        #
+    #
+    lItemHits = getItemHitsLog( sHitLogFile )
+    #
+    iBegRows = len( lItemHits )
+    #
+    # discard rows that are too old
+    #
+    sDateTimeAgo = getIsoDateTimeNowPlus( -100 )
+    #
+    lItemHits = [ d for d in lItemHits if d['tTimeEnd' ] > sDateTimeAgo ]
+    #
+    iEndRows = len( lItemHits )
+    #
+    setItemNumbsAlready = set( ( int( d['iItemNumb'] ) for d in lItemHits ) )
+    #
+    iNew = 0
+    #
+    tTargetStars = ( 400, 350, 300, 250, 200 )
+    #
+    for iTargetStars in tTargetStars:
+        #
+        for oItemHit in oUserItems:
+            #
+            if oItemHit.iItemNumb_id in setItemNumbsAlready: continue
+            #
+            if oItemHit.iHitStars < iTargetStars: continue
+            #
+            dRow = dict(
+                iItemNumb   = str(      oItemHit.iItemNumb_id ),
+                tTimeEnd    = getIsoDT( oItemHit.iItemNumb.tTimeEnd ),
+                iHitStars   = str(      oItemHit.iHitStars ) )
+            #
+            lItemHits.append( dRow )
+            #
+            setItemNumbsAlready.add( oItemHit.iItemNumb_id )
+            #
+            iNew += 1
+            #
+            if iNew >= 5: break
+        #
+    #
+    if iNew > 0:
+        #
+        lOut = [ ' | '.join( ( d['tTimeEnd'],d['iItemNumb'],d['iHitStars'] ) )
+                    for d in lItemHits ]
+        #
+        iEndRows = len( lOut )
+        #
+        lOut.sort()
+        #
+        lOut[0:0] = [ 'tTimeEnd            | iItemNumb    | iHitStars' ]
+        #
+        sOut = '%s\n' % '\n'.join( lOut )
+        #
+        DeleteIfExists( sHitLogBack )
+        #
+        rename( sHitLogFile, sHitLogBack )
+        #
+        QuietDump( sOut, sHitLogFile )
+        #
+    #
+    return iBegRows, iEndRows
+
 
 class getImportSearchResultsTests( TestCasePlus ):
     #
