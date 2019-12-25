@@ -17,7 +17,6 @@ from config.wsgi            import application
 from ebayinfo.models        import Market
 from ebayinfo.tests         import EBAY_US_CURRENT_VERSION
 from ebayinfo.tests.base    import PutMarketsInDatabaseTestBase
-from ebayinfo.utils_test    import getMarketsIntoDatabase
 
 from models.models          import Model
 
