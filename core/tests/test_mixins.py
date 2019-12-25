@@ -9,7 +9,7 @@ from core.utils_test    import SetUpBrandsCategoriesModelsWebTest
 from ..mixins           import GetPaginationExtraInfoInContext
 from ..views            import ListViewGotModel
 
-from finders.views      import ItemsFoundIndexView
+from finders.views      import FindersIndexView
 
 from searching.utils_stars  import getFoundItemTester
 from searching.tests.base   import SetUpForHitStarsWebTests
@@ -31,7 +31,7 @@ class TestPagination( SetUpForHitStarsWebTests ):
         #
         self.request.user = self.user1
         #
-        self.view = ItemsFoundIndexView()
+        self.view = FindersIndexView()
         #
         self.view.request = self.request
 
