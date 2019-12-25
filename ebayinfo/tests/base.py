@@ -12,7 +12,7 @@ from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 
 class PutMarketsInDatabaseTestBase( TestCasePlus ):
-    '''test getMarketsIntoDatabase()'''
+    ''' set up for tests '''
     #
     def setUp(self):
         #
