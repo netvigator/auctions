@@ -6,7 +6,8 @@ from django.urls        import reverse, reverse_lazy
 
 from core.utils_test    import ( setup_view_for_tests,
                                  GetEbayCategoriesWebTestSetUp,
-                                 AssertEmptyMixin )
+                                 AssertEmptyMixin,
+                                 BaseUserWebTestCase )
 
 from core.utils         import getShrinkItemURL
 
@@ -18,11 +19,39 @@ from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
 from ..utils            import ( getIdStrZeroFilled, getSearchIdStr,
                                  getHowManySearchDigitsNeeded )
 from ..utilsearch       import getPriorityChoices, getSearchResultGenerator
-from ..utils_test       import BaseUserWebTestCaseCanAddSearches
 from ..views            import SearchCreateView
 
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Write   import QuietDump
+
+
+class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
+    ''' test getPriorityChoices() '''
+    #
+    def setUp( self ):
+        #
+        super( BaseUserWebTestCaseCanAddSearches, self ).setUp()
+        #
+        self.addSearch( "My clever search c", 'C1', self.user1 )
+        #
+        self.addSearch( "My clever search D", 'D2', self.user1 )
+        #
+        self.addSearch( "My clever search 2", 'A1', self.user1 )
+        #
+    #
+    def addSearch( self, cTitle, cPriority, oUser ):
+        #
+        oSearch     = Search(
+                        cTitle      = cTitle,
+                        cPriority   = cPriority,
+                        iUser       = oUser )
+        #
+        oSearch.save()
+
+    #
+    def getPriorityChoices( self, oUser, sThisPriority = None ):
+        #
+        return getPriorityChoices( Search, oUser, sThisPriority )
 
 
 class TestHowManyUserDigitsNeeded( BaseUserWebTestCaseCanAddSearches ):
