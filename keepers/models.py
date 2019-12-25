@@ -1,5 +1,4 @@
 from django.db          import models
-# django 2 made obsolete from django.core.urlresolvers   import reverse
 from django.urls        import reverse
 
 from core.dj_import     import CountryField, get_user_model
