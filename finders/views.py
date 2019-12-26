@@ -10,14 +10,16 @@ from .mixins        import AnyReleventHitStarColsChangedMixin
 from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
-                             GetFindersSelectionsOnPost,
                              GetUserItemsTableMixin )
+
+from core.views     import GetUserSelectionsOnPost
 
 # ### keep views thin! ###
 
 
 class FindersIndexView(
-            GetFindersSelectionsOnPost, GetPaginationExtraInfoInContext,
+            GetUserSelectionsOnPost,
+            GetPaginationExtraInfoInContext,
             ListViewGotModel ):
 
     template_name       = 'finders/index.html'
@@ -31,7 +33,7 @@ class FindersIndexView(
         # qs = super( FindersIndexView, self ).get_queryset()
         # sSelect = 'P'
         #
-        sSelect = self.kwargs.get('select', 'P' )
+        sSelect = self.kwargs.get( 'select', 'P' )
         #
         if not sSelect: sSelect = 'P'
         #
