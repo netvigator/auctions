@@ -161,7 +161,7 @@ sModels = \
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  414E               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  415                |           |     10 | f            | Altec-Lansing     |       Driver |             |
- 415C               |           |      4 | t            | Altec-Lansing     |       Driver |             |
+ 415C               |           |      4 | t            | Altec-Lansing     |       Driver |             | 415
  416A               |           |      7 | f            | Altec-Lansing     |       Driver |             |
  421                |           |      5 | f            | Altec-Lansing     |       Driver |             | 421A         |
  421A               |           |      5 | t            | Altec-Lansing     |       Driver |             |
