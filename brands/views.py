@@ -3,6 +3,7 @@ from django.urls            import reverse_lazy
 
 from core.mixins            import ( WereAnyReleventRegExColsChangedMixin,
                                      TitleSearchMixin )
+
 from core.utils             import model_to_dict
 from core.views             import (
                                 CreateViewCanCancel, DeleteViewGotModel,
@@ -66,8 +67,11 @@ class BrandDetailView( DetailViewGotModelAlsoPost ):
         context['models_list'    ] = \
             self.object.getModelsForBrand(    self.object )
         #
-        # in DetailViewGotModelAlsoPost: context['keepers_list'] = oItems
+        # in DetailViewGotModelAlsoPost:
+        #   context['keepers_list'] = oKeeperItems
+        #   context['finders_list'] = oFinderItems
         #
+
         return context
 
 
