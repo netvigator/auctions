@@ -154,7 +154,7 @@ class Brand( GetItemsForSomething, models.Model ):
                 iUser               = oUser,
                 iBrand              = oBrand,
                 tRetrieved__isnull  = True )
-            ).order_by( '-iMaxStars', '-tTimeEnd' )
+            ).order_by( '-iHitStars', '-tTimeEnd' )
         #
         return qsUserItems
 
