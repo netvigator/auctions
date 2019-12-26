@@ -151,9 +151,10 @@ class Brand( GetItemsForSomething, models.Model ):
         #
         qsUserItems = (
             UserItemFound.objects.filter(
-                iUser           = oUser,
-                iBrand          = oBrand,
-                tTimeEnd__gt    = timezone.now() ) )
+                iUser               = oUser,
+                iBrand              = oBrand,
+                tRetrieved__isnull  = True )
+            ).order_by( '-iMaxStars', '-tTimeEnd' )
         #
         return qsUserItems
 
