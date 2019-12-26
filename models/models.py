@@ -180,7 +180,7 @@ class Model( GetItemsForSomething, models.Model ):
                 iUser               = oUser,
                 iModel              = oModel,
                 tRetrieved__isnull  = True )
-            ).order_by( '-iMaxStars', '-tTimeEnd' )
+            ).order_by( '-iHitStars', '-tTimeEnd' )
         #
         return qsUserItems
 
