@@ -268,7 +268,6 @@ TEMPLATES = [
                                       'core.templatetags.core_tags',
                 'getLineBreakForReturn' :
                                       'core.templatetags.core_tags',
-                'define'            : 'core.templatetags.core_tags',
                 'model_name_plural' : 'core.templatetags.core_tags',
                 'field_name'        : 'core.templatetags.core_tags',}
         },
