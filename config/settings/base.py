@@ -299,9 +299,11 @@ STATICFILES_FINDERS = [
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+# Example: "http://media.example.com/"
 MEDIA_ROOT = str(APPS_DIR('media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+# Example: "/var/www/example.com/media/"
 MEDIA_URL = '/media/'
 
 # URL Configuration
