@@ -1903,7 +1903,7 @@ def findSearchHits(
                 #
                 oUserFinder = UserFinder(
                         iItemNumb       = oItem,
-                        iMaxStars       = iMaxStars,
+                        iHitStars       = iMaxStars,
                         iMaxModel       = iMaxModel,
                         cTitle          = oItem.cTitle,
                         cMarket         = oItem.cMarket,
