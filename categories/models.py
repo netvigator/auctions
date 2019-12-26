@@ -113,9 +113,10 @@ class Category( GetItemsForSomething, models.Model ):
         #
         qsUserItems = (
             UserItemFound.objects.filter(
-                iUser        = oUser,
-                iCategory    = oCategory,
-                tTimeEnd__gt = timezone.now() ) )
+                iUser               = oUser,
+                iCategory           = oCategory,
+                tRetrieved__isnull  = True )
+            ).order_by( '-iMaxStars', '-tTimeEnd' )
         #
         return qsUserItems
 
