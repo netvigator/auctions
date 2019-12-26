@@ -10,9 +10,9 @@ from .mixins        import AnyReleventHitStarColsChangedMixin
 from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
+                             GetUserSelectionsOnPost,
                              GetUserItemsTableMixin )
 
-from core.views     import GetUserSelectionsOnPost
 
 # ### keep views thin! ###
 
