@@ -5,7 +5,7 @@ from django.http            import HttpResponseRedirect
 
 from core                   import ( sTableTemplateRowRules,
                                      sRowTemplate6ColsValignTop )
-from core.utils             import getLink
+from core.utils             import getLink, getSaySequence
 
 from pyPks.Collect.Query    import get1stThatMeets
 from pyPks.Collect.Test     import ContainsAny
