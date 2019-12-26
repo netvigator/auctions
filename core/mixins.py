@@ -311,8 +311,7 @@ class GetItemsForSomething( object ):
         #
         # actually userfinders not finders
         #
-        qsUserItems = self.getFinderQsetForThis(
-                        oThis, oUser ).order_by( '-tTimeEnd' )
+        qsUserItems = self.getFinderQsetForThis( oThis, oUser )
         #
         iUserItems = len( qsUserItems )
         #
@@ -430,7 +429,7 @@ class GetUserSelectionsOnPost( object ):
             #
             return HttpResponseRedirect( url )
             #
-        elif 'GetOrTrash' in request.POST:
+        elif 'GetOrTrashAll' in request.POST or 'GetOrTrashThis' in request.POST:
             #
             lAllItems   = request.POST.getlist('AllItems')
             #
