@@ -180,15 +180,37 @@ def _getRowRegExpressions( oTableRow,
     #
     if oTableRow.cExcludeIf and not oTableRow.cRegExExclude:
         #
-        sFindExclude = getRegExpress(
-                            oTableRow.cExcludeIf,
-                            bAddDash        = bAddDash,
-                            iWordBoundChrs  = WORD_BOUNDARY_MAX,
-                            bEscBegEndOfStr = False )
+        # exclude any cExcludeIf lines that are a substring of cTitle
+        # longer title takes priority over substring title
+        # so the substring exclude if can block the correct hit
         #
-        oTableRow.cRegExExclude   = sFindExclude
+        lLines = oFinderCRorLF.split( oTableRow.cExcludeIf )
         #
-        bAnyUpdates = True
+        sRelevantTitle = getWhatsNotInParens( oTableRow.cTitle )
+        #
+        iTitleLen = len( sRelevantTitle )
+        #
+        def excludeThis( s ):
+            #
+            return len( s ) < iTitleLen and sRelevantTitle.startswith( s )
+            #
+        #
+        tWantLines = ( s for s in lLines if not excludeThis( s ) )
+        #
+        if tWantLines:
+            #
+            sExcludeIf = '\r'.join( tWantLines )
+            #
+            sFindExclude = getRegExpress(
+                                sExcludeIf,
+                                bAddDash        = bAddDash,
+                                iWordBoundChrs  = WORD_BOUNDARY_MAX,
+                                bEscBegEndOfStr = False )
+            #
+            oTableRow.cRegExExclude   = sFindExclude
+            #
+            bAnyUpdates = True
+            #
         #
     else:
         #
