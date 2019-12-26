@@ -108,8 +108,12 @@ AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
 
 # URL that handles the media served from MEDIA_ROOT, used for managing
 # stored files.
+# Example: "http://media.example.com/"
 # MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = '/srv/big/media/'
+
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = '/srv/big/media/'
 
 # Static Assets
 # ------------------------
