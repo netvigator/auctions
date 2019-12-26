@@ -409,7 +409,3 @@ challenge: find hits for orphan keepers
 
 2019-12-26 TestPlus has CBVTestCase for testing views, maybe better than WebTest
 to be implemented: SetUpBrandsCategoriesModelsViewTestPlus in core.utils_test
-
-2019-12-27 if you want to find model 415 separately from 415A,etc.
-and have a separate model for 415C, putting 415 in the Exclude If
-blocks finding the 415C -- code should be smarter!
