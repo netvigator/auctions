@@ -116,7 +116,7 @@ class Category( GetItemsForSomething, models.Model ):
                 iUser               = oUser,
                 iCategory           = oCategory,
                 tRetrieved__isnull  = True )
-            ).order_by( '-iMaxStars', '-tTimeEnd' )
+            ).order_by( '-iHitStars', '-tTimeEnd' )
         #
         return qsUserItems
 
