@@ -275,59 +275,35 @@ class GetUserSelectionsOnPost( object ):
         #
         # from finders.models import UserFinder # got circular import problem
         #
+        print( 'in post' )
+        #
         if "selectall" in request.POST:
             #
-            lPageItems = request.POST.getlist('AllItems')
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
             #
-            # qsChanged  = UserItemFound.objects.filter(
-            #                 iItemNumb_id__in = lPageItems,
-            #                 iUser            = self.request.user )
+            tPageItems = tuple( map( int, request.POST.getlist('AllItems') ) )
             #
-            qsChanged  = self.UserItem.objects.filter(
-                            iItemNumb_id__in = lPageItems,
-                            iUser            = self.request.user )
+            self.UserItem.objects.filter(
+                    iItemNumb_id__in = tPageItems,
+                    iUser            = self.request.user ).update(
+                        bGetPictures = True,
+                        bListExclude = False )
             #
-            for oItem in qsChanged:
-                #
-                #
-                oItem.bGetPictures = True
-                oItem.bListExclude = False
-                #
-                oItem.save()
-                #
+            self.OtherTable.objects.filter(
+                    iItemNumb_id__in = tPageItems,
+                    iUser            = self.request.user ).update(
+                        bGetPictures = True,
+                        bListExclude = False )
             #
             return HttpResponseRedirect( url )
             #
         elif 'GetOrTrash' in request.POST:
             #
-            # handle items listed more than once on a page
-            # user may not mark each one.
-            # QUICK (and dirty): ignore items listed more than once on a page
-            #
             lAllItems   = request.POST.getlist('AllItems')
             #
             setAllItems = frozenset( lAllItems )
-            #
-            if len( lAllItems ) == len( setAllItems ):
-                #
-                setMultiple = frozenset( [] )
-                #
-            else:
-                #
-                setGotItems = set( [] )
-                setMultiple = set( [] )
-                #
-                for sI in lAllItems:
-                    #
-                    if sI in setGotItems:
-                        #
-                        setMultiple.add( sI )
-                        #
-                    else:
-                        #
-                        setGotItems.add( sI )
-                        #
-                #
             #
             setExclude = frozenset( request.POST.getlist('bListExclude') )
             # check box end user can change
@@ -349,33 +325,85 @@ class GetUserSelectionsOnPost( object ):
             setChanged = setUnExcl.union(
                         setUnPics, setNewExcl, setNewPics )
             #
-            # qsChanged  = UserItemFound.objects.filter(
-            #                 iItemNumb_id__in = setChanged,
-            #                 iUser            = self.request.user )
+            lPicsGet    = []
+            lPicsCancel = []
+            lExcludeYes = []
+            lExcludeNo  = []
             #
-            qsChanged  = self.UserItem.objects.filter(
-                            iItemNumb_id__in = setChanged,
-                            iUser            = self.request.user )
-            #
-            setCommon.difference_update( setMultiple )
-            #
-            for oItem in qsChanged:
+            for sItemNumb in setChanged:
                 #
-                if str( oItem.iItemNumb_id ) in setCommon: continue
-                #
-                sItemNumb = str( oItem.iItemNumb_id )
+                if sItemNumb in setCommon: continue
                 #
                 if sItemNumb in setGetPics and sItemNumb not in setNewExcl:
-                    oItem.bGetPictures = True
+                    lPicsGet.append( sItemNumb )
                 elif sItemNumb in setUnPics:
-                    oItem.bGetPictures = False
+                    lPicsCancel.append( sItemNumb )
                 #
                 if sItemNumb in setNewExcl:
-                    oItem.bListExclude = True
+                    lExcludeYes.append( sItemNumb )
                 elif sItemNumb in setUnExcl:
-                    oItem.bListExclude = False
+                    lExcludeNo.append( sItemNumb )
                 #
-                oItem.save()
+            #
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
+            #
+            if lPicsGet:
+                #
+                tPicsGet    = tuple( map( int, lPicsGet   ) )
+                #
+                self.UserItem.objects.filter(
+                        iItemNumb_id__in = tPicsGet,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = True )
+                #
+                self.OtherTable.objects.filter(
+                        iItemNumb_id__in = tPicsGet,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = True )
+                #
+            if lPicsCancel:
+                #
+                tPicsCancel = tuple( map( int, lPicsCancel) )
+                #
+                self.UserItem.objects.filter(
+                        iItemNumb_id__in = tPicsCancel,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = False )
+                #
+                self.OtherTable.objects.filter(
+                        iItemNumb_id__in = tPicsCancel,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = False )
+                #
+            if lExcludeYes:
+                #
+                tExcludeYes = tuple( map( int, lExcludeYes) )
+                #
+                self.UserItem.objects.filter(
+                        iItemNumb_id__in = tExcludeYes,
+                        iUser            = self.request.user ).update(
+                            bListExclude = True )
+                #
+                self.OtherTable.objects.filter(
+                        iItemNumb_id__in = tExcludeYes,
+                        iUser            = self.request.user ).update(
+                            bListExclude = True )
+                #
+            if lExcludeNo:
+                #
+                tExcludeNo  = tuple( map( int, lExcludeNo ) )
+                #
+                self.UserItem.objects.filter(
+                        iItemNumb_id__in = tExcludeNo,
+                        iUser            = self.request.user ).update(
+                            bListExclude = False )
+                #
+                self.OtherTable.objects.filter(
+                        iItemNumb_id__in = tExcludeNo,
+                        iUser            = self.request.user ).update(
+                            bListExclude = False )
                 #
             #
             if setCommon:
@@ -395,13 +423,15 @@ class GetUserSelectionsOnPost( object ):
 
 class GetFindersSelectionsOnPost( GetUserSelectionsOnPost ):
     #
+
     def post( self, request, *args, **kwargs ):
         #
-        # this import must be burried here to avoid a circular import problem
+        # these imports must be burried here to avoid a circular import glitch
         #
-        from finders.models import UserFinder
+        from finders.models import UserFinder, UserItemFound
         #
-        self.UserItem = UserFinder
+        self.UserItem   = UserFinder
+        self.OtherTable = UserItemFound
         #
         return super(
                 GetFindersSelectionsOnPost, self
@@ -412,11 +442,12 @@ class GetUserItemsSelectionsOnPost( GetUserSelectionsOnPost ):
     #
     def post( self, request, *args, **kwargs ):
         #
-        # this import must be burried here to avoid a circular import problem
+        # these imports must be burried here to avoid a circular import glitch
         #
-        from finders.models import UserItemFound
+        from finders.models import UserFinder, UserItemFound
         #
-        self.UserItem = UserItemFound
+        self.UserItem   = UserItemFound
+        self.OtherTable = UserFinder
         #
         return super(
                 GetFindersSelectionsOnPost, self
