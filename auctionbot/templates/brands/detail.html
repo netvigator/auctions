@@ -119,9 +119,14 @@
 
     <hr>
 
-    <!-- Finders List -->
-    <div class="basic">
-        {% include "../finders/index_under_parent.html" %}
-    </div>
+    <form action="" method="post">
+    {% csrf_token %}
+
+      <!-- Finders List -->
+      <div class="basic">
+          {% include "../finders/index_under_parent.html" %}
+      </div>
+
+    </form>
 
 {% endblock %}
