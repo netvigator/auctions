@@ -284,8 +284,17 @@ update userfinders uf
   ( select 1 from useritemsfound uif
     where
       uif."iItemNumb_id" = uf."iItemNumb_id" and
-      uif."iUser_id" = uf."iUser_id" and
+      uif."iUser_id"    = uf."iUser_id" and
       uif."bGetPictures" = true ) ;
+
+temporary 2019-12-26
+update useritemsfound uif
+  set "bGetPictures" = true where exists
+  ( select 1 from userfinders uf
+    where
+      uf."iItemNumb_id" = uif."iItemNumb_id" and
+      uf."iUser_id"     = uif."iUser_id" and
+      uf."bGetPictures" = true ) ;
 
 update userfinders uf
   set "bListExclude" = false ;
@@ -297,6 +306,15 @@ update userfinders uf
       uif."iItemNumb_id" = uf."iItemNumb_id" and
       uif."iUser_id" = uf."iUser_id" and
       uif."bListExclude" = true ) ;
+
+temporary 2019-12-26:
+update useritemsfound uif
+  set "bListExclude" = true where exists
+  ( select 1 from userfinders uf
+    where
+      uf."iItemNumb_id" = uif."iItemNumb_id" and
+      uf."iUser_id"     = uif."iUser_id" and
+      uf."bListExclude" = true ) ;
 
 update userfinders uf
   set "cTitle"       = if."cTitle",
