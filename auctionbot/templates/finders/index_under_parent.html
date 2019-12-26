@@ -8,7 +8,42 @@
       {% include "./index_buttons_less.html" %}
 
       <div class="basic">
-        {% include "./finders_list_table.html" %}
+      <table class="bottomBorder">
+        <tr>
+          <th ALIGN=LEFT>get<p>pics</th>
+          <th><i class="fas fa-trash-alt"></i></th>
+          <th ALIGN=LEFT>ebay item</th>
+          <th ALIGN=LEFT>title</th>
+          <th ALIGN=LEFT>market</th>
+          <th ALIGN=LEFT>type</th>
+          <th ALIGN=LEFT>ending</th>
+          <th><i class="far fa-star"></i></th>
+        </tr>
+        {% for item in finders_list %}
+            <tr>
+            <TD><input class="checkbox" name="bGetPictures" type="checkbox"
+                    value={{ item.iItemNumb_id }} {% if item.bGetPictures %}checked{% endif %}></td>
+            <TD><input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}></td>
+            <td><a href="https://www.ebay.com/itm/{{item.iItemNumb.iItemNumb}}/">
+                            {{ item.iItemNumb.iItemNumb }}</a></td>
+            <td><a href="{{ item.get_absolute_url }}">{{ item.iItemNumb.cTitle }}</a></td>
+            <td>{{ item.iItemNumb.cMarket }}</td>
+            <td>{{ item.iItemNumb.cListingType }}</td>
+            <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
+            <td>{{ item.iHitStars }}</td>
+            <TD><input name="PicsSet" type="checkbox" style="display:none;"
+                class="HIDDEN" value={{ item.iItemNumb_id }}
+                {% if item.bGetPictures %}checked{% endif %}></td>
+            <TD><input name="ExclSet" type="checkbox" style="display:none;"
+                class="HIDDEN" value={{ item.iItemNumb_id }}
+                {% if item.bListExclude %}checked{% endif %}></td>
+            <TD><input name="AllItems" type="checkbox" style="display:none;"
+                class="HIDDEN" value={{ item.iItemNumb_id }}
+                {% if True %}checked{% endif %}></td>
+            </tr>
+        {% endfor %}
+      </table>
+
       </div>
 
       <p/>
