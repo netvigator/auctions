@@ -1929,7 +1929,7 @@ class KeyWordFindSearchHitsWebTests(
         oUserFinder = UserFinder.objects.get(
                 iItemNumb = iThisOne, iUser = self.user1 )
         #
-        self.assertGreater(  oUserFinder.iMaxStars,   2 )
+        self.assertGreater(  oUserFinder.iHitStars,   2 )
         self.assertNotEmpty( oUserFinder.cTitle         )
         self.assertNotEmpty( oUserFinder.cMarket        )
         self.assertNotEmpty( oUserFinder.cListingType   )
