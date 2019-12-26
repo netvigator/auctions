@@ -298,7 +298,7 @@ class GetUserSelectionsOnPost( object ):
             #
             return HttpResponseRedirect( url )
             #
-        elif 'submit' in request.POST:
+        elif 'GetOrTrash' in request.POST:
             #
             # handle items listed more than once on a page
             # user may not mark each one.
