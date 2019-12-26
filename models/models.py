@@ -177,9 +177,10 @@ class Model( GetItemsForSomething, models.Model ):
         #
         qsUserItems = (
             UserItemFound.objects.filter(
-                iUser           = oUser,
-                iModel          = oModel,
-                tTimeEnd__gt    = timezone.now() ) )
+                iUser               = oUser,
+                iModel              = oModel,
+                tRetrieved__isnull  = True )
+            ).order_by( '-iMaxStars', '-tTimeEnd' )
         #
         return qsUserItems
 
