@@ -213,8 +213,8 @@ class UserFinder(models.Model):
     #
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE,
                         verbose_name = 'eBay Item Number' )
-    iMaxStars       = IntegerRangeField(
-                        'hit stars', null = True,
+    iHitStars       = IntegerRangeField(
+                        'hit stars (max for item)', null = True,
                         min_value = 0, max_value = 1000, default = 0 )
     cTitle          = models.CharField( 'item title',
                                          max_length = 80, null=True )
@@ -261,14 +261,14 @@ insert into userfinders ( "iItemNumb_id", "iUser_id" )
         if."tRetrieved" is null ) ;
 
 update userfinders uf
-  set "iMaxStars" =
+  set "iHitStars" =
   ( select max( uif."iHitStars" )
     from useritemsfound uif
     where
         uif."iItemNumb_id" = uf."iItemNumb_id" and
         uif."iUser_id" = uf."iUser_id" ) ;
 
-delete from userfinders where "iMaxStars" = 0 ;
+delete from userfinders where "iHitStars" = 0 ;
 
 update userfinders uf
   set "iMaxModel" =
@@ -277,7 +277,7 @@ update userfinders uf
     where
         uif."iItemNumb_id" = uf."iItemNumb_id" and
         uif."iUser_id" = uf."iUser_id" and
-        uif."iHitStars" = uf."iMaxStars" ) ;
+        uif."iHitStars" = uf."iHitStars" ) ;
 
 update userfinders uf
   set "bGetPictures" = true where exists
