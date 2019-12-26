@@ -41,25 +41,25 @@ class FindersIndexView(
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
                         bListExclude        = False,
-                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
+                    ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         elif sSelect == 'P': # postive (non-zero hit stars)
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
-                        iMaxStars__isnull   = False,
+                        iHitStars__isnull   = False,
                         bListExclude        = False,
-                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
+                    ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         elif sSelect == 'D': # "deleted" (excluded from list)
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
-                        iMaxStars__isnull   = False,
+                        iHitStars__isnull   = False,
                         bListExclude        = True
-                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
-        elif sSelect == 'Z': # iMaxStars = 0
+                    ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
+        elif sSelect == 'Z': # iHitStars = 0
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
-                        iMaxStars           = 0,
+                        iHitStars           = 0,
                         bListExclude        = False
-                    ).order_by( '-iMaxStars', 'iMaxModel', 'tTimeEnd' )
+                    ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         #
         return qsGot
 
