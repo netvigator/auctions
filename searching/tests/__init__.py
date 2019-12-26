@@ -161,7 +161,7 @@ sModels = \
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  414E               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  415                |           |     10 | f            | Altec-Lansing     |       Driver |             |
- 415C               |           |      4 | f            | Altec-Lansing     |       Driver |             |
+ 415C               |           |      4 | t            | Altec-Lansing     |       Driver |             |
  416A               |           |      7 | f            | Altec-Lansing     |       Driver |             |
  421                |           |      5 | f            | Altec-Lansing     |       Driver |             | 421A         |
  421A               |           |      5 | t            | Altec-Lansing     |       Driver |             |
@@ -819,7 +819,7 @@ sResponseItems2Test = \
              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["123987878353"],
-             "title":["Single Altec Lansing 415C 415-C Biflex 15 inch Speaker for Parts or Repair "],
+             "title":["Single Altec Lansing 415D 415-D Biflex 15 inch Speaker for Parts or Repair "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
              "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mT7psnhxKh3hv4soR77T9vQ\/140.jpg"],
