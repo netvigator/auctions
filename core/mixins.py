@@ -388,3 +388,199 @@ class GetUserItemsTableMixin( object ):
             #
         #
         return sThisItemHitsTable
+
+
+
+class GetUserSelectionsOnPost( object ):
+    #
+    # this started in core.mixins, but
+    # importing deleteKeeperUserItem there caused a circular import problem
+    #
+    def post( self, request, *args, **kwargs ):
+        #
+        url = request.build_absolute_uri()
+        #
+        # imports must be here, if above causes circular import block
+        #
+        tTrash = tuple( request.POST.getlist('bTrashThis') )
+        #
+        print( tTrash )
+        #
+        from finders.models import UserFinder, UserItemFound
+        #
+        if "selectall" in request.POST:
+            #
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
+            #
+            tPageItems = tuple( map( int, request.POST.getlist('AllItems') ) )
+            #
+            UserFinder.objects.filter(
+                    iItemNumb_id__in = tPageItems,
+                    iUser            = self.request.user ).update(
+                        bGetPictures = True,
+                        bListExclude = False )
+            #
+            UserItemFound.objects.filter(
+                    iItemNumb_id__in = tPageItems,
+                    iUser            = self.request.user ).update(
+                        bGetPictures = True,
+                        bListExclude = False )
+            #
+            return HttpResponseRedirect( url )
+            #
+        elif 'GetOrTrash' in request.POST:
+            #
+            lAllItems   = request.POST.getlist('AllItems')
+            #
+            setAllItems = frozenset( lAllItems )
+            #
+            setExclude = frozenset( request.POST.getlist('bListExclude') )
+            # check box end user can change
+            setGetPics =       set( request.POST.getlist('bGetPictures') )
+            # check box end user can change
+            setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
+            # hidden set if item has bGetPictures as True when page composed
+            setExclSet = frozenset( request.POST.getlist('ExclSet'     ) )
+            # hidden set if item has bListExclude as True when page composed
+            #
+            setCommon  = setGetPics.intersection( setExclude )
+            #
+            setUnExcl  = setExclSet.difference( setExclude )
+            setUnPics  = setPicsSet.difference( setGetPics )
+            #
+            setNewExcl = setExclude.difference( setExclSet )
+            setNewPics = setGetPics.difference( setPicsSet )
+            #
+            setChanged = setUnExcl.union(
+                        setUnPics, setNewExcl, setNewPics )
+            #
+            lPicsGet    = []
+            lPicsCancel = []
+            lExcludeYes = []
+            lExcludeNo  = []
+            #
+            for sItemNumb in setChanged:
+                #
+                if sItemNumb in setCommon: continue
+                #
+                if sItemNumb in setGetPics and sItemNumb not in setNewExcl:
+                    lPicsGet.append( sItemNumb )
+                elif sItemNumb in setUnPics:
+                    lPicsCancel.append( sItemNumb )
+                #
+                if sItemNumb in setNewExcl:
+                    lExcludeYes.append( sItemNumb )
+                elif sItemNumb in setUnExcl:
+                    lExcludeNo.append( sItemNumb )
+                #
+            #
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
+            #
+            if lPicsGet:
+                #
+                tPicsGet    = tuple( map( int, lPicsGet   ) )
+                #
+                UserFinder.objects.filter(
+                        iItemNumb_id__in = tPicsGet,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = True )
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb_id__in = tPicsGet,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = True )
+                #
+            if lPicsCancel:
+                #
+                tPicsCancel = tuple( map( int, lPicsCancel) )
+                #
+                UserFinder.objects.filter(
+                        iItemNumb_id__in = tPicsCancel,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = False )
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb_id__in = tPicsCancel,
+                        iUser            = self.request.user ).update(
+                            bGetPictures = False )
+                #
+            if lExcludeYes:
+                #
+                tExcludeYes = tuple( map( int, lExcludeYes) )
+                #
+                UserFinder.objects.filter(
+                        iItemNumb_id__in = tExcludeYes,
+                        iUser            = self.request.user ).update(
+                            bListExclude = True )
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb_id__in = tExcludeYes,
+                        iUser            = self.request.user ).update(
+                            bListExclude = True )
+                #
+            if lExcludeNo:
+                #
+                tExcludeNo  = tuple( map( int, lExcludeNo ) )
+                #
+                UserFinder.objects.filter(
+                        iItemNumb_id__in = tExcludeNo,
+                        iUser            = self.request.user ).update(
+                            bListExclude = False )
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb_id__in = tExcludeNo,
+                        iUser            = self.request.user ).update(
+                            bListExclude = False )
+                #
+            #
+            if setCommon:
+                #
+                sMessage = (
+                        'Error! On a row, it is invalid set both '
+                        'get pics and delete! Careful!' )
+                #
+                messages.error( request, sMessage )
+                #
+                for sItemNumb in setCommon:
+                    oItem = ItemFound.objects.get( iItemNumb = int( sItemNumb ) )
+                    messages.error( request, '%s -- %s' % ( sItemNumb, oItem.cTitle ) )
+            #
+        if 'trash' in request.POST:
+            #
+            # circular import problem if this import is at top
+            #
+            from keepers.utils import deleteKeeperUserItem
+            #
+            tTrash = tuple( request.POST.getlist('bTrashThis') )
+            #
+            for sItemNumb in tTrash:
+                #
+                deleteKeeperUserItem( sItemNumb, self.request.user )
+                # print( 'would delete keeper %s' % sItemNumb )
+                #
+            #
+            if tTrash:
+                #
+                if len( tTrash ) == 1:
+                    #
+                    sPart = ' %s' % tTrash[0]
+                    #
+                else:
+                    #
+                    sPart = 's %s' % getSaySequence( tTrash )
+                    #
+                #
+                sMessage = 'Keeper item%s successfully trashed!!!!' % sPart
+                #
+                success_message = sMessage
+                #
+                # print( sMessage )
+                # message display not working 2019-10-27
+            #
+        #
+        return HttpResponseRedirect( url )
+
