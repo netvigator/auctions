@@ -122,6 +122,7 @@ sModels = \
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             |              | t
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
