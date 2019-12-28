@@ -107,26 +107,31 @@
     </TR>
     </table>
     <!-- Action buttons -->
-    <p/>
+    <br>
     <div class="basic">
         {% include "./actions.html" %}
     </div>
-    <p/>
+    <br>
     <hr>
     <!-- End Action buttons -->
 
-    <!-- Keepers List -->
-    <div class="basic">
-        {% include "../keepers/index_under_parent.html" %}
-    </div>
+    <form action="" method="post">
+    {% csrf_token %}
 
-    <hr>
-    <!-- Finders List -->
-    <div class="basic">
-        {% include "../finders/index_under_parent.html" %}
-    </div>
+      <!-- Keepers List -->
+      <div class="basic">
+          {% include "../keepers/index_under_parent.html" %}
+      </div>
 
-    <p/>
+      <hr>
+      <!-- Finders List -->
+      <div class="basic">
+          {% include "../finders/index_under_parent.html" %}
+      </div>
+
+    </form>
+
+    <br>
     <hr>
 
 </div>
