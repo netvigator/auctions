@@ -1,7 +1,5 @@
 <div style="margin-left:20px;margin-top:20px">
   {% if keepers_list %}
-      <form action="" method="post">
-      {% csrf_token %}
       <h4>{{ sHowManyKeepers }} {{ object.cTitle }} Keepers</h4>
       <div class="basic">
           {% include "./index_under_detail_trash_button.html" %}
@@ -36,8 +34,6 @@
       <div class="basic">
           {% include "./index_under_detail_trash_button.html" %}
       </div>
-
-      </form>
 
   {% else %}
       No Keepers for {{ object.cTitle }} yet!

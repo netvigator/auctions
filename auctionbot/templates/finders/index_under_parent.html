@@ -2,8 +2,6 @@
   {% if finders_list %}
 
       <h4>{{ sHowManyFinders }} {{ object.cTitle }} Finders</h4>
-      <form action="" method="post">
-      {% csrf_token %}
 
       {% include "./index_buttons_less.html" %}
 
@@ -49,8 +47,6 @@
       <p/>
 
       {% include "./index_buttons_less.html" %}
-
-      </form>
 
   {% else %}
       No Finders for {{ object.cTitle }} at the moment!
