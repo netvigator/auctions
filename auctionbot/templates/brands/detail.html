@@ -112,15 +112,15 @@
 
     <hr>
 
-    <!-- Keepers List -->
-    <div class="basic">
-        {% include "../keepers/index_under_parent.html" %}
-    </div>
-
-    <hr>
-
     <form action="" method="post">
     {% csrf_token %}
+
+      <!-- Keepers List -->
+      <div class="basic">
+          {% include "../keepers/index_under_parent.html" %}
+      </div>
+
+      <hr>
 
       <!-- Finders List -->
       <div class="basic">
