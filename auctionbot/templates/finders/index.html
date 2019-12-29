@@ -15,14 +15,14 @@
         <div class="basic">
         <table class="bottomBorder">
           <tr>
-            <th ALIGN=LEFT>get<br>pics</th>
+            <th align="left">get<br>pics</th>
             <th><i class="fas fa-trash-alt"></i></th>
-            <th ALIGN=LEFT>ebay item</th>
-            <th ALIGN=LEFT>title</th>
-            <th ALIGN=LEFT>market</th>
-            <th ALIGN=LEFT>type</th>
-            <th ALIGN=LEFT>ending</th>
-            <th><i class="far fa-star"></i></th>
+            <th align="left">ebay item</th>
+            <th align="left">title</th>
+            <th align="left">market</th>
+            <th align="left">type</th>
+            <th align="left">ending</th>
+            <th align="right"><i class="far fa-star"></i></th>
           </tr>
           {% for item in finders_list %}
               <tr>
@@ -35,7 +35,7 @@
               <td>{{ item.cMarket }}</td>
               <td>{{ item.cListingType }}</td>
               <td>{{ item.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
-              <td>{{ item.iHitStars }}</td>
+              <td align="right">{{ item.iHitStars }}</td>
               <TD><input name="PicsSet" type="checkbox" style="display:none;"
                   class="HIDDEN" value={{ item.iItemNumb_id }}
                   {% if item.bGetPictures %}checked{% endif %}></td>
