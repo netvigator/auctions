@@ -24,7 +24,7 @@
         <th ALIGN=LEFT>Model Name/Number</th>
         <th ALIGN=LEFT>Brand</th>
         <th ALIGN=LEFT>Category</th>
-        <th ALIGN=LEFT>Stars</th>
+        <th align="right"><i class="far fa-star"></i></th>
         <th ALIGN=LEFT>Comment</th>
         </tr>
         {% for model in object_list %}
@@ -32,7 +32,7 @@
             <td NOWRAP><a href="{{ model.get_absolute_url }}">{{ model.cTitle }}</a></td>
             <td NOWRAP><a href="{{ model.iBrand.get_absolute_url }}/">{{ model.iBrand }}</a></td>
             <td NOWRAP><a href="{{ model.iCategory.get_absolute_url }}/">{{ model.iCategory }}</td>
-            <td>{{ model.iStars}}</td>
+            <td align="right">{{ model.iStars}}</td>
             <td>{{ model.cComment|getDashForReturn|truncatechars:45}}</td>
             </tr>
         {% endfor %}
