@@ -95,14 +95,14 @@
         <table>
         <tr>
             <td>Name/#</td>
-            <td align=right>Stars</td>
+            <td align="right"><i class="far fa-star"></i></td>
             <td>Category</td>
         </tr>
         {% for model, stars, category in models_list%}
             <tr>
                 <td><a href="{{ model.get_absolute_url }}">
                     {{ model }}</a></td>
-                <td align=right>{{stars}}</td>
+                <td align="right">{{stars}}</td>
                 <td>{{category}}</td>
             </tr>
         {% endfor %}
