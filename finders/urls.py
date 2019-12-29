@@ -7,13 +7,17 @@ app_name = "finders"
 
 urlpatterns = [
     # maybe not used any more, can delete?
-    url( # this one needs to be above the index url !!!!
-        # hit view is one user item found
-        # there could be other brands or models for the item
-        # (other hits should be listed)
+    # hit view is one user item found
+    # there could be other brands or models for the item
+    # (other hits should be listed)
+    url( # specific ones need to be above the index url !!!!
         regex   = r'^hit/(?P<pk>[0-9]+)/$',
         view    = views.ItemFoundHitView.as_view(),
         name    = 'hit' ),
+    url(
+        regex   = r'^add/$',
+        view    = views.ItemFoundCreateView.as_view(),
+        name    = 'add'  ),
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
         view    = views.ItemFoundDetailView.as_view(),
