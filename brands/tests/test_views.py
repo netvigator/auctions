@@ -217,6 +217,9 @@ class BrandViewsHitButtons( BrandModelWebTestBase ):
         # import pdb; pdb.set_trace()
         self.assertEqual( response.status_code, 200 )
         #
+        #oEditedBrand = Brand.objects.get( id = oBrand.id )
+        #
+        #print( oEditedBrand )
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
