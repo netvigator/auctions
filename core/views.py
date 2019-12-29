@@ -134,16 +134,16 @@ class DetailViewGotModelAlsoPost(
         #
         t = self.object.getKeeperContextForThis( self.object, oUser )
         #
-        sHowManyKeepers, oKeeperItems   = t
+        sHowManyKeepers, qsKeeperItems   = t
         #
-        context['keepers_list']         = oKeeperItems
+        context['keepers_list']         = qsKeeperItems
         context['sHowManyKeepers']      = sHowManyKeepers
         #
         t = self.object.getFinderContextForThis( self.object, oUser )
         #
-        sHowManyFinders, oFinderItems   = t
+        sHowManyFinders, qsFinderItems   = t
         #
-        context['finders_list']         = oFinderItems
+        context['finders_list']         = qsFinderItems
         context['sHowManyFinders']      = sHowManyFinders
         #
         return context
