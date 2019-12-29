@@ -49,6 +49,35 @@ class TestURLs( TestCasePlus ):
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
+    def test_hit_resolve(self):
+        """/finders/<pk>/edit/ should resolve to finders:edit."""
+        self.assertEqual(
+            resolve('/finders/hit/1/').view_name,
+            'finders:hit' )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+    def test_hit_reverse(self):
+        """finders:edit should reverse to /finders/edit/."""
+        self.assertEqual(reverse('finders:hit', kwargs={ 'pk': 1 }),
+                         '/finders/hit/1/')
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+    def test_add_resolve(self):
+        """/finders/<pk>/edit/ should resolve to finders:edit."""
+        self.assertEqual(
+            resolve('/finders/add/').view_name,
+            'finders:add' )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+    def test_add_reverse(self):
+        """finders:edit should reverse to /finders/edit/."""
+        self.assertEqual(reverse('finders:add' ), '/finders/add/')
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
     #def test_delete_reverse(self):
         #"""finders:delete should reverse to /finders/<pk>/delete/."""
         #self.assertEqual(reverse('finders:delete', kwargs={ 'pk': 1 }),
