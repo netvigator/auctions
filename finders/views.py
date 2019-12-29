@@ -1,5 +1,5 @@
 from core.views     import ( DetailViewGotModel,  ListViewGotModel,
-                             UpdateViewCanCancel )
+                             UpdateViewCanCancel, CreateViewCanCancel )
 
 from django.http    import HttpResponseRedirect
 
@@ -10,8 +10,7 @@ from .mixins        import AnyReleventHitStarColsChangedMixin
 from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
-                             GetUserSelectionsOnPost,
-                             GetUserItemsTableMixin )
+                             GetUserSelectionsOnPost )
 
 
 # ### keep views thin! ###
@@ -65,7 +64,7 @@ class FindersIndexView(
 
 
 
-class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
+class ItemFoundDetailView( DetailViewGotModel ):
 
     model           = UserFinder
     parent          = ItemFound
@@ -95,15 +94,15 @@ class ItemFoundDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
                 iUser               = self.request.user
                 ).order_by( '-iHitStars' )
         #
-        sThisItemAllHits = self.getUserItemsTable( qsThisItemAllHits )
+        # sThisItemAllHits = self.getUserItemsTable( qsThisItemAllHits )
         #
-        context['AllHits']          = sThisItemAllHits
-        context['qsAllHits']        = qsThisItemAllHits
+        # context['AllHits']      = sThisItemAllHits
+        context['HitsForThis']  = qsThisItemAllHits
         #
         return context
 
 
-class ItemFoundHitView( GetUserItemsTableMixin, DetailViewGotModel ):
+class ItemFoundHitView( DetailViewGotModel ):
 
     model           = UserItemFound
     parent          = ItemFound
@@ -135,9 +134,10 @@ class ItemFoundHitView( GetUserItemsTableMixin, DetailViewGotModel ):
         qsThisItemOtherHits = qsThisItemAllHits.difference(
                 UserItemFound.objects.filter( id = context[ 'object' ].id ) )
         #
-        sThisItemOtherHits = self.getUserItemsTable( qsThisItemOtherHits )
+        # sThisItemOtherHits = self.getUserItemsTable( qsThisItemOtherHits )
         #
-        context['OtherHits'] = sThisItemOtherHits
+        # context['OtherHits']    = sThisItemOtherHits
+        context['HitsForThis']  = qsThisItemOtherHits
         #
         return context
 
@@ -156,4 +156,12 @@ class ItemFoundUpdateView(
         'iBrand',
         'iCategory' )
 
+
+class ItemFoundCreateView( CreateViewCanCancel ):
+
+    model           = UserItemFound
+    parent          = ItemFound
+    template_name   = 'finders/add.html'
+    success_message = 'Item Found record successfully saved!!!!'
+    form_class      = UserItemFoundForm
 
