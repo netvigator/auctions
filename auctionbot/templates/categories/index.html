@@ -23,7 +23,7 @@
         <table class="bottomBorder">
         <tr>
         <th ALIGN=LEFT>Category Name</th>
-        <th ALIGN=LEFT>Stars</th>
+        <th align="right"><i class="far fa-star"></i></th>
         <th ALIGN=LEFT>Key Words</th>
         <th ALIGN=LEFT>Family</th>
         </tr>
@@ -32,7 +32,7 @@
             <td NOWRAP><a href="{{ category.get_absolute_url }}">
                 <h4 class="list-group-item-heading">{{ category.cTitle }}</h4></a>
             </td>
-            <td align=right>{{ category.iStars }}</td>
+            <td align="right">{{ category.iStars }}</td>
             <td>{{ category.cKeyWords|default_if_none:""}}</td>
             <td>{{ category.iFamily|default_if_none:""}}</td>
             </tr>
