@@ -288,7 +288,7 @@ class GetItemsForSomething( object ):
             #
             sHowMany = 'Recent'
             #
-            oItems = Keeper.objects.filter(
+            qsItems = Keeper.objects.filter(
                 iItemNumb__in = lUserItems ).order_by(
                     '-tTimeEnd' )[ : 20 ]
             #
@@ -296,14 +296,14 @@ class GetItemsForSomething( object ):
             #
             sHowMany = 'All'
             #
-            oItems = Keeper.objects.filter(
+            qsItems = Keeper.objects.filter(
                 iItemNumb__in = lUserItems ).order_by(
                     '-tTimeEnd' )
             #
         #
-        # print( 'len( oItems ):', len( oItems ) )
+        # print( 'len( qsItems ):', len( qsItems ) )
         #
-        return sHowMany, oItems
+        return sHowMany, qsItems
 
 
 
@@ -319,16 +319,16 @@ class GetItemsForSomething( object ):
             #
             sHowMany = 'Recent'
             #
-            oItems = qsUserItems[ : 20 ]
+            qsItems = qsUserItems[ : 20 ]
             #
         else:
             #
             sHowMany = 'All'
             #
-            oItems = qsUserItems
+            qsItems = qsUserItems
             #
         #
-        return sHowMany, oItems
+        return sHowMany, qsItems
 
 
 
@@ -346,7 +346,8 @@ def _sayStars( o, sName ):
 _sTrashCheckBox = ( '<input class="checkbox" name="bListExclude" '
                     'type="checkbox" value={{ item.iItemNumb_id }}' )
 
-
+"""
+now using a template instead
 class GetUserItemsTableMixin( object ):
     '''get table of user items, DRY'''
 
@@ -387,7 +388,7 @@ class GetUserItemsTableMixin( object ):
             #
         #
         return sThisItemHitsTable
-
+"""
 
 
 class GetUserSelectionsOnPost( object ):
