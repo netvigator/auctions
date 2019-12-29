@@ -10,11 +10,11 @@ tTimeEnd            | iItemNumb    | iHitStars
 2018-03-10 11:46:09 | 372238175241 | 270
 '''
 
-#### categories for testing are in searching/tests/test_utils.py ###
+#### categories for testing are in searching/tests/base.py ###
 
 #### if you add a vacuum tube brand, ###
 ####  you need a BrandCategory row   ###
-####    code is in test_utils.py     ###
+####    code is in base.py     ###
 
 sBrands = \
 '''
@@ -103,7 +103,7 @@ sBrands = \
 
 #### if you add a vacuum tube brand, ###
 ####  you need a BrandCategory row   ###
-####    code is in test_utils.py     ###
+####    code is in base.py     ###
 
 #### note column delimiter | must have a space on one side or the other
 sModels = \
