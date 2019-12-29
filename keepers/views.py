@@ -1,8 +1,7 @@
 from django.shortcuts   import render
 from django.views       import generic
 
-from core.mixins        import ( GetPaginationExtraInfoInContext,
-                                 GetUserItemsTableMixin )
+from core.mixins        import GetPaginationExtraInfoInContext
 
 from core.views         import ( DeleteViewGotModel,
                                  DetailViewGotModel,  ListViewGotModel )
@@ -12,20 +11,11 @@ from .models            import Keeper, UserKeeper
 
 
 
-class KeeperDetailView( GetUserItemsTableMixin, DetailViewGotModel ):
+class KeeperDetailView( DetailViewGotModel ):
 
     model   = Keeper
     template_name = 'keepers/detail.html'
 
-    def get_context_data(self, **kwargs):
-        #
-        context = super( KeeperDetailView, self).get_context_data(**kwargs )
-        #
-        #qs = self.object.getKeepersForThis( self.object, self.request )
-        #
-        #context['UserItemsTable'] = self.getUserItemsTable( qs )
-        #
-        return context
 
 
 class KeeperIndexView( GetPaginationExtraInfoInContext, ListViewGotModel ):
