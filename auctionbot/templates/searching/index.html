@@ -7,7 +7,7 @@
 
     <form action="{% url "searching:add" %}">
         <input class='btn btn-primary btn-blue' type="submit" value=" add a new search " />
-        <p/>
+        <br>
     </form>
 
     {% if search_list %}
@@ -32,7 +32,7 @@
         {% endfor %}
         </table>
     {% else %}
-        <p/>
+        <br>
         <p>No searches are available.</p>
     {% endif %}
 
