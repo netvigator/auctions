@@ -409,3 +409,6 @@ challenge: find hits for orphan keepers
 
 2019-12-26 TestPlus has CBVTestCase for testing views, maybe better than WebTest
 to be implemented: SetUpBrandsCategoriesModelsViewTestPlus in core.utils_test
+
+
+2019-12-29 adding a search, priority pull down d/n omit already selected priorities
