@@ -7,3 +7,19 @@
   text-align: left;
   margin-left: 1em;
 }
+td
+{
+    padding:0 15px 0 0; /* Only right padding*/
+}
+th
+{
+    padding:0 15px 0 0; /* Only right padding*/
+}
+td.num
+{
+    text-align:right;
+}
+th.right
+{
+    text-align:right;
+}
