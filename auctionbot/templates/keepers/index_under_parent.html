@@ -9,10 +9,10 @@
       <th><i class="fas fa-trash-alt"></i></th>
       <td>Item Number</td>
       <td>Title</td>
-      <td ALIGN=RIGHT>Price</td>
-      <td ALIGN=RIGHT>Bid Count</td>
-      <td ALIGN=RIGHT>Status</td>
-      <td ALIGN=RIGHT>End Date</td>
+      <td style="text-align:right">Price</td>
+      <td style="text-align:right">Bid Count</td>
+      <td style="text-align:right">Status</td>
+      <td style="text-align:right">End Date</td>
       </tr>
       {% for keeper in keepers_list %}
           <tr>
@@ -21,9 +21,9 @@
             <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
             {{ keeper.iItemNumb }}</a></td>
           <td VALIGN=TOP><a href="{{ keeper.get_absolute_url }}">{{ keeper.cTitle }}</a></td>
-          <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.dConvertPrice }}</td>
-          <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.iBidCount }}</td>
-          <td ALIGN=RIGHT VALIGN=TOP>{{ keeper.cListingStatus }}</td>
+          <td style="text-align:right" VALIGN=TOP>{{ keeper.dConvertPrice }}</td>
+          <td style="text-align:right" VALIGN=TOP>{{ keeper.iBidCount }}</td>
+          <td style="text-align:right" VALIGN=TOP>{{ keeper.cListingStatus }}</td>
           <td VALIGN=TOP>
             <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
           </td>
