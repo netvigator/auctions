@@ -13,7 +13,7 @@
         <table>
         <tr>
         <th ALIGN=LEFT>Brand Name</th>
-        <th align="right"><i class="far fa-star"></i></th>
+        <th style="text-align:right"><i class="far fa-star"></i></th>
         <th ALIGN=LEFT>Wanted?</th>
         <th ALIGN=LEFT>Want everything?</th>
         <th ALIGN=LEFT>Nationality</th>
@@ -22,7 +22,7 @@
         {% for brand in brand_list %}
             <tr>
             <td><a href="{{ brand.get_absolute_url }}/">{{ brand.cTitle }}</a></td>
-            <td align="right">{{ brand.iStars }}</td>
+            <td style="text-align:right">{{ brand.iStars }}</td>
             <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
             <td NOWRAP>{{ brand.cNationality.name }}</td>
