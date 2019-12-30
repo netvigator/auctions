@@ -1,21 +1,24 @@
-from core.views     import ( CreateViewCanCancel, DeleteViewGotModel,
-                             DetailViewGotModel,  ListViewGotModel,
-                             UpdateViewCanCancel )
+from core.views         import ( CreateViewCanCancel, DeleteViewGotModel,
+                                 DetailViewGotModel,  ListViewGotModel,
+                                 UpdateViewCanCancel )
 
-from django.urls    import reverse_lazy
+from django.urls        import reverse_lazy
 
-from .forms         import CreateSearchForm, UpdateSearchForm
+from .forms             import CreateSearchForm, UpdateSearchForm
 
 import searching.utils
 
-from .mixins        import SearchViewSuccessPostFormValidMixin
-from .models        import Search
+from ebayinfo.models    import EbayCategory
+
+from .mixins            import SearchViewSuccessPostFormValidMixin
+from .models            import Search
 
 # ### keep views thin! ###
 
 
 
-class SearchCreateView( SearchViewSuccessPostFormValidMixin, CreateViewCanCancel ):
+class SearchCreateView(
+        SearchViewSuccessPostFormValidMixin, CreateViewCanCancel ):
 
     model           = Search
     template_name   = 'searching/add.html'
@@ -35,6 +38,7 @@ class SearchDetailView( DetailViewGotModel ):
 
     model           = Search
     template_name   = 'searching/detail.html'
+    parent          = EbayCategory
 
 
 class SearchDeleteView( DeleteViewGotModel ):
