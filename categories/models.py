@@ -17,11 +17,15 @@ User = get_user_model()
 
 # ### models can be FAT but not too FAT! ###
 
+sExample = ( "For example, if the category is widget <em>tester</em>, "
+             "put 'widget <em>testor</em>' here<br>" )
+
 class Category( GetItemsForSomething, models.Model ):
     cTitle          = models.CharField(
                         'category name', # test_core_tags expects this
                         max_length = 48, db_index = True,
-        help_text = sTitleHelpText % ( 'category', '<em>AND</em> category heirachy ' ) )
+        help_text = sTitleHelpText % (
+                        'category', '<em>AND</em> category heirachy ' ) )
     cKeyWords       = models.TextField(
                         'category key words',
                         null = True, blank = True,
@@ -29,15 +33,17 @@ class Category( GetItemsForSomething, models.Model ):
                         'or category heirachy ', 'category', 'category' ) )
     cLookFor        = models.TextField( sLookForHeading,
                         null=True, blank = True,
-        help_text = sLookForHelpText % ( 'category', 'category', '', 'category' ) +
-                        '<br/>No need for plural words: plural forms of common words '
+        help_text = sLookForHelpText % (
+                        'category', 'category', sExample, 'category' ) +
+                        '<br/>No need for plural words: '
+                        'plural forms of common words '
                         'in name or here will also be found.' )
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
     bAllOfInterest  = models.BooleanField(
                         'want everything of this category?', default = False,
-        help_text = 'Definitely set to True for desireable & rare categories'  )
+        help_text = 'Definitely set to True for desireable & rare categories' )
     bWantPair       = models.BooleanField('prefer pairs?', default = False,
         help_text = 'are you hoping to find these in paris?' )
     bAccessory      = models.BooleanField('accessory?', default = False)
