@@ -22,7 +22,26 @@
     <!-- Your stuff: Third-party CSS libraries go here -->
     <!--  -->
     <!-- This file stores project-specific CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}"> -->
+
+    <style type="text/css">
+    td
+    {
+        padding:0 15px 0 0; /* Only right padding*/
+    }
+    th
+    {
+        padding:0 15px 0 0; /* Only right padding*/
+    }
+    td.num
+    {
+        text-align:right;
+    }
+    th.right
+    {
+        text-align:right;
+    }
+    </style>
 
     {% endblock %}
 
