@@ -15,7 +15,7 @@
           <th ALIGN=LEFT>market</th>
           <th ALIGN=LEFT>type</th>
           <th ALIGN=LEFT>ending</th>
-          <th><i class="far fa-star"></i></th>
+          <th style="text-align:right"><i class="far fa-star"></i></th>
         </tr>
         {% for item in finders_list %}
             <tr>
@@ -28,7 +28,7 @@
             <td>{{ item.iItemNumb.cMarket }}</td>
             <td>{{ item.iItemNumb.cListingType }}</td>
             <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
-            <td>{{ item.iHitStars }}</td>
+            <td style="text-align:right">{{ item.iHitStars }}</td>
             <TD><input name="PicsSet" type="checkbox" style="display:none;"
                 class="HIDDEN" value={{ item.iItemNumb_id }}
                 {% if item.bGetPictures %}checked{% endif %}></td>
