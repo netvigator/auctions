@@ -32,7 +32,7 @@ class Search(models.Model):
     #models.ForeignKey( EbayCategory, models.PositiveIntegerField(
     iEbayCategory   = models.ForeignKey( EbayCategory,
                         on_delete=models.CASCADE,
-                        verbose_name = 'ebay category (optional)',
+                        verbose_name = 'ebay category',
                         null = True, blank = True,
         help_text = 'Limit search to items listed in this category '
                     '-- (key words OR ebay category required!) '
