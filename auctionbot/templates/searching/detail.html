@@ -24,15 +24,17 @@
         <TD VALIGN=TOP>{{ object.cKeyWords }}</TD>
     </TR>
     <TR>
-        <TD>{% field_name model 'iEbayCategory' %}</TD>
+        <TD>{% field_name model 'iEbayCategory' %} Name (optional)</TD>
         <TD VALIGN=TOP>{{ object.iEbayCategory|default_if_none:"" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name parent 'iCategoryID' %} (optional)</TD>
+        <TD VALIGN=TOP>{{ object.iEbayCategory.iCategoryID|default_if_none:"" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'cPriority' %}</TD>
         <TD VALIGN=TOP>{{ object.cPriority|default_if_none:"" }}</TD>
     </TR>
-
-
     <TR>
         <TD>{% field_name model 'tBegSearch' %}</TD>
         <TD VALIGN=TOP>{{object.tBegSearch|date:"d M Y  P"}}</TD>
@@ -45,7 +47,6 @@
         <TD width = 300>{% field_name model 'cLastResult' %}</TD>
         <TD VALIGN=TOP>{{object.cLastResult|default_if_none:"" }}</TD>
     </TR>
-
     <TR>
         <TD>{% field_name model 'iUser' %}</TD>
         <TD VALIGN=TOP>{{object.iUser}}</TD>
@@ -59,8 +60,6 @@
         <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
-
-    <p>
 
     <hr>
     <!-- Action buttons -->
