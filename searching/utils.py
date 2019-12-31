@@ -1,6 +1,5 @@
 import logging
 
-
 from builtins           import ConnectionResetError
 from string             import ascii_letters, digits
 from os.path            import join
