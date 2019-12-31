@@ -13,11 +13,9 @@ Production Configurations
 # boto deprecated, now they recommend boto3
 # from boto.s3.connection import OrdinaryCallingFormat
 
+import logging
 
-import logging # maybe also need
-from logging import getLogger
-
-logger = getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 from .base import *  # noqa
 
