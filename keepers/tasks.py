@@ -172,9 +172,19 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
         #
     else:
         #
-        for iItemNumb in qsGetPics:
+        try:
             #
-            getItemPicturesTask.delay( iItemNumb )
+            for iItemNumb in qsGetPics:
+                #
+                getItemPicturesTask.delay( iItemNumb )
+                #
+            #
+        except PermissionError:
+            #
+            # problem with permissions in pictures directory
+            # no need to keep trying until problem is solved!
+            #
+            raise
             #
         #
     #
