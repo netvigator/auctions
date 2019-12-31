@@ -777,11 +777,11 @@ def getItemsForPicsDownloading( iLimit = 50 ):
     return qsGetPics
 
 
-def getPicFileList( uItemNumb, ITEM_PICS_ROOT ):
+def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
     sItemNumb = str( uItemNumb )
     #
-    sSubDir = getItemPicsSubDir( sItemNumb, ITEM_PICS_ROOT )
+    sSubDir = getItemPicsSubDir( sItemNumb, sItemPicsRoot )
     #
     return glob( '%s*' % join( sSubDir, sItemNumb ) )
 
