@@ -2,7 +2,7 @@ import logging
 
 from glob                   import glob
 from json                   import loads
-from os                     import listdir, remove, rename
+from os                     import listdir, remove, rename, walk
 from os.path                import isfile, join
 from pytz                   import UTC
 from time                   import sleep
@@ -27,7 +27,7 @@ from finders.models         import ItemFound, UserItemFound, UserFinder
 from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
 from pyPks.Dir.Get          import getMakeDir
 from pyPks.File.Test        import isFileThere
-from pyPks.File.Write       import QuietDump
+from pyPks.File.Write       import QuietDump, openAppendClose
 from pyPks.String.Find      import getRegExObj
 from pyPks.String.Output    import StrPadZero, ReadableNo
 from pyPks.Time.Convert     import getDateTimeObjFromIsoDateStr
@@ -1067,6 +1067,10 @@ def _getDate( sDate ):
     return getDateTimeObjFromIsoDateStr( sDate, oTimeZone = UTC )
 
 
+def _getItemNumberOffFileName( sFile ):
+    #
+    pass
+
 def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
     #
     if sDateBeg is None:
@@ -1091,6 +1095,39 @@ def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
             tGotPictures__gte = tDateBeg,
             tGotPictures__lte = tDateEnd )
     #
+    setKeepersShouldHavePics = set( [] )
+    #
+    for oItem in qsKeepersGotPics:
+        #
+        iItemNumb = oItem.iItemNumb
+        #
+        setKeepersShouldHavePics.add( iItemNumb )
+        #
+        iGotPics = gotPicsForItem( iItemNumb )
+        #
+        if not iGotPics:
+            #
+            openAppendClose( sText, *sFileSpec )
+            #
+        elif iGotPics == oItem.iGotPictures:
+            #
+            openAppendClose( sText, *sFileSpec )
+            #
+        elif iGotPics < oItem.iGotPictures:
+            #
+            openAppendClose( sText, *sFileSpec )
+            #
+        elif iGotPics < oItem.iGotPictures:
+            #
+            openAppendClose( sText, *sFileSpec )
+            #
+    #
+    for root, dirs, files in os.walk( ITEM_PICS_ROOT ):
+        #
+        pass
+
+
+
 
     #
 
