@@ -2,8 +2,9 @@ import logging
 
 from glob                   import glob
 from json                   import loads
-from os                     import listdir, remove
+from os                     import listdir, remove, rename
 from os.path                import isfile, join
+from pytz                   import UTC
 from time                   import sleep
 
 from django.conf            import settings
@@ -29,6 +30,7 @@ from pyPks.File.Test        import isFileThere
 from pyPks.File.Write       import QuietDump
 from pyPks.String.Find      import getRegExObj
 from pyPks.String.Output    import StrPadZero, ReadableNo
+from pyPks.Time.Convert     import getDateTimeObjFromIsoDateStr
 from pyPks.Time.Test        import isDateTimeObj
 from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
 from pyPks.Utils.Progress   import TextMeter
@@ -787,6 +789,18 @@ def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
 
 
 
+def gotPicsForItem( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    '''
+    pass the item number, returns the integer # of pictures we got
+    boolean value of 0     is False,
+    boolean value of n > 0 is True
+    '''
+    #
+    return len( getPicFileList( uItemNumb, sItemPicsRoot ) )
+
+
+
 def deleteKeeperUserItem( uItemNumb, oUser ):
     #
     '''
@@ -951,9 +965,6 @@ def findPicsPopulateTable():
     #
     '''I think we want table rows for existing pics'''
     #
-    from os         import listdir, rename
-    from os.path    import isfile, join
-    #
     lTopDirs = listdir( ITEM_PICS_ROOT )
     #
     for sTopDir in lTopDirs:
@@ -1050,3 +1061,36 @@ def _updateRetrieved():
             #
             oKeeper.save()
 '''
+
+def _getDate( sDate ):
+    #
+    return getDateTimeObjFromIsoDateStr( sDate, oTimeZone = UTC )
+
+
+def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
+    #
+    if sDateBeg is None:
+        #
+        tDateBeg = _getDate( '2017-01-01' )
+        #
+    else:
+        #
+        tDateBeg = _getDate( sDateBeg )
+        #
+    #
+    if sDateEnd is None:
+        #
+        tDateEnd = timezone.now()
+        #
+    else:
+        #
+        tDateEnd = _getDate( sDateEnd )
+        #
+    #
+    qsKeepersGotPics = Keeper.objects.filter(
+            tGotPictures__gte = tDateBeg,
+            tGotPictures__lte = tDateEnd )
+    #
+
+    #
+
