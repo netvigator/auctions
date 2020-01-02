@@ -1060,26 +1060,69 @@ def _updateRetrieved():
             oKeeper.tRetrieveFinal  = oUserKeeper.tRetrieveFinal
             #
             oKeeper.save()
+
+back up plan
+1.3G    11
+1.2G    12
+1.1G    13
+1.4G    14
+
+1.9G    15
+1.0G    16
+2.4G    17
+
+1.7G    18
+1.7G    19
+975M    20
+2.0G    22
+
+1.3G    23
+1.4G    25
+1.7G    26
+1.4G    27
+
+2.4G    28
+1.4G    29
+1.5G    30
+
+2.1G    31
+1.6G    32
+1.2G    33
+941M    35
+
+235M    36
+789M    37
+406M    38
+477M    39
+649M    40
 '''
 
-def _getDate( sDate ):
-    #
-    return getDateTimeObjFromIsoDateStr( sDate, oTimeZone = UTC )
-
-
-def _getItemNumberOffFileName( sFile ):
-    #
-    pass
 
 def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
     #
+    def getDateObj( sDate ):
+        #
+        return getDateTimeObjFromIsoDateStr( sDate, oTimeZone = UTC )
+    #
+    def getItemNumberOffFileName( sFile ):
+        #
+        return sFile.split( '-' )[0]
+    #
+    def fileWalkGenerator():
+        #
+        for root, dirs, files in walk( ITEM_PICS_ROOT ):
+            #
+            for file in files:
+                #
+                yield root, file
+    #
     if sDateBeg is None:
         #
-        tDateBeg = _getDate( '2017-01-01' )
+        tDateBeg = getDateObj( '2017-01-01' )
         #
     else:
         #
-        tDateBeg = _getDate( sDateBeg )
+        tDateBeg = getDateObj( sDateBeg )
         #
     #
     if sDateEnd is None:
@@ -1088,20 +1131,23 @@ def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
         #
     else:
         #
-        tDateEnd = _getDate( sDateEnd )
+        tDateEnd = getDateObj( sDateEnd )
         #
     #
     qsKeepersGotPics = Keeper.objects.filter(
             tGotPictures__gte = tDateBeg,
             tGotPictures__lte = tDateEnd )
     #
-    setKeepersShouldHavePics = set( [] )
+    setKeepersGotPicsRight = set( [] )
+    setKeepersGotPicsZero  = set( [] )
+    setKeepersGotPicsLess  = set( [] )
+    setKeepersGotPicsMore  = set( [] )
     #
     for oItem in qsKeepersGotPics:
         #
-        iItemNumb = oItem.iItemNumb
+        if not oItem.iGotPictures: continue
         #
-        setKeepersShouldHavePics.add( iItemNumb )
+        iItemNumb = oItem.iItemNumb
         #
         iGotPics = gotPicsForItem( iItemNumb )
         #
@@ -1109,25 +1155,76 @@ def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
             #
             openAppendClose( sText, *sFileSpec )
             #
+            setKeepersGotPicsZero.add( iItemNumb )
+            #
         elif iGotPics == oItem.iGotPictures:
             #
             openAppendClose( sText, *sFileSpec )
             #
-        elif iGotPics < oItem.iGotPictures:
-            #
-            openAppendClose( sText, *sFileSpec )
+            setKeepersGotPicsRight.add( iItemNumb )
             #
         elif iGotPics < oItem.iGotPictures:
             #
             openAppendClose( sText, *sFileSpec )
             #
-    #
-    for root, dirs, files in os.walk( ITEM_PICS_ROOT ):
+            setKeepersGotPicsLess.add( iItemNumb )
+            #
+        elif iGotPics > oItem.iGotPictures:
+            #
+            openAppendClose( sText, *sFileSpec )
+            #
+            setKeepersGotPicsMore.add( iItemNumb )
+            #
         #
-        pass
-
-
-
-
+    #
+    setKeepersGotPicsRight = frozenset( setKeepersGotPicsRight )
+    setKeepersGotPicsZero  = frozenset( setKeepersGotPicsZero  )
+    setKeepersGotPicsLess  = frozenset( setKeepersGotPicsLess  )
+    setKeepersGotPicsMore  = frozenset( setKeepersGotPicsMore  )
+    #
+    setKeepersGotPics = (   setKeepersGotPicsRight |
+                            setKeepersGotPicsLess  |
+                            setKeepersGotPicsMore )
+    #
+    oFilesWalk  = fileWalkGenerator()
+    #
+    t           = next( oFilesWalk )
+    #
+    sThisDir, sThisFile = t
+    #
+    sLastDir    = sThisDir
+    #
+    setItemsHere= set( [] )
+    #
+    while sThisFile:
+        #
+        while sLastDir == sThisDir:
+            #
+            setItemsHere.add( getItemNumberOffFileName( sThisFile ) )
+            #
+            sThisDir, sThisFile = next( oFilesWalk )
+            #
+        #
+        for sItemNumb in setItemsHere:
+            #
+            iItemNumb = int( sItemNumb )
+            #
+            if iItemNumb in setKeepersGotPics: continue
+            #
+            qsKeeper = Keepers.objects.filter( iItemNumb = iItemNumb )
+            #
+            if qsKeeper.exists():
+                #
+                openAppendClose( sText, *sFileSpec )
+                #
+            else:
+                #
+                openAppendClose( sText, *sFileSpec )
+                #
+            #
+        #
+        sLastDir        = sThisDir
+        setItemsHere    = set( [] )
+        #
     #
 
