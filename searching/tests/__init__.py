@@ -116,6 +116,8 @@ sModels = \
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ 6922 (Amperex Gold)| gold\\rGP |      6 | f            | Amperex           |  Vacuum Tube |             |              | f
+ E88CC              |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
@@ -703,6 +705,25 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["174143946146"],
+             "title":["Amperex 6922 gold pin tube military edition audio grade gold pins 6DJ8 E88CC"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/msN8H1fW87ppGRAWMjLwFMw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Amperex-6922-gold-pin-tube-military-edition-audio-grade-gold-pins-6DJ8-E88CC-\/174143946146"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["905**"],"location":["Torrance,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.99"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"55.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"55.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT19H32M20S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-02T19:08:00.000Z"],
+             "endTime":["2020-01-09T19:08:00.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["324020037678"],
              "title":["Altec Lansing Model 17 Custom Speakers 620 Cabinets with 604-8G"],
