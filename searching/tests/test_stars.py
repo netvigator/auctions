@@ -1125,29 +1125,41 @@ class KeyWordFindSearchHitsWebTests(
         #
         iThisOne = 173696832184
         #
-        self.print_len( dItemsToTest[ iThisOne ], 4, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 6, iThisOne )
         #
         # d/n get into keepers
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '6922' )
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC' )
         self.assertEqual( oTest.iBrand.cTitle, 'GE' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
+        self.assertEqual( oTest.iModel.cTitle, '6922' )
         self.assertEqual( oTest.iBrand.cTitle, 'GE' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '6922' )
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC' )
         self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 4 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 5 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
         self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
