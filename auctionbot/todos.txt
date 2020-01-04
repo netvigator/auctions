@@ -410,35 +410,7 @@ challenge: find hits for orphan keepers
 2019-12-26 TestPlus has CBVTestCase for testing views, maybe better than WebTest
 to be implemented: SetUpBrandsCategoriesModelsViewTestPlus in core.utils_test
 
+2020-01-04 PermissionError: [Errno 13] Permission denied: '/srv/big/media/Keeper_Pictures/12/39/29/92/123929926357-00.jpg'
+pics owned by rick:rick
 
 2019-12-29 adding a search, priority pull down d/n omit already selected priorities
-
-2020-01-03 tar picture file errors
-
-tar: 12/37/18/66/123718665781-06.jpg: Read error at byte 0, while reading 512 bytes: Input/output error
-tar: 12/37/02/14/123702140206-05.jpg: Read error at byte 0, while reading 10240 bytes: Input/output error
-tar: 12/37/02/14/123702140206-00.jpg: File shrank by 176962 bytes; padding with zeros
-tar: 13/29/83/54/132983542301-02.jpg: File shrank by 1848 bytes; padding with zeros
-tar: 13/29/83/54/132983542301-00.jpg: Read error at byte 0, while reading 7680 bytes: Input/output error
-tar: 13/29/83/93/132983936754-00.jpg: Read error at byte 0, while reading 9216 bytes: Input/output error
-tar: 13/30/03/92/133003924054-05.jpg: Read error at byte 0, while reading 8704 bytes: Input/output error
-tar: 13/30/00/59/133000595165-01.jpg: Read error at byte 0, while reading 10240 bytes: Input/output error
-tar: 13/30/01/44/133001441513-07.jpg: Read error at byte 0, while reading 8704 bytes: Input/output error
-tar: 13/30/01/39/133001392752-05.jpg: Read error at byte 0, while reading 3072 bytes: Input/output error
-tar: 13/30/01/39/133001392752-03.jpg: Read error at byte 0, while reading 9216 bytes: Input/output error
-tar: 13/30/01/52/133001525765-05.jpg: Read error at byte 0, while reading 2560 bytes: Input/output error
-tar: 13/30/05/96/133005962170-00.jpg: Read error at byte 0, while reading 8704 bytes: Input/output error
-
-tar: 29/26/86/32/292686328400-08.jpg: Read error at byte 0, while reading 9728 bytes: Input/output error
-tar: 29/26/86/32/292686328400-06.jpg: File shrank by 263167 bytes; padding with zeros
-tar: 29/26/86/09/292686098723-00.jpg: Read error at byte 0, while reading 2560 bytes: Input/output error
-tar: 29/29/06/43/292906430336-01.jpg: Read error at byte 0, while reading 2048 bytes: Input/output error
-tar: 29/29/06/94/292906942932-00.jpg: Read error at byte 0, while reading 7680 bytes: Input/output error
-tar: 29/29/06/94/292906942932-01.jpg: File shrank by 325134 bytes; padding with zeros
-tar: 29/29/60/74/292960742595-01.jpg: Read error at byte 0, while reading 3584 bytes: Input/output error
-tar: 29/29/60/55/292960550795-07.jpg: Read error at byte 0, while reading 1024 bytes: Input/output error
-tar: 29/29/60/55/292960550795-00.jpg: Read error at byte 0, while reading 3584 bytes: Input/output error
-tar: 29/29/60/94/292960947511-01.jpg: File shrank by 45123 bytes; padding with zeros
-tar: 29/29/60/94/292960947511-02.jpg: Read error at byte 0, while reading 8704 bytes: Input/output error
-tar: 29/29/60/63/292960638468-00.jpg: Read error at byte 0, while reading 8192 bytes: Input/output error
-
