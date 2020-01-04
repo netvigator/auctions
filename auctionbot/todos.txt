@@ -117,6 +117,10 @@ also:
 duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iM_42d93cee_uniq"
 DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id", "iBrand_id")=(323727674061, 1, 4449, 952) already exists.
 
+adding a new brand (which already exists):
+UniqueViolation: duplicate key value violates unique constraint "brands_cTitle_iUser_id_aec86fda_uniq"
+DETAIL:  Key ("cTitle", "iUser_id")=(Stark, 1) already exists.
+
 
 form error (cannot search in auctions code)
 WARNING/ForkPoolWorker-5] iItemNumb -- <ul class="errorlist"><li>Item found with this Ebay item number already exists.</li></ul>
@@ -414,3 +418,6 @@ to be implemented: SetUpBrandsCategoriesModelsViewTestPlus in core.utils_test
 pics owned by rick:rick
 
 2019-12-29 adding a search, priority pull down d/n omit already selected priorities
+
+
+2020-02-05 brands now have key words, so probably can remove code that handles key words not always there
