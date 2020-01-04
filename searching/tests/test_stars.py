@@ -1912,6 +1912,14 @@ class KeyWordFindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174143946146
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 4, iThisOne,
+                'should only find 6922 not 6DJ8 E88CC' )
+        #
+        #
+        #
         #
         '''
         '''
