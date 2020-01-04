@@ -9,7 +9,7 @@ from django.contrib.auth        import get_user_model
 
 from core.models                import ( IntegerRangeField, sTitleHelpText,
                                          sLookForHelpText, sExcludeIfHelpText,
-                                         sLookForHeading )
+                                         sLookForHeading, sKeyWordsHelpText )
 
 from core.mixins                import GetItemsForSomething
 
@@ -60,6 +60,11 @@ class Brand( GetItemsForSomething, models.Model ):
     cLookFor        = models.TextField( sLookForHeading,
                         null=True, blank = True,
         help_text   = _sHelpTextBrandLookFor )
+    cKeyWords       = models.TextField(
+                        'category key words',
+                        null = True, blank = True,
+        help_text = sKeyWordsHelpText % (
+                        '', 'brand', 'brand' ) )
     iStars          = IntegerRangeField(
                         'desireability, 10 star brand is most desireable',
                         min_value = 0, max_value = 10, default = 5 )
