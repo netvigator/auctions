@@ -90,8 +90,9 @@ sBrands = \
  Sherwood          |      5 |            |
  Silvertone        |      3 |            |
  Spartan           |      8 |            |
- Supreme           |      5 |            |
  Stromberg-Carlson |      5 |            |
+ Stark             |      5 |            |
+ Supreme           |      5 |            |
  Sylvania          |      6 |            |
  Tannoy            |      7 |            |
  Tung-Sol          |      7 |            |
@@ -156,6 +157,7 @@ sModels = \
  7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
+ 8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -705,6 +707,44 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["153777954483"],
+             "title":["Vintage Stark 8-77 Tube Tester Hickok 6000"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mV5zWxKs5AL9Ng1BK2Q0GXA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Stark-8-77-Tube-Tester-Hickok-6000-\/153777954483"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["M3B***"],"location":["Canada"],"country":["CA"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"55.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"102.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"102.5"}],
+             "bidCount":["10"],"sellingState":["Active"],
+             "timeLeft":["P4DT2H57M21S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-29T02:31:06.000Z"],
+             "endTime":["2020-01-08T02:31:06.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["31"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["193278712422"],
+             "title":["HICKOK 532 \/ 533 \/ 534 \/ 600 MUTUAL CONDUCTANCE TUBE TESTER ROLL CHART ASSEMBLY"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m5GloPEMEBW1F4o7_nox7nw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/HICKOK-532-533-534-600-MUTUAL-CONDUCTANCE-TUBE-TESTER-ROLL-CHART-ASSEMBLY-\/193278712422"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["486**"],"location":["Midland,MI,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"25.56"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"25.56"}],
+             "bidCount":["2"],"sellingState":["Active"],
+             "timeLeft":["P2DT15H46M15S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-30T15:20:00.000Z"],
+             "endTime":["2020-01-06T15:20:00.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["174143946146"],
              "title":["Amperex 6922 gold pin tube military edition audio grade gold pins 6DJ8 E88CC"],

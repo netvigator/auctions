@@ -321,6 +321,16 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            oCategory   = Category(
+                    cTitle      = 'roll chart (tube tester)',
+                    cLookFor    = 'tube testor roll chart\r'
+                                  'tube tester roll chart',
+                    iStars      = 5,
+                    iUser       = oUser )
+            oCategory.save()
+            #
+            #
+            #
             oTableIter = getTableFromScreenCaptureGenerator( sBrands )
             #
             lHeader = next( oTableIter )
