@@ -117,7 +117,7 @@ sModels = \
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6922 (Amperex Gold)| gold\\rGP |      6 | f            | Amperex           |  Vacuum Tube |             |              | f
- E88CC              |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
