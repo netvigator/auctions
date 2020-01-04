@@ -12,6 +12,7 @@ tModelFields = (
     'bWanted',
     'bAllOfInterest',
     'cLookFor',
+    'cKeyWords',
     'iStars',
     'cComment',
     'cNationality',
@@ -24,11 +25,12 @@ def _getLayout():
             'cTitle',
             'bWanted',
             'bAllOfInterest',
-            Field('cLookFor', rows='2'),
+            Field('cLookFor',  rows='2'),
+            Field('cKeyWords', rows='2'),
             'iStars',
-            Field('cComment', rows='2'),
+            Field('cComment',  rows='2'),
             'cNationality',
-            Field('cExcludeIf', rows='2') )
+            Field('cExcludeIf',rows='2') )
 
 
 class CreateBrandForm( ModelFormValidatesTitle ):
