@@ -78,6 +78,7 @@ class Brand( GetItemsForSomething, models.Model ):
 
     cRegExLook4Title= models.TextField( null = True )
     cRegExExclude   = models.TextField( null = True )
+    cRegExKeyWords  = models.TextField( null = True )
 
     iLegacyKey      = models.PositiveIntegerField('legacy key', null = True )
     tLegacyCreate   = models.DateTimeField( 'legacy row created on',
