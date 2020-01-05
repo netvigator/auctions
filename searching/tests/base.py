@@ -1,3 +1,5 @@
+from pprint             import pprint
+
 from django.utils       import timezone
 
 from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
@@ -278,6 +280,9 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             oCategory.save()
             #
+            oTubeTester = oCategory
+            #
+            #
             oCategory   = Category( cTitle      = 'Choke',
                                     cLookFor    = 'crossover',
                                     iStars      = 7,
@@ -326,6 +331,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     cLookFor    = 'tube testor roll chart\r'
                                   'tube tester roll chart',
                     iStars      = 5,
+                    iFamily_id  = oTubeTester.id,
                     iUser       = oUser )
             oCategory.save()
             #
@@ -343,6 +349,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     cTitle      =      lParts[ d['cTitle'    ] ],
                     iStars      = int( lParts[ d['iStars'    ] ] ),
                     cExcludeIf  =      lParts[ d['cExcludeIf'] ],
+                    cKeyWords   =      lParts[ d['cKeyWords' ] ],
                     cLookFor    =      lParts[ d['cLookFor'  ] ],
                     iUser       = oUser )
                 #
