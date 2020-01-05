@@ -1720,7 +1720,7 @@ class KeyWordFindSearchHitsWebTests(
         #
         self.assertEqual( oTest.iModel.cTitle, 'Regency' )
         self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         #
         #
@@ -1916,20 +1916,59 @@ class KeyWordFindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 184032120009
+        iThisOne = 153777954483
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find Stark tester' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '8-77' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Stark' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6000A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
         #
         #
         iThisOne = 174143946146
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 4, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should only find 6922 not 6DJ8 E88CC' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922 (Amperex Gold)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (gold pins)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        iThisOne = 193278712422
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 4, iThisOne,
+                'should find roll chart' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '600A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        self.assertEqual( oTest.iCategory.cTitle, 'roll chart (tube tester)' )
+        #
+        #
+        #
+        iThisOne = 184032120009
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
         #
         #
         #
