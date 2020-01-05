@@ -770,7 +770,7 @@ def findSearchHits(
         oUserItem.iStarsModel = oUserItem.iHitStars      = 0
         #
         bGotCategory   = False
-        setGotCategories = set( [] )
+        dGotCategories = {}
         #
         oTempItem = None
         lItemFoundTemp = []
@@ -866,8 +866,6 @@ def findSearchHits(
                     continue
                     #
                 #
-                setGotCategories.add( oCategory.id )
-                #
                 if bRecordSteps:
                     #
                     if sInTitle and sInTitle == oCategory.cTitle:
@@ -919,6 +917,8 @@ def findSearchHits(
                 lItemFoundTemp.append( oTempItem )
                 #
                 lCategoryFound.append( oCategory )
+                #
+                dGotCategories[ oCategory.id ] = sInTitle
                 #
             #
         #
@@ -1018,15 +1018,50 @@ def findSearchHits(
                 lNewItemFoundTemp = []
                 #
                 bModelCategoryAlreadyFound = (
-                        oModel.iCategory_id in setGotCategories )
+                        oModel.iCategory_id in dGotCategories )
                 #
                 bCategoryFamilyRelation = False
                 #
                 for oTempItem in lItemFoundTemp: # lists categories found
                     #
-                    bCategoryFamilyRelation = False
+                    # like a crossover w drivers
+                    # or
+                    # a tube tester roll chart
                     #
-                    if  (   bModelCategoryAlreadyFound and
+                    bCategoryFamilyRelation = (
+                        oTempItem.iCategory and dCategoryFamily and
+                        oTempItem.iCategory.id != oModel.iCategory_id and
+                        oTempItem.iCategory.id in dCategoryFamily and
+                        (   (   dCategoryFamily[ oTempItem.iCategory.id ] ==
+                                oModel.iCategory_id )
+                            or
+                            (   oModel.iCategory_id in dCategoryFamily and
+                                    dCategoryFamily[ oModel.iCategory_id ] ==
+                                    dCategoryFamily[ oTempItem.iCategory.id ] ) ) )
+                    #
+                    bAddThisCategory = False
+                    #
+                    if  (   bCategoryFamilyRelation and
+                            oModel.iCategory_id    in dGotCategories and
+                            oTempItem.iCategory.id in dGotCategories ):
+                        #
+                        sModelCategory = dGotCategories[ oModel.iCategory_id ]
+                        iModelCategory = len( sModelCategory )
+                        #
+                        sThisCategory = dGotCategories[ oTempItem.iCategory.id ]
+                        iThisCategory = len( sThisCategory )
+                        #
+                        bAddThisCategory = (
+                                sModelCategory and
+                                iThisCategory > iModelCategory and
+                                sModelCategory in sThisCategory )
+                        #
+                    #
+                    if bCategoryFamilyRelation and bAddThisCategory:
+                        #
+                        pass
+                        #
+                    elif (  bModelCategoryAlreadyFound and
                             oModel.iCategory != oTempItem.iCategory ):
                         #
                         continue
@@ -1034,17 +1069,6 @@ def findSearchHits(
                     elif oModel.id in setModelsStoredAlready:
                         #
                         continue
-                        #
-                    else: # catches related items in title,
-                        #
-                        # like a crossover w drivers
-                        #
-                        bCategoryFamilyRelation = (
-                            oTempItem.iCategory and dCategoryFamily and
-                            oTempItem.iCategory.id in dCategoryFamily and
-                            oModel.iCategory_id in dCategoryFamily and
-                                dCategoryFamily[ oModel.iCategory_id ] ==
-                                dCategoryFamily[ oTempItem.iCategory.id ] )
                         #
                     #
                     if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
@@ -1969,6 +1993,3 @@ def findSearchHits(
         ItemFoundTemp.objects.all().delete()
         #
     #
-
-
-
