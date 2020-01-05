@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 193278712422 # or 192633431454
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -18,88 +18,89 @@ tTimeEnd            | iItemNumb    | iHitStars
 
 sBrands = \
 '''
-      cTitle       | iStars | cExcludeIf |  cLookFor
--------------------+--------+------------+------------
- ACRO              |      9 |            | Acrosound
- Acoustic Research |      7 |            |
- Addison           |      7 |            |
- Allied            |      5 |            |
- Altec-Lansing     |     10 |            | Altec
- Ampex             |      5 |            |
- Amperex Bugle Boy |      9 |            | Amperex BB
- Amperex           |      8 |            |
- Amperex PQ        |      9 |            |
- Arvin             |      7 |            |
- Astronic          |      2 |            |
- Audio Research    |      5 |            |
- Bell              |      4 |            |
- Bendix            |      7 |            |
- Bogen             |      1 |            |
- Brociner          |      6 |            |
- Brook             |      8 |            |
- Coronado          |      7 |            |
- Crosley           |      3 |            |
- DeWald            |      4 |            |
- DuKane            |      7 |            |
- Dynaco            |      5 |            | Dyna\\rDynakit
- EICO              |      7 |            |
- Electro-Voice     |      7 |            | EV
- Emerson           |      6 |            |
- Fada              |      8 |            |
- Fairchild         |      8 |            |
- Fisher            |      9 |            |
- Garod             |      5 |            | Garol
- GE                |      5 |            | General Electric
- Grommes           |      5 |            |
- Harman-Kardon     |      7 |            |
- Heathkit          |      8 |            | Heath
- Hickok            |      8 |            |
- Interelectronics  |      3 |            |
- JBL               |      7 |            |
- Jensen            |      8 |            |
- Kadette           |      6 |            |
- Klangfilm         |      6 |            |
- Klipsch           |      8 |            | Klipschorn
- Knight            |      4 |            |
- Lafayette         |      7 |            |
- Langevin          |      8 |            |
- Lansing           |      9 |            | Jim Lansing\\rJames B. Lansing
- Leak              |      7 |            |
- Luxman            |      6 |            |
- Marantz           |     10 | Speaker\\rAV9000\\rreplica |
- Matsushita        |      4 |            |
- Marconi           |      7 |            |
- Mazda             |      5 |            |
- McIntosh          |      6 |            |
- MFA               |      8 |            |
- Motorola          |      7 |            |
- Mullard           |      9 |            |
- National          |      7 |            |
- PACO              |      2 |            |
- Philips           |      7 |            |
- Pilot             |      8 |            |
- Quad              |      5 |            |
- Radford           |      7 |            |
- Radio Craftsmen   |      8 |            |
- Raytheon          |      7 |            |
- RCA               |      6 |            |
- Regency           |      5 |            |
- Sargent-Rayment   |      4 |            |
- Scott, H.H.       |      8 |            | Scott\\rH.H. Scott
- Sentinel          |      6 |            |
- Sherwood          |      5 |            |
- Silvertone        |      3 |            |
- Spartan           |      8 |            |
- Stromberg-Carlson |      5 |            |
- Stark             |      5 |            |
- Supreme           |      5 |            |
- Sylvania          |      6 |            |
- Tannoy            |      7 |            |
- Tung-Sol          |      7 |            |
- University        |      5 |            |
- UTC               |      8 |            |
- Western Electric  |      9 |            |
- Westinghouse      |      5 |            |
+      cTitle       | iStars | cExcludeIf | cKeyWords  | cLookFor  |
+-------------------+--------+------------+------------+------------
+ ACRO              |      9 |            |            | Acrosound
+ Acoustic Research |      7 |            |            |
+ Addison           |      7 |            |            |
+ Allied            |      5 |            |            |
+ Altec-Lansing     |     10 |            |            | Altec
+ Ampex             |      5 |            |            |
+ Amperex Bugle Boy |      9 |            |            | Amperex BB
+ Amperex           |      8 |            |            |
+ Amperex (gold pins)|     9 |            | gold pin\\rGP |
+ Amperex PQ        |      9 |            |            |
+ Arvin             |      7 |            |            |
+ Astronic          |      2 |            |            |
+ Audio Research    |      5 |            |            |
+ Bell              |      4 |            |            |
+ Bendix            |      7 |            |            |
+ Bogen             |      1 |            |            |
+ Brociner          |      6 |            |            |
+ Brook             |      8 |            |            |
+ Coronado          |      7 |            |            |
+ Crosley           |      3 |            |            |
+ DeWald            |      4 |            |            |
+ DuKane            |      7 |            |            |
+ Dynaco            |      5 |            |            | Dyna\\rDynakit
+ EICO              |      7 |            |            |
+ Electro-Voice     |      7 |            |            | EV
+ Emerson           |      6 |            |            |
+ Fada              |      8 |            |            |
+ Fairchild         |      8 |            |            |
+ Fisher            |      9 |            |            |
+ Garod             |      5 |            |            | Garol
+ GE                |      5 |            |            | General Electric
+ Grommes           |      5 |            |            |
+ Harman-Kardon     |      7 |            |            |
+ Heathkit          |      8 |            |            | Heath
+ Hickok            |      8 |            |            |
+ Interelectronics  |      3 |            |            |
+ JBL               |      7 |            |            |
+ Jensen            |      8 |            |            |
+ Kadette           |      6 |            |            |
+ Klangfilm         |      6 |            |            |
+ Klipsch           |      8 |            |            | Klipschorn
+ Knight            |      4 |            |            |
+ Lafayette         |      7 |            |            |
+ Langevin          |      8 |            |            |
+ Lansing           |      9 |            |            | Jim Lansing\\rJames B. Lansing
+ Leak              |      7 |            |            |
+ Luxman            |      6 |            |            |
+ Marantz           |     10 | Speaker\\rAV9000\\rreplica | |
+ Matsushita        |      4 |            |            |
+ Marconi           |      7 |            |            |
+ Mazda             |      5 |            |            |
+ McIntosh          |      6 |            |            |
+ MFA               |      8 |            |            |
+ Motorola          |      7 |            |            |
+ Mullard           |      9 |            |            |
+ National          |      7 |            |            |
+ PACO              |      2 |            |            |
+ Philips           |      7 |            |            |
+ Pilot             |      8 |            |            |
+ Quad              |      5 |            |            |
+ Radford           |      7 |            |            |
+ Radio Craftsmen   |      8 |            |            |
+ Raytheon          |      7 |            |            |
+ RCA               |      6 |            |            |
+ Regency           |      5 |            |            |
+ Sargent-Rayment   |      4 |            |            |
+ Scott, H.H.       |      8 |            |            | Scott\\rH.H. Scott
+ Sentinel          |      6 |            |            |
+ Sherwood          |      5 |            |            |
+ Silvertone        |      3 |            |            |
+ Spartan           |      8 |            |            |
+ Stromberg-Carlson |      5 |            |            |
+ Stark             |      5 |            |            |
+ Supreme           |      5 |            |            |
+ Sylvania          |      6 |            |            |
+ Tannoy            |      7 |            |            |
+ Tung-Sol          |      7 |            |            |
+ University        |      5 |            |            |
+ UTC               |      8 |            |            |
+ Western Electric  |      9 |            |            |
+ Westinghouse      |      5 |            |            |
 '''
 
 #### if you add a vacuum tube brand, ###
@@ -117,7 +118,7 @@ sModels = \
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
- 6922 (Amperex Gold)| gold\\rGP |      6 | f            | Amperex           |  Vacuum Tube |             |              | f
+ 6922 (Amperex Gold)| gold\\rGP |      6 | f            | Amperex (gold pins)| Vacuum Tube |             |              | f
  E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
@@ -384,6 +385,8 @@ sModels = \
  539-A              |           |      5 | f            | Hickok            |  Tube Tester |             |
  539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
  539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
+ 600A               |           |      5 | t            | Hickok            |  Tube Tester |             |
+ 6000A              |           |      6 | t            | Hickok            |  Tube Tester |             |
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
  76                 |           |      6 | f            | JBL               |       Driver | 076         |
  175                |           |     10 | f            | JBL               |       Driver |             |
