@@ -61,7 +61,7 @@ class Brand( GetItemsForSomething, models.Model ):
                         null=True, blank = True,
         help_text   = _sHelpTextBrandLookFor )
     cKeyWords       = models.TextField(
-                        'category key words',
+                        'brand key words',
                         null = True, blank = True,
         help_text = sKeyWordsHelpText % (
                         '', 'brand', 'brand' ) )
