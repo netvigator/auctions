@@ -1,5 +1,7 @@
 from pprint             import pprint
 
+from json.decoder       import JSONDecodeError
+
 from django.utils       import timezone
 
 from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
@@ -323,6 +325,16 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     cLookFor    = 'Amp\rAmplifier',
                                     iStars      = 9,
                                     iUser       = oUser )
+            oCategory.save()
+            #
+            #
+            oCategory   = Category(
+                    cTitle      = 'Diaphragm',
+                    cLookFor    = 'Diaphram',
+                    iStars      = 7,
+                    iFamily_id  = oSpeakerSystem.id,
+                    iUser       = oUser )
+            #
             oCategory.save()
             #
             #
