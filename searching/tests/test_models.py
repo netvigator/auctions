@@ -3,8 +3,6 @@ from django.test.client import Client
 from core.utils_test    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
-from json.decoder       import JSONDecodeError
-
 from core.utils_test    import TestCasePlus
 
 from searching          import ( SEARCH_FILES_FOLDER,
