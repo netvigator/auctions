@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 193278712422 # or 192633431454
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -28,7 +28,7 @@ sBrands = \
  Ampex             |      5 |            |            |
  Amperex Bugle Boy |      9 |            |            | Amperex BB
  Amperex           |      8 |            |            |
- Amperex (gold pins)|     9 |            | gold pin\\rGP |
+ Amperex (gold pins)|     9 |            | gold pin   |
  Amperex PQ        |      9 |            |            |
  Arvin             |      7 |            |            |
  Astronic          |      2 |            |            |
@@ -59,6 +59,7 @@ sBrands = \
  JBL               |      7 |            |            |
  Jensen            |      8 |            |            |
  Kadette           |      6 |            |            |
+ Ken-Rad           |      8 |            |            |
  Klangfilm         |      6 |            |            |
  Klipsch           |      8 |            |            | Klipschorn
  Knight            |      4 |            |            |
@@ -142,9 +143,9 @@ sModels = \
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  6V6 (metal can)    |           |      2 | f            |                   |  Vacuum Tube |             |              | t
- 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | f
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f
- 6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |
+ 6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |              | f
  6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6L6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -153,9 +154,10 @@ sModels = \
  6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ EF86 (Ampered BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |
+ 7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
@@ -197,6 +199,7 @@ sModels = \
  A-7                |           |      6 | f            | Altec-Lansing     |Speaker System|             |
  A7-500-II          |           |      6 | f            | Altec-Lansing     |Speaker System| Magnificent |
  N-500B             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ N-800E             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
@@ -710,6 +713,76 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["114039185762"],
+             "title":["Vintage Altec Lansing N-800-D Dividing Network"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m10pOGdAAI2z3Vc8A-NStEg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Altec-Lansing-N-800-D-Dividing-Network-\/114039185762"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["974**"],"location":["Springfield,OR,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"19.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"156.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"156.0"}],
+             "bidCount":["6"],"sellingState":["Active"],
+             "timeLeft":["P1DT22H26M47S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-29T22:00:19.000Z"],
+             "endTime":["2020-01-05T22:00:19.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["21"]}],
+             "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["174142861539"],
+             "title":["AMPEREX BUGLE BOY EF86\/6267 VACUUM TUBE MESH PLATE"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mN3bzB8twXeNWnPjagIpRRw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/AMPEREX-BUGLE-BOY-EF86-6267-VACUUM-TUBE-MESH-PLATE-\/174142861539"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["600**"],"location":["McHenry,IL,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P4DT15H33M24S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-01T15:07:23.000Z"],
+             "endTime":["2020-01-08T15:07:23.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["324030050981"],
+             "title":["2 X ) KLH vintage model nine speaker power supply "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mhAgmqFICN3O-2-mJYFVp8w\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-X-KLH-vintage-model-nine-speaker-power-supply-\/324030050981"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["554**"],"location":["Minneapolis,MN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.99"}],"bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT13H21M28S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-02T12:55:20.000Z"],
+             "endTime":["2020-01-09T12:55:20.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["164011103887"],
+             "title":["Altec 288 B Diaphragms "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mWtXnMig_lsBzh3NSK6crRg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-288-B-Diaphragms-\/164011103887"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["972**"],"location":["Portland,OR,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"35.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.0"}],"bidCount":["1"],"sellingState":["Active"],
+             "timeLeft":["P0DT5H37M54S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-30T05:11:26.000Z"],
+             "endTime":["2020-01-04T05:11:26.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],
+             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["153777954483"],
              "title":["Vintage Stark 8-77 Tube Tester Hickok 6000"],
