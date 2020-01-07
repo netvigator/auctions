@@ -550,16 +550,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
-            oBrand = Brand.objects.get( cTitle = 'Westinghouse', iUser = oUser )
-            #
-            oBrandCategory = BrandCategory(
-                                    iBrand      = oBrand,
-                                    iCategory   = oVacuumTubes,
-                                    iUser       = oUser )
-            #
-            oBrandCategory.save()
-            #
-            oBrand = Brand.objects.get( cTitle = 'Amperex Bugle Boy', iUser = oUser )
+            oBrand = Brand.objects.get( cTitle = 'Westinghouse',
+                                        iUser  = oUser )
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
@@ -574,6 +566,46 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iBrand      = oBrand,
                                     iCategory   = oVacuumTubes,
                                     iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Amperex Bugle Boy',
+                                        iUser  = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Amperex (gold pins)',
+                                        iUser  = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Amperex PQ', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Ken-Rad', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
             #
 
 
