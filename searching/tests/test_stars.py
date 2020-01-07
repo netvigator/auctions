@@ -1953,7 +1953,7 @@ class KeyWordFindSearchHitsWebTests(
         iThisOne = 193278712422
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 4, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find roll chart' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -1964,11 +1964,59 @@ class KeyWordFindSearchHitsWebTests(
         #
         #
         #
+        #
+        iThisOne = 114039185762
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find n-800E dividing network' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'N-800E' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
+        #
+        #
         iThisOne = 184032120009
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find Altec A7-500-II (Magnificent) not Lansing A-7' )
+        #
+        #
+        #
+        #
+        iThisOne = 164011103887
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find diaphrams  not driver' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174142861539
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find EF86 (BB) Amperex BB and not the lower combos' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 324030050981
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find power supply ? big challenge?' )
+        #
         #
         #
         #
