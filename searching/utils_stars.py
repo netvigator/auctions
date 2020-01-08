@@ -1,5 +1,5 @@
 from copy                   import copy
-from pprint                 import pprint
+from pprint                 import pprint, pformat
 
 from collections            import OrderedDict
 
@@ -39,6 +39,12 @@ from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo
+
+
+if settings.TESTING:
+    from pyPks.Utils.Both2n3 import print3_n_2
+    from pyPks.Object.Get   import ValueContainerCanPrint as ValueContainer
+
 
 SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
 #
@@ -694,11 +700,9 @@ def findSearchHits(
             #
             iFamily_id = oCategory.iFamily_id
             #
+            # category oCategory.id is a member of family iFamily_id
+            #
             dCategoryFamily[ oCategory.id ] = iFamily_id
-            #
-            setFamilyCategories = dFamilyCategory.setdefault( iFamily_id, set( [] ) )
-            #
-            setFamilyCategories.add( oCategory.id )
             #
         #
     #
@@ -708,7 +712,7 @@ def findSearchHits(
     #
     qsBrands = Brand.objects.filter( iUser = oUser )
     #
-    dFindSteps = OrderedDict(
+    dFindSteps = dict(
         (   ( 'preliminary',[] ),
             ( 'categories', [] ),
             ( 'models',     [] ),
@@ -726,6 +730,8 @@ def findSearchHits(
         #
     #
     setScriptTested = set( lScriptTested )
+    #
+    # step thru the items one by one
     #
     for oItem in qsItems:
         #
@@ -754,6 +760,19 @@ def findSearchHits(
             setScriptTested.add( str( iRecordStepsForThis ) )
             #
             bRecordSteps = True
+            #
+        #
+        if bRecordSteps:
+            #
+            # need a blank for every heading
+            #
+            dFindSteps = OrderedDict(
+                (   ( 'preliminary',[] ),
+                    ( 'categories', [] ),
+                    ( 'models',     [] ),
+                    ( 'brands',     [] ),
+                    ( 'candidates', [] ),
+                    ( 'selection',  [] ) ) )
             #
         #
         for oNext in qsUserItems:
@@ -834,92 +853,97 @@ def findSearchHits(
             #
             bGotCategory = sInTitle or bInHeirarchy1 or bInHeirarchy2
             #
-            if bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
+            if not bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
                 #
-                if uExcludeThis:
-                    #
-                    if bRecordSteps:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lCategories, 'excluded: %s cuz found %s' %
-                                ( oCategory.cTitle, uExcludeThis ) )
-                        #
-                    #
-                    continue
-                    #
-                elif oCategory.cKeyWords and not uGotKeyWordsOrNoKeyWords:
-                    #
-                    if bRecordSteps:
-                        #
-                        lKeyWords = oFinderCRorLF.split( oCategory.cKeyWords )
-                        #
-                        sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
-                        #
-                        sPlural = 's' if len( lKeyWords ) > 1 else ''
-                        #
-                        _appendIfNotAlreadyIn(
-                                lModels,
-                                'excluded: %s cuz aint got key word%s %s' %
-                                ( oCategory.cTitle, sPlural, sSayKeyWords ) )
-                        #
-                    #
-                    continue
-                    #
+                continue
+                #
+            elif uExcludeThis:
                 #
                 if bRecordSteps:
                     #
-                    if sInTitle and sInTitle == oCategory.cTitle:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lCategories,
-                                'category %s in title' % oCategory )
-                        #
-                    elif sInTitle:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lCategories,
-                                'category %s ("%s") in title' %
-                                    ( oCategory, sInTitle ) )
-                        #
-                    elif bInHeirarchy1:
-                        #
-                        sInCategory1 = foundItem(
-                                        oItem.iCatHeirarchy.cCatHierarchy )[0]
-                        #
-                        _appendIfNotAlreadyIn( lCategories,
-                            '%s in primary caregory %s' %
-                            ( oCategory.cTitle, sInCategory1 ) )
-                        #
-                    elif bInHeirarchy2:
-                        #
-                        sInCategory2 = foundItem(
-                                        oItem.i2ndCatHeirarchy.cCatHierarchy )[0]
-                        #
-                        _appendIfNotAlreadyIn( lCategories,
-                            '%s in secondary caregory %s' %
-                            ( oCategory.cTitle, sInCategory2 ) )
-                        #
+                    _appendIfNotAlreadyIn(
+                            lCategories, 'excluded: %s cuz found %s' %
+                            ( oCategory.cTitle, uExcludeThis ) )
                     #
                 #
-                sWhich = _whichGetsCredit(
-                            sInTitle, bInHeirarchy1, bGotCategory )
+                continue
                 #
-                oTempItem = ItemFoundTemp(
-                        iItemNumb       = oItemFound,
-                        iStarsCategory  = oCategory.iStars,
-                        iHitStars       = oCategory.iStars,
-                        iSearch         = oUserItem.iSearch,
-                        iCategory       = oCategory,
-                        cWhereCategory  = sWhich )
+            elif not uGotKeyWordsOrNoKeyWords:
                 #
-                oTempItem.save()
+                if bRecordSteps:
+                    #
+                    lKeyWords = oFinderCRorLF.split( oCategory.cKeyWords )
+                    #
+                    sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                    #
+                    lKeyWords = (   lKeyWords[0].split()
+                                    if len( lKeyWords ) == 1
+                                    else lKeyWords )
+                    #
+                    sPlural = 's' if len( lKeyWords ) > 1 else ''
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'excluded: %s cuz aint got key word%s %s' %
+                            ( oCategory.cTitle, sPlural, sSayKeyWords ) )
+                    #
                 #
-                lItemFoundTemp.append( oTempItem )
+                continue
                 #
-                lCategoryFound.append( oCategory )
+            #
+            if bRecordSteps:
                 #
-                dGotCategories[ oCategory.id ] = sInTitle
+                if sInTitle and sInTitle == oCategory.cTitle:
+                    #
+                    _appendIfNotAlreadyIn(
+                            lCategories,
+                            'category %s in title' % oCategory )
+                    #
+                elif sInTitle:
+                    #
+                    _appendIfNotAlreadyIn(
+                            lCategories,
+                            'category %s ("%s") in title' %
+                                ( oCategory, sInTitle ) )
+                    #
+                elif bInHeirarchy1:
+                    #
+                    sInCategory1 = foundItem(
+                                    oItem.iCatHeirarchy.cCatHierarchy )[0]
+                    #
+                    _appendIfNotAlreadyIn( lCategories,
+                        '%s in primary caregory %s' %
+                        ( oCategory.cTitle, sInCategory1 ) )
+                    #
+                elif bInHeirarchy2:
+                    #
+                    sInCategory2 = foundItem(
+                                    oItem.i2ndCatHeirarchy.cCatHierarchy )[0]
+                    #
+                    _appendIfNotAlreadyIn( lCategories,
+                        '%s in secondary caregory %s' %
+                        ( oCategory.cTitle, sInCategory2 ) )
+                    #
                 #
+            #
+            sWhich = _whichGetsCredit(
+                        sInTitle, bInHeirarchy1, bGotCategory )
+            #
+            oTempItem = ItemFoundTemp(
+                    iItemNumb       = oItemFound,
+                    iStarsCategory  = oCategory.iStars,
+                    iHitStars       = oCategory.iStars,
+                    iSearch         = oUserItem.iSearch,
+                    iCategory       = oCategory,
+                    cWhereCategory  = sWhich )
+            #
+            oTempItem.save()
+            #
+            lItemFoundTemp.append( oTempItem )
+            #
+            lCategoryFound.append( oCategory )
+            #
+            dGotCategories[ oCategory.id ] = sInTitle
             #
         #
         lModels = dFindSteps[ 'models' ]
@@ -944,7 +968,11 @@ def findSearchHits(
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
-            if sInTitle and uExcludeThis:
+            if not sInTitle:
+                #
+                continue
+                #
+            elif uExcludeThis:
                 #
                 if bRecordSteps:
                     #
@@ -955,13 +983,17 @@ def findSearchHits(
                 #
                 continue
                 #
-            if sInTitle and not uGotKeyWordsOrNoKeyWords:
+            elif not uGotKeyWordsOrNoKeyWords:
                 #
                 if bRecordSteps:
                     #
                     lKeyWords = oFinderCRorLF.split( oModel.cKeyWords )
                     #
                     sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                    #
+                    lKeyWords = (   lKeyWords[0].split()
+                                    if len( lKeyWords ) == 1
+                                    else lKeyWords )
                     #
                     sPlural = 's' if len( lKeyWords ) > 1 else ''
                     #
@@ -974,267 +1006,270 @@ def findSearchHits(
                 continue
                 #
             #
-            if sInTitle:
+            #
+            sModelAlphaNum  = _getAlphaNum( sInTitle )
+            #
+            if bRecordSteps:
                 #
-                sModelAlphaNum  = _getAlphaNum( sInTitle )
-                #
-                if bRecordSteps:
+                if (    uGotKeyWordsOrNoKeyWords and
+                        type( uGotKeyWordsOrNoKeyWords ) is not bool ):
                     #
-                    if (    uGotKeyWordsOrNoKeyWords and
-                            type( uGotKeyWordsOrNoKeyWords ) is not bool ):
-                        #
-                        _appendIfNotAlreadyIn( lModels,
-                                'for model "%s", "%s" is in title '
-                                'and have key word(s) "%s"' %
-                                (   oModel.cTitle,
-                                    sInTitle,
-                                    uGotKeyWordsOrNoKeyWords.group(0)) )
-                        #
-                    elif sInTitle == oModel.cTitle:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lModels, 'model %s (category %s) in title' %
-                                ( sInTitle, oModel.iCategory ) )
-                        #
-                    else:
-                        #
-                        _appendIfNotAlreadyIn( lModels,
-                                'for model "%s", "%s" is in title' %
-                                ( oModel.cTitle, sInTitle ) )
-                        #
+                    _appendIfNotAlreadyIn( lModels,
+                            'for model "%s", "%s" is in title '
+                            'and have key word(s) "%s"' %
+                            (   oModel.cTitle,
+                                sInTitle,
+                                uGotKeyWordsOrNoKeyWords.group(0)) )
                     #
-                    if oModel.cExcludeIf:
-                        #
-                        sSayExclude = getDashForReturn( oModel.cExcludeIf )
-                        _appendIfNotAlreadyIn( lModels,
-                                'model "%s" excludes: %s (RegEx: %s)' %
-                                ( oModel.cTitle,
-                                  sSayExclude,
-                                  oModel.cRegExExclude ) )
-                        #
-                        #
+                elif sInTitle == oModel.cTitle:
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels, 'model %s (category %s) in title' %
+                            ( sInTitle, oModel.iCategory ) )
+                    #
+                else:
+                    #
+                    _appendIfNotAlreadyIn( lModels,
+                            'for model "%s", "%s" is in title' %
+                            ( oModel.cTitle, sInTitle ) )
                     #
                 #
-                lNewItemFoundTemp = []
-                #
-                bModelCategoryAlreadyFound = (
-                        oModel.iCategory_id in dGotCategories )
-                #
-                bCategoryFamilyRelation = False
-                #
-                for oTempItem in lItemFoundTemp: # lists categories found
+                if oModel.cExcludeIf:
                     #
-                    # like a crossover w drivers
-                    # or
-                    # a tube tester roll chart
+                    sSayExclude = getDashForReturn( oModel.cExcludeIf )
+                    _appendIfNotAlreadyIn( lModels,
+                            'model "%s" excludes: %s (RegEx: %s)' %
+                            ( oModel.cTitle,
+                                sSayExclude,
+                                oModel.cRegExExclude ) )
                     #
-                    bCategoryFamilyRelation = (
-                        oTempItem.iCategory and dCategoryFamily and
-                        oTempItem.iCategory.id != oModel.iCategory_id and
-                        oTempItem.iCategory.id in dCategoryFamily and
-                        (   (   dCategoryFamily[ oTempItem.iCategory.id ] ==
-                                oModel.iCategory_id )
-                            or
-                            (   oModel.iCategory_id in dCategoryFamily and
-                                    dCategoryFamily[ oModel.iCategory_id ] ==
-                                    dCategoryFamily[ oTempItem.iCategory.id ] ) ) )
-                    #
-                    bAddThisCategory = False
-                    #
-                    if  (   bCategoryFamilyRelation and
-                            oModel.iCategory_id    in dGotCategories and
-                            oTempItem.iCategory.id in dGotCategories ):
-                        #
-                        sModelCategory = dGotCategories[ oModel.iCategory_id ]
-                        iModelCategory = len( sModelCategory )
-                        #
-                        sThisCategory = dGotCategories[ oTempItem.iCategory.id ]
-                        iThisCategory = len( sThisCategory )
-                        #
-                        bAddThisCategory = (
-                                sModelCategory and
-                                iThisCategory > iModelCategory and
-                                sModelCategory in sThisCategory )
-                        #
-                    #
-                    if bCategoryFamilyRelation and bAddThisCategory:
-                        #
-                        pass
-                        #
-                    elif (  bModelCategoryAlreadyFound and
-                            oModel.iCategory != oTempItem.iCategory ):
-                        #
-                        continue
-                        #
-                    elif oModel.id in setModelsStoredAlready:
-                        #
-                        continue
-                        #
-                    #
-                    if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
-                        #
-                        if bModelCategoryAlreadyFound:
-                            #
-                            oCategory = oTempItem.iCategory
-                            sWhereCategory = oTempItem.cWhereCategory
-                            #
-                        else: # bCategoryFamilyRelation
-                            #
-                            iFamily = dCategoryFamily[ oModel.iCategory_id ]
-                            #
-                            oFamily = Category.objects.get( id = iFamily )
-                            #
-                            sSayFamily = 'a member'
-                            #
-                            if oModel.iCategory == iFamily:
-                                #
-                                sSayFamily = 'the head'
-                                #
-                            #
-                            _appendIfNotAlreadyIn(
-                                    lCategories,
-                                    'category %s is %s of family %s' %
-                                        ( oModel.iCategory,
-                                          sSayFamily,
-                                          oFamily.cTitle ) )
-                            #
-                            oCategory = oModel.iCategory
-                            #
-                            sWhereCategory = 'family'
-                            #
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                    lModels,
-                                    'adding model %s for category %s' %
-                                    ( oModel.cTitle, oCategory ) )
-                        #
-                        oNewTempItem = ItemFoundTemp(
-                                iItemNumb       = oTempItem.iItemNumb,
-                                iStarsCategory  = oTempItem.iStarsCategory,
-                                iHitStars       = oTempItem.iHitStars,
-                                iSearch         = oTempItem.iSearch,
-                                iCategory       = oCategory,
-                                cWhereCategory  = sWhereCategory,
-                                iModel          = oModel,
-                                iStarsModel     = oModel.iStars,
-                                cFoundModel     = sInTitle,
-                                cModelAlphaNum  = sModelAlphaNum,
-                                cTitleLeftOver  = sWhatRemains )
-                        #
-                        iModelStars = oModel.iStars or 1
-                        #
-                        iHitStars = oTempItem.iStarsCategory * iModelStars
-                        #
-                        oNewTempItem.iHitStars  = iHitStars
-                        #
-                        oNewTempItem.iFoundModelLen = _getModelFoundLen(
-                                                        sInTitle, sGotInParens )
-                        #
-                        oNewTempItem.save()
-                        #
-                        bFoundCategoryForModel  = True
-                        #
-                        lNewItemFoundTemp.append( oNewTempItem )
-                        #
-                        setModelsStoredAlready.add( oModel.id )
-                        #
-                    elif    ( oModel.iCategory == oTempItem.iCategory and
-                            oTempItem.iModel is None ):
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                    lModels,
-                                    'item has category %s for model %s' %
-                                    ( oTempItem.iCategory, oModel.cTitle ) )
-                            #
-                        #
-                        oTempItem.iModel            = oModel
-                        #
-                        oTempItem.iStarsModel       = oModel.iStars
-                        #
-                        # reduce the length boost if the match is in parens
-                        #
-                        oTempItem.iFoundModelLen = _getModelFoundLen(
-                                                        sInTitle, sGotInParens )
-                        #
-                        iModelStars = oModel.iStars or 1
-                        #
-                        iHitStars = oTempItem.iStarsCategory * iModelStars
-                        #
-                        oTempItem.iHitStars         = iHitStars
-                        #
-                        oTempItem.save()
-                        #
-                        bFoundCategoryForModel      = True
-                        #
                     #
                 #
-                if lNewItemFoundTemp:
+            #
+            lNewItemFoundTemp = []
+            #
+            bModelCategoryAlreadyFound = (
+                    oModel.iCategory_id in dGotCategories )
+            #
+            bCategoryFamilyRelation = False
+            #
+            for oTempItem in lItemFoundTemp: # lists categories found
+                #
+                # like a crossover w drivers
+                # or
+                # a tube tester roll chart
+                #
+                bCategoryFamilyRelation = (
+                    oTempItem.iCategory and dCategoryFamily and
+                    oTempItem.iCategory.id != oModel.iCategory_id and
+                    oTempItem.iCategory.id in dCategoryFamily and
+                    (   (   dCategoryFamily[ oTempItem.iCategory.id ] ==
+                            oModel.iCategory_id )
+                        or
+                        (   oModel.iCategory_id in dCategoryFamily and
+                                dCategoryFamily[ oModel.iCategory_id ] ==
+                                dCategoryFamily[ oTempItem.iCategory.id ] ) ) )
+                #
+                bAddThisCategory = False
+                #
+                if  (   bCategoryFamilyRelation and
+                        oModel.iCategory_id    in dGotCategories and
+                        oTempItem.iCategory.id in dGotCategories ):
                     #
-                    lItemFoundTemp.extend( lNewItemFoundTemp )
+                    sModelCategory = dGotCategories[ oModel.iCategory_id ]
+                    iModelCategory = len( sModelCategory )
+                    #
+                    sThisCategory = dGotCategories[ oTempItem.iCategory.id ]
+                    iThisCategory = len( sThisCategory )
+                    #
+                    bAddThisCategory = (
+                            sModelCategory and
+                            iThisCategory > iModelCategory and
+                            sModelCategory in sThisCategory )
                     #
                 #
-                if bCategoryFamilyRelation and not bFoundCategoryForModel:
+                if bCategoryFamilyRelation and bAddThisCategory:
                     #
-                    if oModel.iCategory_id in dCategoryFamily:
+                    pass
+                    #
+                elif (  bModelCategoryAlreadyFound and
+                        oModel.iCategory != oTempItem.iCategory ):
+                    #
+                    continue
+                    #
+                elif oModel.id in setModelsStoredAlready:
+                    #
+                    continue
+                    #
+                #
+                if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
+                    #
+                    if bModelCategoryAlreadyFound:
+                        #
+                        oCategory = oTempItem.iCategory
+                        sWhereCategory = oTempItem.cWhereCategory
+                        #
+                    else: # bCategoryFamilyRelation
                         #
                         iFamily = dCategoryFamily[ oModel.iCategory_id ]
                         #
-                        if iFamily in dFamilyCategory:
+                        oFamily = Category.objects.get( id = iFamily )
+                        #
+                        sSayFamily = 'a member'
+                        #
+                        if oModel.iCategory == iFamily:
                             #
-                            oFamily = Category.objects.get( id = iFamily )
-                            #
-                            _appendIfNotAlreadyIn(
-                                    lCategories,
-                                    'category %s is head of family %s' %
-                                        ( oModel.iCategory, oFamily.cTitle ) )
+                            sSayFamily = 'the head'
                             #
                         #
-                    #
-                #
-                if not bFoundCategoryForModel:
+                        # find targets for troubleshooting:
+                        # is a member of family X
+                        # is the head of family X
+                        #
+                        _appendIfNotAlreadyIn(
+                                lCategories,
+                                'category %s is %s of family %s' %
+                                    ( oModel.iCategory,
+                                        sSayFamily,
+                                        oFamily.cTitle ) )
+                        #
+                        oCategory = oModel.iCategory
+                        #
+                        sWhereCategory = 'family'
+                        #
                     #
                     if bRecordSteps:
                         #
                         _appendIfNotAlreadyIn(
                                 lModels,
-                                'item does not have category %s for model %s' %
-                                    ( oModel.iCategory, oModel.cTitle ) )
-                        #
-                        if oModel.iCategory.cLookFor:
-                            #
-                            lLookFor = oFinderCRorLF.split( oModel.iCategory.cLookFor )
-                            #
-                            sayLookFor = ' | '.join( lLookFor )
-                            #
-                            _appendIfNotAlreadyIn(
-                                    lModels,
-                                    'category look for: %s' % sayLookFor )
-                            #
-                        #
-                        _appendIfNotAlreadyIn(
-                                lModels,
-                                'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
+                                'adding model %s for category %s' %
+                                ( oModel.cTitle, oCategory ) )
                     #
-                    oTempItem = ItemFoundTemp(
-                            iItemNumb       = oItemFound,
-                            iHitStars       = oModel.iStars,
+                    oNewTempItem = ItemFoundTemp(
+                            iItemNumb       = oTempItem.iItemNumb,
+                            iStarsCategory  = oTempItem.iStarsCategory,
+                            iHitStars       = oTempItem.iHitStars,
+                            iSearch         = oTempItem.iSearch,
+                            iCategory       = oCategory,
+                            cWhereCategory  = sWhereCategory,
+                            iModel          = oModel,
                             iStarsModel     = oModel.iStars,
                             cFoundModel     = sInTitle,
                             cModelAlphaNum  = sModelAlphaNum,
-                            iFoundModelLen  = len( sModelAlphaNum ),
-                            iSearch         = oUserItem.iSearch,
-                            iModel          = oModel )
+                            cTitleLeftOver  = sWhatRemains )
+                    #
+                    iModelStars = oModel.iStars or 1
+                    #
+                    iHitStars = oTempItem.iStarsCategory * iModelStars
+                    #
+                    oNewTempItem.iHitStars  = iHitStars
+                    #
+                    oNewTempItem.iFoundModelLen = _getModelFoundLen(
+                                                    sInTitle, sGotInParens )
+                    #
+                    oNewTempItem.save()
+                    #
+                    bFoundCategoryForModel  = True
+                    #
+                    lNewItemFoundTemp.append( oNewTempItem )
+                    #
+                    setModelsStoredAlready.add( oModel.id )
+                    #
+                elif    ( oModel.iCategory == oTempItem.iCategory and
+                        oTempItem.iModel is None ):
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                                lModels,
+                                'item has category %s for model %s' %
+                                ( oTempItem.iCategory, oModel.cTitle ) )
+                        #
+                    #
+                    oTempItem.iModel            = oModel
+                    #
+                    oTempItem.iStarsModel       = oModel.iStars
+                    #
+                    # reduce the length boost if the match is in parens
+                    #
+                    oTempItem.iFoundModelLen = _getModelFoundLen(
+                                                    sInTitle, sGotInParens )
+                    #
+                    iModelStars = oModel.iStars or 1
+                    #
+                    iHitStars = oTempItem.iStarsCategory * iModelStars
+                    #
+                    oTempItem.iHitStars         = iHitStars
                     #
                     oTempItem.save()
                     #
-                    lItemFoundTemp.append( oTempItem )
+                    bFoundCategoryForModel      = True
                     #
                 #
             #
+            if lNewItemFoundTemp:
+                #
+                lItemFoundTemp.extend( lNewItemFoundTemp )
+                #
+            #
+            if bCategoryFamilyRelation and not bFoundCategoryForModel:
+                #
+                if oModel.iCategory_id in dCategoryFamily:
+                    #
+                    iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                    #
+                    if iFamily in dFamilyCategory:
+                        #
+                        oFamily = Category.objects.get( id = iFamily )
+                        #
+                        _appendIfNotAlreadyIn(
+                                lCategories,
+                                'category %s is the head of family %s' %
+                                    ( oModel.iCategory, oFamily.cTitle ) )
+                        #
+                    #
+                #
+            #
+            if not bFoundCategoryForModel:
+                #
+                if bRecordSteps:
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'item does not have category %s for model %s' %
+                                ( oModel.iCategory, oModel.cTitle ) )
+                    #
+                    if oModel.iCategory.cLookFor:
+                        #
+                        lLookFor = oFinderCRorLF.split( oModel.iCategory.cLookFor )
+                        #
+                        sayLookFor = ' | '.join( lLookFor )
+                        #
+                        _appendIfNotAlreadyIn(
+                                lModels,
+                                'category look for: %s' % sayLookFor )
+                        #
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
+                #
+                oTempItem = ItemFoundTemp(
+                        iItemNumb       = oItemFound,
+                        iHitStars       = oModel.iStars,
+                        iStarsModel     = oModel.iStars,
+                        cFoundModel     = sInTitle,
+                        cModelAlphaNum  = sModelAlphaNum,
+                        iFoundModelLen  = len( sModelAlphaNum ),
+                        iSearch         = oUserItem.iSearch,
+                        iModel          = oModel )
+                #
+                oTempItem.save()
+                #
+                lItemFoundTemp.append( oTempItem )
+                #
+            #
+        #
         #
         lBrands = dFindSteps[ 'brands' ]
         #
@@ -1249,7 +1284,11 @@ def findSearchHits(
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
-            if sInTitle and uExcludeThis:
+            if not sInTitle:
+                #
+                continue
+                #
+            elif uExcludeThis:
                 #
                 if bRecordSteps:
                     #
@@ -1260,213 +1299,232 @@ def findSearchHits(
                 #
                 continue
                 #
-            #
-            setModelsBrands = set( [] )
-            #
-            if sInTitle:
+            elif not uGotKeyWordsOrNoKeyWords:
                 #
                 if bRecordSteps:
                     #
-                    if sInTitle == oBrand.cTitle:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lBrands, 'brand %s in title' % sInTitle )
-                        #
-                    else:
-                        #
-                        _appendIfNotAlreadyIn( lBrands,
-                                'for brand "%s", "%s" is in title' %
-                                ( oBrand.cTitle, sInTitle ) )
-                        #
+                    lKeyWords = oFinderCRorLF.split( oBrand.cKeyWords )
+                    #
+                    sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                    #
+                    lKeyWords = (   lKeyWords[0].split()
+                                    if len( lKeyWords ) == 1
+                                    else lKeyWords )
+                    #
+                    sPlural = 's' if len( lKeyWords ) > 1 else ''
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'excluded: %s cuz aint got key word%s %s' %
+                            ( oBrand.cTitle, sPlural, sSayKeyWords ) )
                     #
                 #
-                for oTempItem in lItemFoundTemp:
+                continue
+                #
+            #
+            setModelsBrands = set( [] )
+            #
+            if bRecordSteps:
+                #
+                if sInTitle == oBrand.cTitle:
                     #
-                    tModelBrand = ( oTempItem.iModel, oBrand )
+                    _appendIfNotAlreadyIn(
+                            lBrands, 'brand %s in title' % sInTitle )
                     #
-                    oItemFoundTempModel = None
+                else:
                     #
-                    if oTempItem.iModel:
-                        oItemFoundTempModel = Model.objects.get(
-                                                id = oTempItem.iModel.id )
+                    _appendIfNotAlreadyIn( lBrands,
+                            'for brand "%s", "%s" is in title' %
+                            ( oBrand.cTitle, sInTitle ) )
                     #
-                    if   (      oTempItem.iModel                and
-                            not oTempItem.iModel.bGenericModel  and
-                            oItemFoundTempModel                 and
-                            oItemFoundTempModel.iBrand == oTempItem.iBrand ):
+                #
+            #
+            for oTempItem in lItemFoundTemp:
+                #
+                tModelBrand = ( oTempItem.iModel, oBrand )
+                #
+                oItemFoundTempModel = None
+                #
+                if oTempItem.iModel:
+                    oItemFoundTempModel = Model.objects.get(
+                                            id = oTempItem.iModel.id )
+                #
+                if   (      oTempItem.iModel                and
+                        not oTempItem.iModel.bGenericModel  and
+                        oItemFoundTempModel                 and
+                        oItemFoundTempModel.iBrand == oTempItem.iBrand ):
+                    #
+                    bFoundBrandForModel = True
+                    #
+                elif (  oTempItem.iModel                and
+                        oTempItem.iBrand                and
+                        oTempItem.iModel.bGenericModel  and
+                        oTempItem.iCategory             and
+                        tModelBrand not in setModelsBrands ):
+                    #
+
+                    bSaveBrand = BrandCategory.objects.filter(
+                        iUser     = oUser,
+                        iBrand    = oBrand,
+                        iCategory = oTempItem.iCategory ).exists()
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn( lBrands,
+                                'found another brand %s for generic model %s' %
+                                ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                        #
+                    #
+                    oAnotherTempItem = copy( oTempItem )
+                    #
+                    oAnotherTempItem.iBrand      = None
+                    oAnotherTempItem.iStarsBrand = 0
+                    oAnotherTempItem.iHitStars   = 0
+                    #
+                    lItemFoundTemp.append( oAnotherTempItem )
+                    #
+                    continue
+                    #
+                elif (      oTempItem.iModel and
+                        (   oTempItem.iBrand is None or
+                            oTempItem.iBrand != oBrand ) ):
+                    #
+                    bSaveBrand = False
+                    #
+                    bGotBrandForNonGenericModel = False
+                    #
+                    if oBrand == oTempItem.iModel.iBrand:
+                        #
+                        oTempItem.iBrand = oBrand
+                        #
+                        bSaveBrand = True
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn( lBrands,
+                                    'found brand %s for model %s' %
+                                    ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                            #
+                        #
+                        bGotBrandForNonGenericModel = True
                         #
                         bFoundBrandForModel = True
                         #
-                    elif (  oTempItem.iModel                and
-                            oTempItem.iBrand                and
-                            oTempItem.iModel.bGenericModel  and
-                            oTempItem.iCategory             and
-                            tModelBrand not in setModelsBrands ):
+                    elif    (   oItemFoundTempModel                  and
+                                oItemFoundTempModel.iBrand == oBrand and
+                                oTempItem.iBrand != oBrand ):
                         #
-
+                        oTempItem.iBrand = oBrand
+                        #
+                        bSaveBrand = True
+                        #
+                        bFoundBrandForModel = True
+                        #
+                    elif oTempItem.iModel.bGenericModel and oTempItem.iCategory:
+                        #
                         bSaveBrand = BrandCategory.objects.filter(
                             iUser     = oUser,
                             iBrand    = oBrand,
                             iCategory = oTempItem.iCategory ).exists()
                         #
-                        if bRecordSteps:
+                    #
+                    if bSaveBrand and tModelBrand not in setModelsBrands:
+                        #
+                        if (    bRecordSteps and
+                                oTempItem.iModel.bGenericModel and
+                                not bGotBrandForNonGenericModel ):
                             #
                             _appendIfNotAlreadyIn( lBrands,
-                                    'found another brand %s for generic model %s' %
+                                    'found brand %s for generic model %s' %
                                     ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
                             #
                         #
-                        oAnotherTempItem = copy( oTempItem )
+                        oTempItem.iStarsBrand  = oBrand.iStars
+                        oTempItem.iBrand       = oBrand
                         #
-                        oAnotherTempItem.iBrand      = None
-                        oAnotherTempItem.iStarsBrand = 0
-                        oAnotherTempItem.iHitStars   = 0
+                        iStarsCategory  = oTempItem.iStarsCategory  or 1
+                        iStarsModel     = oTempItem.iStarsModel     or 1
                         #
-                        lItemFoundTemp.append( oAnotherTempItem )
+                        iHitStars = (   iStarsCategory *
+                                        iStarsModel *
+                                        oBrand.iStars )
                         #
-                        continue
+                        oTempItem.iHitStars    = iHitStars
                         #
-                    elif (      oTempItem.iModel and
-                            (   oTempItem.iBrand is None or
-                                oTempItem.iBrand != oBrand ) ):
+                        oTempItem.save()
                         #
-                        bSaveBrand = False
+                        bFoundBrandForModel = True
                         #
-                        bGotBrandForNonGenericModel = False
-                        #
-                        if oBrand == oTempItem.iModel.iBrand:
-                            #
-                            oTempItem.iBrand = oBrand
-                            #
-                            bSaveBrand = True
-                            #
-                            if bRecordSteps:
-                                #
-                                _appendIfNotAlreadyIn( lBrands,
-                                        'found brand %s for model %s' %
-                                        ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
-                                #
-                            #
-                            bGotBrandForNonGenericModel = True
-                            #
-                            bFoundBrandForModel = True
-                            #
-                        elif    (   oItemFoundTempModel                  and
-                                    oItemFoundTempModel.iBrand == oBrand and
-                                    oTempItem.iBrand != oBrand ):
-                            #
-                            oTempItem.iBrand = oBrand
-                            #
-                            bSaveBrand = True
-                            #
-                            bFoundBrandForModel = True
-                            #
-                        elif oTempItem.iModel.bGenericModel and oTempItem.iCategory:
-                            #
-                            bSaveBrand = BrandCategory.objects.filter(
-                                iUser     = oUser,
-                                iBrand    = oBrand,
-                                iCategory = oTempItem.iCategory ).exists()
-                            #
-                        #
-                        if bSaveBrand and tModelBrand not in setModelsBrands:
-                            #
-                            if (    bRecordSteps and
-                                    oTempItem.iModel.bGenericModel and
-                                    not bGotBrandForNonGenericModel ):
-                                #
-                                _appendIfNotAlreadyIn( lBrands,
-                                        'found brand %s for generic model %s' %
-                                        ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
-                                #
-                            #
-                            oTempItem.iStarsBrand  = oBrand.iStars
-                            oTempItem.iBrand       = oBrand
-                            #
-                            iStarsCategory  = oTempItem.iStarsCategory  or 1
-                            iStarsModel     = oTempItem.iStarsModel     or 1
-                            #
-                            iHitStars = (   iStarsCategory *
-                                            iStarsModel *
-                                            oBrand.iStars )
-                            #
-                            oTempItem.iHitStars    = iHitStars
-                            #
-                            oTempItem.save()
-                            #
-                            bFoundBrandForModel = True
-                            #
-                            setModelsBrands.add( tModelBrand )
-                            #
+                        setModelsBrands.add( tModelBrand )
                         #
                     #
                 #
-                bSaveBrand = False
+            #
+            bSaveBrand = False
+            #
+            for oCategory in lCategoryFound:
                 #
-                for oCategory in lCategoryFound:
+                bSaveBrand = BrandCategory.objects.filter(
+                    iUser     = oUser,
+                    iBrand    = oBrand,
+                    iCategory = oCategory ).exists()
+                #
+                if bSaveBrand: break
+                #
+            #
+            iBrandStars = oBrand.iStars or 1
+            #
+            if bSaveBrand and not bFoundBrandForModel:
+                #
+                if bRecordSteps:
                     #
-                    bSaveBrand = BrandCategory.objects.filter(
-                        iUser     = oUser,
-                        iBrand    = oBrand,
-                        iCategory = oCategory ).exists()
-                    #
-                    if bSaveBrand: break
+                    _appendIfNotAlreadyIn( lBrands,
+                            'brand %s has products in category %s' %
+                            ( oBrand.cTitle, oCategory.cTitle ) )
                     #
                 #
-                iBrandStars = oBrand.iStars or 1
+                oTempItem.iStarsBrand  = oBrand.iStars
+                oTempItem.iBrand       = oBrand
                 #
-                if bSaveBrand and not bFoundBrandForModel:
+                iStarsCategory          = oCategory.iStars or 1
+                #
+                iHitStars = iStarsCategory * oBrand.iStars
+                #
+                oTempItem.iHitStars    = iHitStars
+                #
+                oTempItem = ItemFoundTemp(
+                        iItemNumb       = oItem,
+                        iBrand          = oBrand,
+                        iCategory       = oCategory,
+                        iStarsBrand     = iBrandStars,
+                        iStarsCategory  = iStarsCategory,
+                        iHitStars       = iHitStars,
+                        iSearch         = oUserItem.iSearch )
+                #
+                oTempItem.save()
+                #
+                lItemFoundTemp.append( oTempItem )
+                #
+                #
+            elif not bFoundBrandForModel:
+                #
+                if bRecordSteps:
                     #
-                    if bRecordSteps:
-                        #
-                        _appendIfNotAlreadyIn( lBrands,
-                                'brand %s has products in category %s' %
-                                ( oBrand.cTitle, oCategory.cTitle ) )
-                        #
+                    _appendIfNotAlreadyIn( lBrands,
+                            'did not find brand %s for any model found' %
+                            oBrand.cTitle )
                     #
-                    oTempItem.iStarsBrand  = oBrand.iStars
-                    oTempItem.iBrand       = oBrand
-                    #
-                    iStarsCategory          = oCategory.iStars or 1
-                    #
-                    iHitStars = iStarsCategory * oBrand.iStars
-                    #
-                    oTempItem.iHitStars    = iHitStars
-                    #
-                    oTempItem = ItemFoundTemp(
-                            iItemNumb       = oItem,
-                            iBrand          = oBrand,
-                            iCategory       = oCategory,
-                            iStarsBrand     = iBrandStars,
-                            iStarsCategory  = iStarsCategory,
-                            iHitStars       = iHitStars,
-                            iSearch         = oUserItem.iSearch )
-                    #
-                    oTempItem.save()
-                    #
-                    lItemFoundTemp.append( oTempItem )
-                    #
-                    #
-                elif not bFoundBrandForModel:
-                    #
-                    if bRecordSteps:
-                        #
-                        _appendIfNotAlreadyIn( lBrands,
-                                'did not find brand %s for any model found' %
-                                oBrand.cTitle )
-                        #
-                    #
-                    oTempItem = ItemFoundTemp(
-                            iItemNumb       = oItem,
-                            iBrand          = oBrand,
-                            iStarsBrand     = oBrand.iStars,
-                            iHitStars       = iBrandStars,
-                            iSearch         = oUserItem.iSearch )
-                    #
-                    oTempItem.save()
-                    #
-                    lItemFoundTemp.append( oTempItem )
-                    #
+                #
+                oTempItem = ItemFoundTemp(
+                        iItemNumb       = oItem,
+                        iBrand          = oBrand,
+                        iStarsBrand     = oBrand.iStars,
+                        iHitStars       = iBrandStars,
+                        iSearch         = oUserItem.iSearch )
+                #
+                oTempItem.save()
+                #
+                lItemFoundTemp.append( oTempItem )
                 #
             #
         #
@@ -1753,6 +1811,35 @@ def findSearchHits(
                             #
                             if bGotBrand: continue
                             #
+                        #
+                    #
+                    doPrintMore = (
+                            bRecordSteps and
+                            sModelTitleUPPER == '6DJ8' )
+                    #
+                    if doPrintMore:
+                        #
+                        print()
+                        print( 'sModelTitleUPPER:', sModelTitleUPPER )
+                        print( 'oTempItem.iModel:', oTempItem.iModel )
+                        print( 'oTempItem.iBrand:', oTempItem.iBrand )
+                        print( 'oTempItem.iCategory:', oTempItem.iCategory )
+                        print( 'dModelsStoredAlready:' )
+                        print(  ' ', dModelsStoredAlready )
+                        if dModelsStoredAlready:
+                            for k, v in dModelsStoredAlready.items():
+                                print( '  %s:' % k )
+                                for o in v:
+                                    sO = str( o )
+                                    lO = sO.split( '\n' )
+                                    for s in lO:
+                                        print3_n_2( s, beg = '    ' )
+                        else:
+                            print( 'empty!' )
+                        print( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
+                        print( 'uExact:', uExact )
+                        print( 'oModelStored:' )
+                        print(  oModelStored )
                         #
                     #
                     # exclude if uLonger unless
