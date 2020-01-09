@@ -31,6 +31,7 @@ from pyPks.File.Test        import isFileThere
 from pyPks.File.Write       import QuickDumpLines
 
 from pyPks.Object.Get       import ValueContainer
+from pyPks.Object.Output    import CustomPPrint
 
 from pyPks.String.Count     import getAlphaNumCount as getLen
 from pyPks.String.Dumpster  import getAlphaNumCleanNoSpaces
@@ -1825,17 +1826,7 @@ def findSearchHits(
                         print( 'oTempItem.iBrand:', oTempItem.iBrand )
                         print( 'oTempItem.iCategory:', oTempItem.iCategory )
                         print( 'dModelsStoredAlready:' )
-                        print(  ' ', dModelsStoredAlready )
-                        if dModelsStoredAlready:
-                            for k, v in dModelsStoredAlready.items():
-                                print( '  %s:' % k )
-                                for o in v:
-                                    sO = str( o )
-                                    lO = sO.split( '\n' )
-                                    for s in lO:
-                                        print3_n_2( s, beg = '    ' )
-                        else:
-                            print( 'empty!' )
+                        CustomPPrint.pprint( dModelsStoredAlready )
                         print( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
                         print( 'uExact:', uExact )
                         print( 'oModelStored:' )
