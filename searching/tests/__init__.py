@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 383183181329
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
