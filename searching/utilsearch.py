@@ -19,12 +19,12 @@ from pyPks.String.Get    import getContentOutOfDoubleQuotes
 
 logger = logging.getLogger(__name__)
 
+''' prints logging messages to terminal
 logging_level = logging.WARNING
 
 logging.basicConfig(
     format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
     level=logging.WARNING)
-''' prints logging messages to terminal
 '''
 
 class ItemAlreadyInTable(    Exception ): pass
