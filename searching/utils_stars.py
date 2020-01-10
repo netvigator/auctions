@@ -1,3 +1,5 @@
+import logging
+
 from copy                   import copy
 from pprint                 import pprint, pformat
 
@@ -41,10 +43,14 @@ from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo
 
-
 if settings.TESTING:
     from pyPks.Utils.Both2n3 import print3_n_2
     from pyPks.Object.Get   import ValueContainerCanPrint as ValueContainer
+
+
+logger = logging.getLogger(__name__)
+
+logging_level = logging.WARNING
 
 
 SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
@@ -1112,7 +1118,16 @@ def findSearchHits(
                         #
                     else: # bCategoryFamilyRelation
                         #
-                        iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                        if oModel.iCategory_id in dCategoryFamily:
+                            #
+                            iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                            #
+                        else:
+                            #
+                            logger.warning( '%s in %s' % ( oModel.iCategory_id, "dCategoryFamily" ) )
+                            #
+                            iFamily = dCategoryFamily[ oTempItem.iCategory.id ]
+                            #
                         #
                         oFamily = Category.objects.get( id = iFamily )
                         #
