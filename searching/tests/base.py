@@ -348,6 +348,14 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            oCategory   = Category(
+                    cTitle      = 'Component',
+                    iStars      = 6,
+                    iUser       = oUser )
+            #
+            oCategory.save()
+            #
+            #
             #
             oTableIter = getTableFromScreenCaptureGenerator( sBrands )
             #
