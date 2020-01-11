@@ -44,7 +44,7 @@ from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo
 
 if settings.TESTING:
-    from pyPks.Utils.Both2n3 import print3_n_2
+
     from pyPks.Object.Get   import ValueContainerCanPrint as ValueContainer
 
 
@@ -482,6 +482,8 @@ def _gotFullStringOrSubStringOfListItem( sTitle, lGotModels ):
 def _updateModelsStoredAlready(
             dModelsStoredAlready, oTempItem, sModelTitleUPPER ):
     #
+    # dModelsStoredAlready used for scoring & selection
+    #
     iCategoryID = None
     #
     if oTempItem.iCategory:
@@ -502,6 +504,8 @@ def _updateModelsStoredAlready(
 
 
 def _getMaxHitStars( dModelsStoredAlready ):
+    #
+    # dModelsStoredAlready used for scoring & selection
     #
     iMaxStars = iMaxModel = 0
     #
@@ -609,7 +613,7 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
                 #
                 lGotModelOverlap.append( ( oLongr, oShort ) )
                 #
-                if bRecordSteps:
+                if False and bRecordSteps:
                     #
                     maybePrint()
                     maybePrint( 'oLongr.iHitStars     :', oLongr.iHitStars      )
@@ -827,6 +831,10 @@ def findSearchHits(
         #
         lCategoryFound = []
         #
+        #
+        # first: step thru categories
+        #
+        #
         for oCategory in qsCategories:
             #
             foundItem = getFoundItemTester(
@@ -952,6 +960,12 @@ def findSearchHits(
             #
             dGotCategories[ oCategory.id ] = sInTitle
             #
+        #
+        #
+        # finished stepping thru
+        #
+        # next: step thru models
+        #
         #
         lModels = dFindSteps[ 'models' ]
         #
@@ -1124,7 +1138,12 @@ def findSearchHits(
                             #
                         else:
                             #
-                            logger.warning( '%s in %s' % ( oModel.iCategory_id, "dCategoryFamily" ) )
+                            # dCategoryFamily[ oTempItem.iCategory.id ] ==
+                            # oModel.iCategory_id )
+                            #
+                            logger.warning(
+                                    'model has category id %s in dCategoryFamily for %s' %
+                                    ( oModel.iCategory_id, oTempItem.iItemNumb ) )
                             #
                             iFamily = dCategoryFamily[ oTempItem.iCategory.id ]
                             #
@@ -1286,6 +1305,12 @@ def findSearchHits(
                 #
             #
         #
+
+        #
+        # finished stepping thru models
+        #
+        # next: step thru brands
+        #
         #
         lBrands = dFindSteps[ 'brands' ]
         #
@@ -1444,6 +1469,13 @@ def findSearchHits(
                             iCategory = oTempItem.iCategory ).exists()
                         #
                     #
+                    if bRecordSteps and oTempItem.iModel and oTempItem.iModel.cTitle == "6V6GTA":
+                        #
+                        print()
+                        print( 'tModelBrand:', tModelBrand )
+                        print( 'setModelsBrands:', setModelsBrands )
+                        #
+                    #
                     if bSaveBrand and tModelBrand not in setModelsBrands:
                         #
                         if (    bRecordSteps and
@@ -1544,6 +1576,11 @@ def findSearchHits(
                 #
             #
         #
+        #
+        # finished stepping thru brands
+        #
+        # next: score candidates
+        #
         tNow = timezone.now()
         #
         lCandidates = dFindSteps[ 'candidates' ]
@@ -1590,6 +1627,21 @@ def findSearchHits(
                         iScoreStars = int( (
                             iFoundModelMultiplier * oTempItem.iHitStars
                             ) / nFoundModelBoost )
+                        #
+                    #
+                    if  (       oTempItem.iBrand is None and
+                                oTempItem.iModel is not None and
+                          ( not oTempItem.iModel.bGenericModel or
+                            oTempItem.iModel.iBrand_id is None ) ):
+                        #
+                        if bRecordSteps and nFoundModelBoost > 1:
+                            #
+                            lCandidates.append(
+                                'did not find brand for %s, so discounting'
+                                % oTempItem.iModel )
+                            #
+                        #
+                        iScoreStars = iScoreStars / 2
                         #
                     #
                     lSortItems.append( ( iScoreStars, i ) )
@@ -1698,7 +1750,7 @@ def findSearchHits(
             #
             iItemsFoundTemp         = 0
             #
-            dModelsStoredAlready    = {}
+            dModelsStoredAlready    = {} # used for scoring & selection
             #
             lModelsStoredAlready    = []
             #
@@ -1806,15 +1858,23 @@ def findSearchHits(
                     #
                     bGotNonGenericForThis = False
                     #
+                    # dModelsStoredAlready used for scoring & selection
+                    #
                     if sModelTitleUPPER in dModelsStoredAlready:
                         #
                         for oModelStored in dModelsStoredAlready[ sModelTitleUPPER ]:
                             #
+                            # startswith below handles Amperex Bugle Boy & Amperex
+                            #
                             bGotNonGenericForThis = (
-                                    oModelStored.iModelBrand == oTempItem.iBrand and
+                                    oModelStored.iModelBrand and
+                                    oTempItem.iBrand and
+                                    oModelStored.iModelBrand.cTitle.startswith(
+                                            oTempItem.iBrand.cTitle ) and
                                     not oModelStored.bGenericModel )
                             #
                             if bGotNonGenericForThis: continue
+                            #
                         #
                     #
                     bGotBrand = False
@@ -1833,7 +1893,7 @@ def findSearchHits(
                             bRecordSteps and
                             sModelTitleUPPER == '6DJ8' )
                     #
-                    if doPrintMore:
+                    if doPrintMore and not bGotNonGenericForThis:
                         #
                         print()
                         print( 'sModelTitleUPPER:', sModelTitleUPPER )
@@ -2021,6 +2081,8 @@ def findSearchHits(
                         iUser           = oUser )
                     #
                     oNewUserItem.save()
+                    #
+                    # dModelsStoredAlready used for scoring & selection
                     #
                     _updateModelsStoredAlready(
                             dModelsStoredAlready, oTempItem, sModelTitleUPPER )
