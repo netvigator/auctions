@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 383183181329
+iRecordStepsForThis = None or 174143946146
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -28,7 +28,7 @@ sBrands = \
  Ampex             |      5 |            |            |
  Amperex Bugle Boy |      9 |            |            | Amperex BB
  Amperex           |      8 |            |            |
- Amperex (gold pins)|     9 |            | gold pin   |
+ Amperex (gold pins)|     9 | Amperex PQ | gold pin   |
  Amperex PQ        |      9 |            |            |
  Arvin             |      7 |            |            |
  Astronic          |      2 |            |            |
@@ -143,7 +143,7 @@ sModels = \
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  6V6 (metal can)    |           |      2 | f            |                   |  Vacuum Tube |             |              | t
- 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | f
+ 6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |              | f
  6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
@@ -154,7 +154,7 @@ sModels = \
  6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- EF86 (Ampered BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
+ EF86 (Amperex BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
@@ -430,6 +430,7 @@ sModels = \
  828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
  6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
+ meter              |           |      3 | f            |                   |    Component |             |
  '''
 
 
@@ -713,6 +714,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["352919421447"],
+             "title":["2 1950's Sylvania Black Plate 6SN7GTA 6SN7 Vacuum Tubes Test NOS Guaranteed! #6"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m1mIlmV6iWikuwomU6BhdwQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-1950s-Sylvania-Black-Plate-6SN7GTA-6SN7-Vacuum-Tubes-Test-NOS-Guaranteed-6-\/352919421447"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["982**"],"location":["Point Roberts,WA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"68.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"68.88"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P0DT22H18M50S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-04T00:18:34.000Z"],
+             "endTime":["2020-01-11T00:18:34.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["114039185762"],
              "title":["Vintage Altec Lansing N-800-D Dividing Network"],
