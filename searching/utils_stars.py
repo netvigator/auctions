@@ -37,11 +37,14 @@ from pyPks.Object.Output    import CustomPPrint
 
 from pyPks.String.Count     import getAlphaNumCount as getLen
 from pyPks.String.Dumpster  import getAlphaNumCleanNoSpaces
+from pyPks.String.Eat       import eatPunctuationBegAndEnd
 from pyPks.String.Get       import getTextBeforeC
 from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo
+from pyPks.String.Stats     import getLocationsDict, getSubstringLocation
+from pyPks.String.Test      import isPunctuation, hasPunctuation
 
 if settings.TESTING:
 
@@ -651,6 +654,9 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
 
 
 
+
+
+
 def findSearchHits(
             iUser                   = oUserOne.id,
             bCleanUpAfterYourself   = True,
@@ -810,29 +816,37 @@ def findSearchHits(
         # if title includes for or fits, consider the part in front,
         # not what follows
         #
-        sRelevantTitle = _getRelevantTitle( oItem.cTitle )
+        sAuctionTitleRelevantPart = _getRelevantTitle( oItem.cTitle )
         #
-        if bRecordSteps and len( oItem.cTitle ) > len( sRelevantTitle ):
+        if bRecordSteps and (
+                len( oItem.cTitle ) > len( sAuctionTitleRelevantPart ) ):
             #
             lPreliminary = dFindSteps[ 'preliminary' ]
             #
             _appendIfNotAlreadyIn(
-                    lPreliminary, 'will consider only: %s' % sRelevantTitle )
+                    lPreliminary,
+                    'will consider only: %s' % sAuctionTitleRelevantPart )
             #
-            sLoppedOff = oItem.cTitle[ len( sRelevantTitle ) : ]
+            sLoppedOff = oItem.cTitle[ len( sAuctionTitleRelevantPart ) : ]
             #
             _appendIfNotAlreadyIn(
                     lPreliminary, '(will ignore: %s)' % sLoppedOff )
             #
         #
-        sGotInParens = getInParens( sRelevantTitle )
+        sGotInParens = getInParens( sAuctionTitleRelevantPart )
         #
         lCategories = dFindSteps[ 'categories' ]
         #
         lCategoryFound = []
         #
+        dAuctionTitleWords = getLocationsDict( sAuctionTitleRelevantPart )
+        #
+        #
+        #
         #
         # first: step thru categories
+        #
+        #
         #
         #
         for oCategory in qsCategories:
@@ -847,7 +861,7 @@ def findSearchHits(
             # and the string will not be searched
             # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
             #
-            t = foundItem( sRelevantTitle )
+            t = foundItem( sAuctionTitleRelevantPart )
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
@@ -962,14 +976,18 @@ def findSearchHits(
             #
         #
         #
-        # finished stepping thru
+        #
+        #
+        # finished stepping thru categories
         #
         # next: step thru models
         #
         #
+        #
+        #
         lModels = dFindSteps[ 'models' ]
         #
-        setModelsStoredAlready = set( [] )
+        dModelIDStoredLocation = {}
         #
         for oModel in qsModels:
             #
@@ -985,7 +1003,7 @@ def findSearchHits(
             bExplainVerbose = ( bRecordSteps and
                                 oModel.cTitle == '6DJ8 (Bugle Boy)' )
             #
-            t = foundItem( sRelevantTitle, bExplainVerbose )
+            t = foundItem( sAuctionTitleRelevantPart, bExplainVerbose )
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
@@ -1027,8 +1045,20 @@ def findSearchHits(
                 continue
                 #
             #
+            # sGotInParens = getInParens( sAuctionTitleRelevantPart )
             #
             sModelAlphaNum  = _getAlphaNum( sInTitle )
+            #
+            iShorterByOK    = 1 if oModel.bSubModelsOK else 0
+            #
+            iInTitleLocation = getSubstringLocation( sInTitle, dAuctionTitleWords, iShorterByOK, bRecordSteps )
+            #
+            if iInTitleLocation is None:
+                #
+                print()
+                print( '"%s" not in "%s"' % ( sInTitle, sAuctionTitleRelevantPart ) )
+                print()
+                #
             #
             if bRecordSteps:
                 #
@@ -1118,7 +1148,7 @@ def findSearchHits(
                     #
                     continue
                     #
-                elif oModel.id in setModelsStoredAlready:
+                elif oModel.id in dModelIDStoredLocation:
                     #
                     continue
                     #
@@ -1208,7 +1238,7 @@ def findSearchHits(
                     #
                     lNewItemFoundTemp.append( oNewTempItem )
                     #
-                    setModelsStoredAlready.add( oModel.id )
+                    dModelIDStoredLocation[ oModel.id ] = iInTitleLocation
                     #
                 elif    ( oModel.iCategory == oTempItem.iCategory and
                         oTempItem.iModel is None ):
@@ -1305,11 +1335,14 @@ def findSearchHits(
                 #
             #
         #
-
+        #
+        #
         #
         # finished stepping thru models
         #
         # next: step thru brands
+        #
+        #
         #
         #
         lBrands = dFindSteps[ 'brands' ]
@@ -1321,7 +1354,7 @@ def findSearchHits(
             #
             bFoundBrandForModel = False
             #
-            t = foundItem( sRelevantTitle )
+            t = foundItem( sAuctionTitleRelevantPart )
             #
             sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
             #
@@ -1577,9 +1610,13 @@ def findSearchHits(
             #
         #
         #
+        #
+        #
         # finished stepping thru brands
         #
         # next: score candidates
+        #
+        #
         #
         tNow = timezone.now()
         #
@@ -1945,11 +1982,11 @@ def findSearchHits(
                         sWithout = dModelsStoredAlready[
                                     uLonger ][0].sTitleLeftOver or ''
                         ##
-                        #t = foundItem( sRelevantTitle )
+                        #t = foundItem( sAuctionTitleRelevantPart )
                         ##
                         #sInTitle, uGotKeyWords, uExcludeThis, sWhatRemains = t
                         ##
-                        #lParts = sRelevantTitle.split( sInTitle )
+                        #lParts = sAuctionTitleRelevantPart.split( sInTitle )
                         ##
                         #sWithout = ' '.join( lParts )
                         ##
