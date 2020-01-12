@@ -2453,8 +2453,6 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
               "topRatedListing":["false"]
 
-
-
            },{"itemId":["153121548106"],
               "title":["VINTAGE TANNOY GRF CORNER CABINET w. 15\\" SILVER DUAL CONCENTRIC DRIVER LSU\/HF\/15"],
               "globalId":["EBAY-US"],
