@@ -98,8 +98,8 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
                           'single_item_response_failure_%s_%s_.json'
                             % ( getNowIsoDateTimeFileNameSafe(), iItemNumb ) )
             #
-            sMsg = ( 'getSingleItem failure, check file %s'
-                    % sFile )
+            sMsg = ( 'getSingleItem failure for item %s, check file %s'
+                    % ( iItemNumb, sFile ) )
             #
             logger.info( sMsg )
             #
@@ -115,8 +115,8 @@ def _getJsonSingleItemResponse( iItemNumb, sContent ):
                           'invalid_single_item_response_%s_%s_.json'
                             % ( getNowIsoDateTimeFileNameSafe(), iItemNumb ) )
             #
-            sMsg = ( 'unexpected content from getSingleItem, check %s'
-                    % sFile )
+            sMsg = ( 'unexpected content from getSingleItem for item %s, check %s'
+                    % ( iItemNumb, sFile ) )
             #
             errorLogger( sMsg )
             #
