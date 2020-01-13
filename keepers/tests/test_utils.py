@@ -130,6 +130,8 @@ class SomeItemsTest( TestCasePlus ):
     def test_s142766343340( self ):
         '''test getSingleItem 1946 Bendix Catalin'''
         #
+        # 2020-0113 hitting errors for this item
+        #
         t = _storeOneJsonItemInKeepers( 142766343340, s142766343340 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
