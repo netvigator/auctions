@@ -43,8 +43,8 @@ from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo
-from pyPks.String.Stats     import getLocationsDict, getSubstringLocation
-from pyPks.String.Test      import isPunctuation, hasPunctuation
+from pyPks.String.Stats     import ( getLocationsDict, getSubStringLocation,
+                                     getSubStrLocationsBegAndEnd )
 
 if settings.TESTING:
 
@@ -71,6 +71,7 @@ _oDropAfterThisFinder = getRegExObj(
         r'ala\b|'
         r'used (?:with|in|on)\b|'
         r'same as\b|'
+        r'compatible with\b|'
         r'similar to\b)' ) # formerly oForFitsFinder
 
 
@@ -1051,14 +1052,8 @@ def findSearchHits(
             #
             iShorterByOK    = 1 if oModel.bSubModelsOK else 0
             #
-            iInTitleLocation = getSubstringLocation( sInTitle, dAuctionTitleWords, iShorterByOK, bRecordSteps )
-            #
-            if iInTitleLocation is None:
-                #
-                print()
-                print( '"%s" not in "%s"' % ( sInTitle, sAuctionTitleRelevantPart ) )
-                print()
-                #
+            iInTitleLocation = getSubStringLocation(
+                    sInTitle, dAuctionTitleWords, iShorterByOK, bRecordSteps )
             #
             if bRecordSteps:
                 #
@@ -1502,13 +1497,6 @@ def findSearchHits(
                             iCategory = oTempItem.iCategory ).exists()
                         #
                     #
-                    if bRecordSteps and oTempItem.iModel and oTempItem.iModel.cTitle == "6V6GTA":
-                        #
-                        print()
-                        print( 'tModelBrand:', tModelBrand )
-                        print( 'setModelsBrands:', setModelsBrands )
-                        #
-                    #
                     if bSaveBrand and tModelBrand not in setModelsBrands:
                         #
                         if (    bRecordSteps and
@@ -1927,6 +1915,7 @@ def findSearchHits(
                         #
                     #
                     doPrintMore = (
+                            False and
                             bRecordSteps and
                             sModelTitleUPPER == '6DJ8' )
                     #
