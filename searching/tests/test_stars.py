@@ -2011,6 +2011,60 @@ class KeyWordFindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 202867134038
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Mullard 10M 12AX7/ECC83 and not Mullard 12AX7/ECC83' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        #
+        #
+        #
+        iThisOne = 202868417147
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Amperex BB 12AX7/ECC83 and not Amperex 12AX7/ECC83' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        #
+        #
+        #
+        iThisOne = 174145135158
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find GE 5 Star 12AU7/5814A and not GE 12AU7/5814A' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        #
+        #
+        #
+        iThisOne = 174148034585
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 6201 and not 12AX7' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        #
+        #
+        #
+        iThisOne = 174147736580
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find E88CC ONLY!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        #
+        #
         #
         iThisOne = 184032120009
         #
