@@ -176,6 +176,10 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     sErrorFile = sFileName.replace( 'Search_', 'Search_ERROR_' )
     #
+    if settings.TESTING:
+        #
+        logging.disable(logging.CRITICAL)
+        #
     if sKeyWords and sEbayCategory:
         #
         logger.info(
@@ -317,6 +321,11 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
         #
         logger.info(
             'completed "%s" search (ID %s) without error' % tSearch )
+        #
+    #
+    if settings.TESTING:
+        #
+        logging.disable(logging.NOTSET)
         #
     #
     sFileName = join( SEARCH_FILES_FOLDER, sFileName )
