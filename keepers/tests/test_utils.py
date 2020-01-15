@@ -46,17 +46,18 @@ from ..utils            import ( _storeOneJsonItemInKeepers,
 
 from finders.models     import ItemFound, UserItemFound, UserFinder
 
-from searching.models   import Search
-from searching.tests    import dSearchResult # in __init__.py
-from searching.utils    import _storeUserItemFound, _storeItemFound
+from searching.models       import Search
+from searching.tests        import dSearchResult, iRecordStepsForThis
+from searching.utils        import _storeUserItemFound, _storeItemFound
+from searching.utils_stars  import findSearchHits, SCRIPT_TEST_FILE
 
 from searching.tests.base   import SetUpForHitStarsWebTests, getItemHitsLog
-from searching.utils_stars  import findSearchHits
 
 from pyPks.Dir.Test     import isDirThere
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Get     import Touch
 from pyPks.File.Test    import isFileThere
+from pyPks.File.Write   import openAppendClose
 from pyPks.Numb.Get     import getRandomDigits
 from pyPks.String.Get   import getTextAfter
 from pyPks.Time.Delta   import getIsoDateTimeNowPlus, getDeltaDaysFromISOs
@@ -73,7 +74,15 @@ logging.basicConfig(
     level=logging.INFO)
 '''
 
-# ITEM_PICS_ROOT = '/tmp/pictures_test_directory'
+if iRecordStepsForThis is not None:
+    #
+    openAppendClose(
+            str( iRecordStepsForThis ),
+            SCRIPT_TEST_FILE,
+            bNewLineBefore  = True,
+            bNewLineAfter   = False )
+    #
+
 
 class GetListAsLinesTest( TestCasePlus ):
     '''class for testing getListAsLines()'''
@@ -129,8 +138,6 @@ class SomeItemsTest( TestCasePlus ):
 
     def test_s142766343340( self ):
         '''test getSingleItem 1946 Bendix Catalin'''
-        #
-        # 2020-0113 hitting errors for this item
         #
         t = _storeOneJsonItemInKeepers( 142766343340, s142766343340 )
         #
@@ -213,32 +220,40 @@ class StoreItemsTestPlus( StoreItemsTestPlusBase ):
 
     def test_missing_item( self ):
         #
+        logging.disable(logging.CRITICAL) # want no clutter in the terminal
+        #
         try:
             t = _storeOneJsonItemInKeepers(
                     142766343340, sMissingItemIdErrorGotAck )
         except GetSingleItemNotWorkingError as e:
             self.assertIn(
-                    'getSingleItem failure, check file', str( e ) )
+                    'getSingleItem failure for item 142766343340', str( e ) )
         except Exception as e:
             self.fail('Unexpected exception raised:', e)
         else:
             self.fail( 'did not catch GetSingleItemNotWorkingError!' )
+        #
+        logging.disable(logging.NOTSET)
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_invalid_item( self ):
         #
+        logging.disable(logging.CRITICAL) # want no clutter in the terminal
+        #
         try:
             t = _storeOneJsonItemInKeepers(
                     142766343340, sMadeUpErrorNoAck )
         except GetSingleItemNotWorkingError as e:
             self.assertIn(
-                    'unexpected content from getSingleItem, check', str( e ) )
+                    'unexpected content from getSingleItem', str( e ) )
         except Exception as e:
             self.fail('Unexpected exception raised:', e)
         else:
             self.fail( 'did not catch GetSingleItemNotWorkingError!' )
+        #
+        logging.disable(logging.NOTSET)
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
