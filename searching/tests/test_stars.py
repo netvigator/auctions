@@ -89,8 +89,7 @@ class MakeSureExampleItemGetsHit( StoreUserItemFoundWebTestBase ):
 
 
 
-class KeyWordFindSearchHitsWebTests(
-        AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
+class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
 
     def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
         #
