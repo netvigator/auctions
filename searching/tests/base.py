@@ -109,10 +109,13 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                     self.setTestCategories,
                     bCleanUpFiles = False )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def tearDown(self):
         #
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 def getB( sSomething ):
@@ -695,8 +698,7 @@ class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
                         bCleanUpAfterYourself   = False,
                         iRecordStepsForThis     = iRecordStepsForThis )
         #
-        #print( '\n' )
-        #print( 'setting up KeyWordFindSearchHitsWebTests' )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
