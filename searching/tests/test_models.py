@@ -58,6 +58,7 @@ class PutSearchResultsInDatabaseWebTest( PutSearchResultsInDatabaseWebTestBase )
         #
         self.assertGreater( iCount, 160 )
         #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_shipping_option_choices( self ):
@@ -70,7 +71,7 @@ class PutSearchResultsInDatabaseWebTest( PutSearchResultsInDatabaseWebTestBase )
         keepers.tests.test_utils.StoreSingleKeepersWebTests
         keepers.tests.test_utils.UserItemsTests
         searching.tests.test_models.PutSearchResultsInDatabaseWebTest
-        searching.tests.test_stars.KeyWordFindSearchHitsWebTests
+        searching.tests.test_stars.FindSearchHitsWebTests
         and some others
         '''
         #
