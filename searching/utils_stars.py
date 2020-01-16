@@ -1050,10 +1050,10 @@ def findSearchHits(
             #
             sModelAlphaNum  = _getAlphaNum( sInTitle )
             #
-            iShorterByOK    = 1 if oModel.bSubModelsOK else 0
+            iShorterByOK    = 1 if oModel.bSubModelsOK else 0 # None compatible
             #
             iInTitleLocation = getSubStringLocation(
-                    sInTitle, dAuctionTitleWords, iShorterByOK, bRecordSteps )
+                    sInTitle, dAuctionTitleWords, iShorterByOK )
             #
             if bRecordSteps:
                 #
@@ -1233,7 +1233,10 @@ def findSearchHits(
                     #
                     lNewItemFoundTemp.append( oNewTempItem )
                     #
-                    dModelIDStoredLocation[ oModel.id ] = iInTitleLocation
+                    if iInTitleLocation is not None:
+                        #
+                        dModelIDStoredLocation[ oModel.id ] = iInTitleLocation
+                        #
                     #
                 elif    ( oModel.iCategory == oTempItem.iCategory and
                         oTempItem.iModel is None ):
@@ -1330,6 +1333,16 @@ def findSearchHits(
                 #
             #
         #
+        if len( dModelIDStoredLocation ) > 1:
+            #
+            tLocations = getSubStrLocationsBegAndEnd(
+                    dAuctionTitleWords, dModelIDStoredLocation.values() )
+
+        if bRecordSteps:
+            print()
+            print( 'dModelIDStoredLocation:' )
+            pprint( dModelIDStoredLocation )
+            print( 'tLocations:', tLocations )
         #
         #
         #
