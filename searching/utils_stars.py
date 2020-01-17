@@ -26,7 +26,9 @@ from models.models          import Model
 from searching              import WORD_BOUNDARY_MAX
 
 from pyPks.Collect.Output   import getTextSequence
-from pyPks.Collect.Query    import get1stThatMeets
+from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
+
+from pyPks.Dict.Get         import getReverseDict
 
 from pyPks.File.Get         import getListFromFileLines
 from pyPks.File.Test        import isFileThere
@@ -655,6 +657,17 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
 
 
 
+def _getModelLocationsBegAndEnd( dAuctionTitleWords, iterModelLocations ):
+    #
+    tLocations = getSubStrLocationsBegAndEnd(
+                    dAuctionTitleWords, iterModelLocations )
+    #
+    if not ( tLocations and tLocations[0] and tLocations[1] ):
+        #
+        tLocations = None
+        #
+    #
+    return tLocations
 
 
 
@@ -988,7 +1001,8 @@ def findSearchHits(
         #
         lModels = dFindSteps[ 'models' ]
         #
-        dModelIDStoredLocation = {}
+        dModelIDStoredLocation  = {}
+        tModelLocations         = None
         #
         for oModel in qsModels:
             #
@@ -1335,14 +1349,17 @@ def findSearchHits(
         #
         if len( dModelIDStoredLocation ) > 1:
             #
-            tLocations = getSubStrLocationsBegAndEnd(
+            tModelLocations = _getModelLocationsBegAndEnd(
                     dAuctionTitleWords, dModelIDStoredLocation.values() )
+            #
+            # getReverseDict
+            #
 
         if bRecordSteps:
             print()
             print( 'dModelIDStoredLocation:' )
             pprint( dModelIDStoredLocation )
-            print( 'tLocations:', tLocations )
+            print( 'tModelLocations:', tModelLocations )
         #
         #
         #
@@ -1636,6 +1653,95 @@ def findSearchHits(
                             % len( lItemFoundTemp ) )
                     #
                 #
+            #
+            if tModelLocations: # some on the end of the auctin title
+                #
+                dModelID_oTempItem = dict(
+                        ( ( oTempItem.iModel.id, oTempItem )
+                            for oTempItem in lItemFoundTemp
+                            if oTempItem.iModel is not None ) )
+                #
+                lModelLocations = list( tModelLocations[0] )
+                #
+                lModelLocations.extend( tModelLocations[1] )
+                #
+                dLocationsModelIDs = getReverseDict( dModelIDStoredLocation )
+                # carry on here
+                #
+                # oTempItem.iModel.id in tModelLocations[1] ):
+                #
+                if bRecordSteps:
+                    #
+                    print()
+                    print( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
+                    print( 'lModelLocations:', lModelLocations )
+                    print( 'dModelID_oTempItem:' )
+                    # pprint( dModelID_oTempItem )
+                    for k, o in dModelID_oTempItem.items():
+                        print( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
+                    print( 'dLocationsModelIDs:' )
+                    pprint( dLocationsModelIDs )
+
+
+                #
+                if len( dLocationsModelIDs[ tModelLocations[0][0] ] ) == 1:
+                    #
+                    iFirstCategory = dModelID_oTempItem[
+                            dLocationsModelIDs[ tModelLocations[0][0] ][0] ].iCategory
+                    #
+                    def gotSameLocationCategory( o ):
+                        #
+                        return o.iCategory == iFirstCategory
+                        #
+                    #
+                else:
+                    #
+                    setFirstCategory = frozenset(
+                              ( o.iCategory.id for o in lItemFoundTemp
+                                if o.iCategory is not None and
+                                   o.iModel    is not None and
+                                   o.iModel.id in dModelIDStoredLocation ) )
+                    #
+                    def gotSameLocationCategory( o ):
+                        #
+                        return o.iCategory in setFirstCategory
+                        #
+                    #
+                #
+                oOtherCategory = get1stThatFails(
+                                    gotSameLocationCategory,
+                                    lItemFoundTemp[ 1 : ] )
+                #
+                if oOtherCategory is None:
+                    #
+                    lExcludeThese = []
+                    #
+                    for iLocation in tModelLocations[1]:
+                        #
+                        for iModelID in dLocationsModelIDs[ iLocation ]:
+                            #
+                            lExcludeThese.append(
+                                    dModelID_oTempItem[ iModelID ] )
+                            #
+                            if bRecordSteps:
+                                #
+                                lCandidates.append(
+                                    'model %s on end of auction title, so excluding'
+                                    % dModelID_oTempItem[ iModelID ].iModel )
+                                #
+                            #
+                        #
+                    #
+                    lItemFoundTemp = [ o for o in lItemFoundTemp
+                                      if o not in lExcludeThese ]
+                    #
+
+                if bRecordSteps:
+                    #
+                    print( 'len( lItemFoundTemp ) after:', len( lItemFoundTemp ) )
+
+            if len( lItemFoundTemp ) > 1:
+                #
                 nFoundModelBoost, iMaxLen = _getFoundModelBooster(
                                                 lItemFoundTemp, bRecordSteps )
                 #
@@ -1704,6 +1810,8 @@ def findSearchHits(
                 iTopScoreStars = iTopHitStars = oTopStars = None
                 sTitle = sTopTitle = None
                 #
+                bSortAgain = False
+                #
                 for i in range( len( lItemFoundTemp ) ):
                     #
                     oItemTemp = lItemFoundTemp[ lSortItems[i][1] ]
@@ -1750,11 +1858,20 @@ def findSearchHits(
                                 iTopHitStars /
                                 iTopScoreStars )
                         #
+                        bSortAgain = True
+                        #
                         if bRecordSteps:
                             #
                             lCandidates.append( 'discounting Hit Stars for %s' % oItemTemp.iModel )
                             #
                         #
+                    #
+                #
+                if bSortAgain:
+                    #
+                    lSortItems.sort()
+                    #
+                    lSortItems.reverse()
                     #
                 #
                 # sort lItemFoundTemp, more stars on top, fewer stars on bottom
