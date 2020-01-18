@@ -516,6 +516,15 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            oBrand = Brand.objects.get( cTitle = 'Mullard IEC/10M', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
             oBrand = Brand.objects.get( cTitle = 'Mazda', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -610,6 +619,15 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oBrandCategory.save()
             #
             oBrand = Brand.objects.get( cTitle = 'Ken-Rad', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Valvo', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
