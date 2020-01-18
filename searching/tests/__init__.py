@@ -488,6 +488,7 @@ dSearchResult = \
 #### do not add new test items above, add them below ###
 #### do not add new test items above, add them below ###
 
+iExampleResponseCount = 5
 
 sExampleResponse = \
 '''{
@@ -684,7 +685,9 @@ sExampleResponse = \
                 "bestOfferEnabled":["false" ],
                 "startTime":["2017-12-05T14:01:02.000Z" ],
                 "buyItNowAvailable":["false" ],
-                "endTime":["2018-01-04T14:01:02.000Z" ] } ] } ],
+                "endTime":["2018-01-04T14:01:02.000Z" ] } ]
+
+                } ],
           "@count": "5" }
       ],
       "version":["1.13.0" ] } ]
