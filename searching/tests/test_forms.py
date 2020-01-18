@@ -3,7 +3,7 @@ from django.urls        import reverse, resolve
 from core.dj_import     import HttpRequest
 from django.test.client import Client
 
-from core.utils_test    import ( BaseUserWebTestCase,
+from core.tests.base    import ( BaseUserWebTestCase,
                                  getSingleEbayCategoryMixin,
                                  getUrlQueryStringOff )
 
