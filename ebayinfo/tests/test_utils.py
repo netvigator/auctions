@@ -6,10 +6,11 @@ from django.db          import DataError
 from django.test        import tag
 
 from core.utils         import updateMemoryTableUpdated
-from core.utils_test    import getDefaultMarket, GetEbayCategoriesWebTestSetUp
-from core.utils_test    import TestCasePlus
 
-from ebayinfo           import (  EBAY_SHIPPING_CHOICES,
+from core.tests.base    import ( TestCasePlus, getDefaultMarket,
+                                 GetEbayCategoriesWebTestSetUp )
+
+from ebayinfo           import ( EBAY_SHIPPING_CHOICES,
                                  dEBAY_SHIPPING_CHOICE_CODE,
                                  getEbayShippingChoiceCode )
 
