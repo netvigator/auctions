@@ -1,4 +1,4 @@
-from core.tests.base    import ( BaseUserWebTestCase,
+from core.utils_test    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
 
 from ..models           import Category
