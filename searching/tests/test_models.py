@@ -1,9 +1,7 @@
 from django.test.client import Client
 
-from core.utils_test    import ( BaseUserWebTestCase,
+from core.tests.base    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
-
-from core.utils_test    import TestCasePlus
 
 from searching          import ( SEARCH_FILES_FOLDER,
                                  RESULTS_FILE_NAME_PATTERN )
