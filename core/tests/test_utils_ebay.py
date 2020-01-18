@@ -1,8 +1,9 @@
 from ..utils_ebay           import getValueOffItemDict
-from ..utils_test           import AssertEmptyMixin, AssertNotEmptyMixin
+
 from ..tests                import sResponse2ndCategoryItem
 
-from core.utils_test        import TestCasePlus
+from .base                  import ( TestCasePlus,
+                                     AssertEmptyMixin, AssertNotEmptyMixin )
 
 from keepers                import dItemFields
 
