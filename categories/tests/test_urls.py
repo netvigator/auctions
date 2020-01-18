@@ -1,7 +1,7 @@
 
 from django.urls        import reverse, resolve
 
-from core.tests.base    import TestCasePlus
+from core.utils_test    import TestCasePlus
 
 
 
