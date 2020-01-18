@@ -1,6 +1,6 @@
 from ..models           import Keeper
 
-from core.utils_test    import AssertEmptyMixin, TestCasePlus
+from core.tests.base    import AssertEmptyMixin, TestCasePlus
 
 from pyPks.File.Get     import getListOffFileLines
 from pyPks.String.Get   import getTextBefore
