@@ -68,7 +68,7 @@ class PutSearchResultsInDatabaseWebTest( PutSearchResultsInDatabaseWebTestBase )
         core.tests.test_mixins.TestPagination
         finders.tests.test_views.FindersViewsTests
         keepers.tests.test_utils.GetAndStoreSingleItemsWebTests
-        keepers.tests.test_utils.StoreSingleKeepersWebTests
+        keepers.tests.test_utils.StoreSingleKeepersForWebTests
         keepers.tests.test_utils.UserItemsTests
         searching.tests.test_models.PutSearchResultsInDatabaseWebTest
         searching.tests.test_stars.FindSearchHitsWebTests
