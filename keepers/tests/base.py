@@ -1,4 +1,4 @@
-from core.utils_test    import TestCasePlus
+from core.tests.base    import TestCasePlus
 
 from ..utils            import _storeOneJsonItemInKeepers
 
