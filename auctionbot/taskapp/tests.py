@@ -1,6 +1,6 @@
 from celery.contrib.testing.worker  import start_worker
 
-from core.utils_test                import TestCasePlus
+from core.tests.base                import TestCasePlus
 
 from .celery                        import app
 
