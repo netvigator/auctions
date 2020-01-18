@@ -1,4 +1,4 @@
-from core.utils_test    import ( getTableFromScreenCaptureGenerator,
+from core.tests.base    import ( getTableFromScreenCaptureGenerator,
                                  getNamePositionDict, TestCasePlus )
 
 from ..models           import Market
