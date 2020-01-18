@@ -1,4 +1,4 @@
-from core.utils_test    import BaseUserWebTestCase
+from core.tests.base    import BaseUserWebTestCase
 
 from ..models           import Brand
 
