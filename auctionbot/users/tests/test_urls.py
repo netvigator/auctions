@@ -1,6 +1,6 @@
 from django.urls        import reverse, resolve
 
-from core.utils_test    import getDefaultMarket, TestCasePlus
+from core.tests.base    import getDefaultMarket, TestCasePlus
 
 
 
