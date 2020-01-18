@@ -1,6 +1,7 @@
 from builtins               import ConnectionResetError
 from datetime               import timedelta
 from urllib3.exceptions     import ProtocolError
+from pprint                 import pprint
 
 from django.conf            import settings
 from django.db.models       import ForeignKey
@@ -26,11 +27,13 @@ if settings.COVERAGE: # ### server crashes if this is in utils_test ###
     #
     # want to test all lines without printing anything
     #
-    def maybePrint( *args ): pass
+    def maybePrint(   *args ): pass
+    def maybePrettyP( *args ): pass
     #
 else:
     #
-    maybePrint = print
+    maybePrint   = print
+    maybePrettyP = pprint
     #
 
 def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' ):
