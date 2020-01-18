@@ -6,7 +6,7 @@ from django.urls        import reverse
 
 from psycopg2.errors    import UniqueViolation
 
-from core.tests.base    import BaseUserWebTestCase
+from core.utils_test    import BaseUserWebTestCase
 
 from core.utils         import getExceptionMessageFromResponse
 
