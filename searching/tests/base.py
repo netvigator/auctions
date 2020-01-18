@@ -4,7 +4,7 @@ from json.decoder       import JSONDecodeError
 
 from django.utils       import timezone
 
-from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
+from core.tests.base    import ( GetEbayCategoriesWebTestSetUp,
                                  getNamePositionDict,
                                  getTableFromScreenCaptureGenerator )
 
