@@ -1,7 +1,7 @@
 
 from finders.models     import ItemFound
 
-from core.utils_test    import AssertEmptyMixin, TestCasePlus
+from core.tests.base    import AssertEmptyMixin, TestCasePlus
 
 
 from pyPks.File.Get     import getListOffFileLines
