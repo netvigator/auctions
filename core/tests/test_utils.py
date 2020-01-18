@@ -8,7 +8,7 @@ from ..utils                import ( _getIsoDateTimeOffDateTimeCol,
                                      getShrinkItemURL, getLink,
                                      getSaySequence )
 
-from ..utils_test           import ( getUrlQueryStringOff, TestCasePlus,
+from .base                  import ( getUrlQueryStringOff, TestCasePlus,
                                      queryGotUpdated,
                                      SetUpBrandsCategoriesModelsWebTest )
 
