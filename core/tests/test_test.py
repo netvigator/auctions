@@ -2,14 +2,12 @@ from datetime                   import datetime, timezone
 
 from django.core.exceptions     import ValidationError
 
-from core.utils_test            import TestCasePlus
+from .base                      import ( TestCasePlus, getUrlQueryStringOff,
+                                         GetEbayCategoriesWebTestSetUp,
+                                         queryGotUpdated, getDefaultMarket )
 
 from ..user_one                 import oUserOne
 from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
-
-from ..utils_test               import (getUrlQueryStringOff,
-                                        GetEbayCategoriesWebTestSetUp,
-                                        queryGotUpdated, getDefaultMarket )
 
 from ebayinfo.models            import EbayCategory, Market
 
