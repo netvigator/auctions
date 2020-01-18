@@ -2,7 +2,7 @@ import logging
 
 from django.urls        import reverse
 
-from core.tests.base    import BaseUserWebTestCase
+from core.utils_test    import BaseUserWebTestCase
 
 from core.utils         import getExceptionMessageFromResponse
 
