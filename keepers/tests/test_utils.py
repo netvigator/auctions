@@ -13,7 +13,7 @@ from django.utils       import timezone
 from keepers            import getListAsLines
 
 from core.utils         import maybePrint
-from core.utils_test    import ( GetEbayCategoriesWebTestSetUp,
+from core.tests.base    import ( GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
                                  TestCasePlus )
 
