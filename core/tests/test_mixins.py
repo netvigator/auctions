@@ -4,7 +4,8 @@ from django.urls        import reverse
 from django.test        import RequestFactory
 
 from core.dj_import     import HttpRequest
-from core.utils_test    import SetUpBrandsCategoriesModelsWebTest
+
+from .base              import SetUpBrandsCategoriesModelsWebTest
 
 from ..mixins           import GetPaginationExtraInfoInContext
 from ..views            import ListViewGotModel
