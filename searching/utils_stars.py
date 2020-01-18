@@ -11,7 +11,9 @@ from django.contrib.auth    import get_user_model
 from django.utils           import timezone
 
 from core.user_one          import oUserOne
-from core.utils             import getWhatsNotInParens, maybePrint
+from core.utils             import ( maybePrint, maybePrettyP,
+                                     getWhatsNotInParens )
+
 from core.templatetags.core_tags import getDashForReturn
 
 from .models                import Search, SearchLog
@@ -23,7 +25,8 @@ from finders.models         import ( ItemFound, UserItemFound, ItemFoundTemp,
 
 from models.models          import Model
 
-from searching              import WORD_BOUNDARY_MAX
+from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
+                                     DROP_AFTER_THIS )
 
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
@@ -58,23 +61,7 @@ logger = logging.getLogger(__name__)
 logging_level = logging.WARNING
 
 
-SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
-#
-
-
-_oDropAfterThisFinder = getRegExObj(
-    '(?<=[\W.,!?:;])'  # look back for this if u find any of the following
-    '(?:'              # non grouping (saves CPU ticks)
-        r'for\b|'
-        r'fits\b|'
-        r'tests*\b|'
-        r'tested (?:on|with)\b|'
-        r'from\b|'
-        r'ala\b|'
-        r'used (?:with|in|on)\b|'
-        r'same as\b|'
-        r'compatible with\b|'
-        r'similar to\b)' ) # formerly oForFitsFinder
+_oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 
 def _getRelevantTitle( sTitle ):
@@ -498,6 +485,7 @@ def _updateModelsStoredAlready(
     oThisModel = ValueContainer(
         bGenericModel   = oTempItem.iModel.bGenericModel,
         iModelBrand     = oTempItem.iModel.iBrand,
+        iBrand          = oTempItem.iBrand,
         bSubModelsOK    = oTempItem.iModel.bSubModelsOK,
         iModelID        = oTempItem.iModel.id,
         iHitStars       = oTempItem.iHitStars,
@@ -596,7 +584,7 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
         #
         maybePrint()
         maybePrint( 'lAllFoundIns:' )
-        pprint( lAllFoundIns )
+        maybePrettyP( lAllFoundIns )
         #
     #
     lGotModelOverlap = []
@@ -1282,6 +1270,17 @@ def findSearchHits(
                     #
                     bFoundCategoryForModel      = True
                     #
+                    if iInTitleLocation is not None:
+                        #
+                        dModelIDStoredLocation[ oModel.id ] = iInTitleLocation
+                        #
+                    #
+                    if bRecordSteps and oModel.cTitle == 'E88CC':
+                        maybePrint()
+                        maybePrint( 'E88CC iInTitleLocation:', iInTitleLocation )
+                        maybePrint( 'dModelIDStoredLocation:' )
+                        maybePrettyP( dModelIDStoredLocation )
+                    #
                 #
             #
             if lNewItemFoundTemp:
@@ -1355,11 +1354,11 @@ def findSearchHits(
             # getReverseDict
             #
 
-        if bRecordSteps:
-            print()
-            print( 'dModelIDStoredLocation:' )
-            pprint( dModelIDStoredLocation )
-            print( 'tModelLocations:', tModelLocations )
+        if bRecordSteps and oModel.cTitle == 'E88CC':
+            maybePrint()
+            maybePrint( 'dModelIDStoredLocation:' )
+            maybePrettyP( dModelIDStoredLocation )
+            maybePrint( 'tModelLocations:', tModelLocations )
         #
         #
         #
@@ -1468,6 +1467,9 @@ def findSearchHits(
                         iCategory = oTempItem.iCategory ).exists()
                     #
                     if bRecordSteps:
+                        #
+                        maybePrint()
+                        maybePrint( 'bSaveBrand:', bSaveBrand )
                         #
                         _appendIfNotAlreadyIn( lBrands,
                                 'found another brand %s for generic model %s' %
@@ -1670,29 +1672,19 @@ def findSearchHits(
                 #
                 # oTempItem.iModel.id in tModelLocations[1] ):
                 #
-                if bRecordSteps:
-                    #
-                    print()
-                    print( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
-                    print( 'lModelLocations:', lModelLocations )
-                    print( 'dModelID_oTempItem:' )
-                    # pprint( dModelID_oTempItem )
-                    for k, o in dModelID_oTempItem.items():
-                        print( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
-                    print( 'dLocationsModelIDs:' )
-                    pprint( dLocationsModelIDs )
-
-
+                setFirstCategory = None
                 #
                 if len( dLocationsModelIDs[ tModelLocations[0][0] ] ) == 1:
                     #
                     iFirstCategory = dModelID_oTempItem[
-                            dLocationsModelIDs[ tModelLocations[0][0] ][0] ].iCategory
+                            dLocationsModelIDs[ tModelLocations[0][0] ][0] ].iCategory.id
                     #
                     def gotSameLocationCategory( o ):
                         #
-                        return o.iCategory == iFirstCategory
+                        return o.iCategory.id == iFirstCategory
                         #
+                    #
+                    setFirstCategory = frozenset( [ iFirstCategory ] )
                     #
                 else:
                     #
@@ -1704,15 +1696,48 @@ def findSearchHits(
                     #
                     def gotSameLocationCategory( o ):
                         #
-                        return o.iCategory in setFirstCategory
+                        return o.iCategory.id in setFirstCategory
                         #
                     #
                 #
-                oOtherCategory = get1stThatFails(
-                                    gotSameLocationCategory,
-                                    lItemFoundTemp[ 1 : ] )
+                tTestItems = ( o for o in lItemFoundTemp
+                               if o.iModel    is not None and
+                                  o.iBrand    is not None and
+                                  o.iCategory is not None )
                 #
-                if oOtherCategory is None:
+                oOtherCategory = get1stThatFails(
+                                    tTestItems,
+                                    gotSameLocationCategory )
+                #
+                if bRecordSteps:
+                    #
+                    maybePrint()
+                    maybePrint( 'tModelLocations:', tModelLocations )
+                    maybePrint( 'dModelIDStoredLocation:' )
+                    maybePrettyP( dModelIDStoredLocation )
+                    maybePrint( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
+                    maybePrint( 'lModelLocations:', lModelLocations )
+                    maybePrint( 'dModelID_oTempItem:' )
+                    # maybePrettyP( dModelID_oTempItem )
+                    for k, o in dModelID_oTempItem.items():
+                        maybePrint( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
+                    maybePrint( 'dLocationsModelIDs:' )
+                    maybePrettyP( dLocationsModelIDs )
+                    maybePrint( 'setFirstCategory:', setFirstCategory )
+                    maybePrint( 'oOtherCategory:', oOtherCategory )
+                    if oOtherCategory and oOtherCategory.iCategory:
+                        maybePrint( 'oOtherCategory.iCategory.id:', oOtherCategory.iCategory.id )
+                    maybePrint( 'lItemFoundTemp:')
+                    # maybePrettyP( lItemFoundTemp )
+                    for o in lItemFoundTemp:
+                        if o.iCategory is None:
+                            maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
+                        else:
+                            maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
+
+
+                #
+                if oOtherCategory is None and setFirstCategory is not None:
                     #
                     lExcludeThese = []
                     #
@@ -1723,7 +1748,8 @@ def findSearchHits(
                             lExcludeThese.append(
                                     dModelID_oTempItem[ iModelID ] )
                             #
-                            if bRecordSteps:
+                            if bRecordSteps and setFirstCategory is not None:
+                                #
                                 #
                                 lCandidates.append(
                                     'model %s on end of auction title, so excluding'
@@ -1738,7 +1764,7 @@ def findSearchHits(
 
                 if bRecordSteps:
                     #
-                    print( 'len( lItemFoundTemp ) after:', len( lItemFoundTemp ) )
+                    maybePrint( 'len( lItemFoundTemp ) after:', len( lItemFoundTemp ) )
 
             if len( lItemFoundTemp ) > 1:
                 #
@@ -2011,12 +2037,16 @@ def findSearchHits(
                     #
                     uExact, uLonger, uShort = t
                     #
-                    bGotNonGenericForThis = False
+                    bGotNonGenericForThis      = False
+                    sBetterBrandForThisGeneric = None
                     #
                     # dModelsStoredAlready used for scoring & selection
                     #
                     if sModelTitleUPPER in dModelsStoredAlready:
                         #
+                        if bRecordSteps:
+                            maybePrint()
+                            maybePrint( 'sModelTitleUPPER in dModelsStoredAlready:', sModelTitleUPPER in dModelsStoredAlready )
                         for oModelStored in dModelsStoredAlready[ sModelTitleUPPER ]:
                             #
                             # startswith below handles Amperex Bugle Boy & Amperex
@@ -2029,6 +2059,34 @@ def findSearchHits(
                                     not oModelStored.bGenericModel )
                             #
                             if bGotNonGenericForThis: continue
+                            #
+                            if  (   oModelStored.iModelBrand is None and
+                                    oModelStored.iBrand and
+                                    oTempItem.iBrand    and
+                                    oModelStored.iBrand.cTitle.startswith(
+                                            oTempItem.iBrand.cTitle  ) ):
+                                #
+                                sBetterBrandForThisGeneric = oModelStored.iBrand.cTitle
+                                #
+                            #
+                            if bRecordSteps:
+                                #
+                                maybePrint()
+                                maybePrint( 'oModelStored:' )
+                                maybePrint( oModelStored )
+                                maybePrint( 'oModelStored.iModelBrand:', oModelStored.iModelBrand )
+                                maybePrint( 'oTempItem.iBrand:', oTempItem.iBrand )
+                                if oModelStored.iModelBrand:
+                                    maybePrint( 'oModelStored.iModelBrand.cTitle:', oModelStored.iModelBrand.cTitle )
+                                else:
+                                    maybePrint( 'oModelStored.iModelBrand:', oModelStored.iModelBrand )
+                                maybePrint( 'oTempItem.iBrand.cTitle:', oTempItem.iBrand.cTitle )
+                                maybePrint( 'oModelStored.bGenericModel:', oModelStored.bGenericModel )
+                                maybePrint( 'bGotNonGenericForThis:', bGotNonGenericForThis )
+                                maybePrint( 'sBetterBrandForThisGeneric:', sBetterBrandForThisGeneric )
+                                #
+                            #
+                            if sBetterBrandForThisGeneric: continue
                             #
                         #
                     #
@@ -2051,17 +2109,17 @@ def findSearchHits(
                     #
                     if doPrintMore and not bGotNonGenericForThis:
                         #
-                        print()
-                        print( 'sModelTitleUPPER:', sModelTitleUPPER )
-                        print( 'oTempItem.iModel:', oTempItem.iModel )
-                        print( 'oTempItem.iBrand:', oTempItem.iBrand )
-                        print( 'oTempItem.iCategory:', oTempItem.iCategory )
-                        print( 'dModelsStoredAlready:' )
-                        CustomPPrint.pprint( dModelsStoredAlready )
-                        print( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
-                        print( 'uExact:', uExact )
-                        print( 'oModelStored:' )
-                        print(  oModelStored )
+                        maybePrint()
+                        maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
+                        maybePrint( 'oTempItem.iModel:', oTempItem.iModel )
+                        maybePrint( 'oTempItem.iBrand:', oTempItem.iBrand )
+                        maybePrint( 'oTempItem.iCategory:', oTempItem.iCategory )
+                        maybePrint( 'dModelsStoredAlready:' )
+                        CustomPPrint.maybePrettyP( dModelsStoredAlready )
+                        maybePrint( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
+                        maybePrint( 'uExact:', uExact )
+                        maybePrint( 'oModelStored:' )
+                        maybePrint(  oModelStored )
                         #
                     #
                     # exclude if uLonger unless
@@ -2166,6 +2224,23 @@ def findSearchHits(
                                     'excluding generic model %s -- '
                                     'already have a non generic' %
                                     ( sModelTitleLessParens ) )
+                            #
+                        #
+                        continue
+                        #
+                    elif    (   uExact and
+                                oTempItem.iModel.bGenericModel and
+                                sBetterBrandForThisGeneric ):
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'excluding generic %s for %s -- '
+                                    'already have a generic for %s' %
+                                    ( sModelTitleLessParens,
+                                      oTempItem.iBrand,
+                                      sBetterBrandForThisGeneric ) )
                             #
                         #
                         continue
