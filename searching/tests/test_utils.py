@@ -7,7 +7,7 @@ from datetime           import timedelta
 
 from django.test        import tag
 from django.utils       import timezone
-from core.utils_test    import ( getDefaultMarket,
+from core.tests.base    import ( getDefaultMarket,
                                  GetEbayCategoriesWebTestSetUp,
                                  getTableFromScreenCaptureGenerator,
                                  TestCasePlus )
@@ -31,8 +31,9 @@ from .base              import ( StoreSearchResultsTestsWebTestSetUp,
                                  getItemHitsLog )
 
 from ..models           import Search, SearchLog
-from ..tests            import dSearchResult, sItemHitLog # in __init__.py
-from ..tests            import sExampleResponse, sResponseItems2Test
+from ..tests            import ( dSearchResult, sItemHitLog,
+                                 sExampleResponse, iExampleResponseCount,
+                                 sResponseItems2Test )
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInFinders,
                                  _putPageNumbInFileName,
@@ -221,7 +222,7 @@ class getImportSearchResultsTests( TestCasePlus ):
             iItems += 1
             #
         #
-        self.assertEqual( iItems, 5 )
+        self.assertEqual( iItems, iExampleResponseCount )
         #
         # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
         #
@@ -509,9 +510,9 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         self.assertTrue( isISOdatetime( sBeforeDash ) )
         #
-        self.assertEqual( oSearchLog.iItems,      5 )
-        self.assertEqual( oSearchLog.iStoreItems, 5 )
-        self.assertEqual( oSearchLog.iStoreUsers, 5 )
+        self.assertEqual( oSearchLog.iItems,      iExampleResponseCount )
+        self.assertEqual( oSearchLog.iStoreItems, iExampleResponseCount )
+        self.assertEqual( oSearchLog.iStoreUsers, iExampleResponseCount )
         #
         # try again with the same data
         #
@@ -534,6 +535,16 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
+
+    def test_oddball_item_search_results(self):
+        #
+        oOddBall = ItemFound.objects.get( iItemNumb = 233420619849 )
+        #
+        print( oOddBall.iCategoryID,    oOddBall.cCategory    )
+        print( oOddBall.i2ndCategoryID, oOddBall.c2ndCategory )
+        #
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
