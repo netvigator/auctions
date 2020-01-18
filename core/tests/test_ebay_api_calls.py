@@ -1,5 +1,5 @@
 
-from core.utils_test        import TestCasePlus
+from .base                  import TestCasePlus
 
 from ..ebay_api_calls       import _getApiConfValues, _getListingTypeTuple
 
