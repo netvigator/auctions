@@ -1,6 +1,6 @@
 # import inspect
 
-from core.utils_test    import getUrlQueryStringOff, queryGotUpdated
+from core.tests.base    import getUrlQueryStringOff, queryGotUpdated
 
 from .base              import BrandModelWebTestBase
 
