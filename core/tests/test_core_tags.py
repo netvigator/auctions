@@ -1,6 +1,6 @@
 from django.utils                   import timezone
 
-from core.utils_test                import TestCasePlus
+from .base                          import TestCasePlus
 
 from categories.models              import Category
 from categories.tests.test_forms    import TestFormValidation
