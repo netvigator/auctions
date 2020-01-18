@@ -4,7 +4,7 @@ from django.db.models   import Max
 from django.http        import HttpResponseRedirect
 from django.urls        import reverse, reverse_lazy
 
-from core.utils_test    import ( setup_view_for_tests,
+from core.tests.base    import ( setup_view_for_tests,
                                  GetEbayCategoriesWebTestSetUp,
                                  AssertEmptyMixin,
                                  BaseUserWebTestCase )
