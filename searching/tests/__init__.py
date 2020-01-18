@@ -76,6 +76,7 @@ sBrands = \
  MFA               |      8 |            |            |
  Motorola          |      7 |            |            |
  Mullard           |      9 |            |            |
+ Mullard IEC/10M   |     10 |            |            | Mullard IEC 10M\\rMullard 10M
  National          |      7 |            |            |
  PACO              |      2 |            |            |
  Philips           |      7 |            |            |
@@ -100,6 +101,7 @@ sBrands = \
  Tung-Sol          |      7 |            |            |
  University        |      5 |            |            |
  UTC               |      8 |            |            |
+ Valvo             |      5 |            |            |
  Western Electric  |      9 |            |            |
  Westinghouse      |      5 |            |            |
 '''
@@ -135,9 +137,9 @@ sModels = \
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
- 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10 | t
- VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10\\r10,000 | t
+ 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
+ 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f
  6V6G (Sylvania)    | Sylvania\\rSilvertone | 8 | f     | Sylvania          |  Vacuum Tube |             |              | f
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -155,10 +157,17 @@ sModels = \
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
+ CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
+ 6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
@@ -418,8 +427,6 @@ sModels = \
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
  T-35               |           |      6 | f            | University        |       Driver |             |
- 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
- 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
  LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
  240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
