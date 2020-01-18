@@ -1,6 +1,6 @@
 from django.urls        import reverse, resolve
 
-from core.utils_test    import TestCasePlus
+from core.tests.base    import TestCasePlus
 
 
 class TestURLs( TestCasePlus ):
