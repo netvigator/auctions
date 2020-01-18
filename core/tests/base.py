@@ -22,6 +22,8 @@ from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
 
 from ebayinfo.models    import EbayCategory, Market
 
+from ..utils            import getSeqStripped
+
 from pyPks.String.Find  import getRegExObj
 from pyPks.String.Get   import getTextAfter, getTextBefore
 from pyPks.Time.Test    import isISOdatetimeFileNameSafe
@@ -377,8 +379,6 @@ def getNamePositionDict( lHeader ):
 
 
 def getTableFromScreenCaptureGenerator( uScreenCapture ):
-    #
-    from .utils import getSeqStripped
     #
     if isinstance( uScreenCapture, str ):
         #
