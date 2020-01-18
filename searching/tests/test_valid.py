@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 
-from core.utils_test        import TestCasePlus
+from core.tests.base        import TestCasePlus
 
 from ..validators           import isPriorityValid
 
