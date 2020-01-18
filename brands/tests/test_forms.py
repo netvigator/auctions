@@ -3,7 +3,7 @@
 from django.urls        import reverse
 
 from core.utils         import maybePrint
-from core.utils_test    import BaseUserWebTestCase, getUrlQueryStringOff
+from core.tests.base    import BaseUserWebTestCase, getUrlQueryStringOff
 
 # Create your tests here.
 
