@@ -3,7 +3,7 @@ import logging
 from django.urls            import reverse
 from django.utils           import timezone
 
-from core.utils_test        import ( SetUpBrandsCategoriesModelsTestPlus,
+from core.tests.base        import ( SetUpBrandsCategoriesModelsTestPlus,
                                      BaseUserWebTestCase,
                                      setup_view_for_tests )
 
