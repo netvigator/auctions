@@ -1,6 +1,6 @@
 from logging            import getLogger
 
-from core.utils_test    import TestCasePlus
+from .base              import TestCasePlus
 
 logger = getLogger( 'test_logger' )
 
