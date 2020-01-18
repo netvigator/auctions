@@ -8,7 +8,7 @@ from django.urls        import reverse
 from django.utils       import timezone
 
 from core.utils         import maybePrint
-from core.utils_test    import ( SetUpBrandsCategoriesModelsWebTest,
+from core.tests.base    import ( SetUpBrandsCategoriesModelsWebTest,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
                                  TestCasePlus )
 
