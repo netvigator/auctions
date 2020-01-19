@@ -14,8 +14,8 @@ dMarketsRelated = {
         210 :   2,  # EBAY-FRCA  : EBAY-ENCA
          23 : 123,  # EBAY-FRBE  : EBAY-NLBE
         123 :  23,  # EBAY-NLBE  : EBAY-FRBE
-          3 :   0,  # EBAY-GB    : EBAY-US
-          0 :   3 } # EBAY-US    : EBAY-GB
+          3 :   0 } # EBAY-GB    : EBAY-US
+#         0 :   3 } # EBAY-US    : EBAY-GB
 
 
 # https://developer.ebay.com/devzone/finding/callref/types/ShippingInfo.html
