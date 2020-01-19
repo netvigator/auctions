@@ -540,8 +540,13 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         oOddBall = ItemFound.objects.get( iItemNumb = 233420619849 )
         #
-        print( oOddBall.iCategoryID,    oOddBall.cCategory    )
-        print( oOddBall.i2ndCategoryID, oOddBall.c2ndCategory )
+        print( 'iCategoryID, cCategory, iCatHeirarchy' )
+        print( 'primary:', oOddBall.iCategoryID, oOddBall.cCategory )
+        if oOddBall.iCatHeirarchy is not None:
+            print( oOddBall.iCatHeirarchy.cCatHierarchy )
+        print( '2ndary :', oOddBall.i2ndCategoryID, oOddBall.c2ndCategory )
+        if oOddBall.i2ndCatHeirarchy is not None:
+            print( oOddBall.i2ndCatHeirarchy.cCatHierarchy )
         #
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
