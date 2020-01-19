@@ -328,6 +328,8 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
         except Exception as e:
             #
+            if not e: e = 'no Exception info!' # ebay timed out 2020-01-18
+            #
             logger.info(
                     'Exception for %s (%s)', str( iItemNumb ), exc_info = e )
             #
