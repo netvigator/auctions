@@ -81,6 +81,22 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     dNewResult.update( kwargs )
     #
+    if dNewResult['iItemNumb'] == 233420619849 and len( dFields ) > 10:
+        #
+        print()
+        print( 'in storeItemInfo()\n' )
+        print( 'dItem:' )
+        pprint( dItem )
+        #
+        print()
+        print( 'dFields:' )
+        pprint( dFields )
+        #
+        #
+        print()
+        print( 'dNewResult:' )
+        pprint( dNewResult )
+    #
     if settings.TESTING: # EbayCategory table incomplete when testing
         #
         # form throwing error for ForeignKey even those can find in table
