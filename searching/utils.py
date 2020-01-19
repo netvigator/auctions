@@ -19,6 +19,7 @@ from core.dj_import     import ObjectDoesNotExist, get_user_model
 from core.utils_ebay    import getValueOffItemDict
 from core.ebay_api_calls import findItems
 
+from ebayinfo           import dMarketsRelated
 from ebayinfo.models    import Market, CategoryHierarchy
 from ebayinfo.utils     import ( dMarket2SiteID, getEbayCategoryHierarchies,
                                  setShippingTypeLocalPickupOptional )
@@ -500,7 +501,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     return sLastFile
 
-
+from pprint import pprint
 
 def storeSearchResultsInFinders( iLogID,
                             sMarket,
@@ -553,6 +554,16 @@ def storeSearchResultsInFinders( iLogID,
             #
             iItemNumb = int( dItem.get( 'itemId' ) )
             #
+            if iItemNumb == 233420619849:
+                #
+                print()
+                print( 'in storeSearchResultsInFinders')
+                print( 'dItem:' )
+                pprint( dItem )
+                print( 'setTestCategories:' )
+                pprint( setTestCategories )
+                #
+            #
             if setTestCategories:
                 #
                 # when testing, will skip items with categories
@@ -586,9 +597,32 @@ def storeSearchResultsInFinders( iLogID,
                     continue
                     #
                 #
-                if ( u2ndCategoryID and
-                            ( iEbaySiteID, int( u2ndCategoryID ) )
-                            not in setTestCategories ):
+                i2ndCategoryID = ( int( u2ndCategoryID )
+                                   if u2ndCategoryID is not None
+                                   else None )
+                #
+                iOtherSiteID = ( dMarketsRelated[iEbaySiteID]
+                                 if iEbaySiteID in dMarketsRelated
+                                 else iEbaySiteID )
+                #
+                bTest2ndaryCategory = (
+                    ( iEbaySiteID,  i2ndCategoryID ) in setTestCategories or
+                    ( iOtherSiteID, i2ndCategoryID ) in setTestCategories )
+                #
+                if iItemNumb == 233420619849:
+                    #
+                    print( 'iEbaySiteID:', iEbaySiteID )
+                    print( 'i2ndCategoryID:', i2ndCategoryID )
+                    print( 'iOtherSiteID:', iOtherSiteID )
+                    print( 'bTest2ndaryCategory:', bTest2ndaryCategory )
+                    print( "'secondaryCategory' in dItem:", 'secondaryCategory' in dItem )
+                #
+                if 'secondaryCategory' in dItem and not bTest2ndaryCategory:
+                    #
+                    if iItemNumb == 233420619849:
+                        #
+                        #
+                        print( "will del dItem[ 'secondaryCategory' ]" )
                     #
                     del dItem[ 'secondaryCategory' ] # 2nd category optional
                     #
