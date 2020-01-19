@@ -421,3 +421,5 @@ pics owned by rick:rick
 
 
 2020-02-05 brands now have key words, so probably can remove code that handles key words not always there
+
+2020-01-19 must adapt dMarketsRelated, ebay motors & ebay UK both related to ebay US
