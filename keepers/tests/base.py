@@ -4,7 +4,7 @@ from os.path                import join
 
 from django.utils           import timezone
 
-from core.utils_test        import ( AssertEmptyMixin, AssertNotEmptyMixin,
+from core.tests.base        import ( AssertEmptyMixin, AssertNotEmptyMixin,
                                      TestCasePlus )
 
 from ..models               import UserKeeper, Keeper
