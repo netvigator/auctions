@@ -9,7 +9,7 @@ from pprint             import pprint
 from django.conf        import settings
 from django.utils       import timezone
 
-from ebayinfo.models    import EbayCategory
+from ebayinfo.models    import EbayCategory, CategoryHierarchy
 
 from pyPks.Dict.Get      import getAnyValue
 from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
@@ -74,12 +74,58 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     form errors are common,
     not all real categories are in the test database'''
     #
-    fBeforeForm = kwargs.pop( 'fBeforeForm', None )
+    fBeforeForm         = kwargs.pop( 'fBeforeForm', None )
+    dEbayCatHierarchies = kwargs.pop( 'dEbayCatHierarchies', {} )
     #
     dNewResult = { k: getValue( dItem, k, v, **kwargs )
                    for k, v in dFields.items() }
     #
     dNewResult.update( kwargs )
+    #
+    # app has misleading column names!
+    # app has misleading column names!
+    # app has misleading column names!
+    # app has misleading column names!
+    # app has misleading column names!
+    #
+    # ebay category info
+    # iCategoryID is ebay's category #, it may not be unique all by itself
+    # iCategoryID + iEbaySiteID are unique
+    # hence the EbayCategory table has an id column as primary key
+    # misleading column names:
+    # in the ItemFound table,
+    # iCategoryID & i2ndCategoryID need the EbayCategory table id
+    #
+    # must switch names to store iCategoryID in ItemsFound table
+    #
+    if 'iCategoryID' in dNewResult:
+        #
+        dNewResult['iEbayCateID'] = dNewResult['iCategoryID'] # for iEbaySiteID
+        #
+        iEbaySiteID = dNewResult['iEbaySiteID']
+        #
+        dNewResult['iCategoryID'] = EbayCategory.objects.get(
+            iCategoryID = dNewResult['iEbayCateID'],
+            iEbaySiteID = iEbaySiteID ).id
+        #
+        if False and 'i2ndCatHeirarchy' in dNewResult:
+            #
+            i2ndCategoryID = dNewResult['i2ndCategoryID']
+            #
+            dNewResult['i2ndCateID'] = i2ndCategoryID # goes with iEbaySiteID
+            #
+            o2ndCategoryHierarchy = CategoryHierarchy.objects.get(
+                    id = dNewResult['i2ndCatHeirarchy'] )
+            #
+            iUseSiteID = ( iEbaySiteID
+                           if o2ndCategoryHierarchy.iEbaySiteID == iEbaySiteID
+                           else o2ndCategoryHierarchy.iEbaySiteID )
+            #
+            dNewResult['i2ndCategoryID'] = EbayCategory.objects.get(
+                    iCategoryID = i2ndCategoryID,
+                    iEbaySiteID = iUseSiteID ).id
+            #
+        #
     #
     if dNewResult['iItemNumb'] == 233420619849 and len( dFields ) > 10:
         #
@@ -107,7 +153,7 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
             #print('')
             #print('no iCategoryID for %s' % dNewResult.get( 'iItemNumb' ) )
             #
-        if ( not hasattr( dNewResult, 'iCategoryID' ) or
+        if ( not 'iCategoryID' in dNewResult or
              not dNewResult['iCategoryID'] or
              not EbayCategory.objects.filter(
                 iCategoryID    = dNewResult['iCategoryID'],
@@ -125,7 +171,7 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
             #
         #elif dNewResult['iCategoryID'] == 73160: print( 'OK:', 73160 )
         #
-        if ( not hasattr( dNewResult, 'i2ndCategoryID' ) or
+        if ( not 'i2ndCategoryID' in dNewResult or
              not dNewResult['i2ndCategoryID'] or
              not EbayCategory.objects.filter(
                 iCategoryID    = dNewResult['iCategoryID'],
@@ -134,9 +180,11 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
             dNewResult['i2ndCategoryID'] = None
             #
         #
-        #print( "dNewResult['iCategoryID']:", dNewResult['iCategoryID'] )
-        #print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
-        #print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
+        if dNewResult['iItemNumb'] == 233420619849 and len( dFields ) > 10:
+            #
+            print( "dNewResult['iCategoryID']:", dNewResult['iCategoryID'] )
+            print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
+            print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
     #
     dNewResult['tCreate'] = timezone.now()
     # 2019-03-25 cannot! auto_now_add, hope to get consistent index listings
