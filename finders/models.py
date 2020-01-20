@@ -78,7 +78,9 @@ class ItemFound(models.Model):
                         on_delete=models.DO_NOTHING,
                         verbose_name = 'primary category ID',
                         related_name = 'ebay_primary_category',
-                        null = True, blank = True ) # need for testing
+                        null = True, blank = True ) # ebay sends but
+                        # EbayCategory table is extremely slow
+                        # CategoryHierarchy has relevant info & is much faster
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
@@ -90,7 +92,9 @@ class ItemFound(models.Model):
                         on_delete=models.CASCADE,
                         verbose_name = 'secondary category ID (optional)',
                         related_name = 'ebay_secondary_category',
-                        null = True, blank = True )
+                        null = True, blank = True ) # ebay sends but
+                        # EbayCategory table is extremely slow
+                        # CategoryHierarchy has relevant info & is much faster
     c2ndCategory    = models.CharField( 'secondary category (optional)',
                         max_length = 48, null = True, blank = True )
     i2ndCatHeirarchy= models.ForeignKey( CategoryHierarchy,
