@@ -725,6 +725,24 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["283743905366"],
+             "title":["2x  ECC88 \/ 6DJ8   TELEFUNKEN  <> tubes  - NOS  -  ( ~  7DJ8 \/ PCC88 )  MILITARY"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m7erU0_LT3JT9nnCfetRyPw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-ECC88-6DJ8-TELEFUNKEN-tubes-NOS-7DJ8-PCC88-MILITARY-\/283743905366"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"179.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"179.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P7DT12H34M22S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-16T09:09:40.000Z"],
+             "endTime":["2020-01-26T09:09:40.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["174147736580"],
              "title":["Valvo Heerlen E88CC NOS Grey Shield CCa 6DJ8 6922 CV2492 CV2493 CV5358 CV5472"],
              "globalId":["EBAY-US"],"subtitle":["Prod. in'60th, Grey Shield, Stage Getter, Goldpins"],
