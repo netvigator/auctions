@@ -14,7 +14,7 @@ from ebayinfo           import ( EBAY_SHIPPING_CHOICES,
                                  dEBAY_SHIPPING_CHOICE_CODE,
                                  getEbayShippingChoiceCode )
 
-from ..models           import EbayCategory, Market
+from ..models           import EbayCategory, Market, CategoryHierarchy
 
 # the following are in the tests __init__.py file
 from ..tests            import ( sExampleCategoryVersion, sExampleCategoryList,
@@ -218,6 +218,36 @@ class TestHeirarchiesAreTheyCompleteTest( GetEbayCategoriesWebTestSetUp ):
             #
         #
         self.assertEqual( len( oLeaves ), len( dEbayCatHierarchies ) )
+        #
+        tRadiosAndSpeakers = ( 80741, 100 ) # ebay motors
+        #
+        self.assertTrue( tRadiosAndSpeakers in dEbayCatHierarchies )
+        #
+        self.assertTrue( dEbayCatHierarchies[ tRadiosAndSpeakers ] )
+        #
+        iCategoryHeirarchyID = dEbayCatHierarchies[ tRadiosAndSpeakers ]
+        #
+        oCatHier = CategoryHierarchy.objects.get( id = iCategoryHeirarchyID )
+        #
+        self.assertEqual( oCatHier.cCatHierarchy,
+                'eBay Motors, Parts & Accessories, Vintage Car & Truck Parts, '
+                'Radio & Speaker Systems' )
+        #
+        tTubeTesters = ( 170062, 0 ) # ebay USA
+        #
+        self.assertTrue( tTubeTesters in dEbayCatHierarchies )
+        #
+        self.assertTrue( dEbayCatHierarchies[ tTubeTesters ] )
+        #
+        iCategoryHeirarchyID = dEbayCatHierarchies[ tTubeTesters ]
+        #
+        oCatHier = CategoryHierarchy.objects.get( id = iCategoryHeirarchyID )
+        #
+        self.assertEqual( oCatHier.cCatHierarchy,
+                'Business & Industrial, Electrical & Test Equipment, '
+                'Test, Measurement & Inspection, Testers & Calibrators, '
+                'Tube Testers' )
+        #
 
 
 
