@@ -552,6 +552,8 @@ def _getCategoryHierarchyID(
     #
     iCatHeirarchy = None
     #
+    tRelatedMarkets = dMarketsRelated.get( iEbaySiteID, () )
+    #
     while True: # 2 loops possible if ebay-us or ebay-motor
         #
         if tCategoryID in dEbayCatHierarchies:
@@ -614,13 +616,24 @@ def _getCategoryHierarchyID(
             #
             dEbayCatHierarchies[ tCategoryID ] = iCatHeirarchy
             #
-        elif (  iEbaySiteID in dMarketsRelated and
+        elif (  tRelatedMarkets and
                 EbayCategory.objects.filter(
                         iCategoryID = iCategoryID,
-                        iEbaySiteID = dMarketsRelated.get( iEbaySiteID ) )
+                        iEbaySiteID = tRelatedMarkets[0] )
                         .exists() ): # EBAY-US : EBAY-MOTOR & vice versa
                 #
-                iEbaySiteID = dMarketsRelated.get( iEbaySiteID )
+                iEbaySiteID = tRelatedMarkets[0]
+                tCategoryID = iCategoryID, iEbaySiteID
+                #
+                continue
+                #
+        elif (  len( tRelatedMarkets ) > 1 and
+                EbayCategory.objects.filter(
+                        iCategoryID = iCategoryID,
+                        iEbaySiteID = tRelatedMarkets[-1] )
+                        .exists() ): # EBAY-US : EBAY-MOTOR & vice versa
+                #
+                iEbaySiteID = tRelatedMarkets[-1]
                 tCategoryID = iCategoryID, iEbaySiteID
                 #
                 continue
