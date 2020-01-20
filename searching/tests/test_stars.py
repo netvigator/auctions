@@ -2055,6 +2055,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 283743905366
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find ECC88 & 6DJ8 and disregard in parens (7DJ8 & PCC88)' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 202868417147
         #
         self.print_len(
