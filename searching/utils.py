@@ -363,8 +363,6 @@ def _storeItemFound( dItem, dEbayCatHierarchies ):
                 'ItemID %s is already in the ItemFound table' % iItemID )
         #
     #
-    iCount = CategoryHierarchy.objects.all().count()
-    #
     tCatHeirarchies = getEbayCategoryHierarchies( dItem, dEbayCatHierarchies )
     #
     if settings.TESTING and isinstance( tCatHeirarchies[0], str ):
@@ -381,15 +379,18 @@ def _storeItemFound( dItem, dEbayCatHierarchies ):
         #
     else:
         #
+        setShippingType = setShippingTypeLocalPickupOptional # too long!
+        #
         iSavedRowID = storeItemInfo(
                         dItem,
                         dItemFoundFields,
                         ItemFoundForm,
                         getValueOffItemDict,
-                        iCatHeirarchy   = tCatHeirarchies[0],
-                        i2ndCatHeirarchy= tCatHeirarchies[1],
-                        iEbaySiteID     = iSiteID,
-                        fBeforeForm     = setShippingTypeLocalPickupOptional )
+                        iCatHeirarchy       = tCatHeirarchies[0],
+                        i2ndCatHeirarchy    = tCatHeirarchies[1],
+                        iEbaySiteID         = iSiteID,
+                        fBeforeForm         = setShippingType,
+                        dEbayCatHierarchies = dEbayCatHierarchies )
         #
     #
     return iSavedRowID
@@ -398,6 +399,8 @@ def _storeItemFound( dItem, dEbayCatHierarchies ):
 
 
 def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
+    #
+    # calling for UserItemFound
     #
     bAlreadyInTable = UserItemFound.objects.filter(
                             iItemNumb   = iItemNumb,
@@ -559,9 +562,9 @@ def storeSearchResultsInFinders( iLogID,
                 print()
                 print( 'in storeSearchResultsInFinders')
                 print( 'dItem:' )
-                pprint( dItem )
-                print( 'setTestCategories:' )
-                pprint( setTestCategories )
+                pprint( dItem ) # imported above, remove when no longer needed
+                #print( 'setTestCategories:' )
+                #pprint( setTestCategories )
                 #
             #
             if setTestCategories:
@@ -601,19 +604,32 @@ def storeSearchResultsInFinders( iLogID,
                                    if u2ndCategoryID is not None
                                    else None )
                 #
-                iOtherSiteID = ( dMarketsRelated[iEbaySiteID]
-                                 if iEbaySiteID in dMarketsRelated
-                                 else iEbaySiteID )
+                tRelatedSites = dMarketsRelated.get( iEbaySiteID, () )
                 #
-                bTest2ndaryCategory = (
-                    ( iEbaySiteID,  i2ndCategoryID ) in setTestCategories or
-                    ( iOtherSiteID, i2ndCategoryID ) in setTestCategories )
+                iOtherSite0 = ( tRelatedSites[0]
+                                if tRelatedSites
+                                else iEbaySiteID )
+                #
+                iOtherSite1 = ( tRelatedSites[-1]
+                                if tRelatedSites
+                                else iEbaySiteID )
+                #
+                bTest2ndaryCategory = False
+                #
+                for iSiteID in frozenset( ( iOtherSite0, iOtherSite1 ) ):
+                    #
+                    if ( iSiteID, i2ndCategoryID ) in setTestCategories:
+                        #
+                        bTest2ndaryCategory = True
+                        #
+                        i2ndCategorySiteID = iSiteID
                 #
                 if iItemNumb == 233420619849:
                     #
+                    print()
                     print( 'iEbaySiteID:', iEbaySiteID )
                     print( 'i2ndCategoryID:', i2ndCategoryID )
-                    print( 'iOtherSiteID:', iOtherSiteID )
+                    print( 'i2ndCategorySiteID:', i2ndCategorySiteID )
                     print( 'bTest2ndaryCategory:', bTest2ndaryCategory )
                     print( "'secondaryCategory' in dItem:", 'secondaryCategory' in dItem )
                 #
