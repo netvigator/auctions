@@ -127,22 +127,6 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
             #
         #
     #
-    if dNewResult['iItemNumb'] == 233420619849 and len( dFields ) > 10:
-        #
-        print()
-        print( 'in storeItemInfo()\n' )
-        print( 'dItem:' )
-        pprint( dItem )
-        #
-        print()
-        print( 'dFields:' )
-        pprint( dFields )
-        #
-        #
-        print()
-        print( 'dNewResult:' )
-        pprint( dNewResult )
-    #
     if settings.TESTING: # EbayCategory table incomplete when testing
         #
         # form throwing error for ForeignKey even those can find in table
@@ -180,11 +164,6 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
             dNewResult['i2ndCategoryID'] = None
             #
         #
-        if dNewResult['iItemNumb'] == 233420619849 and len( dFields ) > 10:
-            #
-            print( "dNewResult['iCategoryID']:", dNewResult['iCategoryID'] )
-            print( "dNewResult['i2ndCategoryID']:", dNewResult['i2ndCategoryID'] )
-            print( "dNewResult['iEbaySiteID']:", dNewResult['iEbaySiteID'] )
     #
     dNewResult['tCreate'] = timezone.now()
     # 2019-03-25 cannot! auto_now_add, hope to get consistent index listings
