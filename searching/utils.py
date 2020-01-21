@@ -557,16 +557,6 @@ def storeSearchResultsInFinders( iLogID,
             #
             iItemNumb = int( dItem.get( 'itemId' ) )
             #
-            if iItemNumb == 233420619849:
-                #
-                print()
-                print( 'in storeSearchResultsInFinders')
-                print( 'dItem:' )
-                pprint( dItem ) # imported above, remove when no longer needed
-                #print( 'setTestCategories:' )
-                #pprint( setTestCategories )
-                #
-            #
             if setTestCategories:
                 #
                 # when testing, will skip items with categories
@@ -623,15 +613,6 @@ def storeSearchResultsInFinders( iLogID,
                         bTest2ndaryCategory = True
                         #
                         i2ndCategorySiteID = iSiteID
-                #
-                if iItemNumb == 233420619849:
-                    #
-                    print()
-                    print( 'iEbaySiteID:', iEbaySiteID )
-                    print( 'i2ndCategoryID:', i2ndCategoryID )
-                    print( 'i2ndCategorySiteID:', i2ndCategorySiteID )
-                    print( 'bTest2ndaryCategory:', bTest2ndaryCategory )
-                    print( "'secondaryCategory' in dItem:", 'secondaryCategory' in dItem )
                 #
                 if 'secondaryCategory' in dItem and not bTest2ndaryCategory:
                     #
