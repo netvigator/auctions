@@ -98,6 +98,7 @@ sBrands = \
  Supreme           |      5 |            |            |
  Sylvania          |      6 |            |            |
  Tannoy            |      7 |            |            |
+ Telefunken        |      6 |            |            |
  Tung-Sol          |      7 |            |            |
  University        |      5 |            |            |
  UTC               |      8 |            |            |
@@ -106,25 +107,30 @@ sBrands = \
  Westinghouse      |      5 |            |            |
 '''
 
-#### if you add a vacuum tube brand, ###
-####  you need a BrandCategory row   ###
-####    code is in base.py     ###
+# ### if you add a vacuum tube brand, ###
+# ###  you need a BrandCategory row   ###
+# ###    code is in base.py     ###
 
-#### note column delimiter | must have a space on one side or the other
+# 6SN7GTA\\r6SN7GTB
+
+# ### note column delimiter | must have a space on one side or the other
 sModels = \
 '''
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
+ 6SN7GT             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6SN7GTA            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6SN7GTB            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6922 (Amperex Gold)| gold\\rGP |      7 | f            | Amperex (gold pins)| Vacuum Tube |             |              | f
  E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
+ 7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
- 6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             |              | t
@@ -155,12 +161,14 @@ sModels = \
  6L6GB              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
- EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- EF86 (Amperex BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ EF86 (Amperex BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
+ PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
