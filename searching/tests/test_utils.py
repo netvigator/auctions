@@ -540,14 +540,17 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         oOddBall = ItemFound.objects.get( iItemNumb = 233420619849 )
         #
-        print( 'iCategoryID, cCategory, iCatHeirarchy' )
-        print( 'primary:', oOddBall.iCategoryID, oOddBall.cCategory )
-        if oOddBall.iCatHeirarchy is not None:
-            print( oOddBall.iCatHeirarchy.cCatHierarchy )
-        print( '2ndary :', oOddBall.i2ndCategoryID, oOddBall.c2ndCategory )
-        if oOddBall.i2ndCatHeirarchy is not None:
-            print( oOddBall.i2ndCatHeirarchy.cCatHierarchy )
+        self.assertEqual(
+                oOddBall.iCatHeirarchy.cCatHierarchy,
+                'Consumer Electronics, Vintage Electronics, '
+                'Vintage Audio & Video, Vintage Parts & Accessories, '
+                'Vintage Tubes & Tube Sockets' )
         #
+        self.assertEqual(
+                oOddBall.i2ndCatHeirarchy.cCatHierarchy,
+                'eBay Motors, Parts & Accessories, '
+                'Vintage Car & Truck Parts, Radio & Speaker Systems' )
+
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
