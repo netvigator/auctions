@@ -47,7 +47,7 @@ from pyPks.String.Get       import getTextBeforeC
 from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
-from pyPks.String.Output    import ReadableNo
+from pyPks.String.Output    import ReadableNo, Plural
 from pyPks.String.Stats     import ( getLocationsDict, getSubStringLocation,
                                      getSubStrLocationsBegAndEnd )
 
@@ -490,7 +490,8 @@ def _updateModelsStoredAlready(
         iModelID        = oTempItem.iModel.id,
         iHitStars       = oTempItem.iHitStars,
         sTitleLeftOver  = oTempItem.cTitleLeftOver,
-        iCategoryID     = iCategoryID )
+        iCategoryID     = iCategoryID,
+        sModelTitleUPPER= sModelTitleUPPER )
     #
     dModelsStoredAlready.setdefault(
         sModelTitleUPPER, [] ).append( oThisModel )
@@ -533,10 +534,27 @@ def _getBoosterOffPair( oLongr, oShort ):
     iLongerStars = oLongr.iHitStars or 1
     iShortrStars = oShort.iHitStars or 1
     #
-    nBoost = ( ( float( iShortrStars ) * iShortrLen ) /
-               ( iLongerStars * iLongerLen ) ) ** 0.5
+    if oLongr.bExact and not oShort.bExact:
+       #
+       nBoost = ( ( 1.0 + iLongerStars ) / iShortrStars )
+       #
+    elif oShort.bExact and not oLongr.bExact:
+       #
+       nBoost = ( iLongerStars / ( 1.0 + iShortrStars ) )
+       #
+    else:
+        #
+        nBoost = ( ( float( iShortrStars ) * iShortrLen ) /
+                ( iLongerStars * iLongerLen ) ) ** 0.5
+        #
+        # nBoost = ( ( float( iShortrStars ) * iShortrLen ) /
+        #            ( iLongerStars * iLongerLen ) )
+        #
+        if nBoost < 1.0: nBoost = 1.05
+        #
     #
     return nBoost
+
 
 
 def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
@@ -549,6 +567,23 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
     lAllFoundIns = []
     #
     iMaxLen = 0
+    #
+    lExactMatch = []
+    #
+    for o in lItemFoundTemp:
+        #
+        if  (   o.cFoundModel is not None and
+                o.cModelAlphaNum == _getAlphaNum( o.cFoundModel ) ):
+            #
+            o.bExact = True
+            #
+            lExactMatch.append( o )
+            #
+        else:
+            #
+            o.bExact = False
+            #
+        #
     #
     dModelMaxStars = dict.fromkeys(
             ( o.cModelAlphaNum for o in lItemFoundTemp ), 0 )
@@ -572,7 +607,7 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
     #
     #
     #
-    if len( lAllFoundIns ) < 2: return 1, iMaxLen
+    if len( lAllFoundIns ) < 2: return 1, iMaxLen, lExactMatch
     #
     #
     #
@@ -580,11 +615,13 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
     lAllFoundIns.reverse()
     #
     #
-    if settings.COVERAGE and bRecordSteps:
+    if bRecordSteps: # settings.COVERAGE and
         #
         maybePrint()
         maybePrint( 'lAllFoundIns:' )
         maybePrettyP( lAllFoundIns )
+        maybePrint( 'lExactMatch:' )
+        maybePrettyP( lExactMatch )
         #
     #
     lGotModelOverlap = []
@@ -607,20 +644,24 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
                 #
                 lGotModelOverlap.append( ( oLongr, oShort ) )
                 #
-                if False and bRecordSteps:
+                if bRecordSteps: # settings.COVERAGE and
                     #
                     maybePrint()
                     maybePrint( 'oLongr.iHitStars     :', oLongr.iHitStars      )
                     maybePrint( 'oShort.iHitStars     :', oShort.iHitStars      )
                     maybePrint( 'oLongr.cModelAlphaNum:', oLongr.cModelAlphaNum )
                     maybePrint( 'oShort.cModelAlphaNum:', oShort.cModelAlphaNum )
+                    maybePrint( 'oLongr.cFoundModel   :', oLongr.cFoundModel    )
+                    maybePrint( 'oShort.cFoundModel   :', oShort.cFoundModel    )
+                    maybePrint( 'oLongr.bExact        :', oLongr.bExact         )
+                    maybePrint( 'oShort.bExact        :', oShort.bExact         )
                     #
             #
         #
     #
     #
     #
-    if not lGotModelOverlap: return 1, iMaxLen
+    if not lGotModelOverlap: return 1, iMaxLen, lExactMatch
     #
     #
     #
@@ -634,14 +675,15 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
         #
         iMaxLen = max( iMaxLen, oLongr.iFoundModelLen )
     #
-    if settings.COVERAGE and bRecordSteps:
+    if bRecordSteps: # settings.COVERAGE and
         #
         maybePrint()
         maybePrint( 'nBoost :', nBoost )
         maybePrint( 'iMaxLen:', iMaxLen )
         #
+
     #
-    return nBoost, iMaxLen
+    return nBoost, iMaxLen, lExactMatch
 
 
 
@@ -977,8 +1019,24 @@ def findSearchHits(
             dGotCategories[ oCategory.id ] = sInTitle
             #
         #
+        # cWhereCategory 'title' 'heirarchy1' or 'heirarchy2'
         #
+        # if have category in title, discount other categories
         #
+        def gotCategorInTitle( o ): return o.cWhereCategory == 'title'
+        #
+        oGotCategoryInTitle = get1stThatMeets(
+                                lItemFoundTemp, gotCategorInTitle )
+        #
+        if oGotCategoryInTitle:
+            #
+            for o in lItemFoundTemp:
+                #
+                if o.cWhereCategory != 'title':
+                    #
+                    o.iStarsCategory    = o.iStarsCategory // 2 or 1
+                    o.iHitStars         = o.iHitStars      // 2 or 1
+                    #
         #
         # finished stepping thru categories
         #
@@ -1768,10 +1826,21 @@ def findSearchHits(
 
             if len( lItemFoundTemp ) > 1:
                 #
-                nFoundModelBoost, iMaxLen = _getFoundModelBooster(
-                                                lItemFoundTemp, bRecordSteps )
+                t = _getFoundModelBooster( lItemFoundTemp, bRecordSteps )
                 #
-                if bRecordSteps and nFoundModelBoost > 1:
+                nFoundModelBoost, iMaxLen, lExactMatch = t
+                #
+                if bRecordSteps and lExactMatch:
+                    #
+                    sSayExactMatch = getTextSequence(
+                                        ( o.cFoundModel for o in lExactMatch ) )
+                    #
+                    lCandidates.append(
+                            'have exact match%s: %s'
+                            % ( Plural( len( lExactMatch ), 'es' ),
+                                sSayExactMatch ) )
+                    #
+                elif bRecordSteps and nFoundModelBoost > 1:
                     #
                     lCandidates.append(
                             'giving the longest title a boost: %s'
