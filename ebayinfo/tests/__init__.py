@@ -222,7 +222,7 @@ sEbayCategoryDump = \
 # ### last row (Radio & Speaker Systems) & ###
 # ###        Tube Testers row (1478)       ###
 # ###               tested in              ###
-# ### TestHeirarchiesAreTheyCompleteTest.test_are_heirarchies_complete() ###
+# ### TestHeirarchiesAreTheyCompleteWebTest.test_are_heirarchies_complete() ###
 
 '''
 '''
