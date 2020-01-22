@@ -121,8 +121,7 @@ sModels = \
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GT             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6SN7GTA            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6SN7GTB            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
