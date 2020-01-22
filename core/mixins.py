@@ -4,8 +4,6 @@ from django.db              import IntegrityError
 from django.db.models       import Q
 from django.http            import HttpResponseRedirect
 
-from core                   import ( sTableTemplateRowRules,
-                                     sRowTemplate6ColsValignTop )
 from core.utils             import getLink, getSaySequence
 
 from pyPks.Collect.Query    import get1stThatMeets
@@ -332,64 +330,6 @@ class GetItemsForSomething( object ):
         return sHowMany, qsItems
 
 
-
-
-def _sayStars( o, sName ):
-    #
-    if o is None:
-        sSayStars = 'no %s found' % sName
-    else:
-        sSayStars = str( o.iStars )
-    #
-    return sSayStars
-
-
-_sTrashCheckBox = ( '<input class="checkbox" name="bListExclude" '
-                    'type="checkbox" value={{ item.iItemNumb_id }}' )
-
-"""
-now using a template instead
-class GetUserItemsTableMixin( object ):
-    '''get table of user items, DRY'''
-
-    def getUserItemsTable( self, qs ):
-        #
-        if qs:
-            #
-            sHeader = ( sRowTemplate6ColsValignTop %
-                        ( 'Edit', 'Trash', 'Model', 'Brand', 'Category', 'HitStars', '' ) )
-            #
-            lRows = [ sHeader ]
-            #
-            for o in qs:
-                #
-                sayStarsModel   = _sayStars( o.iModel,    'model'    )
-                sayStarsBrand   = _sayStars( o.iBrand,    'brand'    )
-                sayStarsCategory= _sayStars( o.iCategory, 'category' )
-                #
-                tStars = ( sayStarsModel, sayStarsBrand, sayStarsCategory )
-                #
-                sDetail = ' ( %s * %s * %s )' % tStars
-                #
-                sModel    = getLink( o.iModel    )
-                sBrand    = getLink( o.iBrand    )
-                sCategory = getLink( o.iCategory )
-                #
-                sUserItemLink = '<a href="%s">Edit</a>' % o.get_edit_url()
-                #
-                lRows.append( sRowTemplate6ColsValignTop %
-                        ( sUserItemLink, _sTrashCheckBox, sModel, sBrand, sCategory, o.iHitStars, sDetail ) )
-                #
-            #
-            sThisItemHitsTable = sTableTemplateRowRules % '\n'.join( lRows )
-            #
-        else:
-            #
-            sThisItemHitsTable = 'None'
-            #
-        #
-        return sThisItemHitsTable
-"""
 
 
 class GetUserSelectionsOnPost( object ):
