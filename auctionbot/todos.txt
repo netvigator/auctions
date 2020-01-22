@@ -349,14 +349,6 @@ for useritemsfound and userkeepers, should be user specific !!!
 
 2019-11-25 refine ModelFormValidatesTitle in core/forms.py
 
-2019-12-08
-form did not save for item 233420619849
-i2ndCatHeirarchy -- <ul class="errorlist"><li>Select a valid choice. That choice is not one of the available choices.</li></ul>
-_storeItemFound() returned None -- 233420619849
-error line above in searching/utils.py
-item in searching/tests/__init__.py
-need to test save
-
 2019-12-11 learn from test_urls.py, update
 
 2019-12-16
@@ -422,4 +414,6 @@ pics owned by rick:rick
 
 2020-02-05 brands now have key words, so probably can remove code that handles key words not always there
 
-2020-01-19 must adapt dMarketsRelated, ebay motors & ebay UK both related to ebay US
+2020-01-22 reduce size of keepers by putting cCategoryIDs & cCategoryNames in own table, only store id in keepers table
+
+
