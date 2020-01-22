@@ -199,7 +199,7 @@ class TestGetPriorityChoices( BaseUserWebTestCaseCanAddSearches ):
 
 class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCategoriesWebTestSetUp ):
     #
-    ''' class for testing storeSearchResultsInFinders() store records '''
+    ''' class for testing getSearchResultGenerator() last page got nothing '''
     #
     def setUp(self):
         #
@@ -241,7 +241,7 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCa
 
 class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, GetEbayCategoriesWebTestSetUp ):
     #
-    ''' class for testing storeSearchResultsInFinders() store records '''
+    ''' class for testing getSearchResultGenerator() search got nothing '''
     #
     def setUp(self):
         #
