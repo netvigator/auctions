@@ -82,88 +82,18 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     dNewResult.update( kwargs )
     #
-    # app has misleading column names!
-    # app has misleading column names!
-    # app has misleading column names!
-    # app has misleading column names!
-    # app has misleading column names!
-    #
     # ebay category info
-    # iCategoryID is ebay's category #, it may not be unique all by itself
+    # iCategoryID is ebay's category number & it may not be unique
     # iCategoryID + iEbaySiteID are unique
-    # hence the EbayCategory table has an id column as primary key
-    # misleading column names:
-    # in the ItemFound table,
-    # iCategoryID & i2ndCategoryID need the EbayCategory table id
+    # hence bot's ebayinfo EbayCategory table has id column as primary key
+    # EbayCategory table is slow (mptt heirarchical table)
+    # bot needs string category heirarchy,
+    # got that in bot's ebayinfo CategoryHierarchy table
+    # bot does not need reference to ebayinfo EbayCategory table
     #
-    # must switch names to store iCategoryID in ItemsFound table
+    dNewResult['iCategoryID'   ] = None
+    dNewResult['i2ndCategoryID'] = None
     #
-    if 'iCategoryID' in dNewResult:
-        #
-        dNewResult['iEbayCateID'] = dNewResult['iCategoryID'] # for iEbaySiteID
-        #
-        iEbaySiteID = dNewResult['iEbaySiteID']
-        #
-        dNewResult['iCategoryID'] = EbayCategory.objects.get(
-            iCategoryID = dNewResult['iEbayCateID'],
-            iEbaySiteID = iEbaySiteID ).id
-        #
-        if False and 'i2ndCatHeirarchy' in dNewResult:
-            #
-            i2ndCategoryID = dNewResult['i2ndCategoryID']
-            #
-            dNewResult['i2ndCateID'] = i2ndCategoryID # goes with iEbaySiteID
-            #
-            o2ndCategoryHierarchy = CategoryHierarchy.objects.get(
-                    id = dNewResult['i2ndCatHeirarchy'] )
-            #
-            iUseSiteID = ( iEbaySiteID
-                           if o2ndCategoryHierarchy.iEbaySiteID == iEbaySiteID
-                           else o2ndCategoryHierarchy.iEbaySiteID )
-            #
-            dNewResult['i2ndCategoryID'] = EbayCategory.objects.get(
-                    iCategoryID = i2ndCategoryID,
-                    iEbaySiteID = iUseSiteID ).id
-            #
-        #
-    #
-    if settings.TESTING: # EbayCategory table incomplete when testing
-        #
-        # form throwing error for ForeignKey even those can find in table
-        #  # False form.is_valid() but category is in table
-        #
-        #if not hasattr( dNewResult, 'iCategoryID' ):
-            ##
-            #print('')
-            #print('no iCategoryID for %s' % dNewResult.get( 'iItemNumb' ) )
-            #
-        if ( not 'iCategoryID' in dNewResult or
-             not dNewResult['iCategoryID'] or
-             not EbayCategory.objects.filter(
-                iCategoryID    = dNewResult['iCategoryID'],
-                iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists() ):
-            #
-            #if not hasattr( dNewResult, 'iCategoryID' ):
-                ##
-                #print()
-                #print( 'dNewResult:' )
-                #pprint( dNewResult )
-                ##
-            #elif dNewResult['iCategoryID'] == 73160: print( 'not OK:', 73160 )
-            #
-            dNewResult['iCategoryID'] = None
-            #
-        #elif dNewResult['iCategoryID'] == 73160: print( 'OK:', 73160 )
-        #
-        if ( not 'i2ndCategoryID' in dNewResult or
-             not dNewResult['i2ndCategoryID'] or
-             not EbayCategory.objects.filter(
-                iCategoryID    = dNewResult['iCategoryID'],
-                iEbaySiteID_id = dNewResult['iEbaySiteID'] ).exists() ):
-            #
-            dNewResult['i2ndCategoryID'] = None
-            #
-        #
     #
     dNewResult['tCreate'] = timezone.now()
     # 2019-03-25 cannot! auto_now_add, hope to get consistent index listings
@@ -212,13 +142,13 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
                 logger.info( 'no form errors at bottom!' )
             #
             #tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
-                        #'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
-                        #'i2ndCatHeirarchy', 'cCountry' )
-            ##
+            #            'iCat***Heirarchy', 'i2ndCategoryID', 'c2ndCategory',
+            #            'i2nd***CatHeirarchy', 'cCountry' )
+            #
             #print( '' )
             #print( 'fields with errors:' )
             #for sField in tProblems:
-                #print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
+            #    print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
     #
     return iSavedRowID
 
