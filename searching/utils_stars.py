@@ -528,30 +528,10 @@ def _getMaxHitStars( dModelsStoredAlready ):
 
 def _getBoosterOffPair( oLongr, oShort ):
     #
-    iLongerLen = oLongr.iFoundModelLen or 1
-    iShortrLen = oShort.iFoundModelLen or 1
-    #
     iLongerStars = oLongr.iHitStars or 1
     iShortrStars = oShort.iHitStars or 1
     #
-    if oLongr.bExact and not oShort.bExact:
-       #
-       nBoost = ( ( 1.0 + iLongerStars ) / iShortrStars )
-       #
-    elif oShort.bExact and not oLongr.bExact:
-       #
-       nBoost = ( iLongerStars / ( 1.0 + iShortrStars ) )
-       #
-    else:
-        #
-        nBoost = ( ( float( iShortrStars ) * iShortrLen ) /
-                ( iLongerStars * iLongerLen ) ) ** 0.5
-        #
-        # nBoost = ( ( float( iShortrStars ) * iShortrLen ) /
-        #            ( iLongerStars * iLongerLen ) )
-        #
-        if nBoost < 1.0: nBoost = 1.05
-        #
+    nBoost = ( ( iShortrStars + 0.1 ) / iLongerStars ) ** 0.5
     #
     return nBoost
 
@@ -692,7 +672,9 @@ def _getModelLocationsBegAndEnd( dAuctionTitleWords, iterModelLocations ):
     tLocations = getSubStrLocationsBegAndEnd(
                     dAuctionTitleWords, iterModelLocations )
     #
-    if not ( tLocations and tLocations[0] and tLocations[1] ):
+    if not ( tLocations    and
+             tLocations[0] and
+             ( tLocations[1] or tLocations[2] ) ):
         #
         tLocations = None
         #
@@ -1724,6 +1706,7 @@ def findSearchHits(
                 lModelLocations = list( tModelLocations[0] )
                 #
                 lModelLocations.extend( tModelLocations[1] )
+                lModelLocations.extend( tModelLocations[2] )
                 #
                 dLocationsModelIDs = getReverseDict( dModelIDStoredLocation )
                 # carry on here
@@ -1799,19 +1782,27 @@ def findSearchHits(
                     #
                     lExcludeThese = []
                     #
-                    for iLocation in tModelLocations[1]:
+                    tTests = ( ( 1, 'on end of' ),
+                               ( 2, 'within parens in') )
+                    #
+                    for i, sSay in tTests:
                         #
-                        for iModelID in dLocationsModelIDs[ iLocation ]:
+                        for iLocation in tModelLocations[i]:
                             #
-                            lExcludeThese.append(
-                                    dModelID_oTempItem[ iModelID ] )
-                            #
-                            if bRecordSteps and setFirstCategory is not None:
+                            for iModelID in dLocationsModelIDs[ iLocation ]:
                                 #
+                                lExcludeThese.append(
+                                        dModelID_oTempItem[ iModelID ] )
                                 #
-                                lCandidates.append(
-                                    'model %s on end of auction title, so excluding'
-                                    % dModelID_oTempItem[ iModelID ].iModel )
+                                if (    bRecordSteps and
+                                        setFirstCategory is not None ):
+                                    #
+                                    sModel = dModelID_oTempItem[ iModelID ].iModel
+                                    #
+                                    lCandidates.append(
+                                        'model %s %s auction title, '
+                                        'so excluding' % ( sModel, sSay ) )
+                                    #
                                 #
                             #
                         #
