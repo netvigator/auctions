@@ -2070,6 +2070,31 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find ECC88 & 6DJ8 and disregard in parens (7DJ8 & PCC88)' )
         #
+        for i in ( 0, 1 ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertIn(    oTest.iModel.cTitle, ( 'ECC88', '6DJ8' ) )
+            self.assertNotIn( oTest.iModel.cTitle, ( 'PCC88', '7DJ8' ) )
+            self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+            self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+            #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 352919421447
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6SN7GTB not 6SN7GT (Sylvania)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6SN7GTB' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
@@ -2124,16 +2149,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find power supply ? big challenge?' )
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 352919421447
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find 6SN7GTB not 6SN7GT (Sylvania)' )
         #
         #
         '''
