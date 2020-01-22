@@ -94,9 +94,6 @@ class ItemFoundDetailView( DetailViewGotModel ):
                 iUser               = self.request.user
                 ).order_by( '-iHitStars' )
         #
-        # sThisItemAllHits = self.getUserItemsTable( qsThisItemAllHits )
-        #
-        # context['AllHits']      = sThisItemAllHits
         context['HitsForThis']  = qsThisItemAllHits
         #
         return context
@@ -134,9 +131,6 @@ class ItemFoundHitView( DetailViewGotModel ):
         qsThisItemOtherHits = qsThisItemAllHits.difference(
                 UserItemFound.objects.filter( id = context[ 'object' ].id ) )
         #
-        # sThisItemOtherHits = self.getUserItemsTable( qsThisItemOtherHits )
-        #
-        # context['OtherHits']    = sThisItemOtherHits
         context['HitsForThis']  = qsThisItemOtherHits
         #
         return context
