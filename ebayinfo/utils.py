@@ -554,7 +554,7 @@ def _getCategoryHierarchyID(
     #
     tRelatedMarkets = dMarketsRelated.get( iEbaySiteID, () )
     #
-    while True: # 2 loops possible if ebay-us or ebay-motor
+    while True: # 2 or 3 loops possible if ebay-us or ebay-motor
         #
         if tCategoryID in dEbayCatHierarchies:
             #
@@ -669,8 +669,8 @@ def _getCategoryHierarchyID(
 
 def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
     #
-    ''' return the ebay category hierarchy for a search find item category
-    that is, this returns the id of the category hierarchy table row
+    ''' return the ebay category hierarchy(ies) for a search find item
+    that is, this returns the id(s) of the category hierarchy table row(s)
     note:
     1) items can optionally have a secondary category
     2) this function has a side effect, it updates dEbayCatHierarchies
