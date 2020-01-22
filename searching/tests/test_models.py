@@ -1,22 +1,13 @@
-from django.test.client import Client
 
 from core.tests.base    import ( BaseUserWebTestCase,
                                  getUrlQueryStringOff, queryGotUpdated )
-
-from searching          import ( SEARCH_FILES_FOLDER,
-                                 RESULTS_FILE_NAME_PATTERN )
 
 from .base              import PutSearchResultsInDatabaseWebTestBase
 
 from ..models           import Search
 
-from ..utils            import storeSearchResultsInFinders, getSearchIdStr
-
-from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
+from finders.models     import ItemFound
 from models.models      import Model
-
-from pyPks.File.Del     import DeleteIfExists
-from pyPks.File.Write   import QuietDump
 
 
 class SearchModelTest( BaseUserWebTestCase ):
