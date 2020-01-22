@@ -81,6 +81,8 @@ class ItemFound(models.Model):
                         null = True, blank = True ) # ebay sends but
                         # EbayCategory table is extremely slow
                         # CategoryHierarchy has relevant info & is much faster
+                        # but need to get this ebay category ID from API
+                        # to look up CategoryHierarchy
     cCategory       = models.CharField( 'primary category',
                         max_length = 48 )
     iCatHeirarchy   = models.ForeignKey( CategoryHierarchy,
@@ -88,13 +90,15 @@ class ItemFound(models.Model):
                         verbose_name = 'category hierarchy (primary)',
                         related_name = 'primary_category',
                         null = True, blank = True )
-    i2ndCategoryID  = models.ForeignKey( EbayCategory,
+    i2ndCategoryID  = models.ForeignKey( EbayCategory,  # optional
                         on_delete=models.CASCADE,
                         verbose_name = 'secondary category ID (optional)',
                         related_name = 'ebay_secondary_category',
                         null = True, blank = True ) # ebay sends but
                         # EbayCategory table is extremely slow
                         # CategoryHierarchy has relevant info & is much faster
+                        # but need to get this ebay category ID from API
+                        # to look up CategoryHierarchy
     c2ndCategory    = models.CharField( 'secondary category (optional)',
                         max_length = 48, null = True, blank = True )
     i2ndCatHeirarchy= models.ForeignKey( CategoryHierarchy,
