@@ -239,13 +239,13 @@ def _storeOneJsonItemInKeepers( iItemNumb, sContent, **kwargs ):
                 logger.info( 'no form errors at bottom!' )
             #
             #tProblems = ( 'iItemNumb', 'cMarket', 'iCategoryID', 'cCategory',
-                        #'iCatHeirarchy', 'i2ndCategoryID', 'c2ndCategory',
-                        #'i2ndCatHeirarchy', 'cCountry' )
-            ##
+            #              'iCat***Heirarchy', 'i2ndCategoryID', 'c2ndCategory',
+            #              'i2nd***CatHeirarchy', 'cCountry' )
+            #
             #print( '' )
             #print( 'fields with errors:' )
             #for sField in tProblems:
-                #print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
+            #    print( 'dNewResult["%s"]:' % sField, dNewResult.get( sField ) )
             #
         #
     #
