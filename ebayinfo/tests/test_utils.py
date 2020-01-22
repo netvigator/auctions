@@ -123,7 +123,7 @@ class TestCategoryVersionTest( TestCasePlus ):
 
 
 
-class _putCategoriesInDatabaseTest( TestCasePlus ):
+class PutCategoriesInDatabaseTestCasePlus( TestCasePlus ):
     '''test _getCategoryVersionFromFile()'''
 
     sFile = CATEGORY_LISTING_FILE % 'EBAY-US'
@@ -164,8 +164,6 @@ class _putCategoriesInDatabaseTest( TestCasePlus ):
             self.assertTrue( False )
 
 
-
-
     def test_database_wrong_category_version(self):
         #
         sWrongVersion = sExampleCategoryList.replace(
@@ -184,8 +182,6 @@ class _putCategoriesInDatabaseTest( TestCasePlus ):
         else:
             self.assertTrue( False )
 
-
-
     def test_count_categories_in_file(self):
         #
         WriteText2File(
@@ -197,7 +193,9 @@ class _putCategoriesInDatabaseTest( TestCasePlus ):
         self.assertEqual( iTags, '19188' ) # str count in the original file
 
 
-class TestHeirarchiesAreTheyCompleteTest( GetEbayCategoriesWebTestSetUp ):
+
+
+class TestHeirarchiesAreTheyCompleteWebTest( GetEbayCategoriesWebTestSetUp ):
 
     def test_are_heirarchies_complete( self ):
         #
