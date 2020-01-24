@@ -417,3 +417,4 @@ pics owned by rick:rick
 2020-01-22 reduce size of keepers by putting cCategoryIDs & cCategoryNames in own table, only store id in keepers table
 
 
+2020-01-24 should GetUserSelectionsOnPost be a core mixin?
