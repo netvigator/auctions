@@ -39,15 +39,15 @@
         <TD>{% field_name object 'cMarket' %}</TD>
         <TD>{{ object.cMarket }}</TD>
     </TR>
-    <TR>
-        <TD>{% field_name parent 'cGalleryURL' %}:</TD>
-        <TD><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
-    </TR>
     <tr>
         <td>{% field_name parent 'iShippingType' %}:</td>
         <TD>{{ object.iItemNumb.get_iShippingType_display }}</TD>
         </td>
     </tr>
+    <TR>
+        <TD>{% field_name parent 'cGalleryURL' %}:</TD>
+        <TD><img src="{{ object.iItemNumb.cGalleryURL }}" /></TD>
+    </TR>
     <tr>
         <td>Hits for this Item:</td>
         <td>
