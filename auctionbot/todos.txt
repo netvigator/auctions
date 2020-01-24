@@ -418,3 +418,5 @@ pics owned by rick:rick
 
 
 2020-01-24 should GetUserSelectionsOnPost be a core mixin?
+
+2020-01-25 Select and/or trash zero bid keepers
