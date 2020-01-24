@@ -334,8 +334,7 @@ class GetItemsForSomething( object ):
 
 class GetUserSelectionsOnPost( object ):
     #
-    # this started in core.mixins, but
-    # importing deleteKeeperUserItem there caused a circular import problem
+    # importing deleteKeeperUserItem at top caused a circular import problem
     #
     def post( self, request, *args, **kwargs ):
         #
