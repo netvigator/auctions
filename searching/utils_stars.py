@@ -1789,7 +1789,7 @@ def findSearchHits(
                         #
                         for iLocation in tModelLocations[i]:
                             #
-                            if iLocation in dLocationsModelIDs ):
+                            if iLocation in dLocationsModelIDs:
                                 #
                                 for iModelID in dLocationsModelIDs[ iLocation ]:
                                     #
