@@ -1210,7 +1210,7 @@ def findSearchHits(
                             #
                             logger.warning(
                                     'model has category id %s in dCategoryFamily for %s' %
-                                    ( oModel.iCategory_id, oTempItem.iItemNumb ) )
+                                    ( oModel.iCategory_id, oItem.iItemNumb ) )
                             #
                             iFamily = dCategoryFamily[ oTempItem.iCategory.id ]
                             #
@@ -1789,20 +1789,29 @@ def findSearchHits(
                         #
                         for iLocation in tModelLocations[i]:
                             #
-                            for iModelID in dLocationsModelIDs[ iLocation ]:
+                            if iLocation in dLocationsModelIDs ):
                                 #
-                                lExcludeThese.append(
-                                        dModelID_oTempItem[ iModelID ] )
+                                for iModelID in dLocationsModelIDs[ iLocation ]:
+                                    #
+                                    lExcludeThese.append(
+                                            dModelID_oTempItem[ iModelID ] )
+                                    #
+                                    if (    bRecordSteps and
+                                            setFirstCategory is not None ):
+                                        #
+                                        sModel = dModelID_oTempItem[ iModelID ].iModel
+                                        #
+                                        lCandidates.append(
+                                            'model %s %s auction title, '
+                                            'so excluding' % ( sModel, sSay ) )
+                                        #
+                                    #
                                 #
-                                if (    bRecordSteps and
-                                        setFirstCategory is not None ):
-                                    #
-                                    sModel = dModelID_oTempItem[ iModelID ].iModel
-                                    #
-                                    lCandidates.append(
-                                        'model %s %s auction title, '
-                                        'so excluding' % ( sModel, sSay ) )
-                                    #
+                            else:
+                                #
+                                logger.warning(
+                                        'model ID %s not in dLocationsModelIDs for %s' %
+                                        ( iModelID, oItem.iItemNumb ) )
                                 #
                             #
                         #
