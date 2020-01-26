@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 164044313206
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -116,7 +116,7 @@ sBrands = \
 # ### note column delimiter | must have a space on one side or the other
 sModels = \
 '''
-       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        |     Category | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
+       cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
@@ -258,8 +258,10 @@ sModels = \
  C-104              |           |      5 | f            | McIntosh          |       Preamp |             |
  PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             |
  PAS-2              |           |      4 | f            | Dynaco            |       Preamp |             |
- SP-6               |           |      9 | f            | Audio Research    |       Preamp |             |
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
+ PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
+ Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
+ SP-6               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-8               |           |      9 | f            | Audio Research    |       Preamp |             |
  S1001              |           |      6 | f            | ACRO              |       Preamp |             |
  116B               |           |      9 | t            | Langevin          |       Preamp |             |
@@ -318,7 +320,6 @@ sModels = \
  350                |           |      3 | f            | Ampex             |       Preamp |             | AD1/350
  7                  |           |      9 | f            | Brook             |       Preamp |             | Marantz
  Quad 33            |           |      2 | f            | Quad              |       Preamp |             |
- PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
  Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
  245                |           |      9 | f            | Fairchild         |       Preamp |             |
  7                  |           |     10 | f            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
@@ -445,7 +446,9 @@ sModels = \
  6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  meter              |           |      3 | f            |                   |    Component |             |
+ 1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  '''
+#      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 
 
 dSearchResult = \
@@ -731,6 +734,25 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["164044313206"],
+             "title":["DYNACO ST 70  ORIGINAL CAGE (with meter) VG SHAPE ( 1 EA )"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mqiJpYtUAsWCCxLKuKYYx0g\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/DYNACO-ST-70-ORIGINAL-CAGE-with-meter-VG-SHAPE-1-EA-\/164044313206"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["928**"],"location":["Anaheim,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.99"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT2H4M8S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-23T01:53:18.000Z"],
+             "endTime":["2020-01-30T01:53:18.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["283743905366"],
              "title":["2x  ECC88 \/ 6DJ8   TELEFUNKEN  <> tubes  - NOS  -  ( ~  7DJ8 \/ PCC88 )  MILITARY"],
