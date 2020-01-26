@@ -1810,14 +1810,13 @@ def findSearchHits(
                                 #
                             else:
                                 #
-                                if settings.TESTING:
-                                    sayModel = Model.objects.get( id = iModelID ).cTitle
-                                else:
-                                    sayModel = 'ID %s' % iModelID
-                                #
-                                logger.warning(
-                                        'model %s not in dLocationsModelIDs for %s' %
-                                        ( sayModel, oItem.iItemNumb ) )
+                                if bRecordSteps:
+                                    #
+                                    logger.info(
+                                        'weak hit: model location %s '
+                                        'not in dLocationsModelIDs for %s' %
+                                        ( iLocation, oItem.iItemNumb ) )
+                                    #
                                 #
                             #
                         #
@@ -1874,12 +1873,11 @@ def findSearchHits(
                             ) / nFoundModelBoost )
                         #
                     #
-                    if  (       oTempItem.iBrand is None and
-                                oTempItem.iModel is not None and
-                          ( not oTempItem.iModel.bGenericModel or
-                            oTempItem.iModel.iBrand_id is None ) ):
+                    if  (       oTempItem.iModel is not None and
+                                oTempItem.iBrand is None and
+                                oTempItem.iModel.iBrand is not None ):
                         #
-                        if bRecordSteps and nFoundModelBoost > 1:
+                        if bRecordSteps:
                             #
                             lCandidates.append(
                                 'did not find brand for %s, so discounting'
