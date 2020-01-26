@@ -420,3 +420,21 @@ pics owned by rick:rick
 2020-01-24 should GetUserSelectionsOnPost be a core mixin?
 
 2020-01-25 Select and/or trash zero bid keepers
+
+2020-01-26
+model ID 4005 not in dLocationsModelIDs for 164044313206
+model ID 4005 not in dLocationsModelIDs for 164044309463
+model ID 3710 not in dLocationsModelIDs for 153806924064
+model ID 3963 not in dLocationsModelIDs for 312953984914
+model ID 3963 not in dLocationsModelIDs for 312954104297
+model ID 1720715654 not in dLocationsModelIDs for 312954104297
+model ID 469122958 not in dLocationsModelIDs for 312954104297
+model ID 469122958 not in dLocationsModelIDs for 312954104297
+model ID 469122958 not in dLocationsModelIDs for 283752371216
+model ID 469122958 not in dLocationsModelIDs for 283749262067
+model ID 3942 not in dLocationsModelIDs for 312954074062
+model ID 4005 not in dLocationsModelIDs for 164044315855
+model ID 4005 not in dLocationsModelIDs for 164044313705
+model has category id 172 in dCategoryFamily for 164045539738
+model has category id 172 in dCategoryFamily for 114078857778
+
