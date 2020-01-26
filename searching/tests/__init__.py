@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 164044313206
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -91,6 +91,7 @@ sBrands = \
  Scott, H.H.       |      8 |            |            | Scott\\rH.H. Scott
  Sentinel          |      6 |            |            |
  Sherwood          |      5 |            |            |
+ Siemens           |      4 |            |            |
  Silvertone        |      3 |            |            |
  Spartan           |      8 |            |            |
  Stromberg-Carlson |      5 |            |            |
@@ -133,6 +134,8 @@ sModels = \
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             |              | t
+ 12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 6189               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
@@ -238,6 +241,7 @@ sModels = \
  HF-85              |           |      7 | f            | EICO              |       Preamp |             |
  ST-84              |           |      7 | f            | EICO              |       Preamp |             |
  80-C               |           |      7 | f            | Fisher            |       Preamp |             |
+ 80-R               |           |      7 | f            | Fisher            |        Tuner |             |
  90-C               |           |      9 | f            | Fisher            |       Preamp |             |
  PR-6               |           |      5 | f            | Fisher            |       Preamp |             |
  PR-66              |           |      5 | f            | Fisher            |       Preamp |             |
@@ -734,6 +738,76 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["164044315855"],
+             "title":["FISHER 80-R TUBE TUNER &PRE   vg shape \/ untested  ( 1 ea )"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mHrP-V_Tk3U5rkciwI6_2ag\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/FISHER-80-R-TUBE-TUNER-PRE-vg-shape-untested-1-ea-\/164044315855"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["928**"],"location":["Anaheim,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT2H7M0S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-23T01:57:03.000Z"],"returnsAccepted":["false"],
+             "endTime":["2020-01-30T01:57:03.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["283752371216"],
+             "title":["4x EL34 power tubes  RFT ( SIEMENS ) - NOS  - EL 34 "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mX8KksB3cQAuzkFsR5Km-yw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/4x-EL34-power-tubes-RFT-SIEMENS-NOS-EL-34-\/283752371216"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"229.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"229.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT9H10M59S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-23T09:01:49.000Z"],
+             "endTime":["2020-02-02T09:01:49.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["312954104297"],
+             "title":["4x KT61 ( 6AG6 G ) tubes HALTRON ( M.O.V. ) - NOS (~  6V6G \/ EL33 \/  EL3 ) KT 61"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mUCUHZ0OGJg1ot2vgc-7oVA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/4x-KT61-6AG6-G-tubes-HALTRON-M-O-V-NOS-6V6G-EL33-EL3-KT-61-\/312954104297"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"219.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"219.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P8DT8H57M32S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-23T08:48:36.000Z"],
+             "endTime":["2020-02-02T08:48:36.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["312953984914"],
+             "title":["2x  E82CC \/ 6189  VALVO \/  SIEMENS tubes -  NOS ( ECC802S \/ 12AU7WA ) -  E 82 CC"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mjUMYje6sxrIb3vq_OkTeYw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-E82CC-6189-VALVO-SIEMENS-tubes-NOS-ECC802S-12AU7WA-E-82-CC-\/312953984914"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"89.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"89.0"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P8DT8H20M4S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-23T08:11:11.000Z"],
+             "endTime":["2020-02-02T08:11:11.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["164044313206"],
              "title":["DYNACO ST 70  ORIGINAL CAGE (with meter) VG SHAPE ( 1 EA )"],
