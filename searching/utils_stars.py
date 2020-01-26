@@ -598,10 +598,11 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
     if bRecordSteps: # settings.COVERAGE and
         #
         maybePrint()
-        maybePrint( 'lAllFoundIns:' )
+        maybePrint( 'lAllFoundIns (iLen, i [lItemFoundTemp], cModelAlphaNum, iHitStars):' )
         maybePrettyP( lAllFoundIns )
         maybePrint( 'lExactMatch:' )
-        maybePrettyP( lExactMatch )
+        for o in lExactMatch:
+            maybePrint( ' ', o )
         #
     #
     lGotModelOverlap = []
@@ -1768,7 +1769,7 @@ def findSearchHits(
                     maybePrint( 'oOtherCategory:', oOtherCategory )
                     if oOtherCategory and oOtherCategory.iCategory:
                         maybePrint( 'oOtherCategory.iCategory.id:', oOtherCategory.iCategory.id )
-                    maybePrint( 'lItemFoundTemp:')
+                    maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
                     # maybePrettyP( lItemFoundTemp )
                     for o in lItemFoundTemp:
                         if o.iCategory is None:
@@ -1809,9 +1810,14 @@ def findSearchHits(
                                 #
                             else:
                                 #
+                                if settings.TESTING:
+                                    sayModel = Model.objects.get( id = iModelID ).cTitle
+                                else:
+                                    sayModel = 'ID %s' % iModelID
+                                #
                                 logger.warning(
-                                        'model ID %s not in dLocationsModelIDs for %s' %
-                                        ( iModelID, oItem.iItemNumb ) )
+                                        'model %s not in dLocationsModelIDs for %s' %
+                                        ( sayModel, oItem.iItemNumb ) )
                                 #
                             #
                         #
