@@ -2214,6 +2214,25 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 'should find power supply ? big challenge?' )
         #
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 274222992683
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find AZ1 not AD1' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
