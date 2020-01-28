@@ -178,6 +178,8 @@ sModels = \
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
@@ -738,6 +740,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["274222992683"],
+             "title":["AZ1 Valvo Pair! Mesh Plate Tube Valve Röhre Big Ballon Klangfilm AD1 Tested Good"],
+             "globalId":["EBAY-GB"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Valves & Vacuum Tubes"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mhuuD1v60XOndrcE9SwWBwQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/AZ1-Valvo-Pair-Mesh-Plate-Tube-Valve-Rohre-Big-Ballon-Klangfilm-AD1-Tested-Good-\/274222992683"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Latvia"],"country":["LV"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"13.12"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"GBP","__value__":"39.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"52.46"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT9H11M11S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-01-24T09:02:23.000Z"],
+             "endTime":["2020-01-31T09:02:23.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["164044315855"],
              "title":["FISHER 80-R TUBE TUNER &PRE   vg shape \/ untested  ( 1 ea )"],
