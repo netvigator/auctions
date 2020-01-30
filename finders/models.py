@@ -372,7 +372,14 @@ class ItemFoundTemp(models.Model):
                         max_length = 10 ) # title heirarchy1 heirarchy2
 
     def __str__(self):
-        return 'ItemFound - %s' % self.iItemNumb
+        #
+        lOut = [ 'ItemFound - %s' % self.iItemNumb ]
+        #
+        for s in vars( self ):
+            if s.startswith( '_' ): continue
+            lOut.append( '    %s: %s' % ( s, self.__dict__[s] ) )
+        #
+        return '\n'.join( lOut )
 
     class Meta:
         verbose_name_plural = 'itemsfoundtemp'
