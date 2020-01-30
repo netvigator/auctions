@@ -759,31 +759,13 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         iThisOne = 323437473473
         #
-        self.print_len( dItemsToTest[ iThisOne ], 5 )
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
         #
-        gotComponents = set( [] )
-        gotCategories = set( [] )
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        setComponents = frozenset(
-                ( 'C45 (Metregon)', 'H5040', 'D-130A', '275', 'N500' ) )
-        setCategories = frozenset(
-                ( 'Speaker Enclosure', 'Horn', 'Driver', 'Crossover' ) )
-        #
-        for i in range( len( dItemsToTest[ iThisOne ] ) ):
-            #
-            oTest = dItemsToTest[ iThisOne ][ i ]
-            #
-            self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
-            #
-            self.assertIn( oTest.iModel.cTitle,    setComponents )
-            self.assertIn( oTest.iCategory.cTitle, setCategories )
-            #
-            gotComponents.add( oTest.iModel.cTitle    )
-            gotCategories.add( oTest.iCategory.cTitle )
-            #
-        #
-        #self.assertEqual( gotComponents, setComponents )
-        #self.assertEqual( gotCategories, setCategories )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iModel.cTitle, 'C45 (Metregon)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
         #
         #
         #
@@ -791,26 +773,14 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         iThisOne = 192659380750
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
-        #
-        setComponents = frozenset( ( '288', '515A' ) )
+        self.print_len( dItemsToTest[ iThisOne ], 1 )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        #
-        self.assertIn( oTest.iModel.cTitle, setComponents )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertIn( oTest.iModel.cTitle, setComponents )
-        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
         self.assertEqual( oTest.iModel.cTitle, 'A-5' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
         #
         #
         #
@@ -2222,9 +2192,12 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         iThisOne = 274222992683
         #
-        self.print_len(
+        if iThisOne in dItemsToTest:
+            self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find AZ1 not AD1' )
+        else:
+            print( '\n%s not in dItemsToTest !!!' % iThisOne  )
         #
         #
         #
