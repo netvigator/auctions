@@ -10,6 +10,7 @@ getMakeDir( EBAY_FILES_FOLDER )
 dMarketsRelated = {
           0 : (   3, 100 ),  # EBAY-US    : EBAY-GB, EBAY-MOTOR
         100 : (   0,     ),  # EBAY-MOTOR : EBAY-US
+          3 : (   0,     ),  # EBAY-GB    : EBAY-US
           2 : ( 210,     ),  # EBAY-ENCA  : EBAY-FRCA
         210 : (   2,     ),  # EBAY-FRCA  : EBAY-ENCA
          23 : ( 123,     ),  # EBAY-FRBE  : EBAY-NLBE
