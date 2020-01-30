@@ -506,14 +506,15 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
 
 from pprint import pprint
 
-def storeSearchResultsInFinders( iLogID,
-                            sMarket,
-                            sUserName,
-                            iSearchID,
-                            sSearchName,
-                            setTestCategories    = None,
-                            bCleanUpFiles        = False,
-                            bDoNotMentionAny     = False ):
+def storeSearchResultsInFinders(
+            iLogID,
+            sMarket,
+            sUserName,
+            iSearchID,
+            sSearchName,
+            setTestCategories    = None,
+            bCleanUpFiles        = False,
+            bDoNotMentionAny     = False ):
     #
     '''high level script, accesses results in file(s)
     and stores in database'''
