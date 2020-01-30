@@ -804,6 +804,10 @@ def setShippingTypeLocalPickupOptional( dNewResult ):
         #
     #
 
+# def getCategoryForRelatedMarket( iEbaySiteID, iCategoryID ):
+# move code from searching/utils.py
+# look for
+# tRelatedSites = dMarketsRelated.get( iEbaySiteID, () )
 
 '''
 select "iCategoryID","cCategory","iCatHeirarchy_id","i2ndCategoryID","c2ndCategory","i2ndCatHeirarchy_id","iEbaySiteID_id" from itemsfound limit 2 ;
