@@ -422,3 +422,5 @@ pics owned by rick:rick
 2020-01-25 Select and/or trash zero bid keepers
 
 2020-01-29 for a model, leaving the brand blank should equal bGenericModel, the latter is redundant
+
+2020-01-30 do getCategoryForRelatedMarket( iEbaySiteID, iCategoryID ) in ebayinfo/utils.py
