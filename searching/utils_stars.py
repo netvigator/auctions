@@ -668,19 +668,52 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
 
 
 
+
+def _getCategoriesForPositions(
+            tPositions, dLocationsModelIDs, dModelID_oTempItem ):
+    #
+    lCategories = []
+    #
+    for iPosition in tPositions:
+        #
+        if iPosition in dLocationsModelIDs:
+            #
+            for iModelID in dLocationsModelIDs[ iPosition ]:
+                #
+                iCategory = dModelID_oTempItem[ iModelID ].iCategory
+                #
+                if iCategory is not None:
+                    #
+                    lCategories.append( iCategory )
+                    #
+                #
+            #
+        #
+    #
+    return frozenset( lCategories )
+
+
+
 def _getModelLocationsBegAndEnd( dAuctionTitleWords, iterModelLocations ):
     #
-    tLocations = getSubStrLocationsBegAndEnd(
+    oLocated = getSubStrLocationsBegAndEnd(
                     dAuctionTitleWords, iterModelLocations )
     #
-    if not ( tLocations    and
-             tLocations[0] and
-             ( tLocations[1] or tLocations[2] ) ):
+    # tNearFront, tOnEnd, tNearEnd & tInParens
+    #
+    if (    oLocated.tNearFront and
+            (   oLocated.tOnEnd   or
+                oLocated.tNearEnd or
+                oLocated.tInParens ) ):
         #
-        tLocations = None
+        pass
+        #
+    else:
+        #
+        oLocated = None
         #
     #
-    return tLocations
+    return oLocated
 
 
 
@@ -1031,7 +1064,10 @@ def findSearchHits(
         lModels = dFindSteps[ 'models' ]
         #
         dModelIDStoredLocation  = {}
-        tModelLocations         = None
+        oModelLocated           = None
+        #
+        # o = oModelLocated
+        # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
         #
         for oModel in qsModels:
             #
@@ -1319,8 +1355,6 @@ def findSearchHits(
                     if bRecordSteps and oModel.cTitle == 'E88CC':
                         maybePrint()
                         maybePrint( 'E88CC iInTitleLocation:', iInTitleLocation )
-                        maybePrint( 'dModelIDStoredLocation:' )
-                        maybePrettyP( dModelIDStoredLocation )
                     #
                 #
             #
@@ -1389,17 +1423,25 @@ def findSearchHits(
         #
         if len( dModelIDStoredLocation ) > 1:
             #
-            tModelLocations = _getModelLocationsBegAndEnd(
+            # o = oModelLocated
+            # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
+            #
+            oModelLocated = _getModelLocationsBegAndEnd(
                     dAuctionTitleWords, dModelIDStoredLocation.values() )
             #
             # getReverseDict
             #
-
-        if bRecordSteps and oModel.cTitle == 'E88CC':
+        #
+        if bRecordSteps:
             maybePrint()
-            maybePrint( 'dModelIDStoredLocation:' )
+            maybePrint( 'dModelIDStoredLocation:+' )
             maybePrettyP( dModelIDStoredLocation )
-            maybePrint( 'tModelLocations:', tModelLocations )
+            if oModelLocated is None:
+                maybePrint( 'oModelLocated is None' )
+            else:
+                o = oModelLocated
+                maybePrint( 'oModelLocated tNearFront, tOnEnd, tNearEnd, tInParens:',
+                        o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
         #
         #
         #
@@ -1697,78 +1739,46 @@ def findSearchHits(
                     #
                 #
             #
-            if tModelLocations: # some on the end of the auctin title
+            if oModelLocated: # some on the end of the auctin title
+                #
+                # o = oModelLocated
+                # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
                 #
                 dModelID_oTempItem = dict(
                         ( ( oTempItem.iModel.id, oTempItem )
                             for oTempItem in lItemFoundTemp
                             if oTempItem.iModel is not None ) )
                 #
-                lModelLocations = list( tModelLocations[0] )
-                #
-                lModelLocations.extend( tModelLocations[1] )
-                lModelLocations.extend( tModelLocations[2] )
-                #
                 dLocationsModelIDs = getReverseDict( dModelIDStoredLocation )
-                # carry on here
                 #
-                # oTempItem.iModel.id in tModelLocations[1] ):
+                setCategoriesBeg    = _getCategoriesForPositions(
+                        oModelLocated.tNearFront,
+                        dLocationsModelIDs,
+                        dModelID_oTempItem )
                 #
-                setFirstCategory = None
+                setCategoriesOnEnd  = _getCategoriesForPositions(
+                        oModelLocated.tOnEnd,
+                        dLocationsModelIDs,
+                        dModelID_oTempItem )
                 #
-                if len( dLocationsModelIDs[ tModelLocations[0][0] ] ) == 1:
-                    #
-                    iFirstCategory = dModelID_oTempItem[
-                            dLocationsModelIDs[ tModelLocations[0][0] ][0] ].iCategory.id
-                    #
-                    def gotSameLocationCategory( o ):
-                        #
-                        return o.iCategory.id == iFirstCategory
-                        #
-                    #
-                    setFirstCategory = frozenset( [ iFirstCategory ] )
-                    #
-                else:
-                    #
-                    setFirstCategory = frozenset(
-                              ( o.iCategory.id for o in lItemFoundTemp
-                                if o.iCategory is not None and
-                                   o.iModel    is not None and
-                                   o.iModel.id in dModelIDStoredLocation ) )
-                    #
-                    def gotSameLocationCategory( o ):
-                        #
-                        return o.iCategory.id in setFirstCategory
-                        #
-                    #
-                #
-                tTestItems = ( o for o in lItemFoundTemp
-                               if o.iModel    is not None and
-                                  o.iBrand    is not None and
-                                  o.iCategory is not None )
-                #
-                oOtherCategory = get1stThatFails(
-                                    tTestItems,
-                                    gotSameLocationCategory )
+                setCategoriesNearEnd  = _getCategoriesForPositions(
+                        oModelLocated.tNearEnd,
+                        dLocationsModelIDs,
+                        dModelID_oTempItem )
                 #
                 if bRecordSteps:
                     #
                     maybePrint()
-                    maybePrint( 'tModelLocations:', tModelLocations )
-                    maybePrint( 'dModelIDStoredLocation:' )
-                    maybePrettyP( dModelIDStoredLocation )
+                    maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
+                    maybePrint( 'setCategoriesOnEnd:', setCategoriesOnEnd )
+                    maybePrint( 'setCategoriesNearEnd:', setCategoriesNearEnd )
                     maybePrint( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
-                    maybePrint( 'lModelLocations:', lModelLocations )
                     maybePrint( 'dModelID_oTempItem:' )
                     # maybePrettyP( dModelID_oTempItem )
                     for k, o in dModelID_oTempItem.items():
                         maybePrint( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
                     maybePrint( 'dLocationsModelIDs:' )
                     maybePrettyP( dLocationsModelIDs )
-                    maybePrint( 'setFirstCategory:', setFirstCategory )
-                    maybePrint( 'oOtherCategory:', oOtherCategory )
-                    if oOtherCategory and oOtherCategory.iCategory:
-                        maybePrint( 'oOtherCategory.iCategory.id:', oOtherCategory.iCategory.id )
                     maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
                     # maybePrettyP( lItemFoundTemp )
                     for o in lItemFoundTemp:
@@ -1776,19 +1786,34 @@ def findSearchHits(
                             maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
                         else:
                             maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
-
-
                 #
-                if oOtherCategory is None and setFirstCategory is not None:
+                #
+                #
+                if setCategoriesBeg:
                     #
                     lExcludeThese = []
                     #
-                    tTests = ( ( 1, 'on end of' ),
-                               ( 2, 'within parens in') )
+                    o = oModelLocated
                     #
-                    for i, sSay in tTests:
+                    tTests = (
+                        ( o.tOnEnd,   'on end of',       setCategoriesOnEnd ),
+                        ( o.tInParens,'within parens in',None ),
+                        ( o.tNearEnd, 'near end of',     setCategoriesNearEnd))
+                    #
+                    for oLocations, sSay, setTest in tTests:
                         #
-                        for iLocation in tModelLocations[i]:
+                        # o = oModelLocated
+                        # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
+                        #
+                        if setTest is not None:
+                            #
+                            if not setCategoriesBeg & setTest:
+                                #
+                                continue # categories different
+                                #
+                            #
+                        #
+                        for iLocation in oLocations:
                             #
                             if iLocation in dLocationsModelIDs:
                                 #
@@ -1797,8 +1822,7 @@ def findSearchHits(
                                     lExcludeThese.append(
                                             dModelID_oTempItem[ iModelID ] )
                                     #
-                                    if (    bRecordSteps and
-                                            setFirstCategory is not None ):
+                                    if bRecordSteps:
                                         #
                                         sModel = dModelID_oTempItem[ iModelID ].iModel
                                         #
@@ -1820,6 +1844,7 @@ def findSearchHits(
                                 #
                             #
                         #
+                    #
                     #
                     lItemFoundTemp = [ o for o in lItemFoundTemp
                                       if o not in lExcludeThese ]
