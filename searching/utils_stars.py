@@ -48,8 +48,7 @@ from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
 from pyPks.String.Output    import ReadableNo, Plural
-from pyPks.String.Stats     import ( getLocationsDict, getSubStringLocation,
-                                     getSubStrLocationsBegAndEnd )
+from pyPks.String.Stats     import getStrLocationsBegAndEnd
 
 if settings.TESTING:
 
@@ -600,9 +599,9 @@ def _getFoundModelBooster( lItemFoundTemp, bRecordSteps ):
         maybePrint()
         maybePrint( 'lAllFoundIns (iLen, i [lItemFoundTemp], cModelAlphaNum, iHitStars):' )
         maybePrettyP( lAllFoundIns )
-        maybePrint( 'lExactMatch:' )
-        for o in lExactMatch:
-            maybePrint( ' ', o )
+        #maybePrint( 'lExactMatch:' )
+        #for o in lExactMatch:
+            #maybePrint( ' ', o )
         #
     #
     lGotModelOverlap = []
@@ -694,10 +693,9 @@ def _getCategoriesForPositions(
 
 
 
-def _getModelLocationsBegAndEnd( dAuctionTitleWords, iterModelLocations ):
+def _getModelLocationsBegAndEnd( sAuctionTitle, tWordsOfInterest ):
     #
-    oLocated = getSubStrLocationsBegAndEnd(
-                    dAuctionTitleWords, iterModelLocations )
+    oLocated = getStrLocationsBegAndEnd( sAuctionTitle, tWordsOfInterest )
     #
     # tNearFront, tOnEnd, tNearEnd & tInParens
     #
@@ -714,6 +712,7 @@ def _getModelLocationsBegAndEnd( dAuctionTitleWords, iterModelLocations ):
         #
     #
     return oLocated
+
 
 
 
@@ -899,7 +898,6 @@ def findSearchHits(
         #
         lCategoryFound = []
         #
-        dAuctionTitleWords = getLocationsDict( sAuctionTitleRelevantPart )
         #
         #
         #
@@ -1056,18 +1054,17 @@ def findSearchHits(
         #
         # finished stepping thru categories
         #
-        # next: step thru models
         #
+        # next: step thru models
         #
         #
         #
         lModels = dFindSteps[ 'models' ]
         #
-        dModelIDStoredLocation  = {}
-        oModelLocated           = None
+        dModelIDinTitle = {}
+        oModelLocated   = None
         #
-        # o = oModelLocated
-        # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
+        # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
         #
         for oModel in qsModels:
             #
@@ -1130,9 +1127,6 @@ def findSearchHits(
             sModelAlphaNum  = _getAlphaNum( sInTitle )
             #
             iShorterByOK    = 1 if oModel.bSubModelsOK else 0 # None compatible
-            #
-            iInTitleLocation = getSubStringLocation(
-                    sInTitle, dAuctionTitleWords, iShorterByOK )
             #
             if bRecordSteps:
                 #
@@ -1222,7 +1216,7 @@ def findSearchHits(
                     #
                     continue
                     #
-                elif oModel.id in dModelIDStoredLocation:
+                elif oModel.id in dModelIDinTitle:
                     #
                     continue
                     #
@@ -1312,9 +1306,9 @@ def findSearchHits(
                     #
                     lNewItemFoundTemp.append( oNewTempItem )
                     #
-                    if iInTitleLocation is not None:
+                    if oModel.id not in dModelIDinTitle:
                         #
-                        dModelIDStoredLocation[ oModel.id ] = iInTitleLocation
+                        dModelIDinTitle[ oModel.id ] = sInTitle
                         #
                     #
                 elif    ( oModel.iCategory == oTempItem.iCategory and
@@ -1347,9 +1341,9 @@ def findSearchHits(
                     #
                     bFoundCategoryForModel      = True
                     #
-                    if iInTitleLocation is not None:
+                    if oModel.id not in dModelIDinTitle:
                         #
-                        dModelIDStoredLocation[ oModel.id ] = iInTitleLocation
+                        dModelIDinTitle[ oModel.id ] = sInTitle
                         #
                     #
                     if bRecordSteps and oModel.cTitle == 'E88CC':
@@ -1421,27 +1415,28 @@ def findSearchHits(
                 #
             #
         #
-        if len( dModelIDStoredLocation ) > 1:
-            #
-            # o = oModelLocated
-            # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
+        if len( dModelIDinTitle ) > 1:
             #
             oModelLocated = _getModelLocationsBegAndEnd(
-                    dAuctionTitleWords, dModelIDStoredLocation.values() )
+                    sAuctionTitleRelevantPart, dModelIDinTitle.values() )
+            #
+            # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
             #
             # getReverseDict
             #
         #
         if bRecordSteps:
             maybePrint()
-            maybePrint( 'dModelIDStoredLocation:+' )
-            maybePrettyP( dModelIDStoredLocation )
+            maybePrint( 'dModelIDinTitle:' )
+            maybePrettyP( dModelIDinTitle )
             if oModelLocated is None:
                 maybePrint( 'oModelLocated is None' )
             else:
                 o = oModelLocated
                 maybePrint( 'oModelLocated tNearFront, tOnEnd, tNearEnd, tInParens:',
                         o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
+                maybePrint( 'dAllWordLocations:' )
+                maybePrettyP( o.dAllWordLocations )
         #
         #
         #
@@ -1453,6 +1448,10 @@ def findSearchHits(
         #
         #
         lBrands = dFindSteps[ 'brands' ]
+        #
+        setGotBrandsIDs = set( [] )
+        #
+        bGotBrandForNonGenericModel = False
         #
         for oBrand in qsBrands:
             #
@@ -1504,6 +1503,8 @@ def findSearchHits(
                 #
             #
             setModelsBrands = set( [] )
+            #
+            setGotBrandsIDs.add( oBrand.id )
             #
             if bRecordSteps:
                 #
@@ -1574,8 +1575,6 @@ def findSearchHits(
                             oTempItem.iBrand != oBrand ) ):
                     #
                     bSaveBrand = False
-                    #
-                    bGotBrandForNonGenericModel = False
                     #
                     if oBrand == oTempItem.iModel.iBrand:
                         #
@@ -1689,7 +1688,6 @@ def findSearchHits(
                 #
                 lItemFoundTemp.append( oTempItem )
                 #
-                #
             elif not bFoundBrandForModel:
                 #
                 if bRecordSteps:
@@ -1728,6 +1726,8 @@ def findSearchHits(
         #
         if lItemFoundTemp:
             #
+            lExcludeThese = []
+            #
             if len( lItemFoundTemp ) > 1:
                 #
                 if bRecordSteps:
@@ -1741,15 +1741,41 @@ def findSearchHits(
             #
             if oModelLocated: # some on the end of the auctin title
                 #
-                # o = oModelLocated
-                # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
+                # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
                 #
                 dModelID_oTempItem = dict(
                         ( ( oTempItem.iModel.id, oTempItem )
                             for oTempItem in lItemFoundTemp
                             if oTempItem.iModel is not None ) )
                 #
-                dLocationsModelIDs = getReverseDict( dModelIDStoredLocation )
+                # dAllWordLocations = { 'Jbl'       : ( 0, ),
+                #                       'L65'       : ( 1, ),
+                #                       'Jubal'     : ( 2, ),
+                #                       'Le5-12'    : ( 3, ),
+                #                       'Mids'      : ( 4, ),
+                #                       'Pair'      : ( 5, ),
+                #                       'Working'   : ( 6, ),
+                #                       'Nice'      : ( 7, ),
+                #                       'See'       : ( 8, ),
+                #                       'Pictures'  : ( 9, ) }
+                #
+                dWordLocations = oModelLocated.dAllWordLocations
+                #
+                dLocationsModelIDs = {}
+                #
+                for iModelID, sInTitle in dModelIDinTitle.items():
+                    #
+                    tLocation = dWordLocations.get( sInTitle )
+                    #
+                    if tLocation is not None:
+                        #
+                        for i in tLocation:
+                            #
+                            lModels = dLocationsModelIDs.setdefault(
+                                            i, [] ).append( iModelID )
+                            #
+                        #
+                    #
                 #
                 setCategoriesBeg    = _getCategoriesForPositions(
                         oModelLocated.tNearFront,
@@ -1781,15 +1807,56 @@ def findSearchHits(
                     maybePrettyP( dLocationsModelIDs )
                     maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
                     # maybePrettyP( lItemFoundTemp )
+                    #for o in lItemFoundTemp:
+                        #if o.iCategory is None:
+                            #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
+                        #else:
+                            #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
+                    maybePrint( 'oModelLocated:' )
+                    for s in vars( oModelLocated ):
+                        if s.startswith( '_' ): continue
+                        maybePrint( '  %s: %s' % ( s, oModelLocated.__dict__[s] ) )
+                #
+                if bRecordSteps:
+                    #
+                    maybePrint( 'setGotBrandsIDs:', setGotBrandsIDs )
+                    maybePrint( 'bGotBrandForNonGenericModel:', bGotBrandForNonGenericModel )
+                    #
+                #
+                if setGotBrandsIDs and bGotBrandForNonGenericModel:
+                    #
+                    for iModelID, oTempItem in dModelID_oTempItem.items():
+                        #
+                        if  (   oTempItem.iBrand is None or
+                                oTempItem.iBrand.id not in setGotBrandsIDs ):
+                            #
+                            lExcludeThese.append( oTempItem )
+                            #
+                            if bRecordSteps:
+                                #
+                                #
+                                lCandidates.append(
+                                    'do not have brand for model %s, '
+                                    'so excluding' % oTempItem.iModel )
+                                #
+                            #
+                        #
+                    #
+                    lItemFoundTemp = [ o for o in lItemFoundTemp
+                                      if o not in lExcludeThese ]
+                    #
+                    lExcludeThese = []
+                    #
+                #
+                if bRecordSteps:
+                    #
+                    maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
+                    maybePrint( 'oModelLocated.tInParens:', oModelLocated.tInParens )
+                    maybePrint( 'lItemFoundTemp:' )
                     for o in lItemFoundTemp:
-                        if o.iCategory is None:
-                            maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
-                        else:
-                            maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
-                #
-                #
-                #
-                if setCategoriesBeg:
+                        maybePrint( '  %s - %s - %s' % ( o.iModel, o.iBrand, o.iCategory ) )
+                    #
+                if setCategoriesBeg or oModelLocated.tInParens:
                     #
                     lExcludeThese = []
                     #
@@ -1800,20 +1867,25 @@ def findSearchHits(
                         ( o.tInParens,'within parens in',None ),
                         ( o.tNearEnd, 'near end of',     setCategoriesNearEnd))
                     #
-                    for oLocations, sSay, setTest in tTests:
+                    for tLocations, sSay, setTest in tTests:
                         #
                         # o = oModelLocated
                         # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
                         #
                         if setTest is not None:
                             #
-                            if not setCategoriesBeg & setTest:
+                            if not setCategoriesBeg & setTest: # intersection
                                 #
                                 continue # categories different
                                 #
                             #
                         #
-                        for iLocation in oLocations:
+                        if bRecordSteps:
+                            #
+                            maybePrint( 'tLocations:', tLocations )
+                            #
+                        #
+                        for iLocation in tLocations:
                             #
                             if iLocation in dLocationsModelIDs:
                                 #
@@ -1830,7 +1902,6 @@ def findSearchHits(
                                             'model %s %s auction title, '
                                             'so excluding' % ( sModel, sSay ) )
                                         #
-                                    #
                                 #
                             else:
                                 #
@@ -2190,7 +2261,12 @@ def findSearchHits(
                     #
                     bGotBrand = False
                     #
-                    if uShort and uShort in dModelsStoredAlready:
+                    if (    oTempItem.iModel.iBrand is not None and
+                            oTempItem.iModel.iBrand != oTempItem.iBrand ):
+                        #
+                        continue
+                        #
+                    elif uShort and uShort in dModelsStoredAlready:
                         #
                         for oModelStored in dModelsStoredAlready[ uShort ]:
                             #
