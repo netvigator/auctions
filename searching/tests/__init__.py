@@ -26,7 +26,7 @@ sBrands = \
  Allied            |      5 |            |            |
  Altec-Lansing     |     10 |            |            | Altec
  Ampex             |      5 |            |            |
- Amperex Bugle Boy |      9 |            |            | Amperex BB
+ Amperex (Bugle Boy) |    9 |            | BB\\rBugle Boy |
  Amperex           |      8 |            |            |
  Amperex (gold pins)|     9 | Amperex PQ | gold pin   |
  Amperex PQ        |      9 |            |            |
@@ -51,6 +51,7 @@ sBrands = \
  Fisher            |      9 |            |            |
  Garod             |      5 |            |            | Garol
  GE                |      5 |            |            | General Electric
+ GE (5 Star)       |      8 |            | 5 Star     | General Electric
  Grommes           |      5 |            |            |
  Harman-Kardon     |      7 |            |            |
  Heathkit          |      8 |            |            | Heath
@@ -125,15 +126,15 @@ sModels = \
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
+ 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
- 6922 (Amperex Gold)| gold\\rGP |      7 | f            | Amperex (gold pins)| Vacuum Tube |             |              | f
+ 6922 (Amperex Gold)| gold\\rGP |      7 | f           | Amperex (gold pins)|  Vacuum Tube |             |              | f
  E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
- 12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
- 12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             |              | t
+ 12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
+ 12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             | 5814A        | t
  12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6189               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -169,7 +170,7 @@ sModels = \
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- EF86 (Amperex BB)  |           |      9 | f            | Amperex Bugle Boy |  Vacuum Tube |             |              | f
+ EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -180,6 +181,7 @@ sModels = \
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ 5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
@@ -740,6 +742,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["174177597476"],
+             "title":["AC 100A Meter Split Core Transformer  "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["4678"],"categoryName":["Other Test Meters & Detectors"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/meLmnsTlalojdJ8PvNbUaOw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/AC-100A-Meter-Split-Core-Transformer-\/174177597476"],
+             "paymentMethod":["PayPal","VisaMC","AmEx","Discover"],"autoPay":["false"],
+             "postalCode":["117**"],"location":["Saint James,NY,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT12H31M16S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-01T06:26:46.000Z"],
+             "endTime":["2020-02-08T06:26:46.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["New \u2013 Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["274222992683"],
              "title":["AZ1 Valvo Pair! Mesh Plate Tube Valve Röhre Big Ballon Klangfilm AD1 Tested Good"],
