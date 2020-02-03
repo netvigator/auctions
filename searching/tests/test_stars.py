@@ -1432,7 +1432,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
             #
             self.assertIn(    oTest.iModel.cTitle,
                               ( '6DJ8', '6DJ8 (Bugle Boy)', 'ECC88' ) )
-            self.assertEqual( oTest.iBrand.cTitle, 'Amperex Bugle Boy' )
+            self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
             self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
         #
         #
@@ -1874,7 +1874,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '12AT7 (Bugle Boy)' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Amperex Bugle Boy' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
@@ -1977,7 +1977,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'EF86 (Amperex BB)' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Amperex Bugle Boy' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
@@ -2165,6 +2165,11 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
+        self.assertEqual( oTest.iModel.cTitle, '12AX7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
         #
         #
         #
@@ -2172,17 +2177,20 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 1, iThisOne,
-                'should find GE 5 Star 12AU7/5814A and not GE 12AU7/5814A' )
+                'should find GE 5 Star 5814A and not GE 12AU7' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
+        self.assertEqual( oTest.iModel.cTitle, '5814A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE (5 Star)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
         iThisOne = 164011103887
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find diaphrams  not driver' )
         #
         #
@@ -2193,7 +2201,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         iThisOne = 324030050981
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find power supply ? big challenge?' )
         #
         #
@@ -2207,7 +2215,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         if iThisOne in dItemsToTest:
             self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find AZ1 not AD1' )
         else:
             print( '\n%s not in dItemsToTest !!!' % iThisOne  )
@@ -2216,6 +2224,14 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 174177597476
+        #
+        if iThisOne in dItemsToTest:
+            self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'getting a warning in production' )
+        else:
+            print( '\n%s not in dItemsToTest !!!' % iThisOne  )
         #
         #
         #
