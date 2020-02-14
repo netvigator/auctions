@@ -2143,13 +2143,13 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'A7-500-II' )
+        self.assertIn( oTest.iModel.cTitle, ( 'A7-500-II', 'A-7' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'A-7' )
+        self.assertIn( oTest.iModel.cTitle, ( 'A7-500-II', 'A-7' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
@@ -2232,6 +2232,20 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 'getting a warning in production' )
         else:
             print( '\n%s not in dItemsToTest !!!' % iThisOne  )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174183853047
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 604 Driver & 605 Cabinet' )
+        #
+        #
+        #
         #
         #
         #
