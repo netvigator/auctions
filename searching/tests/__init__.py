@@ -743,6 +743,25 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["174183853047"],
+             "title":["1940s Northern Western Electric Altec 604 Duplex Speaker in Original 605 Cabinet"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mym4r6FVk16o_w7w8iq5qQA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/1940s-Northern-Western-Electric-Altec-604-Duplex-Speaker-Original-605-Cabinet-\/174183853047"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["V7E3V7"],"location":["Canada"],"country":["CA"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"800.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5888.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5888.88"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT7H25M34S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-07T00:36:06.000Z"],
+             "endTime":["2020-02-14T00:36:06.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["174177597476"],
              "title":["AC 100A Meter Split Core Transformer  "],
              "globalId":["EBAY-US"],
