@@ -269,6 +269,8 @@ sModels = \
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
  PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
  Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
+ A-25               |           |      8 | t            | Dynaco            |Speaker System|             |
+ A-50               |           |      6 | t            | Dynaco            |Speaker System|             |
  SP-6               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-8               |           |      9 | f            | Audio Research    |       Preamp |             |
  S1001              |           |      6 | f            | ACRO              |       Preamp |             |
@@ -742,6 +744,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["153839648277"],
+             "title":["Vintage Dynaco A-50 speakers A50 A25 A-25"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mwLVkh2_AT6F9ksgjK6vFhw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Dynaco-A-50-speakers-A50-A25-A-25-\/153839648277"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["200**"],"location":["Washington,District Of Columbia,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.99"}],
+             "bidCount":["0"],"sellingState":["Active"],
+             "timeLeft":["P5DT5H58M3S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-20T19:02:01.000Z"],
+             "endTime":["2020-02-27T19:02:01.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["174183853047"],
              "title":["1940s Northern Western Electric Altec 604 Duplex Speaker in Original 605 Cabinet"],
