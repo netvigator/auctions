@@ -68,6 +68,7 @@ sBrands = \
  Langevin          |      8 |            |            |
  Lansing           |      9 |            |            | Jim Lansing\\rJames B. Lansing
  Leak              |      7 |            |            |
+ Lorenz            |      5 |            |            |
  Luxman            |      6 |            |            |
  Marantz           |     10 | Speaker\\rAV9000\\rreplica | |
  Matsushita        |      4 |            |            |
@@ -182,6 +183,8 @@ sModels = \
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
@@ -716,11 +719,11 @@ sExampleResponse = \
 #### do not add new test items above, add them below ###
 #### do not add new test items above, add them below ###
 
-# helpful useful regex re for splitting item info: .(?=,")
-
 # ###      if you add an item whose title includes a double quote,       ###
 # ### you must manually convert a signle backslash to a double backslash ###
 # ###      also first item is tested in core.test_utils_ebay             ###
+
+# helpful useful regex re for splitting item info: .(?=,")
 
 sResponseItems2Test = \
 '''{"findItemsByKeywordsResponse":
@@ -744,6 +747,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["254524704215"],
+             "title":["15 x EL84 Telefunken Valvo Siemens Lorenz 6BQ5 old version Made in West Germany"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mNHguNcTo4Qc6wHCmFNod_w\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/15-x-EL84-Telefunken-Valvo-Siemens-Lorenz-6BQ5-old-version-Made-West-Germany-\/254524704215"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["448**"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"34.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"34.99"}],
+             "bidCount":["3"],"sellingState":["Active"],"timeLeft":["P5DT23H17M39S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-28T03:05:26.000Z"],
+             "endTime":["2020-03-06T03:05:26.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["153839648277"],
              "title":["Vintage Dynaco A-50 speakers A50 A25 A-25"],
