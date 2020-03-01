@@ -2257,6 +2257,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 254524704215
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find EL84 not 6BQ5' )
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
