@@ -748,6 +748,23 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["383441473993"],
+             "title":["BROOK 10C Tube Amplifier   Western Electric Fairchild 620 300B 2A3   Tested 10C3"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mC3dPpoXHK24a_3dCG86xqw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/BROOK-10C-Tube-Amplifier-Western-Electric-Fairchild-620-300B-2A3-Tested-10C3-\/383441473993"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["294**"],"location":["Charleston,SC,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1660.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1660.0"}],
+             "bidCount":["2"],"sellingState":["Active"],"timeLeft":["P0DT19H49M42S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-28T23:35:03.000Z"],
+             "endTime":["2020-02-29T23:35:03.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["254524704215"],
              "title":["15 x EL84 Telefunken Valvo Siemens Lorenz 6BQ5 old version Made in West Germany"],
              "globalId":["EBAY-US"],
