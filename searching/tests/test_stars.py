@@ -2267,6 +2267,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 383441473993
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 10C not the rest' )
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
