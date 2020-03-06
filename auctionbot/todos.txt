@@ -446,3 +446,7 @@ cancelled auctions
 283796802886
 383441473271
 283796802346
+
+
+2020-03-06 message in production:
+model has category id 172 in dCategoryFamily for 264654090657
