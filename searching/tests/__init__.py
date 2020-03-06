@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 383441473993
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -52,6 +52,8 @@ sBrands = \
  Garod             |      5 |            |            | Garol
  GE                |      5 |            |            | General Electric
  GE (5 Star)       |      8 |            | 5 Star     | General Electric
+ GEC (Genalex)     |      9 |            |            | Genalex\\rGenelex
+ Genalex (Gold Lion)|    10 |            | Gold Lion  | Genelex
  Grommes           |      5 |            |            |
  Harman-Kardon     |      7 |            |            |
  Heathkit          |      8 |            |            | Heath
@@ -121,7 +123,23 @@ sModels = \
 '''
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
+ 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10\\r10,000 | t
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
+ 12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
+ 12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
+ 12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             | 5814A        | t
+ 12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
+ 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
+ 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
+ 5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
+ 5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GT             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTB            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
@@ -130,61 +148,46 @@ sModels = \
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  6922 (Amperex Gold)| gold\\rGP |      7 | f           | Amperex (gold pins)|  Vacuum Tube |             |              | f
- E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
- 7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
- 12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
- 12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
- 12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             | 5814A        | t
- 12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
- 6189               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
- 5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
- 5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
- 5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
- 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10\\r10,000 | t
- 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
- 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
+ 6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 6189               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f
  6V6G (Sylvania)    | Sylvania\\rSilvertone | 8 | f     | Sylvania          |  Vacuum Tube |             |              | f
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  6V6 (metal can)    |           |      2 | f            |                   |  Vacuum Tube |             |              | t
  6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |              | f
  6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
- 5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6L6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6GA              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6GB              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
+ 7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
+ 83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
+ 8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- 83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
- 6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
- 8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
- 5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- 6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
@@ -286,7 +289,6 @@ sModels = \
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
- 4B                 |           |      7 | f            | Brook             |       Preamp |             | Bryston
  C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
  C-108H             |           |      4 | t            | McIntosh          |       Preamp |             |
  CL-35              |           |      7 | f            | Luxman            |       Preamp |             |
@@ -307,13 +309,16 @@ sModels = \
  SP-3A1             |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-11              |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-12              |           |      9 | f            | Audio Research    |       Preamp |             |
- A100               |           |      5 | f            | Brociner          |       Preamp |             |
+ 4B                 |           |      7 | f            | Brook             |       Preamp |             | Bryston
+ 10C3               |           |      8 | t            | Brook             |    Amplifier |             |
  12A3               |           |      8 | f            | Brook             |       Preamp |             |
+ 3G                 |           |      7 | t            | Brook             |       Preamp |             |
+ 7                  |           |      9 | f            | Brook             |       Preamp |             | Marantz
+ A100               |           |      5 | f            | Brociner          |       Preamp |             |
  A100PV             |           |      5 | f            | Brociner          |       Preamp |             |
  A1005              |           |      5 | f            | Brociner          |       Preamp |             |
  CA-2               |           |      5 | f            | Brociner          |       Preamp |             |
  Mark 30C           |           |      5 | t            | Brociner          |       Preamp |             |
- 3G                 |           |      7 | t            | Brook             |       Preamp |             |
  ST-94              |           |      7 | f            | EICO              |       Preamp |             |
  Varislope Mono     |           |      7 | f            | Leak              |       Preamp |             | Stereo
  Horizon 5          |           |      6 | t            | National          |       Preamp |             |
@@ -331,7 +336,6 @@ sModels = \
  400-CX             |           |     10 | f            | Fisher            |       Preamp |             | 400-CX-2
  350-P              |           |      8 | f            | Regency           |       Preamp |             | AD1/350
  350                |           |      3 | f            | Ampex             |       Preamp |             | AD1/350
- 7                  |           |      9 | f            | Brook             |       Preamp |             | Marantz
  Quad 33            |           |      2 | f            | Quad              |       Preamp |             |
  Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
  245                |           |      9 | f            | Fairchild         |       Preamp |             |
@@ -747,6 +751,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["324090682443"],
+             "title":["GOLD LION KT66 Vacuum tube 1 GENELEX logo MADE in UK M-Osram valve No Reserve"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mX818FRkURdFbbTw7zVbQVA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/GOLD-LION-KT66-Vacuum-tube-1-GENELEX-logo-MADE-UK-M-Osram-valve-No-Reserve-\/324090682443"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["926**"],"location":["Ladera Ranch,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"69.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"69.0"}],
+             "bidCount":["11"],"sellingState":["Active"],"timeLeft":["P5DT18H29M6S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-03-02T19:54:54.000Z"],
+             "endTime":["2020-03-09T19:54:54.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["383441473993"],
              "title":["BROOK 10C Tube Amplifier   Western Electric Fairchild 620 300B 2A3   Tested 10C3"],
