@@ -2187,6 +2187,38 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 324090682443
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Genalex Gold Lion not the others' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-66' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Genalex (Gold Lion)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        iThisOne = 153839648277
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find A-50 not A-25' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-50' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2244,14 +2276,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 604 Driver & 605 Cabinet' )
         #
-        #
-        #
-        #
-        iThisOne = 153839648277
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find A-50 not A-25' )
         #
         #
         #
