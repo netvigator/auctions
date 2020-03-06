@@ -672,6 +672,16 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            oBrand = Brand.objects.get( cTitle = 'Genalex (Gold Lion)', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+
 
 
 class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSetUp ):
