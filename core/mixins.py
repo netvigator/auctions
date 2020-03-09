@@ -334,21 +334,26 @@ class GetItemsForSomething( object ):
 
 class GetUserSelectionsOnPost( object ):
     #
-    # importing deleteKeeperUserItem at top caused a circular import problem
+    '''
+    this class is a mixin for core view DetailViewGotModelAlsoPost
+    which manages keepers & finders under models, brands & categories
+    so YES it makes sense for this to be in core mixins
+    alternative would be complicated
+    '''
     #
     def post( self, request, *args, **kwargs ):
         #
-        url = request.build_absolute_uri()
+        # imports must be here, circular import block if above
         #
-        # imports must be here, if above causes circular import block
+        from finders.models import UserFinder, UserItemFound
+        #
+        url = request.build_absolute_uri()
         #
         tTrash = tuple( request.POST.getlist('bTrashThis') )
         #
         print( tTrash )
         #
-        from finders.models import UserFinder, UserItemFound
-        #
-        if "selectall" in request.POST:
+        if "selectall" in request.POST: # from button name in HTML file
             #
             # next: queryset update method
             # next: queryset update method
@@ -370,7 +375,7 @@ class GetUserSelectionsOnPost( object ):
             #
             return HttpResponseRedirect( url )
             #
-        elif 'GetOrTrashAll' in request.POST or 'GetOrTrashThis' in request.POST:
+        elif 'GetOrTrashFinders' in request.POST: # from button name in HTML file
             #
             lAllItems   = request.POST.getlist('AllItems')
             #
@@ -489,13 +494,11 @@ class GetUserSelectionsOnPost( object ):
                     oItem = ItemFound.objects.get( iItemNumb = int( sItemNumb ) )
                     messages.error( request, '%s -- %s' % ( sItemNumb, oItem.cTitle ) )
             #
-        if 'trash' in request.POST:
+        if 'trashKeepers' in request.POST: # from button name in HTML file
             #
-            # circular import problem if this import is at top
+            # importing this at top caused a circular import problem
             #
             from keepers.utils import deleteKeeperUserItem
-            #
-            tTrash = tuple( request.POST.getlist('bTrashThis') )
             #
             for sItemNumb in tTrash:
                 #
