@@ -345,7 +345,7 @@ class GetUserSelectionsOnPost( object ):
         #
         # imports must be here, circular import block if above
         #
-        from finders.models import UserFinder, UserItemFound
+        from finders.models import UserFinder, UserItemFound, ItemFound
         #
         url = request.build_absolute_uri()
         #
