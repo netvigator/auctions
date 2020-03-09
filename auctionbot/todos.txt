@@ -411,9 +411,6 @@ pics owned by rick:rick
 
 2020-01-22 reduce size of keepers by putting cCategoryIDs & cCategoryNames in own table, only store id in keepers table
 
-
-2020-01-24 should GetUserSelectionsOnPost be a core mixin?
-
 2020-01-25 Select and/or trash zero bid keepers
 
 2020-01-29 for a model, leaving the brand blank should equal bGenericModel, the latter is redundant
