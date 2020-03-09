@@ -120,8 +120,7 @@ class DetailViewGotModelAlsoPost(
             GetUserSelectionsOnPost,
             DetailViewGotModel ):
 
-    '''detail view for Brands, Categories & Models shows Keepers & Finders'''
-
+    '''detail view for Brands, Categories & Models, manages Keepers & Finders'''
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
