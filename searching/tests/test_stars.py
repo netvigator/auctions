@@ -2219,6 +2219,22 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 383441473993
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 10C not the rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '10C3' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Brook' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2286,16 +2302,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find EL84 not 6BQ5' )
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 383441473993
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find 10C not the rest' )
         #
         #
         #
