@@ -1422,7 +1422,26 @@ def findSearchHits(
             #
             # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
             #
-            # getReverseDict
+            # if a model is both near the beginning and end, the one on the end does not count
+            #
+            if oModelLocated is not None:
+                #
+                dAllWordLocations = oModelLocated.dAllWordLocations
+                #
+                for sModel in dAllWordLocations.keys():
+                    #
+                    tModelLocation = dAllWordLocations[ sModel ]
+                    #
+                    if (    len( tModelLocation ) > 1 and
+                            tModelLocation[ 0] in oModelLocated.tNearFront and
+                            tModelLocation[-1] in oModelLocated.tNearEnd ):
+                        #
+                        dAllWordLocations[ sModel ] = (
+                                i for i in tModelLocation
+                                if i not in oModelLocated.tNearEnd )
+                        #
+                    #
+                #
             #
         #
         if bRecordSteps:
