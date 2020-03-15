@@ -364,13 +364,13 @@ class GetUserSelectionsOnPost( object ):
             UserFinder.objects.filter(
                     iItemNumb_id__in = tPageItems,
                     iUser            = self.request.user ).update(
-                        bGetPictures = True,
+                        bGetResults  = True,
                         bListExclude = False )
             #
             UserItemFound.objects.filter(
                     iItemNumb_id__in = tPageItems,
                     iUser            = self.request.user ).update(
-                        bGetPictures = True,
+                        bGetResults  = True,
                         bListExclude = False )
             #
             return HttpResponseRedirect( url )
@@ -383,10 +383,10 @@ class GetUserSelectionsOnPost( object ):
             #
             setExclude = frozenset( request.POST.getlist('bListExclude') )
             # check box end user can change
-            setGetPics =       set( request.POST.getlist('bGetPictures') )
+            setGetPics =       set( request.POST.getlist('bGetResults') )
             # check box end user can change
             setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
-            # hidden set if item has bGetPictures as True when page composed
+            # hidden set if item has bGetResults as True when page composed
             setExclSet = frozenset( request.POST.getlist('ExclSet'     ) )
             # hidden set if item has bListExclude as True when page composed
             #
@@ -432,12 +432,12 @@ class GetUserSelectionsOnPost( object ):
                 UserFinder.objects.filter(
                         iItemNumb_id__in = tPicsGet,
                         iUser            = self.request.user ).update(
-                            bGetPictures = True )
+                            bGetResults  = True )
                 #
                 UserItemFound.objects.filter(
                         iItemNumb_id__in = tPicsGet,
                         iUser            = self.request.user ).update(
-                            bGetPictures = True )
+                            bGetResults  = True )
                 #
             if lPicsCancel:
                 #
@@ -446,12 +446,12 @@ class GetUserSelectionsOnPost( object ):
                 UserFinder.objects.filter(
                         iItemNumb_id__in = tPicsCancel,
                         iUser            = self.request.user ).update(
-                            bGetPictures = False )
+                            bGetResults  = False )
                 #
                 UserItemFound.objects.filter(
                         iItemNumb_id__in = tPicsCancel,
                         iUser            = self.request.user ).update(
-                            bGetPictures = False )
+                            bGetResults  = False )
                 #
             if lExcludeYes:
                 #
