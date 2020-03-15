@@ -78,7 +78,7 @@ class UserItemFoundAdmin(admin.ModelAdmin):
     list_display = (
         'iItemNumb',
         'iHitStars',
-        'bGetPictures',
+        'bGetResults',
         'tLook4Hits',
         'iSearch',
         'iModel',
@@ -96,7 +96,7 @@ class UserItemFoundAdmin(admin.ModelAdmin):
     readonly_fields = (
         'iItemNumb',
         'iHitStars',
-        'bGetPictures',
+        'bGetResults',
         'tLook4Hits',
         'iSearch',
         'iModel',
