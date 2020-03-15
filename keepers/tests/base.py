@@ -234,11 +234,11 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         # mark all UserItemFound rows to fetch pictures
         #
         # UserItemFound.objects.all().update(
-        #     bGetPictures = True,
+        #     bGetResults  = True,
         #     tRetrieved   = None )
         #
         UserFinder.objects.all().update(
-            bGetPictures = True ) # aint got tRetrieved
+            bGetResults = True ) # aint got tRetrieved
         #
         # mark two UserItemFound rows as pictures already fetched
         qsAllItemsFound = ItemFound.objects.all().values_list(
@@ -262,13 +262,13 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         #
         # mark corresponding ItemFound row
         # qsUserItemNumbs = ( UserItemFound.objects.filter(
-        #                         bGetPictures        = True,
+        #                         bGetResults         = True,
         #                         tRetrieved__isnull  = False )
         #                     .values_list( 'iItemNumb', flat = True )
         #                     .distinct() )
         #
         qsUserFinderNumbs = ( UserFinder.objects.filter(
-                                bGetPictures = True )
+                                bGetResults = True )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() )
         #
