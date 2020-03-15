@@ -144,7 +144,7 @@ class UserItemFound(models.Model):
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    bGetResults     = models.BooleanField( 'get description & pictures?',
+    bGetResults     = models.BooleanField( 'get results?',
                         default = False )
     tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
@@ -234,7 +234,7 @@ class UserFinder(models.Model):
     tTimeEnd        = models.DateTimeField( 'ending date/time', null=True )
     iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
                         verbose_name = 'Owner' )
-    bGetResults     = models.NullBooleanField( 'get description & pictures?',
+    bGetResults     = models.NullBooleanField( 'get results?',
                         null = True, default = False )
     bListExclude    = models.NullBooleanField( 'exclude from listing?',
                         null = True, default = False )
