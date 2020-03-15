@@ -155,7 +155,7 @@ class UserKeeper(models.Model):
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    bGetPictures    = models.BooleanField( 'get description & pictures?',
+    bGetPictures    = models.BooleanField( 'get pictures?',
                         default = False )
     tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
