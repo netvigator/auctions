@@ -177,6 +177,13 @@ class UserKeeper(models.Model):
     #                   null = True, blank = True )
     bAuction        = models.BooleanField(
                         'Auction or Auction with Buy It Now',default = False )
+    bWantPics       = models.NullBooleanField(
+                        'Want to download pictures for this?',default = False,
+        help_text =   "By default, Bot will download pictures for all auctions "
+                      "a) with at least one bid, and "
+                      "b) for models with no pictures downloaded yet.  "
+                      "If this is a zero bid auction and you want pictures anyway, "
+                      "chick on this." )
     iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
                         verbose_name = 'Owner' )
     tCreate         = models.DateTimeField( 'created on', db_index = True )
