@@ -93,7 +93,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     tYesterday = getPriorDateTime( iDaysAgo = 1 )
     #
-    iOldCutOff = 100
+    iOldCutOff = 90
     tOldItems  = getPriorDateTime( iDaysAgo = iOldCutOff )
     #
     qsItemsFinal = ItemFound.objects.filter(
