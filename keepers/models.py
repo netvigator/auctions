@@ -113,7 +113,7 @@ class Keeper( models.Model ):
 
     bGotPictures    = models.BooleanField( 'pictures downloaded?',
                         default = False )
-    tGotPictures    = models.DateTimeField( 'pictures downloaded',
+    tGotPictures    = models.DateTimeField( 'tried to download pictures',
                         null = True )
     iGotPictures    = models.PositiveSmallIntegerField(
                         'how many pictures downloaded',
