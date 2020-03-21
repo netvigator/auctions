@@ -772,8 +772,12 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
 
 def getItemsForPicsDownloading( iLimit = 50 ):
     #
+    # qsZeroBids = Keeper.objects.filter(
+    #                 tGotPictures__isnull = True, iBidCount__eq = 0
+    #                 ).values_list( 'iItemNumb', flat = True )
+    #
     qsGetPics = Keeper.objects.filter(
-                    tGotPictures__isnull = True
+                    tGotPictures__isnull = True, iBidCount__gt = 0,
                     ).order_by( 'tTimeEnd'
                     ).values_list( 'iItemNumb', flat = True
                     )[ : iLimit ]
