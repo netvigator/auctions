@@ -1540,6 +1540,10 @@ def findSearchHits(
                     #
                 #
             #
+            # django discrepancy between 1.11 and 2.2 here
+            # django 2.2 gets confused when an item is added to lItemFoundTemp
+            # try workaround here!
+            #
             for oTempItem in lItemFoundTemp:
                 #
                 tModelBrand = ( oTempItem.iModel, oBrand )
