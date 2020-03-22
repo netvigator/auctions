@@ -504,7 +504,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     return sLastFile
 
-from pprint import pprint
+
 
 def storeSearchResultsInFinders(
             iLogID,
