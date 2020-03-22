@@ -149,18 +149,21 @@ class Keeper( models.Model ):
         return reverse( 'keepers:detail', kwargs = { 'pk': self.pk } )
 #
 
+# bGetResults column is in userFinder
+# keepers are items for which bot has already downloaded the results
+# once in keepers, the question is whether to download pictures
 
 class UserKeeper(models.Model):
     iItemNumb       = models.ForeignKey( Keeper, on_delete=models.CASCADE )
     iHitStars       = IntegerRangeField(
                         'hit stars', null = True, db_index = True,
                         min_value = 0, max_value = 1000, default = 0 )
-    bGetPictures    = models.BooleanField( 'Want to download pictures for this?',
-        help_text =   "By default, Bot will download pictures for all auctions "
-                      "a) with at least one bid, and "
-                      "b) for models with no pictures downloaded yet.  "
-                      "If this is a zero bid auction and you want pictures anyway, "
-                      "chick on this.",
+    bGetPictures    = models.BooleanField(
+                        'Want to download pictures for this?',
+        help_text = "By default, Bot will download pictures for auctions "
+                    "with at least one bid.  If this is a zero bid auction "
+                    "and you want pictures anyway, chick on this "
+                    "(reminder pics are big and storage space costs $).",
                       default = False )
     tLook4Hits      = models.DateTimeField(
                         'assessed interest date/time', null = True )
