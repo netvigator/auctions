@@ -14,6 +14,8 @@ from brands.models      import Brand
 from categories.models  import Category, BrandCategory
 from models.models      import Model
 
+from finders.models     import ItemFound, UserFinder, UserItemFound
+
 from searching          import RESULTS_FILE_NAME_PATTERN
 from searching          import SEARCH_FILES_FOLDER
 
@@ -114,6 +116,10 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     def tearDown(self):
         #
         DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        #
+        #ItemFound.objects.all().delete()
+        #UserFinder.objects.all().delete()
+        #UserItemFound.objects.all().delete()
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -744,7 +750,13 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
         for sExampleFile in self.dExampleFiles.values():
             #
             DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
-
+            #
+        #
+        #ItemFound.objects.all().delete()
+        #UserFinder.objects.all().delete()
+        #UserItemFound.objects.all().delete()
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
@@ -764,6 +776,15 @@ class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
+    def tearDown(self):
+        #
+        #ItemFound.objects.all().delete()
+        #UserFinder.objects.all().delete()
+        #UserItemFound.objects.all().delete()
+        #
+        pass
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 class StoreUserItemFoundWebTestBase( GetEbayCategoriesWebTestSetUp ):
