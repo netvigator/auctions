@@ -25,7 +25,7 @@ from ..tests                import ( s142766343340,
                                      s303000971114,
                                      s323589685342 )
 
-from finders.models         import ItemFound, UserFinder
+from finders.models         import ItemFound, UserFinder, UserItemFound
 
 from searching.tests.base   import SetUpForHitStarsWebTests, getItemHitsLog
 
@@ -52,6 +52,18 @@ class StoreItemsTestPlusBase( TestCasePlus ):
         t = _storeOneJsonItemInKeepers( 232709513135, s232709513135 )
         #
         iSavedRowID, sListingStatus, oItemFound = t
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+    def tearDown( self ):
+        #
+        #UserKeeper.objects.all().delete()
+        #Keeper.objects.all().delete()
+        #ItemFound.objects.all().delete()
+        #UserFinder.objects.all().delete()
+        #UserItemFound.objects.all().delete()
+        #
+        pass
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -152,10 +164,18 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
 
     def tearDown( self ):
         #
-        pass
+        #UserKeeper.objects.all().delete()
+        #Keeper.objects.all().delete()
+        #ItemFound.objects.all().delete()
+        #UserFinder.objects.all().delete()
+        #UserItemFound.objects.all().delete()
         #
         # if isDirThere( ITEM_PICS_ROOT ): rmtree( ITEM_PICS_ROOT )
         #
+        pass
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
 
     def getSingleItemResponseCandidate( self, bWantEnded = True ):
         #
