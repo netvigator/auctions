@@ -2480,38 +2480,53 @@ def findSearchHits(
                     #
                     tNow = timezone.now()
                     #
-                    #
-                    if bRecordSteps:
+                    if UserItemFound.objects.filter(
+                            iItemNumb       = oUserItem.iItemNumb,
+                            iUser           = oUser,
+                            iModel          = oTempItem.iModel,
+                            iBrand          = oTempItem.iBrand,
+                            iCategory       = oTempItem.iCategory ).exists():
                         #
-                        _appendIfNotAlreadyIn(
-                            lSelect,
-                            'also storing: %s : %s : %s' %
-                                (   getTitleOrNone( oTempItem.iCategory ),
-                                    getTitleOrNone( oTempItem.iModel ),
-                                    getTitleOrNone( oTempItem.iBrand )) )
+                        # hitting error in testing in django 2.2,
+                        # was never a problem in 1.11
                         #
-                    #
-                    oNewUserItem = UserItemFound(
-                        iItemNumb       = oUserItem.iItemNumb,
-                        iHitStars       = oTempItem.iHitStars,
-                        iSearch         = oTempItem.iSearch,
-                        iModel          = oTempItem.iModel,
-                        iBrand          = oTempItem.iBrand,
-                        iCategory       = oTempItem.iCategory,
-                        cWhereCategory  = oTempItem.cWhereCategory,
-                        tLook4Hits      = tNow,
-                        tCreate         = tNow,
-                        tModify         = tNow,
-                        iUser           = oUser )
-                    #
-                    oNewUserItem.save()
-                    #
-                    # dModelsStoredAlready used for scoring & selection
-                    #
-                    _updateModelsStoredAlready(
-                            dModelsStoredAlready, oTempItem, sModelTitleUPPER )
-                    #
-                    lModelsStoredAlready.append( sModelTitleUPPER )
+                        pass
+                        #
+                    else:
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                'also storing: %s : %s : %s' %
+                                    (   getTitleOrNone( oTempItem.iCategory ),
+                                        getTitleOrNone( oTempItem.iModel ),
+                                        getTitleOrNone( oTempItem.iBrand )) )
+                            #
+                        #
+                        oNewUserItem = UserItemFound(
+                            iItemNumb       = oUserItem.iItemNumb,
+                            iHitStars       = oTempItem.iHitStars,
+                            iSearch         = oTempItem.iSearch,
+                            iModel          = oTempItem.iModel,
+                            iBrand          = oTempItem.iBrand,
+                            iCategory       = oTempItem.iCategory,
+                            cWhereCategory  = oTempItem.cWhereCategory,
+                            tLook4Hits      = tNow,
+                            tCreate         = tNow,
+                            tModify         = tNow,
+                            iUser           = oUser )
+                        #
+                        #
+                        oNewUserItem.save()
+                        #
+                        # dModelsStoredAlready used for scoring & selection
+                        #
+                        _updateModelsStoredAlready(
+                                dModelsStoredAlready, oTempItem, sModelTitleUPPER )
+                        #
+                        lModelsStoredAlready.append( sModelTitleUPPER )
+                        #
                     #
                 #
             #
