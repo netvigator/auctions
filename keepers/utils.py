@@ -776,13 +776,28 @@ def getItemsForPicsDownloading( iLimit = 50 ):
     #                 tGotPictures__isnull = True, iBidCount__eq = 0
     #                 ).values_list( 'iItemNumb', flat = True )
     #
+    qsZeroBids = UserKeeper.objects.filter(
+                        bGetPictures = True,
+                        iItemNumb__tGotPictures__isnull = True,
+                        iItemNumb__iBidCount = 0
+                    ).values_list( 'iItemNumb', flat = True
+                    )
+    #
+    iWantPics = iLimit
+    #
+    if iLimit > len( qsZeroBids ):
+        #
+        iWantPics = iLimit - len( qsZeroBids )
+        #
+    #
     qsGetPics = Keeper.objects.filter(
                     tGotPictures__isnull = True, iBidCount__gt = 0,
                     ).order_by( 'tTimeEnd'
                     ).values_list( 'iItemNumb', flat = True
-                    )[ : iLimit ]
+                    )[ : iWantPics ]
     #
-    return qsGetPics
+    return qsZeroBids.union( qsGetPics )
+
 
 
 def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
