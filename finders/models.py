@@ -240,6 +240,8 @@ class UserFinder(models.Model):
                         null = True, default = False )
     iMaxModel       = models.IntegerField( 'model hit with most stars',
                         null = True, default = False )
+    cLookFor        = models.TextField( 'dummy for search compatibility',
+                        null=True, blank = True )
     #
     def __str__(self):
         # return '%s - %s' % ( self.iItemNumb, self.iUser )
