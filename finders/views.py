@@ -10,7 +10,8 @@ from .mixins        import AnyReleventHitStarColsChangedMixin
 from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
-                             GetUserSelectionsOnPost )
+                             GetUserSelectionsOnPost,
+                             TitleSearchMixin )
 
 
 # ### keep views thin! ###
@@ -19,6 +20,7 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
 class FindersIndexView(
             GetUserSelectionsOnPost,
             GetPaginationExtraInfoInContext,
+            TitleSearchMixin,
             ListViewGotModel ):
 
     template_name       = 'finders/index.html'
@@ -59,6 +61,10 @@ class FindersIndexView(
                         iHitStars           = 0,
                         bListExclude        = False
                     ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
+        elif sSelect == 'S': # Search
+            #
+            qsGot = super( FindersIndexView, self ).get_queryset( *args, **kwargs )
+            #
         #
         return qsGot
 
