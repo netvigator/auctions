@@ -507,15 +507,27 @@ class UserItemsTests( StoreSingleKeepersForWebTests ):
         self.tSeveral = (
             ( 223348187115, s223348187115 ),
             ( 173696834267, s173696834267 ),
-            ( 372536713027, s372536713027 ),
-            ( 173696832184, s173696832184 ))
+            ( 232709513135, s232709513135 ),
+            ( 372536713027, s372536713027 ))
         #
+
 
     def test_got_items_for_pic_downloading( self ):
         #
         qsGetPics = getItemsForPicsDownloading()
         #
-        self.assertGreater( len( qsGetPics ), len( self.tSeveral ) )
+        self.assertGreaterEqual( len( qsGetPics ), len( self.tSeveral ) )
+        #
+        for i in ( 293004871422, 223348187115, 372536713027, 173696834267 ):
+            #
+            self.assertIn( i, qsGetPics )
+            #
+        #
+        for i in ( 142766343340, 232742493872, 282330751118, 173696832184 ):
+            #
+            self.assertNotIn( i, qsGetPics )
+            #
+        #
 
     def test_delete_Keeper_User_Item( self ):
         #
