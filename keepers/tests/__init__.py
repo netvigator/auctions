@@ -331,7 +331,7 @@ s173696832184 = '''{
         "PrimaryCategoryName":"Consumer Electronics:Vintage Electronics:Vintage Audio & Video:Vintage Parts & Accessories:Vintage Tubes & Tube Sockets",
         "Quantity":1,
         "Seller":{"UserID":"stevestonaudiosales","FeedbackRatingStar":"Red","FeedbackScore":2309,"PositiveFeedbackPercent":100.0,"TopRatedSeller":true},
-        "BidCount":1,
+        "BidCount":0,
         "ConvertedCurrentPrice":{"Value":58.88,"CurrencyID":"USD"},"CurrentPrice":{"Value":58.88,"CurrencyID":"USD"},
         "ListingStatus":"Completed",
         "QuantitySold":0,
