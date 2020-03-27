@@ -12,8 +12,8 @@ gevent==1.4.0
 # Static and Media Storage
 # ------------------------------------------------
 #boto==2.49.0
-boto3==1.12.26
-django-storages==1.9.1
+boto3==1.10.36
+django-storages==1.8
 
 
 # Email backends for Mailgun, Postmark, SendGrid and more
@@ -25,5 +25,5 @@ django-anymail==7.0
 raven==6.10.0
 
 # ubuntu package is old and has issues, install from pip instead
-mod_wsgi==4.7.1
+mod_wsgi==4.6.7
 
