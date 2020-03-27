@@ -523,10 +523,16 @@ class UserItemsTests( StoreSingleKeepersForWebTests ):
             self.assertIn( i, qsGetPics )
             #
         #
-        for i in ( 142766343340, 232742493872, 282330751118, 173696832184 ):
+        tZeroBids = ( 254154293727, 254130264753, 173696832184, 303000971114 )
+        #
+        for i in tZeroBids:
             #
             self.assertNotIn( i, qsGetPics )
             #
+        #
+        qsZeroBids = Keeper.objects.filter( iItemNumb__in = tZeroBids )
+        #
+        self.assertEqual( len(  qsZeroBids ), 4 )
         #
 
     def test_delete_Keeper_User_Item( self ):
