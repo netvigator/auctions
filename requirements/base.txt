@@ -19,36 +19,34 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.34.2
+wheel==0.33.6
 
 
 # LTS Django
 django==1.11.23
-# django==2.2.11
+# django==2.2.8
 
 # Configuration
 django-environ==0.4.5
-whitenoise==5.0.1
+whitenoise==5.0
 
 
 # Forms
-django-braces==1.14.0
-django-crispy-forms==1.9.0
+django-braces==1.13.0
+django-crispy-forms==1.8.1
 
 # Models
 django-model-utils==3.2.0
-#django-model-utils==4.0.0
 
 # Images
-Pillow==7.0.0
+Pillow==6.2.1
 
 # Password storage
 argon2-cffi==19.2.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.40.0
-#django-allauth==0.41.0
+django-allauth==0.40
 
 
 # Python-PostgreSQL Database Adapter
@@ -64,16 +62,16 @@ awesome-slugify==1.6.5
 pytz==2019.3
 
 # Redis support
-django-redis==4.11.0
+django-redis==4.10.0
 # pin redis 3 crashes celery
 # redis==2.10.6
-redis==3.4.1
+redis==3.3.11
 
 
 
 # Your custom requirements go here
 
-django-countries==6.1
+django-countries==5.5
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -82,13 +80,13 @@ django-countries==6.1
 
 
 # for the ebay API
-lxml==4.5.0
-requests==2.23.0
-requests[security]==2.23.0
+lxml==4.4.2
+requests==2.22.0
+requests[security]==2.22.0
 
 
 # to handle the ebay category lists
-django-mptt==0.11.0
+django-mptt==0.10.0
 
 # fake admin page
 django-admin-honeypot==1.1.0
@@ -98,13 +96,12 @@ django-admin-honeypot==1.1.0
 
 
 # task queue
-celery==4.4.2
+celery==4.3.0
 # redistools==0.1.7
 
 # users need to select their timezone
 # update to 4 when django updated to 2.2
 django-timezone-field==3.0
-#django-timezone-field==4.0
 
 # need menus
 # django-menu==0.1.13
@@ -112,10 +109,10 @@ django-timezone-field==3.0
 
 # celery cannot start
 # https://github.com/pydanny/cookiecutter-django/issues/1954
-kombu==4.6.8
+kombu==4.6.7
 
 # need this 2019-02-13
-django-extensions==2.2.8
+django-extensions==2.2.5
 
 # cron job scheduling 2019-05-21
 # django-chroniker==1.0.12
