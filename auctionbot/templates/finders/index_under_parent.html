@@ -19,8 +19,8 @@
         </tr>
         {% for item in finders_list %}
             <tr>
-            <TD><input class="checkbox" name="bGetResults" type="checkbox"
-                    value={{ item.iItemNumb_id }} {% if item.bGetResults %}checked{% endif %}></td>
+            <TD><input class="checkbox" name="bGetResult" type="checkbox"
+                    value={{ item.iItemNumb_id }} {% if item.bGetResult %}checked{% endif %}></td>
             <TD><input class="checkbox" name="bListExclude" type="checkbox" value={{ item.iItemNumb_id }}></td>
             <td><a href="https://www.ebay.com/itm/{{item.iItemNumb.iItemNumb}}/">
                             {{ item.iItemNumb.iItemNumb }}</a></td>
@@ -29,10 +29,10 @@
             <td>{{ item.iItemNumb.cListingType }}</td>
             <td>{{ item.iItemNumb.tTimeEnd|date:'Y-m-d H:i:s' }}</td>
             <td style="text-align:right">{{ item.iHitStars }}</td>
-            <TD><input name="PicsSet" type="checkbox" style="display:none;"
+            <TD><input name="GetResultChecked" type="checkbox" style="display:none;"
                 class="HIDDEN" value={{ item.iItemNumb_id }}
-                {% if item.bGetResults %}checked{% endif %}></td>
-            <TD><input name="ExclSet" type="checkbox" style="display:none;"
+                {% if item.bGetResult %}checked{% endif %}></td>
+            <TD><input name="ExcludeChecked" type="checkbox" style="display:none;"
                 class="HIDDEN" value={{ item.iItemNumb_id }}
                 {% if item.bListExclude %}checked{% endif %}></td>
             <TD><input name="AllItems" type="checkbox" style="display:none;"
