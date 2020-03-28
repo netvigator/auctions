@@ -198,7 +198,7 @@ would fetch results on how many items now?
 
 select count( DISTINCT "iItemNumb_id" )
     from useritemsfound
-    where "bGetResults" is true and  "tRetrieved" is null ;
+    where "bGetResult" is true and  "tRetrieved" is null ;
 
 
 would fetch final results on how many items now?
