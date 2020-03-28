@@ -55,13 +55,15 @@ class FindersIndexView(
                         iHitStars__isnull   = False,
                         bListExclude        = True
                     ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
-        elif sSelect == 'Z': # iHitStars = 0
-            qsGot = UserFinder.objects.filter(
-                        iUser               = self.request.user,
-                        iHitStars           = 0,
-                        bListExclude        = False
-                    ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
+        #elif sSelect == 'Z': # iHitStars = 0
+        #    qsGot = UserFinder.objects.filter(
+        #                iUser               = self.request.user,
+        #                iHitStars           = 0,
+        #                bListExclude        = False
+        #            ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         elif sSelect == 'S': # Search
+            #
+            # self.request.GET.get( 'q' )
             #
             qsGot = super( FindersIndexView, self ).get_queryset( *args, **kwargs )
             #
