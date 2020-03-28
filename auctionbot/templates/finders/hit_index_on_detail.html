@@ -17,7 +17,7 @@
             <td><a href="{{ item.iBrand.get_absolute_url    }}">{{ item.iBrand    }}</a></td>
             <td><a href="{{ item.iCategory.get_absolute_url }}">{{ item.iCategory }}</a></td>
             <td>{{ item.iHitStars }} ( {{item.iModel.iStars}} * {{item.iBrand.iStars}} * {{item.iCategory.iStars}} )</td>
-            <TD><input name="ExclSet" type="checkbox" style="display:none;"
+            <TD><input name="ExcludeChecked" type="checkbox" style="display:none;"
                 class="HIDDEN" value={{ item.iItemNumb_id }}
                 {% if item.bListExclude %}checked{% endif %}></td>
             <TD><input name="AllItems" type="checkbox" style="display:none;"
