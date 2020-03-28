@@ -149,7 +149,7 @@ class Keeper( models.Model ):
         return reverse( 'keepers:detail', kwargs = { 'pk': self.pk } )
 #
 
-# bGetResults column is in userFinder
+# bGetResult column is in userFinder
 # keepers are items for which bot has already downloaded the results
 # once in keepers, the question is whether to download pictures
 
