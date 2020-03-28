@@ -447,3 +447,15 @@ cancelled auctions
 
 2020-03-06 message in production:
 model has category id 172 in dCategoryFamily for 264654090657
+
+
+
+2020-03-28
+
+<form action = '{% url "finders:index" %}S/' method="POST" >
+    {% csrf_token %}
+    <button class='btn btn-primary btn-blue' type = "submit" > search </button>
+    <input type = "text" name = "q" />
+</form>
+
+breaks templates/finders/index_buttons_more.html
