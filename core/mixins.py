@@ -9,6 +9,7 @@ from core.utils             import getLink, getSaySequence
 from pyPks.Collect.Query    import get1stThatMeets
 from pyPks.Collect.Test     import ContainsAny
 
+fset = frozenset
 
 class DoesLoggedInUserOwnThisRowMixin(object):
 
@@ -351,7 +352,7 @@ class GetUserSelectionsOnPost( object ):
         #
         tTrash = tuple( request.POST.getlist('bTrashThis') )
         #
-        print( tTrash )
+        # print( tTrash )
         #
         if "selectall" in request.POST: # from button name in HTML file
             #
@@ -364,56 +365,58 @@ class GetUserSelectionsOnPost( object ):
             UserFinder.objects.filter(
                     iItemNumb_id__in = tPageItems,
                     iUser            = self.request.user ).update(
-                        bGetResults  = True,
+                        bGetResult   = True,
                         bListExclude = False )
             #
             UserItemFound.objects.filter(
                     iItemNumb_id__in = tPageItems,
                     iUser            = self.request.user ).update(
-                        bGetResults  = True,
+                        bGetResult   = True,
                         bListExclude = False )
             #
             return HttpResponseRedirect( url )
             #
         elif 'GetOrTrashFinders' in request.POST: # from button name in HTML file
             #
-            lAllItems   = request.POST.getlist('AllItems')
+            lAllItems       = request.POST.getlist('AllItems')
             #
-            setAllItems = frozenset( lAllItems )
+            # fset = frozenset
             #
-            setExclude = frozenset( request.POST.getlist('bListExclude') )
+            setAllItems     = fset( lAllItems )
+            #
+            setExclude      = fset( request.POST.getlist('bListExclude') )
             # check box end user can change
-            setGetPics =       set( request.POST.getlist('bGetResults') )
+            setGetResult    =  set( request.POST.getlist('bGetResult') )
             # check box end user can change
-            setPicsSet = frozenset( request.POST.getlist('PicsSet'     ) )
-            # hidden set if item has bGetResults as True when page composed
-            setExclSet = frozenset( request.POST.getlist('ExclSet'     ) )
+            setResultCheck  = fset( request.POST.getlist('GetResultChecked') )
+            # hidden set if item has bGetResult as True when page composed
+            setExcludeCheck = fset( request.POST.getlist('ExcludeChecked') )
             # hidden set if item has bListExclude as True when page composed
             #
-            setCommon  = setGetPics.intersection( setExclude )
+            setCommon   = setGetResult.intersection( setExclude      )
             #
-            setUnExcl  = setExclSet.difference( setExclude )
-            setUnPics  = setPicsSet.difference( setGetPics )
+            setUnExcl   = setExcludeCheck.difference(setExclude      )
+            setUnResult = setResultCheck.difference( setGetResult    )
             #
-            setNewExcl = setExclude.difference( setExclSet )
-            setNewPics = setGetPics.difference( setPicsSet )
+            setNewExcl  = setExclude.difference(     setExcludeCheck )
+            setNewResult= setGetResult.difference(   setResultCheck  )
             #
-            setChanged = setUnExcl.union(
-                        setUnPics, setNewExcl, setNewPics )
+            setChanged  = setUnExcl.union(
+                            setUnResult, setNewExcl, setNewResult )
             #
-            lPicsGet    = []
-            lPicsCancel = []
-            lExcludeYes = []
-            lExcludeNo  = []
+            lResultGet    = []
+            lResultCancel = []
+            lExcludeYes   = []
+            lExcludeNo    = []
             #
             for sItemNumb in setChanged:
                 #
                 if sItemNumb in setCommon: continue
                 #
-                if sItemNumb in setGetPics and sItemNumb not in setNewExcl:
-                    lPicsGet.append( sItemNumb )
-                elif sItemNumb in setUnPics:
-                    lPicsCancel.append( sItemNumb )
+                if sItemNumb in setGetResult and sItemNumb not in setNewExcl:
+                    lResultGet.append( sItemNumb )
+                elif sItemNumb in setUnResult:
+                    lResultCancel.append( sItemNumb )
                 #
                 if sItemNumb in setNewExcl:
                     lExcludeYes.append( sItemNumb )
@@ -425,33 +428,33 @@ class GetUserSelectionsOnPost( object ):
             # next: queryset update method
             # next: queryset update method
             #
-            if lPicsGet:
+            if lResultGet:
                 #
-                tPicsGet    = tuple( map( int, lPicsGet   ) )
-                #
-                UserFinder.objects.filter(
-                        iItemNumb_id__in = tPicsGet,
-                        iUser            = self.request.user ).update(
-                            bGetResults  = True )
-                #
-                UserItemFound.objects.filter(
-                        iItemNumb_id__in = tPicsGet,
-                        iUser            = self.request.user ).update(
-                            bGetResults  = True )
-                #
-            if lPicsCancel:
-                #
-                tPicsCancel = tuple( map( int, lPicsCancel) )
+                tResultGet = tuple( map( int, lResultGet   ) )
                 #
                 UserFinder.objects.filter(
-                        iItemNumb_id__in = tPicsCancel,
+                        iItemNumb_id__in = tResultGet,
                         iUser            = self.request.user ).update(
-                            bGetResults  = False )
+                            bGetResult   = True )
                 #
                 UserItemFound.objects.filter(
-                        iItemNumb_id__in = tPicsCancel,
+                        iItemNumb_id__in = tResultGet,
                         iUser            = self.request.user ).update(
-                            bGetResults  = False )
+                            bGetResult   = True )
+                #
+            if lResultCancel:
+                #
+                tResultCancel = tuple( map( int, lResultCancel) )
+                #
+                UserFinder.objects.filter(
+                        iItemNumb_id__in = tResultCancel,
+                        iUser            = self.request.user ).update(
+                            bGetResult   = False )
+                #
+                UserItemFound.objects.filter(
+                        iItemNumb_id__in = tResultCancel,
+                        iUser            = self.request.user ).update(
+                            bGetResult   = False )
                 #
             if lExcludeYes:
                 #
