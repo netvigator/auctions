@@ -26,12 +26,12 @@ After selecting individual items, you must hit Submit or all changes will be los
                 <input class='btn btn-primary btn-blue' type="submit" value=" deleted " />
             </form>
         </TD>
-        <TD>
+        <!--<TD>
             <form action='{% url "finders:index" %}Z/' method="POST">
                 {% csrf_token %}
                 <input class='btn btn-primary btn-blue' type="submit" value=" stars = 0 " />
             </form>
-        </TD>
+        </TD>-->
         {% if is_paginated %}
           <TD>go to page:</TD>
           <td>
@@ -41,9 +41,10 @@ After selecting individual items, you must hit Submit or all changes will be los
         {% endif %}
     </TR>
 </table>
-
+<!--
 <form action = '{% url "finders:index" %}S/' method="POST" >
     {% csrf_token %}
     <button class='btn btn-primary btn-blue' type = "submit" > search </button>
     <input type = "text" name = "q" />
 </form>
+-->
