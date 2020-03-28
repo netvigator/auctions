@@ -487,13 +487,13 @@ def getFindersForResultsFetching():
     # select useritemsfound that have not been marked as fetched yet
     #
     # qsUserItemNumbs = ( UserItemFound.objects.filter(
-    #                             bGetResults         = True,
+    #                             bGetResult         = True,
     #                             tRetrieved__isnull  = True )
     #                         .values_list( 'iItemNumb', flat = True )
     #                         .distinct() )
     #
     qsUserFinderNumbs = ( UserFinder.objects.filter(
-                                bGetResults = True )
+                                bGetResult = True )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() ) # UserFinder anit got tRetrieved
     #
@@ -569,13 +569,13 @@ def getFindersForResultsFetching():
     # select useritemsfound for which we need to fetch results
     #
     # qsUserItemNumbs = ( UserItemFound.objects.filter(
-    #                             bGetResults         = True,
+    #                             bGetResult         = True,
     #                             tRetrieved__isnull  = True )
     #                         .values_list( 'iItemNumb', flat = True )
     #                         .distinct() )
     #
     qsUserFinderNumbs = ( UserFinder.objects.filter(
-                                bGetResults = True )
+                                bGetResult = True )
                             .values_list( 'iItemNumb', flat = True )
                             .distinct() ) # UserFinder aint got tRetrieved
     #
