@@ -48,7 +48,7 @@ tUserItemFoundFields = (
     'gModel',
     'iBrand',
     'iCategory',
-    'bGetResults',
+    'bGetResult',
     'iHitStars'  )
 
 
@@ -96,7 +96,7 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
                 'gModel',
                 'iBrand',
                 'iCategory',
-                'bGetResults',
+                'bGetResult',
                 Field( 'iHitStars', readonly = True ), )
 
     def clean( self ):
