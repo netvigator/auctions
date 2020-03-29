@@ -29,8 +29,8 @@ urlpatterns = [
         view    = views.ItemFoundUpdateView.as_view(),
         name    = 'edit' ),
     url( # keep this url at bottom, this regex will intercept the hit url !
-        regex = r'(?P<select>[ADPZ]){0,1}/{0,1}$',
-        view    = views.FindersIndexView.as_view(),
+        regex = r'(?P<select>[ADS]){0,1}/{0,1}$',
+        view    = views.FinderIndexView.as_view(),
         name    = 'index' ),
 
 ]
