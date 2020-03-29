@@ -12,12 +12,12 @@
     {% if brand_list %}
         <table>
         <tr>
-        <th ALIGN=LEFT>Brand Name</th>
+        <th>Brand Name</th>
         <th style="text-align:right"><i class="far fa-star"></i></th>
-        <th ALIGN=LEFT>Wanted?</th>
-        <th ALIGN=LEFT>Want everything?</th>
-        <th ALIGN=LEFT>Nationality</th>
-        <th ALIGN=LEFT>comment</th>
+        <th>Wanted?</th>
+        <th>Want everything?</th>
+        <th>Nationality</th>
+        <th>comment</th>
         </tr>
         {% for brand in brand_list %}
             <tr>
@@ -25,7 +25,7 @@
             <td style="text-align:right">{{ brand.iStars }}</td>
             <td>{{ brand.bWanted|yesno:"Yes,No" }}</td>
             <td>{{ brand.bAllOfInterest|yesno:"Yes,No" }}</td>
-            <td NOWRAP>{{ brand.cNationality.name }}</td>
+            <td style="white-space:nowrap">{{ brand.cNationality.name }}</td>
             <td>{{ brand.cComment|getDashForReturn|truncatechars:60 }}</td>
             </tr>
         {% endfor %}
@@ -33,7 +33,7 @@
     {% else %}
         <p>No brands are available.</p>
     {% endif %}
-
+    <br>
     {% include "./add_search.html" %}
 
 {% endblock %}
