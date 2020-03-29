@@ -21,43 +21,43 @@
     </TR>
     <TR>
         <TD>{% field_name model 'cKeyWords' %}</TD>
-        <TD VALIGN=TOP>{{ object.cKeyWords }}</TD>
+        <TD style="vertical-align:top">{{ object.cKeyWords }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'iEbayCategory' %} Name (optional)</TD>
-        <TD VALIGN=TOP>{{ object.iEbayCategory|default_if_none:"" }}</TD>
+        <TD style="vertical-align:top">{{ object.iEbayCategory|default_if_none:"" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name parent 'iCategoryID' %} (optional)</TD>
-        <TD VALIGN=TOP>{{ object.iEbayCategory.iCategoryID|default_if_none:"" }}</TD>
+        <TD style="vertical-align:top">{{ object.iEbayCategory.iCategoryID|default_if_none:"" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'cPriority' %}</TD>
-        <TD VALIGN=TOP>{{ object.cPriority|default_if_none:"" }}</TD>
+        <TD style="vertical-align:top">{{ object.cPriority|default_if_none:"" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tBegSearch' %}</TD>
-        <TD VALIGN=TOP>{{object.tBegSearch|date:"d M Y  P"}}</TD>
+        <TD style="vertical-align:top">{{object.tBegSearch|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tEndSearch' %}</TD>
-        <TD VALIGN=TOP>{{object.tEndSearch|date:"d M Y  P"}}</TD>
+        <TD style="vertical-align:top">{{object.tEndSearch|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
         <TD width = 300>{% field_name model 'cLastResult' %}</TD>
-        <TD VALIGN=TOP>{{object.cLastResult|default_if_none:"" }}</TD>
+        <TD style="vertical-align:top">{{object.cLastResult|default_if_none:"" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'iUser' %}</TD>
-        <TD VALIGN=TOP>{{object.iUser}}</TD>
+        <TD style="vertical-align:top">{{object.iUser}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tCreate' %}</TD>
-        <TD VALIGN=TOP>{{object.tCreate|date:"d M Y  P"}}</TD>
+        <TD style="vertical-align:top">{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tModify' %}</TD>
-        <TD VALIGN=TOP>{{object.tModify|date:"d M Y  P"}}</TD>
+        <TD style="vertical-align:top">{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
     </table>
 
