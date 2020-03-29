@@ -1,54 +1,62 @@
-<ul class="pagination">
 
-    {% if page_obj.has_previous %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.previous_page_number }}">
-            <i class="fas fa-angle-double-left"></i>&nbsp;</a></li>
-    {% else %}
-        <li class="disabled"><span><i class="fas fa-angle-double-left"></i></span>&nbsp;</li>
-    {% endif %}
+<table>
+  <tr>
+    <td>go to page: </td>
+    <td>
+      <ul class="pagination">
 
-    {% if iBeg >= 1 %}
-        <li><a href="?previous={{page_obj.number}}&page=1">1&nbsp;</a></li>
-    {% endif %}
+          {% if page_obj.has_previous %}
+              <li><a href="?previous={{page_obj.number}}&page={{ page_obj.previous_page_number }}">
+                  <i class="fas fa-angle-double-left"></i>&nbsp;</a></li>
+          {% else %}
+              <li class="disabled"><span><i class="fas fa-angle-double-left"></i></span>&nbsp;</li>
+          {% endif %}
 
-    {% if iMidLeft > 2 %}
-        <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft|add:'-1' }}">&hellip;</a></li>
-    {% endif %}
+          {% if iBeg >= 1 %}
+              <li><a href="?previous={{page_obj.number}}&page=1">1&nbsp;</a></li>
+          {% endif %}
 
-    {% if iMidLeft > 0 %}
-        <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft }}">&nbsp;{{ iMidLeft }}&nbsp;</a></li>
-    {% endif %}
+          {% if iMidLeft > 2 %}
+              <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft|add:'-1' }}">&hellip;</a></li>
+          {% endif %}
 
-    {% if page_obj.number|add:'-2' > iMidLeft %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'-2' }}">&hellip;</a></li>
-    {% endif %}
+          {% if iMidLeft > 0 %}
+              <li><a href="?previous={{page_obj.number}}&page={{ iMidLeft }}">&nbsp;{{ iMidLeft }}&nbsp;</a></li>
+          {% endif %}
 
-    {% for i in show_range %}
-        {% if page_obj.number == i %}
-            <li class="active"><span>{{ i }} <span class="sr-only">&nbsp;(current)&nbsp;</span></span></li>
-        {% else %}
-            <li><a href="?previous={{page_obj.number}}&page={{ i }}">&nbsp;{{ i }}&nbsp;</a></li>
-        {% endif %}
-    {% endfor %}
+          {% if page_obj.number|add:'-2' > iMidLeft %}
+              <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'-2' }}">&hellip;</a></li>
+          {% endif %}
 
-    {% if page_obj.paginator.num_pages > page_obj.number|add:'2' %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'3' }}">&hellip;</a></li>
-    {% endif %}
+          {% for i in show_range %}
+              {% if page_obj.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only">&nbsp;(current)&nbsp;</span></span></li>
+              {% else %}
+                  <li><a href="?previous={{page_obj.number}}&page={{ i }}">&nbsp;{{ i }}&nbsp;</a></li>
+              {% endif %}
+          {% endfor %}
 
-    {% if iMidRight > 0 %}
-        <li><a href="?previous={{page_obj.number}}&page={{ iMidRight }}">&nbsp;{{ iMidRight }}&nbsp;</a></li>
-        <li><a href="?previous={{page_obj.number}}&page={{ iMidRight|add:'1' }}">&hellip;</a></li>
-    {% endif %}
+          {% if page_obj.paginator.num_pages > page_obj.number|add:'2' %}
+              <li><a href="?previous={{page_obj.number}}&page={{ page_obj.number|add:'3' }}">&hellip;</a></li>
+          {% endif %}
 
-    {% if iMaxPage >= iEnd %}
-            <li><a href="?previous={{page_obj.number}}&page={{ iMaxPage }}">&nbsp;{{ iMaxPage }}</a></li>
-    {% endif %}
+          {% if iMidRight > 0 %}
+              <li><a href="?previous={{page_obj.number}}&page={{ iMidRight }}">&nbsp;{{ iMidRight }}&nbsp;</a></li>
+              <li><a href="?previous={{page_obj.number}}&page={{ iMidRight|add:'1' }}">&hellip;</a></li>
+          {% endif %}
 
-    {% if page_obj.has_next %}
-        <li><a href="?previous={{page_obj.number}}&page={{ page_obj.next_page_number }}">&nbsp;
-            <i class="fas fa-angle-double-right"></i></a></li>
-    {% else %}
-        <li class="disabled">&nbsp;<span><i class="fas fa-angle-double-right"></i></span></li>
-    {% endif %}
+          {% if iMaxPage >= iEnd %}
+                  <li><a href="?previous={{page_obj.number}}&page={{ iMaxPage }}">&nbsp;{{ iMaxPage }}</a></li>
+          {% endif %}
 
-</ul>
+          {% if page_obj.has_next %}
+              <li><a href="?previous={{page_obj.number}}&page={{ page_obj.next_page_number }}">&nbsp;
+                  <i class="fas fa-angle-double-right"></i></a></li>
+          {% else %}
+              <li class="disabled">&nbsp;<span><i class="fas fa-angle-double-right"></i></span></li>
+          {% endif %}
+
+      </ul>
+      </td>
+  </tr>
+</table>
