@@ -16,51 +16,51 @@
     <hr>
 
     <table>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cTitle' %}</TD>
         <TD>{{object.cTitle}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'bWanted' %}</TD>
         <TD>{{ object.bWanted|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'bAllOfInterest' %}</TD>
         <TD>{{ object.bAllOfInterest|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cLookFor' %}</TD>
         <TD>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cKeyWords' %}</TD>
         <TD>{{object.cKeyWords|getDashForReturn}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'iStars' %}</TD>
         <TD>{{object.iStars}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cComment' %}</TD>
         <TD>{{ object.cComment | getLineBreakForReturn }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cNationality' %}</TD>
         <TD>{{ object.cNationality.name }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cExcludeIf' %}</TD>
         <TD>{{object.cExcludeIf|getDashForReturn}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'iUser' %}</TD>
         <TD>{{object.iUser}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tCreate' %}</TD>
         <TD>{{object.tCreate|date:"d M Y  P"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tModify' %}</TD>
         <TD>{{object.tModify|date:"d M Y  P"}}</TD>
     </TR>
