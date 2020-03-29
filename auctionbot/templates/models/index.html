@@ -12,26 +12,23 @@
     {% if object_list %}
         {# the pagination section #}
         {% if is_paginated %}
-            <hr>
-            <div class="basic">
-                {% include "../paginate.html" %}
-            </div>
+            {% include "../paginate.html" %}
         {% endif %}
         <div class="container">
         <div class="list-group">
         <table class="bottomBorder">
         <tr>
-        <th ALIGN=LEFT>Model Name/Number</th>
-        <th ALIGN=LEFT>Brand</th>
-        <th ALIGN=LEFT>Category</th>
+        <th>Model Name/Number</th>
+        <th>Brand</th>
+        <th>Category</th>
         <th style="text-align:right"><i class="far fa-star"></i></th>
-        <th ALIGN=LEFT>Comment</th>
+        <th>Comment</th>
         </tr>
         {% for model in object_list %}
             <tr>
-            <td NOWRAP><a href="{{ model.get_absolute_url }}">{{ model.cTitle }}</a></td>
-            <td NOWRAP><a href="{{ model.iBrand.get_absolute_url }}/">{{ model.iBrand }}</a></td>
-            <td NOWRAP><a href="{{ model.iCategory.get_absolute_url }}/">{{ model.iCategory }}</td>
+            <td style="white-space:nowrap"><a href="{{ model.get_absolute_url }}">{{ model.cTitle }}</a></td>
+            <td style="white-space:nowrap"><a href="{{ model.iBrand.get_absolute_url }}/">{{ model.iBrand }}</a></td>
+            <td style="white-space:nowrap"><a href="{{ model.iCategory.get_absolute_url }}/">{{ model.iCategory }}</td>
             <td style="text-align:right">{{ model.iStars}}</td>
             <td>{{ model.cComment|getDashForReturn|truncatechars:45}}</td>
             </tr>
@@ -41,10 +38,7 @@
         </div>
         {# the pagination section #}
         {% if is_paginated %}
-            <hr>
-            <div class="basic">
-                {% include "../paginate.html" %}
-            </div>
+          {% include "../paginate.html" %}
         {% endif %}
     {% else %} <!-- brand_list -->
         <p>No models are available.</p>
