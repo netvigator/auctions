@@ -84,13 +84,16 @@ class TitleSearchMixin(object):
 
     def get_queryset( self ):
         #
-        # fetch the queryset from the parent's get_queryset
+        # fetch the queryset from the view
+        # from CategoryIndexView, BrandIndexView or ModelIndexView
+        # all 3 of which inherit from ListViewGotModel
+        # or from FinderIndexView or KeeperIndexView
         #
         queryset = super( TitleSearchMixin, self ).get_queryset()
         #
         # get the Q parameter
         #
-        q = self.request.GET.get( 'q' )
+        q = self.request.GET.get( 'q' ) or self.request.POST.get( 'q' )
         #
         if q:
             # return a filtered queryset
