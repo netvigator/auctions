@@ -5,17 +5,17 @@ from django.test        import RequestFactory
 
 from core.dj_import     import HttpRequest
 
-from .base              import SetUpBrandsCategoriesModelsWebTest
+from .base                  import SetUpBrandsCategoriesModelsWebTest
 
-from ..mixins           import GetPaginationExtraInfoInContext
-from ..views            import ListViewGotModel
+from ..mixins               import GetPaginationExtraInfoInContext
+from ..views                import ListViewGotModel
 
-from finders.views      import FindersIndexView
+from finders.views          import FinderIndexView
 
 from searching.utils_stars  import getFoundItemTester
 from searching.tests.base   import SetUpForHitStarsWebTests
 
-from pyPks.Object.Get   import QuickObject
+from pyPks.Object.Get       import QuickObject
 
 
 class TestPagination( SetUpForHitStarsWebTests ):
@@ -32,7 +32,7 @@ class TestPagination( SetUpForHitStarsWebTests ):
         #
         self.request.user = self.user1
         #
-        self.view = FindersIndexView()
+        self.view = FinderIndexView()
         #
         self.view.request = self.request
 
