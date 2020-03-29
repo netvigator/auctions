@@ -17,7 +17,7 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
 # ### keep views thin! ###
 
 
-class FindersIndexView(
+class FinderIndexView(
             GetUserSelectionsOnPost,
             GetPaginationExtraInfoInContext,
             TitleSearchMixin,
@@ -30,25 +30,26 @@ class FindersIndexView(
 
     def get_queryset( self ):
         #
-        # ADPZ
-        # qs = super( FindersIndexView, self ).get_queryset()
+        # ADS
+        # qs = super( FinderIndexView, self ).get_queryset()
         # sSelect = 'P'
         #
-        sSelect = self.kwargs.get( 'select', 'P' )
+        sSelect = self.kwargs.get( 'select', 'A' )
         #
-        if not sSelect: sSelect = 'P'
+        if not sSelect: sSelect = 'A'
         #
         if sSelect == 'A': # all
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
                         bListExclude        = False,
                     ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
-        elif sSelect == 'P': # postive (non-zero hit stars)
-            qsGot = UserFinder.objects.filter(
-                        iUser               = self.request.user,
-                        iHitStars__isnull   = False,
-                        bListExclude        = False,
-                    ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
+        #elif sSelect == 'P': # postive (non-zero hit stars)
+        #    qsGot = UserFinder.objects.filter(
+        #                iUser               = self.request.user,
+        #                iHitStars__isnull   = False,
+        #                bListExclude        = False,
+        #            ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
+        #
         elif sSelect == 'D': # "deleted" (excluded from list)
             qsGot = UserFinder.objects.filter(
                         iUser               = self.request.user,
@@ -61,11 +62,13 @@ class FindersIndexView(
         #                iHitStars           = 0,
         #                bListExclude        = False
         #            ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
+        #
         elif sSelect == 'S': # Search
             #
-            # self.request.GET.get( 'q' )
+            qsGot = super( FinderIndexView, self ).get_queryset( *args, **kwargs )
             #
-            qsGot = super( FindersIndexView, self ).get_queryset( *args, **kwargs )
+            # want to find the get_queryset() method of TitleSearchMixin
+            # not          the get_queryset() method of ListViewGotModel
             #
         #
         return qsGot
