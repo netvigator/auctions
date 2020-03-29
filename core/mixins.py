@@ -393,21 +393,21 @@ class GetUserSelectionsOnPost( object ):
             setExcludeCheck = fset( request.POST.getlist('ExcludeChecked') )
             # hidden set if item has bListExclude as True when page composed
             #
-            setCommon   = setGetResult.intersection( setExclude      )
+            setCommon       = setGetResult.intersection( setExclude      )
             #
-            setUnExcl   = setExcludeCheck.difference(setExclude      )
-            setUnResult = setResultCheck.difference( setGetResult    )
+            setUnExcl       = setExcludeCheck.difference(setExclude      )
+            setUnResult     = setResultCheck.difference( setGetResult    )
             #
-            setNewExcl  = setExclude.difference(     setExcludeCheck )
-            setNewResult= setGetResult.difference(   setResultCheck  )
+            setNewExcl      = setExclude.difference(     setExcludeCheck )
+            setNewResult    = setGetResult.difference(   setResultCheck  )
             #
-            setChanged  = setUnExcl.union(
-                            setUnResult, setNewExcl, setNewResult )
+            setChanged      = setUnExcl.union(
+                                setUnResult, setNewExcl, setNewResult )
             #
-            lResultGet    = []
-            lResultCancel = []
-            lExcludeYes   = []
-            lExcludeNo    = []
+            lResultGet      = []
+            lResultCancel   = []
+            lExcludeYes     = []
+            lExcludeNo      = []
             #
             for sItemNumb in setChanged:
                 #
