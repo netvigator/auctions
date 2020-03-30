@@ -459,3 +459,13 @@ model has category id 172 in dCategoryFamily for 264654090657
 </form>
 
 breaks templates/finders/index_buttons_more.html
+
+
+
+2020-03-29
+implement new filter
+@register.filter()
+def getNonBreakForSpace( s ):
+
+implement in Models cLookFor
+test with 12AT7 (Bugle Boy)
