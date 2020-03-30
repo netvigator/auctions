@@ -7,9 +7,20 @@
   text-align: left;
   margin-left: 1em;
 }
+.top-left {
+  vertical-align: top;
+  text-align: left;
+  margin-left: 1em;
+}
+.top-right {
+  vertical-align: top;
+  text-align: right;
+  margin-left: 1em;
+}
 td
 {
     padding:0 15px 0 0; /* Only right padding*/
+    vertical-align: top;
 }
 th
 {
@@ -22,4 +33,14 @@ td.num
 th.right
 {
     text-align:right;
+}
+td.top-left
+{
+    text-align:left;
+    vertical-align: top;
+}
+td.top-right
+{
+    text-align:right;
+    vertical-align: top;
 }
