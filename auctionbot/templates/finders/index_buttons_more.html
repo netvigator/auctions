@@ -15,9 +15,9 @@ After selecting individual items, you must hit Submit or all changes will be los
         </TD>
         <TD>filter items:</TD>
         <TD>
-            <form action='{% url "finders:index" %}P/' method="POST">
+            <form action='{% url "finders:index" %}A/' method="POST">
                 {% csrf_token %}
-                <input class='btn btn-primary btn-blue' type="submit" value=" stars > 0 " />
+                <input class='btn btn-primary btn-blue' type="submit" value=" active " />
             </form>
         </TD>
         <TD>
@@ -33,11 +33,7 @@ After selecting individual items, you must hit Submit or all changes will be los
             </form>
         </TD>-->
         {% if is_paginated %}
-          <TD>go to page:</TD>
-          <td>
-              <p>
-              {% include "../paginate.html" %}
-          </td>
+          <td>{% include "../paginate.html" %}</td>
         {% endif %}
     </TR>
 </table>
