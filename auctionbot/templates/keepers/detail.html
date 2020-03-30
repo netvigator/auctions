@@ -10,114 +10,114 @@
     <h4>{{ object.cTitle }}</h4>
 
     <table>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD valign=top>{% field_name model 'cDescription' %}</TD>
         <TD>{{ object.cDescription | getLineBreakForReturn }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'iItemNumb' %}</TD>
         <td><a href="https://www.ebay.com/itm/{{object.iItemNumb}}/">
                             {{ object.iItemNumb }}</a></td>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tTimeBeg' %}</TD>
         <TD>{{object.tTimeBeg}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tTimeEnd' %}</TD>
         <TD>{{object.tTimeEnd}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <td>Hits for this Item:</td>
         <td>
         {{ UserItemsTable | safe }}
         </td>
     </tr>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cListingType' %}</TD>
         <TD>{{object.cListingType}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cCountry' %}</TD>
         <TD>{{object.cCountry}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cLocation' %}</TD>
         <TD>{{object.cLocation}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cPaymentMethods' %}</TD>
         <TD>{{object.cPaymentMethods}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cPostalCode' %}</TD>
         <TD>{{object.cPostalCode}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cSellerID' %}</TD>
         <TD>{{object.cSellerID}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'iFeedbackScore' %}</TD>
         <TD>{{object.iFeedbackScore}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cFeedbackPercent' %}</TD>
         <TD>{{object.cFeedbackPercent}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'iBidCount' %}</TD>
         <TD>{{object.iBidCount}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'dConvertPrice' %}</TD>
         <TD>{{object.dConvertPrice}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cConvertCurrency' %}</TD>
         <TD>{{object.cConvertCurrency}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'lLocalCurrency' %}</TD>
         <TD>{{object.lLocalCurrency}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cHighBidder' %}</TD>
         <TD>{{object.cHighBidder|default_if_none:"not available"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cListingStatus' %}</TD>
         <TD>{{object.cListingStatus}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cShipToLocations' %}</TD>
         <TD width = "80%">{{object.cShipToLocations}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cCategoryNames' %}</TD>
         <TD>{{object.cCategoryNames}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cBidCurrency' %}</TD>
         <TD>{{object.cBidCurrency}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cCondition' %}</TD>
         <TD>{{object.cCondition|default_if_none:"condition not given"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tCreate' %}</TD>
         <TD>{{object.tCreate}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tModify' %}</TD>
         <TD>{{object.tModify|default_if_none:"not yet"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'tGotPictures' %}</TD>
         <TD>{{object.tGotPictures|default_if_none:"not yet"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'iGotPictures' %}</TD>
         <TD>{{object.iGotPictures|default_if_none:"zero"}}</TD>
     </TR>
