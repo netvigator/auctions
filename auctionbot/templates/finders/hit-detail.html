@@ -16,31 +16,31 @@
     <hr>
 
     <table>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cListingType' %}</TD>
         <TD>{{object.iItemNumb.cListingType}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'iItemNumb' %}</TD>
         <TD>
               <a href="https://www.ebay.com/itm/{{object.iItemNumb.iItemNumb}}/">
                       {{ object.iItemNumb.iItemNumb }}</a></TD>
 
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cLocation' %}</TD>
         <TD>{{object.iItemNumb.cLocation}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cCountry' %}</TD>
         <TD>{{object.iItemNumb.cCountry}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cMarket' %}</TD>
         <TD>{{ object.iItemNumb.cMarket }}</TD>
     </TR>
     <tr>
-        <td NOWRAP>
+        <td style="white-space:nowrap">
           {% field_name model 'iModel' %}:
           <br>
           {% field_name model 'iBrand' %}
@@ -52,15 +52,15 @@
         <td>
           <table>
             <tr>
-              <td NOWRAP><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
+              <td style="white-space:nowrap"><a href="{{ object.iModel.get_absolute_url }}/">{{ object.iModel }}</a></td>
               <td>{% if object.iModel %}{{ object.iModel.iStars }} stars{% endif %}</td>
             </tr>
             <tr>
-              <td NOWRAP><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
+              <td style="white-space:nowrap"><a href="{{ object.iBrand.get_absolute_url }}/">{{ object.iBrand }}</a></td>
               <td>{% if object.iBrand %}{{ object.iBrand.iStars }} stars{% endif %}</td>
             </tr>
             <tr>
-              <td NOWRAP><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
+              <td style="white-space:nowrap"><a href="{{ object.iCategory.get_absolute_url }}/">{{ object.iCategory }}</a></td>
               <td>{% if object.iCategory %}{{ object.iCategory.iStars }} stars{% endif %}</td>
             </tr>
             <tr>
@@ -96,12 +96,12 @@
         </td>
       </tr>
     {% endif %}
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'lCurrentPrice' %} ({{object.iItemNumb.lLocalCurrency}})</TD>
         <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
     </TR>
     {% if object.iItemNumb.lLocalCurrency != "USD" %}
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'dCurrentPrice' %}:</TD>
         <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
@@ -110,76 +110,76 @@
         <td>{% field_name model 'bGetResult' %}:</td>
         <td>{{ object.bGetResult|yesno:"Yes,No" }}</td>
     </tr>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cEbayItemURL' %}</TD>
 
         <TD><A HREF="{{object.iItemNumb.cEbayItemURL}}">{{object.iItemNumb.cEbayItemURL}}</A></TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'tTimeBeg' %}</TD>
         <TD>{{object.iItemNumb.tTimeBeg|date:"d M Y  P"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'tTimeEnd' %}</TD>
         <TD>{{object.iItemNumb.tTimeEnd|date:"d M Y  P"}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'bBestOfferable' %}</TD>
         <TD>{{ object.iItemNumb.bBestOfferable|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'bBuyItNowable' %}</TD>
         <TD>{{ object.iItemNumb.bBuyItNowable|yesno:"Yes,No" }}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'lLocalCurrency' %}</TD>
         <TD>{{object.iItemNumb.lLocalCurrency}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'lCurrentPrice' %}</TD>
         <TD>{{object.iItemNumb.lCurrentPrice}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'dCurrentPrice' %}</TD>
         <TD>{{object.iItemNumb.dCurrentPrice}}</TD>
     </TR>
-    <!-- <TR VALIGN=TOP>
+    <!-- <TR style="vertical-align:top">
         <TD>{% field_name parent 'iCategoryID' %}</TD>
         <TD>{{object.iItemNumb.iCategoryID}}</TD>
     </TR>-->
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cCategory' %}</TD>
         <TD>{{object.iItemNumb.cCategory}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'iCatHeirarchy' %}</TD>
         <TD>{{ object.iItemNumb.iCatHeirarchy.cCatHierarchy | getLastDroppedFromCommaSeparatedString }}</TD>
     </TR>
 
     {% if object.iItemNumb.c2ndCategory %}
-      <TR VALIGN=TOP>
+      <TR style="vertical-align:top">
           <TD>{% field_name parent 'c2ndCategory' %}</TD>
           <TD>{{object.iItemNumb.c2ndCategory}}</TD>
       </TR>
-      <TR VALIGN=TOP>
+      <TR style="vertical-align:top">
           <TD>{% field_name parent 'i2ndCatHeirarchy' %}</TD>
           <TD>{{ object.iItemNumb.i2ndCatHeirarchy.cCatHierarchy | getLastDroppedFromCommaSeparatedString }}</TD>
       </TR>
     {% endif %}
 
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'iConditionID' %}</TD>
         <TD>{{object.iItemNumb.iConditionID}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cCondition' %}</TD>
         <TD>{{object.iItemNumb.cCondition}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'cSellingState' %}</TD>
         <TD>{{object.iItemNumb.cSellingState}}</TD>
     </TR>
-    <TR VALIGN=TOP>
+    <TR style="vertical-align:top">
         <TD>{% field_name parent 'tCreate' %}</TD>
         <TD>{{object.iItemNumb.tCreate|date:"d M Y  P"}}</TD>
     </TR>
