@@ -16,15 +16,15 @@
       </tr>
       {% for keeper in keepers_list %}
           <tr>
-          <TD VALIGN=TOP><input class="checkbox" name="bTrashThis" type="checkbox" value={{ keeper.iItemNumb }}></td>
-          <td VALIGN=TOP>
+          <TD style="vertical-align:top"><input class="checkbox" name="bTrashThis" type="checkbox" value={{ keeper.iItemNumb }}></td>
+          <td style="vertical-align:top">
             <a href="https://www.ebay.com/itm/{{keeper.iItemNumb}}/">
             {{ keeper.iItemNumb }}</a></td>
-          <td VALIGN=TOP><a href="{{ keeper.get_absolute_url }}">{{ keeper.cTitle }}</a></td>
-          <td style="text-align:right" VALIGN=TOP>{{ keeper.dConvertPrice }}</td>
-          <td style="text-align:right" VALIGN=TOP>{{ keeper.iBidCount }}</td>
-          <td style="text-align:right" VALIGN=TOP>{{ keeper.cListingStatus }}</td>
-          <td VALIGN=TOP>
+          <td style="vertical-align:top"><a href="{{ keeper.get_absolute_url }}">{{ keeper.cTitle }}</a></td>
+          <td style="text-align:right;vertical-align:top">{{ keeper.dConvertPrice }}</td>
+          <td style="text-align:right;vertical-align:top">{{ keeper.iBidCount }}</td>
+          <td style="text-align:right;vertical-align:top">{{ keeper.cListingStatus }}</td>
+          <td style="vertical-align:top">
             <span style="white-space: nowrap;">{{ keeper.tTimeEnd | date:'Y-m-d' }}</span>
           </td>
           </tr>
