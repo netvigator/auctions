@@ -2307,6 +2307,32 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 174226403478
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 6922 not the rest' )
+        #
+        #
+        #
+        #
+        iThisOne = 114154224682
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find EA-3 not the rest' )
+        #
+        #
+        #
+        #
+        iThisOne = 313033073507
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'need to test variations on 755 speaker' )
+        #
+        #
+        #
         #
         '''
         '''
