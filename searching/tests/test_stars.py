@@ -2334,6 +2334,15 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 193390315883
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'x-100 should find X-100-B' )
+        #
+        #
+        #
+        #
         '''
         '''
         #
