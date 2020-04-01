@@ -1,7 +1,7 @@
 import logging
 
 from glob                   import glob
-from json                   import loads
+from json                   import loads, JSONDecodeError
 from os                     import listdir, remove, rename, walk
 from os.path                import isfile, join
 from pytz                   import UTC
@@ -315,6 +315,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     sContent = iSavedRowID = sListingStatus = oItemFound = None
     #
     bItemNumberStillGood = True
+    bGot_503_SkipForNow  = False
     #
     if 'sContent' in kwargs: # passed for testing
         #
@@ -353,6 +354,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             bItemNumberStillGood = False
             #
+        except JSONDecodeError: # 503 service unavailable
+            #
+            bGot_503_SkipForNow  = True
+            #
         #
         #
     #
@@ -377,6 +382,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         UserFinder.objects.filter(
                 iItemNumb = iItemNumb ).delete()
+        #
+    elif bGot_503_SkipForNow:
+        #
+        logger.info( 'got JSONDecodeError probably 503 temp problem! %s', str( iItemNumb ) )
         #
     elif oItemFound is None:
         #
