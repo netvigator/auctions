@@ -752,6 +752,23 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["193390315883"],
+             "title":["The Fisher X-100 Stereo Amplifier Service Manual"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m0JOlIeCxjwAJh4-DASCWeA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-X-100-B-Stereo-Amplifier-Service-Manual-\/193390315883"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["021**"],"location":["Brighton,MA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT6H18M13S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-03-20T20:00:28.000Z"],
+             "endTime":["2020-03-27T20:00:28.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["313033073507"],
              "title":["VINTAGE ALTEC LANSING 755E speakers - Pair"],
              "globalId":["EBAY-US"],
