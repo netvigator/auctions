@@ -63,6 +63,7 @@ sBrands = \
  Jensen            |      8 |            |            |
  Kadette           |      6 |            |            |
  Ken-Rad           |      8 |            |            |
+ KLH               |      8 |            |            |
  Klangfilm         |      6 |            |            |
  Klipsch           |      8 |            |            | Klipschorn
  Knight            |      4 |            |            |
@@ -215,7 +216,9 @@ sModels = \
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
  606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
- 755A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 755                |           |      7 | f            | Altec-Lansing     |       Driver | 755A        | 755C\\r755E
+ 755C               |           |      7 | t            | Altec-Lansing     |       Driver |             | 755\\r755A\\r755E
+ 755E               |           |      7 | f            | Altec-Lansing     |       Driver |             |
  803A (driver)      |           |      7 | t            | Altec-Lansing     |       Driver |             | horn         |
  803B (horn)        |           |      7 | t            | Altec-Lansing     |         Horn |             |
  804A (horn)        |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -237,6 +240,7 @@ sModels = \
  1569A              |           |      9 | t            | Altec-Lansing     |  Theater Amp |             |
  150-4B             |           |      9 | t            | Lansing           |       Driver |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
+ X-100-B            |           |      4 | t            | Fisher            |Integrated Amp|             |
  XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
  XP-3B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
@@ -288,6 +292,7 @@ sModels = \
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
+ EA-3               |           |      4 | f            | Heathkit          |Integrated Amp|             |
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
  C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
  C-108H             |           |      4 | t            | McIntosh          |       Preamp |             |
@@ -464,6 +469,7 @@ sModels = \
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  meter              |           |      3 | f            |                   |    Component |             |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
+ nine               |           |      9 | f            | KLH               |Speaker System|             |
  '''
 #      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 
