@@ -218,8 +218,11 @@ select count(*) from itemsfound
 
 # doGetItemPicturesTasks( bOnlySay = True )
 
-select count(*) from keepers where "tGotPictures" is null  ;
-select "iItemNumb", "tTimeEnd" from keepers where "tGotPictures" is null order by "tTimeEnd" limit 1 ;
+select count(*) from keepers where "tGotPictures" is null and iBidCount > 0 ;
+
+select "iItemNumb", "tTimeEnd" from keepers
+    where "tGotPictures" is null and iBidCount > 0
+    order by "tTimeEnd" limit 1 ;
 
 select count(*) from keepers where "iGotPictures" > 0 ;
 
