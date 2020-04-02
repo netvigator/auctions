@@ -1369,7 +1369,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, '755A' )
+        self.assertEqual( oTest.iModel.cTitle, '755' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -2236,6 +2236,85 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 274222992683
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'AZ1 Valvo Pair! raised error in production?' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'AZ1' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Valvo' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        iThisOne = 174177597476
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'Meter was a glitch in production' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'meter' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertIsNone( oTest.iCategory )
+        #
+        #
+        #
+        #
+        iThisOne = 193390315883
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'x-100 should find X-100-B manual not amp?' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'X-100-B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Integrated Amp' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 313033073507
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'need to test more variations on 755 speaker' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '755E' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114154224682
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find EA-3 not the rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EA-3' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Integrated Amp' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2254,33 +2333,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 'should find power supply ? big challenge?' )
         #
         #
-        #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 274222992683
-        #
-        if iThisOne in dItemsToTest:
-            self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find AZ1 not AD1' )
-        else:
-            print( '\n%s not in dItemsToTest !!!' % iThisOne  )
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 174177597476
-        #
-        if iThisOne in dItemsToTest:
-            self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'getting a warning in production' )
-        else:
-            print( '\n%s not in dItemsToTest !!!' % iThisOne  )
         #
         #
         #
@@ -2312,33 +2364,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 6922 not the rest' )
-        #
-        #
-        #
-        #
-        iThisOne = 114154224682
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find EA-3 not the rest' )
-        #
-        #
-        #
-        #
-        iThisOne = 313033073507
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'need to test variations on 755 speaker' )
-        #
-        #
-        #
-        #
-        iThisOne = 193390315883
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'x-100 should find X-100-B' )
         #
         #
         #
