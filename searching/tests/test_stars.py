@@ -2314,6 +2314,21 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 153883438316
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'got category warning for this' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'IT-28' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Capacitor Checker' )
+        #
+        #
+        #
+        #
         #
         iThisOne = 164011103887
         #
@@ -2365,14 +2380,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 6922 not the rest' )
         #
-        #
-        #
-        #
-        iThisOne = 153883438316
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'got category warning for this' )
         #
         #
         #
