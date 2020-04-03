@@ -159,15 +159,18 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
         #
         if qsGetPics:
             #
-            oFirst = Keeper.objects.get( iItemNumb = qsGetPics[0] )
+            qsGetDates = Keeper.objects.filter(
+                    iItemNumb__in = qsGetPics
+                    ).order_by( 'tTimeEnd'
+                    ).values_list( 'tTimeEnd', flat = True
+                    )
+            dFirst = qsGetDates[0]
             #
-            for iItemNumb in qsGetPics: iLast = iItemNumb # negative indexing not supported!
-            #
-            oLast = Keeper.objects.get( iItemNumb = iLast )
+            for d in qsGetDates: dLast = d # negative indexing not supported!
             #
             print( 'items ending from %s to %s' %
-                    ( sayIsoDateTimeNoTimeZone( oFirst.tTimeEnd ),
-                      sayIsoDateTimeNoTimeZone( oLast.tTimeEnd  ) ) )
+                    ( sayIsoDateTimeNoTimeZone( dFirst ),
+                      sayIsoDateTimeNoTimeZone( dLast  ) ) )
             #
         #
     else:
