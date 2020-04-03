@@ -470,6 +470,7 @@ sModels = \
  meter              |           |      3 | f            |                   |    Component |             |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  nine               |           |      9 | f            | KLH               |Speaker System|             |
+ IT-28              |           |      5 | f            | Heathkit          |Capacitor Checker|          | Capacitor Tester\rCapacitance Checker\rCapacitance Tester
  '''
 #      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 
