@@ -758,6 +758,21 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["153883438316"],
+             "title":["Heathkit Capacitor Checker Model IT-28 Manual"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["183079"],"categoryName":["Other Vintage Electronics"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mm1_bIELSVy_V_iNLzUKrgw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-Capacitor-Checker-Model-IT-28-Manual-\/153883438316"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["837**"],"location":["Boise,ID,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT21H14M19S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2020-03-31T19:16:05.000Z"],"endTime":["2020-04-05T19:16:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["193390315883"],
              "title":["The Fisher X-100 Stereo Amplifier Service Manual"],
              "globalId":["EBAY-US"],
