@@ -2368,6 +2368,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 153883438316
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'got category warning for this' )
+        #
+        #
+        #
+        #
+
         '''
         '''
         #
