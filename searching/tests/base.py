@@ -365,6 +365,25 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            # Capacitor Checker is in core.tests.base.py already!
+            #
+            if not Category.objects.filter(
+                    cTitle      = 'Capacitor Checker',
+                    iUser       = oUser ).exists():
+                #
+                oCategory   = Category(
+                    cTitle      = 'Capacitor Checker',
+                    cLookFor    = 'Capacitor Tester\r'
+                                  'Capacitance Checker\r'
+                                  'Capacitance Tester',
+                    iStars      = 5,
+                    iUser       = oUser )
+                #
+                oCategory.save()
+                #
+            #
+            #
+            #
             #
             oTableIter = getTableFromScreenCaptureGenerator( sBrands )
             #
