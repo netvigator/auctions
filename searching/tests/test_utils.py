@@ -612,7 +612,11 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
             print( sSayLastEnd )
         #
         self.assertGreater( iDaysFromNow, 0,
-                    msg = 'got no future auction end dates, API test is WAY OVERDUE!' )
+                    msg = 'got no future auction end dates, '
+                          'API test is WAY OVERDUE!\n'
+                          'do this:\n'
+                          'python manage.py test searching.'
+                          'tests.test_utils.DoSearchStoreResultsTests' )
         #
 
 
