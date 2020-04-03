@@ -235,6 +235,7 @@ select "cTitle", "iGotPictures" from keepers where "tGotPictures" =
 '''
 
 # from keepers.tasks import doGetFetchUserItemsTasks, doGetItemPicturesTasks
+# from keepers.tasks import doGetItemPicturesTasks
 # doGetFetchUserItemsTasks( bOnlySay = True )
 # doGetFetchUserItemsTasks( bDoFinalOnly = True )
 # doGetFetchUserItemsTasks()
