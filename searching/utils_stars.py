@@ -28,6 +28,7 @@ from models.models          import Model
 from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
                                      DROP_AFTER_THIS )
 
+from pyPks.Collect.Get      import LongerList
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
 
