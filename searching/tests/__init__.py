@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 192577735613
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -201,6 +201,7 @@ sModels = \
  415                |           |     10 | f            | Altec-Lansing     |       Driver |             |
  415C               |           |      4 | t            | Altec-Lansing     |       Driver |             | 415
  416A               |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 416Z               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  421                |           |      5 | f            | Altec-Lansing     |       Driver |             | 421A         |
  421A               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
@@ -758,6 +759,39 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["283830240734"],
+             "title":["Vtg 60s ALTEC FLAMENCO 848A Speaker Set Horn 416Z 806A N800F 16ohm Valencia VOTT"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/muZ3DMgOk1mOOE5dSexaztA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vtg-60s-ALTEC-FLAMENCO-848A-Speaker-Set-Horn-416Z-806A-N800F-16ohm-Valencia-VOTT-\/283830240734"],
+             "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+             "postalCode":["846**"],"location":["Spanish Fork,UT,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2200.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT1H18M24S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-03-28T23:20:37.000Z"],
+             "endTime":["2020-04-04T23:20:37.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["6"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["174236717488"],
+             "title":["Telefunken E88CC\/01 w\/ Mullard label <> audiophono grade 6922 CCA 6DJ8 Gold Pins"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mcXBeU_-a8ZIRSwT2ign8DQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Telefunken-E88CC-01-w-Mullard-label-audiophono-grade-6922-CCA-6DJ8-Gold-Pins-\/174236717488"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"16.49"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"245.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"245.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P7DT20H33M21S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-03-31T18:38:00.000Z"],"endTime":["2020-04-10T18:38:00.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["153883438316"],
              "title":["Heathkit Capacitor Checker Model IT-28 Manual"],
