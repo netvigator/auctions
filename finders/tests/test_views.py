@@ -80,7 +80,7 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
         #
         #
         response = self.client.get(
-                reverse('finders:index', kwargs = {'select': 'P'} ) )
+                reverse('finders:index', kwargs = {'select': 'A'} ) )
         #
         self.assertEqual(response.status_code, 200)
         #
@@ -88,19 +88,11 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
         #
         #
         response = self.client.get(
-                reverse('finders:index', kwargs = {'select': 'Z'} ) )
+                reverse('finders:index', kwargs = {'select': 'D'} ) )
         #
         self.assertEqual(response.status_code, 200)
         #
         self.assertEqual( len( response.context['finders_list'] ), 0 )
-        #
-        #
-        response = self.client.get(
-                reverse('finders:index', kwargs = {'select': 'A'} ) )
-        #
-        self.assertEqual(response.status_code, 200)
-        #
-        self.assertGreater( len( response.context['finders_list'] ), 90 )
         #
         #
         #print('')
