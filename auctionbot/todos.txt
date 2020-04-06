@@ -462,3 +462,8 @@ def getNonBreakForSpace( s ):
 
 implement in Models cLookFor
 test with 12AT7 (Bugle Boy)
+
+
+2020-04-06
+need to edit keepers!
+tube 807 has some Altec amps that are not on the right model
