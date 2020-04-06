@@ -28,7 +28,6 @@ from models.models          import Model
 from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
                                      DROP_AFTER_THIS )
 
-from pyPks.Collect.Get      import LongerList
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
 
@@ -1543,19 +1542,9 @@ def findSearchHits(
             #
             # django discrepancy between 1.11 and 2.2 here
             # django 2.2 gets confused when an item is added to lItemFoundTemp
-            # try workaround here!
+            # deepcopy instead of copy solved the problem
             #
-            # for oTempItem in lItemFoundTemp:
-            #
-            iMoreBigger = len( lItemFoundTemp ) * 3
-            #
-            lItemFoundStepThru = LongerList( lItemFoundTemp, iMoreBigger )
-            #
-            for iThisOne in range( iMoreBigger ):
-                #
-                if lItemFoundStepThru[ iThisOne ] is None: break
-                #
-                oTempItem = lItemFoundStepThru[ iThisOne ]
+            for oTempItem in lItemFoundTemp:
                 #
                 tModelBrand = ( oTempItem.iModel, oBrand )
                 #
@@ -1600,9 +1589,7 @@ def findSearchHits(
                     oAnotherTempItem.iStarsBrand = 0
                     oAnotherTempItem.iHitStars   = 0
                     #
-                    # lItemFoundTemp.append( oAnotherTempItem )
-                    #
-                    lItemFoundStepThru.append( oAnotherTempItem )
+                    lItemFoundTemp.append( oAnotherTempItem )
                     #
                     continue
                     #
@@ -1678,8 +1665,6 @@ def findSearchHits(
                         #
                     #
                 #
-            #
-            lItemFoundTemp = lItemFoundStepThru.getShrunk()
             #
             bSaveBrand = False
             #
