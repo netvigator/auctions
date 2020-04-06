@@ -1,7 +1,7 @@
 # Pro-tip: Try not to put anything here. Avoid dependencies in
-#	production that aren't in development.
+# production that aren't in development.
+# pip install -r requirements/production.txt
 -r base.txt
-
 
 
 # WSGI Handler
