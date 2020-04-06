@@ -1,6 +1,6 @@
 import logging
 
-from copy                   import copy
+from copy                   import deepcopy
 from pprint                 import pprint, pformat
 
 from collections            import OrderedDict
@@ -1594,7 +1594,7 @@ def findSearchHits(
                                 ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
                         #
                     #
-                    oAnotherTempItem = copy( oTempItem )
+                    oAnotherTempItem = deepcopy( oTempItem )
                     #
                     oAnotherTempItem.iBrand      = None
                     oAnotherTempItem.iStarsBrand = 0
