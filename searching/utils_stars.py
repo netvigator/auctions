@@ -1545,7 +1545,17 @@ def findSearchHits(
             # django 2.2 gets confused when an item is added to lItemFoundTemp
             # try workaround here!
             #
-            for oTempItem in lItemFoundTemp:
+            # for oTempItem in lItemFoundTemp:
+            #
+            iMoreBigger = len( lItemFoundTemp ) * 3
+            #
+            lItemFoundStepThru = LongerList( lItemFoundTemp, iMoreBigger )
+            #
+            for iThisOne in range( iMoreBigger ):
+                #
+                if lItemFoundStepThru[ iThisOne ] is None: break
+                #
+                oTempItem = lItemFoundStepThru[ iThisOne ]
                 #
                 tModelBrand = ( oTempItem.iModel, oBrand )
                 #
@@ -1590,7 +1600,9 @@ def findSearchHits(
                     oAnotherTempItem.iStarsBrand = 0
                     oAnotherTempItem.iHitStars   = 0
                     #
-                    lItemFoundTemp.append( oAnotherTempItem )
+                    # lItemFoundTemp.append( oAnotherTempItem )
+                    #
+                    lItemFoundStepThru.append( oAnotherTempItem )
                     #
                     continue
                     #
@@ -1666,6 +1678,8 @@ def findSearchHits(
                         #
                     #
                 #
+            #
+            lItemFoundTemp = lItemFoundStepThru.getShrunk()
             #
             bSaveBrand = False
             #
