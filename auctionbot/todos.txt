@@ -467,3 +467,6 @@ test with 12AT7 (Bugle Boy)
 2020-04-06
 need to edit keepers!
 tube 807 has some Altec amps that are not on the right model
+
+2020-04-09
+editing finder seems not to update userFinder row
