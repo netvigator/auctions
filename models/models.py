@@ -20,13 +20,13 @@ from categories.models  import Category
 User = get_user_model()
 
 
-
-
 _sExplainMore = (
         '%%s<br/>Bot expands hyphens, spaces and number/letter boundaries,<br/>'
-        '"208A" will %s 208A, 208 A and 208-A<br/>'
-        '"208 A" will %s 208A, 208 A and 208-A<br/>'
-        '"208-A" will %s 208A, 208 A and 208-A' )
+        '<table>'
+        '<tr><td>"208A" </td><td>will %s</td><td>208A, 208 A &amp; 208-A</td></tr>'
+        '<tr><td>"208 A"</td><td>will %s</td><td>208A, 208 A &amp; 208-A</td></tr>'
+        '<tr><td>"208-A"</td><td>will %s</td><td>208A, 208 A &amp; 208-A</td></tr>'
+        '</table>' )
 
 _sExplainMoreFinding = _sExplainMore % ( 'find', 'find', 'find' )
 
