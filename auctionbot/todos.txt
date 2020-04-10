@@ -470,3 +470,8 @@ tube 807 has some Altec amps that are not on the right model
 
 2020-04-09
 editing finder seems not to update userFinder row
+
+
+2020-04-11
+added comment as reminder:
+Buttons are working (remove this text when troubleshooting finished)
