@@ -339,7 +339,8 @@ class GetItemsForSomething( object ):
 class GetUserSelectionsOnPost( object ):
     #
     '''
-    this class is a mixin for core view DetailViewGotModelAlsoPost
+    this class is a mixin for finders index view,
+    also for view DetailViewGotModelAlsoPost
     which manages keepers & finders under models, brands & categories
     so YES it makes sense for this to be in core mixins
     alternative would be complicated
@@ -355,7 +356,8 @@ class GetUserSelectionsOnPost( object ):
         #
         tTrash = tuple( request.POST.getlist('bTrashThis') )
         #
-        # print( tTrash )
+        print( '"selectall" in request.POST:', "selectall" in request.POST )
+        print( '"search"    in request.POST:', "search" in request.POST )
         #
         if "selectall" in request.POST: # from button name in HTML file
             #
