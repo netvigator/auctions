@@ -357,7 +357,9 @@ class GetUserSelectionsOnPost( object ):
         tTrash = tuple( request.POST.getlist('bTrashThis') )
         #
         print( '"selectall" in request.POST:', "selectall" in request.POST )
-        print( '"search"    in request.POST:', "search" in request.POST )
+        print( '"search"    in request.POST:', "search"    in request.POST )
+        print( '"active"    in request.POST:', "active"    in request.POST )
+        print( '"deleted"   in request.POST:', "deleted"   in request.POST )
         #
         if "selectall" in request.POST: # from button name in HTML file
             #
