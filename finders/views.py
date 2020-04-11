@@ -153,7 +153,7 @@ class ItemFoundUpdateView(
     model           = UserItemFound
     parent          = ItemFound
     template_name   = 'finders/edit.html'
-    success_message = 'Item Found record update successfully saved!!!!'
+    success_message = 'Finder update successfully saved!!!!'
     form_class      = UserItemFoundForm
 
     tHitStarRelevantCols = (
@@ -167,6 +167,6 @@ class ItemFoundCreateView( CreateViewCanCancel ):
     model           = UserItemFound
     parent          = ItemFound
     template_name   = 'finders/add.html'
-    success_message = 'Item Found record successfully saved!!!!'
+    success_message = 'New finder successfully saved!!!!'
     form_class      = UserItemFoundForm
 
