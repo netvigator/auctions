@@ -2421,7 +2421,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
-
+        iThisOne = 313048572053
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find tubes not horn' )
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
