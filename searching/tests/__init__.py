@@ -760,6 +760,23 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["313048572053"],
+             "title":["11 Vintage 60's Western Electric 417A 5842 Bent D Getter Amplifier Tube Bulk Lot"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m5yXTRCH7Ro7T5UH92kjR1A\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/11-Vintage-60s-Western-Electric-417A-5842-Bent-D-Getter-Amplifier-Tube-Bulk-Lot-\/313048572053"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["981**"],"location":["Seattle,WA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"61.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"61.5"}],"bidCount":["13"],"sellingState":["Active"],"timeLeft":["P5DT1H56M54S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-08T00:26:24.000Z"],
+             "endTime":["2020-04-15T00:26:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["26"]}],"returnsAccepted":["true"],
+             "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/313048572053_1_0_1.jpg"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["283830240734"],
              "title":["Vtg 60s ALTEC FLAMENCO 848A Speaker Set Horn 416Z 806A N800F 16ohm Valencia VOTT"],
              "globalId":["EBAY-US"],
