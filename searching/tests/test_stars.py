@@ -2361,7 +2361,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find diaphrams  not driver' )
+                'should find diaphrams not driver' )
         #
         #
         #
