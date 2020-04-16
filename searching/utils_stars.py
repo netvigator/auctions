@@ -1436,9 +1436,9 @@ def findSearchHits(
                             tModelLocation[ 0] in oModelLocated.tNearFront and
                             tModelLocation[-1] in oModelLocated.tNearEnd ):
                         #
-                        dAllWordLocations[ sModel ] = (
+                        dAllWordLocations[ sModel ] = tuple( (
                                 i for i in tModelLocation
-                                if i not in oModelLocated.tNearEnd )
+                                if i not in oModelLocated.tNearEnd ) )
                         #
                     #
                 #
