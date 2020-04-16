@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 383441473993
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -134,8 +134,9 @@ sModels = \
  12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
- 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |
- 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |
+ 2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
+ 300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
@@ -338,13 +339,14 @@ sModels = \
  SP-210             |           |      8 | f            | Pilot             |       Preamp |             |
  Verislope 3        |           |      8 | f            | Leak              |       Preamp | Verislope\\rVarislope\\rVeriscope\\rVariscope | Mono
  240                |           |      9 | f            | Fairchild         |       Preamp |             |
+ 245                |           |      9 | f            | Fairchild         |       Preamp |             |
+ 620                |           |     10 | f            | Fairchild         |    Amplifier |             |
  QC II              |           |      8 | f            | Quad              |       Preamp |             |
  400-CX             |           |     10 | f            | Fisher            |       Preamp |             | 400-CX-2
  350-P              |           |      8 | f            | Regency           |       Preamp |             | AD1/350
  350                |           |      3 | f            | Ampex             |       Preamp |             | AD1/350
  Quad 33            |           |      2 | f            | Quad              |       Preamp |             |
  Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
- 245                |           |      9 | f            | Fairchild         |       Preamp |             |
  7                  |           |     10 | f            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
  2                  |           |     10 | f            | Marantz           |    Amplifier | Model Two\\rModel 2 |
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
