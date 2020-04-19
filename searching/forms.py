@@ -20,7 +20,8 @@ tSearchFields = (
     'cTitle',
     'cKeyWords',
     'iDummyCategory',
-    'cPriority', )
+    'cPriority',
+    'bGetBuyItNows', )
 
 
 def _getLayout():
@@ -29,7 +30,8 @@ def _getLayout():
             'cTitle',
             Field('cKeyWords', rows='2'),
             'iDummyCategory',
-            'cPriority' )
+            'cPriority',
+            'bGetBuyItNows' )
 
 
 class BaseSearchForm( BaseModelFormGotCrispy ):
