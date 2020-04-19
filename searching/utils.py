@@ -457,9 +457,10 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     tSearchStart = timezone.now()
     #
     oSearch = Search.objects.get( pk = iSearchID )
-    oSearch.tBegSearch = tSearchStart # working
-    oSearch.cLastResult= None
-    oSearch.tEndSearch = None
+    #
+    oSearch.tBegSearch  = tSearchStart # working
+    oSearch.cLastResult = None
+    oSearch.tEndSearch  = None
     #
     oSearch.save()                    # working
     #
@@ -469,10 +470,12 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     oSearchLog.save()
     #
-    sLastResult = 'unknown'
+    sLastResult         = 'unknown'
     #
-    sUserName   = oSearch.iUser.username
-    sMarket     = oSearch.iUser.iEbaySiteID.cMarket
+    sUserName           = oSearch.iUser.username
+    sMarket             = oSearch.iUser.iEbaySiteID.cMarket
+    #
+    bGetBuyItNows       = oSearch.bGetBuyItNows or False
     #
     sFilePattern= (
             RESULTS_FILE_NAME_PATTERN %
@@ -484,7 +487,8 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     #
     try:
         #
-        t = _doSearchStoreInFile( iSearchID = iSearchID )
+        t = _doSearchStoreInFile(
+                iSearchID = iSearchID, bGetBuyItNows = bGetBuyItNows )
         #
         # ### sandbox returns zero items ###
         # ### use bUseSandbox = False    ###
