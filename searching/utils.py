@@ -475,7 +475,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     sUserName           = oSearch.iUser.username
     sMarket             = oSearch.iUser.iEbaySiteID.cMarket
     #
-    bGetBuyItNows       = oSearch.bGetBuyItNows or False
+    bGetBuyItNows       = oSearch.bGetBuyItNows
     #
     sFilePattern= (
             RESULTS_FILE_NAME_PATTERN %
