@@ -36,6 +36,10 @@
         <TD style="vertical-align:top">{{ object.cPriority|default_if_none:"" }}</TD>
     </TR>
     <TR>
+        <TD>{% field_name model 'bGetBuyItNows' %}</TD>
+        <TD style="vertical-align:top">{{ object.bGetBuyItNows }}</TD>
+    </TR>
+    <TR>
         <TD>{% field_name model 'tBegSearch' %}</TD>
         <TD style="vertical-align:top">{{object.tBegSearch|date:"d M Y  P"}}</TD>
     </TR>
