@@ -125,7 +125,8 @@ def getPageNumbOffFileName( sFileName ):
 
 
 
-def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
+def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
+                    bUseSandbox = False ):
     #
     '''sends search request to the ebay API, stores the response'''
     #
@@ -160,10 +161,21 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     #
     sEbayCategory       = ''
     #
+    if bGetBuyItNows:
+        #
+        tListingTypes   = ( 'Auction', 'AuctionWithBIN', 'FixedPrice' )
+        sSaySearch      = '(including BuyItNows) '
+        #
+    else:
+        #
+        tListingTypes   = ( 'Auction', 'AuctionWithBIN' ),
+        sSaySearch      = ''
+        #
+    #
     if oSearch.iEbayCategory:
         sEbayCategory   = str( oSearch.iEbayCategory.iCategoryID )
     #
-    tSearch = ( oSearch.cTitle, str( oSearch.id ) )
+    tSearch = ( oSearch.cTitle, str( oSearch.id ), sSaySearch )
     #
     # getJsonFindingResponse
     # pass in the response
@@ -184,20 +196,20 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
     if sKeyWords and sEbayCategory:
         #
         logger.info(
-            'executing "%s" search (ID %s) for keywords in category ...' %
+            'executing "%s" search (ID %s) for keywords in category %s...' %
             tSearch )
         #
     elif sKeyWords:
         #
         logger.info(
             'executing "%s" search (ID %s) for keywords '
-            '(in all categories) ...' % tSearch )
+            '(in all categories) %s...' % tSearch )
         #
     elif sEbayCategory:
         #
         logger.info(
             'executing "%s" search (ID %s) in category '
-            '(without key words) ...' % tSearch )
+            '(without key words) %s...' % tSearch )
         #
     #
     iThisPage  = 0
@@ -217,12 +229,13 @@ def _doSearchStoreInFile( iSearchID = None, bUseSandbox = False ):
             #
             try:
                 #
-                sResponse   = findItems(
-                                sKeyWords   = sKeyWords,
-                                sCategoryID = sEbayCategory,
-                                sMarketID   = sMarket,
-                                iPage       = iThisPage, # will ignore if < 1
-                                bUseSandbox = bUseSandbox )
+                sResponse = findItems(
+                                sKeyWords       = sKeyWords,
+                                sCategoryID     = sEbayCategory,
+                                tListingTypes   = tListingTypes,
+                                sMarketID       = sMarket,
+                                iPage           = iThisPage, # will ignore if < 1
+                                bUseSandbox     = bUseSandbox )
                 #
             except ConnectionResetError as e:
                 sResponse = 'ConnectionResetError: %s'  % e
