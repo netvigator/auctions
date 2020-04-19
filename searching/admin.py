@@ -14,6 +14,7 @@ class SearchAdmin(admin.ModelAdmin):
         'iEbayCategory',
         'cPriority',
         'cKeyWords',
+        'bGetBuyItNows',
         'tBegSearch',
         'tEndSearch',
         'cLastResult',)
