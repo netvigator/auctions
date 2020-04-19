@@ -212,10 +212,10 @@ select count(*) from itemsfound
         ( select distinct "iItemNumb_id" from useritemsfound
             where "tRetrieved" is not null and "tRetrieveFinal" is null );
 
-would delete how many items older than 100 days?
+would delete how many items older than 90 days?
 
 select count(*) from itemsfound
-    where "tTimeEnd" <= current_timestamp - interval '100 days' ;
+    where "tTimeEnd" < current_timestamp - interval '90 days' ;
 
 
 
