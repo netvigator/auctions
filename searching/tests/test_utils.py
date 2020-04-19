@@ -94,7 +94,7 @@ def updateHitLogFile( oUserItems, sPathHere ):
     #
     # discard rows that are too old
     #
-    sDateTimeAgo = getIsoDateTimeNowPlus( -100 )
+    sDateTimeAgo = getIsoDateTimeNowPlus( -90 )
     #
     lItemHits = [ d for d in lItemHits if d['tTimeEnd' ] > sDateTimeAgo ]
     #
