@@ -178,8 +178,8 @@ def doFindSearhHitsTasks(
 doSearchingPutResultsInFilesTasks() does NOT update database, only writes files
 watch file directory SEARCH_FILES_FOLDER and sort by date, most recent on top
 
-select id, "cTitle", "tBegSearch", "tEndSearch", "cLastResult", "iUser_id" from searching ;
-select id, "cTitle", "tBegSearch", "tEndSearch", "cLastResult" from searching where "iUser_id" = 1 ;
+select id, "cTitle", date_trunc('second',"tBegSearch"), date_trunc('second',"tEndSearch"), "iUser_id" from searching ;
+select id, "cTitle", date_trunc('second',"tBegSearch"), date_trunc('second',"tEndSearch"), "cLastResult" from searching where "iUser_id" = 1 ;
 
 doPutSearchResultsInFindersTasks()
 select count(*) from useritemsfound where "tLook4Hits" is null ;
