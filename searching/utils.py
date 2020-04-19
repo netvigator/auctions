@@ -334,7 +334,7 @@ def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
     else:
         #
         logger.info(
-            'completed "%s" search (ID %s) without error' % tSearch )
+            'completed "%s" search (ID %s) %swithout error' % tSearch )
         #
     #
     if settings.TESTING:
