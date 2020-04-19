@@ -47,7 +47,8 @@ class Search(models.Model):
                                 max_length = 2, null = True,
                                 choices = (),
         help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
-    bGetBuyItNows   = models.NullBooleanField( 'get BuyItNow auctions?',
+    bGetBuyItNows   = models.NullBooleanField(
+                    "get 'Buy It Nows' (non auctions)?",
         help_text = 'You may get an avalanche of useless junk auctions'
                     'if you turn this on -- be careful!',
                                 blank = True, null = True,
