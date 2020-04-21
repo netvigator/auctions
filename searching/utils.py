@@ -193,24 +193,29 @@ def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
         #
         logging.disable(logging.CRITICAL)
         #
+    #
+    sSayInfo = 'not defined!'
+    #
     if sKeyWords and sEbayCategory:
         #
-        logger.info(
-            'executing "%s" search (ID %s) for keywords in category %s...' %
+        sSayInfo = (
+            'doing "%s" search (ID %s) for keywords in category %s...' %
             tSearch )
         #
     elif sKeyWords:
         #
-        logger.info(
-            'executing "%s" search (ID %s) for keywords '
+        sSayInfo = (
+            'doing "%s" search (ID %s) for keywords '
             '(in all categories) %s...' % tSearch )
         #
     elif sEbayCategory:
         #
-        logger.info(
-            'executing "%s" search (ID %s) in category '
+        sSayInfo = (
+            'doing "%s" search (ID %s) in category '
             '(without key words) %s...' % tSearch )
         #
+    #
+    logger.info( sSayInfo )
     #
     iThisPage  = 0
     iWantPages = 1
@@ -235,7 +240,8 @@ def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
                                 tListingTypes   = tListingTypes,
                                 sMarketID       = sMarket,
                                 iPage           = iThisPage, # will ignore if < 1
-                                bUseSandbox     = bUseSandbox )
+                                bUseSandbox     = bUseSandbox,
+                                sSayInfo        = sSayInfo )
                 #
             except ConnectionResetError as e:
                 sResponse = 'ConnectionResetError: %s'  % e
