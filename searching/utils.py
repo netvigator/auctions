@@ -1,52 +1,53 @@
 import logging
 
-from builtins           import ConnectionResetError
-from string             import ascii_letters, digits
-from os.path            import join
-from urllib3.exceptions import ConnectTimeoutError, ReadTimeoutError
-from time               import sleep
+from builtins               import ConnectionResetError
+from string                 import ascii_letters, digits
+from os.path                import join
+from urllib3.exceptions     import ConnectTimeoutError, ReadTimeoutError
+from time                   import sleep
 
-from requests.exceptions import ConnectTimeout, ReadTimeout, ConnectionError
+from requests.exceptions    import ConnectTimeout, ReadTimeout, ConnectionError
 
-from django.conf        import settings
+from django.conf            import settings
 
-from django.db          import DataError, IntegrityError
-from django.db.models   import Max
-from django.utils       import timezone
+from django.db              import DataError, IntegrityError
+from django.db.models       import Max
+from django.utils           import timezone
 
-from core.dj_import     import ObjectDoesNotExist, get_user_model
+from core.dj_import         import ObjectDoesNotExist, get_user_model
 
-from core.utils_ebay    import getValueOffItemDict
-from core.ebay_api_calls import findItems
+from core.utils_ebay        import getValueOffItemDict
+from core.ebay_api_calls    import findItems
 
-from ebayinfo           import dMarketsRelated
-from ebayinfo.models    import Market, CategoryHierarchy
-from ebayinfo.utils     import ( dMarket2SiteID, getEbayCategoryHierarchies,
-                                 setShippingTypeLocalPickupOptional )
+from ebayinfo               import dMarketsRelated
+from ebayinfo.models        import Market, CategoryHierarchy
+from ebayinfo.utils         import ( dMarket2SiteID,
+                                     getEbayCategoryHierarchies,
+                                     setShippingTypeLocalPickupOptional )
 
-# in __init__.py
-from finders            import dItemFoundFields, dUserItemFoundUploadFields
-from finders.forms      import ItemFoundForm, UserItemFoundUploadForm
-from finders.models     import ItemFound, UserItemFound
+from finders                import dItemFoundFields, dUserItemFoundUploadFields
+from finders.forms          import ItemFoundForm, UserItemFoundUploadForm
+from finders.models         import ItemFound, UserItemFound
 
-from keepers.utils      import ITEM_PICS_ROOT, getItemPicsSubDir
+from keepers.utils          import ITEM_PICS_ROOT, getItemPicsSubDir
 
-from .models            import SearchLog, Search
-from .utilsearch        import ( ItemAlreadyInTable, getSearchResult,
-                                 getSuccessOrNot, storeItemInfo,
-                                 getPagination, SearchGotZeroResults,
-                                 getSearchResultGenerator )
+from .models                import SearchLog, Search
+from .utilsearch            import ( ItemAlreadyInTable, getSearchResult,
+                                     getSuccessOrNot, storeItemInfo,
+                                     getPagination, SearchGotZeroResults,
+                                     getSearchResultGenerator )
 
-from searching          import ( RESULTS_FILE_NAME_PATTERN,
-                                 SEARCH_FILES_FOLDER )
+from searching              import ( RESULTS_FILE_NAME_PATTERN,
+                                     SEARCH_FILES_FOLDER )
 
-from pyPks.Dir.Get       import getMakeDir
-from pyPks.File.Del      import DeleteIfExists
-from pyPks.File.Get      import getFilesMatchingPattern
-from pyPks.File.Write    import QuietDump
-from pyPks.Numb.Get      import getHowManyDigitsNeeded
-from pyPks.String.Split  import getWhiteCleaned
-from pyPks.Utils.Both2n3 import getStrGotBytes
+from pyPks.Collect.Output   import getTextSequence
+from pyPks.Dir.Get          import getMakeDir
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Get         import getFilesMatchingPattern
+from pyPks.File.Write       import QuietDump
+from pyPks.Numb.Get         import getHowManyDigitsNeeded
+from pyPks.String.Split     import getWhiteCleaned
+from pyPks.Utils.Both2n3    import getStrGotBytes
 
 logger = logging.getLogger(__name__)
 
@@ -125,8 +126,11 @@ def getPageNumbOffFileName( sFileName ):
 
 
 
-def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
-                    bUseSandbox = False ):
+def _doSearchStoreInFile(
+                    iSearchID       = None,
+                    bGetBuyItNows   = False,
+                    bInventory      = False,
+                    bUseSandbox     = False ):
     #
     '''sends search request to the ebay API, stores the response'''
     #
@@ -161,21 +165,33 @@ def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
     #
     sEbayCategory       = ''
     #
+    lListingTypes       = [ 'Auction', 'AuctionWithBIN' ]
+    sSayGetMore         = ''
+    lSayGetMore         = []
+    #
     if bGetBuyItNows:
         #
-        tListingTypes   = ( 'Auction', 'AuctionWithBIN', 'FixedPrice' )
-        sSaySearch      = '(including BuyItNows) '
+        lListingTypes.append( 'FixedPrice' )
+        lSayGetMore     = [ 'BuyItNows' ]
         #
-    else:
+    if bInventory:
         #
-        tListingTypes   = ( 'Auction', 'AuctionWithBIN' ),
-        sSaySearch      = ''
+        lListingTypes.append( 'StoreInventory' )
+        lSayGetMore.append( 'Store Inventory' )
+        #
+    #
+    tListingTypes       = tuple( lListingTypes )
+    #
+    if lSayGetMore:
+        #
+        sSayGetMore     = ( '(also getting %s) ' %
+                            getTextSequence( lSayGetMore, sAnd = '&' ) )
         #
     #
     if oSearch.iEbayCategory:
         sEbayCategory   = str( oSearch.iEbayCategory.iCategoryID )
     #
-    tSearch = ( oSearch.cTitle, str( oSearch.id ), sSaySearch )
+    tSearch = ( oSearch.cTitle, str( oSearch.id ), sSayGetMore )
     #
     # getJsonFindingResponse
     # pass in the response
@@ -240,8 +256,7 @@ def _doSearchStoreInFile( iSearchID = None, bGetBuyItNows = False,
                                 tListingTypes   = tListingTypes,
                                 sMarketID       = sMarket,
                                 iPage           = iThisPage, # will ignore if < 1
-                                bUseSandbox     = bUseSandbox,
-                                sSayInfo        = sSayInfo )
+                                bUseSandbox     = bUseSandbox )
                 #
             except ConnectionResetError as e:
                 sResponse = 'ConnectionResetError: %s'  % e
@@ -481,8 +496,6 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     sUserName           = oSearch.iUser.username
     sMarket             = oSearch.iUser.iEbaySiteID.cMarket
     #
-    bGetBuyItNows       = oSearch.bGetBuyItNows
-    #
     sFilePattern= (
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
@@ -494,7 +507,9 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
     try:
         #
         t = _doSearchStoreInFile(
-                iSearchID = iSearchID, bGetBuyItNows = bGetBuyItNows )
+                iSearchID       = iSearchID,
+                bGetBuyItNows   = oSearch.bGetBuyItNows,
+                bInventory      = oSearch.bInventory )
         #
         # ### sandbox returns zero items ###
         # ### use bUseSandbox = False    ###
