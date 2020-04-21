@@ -288,6 +288,7 @@ def _getEbayFindingResponse(
             iPage           = 1,
             bUseSandbox     = False,
             uTimeOuts       = ( 4, 10 ), # ( connect, read )
+            sSayInfo        = '',
             **headers ):
     #
     if sKeyWords and sCategoryID:
@@ -329,7 +330,14 @@ def _getEbayFindingResponse(
         oSubElement.text= str( iPage )
         #
     #
+    if sSayInfo:
+        print( sSayInfo, 'page', iPage )
+        print( 'tListingTypes (before):', tListingTypes )
+    #
     tListingTypes = _getListingTypeTuple( *tListingTypes )
+    #
+    if sSayInfo:
+        print( 'tListingTypes (after):', tListingTypes )
     #
     if tListingTypes:
         #
@@ -414,7 +422,8 @@ def findItems(
             sMarketID       = 'EBAY-US',
             iPage           = 1,
             tListingTypes   = ('Auction', 'AuctionWithBIN'),
-            bUseSandbox     = False ):
+            bUseSandbox     = False,
+            sSayInfo        = '' ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
@@ -433,6 +442,7 @@ def findItems(
                     bUseSandbox     = bUseSandbox,
                     tListingTypes   = tListingTypes,
                     uTimeOuts       = tTimeOuts,
+                    sSayInfo        = sSayInfo,
                     **dHeader ) )
 
 #sResults = findItems( sKeyWords = 'Simpson 360', '58277' )
