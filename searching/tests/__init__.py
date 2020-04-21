@@ -762,6 +762,23 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["352961821505"],
+             "title":["1 altec 287F amplifier meter panel "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m5F3UlEGH3-Gsx01G33X0qA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/1-altec-287F-amplifier-meter-panel-\/352961821505"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"199.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"199.99"}],
+             "sellingState":["Active"],"timeLeft":["P16DT3H35M56S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-06T03:13:47.000Z"],
+             "endTime":["2020-05-06T03:13:47.000Z"],
+             "listingType":["StoreInventory"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["313048572053"],
              "title":["11 Vintage 60's Western Electric 417A 5842 Bent D Getter Amplifier Tube Bulk Lot"],
              "globalId":["EBAY-US"],
