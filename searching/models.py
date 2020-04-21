@@ -16,40 +16,50 @@ from pyPks.Time.Output  import getIsoDateTimeFromDateTime
 
 class Search(models.Model):
     cTitle          = models.CharField( 'short description',
+        help_text = 'This is just a short description -- ebay will not search for this<br>'
+                    'you must have a) key word(s) and/or b) an ebay category',
                                          max_length = 38, null = True )
     cKeyWords       = models.TextField(
-        'search for key words (maximum length 350 characters)',
+        'key words -- search for these (maximum length 350 characters)',
         max_length = 350, null = True, blank = True,
-        help_text = 'What you type here will go into the ebay serch box '
-                    '-- mulitple terms will result in an AND search.  '
-                    'TIPS: to exclude words, put a - in front '
-                    '(without any space), '
+        help_text = 'What you type here will go into the ebay search box '
+                    '-- mulitple terms will result in an AND search '
+                    '(ebay will look for all terms).<br>'
                     'search for red OR green handbags as follows: '
-                    'handbags (red,green)  search for handbags but '
-                    'exclude red and green as follows: '
-                    'handbags -(red,green)  350 characters MAX' )
+                    'handbags (red,green)<br>'
+                    'TIPS: to exclude words, put a - in front '
+                    '(without any space),<br>'
+                    'search handbags but exclude red as follows: '
+                    'handbags -red<br>'
+                    'search for handbags but '
+                    'exclude red and green as follows: handbags -red -green' )
     # max length for a single key word is 98
     #models.ForeignKey( EbayCategory, models.PositiveIntegerField(
     iEbayCategory   = models.ForeignKey( EbayCategory,
                         on_delete=models.CASCADE,
                         verbose_name = 'ebay category',
                         null = True, blank = True,
-        help_text = 'Limit search to items listed in this category '
-                    '-- (key words OR ebay category required!) '
-                    '(Both are OK)' )
+        help_text = 'Limit search to items listed in this category ' )
     # ### after updating ebay categories, check whether        ###
     # ### searches that were connected are still connected !!! ###
     iDummyCategory  = models.PositiveIntegerField( 'ebay category number',
                                 null = True, blank = True,
-        help_text = 'Limit search to items listed in this category '
-                    '-- (key words OR ebay category required!)' )
+        help_text = 'Limit search to items listed in this category<br>'
+                    'copy the category number from ebay and paste here!!! (sorry)' )
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
                                 choices = (),
         help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
     bGetBuyItNows   = models.NullBooleanField(
-                    "get 'Buy It Nows' (fixed price non auctions)?",
-        help_text = 'You may get an avalanche of useless junk auctions'
+                    "also get 'Buy It Nows' (fixed price non auctions)?",
+        help_text = 'You may get an avalanche of useless junk '
+                    'if you turn this on -- be careful!',
+                                blank = True, null = True,
+                                default = False )
+    bInventory    = models.NullBooleanField(
+                    "also get 'Store Inventory' "
+                    "(fixed price items in ebay stores)?",
+        help_text = 'You may get an avalanche of useless junk '
                     'if you turn this on -- be careful!',
                                 blank = True, null = True,
                                 default = False )
