@@ -2431,6 +2431,17 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 352961821505
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'got warning "model has category id 172 [Component]'
+                'in dCategoryFamily" for item' )
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
