@@ -14,7 +14,7 @@
     <!-- End Action buttons -->
     <hr>
 
-    <table>
+    <table><!-- putting style="vertical-align:top" here d/n work! -->
     <TR>
         <TD width = 300>{% field_name model 'cTitle' %}</TD>
         <TD>{{object.cTitle}}</TD>
@@ -37,7 +37,11 @@
     </TR>
     <TR>
         <TD>{% field_name model 'bGetBuyItNows' %}</TD>
-        <TD style="vertical-align:top">{{ object.bGetBuyItNows }}</TD>
+        <TD style="vertical-align:top">{{ object.bGetBuyItNows|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR>
+        <TD>{% field_name model 'bInventory' %}</TD>
+        <TD style="vertical-align:top">{{ object.bInventory|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
         <TD>{% field_name model 'tBegSearch' %}</TD>
