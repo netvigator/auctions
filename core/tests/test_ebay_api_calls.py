@@ -95,6 +95,16 @@ class TestListingTypeTupleTests( TestCasePlus ):
         self.assertEqual( tGotTypes , tWantTypes )
 
 
+    def test_getListingTypeTupleCustom(self):
+        #
+        tGotTypes = _getListingTypeTuple(
+                'Auction', 'AuctionWithBIN', 'FixedPrice' )
+        #
+        tWantTypes = ( 'Auction', 'AuctionWithBIN', 'FixedPrice' )
+        #
+        self.assertEqual( tGotTypes , tWantTypes )
+
+
 '''
 use these for time out tests only because downloaded file is HUGE:
     getMarketCategoriesGotSiteID()
