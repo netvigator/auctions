@@ -360,6 +360,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory   = Category(
                     cTitle      = 'Component',
                     iStars      = 6,
+                    bComponent  = True,
                     iUser       = oUser )
             #
             oCategory.save()
