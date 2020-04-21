@@ -21,7 +21,8 @@ tSearchFields = (
     'cKeyWords',
     'iDummyCategory',
     'cPriority',
-    'bGetBuyItNows', )
+    'bGetBuyItNows',
+    'bInventory', )
 
 
 def _getLayout():
@@ -31,7 +32,8 @@ def _getLayout():
             Field('cKeyWords', rows='2'),
             'iDummyCategory',
             'cPriority',
-            'bGetBuyItNows' )
+            'bGetBuyItNows',
+            'bInventory' )
 
 
 class BaseSearchForm( BaseModelFormGotCrispy ):
