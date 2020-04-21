@@ -330,13 +330,13 @@ def _getEbayFindingResponse(
         oSubElement.text= str( iPage )
         #
     #
-    if sSayInfo:
+    if False and iPage == 1 and sSayInfo:
         print( sSayInfo, 'page', iPage )
         print( 'tListingTypes (before):', tListingTypes )
     #
     tListingTypes = _getListingTypeTuple( *tListingTypes )
     #
-    if sSayInfo:
+    if False and iPage == 1 and sSayInfo:
         print( 'tListingTypes (after):', tListingTypes )
     #
     if tListingTypes:
@@ -346,14 +346,14 @@ def _getEbayFindingResponse(
         oSubElement         = etree.SubElement( oElement, "name" )
         oSubElement.text    = 'ListingType'
         #
-        i = 0
+        # i = 0
         #
         for s in tListingTypes:
             #
             oSubElement     = etree.SubElement( oElement, "value" )
             oSubElement.text= s
             #
-            i += 1
+            # i += 1
             #
         #
     #
