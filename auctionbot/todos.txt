@@ -481,3 +481,6 @@ Category should be able to link to ebay category
 Category Manuals should be able to link to ebay category for Vintage manuals
 so if an item is in ebay category for Vintage manuals,
 Category should be Manuals not whatever
+
+read:
+https://django-crispy-forms.readthedocs.io/en/latest/layouts.html
