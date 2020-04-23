@@ -475,3 +475,9 @@ editing finder seems not to update userFinder row
 2020-04-11
 added comment as reminder:
 Buttons are working (remove this text when troubleshooting finished)
+
+2020-04-24
+Category should be able to link to ebay category
+Category Manuals should be able to link to ebay category for Vintage manuals
+so if an item is in ebay category for Vintage manuals,
+Category should be Manuals not whatever
