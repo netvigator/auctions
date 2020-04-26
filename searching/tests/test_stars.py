@@ -2021,7 +2021,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '12AX7' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Mullard IEC/10M' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard 10M' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
@@ -2356,6 +2356,32 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 254574295997
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                's/n find Mullard just IEC Mullard' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard IEC' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard IEC' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard IEC' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
         #
         iThisOne = 164011103887
         #
@@ -2437,6 +2463,29 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'got warning "model has category id 172 [Component]'
                 'in dCategoryFamily" for item' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174253058987
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 7DJ8 & PCC88 not 6DJ8 or ECC88' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 303545301410
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'listed under vintage manuals, so should find manual not amp' )
+        #
+        #
         #
         #
         #
