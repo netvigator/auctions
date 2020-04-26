@@ -32,7 +32,7 @@ from pyPks.Collect.Get      import getListFromNestedLists
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
 
-from pyPks.Dict.Get         import getReverseDict
+from pyPks.Dict.Get         import getReverseDictCarefully
 
 from pyPks.File.Get         import getListFromFileLines
 from pyPks.File.Test        import isFileThere
@@ -1426,8 +1426,6 @@ def findSearchHits(
                 #
             #
         #
-        bExcludeStragglers = False
-        #
         if len( dModelIDinTitle ) > 1:
             #
             oModelLocated = _getModelLocationsBegAndEnd(
@@ -1435,69 +1433,19 @@ def findSearchHits(
             #
             # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
             #
-            if oModelLocated is not None:
-                #
-                tStragglers         = ()
-                #
-                o = oModelLocated
-                #
-                dAllWordLocations   = o.dAllWordLocations
-                #
-                for sModel in dAllWordLocations.keys():
-                    #
-                    tModelLocation  = dAllWordLocations[ sModel ]
-                    #
-                    # if a model is both near the beginning and end, the one on the end does not count
-                    #
-                    if (    len( tModelLocation ) > 1 and
-                            tModelLocation[ 0] in o.tNearFront and
-                            tModelLocation[-1] in o.tNearEnd ):
-                        #
-                        dAllWordLocations[ sModel ] = tuple( (
-                                i for i in tModelLocation
-                                if i not in o.tNearEnd ) )
-                        #
-                    elif (  tModelLocation[0] in o.tNearFront and
-                            o.iGotCategories == 1 ):
-                        #
-                        bExcludeStragglers = True
-                        #
-                    #
-                #
-                bExcludeStragglers = (
-                        o.tNearFront and
-                        o.iGotCategories == 1 and
-                        not ( o.tNearEnd or o.tInParens ) )
-                #
-                if bExcludeStragglers:
-                    #
-                    tiModelsInTitle = tuple(
-                            [ dAllWordLocations[ o.sInTitle ]
-                              for o in dModelIDinTitle.values() ] )
-                    #
-                    tStragglers = tuple( (
-                                i for i in tiModelsInTitle
-                                if i not in o.tNearFront ) )
-                    #
-                #
-                o.tStragglers = tStragglers
-                #
-            #
         #
         if bRecordSteps:
             maybePrint()
             maybePrint( 'dModelIDinTitle:' )
             maybePrettyP( dModelIDinTitle )
-            maybePrint( 'bExcludeStragglers:', bExcludeStragglers )
             if oModelLocated is None:
                 maybePrint( 'oModelLocated is None' )
             else:
                 o = oModelLocated
                 maybePrint(
                         'oModelLocated tNearFront, tOnEnd, tNearEnd,'
-                        'tInParens, tStragglers:',
-                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens,
-                    o.tStragglers )
+                        'tInParens:',
+                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
                 maybePrint( 'dAllWordLocations:' )
                 maybePrettyP( o.dAllWordLocations )
         #
@@ -1920,10 +1868,12 @@ def findSearchHits(
                 if bRecordSteps:
                     #
                     maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
-                    maybePrint( 'oModelLocated.tInParens:', oModelLocated.tInParens )
+                    maybePrint( 'oModelLocated.tInParens:',
+                                 oModelLocated.tInParens )
                     maybePrint( 'lItemFoundTemp:' )
                     for o in lItemFoundTemp:
-                        maybePrint( '  %s - %s - %s' % ( o.iModel, o.iBrand, o.iCategory ) )
+                        maybePrint( '  %s - %s - %s' %
+                                    ( o.iModel, o.iBrand, o.iCategory ) )
                     #
                 if setCategoriesBeg or oModelLocated.tInParens:
                     #
@@ -1934,7 +1884,7 @@ def findSearchHits(
                     tTests = (
                         ( o.tOnEnd,   'on end of',       setCategoriesOnEnd ),
                         ( o.tInParens,'within parens in',None ),
-                        ( o.tNearEnd, 'near end of',     setCategoriesNearEnd))
+                        ( o.tNearEnd, 'near end of',     setCategoriesNearEnd) )
                     #
                     for tLocations, sSay, setTest in tTests:
                         #
@@ -1954,11 +1904,21 @@ def findSearchHits(
                             maybePrint( 'tLocations:', tLocations )
                             #
                         #
+                        dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
+                        #
                         for iLocation in tLocations:
                             #
                             if iLocation in dLocationsModelIDs:
                                 #
                                 for iModelID in dLocationsModelIDs[ iLocation ]:
+                                    #
+                                    lLocations = dModelIDsLocations[ iModelID ]
+                                    #
+                                    if (    len( lLocations ) > 1 and
+                                            min( lLocations ) in o.tNearFront ):
+                                        #
+                                        continue
+                                        #
                                     #
                                     lExcludeThese.append(
                                             dModelID_oTempItem[ iModelID ] )
@@ -1993,7 +1953,7 @@ def findSearchHits(
                 if bRecordSteps:
                     #
                     maybePrint( 'len( lItemFoundTemp ) after:', len( lItemFoundTemp ) )
-
+            #
             if len( lItemFoundTemp ) > 1:
                 #
                 t = _getFoundModelBooster( lItemFoundTemp, bRecordSteps )
@@ -2126,7 +2086,9 @@ def findSearchHits(
                         #
                         if bRecordSteps:
                             #
-                            lCandidates.append( 'discounting Hit Stars for %s' % oItemTemp.iModel )
+                            lCandidates.append(
+                                    'discounting Hit Stars for %s' %
+                                     oItemTemp.iModel )
                             #
                         #
                     #
