@@ -28,6 +28,7 @@ from models.models          import Model
 from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
                                      DROP_AFTER_THIS )
 
+from pyPks.Collect.Get      import getListFromNestedLists
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
 
@@ -693,18 +694,24 @@ def _getCategoriesForPositions(
 
 
 
-def _getModelLocationsBegAndEnd( sAuctionTitle, tWordsOfInterest ):
+def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
+    #
+    tWordsOfInterest = tuple(
+            [ o.sInTitle for o in dModelIDinTitle.values() ] )
     #
     oLocated = getStrLocationsBegAndEnd( sAuctionTitle, tWordsOfInterest )
     #
     # tNearFront, tOnEnd, tNearEnd & tInParens
     #
+    iGotCategories = len( frozenset( [ o.iCategory for o in dModelIDinTitle.values() ] ) )
+    #
     if (    oLocated.tNearFront and
-            (   oLocated.tOnEnd   or
-                oLocated.tNearEnd or
-                oLocated.tInParens ) ):
+            (   oLocated.tOnEnd    or
+                oLocated.tNearEnd  or
+                oLocated.tInParens or
+                iGotCategories == 1 ) ):
         #
-        pass
+        oLocated.iGotCategories = iGotCategories
         #
     else:
         #
@@ -1308,7 +1315,9 @@ def findSearchHits(
                     #
                     if oModel.id not in dModelIDinTitle:
                         #
-                        dModelIDinTitle[ oModel.id ] = sInTitle
+                        dModelIDinTitle[ oModel.id ] = ValueContainer(
+                            sInTitle    = sInTitle,
+                            iCategory   = oCategory )
                         #
                     #
                 elif    ( oModel.iCategory == oTempItem.iCategory and
@@ -1343,7 +1352,9 @@ def findSearchHits(
                     #
                     if oModel.id not in dModelIDinTitle:
                         #
-                        dModelIDinTitle[ oModel.id ] = sInTitle
+                        dModelIDinTitle[ oModel.id ] = ValueContainer(
+                            sInTitle    = sInTitle,
+                            iCategory   = oModel.iCategory )
                         #
                     #
                     if bRecordSteps and oModel.cTitle == 'E88CC':
@@ -1415,32 +1426,61 @@ def findSearchHits(
                 #
             #
         #
+        bExcludeStragglers = False
+        #
         if len( dModelIDinTitle ) > 1:
             #
             oModelLocated = _getModelLocationsBegAndEnd(
-                    sAuctionTitleRelevantPart, dModelIDinTitle.values() )
+                    sAuctionTitleRelevantPart, dModelIDinTitle )
             #
             # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
             #
-            # if a model is both near the beginning and end, the one on the end does not count
-            #
             if oModelLocated is not None:
                 #
-                dAllWordLocations = oModelLocated.dAllWordLocations
+                tStragglers         = ()
+                #
+                o = oModelLocated
+                #
+                dAllWordLocations   = o.dAllWordLocations
                 #
                 for sModel in dAllWordLocations.keys():
                     #
-                    tModelLocation = dAllWordLocations[ sModel ]
+                    tModelLocation  = dAllWordLocations[ sModel ]
+                    #
+                    # if a model is both near the beginning and end, the one on the end does not count
                     #
                     if (    len( tModelLocation ) > 1 and
-                            tModelLocation[ 0] in oModelLocated.tNearFront and
-                            tModelLocation[-1] in oModelLocated.tNearEnd ):
+                            tModelLocation[ 0] in o.tNearFront and
+                            tModelLocation[-1] in o.tNearEnd ):
                         #
                         dAllWordLocations[ sModel ] = tuple( (
                                 i for i in tModelLocation
-                                if i not in oModelLocated.tNearEnd ) )
+                                if i not in o.tNearEnd ) )
+                        #
+                    elif (  tModelLocation[0] in o.tNearFront and
+                            o.iGotCategories == 1 ):
+                        #
+                        bExcludeStragglers = True
                         #
                     #
+                #
+                bExcludeStragglers = (
+                        o.tNearFront and
+                        o.iGotCategories == 1 and
+                        not ( o.tNearEnd or o.tInParens ) )
+                #
+                if bExcludeStragglers:
+                    #
+                    tiModelsInTitle = tuple(
+                            [ dAllWordLocations[ o.sInTitle ]
+                              for o in dModelIDinTitle.values() ] )
+                    #
+                    tStragglers = tuple( (
+                                i for i in tiModelsInTitle
+                                if i not in o.tNearFront ) )
+                    #
+                #
+                o.tStragglers = tStragglers
                 #
             #
         #
@@ -1448,12 +1488,16 @@ def findSearchHits(
             maybePrint()
             maybePrint( 'dModelIDinTitle:' )
             maybePrettyP( dModelIDinTitle )
+            maybePrint( 'bExcludeStragglers:', bExcludeStragglers )
             if oModelLocated is None:
                 maybePrint( 'oModelLocated is None' )
             else:
                 o = oModelLocated
-                maybePrint( 'oModelLocated tNearFront, tOnEnd, tNearEnd, tInParens:',
-                        o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
+                maybePrint(
+                        'oModelLocated tNearFront, tOnEnd, tNearEnd,'
+                        'tInParens, tStragglers:',
+                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens,
+                    o.tStragglers )
                 maybePrint( 'dAllWordLocations:' )
                 maybePrettyP( o.dAllWordLocations )
         #
@@ -1786,7 +1830,9 @@ def findSearchHits(
                 #
                 dLocationsModelIDs = {}
                 #
-                for iModelID, sInTitle in dModelIDinTitle.items():
+                for iModelID, o in dModelIDinTitle.items():
+                    #
+                    sInTitle = o.sInTitle
                     #
                     tLocation = dWordLocations.get( sInTitle )
                     #
