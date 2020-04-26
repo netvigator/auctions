@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 383441473993
+iRecordStepsForThis = None or 174253058987
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -80,8 +80,9 @@ sBrands = \
  McIntosh          |      6 |            |            |
  MFA               |      8 |            |            |
  Motorola          |      7 |            |            |
- Mullard           |      9 |            |            |
- Mullard IEC/10M   |     10 |            |            | Mullard IEC 10M\\rMullard 10M
+ Mullard           |      9 | IEC        |            |
+ Mullard 10M       |      9 |            |            | 10M
+ Mullard IEC       |      5 |            |            | IEC Mullard
  National          |      7 |            |            |
  PACO              |      2 |            |            |
  Philips           |      7 |            |            |
@@ -195,6 +196,7 @@ sModels = \
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
+ 287F               |           |      9 | f            | Altec-Lansing     |  Theater Amp |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
@@ -761,6 +763,57 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["303545301410"],
+             "title":["McIntosh C22 Tube Stereo Preamp Owner's Manual - ORIGINAL- near mint w\/extras!"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mFrlcZW5VWRCdJ0Oig21pqA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/McIntosh-C22-Tube-Stereo-Preamp-Owners-Manual-ORIGINAL-near-mint-w-extras-\/303545301410"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["900**"],"location":["Los Angeles,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"13.8"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"13.8"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT5H43M15S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],
+             "startTime":["2020-04-20T02:27:12.000Z"],
+             "endTime":["2020-04-27T02:27:12.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["2750"],"conditionDisplayName":["Like New"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["174253058987"],
+             "title":["British Made Mullard 7DJ8 PCC88 Tube Valve -6DJ8 ECC88 sub -Warm Old School hifi"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mhU31HbfWCOC_nPygU3mPMQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/British-Made-Mullard-7DJ8-PCC88-Tube-Valve-6DJ8-ECC88-sub-Warm-Old-School-hifi-\/174253058987"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"14.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT22H28M37S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-16T19:10:36.000Z"],
+             "endTime":["2020-04-26T19:10:36.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["254574295997"],
+             "title":["IEC Mullard 6922 \/ E88CC \/ 6DJ8 Gold Pin Tube"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/me997L6uSDbIYwZ5kDT-F9g\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/IEC-Mullard-6922-E88CC-6DJ8-Gold-Pin-Tube-\/254574295997"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["301**"],"location":["Kennesaw,GA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"60.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"60.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT5H19M13S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-20T02:01:07.000Z"],
+             "endTime":["2020-04-27T02:01:07.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["352961821505"],
              "title":["1 altec 287F amplifier meter panel "],
