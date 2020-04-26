@@ -551,7 +551,16 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
-            oBrand = Brand.objects.get( cTitle = 'Mullard IEC/10M', iUser = oUser )
+            oBrand = Brand.objects.get( cTitle = 'Mullard 10M', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Mullard IEC', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
