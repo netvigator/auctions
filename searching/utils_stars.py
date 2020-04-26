@@ -2599,3 +2599,91 @@ def findSearchHits(
         ItemFoundTemp.objects.all().delete()
         #
     #
+
+'''
+        bExcludeStragglers = False
+        #
+        if len( dModelIDinTitle ) > 1:
+            #
+            oModelLocated = _getModelLocationsBegAndEnd(
+                    sAuctionTitleRelevantPart, dModelIDinTitle )
+            #
+            # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
+            #
+            if oModelLocated is not None:
+                #
+                tStragglers         = ()
+                #
+                o = oModelLocated
+                #
+                dAllWordLocations   = o.dAllWordLocations
+                #
+                for sModel in dAllWordLocations.keys():
+                    #
+                    tModelLocation  = dAllWordLocations[ sModel ]
+                    #
+                    # if a model is both near the beginning and end, the one on the end does not count
+                    #
+                    if (    len( tModelLocation ) > 1 and
+                            tModelLocation[ 0] in o.tNearFront and
+                            tModelLocation[-1] in o.tNearEnd ):
+                        #
+                        dAllWordLocations[ sModel ] = tuple( (
+                                i for i in tModelLocation
+                                if i not in o.tNearEnd ) )
+                        #
+                    elif (  tModelLocation[0] in o.tNearFront and
+                            o.iGotCategories == 1 ):
+                        #
+                        bExcludeStragglers = True
+                        #
+                    #
+                #
+                bExcludeStragglers = (
+                        o.tNearFront and
+                        o.iGotCategories == 1 and
+                        not ( o.tNearEnd or o.tInParens ) )
+                #
+                if bExcludeStragglers: # another test
+                    #
+                    setAllModelStrings = frozenset(
+                            [ o.sInTitle for o in dModelIDinTitle.values() ] )
+                    #
+                    setAllWordStrings = frozenset( dAllWordLocations.keys() )
+                    #
+                    bExcludeStragglers = (
+                            setAllModelStrings.issubset( setAllWordStrings ) )
+                    #
+                #
+                if bExcludeStragglers:
+                    #
+                    liModelsInTitle = getListFromNestedLists(
+                            [ dAllWordLocations[ o.sInTitle ]
+                              for o in dModelIDinTitle.values()
+                              if o.sInTitle in dAllWordLocations ] )
+                    #
+                    tStragglers = tuple( (
+                                i for i in liModelsInTitle
+                                if i not in o.tNearFront ) )
+                    #
+                    if (    tStragglers and
+                            min( tStragglers ) <
+                            max( o.tNearFront ) + ( min( o.tNearFront ) / 2 ) ):
+                        #
+                        tStragglers = ()
+                        #
+                    #
+                #
+                o.tStragglers = tStragglers
+                #
+            #
+        #
+
+
+            maybePrint( 'bExcludeStragglers:', bExcludeStragglers )
+                maybePrint(
+                        'oModelLocated tNearFront, tOnEnd, tNearEnd,'
+                        'tInParens, tStragglers:',
+                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens,
+                    o.tStragglers )
+'''
