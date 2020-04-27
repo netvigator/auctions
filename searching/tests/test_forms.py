@@ -3,13 +3,15 @@ from django.urls        import reverse, resolve
 from core.dj_import     import HttpRequest
 from django.test.client import Client
 
-from core.tests.base    import ( BaseUserWebTestCase,
+from core.tests.base    import ( SetUpBrandsCategoriesModelsMixin,
                                  getSingleEbayCategoryMixin,
-                                 getUrlQueryStringOff )
+                                 getUrlQueryStringOff,
+                                 BaseUserWebTestCase )
 
 from ..forms            import CreateSearchForm, UpdateSearchForm
 from ..models           import Search
 
+from categories.models  import Category
 from finders.models     import ItemFound
 
 # from pprint import pprint
@@ -18,7 +20,10 @@ from finders.models     import ItemFound
 
 
 
-class TestFormValidation( getSingleEbayCategoryMixin, BaseUserWebTestCase ):
+class TestFormValidation(
+        getSingleEbayCategoryMixin,
+        SetUpBrandsCategoriesModelsMixin,
+        BaseUserWebTestCase ):
 
     ''' Search Form Tests '''
     # helpful:
@@ -104,6 +109,30 @@ class TestFormValidation( getSingleEbayCategoryMixin, BaseUserWebTestCase ):
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
+        # has an set My Category without an ebay category
+        #
+        oCategory = Category.objects.filter( cTitle = "Capacitor Checker" )[0]
+
+        dData = dict(
+                cTitle          = "My clever search 7",
+                cPriority       = "A3",
+                which           = 'Create',
+                iMyCategory     = oCategory,
+                iUser           = self.user1 )
+        form = CreateSearchForm( data = dData )
+        form.request = self.request
+        self.assertFalse( form.is_valid() )
+
+        dData = dict(
+                cTitle          = "My clever search 8",
+                iDummyCategory  = 10, # see core.tests
+                cPriority       = "A4",
+                which           = 'Create',
+                iMyCategory     = oCategory,
+                iUser           = self.user1 )
+        form = CreateSearchForm( data = dData )
+        form.request = self.request
+        self.assertTrue( form.is_valid() )
 
 
     def test_add_stuff_already_there(self):
