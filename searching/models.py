@@ -4,6 +4,8 @@ from core.utils         import getReverseWithUpdatedQuery
 
 from ebayinfo.models    import EbayCategory
 
+from categories.models  import Category
+
 from core.dj_import     import get_user_model
 User = get_user_model()
 
@@ -39,7 +41,7 @@ class Search(models.Model):
                         on_delete=models.CASCADE,
                         verbose_name = 'ebay category',
                         null = True, blank = True,
-        help_text = 'Limit search to items listed in this category ' )
+        help_text = 'Limit search to items listed in this category' )
     # ### after updating ebay categories, check whether        ###
     # ### searches that were connected are still connected !!! ###
     iDummyCategory  = models.PositiveIntegerField( 'ebay category number',
@@ -63,6 +65,16 @@ class Search(models.Model):
                     'if you turn this on -- be careful!',
                                 blank = True, null = True,
                                 default = False )
+    iMyCategory     = models.ForeignKey( Category,
+                        on_delete=models.DO_NOTHING,
+                        verbose_name = 'my category that matches ebay category',
+                        null = True, blank = True,
+        help_text = 'Example: if you have a category for "Manuals" and '
+                    'this search is in the ebay category "Vintage Manuals" '
+                    'put your "Manuals" category here.<br>If you have a '
+                    'category "Widgets" and this search finds an item '
+                    'with "Widget Manual" in the title, the bot will know '
+                    'this item is for a manual, NOT a widget.')
     tBegSearch      = models.DateTimeField( 'last search started',
                                            null = True )
     tEndSearch      = models.DateTimeField( 'last search completed',
