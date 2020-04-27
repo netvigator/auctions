@@ -24,7 +24,8 @@ tSearchFields = (
     'iDummyCategory',
     'cPriority',
     'bGetBuyItNows',
-    'bInventory', )
+    'bInventory',
+    'iMyCategory' )
 
 
 def _getLayout():
@@ -35,7 +36,8 @@ def _getLayout():
             'iDummyCategory',
             'cPriority',
             'bGetBuyItNows',
-            'bInventory' )
+            'bInventory',
+            'iMyCategory' )
 
 
 class BaseSearchForm( BaseModelFormGotCrispy ):
@@ -64,7 +66,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
                 getPriorityChoices( Search,
                                     self.user,
                                     self.instance.cPriority ) )
-
+        #
         if self.instance and hasattr(self.instance, 'cPriority'):
             # print( 'self.instance' )
             self.initial['cPriority'] = self.get_initial_for_field(
@@ -80,22 +82,28 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
         iDummyCategory  = cleaned.get( 'iDummyCategory', None )
         iDummyOriginal  = self.instance.iDummyCategory
         #
+        iMyCategory     = cleaned.get( 'iMyCategory', None )
+        #
         bCreating = ( self.which == 'Create' )
         #
         if bCreating and iDummyOriginal and not iDummyCategory:
             sMsg = 'Your ebay category "%s" is invalid' % iDummyOriginal
             raise ValidationError( sMsg, code='invalid ebay category' )
-
+        #
         if not ( sKeyWords or iDummyCategory ):
             sMsg = 'key words or ebay category required (having both is OK)'
             raise ValidationError( sMsg, code='invalid' )
-
+        #
         #print( 'iDummyCategory:', iDummyCategory )
         #print( 'iDummyOriginal:', iDummyOriginal )
         #
+        if iMyCategory and not iDummyCategory:
+            sMsg = '"My Category" is valid only if ebay category is set'
+            raise ValidationError( sMsg, code='invalid' )
+        #
         oEbayCategory = None
         #
-        if ( self.user and iDummyCategory and iDummyCategory ):
+        if ( self.user and iDummyCategory ):
             #
             try:
                 oEbayCategory = EbayCategory.objects.get(
