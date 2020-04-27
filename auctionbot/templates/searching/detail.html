@@ -44,6 +44,10 @@
         <TD style="vertical-align:top">{{ object.bInventory|yesno:"Yes,No" }}</TD>
     </TR>
     <TR>
+        <TD>{% field_name model 'iMyCategory' %}</TD>
+        <TD style="vertical-align:top">{{ object.iMyCategory }}</TD>
+    </TR>
+    <TR>
         <TD>{% field_name model 'tBegSearch' %}</TD>
         <TD style="vertical-align:top">{{object.tBegSearch|date:"d M Y  P"}}</TD>
     </TR>
