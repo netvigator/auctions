@@ -16,6 +16,7 @@ class SearchAdmin(admin.ModelAdmin):
         'cKeyWords',
         'bGetBuyItNows',
         'bInventory',
+        'iMyCategory',
         'tBegSearch',
         'tEndSearch',
         'cLastResult',)
