@@ -150,7 +150,7 @@ class UserItemFound(models.Model):
                         'assessed interest date/time', null = True )
     iSearch         = models.ForeignKey( Search,
                         on_delete=models.CASCADE,
-                        verbose_name = 'Search that first found this item' )
+                        verbose_name = 'Search that found this item' )
     iModel          = models.ForeignKey( Model, on_delete=models.CASCADE,
                         null = True, blank = True,
                         verbose_name = 'Model Name/Number',
