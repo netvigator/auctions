@@ -2269,7 +2269,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         iThisOne = 193390315883
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'x-100 should find X-100-B manual not amp?' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -2383,6 +2383,23 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 133392165411
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find engraved base 300b' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '300B (etched base)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2486,6 +2503,14 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 'listed under vintage manuals, so should find manual not amp' )
         #
         #
+        #
+        #
+        #
+        iThisOne = 193427753317
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should X-100-B manual' )
         #
         #
         #
