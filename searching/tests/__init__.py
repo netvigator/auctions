@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 174253058987
+iRecordStepsForThis = None or 303545301410
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -193,8 +193,8 @@ sModels = \
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
- 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rX-100-B\\rTX-100\\r100%
- 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             |
+ 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rTX-100\\r100%
+ 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | X-100\\rTX-100\\r100%
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
  287F               |           |      9 | f            | Altec-Lansing     |  Theater Amp |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
@@ -746,8 +746,8 @@ sResponseItems2Test = \
   [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2018-03-03T23:04:24.581Z"],
     "searchResult":
       [{"@count":"100",
-        "item":
-         [ { "itemId":["122990519283"],
+        "item": [
+           { "itemId":["122990519283"],
              "title":["Garol 6AU-1 Catalin Radio "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -764,21 +764,22 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
-         },{ "itemId":["303545301410"],
-             "title":["McIntosh C22 Tube Stereo Preamp Owner's Manual - ORIGINAL- near mint w\/extras!"],
+         },{ "itemId":["133392165411"],
+             "title":["Western Electric 300B tube >engraved base<"],
              "globalId":["EBAY-US"],
-             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
-             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mFrlcZW5VWRCdJ0Oig21pqA\/140.jpg"],
-             "viewItemURL":["https:\/\/www.ebay.com\/itm\/McIntosh-C22-Tube-Stereo-Preamp-Owners-Manual-ORIGINAL-near-mint-w-extras-\/303545301410"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m-waC1FAtPYSse4hQYYaWlA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Western-Electric-300B-tube-engraved-base-\/133392165411"],
              "paymentMethod":["PayPal"],"autoPay":["false"],
-             "postalCode":["900**"],"location":["Los Angeles,CA,USA"],"country":["US"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
-             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"13.8"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"13.8"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT5H43M15S"]}],
-             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],
-             "startTime":["2020-04-20T02:27:12.000Z"],
-             "endTime":["2020-04-27T02:27:12.000Z"],
-             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
-             "condition":[{"conditionId":["2750"],"conditionDisplayName":["Like New"]}],
+             "postalCode":["481**"],"location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1525.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1525.0"}],
+             "bidCount":["23"],"sellingState":["Active"],"timeLeft":["P7DT14H45M0S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-21T11:27:57.000Z"],
+             "endTime":["2020-05-01T11:27:57.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["174253058987"],
@@ -880,38 +881,6 @@ sResponseItems2Test = \
              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P7DT20H33M21S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
              "startTime":["2020-03-31T18:38:00.000Z"],"endTime":["2020-04-10T18:38:00.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
-
-         },{ "itemId":["153883438316"],
-             "title":["Heathkit Capacitor Checker Model IT-28 Manual"],
-             "globalId":["EBAY-US"],
-             "primaryCategory":[{"categoryId":["183079"],"categoryName":["Other Vintage Electronics"]}],
-             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mm1_bIELSVy_V_iNLzUKrgw\/140.jpg"],
-             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-Capacitor-Checker-Model-IT-28-Manual-\/153883438316"],
-             "paymentMethod":["PayPal"],"autoPay":["false"],
-             "postalCode":["837**"],"location":["Boise,ID,USA"],"country":["US"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
-             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15.0"}],
-             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT21H14M19S"]}],
-             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2020-03-31T19:16:05.000Z"],"endTime":["2020-04-05T19:16:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["true"],
-             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
-
-         },{ "itemId":["193390315883"],
-             "title":["The Fisher X-100 Stereo Amplifier Service Manual"],
-             "globalId":["EBAY-US"],
-             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
-             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m0JOlIeCxjwAJh4-DASCWeA\/140.jpg"],
-             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-X-100-B-Stereo-Amplifier-Service-Manual-\/193390315883"],
-             "paymentMethod":["PayPal"],"autoPay":["false"],
-             "postalCode":["021**"],"location":["Brighton,MA,USA"],"country":["US"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
-             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.99"}],
-             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT6H18M13S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-             "startTime":["2020-03-20T20:00:28.000Z"],
-             "endTime":["2020-03-27T20:00:28.000Z"],
-             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
-             "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["313033073507"],
@@ -3467,6 +3436,88 @@ sResponseItems2Test = \
  ]
 }'''
 
+sManualItems2Test = \
+'''{"findItemsByKeywordsResponse":
+  [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2020-04-29T23:04:24.581Z"],
+    "searchResult":
+      [{"@count":"4",
+        "item": [
+           { "itemId":["303545301410"],
+             "title":["McIntosh C22 Tube Stereo Preamp Owner's Manual - ORIGINAL- near mint w\/extras!"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mFrlcZW5VWRCdJ0Oig21pqA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/McIntosh-C22-Tube-Stereo-Preamp-Owners-Manual-ORIGINAL-near-mint-w-extras-\/303545301410"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["900**"],"location":["Los Angeles,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"13.8"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"13.8"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT5H43M15S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],
+             "startTime":["2020-04-20T02:27:12.000Z"],
+             "endTime":["2020-04-27T02:27:12.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["2750"],"conditionDisplayName":["Like New"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["193427753317"],
+             "title":["The Fisher X-100-B Stereo Amplifier Service Manual"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m0JOlIeCxjwAJh4-DASCWeA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-X-100-B-Stereo-Amplifier-Service-Manual-\/193427753317"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["021**"],"location":["Brighton,MA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT23H17M53S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-17T20:01:38.000Z"],
+             "endTime":["2020-04-24T20:01:38.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["153883438316"],
+             "title":["Heathkit Capacitor Checker Model IT-28 Manual"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["183079"],"categoryName":["Other Vintage Electronics"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mm1_bIELSVy_V_iNLzUKrgw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-Capacitor-Checker-Model-IT-28-Manual-\/153883438316"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["837**"],"location":["Boise,ID,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT21H14M19S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2020-03-31T19:16:05.000Z"],"endTime":["2020-04-05T19:16:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["193390315883"],
+             "title":["The Fisher X-100 Stereo Amplifier Service Manual"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m0JOlIeCxjwAJh4-DASCWeA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-X-100-B-Stereo-Amplifier-Service-Manual-\/193390315883"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["021**"],"location":["Brighton,MA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"12.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"12.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT6H18M13S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-03-20T20:00:28.000Z"],
+             "endTime":["2020-03-27T20:00:28.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+              }]
+
+           }],
+
+        "paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["100"],"totalPages":["1"],"totalEntries":["4"]}],
+        "itemSearchURL":["http:\/\/www.ebay.com\/sch\/i.html?_nkw=catalin&_ddo=1&_ipg=100&_pgn=1"]
+   }
+ ]
+}'''
 # ###      if you add an item whose title includes a double quote,       ###
 # ### you must manually convert a signle backslash to a double backslash ###
 # ###      also first item is tested in core.test_utils_ebay             ###
