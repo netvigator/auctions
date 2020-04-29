@@ -721,6 +721,19 @@ def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
     return oLocated
 
 
+def _getSearchMyCategoryDict( oUser = oUserOne ):
+    #
+    dSearchMyCategory = {}
+    #
+    qsUserSearches = Search.objects.filter( iUser = oUser )
+    #
+    for oSearch in qsUserSearches:
+        #
+        dSearchMyCategory[ oSearch.id ] = oSearch.iMyCategory
+        #
+    #
+    return dSearchMyCategory
+
 
 
 def findSearchHits(
@@ -775,7 +788,7 @@ def findSearchHits(
     #
     bExcludeThis        = False
     #
-    dSearchMyCategory   = {} # here
+    dSearchMyCategory   = _getSearchMyCategoryDict( oUser )
     #
     qsCategories = Category.objects.filter( iUser = oUser )
     #
