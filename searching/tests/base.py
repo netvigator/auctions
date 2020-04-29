@@ -23,7 +23,7 @@ from searching.tests    import iRecordStepsForThis
 
 from ..models           import Search, SearchLog
 from ..tests            import ( sExampleResponse, sBrands, sModels,
-                                 sResponseItems2Test,
+                                 sResponseItems2Test, sManualItems2Test,
                                  dSearchResult ) # in __init__.py
 
 from ..utils            import ( storeSearchResultsInFinders,
@@ -73,41 +73,82 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         super( StoreSearchResultsTestsWebTestSetUp, self ).setUp()
         #
         sSearch = "My clever search 1"
-        oSearch = Search( cTitle= sSearch, iUser = self.user1 )
+        oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
         #
-        self.oSearch = oSearch
+        self.oSearchMain = oSearch
         #
         self.sMarket = 'EBAY-US'
         #
-        self.sExampleFile = (
+        self.sExampleFileMain = (
             RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
                 ( self.sMarket,
                    self.user1.username,
                    getSearchIdStr( oSearch.id ),
                    '000' ) )
         #
-        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, self.sExampleFile )
+        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, self.sExampleFileMain )
         #
         tNow    = timezone.now()
         tBefore = tNow - timezone.timedelta( minutes = 5 )
         #
         oSearchLog = SearchLog(
-                iSearch_id  = self.oSearch.id,
+                iSearch_id  = self.oSearchMain.id,
                 tBegSearch  = tBefore,
                 tEndSearch  = tNow,
                 cResult     = 'Success' )
         #
         oSearchLog.save()
         #
-        self.oSearchLog = oSearchLog
+        self.oSearchMainLog = oSearchLog
         #
         self.t = storeSearchResultsInFinders(
-                    self.oSearchLog.id,
+                    self.oSearchMainLog.id,
                     self.sMarket,
                     self.user1.username,
-                    self.oSearch.id,
-                    self.oSearch.cTitle,
+                    self.oSearchMain.id,
+                    self.oSearchMain.cTitle,
+                    self.setTestCategories,
+                    bCleanUpFiles = False )
+        #
+        #
+        sSearch = "My clever search 2"
+        oSearch = Search( cTitle = sSearch,
+                          iUser  = self.user1 )
+        oSearch.save()
+        #
+        self.oSearchManual = oSearch
+        #
+        self.sMarket = 'EBAY-US'
+        #
+        self.sExampleFileManual = (
+            RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( self.sMarket,
+                   self.user1.username,
+                   getSearchIdStr( oSearch.id ),
+                   '000' ) )
+        #
+        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, self.sExampleFileManual )
+        #
+        tNow    = timezone.now()
+        tBefore = tNow - timezone.timedelta( minutes = 5 )
+        #
+        oSearchLog = SearchLog(
+                iSearch_id  = self.oSearchManual.id,
+                tBegSearch  = tBefore,
+                tEndSearch  = tNow,
+                cResult     = 'Success' )
+        #
+        oSearchLog.save()
+        #
+        self.oSearchManualLog = oSearchLog
+        #
+        self.t = storeSearchResultsInFinders(
+                    self.oSearchManualLog.id,
+                    self.sMarket,
+                    self.user1.username,
+                    self.oSearchManual.id,
+                    self.oSearchManual.cTitle,
                     self.setTestCategories,
                     bCleanUpFiles = False )
         #
@@ -115,7 +156,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        pass # DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
         #
         #ItemFound.objects.all().delete()
         #UserFinder.objects.all().delete()
@@ -361,6 +402,14 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     cTitle      = 'Component',
                     iStars      = 6,
                     bComponent  = True,
+                    iUser       = oUser )
+            #
+            oCategory.save()
+            #
+            #
+            oCategory   = Category(
+                    cTitle      = 'Manual',
+                    iStars      = 3,
                     iUser       = oUser )
             #
             oCategory.save()
@@ -735,7 +784,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                 RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
                 ( 'EBAY-US',
                 oUser.username,
-                getSearchIdStr( self.oSearch.id ),
+                getSearchIdStr( self.oSearchMain.id ),
                 '000' ) )
             #
             self.dExampleFiles[ oUser.id ] = sExampleFile
@@ -747,12 +796,46 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
             QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
             #
             try:
+                t = storeSearchResultsInFinders(
+                        self.oSearchMainLog.id,
+                        self.sMarket,
+                        oUser.username,
+                        self.oSearchMain.id,
+                        self.oSearchMain.cTitle,
+                        self.setTestCategories )
+                #
+            except JSONDecodeError:
+                #
+                print('')
+                print(  '### maybe a new item title has a quote '
+                        'but only a single backslash ###' )
+                #
+                raise
+                #
+            #
+            #
+            sExampleFile = (
+                RESULTS_FILE_NAME_PATTERN % # 'Search_%s_%s_ID_%s_p_%s_.json'
+                ( 'EBAY-US',
+                oUser.username,
+                getSearchIdStr( self.oSearchManual.id ),
+                '000' ) )
+            #
+            self.dExampleFiles[ oUser.id ] = sExampleFile
+            #
+            #print( 'will DeleteIfExists' )
+            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+            #
+            #print( 'will QuietDump' )
+            QuietDump( sManualItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
+            #
+            try:
                 t = ( storeSearchResultsInFinders(
-                                self.oSearchLog.id,
+                                self.oSearchManualLog.id,
                                 self.sMarket,
                                 oUser.username,
-                                self.oSearch.id,
-                                self.oSearch.cTitle,
+                                self.oSearchManual.id,
+                                self.oSearchManual.cTitle,
                                 self.setTestCategories ) )
                 #
             except JSONDecodeError:
@@ -764,6 +847,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                 raise
                 #
             #
+            # sManualItems2Test
             #iCountItems, iStoreItems, iStoreUsers = t
             #
             #iTempItems = ItemFoundTemp.objects.all().count()
@@ -778,7 +862,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
         #
         for sExampleFile in self.dExampleFiles.values():
             #
-            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+            pass # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
             #
         #
         #ItemFound.objects.all().delete()
