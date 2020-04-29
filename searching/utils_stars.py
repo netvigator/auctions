@@ -775,6 +775,8 @@ def findSearchHits(
     #
     bExcludeThis        = False
     #
+    dSearchMyCategory   = {} # here
+    #
     qsCategories = Category.objects.filter( iUser = oUser )
     #
     for oCategory in qsCategories:
