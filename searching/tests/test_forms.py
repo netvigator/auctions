@@ -112,12 +112,12 @@ class TestFormValidation(
         # has an set My Category without an ebay category
         #
         oCategory = Category.objects.filter( cTitle = "Capacitor Checker" )[0]
-
+        #
         dData = dict(
                 cTitle          = "My clever search 7",
                 cPriority       = "A3",
                 which           = 'Create',
-                iMyCategory     = oCategory,
+                iMyCategory     = oCategory.id,
                 iUser           = self.user1 )
         form = CreateSearchForm( data = dData )
         form.request = self.request
@@ -128,7 +128,7 @@ class TestFormValidation(
                 iDummyCategory  = 10, # see core.tests
                 cPriority       = "A4",
                 which           = 'Create',
-                iMyCategory     = oCategory,
+                iMyCategory     = oCategory.id,
                 iUser           = self.user1 )
         form = CreateSearchForm( data = dData )
         form.request = self.request
@@ -147,6 +147,7 @@ class TestFormValidation(
         form = CreateSearchForm(data=dData)
         form.request            = self.request
         form.instance.iUser     = self.user1
+        self.assertTrue( form.is_valid() )
         form.save()
         #
         dData = dict(
@@ -170,11 +171,10 @@ class TestFormValidation(
         form = CreateSearchForm( data = dData )
         form.request = self.request
         self.assertTrue( form.is_valid() ) # not comparing sets yet
-
         #
         '''
+        print( 'cTitle:', dData['cTitle'] )
         if form.errors:
-            print('')
             print('form has at least one error:')
             for k, v in form.errors.items():
                 print( k, ' -- ', v )
