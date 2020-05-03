@@ -1,20 +1,23 @@
 import logging
 
-from json               import load, loads
+from json                   import load, loads
 
-from string             import ascii_uppercase, digits
+from string                 import ascii_uppercase, digits
 
-from pprint             import pprint
+from pprint                 import pprint
 
-from django.conf        import settings
-from django.utils       import timezone
+from django.conf            import settings
+from django.utils           import timezone
 
-from ebayinfo.models    import EbayCategory, CategoryHierarchy
+from finders.models         import ItemFound
+#
+from ebayinfo.models        import EbayCategory, CategoryHierarchy
 
-from pyPks.Dict.Get      import getAnyValue
-from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
-from pyPks.File.Get      import getFileSpecHereOrThere
-from pyPks.String.Get    import getContentOutOfDoubleQuotes
+from pyPks.Dict.Get         import getAnyValue
+from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
+from pyPks.File.Get         import getFileSpecHereOrThere
+from pyPks.String.Find      import getRegExObj
+from pyPks.String.Get       import getContentOutOfDoubleQuotes
 
 
 logger = logging.getLogger(__name__)
@@ -29,6 +32,8 @@ logging.basicConfig(
 
 class ItemAlreadyInTable(    Exception ): pass
 class SearchGotZeroResults(  Exception ): pass
+
+oLocationSqueezer = getRegExObj( ', *|\., *' )
 
 def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
     #
@@ -62,10 +67,19 @@ def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
     return tuple( ( ( s, s ) for s in lAll ) )
 
 
+
+_iLocationLen = ItemFound._meta.get_field('cLocation').max_length
+
+
+def _getLocationShorter( sLocation ):
+    #
+    sMaybeShorter = ','.join( oLocationSqueezer.split( sLocation ) )
+    #
+    return sMaybeShorter[ : _iLocationLen - 1 ]
+
+
+
 ALL_PRIORITIES = getPriorityChoices()
-
-
-
 
 def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
@@ -93,6 +107,17 @@ def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
     dNewResult['iCategoryID'   ] = None
     dNewResult['i2ndCategoryID'] = None
+    #
+    # if 'cLocation' in dNewResult: # ItemFound
+    #
+    # ebay can return a string that is longer than the length of the field
+    #
+    sLocation = dNewResult.get( 'cLocation', '' )
+    #
+    if len(sLocation) > _iLocationLen:
+        #
+        dNewResult['cLocation'] = _getLocationShorter( sLocation )
+        #
     #
     #
     dNewResult['tCreate'] = timezone.now()
