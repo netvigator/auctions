@@ -228,6 +228,9 @@ sModels = \
  804A (horn)        |           |      6 | t            | Altec-Lansing     |         Horn |             |
  806A               |           |      7 | t            | Altec-Lansing     |       Driver |             |
  808-8A             |           |      5 | t            | Altec-Lansing     |       Driver |             |
+ 873A (Barcelona)   |           |      7 | f            | Altec-Lansing     |Speaker System| Barcelona   |
+ 846B (Valencia)    |           |      7 | f            | Altec-Lansing     |Speaker System| Valencia    |
+ 875A (Granada)     |           |      7 | f            | Altec-Lansing     |Speaker System| Granada     |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
  A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
@@ -763,6 +766,40 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["184168518275"],
+             "title":["****Jensen Vintage 16 Ohm A-402 Crossover Network Speaker RP302 Imperial "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mSRnSjej5JT6R9ROD1pIdAg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Jensen-Vintage-16-Ohm-A-402-Crossover-Network-Speaker-RP302-Imperial-\/184168518275"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["951**"],"location":["San Jose,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"sellingState":["Active"],"timeLeft":["P19DT3H6M29S"]}],
+             "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-02-12T23:44:37.000Z"],
+             "endTime":["2020-05-12T23:44:37.000Z"],
+             "listingType":["StoreInventory"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["283709382058"],
+             "title":["Vintage Altec 875A Granada Horn Speaker Pair - Barcelona Valencia Family"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mxL5vSAk5xmZDSQ-s-p0XZQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Altec-875A-Granada-Horn-Speaker-Pair-Barcelona-Valencia-Family-\/283709382058"],
+             "paymentMethod":["PayPal","VisaMC","AmEx","Discover"],"autoPay":["false"],
+             "postalCode":["941**"],"location":["San Francisco,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1990.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1990.0"}],
+             "sellingState":["Active"],"timeLeft":["P19DT22H52M58S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2019-12-13T19:29:26.000Z"],
+             "endTime":["2020-05-13T19:29:26.000Z"],
+             "listingType":["StoreInventory"],"gift":["false"],"watchCount":["155"]}],
+             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["133392165411"],
              "title":["Western Electric 300B tube >engraved base<"],
