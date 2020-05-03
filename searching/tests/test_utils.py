@@ -493,7 +493,7 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #print('')
         #print( 'self.oSearch.id:', self.oSearch.id )
         #
-        iCountItems, iStoreItems, iStoreUsers = self.t
+        iCountItems, iStoreItems, iStoreUsers = self.tMain
         #
         self.assertEqual( ItemFound.objects.count(), iCountItems )
         self.assertEqual( ItemFound.objects.count(), iStoreItems )
@@ -502,7 +502,7 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         oSearchLogs = SearchLog.objects.all()
         #
-        self.assertEqual( len( oSearchLogs ), 1 )
+        self.assertEqual( len( oSearchLogs ), 2 )
         #
         oSearchLog = oSearchLogs[0]
         #
@@ -517,11 +517,11 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         # try again with the same data
         #
         t = ( storeSearchResultsInFinders(
-                        self.oSearchLog.id,
+                        self.oSearchMainLog.id,
                         self.sMarket,
                         self.user1.username,
-                        self.oSearch.id,
-                        self.oSearch.cTitle,
+                        self.oSearchMain.id,
+                        self.oSearchMain.cTitle,
                         self.setTestCategories ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
