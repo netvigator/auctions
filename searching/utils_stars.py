@@ -2144,6 +2144,16 @@ def findSearchHits(
                     #
                 #
             #
+            #
+            # items found are in lItemFoundSort
+            #
+            #
+            if bRecordSteps:
+                #
+                print( 'lItemFoundSort:' )
+                pprint( lItemFoundSort )
+                #
+            #
             iItemsFoundTemp         = 0
             #
             dModelsStoredAlready    = {} # used for scoring & selection
@@ -2557,7 +2567,13 @@ def findSearchHits(
                     #
                 #
             #
+            #
+            # this is after
+            # for oTempItem in lItemFoundSort:
+            #
+            #
             # before going on, update userFinder, dModelsStoredAlready has the info
+            #
             #
             iMaxStars, iMaxModel = _getMaxHitStars( dModelsStoredAlready )
             #
