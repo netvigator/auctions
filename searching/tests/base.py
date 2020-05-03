@@ -102,14 +102,14 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         self.oSearchMainLog = oSearchLog
         #
-        self.t = storeSearchResultsInFinders(
-                    self.oSearchMainLog.id,
-                    self.sMarket,
-                    self.user1.username,
-                    self.oSearchMain.id,
-                    self.oSearchMain.cTitle,
-                    self.setTestCategories,
-                    bCleanUpFiles = False )
+        self.tMain = storeSearchResultsInFinders(
+                        self.oSearchMainLog.id,
+                        self.sMarket,
+                        self.user1.username,
+                        self.oSearchMain.id,
+                        self.oSearchMain.cTitle,
+                        self.setTestCategories,
+                        bCleanUpFiles = False )
         #
         #
         sSearch = "My clever search 2"
@@ -143,14 +143,14 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         self.oSearchManualLog = oSearchLog
         #
-        self.t = storeSearchResultsInFinders(
-                    self.oSearchManualLog.id,
-                    self.sMarket,
-                    self.user1.username,
-                    self.oSearchManual.id,
-                    self.oSearchManual.cTitle,
-                    self.setTestCategories,
-                    bCleanUpFiles = False )
+        self.tManual = storeSearchResultsInFinders(
+                        self.oSearchManualLog.id,
+                        self.sMarket,
+                        self.user1.username,
+                        self.oSearchManual.id,
+                        self.oSearchManual.cTitle,
+                        self.setTestCategories,
+                        bCleanUpFiles = False )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
