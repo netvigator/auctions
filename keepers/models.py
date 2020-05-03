@@ -31,7 +31,7 @@ class Keeper( models.Model ):
     tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True )
     cEbayItemURL    = models.CharField( 'ebay item URL', max_length =188 )
     cListingType    = models.CharField( 'listing type', max_length = 15 )
-    cLocation       = models.CharField( 'location', max_length = 48 )
+    cLocation       = models.CharField( 'location', max_length = 58 )
     cPaymentMethods = models.CharField( 'Payment methods',
                         max_length = 88, null = True, blank = True )
     cGalleryURL     = models.CharField( 'gallery pic URL',
