@@ -19,6 +19,7 @@ DROP_AFTER_THIS = (
     '(?:'              # non grouping (saves CPU ticks)
         r'for\b|'
         r'fits\b|'
+        r'holds\b|'
         r'tests*\b|'
         r'tested (?:on|with)\b|'
         r'from\b|'
