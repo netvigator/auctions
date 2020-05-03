@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 303545301410
+iRecordStepsForThis = None or 193427753317
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -774,7 +774,7 @@ sResponseItems2Test = \
              "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mSRnSjej5JT6R9ROD1pIdAg\/140.jpg"],
              "viewItemURL":["https:\/\/www.ebay.com\/itm\/Jensen-Vintage-16-Ohm-A-402-Crossover-Network-Speaker-RP302-Imperial-\/184168518275"],
              "paymentMethod":["PayPal"],"autoPay":["false"],
-             "postalCode":["951**"],"location":["San Jose,CA,USA"],"country":["US"],
+             "postalCode":["097**"],"location":["APO,  Armed Forces Europe,  The Middle East,  & Canada.,  USA"],"country":["US"],
              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"125.0"}],"sellingState":["Active"],"timeLeft":["P19DT3H6M29S"]}],
              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
