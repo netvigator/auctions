@@ -2515,6 +2515,25 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 283709382058
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should 875A Granada not Barcelona or Valencia' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 184168518275
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should not find Imperial' )
+        #
+        #
+        #
+        #
         #
         '''
         '''
