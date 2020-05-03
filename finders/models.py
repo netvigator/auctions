@@ -33,7 +33,7 @@ class ItemFound(models.Model):
     cSubTitle       = models.CharField( 'item sub title', max_length = 80,
                         null = True, blank = True )
     cLocation       = models.CharField( 'location',
-                        max_length = 48 )
+                        max_length = 58 )
     cCountry        = fields.CountryField( "country" )
     cMarket         = models.CharField( 'market Global ID',
                         max_length = 14 )
