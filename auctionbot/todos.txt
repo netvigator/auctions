@@ -486,20 +486,5 @@ read:
 https://django-crispy-forms.readthedocs.io/en/latest/layouts.html
 
 
-2020-04-30
-======================================================================
-FAIL: test_form_valid (searching.tests.test_forms.TestFormValidation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/rick/Devel/auctions/searching/tests/test_forms.py", line 135, in test_form_valid
-    self.assertTrue( form.is_valid() )
-AssertionError: False is not true
-
-======================================================================
-FAIL: test_store_search_results (searching.tests.test_utils.storeSearchResultsWebTests)
-test storeSearchResultsInFinders() with actual record
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/rick/Devel/auctions/searching/tests/test_utils.py", line 499, in test_store_search_results
-    self.assertEqual( ItemFound.objects.count(), iStoreItems )
-AssertionError: 5 != 0
+2020-05-03
+Category should list models
