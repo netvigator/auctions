@@ -13,7 +13,7 @@ from models.models      import Model
 class SearchModelTest( BaseUserWebTestCase ):
 
     def test_string_representation(self):
-        sSearch = "My clever search 2"
+        sSearch = "My clever Manual search"
         oSearch = Search( cTitle = sSearch )
         self.assertEqual( str(oSearch), oSearch.cTitle )
 
