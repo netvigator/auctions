@@ -112,7 +112,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                         bCleanUpFiles = False )
         #
         #
-        sSearch = "My clever search 2"
+        sSearch = "My clever Manual search"
         oSearch = Search( cTitle = sSearch,
                           iUser  = self.user1 )
         oSearch.save()
@@ -234,6 +234,33 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                 #
                 self.oPreampSearch.save()
                 #
+            #
+            sSearch         = 'Manuals'
+            iEbayCategory   = 39996
+            if Search.objects.filter(
+                    cTitle = sSearch,
+                    iUser = oUser  ).exists():
+                #
+                self.oManualSearch = Search.objects.filter(
+                                        cTitle = sSearch,
+                                        iUser = oUser ).first()
+                #
+            else:
+                #
+                oEbayCateID = EbayCategory.objects.get(
+                        name = 'Vintage Manuals' )
+                #
+                self.oManualSearch = Search(
+                                cTitle          = sSearch,
+                                iEbayCategory   = oEbayCateID,
+                                iMyCategory     = self.ManualCategory,
+                                iUser           = oUser )
+                #
+                self.oManualSearch.save()
+                #
+            #
+
+
             #
             oCategory   = Category( cTitle      = 'Radio',
                                     iStars      = 9,
@@ -407,12 +434,6 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
-            oCategory   = Category(
-                    cTitle      = 'Manual',
-                    iStars      = 3,
-                    iUser       = oUser )
-            #
-            oCategory.save()
             #
             #
             # Capacitor Checker is in core.tests.base.py already!
