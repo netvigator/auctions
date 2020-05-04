@@ -36,7 +36,7 @@ class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
         #
         self.addSearch( "My clever search D", 'D2', self.user1 )
         #
-        self.addSearch( "My clever search 2", 'A1', self.user1 )
+        self.addSearch( "My clever Manual search", 'A1', self.user1 )
         #
     #
     def addSearch( self, cTitle, cPriority, oUser ):
