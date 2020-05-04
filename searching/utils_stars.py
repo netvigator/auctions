@@ -2148,11 +2148,15 @@ def findSearchHits(
             # items found are in lItemFoundSort
             #
             #
-            if bRecordSteps:
+            if bRecordSteps and lItemFoundSort:
                 #
                 print( 'lItemFoundSort:' )
                 pprint( lItemFoundSort )
                 #
+                print()
+                print( 'dSearchMyCategory:' )
+                pprint( dSearchMyCategory )
+
             #
             iItemsFoundTemp         = 0
             #
