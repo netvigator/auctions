@@ -266,7 +266,6 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iUser       = oUser )
         oModel.save()
         #
-
         self.oCategory = Category(
             cTitle      = "Widget",
             cKeyWords   = 'Gadget',
@@ -276,8 +275,17 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iUser       = oUser )
         self.oCategory.save()
         #
-        #
         self.CategoryID = self.oCategory.id
+        #
+        #
+        self.oCategory = Category(
+            cTitle      = "Manual",
+            iStars      = 3,
+            iUser       = oUser )
+        self.oCategory.save()
+        #
+        self.ManualCategory = self.oCategory
+        #
         #
         #
         oModel = Model(
