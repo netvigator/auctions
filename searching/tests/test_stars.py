@@ -2269,14 +2269,14 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         iThisOne = 193390315883
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'x-100 should find X-100-B manual not amp?' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'X-100-B' )
         self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Integrated Amp' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Manual' )
         #
         #
         #
@@ -2324,7 +2324,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.assertEqual( oTest.iModel.cTitle, 'IT-28' )
         self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Capacitor Checker' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Manual' )
         #
         #
         #
@@ -2396,6 +2396,20 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
+        #
+        #
+        #
+        iThisOne = 193427753317
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should X-100-B manual' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'X-100-B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Manual' )
         #
         #
         #
@@ -2502,15 +2516,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'listed under vintage manuals, so should find manual not amp' )
         #
-        #
-        #
-        #
-        #
-        iThisOne = 193427753317
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should X-100-B manual' )
         #
         #
         #
@@ -2687,7 +2692,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
 
     def test_CategoryRegExFinderStorage(self):
         #
-        t = _getCategoryRegExFinders4Test( self.oCategory )
+        t = _getCategoryRegExFinders4Test( self.WidgetCategory )
         #
         findTitle, findExclude, findKeyWords = t
         #
@@ -2810,7 +2815,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oCategory, dFinders )
+        foundItem = getFoundItemTester( self.WidgetCategory, dFinders )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
@@ -2839,7 +2844,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         self.assertFalse( sInTitle )
         self.assertFalse( uExcludeThis )
         #
-        foundItem = dFinders[ self.oCategory.pk ]
+        foundItem = dFinders[ self.WidgetCategory.pk ]
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
@@ -2850,11 +2855,11 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
         #
-        self.assertIn(     self.oCategory.cRegExLook4Title,
+        self.assertIn(     self.WidgetCategory.cRegExLook4Title,
                                 ( r'\bGizmo\b|Widget', r'Widget|\bGizmo\b' ) )
         #
-        self.assertEqual( self.oCategory.cRegExExclude,  r'\bDelta\b'  )
-        self.assertEqual( self.oCategory.cRegExKeyWords,    'Gadget' )
+        self.assertEqual( self.WidgetCategory.cRegExExclude,  r'\bDelta\b'  )
+        self.assertEqual( self.WidgetCategory.cRegExKeyWords,    'Gadget' )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
