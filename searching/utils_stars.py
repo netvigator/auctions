@@ -872,6 +872,17 @@ def findSearchHits(
                     ( 'candidates', [] ),
                     ( 'selection',  [] ) ) )
             #
+            qsUserSearches = Search.objects.filter( iUser = oUser )
+            #
+            print()
+            print( 'Searches (id, iMyCategory, name):' )
+            #
+            for oSearch in qsUserSearches:
+                #
+                print( oSearch.id, oSearch.iMyCategory, oSearch )
+                #
+            #
+            #
         #
         for oNext in qsUserItems:
             #
@@ -2197,8 +2208,25 @@ def findSearchHits(
                 if iItemsFoundTemp == 1: # store item on top here
                     #
                     oUserItem.iBrand        = oTempItem.iBrand
-                    oUserItem.iCategory     = oTempItem.iCategory
                     oUserItem.iModel        = oTempItem.iModel
+                    #
+                    oMyCategory = dSearchMyCategory.get( oTempItem.iSearch_id )
+                    #
+                    if oMyCategory:
+                        #
+                        oUserItem.iCategory = oMyCategory
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                    lSelect,
+                                    'search that found this expects category '
+                                    '"%s", so changing now' % oMyCategory )
+                            #
+                    else:
+                        #
+                        oUserItem.iCategory = oTempItem.iCategory
+                        #
                     #
                     oUserItem.iHitStars     = oTempItem.iHitStars
                     oUserItem.cWhereCategory= oTempItem.cWhereCategory
