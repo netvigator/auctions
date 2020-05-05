@@ -277,6 +277,8 @@ class SetUpBrandsCategoriesModelsMixin( object ):
         #
         self.CategoryID = self.oCategory.id
         #
+        self.WidgetCategory = self.oCategory
+        #
         #
         self.oCategory = Category(
             cTitle      = "Manual",
