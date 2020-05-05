@@ -113,8 +113,9 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         #
         sSearch = "My clever Manual search"
-        oSearch = Search( cTitle = sSearch,
-                          iUser  = self.user1 )
+        oSearch = Search( cTitle        = sSearch,
+                          iMyCategory   = self.ManualCategory,
+                          iUser         = self.user1 )
         oSearch.save()
         #
         self.oSearchManual = oSearch
