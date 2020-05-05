@@ -34,6 +34,9 @@ from pyPks.Time.Delta       import getIsoDateTimeNowPlus, getDeltaDaysFromISOs
 from pyPks.Web.Test         import isURL
 
 
+class NoExampleRecords( Exception ): pass
+
+
 class StoreItemsTestPlusBase( TestCasePlus ):
     '''test storing some getSingleItem imports in the table'''
 
