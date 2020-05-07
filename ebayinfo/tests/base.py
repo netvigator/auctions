@@ -3,9 +3,7 @@ from core.tests.base    import ( getTableFromScreenCaptureGenerator,
 
 from ..models           import Market
 
-from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
-                                 EBAY_SG_CURRENT_VERSION,
-                                 sMarketsTable )
+from ebayinfo.tests     import sMarketsTable
 
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
