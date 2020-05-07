@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 193427753317
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -170,6 +170,10 @@ sModels = \
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6550               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6550A              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6550 (Tung-Sol)    |           |     10 | f            | Tung-Sol          |  Vacuum Tube |             |              | f
+ 6550-VI            |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
@@ -766,6 +770,40 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["362980614720"],
+             "title":["VT25  Western Electric Tube Valve matched pair NOS NIB not 300B 2a3 45 211"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/m2THCudwB30JKVh43mQgveg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/VT25-Western-Electric-Tube-Valve-matched-pair-NOS-NIB-not-300B-2a3-45-211-\/362980614720"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Taiwan"],"country":["TW"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT5H57M47S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-27T08:31:37.000Z"],
+             "endTime":["2020-05-02T08:31:37.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["233573519366"],
+             "title":["Westinghouse 6550 vintage tube"],
+             "globalId":["EBAY-ENCA"],"primaryCategory":[{"categoryId":["64627"],
+             "categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mF3ji-T_pgJESpwOyKm_MKg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Westinghouse-6550-vintage-tube-\/233573519366"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["L8P2H5"],"location":["Canada"],"country":["CA"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"20.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.4"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT21H24M50S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-04-29T00:00:47.000Z"],
+             "endTime":["2020-05-04T00:00:47.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["184168518275"],
              "title":["****Jensen Vintage 16 Ohm A-402 Crossover Network Speaker RP302 Imperial "],
