@@ -15,9 +15,10 @@ from brands.models      import Brand
 from categories.models  import Category
 from models.models      import Model
 
-from ebayinfo.tests     import ( EBAY_US_CURRENT_VERSION,
-                                 EBAY_GB_CURRENT_VERSION,
-                                 EBAY_Mo_CURRENT_VERSION,
+from ebayinfo.tests     import ( EBAY_CURRENT_VERSION_US,
+                                 EBAY_CURRENT_VERSION_GB,
+                                 EBAY_CURRENT_VERSION_Mo,
+                                 EBAY_CURRENT_VERSION_ENCA,
                                  sEbayCategoryDump )
 
 from ebayinfo.models    import EbayCategory, Market
@@ -101,10 +102,21 @@ def getDefaultMarket():
         #
         market = Market()
         #
+        market.cMarket     = 'EBAY-ENCA'
+        market.cCountry    = 'CA'
+        market.iEbaySiteID = 2
+        market.iCategoryVer= EBAY_CURRENT_VERSION_ENCA
+        market.cCurrencyDef= 'CAD'
+        market.cLanguage   = 'en-CA'
+        market.save()
+        #
+        #
+        market = Market()
+        #
         market.cMarket     = 'EBAY-GB'
         market.cCountry    = 'UK'
         market.iEbaySiteID = 3
-        market.iCategoryVer= EBAY_GB_CURRENT_VERSION
+        market.iCategoryVer= EBAY_CURRENT_VERSION_GB
         market.cCurrencyDef= 'GBP'
         market.cLanguage   = 'en-UK'
         market.save()
@@ -115,7 +127,7 @@ def getDefaultMarket():
         market.cMarket     = 'EBAY-MOTOR'
         market.cCountry    = 'US'
         market.iEbaySiteID = 100
-        market.iCategoryVer= EBAY_Mo_CURRENT_VERSION
+        market.iCategoryVer= EBAY_CURRENT_VERSION_Mo
         market.cCurrencyDef= 'USD'
         market.cLanguage   = 'en-US'
         market.save()
@@ -126,7 +138,7 @@ def getDefaultMarket():
         market.cMarket     = 'EBAY-US'
         market.cCountry    = 'US'
         market.iEbaySiteID = 0
-        market.iCategoryVer= EBAY_US_CURRENT_VERSION
+        market.iCategoryVer= EBAY_CURRENT_VERSION_US
         market.cCurrencyDef= 'USD'
         market.cLanguage   = 'en-US'
         market.save()
