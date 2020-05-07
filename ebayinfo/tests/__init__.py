@@ -77,6 +77,9 @@ sPriorMarketsTable = \
  '''
 
 # select "id","iCategoryID","name","iLevel","iParentID","bLeafCategory","iTreeVersion","iEbaySiteID_id"
+# from ebay_categories where "iEbaySiteID_id" = 2 and "iCategoryID" = 64627;
+
+# CAVEAT! if you add a category from a new market, you must add the root to GetEbayCategoriesWebTestSetUp!!!
 
 sEbayCategoryDump = \
 '''
@@ -97,6 +100,7 @@ sEbayCategoryDump = \
 18739 |        1249 | Video Games & Consoles        |      1 |      1249 | f             |          117 |          0
  3164 |         625 | Cameras & Photo               |      1 |       625 | f             |          117 |          0
 29513 |         293 | Sound & Vision                |      1 |       293 | f             |          112 |          3
+129982|         293 | Consumer Electronics          |      1 |       293 | f             |          119 |          2
 
 14477 |      180010 | Pianos, Keyboards & Organs    |      2 |       619 | f             |          117 |          0
  9656 |       32852 | TV, Video & Home Audio        |      2 |       293 | f             |          117 |          0
@@ -126,6 +130,8 @@ sEbayCategoryDump = \
 18742 |       54968 | Video Game Accessories        |      2 |      1249 | f             |          117 |          0
  3209 |       69323 | Film Photography              |      2 |       625 | f             |          117 |          0
 29668 |      175740 | Vintage Sound & Vision        |      2 |       293 | f             |          112 |          3
+130232|      183077 | Vintage Electronics           |      2 |       293 | f             |          119 |          2
+
  9679 |       14961 | TV, Video & Audio Accessories |      3 |     32852 | f             |          117 |          0
  3230 |       15250 | Slide & Movie Projection      |      3 |     69323 | f             |          117 |          0
  9710 |       71582 | TV, Video & Audio Parts       |      3 |     32852 | f             |          117 |          0
@@ -163,6 +169,7 @@ sEbayCategoryDump = \
 18746 |      171814 | Cables & Adapters             |      3 |     54968 | t             |          117 |          0
  8480 |       29833 | Other Vintage Radio, TV, Phone|      3 |     29832 | t             |          117 |          0
 29683 |      175741 | Vintage Parts & Accessories   |      3 |    175740 | f             |          112 |          3
+130233|      175740 | Vintage Audio & Video         |      3 |    183077 | f             |          119 |          2
 
  5003 |       10804 | Signs                         |      4 |     13623 | f             |          117 |          0
  9881 |       67807 | Vintage Preamps & Tube Preamps|      4 |    175740 | t             |          117 |          0
@@ -200,6 +207,7 @@ sEbayCategoryDump = \
  1468 |      181998 | Testers & Calibrators         |      4 |    181939 | f             |          117 |          0
  1467 |        4678 | Other Test Meters & Detectors |      4 |    181968 | t             |          117 |          0
 29689 |       64627 | Valves & Vacuum Tubes         |      4 |    175741 | t             |          112 |          3
+130248|      175741 | Vintage Parts & Accessories   |      4 |    175740 | f             |          119 |          2
 
  1478 |      170062 | Tube Testers                  |      5 |    181998 | t             |          117 |          0
  9893 |       67815 | Vintage Transformers          |      5 |    175741 | t             |          117 |          0
@@ -215,6 +223,7 @@ sEbayCategoryDump = \
  1436 |       58277 | Multimeters                   |      6 |     50960 | t             |          117 |          0
  5006 |       10806 | 1930-69                       |      6 |     37840 | t             |          117 |          0
  9891 |       39996 | Vintage Manuals               |      5 |    175741 | t             |          117 |          0
+130254|       64627 | Vintage Tubes & Tube Sockets  |      5 |    175741 | t             |          119 |          2
 
 219227|        6000 | eBay Motors                   |      1 |      6000 | f             |           75 |        100
 220511|        6028 | Parts & Accessories           |      2 |      6000 | f             |           75 |        100
