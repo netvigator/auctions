@@ -110,7 +110,7 @@ sBrands = \
  University        |      5 |            |            |
  UTC               |      8 |            |            |
  Valvo             |      5 |            |            |
- Western Electric  |      9 |            |            |
+ Western Electric  |      9 | Western Electric Era |  |
  Westinghouse      |      5 |            |            |
 '''
 
@@ -136,6 +136,7 @@ sModels = \
  12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -177,6 +178,7 @@ sModels = \
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
+ 211                |           |      9 | f            |                   |  Vacuum Tube | VT-4C       |              | t
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
@@ -192,6 +194,7 @@ sModels = \
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ VT-25 (10Y)        |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
