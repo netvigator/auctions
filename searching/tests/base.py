@@ -577,6 +577,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'GE', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -585,6 +586,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'RCA', iUser = oUser )
             #
@@ -595,6 +597,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Philips', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -603,6 +606,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Tung-Sol', iUser = oUser )
             #
@@ -613,6 +617,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Mullard', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -621,6 +626,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Mullard 10M', iUser = oUser )
             #
@@ -631,6 +637,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Mullard IEC', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -639,6 +646,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Mazda', iUser = oUser )
             #
@@ -649,6 +657,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Raytheon', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -657,6 +666,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Sylvania', iUser = oUser )
             #
@@ -667,6 +677,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Marconi', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -676,6 +687,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Matsushita', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -684,6 +696,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Westinghouse',
                                         iUser  = oUser )
@@ -695,6 +708,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Amperex', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -703,6 +717,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Amperex (Bugle Boy)',
                                         iUser  = oUser )
@@ -714,6 +729,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Amperex (gold pins)',
                                         iUser  = oUser )
             #
@@ -724,6 +740,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Amperex PQ', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -732,6 +749,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Ken-Rad', iUser = oUser )
             #
@@ -742,6 +760,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Valvo', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -750,6 +769,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Telefunken', iUser = oUser )
             #
@@ -760,6 +780,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Siemens', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -768,6 +789,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             oBrand = Brand.objects.get( cTitle = 'Lorenz', iUser = oUser )
             #
@@ -778,6 +800,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            #
             oBrand = Brand.objects.get( cTitle = 'Genalex (Gold Lion)', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
@@ -786,6 +809,17 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
+            #
+            oBrand = Brand.objects.get( cTitle = 'Western Electric', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
             #
 
 
