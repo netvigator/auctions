@@ -443,7 +443,23 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
             iCategoryID     = 0,
-            iEbaySiteID_id  = 3,
+            iEbaySiteID_id  = 3, # on copy & paste, this varies !!!!!
+            iTreeVersion    = iWantVersion,
+            iLevel          = 0,
+            bLeafCategory   = False,
+            iParentID       = 0 )
+        #
+        oRootCategory.save()
+        #
+        sMarket, sWantVersion = 'EBAY-ENCA', '119'
+        #
+        iWantVersion = int( sWantVersion )
+        #
+        oRootCategory = EbayCategory(
+            name            = \
+                '%s version %s Root' % ( sMarket, sWantVersion ),
+            iCategoryID     = 0,
+            iEbaySiteID_id  = 2, # on copy & paste, this varies !!!!!
             iTreeVersion    = iWantVersion,
             iLevel          = 0,
             bLeafCategory   = False,
@@ -459,7 +475,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
             iCategoryID     = 0,
-            iEbaySiteID_id  = 100,
+            iEbaySiteID_id  = 100, # on copy & paste, this varies !!!!!
             iTreeVersion    = iWantVersion,
             iLevel          = 0,
             bLeafCategory   = False,
