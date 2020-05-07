@@ -26,6 +26,7 @@ DROP_AFTER_THIS = (
         r'ala\b|'
         r'used (?:with|in|on)\b|'
         r'same as\b|'
+        r'not\b|'
         r'compatible with\b|'
         r'variant of\b|'
         r'similar to\b)' )
