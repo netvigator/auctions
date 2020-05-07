@@ -488,3 +488,8 @@ https://django-crispy-forms.readthedocs.io/en/latest/layouts.html
 
 2020-05-03
 Category should list models
+
+
+2020-05-09
+for testing, import the markets table in ebayinfo/tests/__init__.py
+instead of hard coding in core/tests/base.py
