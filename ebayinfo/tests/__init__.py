@@ -1,14 +1,15 @@
 # ### on ebay category version update, ###
 # ### change these constants and the table below to test ###
 
-EBAY_SG_CURRENT_VERSION =  34
-EBAY_US_CURRENT_VERSION = 121
-EBAY_GB_CURRENT_VERSION = 112
-EBAY_Mo_CURRENT_VERSION =  75
+EBAY_CURRENT_VERSION_SG =  34
+EBAY_CURRENT_VERSION_US = 121
+EBAY_CURRENT_VERSION_GB = 112
+EBAY_CURRENT_VERSION_Mo =  75
+EBAY_CURRENT_VERSION_ENCA = 119
 
-prior_EBAY_SG_CURRENT_VERSION =  33
-prior_EBAY_US_CURRENT_VERSION = 120
-prior_EBAY_GB_CURRENT_VERSION = 111
+prior_EBAY_CURRENT_VERSION_SG =  33
+prior_EBAY_CURRENT_VERSION_US = 120
+prior_EBAY_CURRENT_VERSION_GB = 111
 
 # select * from markets order by "iEbaySiteID" ;
 #
@@ -18,6 +19,9 @@ prior_EBAY_GB_CURRENT_VERSION = 111
 # select "cMarket", "cCountry", "iEbaySiteID", "iCategoryVer" from  markets order by "iEbaySiteID" ;
 
 # this info is put into the test database by sMarketsTable() in ./utils_test.py
+# for testing, core/tests/base.py puts markets in test database
+# suggest enhancement: use the table below instead of hard coding in core/tests/base.py
+
 sMarketsTable = \
 '''
   cMarket   | cCountry | cLanguage | iEbaySiteID | bHasCategories | iCategoryVer | cCurrencyDef | cUseCategoryID | iUtcPlusOrMinus
