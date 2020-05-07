@@ -18,8 +18,8 @@ from ..models           import EbayCategory, Market, CategoryHierarchy
 
 # the following are in the tests __init__.py file
 from ..tests            import ( sExampleCategoryVersion, sExampleCategoryList,
-                                 EBAY_US_CURRENT_VERSION,
-                                 EBAY_SG_CURRENT_VERSION )
+                                 EBAY_CURRENT_VERSION_US,
+                                 EBAY_CURRENT_VERSION_SG )
 
 from ..utils            import ( CATEGORY_VERSION_FILE,
                                  _getCategoryVersionFromFile,
@@ -269,13 +269,13 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
         #
         self.assertEqual( oUSA.cCurrencyDef, 'USD' )
         #
-        self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
+        self.assertEqual( oUSA.iCategoryVer, EBAY_CURRENT_VERSION_US )
         #
         oSG  = Market.objects.get( cMarket = 'EBAY-SG' )
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
+        self.assertEqual( oSG.iCategoryVer, EBAY_CURRENT_VERSION_SG )
 
     def test_market_count( self ):
         #
@@ -295,7 +295,7 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
         #
         self.assertEqual( oSG.iEbaySiteID, 216 )
         #
-        self.assertEqual( oSG.iCategoryVer, EBAY_SG_CURRENT_VERSION )
+        self.assertEqual( oSG.iCategoryVer, EBAY_CURRENT_VERSION_SG )
 
 
 
@@ -332,7 +332,7 @@ class TestPutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        oUSA.iCategoryVer = EBAY_US_CURRENT_VERSION - 1
+        oUSA.iCategoryVer = EBAY_CURRENT_VERSION_US - 1
         #
         oUSA.save()
         #
@@ -372,7 +372,7 @@ class LiveTestGotCurrentEbayCategories( PutMarketsInDatabaseTest ):
             #
             oUSA = Market.objects.get( cMarket = 'EBAY-US' )
             #
-            self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
+            self.assertEqual( oUSA.iCategoryVer, EBAY_CURRENT_VERSION_US )
             #
         else:
             #
@@ -384,7 +384,7 @@ class LiveTestGotCurrentEbayCategories( PutMarketsInDatabaseTest ):
             #
             lDecorated.sort()
             #
-            #lDecorated[0]['iTableHas'] = EBAY_US_CURRENT_VERSION
+            #lDecorated[0]['iTableHas'] = EBAY_CURRENT_VERSION_US
             #
             for t in lDecorated:
                 #
