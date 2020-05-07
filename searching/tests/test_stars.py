@@ -2414,6 +2414,55 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 362980614720
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'test "not" new DROP_AFTER_THIS' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'VT-25 (10Y)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 352961821505
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'got warning "model has category id 172 [Component]'
+                'in dCategoryFamily" for item' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '287F' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Theater Amp' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 233573519366
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should not 6550 not 6550-VI' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6550' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Westinghouse' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2488,17 +2537,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 352961821505
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'got warning "model has category id 172 [Component]'
-                'in dCategoryFamily" for item' )
-        #
-        #
-        #
-        #
-        #
         iThisOne = 174253058987
         #
         self.print_len(
@@ -2535,25 +2573,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should not find Imperial' )
-        #
-        #
-        #
-        #
-        iThisOne = 233573519366
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should not 6550 not 6550-VI' )
-        #
-        #
-        #
-        #
-        iThisOne = 362980614720
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'test "not" new DROP_AFTER_THIS' )
-        #
         #
         #
         #
