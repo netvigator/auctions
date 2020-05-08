@@ -139,7 +139,9 @@ sModels = \
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
+ 417A               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 5842               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
@@ -237,6 +239,7 @@ sModels = \
  808-8A             |           |      5 | t            | Altec-Lansing     |       Driver |             |
  873A (Barcelona)   |           |      7 | f            | Altec-Lansing     |Speaker System| Barcelona   |
  846B (Valencia)    |           |      7 | f            | Altec-Lansing     |Speaker System| Valencia    |
+ 848A (Flamenco)    |           |      7 | f            | Altec-Lansing     |Speaker System| Flamenco    |
  875A (Granada)     |           |      7 | f            | Altec-Lansing     |Speaker System| Granada     |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -773,6 +776,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["293562589789"],
+             "title":["JBL M31 (looks Like D130) Needs are-Coned"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mOCSR5ghYCGE7W--74xFB-g\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-M31-looks-Like-D130-Needs-are-Coned-\/293562589789"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["430**"],"location":["Newark,OH,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"60.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"60.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT17H1M46S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"80.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"80.0"}],
+             "startTime":["2020-04-28T19:34:51.000Z"],
+             "endTime":["2020-05-05T19:34:51.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["362980614720"],
              "title":["VT25  Western Electric Tube Valve matched pair NOS NIB not 300B 2a3 45 211"],
