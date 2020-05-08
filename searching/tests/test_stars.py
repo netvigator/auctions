@@ -2285,8 +2285,8 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         iThisOne = 313033073507
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'need to test more variations on 755 speaker' )
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                '755E now a separate model from other 755 variants' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -2333,7 +2333,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find 416Z 806A N800F at least' )
+                'should find 848A (Flamenco)' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -2343,15 +2343,17 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'N-800E' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 2 ]
-        #
         self.assertEqual( oTest.iModel.cTitle, '806A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '848A (Flamenco)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
         #
         #
         #
@@ -2463,6 +2465,60 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 283709382058
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 875A Granada not Barcelona or Valencia' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '875A (Granada)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 303545301410
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'listed under vintage manuals, so should find manual not amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'C-22' )
+        self.assertEqual( oTest.iBrand.cTitle, 'McIntosh' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Manual' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 313048572053
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find tubes not horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5842' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '417A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2527,16 +2583,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 313048572053
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find tubes not horn' )
-        #
-        #
-        #
-        #
-        #
         iThisOne = 174253058987
         #
         self.print_len(
@@ -2548,31 +2594,21 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 303545301410
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'listed under vintage manuals, so should find manual not amp' )
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 283709382058
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should 875A Granada not Barcelona or Valencia' )
-        #
-        #
-        #
-        #
-        #
         iThisOne = 184168518275
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should not find Imperial' )
+        #
+        #
+        #
+        #
+        iThisOne = 293562589789
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should not find D130 but should find JBL' )
+        #
         #
         #
         #
