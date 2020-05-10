@@ -2519,6 +2519,23 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 293562589789
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should not find D130 but should find JBL' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        self.assertEqual(  oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual(  oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2599,16 +2616,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should not find Imperial' )
-        #
-        #
-        #
-        #
-        iThisOne = 293562589789
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should not find D130 but should find JBL' )
-        #
         #
         #
         #
