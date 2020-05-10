@@ -326,6 +326,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             oCategory.save()
             #
+            oDriver     = oCategory
+            #
             oCategory   = Category( cTitle      = 'Crossover',
                                     iStars      = 7,
                                     cLookFor    = 'X-Over\rdividing network\rxover',
@@ -820,6 +822,17 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
+            oBrand = Brand.objects.get( cTitle = 'JBL', iUser = oUser )
+            #
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oDriver,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+
             #
 
 
