@@ -18,7 +18,9 @@ from core.templatetags.core_tags import getDashForReturn
 
 from .models                import Search, SearchLog
 
-from categories.models      import BrandCategory
+from brands.models          import Brand
+
+from categories.models      import Category, BrandCategory
 
 from finders.models         import ( ItemFound, UserItemFound, ItemFoundTemp,
                                      UserFinder )
@@ -30,7 +32,8 @@ from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
 
 from pyPks.Collect.Get      import getListFromNestedLists
 from pyPks.Collect.Output   import getTextSequence
-from pyPks.Collect.Query    import get1stThatMeets, get1stThatFails
+from pyPks.Collect.Query    import get1stThatMeets
+from pyPks.Collect.Test     import AllMeet
 
 from pyPks.Dict.Get         import getReverseDictCarefully
 
@@ -759,10 +762,6 @@ def findSearchHits(
             bCleanUpAfterYourself   = True,
             iRecordStepsForThis     = None ):
     #
-    from brands.models      import Brand
-    from categories.models  import Category
-    from models.models      import Model
-    #
     oUserModel = get_user_model()
     #
     oUser = oUserModel.objects.get( id = iUser )
@@ -801,8 +800,8 @@ def findSearchHits(
     dFindersCategories  = {}
     dFindersModels      = {}
     #
-    dCategoryFamily     = {}
-    dFamilyCategory     = {}
+    dCategoryInfo       = {}
+    dFamilyCategories   = {}
     #
     bExcludeThis        = False
     #
@@ -814,13 +813,24 @@ def findSearchHits(
         #
         if oCategory.iFamily_id:
             #
-            iFamily_id = oCategory.iFamily_id
+            iFamilyID   = oCategory.iFamily_id
+            bComponent  = oCategory.bComponent
             #
-            # category oCategory.id is a member of family iFamily_id
+            # category oCategory.id is a member of family iFamilyID
             #
-            dCategoryFamily[ oCategory.id ] = iFamily_id
+            dCategoryInfo[ oCategory.id ] = ValueContainer(
+                    iFamilyID   = iFamilyID,
+                    bComponent  = bComponent )
+            #
+            lFamilyMembers = dFamilyCategories.setdefault( iFamilyID, [] )
+            #
+            lFamilyMembers.append( oCategory.id )
             #
         #
+    #
+    def isComponent( iCategory ):
+        return (    iCategory in dCategoryInfo and
+                    dCategoryInfo[ iCategory ].bComponent )
     #
     qsModels = ( Model.objects
                     .select_related('iBrand')
@@ -892,14 +902,18 @@ def findSearchHits(
             #
             qsUserSearches = Search.objects.filter( iUser = oUser )
             #
-            print()
-            print( 'Searches (id, iMyCategory, name):' )
+            maybePrint()
+            maybePrint( 'Searches (id, iMyCategory, name):' )
             #
             for oSearch in qsUserSearches:
                 #
-                print( oSearch.id, oSearch.iMyCategory, oSearch )
+                maybePrint( oSearch.id, oSearch.iMyCategory, oSearch )
                 #
             #
+            #
+            maybePrint( 'dFamilyCategories:' )
+            #
+            maybePrettyP( dFamilyCategories )
             #
         #
         for oNext in qsUserItems:
@@ -1218,8 +1232,10 @@ def findSearchHits(
             #
             lNewItemFoundTemp = []
             #
+            iModelCateID = oModel.iCategory_id
+            #
             bModelCategoryAlreadyFound = (
-                    oModel.iCategory_id in dGotCategories )
+                    iModelCateID in dGotCategories )
             #
             bCategoryFamilyRelation = False
             #
@@ -1229,27 +1245,31 @@ def findSearchHits(
                 # or
                 # a tube tester roll chart
                 #
+                iItemCateID = ( oTempItem.iCategory.id
+                                if oTempItem.iCategory
+                                else 0 )
+                #
                 bCategoryFamilyRelation = (
-                    oTempItem.iCategory and dCategoryFamily and
-                    oTempItem.iCategory.id != oModel.iCategory_id and
-                    oTempItem.iCategory.id in dCategoryFamily and
-                    (   (   dCategoryFamily[ oTempItem.iCategory.id ] ==
-                            oModel.iCategory_id )
+                    oTempItem.iCategory and dCategoryInfo and
+                    iItemCateID != iModelCateID and
+                    iItemCateID in dCategoryInfo and
+                    (   (   dCategoryInfo[ iItemCateID ].iFamilyID ==
+                            iModelCateID )
                         or
-                        (   oModel.iCategory_id in dCategoryFamily and
-                                dCategoryFamily[ oModel.iCategory_id ] ==
-                                dCategoryFamily[ oTempItem.iCategory.id ] ) ) )
+                        (   iModelCateID in dCategoryInfo and
+                                dCategoryInfo[ iModelCateID ].iFamilyID ==
+                                dCategoryInfo[ iItemCateID  ].iFamilyID ) ) )
                 #
                 bAddThisCategory = False
                 #
                 if  (   bCategoryFamilyRelation and
-                        oModel.iCategory_id    in dGotCategories and
-                        oTempItem.iCategory.id in dGotCategories ):
+                        iModelCateID    in dGotCategories and
+                        iItemCateID in dGotCategories ):
                     #
-                    sModelCategory = dGotCategories[ oModel.iCategory_id ]
+                    sModelCategory = dGotCategories[ iModelCateID ]
                     iModelCategory = len( sModelCategory )
                     #
-                    sThisCategory = dGotCategories[ oTempItem.iCategory.id ]
+                    sThisCategory = dGotCategories[ iItemCateID ]
                     iThisCategory = len( sThisCategory )
                     #
                     bAddThisCategory = (
@@ -1281,21 +1301,23 @@ def findSearchHits(
                         #
                     else: # bCategoryFamilyRelation
                         #
-                        if oModel.iCategory_id in dCategoryFamily:
+                        if iModelCateID in dCategoryInfo:
                             #
-                            iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                            iFamily = dCategoryInfo[ iModelCateID ].iFamilyID
                             #
                         else:
                             #
-                            # dCategoryFamily[ oTempItem.iCategory.id ] ==
-                            # oModel.iCategory_id )
+                            # dCategoryInfo[ iItemCateID ] ==
+                            # iModelCateID )
                             #
                             logger.warning(
-                                    'model has category id %s in dCategoryFamily for %s' %
-                                    ( oModel.iCategory_id, oItem.iItemNumb ) )
+                                    'model has category id %s in dCategoryInfo for %s' %
+                                    ( iModelCateID, oItem.iItemNumb ) )
                             #
-                            iFamily = dCategoryFamily[ oTempItem.iCategory.id ]
+                            iFamily = dCategoryInfo[ iItemCateID ].iFamilyID
                             #
+                        #
+                        # dFamilyCategories should work here
                         #
                         oFamily = Category.objects.get( id = iFamily )
                         #
@@ -1414,11 +1436,11 @@ def findSearchHits(
             #
             if bCategoryFamilyRelation and not bFoundCategoryForModel:
                 #
-                if oModel.iCategory_id in dCategoryFamily:
+                if oModel.iCategory_id in dCategoryInfo:
                     #
-                    iFamily = dCategoryFamily[ oModel.iCategory_id ]
+                    iFamily = dCategoryInfo[ oModel.iCategory_id ].iFamilyID
                     #
-                    if iFamily in dFamilyCategory:
+                    if iFamily in dFamilyCategories:
                         #
                         oFamily = Category.objects.get( id = iFamily )
                         #
@@ -1916,8 +1938,8 @@ def findSearchHits(
                     maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
                     maybePrint( 'oModelLocated.tInParens:',
                                  oModelLocated.tInParens )
-                    maybePrint( 'dCategoryFamily:' )
-                    maybePrettyP(dCategoryFamily )
+                    maybePrint( 'dCategoryInfo:' )
+                    maybePrettyP(dCategoryInfo )
                     maybePrint( 'lItemFoundTemp:' )
                     for o in lItemFoundTemp:
                         maybePrint( '  %s - %s - %s' %
@@ -1926,19 +1948,19 @@ def findSearchHits(
                 if setCategoriesBeg or oModelLocated.tInParens:
                     #
                     setFamiliesBeg = frozenset(
-                            ( dCategoryFamily[ o.id ]
+                            ( dCategoryInfo[ o.id ].iFamilyID
                               for o in setCategoriesBeg
-                              if o.id in dCategoryFamily ) )
+                              if o.id in dCategoryInfo ) )
                     #
                     setFamiliesOnEnd = frozenset(
-                            ( dCategoryFamily[ o.id ]
+                            ( dCategoryInfo[ o.id ].iFamilyID
                               for o in setCategoriesOnEnd
-                              if o.id in dCategoryFamily ) )
+                              if o.id in dCategoryInfo ) )
                     #
                     # setFamiliesNearEnd = frozenset(
-                    #         ( dCategoryFamily[ o.id ]
+                    #         ( dCategoryInfo[ o.id ].iFamilyID
                     #           for o in setCategoriesNearEnd
-                    #           if o.id in dCategoryFamily ) )
+                    #           if o.id in dCategoryInfo ) )
                     #
                     if bRecordSteps:
                         #
@@ -1977,18 +1999,22 @@ def findSearchHits(
                                 sNext2Last = o.tTitleWords[
                                                     max( o.tOnEnd ) - 1 ]
                                 #
-                                if ( o.tNearEnd.endswith( o.tOnEnd ) and
-                                      sNext2Last.lower() in
-                                        ( '&', 'and', ',' ) ):
+                                bAllComponents = AllMeet(
+                                    setFamiliesBeg |setCategoriesNearEnd,
+                                    isComponent )
+                                #
+                                if bAllComponents:
+                                    #
+                                    continue
+                                    #
+                                elif ( o.tNearEnd.endswith( o.tOnEnd ) and
+                                       sNext2Last.lower() in
+                                         ( '&', 'and', ',' ) ):
                                     #
                                     # proper listing,
                                     # not just model # tacked on end
                                     #
                                     continue
-                                    #
-                                else:
-                                    #
-                                    pass # same family
                                     #
                                 #
                             else:
