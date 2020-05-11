@@ -323,6 +323,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                                   'horn driver',
                                     iStars      = 8,
                                     iFamily_id  = oSpeakerSystem.id,
+                                    bComponent  = True,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -332,6 +333,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iStars      = 7,
                                     cLookFor    = 'X-Over\rdividing network\rxover',
                                     iFamily_id  = oSpeakerSystem.id,
+                                    bComponent  = True,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -348,6 +350,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     cExcludeIf  = 'horn driver',
                                     iStars      = 6,
                                     iFamily_id  = oSpeakerSystem.id,
+                                    bComponent  = True,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -368,12 +371,14 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory   = Category( cTitle      = 'Choke',
                                     cLookFor    = 'crossover',
                                     iStars      = 7,
+                                    bComponent  = True,
                                     iUser       = oUser )
             oCategory.save()
             #
             oCategory   = Category( cTitle      = 'Output Transformer',
                                     cLookFor    = 'Transformer\rTranformer',
                                     iStars      = 6,
+                                    bComponent  = True,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -382,6 +387,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     cLookFor    = 'Enclosure\rcabinet\rspeaker cabinet',
                     iStars      = 7,
                     iFamily_id  = oSpeakerSystem.id,
+                    bComponent  = True,
                     iUser       = oUser )
             #
             oCategory.save()
@@ -413,6 +419,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     cLookFor    = 'Diaphram',
                     iStars      = 7,
                     iFamily_id  = oSpeakerSystem.id,
+                    bComponent  = True,
                     iUser       = oUser )
             #
             oCategory.save()
@@ -424,6 +431,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                   'tube tester roll chart',
                     iStars      = 5,
                     iFamily_id  = oTubeTester.id,
+                    bComponent  = True,
                     iUser       = oUser )
             oCategory.save()
             #
