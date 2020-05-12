@@ -828,9 +828,9 @@ def findSearchHits(
             #
         #
     #
-    def isComponent( iCategory ):
-        return (    iCategory in dCategoryInfo and
-                    dCategoryInfo[ iCategory ].bComponent )
+    def isComponent( oCategory ):
+        return (    oCategory.id in dCategoryInfo and
+                    dCategoryInfo[ oCategory.id ].bComponent )
     #
     qsModels = ( Model.objects
                     .select_related('iBrand')
@@ -1999,9 +1999,19 @@ def findSearchHits(
                                 sNext2Last = o.tTitleWords[
                                                     max( o.tOnEnd ) - 1 ]
                                 #
+                                setAllCategories = (
+                                        setCategoriesBeg |
+                                        setCategoriesNearEnd |
+                                        setCategoriesOnEnd )
+                                #
                                 bAllComponents = AllMeet(
-                                    setFamiliesBeg |setCategoriesNearEnd,
-                                    isComponent )
+                                        setAllCategories, isComponent )
+                                #
+                                if bRecordSteps:
+                                    #
+                                    maybePrint( 'category IDs:  ', setCategoriesBeg |setCategoriesNearEnd )
+                                    maybePrint( 'bAllComponents:', bAllComponents )
+                                    #
                                 #
                                 if bAllComponents:
                                     #
