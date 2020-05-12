@@ -1256,24 +1256,23 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         iThisOne = 192878961826
         #
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.print_len( dItemsToTest[ iThisOne ], 2, iThisOne )
-        #
-        # should find speaker system and tweeter
-        # can use to test delete speaker system keep tweeter
+        # should find tweeter not speaker system
         #
         self.assertEqual( oTest.iModel.cTitle, 'RP-302A' )
         self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #oTest = dItemsToTest[ iThisOne ][ 1 ]
+        ##
+        #self.assertIsNotNone( oTest )
+        ##
+        #self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
+        #self.assertEqual( oTest.iBrand.cTitle, 'Jensen' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
         iThisOne = 401777677255
@@ -2535,6 +2534,21 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 184168518275
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should not find Imperial' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
+        self.assertEqual(  oTest.iBrand.cTitle, 'Jensen' )
+        self.assertEqual(  oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
+        #
+        #
         #
         iThisOne = 164011103887
         #
@@ -2607,15 +2621,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 'should find 7DJ8 & PCC88 not 6DJ8 or ECC88' )
         #
         #
-        #
-        #
-        #
-        #
-        iThisOne = 184168518275
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should not find Imperial' )
         #
         #
         #
