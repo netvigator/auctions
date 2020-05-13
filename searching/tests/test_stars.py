@@ -1473,19 +1473,19 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 3, iThisOne,
-                'should find Klipsch K-77 & Heresy and University T35' )
+                'should find Klipsch K-77 & Heresy and EV / University T35' )
         #
         gotComponents   = set( [] )
         gotCategories   = set( [] )
         gotBrands       = set( [] )
         #
         setComponents   = frozenset(
-                ( 'T-35', 'K-77', 'Heresy (H700)' ) )
+                ( 'K-77', 'Heresy (H700)', 'T-35B' ) )
         setCategories   = frozenset(
                 ( 'Driver', 'Speaker System' ) )
         #
         setBrands       = frozenset(
-                ( 'Klipsch', 'University' ) )
+                ( 'Klipsch', 'University', 'Electro-Voice' ) )
         #
         for i in range( len( dItemsToTest[ iThisOne ] ) ):
             #
@@ -1502,7 +1502,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.assertEqual( gotComponents, setComponents )
         self.assertEqual( gotCategories, setCategories )
-        self.assertEqual( gotBrands,     setBrands     )
+        self.assertTrue(  gotBrands   <= setBrands     )
         #
         #
         #
@@ -2550,6 +2550,66 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 153920100946
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find A-402 Crossover not rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-402' )
+        self.assertEqual(  oTest.iBrand.cTitle, 'Jensen' )
+        self.assertEqual(  oTest.iCategory.cTitle, 'Crossover' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 353067866152
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Imperial speaker maybe not rest ?' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
+        self.assertEqual(  oTest.iBrand.cTitle, 'Jensen' )
+        self.assertEqual(  oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        iThisOne = 184281669249
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'ideally would find X36 Crossover only '
+                'but wording includes the rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'X36' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Crossover' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'T-350B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'T-35B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2619,7 +2679,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 7DJ8 & PCC88 not 6DJ8 or ECC88' )
-        #
         #
         #
         #
