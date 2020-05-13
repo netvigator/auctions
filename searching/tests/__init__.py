@@ -474,7 +474,8 @@ sModels = \
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
- T-35               |           |      6 | f            | University        |       Driver |             |
+ T-35B              |           |      6 | t            | University        |       Driver |             |
+ T-350B             |           |      7 | t            | University        |       Driver |             |
  LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
  240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
@@ -482,8 +483,11 @@ sModels = \
  Regency            |           |      7 | f            | Electro-Voice     |Speaker System|             |
  18WK               |           |      8 | f            | Electro-Voice     |       Driver |             |
  T-25-A             |           |      7 | t            | Electro-Voice     |       Driver |             |
+ T-35B              |           |      7 | t            | Electro-Voice     |       Driver |             |
+ T-350B             |           |      7 | t            | Electro-Voice     |       Driver |             |
  828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
  6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
+ X36                |           |      6 | f            | Electro-Voice     |    Crossover |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  meter              |           |      3 | f            |                   |    Component |             |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
@@ -776,6 +780,56 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["153920100946"],
+             "title":["Jensen Vintage 16 Ohm A-402 Crossover Network Pair Speaker RP302 Imperial "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m9blZu8Fe2c3f2fxComLaLQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Jensen-Vintage-16-Ohm-A-402-Crossover-Network-Pair-Speaker-RP302-Imperial-\/153920100946"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["463**"],"location":["Westville,IN,USA"],"country":["US"],"shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT16H38M29S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"389.99"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"389.99"}],
+             "startTime":["2020-05-05T14:37:04.000Z"],
+             "endTime":["2020-05-12T14:37:04.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["353067866152"],
+             "title":["1 vintage factory built Jensen PR-100 Imperial speaker  p15ll  rp-302  rp-201"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mtqsZlbiB3swQFbbM1v3rYQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/1-vintage-factory-built-Jensen-PR-100-Imperial-speaker-p15ll-rp-302-rp-201-\/353067866152"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["467**"],"location":["New Haven,IN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"3000.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"3000.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT2H32M9S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-04T00:30:44.000Z"],
+             "endTime":["2020-05-11T00:30:44.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],"returnsAccepted":["true"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["184281669249"],
+             "title":["Electro Voice EV Vintage 16 Ohm X36 Crossover Network Pair Speaker T35 T350 B "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mvw0gkYWVk6xgN9Jhb3rY8A\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Electro-Voice-EV-Vintage-16-Ohm-X36-Crossover-Network-Pair-Speaker-T35-T350-B-\/184281669249"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["463**"],"location":["Westville,IN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"74.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"74.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT17H4M46S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"97.49"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"97.49"}],
+             "startTime":["2020-05-06T15:06:33.000Z"],
+             "endTime":["2020-05-13T15:06:33.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["293562589789"],
              "title":["JBL M31 (looks Like D130) Needs are-Coned"],
