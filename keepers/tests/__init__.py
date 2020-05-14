@@ -606,7 +606,7 @@ s282330751118 = '''{
         "Site":"US",
         "TimeLeft":"PT0S",
         "Title":"Digital Capacitance Tester Capacitor Meter Auto Range Multimeter Checker 470mF",
-        "HitCount":1662,
+        "HitCount":32769,
         "PrimaryCategoryIDPath":"12576:92074:181939:181968:73160",
         "Storefront":{
             "StoreURL":"http://stores.ebay.com/id=1552145652",
