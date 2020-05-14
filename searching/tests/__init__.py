@@ -191,6 +191,9 @@ sModels = \
  E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ EL34 (metal base)  | metal base|      9 | f            |                   |  Vacuum Tube |             |              | t
+ EL34 (MB Mullard)  | metal base|     10 | f            | Mullard           |  Vacuum Tube |             |              | f
+ EL34 (MB Amp BB)   | metal base|     10 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -487,6 +490,7 @@ sModels = \
  T-350B             |           |      7 | t            | Electro-Voice     |       Driver |             |
  828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
  6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
+ 8HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  X36                |           |      6 | f            | Electro-Voice     |    Crossover |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  meter              |           |      3 | f            |                   |    Component |             |
@@ -780,6 +784,40 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["133401627353"],
+             "title":["Matched Pair EL34 6CA7 Bugle Boy (Mullard) Metal Base Tubes SY1 57C 1957"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mRdOIaW84CBGMma5mgb443w\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Matched-Pair-EL34-6CA7-Bugle-Boy-Mullard-Metal-Base-Tubes-SY1-57C-1957-\/133401627353"],
+             "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+             "postalCode":["974**"],"location":["Eugene,OR,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"499.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"499.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT0H2M37S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-03T22:02:50.000Z"],
+             "endTime":["2020-05-10T22:02:50.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["184284149755"],
+             "title":["Electro Voice EV Vintage FiberGlass 8HD Horn Pair Speaker T10 T25 T250 A"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m0TIUkJlMwsBfU9B74FGJAQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Electro-Voice-EV-Vintage-FiberGlass-8HD-Horn-Pair-Speaker-T10-T25-T250-\/184284149755"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["463**"],"location":["Westville,IN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"74.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"74.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT15H33M28S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"97.49"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"97.49"}],
+             "startTime":["2020-05-08T13:32:08.000Z"],
+             "endTime":["2020-05-15T13:32:08.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["153920100946"],
              "title":["Jensen Vintage 16 Ohm A-402 Crossover Network Pair Speaker RP302 Imperial "],
