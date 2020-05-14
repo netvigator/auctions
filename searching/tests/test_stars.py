@@ -2596,13 +2596,13 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'T-350B' )
+        self.assertIn   ( oTest.iModel.cTitle, ( 'T-35B', 'T-350B') )
         self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'T-35B' )
+        self.assertIn   ( oTest.iModel.cTitle, ( 'T-35B', 'T-350B') )
         self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
@@ -2679,6 +2679,24 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 7DJ8 & PCC88 not 6DJ8 or ECC88' )
+        #
+        #
+        #
+        #
+        iThisOne = 184284149755
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 8HD horn not the rest' )
+        #
+        #
+        #
+        #
+        iThisOne = 133401627353
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find metal base EL34' )
         #
         #
         #
@@ -3125,10 +3143,11 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         self.assertEmpty( sInTitle )
         #
-        tFinders = ( r'Model[-/ ]*2\b|Model[-/ ]*Two',
-                     r'Model[-/ ]*Two|Model[-/ ]*2\b' )
+        tFinders = ( r'Model[-/ ]*2\b|Model[-/ ]*Two\b',
+                     r'Model[-/ ]*Two\b|Model[-/ ]*2\b' )
         #
         self.assertIn( oModel.cRegExLook4Title, tFinders )
+        #
         #
         sAuctionTitle = 'Model 2 amplifier'
         #
