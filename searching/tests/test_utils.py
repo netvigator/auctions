@@ -262,7 +262,7 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #
         lHeader = next( oTableIter )
         #
-        iExpect = 3 # GetEbayCategoriesWebTestSetUp above adds root categories
+        iExpect = 4 # GetEbayCategoriesWebTestSetUp above adds root categories
         #
         for lParts in oTableIter: iExpect += 1
         #
