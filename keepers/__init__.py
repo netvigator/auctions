@@ -7,6 +7,12 @@ EBAY_ITEMS_FOLDER = '/tmp/ebay_items'
 
 getMakeDir( EBAY_ITEMS_FOLDER )
 
+
+
+def _intEnforceMax( s ):
+    #
+    return min( int( s ), 32767 )
+
 def _getList( s ):
     #
     if isinstance( s, list ):
@@ -91,7 +97,7 @@ dItemFields = d(
     cSite           = d( t = ( "Site",), ),
     cTitle          = d( t = ( "Title",), ),
     iHitCount       = d( t = ( "HitCount",),
-                         f = int,
+                         f = _intEnforceMax,
                          bOptional = True ),
     iCategoryID     = d( t = ( "PrimaryCategoryID",),
                          f = int ),
