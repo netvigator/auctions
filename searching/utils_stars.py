@@ -828,8 +828,7 @@ def findSearchHits(
             #
         #
     #
-    def isComponent( oCategory ):
-        return oCategory.bComponent
+    def isComponent( oCategory ): return oCategory.bComponent
     #
     qsModels = ( Model.objects
                     .select_related('iBrand')
