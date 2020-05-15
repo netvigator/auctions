@@ -782,13 +782,13 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
 def getItemsForPicsDownloading( iLimit = 50 ):
     #
     # qsZeroBids = Keeper.objects.filter(
-    #                 tGotPictures__isnull = True, iBidCount > 0
+    #                 tGotPictures__isnull = True, iBidCount__gt = 0
     #                 ).values_list( 'iItemNumb', flat = True )
     #
     qsZeroBids = UserKeeper.objects.filter(
                         bGetPictures = True,
-                        iItemNumb__tGotPictures__isnull = True,
-                        iItemNumb__iBidCount > 0
+                        iItemNumb__iBidCount__gt = 0,
+                        iItemNumb__tGotPictures__isnull = True
                     ).values_list( 'iItemNumb', flat = True
                     )
     #
