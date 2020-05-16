@@ -781,31 +781,35 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
 
 def getItemsForPicsDownloading( iLimit = 50 ):
     #
-    # qsZeroBids = Keeper.objects.filter(
-    #                 tGotPictures__isnull = True, iBidCount__gt = 0
-    #                 ).values_list( 'iItemNumb', flat = True )
-    #
-    qsZeroBids = UserKeeper.objects.filter(
-                        bGetPictures = True,
-                        iItemNumb__iBidCount__gt = 0,
-                        iItemNumb__tGotPictures__isnull = True
-                    ).values_list( 'iItemNumb', flat = True
-                    )
-    #
-    iWantPics = iLimit
-    #
-    if iLimit > len( qsZeroBids ):
-        #
-        iWantPics = iLimit - len( qsZeroBids )
-        #
+    # bGetPictures = True, not implemented yet
     #
     qsGetPics = Keeper.objects.filter(
-                    tGotPictures__isnull = True, iBidCount__gt = 0,
-                    ).order_by( 'tTimeEnd'
+                    tGotPictures__isnull = True,
+                    iBidCount__gt = 0,
+                ).order_by( 'tTimeEnd'
+                ).values_list( 'iItemNumb', flat = True
+                )[ : iLimit ]
+    #
+    iWantPics = iLimit / 10
+    #
+    if iLimit > len( qsGetPics ):
+        #
+        iWantPics = iLimit - len( qsGetPics )
+        #
+    #
+    # qsZeroBids = Keeper.objects.filter(
+    #                 tGotPictures__isnull = True, iBidCount = 0
+    #                 ).values_list( 'iItemNumb', flat = True )
+    #
+
+    qsZeroBids = Keeper.objects.filter(
+                        iBidCount           = 0,
+                        cListingType        = 'FixedPriceItem',
+                        tGotPictures__isnull= True
                     ).values_list( 'iItemNumb', flat = True
                     )[ : iWantPics ]
     #
-    return qsZeroBids.union( qsGetPics )
+    return qsGetPics.union( qsZeroBids )
 
 
 
