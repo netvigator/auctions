@@ -5,8 +5,24 @@ from pyPks.String.Find  import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.Time.Output  import getIsoDateTimeFromDateTime
 
 # ### if you add a tag, you must register it in config/settings.base!!! ###
+# ### if you add a tag, you must register it in config/settings.base!!! ###
+# ### if you add a tag, you must register it in config/settings.base!!! ###
+# ### if you add a tag, you must register it in config/settings.base!!! ###
 
 register = template.Library()
+
+
+@register.filter()
+def sayListingType( sListType ):
+    #
+    '''in results, ebay API calls auctions Chinese'''
+    #
+    if sListType == 'Chinese':
+        sListType = 'Auction'
+    elif sListType == 'FixedPriceItem':
+        sListType = 'FixedPrice'
+    #
+    return sListType
 
 
 @register.filter()
