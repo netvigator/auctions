@@ -258,6 +258,7 @@ TEMPLATES = [
                 # Your stuff: custom template context processors go here
             ],
             'libraries':{
+                'sayListingType'    : 'core.templatetags.core_tags',
                 'getIsoDateTime'    : 'core.templatetags.core_tags',
                 'getNbsp'           : 'core.templatetags.core_tags',
                 'model_name'        : 'core.templatetags.core_tags',
