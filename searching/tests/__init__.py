@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 184284149755
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -488,6 +488,7 @@ sModels = \
  T-25-A             |           |      7 | t            | Electro-Voice     |       Driver |             |
  T-35B              |           |      7 | t            | Electro-Voice     |       Driver |             |
  T-350B             |           |      7 | t            | Electro-Voice     |       Driver |             |
+ T-250              |           |      7 | t            | Electro-Voice     |       Driver |             |
  828-HFB            |           |      6 | t            | Electro-Voice     |       Driver |             |
  6HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  8HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
