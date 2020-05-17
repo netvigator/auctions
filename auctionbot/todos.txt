@@ -493,3 +493,5 @@ Category should list models
 2020-05-09
 for testing, import the markets table in ebayinfo/tests/__init__.py
 instead of hard coding in core/tests/base.py
+
+2020-05-17 should improve logic for dowloading FixedPriceItem pics, also fetching final results
