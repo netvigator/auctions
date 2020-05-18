@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 184284149755
+iRecordStepsForThis = None or 383228212021
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -184,6 +184,7 @@ sModels = \
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ CCa (= 6922)       |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
