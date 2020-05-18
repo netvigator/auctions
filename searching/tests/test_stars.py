@@ -619,7 +619,8 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         iThisOne = 202401940540
         #
-        self.print_len( dItemsToTest[ iThisOne ], 3 )
+        self.print_len( dItemsToTest[ iThisOne ], 3,
+                       "JBL D130, 075 & N2600 X-Over" )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -1568,7 +1569,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find Patrician speaker system' )
         #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'Patrician' )
         self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
@@ -2633,6 +2634,71 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 184284149755
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find 8HD horn not the rest '
+                'but living with A on end throws off logic' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '8HD' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'T-25-A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'T-250' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174253058987
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 7DJ8 & PCC88 not 6DJ8 or ECC88 '
+                'but this does not seem possible' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7DJ8' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6DJ8' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'PCC88' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 3 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'ECC88' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2693,24 +2759,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 'should find E88CC not the rest' )
         #
         #
-        #
-        #
-        #
-        #
-        iThisOne = 174253058987
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find 7DJ8 & PCC88 not 6DJ8 or ECC88' )
-        #
-        #
-        #
-        #
-        iThisOne = 184284149755
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find 8HD horn not the rest' )
         #
         #
         #
