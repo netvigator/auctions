@@ -700,7 +700,8 @@ def _getCategoriesForPositions(
 def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
     #
     tWordsOfInterest = tuple(
-            [ o.sInTitle for o in dModelIDinTitle.values() ] )
+            frozenset(
+            [ o.sInTitle for o in dModelIDinTitle.values() ] ) )
     #
     oLocated = getStrLocationsBegAndEnd( sAuctionTitle, tWordsOfInterest )
     #
@@ -732,7 +733,13 @@ def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
         #
         tTitleWords = tuple( ( t[1] for t in lTitleWords ) )
         #
-        oLocated.tTitleWords = tTitleWords
+        oLocated.tTitleWords      = tTitleWords
+        oLocated.tWordsOfInterest = tWordsOfInterest
+        #
+        if oLocated.tOnEnd == oLocated.tNearEnd:
+            #
+            oLocated.tNearEnd = ()
+            #
         #
     else:
         #
@@ -740,6 +747,7 @@ def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
         #
     #
     return oLocated
+
 
 
 def _getSearchMyCategoryDict( oUser = oUserOne ):
@@ -820,11 +828,8 @@ def findSearchHits(
             #
             dCategoryInfo[ oCategory.id ] = ValueContainer(
                     iFamilyID   = iFamilyID,
-                    bComponent  = bComponent )
-            #
-            lFamilyMembers = dFamilyCategories.setdefault( iFamilyID, [] )
-            #
-            lFamilyMembers.append( oCategory.id )
+                    bComponent  = bComponent,
+                    sCategTitle = oCategory.cTitle )
             #
         #
     #
@@ -1381,7 +1386,8 @@ def findSearchHits(
                         #
                         dModelIDinTitle[ oModel.id ] = ValueContainer(
                             sInTitle    = sInTitle,
-                            iCategory   = oCategory )
+                            iCategory   = oCategory,
+                            sModelTitle = oModel.cTitle )
                         #
                     #
                 elif    ( oModel.iCategory == oTempItem.iCategory and
@@ -1508,9 +1514,10 @@ def findSearchHits(
             else:
                 o = oModelLocated
                 maybePrint(
-                        'oModelLocated tNearFront, tOnEnd, tNearEnd,'
-                        'tInParens:',
+                        'oModelLocated '
+                        'tNearFront, tOnEnd, tNearEnd, tInParens:',
                     o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
+                maybePrint( 'tWordsOfInterest:', o.tWordsOfInterest )
                 maybePrint( 'dAllWordLocations:' )
                 maybePrettyP( o.dAllWordLocations )
         #
@@ -1888,7 +1895,7 @@ def findSearchHits(
                         maybePrint( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
                     maybePrint( 'dLocationsModelIDs:' )
                     maybePrettyP( dLocationsModelIDs )
-                    maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
+                    # maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
                     # maybePrettyP( lItemFoundTemp )
                     #for o in lItemFoundTemp:
                         #if o.iCategory is None:
@@ -1933,9 +1940,6 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
-                    maybePrint( 'oModelLocated.tInParens:',
-                                 oModelLocated.tInParens )
                     maybePrint( 'dCategoryInfo:' )
                     maybePrettyP(dCategoryInfo )
                     maybePrint( 'lItemFoundTemp:' )
@@ -1955,28 +1959,52 @@ def findSearchHits(
                               for o in setCategoriesOnEnd
                               if o.id in dCategoryInfo ) )
                     #
-                    # setFamiliesNearEnd = frozenset(
-                    #         ( dCategoryInfo[ o.id ].iFamilyID
-                    #           for o in setCategoriesNearEnd
-                    #           if o.id in dCategoryInfo ) )
+                    lExcludeThese = []
+                    #
+                    o = oModelLocated
+                    #
+                    if (    o.tNearEnd  and
+                            o.tOnEnd    and
+                            len( o.tNearEnd ) > len( o.tOnEnd ) and
+                            o.tNearEnd.endswith( o.tOnEnd ) ):
+                        #
+                        setFamiliesNearEnd = frozenset(
+                                ( dCategoryInfo[ o.id ].iFamilyID
+                                for o in setCategoriesNearEnd
+                                if o.id in dCategoryInfo ) )
+                        #
+                        tTests = (
+                            ( o.tNearEnd, 'near end of',
+                                setCategoriesNearEnd, setFamiliesNearEnd ),
+                            ( o.tInParens,'within parens in',
+                                None, None ) )
+                        #
+                    else:
+                        #
+                        tTests = (
+                            ( o.tOnEnd,   'on end of',
+                                setCategoriesOnEnd, setFamiliesOnEnd ),
+                            ( o.tInParens,'within parens in',
+                                None, None ),
+                            ( o.tNearEnd, 'near end of',
+                                setCategoriesNearEnd, None ) )
+                        #
                     #
                     if bRecordSteps:
                         #
                         maybePrint( 'setFamiliesBeg    :', setFamiliesBeg    )
                         maybePrint( 'setFamiliesOnEnd  :', setFamiliesOnEnd  )
+                        maybePrint( 'test in this order:',
+                                   ', '.join( [ t[1] for t in tTests ] ) )
                         #
                     #
-                    lExcludeThese = []
+                    setAllCategories = (
+                            setCategoriesBeg |
+                            setCategoriesNearEnd |
+                            setCategoriesOnEnd )
                     #
-                    o = oModelLocated
-                    #
-                    tTests = (
-                        ( o.tOnEnd,   'on end of',
-                            setCategoriesOnEnd, setFamiliesOnEnd ),
-                        ( o.tInParens,'within parens in',
-                            None, None ),
-                        ( o.tNearEnd, 'near end of',
-                            setCategoriesNearEnd, None ) )
+                    bAllComponents = AllMeet(
+                            setAllCategories, isComponent )
                     #
                     for tLocations, sSay, setTest, setFamily in tTests:
                         #
@@ -1985,9 +2013,13 @@ def findSearchHits(
                         #
                         if setTest is not None:
                             #
-                            if setCategoriesBeg & setTest: # intersection
+                            if False and setCategoriesBeg & setTest: # intersection
                                 #
-                                pass # categories same
+                                continue # categories same
+                                #
+                            elif bAllComponents:
+                                #
+                                continue
                                 #
                             elif (  setFamiliesBeg is not None and
                                     setFamily      is not None and
@@ -1997,27 +2029,16 @@ def findSearchHits(
                                 sNext2Last = o.tTitleWords[
                                                     max( o.tOnEnd ) - 1 ]
                                 #
-                                setAllCategories = (
-                                        setCategoriesBeg |
-                                        setCategoriesNearEnd |
-                                        setCategoriesOnEnd )
-                                #
-                                bAllComponents = AllMeet(
-                                        setAllCategories, isComponent )
-                                #
                                 if bRecordSteps:
                                     #
                                     maybePrint( 'category IDs:  ', setCategoriesBeg |setCategoriesNearEnd )
                                     maybePrint( 'bAllComponents:', bAllComponents )
                                     #
                                 #
-                                if bAllComponents:
-                                    #
-                                    continue
-                                    #
-                                elif ( o.tNearEnd.endswith( o.tOnEnd ) and
-                                       sNext2Last.lower() in
-                                         ( '&', 'and', ',' ) ):
+                                if   (  o.tNearEnd and
+                                        o.tNearEnd.endswith( o.tOnEnd ) and
+                                        sNext2Last.lower() in
+                                            ( '&', 'and', ',' ) ):
                                     #
                                     # proper listing,
                                     # not just model # tacked on end
