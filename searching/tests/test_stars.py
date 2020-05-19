@@ -535,7 +535,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.assertIn( oTest.iModel.cTitle, ( 'GRF', '15" Silver' ) )
         #
-        self.assertIn( oTest.iCategory.cTitle, ( 'Speaker System', 'Driver' ) )
+        self.assertIn( oTest.iCategory.cTitle, ( 'Speaker Enclosure', 'Driver' ) )
         #
         oTest = dItemsToTest[ 153121548106 ][ 0 ]
         #
@@ -545,7 +545,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.assertIn( oTest.iModel.cTitle, ( 'GRF', '15" Silver' ) )
         #
-        self.assertIn( oTest.iCategory.cTitle, ( 'Speaker System', 'Driver' ) )
+        self.assertIn( oTest.iCategory.cTitle, ( 'Speaker Enclosure', 'Driver' ) )
         #
         #
         #
