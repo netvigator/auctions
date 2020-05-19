@@ -736,11 +736,6 @@ def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
         oLocated.tTitleWords      = tTitleWords
         oLocated.tWordsOfInterest = tWordsOfInterest
         #
-        if oLocated.tOnEnd == oLocated.tNearEnd:
-            #
-            oLocated.tNearEnd = ()
-            #
-        #
     else:
         #
         oLocated = None
@@ -917,6 +912,9 @@ def findSearchHits(
             maybePrint( 'dFamilyCategories:' )
             #
             maybePrettyP( dFamilyCategories )
+            #
+            maybePrint( 'dCategoryInfo:' )
+            maybePrettyP(dCategoryInfo )
             #
         #
         for oNext in qsUserItems:
@@ -1906,8 +1904,6 @@ def findSearchHits(
                     for s in vars( oModelLocated ):
                         if s.startswith( '_' ): continue
                         maybePrint( '  %s: %s' % ( s, oModelLocated.__dict__[s] ) )
-                #
-                if bRecordSteps:
                     #
                     maybePrint( 'setGotBrandsIDs:', setGotBrandsIDs )
                     maybePrint( 'bGotBrandForNonGenericModel:', bGotBrandForNonGenericModel )
@@ -1940,8 +1936,6 @@ def findSearchHits(
                 #
                 if bRecordSteps:
                     #
-                    maybePrint( 'dCategoryInfo:' )
-                    maybePrettyP(dCategoryInfo )
                     maybePrint( 'lItemFoundTemp:' )
                     for o in lItemFoundTemp:
                         maybePrint( '  %s - %s - %s' %
@@ -2006,14 +2000,26 @@ def findSearchHits(
                     bAllComponents = AllMeet(
                             setAllCategories, isComponent )
                     #
+                    # enhance here --
+                    # if "with" word is between front and on / near end
+                    #
                     for tLocations, sSay, setTest, setFamily in tTests:
                         #
                         # o = oModelLocated
                         # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
                         #
+                        if bRecordSteps:
+                            #
+                            maybePrint( 'step for', sSay, 'tLocations:', tLocations )
+                            #
+                        #
+                        if not tLocations: continue
+                        #
                         if setTest is not None:
                             #
-                            if False and setCategoriesBeg & setTest: # intersection
+                            if False and setCategoriesBeg == setTest:
+                                #
+                                # want to process if all are vacuum tubes!
                                 #
                                 continue # categories same
                                 #
@@ -2046,15 +2052,11 @@ def findSearchHits(
                                     continue
                                     #
                                 #
-                            else:
-                                #
-                                continue
-                                #
                             #
                         #
                         if bRecordSteps:
                             #
-                            maybePrint( 'tLocations:', tLocations )
+                            maybePrint( sSay, 'tLocations:', tLocations )
                             #
                         #
                         dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
