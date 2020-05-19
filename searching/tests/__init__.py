@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 383228212021
+iRecordStepsForThis = None or 174236717488
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -445,7 +445,7 @@ sModels = \
  RP-302A            |           |      6 | t            | Jensen            |       Driver |             |
  Imperial           |           |      9 | f            | Jensen            |Speaker System|             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
- GRF                |           |      7 | f            | Tannoy            |Speaker System|             |
+ GRF                |           |      7 | f            | Tannoy            |Speaker Enclosure|          |
  539-A              |           |      5 | f            | Hickok            |  Tube Tester |             |
  539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
  539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
