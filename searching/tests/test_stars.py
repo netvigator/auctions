@@ -91,6 +91,11 @@ class MakeSureExampleItemGetsHit( StoreUserItemFoundWebTestBase ):
 
 class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
 
+    def tearDown( self ):
+        #
+        from .test_utils import DoSearchStoreResultsTests
+        #
+
     def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
         #
         if not lTest:
@@ -880,13 +885,13 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         iThisOne = 323589685342 # also accessed in test_models.py
         #
-        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne )
+        self.print_len( dItemsToTest[ iThisOne ], 9, iThisOne )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'XP-1A' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #self.assertEqual( oTest.iModel.cTitle, 'XP-1A' )
+        #self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         iThisOne = 264048401593
         #
@@ -2699,6 +2704,28 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 174236717488
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find E88CC not the rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC' )
+        self.assertIn(    oTest.iBrand.cTitle, ( 'Mullard', 'Telefunken' ) )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC' )
+        self.assertIn(    oTest.iBrand.cTitle, ( 'Mullard', 'Telefunken' ) )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2748,17 +2775,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 6922 not the rest' )
-        #
-        #
-        #
-        #
-        iThisOne = 174236717488
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find E88CC not the rest' )
-        #
-        #
         #
         #
         #
