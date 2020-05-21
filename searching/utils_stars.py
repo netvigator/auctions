@@ -28,14 +28,14 @@ from finders.models         import ( ItemFound, UserItemFound, ItemFoundTemp,
 from models.models          import Model
 
 from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
-                                     DROP_AFTER_THIS )
+                                     DROP_AFTER_THIS, WITH_AND_JOINERS )
 
 from pyPks.Collect.Get      import getListFromNestedLists
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets
 from pyPks.Collect.Test     import AllMeet
 
-from pyPks.Dict.Get         import getReverseDictCarefully
+from pyPks.Dict.Get         import getReverseDictCarefully, getDictSubset
 
 from pyPks.File.Get         import getListFromFileLines
 from pyPks.File.Test        import isFileThere
@@ -735,6 +735,9 @@ def _getModelLocationsBegAndEnd( sAuctionTitle, dModelIDinTitle ):
         #
         oLocated.tTitleWords      = tTitleWords
         oLocated.tWordsOfInterest = tWordsOfInterest
+        #
+        oLocated.dAndWords = getDictSubset(
+                dAllWordLocations, *WITH_AND_JOINERS )
         #
     else:
         #
@@ -2061,6 +2064,11 @@ def findSearchHits(
                         #
                         dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
                         #
+                        iMaxAtFront = max( o.tNearFront )
+                        iLastAnd    = (
+                                      max( *o.dAndWords.values() )
+                                      if o.dAndWords else 0 )
+                        #
                         for iLocation in tLocations:
                             #
                             if iLocation in dLocationsModelIDs:
@@ -2069,8 +2077,18 @@ def findSearchHits(
                                     #
                                     lLocations = dModelIDsLocations[ iModelID ]
                                     #
+                                    iMinOnEnd  = min( lLocations )
+                                    #
                                     if (    len( lLocations ) > 1 and
-                                            min( lLocations ) in o.tNearFront ):
+                                            iMinOnEnd in o.tNearFront ):
+                                        #
+                                        continue
+                                        #
+                                    elif (  o.dAndWords and
+                                            iLastAnd >=
+                                                iMaxAtFront +
+                                                ( ( iMinOnEnd - iMaxAtFront )
+                                                    / 2 ) ):
                                         #
                                         continue
                                         #
