@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 174236717488
+iRecordStepsForThis = None or 352494035670
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -132,8 +132,9 @@ sModels = \
  12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             | 5814A        | t
  12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 12ax7-wa           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             | 7025         | t
+ 7025 (12AX7A)      |           |      7 | t            |                   |  Vacuum Tube |             |              | t
+ 12ax7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
