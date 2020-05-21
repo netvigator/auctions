@@ -13,6 +13,7 @@ RESULTS_FILE_NAME_PATTERN   = 'Search_%s_%s_ID_%s_p_%s_.json'
 # when selling on the ebay site, condition is optional
 # https://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Desc-ItemCondition.html
 
+WITH_AND_JOINERS = ( 'with', 'and', '&' )
 
 DROP_AFTER_THIS = (
     '(?<=[\W.,!?:;])'  # look back for this if u find any of the following
@@ -32,12 +33,12 @@ DROP_AFTER_THIS = (
         r'variant of\b|'
         r'similar to\b)' )
 
-SCRIPT_TEST_FILE            = '/tmp/auction_script_test.txt'
+SCRIPT_TEST_FILE        = '/tmp/auction_script_test.txt'
 
 if settings.TESTING:
-    SEARCH_FILES_FOLDER     = '/tmp/searches-test'
+    SEARCH_FILES_FOLDER = '/tmp/searches-test'
 else:
-    SEARCH_FILES_FOLDER     = '/tmp/searches'
+    SEARCH_FILES_FOLDER = '/tmp/searches'
 
 
 getMakeDir( SEARCH_FILES_FOLDER )
