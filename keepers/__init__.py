@@ -46,6 +46,11 @@ def getListWithCommas( s ):
     return ', '.join( l )
 
 
+def getListWithCommasMax88( s ):
+    #
+    return getListWithCommas( s )[ : 88 ]
+
+
 d = dict
 
 # null = True, blank = True fields in model MUST be marked bOptional here!
@@ -65,7 +70,7 @@ dItemFields = d(
     cListingType    = d( t = ( "ListingType",), ),
     cLocation       = d( t = ( "Location",), ),
     cPaymentMethods = d( t = ( "PaymentMethods",),
-                         f = getListWithCommas ),
+                         f = getListWithCommasMax88 ),
     cGalleryURL     = d( t = ( "GalleryURL",),
                          bOptional = True ),
     cPictureURLs    = d( t = ( "PictureURL",),
