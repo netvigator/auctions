@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 352494035670
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -233,6 +233,8 @@ sModels = \
  604D               |           |      8 | f            | Altec-Lansing     |       Driver |             |
  604E               |           |     10 | f            | Altec-Lansing     |       Driver |             |
  604-8G             |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 605A (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
+ 605A (enclosure)   |           |     10 | t            | Altec-Lansing     |Speaker Enclosure|          |
  606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
  755                |           |      7 | f            | Altec-Lansing     |       Driver | 755A        | 755C\\r755E
  755C               |           |      7 | t            | Altec-Lansing     |       Driver |             | 755\\r755A\\r755E
@@ -444,6 +446,8 @@ sModels = \
  A-61               |           |      7 | f            | Jensen            |    Crossover |             |
  M1131              |           |      6 | f            | Jensen            |        Choke |             |
  RP-302A            |           |      6 | t            | Jensen            |       Driver |             |
+ RP-201             |           |      8 | t            | Jensen            |       Driver |             |
+ P15-LS             |           |      5 | t            | Jensen            |       Driver |             |
  Imperial           |           |      9 | f            | Jensen            |Speaker System|             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
  GRF                |           |      7 | f            | Tannoy            |Speaker Enclosure|          |
