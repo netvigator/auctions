@@ -1388,6 +1388,7 @@ def findSearchHits(
                         dModelIDinTitle[ oModel.id ] = ValueContainer(
                             sInTitle    = sInTitle,
                             iCategory   = oCategory,
+                            iBrand      = oModel.iBrand,
                             sModelTitle = oModel.cTitle )
                         #
                     #
@@ -1425,7 +1426,9 @@ def findSearchHits(
                         #
                         dModelIDinTitle[ oModel.id ] = ValueContainer(
                             sInTitle    = sInTitle,
-                            iCategory   = oModel.iCategory )
+                            iCategory   = oModel.iCategory,
+                            iBrand      = oModel.iBrand.id,
+                            sModelTitle = oModel.cTitle )
                         #
                     #
                     if bRecordSteps and oModel.cTitle == 'E88CC':
@@ -1496,31 +1499,6 @@ def findSearchHits(
                 lItemFoundTemp.append( oTempItem )
                 #
             #
-        #
-        if len( dModelIDinTitle ) > 1:
-            #
-            oModelLocated = _getModelLocationsBegAndEnd(
-                    sAuctionTitleRelevantPart, dModelIDinTitle )
-            #
-            # tNearFront, tOnEnd, tNearEnd, tInParens,
-            # dAllWordLocations, tTitleWords
-            #
-        #
-        if bRecordSteps:
-            maybePrint()
-            maybePrint( 'dModelIDinTitle:' )
-            maybePrettyP( dModelIDinTitle )
-            if oModelLocated is None:
-                maybePrint( 'oModelLocated is None' )
-            else:
-                o = oModelLocated
-                maybePrint(
-                        'oModelLocated '
-                        'tNearFront, tOnEnd, tNearEnd, tInParens:',
-                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
-                maybePrint( 'tWordsOfInterest:', o.tWordsOfInterest )
-                maybePrint( 'dAllWordLocations:' )
-                maybePrettyP( o.dAllWordLocations )
         #
         #
         #
@@ -1797,6 +1775,69 @@ def findSearchHits(
                 lItemFoundTemp.append( oTempItem )
                 #
             #
+        #
+        #
+        # determine model locations for candidates
+        #
+        #
+        if len( dModelIDinTitle ) > 1:
+            #
+            # toss obvious non candidates
+            #
+            iterModelIDsBrandID = (
+                    ( k, v.iBrand.id )
+                    for k, v in dModelIDinTitle.items()
+                    if v.iBrand )
+            #
+            lDeleteThese = []
+            #
+            for t in iterModelIDsBrandID:
+                #
+                if t[1] not in setGotBrandsIDs:
+                    #
+                    lDeleteThese.append( t[0] )
+                    #
+                #
+            #
+            if lDeleteThese and len( lDeleteThese ) < len( dModelIDinTitle ):
+                #
+                for iModelID in lDeleteThese:
+                    #
+                    if bRecordSteps:
+                        #
+                        maybePrint( 'not a strong candidate:',
+                                   dModelIDinTitle[ iModelID ].sInTitle )
+                        #
+                    #
+                    del dModelIDinTitle[ iModelID ]
+                    #
+                #
+            #
+        #
+        if len( dModelIDinTitle ) > 1:
+            #
+            oModelLocated = _getModelLocationsBegAndEnd(
+                    sAuctionTitleRelevantPart, dModelIDinTitle )
+            #
+            # tNearFront, tOnEnd, tNearEnd, tInParens,
+            # dAllWordLocations, tTitleWords
+            #
+        #
+        if bRecordSteps:
+            maybePrint()
+            maybePrint( 'dModelIDinTitle:' )
+            maybePrettyP( dModelIDinTitle )
+            if oModelLocated is None:
+                maybePrint( 'oModelLocated is None' )
+            else:
+                o = oModelLocated
+                maybePrint(
+                        'oModelLocated '
+                        'tNearFront, tOnEnd, tNearEnd, tInParens:',
+                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
+                maybePrint( 'tWordsOfInterest:', o.tWordsOfInterest )
+                maybePrint( 'dAllWordLocations:' )
+                maybePrettyP( o.dAllWordLocations )
         #
         #
         #
