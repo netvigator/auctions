@@ -1922,10 +1922,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         iThisOne = 324020037678
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find 604-8G! production missed this recently!' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '620' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker Enclosure' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '604-8G' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
