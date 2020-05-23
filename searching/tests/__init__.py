@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 324020037678
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -236,6 +236,7 @@ sModels = \
  605A (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
  605A (enclosure)   |           |     10 | t            | Altec-Lansing     |Speaker Enclosure|          |
  606                |           |     10 | f            | Altec-Lansing     |Speaker Enclosure|          |
+ 620                |           |      8 | f            | Altec-Lansing     |Speaker Enclosure|          |
  755                |           |      7 | f            | Altec-Lansing     |       Driver | 755A        | 755C\\r755E
  755C               |           |      7 | t            | Altec-Lansing     |       Driver |             | 755\\r755A\\r755E
  755E               |           |      7 | f            | Altec-Lansing     |       Driver |             |
