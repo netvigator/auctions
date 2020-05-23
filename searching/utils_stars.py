@@ -2106,9 +2106,20 @@ def findSearchHits(
                         dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
                         #
                         iMaxAtFront = max( o.tNearFront )
-                        iLastAnd    = (
-                                      max( *o.dAndWords.values() )
-                                      if o.dAndWords else 0 )
+                        uAndWords   = o.dAndWords.values()
+                        #
+                        if not o.dAndWords:
+                            iLastAnd = 0
+                        elif isinstance( uAndWords, int ):
+                            iLastAnd = uAndWords
+                        else:
+                            iLastAnd = max( getListFromNestedLists(
+                                                o.dAndWords.values() ) )
+                        #
+                        if bRecordSteps:
+                            #
+                            print( 'iLastAnd:', iLastAnd )
+                            #
                         #
                         for iLocation in tLocations:
                             #
