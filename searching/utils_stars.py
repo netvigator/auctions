@@ -33,7 +33,7 @@ from searching              import ( WORD_BOUNDARY_MAX, SCRIPT_TEST_FILE,
 from pyPks.Collect.Get      import getListFromNestedLists
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Collect.Query    import get1stThatMeets
-from pyPks.Collect.Test     import AllMeet
+from pyPks.Collect.Test     import allMeet, containsAny, containsAll
 
 from pyPks.Dict.Get         import getReverseDictCarefully, getDictSubset
 
@@ -1130,8 +1130,9 @@ def findSearchHits(
         #
         lModels = dFindSteps[ 'models' ]
         #
-        dModelIDinTitle = {}
-        oModelLocated   = None
+        dModelIDinTitle     = {}
+        dModelID_oTempItem  = {}
+        oModelLocated       = None
         #
         # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
         #
@@ -2041,7 +2042,7 @@ def findSearchHits(
                             setCategoriesNearEnd |
                             setCategoriesOnEnd )
                     #
-                    bAllComponents = AllMeet(
+                    bAllComponents = allMeet(
                             setAllCategories, isComponent )
                     #
                     # enhance here --
@@ -2634,7 +2635,41 @@ def findSearchHits(
                                 sModelTitleLessParens in sWithout )
                         #
                     #
-                    if uLonger and bGotLongGotShort:
+                    bShorterNearEnd = False
+                    #
+                    if uLonger and bGotLongGotShort and oModelLocated:
+                        #
+                        o = oModelLocated
+                        #
+                        tLocations = o.dAllWordLocations.get(
+                                        sModelTitleLessParens, () )
+                        #
+                        if (    tLocations and
+                                ( o.tNearEnd or
+                                  o.tOnEnd ) ):
+                            #
+                            lNearEnd = list( o.tNearEnd )
+                            lNearEnd.extend( o.tOnEnd )
+                            #
+                            bShorterNearEnd = (
+                                not containsAny( tLocations, o.tNearFront ) and
+                                    containsAll( tLocations, lNearEnd ) )
+                        #
+                    #
+                    if uLonger and bGotLongGotShort and bShorterNearEnd:
+                        #
+                        if bRecordSteps:
+                            #
+                            _appendIfNotAlreadyIn(
+                                lSelect,
+                                    'excluding %s '
+                                    'because it is tacked on the end' %
+                                    sModelTitleLessParens )
+                            #
+                        #
+                        continue
+                        #
+                    elif uLonger and bGotLongGotShort:
                         #
                         if bRecordSteps:
                             #
