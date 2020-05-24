@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 324020037678
+iRecordStepsForThis = None or 174291344087 or 324020037678
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -188,8 +188,10 @@ sModels = \
  CCa (= 6922)       |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ CV4108             |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ E188CC             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
@@ -792,6 +794,41 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["174290984997"],
+             "title":["10 vntg 12AX7A ~ Raytheon ~Black Plate~ Tube lot TV-7 & Hi-Fi Tested 12AX7   rca"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m_yHMS3VSLkaC1ZzA7veGZg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/10-vntg-12AX7A-Raytheon-Black-Plate-Tube-lot-TV-7-Hi-Fi-Tested-12AX7-rca-\/174290984997"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.99"}],
+             "bidCount":["7"],"sellingState":["Active"],"timeLeft":["P2DT13H37M1S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-22T12:00:05.000Z"],
+             "endTime":["2020-05-25T12:00:05.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["174291344087"],
+             "title":["7308 Audiophile Vacuum Tube Very Rare Superb Sound - CV4108 E188CC Raytheon Amp"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m5sP0epErlCpCMHpDhqVhig\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/7308-Audiophile-Vacuum-Tube-Very-Rare-Superb-Sound-CV4108-E188CC-Raytheon-Amp-\/174291344087"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"13.79"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P9DT17H14M2S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-22T15:37:24.000Z"],
+             "endTime":["2020-06-01T15:37:24.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["133401627353"],
              "title":["Matched Pair EL34 6CA7 Bugle Boy (Mullard) Metal Base Tubes SY1 57C 1957"],
