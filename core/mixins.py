@@ -7,7 +7,7 @@ from django.http            import HttpResponseRedirect
 from core.utils             import getLink, getSaySequence
 
 from pyPks.Collect.Query    import get1stThatMeets
-from pyPks.Collect.Test     import ContainsAny
+from pyPks.Collect.Test     import containsAny
 
 fset = frozenset
 
@@ -58,7 +58,7 @@ class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
     #
     def redoRegEx( self, form ):
         #
-        if ContainsAny( self.setLook4TitleFields, form.changed_data ):
+        if containsAny( self.setLook4TitleFields, form.changed_data ):
             # Check whether sequence1 contains any of the items in sequence2.
             # 'cTitle' in form.changed_data or
             # 'cLookFor' in form.changed_data or
