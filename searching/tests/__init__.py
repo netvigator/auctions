@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 174291344087 or 324020037678
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -2201,24 +2201,6 @@ sResponseItems2Test = \
              "endTime":["2019-07-22T02:07:44.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-             "topRatedListing":["false"]
-
-         },{ "itemId":["223562235449"],
-             "title":["WESTERN ELECTRIC 300B ENGRAVED BASE TUBE TESTED 3500\/2900"],
-             "globalId":["EBAY-US"],
-             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-             "galleryURL":["http:\/\/thumbs2.ebaystatic.com\/m\/m7QG5OQ7lhm7qGEtZRJgWSQ\/140.jpg"],
-             "viewItemURL":["http:\/\/www.ebay.com\/itm\/WESTERN-ELECTRIC-300B-ENGRAVED-BASE-TUBE-TESTED-3500-2900-\/223562235449"],
-             "paymentMethod":["PayPal"],"autoPay":["false"],
-             "location":["New Zealand"],"country":["NZ"],
-             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
-             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2015.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2015.0"}],
-             "bidCount":["10"],"sellingState":["Active"],
-             "timeLeft":["P0DT8H26M39S"]}],
-             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-             "startTime":["2019-06-23T07:41:22.000Z"],
-             "endTime":["2019-06-30T07:41:22.000Z"],"listingType":["Auction"],"gift":["false"],
-             "watchCount":["33"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
              "topRatedListing":["false"]
 
           },{ "itemId":["293128761816"],
