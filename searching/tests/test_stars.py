@@ -2814,6 +2814,21 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 174291344087
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 7308 not CV4108 or E188CC' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7308' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
         #
         #
         iThisOne = 164011103887
@@ -2832,6 +2847,18 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find power supply ? big challenge?' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174290984997
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should only find Raytheon 12AX7A & RCA 12AX7A' )
         #
         #
         #
