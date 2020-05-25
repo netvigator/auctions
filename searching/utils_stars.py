@@ -763,6 +763,172 @@ def _getSearchMyCategoryDict( oUser = oUserOne ):
 
 
 
+
+
+def doStepThruCategories( oStepThruCategoryValues ):
+    #
+    oThis = oStepThruCategoryValues
+    #
+    oItem                       = oThis.oItem
+    oItemFound                  = oThis.oItemFound
+    lItemFoundTemp              = oThis.lItemFoundTemp
+    oUserItem                   = oThis.oUserItem
+    qsCategories                = oThis.qsCategories
+    lCategoryFound              = oThis.lCategoryFound
+    dGotCategories              = oThis.dGotCategories
+    dFindersCategories          = oThis.dFindersCategories
+    sAuctionTitleRelevantPart   = oThis.sAuctionTitleRelevantPart
+    bRecordSteps                = oThis.bRecordSteps
+    #
+    for oCategory in qsCategories:
+        #
+        foundItem = getFoundItemTester(
+                        oCategory,
+                        dFindersCategories,
+                        bPluralize = True )
+        #
+        t = foundItem( sAuctionTitleRelevantPart )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        #
+        #
+        # the following are short circuiting --
+        # if one is True, the following will be True
+        # and the string will not be searched
+        # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
+        #
+        bInHeirarchy1  = ( # will be True if sInTitle is True
+                sInTitle or
+                ( oItem.iCatHeirarchy and # can be None
+                    foundItem(
+                        oItem.iCatHeirarchy.cCatHierarchy )[0] ) )
+        #
+        bInHeirarchy2  = ( # will be True if either are True
+                sInTitle or
+                bInHeirarchy1 or
+                ( oItem.i2ndCatHeirarchy and
+                    foundItem(
+                        oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
+        #
+        #
+        bGotCategory = sInTitle or bInHeirarchy1 or bInHeirarchy2
+        #
+        if not bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
+            #
+            continue
+            #
+        elif uExcludeThis:
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn(
+                        lCategories, 'excluded: %s cuz found %s' %
+                        ( oCategory.cTitle, uExcludeThis ) )
+                #
+            #
+            continue
+            #
+        elif not uGotKeyWordsOrNoKeyWords:
+            #
+            if bRecordSteps:
+                #
+                lKeyWords = oFinderCRorLF.split( oCategory.cKeyWords )
+                #
+                sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                #
+                lKeyWords = (   lKeyWords[0].split()
+                                if len( lKeyWords ) == 1
+                                else lKeyWords )
+                #
+                sPlural = 's' if len( lKeyWords ) > 1 else ''
+                #
+                _appendIfNotAlreadyIn(
+                        lModels,
+                        'excluded: %s cuz aint got key word%s %s' %
+                        ( oCategory.cTitle, sPlural, sSayKeyWords ) )
+                #
+            #
+            continue
+            #
+        #
+        if bRecordSteps:
+            #
+            if sInTitle and sInTitle == oCategory.cTitle:
+                #
+                _appendIfNotAlreadyIn(
+                        lCategories,
+                        'category %s in title' % oCategory )
+                #
+            elif sInTitle:
+                #
+                _appendIfNotAlreadyIn(
+                        lCategories,
+                        'category %s ("%s") in title' %
+                            ( oCategory, sInTitle ) )
+                #
+            elif bInHeirarchy1:
+                #
+                sInCategory1 = foundItem(
+                                oItem.iCatHeirarchy.cCatHierarchy )[0]
+                #
+                _appendIfNotAlreadyIn( lCategories,
+                    '%s in primary caregory %s' %
+                    ( oCategory.cTitle, sInCategory1 ) )
+                #
+            elif bInHeirarchy2:
+                #
+                sInCategory2 = foundItem(
+                                oItem.i2ndCatHeirarchy.cCatHierarchy )[0]
+                #
+                _appendIfNotAlreadyIn( lCategories,
+                    '%s in secondary caregory %s' %
+                    ( oCategory.cTitle, sInCategory2 ) )
+                #
+            #
+        #
+        sWhich = _whichGetsCredit(
+                    sInTitle, bInHeirarchy1, bGotCategory )
+        #
+        oTempItem = ItemFoundTemp(
+                iItemNumb       = oItemFound,
+                iStarsCategory  = oCategory.iStars,
+                iHitStars       = oCategory.iStars,
+                iSearch         = oUserItem.iSearch,
+                iCategory       = oCategory,
+                cWhereCategory  = sWhich )
+        #
+        oTempItem.save()
+        #
+        lItemFoundTemp.append( oTempItem )
+        #
+        lCategoryFound.append( oCategory )
+        #
+        dGotCategories[ oCategory.id ] = sInTitle
+        #
+    #
+    # cWhereCategory 'title' 'heirarchy1' or 'heirarchy2'
+    #
+    # if have category in title, discount other categories
+    #
+    def gotCategorInTitle( o ): return o.cWhereCategory == 'title'
+    #
+    oGotCategoryInTitle = get1stThatMeets(
+                            lItemFoundTemp, gotCategorInTitle )
+    #
+    if oGotCategoryInTitle:
+        #
+        for o in lItemFoundTemp:
+            #
+            if o.cWhereCategory != 'title':
+                #
+                o.iStarsCategory    = o.iStarsCategory // 2 or 1
+                o.iHitStars         = o.iHitStars      // 2 or 1
+                #
+            #
+        #
+    #
+
+
 def findSearchHits(
             iUser                   = oUserOne.id,
             bCleanUpAfterYourself   = True,
@@ -975,151 +1141,20 @@ def findSearchHits(
         #
         #
         #
+        oStepThruCategoryValues = ValueContainer(
+            oItem                       = oItem,
+            oItemFound                  = oItemFound,
+            lItemFoundTemp              = lItemFoundTemp,
+            oUserItem                   = oUserItem,
+            qsCategories                = qsCategories,
+            lCategoryFound              = lCategoryFound,
+            dGotCategories              = dGotCategories,
+            dFindersCategories          = dFindersCategories,
+            sAuctionTitleRelevantPart   = sAuctionTitleRelevantPart,
+            bRecordSteps                = bRecordSteps )
         #
-        for oCategory in qsCategories:
-            #
-            foundItem = getFoundItemTester(
-                            oCategory,
-                            dFindersCategories,
-                            bPluralize = True )
-            #
-            # the following are short circuiting --
-            # if one is True, the following will be True
-            # and the string will not be searched
-            # so don't take bInHeirarchy1 & bInHeirarchy2 literally!
-            #
-            t = foundItem( sAuctionTitleRelevantPart )
-            #
-            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
-            #
-            #
-            bInHeirarchy1  = ( # will be True if sInTitle is True
-                    sInTitle or
-                    ( oItem.iCatHeirarchy and # can be None
-                        foundItem(
-                            oItem.iCatHeirarchy.cCatHierarchy )[0] ) )
-            #
-            bInHeirarchy2  = ( # will be True if either are True
-                    sInTitle or
-                    bInHeirarchy1 or
-                    ( oItem.i2ndCatHeirarchy and
-                        foundItem(
-                            oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
-            #
-            #
-            bGotCategory = sInTitle or bInHeirarchy1 or bInHeirarchy2
-            #
-            if not bGotCategory: # sInTitle or bInHeirarchy1 or bInHeirarchy2
-                #
-                continue
-                #
-            elif uExcludeThis:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lCategories, 'excluded: %s cuz found %s' %
-                            ( oCategory.cTitle, uExcludeThis ) )
-                    #
-                #
-                continue
-                #
-            elif not uGotKeyWordsOrNoKeyWords:
-                #
-                if bRecordSteps:
-                    #
-                    lKeyWords = oFinderCRorLF.split( oCategory.cKeyWords )
-                    #
-                    sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
-                    #
-                    lKeyWords = (   lKeyWords[0].split()
-                                    if len( lKeyWords ) == 1
-                                    else lKeyWords )
-                    #
-                    sPlural = 's' if len( lKeyWords ) > 1 else ''
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels,
-                            'excluded: %s cuz aint got key word%s %s' %
-                            ( oCategory.cTitle, sPlural, sSayKeyWords ) )
-                    #
-                #
-                continue
-                #
-            #
-            if bRecordSteps:
-                #
-                if sInTitle and sInTitle == oCategory.cTitle:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lCategories,
-                            'category %s in title' % oCategory )
-                    #
-                elif sInTitle:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lCategories,
-                            'category %s ("%s") in title' %
-                                ( oCategory, sInTitle ) )
-                    #
-                elif bInHeirarchy1:
-                    #
-                    sInCategory1 = foundItem(
-                                    oItem.iCatHeirarchy.cCatHierarchy )[0]
-                    #
-                    _appendIfNotAlreadyIn( lCategories,
-                        '%s in primary caregory %s' %
-                        ( oCategory.cTitle, sInCategory1 ) )
-                    #
-                elif bInHeirarchy2:
-                    #
-                    sInCategory2 = foundItem(
-                                    oItem.i2ndCatHeirarchy.cCatHierarchy )[0]
-                    #
-                    _appendIfNotAlreadyIn( lCategories,
-                        '%s in secondary caregory %s' %
-                        ( oCategory.cTitle, sInCategory2 ) )
-                    #
-                #
-            #
-            sWhich = _whichGetsCredit(
-                        sInTitle, bInHeirarchy1, bGotCategory )
-            #
-            oTempItem = ItemFoundTemp(
-                    iItemNumb       = oItemFound,
-                    iStarsCategory  = oCategory.iStars,
-                    iHitStars       = oCategory.iStars,
-                    iSearch         = oUserItem.iSearch,
-                    iCategory       = oCategory,
-                    cWhereCategory  = sWhich )
-            #
-            oTempItem.save()
-            #
-            lItemFoundTemp.append( oTempItem )
-            #
-            lCategoryFound.append( oCategory )
-            #
-            dGotCategories[ oCategory.id ] = sInTitle
-            #
+        doStepThruCategories( oStepThruCategoryValues )
         #
-        # cWhereCategory 'title' 'heirarchy1' or 'heirarchy2'
-        #
-        # if have category in title, discount other categories
-        #
-        def gotCategorInTitle( o ): return o.cWhereCategory == 'title'
-        #
-        oGotCategoryInTitle = get1stThatMeets(
-                                lItemFoundTemp, gotCategorInTitle )
-        #
-        if oGotCategoryInTitle:
-            #
-            for o in lItemFoundTemp:
-                #
-                if o.cWhereCategory != 'title':
-                    #
-                    o.iStarsCategory    = o.iStarsCategory // 2 or 1
-                    o.iHitStars         = o.iHitStars      // 2 or 1
-                    #
         #
         # finished stepping thru categories
         #
