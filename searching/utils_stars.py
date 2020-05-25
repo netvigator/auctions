@@ -847,7 +847,7 @@ def findSearchHits(
             ( 'candidates', [] ),
             ( 'selection',  [] ) ) )
     #
-    lScriptTested = []
+    lScriptTested = [] # in this session, test an item ONLY ONCE
     #
     if isFileThere( SCRIPT_TEST_FILE ):
         #
