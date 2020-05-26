@@ -777,6 +777,7 @@ def doStepThruCategories( oStepThruCategoryValues ):
     lCategoryFound              = oThis.lCategoryFound
     dGotCategories              = oThis.dGotCategories
     dFindersCategories          = oThis.dFindersCategories
+    lCategories                 = oThis.lCategories
     sAuctionTitleRelevantPart   = oThis.sAuctionTitleRelevantPart
     bRecordSteps                = oThis.bRecordSteps
     #
@@ -1150,6 +1151,7 @@ def findSearchHits(
             lCategoryFound              = lCategoryFound,
             dGotCategories              = dGotCategories,
             dFindersCategories          = dFindersCategories,
+            lCategories                 = lCategories,
             sAuctionTitleRelevantPart   = sAuctionTitleRelevantPart,
             bRecordSteps                = bRecordSteps )
         #
