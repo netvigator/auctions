@@ -67,10 +67,33 @@ logging_level = logging.WARNING
 _oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 
+
+def getInParens( s ):
+    #
+    oMatch = _oParensSearcher( s )
+    #
+    uReturn = None
+    #
+    if oMatch:
+        #
+        uReturn = oMatch.group(0)
+        #
+    #
+    return uReturn
+
+
+
 def _getRelevantTitle( sTitle ):
     #
-    return _oDropAfterThisFinder.split( sTitle )[0]
+    sAuctionTitleRelevantPart = _oDropAfterThisFinder.split( sTitle )[0]
+    #
+    sGotInParens = getInParens( sAuctionTitleRelevantPart )
+    #
+    return sAuctionTitleRelevantPart, sGotInParens
 
+
+
+def _isComponent( oCategory ): return oCategory.bComponent
 
 
 def _getTitleRegExress(
@@ -251,20 +274,6 @@ _oParensSearcher = _getRegExSearchOrNone( r'(?<=\().*(?=\))' )
 
 
 def _getAlphaNum( s ): return getAlphaNumCleanNoSpaces( s ).upper()
-
-
-def getInParens( s ):
-    #
-    oMatch = _oParensSearcher( s )
-    #
-    uReturn = None
-    #
-    if oMatch:
-        #
-        uReturn = oMatch.group(0)
-        #
-    #
-    return uReturn
 
 
 
@@ -765,21 +774,24 @@ def _getSearchMyCategoryDict( oUser = oUserOne ):
 
 
 
-def doStepThruCategories( oStepThruCategoryValues ):
+def _doStepThruCategories(
+            oItem,
+            oUserItem,
+            qsCategories,
+            dFindersCategories,
+            sAuctionTitleRelevantPart,
+            dFindSteps,
+            bRecordSteps ):
     #
-    oThis = oStepThruCategoryValues
+    lModels     = dFindSteps[ 'models' ]
+    lCategories = dFindSteps[ 'categories' ]
     #
-    oItem                       = oThis.oItem
-    oItemFound                  = oThis.oItemFound
-    lItemFoundTemp              = oThis.lItemFoundTemp
-    oUserItem                   = oThis.oUserItem
-    qsCategories                = oThis.qsCategories
-    lCategoryFound              = oThis.lCategoryFound
-    dGotCategories              = oThis.dGotCategories
-    dFindersCategories          = oThis.dFindersCategories
-    lCategories                 = oThis.lCategories
-    sAuctionTitleRelevantPart   = oThis.sAuctionTitleRelevantPart
-    bRecordSteps                = oThis.bRecordSteps
+    lCategoryFound = []
+    dGotCategories = {}
+    #
+    lItemFoundTemp = []
+    #
+    oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
     #
     for oCategory in qsCategories:
         #
@@ -928,6 +940,1945 @@ def doStepThruCategories( oStepThruCategoryValues ):
             #
         #
     #
+    return lCategoryFound, dGotCategories, lItemFoundTemp, oItemFound
+
+
+
+
+def _doStepThruModels(
+            qsModels,
+            dFindersModels,
+            oItem,
+            oItemFound,
+            lItemFoundTemp,
+            oUserItem,
+            dCategoryInfo,
+            dGotCategories,
+            sAuctionTitleRelevantPart,
+            sGotInParens,
+            dFindSteps,
+            bRecordSteps ):
+    #
+    lModels     = dFindSteps[ 'models' ]
+    lCategories = dFindSteps[ 'categories' ]
+    #
+    dModelIDinTitle     = {}
+    #
+    for oModel in qsModels:
+        #
+        foundItem = getFoundItemTester(
+                        oModel,
+                        dFindersModels,
+                        bAddDash = True,
+                        bSubModelsOK = oModel.bSubModelsOK,
+                        bExplainVerbose = False )
+        #
+        bFoundCategoryForModel = False
+        #
+        bExplainVerbose = ( bRecordSteps and
+                            oModel.cTitle == '6DJ8 (Bugle Boy)' )
+        #
+        t = foundItem( sAuctionTitleRelevantPart, bExplainVerbose )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        #
+        if not sInTitle:
+            #
+            continue
+            #
+        elif uExcludeThis:
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn(
+                        lModels, 'excluded: %s cuz found %s' %
+                        ( oModel.cTitle, uExcludeThis ) )
+                #
+            #
+            continue
+            #
+        elif not uGotKeyWordsOrNoKeyWords:
+            #
+            if bRecordSteps:
+                #
+                lKeyWords = oFinderCRorLF.split( oModel.cKeyWords )
+                #
+                sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                #
+                lKeyWords = (   lKeyWords[0].split()
+                                if len( lKeyWords ) == 1
+                                else lKeyWords )
+                #
+                sPlural = 's' if len( lKeyWords ) > 1 else ''
+                #
+                _appendIfNotAlreadyIn(
+                        lModels,
+                        'excluded: %s cuz aint got key word%s %s' %
+                        ( oModel.cTitle, sPlural, sSayKeyWords ) )
+                #
+            #
+            continue
+            #
+        #
+        # sGotInParens = getInParens( sAuctionTitleRelevantPart )
+        #
+        sModelAlphaNum  = _getAlphaNum( sInTitle )
+        #
+        iShorterByOK    = 1 if oModel.bSubModelsOK else 0 # None compatible
+        #
+        if bRecordSteps:
+            #
+            if (    uGotKeyWordsOrNoKeyWords and
+                    type( uGotKeyWordsOrNoKeyWords ) is not bool ):
+                #
+                _appendIfNotAlreadyIn( lModels,
+                        'for model "%s", "%s" is in title '
+                        'and have key word(s) "%s"' %
+                        (   oModel.cTitle,
+                            sInTitle,
+                            uGotKeyWordsOrNoKeyWords.group(0)) )
+                #
+            elif sInTitle == oModel.cTitle:
+                #
+                _appendIfNotAlreadyIn(
+                        lModels, 'model %s (category %s) in title' %
+                        ( sInTitle, oModel.iCategory ) )
+                #
+            else:
+                #
+                _appendIfNotAlreadyIn( lModels,
+                        'for model "%s", "%s" is in title' %
+                        ( oModel.cTitle, sInTitle ) )
+                #
+            #
+            if oModel.cExcludeIf:
+                #
+                sSayExclude = getDashForReturn( oModel.cExcludeIf )
+                _appendIfNotAlreadyIn( lModels,
+                        'model "%s" excludes: %s (RegEx: %s)' %
+                        ( oModel.cTitle,
+                            sSayExclude,
+                            oModel.cRegExExclude ) )
+                #
+                #
+            #
+        #
+        lNewItemFoundTemp = []
+        #
+        iModelCateID = oModel.iCategory_id
+        #
+        bModelCategoryAlreadyFound = (
+                iModelCateID in dGotCategories )
+        #
+        bCategoryFamilyRelation = False
+        #
+        for oTempItem in lItemFoundTemp: # lists categories found
+            #
+            # like a crossover w drivers
+            # or
+            # a tube tester roll chart
+            #
+            iItemCateID = ( oTempItem.iCategory.id
+                            if oTempItem.iCategory
+                            else 0 )
+            #
+            bCategoryFamilyRelation = (
+                oTempItem.iCategory and dCategoryInfo and
+                iItemCateID != iModelCateID and
+                iItemCateID in dCategoryInfo and
+                (   (   dCategoryInfo[ iItemCateID ].iFamilyID ==
+                        iModelCateID )
+                    or
+                    (   iModelCateID in dCategoryInfo and
+                            dCategoryInfo[ iModelCateID ].iFamilyID ==
+                            dCategoryInfo[ iItemCateID  ].iFamilyID ) ) )
+            #
+            bAddThisCategory = False
+            #
+            if  (   bCategoryFamilyRelation and
+                    iModelCateID    in dGotCategories and
+                    iItemCateID in dGotCategories ):
+                #
+                sModelCategory = dGotCategories[ iModelCateID ]
+                iModelCategory = len( sModelCategory )
+                #
+                sThisCategory = dGotCategories[ iItemCateID ]
+                iThisCategory = len( sThisCategory )
+                #
+                bAddThisCategory = (
+                        sModelCategory and
+                        iThisCategory > iModelCategory and
+                        sModelCategory in sThisCategory )
+                #
+            #
+            if bCategoryFamilyRelation and bAddThisCategory:
+                #
+                pass
+                #
+            elif (  bModelCategoryAlreadyFound and
+                    oModel.iCategory != oTempItem.iCategory ):
+                #
+                continue
+                #
+            elif oModel.id in dModelIDinTitle:
+                #
+                continue
+                #
+            #
+            if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
+                #
+                if bModelCategoryAlreadyFound:
+                    #
+                    oCategory = oTempItem.iCategory
+                    sWhereCategory = oTempItem.cWhereCategory
+                    #
+                else: # bCategoryFamilyRelation
+                    #
+                    if iModelCateID in dCategoryInfo:
+                        #
+                        iFamily = dCategoryInfo[ iModelCateID ].iFamilyID
+                        #
+                    else:
+                        #
+                        # dCategoryInfo[ iItemCateID ] ==
+                        # iModelCateID )
+                        #
+                        logger.warning(
+                                'model has category id %s in dCategoryInfo for %s' %
+                                ( iModelCateID, oItem.iItemNumb ) )
+                        #
+                        iFamily = dCategoryInfo[ iItemCateID ].iFamilyID
+                        #
+                    #
+                    # dFamilyCategories should work here
+                    #
+                    oFamily = Category.objects.get( id = iFamily )
+                    #
+                    sSayFamily = 'a member'
+                    #
+                    if oModel.iCategory == iFamily:
+                        #
+                        sSayFamily = 'the head'
+                        #
+                    #
+                    # find targets for troubleshooting:
+                    # is a member of family X
+                    # is the head of family X
+                    #
+                    _appendIfNotAlreadyIn(
+                            lCategories,
+                            'category %s is %s of family %s' %
+                                ( oModel.iCategory,
+                                    sSayFamily,
+                                    oFamily.cTitle ) )
+                    #
+                    oCategory = oModel.iCategory
+                    #
+                    sWhereCategory = 'family'
+                    #
+                #
+                if bRecordSteps:
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'adding model %s for category %s' %
+                            ( oModel.cTitle, oCategory ) )
+                #
+                oNewTempItem = ItemFoundTemp(
+                        iItemNumb       = oTempItem.iItemNumb,
+                        iStarsCategory  = oTempItem.iStarsCategory,
+                        iHitStars       = oTempItem.iHitStars,
+                        iSearch         = oTempItem.iSearch,
+                        iCategory       = oCategory,
+                        cWhereCategory  = sWhereCategory,
+                        iModel          = oModel,
+                        iStarsModel     = oModel.iStars,
+                        cFoundModel     = sInTitle,
+                        cModelAlphaNum  = sModelAlphaNum,
+                        cTitleLeftOver  = sWhatRemains )
+                #
+                iModelStars = oModel.iStars or 1
+                #
+                iHitStars = oTempItem.iStarsCategory * iModelStars
+                #
+                oNewTempItem.iHitStars  = iHitStars
+                #
+                oNewTempItem.iFoundModelLen = _getModelFoundLen(
+                                                sInTitle, sGotInParens )
+                #
+                oNewTempItem.save()
+                #
+                bFoundCategoryForModel  = True
+                #
+                lNewItemFoundTemp.append( oNewTempItem )
+                #
+                if oModel.id not in dModelIDinTitle:
+                    #
+                    dModelIDinTitle[ oModel.id ] = ValueContainer(
+                        sInTitle    = sInTitle,
+                        iCategory   = oCategory,
+                        iBrand      = oModel.iBrand,
+                        sModelTitle = oModel.cTitle )
+                    #
+                #
+            elif    ( oModel.iCategory == oTempItem.iCategory and
+                    oTempItem.iModel is None ):
+                #
+                if bRecordSteps:
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'item has category %s for model %s' %
+                            ( oTempItem.iCategory, oModel.cTitle ) )
+                    #
+                #
+                oTempItem.iModel            = oModel
+                #
+                oTempItem.iStarsModel       = oModel.iStars
+                #
+                # reduce the length boost if the match is in parens
+                #
+                oTempItem.iFoundModelLen = _getModelFoundLen(
+                                                sInTitle, sGotInParens )
+                #
+                iModelStars = oModel.iStars or 1
+                #
+                iHitStars = oTempItem.iStarsCategory * iModelStars
+                #
+                oTempItem.iHitStars         = iHitStars
+                #
+                oTempItem.save()
+                #
+                bFoundCategoryForModel      = True
+                #
+                if oModel.id not in dModelIDinTitle:
+                    #
+                    dModelIDinTitle[ oModel.id ] = ValueContainer(
+                        sInTitle    = sInTitle,
+                        iCategory   = oModel.iCategory,
+                        iBrand      = oModel.iBrand.id,
+                        sModelTitle = oModel.cTitle )
+                    #
+                #
+                if bRecordSteps and oModel.cTitle == 'E88CC':
+                    maybePrint()
+                    maybePrint( 'E88CC iInTitleLocation:', iInTitleLocation )
+                #
+            #
+        #
+        if lNewItemFoundTemp:
+            #
+            lItemFoundTemp.extend( lNewItemFoundTemp )
+            #
+        #
+        if bCategoryFamilyRelation and not bFoundCategoryForModel:
+            #
+            if oModel.iCategory_id in dCategoryInfo:
+                #
+                iFamily = dCategoryInfo[ oModel.iCategory_id ].iFamilyID
+                #
+                if iFamily in dFamilyCategories:
+                    #
+                    oFamily = Category.objects.get( id = iFamily )
+                    #
+                    _appendIfNotAlreadyIn(
+                            lCategories,
+                            'category %s is the head of family %s' %
+                                ( oModel.iCategory, oFamily.cTitle ) )
+                    #
+                #
+            #
+        #
+        if not bFoundCategoryForModel:
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn(
+                        lModels,
+                        'item does not have category %s for model %s' %
+                            ( oModel.iCategory, oModel.cTitle ) )
+                #
+                if oModel.iCategory.cLookFor:
+                    #
+                    lLookFor = oFinderCRorLF.split( oModel.iCategory.cLookFor )
+                    #
+                    sayLookFor = ' | '.join( lLookFor )
+                    #
+                    _appendIfNotAlreadyIn(
+                            lModels,
+                            'category look for: %s' % sayLookFor )
+                    #
+                #
+                _appendIfNotAlreadyIn(
+                        lModels,
+                        'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
+            #
+            oTempItem = ItemFoundTemp(
+                    iItemNumb       = oItemFound,
+                    iHitStars       = oModel.iStars,
+                    iStarsModel     = oModel.iStars,
+                    cFoundModel     = sInTitle,
+                    cModelAlphaNum  = sModelAlphaNum,
+                    iFoundModelLen  = len( sModelAlphaNum ),
+                    iSearch         = oUserItem.iSearch,
+                    iModel          = oModel )
+            #
+            oTempItem.save()
+            #
+            lItemFoundTemp.append( oTempItem )
+            #
+        #
+    #
+    return dModelIDinTitle
+
+
+
+def _doStepThruBrands(
+            oItem,
+            oItemFound,
+            lItemFoundTemp,
+            oUser,
+            qsBrands,
+            dFindSteps,
+            dFindersBrands,
+            lCategoryFound,
+            sAuctionTitleRelevantPart,
+            oUserItem,
+            bRecordSteps ):
+    #
+    lBrands = dFindSteps[ 'brands' ]
+    lModels = dFindSteps[ 'models' ]
+    #
+    setGotBrandsIDs = set( [] )
+    #
+    bGotBrandForNonGenericModel = False
+    #
+    for oBrand in qsBrands:
+        #
+        foundItem = getFoundItemTester(
+                        oBrand, dFindersBrands, bAddDash = True )
+        #
+        bFoundBrandForModel = False
+        #
+        t = foundItem( sAuctionTitleRelevantPart )
+        #
+        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        #
+        if not sInTitle:
+            #
+            continue
+            #
+        elif uExcludeThis:
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn(
+                        lBrands, 'excluded: %s cuz found %s' %
+                        ( oBrand.cTitle, uExcludeThis ) )
+                #
+            #
+            continue
+            #
+        elif not uGotKeyWordsOrNoKeyWords:
+            #
+            if bRecordSteps:
+                #
+                lKeyWords = oFinderCRorLF.split( oBrand.cKeyWords )
+                #
+                sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
+                #
+                lKeyWords = (   lKeyWords[0].split()
+                                if len( lKeyWords ) == 1
+                                else lKeyWords )
+                #
+                sPlural = 's' if len( lKeyWords ) > 1 else ''
+                #
+                _appendIfNotAlreadyIn(
+                        lModels,
+                        'excluded: %s cuz aint got key word%s %s' %
+                        ( oBrand.cTitle, sPlural, sSayKeyWords ) )
+                #
+            #
+            continue
+            #
+        #
+        setModelsBrands = set( [] )
+        #
+        setGotBrandsIDs.add( oBrand.id )
+        #
+        if bRecordSteps:
+            #
+            if sInTitle == oBrand.cTitle:
+                #
+                _appendIfNotAlreadyIn(
+                        lBrands, 'brand %s in title' % sInTitle )
+                #
+            else:
+                #
+                _appendIfNotAlreadyIn( lBrands,
+                        'for brand "%s", "%s" is in title' %
+                        ( oBrand.cTitle, sInTitle ) )
+                #
+            #
+        #
+        # django discrepancy between 1.11 and 2.2 here
+        # django 2.2 gets confused when an item is added to lItemFoundTemp
+        # deepcopy instead of copy solved the problem
+        #
+        for oTempItem in lItemFoundTemp:
+            #
+            tModelBrand = ( oTempItem.iModel, oBrand )
+            #
+            oItemFoundTempModel = None
+            #
+            if oTempItem.iModel:
+                oItemFoundTempModel = Model.objects.get(
+                                        id = oTempItem.iModel.id )
+            #
+            if   (      oTempItem.iModel                and
+                    not oTempItem.iModel.bGenericModel  and
+                    oItemFoundTempModel                 and
+                    oItemFoundTempModel.iBrand == oTempItem.iBrand ):
+                #
+                bFoundBrandForModel = True
+                #
+            elif (  oTempItem.iModel                and
+                    oTempItem.iBrand                and
+                    oTempItem.iModel.bGenericModel  and
+                    oTempItem.iCategory             and
+                    tModelBrand not in setModelsBrands ):
+                #
+
+                bSaveBrand = BrandCategory.objects.filter(
+                    iUser     = oUser,
+                    iBrand    = oBrand,
+                    iCategory = oTempItem.iCategory ).exists()
+                #
+                if bRecordSteps:
+                    #
+                    maybePrint()
+                    maybePrint( 'bSaveBrand:', bSaveBrand )
+                    #
+                    _appendIfNotAlreadyIn( lBrands,
+                            'found another brand %s for generic model %s' %
+                            ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                    #
+                #
+                oAnotherTempItem = deepcopy( oTempItem )
+                #
+                oAnotherTempItem.iBrand      = None
+                oAnotherTempItem.iStarsBrand = 0
+                oAnotherTempItem.iHitStars   = 0
+                #
+                lItemFoundTemp.append( oAnotherTempItem )
+                #
+                continue
+                #
+            elif (      oTempItem.iModel and
+                    (   oTempItem.iBrand is None or
+                        oTempItem.iBrand != oBrand ) ):
+                #
+                bSaveBrand = False
+                #
+                if oBrand == oTempItem.iModel.iBrand:
+                    #
+                    oTempItem.iBrand = oBrand
+                    #
+                    bSaveBrand = True
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn( lBrands,
+                                'found brand %s for model %s' %
+                                ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                        #
+                    #
+                    bGotBrandForNonGenericModel = True
+                    #
+                    bFoundBrandForModel = True
+                    #
+                elif    (   oItemFoundTempModel                  and
+                            oItemFoundTempModel.iBrand == oBrand and
+                            oTempItem.iBrand != oBrand ):
+                    #
+                    oTempItem.iBrand = oBrand
+                    #
+                    bSaveBrand = True
+                    #
+                    bFoundBrandForModel = True
+                    #
+                elif oTempItem.iModel.bGenericModel and oTempItem.iCategory:
+                    #
+                    bSaveBrand = BrandCategory.objects.filter(
+                        iUser     = oUser,
+                        iBrand    = oBrand,
+                        iCategory = oTempItem.iCategory ).exists()
+                    #
+                #
+                if bSaveBrand and tModelBrand not in setModelsBrands:
+                    #
+                    if (    bRecordSteps and
+                            oTempItem.iModel.bGenericModel and
+                            not bGotBrandForNonGenericModel ):
+                        #
+                        _appendIfNotAlreadyIn( lBrands,
+                                'found brand %s for generic model %s' %
+                                ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
+                        #
+                    #
+                    oTempItem.iStarsBrand  = oBrand.iStars
+                    oTempItem.iBrand       = oBrand
+                    #
+                    iStarsCategory  = oTempItem.iStarsCategory  or 1
+                    iStarsModel     = oTempItem.iStarsModel     or 1
+                    #
+                    iHitStars = (   iStarsCategory *
+                                    iStarsModel *
+                                    oBrand.iStars )
+                    #
+                    oTempItem.iHitStars    = iHitStars
+                    #
+                    oTempItem.save()
+                    #
+                    bFoundBrandForModel = True
+                    #
+                    setModelsBrands.add( tModelBrand )
+                    #
+                #
+            #
+        #
+        bSaveBrand = False
+        #
+        for oCategory in lCategoryFound:
+            #
+            bSaveBrand = BrandCategory.objects.filter(
+                iUser     = oUser,
+                iBrand    = oBrand,
+                iCategory = oCategory ).exists()
+            #
+            if bSaveBrand: break
+            #
+        #
+        iBrandStars = oBrand.iStars or 1
+        #
+        if bSaveBrand and not bFoundBrandForModel:
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn( lBrands,
+                        'brand %s has products in category %s' %
+                        ( oBrand.cTitle, oCategory.cTitle ) )
+                #
+            #
+            oTempItem.iStarsBrand  = oBrand.iStars
+            oTempItem.iBrand       = oBrand
+            #
+            iStarsCategory          = oCategory.iStars or 1
+            #
+            iHitStars = iStarsCategory * oBrand.iStars
+            #
+            oTempItem.iHitStars    = iHitStars
+            #
+            oTempItem = ItemFoundTemp(
+                    iItemNumb       = oItem,
+                    iBrand          = oBrand,
+                    iCategory       = oCategory,
+                    iStarsBrand     = iBrandStars,
+                    iStarsCategory  = iStarsCategory,
+                    iHitStars       = iHitStars,
+                    iSearch         = oUserItem.iSearch )
+            #
+            oTempItem.save()
+            #
+            lItemFoundTemp.append( oTempItem )
+            #
+        elif not bFoundBrandForModel:
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn( lBrands,
+                        'did not find brand %s for any model found' %
+                        oBrand.cTitle )
+                #
+            #
+            oTempItem = ItemFoundTemp(
+                    iItemNumb       = oItem,
+                    iBrand          = oBrand,
+                    iStarsBrand     = oBrand.iStars,
+                    iHitStars       = iBrandStars,
+                    iSearch         = oUserItem.iSearch )
+            #
+            oTempItem.save()
+            #
+            lItemFoundTemp.append( oTempItem )
+            #
+        #
+    #
+    return bGotBrandForNonGenericModel, setGotBrandsIDs
+
+
+
+
+def _getModelLocations(
+            dModelIDinTitle,
+            setGotBrandsIDs,
+            sAuctionTitleRelevantPart,
+            bRecordSteps ):
+    #
+    oModelLocated = None
+    #
+    if len( dModelIDinTitle ) > 1:
+        #
+        # toss obvious non candidates
+        #
+        iterModelIDsBrandID = (
+                ( k, v.iBrand.id )
+                for k, v in dModelIDinTitle.items()
+                if v.iBrand )
+        #
+        lDeleteThese = []
+        #
+        for t in iterModelIDsBrandID:
+            #
+            if t[1] not in setGotBrandsIDs:
+                #
+                lDeleteThese.append( t[0] )
+                #
+            #
+        #
+        if lDeleteThese and len( lDeleteThese ) < len( dModelIDinTitle ):
+            #
+            for iModelID in lDeleteThese:
+                #
+                if bRecordSteps:
+                    #
+                    maybePrint( 'not a strong candidate:',
+                                dModelIDinTitle[ iModelID ].sInTitle )
+                    #
+                #
+                del dModelIDinTitle[ iModelID ]
+                #
+            #
+        #
+    #
+    if len( dModelIDinTitle ) > 1:
+        #
+        oModelLocated = _getModelLocationsBegAndEnd(
+                sAuctionTitleRelevantPart, dModelIDinTitle )
+        #
+        # tNearFront, tOnEnd, tNearEnd, tInParens,
+        # dAllWordLocations, tTitleWords
+        #
+    #
+    if bRecordSteps:
+        maybePrint()
+        maybePrint( 'dModelIDinTitle:' )
+        maybePrettyP( dModelIDinTitle )
+        if oModelLocated is None:
+            maybePrint( 'oModelLocated is None' )
+        else:
+            o = oModelLocated
+            maybePrint(
+                    'oModelLocated '
+                    'tNearFront, tOnEnd, tNearEnd, tInParens:',
+                o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
+            maybePrint( 'tWordsOfInterest:', o.tWordsOfInterest )
+            maybePrint( 'dAllWordLocations:' )
+            maybePrettyP( o.dAllWordLocations )
+    #
+    return oModelLocated
+
+
+
+
+def _doScoreCandidates(
+            oItem,
+            lItemFoundTemp,
+            oModelLocated,
+            dModelIDinTitle,
+            oUserItem,
+            dSearchMyCategory,
+            dCategoryInfo,
+            setGotBrandsIDs,
+            bGotBrandForNonGenericModel,
+            dFindSteps,
+            dSearchLogs,
+            oUser,
+            bRecordSteps ):
+    #
+    tNow = timezone.now()
+    #
+    lCandidates = dFindSteps[ 'candidates' ]
+    lSelect     = dFindSteps[ 'selection' ]
+    #
+    dModelID_oTempItem  = {}
+    #
+    if lItemFoundTemp:
+        #
+        lExcludeThese = []
+        #
+        if len( lItemFoundTemp ) > 1:
+            #
+            if bRecordSteps:
+                #
+                lCandidates.append(
+                        'scoring (total, hit stars, found length): '
+                        '%s candidates'
+                        % len( lItemFoundTemp ) )
+                #
+            #
+        #
+        if oModelLocated: # some on the end of the auctin title
+            #
+            # tNearFront, tOnEnd, tNearEnd, tInParens,
+            # dAllWordLocations, tTitleWords
+            #
+            dModelID_oTempItem = dict(
+                    ( ( oTempItem.iModel.id, oTempItem )
+                        for oTempItem in lItemFoundTemp
+                        if oTempItem.iModel is not None ) )
+            #
+            # dAllWordLocations = { 'Jbl'       : ( 0, ),
+            #                       'L65'       : ( 1, ),
+            #                       'Jubal'     : ( 2, ),
+            #                       'Le5-12'    : ( 3, ),
+            #                       'Mids'      : ( 4, ),
+            #                       'Pair'      : ( 5, ),
+            #                       'Working'   : ( 6, ),
+            #                       'Nice'      : ( 7, ),
+            #                       'See'       : ( 8, ),
+            #                       'Pictures'  : ( 9, ) }
+            #
+            dWordLocations = oModelLocated.dAllWordLocations
+            #
+            dLocationsModelIDs = {}
+            #
+            for iModelID, o in dModelIDinTitle.items():
+                #
+                sInTitle = o.sInTitle
+                #
+                tLocation = dWordLocations.get( sInTitle )
+                #
+                if tLocation is not None:
+                    #
+                    for i in tLocation:
+                        #
+                        lModels = dLocationsModelIDs.setdefault(
+                                        i, [] ).append( iModelID )
+                        #
+                    #
+                #
+            #
+            setCategoriesBeg    = _getCategoriesForPositions(
+                    oModelLocated.tNearFront,
+                    dLocationsModelIDs,
+                    dModelID_oTempItem )
+            #
+            setCategoriesOnEnd  = _getCategoriesForPositions(
+                    oModelLocated.tOnEnd,
+                    dLocationsModelIDs,
+                    dModelID_oTempItem )
+            #
+            setCategoriesNearEnd  = _getCategoriesForPositions(
+                    oModelLocated.tNearEnd,
+                    dLocationsModelIDs,
+                    dModelID_oTempItem )
+            #
+            if bRecordSteps:
+                #
+                maybePrint()
+                maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
+                maybePrint( 'setCategoriesOnEnd:', setCategoriesOnEnd )
+                maybePrint( 'setCategoriesNearEnd:', setCategoriesNearEnd )
+                maybePrint( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
+                maybePrint( 'dModelID_oTempItem:' )
+                # maybePrettyP( dModelID_oTempItem )
+                for k, o in dModelID_oTempItem.items():
+                    maybePrint( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
+                maybePrint( 'dLocationsModelIDs:' )
+                maybePrettyP( dLocationsModelIDs )
+                # maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
+                # maybePrettyP( lItemFoundTemp )
+                #for o in lItemFoundTemp:
+                    #if o.iCategory is None:
+                        #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
+                    #else:
+                        #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
+                maybePrint( 'oModelLocated:' )
+                for s in vars( oModelLocated ):
+                    if s.startswith( '_' ): continue
+                    maybePrint( '  %s: %s' % ( s, oModelLocated.__dict__[s] ) )
+                #
+                maybePrint( 'setGotBrandsIDs:', setGotBrandsIDs )
+                maybePrint( 'bGotBrandForNonGenericModel:', bGotBrandForNonGenericModel )
+                #
+            #
+            if setGotBrandsIDs and bGotBrandForNonGenericModel:
+                #
+                for iModelID, oTempItem in dModelID_oTempItem.items():
+                    #
+                    if  (   oTempItem.iBrand is None or
+                            oTempItem.iBrand.id not in setGotBrandsIDs ):
+                        #
+                        lExcludeThese.append( oTempItem )
+                        #
+                        if bRecordSteps:
+                            #
+                            #
+                            lCandidates.append(
+                                'do not have brand for model %s, '
+                                'so excluding' % oTempItem.iModel )
+                            #
+                        #
+                    #
+                #
+                lItemFoundTemp = [ o for o in lItemFoundTemp
+                                    if o not in lExcludeThese ]
+                #
+                lExcludeThese = []
+                #
+            #
+            if bRecordSteps:
+                #
+                maybePrint( 'lItemFoundTemp:' )
+                for o in lItemFoundTemp:
+                    maybePrint( '  %s - %s - %s' %
+                                ( o.iModel, o.iBrand, o.iCategory ) )
+                #
+            if setCategoriesBeg or oModelLocated.tInParens:
+                #
+                setFamiliesBeg = frozenset(
+                        ( dCategoryInfo[ o.id ].iFamilyID
+                            for o in setCategoriesBeg
+                            if o.id in dCategoryInfo ) )
+                #
+                setFamiliesOnEnd = frozenset(
+                        ( dCategoryInfo[ o.id ].iFamilyID
+                            for o in setCategoriesOnEnd
+                            if o.id in dCategoryInfo ) )
+                #
+                lExcludeThese = []
+                #
+                o = oModelLocated
+                #
+                if (    o.tNearEnd  and
+                        o.tOnEnd    and
+                        len( o.tNearEnd ) > len( o.tOnEnd ) and
+                        o.tNearEnd.endswith( o.tOnEnd ) ):
+                    #
+                    setFamiliesNearEnd = frozenset(
+                            ( dCategoryInfo[ o.id ].iFamilyID
+                            for o in setCategoriesNearEnd
+                            if o.id in dCategoryInfo ) )
+                    #
+                    tTests = (
+                        ( o.tNearEnd, 'near end of',
+                            setCategoriesNearEnd, setFamiliesNearEnd ),
+                        ( o.tInParens,'within parens in',
+                            None, None ) )
+                    #
+                else:
+                    #
+                    tTests = (
+                        ( o.tOnEnd,   'on end of',
+                            setCategoriesOnEnd, setFamiliesOnEnd ),
+                        ( o.tInParens,'within parens in',
+                            None, None ),
+                        ( o.tNearEnd, 'near end of',
+                            setCategoriesNearEnd, None ) )
+                    #
+                #
+                if bRecordSteps:
+                    #
+                    maybePrint( 'setFamiliesBeg    :', setFamiliesBeg    )
+                    maybePrint( 'setFamiliesOnEnd  :', setFamiliesOnEnd  )
+                    maybePrint( 'test in this order:',
+                                ', '.join( [ t[1] for t in tTests ] ) )
+                    #
+                #
+                setAllCategories = (
+                        setCategoriesBeg |
+                        setCategoriesNearEnd |
+                        setCategoriesOnEnd )
+                #
+                bAllComponents = allMeet(
+                        setAllCategories, _isComponent )
+                #
+                # enhance here --
+                # if "with" word is between front and on / near end
+                #
+                for tLocations, sSay, setTest, setFamily in tTests:
+                    #
+                    # o = oModelLocated
+                    # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
+                    #
+                    if bRecordSteps:
+                        #
+                        maybePrint( 'step for', sSay, 'tLocations:', tLocations )
+                        #
+                    #
+                    if not tLocations: continue
+                    #
+                    if setTest is not None:
+                        #
+                        if False and setCategoriesBeg == setTest:
+                            #
+                            # want to process if all are vacuum tubes!
+                            #
+                            continue # categories same
+                            #
+                        elif bAllComponents:
+                            #
+                            continue
+                            #
+                        elif (  setFamiliesBeg is not None and
+                                setFamily      is not None and
+                                len( setFamiliesBeg ) == 1 and
+                                setFamiliesBeg == setFamily ):
+                            #
+                            sNext2Last = o.tTitleWords[
+                                                max( o.tOnEnd ) - 1 ]
+                            #
+                            if bRecordSteps:
+                                #
+                                maybePrint( 'category IDs:  ', setCategoriesBeg |setCategoriesNearEnd )
+                                maybePrint( 'bAllComponents:', bAllComponents )
+                                #
+                            #
+                            if   (  o.tNearEnd and
+                                    o.tNearEnd.endswith( o.tOnEnd ) and
+                                    sNext2Last.lower() in
+                                        ( '&', 'and', ',' ) ):
+                                #
+                                # proper listing,
+                                # not just model # tacked on end
+                                #
+                                continue
+                                #
+                            #
+                        #
+                    #
+                    if bRecordSteps:
+                        #
+                        maybePrint( sSay, 'tLocations:', tLocations )
+                        #
+                    #
+                    dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
+                    #
+                    iMaxAtFront = max( o.tNearFront )
+                    uAndWords   = o.dAndWords.values()
+                    #
+                    if not o.dAndWords:
+                        iLastAnd = 0
+                    elif isinstance( uAndWords, int ):
+                        iLastAnd = uAndWords
+                    else:
+                        iLastAnd = max( getListFromNestedLists(
+                                            o.dAndWords.values() ) )
+                    #
+                    if bRecordSteps:
+                        #
+                        print( 'iLastAnd:', iLastAnd )
+                        #
+                    #
+                    for iLocation in tLocations:
+                        #
+                        if iLocation in dLocationsModelIDs:
+                            #
+                            for iModelID in dLocationsModelIDs[ iLocation ]:
+                                #
+                                lLocations = dModelIDsLocations[ iModelID ]
+                                #
+                                iMinOnEnd  = min( lLocations )
+                                #
+                                if (    len( lLocations ) > 1 and
+                                        iMinOnEnd in o.tNearFront ):
+                                    #
+                                    continue
+                                    #
+                                elif (  o.dAndWords and
+                                        iLastAnd >=
+                                            iMaxAtFront +
+                                            ( ( iMinOnEnd - iMaxAtFront )
+                                                / 2 ) ):
+                                    #
+                                    continue
+                                    #
+                                #
+                                lExcludeThese.append(
+                                        dModelID_oTempItem[ iModelID ] )
+                                #
+                                if bRecordSteps:
+                                    #
+                                    sModel = dModelID_oTempItem[ iModelID ].iModel
+                                    #
+                                    lCandidates.append(
+                                        'model %s %s auction title, '
+                                        'so excluding' % ( sModel, sSay ) )
+                                    #
+                            #
+                        else:
+                            #
+                            if bRecordSteps:
+                                #
+                                logger.info(
+                                    'weak hit: model location %s '
+                                    'not in dLocationsModelIDs for %s' %
+                                    ( iLocation, oItem.iItemNumb ) )
+                                #
+                            #
+                        #
+                    #
+                #
+                #
+                lItemFoundTemp = [ o for o in lItemFoundTemp
+                                    if o not in lExcludeThese ]
+                #
+
+            if bRecordSteps:
+                #
+                maybePrint( 'len( lItemFoundTemp ) after:', len( lItemFoundTemp ) )
+        #
+        if len( lItemFoundTemp ) > 1:
+            #
+            t = _getFoundModelBooster( lItemFoundTemp, bRecordSteps )
+            #
+            nFoundModelBoost, iMaxLen, lExactMatch = t
+            #
+            if bRecordSteps and lExactMatch:
+                #
+                sSayExactMatch = getTextSequence(
+                                    ( o.cFoundModel for o in lExactMatch ) )
+                #
+                lCandidates.append(
+                        'have exact match%s: %s'
+                        % ( Plural( len( lExactMatch ), 'es' ),
+                            sSayExactMatch ) )
+                #
+            elif bRecordSteps and nFoundModelBoost > 1:
+                #
+                lCandidates.append(
+                        'giving the longest title a boost: %s'
+                        % nFoundModelBoost )
+                #
+            #
+            lSortItems = []
+            #
+            for i in range( len( lItemFoundTemp ) ):
+                #
+                oTempItem = lItemFoundTemp[ i ]
+                #
+                iFoundModelMultiplier = oTempItem.iFoundModelLen or 1
+                #
+                if oTempItem.iFoundModelLen == iMaxLen:
+                    #
+                    iScoreStars = round( (
+                        iFoundModelMultiplier * oTempItem.iHitStars
+                        ) * nFoundModelBoost )
+                    #
+                else:
+                    #
+                    iScoreStars = int( (
+                        iFoundModelMultiplier * oTempItem.iHitStars
+                        ) / nFoundModelBoost )
+                    #
+                #
+                if  (       oTempItem.iModel is not None and
+                            oTempItem.iBrand is None and
+                            oTempItem.iModel.iBrand is not None ):
+                    #
+                    if bRecordSteps:
+                        #
+                        lCandidates.append(
+                            'did not find brand for %s, so discounting'
+                            % oTempItem.iModel )
+                        #
+                    #
+                    iScoreStars = iScoreStars / 2
+                    #
+                #
+                lSortItems.append( ( iScoreStars, i ) )
+                #
+                if bRecordSteps:
+                    #
+                    lCandidates.append(
+                        '%s, %s, %s - %s : %s : %s' %
+                        ( iScoreStars,
+                            oTempItem.iHitStars,
+                            oTempItem.iFoundModelLen,
+                            getTitleOrNone( oTempItem.iCategory ),
+                            getTitleOrNone( oTempItem.iModel ),
+                            getTitleOrNone( oTempItem.iBrand ) ) )
+                    #
+                #
+            #
+            lSortItems.sort()
+            #
+            lSortItems.reverse()
+            #
+            iTopScoreStars = iTopHitStars = oTopStars = None
+            sTitle = sTopTitle = None
+            #
+            bSortAgain = False
+            #
+            for i in range( len( lItemFoundTemp ) ):
+                #
+                oItemTemp = lItemFoundTemp[ lSortItems[i][1] ]
+                #
+                sTitle = None
+                #
+                if oTempItem.iModel:
+                    sTitle          = getWhatsNotInParens(
+                                        oTempItem.iModel.cTitle ).upper()
+                    if oTempItem.iModel.bSubModelsOK:
+                        sTitle      = sTitle[ : -1 ]
+                #
+                if (    settings.COVERAGE and
+                        bRecordSteps and
+                        ( iTopScoreStars is None or ( sTopTitle and sTitle) ) ):
+                    #
+                    maybePrint()
+                    maybePrint( 'i:', i )
+                    maybePrint( 'iScoreStars:', lSortItems[i][0] )
+                    maybePrint( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
+                    maybePrint( 'sTopTitle:', sTopTitle)
+                    maybePrint( 'sTitle:', sTitle)
+                    #
+                #
+                if iTopScoreStars is None:
+                    #
+                    iTopScoreStars  = lSortItems[i][0]
+                    iTopHitStars    = oItemTemp.iHitStars
+                    oTopStars       = oItemTemp
+                    sTopTitle       = sTitle
+                    #
+                    continue
+                #
+                if (    oItemTemp.iHitStars >= iTopHitStars and
+                        sTopTitle                           and
+                        sTitle                              and
+                        len( sTitle ) < len( sTopTitle )    and
+                        sTitle in sTopTitle ):
+                    #
+                    # discount this
+                    #
+                    oItemTemp.iHitStars = (
+                            oItemTemp.iHitStars *
+                            iTopHitStars /
+                            iTopScoreStars )
+                    #
+                    bSortAgain = True
+                    #
+                    if bRecordSteps:
+                        #
+                        lCandidates.append(
+                                'discounting Hit Stars for %s' %
+                                    oItemTemp.iModel )
+                        #
+                    #
+                #
+            #
+            if bSortAgain:
+                #
+                lSortItems.sort()
+                #
+                lSortItems.reverse()
+                #
+            #
+            # sort lItemFoundTemp, more stars on top, fewer stars on bottom
+            #
+            lItemFoundSort = [ lItemFoundTemp[ t[1] ] for t in lSortItems ]
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn(
+                        lSelect,
+                        'on top:   %s : %s : %s' %
+                        ( getTitleOrNone( lItemFoundSort[0].iCategory ),
+                            getTitleOrNone( lItemFoundSort[0].iModel ),
+                            getTitleOrNone( lItemFoundSort[0].iBrand )) )
+                #
+                #maybePrint()
+                #maybePrint( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
+                #
+            #
+        else:
+            #
+            lItemFoundSort = lItemFoundTemp
+            #
+            if bRecordSteps:
+                #
+                _appendIfNotAlreadyIn(
+                        lSelect,
+                        'only found one thing for this item, a no brainer!' )
+                #
+            #
+        #
+        #
+        # items found are in lItemFoundSort
+        #
+        #
+        if bRecordSteps and lItemFoundSort:
+            #
+            print( 'lItemFoundSort:' )
+            pprint( lItemFoundSort )
+            #
+            print()
+            print( 'dSearchMyCategory:' )
+            pprint( dSearchMyCategory )
+
+        #
+        iItemsFoundTemp         = 0
+        #
+        dModelsStoredAlready    = {} # used for scoring & selection
+        #
+        lModelsStoredAlready    = []
+        #
+        for oTempItem in lItemFoundSort:
+            #
+            iItemsFoundTemp += 1
+            #
+            sModelTitleLessParens = sModelTitleUPPER = ''
+            #
+            if oTempItem.iModel:
+                #
+                # sModelTitleLessParens = getWhatsNotInParens(
+                #         oTempItem.iModel.cTitle )
+                #
+                sModelTitleLessParens = oTempItem.cFoundModel
+                #
+                # sModelTitleUPPER = sModelTitleLessParens.upper()
+                #
+                # sModelTitleUPPER = oTempItem.cModelAlphaNum
+                sModelTitleUPPER = oTempItem.cFoundModel.upper()
+            #
+            if settings.COVERAGE and bRecordSteps:
+                #
+                maybePrint()
+                maybePrint( 'temp item      #:', iItemsFoundTemp )
+                maybePrint( 'model           :', oTempItem.iModel )
+                maybePrint( 'brand           :', oTempItem.iBrand )
+                maybePrint( 'category        :', oTempItem.iCategory)
+                maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
+                maybePrint( 'iHitStars       :', oTempItem.iHitStars )
+                maybePrint()
+                #
+            #
+            if iItemsFoundTemp == 1: # store item on top here
+                #
+                oUserItem.iBrand        = oTempItem.iBrand
+                oUserItem.iModel        = oTempItem.iModel
+                #
+                oMyCategory = dSearchMyCategory.get( oTempItem.iSearch_id )
+                #
+                if oMyCategory:
+                    #
+                    oUserItem.iCategory = oMyCategory
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                                lSelect,
+                                'search that found this expects category '
+                                '"%s", so changing now' % oMyCategory )
+                        #
+                else:
+                    #
+                    oUserItem.iCategory = oTempItem.iCategory
+                    #
+                #
+                oUserItem.iHitStars     = oTempItem.iHitStars
+                oUserItem.cWhereCategory= oTempItem.cWhereCategory
+                # oUserItem.iSearch     = oTempItem.iSearch
+                #
+                oUserItem.tLook4Hits = tNow
+                #
+                oUserItem.save()
+                #
+                if oTempItem.iModel:
+                    #
+                    lModelsStoredAlready.append( sModelTitleUPPER )
+                    #
+                    _updateModelsStoredAlready(
+                            dModelsStoredAlready, oTempItem, sModelTitleUPPER )
+                    #
+                #
+                # testing problem work around 2019-12-18
+                #
+                if oTempItem.iSearch_id in dSearchLogs:
+                    #
+                    oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
+                    #
+                else:
+                    #
+                    try:
+                        oSearchLog = SearchLog.objects.get( iSearch = oTempItem.iSearch )
+                    except:
+                        #
+                        if settings.TESTING:
+                            #
+                            oSearchLog = SearchLog(
+                                            iSearch_id  = oTempItem.iSearch_id,
+                                            tBegSearch  = tNow,
+                                            cResult     = 'Success' )
+                            #
+                        else:
+                            #
+                            raise
+                            #
+                        #
+                    #
+                    oSearchLog.iOrigHits = oSearchLog.iItemHits
+                    oSearchLog.iItemHits = 0
+                    #
+                    dSearchLogs[ oTempItem.iSearch_id ] = oSearchLog
+                    #
+                #
+                if (    oTempItem.iBrand and
+                        oTempItem.iCategory and
+                        oTempItem.iModel ):
+                    #
+                    oSearchLog.iItemHits += 1
+                    #
+                #
+            elif (  oTempItem.iBrand and
+                    oTempItem.iCategory and
+                    oTempItem.iModel ):
+                #
+                # have complete hit, make an additional UserItem record
+                #
+                t = _gotFullStringOrSubStringOfListItem(
+                            sModelTitleUPPER,
+                            lModelsStoredAlready )
+                #
+                uExact, uLonger, uShort = t
+                #
+                bGotNonGenericForThis      = False
+                sBetterBrandForThisGeneric = None
+                #
+                # dModelsStoredAlready used for scoring & selection
+                #
+                if sModelTitleUPPER in dModelsStoredAlready:
+                    #
+                    if bRecordSteps:
+                        maybePrint()
+                        maybePrint( 'sModelTitleUPPER in dModelsStoredAlready:', sModelTitleUPPER in dModelsStoredAlready )
+                    for oModelStored in dModelsStoredAlready[ sModelTitleUPPER ]:
+                        #
+                        # startswith below handles Amperex Bugle Boy & Amperex
+                        #
+                        bGotNonGenericForThis = (
+                                oModelStored.iModelBrand and
+                                oTempItem.iBrand and
+                                oModelStored.iModelBrand.cTitle.startswith(
+                                        oTempItem.iBrand.cTitle ) and
+                                not oModelStored.bGenericModel )
+                        #
+                        if bGotNonGenericForThis: continue
+                        #
+                        if  (   oModelStored.iModelBrand is None and
+                                oModelStored.iBrand and
+                                oTempItem.iBrand    and
+                                oModelStored.iBrand.cTitle.startswith(
+                                        oTempItem.iBrand.cTitle  ) ):
+                            #
+                            sBetterBrandForThisGeneric = oModelStored.iBrand.cTitle
+                            #
+                        #
+                        if bRecordSteps:
+                            #
+                            maybePrint()
+                            maybePrint( 'oModelStored:' )
+                            maybePrint( oModelStored )
+                            maybePrint( 'oModelStored.iModelBrand:', oModelStored.iModelBrand )
+                            maybePrint( 'oTempItem.iBrand:', oTempItem.iBrand )
+                            if oModelStored.iModelBrand:
+                                maybePrint( 'oModelStored.iModelBrand.cTitle:', oModelStored.iModelBrand.cTitle )
+                            else:
+                                maybePrint( 'oModelStored.iModelBrand:', oModelStored.iModelBrand )
+                            maybePrint( 'oTempItem.iBrand.cTitle:', oTempItem.iBrand.cTitle )
+                            maybePrint( 'oModelStored.bGenericModel:', oModelStored.bGenericModel )
+                            maybePrint( 'bGotNonGenericForThis:', bGotNonGenericForThis )
+                            maybePrint( 'sBetterBrandForThisGeneric:', sBetterBrandForThisGeneric )
+                            #
+                        #
+                        if sBetterBrandForThisGeneric: continue
+                        #
+                    #
+                #
+                bGotBrand = False
+                #
+                if (    oTempItem.iModel.iBrand is not None and
+                        oTempItem.iModel.iBrand != oTempItem.iBrand ):
+                    #
+                    continue
+                    #
+                elif uShort and uShort in dModelsStoredAlready:
+                    #
+                    for oModelStored in dModelsStoredAlready[ uShort ]:
+                        #
+                        bGotBrand = ( oModelStored.iModelBrand == oTempItem.iBrand )
+                        #
+                        if bGotBrand: continue
+                        #
+                    #
+                #
+                doPrintMore = (
+                        False and
+                        bRecordSteps and
+                        sModelTitleUPPER == '6DJ8' )
+                #
+                if doPrintMore and not bGotNonGenericForThis:
+                    #
+                    maybePrint()
+                    maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
+                    maybePrint( 'oTempItem.iModel:', oTempItem.iModel )
+                    maybePrint( 'oTempItem.iBrand:', oTempItem.iBrand )
+                    maybePrint( 'oTempItem.iCategory:', oTempItem.iCategory )
+                    maybePrint( 'dModelsStoredAlready:' )
+                    CustomPPrint.maybePrettyP( dModelsStoredAlready )
+                    maybePrint( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
+                    maybePrint( 'uExact:', uExact )
+                    maybePrint( 'oModelStored:' )
+                    maybePrint(  oModelStored )
+                    #
+                #
+                # exclude if uLonger unless
+                # both longer string and shorter substring
+                # are BOTH in title
+                # carry on / continue here
+                #
+                bGotLongGotShort = False
+                oModelStored     = None
+                #
+                # '''
+                if settings.COVERAGE and bRecordSteps:
+                    #
+                    maybePrint()
+                    maybePrint('uExact, uLonger, uShort:', t )
+                    maybePrint('dModelsStoredAlready:')
+                    for k, l in dModelsStoredAlready.items():
+                        maybePrint( '%s:' % k )
+                        i = -1
+                        for o in l:
+                            i += 1
+                            if len( l ) > 1:
+                                maybePrint( '%s:' % i )
+                            else:
+                                maybePrint( 'only one hit:' )
+                            maybePrint( o )
+                    #
+                # '''
+                #
+                if uExact and uExact in dModelsStoredAlready:
+                    #
+                    oModelStored = dModelsStoredAlready[ uExact ][0]
+                    #
+                #
+                if uLonger and uLonger in dModelsStoredAlready:
+                    #
+                    sWithout = dModelsStoredAlready[
+                                uLonger ][0].sTitleLeftOver or ''
+                    ##
+                    #t = foundItem( sAuctionTitleRelevantPart )
+                    ##
+                    #sInTitle, uGotKeyWords, uExcludeThis, sWhatRemains = t
+                    ##
+                    #lParts = sAuctionTitleRelevantPart.split( sInTitle )
+                    ##
+                    #sWithout = ' '.join( lParts )
+                    ##
+                    #sWithout = oTempItem.cTitleLeftOver or ''
+                    #
+                    bGotLongGotShort = (
+                            sModelTitleLessParens in sWithout )
+                    #
+                #
+                bShorterNearEnd = False
+                #
+                if uLonger and bGotLongGotShort and oModelLocated:
+                    #
+                    o = oModelLocated
+                    #
+                    tLocations = o.dAllWordLocations.get(
+                                    sModelTitleLessParens, () )
+                    #
+                    if (    tLocations and
+                            ( o.tNearEnd or
+                                o.tOnEnd ) ):
+                        #
+                        lNearEnd = list( o.tNearEnd )
+                        lNearEnd.extend( o.tOnEnd )
+                        #
+                        bShorterNearEnd = (
+                            not containsAny( tLocations, o.tNearFront ) and
+                                containsAll( tLocations, lNearEnd ) )
+                    #
+                #
+                if uLonger and bGotLongGotShort and bShorterNearEnd:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding %s '
+                                'because it is tacked on the end' %
+                                sModelTitleLessParens )
+                        #
+                    #
+                    continue
+                    #
+                elif uLonger and bGotLongGotShort:
+                    #
+                    if bRecordSteps:
+                        #
+                        #maybePrint()
+                        #maybePrint( 'sWithout:', sWithout )
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'keeping %s because this and '
+                                '%s both are in the title' %
+                                ( sModelTitleLessParens, uLonger ) )
+                        #
+                    #
+                elif uLonger:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding %s '
+                                'because this is a substring of %s' %
+                                ( sModelTitleLessParens, uLonger ) )
+                        #
+                    #
+                    continue
+                    #
+                elif uShort and bGotBrand:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding %s '
+                                'because its root is %s' %
+                                ( sModelTitleLessParens, uShort ) )
+                        #
+                    #
+                    continue
+                    #
+                elif    (   uExact and
+                            oTempItem.iModel.bGenericModel and
+                            bGotNonGenericForThis ):
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding generic model %s -- '
+                                'already have a non generic' %
+                                ( sModelTitleLessParens ) )
+                        #
+                    #
+                    continue
+                    #
+                elif    (   uExact and
+                            oTempItem.iModel.bGenericModel and
+                            sBetterBrandForThisGeneric ):
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding generic %s for %s -- '
+                                'already have a generic for %s' %
+                                ( sModelTitleLessParens,
+                                    oTempItem.iBrand,
+                                    sBetterBrandForThisGeneric ) )
+                        #
+                    #
+                    continue
+                    #
+                elif uExact and oTempItem.iModel.bGenericModel:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'have generic model %s already, '
+                                'but including again for %s' %
+                                ( sModelTitleLessParens, oTempItem.iBrand ) )
+                        #
+                    #
+                elif (      uExact and
+                            oModelStored and
+                            oModelStored.iCategoryID and
+                            oTempItem.iCategory and
+                            oModelStored.iCategoryID != oTempItem.iCategory.id ):
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'have model %s already, but including '
+                                'it again for a different category' %
+                                ( sModelTitleLessParens ) )
+                        #
+                    #
+                elif uExact:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding %s '
+                                'because we already got %s' %
+                                ( sModelTitleLessParens, uExact ) )
+                        #
+                    #
+                    continue
+                    #
+                #
+                tNow = timezone.now()
+                #
+                if UserItemFound.objects.filter(
+                        iItemNumb       = oUserItem.iItemNumb,
+                        iUser           = oUser,
+                        iModel          = oTempItem.iModel,
+                        iBrand          = oTempItem.iBrand,
+                        iCategory       = oTempItem.iCategory ).exists():
+                    #
+                    # hitting error in testing in django 2.2,
+                    # was never a problem in 1.11
+                    #
+                    pass
+                    #
+                else:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                            'also storing: %s : %s : %s' %
+                                (   getTitleOrNone( oTempItem.iCategory ),
+                                    getTitleOrNone( oTempItem.iModel ),
+                                    getTitleOrNone( oTempItem.iBrand )) )
+                        #
+                    #
+                    oNewUserItem = UserItemFound(
+                        iItemNumb       = oUserItem.iItemNumb,
+                        iHitStars       = oTempItem.iHitStars,
+                        iSearch         = oTempItem.iSearch,
+                        iModel          = oTempItem.iModel,
+                        iBrand          = oTempItem.iBrand,
+                        iCategory       = oTempItem.iCategory,
+                        cWhereCategory  = oTempItem.cWhereCategory,
+                        tLook4Hits      = tNow,
+                        tCreate         = tNow,
+                        tModify         = tNow,
+                        iUser           = oUser )
+                    #
+                    #
+                    oNewUserItem.save()
+                    #
+                    # dModelsStoredAlready used for scoring & selection
+                    #
+                    _updateModelsStoredAlready(
+                            dModelsStoredAlready, oTempItem, sModelTitleUPPER )
+                    #
+                    lModelsStoredAlready.append( sModelTitleUPPER )
+                    #
+                #
+            #
+        #
+        #
+        # this is after
+        # for oTempItem in lItemFoundSort:
+        #
+        #
+        # before going on, update userFinder, dModelsStoredAlready has the info
+        #
+        #
+        iMaxStars, iMaxModel = _getMaxHitStars( dModelsStoredAlready )
+        #
+        if settings.COVERAGE and bRecordSteps:
+            #
+            maybePrint('')
+            maybePrint('iMaxStars:', iMaxStars )
+            #
+        if iMaxStars:
+            #
+            oUserFinder = UserFinder(
+                    iItemNumb       = oItem,
+                    iHitStars       = iMaxStars,
+                    iMaxModel       = iMaxModel,
+                    cTitle          = oItem.cTitle,
+                    cMarket         = oItem.cMarket,
+                    cListingType    = oItem.cListingType,
+                    tTimeEnd        = oItem.tTimeEnd,
+                    iUser           = oUser )
+                #
+            #
+            oUserFinder.save()
+            #
+        #
+    else: # not lItemFoundTemp
+        #
+        if bRecordSteps:
+            #
+            _appendIfNotAlreadyIn(
+                lSelect,
+                'did not find anything for this item' )
+            #
+        #
+        oUserItem.tLook4Hits = tNow
+        #
+        oUserItem.save()
+        #
+    #
+    if bRecordSteps:
+        #
+        _printHitSearchSteps( oItem, dFindSteps )
+        #
+    #
+
+
+
+def _getUserItems( oItem, oUser ):
+    #
+    qsUserItems = UserItemFound.objects.filter(
+            iItemNumb   = oItem.iItemNumb,
+            iUser       = oUser )
+    #
+    oUserItem = None
+    #
+    lDeleteThese = []
+    #
+    for oNext in qsUserItems:
+        #
+        if oUserItem is None:
+            oUserItem = oNext
+        else:
+            lDeleteThese.append( oNext )
+    #
+    for oThis in lDeleteThese:
+        oThis.delete()
+    #
+    oUserItem.iStarsBrand = oUserItem.iStarsCategory = 0
+    oUserItem.iStarsModel = oUserItem.iHitStars      = 0
+    #
+    return qsUserItems, oUserItem
+
+
+
+
+def _getRecordSteps(
+            oItem,
+            setScriptTested,
+            lScriptTested,
+            dFindSteps,
+            oUser,
+            dCategoryInfo,
+            dFamilyCategories,
+            sAuctionTitleRelevantPart,
+            iRecordStepsForThis ):
+    #
+    bRecordSteps = False
+    #
+    if settings.COVERAGE:
+        #
+        bRecordSteps        = True
+        iRecordStepsForThis = oItem.iItemNumb
+        #
+    elif (       oItem.iItemNumb == iRecordStepsForThis and
+            str( iRecordStepsForThis ) not in setScriptTested ):
+        #
+        lScriptTested.append( str( iRecordStepsForThis ) )
+        #
+        QuickDumpLines( lScriptTested, SCRIPT_TEST_FILE )
+        #
+        setScriptTested.add( str( iRecordStepsForThis ) )
+        #
+        bRecordSteps = True
+        #
+    #
+    if bRecordSteps:
+        #
+        # need a blank for every heading
+        #
+        dFindSteps = OrderedDict(
+            (   ( 'preliminary',[] ),
+                ( 'categories', [] ),
+                ( 'models',     [] ),
+                ( 'brands',     [] ),
+                ( 'candidates', [] ),
+                ( 'selection',  [] ) ) )
+        #
+        qsUserSearches = Search.objects.filter( iUser = oUser )
+        #
+        maybePrint()
+        maybePrint( 'Searches (id, iMyCategory, name):' )
+        #
+        for oSearch in qsUserSearches:
+            #
+            maybePrint( oSearch.id, oSearch.iMyCategory, oSearch )
+            #
+        #
+        #
+        maybePrint( 'dFamilyCategories:' )
+        maybePrettyP( dFamilyCategories )
+        #
+        maybePrint( 'dCategoryInfo:' )
+        maybePrettyP(dCategoryInfo )
+        #
+        if len( oItem.cTitle ) > len( sAuctionTitleRelevantPart ):
+            #
+            lPreliminary = dFindSteps[ 'preliminary' ]
+            #
+            _appendIfNotAlreadyIn(
+                    lPreliminary,
+                    'will consider only: %s' % sAuctionTitleRelevantPart )
+            #
+            sLoppedOff = oItem.cTitle[ len( sAuctionTitleRelevantPart ) : ]
+            #
+            _appendIfNotAlreadyIn(
+                    lPreliminary, '(will ignore: %s)' % sLoppedOff )
+            #
+        #
+    #
+    return bRecordSteps, iRecordStepsForThis
+
+
+
+def _getCategoryInfo( oUser ):
+    #
+    dCategoryInfo       = {}
+    dFamilyCategories   = {} # ### not populated !!! try fixing ! ###
+    #
+    dSearchMyCategory   = _getSearchMyCategoryDict( oUser )
+    #
+    qsCategories = Category.objects.filter( iUser = oUser )
+    #
+    for oCategory in qsCategories:
+        #
+        if oCategory.iFamily_id:
+            #
+            iFamilyID   = oCategory.iFamily_id
+            bComponent  = oCategory.bComponent
+            #
+            # category oCategory.id is a member of family iFamilyID
+            #
+            dCategoryInfo[ oCategory.id ] = ValueContainer(
+                    iFamilyID   = iFamilyID,
+                    bComponent  = bComponent,
+                    sCategTitle = oCategory.cTitle )
+            #
+        #
+    #
+    return qsCategories, dCategoryInfo, dFamilyCategories, dSearchMyCategory
+
+
 
 
 def findSearchHits(
@@ -973,32 +2924,9 @@ def findSearchHits(
     dFindersCategories  = {}
     dFindersModels      = {}
     #
-    dCategoryInfo       = {}
-    dFamilyCategories   = {}
+    t = _getCategoryInfo( oUser )
     #
-    bExcludeThis        = False
-    #
-    dSearchMyCategory   = _getSearchMyCategoryDict( oUser )
-    #
-    qsCategories = Category.objects.filter( iUser = oUser )
-    #
-    for oCategory in qsCategories:
-        #
-        if oCategory.iFamily_id:
-            #
-            iFamilyID   = oCategory.iFamily_id
-            bComponent  = oCategory.bComponent
-            #
-            # category oCategory.id is a member of family iFamilyID
-            #
-            dCategoryInfo[ oCategory.id ] = ValueContainer(
-                    iFamilyID   = iFamilyID,
-                    bComponent  = bComponent,
-                    sCategTitle = oCategory.cTitle )
-            #
-        #
-    #
-    def isComponent( oCategory ): return oCategory.bComponent
+    qsCategories, dCategoryInfo, dFamilyCategories, dSearchMyCategory = t
     #
     qsModels = ( Model.objects
                     .select_related('iBrand')
@@ -1029,1897 +2957,124 @@ def findSearchHits(
     #
     for oItem in qsItems:
         #
-        qsUserItems = UserItemFound.objects.filter(
-                iItemNumb   = oItem.iItemNumb,
-                iUser       = oUser )
-        #
-        oUserItem = None
-        #
-        lDeleteThese = []
-        #
-        bRecordSteps = False
-        #
-        if settings.COVERAGE:
-            #
-            bRecordSteps        = True
-            iRecordStepsForThis = oItem.iItemNumb
-            #
-        elif (       oItem.iItemNumb == iRecordStepsForThis and
-                str( iRecordStepsForThis ) not in setScriptTested ):
-            #
-            lScriptTested.append( str( iRecordStepsForThis ) )
-            #
-            QuickDumpLines( lScriptTested, SCRIPT_TEST_FILE )
-            #
-            setScriptTested.add( str( iRecordStepsForThis ) )
-            #
-            bRecordSteps = True
-            #
-        #
-        if bRecordSteps:
-            #
-            # need a blank for every heading
-            #
-            dFindSteps = OrderedDict(
-                (   ( 'preliminary',[] ),
-                    ( 'categories', [] ),
-                    ( 'models',     [] ),
-                    ( 'brands',     [] ),
-                    ( 'candidates', [] ),
-                    ( 'selection',  [] ) ) )
-            #
-            qsUserSearches = Search.objects.filter( iUser = oUser )
-            #
-            maybePrint()
-            maybePrint( 'Searches (id, iMyCategory, name):' )
-            #
-            for oSearch in qsUserSearches:
-                #
-                maybePrint( oSearch.id, oSearch.iMyCategory, oSearch )
-                #
-            #
-            #
-            maybePrint( 'dFamilyCategories:' )
-            #
-            maybePrettyP( dFamilyCategories )
-            #
-            maybePrint( 'dCategoryInfo:' )
-            maybePrettyP(dCategoryInfo )
-            #
-        #
-        for oNext in qsUserItems:
-            #
-            if oUserItem is None:
-                oUserItem = oNext
-            else:
-                lDeleteThese.append( oNext )
-        #
-        for oThis in lDeleteThese:
-            oThis.delete()
-        #
-        oUserItem.iStarsBrand = oUserItem.iStarsCategory = 0
-        oUserItem.iStarsModel = oUserItem.iHitStars      = 0
-        #
-        bGotCategory   = False
-        dGotCategories = {}
-        #
-        oTempItem = None
-        lItemFoundTemp = []
-        #
-        oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
+        qsUserItems, oUserItem = _getUserItems( oItem, oUser )
         #
         # if title includes for or fits, consider the part in front,
         # not what follows
         #
-        sAuctionTitleRelevantPart = _getRelevantTitle( oItem.cTitle )
+        t = _getRelevantTitle( oItem.cTitle )
         #
-        if bRecordSteps and (
-                len( oItem.cTitle ) > len( sAuctionTitleRelevantPart ) ):
-            #
-            lPreliminary = dFindSteps[ 'preliminary' ]
-            #
-            _appendIfNotAlreadyIn(
-                    lPreliminary,
-                    'will consider only: %s' % sAuctionTitleRelevantPart )
-            #
-            sLoppedOff = oItem.cTitle[ len( sAuctionTitleRelevantPart ) : ]
-            #
-            _appendIfNotAlreadyIn(
-                    lPreliminary, '(will ignore: %s)' % sLoppedOff )
-            #
+        sAuctionTitleRelevantPart, sGotInParens = t
         #
-        sGotInParens = getInParens( sAuctionTitleRelevantPart )
         #
-        lCategories = dFindSteps[ 'categories' ]
         #
-        lCategoryFound = []
+        # troubleshooting code if applicable
         #
+        #
+        t = _getRecordSteps(
+                oItem,
+                setScriptTested,
+                lScriptTested,
+                dFindSteps,
+                oUser,
+                dCategoryInfo,
+                dFamilyCategories,
+                sAuctionTitleRelevantPart,
+                iRecordStepsForThis )
+        #
+        bRecordSteps, iRecordStepsForThis = t
         #
         #
         #
         #
-        # first: step thru categories
+        # step thru categories
         #
         #
+        t = _doStepThruCategories(
+                oItem,
+                oUserItem,
+                qsCategories,
+                dFindersCategories,
+                sAuctionTitleRelevantPart,
+                dFindSteps,
+                bRecordSteps )
         #
-        oStepThruCategoryValues = ValueContainer(
-            oItem                       = oItem,
-            oItemFound                  = oItemFound,
-            lItemFoundTemp              = lItemFoundTemp,
-            oUserItem                   = oUserItem,
-            qsCategories                = qsCategories,
-            lCategoryFound              = lCategoryFound,
-            dGotCategories              = dGotCategories,
-            dFindersCategories          = dFindersCategories,
-            lCategories                 = lCategories,
-            sAuctionTitleRelevantPart   = sAuctionTitleRelevantPart,
-            bRecordSteps                = bRecordSteps )
-        #
-        doStepThruCategories( oStepThruCategoryValues )
-        #
-        #
-        # finished stepping thru categories
-        #
-        #
-        # next: step thru models
-        #
-        #
-        #
-        lModels = dFindSteps[ 'models' ]
-        #
-        dModelIDinTitle     = {}
-        dModelID_oTempItem  = {}
-        oModelLocated       = None
-        #
-        # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
-        #
-        for oModel in qsModels:
-            #
-            foundItem = getFoundItemTester(
-                            oModel,
-                            dFindersModels,
-                            bAddDash = True,
-                            bSubModelsOK = oModel.bSubModelsOK,
-                            bExplainVerbose = False )
-            #
-            bFoundCategoryForModel = False
-            #
-            bExplainVerbose = ( bRecordSteps and
-                                oModel.cTitle == '6DJ8 (Bugle Boy)' )
-            #
-            t = foundItem( sAuctionTitleRelevantPart, bExplainVerbose )
-            #
-            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
-            #
-            if not sInTitle:
-                #
-                continue
-                #
-            elif uExcludeThis:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels, 'excluded: %s cuz found %s' %
-                            ( oModel.cTitle, uExcludeThis ) )
-                    #
-                #
-                continue
-                #
-            elif not uGotKeyWordsOrNoKeyWords:
-                #
-                if bRecordSteps:
-                    #
-                    lKeyWords = oFinderCRorLF.split( oModel.cKeyWords )
-                    #
-                    sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
-                    #
-                    lKeyWords = (   lKeyWords[0].split()
-                                    if len( lKeyWords ) == 1
-                                    else lKeyWords )
-                    #
-                    sPlural = 's' if len( lKeyWords ) > 1 else ''
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels,
-                            'excluded: %s cuz aint got key word%s %s' %
-                            ( oModel.cTitle, sPlural, sSayKeyWords ) )
-                    #
-                #
-                continue
-                #
-            #
-            # sGotInParens = getInParens( sAuctionTitleRelevantPart )
-            #
-            sModelAlphaNum  = _getAlphaNum( sInTitle )
-            #
-            iShorterByOK    = 1 if oModel.bSubModelsOK else 0 # None compatible
-            #
-            if bRecordSteps:
-                #
-                if (    uGotKeyWordsOrNoKeyWords and
-                        type( uGotKeyWordsOrNoKeyWords ) is not bool ):
-                    #
-                    _appendIfNotAlreadyIn( lModels,
-                            'for model "%s", "%s" is in title '
-                            'and have key word(s) "%s"' %
-                            (   oModel.cTitle,
-                                sInTitle,
-                                uGotKeyWordsOrNoKeyWords.group(0)) )
-                    #
-                elif sInTitle == oModel.cTitle:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels, 'model %s (category %s) in title' %
-                            ( sInTitle, oModel.iCategory ) )
-                    #
-                else:
-                    #
-                    _appendIfNotAlreadyIn( lModels,
-                            'for model "%s", "%s" is in title' %
-                            ( oModel.cTitle, sInTitle ) )
-                    #
-                #
-                if oModel.cExcludeIf:
-                    #
-                    sSayExclude = getDashForReturn( oModel.cExcludeIf )
-                    _appendIfNotAlreadyIn( lModels,
-                            'model "%s" excludes: %s (RegEx: %s)' %
-                            ( oModel.cTitle,
-                                sSayExclude,
-                                oModel.cRegExExclude ) )
-                    #
-                    #
-                #
-            #
-            lNewItemFoundTemp = []
-            #
-            iModelCateID = oModel.iCategory_id
-            #
-            bModelCategoryAlreadyFound = (
-                    iModelCateID in dGotCategories )
-            #
-            bCategoryFamilyRelation = False
-            #
-            for oTempItem in lItemFoundTemp: # lists categories found
-                #
-                # like a crossover w drivers
-                # or
-                # a tube tester roll chart
-                #
-                iItemCateID = ( oTempItem.iCategory.id
-                                if oTempItem.iCategory
-                                else 0 )
-                #
-                bCategoryFamilyRelation = (
-                    oTempItem.iCategory and dCategoryInfo and
-                    iItemCateID != iModelCateID and
-                    iItemCateID in dCategoryInfo and
-                    (   (   dCategoryInfo[ iItemCateID ].iFamilyID ==
-                            iModelCateID )
-                        or
-                        (   iModelCateID in dCategoryInfo and
-                                dCategoryInfo[ iModelCateID ].iFamilyID ==
-                                dCategoryInfo[ iItemCateID  ].iFamilyID ) ) )
-                #
-                bAddThisCategory = False
-                #
-                if  (   bCategoryFamilyRelation and
-                        iModelCateID    in dGotCategories and
-                        iItemCateID in dGotCategories ):
-                    #
-                    sModelCategory = dGotCategories[ iModelCateID ]
-                    iModelCategory = len( sModelCategory )
-                    #
-                    sThisCategory = dGotCategories[ iItemCateID ]
-                    iThisCategory = len( sThisCategory )
-                    #
-                    bAddThisCategory = (
-                            sModelCategory and
-                            iThisCategory > iModelCategory and
-                            sModelCategory in sThisCategory )
-                    #
-                #
-                if bCategoryFamilyRelation and bAddThisCategory:
-                    #
-                    pass
-                    #
-                elif (  bModelCategoryAlreadyFound and
-                        oModel.iCategory != oTempItem.iCategory ):
-                    #
-                    continue
-                    #
-                elif oModel.id in dModelIDinTitle:
-                    #
-                    continue
-                    #
-                #
-                if bModelCategoryAlreadyFound or bCategoryFamilyRelation:
-                    #
-                    if bModelCategoryAlreadyFound:
-                        #
-                        oCategory = oTempItem.iCategory
-                        sWhereCategory = oTempItem.cWhereCategory
-                        #
-                    else: # bCategoryFamilyRelation
-                        #
-                        if iModelCateID in dCategoryInfo:
-                            #
-                            iFamily = dCategoryInfo[ iModelCateID ].iFamilyID
-                            #
-                        else:
-                            #
-                            # dCategoryInfo[ iItemCateID ] ==
-                            # iModelCateID )
-                            #
-                            logger.warning(
-                                    'model has category id %s in dCategoryInfo for %s' %
-                                    ( iModelCateID, oItem.iItemNumb ) )
-                            #
-                            iFamily = dCategoryInfo[ iItemCateID ].iFamilyID
-                            #
-                        #
-                        # dFamilyCategories should work here
-                        #
-                        oFamily = Category.objects.get( id = iFamily )
-                        #
-                        sSayFamily = 'a member'
-                        #
-                        if oModel.iCategory == iFamily:
-                            #
-                            sSayFamily = 'the head'
-                            #
-                        #
-                        # find targets for troubleshooting:
-                        # is a member of family X
-                        # is the head of family X
-                        #
-                        _appendIfNotAlreadyIn(
-                                lCategories,
-                                'category %s is %s of family %s' %
-                                    ( oModel.iCategory,
-                                        sSayFamily,
-                                        oFamily.cTitle ) )
-                        #
-                        oCategory = oModel.iCategory
-                        #
-                        sWhereCategory = 'family'
-                        #
-                    #
-                    if bRecordSteps:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lModels,
-                                'adding model %s for category %s' %
-                                ( oModel.cTitle, oCategory ) )
-                    #
-                    oNewTempItem = ItemFoundTemp(
-                            iItemNumb       = oTempItem.iItemNumb,
-                            iStarsCategory  = oTempItem.iStarsCategory,
-                            iHitStars       = oTempItem.iHitStars,
-                            iSearch         = oTempItem.iSearch,
-                            iCategory       = oCategory,
-                            cWhereCategory  = sWhereCategory,
-                            iModel          = oModel,
-                            iStarsModel     = oModel.iStars,
-                            cFoundModel     = sInTitle,
-                            cModelAlphaNum  = sModelAlphaNum,
-                            cTitleLeftOver  = sWhatRemains )
-                    #
-                    iModelStars = oModel.iStars or 1
-                    #
-                    iHitStars = oTempItem.iStarsCategory * iModelStars
-                    #
-                    oNewTempItem.iHitStars  = iHitStars
-                    #
-                    oNewTempItem.iFoundModelLen = _getModelFoundLen(
-                                                    sInTitle, sGotInParens )
-                    #
-                    oNewTempItem.save()
-                    #
-                    bFoundCategoryForModel  = True
-                    #
-                    lNewItemFoundTemp.append( oNewTempItem )
-                    #
-                    if oModel.id not in dModelIDinTitle:
-                        #
-                        dModelIDinTitle[ oModel.id ] = ValueContainer(
-                            sInTitle    = sInTitle,
-                            iCategory   = oCategory,
-                            iBrand      = oModel.iBrand,
-                            sModelTitle = oModel.cTitle )
-                        #
-                    #
-                elif    ( oModel.iCategory == oTempItem.iCategory and
-                        oTempItem.iModel is None ):
-                    #
-                    if bRecordSteps:
-                        #
-                        _appendIfNotAlreadyIn(
-                                lModels,
-                                'item has category %s for model %s' %
-                                ( oTempItem.iCategory, oModel.cTitle ) )
-                        #
-                    #
-                    oTempItem.iModel            = oModel
-                    #
-                    oTempItem.iStarsModel       = oModel.iStars
-                    #
-                    # reduce the length boost if the match is in parens
-                    #
-                    oTempItem.iFoundModelLen = _getModelFoundLen(
-                                                    sInTitle, sGotInParens )
-                    #
-                    iModelStars = oModel.iStars or 1
-                    #
-                    iHitStars = oTempItem.iStarsCategory * iModelStars
-                    #
-                    oTempItem.iHitStars         = iHitStars
-                    #
-                    oTempItem.save()
-                    #
-                    bFoundCategoryForModel      = True
-                    #
-                    if oModel.id not in dModelIDinTitle:
-                        #
-                        dModelIDinTitle[ oModel.id ] = ValueContainer(
-                            sInTitle    = sInTitle,
-                            iCategory   = oModel.iCategory,
-                            iBrand      = oModel.iBrand.id,
-                            sModelTitle = oModel.cTitle )
-                        #
-                    #
-                    if bRecordSteps and oModel.cTitle == 'E88CC':
-                        maybePrint()
-                        maybePrint( 'E88CC iInTitleLocation:', iInTitleLocation )
-                    #
-                #
-            #
-            if lNewItemFoundTemp:
-                #
-                lItemFoundTemp.extend( lNewItemFoundTemp )
-                #
-            #
-            if bCategoryFamilyRelation and not bFoundCategoryForModel:
-                #
-                if oModel.iCategory_id in dCategoryInfo:
-                    #
-                    iFamily = dCategoryInfo[ oModel.iCategory_id ].iFamilyID
-                    #
-                    if iFamily in dFamilyCategories:
-                        #
-                        oFamily = Category.objects.get( id = iFamily )
-                        #
-                        _appendIfNotAlreadyIn(
-                                lCategories,
-                                'category %s is the head of family %s' %
-                                    ( oModel.iCategory, oFamily.cTitle ) )
-                        #
-                    #
-                #
-            #
-            if not bFoundCategoryForModel:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels,
-                            'item does not have category %s for model %s' %
-                                ( oModel.iCategory, oModel.cTitle ) )
-                    #
-                    if oModel.iCategory.cLookFor:
-                        #
-                        lLookFor = oFinderCRorLF.split( oModel.iCategory.cLookFor )
-                        #
-                        sayLookFor = ' | '.join( lLookFor )
-                        #
-                        _appendIfNotAlreadyIn(
-                                lModels,
-                                'category look for: %s' % sayLookFor )
-                        #
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels,
-                            'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
-                #
-                oTempItem = ItemFoundTemp(
-                        iItemNumb       = oItemFound,
-                        iHitStars       = oModel.iStars,
-                        iStarsModel     = oModel.iStars,
-                        cFoundModel     = sInTitle,
-                        cModelAlphaNum  = sModelAlphaNum,
-                        iFoundModelLen  = len( sModelAlphaNum ),
-                        iSearch         = oUserItem.iSearch,
-                        iModel          = oModel )
-                #
-                oTempItem.save()
-                #
-                lItemFoundTemp.append( oTempItem )
-                #
-            #
-        #
-        #
-        #
-        # finished stepping thru models
-        #
-        # next: step thru brands
+        lCategoryFound, dGotCategories, lItemFoundTemp, oItemFound = t
         #
         #
         #
         #
-        lBrands = dFindSteps[ 'brands' ]
+        # step thru models
         #
-        setGotBrandsIDs = set( [] )
         #
-        bGotBrandForNonGenericModel = False
+        dModelIDinTitle = _doStepThruModels(
+                qsModels,
+                dFindersModels,
+                oItem,
+                oItemFound,
+                lItemFoundTemp,
+                oUserItem,
+                dCategoryInfo,
+                dGotCategories,
+                sAuctionTitleRelevantPart,
+                sGotInParens,
+                dFindSteps,
+                bRecordSteps )
         #
-        for oBrand in qsBrands:
-            #
-            foundItem = getFoundItemTester(
-                            oBrand, dFindersBrands, bAddDash = True )
-            #
-            bFoundBrandForModel = False
-            #
-            t = foundItem( sAuctionTitleRelevantPart )
-            #
-            sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
-            #
-            if not sInTitle:
-                #
-                continue
-                #
-            elif uExcludeThis:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lBrands, 'excluded: %s cuz found %s' %
-                            ( oBrand.cTitle, uExcludeThis ) )
-                    #
-                #
-                continue
-                #
-            elif not uGotKeyWordsOrNoKeyWords:
-                #
-                if bRecordSteps:
-                    #
-                    lKeyWords = oFinderCRorLF.split( oBrand.cKeyWords )
-                    #
-                    sSayKeyWords = getTextSequence( lKeyWords, sAnd = 'or' )
-                    #
-                    lKeyWords = (   lKeyWords[0].split()
-                                    if len( lKeyWords ) == 1
-                                    else lKeyWords )
-                    #
-                    sPlural = 's' if len( lKeyWords ) > 1 else ''
-                    #
-                    _appendIfNotAlreadyIn(
-                            lModels,
-                            'excluded: %s cuz aint got key word%s %s' %
-                            ( oBrand.cTitle, sPlural, sSayKeyWords ) )
-                    #
-                #
-                continue
-                #
-            #
-            setModelsBrands = set( [] )
-            #
-            setGotBrandsIDs.add( oBrand.id )
-            #
-            if bRecordSteps:
-                #
-                if sInTitle == oBrand.cTitle:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lBrands, 'brand %s in title' % sInTitle )
-                    #
-                else:
-                    #
-                    _appendIfNotAlreadyIn( lBrands,
-                            'for brand "%s", "%s" is in title' %
-                            ( oBrand.cTitle, sInTitle ) )
-                    #
-                #
-            #
-            # django discrepancy between 1.11 and 2.2 here
-            # django 2.2 gets confused when an item is added to lItemFoundTemp
-            # deepcopy instead of copy solved the problem
-            #
-            for oTempItem in lItemFoundTemp:
-                #
-                tModelBrand = ( oTempItem.iModel, oBrand )
-                #
-                oItemFoundTempModel = None
-                #
-                if oTempItem.iModel:
-                    oItemFoundTempModel = Model.objects.get(
-                                            id = oTempItem.iModel.id )
-                #
-                if   (      oTempItem.iModel                and
-                        not oTempItem.iModel.bGenericModel  and
-                        oItemFoundTempModel                 and
-                        oItemFoundTempModel.iBrand == oTempItem.iBrand ):
-                    #
-                    bFoundBrandForModel = True
-                    #
-                elif (  oTempItem.iModel                and
-                        oTempItem.iBrand                and
-                        oTempItem.iModel.bGenericModel  and
-                        oTempItem.iCategory             and
-                        tModelBrand not in setModelsBrands ):
-                    #
-
-                    bSaveBrand = BrandCategory.objects.filter(
-                        iUser     = oUser,
-                        iBrand    = oBrand,
-                        iCategory = oTempItem.iCategory ).exists()
-                    #
-                    if bRecordSteps:
-                        #
-                        maybePrint()
-                        maybePrint( 'bSaveBrand:', bSaveBrand )
-                        #
-                        _appendIfNotAlreadyIn( lBrands,
-                                'found another brand %s for generic model %s' %
-                                ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
-                        #
-                    #
-                    oAnotherTempItem = deepcopy( oTempItem )
-                    #
-                    oAnotherTempItem.iBrand      = None
-                    oAnotherTempItem.iStarsBrand = 0
-                    oAnotherTempItem.iHitStars   = 0
-                    #
-                    lItemFoundTemp.append( oAnotherTempItem )
-                    #
-                    continue
-                    #
-                elif (      oTempItem.iModel and
-                        (   oTempItem.iBrand is None or
-                            oTempItem.iBrand != oBrand ) ):
-                    #
-                    bSaveBrand = False
-                    #
-                    if oBrand == oTempItem.iModel.iBrand:
-                        #
-                        oTempItem.iBrand = oBrand
-                        #
-                        bSaveBrand = True
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn( lBrands,
-                                    'found brand %s for model %s' %
-                                    ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
-                            #
-                        #
-                        bGotBrandForNonGenericModel = True
-                        #
-                        bFoundBrandForModel = True
-                        #
-                    elif    (   oItemFoundTempModel                  and
-                                oItemFoundTempModel.iBrand == oBrand and
-                                oTempItem.iBrand != oBrand ):
-                        #
-                        oTempItem.iBrand = oBrand
-                        #
-                        bSaveBrand = True
-                        #
-                        bFoundBrandForModel = True
-                        #
-                    elif oTempItem.iModel.bGenericModel and oTempItem.iCategory:
-                        #
-                        bSaveBrand = BrandCategory.objects.filter(
-                            iUser     = oUser,
-                            iBrand    = oBrand,
-                            iCategory = oTempItem.iCategory ).exists()
-                        #
-                    #
-                    if bSaveBrand and tModelBrand not in setModelsBrands:
-                        #
-                        if (    bRecordSteps and
-                                oTempItem.iModel.bGenericModel and
-                                not bGotBrandForNonGenericModel ):
-                            #
-                            _appendIfNotAlreadyIn( lBrands,
-                                    'found brand %s for generic model %s' %
-                                    ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
-                            #
-                        #
-                        oTempItem.iStarsBrand  = oBrand.iStars
-                        oTempItem.iBrand       = oBrand
-                        #
-                        iStarsCategory  = oTempItem.iStarsCategory  or 1
-                        iStarsModel     = oTempItem.iStarsModel     or 1
-                        #
-                        iHitStars = (   iStarsCategory *
-                                        iStarsModel *
-                                        oBrand.iStars )
-                        #
-                        oTempItem.iHitStars    = iHitStars
-                        #
-                        oTempItem.save()
-                        #
-                        bFoundBrandForModel = True
-                        #
-                        setModelsBrands.add( tModelBrand )
-                        #
-                    #
-                #
-            #
-            bSaveBrand = False
-            #
-            for oCategory in lCategoryFound:
-                #
-                bSaveBrand = BrandCategory.objects.filter(
-                    iUser     = oUser,
-                    iBrand    = oBrand,
-                    iCategory = oCategory ).exists()
-                #
-                if bSaveBrand: break
-                #
-            #
-            iBrandStars = oBrand.iStars or 1
-            #
-            if bSaveBrand and not bFoundBrandForModel:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn( lBrands,
-                            'brand %s has products in category %s' %
-                            ( oBrand.cTitle, oCategory.cTitle ) )
-                    #
-                #
-                oTempItem.iStarsBrand  = oBrand.iStars
-                oTempItem.iBrand       = oBrand
-                #
-                iStarsCategory          = oCategory.iStars or 1
-                #
-                iHitStars = iStarsCategory * oBrand.iStars
-                #
-                oTempItem.iHitStars    = iHitStars
-                #
-                oTempItem = ItemFoundTemp(
-                        iItemNumb       = oItem,
-                        iBrand          = oBrand,
-                        iCategory       = oCategory,
-                        iStarsBrand     = iBrandStars,
-                        iStarsCategory  = iStarsCategory,
-                        iHitStars       = iHitStars,
-                        iSearch         = oUserItem.iSearch )
-                #
-                oTempItem.save()
-                #
-                lItemFoundTemp.append( oTempItem )
-                #
-            elif not bFoundBrandForModel:
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn( lBrands,
-                            'did not find brand %s for any model found' %
-                            oBrand.cTitle )
-                    #
-                #
-                oTempItem = ItemFoundTemp(
-                        iItemNumb       = oItem,
-                        iBrand          = oBrand,
-                        iStarsBrand     = oBrand.iStars,
-                        iHitStars       = iBrandStars,
-                        iSearch         = oUserItem.iSearch )
-                #
-                oTempItem.save()
-                #
-                lItemFoundTemp.append( oTempItem )
-                #
-            #
+        #
+        #
+        #
+        #
+        #
+        # step thru brands
+        #
+        #
+        t = _doStepThruBrands(
+                oItem,
+                oItemFound,
+                lItemFoundTemp,
+                oUser,
+                qsBrands,
+                dFindSteps,
+                dFindersBrands,
+                lCategoryFound,
+                sAuctionTitleRelevantPart,
+                oUserItem,
+                bRecordSteps )
+        #
+        bGotBrandForNonGenericModel, setGotBrandsIDs = t
+        #
+        #
         #
         #
         # determine model locations for candidates
         #
         #
-        if len( dModelIDinTitle ) > 1:
-            #
-            # toss obvious non candidates
-            #
-            iterModelIDsBrandID = (
-                    ( k, v.iBrand.id )
-                    for k, v in dModelIDinTitle.items()
-                    if v.iBrand )
-            #
-            lDeleteThese = []
-            #
-            for t in iterModelIDsBrandID:
-                #
-                if t[1] not in setGotBrandsIDs:
-                    #
-                    lDeleteThese.append( t[0] )
-                    #
-                #
-            #
-            if lDeleteThese and len( lDeleteThese ) < len( dModelIDinTitle ):
-                #
-                for iModelID in lDeleteThese:
-                    #
-                    if bRecordSteps:
-                        #
-                        maybePrint( 'not a strong candidate:',
-                                   dModelIDinTitle[ iModelID ].sInTitle )
-                        #
-                    #
-                    del dModelIDinTitle[ iModelID ]
-                    #
-                #
-            #
-        #
-        if len( dModelIDinTitle ) > 1:
-            #
-            oModelLocated = _getModelLocationsBegAndEnd(
-                    sAuctionTitleRelevantPart, dModelIDinTitle )
-            #
-            # tNearFront, tOnEnd, tNearEnd, tInParens,
-            # dAllWordLocations, tTitleWords
-            #
-        #
-        if bRecordSteps:
-            maybePrint()
-            maybePrint( 'dModelIDinTitle:' )
-            maybePrettyP( dModelIDinTitle )
-            if oModelLocated is None:
-                maybePrint( 'oModelLocated is None' )
-            else:
-                o = oModelLocated
-                maybePrint(
-                        'oModelLocated '
-                        'tNearFront, tOnEnd, tNearEnd, tInParens:',
-                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens )
-                maybePrint( 'tWordsOfInterest:', o.tWordsOfInterest )
-                maybePrint( 'dAllWordLocations:' )
-                maybePrettyP( o.dAllWordLocations )
+        oModelLocated = _getModelLocations(
+                dModelIDinTitle,
+                setGotBrandsIDs,
+                sAuctionTitleRelevantPart,
+                bRecordSteps )
         #
         #
         #
-        #
-        # finished stepping thru brands
-        #
-        # next: score candidates
+        # score candidates
         #
         #
-        #
-        tNow = timezone.now()
-        #
-        lCandidates = dFindSteps[ 'candidates' ]
-        lSelect     = dFindSteps[ 'selection' ]
-        #
-        if lItemFoundTemp:
-            #
-            lExcludeThese = []
-            #
-            if len( lItemFoundTemp ) > 1:
-                #
-                if bRecordSteps:
-                    #
-                    lCandidates.append(
-                            'scoring (total, hit stars, found length): '
-                            '%s candidates'
-                            % len( lItemFoundTemp ) )
-                    #
-                #
-            #
-            if oModelLocated: # some on the end of the auctin title
-                #
-                # tNearFront, tOnEnd, tNearEnd, tInParens,
-                # dAllWordLocations, tTitleWords
-                #
-                dModelID_oTempItem = dict(
-                        ( ( oTempItem.iModel.id, oTempItem )
-                            for oTempItem in lItemFoundTemp
-                            if oTempItem.iModel is not None ) )
-                #
-                # dAllWordLocations = { 'Jbl'       : ( 0, ),
-                #                       'L65'       : ( 1, ),
-                #                       'Jubal'     : ( 2, ),
-                #                       'Le5-12'    : ( 3, ),
-                #                       'Mids'      : ( 4, ),
-                #                       'Pair'      : ( 5, ),
-                #                       'Working'   : ( 6, ),
-                #                       'Nice'      : ( 7, ),
-                #                       'See'       : ( 8, ),
-                #                       'Pictures'  : ( 9, ) }
-                #
-                dWordLocations = oModelLocated.dAllWordLocations
-                #
-                dLocationsModelIDs = {}
-                #
-                for iModelID, o in dModelIDinTitle.items():
-                    #
-                    sInTitle = o.sInTitle
-                    #
-                    tLocation = dWordLocations.get( sInTitle )
-                    #
-                    if tLocation is not None:
-                        #
-                        for i in tLocation:
-                            #
-                            lModels = dLocationsModelIDs.setdefault(
-                                            i, [] ).append( iModelID )
-                            #
-                        #
-                    #
-                #
-                setCategoriesBeg    = _getCategoriesForPositions(
-                        oModelLocated.tNearFront,
-                        dLocationsModelIDs,
-                        dModelID_oTempItem )
-                #
-                setCategoriesOnEnd  = _getCategoriesForPositions(
-                        oModelLocated.tOnEnd,
-                        dLocationsModelIDs,
-                        dModelID_oTempItem )
-                #
-                setCategoriesNearEnd  = _getCategoriesForPositions(
-                        oModelLocated.tNearEnd,
-                        dLocationsModelIDs,
-                        dModelID_oTempItem )
-                #
-                if bRecordSteps:
-                    #
-                    maybePrint()
-                    maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
-                    maybePrint( 'setCategoriesOnEnd:', setCategoriesOnEnd )
-                    maybePrint( 'setCategoriesNearEnd:', setCategoriesNearEnd )
-                    maybePrint( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
-                    maybePrint( 'dModelID_oTempItem:' )
-                    # maybePrettyP( dModelID_oTempItem )
-                    for k, o in dModelID_oTempItem.items():
-                        maybePrint( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
-                    maybePrint( 'dLocationsModelIDs:' )
-                    maybePrettyP( dLocationsModelIDs )
-                    # maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
-                    # maybePrettyP( lItemFoundTemp )
-                    #for o in lItemFoundTemp:
-                        #if o.iCategory is None:
-                            #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
-                        #else:
-                            #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
-                    maybePrint( 'oModelLocated:' )
-                    for s in vars( oModelLocated ):
-                        if s.startswith( '_' ): continue
-                        maybePrint( '  %s: %s' % ( s, oModelLocated.__dict__[s] ) )
-                    #
-                    maybePrint( 'setGotBrandsIDs:', setGotBrandsIDs )
-                    maybePrint( 'bGotBrandForNonGenericModel:', bGotBrandForNonGenericModel )
-                    #
-                #
-                if setGotBrandsIDs and bGotBrandForNonGenericModel:
-                    #
-                    for iModelID, oTempItem in dModelID_oTempItem.items():
-                        #
-                        if  (   oTempItem.iBrand is None or
-                                oTempItem.iBrand.id not in setGotBrandsIDs ):
-                            #
-                            lExcludeThese.append( oTempItem )
-                            #
-                            if bRecordSteps:
-                                #
-                                #
-                                lCandidates.append(
-                                    'do not have brand for model %s, '
-                                    'so excluding' % oTempItem.iModel )
-                                #
-                            #
-                        #
-                    #
-                    lItemFoundTemp = [ o for o in lItemFoundTemp
-                                      if o not in lExcludeThese ]
-                    #
-                    lExcludeThese = []
-                    #
-                #
-                if bRecordSteps:
-                    #
-                    maybePrint( 'lItemFoundTemp:' )
-                    for o in lItemFoundTemp:
-                        maybePrint( '  %s - %s - %s' %
-                                    ( o.iModel, o.iBrand, o.iCategory ) )
-                    #
-                if setCategoriesBeg or oModelLocated.tInParens:
-                    #
-                    setFamiliesBeg = frozenset(
-                            ( dCategoryInfo[ o.id ].iFamilyID
-                              for o in setCategoriesBeg
-                              if o.id in dCategoryInfo ) )
-                    #
-                    setFamiliesOnEnd = frozenset(
-                            ( dCategoryInfo[ o.id ].iFamilyID
-                              for o in setCategoriesOnEnd
-                              if o.id in dCategoryInfo ) )
-                    #
-                    lExcludeThese = []
-                    #
-                    o = oModelLocated
-                    #
-                    if (    o.tNearEnd  and
-                            o.tOnEnd    and
-                            len( o.tNearEnd ) > len( o.tOnEnd ) and
-                            o.tNearEnd.endswith( o.tOnEnd ) ):
-                        #
-                        setFamiliesNearEnd = frozenset(
-                                ( dCategoryInfo[ o.id ].iFamilyID
-                                for o in setCategoriesNearEnd
-                                if o.id in dCategoryInfo ) )
-                        #
-                        tTests = (
-                            ( o.tNearEnd, 'near end of',
-                                setCategoriesNearEnd, setFamiliesNearEnd ),
-                            ( o.tInParens,'within parens in',
-                                None, None ) )
-                        #
-                    else:
-                        #
-                        tTests = (
-                            ( o.tOnEnd,   'on end of',
-                                setCategoriesOnEnd, setFamiliesOnEnd ),
-                            ( o.tInParens,'within parens in',
-                                None, None ),
-                            ( o.tNearEnd, 'near end of',
-                                setCategoriesNearEnd, None ) )
-                        #
-                    #
-                    if bRecordSteps:
-                        #
-                        maybePrint( 'setFamiliesBeg    :', setFamiliesBeg    )
-                        maybePrint( 'setFamiliesOnEnd  :', setFamiliesOnEnd  )
-                        maybePrint( 'test in this order:',
-                                   ', '.join( [ t[1] for t in tTests ] ) )
-                        #
-                    #
-                    setAllCategories = (
-                            setCategoriesBeg |
-                            setCategoriesNearEnd |
-                            setCategoriesOnEnd )
-                    #
-                    bAllComponents = allMeet(
-                            setAllCategories, isComponent )
-                    #
-                    # enhance here --
-                    # if "with" word is between front and on / near end
-                    #
-                    for tLocations, sSay, setTest, setFamily in tTests:
-                        #
-                        # o = oModelLocated
-                        # o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens
-                        #
-                        if bRecordSteps:
-                            #
-                            maybePrint( 'step for', sSay, 'tLocations:', tLocations )
-                            #
-                        #
-                        if not tLocations: continue
-                        #
-                        if setTest is not None:
-                            #
-                            if False and setCategoriesBeg == setTest:
-                                #
-                                # want to process if all are vacuum tubes!
-                                #
-                                continue # categories same
-                                #
-                            elif bAllComponents:
-                                #
-                                continue
-                                #
-                            elif (  setFamiliesBeg is not None and
-                                    setFamily      is not None and
-                                    len( setFamiliesBeg ) == 1 and
-                                    setFamiliesBeg == setFamily ):
-                                #
-                                sNext2Last = o.tTitleWords[
-                                                    max( o.tOnEnd ) - 1 ]
-                                #
-                                if bRecordSteps:
-                                    #
-                                    maybePrint( 'category IDs:  ', setCategoriesBeg |setCategoriesNearEnd )
-                                    maybePrint( 'bAllComponents:', bAllComponents )
-                                    #
-                                #
-                                if   (  o.tNearEnd and
-                                        o.tNearEnd.endswith( o.tOnEnd ) and
-                                        sNext2Last.lower() in
-                                            ( '&', 'and', ',' ) ):
-                                    #
-                                    # proper listing,
-                                    # not just model # tacked on end
-                                    #
-                                    continue
-                                    #
-                                #
-                            #
-                        #
-                        if bRecordSteps:
-                            #
-                            maybePrint( sSay, 'tLocations:', tLocations )
-                            #
-                        #
-                        dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
-                        #
-                        iMaxAtFront = max( o.tNearFront )
-                        uAndWords   = o.dAndWords.values()
-                        #
-                        if not o.dAndWords:
-                            iLastAnd = 0
-                        elif isinstance( uAndWords, int ):
-                            iLastAnd = uAndWords
-                        else:
-                            iLastAnd = max( getListFromNestedLists(
-                                                o.dAndWords.values() ) )
-                        #
-                        if bRecordSteps:
-                            #
-                            print( 'iLastAnd:', iLastAnd )
-                            #
-                        #
-                        for iLocation in tLocations:
-                            #
-                            if iLocation in dLocationsModelIDs:
-                                #
-                                for iModelID in dLocationsModelIDs[ iLocation ]:
-                                    #
-                                    lLocations = dModelIDsLocations[ iModelID ]
-                                    #
-                                    iMinOnEnd  = min( lLocations )
-                                    #
-                                    if (    len( lLocations ) > 1 and
-                                            iMinOnEnd in o.tNearFront ):
-                                        #
-                                        continue
-                                        #
-                                    elif (  o.dAndWords and
-                                            iLastAnd >=
-                                                iMaxAtFront +
-                                                ( ( iMinOnEnd - iMaxAtFront )
-                                                    / 2 ) ):
-                                        #
-                                        continue
-                                        #
-                                    #
-                                    lExcludeThese.append(
-                                            dModelID_oTempItem[ iModelID ] )
-                                    #
-                                    if bRecordSteps:
-                                        #
-                                        sModel = dModelID_oTempItem[ iModelID ].iModel
-                                        #
-                                        lCandidates.append(
-                                            'model %s %s auction title, '
-                                            'so excluding' % ( sModel, sSay ) )
-                                        #
-                                #
-                            else:
-                                #
-                                if bRecordSteps:
-                                    #
-                                    logger.info(
-                                        'weak hit: model location %s '
-                                        'not in dLocationsModelIDs for %s' %
-                                        ( iLocation, oItem.iItemNumb ) )
-                                    #
-                                #
-                            #
-                        #
-                    #
-                    #
-                    lItemFoundTemp = [ o for o in lItemFoundTemp
-                                      if o not in lExcludeThese ]
-                    #
-
-                if bRecordSteps:
-                    #
-                    maybePrint( 'len( lItemFoundTemp ) after:', len( lItemFoundTemp ) )
-            #
-            if len( lItemFoundTemp ) > 1:
-                #
-                t = _getFoundModelBooster( lItemFoundTemp, bRecordSteps )
-                #
-                nFoundModelBoost, iMaxLen, lExactMatch = t
-                #
-                if bRecordSteps and lExactMatch:
-                    #
-                    sSayExactMatch = getTextSequence(
-                                        ( o.cFoundModel for o in lExactMatch ) )
-                    #
-                    lCandidates.append(
-                            'have exact match%s: %s'
-                            % ( Plural( len( lExactMatch ), 'es' ),
-                                sSayExactMatch ) )
-                    #
-                elif bRecordSteps and nFoundModelBoost > 1:
-                    #
-                    lCandidates.append(
-                            'giving the longest title a boost: %s'
-                            % nFoundModelBoost )
-                    #
-                #
-                lSortItems = []
-                #
-                for i in range( len( lItemFoundTemp ) ):
-                    #
-                    oTempItem = lItemFoundTemp[ i ]
-                    #
-                    iFoundModelMultiplier = oTempItem.iFoundModelLen or 1
-                    #
-                    if oTempItem.iFoundModelLen == iMaxLen:
-                        #
-                        iScoreStars = round( (
-                            iFoundModelMultiplier * oTempItem.iHitStars
-                            ) * nFoundModelBoost )
-                        #
-                    else:
-                        #
-                        iScoreStars = int( (
-                            iFoundModelMultiplier * oTempItem.iHitStars
-                            ) / nFoundModelBoost )
-                        #
-                    #
-                    if  (       oTempItem.iModel is not None and
-                                oTempItem.iBrand is None and
-                                oTempItem.iModel.iBrand is not None ):
-                        #
-                        if bRecordSteps:
-                            #
-                            lCandidates.append(
-                                'did not find brand for %s, so discounting'
-                                % oTempItem.iModel )
-                            #
-                        #
-                        iScoreStars = iScoreStars / 2
-                        #
-                    #
-                    lSortItems.append( ( iScoreStars, i ) )
-                    #
-                    if bRecordSteps:
-                        #
-                        lCandidates.append(
-                            '%s, %s, %s - %s : %s : %s' %
-                            ( iScoreStars,
-                              oTempItem.iHitStars,
-                              oTempItem.iFoundModelLen,
-                              getTitleOrNone( oTempItem.iCategory ),
-                              getTitleOrNone( oTempItem.iModel ),
-                              getTitleOrNone( oTempItem.iBrand ) ) )
-                        #
-                    #
-                #
-                lSortItems.sort()
-                #
-                lSortItems.reverse()
-                #
-                iTopScoreStars = iTopHitStars = oTopStars = None
-                sTitle = sTopTitle = None
-                #
-                bSortAgain = False
-                #
-                for i in range( len( lItemFoundTemp ) ):
-                    #
-                    oItemTemp = lItemFoundTemp[ lSortItems[i][1] ]
-                    #
-                    sTitle = None
-                    #
-                    if oTempItem.iModel:
-                        sTitle          = getWhatsNotInParens(
-                                            oTempItem.iModel.cTitle ).upper()
-                        if oTempItem.iModel.bSubModelsOK:
-                            sTitle      = sTitle[ : -1 ]
-                    #
-                    if (    settings.COVERAGE and
-                            bRecordSteps and
-                            ( iTopScoreStars is None or ( sTopTitle and sTitle) ) ):
-                        #
-                        maybePrint()
-                        maybePrint( 'i:', i )
-                        maybePrint( 'iScoreStars:', lSortItems[i][0] )
-                        maybePrint( 'oItemTemp.iHitStars:', oItemTemp.iHitStars )
-                        maybePrint( 'sTopTitle:', sTopTitle)
-                        maybePrint( 'sTitle:', sTitle)
-                        #
-                    #
-                    if iTopScoreStars is None:
-                        #
-                        iTopScoreStars  = lSortItems[i][0]
-                        iTopHitStars    = oItemTemp.iHitStars
-                        oTopStars       = oItemTemp
-                        sTopTitle       = sTitle
-                        #
-                        continue
-                    #
-                    if (    oItemTemp.iHitStars >= iTopHitStars and
-                            sTopTitle                           and
-                            sTitle                              and
-                            len( sTitle ) < len( sTopTitle )    and
-                            sTitle in sTopTitle ):
-                        #
-                        # discount this
-                        #
-                        oItemTemp.iHitStars = (
-                                oItemTemp.iHitStars *
-                                iTopHitStars /
-                                iTopScoreStars )
-                        #
-                        bSortAgain = True
-                        #
-                        if bRecordSteps:
-                            #
-                            lCandidates.append(
-                                    'discounting Hit Stars for %s' %
-                                     oItemTemp.iModel )
-                            #
-                        #
-                    #
-                #
-                if bSortAgain:
-                    #
-                    lSortItems.sort()
-                    #
-                    lSortItems.reverse()
-                    #
-                #
-                # sort lItemFoundTemp, more stars on top, fewer stars on bottom
-                #
-                lItemFoundSort = [ lItemFoundTemp[ t[1] ] for t in lSortItems ]
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lSelect,
-                            'on top:   %s : %s : %s' %
-                            ( getTitleOrNone( lItemFoundSort[0].iCategory ),
-                              getTitleOrNone( lItemFoundSort[0].iModel ),
-                              getTitleOrNone( lItemFoundSort[0].iBrand )) )
-                    #
-                    #maybePrint()
-                    #maybePrint( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
-                    #
-                #
-            else:
-                #
-                lItemFoundSort = lItemFoundTemp
-                #
-                if bRecordSteps:
-                    #
-                    _appendIfNotAlreadyIn(
-                            lSelect,
-                            'only found one thing for this item, a no brainer!' )
-                    #
-                #
-            #
-            #
-            # items found are in lItemFoundSort
-            #
-            #
-            if bRecordSteps and lItemFoundSort:
-                #
-                print( 'lItemFoundSort:' )
-                pprint( lItemFoundSort )
-                #
-                print()
-                print( 'dSearchMyCategory:' )
-                pprint( dSearchMyCategory )
-
-            #
-            iItemsFoundTemp         = 0
-            #
-            dModelsStoredAlready    = {} # used for scoring & selection
-            #
-            lModelsStoredAlready    = []
-            #
-            for oTempItem in lItemFoundSort:
-                #
-                iItemsFoundTemp += 1
-                #
-                sModelTitleLessParens = sModelTitleUPPER = ''
-                #
-                if oTempItem.iModel:
-                    #
-                    # sModelTitleLessParens = getWhatsNotInParens(
-                    #         oTempItem.iModel.cTitle )
-                    #
-                    sModelTitleLessParens = oTempItem.cFoundModel
-                    #
-                    # sModelTitleUPPER = sModelTitleLessParens.upper()
-                    #
-                    # sModelTitleUPPER = oTempItem.cModelAlphaNum
-                    sModelTitleUPPER = oTempItem.cFoundModel.upper()
-                #
-                if settings.COVERAGE and bRecordSteps:
-                    #
-                    maybePrint()
-                    maybePrint( 'temp item      #:', iItemsFoundTemp )
-                    maybePrint( 'model           :', oTempItem.iModel )
-                    maybePrint( 'brand           :', oTempItem.iBrand )
-                    maybePrint( 'category        :', oTempItem.iCategory)
-                    maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
-                    maybePrint( 'iHitStars       :', oTempItem.iHitStars )
-                    maybePrint()
-                    #
-                #
-                if iItemsFoundTemp == 1: # store item on top here
-                    #
-                    oUserItem.iBrand        = oTempItem.iBrand
-                    oUserItem.iModel        = oTempItem.iModel
-                    #
-                    oMyCategory = dSearchMyCategory.get( oTempItem.iSearch_id )
-                    #
-                    if oMyCategory:
-                        #
-                        oUserItem.iCategory = oMyCategory
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                    lSelect,
-                                    'search that found this expects category '
-                                    '"%s", so changing now' % oMyCategory )
-                            #
-                    else:
-                        #
-                        oUserItem.iCategory = oTempItem.iCategory
-                        #
-                    #
-                    oUserItem.iHitStars     = oTempItem.iHitStars
-                    oUserItem.cWhereCategory= oTempItem.cWhereCategory
-                    # oUserItem.iSearch     = oTempItem.iSearch
-                    #
-                    oUserItem.tLook4Hits = tNow
-                    #
-                    oUserItem.save()
-                    #
-                    if oTempItem.iModel:
-                        #
-                        lModelsStoredAlready.append( sModelTitleUPPER )
-                        #
-                        _updateModelsStoredAlready(
-                                dModelsStoredAlready, oTempItem, sModelTitleUPPER )
-                        #
-                    #
-                    # testing problem work around 2019-12-18
-                    #
-                    if oTempItem.iSearch_id in dSearchLogs:
-                        #
-                        oSearchLog = dSearchLogs.get( oTempItem.iSearch_id )
-                        #
-                    else:
-                        #
-                        try:
-                            oSearchLog = SearchLog.objects.get( iSearch = oTempItem.iSearch )
-                        except:
-                            #
-                            if settings.TESTING:
-                                #
-                                oSearchLog = SearchLog(
-                                                iSearch_id  = oTempItem.iSearch_id,
-                                                tBegSearch  = tNow,
-                                                cResult     = 'Success' )
-                                #
-                            else:
-                                #
-                                raise
-                                #
-                            #
-                        #
-                        oSearchLog.iOrigHits = oSearchLog.iItemHits
-                        oSearchLog.iItemHits = 0
-                        #
-                        dSearchLogs[ oTempItem.iSearch_id ] = oSearchLog
-                        #
-                    #
-                    if (    oTempItem.iBrand and
-                            oTempItem.iCategory and
-                            oTempItem.iModel ):
-                        #
-                        oSearchLog.iItemHits += 1
-                        #
-                    #
-                elif (  oTempItem.iBrand and
-                        oTempItem.iCategory and
-                        oTempItem.iModel ):
-                    #
-                    # have complete hit, make an additional UserItem record
-                    #
-                    t = _gotFullStringOrSubStringOfListItem(
-                                sModelTitleUPPER,
-                                lModelsStoredAlready )
-                    #
-                    uExact, uLonger, uShort = t
-                    #
-                    bGotNonGenericForThis      = False
-                    sBetterBrandForThisGeneric = None
-                    #
-                    # dModelsStoredAlready used for scoring & selection
-                    #
-                    if sModelTitleUPPER in dModelsStoredAlready:
-                        #
-                        if bRecordSteps:
-                            maybePrint()
-                            maybePrint( 'sModelTitleUPPER in dModelsStoredAlready:', sModelTitleUPPER in dModelsStoredAlready )
-                        for oModelStored in dModelsStoredAlready[ sModelTitleUPPER ]:
-                            #
-                            # startswith below handles Amperex Bugle Boy & Amperex
-                            #
-                            bGotNonGenericForThis = (
-                                    oModelStored.iModelBrand and
-                                    oTempItem.iBrand and
-                                    oModelStored.iModelBrand.cTitle.startswith(
-                                            oTempItem.iBrand.cTitle ) and
-                                    not oModelStored.bGenericModel )
-                            #
-                            if bGotNonGenericForThis: continue
-                            #
-                            if  (   oModelStored.iModelBrand is None and
-                                    oModelStored.iBrand and
-                                    oTempItem.iBrand    and
-                                    oModelStored.iBrand.cTitle.startswith(
-                                            oTempItem.iBrand.cTitle  ) ):
-                                #
-                                sBetterBrandForThisGeneric = oModelStored.iBrand.cTitle
-                                #
-                            #
-                            if bRecordSteps:
-                                #
-                                maybePrint()
-                                maybePrint( 'oModelStored:' )
-                                maybePrint( oModelStored )
-                                maybePrint( 'oModelStored.iModelBrand:', oModelStored.iModelBrand )
-                                maybePrint( 'oTempItem.iBrand:', oTempItem.iBrand )
-                                if oModelStored.iModelBrand:
-                                    maybePrint( 'oModelStored.iModelBrand.cTitle:', oModelStored.iModelBrand.cTitle )
-                                else:
-                                    maybePrint( 'oModelStored.iModelBrand:', oModelStored.iModelBrand )
-                                maybePrint( 'oTempItem.iBrand.cTitle:', oTempItem.iBrand.cTitle )
-                                maybePrint( 'oModelStored.bGenericModel:', oModelStored.bGenericModel )
-                                maybePrint( 'bGotNonGenericForThis:', bGotNonGenericForThis )
-                                maybePrint( 'sBetterBrandForThisGeneric:', sBetterBrandForThisGeneric )
-                                #
-                            #
-                            if sBetterBrandForThisGeneric: continue
-                            #
-                        #
-                    #
-                    bGotBrand = False
-                    #
-                    if (    oTempItem.iModel.iBrand is not None and
-                            oTempItem.iModel.iBrand != oTempItem.iBrand ):
-                        #
-                        continue
-                        #
-                    elif uShort and uShort in dModelsStoredAlready:
-                        #
-                        for oModelStored in dModelsStoredAlready[ uShort ]:
-                            #
-                            bGotBrand = ( oModelStored.iModelBrand == oTempItem.iBrand )
-                            #
-                            if bGotBrand: continue
-                            #
-                        #
-                    #
-                    doPrintMore = (
-                            False and
-                            bRecordSteps and
-                            sModelTitleUPPER == '6DJ8' )
-                    #
-                    if doPrintMore and not bGotNonGenericForThis:
-                        #
-                        maybePrint()
-                        maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
-                        maybePrint( 'oTempItem.iModel:', oTempItem.iModel )
-                        maybePrint( 'oTempItem.iBrand:', oTempItem.iBrand )
-                        maybePrint( 'oTempItem.iCategory:', oTempItem.iCategory )
-                        maybePrint( 'dModelsStoredAlready:' )
-                        CustomPPrint.maybePrettyP( dModelsStoredAlready )
-                        maybePrint( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
-                        maybePrint( 'uExact:', uExact )
-                        maybePrint( 'oModelStored:' )
-                        maybePrint(  oModelStored )
-                        #
-                    #
-                    # exclude if uLonger unless
-                    # both longer string and shorter substring
-                    # are BOTH in title
-                    # carry on / continue here
-                    #
-                    bGotLongGotShort = False
-                    oModelStored     = None
-                    #
-                    # '''
-                    if settings.COVERAGE and bRecordSteps:
-                        #
-                        maybePrint()
-                        maybePrint('uExact, uLonger, uShort:', t )
-                        maybePrint('dModelsStoredAlready:')
-                        for k, l in dModelsStoredAlready.items():
-                            maybePrint( '%s:' % k )
-                            i = -1
-                            for o in l:
-                                i += 1
-                                if len( l ) > 1:
-                                    maybePrint( '%s:' % i )
-                                else:
-                                    maybePrint( 'only one hit:' )
-                                maybePrint( o )
-                        #
-                    # '''
-                    #
-                    if uExact and uExact in dModelsStoredAlready:
-                        #
-                        oModelStored = dModelsStoredAlready[ uExact ][0]
-                        #
-                    #
-                    if uLonger and uLonger in dModelsStoredAlready:
-                        #
-                        sWithout = dModelsStoredAlready[
-                                    uLonger ][0].sTitleLeftOver or ''
-                        ##
-                        #t = foundItem( sAuctionTitleRelevantPart )
-                        ##
-                        #sInTitle, uGotKeyWords, uExcludeThis, sWhatRemains = t
-                        ##
-                        #lParts = sAuctionTitleRelevantPart.split( sInTitle )
-                        ##
-                        #sWithout = ' '.join( lParts )
-                        ##
-                        #sWithout = oTempItem.cTitleLeftOver or ''
-                        #
-                        bGotLongGotShort = (
-                                sModelTitleLessParens in sWithout )
-                        #
-                    #
-                    bShorterNearEnd = False
-                    #
-                    if uLonger and bGotLongGotShort and oModelLocated:
-                        #
-                        o = oModelLocated
-                        #
-                        tLocations = o.dAllWordLocations.get(
-                                        sModelTitleLessParens, () )
-                        #
-                        if (    tLocations and
-                                ( o.tNearEnd or
-                                  o.tOnEnd ) ):
-                            #
-                            lNearEnd = list( o.tNearEnd )
-                            lNearEnd.extend( o.tOnEnd )
-                            #
-                            bShorterNearEnd = (
-                                not containsAny( tLocations, o.tNearFront ) and
-                                    containsAll( tLocations, lNearEnd ) )
-                        #
-                    #
-                    if uLonger and bGotLongGotShort and bShorterNearEnd:
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'excluding %s '
-                                    'because it is tacked on the end' %
-                                    sModelTitleLessParens )
-                            #
-                        #
-                        continue
-                        #
-                    elif uLonger and bGotLongGotShort:
-                        #
-                        if bRecordSteps:
-                            #
-                            #maybePrint()
-                            #maybePrint( 'sWithout:', sWithout )
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'keeping %s because this and '
-                                    '%s both are in the title' %
-                                    ( sModelTitleLessParens, uLonger ) )
-                            #
-                        #
-                    elif uLonger:
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'excluding %s '
-                                    'because this is a substring of %s' %
-                                    ( sModelTitleLessParens, uLonger ) )
-                            #
-                        #
-                        continue
-                        #
-                    elif uShort and bGotBrand:
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'excluding %s '
-                                    'because its root is %s' %
-                                    ( sModelTitleLessParens, uShort ) )
-                            #
-                        #
-                        continue
-                        #
-                    elif    (   uExact and
-                                oTempItem.iModel.bGenericModel and
-                                bGotNonGenericForThis ):
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'excluding generic model %s -- '
-                                    'already have a non generic' %
-                                    ( sModelTitleLessParens ) )
-                            #
-                        #
-                        continue
-                        #
-                    elif    (   uExact and
-                                oTempItem.iModel.bGenericModel and
-                                sBetterBrandForThisGeneric ):
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'excluding generic %s for %s -- '
-                                    'already have a generic for %s' %
-                                    ( sModelTitleLessParens,
-                                      oTempItem.iBrand,
-                                      sBetterBrandForThisGeneric ) )
-                            #
-                        #
-                        continue
-                        #
-                    elif uExact and oTempItem.iModel.bGenericModel:
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'have generic model %s already, '
-                                    'but including again for %s' %
-                                    ( sModelTitleLessParens, oTempItem.iBrand ) )
-                            #
-                        #
-                    elif (      uExact and
-                                oModelStored and
-                                oModelStored.iCategoryID and
-                                oTempItem.iCategory and
-                                oModelStored.iCategoryID != oTempItem.iCategory.id ):
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'have model %s already, but including '
-                                    'it again for a different category' %
-                                    ( sModelTitleLessParens ) )
-                            #
-                        #
-                    elif uExact:
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                    'excluding %s '
-                                    'because we already got %s' %
-                                    ( sModelTitleLessParens, uExact ) )
-                            #
-                        #
-                        continue
-                        #
-                    #
-                    tNow = timezone.now()
-                    #
-                    if UserItemFound.objects.filter(
-                            iItemNumb       = oUserItem.iItemNumb,
-                            iUser           = oUser,
-                            iModel          = oTempItem.iModel,
-                            iBrand          = oTempItem.iBrand,
-                            iCategory       = oTempItem.iCategory ).exists():
-                        #
-                        # hitting error in testing in django 2.2,
-                        # was never a problem in 1.11
-                        #
-                        pass
-                        #
-                    else:
-                        #
-                        if bRecordSteps:
-                            #
-                            _appendIfNotAlreadyIn(
-                                lSelect,
-                                'also storing: %s : %s : %s' %
-                                    (   getTitleOrNone( oTempItem.iCategory ),
-                                        getTitleOrNone( oTempItem.iModel ),
-                                        getTitleOrNone( oTempItem.iBrand )) )
-                            #
-                        #
-                        oNewUserItem = UserItemFound(
-                            iItemNumb       = oUserItem.iItemNumb,
-                            iHitStars       = oTempItem.iHitStars,
-                            iSearch         = oTempItem.iSearch,
-                            iModel          = oTempItem.iModel,
-                            iBrand          = oTempItem.iBrand,
-                            iCategory       = oTempItem.iCategory,
-                            cWhereCategory  = oTempItem.cWhereCategory,
-                            tLook4Hits      = tNow,
-                            tCreate         = tNow,
-                            tModify         = tNow,
-                            iUser           = oUser )
-                        #
-                        #
-                        oNewUserItem.save()
-                        #
-                        # dModelsStoredAlready used for scoring & selection
-                        #
-                        _updateModelsStoredAlready(
-                                dModelsStoredAlready, oTempItem, sModelTitleUPPER )
-                        #
-                        lModelsStoredAlready.append( sModelTitleUPPER )
-                        #
-                    #
-                #
-            #
-            #
-            # this is after
-            # for oTempItem in lItemFoundSort:
-            #
-            #
-            # before going on, update userFinder, dModelsStoredAlready has the info
-            #
-            #
-            iMaxStars, iMaxModel = _getMaxHitStars( dModelsStoredAlready )
-            #
-            if settings.COVERAGE and bRecordSteps:
-                #
-                maybePrint('')
-                maybePrint('iMaxStars:', iMaxStars )
-                #
-            if iMaxStars:
-                #
-                oUserFinder = UserFinder(
-                        iItemNumb       = oItem,
-                        iHitStars       = iMaxStars,
-                        iMaxModel       = iMaxModel,
-                        cTitle          = oItem.cTitle,
-                        cMarket         = oItem.cMarket,
-                        cListingType    = oItem.cListingType,
-                        tTimeEnd        = oItem.tTimeEnd,
-                        iUser           = oUser )
-                    #
-                #
-                oUserFinder.save()
-                #
-            #
-        else: # not lItemFoundTemp
-            #
-            if bRecordSteps:
-                #
-                _appendIfNotAlreadyIn(
-                    lSelect,
-                    'did not find anything for this item' )
-                #
-            #
-            oUserItem.tLook4Hits = tNow
-            #
-            oUserItem.save()
-            #
-        #
-        if bRecordSteps:
-            #
-            _printHitSearchSteps( oItem, dFindSteps )
-            #
-        #
+        _doScoreCandidates(
+                oItem,
+                lItemFoundTemp,
+                oModelLocated,
+                dModelIDinTitle,
+                oUserItem,
+                dSearchMyCategory,
+                dCategoryInfo,
+                setGotBrandsIDs,
+                bGotBrandForNonGenericModel,
+                dFindSteps,
+                dSearchLogs,
+                oUser,
+                bRecordSteps )
     #
     for oSearchLog in dSearchLogs.values():
         #
@@ -2933,91 +3088,3 @@ def findSearchHits(
         ItemFoundTemp.objects.all().delete()
         #
     #
-
-'''
-        bExcludeStragglers = False
-        #
-        if len( dModelIDinTitle ) > 1:
-            #
-            oModelLocated = _getModelLocationsBegAndEnd(
-                    sAuctionTitleRelevantPart, dModelIDinTitle )
-            #
-            # tNearFront, tOnEnd, tNearEnd, tInParens, dAllWordLocations
-            #
-            if oModelLocated is not None:
-                #
-                tStragglers         = ()
-                #
-                o = oModelLocated
-                #
-                dAllWordLocations   = o.dAllWordLocations
-                #
-                for sModel in dAllWordLocations.keys():
-                    #
-                    tModelLocation  = dAllWordLocations[ sModel ]
-                    #
-                    # if a model is both near the beginning and end, the one on the end does not count
-                    #
-                    if (    len( tModelLocation ) > 1 and
-                            tModelLocation[ 0] in o.tNearFront and
-                            tModelLocation[-1] in o.tNearEnd ):
-                        #
-                        dAllWordLocations[ sModel ] = tuple( (
-                                i for i in tModelLocation
-                                if i not in o.tNearEnd ) )
-                        #
-                    elif (  tModelLocation[0] in o.tNearFront and
-                            o.iGotCategories == 1 ):
-                        #
-                        bExcludeStragglers = True
-                        #
-                    #
-                #
-                bExcludeStragglers = (
-                        o.tNearFront and
-                        o.iGotCategories == 1 and
-                        not ( o.tNearEnd or o.tInParens ) )
-                #
-                if bExcludeStragglers: # another test
-                    #
-                    setAllModelStrings = frozenset(
-                            [ o.sInTitle for o in dModelIDinTitle.values() ] )
-                    #
-                    setAllWordStrings = frozenset( dAllWordLocations.keys() )
-                    #
-                    bExcludeStragglers = (
-                            setAllModelStrings.issubset( setAllWordStrings ) )
-                    #
-                #
-                if bExcludeStragglers:
-                    #
-                    liModelsInTitle = getListFromNestedLists(
-                            [ dAllWordLocations[ o.sInTitle ]
-                              for o in dModelIDinTitle.values()
-                              if o.sInTitle in dAllWordLocations ] )
-                    #
-                    tStragglers = tuple( (
-                                i for i in liModelsInTitle
-                                if i not in o.tNearFront ) )
-                    #
-                    if (    tStragglers and
-                            min( tStragglers ) <
-                            max( o.tNearFront ) + ( min( o.tNearFront ) / 2 ) ):
-                        #
-                        tStragglers = ()
-                        #
-                    #
-                #
-                o.tStragglers = tStragglers
-                #
-            #
-        #
-
-
-            maybePrint( 'bExcludeStragglers:', bExcludeStragglers )
-                maybePrint(
-                        'oModelLocated tNearFront, tOnEnd, tNearEnd,'
-                        'tInParens, tStragglers:',
-                    o.tNearFront, o.tOnEnd, o.tNearEnd, o.tInParens,
-                    o.tStragglers )
-'''
