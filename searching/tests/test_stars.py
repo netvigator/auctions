@@ -3418,3 +3418,12 @@ class GetRelevantTitleTests( AssertEmptyMixin, TestCasePlus ):
         self.assertEqual( sRetnTitle.strip(),  sFullTitle )
         self.assertEqual( sGotInParens.strip(), 'SIEMENS' )
         #
+        "ALTEC LANSING  311-90 Horn for 288 290 291 292 299 drivers "
+        "ALTEC LANSING 808 8A HORN Driver Symbiotik from HAMMOND B3 Leslie 122 Speaker"
+        "Pilot 240 tube integrated amp stereo WORKING ala Fisher Scott"
+        "ALTEC 755A Loudspeaker Unit same as Western Electric 755A"
+        "VT25  Western Electric Tube Valve matched pair NOS NIB not 300B 2a3 45 211"
+        "4 lot 6201 GE dual triode preamp tube,pin compatible with 12AX7 used,tested,good"
+
+
+        "JBL M31 (looks Like D130) Needs are-Coned"
