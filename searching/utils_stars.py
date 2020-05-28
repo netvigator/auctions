@@ -47,7 +47,7 @@ from pyPks.Object.Output    import CustomPPrint
 from pyPks.String.Count     import getAlphaNumCount as getLen
 from pyPks.String.Dumpster  import getAlphaNumCleanNoSpaces
 from pyPks.String.Eat       import eatPunctuationBegAndEnd
-from pyPks.String.Get       import getTextBeforeC
+from pyPks.String.Get       import getTextBeforeC, getParensParts
 from pyPks.String.Find      import getRegExpress, getRegExObj
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Replace   import getSpaceForWhiteAlsoStrip
@@ -68,26 +68,22 @@ _oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 
 
-def getInParens( s ):
-    #
-    oMatch = _oParensSearcher( s )
-    #
-    uReturn = None
-    #
-    if oMatch:
-        #
-        uReturn = oMatch.group(0)
-        #
-    #
-    return uReturn
-
-
-
 def _getRelevantTitle( sTitle ):
     #
     sAuctionTitleRelevantPart = _oDropAfterThisFinder.split( sTitle )[0]
     #
-    sGotInParens = getInParens( sAuctionTitleRelevantPart )
+    sGotInParens, sNotInParens = getParensParts( sTitle )
+    #
+    if sGotInParens:
+        #
+        lSplitInParens = _oDropAfterThisFinder.split( sGotInParens )
+        #
+        if len( lSplitInParens ) > 1:
+            #
+            sAuctionTitleRelevantPart = \
+                    _oDropAfterThisFinder.split( sNotInParens )[0]
+            #
+        #
     #
     return sAuctionTitleRelevantPart, sGotInParens
 
@@ -259,18 +255,6 @@ def _getRowRegExpressions( oTableRow,
     #
     return sFindTitle, sFindExclude, sFindKeyWords
 
-
-
-def _getRegExSearchOrNone( s ):
-    #
-    if s:
-        #
-        oRegExObj = getRegExObj( s )
-        #
-        return oRegExObj.search
-
-
-_oParensSearcher = _getRegExSearchOrNone( r'(?<=\().*(?=\))' )
 
 
 def _getAlphaNum( s ): return getAlphaNumCleanNoSpaces( s ).upper()
@@ -1019,8 +1003,6 @@ def _doStepThruModels(
             #
             continue
             #
-        #
-        # sGotInParens = getInParens( sAuctionTitleRelevantPart )
         #
         sModelAlphaNum  = _getAlphaNum( sInTitle )
         #
