@@ -19,16 +19,24 @@ from .base              import ( PutSearchResultsInDatabaseWebTestBase,
                                  SetUpForHitStarsWebTests,
                                  StoreUserItemFoundWebTestBase )
 
-from ..utils_stars      import ( getFoundItemTester, _getRegExSearchOrNone,
-                                 findSearchHits, _getRowRegExpressions,
-                                 getInParens, _getRelevantTitle )
+from ..utils_stars      import ( getFoundItemTester, findSearchHits,
+                                 _getRowRegExpressions, _getRelevantTitle )
 
 from searching.tests    import iRecordStepsForThis
 
 from brands.views       import BrandUpdateView
 from models.models      import Model
 
+from pyPks.String.Find  import getRegExpress, getRegExObj
 
+
+def _getRegExSearchOrNone( s ):
+    #
+    if s:
+        #
+        oRegExObj = getRegExObj( s )
+        #
+        return oRegExObj.search
 
 
 def _getModelRegExFinders4Test( oModel ):
@@ -3343,22 +3351,6 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
 
 
 
-class GetTextInParensTest( TestCasePlus ):
-    #
-    def test_got_text_in_parens_or_not( self ):
-        #
-        s1 = ( 'Tung-Sol 5881 (6L6WGB) amplifier tube. '
-               'TV-7 test NOS. for Bendix USA SHIPS ONLY' )
-        #
-        s2 = ( 'ALTEC LANSING N-800-8K CROSSOVER DIVIDING NETWORK '
-               '846B VALENCIA WORKING PAIR' )
-        #
-        self.assertEqual( getInParens( s1 ), '6L6WGB' )
-        #
-        self.assertIsNone( getInParens( s2 ) )
-
-
-
 class GetRelevantTitleTests( AssertEmptyMixin, TestCasePlus ):
     #
     def test_get_relevant_title( self ):
@@ -3411,19 +3403,73 @@ class GetRelevantTitleTests( AssertEmptyMixin, TestCasePlus ):
         self.assertEmpty( sGotInParens )
         #
         #
+        sWantTitle = "Pilot 240 tube integrated amp stereo WORKING"
+        sFullTitle = "Pilot 240 tube integrated amp stereo WORKING ala Fisher Scott"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(), sWantTitle )
+        self.assertEmpty( sGotInParens )
+        #
+        #
+        sWantTitle = "ALTEC 755A Loudspeaker Unit"
+        sFullTitle = "ALTEC 755A Loudspeaker Unit same as Western Electric 755A"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(), sWantTitle )
+        self.assertEmpty( sGotInParens )
+        #
+        #
+        sWantTitle = "VT25  Western Electric Tube Valve matched pair NOS NIB"
+        sFullTitle = "VT25  Western Electric Tube Valve matched pair NOS NIB not 300B 2a3 45 211"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(), sWantTitle )
+        self.assertEmpty( sGotInParens )
+        #
+        #
+        sWantTitle = "4 lot 6201 GE dual triode preamp tube,pin"
+        sFullTitle = "4 lot 6201 GE dual triode preamp tube,pin compatible with 12AX7 used,tested,good"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(), sWantTitle )
+        self.assertEmpty( sGotInParens )
+        #
+        #
         sFullTitle = "4x EL34 power tubes  RFT ( SIEMENS ) - NOS  - EL 34"
         #
         sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
         #
         self.assertEqual( sRetnTitle.strip(),  sFullTitle )
-        self.assertEqual( sGotInParens.strip(), 'SIEMENS' )
+        self.assertEqual( sGotInParens.strip(), '( SIEMENS )' )
         #
-        "ALTEC LANSING  311-90 Horn for 288 290 291 292 299 drivers "
-        "ALTEC LANSING 808 8A HORN Driver Symbiotik from HAMMOND B3 Leslie 122 Speaker"
-        "Pilot 240 tube integrated amp stereo WORKING ala Fisher Scott"
-        "ALTEC 755A Loudspeaker Unit same as Western Electric 755A"
-        "VT25  Western Electric Tube Valve matched pair NOS NIB not 300B 2a3 45 211"
-        "4 lot 6201 GE dual triode preamp tube,pin compatible with 12AX7 used,tested,good"
+        #
+        sFullTitle = "JBL Metregon 205 - Time Capsule! (130A, 275, N500, H5040)"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(),  sFullTitle )
+        self.assertEqual( sGotInParens.strip(), '(130A, 275, N500, H5040)' )
+        #
+        #
+        sFullTitle = "JBL M31 (looks Like D130) Needs are-Coned"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle, 'JBL M31  ()  Needs are-Coned' )
+        self.assertEqual( sGotInParens, '(looks Like D130)' )
+        #
+        #
+        sFullTitle = ( "4x KT61 ( 6AG6 G ) tubes HALTRON ( M.O.V. ) -"
+                       "NOS (~  6V6G / EL33 /  EL3 ) KT 61" )
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(),  sFullTitle )
+        self.assertEqual( sGotInParens.strip(),
+                         '( 6AG6 G )( M.O.V. )(~  6V6G / EL33 /  EL3 )' )
+        #
 
-
-        "JBL M31 (looks Like D130) Needs are-Coned"
