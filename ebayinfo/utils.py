@@ -1015,6 +1015,10 @@ RUN updateCategoryHierarchies()
 
 select * from ebay_categories where "iSupercededBy" is not null ;
 
+to update categories:
+from ebayinfo.utils import getCategoryListsUpdated
+getCategoryListsUpdated( bConsoleOut = True )
+
 '''
 
 # ### after updating ebay categories, check whether         ###
@@ -1035,6 +1039,3 @@ select * from ebay_categories where "iSupercededBy" is not null ;
 
 # QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
 
-# call getCategoryListThenStore( id, iWantVersion, bShowProgress = True )
-# to update the categories for a market
-# from ebayinfo.utils import getCategoryListThenStore
