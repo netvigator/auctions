@@ -918,7 +918,7 @@ a dedicated server is devoted to this job
 then take the live server down for maintenance and update:
 1) markets
 2) ebay_categories
-3) category_hierarchies
+3) category_hierarchies - this one is not from ebay but composed for this app
 
 
 get commands from office datbase server:
