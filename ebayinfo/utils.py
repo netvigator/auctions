@@ -4,6 +4,7 @@ from time               import sleep
 
 from django.conf        import settings
 from django.db          import DataError, connection
+from django.db.utils    import IntegrityError
 
 from core.dj_import     import ET # xml.etree.ElementTree
 from core.dj_import     import ObjectDoesNotExist
@@ -764,15 +765,29 @@ def updateCategoryHierarchies(): # run after ebay category update
         #
         iCategoryID, iEbaySiteID, sCategoryName = t
         #
-        CategoryHierarchy.objects.filter(
+        try:
+            #
+            CategoryHierarchy.objects.filter(
                                     iCategoryID = iCategoryID,
                                     iEbaySiteID = iEbaySiteID ).delete()
+            #
+        except IntegrityError:
+            #
+            pass # maybe next time
+            #
         #
         if iEbaySiteID in dMarketsRelated: # EBAY-US : EBAY-MOTOR & vice versa
             #
-            CategoryHierarchy.objects.filter(
+            try:
+                #
+                CategoryHierarchy.objects.filter(
                     iCategoryID = iCategoryID,
                     iEbaySiteID = dMarketsRelated.get( iEbaySiteID ) ).delete()
+                #
+            except IntegrityError:
+                #
+                pass # maybe next time
+                #
             #
         #
         _getCategoryHierarchyID(
@@ -965,7 +980,12 @@ TABLE "itemsfound" CONSTRAINT "itemsfound_i2ndCatHeirarchy_id_2557c784_fk_catego
 TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_hierarchies_id" FOREIGN KEY ("iCatHeirarchy_id") REFERENCES category_hierarchies(id) DEFERRABLE INITIALLY DEFERRED
 
 
-
+open psql and auctions database
+if on office desktop
+psql -h 192.168.0.88 -p 5432 -U minion auctions
+or if in postgres user on datas server
+psql -U minion auctions
+then
 ALTER TABLE "category_hierarchies" DROP CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" ;
 ALTER TABLE "itemsfound" DROP CONSTRAINT "itemsfound_iEbaySiteID_id_306e5c7e_fk_markets_iEbaySiteID" ;
 ALTER TABLE "itemsfound" DROP CONSTRAINT "itemsfound_iCategoryID_id_67c1d3f6_fk_ebay_categories_id" ;
@@ -975,11 +995,11 @@ ALTER TABLE "searching" DROP CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_
 truncate table ebay_categories ;
 truncate table markets ;
 
-BKK
+BKK (obsolete)
 psql -h 192.168.8.88 -p 5432 -U minion auctions < markets.pg
 psql -h 192.168.8.88 -p 5432 -U minion auctions < ebay_categories.pg
 
-HK
+HK (now main server)
 psql -h 192.168.0.88 -p 5432 -U minion auctions < markets.pg
 psql -h 192.168.0.88 -p 5432 -U minion auctions < ebay_categories.pg
 
@@ -1009,13 +1029,18 @@ left outer join ebay_categories c
 on c."iCategoryID" = p."iCategoryID" and c."iEbaySiteID_id" = p."iEbaySiteID_id"
 where p."cCatHierarchy" not like '%' || c.name ;
 
-
-RUN updateCategoryHierarchies()
+if the queries above find any rows (discrepancy rows)
+run on office desktop or on webserver
+from ebayinfo.utils import updateCategoryHierarchies
+updateCategoryHierarchies()
 
 
 select * from ebay_categories where "iSupercededBy" is not null ;
 
-to update categories:
+
+
+when ebay categories have been updated,
+to update application categories:
 from ebayinfo.utils import getCategoryListsUpdated
 getCategoryListsUpdated( bConsoleOut = True )
 

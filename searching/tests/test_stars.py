@@ -1502,7 +1502,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         gotCategories   = set( [] )
         gotBrands       = set( [] )
         #
-        setComponents   = frozenset(( 'K-77', 'T-35B' ) )
+        setComponents   = frozenset(( 'K-77', ) ) #  'T-35B'
         # 'Heresy (H700)',
         setCategories   = frozenset( ( 'Driver', ) )
         # 'Speaker System'
@@ -1617,10 +1617,22 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         iThisOne = 113945886050
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 4, iThisOne,
+                dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find JBL L220' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'LE5-5' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '76' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'L220 (Oracle)' )
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
@@ -2885,6 +2897,19 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find power supply ? big challenge?' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 264741220720
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find GE 12AX7-WA not the rest' )
         #
         #
         #

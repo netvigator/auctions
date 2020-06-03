@@ -131,10 +131,11 @@ sModels = \
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             | 5814A        | t
  12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7 (GE)         |           |      9 | f            | GE                |  Vacuum Tube |             |              | f
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             | 7025         | t
  7025 (12AX7A)      |           |      7 | t            |                   |  Vacuum Tube |             |              | t
- 12ax7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
+ 12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
@@ -794,6 +795,20 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["264741220720"],
+             "title":["1  excellent mil spec general electric 12ax7wa \/ 12ax7 tube  # K 69"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/malOZ5WH8GFiipSCgTasBwQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/1-excellent-mil-spec-general-electric-12ax7wa-12ax7-tube-K-69-\/264741220720"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["457**"],"location":["Belpre,OH,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"7.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
+             "bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT3H44M29S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2020-05-24T01:56:25.000Z"],"endTime":["2020-05-29T01:56:25.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["174290984997"],
              "title":["10 vntg 12AX7A ~ Raytheon ~Black Plate~ Tube lot TV-7 & Hi-Fi Tested 12AX7   rca"],
