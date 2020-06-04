@@ -364,6 +364,9 @@ class ItemFoundTemp(models.Model):
                         'model name/number found in auction title',
                         max_length = 48,            null = True )
     iFoundModelLen  = models.PositiveSmallIntegerField( default = 0 )
+    bModelKeyWords  = models.NullBooleanField(
+                        'model has key words and they are in auction title?',
+                        null = True, default = False )
     cModelAlphaNum  = models.CharField(
                         'model name/number alpha num only',
                         max_length = 48,            null = True )
