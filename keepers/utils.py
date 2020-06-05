@@ -335,6 +335,12 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             logger.info(
                     'ebay is slow, timeout for %s (%s)', str( iItemNumb ), str(e) )
             #
+        # now getting Exception for 201754968613
+        #(('Connection aborted.',
+        #   ConnectionResetError(104, 'Connection reset by peer')))
+        #[2020-06-05 09:35:29,770: INFO/ForkPoolWorker-1]
+        #  oItemFound is None! 201754968613
+        #
         except Exception as e:
             #
             if not e: e = 'no Exception info!'
