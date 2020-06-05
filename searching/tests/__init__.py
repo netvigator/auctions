@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 233597629477
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -40,6 +40,7 @@ sBrands = \
  Brook             |      8 |            |            |
  Coronado          |      7 |            |            |
  Crosley           |      3 |            |            |
+ Cunningham        |      8 |            |            |
  DeWald            |      4 |            |            |
  DuKane            |      7 |            |            |
  Dynaco            |      5 |            |            | Dyna\\rDynakit
@@ -91,7 +92,7 @@ sBrands = \
  Radford           |      7 |            |            |
  Radio Craftsmen   |      8 |            |            |
  Raytheon          |      7 |            |            |
- RCA               |      6 |            |            |
+ RCA               |      7 |            |            |
  Regency           |      5 |            |            |
  Sargent-Rayment   |      4 |            |            |
  Scott, H.H.       |      8 |            |            | Scott\\rH.H. Scott
@@ -138,6 +139,7 @@ sModels = \
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 2A3 (RCA SP)       |           |     10 | f            | RCA               |  Vacuum Tube | mono plate  |              | f
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
@@ -795,6 +797,41 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["193480815469"],
+             "title":["Antique FADA vintage Catalin tube radio model Dip-Top 711 working price reduced"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mqJjsVU-D1s347x-WJyHbYQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Antique-FADA-vintage-Catalin-tube-radio-model-Dip-Top-711-working-price-reduced-\/193480815469"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["301**"],"location":["Acworth,GA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"30.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"355.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"355.0"}],
+             "bidCount":["11"],"sellingState":["Active"],"timeLeft":["P2DT23H4M31S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-24T21:16:10.000Z"],
+             "endTime":["2020-05-31T21:15:10.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["40"]}],"returnsAccepted":["false"],
+             "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/193480815469_1_0_1.jpg"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["233597629477"],
+             "title":["2A3 Single Mono Plate RCA Cunningham"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m-tV-EBfayw4qaGNZhJ741Q\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2A3-Single-Mono-Plate-RCA-Cunningham-\/233597629477"],
+             "paymentMethod":["PayPal","VisaMC"],"autoPay":["false"],
+             "location":["Hong Kong"],"country":["HK"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"30.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"0.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"0.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT5H44M19S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-24T03:57:01.000Z"],
+             "endTime":["2020-05-31T03:57:01.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["264741220720"],
              "title":["1  excellent mil spec general electric 12ax7wa \/ 12ax7 tube  # K 69"],
