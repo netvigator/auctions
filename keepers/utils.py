@@ -5,6 +5,7 @@ from json                   import loads, JSONDecodeError
 from os                     import listdir, remove, rename, walk
 from os.path                import isfile, join
 from pytz                   import UTC
+from socket                 import timeout
 from time                   import sleep
 
 from django.conf            import settings
@@ -327,12 +328,19 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             sContent = getSingleItem( iItemNumb )
             #
-        except Exception as e:
+        except timeout as e: # ebay timed out 2020-01-18 & 2020-06-05
             #
             if not e: e = 'no Exception info!' # ebay timed out 2020-01-18
             #
             logger.info(
-                    'Exception for %s (%s)', str( iItemNumb ), exc_info = e )
+                    'ebay is slow, timeout for %s (%s)', str( iItemNumb ), str(e) )
+            #
+        except Exception as e:
+            #
+            if not e: e = 'no Exception info!'
+            #
+            logger.info(
+                    'Exception for %s (%s)', str( iItemNumb ), str(e) )
             #
         #
     #
