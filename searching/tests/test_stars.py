@@ -2881,6 +2881,23 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 193480815469
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Fada 711, note Catalin is generic' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '711' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fada' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -2911,6 +2928,17 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find GE 12AX7-WA not the rest' )
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 233597629477
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 2A3 (RCA single plate) not RCA 2A3' )
         #
         #
         #
