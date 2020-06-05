@@ -327,7 +327,10 @@ def getFoundItemTester( oTableRow, dFinders,
             #
             uExcludeThis = _includeOrExclude( s, searchExclude )
             #
-            uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords( s, searchKeyWords )
+            uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords(
+                                            s, searchKeyWords )
+            bGotKeyWords = ( uGotKeyWordsOrNoKeyWords and
+                             searchKeyWords is not None )
             #
             sWhatRemains = ''
             #
@@ -349,11 +352,13 @@ def getFoundItemTester( oTableRow, dFinders,
                 maybePrint('oTableRow.cExcludeIf    :', oTableRow.cExcludeIf )
                 maybePrint('oTableRow.cKeyWords     :', oTableRow.cKeyWords )
                 maybePrint('uGotKeyWordsOrNoKeyWords:', uGotKeyWordsOrNoKeyWords )
+                maybePrint('bGotKeyWords            :', bGotKeyWords )
                 maybePrint('sWhatRemains            :', sWhatRemains )
                 #
             #
             return (    sFoundInTitle,
                         uGotKeyWordsOrNoKeyWords,
+                        bGotKeyWords,
                         uExcludeThis,
                         sWhatRemains )
             #
@@ -786,7 +791,9 @@ def _doStepThruCategories(
         #
         t = foundItem( sAuctionTitleRelevantPart )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
+        #
+        uGotKeyWordsOrNoKeyWords = uGot
         #
         #
         # the following are short circuiting --
@@ -964,7 +971,9 @@ def _doStepThruModels(
         #
         t = foundItem( sAuctionTitleRelevantPart, bExplainVerbose )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
+        #
+        uGotKeyWordsOrNoKeyWords = uGot
         #
         if not sInTitle:
             #
@@ -1176,6 +1185,7 @@ def _doStepThruModels(
                         iModel          = oModel,
                         iStarsModel     = oModel.iStars,
                         cFoundModel     = sInTitle,
+                        bModelKeyWords  = bGotKeyWords,
                         cModelAlphaNum  = sModelAlphaNum,
                         cTitleLeftOver  = sWhatRemains )
                 #
@@ -1217,6 +1227,10 @@ def _doStepThruModels(
                 oTempItem.iModel            = oModel
                 #
                 oTempItem.iStarsModel       = oModel.iStars
+                #
+                oTempItem.cFoundModel       = sInTitle
+                #
+                oTempItem.bModelKeyWords    = bGotKeyWords
                 #
                 # reduce the length boost if the match is in parens
                 #
@@ -1344,7 +1358,10 @@ def _doStepThruBrands(
         #
         t = foundItem( sAuctionTitleRelevantPart )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
+        #
+        uGotKeyWordsOrNoKeyWords = uGot
+        #
         #
         if not sInTitle:
             #
