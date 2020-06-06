@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 233597629477
+iRecordStepsForThis = None or 383183181329
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -139,7 +139,7 @@ sModels = \
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- 2A3 (RCA SP)       |           |     10 | f            | RCA               |  Vacuum Tube | mono plate  |              | f
+ 2A3 (RCA SP)       | mono plate |    10 | f            | RCA               |  Vacuum Tube |             |              | f
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
