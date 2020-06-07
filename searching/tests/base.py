@@ -751,7 +751,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oBrandCategory.save()
             #
             #
-            oBrand = Brand.objects.get( cTitle = 'Amperex PQ', iUser = oUser )
+            oBrand = Brand.objects.get( cTitle = 'Amperex (PQ)', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
