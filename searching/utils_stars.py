@@ -5,6 +5,8 @@ from pprint                 import pprint, pformat
 
 from collections            import OrderedDict
 
+from itertools              import chain
+
 from django.conf            import settings
 from django.db.models       import Q, Max
 from django.contrib.auth    import get_user_model
@@ -1346,7 +1348,7 @@ def _doStepThruBrands(
     lBrands = dFindSteps[ 'brands' ]
     lModels = dFindSteps[ 'models' ]
     #
-    setGotBrandsIDs = set( [] )
+    dGotBrandIDsInTitle = {}
     #
     bGotBrandForNonGenericModel = False
     #
@@ -1404,7 +1406,7 @@ def _doStepThruBrands(
         #
         setModelsBrands = set( [] )
         #
-        setGotBrandsIDs.add( oBrand.id )
+        dGotBrandIDsInTitle[ oBrand.id ] = sInTitle
         #
         if bRecordSteps:
             #
@@ -1614,14 +1616,14 @@ def _doStepThruBrands(
             #
         #
     #
-    return bGotBrandForNonGenericModel, setGotBrandsIDs
+    return bGotBrandForNonGenericModel, dGotBrandIDsInTitle
 
 
 
 
 def _getModelLocations(
             dModelIDinTitle,
-            setGotBrandsIDs,
+            dGotBrandIDsInTitle,
             sAuctionTitleRelevantPart,
             bRecordSteps ):
     #
@@ -1640,7 +1642,7 @@ def _getModelLocations(
         #
         for t in iterModelIDsBrandID:
             #
-            if t[1] not in setGotBrandsIDs:
+            if t[1] not in dGotBrandIDsInTitle:
                 #
                 lDeleteThese.append( t[0] )
                 #
@@ -1699,7 +1701,7 @@ def _doScoreCandidates(
             oUserItem,
             dSearchMyCategory,
             dCategoryInfo,
-            setGotBrandsIDs,
+            dGotBrandIDsInTitle,
             bGotBrandForNonGenericModel,
             dFindSteps,
             dSearchLogs,
@@ -1809,16 +1811,17 @@ def _doScoreCandidates(
                     if s.startswith( '_' ): continue
                     maybePrint( '  %s: %s' % ( s, oModelLocated.__dict__[s] ) )
                 #
-                maybePrint( 'setGotBrandsIDs:', setGotBrandsIDs )
+                maybePrint( 'dGotBrandIDsInTitle:' )
+                maybePrettyP( dGotBrandIDsInTitle )
                 maybePrint( 'bGotBrandForNonGenericModel:', bGotBrandForNonGenericModel )
                 #
             #
-            if setGotBrandsIDs and bGotBrandForNonGenericModel:
+            if dGotBrandIDsInTitle and bGotBrandForNonGenericModel:
                 #
                 for iModelID, oTempItem in dModelID_oTempItem.items():
                     #
                     if  (   oTempItem.iBrand is None or
-                            oTempItem.iBrand.id not in setGotBrandsIDs ):
+                            oTempItem.iBrand.id not in dGotBrandIDsInTitle ):
                         #
                         lExcludeThese.append( oTempItem )
                         #
@@ -1973,8 +1976,8 @@ def _doScoreCandidates(
                     elif isinstance( uAndWords, int ):
                         iLastAnd = uAndWords
                     else:
-                        iLastAnd = max( getListFromNestedLists(
-                                            o.dAndWords.values() ) )
+                        iLastAnd = max(
+                                chain.from_iterable(o.dAndWords.values() ) )
                     #
                     if bRecordSteps:
                         #
@@ -2234,7 +2237,8 @@ def _doScoreCandidates(
         #
         lModelsStoredAlready    = []
         #
-        setBrandsStoredAlready  = set( [] )
+        setBrandStoredIDs       = set( [] )
+        setBrandStoredNames     = set( [] )
         #
         for oTempItem in lItemFoundSort:
             #
@@ -2272,7 +2276,16 @@ def _doScoreCandidates(
                 oUserItem.iBrand        = oTempItem.iBrand
                 oUserItem.iModel        = oTempItem.iModel
                 #
-                setBrandsStoredAlready.add( oTempItem.iBrand )
+                if oTempItem.iBrand:
+                    #
+                    setBrandStoredIDs.add(   oTempItem.iBrand.id )
+                    #
+                #
+                if oTempItem.iBrand:
+                    #
+                    setBrandStoredNames.add(
+                        dGotBrandIDsInTitle[ oTempItem.iBrand.id ] )
+                    #
                 #
                 oMyCategory = dSearchMyCategory.get( oTempItem.iSearch_id )
                 #
@@ -2412,6 +2425,8 @@ def _doScoreCandidates(
                             maybePrint( 'bGotNonGenericForThis:', bGotNonGenericForThis )
                             maybePrint( 'sBetterBrandForThisGeneric:', sBetterBrandForThisGeneric )
                             maybePrint( 'bGotKeyWordsModelForThis:', bGotKeyWordsModelForThis )
+                            maybePrint( 'lModelsStoredAlready:', lModelsStoredAlready )
+                            maybePrint( 'sModelTitleLessParens:', sModelTitleLessParens )
                             #
                         #
                         if sBetterBrandForThisGeneric or bGotKeyWordsModelForThis:
@@ -2439,11 +2454,11 @@ def _doScoreCandidates(
                     #
                 #
                 doPrintMore = (
-                        False and
+                        True and
                         bRecordSteps and
-                        sModelTitleUPPER == '2A3' )
+                        sModelTitleUPPER == '6V6' )
                 #
-                if doPrintMore and not bGotNonGenericForThis:
+                if doPrintMore: #  and not bGotNonGenericForThis
                     #
                     maybePrint()
                     maybePrint( 'sModelTitleUPPER:', sModelTitleUPPER )
@@ -2454,8 +2469,8 @@ def _doScoreCandidates(
                     CustomPPrint.pprint( dModelsStoredAlready )
                     maybePrint( 'oTempItem.iModel.bGenericModel:', oTempItem.iModel.bGenericModel )
                     maybePrint( 'uExact:', uExact )
-                    maybePrint( 'oModelStored:' )
-                    maybePrint(  oModelStored )
+                    maybePrint( 'setBrandStoredNames:', setBrandStoredNames )
+                    maybePrint( 'setBrandStoredIDs:', setBrandStoredIDs )
                     #
                 #
                 # exclude if uLonger unless
@@ -2543,7 +2558,9 @@ def _doScoreCandidates(
                     #
                     continue
                     #
-                elif uLonger and bGotLongGotShort:
+                elif (  uLonger and
+                        bGotLongGotShort and
+                        sModelTitleUPPER not in lModelsStoredAlready ):
                     #
                     if bRecordSteps:
                         #
@@ -2587,7 +2604,7 @@ def _doScoreCandidates(
                             oTempItem.iModel.bGenericModel and
                             bGotNonGenericForThis and
                             oTempItem.iBrand is not None and
-                            oTempItem.iBrand in setBrandsStoredAlready and
+                            oTempItem.iBrand.id in setBrandStoredIDs and
                             bGotKeyWordsModelForThis ):
                     #
                     if bRecordSteps:
@@ -2604,7 +2621,7 @@ def _doScoreCandidates(
                 elif    (   uExact and
                             oTempItem.iModel.bGenericModel and
                             oTempItem.iBrand is not None and
-                            oTempItem.iBrand in setBrandsStoredAlready and
+                            oTempItem.iBrand.id in setBrandStoredIDs and
                             bGotNonGenericForThis ):
                     #
                     if bRecordSteps:
@@ -2635,17 +2652,6 @@ def _doScoreCandidates(
                     #
                     continue
                     #
-                elif uExact and oTempItem.iModel.bGenericModel:
-                    #
-                    if bRecordSteps:
-                        #
-                        _appendIfNotAlreadyIn(
-                            lSelect,
-                                'have model %s already, '
-                                'but including again for %s' %
-                                ( sModelTitleLessParens, oTempItem.iBrand ) )
-                        #
-                    #
                 elif (      uExact and
                             oModelStored and
                             oModelStored.iCategoryID and
@@ -2659,6 +2665,51 @@ def _doScoreCandidates(
                                 'have model %s already, but including '
                                 'it again for a different category' %
                                 ( sModelTitleLessParens ) )
+                        #
+                    #
+                elif (  uExact and
+                        oTempItem.iBrand is not None and
+                        oTempItem.iBrand.id in setBrandStoredIDs and
+                        sModelTitleUPPER in lModelsStoredAlready ):
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding %s for %s -- '
+                                'already have' %
+                                ( sModelTitleLessParens, oTempItem.iBrand ) )
+                        #
+                    #
+                    continue
+                    #
+                elif (  uExact and
+                        oTempItem.iBrand.id in dGotBrandIDsInTitle and
+                        dGotBrandIDsInTitle[ oTempItem.iBrand.id ] in
+                            setBrandStoredNames ):
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'excluding %s for %s -- '
+                                'already have a %s for %s' %
+                                ( sModelTitleLessParens, oTempItem.iBrand,
+                                  sModelTitleLessParens, oTempItem.iBrand ) )
+                        #
+                    #
+                    continue
+                    #
+
+                elif uExact and oTempItem.iModel.bGenericModel:
+                    #
+                    if bRecordSteps:
+                        #
+                        _appendIfNotAlreadyIn(
+                            lSelect,
+                                'have model %s already, '
+                                'but including again for %s' %
+                                ( sModelTitleLessParens, oTempItem.iBrand ) )
                         #
                     #
                 elif uExact:
@@ -2714,7 +2765,16 @@ def _doScoreCandidates(
                         tModify         = tNow,
                         iUser           = oUser )
                     #
-                    setBrandsStoredAlready.add( oTempItem.iBrand )
+                    if oTempItem.iBrand:
+                        #
+                        setBrandStoredIDs.add(   oTempItem.iBrand.id )
+                        #
+                    #
+                    if oTempItem.iBrand:
+                        #
+                        setBrandStoredNames.add(
+                            dGotBrandIDsInTitle[ oTempItem.iBrand.id ] )
+                        #
                     #
                     oNewUserItem.save()
                     #
@@ -3078,7 +3138,7 @@ def findSearchHits(
                 oUserItem,
                 bRecordSteps )
         #
-        bGotBrandForNonGenericModel, setGotBrandsIDs = t
+        bGotBrandForNonGenericModel, dGotBrandIDsInTitle = t
         #
         #
         #
@@ -3088,7 +3148,7 @@ def findSearchHits(
         #
         oModelLocated = _getModelLocations(
                 dModelIDinTitle,
-                setGotBrandsIDs,
+                dGotBrandIDsInTitle,
                 sAuctionTitleRelevantPart,
                 bRecordSteps )
         #
@@ -3105,7 +3165,7 @@ def findSearchHits(
                 oUserItem,
                 dSearchMyCategory,
                 dCategoryInfo,
-                setGotBrandsIDs,
+                dGotBrandIDsInTitle,
                 bGotBrandForNonGenericModel,
                 dFindSteps,
                 dSearchLogs,
