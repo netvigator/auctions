@@ -99,11 +99,6 @@ class MakeSureExampleItemGetsHit( StoreUserItemFoundWebTestBase ):
 
 class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
 
-    def tearDown( self ):
-        #
-        from .test_utils import DoSearchStoreResultsTests
-        #
-
     def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
         #
         if not lTest:
@@ -2947,6 +2942,12 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 if oTest.iCategory: maybePrint( oTest.iCategory.cTitle )
                 #
             maybePrint()
+        #
+        print()
+        print( "run daily:" )
+        print( "pmt searching.tests.test_utils.DoSearchStoreResultsTests" )
+        print()
+        #
         #
         #if oTest.iBrand:    print( oTest.iBrand.cTitle )
         #if oTest.iModel:
