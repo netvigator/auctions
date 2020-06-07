@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 383183181329
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -29,7 +29,7 @@ sBrands = \
  Amperex (Bugle Boy) |    9 |            | BB\\rBugle Boy |
  Amperex           |      8 |            |            |
  Amperex (gold pins)|     9 | Amperex PQ | gold pin   |
- Amperex PQ        |      9 |            |            |
+ Amperex (PQ)      |      9 |            | Amperex PQ |
  Arvin             |      7 |            |            |
  Astronic          |      2 |            |            |
  Audio Research    |      5 |            |            |
@@ -182,7 +182,7 @@ sModels = \
  6550 (Tung-Sol)    |           |     10 | f            | Tung-Sol          |  Vacuum Tube |             |              | f
  6550-VI            |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 7308 (Amperex PQ)  |           |      9 | f            | Amperex PQ        |  Vacuum Tube |             |              | f
+ 7308 (Amperex PQ)  |           |      9 | f            | Amperex (PQ)      |  Vacuum Tube |             |              | f
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
  211                |           |      9 | f            |                   |  Vacuum Tube | VT-4C       |              | t
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
