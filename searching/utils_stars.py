@@ -1964,6 +1964,7 @@ def _doScoreCandidates(
                     if bRecordSteps:
                         #
                         maybePrint( sSay, 'tLocations:', tLocations )
+                        maybePrint( 'o.dAndWords:', o.dAndWords )
                         #
                     #
                     dModelIDsLocations = getReverseDictCarefully( dLocationsModelIDs )
