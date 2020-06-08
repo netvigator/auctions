@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 174302152790
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -305,9 +305,11 @@ sModels = \
  AE-2               |           |      7 | f            | McIntosh          |       Preamp |             |
  C-104              |           |      5 | f            | McIntosh          |       Preamp |             |
  PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             |
- PAS-2              |           |      4 | f            | Dynaco            |       Preamp |             |
+ PAS                |           |      6 | f            | Dynaco            |       Preamp |             |
+ PAS-2              |           |      6 | f            | Dynaco            |       Preamp |             |
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
  PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
+ FM-3               |           |      7 | f            | Dynaco            |        Tuner |             |
  Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
  A-25               |           |      8 | t            | Dynaco            |Speaker System|             |
  A-50               |           |      6 | t            | Dynaco            |Speaker System|             |
@@ -797,6 +799,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["174302152790"],
+             "title":["Dynaco Recapped PAS Tube Preamp And FM3 Tuner Excellent Condition!"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mNqNN5DOJzhPxOABp8lqIiA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Dynaco-Recapped-PAS-Tube-Preamp-And-FM3-Tuner-Excellent-Condition-\/174302152790"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["372**"],"location":["Nashville,TN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"499.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"499.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT0H34M57S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-31T22:39:23.000Z"],
+             "endTime":["2020-06-07T22:39:23.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["193480815469"],
              "title":["Antique FADA vintage Catalin tube radio model Dip-Top 711 working price reduced"],
