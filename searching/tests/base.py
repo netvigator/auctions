@@ -331,7 +331,11 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oCategory   = Category( cTitle      = 'Crossover',
                                     iStars      = 7,
-                                    cLookFor    = 'X-Over\rdividing network\rxover',
+                                    cLookFor    = 'X-Over\r'
+                                                  'dividing network\r'
+                                                  'xover\r'
+                                                  'crossover network\r'
+                                                  'speaker crossover network',
                                     iFamily_id  = oSpeakerSystem.id,
                                     bComponent  = True,
                                     iUser       = oUser )
