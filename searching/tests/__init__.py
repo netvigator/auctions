@@ -130,7 +130,7 @@ sModels = \
  12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
- 12AU7A             |           |      5 | t            |                   |  Vacuum Tube |             | 5814A        | t
+ 12AU7A             |           |      5 | f            |                   |  Vacuum Tube |             | 5814A        | t
  12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  12AX7 (GE)         |           |      9 | f            | GE                |  Vacuum Tube |             |              | f
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -196,6 +196,7 @@ sModels = \
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  E188CC             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
+ ECC82              |           |      5 | f            |                   |  Vacuum Tube | 12AU7       | 7AU7\\r5814A\\r5814WA\\r5963\\r6189\\r6680\\rB749 | t
  ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  EL34 (metal base)  | metal base|      9 | f            |                   |  Vacuum Tube |             |              | t
@@ -799,6 +800,22 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["392820998298"],
+             "title":["5814A 12AU7 ECC82 Tungsol tubes matched 4pcs. b"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mrY6IPBOSQ0x5g9gZMQtm7g\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/5814A-12AU7-ECC82-Tungsol-tubes-matched-4pcs-b-\/392820998298"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["United Kingdom"],"country":["GB"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT22H7M15S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-05-31T20:10:15.000Z"],
+             "endTime":["2020-06-07T20:10:15.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+             "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["174302152790"],
              "title":["Dynaco Recapped PAS Tube Preamp And FM3 Tuner Excellent Condition!"],
