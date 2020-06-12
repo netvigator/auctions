@@ -1091,7 +1091,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         # d/n get into keepers
         #
-        self.assertEqual( oTest.iModel.cTitle, '12AU7A' )
+        self.assertIn( oTest.iModel.cTitle, ( '12AU7A', 'ECC82' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'Westinghouse' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -2930,6 +2930,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 143625858664
+        #
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'got warning in production' )
+        #
+        #
+        #
+        #
         #
         '''
         '''
@@ -2973,8 +2983,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         print()
         print( "run daily:" )
         print( "1) pmt searching.tests.test_utils.DoSearchStoreResultsTests" )
-        print( "2) getWhetherAnyEbayCategoryListsAreUpdated()" )
-        print( "(from ebayinfo.utils import )" )
+        print( "2) pmt ebayinfo.tests.test_utils.MarketsAndCategoriesTests" )
         print()
         #
         #
