@@ -721,6 +721,8 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
 
 def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
+    '''downloads & stores pictures for an ebay item'''
+    #
     oItem = Keeper.objects.get( iItemNumb = iItemNumb )
     #
     sSubDir = getItemPicsSubDir( iItemNumb, sItemPicsRoot )
