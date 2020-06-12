@@ -300,7 +300,7 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
 
 
 
-class PutMarketsInDatabaseTest(
+class MarketsAndCategoriesTests(
             AssertEmptyMixin, PutMarketsInDatabaseTestBase ):
     '''test getMarketsIntoDatabase()'''
     #
