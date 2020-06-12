@@ -8,7 +8,8 @@ from django.test        import tag
 from core.utils         import updateMemoryTableUpdated
 
 from core.tests.base    import ( TestCasePlus, getDefaultMarket,
-                                 GetEbayCategoriesWebTestSetUp )
+                                 GetEbayCategoriesWebTestSetUp,
+                                 AssertEmptyMixin )
 
 from ebayinfo           import ( EBAY_SHIPPING_CHOICES,
                                  dEBAY_SHIPPING_CHOICE_CODE,
@@ -299,7 +300,8 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
 
 
 
-class TestPutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
+class PutMarketsInDatabaseTest(
+            AssertEmptyMixin, PutMarketsInDatabaseTestBase ):
     '''test getMarketsIntoDatabase()'''
     #
 
@@ -325,6 +327,15 @@ class TestPutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
         #
         self.assertEqual( iCurrentVersion, oMarket.iCategoryVer )
         #
+
+
+    def test_whether_ebay_categories_were_updated( self ):
+        #
+        lUpdated = getWhetherAnyEbayCategoryListsAreUpdated()
+        #
+        self.assertEmpty( lUpdated )
+        #
+        print( '\n### ebay categories are up to date. ###\n' )
 
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
