@@ -509,7 +509,7 @@ sModels = \
  8HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  X36                |           |      6 | f            | Electro-Voice     |    Crossover |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
- meter              |           |      3 | f            |                   |    Component |             |
+ meter              |           |      3 | f            |                   |    Component | Meter Band  |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  nine               |           |      9 | f            | KLH               |Speaker System|             |
  IT-28              |           |      5 | f            | Heathkit          |Capacitor Checker|          | Capacitor Tester\rCapacitance Checker\rCapacitance Tester
@@ -800,6 +800,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["143625858664"],
+             "title":["3 Ohmite Z-O 1000 ma Plate Chokes, 2 1\/2 Meter Band, VOM Tested @ 0.4 ohms"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mkWIJc_9BEoYW9g9PXa1guA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/3-Ohmite-Z-O-1000-ma-Plate-Chokes-2-1-2-Meter-Band-VOM-Tested-0-4-ohms-\/143625858664"],
+             "paymentMethod":["PayPal"],"autoPay":["true"],
+             "postalCode":["794**"],"location":["Lubbock,TX,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"4.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"4.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H33M8S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"7.5"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"7.5"}],
+             "startTime":["2020-06-11T16:00:01.000Z"],
+             "endTime":["2020-06-18T16:00:01.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["392820998298"],
              "title":["5814A 12AU7 ECC82 Tungsol tubes matched 4pcs. b"],
