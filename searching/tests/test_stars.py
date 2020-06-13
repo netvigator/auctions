@@ -3016,7 +3016,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEqual( sInTitle, '6L6WG' )
         #
@@ -3175,7 +3175,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3184,7 +3184,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEqual( sInTitle, 'Caddy' )
         self.assertTrue( uExcludeThis )
@@ -3193,7 +3193,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3204,7 +3204,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3229,7 +3229,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3238,7 +3238,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEqual( sInTitle, 'Widget' )
         self.assertTrue(  uExcludeThis )
@@ -3247,7 +3247,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertFalse( sInTitle )
         self.assertFalse( uExcludeThis )
@@ -3258,7 +3258,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3282,7 +3282,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3294,7 +3294,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertFalse( sInTitle     )
         self.assertTrue(  uExcludeThis )
@@ -3303,7 +3303,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEqual( sInTitle, 'Fleetwood' )
         self.assertFalse( uExcludeThis )
@@ -3312,7 +3312,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertFalse( sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3323,7 +3323,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertTrue(  sInTitle     )
         self.assertFalse( uExcludeThis )
@@ -3359,7 +3359,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEmpty( sInTitle )
         #
@@ -3385,7 +3385,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEmpty( sInTitle )
         #
@@ -3399,7 +3399,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         t = foundItem( sAuctionTitle )
         #
-        sInTitle, uGotKeyWordsOrNoKeyWords, uExcludeThis, sWhatRemains = t
+        sInTitle, uGot, bGotKeyWords, uExcludeThis, sWhatRemains = t
         #
         self.assertEqual( 'Model 2', sInTitle )
         #
