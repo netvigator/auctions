@@ -10,8 +10,9 @@ from core.dj_import     import ValidationError, ObjectDoesNotExist
 
 from models.models      import Model
 
+from searching          import getPriorityChoices, ALL_PRIORITIES
+
 from .models            import Search
-from .utilsearch        import getPriorityChoices, ALL_PRIORITIES
 from .validators        import isPriorityValid
 
 from ebayinfo.models    import EbayCategory
@@ -47,9 +48,9 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
     which = 'Create' # can be over written
     #
     cPriority = forms.ChoiceField(
-                    choices     = ALL_PRIORITIES,
-                    label       = Search._meta.get_field('cPriority').verbose_name,
-                    help_text   = Search._meta.get_field('cPriority').help_text )
+            choices     = ALL_PRIORITIES,
+            label       = Search._meta.get_field('cPriority').verbose_name,
+            help_text   = Search._meta.get_field('cPriority').help_text )
 
 
     def __init__(self, *args, **kwargs):
