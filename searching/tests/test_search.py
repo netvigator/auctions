@@ -13,12 +13,13 @@ from core.utils         import getShrinkItemURL
 
 from searching          import RESULTS_FILE_NAME_PATTERN
 from searching          import SEARCH_FILES_FOLDER
+from searching          import getPriorityChoices, ALL_PRIORITIES
 
 from ..models           import Search
 from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
 from ..utils            import ( getIdStrZeroFilled, getSearchIdStr,
                                  getHowManySearchDigitsNeeded )
-from ..utilsearch       import getPriorityChoices, getSearchResultGenerator
+from ..utilsearch       import getSearchResultGenerator
 from ..views            import SearchCreateView
 
 from pyPks.File.Del     import DeleteIfExists
