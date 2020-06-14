@@ -4,7 +4,6 @@
 from django.contrib.auth        import get_user_model
 # from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import AbstractUser
-from django.utils.encoding      import python_2_unicode_compatible
 from django.core.exceptions     import ( ObjectDoesNotExist,
                                          ImproperlyConfigured,
                                          ValidationError )
