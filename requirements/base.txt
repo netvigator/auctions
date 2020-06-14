@@ -23,47 +23,55 @@ wheel==0.34.2
 
 
 # LTS Django
-# django==1.11.23
-django==2.2.10
+django==3.0.7
+# django==2.2.10
 
 # Configuration
 django-environ==0.4.5
-whitenoise==5.0.1
+# whitenoise==5.0.1
+whitenoise==5.1.0
 
 
 # Forms
 django-braces==1.14.0
-django-crispy-forms==1.9.0
+# django-crispy-forms==1.9.0
+django-crispy-forms==1.9.1
 
 # Models
 django-model-utils==4.0.0
 
 # Images
-Pillow==7.1.1
+# Pillow==7.1.1
+Pillow==7.1.2
 
 # Password storage
-argon2-cffi==19.2.0
+# argon2-cffi==19.2.0
+argon2-cffi==20.1.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.41.0
-
+# django-allauth==0.41.0
+django-allauth==0.42.0
 
 # Python-PostgreSQL Database Adapter
 # psycopg2==2.7.6.1
 # UserWarning: The psycopg2 wheel package will be renamed from release 2.8
 # in order to keep installing from binary please use "pip install psycopg2-binary" instead.
-psycopg2-binary==2.8.4
+# psycopg2-binary==2.8.4
+psycopg2-binary==2.8.5
 
 # Unicode slugification
 awesome-slugify==1.6.5
 
 # Time zones support
-pytz==2019.3
+# pytz==2019.3
+pytz==2020.1
 
 # Redis support
-django-redis==4.11.0
-redis==3.4.1
+# django-redis==4.11.0
+# redis==3.4.1
+django-redis==4.12.1
+redis==3.5.3
 
 
 
@@ -78,7 +86,8 @@ django-countries==6.1.2
 
 
 # for the ebay API
-lxml==4.5.0
+# lxml==4.5.0
+lxml==4.5.1
 requests==2.23.0
 requests[security]==2.23.0
 
@@ -94,7 +103,8 @@ django-admin-honeypot==1.1.0
 
 
 # task queue
-celery==4.4.2
+# celery==4.4.2
+celery==4.4.5
 # redistools==0.1.7
 
 # users need to select their timezone
@@ -106,7 +116,8 @@ django-timezone-field==4.0
 
 # celery cannot start
 # https://github.com/pydanny/cookiecutter-django/issues/1954
-kombu==4.6.8
+# kombu==4.6.8
+kombu==4.6.10
 
 # need this 2019-02-13
 django-extensions==2.2.9
