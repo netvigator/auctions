@@ -2,8 +2,6 @@ import logging
 
 from json                   import load, loads
 
-from string                 import ascii_uppercase, digits
-
 from pprint                 import pprint
 
 from django.conf            import settings
@@ -35,38 +33,6 @@ class SearchGotZeroResults(  Exception ): pass
 
 oLocationSqueezer = getRegExObj( ', *|\., *' )
 
-def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
-    #
-    '''get list of priorities for Search.cPriority'''
-    #
-    tAlpha = tuple( ascii_uppercase )
-    tNums  = tuple( digits )[1:]
-    #
-    iterAll = ( '%s%s' % (A, N) for N in tNums for A in tAlpha )
-    #
-    setAll = set( iterAll )
-    #
-    if sInclude:
-        def doOmitFromChoices( s ): return s != sInclude
-    else:
-        def doOmitFromChoices( s ): return True
-    #
-    if oUser and oModel:
-        #
-        oSearches = oModel.objects.filter( iUser = oUser )
-        #
-        setAll.difference_update( ( oSearch.cPriority
-                                    for oSearch in oSearches
-                                    if doOmitFromChoices( oSearch.cPriority ) ) )
-        #
-    #
-    lAll = list( setAll )
-    #
-    lAll.sort()
-    #
-    return tuple( ( ( s, s ) for s in lAll ) )
-
-
 
 _iLocationLen = ItemFound._meta.get_field('cLocation').max_length
 
@@ -78,8 +44,6 @@ def _getLocationShorter( sLocation ):
     return sMaybeShorter[ : _iLocationLen - 1 ]
 
 
-
-ALL_PRIORITIES = getPriorityChoices()
 
 def storeItemInfo( dItem, dFields, Form, getValue, **kwargs ):
     #
