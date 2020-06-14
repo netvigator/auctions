@@ -1,7 +1,7 @@
 from django.db              import models
 from django.urls            import reverse
 
-from core.dj_import         import AbstractUser, _, python_2_unicode_compatible
+from core.dj_import         import AbstractUser, _
 
 import pytz
 from timezone_field         import TimeZoneField
