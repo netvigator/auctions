@@ -335,7 +335,7 @@ class MarketsAndCategoriesTests(
         #
         self.assertEmpty( lUpdated )
         #
-        print( '\n### ebay categories are up to date. ###\n' )
+        print( '\n\n### ebay categories are up to date. ###\n' )
 
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
