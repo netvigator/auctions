@@ -9,6 +9,8 @@ from categories.models  import Category
 from core.dj_import     import get_user_model
 User = get_user_model()
 
+from searching          import ALL_PRIORITIES
+
 from pyPks.Time.Output  import getIsoDateTimeFromDateTime
 
 
@@ -50,7 +52,7 @@ class Search(models.Model):
                     'copy the category number from ebay and paste here!!! (sorry)' )
     cPriority       = models.CharField( 'processing priority',
                                 max_length = 2, null = True,
-                                choices = (),
+                                choices = ALL_PRIORITIES,
         help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
     bGetBuyItNows   = models.NullBooleanField(
                     "also get 'Buy It Nows' (fixed price non auctions)?",
