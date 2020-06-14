@@ -58,18 +58,23 @@ class TestFormValidation(
         dData = dict(
                 cTitle          = "My clever search 3",
                 cKeyWords       = "Blah bleh blih",
-                cPriority       = "A1",
+                cPriority       = "A2",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = CreateSearchForm( data = dData )
         form.request = self.request
+        if form.errors:
+            print()
+            print('form has at least one error:')
+            for k, v in form.errors.items():
+                print( k, ' -- ', v )
         self.assertTrue( form.is_valid() )
 
         # has a category
         dData = dict(
                 cTitle          = "My clever search 4",
                 iDummyCategory  = 10, # see core.tests
-                cPriority       = "A1",
+                cPriority       = "A3",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = CreateSearchForm( data = dData )
@@ -91,7 +96,7 @@ class TestFormValidation(
         # no key words, no category
         dData = dict(
                 cTitle          = "My clever search 5",
-                cPriority       = "A1",
+                cPriority       = "A4",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = CreateSearchForm( data = dData )
@@ -102,7 +107,7 @@ class TestFormValidation(
         dData = dict(
                 cTitle          = "My clever search 6",
                 iDummyCategory  = 'abc',
-                cPriority       = "A2",
+                cPriority       = "A5",
                 which           = 'Create',
                 iUser           = self.user1 )
         form = CreateSearchForm( data = dData )
@@ -115,7 +120,7 @@ class TestFormValidation(
         #
         dData = dict(
                 cTitle          = "My clever search 7",
-                cPriority       = "A3",
+                cPriority       = "A6",
                 which           = 'Create',
                 iMyCategory     = oCategory.id,
                 iUser           = self.user1 )
@@ -126,7 +131,7 @@ class TestFormValidation(
         dData = dict(
                 cTitle          = "My clever search 8",
                 iDummyCategory  = 10, # see core.tests
-                cPriority       = "A4",
+                cPriority       = "A7",
                 which           = 'Create',
                 iMyCategory     = oCategory.id,
                 iUser           = self.user1 )
@@ -140,7 +145,7 @@ class TestFormValidation(
         dData = dict(
                 cTitle          = "My clever search",
                 cKeyWords       = "Blah bleh blih",
-                cPriority       = "A2",
+                cPriority       = "A8",
                 which           = 'Create',
                 iUser           = self.user1 )
         #
