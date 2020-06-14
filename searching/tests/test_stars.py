@@ -2906,9 +2906,9 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertIsNone( oTest.iModel )
+        self.assertEqual(  oTest.iModel.cTitle, 'meter' )
         self.assertIsNone( oTest.iBrand )
-        self.assertEqual(  oTest.iCategory.cTitle, 'meter' )
+        self.assertIsNone( oTest.iCategory )
         #
         #
         #
