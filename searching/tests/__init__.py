@@ -103,6 +103,7 @@ sBrands = \
  Spartan           |      8 |            |            |
  Stromberg-Carlson |      5 |            |            |
  Stark             |      5 |            |            |
+ Stephens          |      7 |            |            |
  Supreme           |      5 |            |            |
  Sylvania          |      6 |            |            |
  Tannoy            |      7 |            |            |
@@ -246,6 +247,7 @@ sModels = \
  755                |           |      7 | f            | Altec-Lansing     |       Driver | 755A        | 755C\\r755E
  755C               |           |      7 | t            | Altec-Lansing     |       Driver |             | 755\\r755A\\r755E
  755E               |           |      7 | f            | Altec-Lansing     |       Driver |             |
+ 802D               |           |      5 | t            | Altec-Lansing     |       Driver |             |
  803A (driver)      |           |      7 | t            | Altec-Lansing     |       Driver |             | horn         |
  803B (horn)        |           |      7 | t            | Altec-Lansing     |         Horn |             |
  804A (horn)        |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -491,9 +493,12 @@ sModels = \
  K-77               |           |      6 | f            | Klipsch           |       Driver |             |
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
+ P-30               |           |      8 | f            | Stevens           |       Driver |             |
+ 214                |           |      8 | f            | Stevens           |       Driver |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
  T-35B              |           |      6 | t            | University        |       Driver |             |
  T-350B             |           |      7 | t            | University        |       Driver |             |
+ T-35B (University) |           |      6 | t            | University        |       Driver |             |
  LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
  240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
@@ -800,6 +805,57 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["303591187120"],
+             "title":["stephens trusonic pair of p30 and 214 drivers with  horns Klipsch klipschorn"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mA3yQLIvSpdlilFFC4ICutQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/stephens-trusonic-pair-p30-and-214-drivers-horns-Klipsch-klipschorn-\/303591187120"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["722**"],"location":["Little Rock,AR,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5377.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5377.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT7H5M11S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-09T02:32:12.000Z"],
+             "endTime":["2020-06-19T02:32:12.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["224038110383"],
+             "title":["PAIR ALTEC 820A SPEAKERS 803A WOOFER 802C TWEETER N-800 CROSSOVER"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m3BvyMsncX-5_Jc3e8Kpe9Q\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/PAIR-ALTEC-820A-SPEAKERS-803A-WOOFER-802C-TWEETER-N-800-CROSSOVER-\/224038110383"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["236**"],"location":["Newport News,VA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"7999.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"7999.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT3H56M19S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-07T23:26:39.000Z"],
+             "endTime":["2020-06-14T23:26:39.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["293608035790"],
+             "title":["Pair of Altec N-800-F Vintage Speaker Crossover"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mkklmwAuV6WExq0ovDGnrQg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Pair-Altec-N-800-F-Vintage-Speaker-Crossover-\/293608035790"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["141**"],"location":["Wilson,NY,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"67.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"67.0"}],
+             "bidCount":["4"],"sellingState":["Active"],"timeLeft":["P1DT20H40M7S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-09T16:10:27.000Z"],
+             "endTime":["2020-06-14T16:10:27.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["143625858664"],
              "title":["3 Ohmite Z-O 1000 ma Plate Chokes, 2 1\/2 Meter Band, VOM Tested @ 0.4 ohms"],
