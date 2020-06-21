@@ -15,7 +15,7 @@ from .base                  import ( getUrlQueryStringOff, TestCasePlus,
 from config.wsgi            import application
 
 from ebayinfo.models        import Market
-from ebayinfo.tests         import EBAY_US_CURRENT_VERSION
+from ebayinfo.tests         import EBAY_CURRENT_VERSION_US
 from ebayinfo.tests.base    import PutMarketsInDatabaseTestBase
 
 from models.models          import Model
@@ -128,11 +128,11 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTestBase ):
         #
         oUSA = Market.objects.get( cMarket = 'EBAY-US' )
         #
-        self.assertEqual( oUSA.iCategoryVer, EBAY_US_CURRENT_VERSION )
+        self.assertEqual( oUSA.iCategoryVer, EBAY_CURRENT_VERSION_US )
         #
         iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
-        self.assertEqual( iDictVers, EBAY_US_CURRENT_VERSION )
+        self.assertEqual( iDictVers, EBAY_CURRENT_VERSION_US )
         #
         self.assertEqual( oUSA.iCategoryVer, iDictVers,
                           msg = 'table & memory values should be same' )
@@ -155,14 +155,14 @@ class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTestBase ):
                           iDictVers,
                           msg = 'table has 116, dict updated' )
         #
-        oUSA.iCategoryVer = EBAY_US_CURRENT_VERSION
+        oUSA.iCategoryVer = EBAY_CURRENT_VERSION_US
         oUSA.save()
         #
         iDictVers = ebayinfo.utils.dSiteID2ListVers[ oUSA.iEbaySiteID ]
         #
         self.assertNotEqual( oUSA.iCategoryVer, iDictVers,
                              msg = 'table has %s, dict not updated yet' %
-                                    EBAY_US_CURRENT_VERSION )
+                                    EBAY_CURRENT_VERSION_US )
         #
         #
         updateMemoryTableUpdated( 'markets', 'iCategoryVer' )
