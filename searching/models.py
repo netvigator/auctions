@@ -127,11 +127,14 @@ class SearchLog(models.Model):
                         'have category, brand & model',
                         null = True )
     cResult     = models.TextField( 'search outcome', null = True )
-
+    cStoreDir   = models.CharField( 'search files directory',
+                                max_length = 10,
+                                null = True, blank = True )
     def __str__(self):
-        return '%s - %s' % (
-            getIsoDateTimeFromDateTime( self.tBegSearch ),
-            self.iSearch.cTitle )
+        sSayDir = ( self.cStoreDir
+                    if self.cStoreDir
+                    else getIsoDateTimeFromDateTime( self.tBegSearch ) )
+        return '%s - %s' % ( sSayDir, self.iSearch.cTitle )
 
     class Meta:
         verbose_name_plural = 'searchlogs'
