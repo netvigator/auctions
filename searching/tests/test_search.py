@@ -1,29 +1,48 @@
-from os.path            import join
+from os.path                import join, split
 
-from django.db.models   import Max
-from django.http        import HttpResponseRedirect
-from django.urls        import reverse, reverse_lazy
+from django.db.models       import Max
+from django.http            import HttpResponseRedirect
+from django.urls            import reverse, reverse_lazy
 
-from core.tests.base    import ( setup_view_for_tests,
-                                 GetEbayCategoriesWebTestSetUp,
-                                 AssertEmptyMixin,
-                                 BaseUserWebTestCase )
+from core.tests.base        import ( setup_view_for_tests,
+                                     GetEbayCategoriesWebTestSetUp,
+                                     AssertEmptyMixin, TestCasePlus,
+                                     BaseUserWebTestCase )
 
-from core.utils         import getShrinkItemURL
+from core.utils             import getShrinkItemURL
 
-from searching          import RESULTS_FILE_NAME_PATTERN
-from searching          import SEARCH_FILES_FOLDER
-from searching          import getPriorityChoices, ALL_PRIORITIES
+from finders.models         import ItemFound, UserItemFound
 
-from ..models           import Search
-from ..tests            import sLastPageZeroEntries, sSuccessButZeroResults
-from ..utils            import ( getIdStrZeroFilled, getSearchIdStr,
-                                 getHowManySearchDigitsNeeded )
-from ..utilsearch       import getSearchResultGenerator
-from ..views            import SearchCreateView
+from searching              import RESULTS_FILE_NAME_PATTERN
+from searching              import SEARCH_FILES_ROOT
+from searching              import getPriorityChoices, ALL_PRIORITIES
 
-from pyPks.File.Del     import DeleteIfExists
-from pyPks.File.Write   import QuietDump
+from .base                  import StoreSearchResultsTestsWebTestSetUp, sTODAY
+
+from ..models               import Search, SearchLog
+from ..tests                import ( sExampleResponse, sLastPageZeroEntries,
+                                     iExampleResponseCount,
+                                     sSuccessButZeroResults )
+from ..utils                import ( getIdStrZeroFilled, getSearchIdStr,
+                                     getHowManySearchDigitsNeeded,
+                                     storeSearchResultsInFinders )
+from ..utilsearch           import ( getSearchRootFolders,
+                                     getSearchResultGenerator )
+from ..views                import SearchCreateView
+
+from pyPks.Dir.Get          import getMakeDir
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Write       import QuietDump
+from pyPks.String.Get       import getTextBefore
+from pyPks.Utils.Both2n3    import getThisFileSpec
+
+
+
+tExampleFile = (
+        join( SEARCH_FILES_ROOT, sTODAY, ),
+        'search_results_____0_.json' )
+
+getMakeDir( getThisFileSpec( tExampleFile[0] ) )
 
 
 class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
@@ -221,17 +240,19 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCa
                    getSearchIdStr( oSearch.id ),
                    '016' ) )
         #
-        QuietDump( sLastPageZeroEntries, SEARCH_FILES_FOLDER, self.sExampleFile )
+        QuietDump(
+                sLastPageZeroEntries,
+                SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
         #
         #
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
 
     def test_search_result_generator_last_page_got_zero(self):
         #
-        sThisFileName = join( SEARCH_FILES_FOLDER, self.sExampleFile )
+        sThisFileName = join( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
         #
         oItemIter = getSearchResultGenerator( sThisFileName, 16 )
         #
@@ -263,18 +284,186 @@ class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, GetEbayCate
                    getSearchIdStr( oSearch.id ),
                    '001' ) )
         #
-        QuietDump( sSuccessButZeroResults, SEARCH_FILES_FOLDER, self.sExampleFile )
+        QuietDump(
+                sSuccessButZeroResults,
+                SEARCH_FILES_ROOT, sToday, self.sExampleFile )
         #
         #
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
 
     def test_search_result_generator_search_got_zero(self):
         #
-        sThisFileName = join( SEARCH_FILES_FOLDER, self.sExampleFile )
+        sThisFileName = join( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
         #
         oItemIter = getSearchResultGenerator( sThisFileName, 1 )
         #
         self.assertEmpty( tuple( oItemIter ) )
+
+
+
+class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
+    #
+
+    def test_store_search_results(self):
+        #
+        ''' test storeSearchResultsInFinders() with actual record'''
+        #
+        #print('')
+        #print( 'self.oSearch.id:', self.oSearch.id )
+        #
+        iCountItems, iStoreItems, iStoreUsers = self.tMain
+        #
+        self.assertEqual( ItemFound.objects.count(), iCountItems )
+        self.assertEqual( ItemFound.objects.count(), iStoreItems )
+        #
+        self.assertEqual( UserItemFound.objects.count(), iStoreUsers )
+        #
+        oSearchLogs = SearchLog.objects.all()
+        #
+        self.assertEqual( len( oSearchLogs ), 2 )
+        #
+        oSearchLog = oSearchLogs[0]
+        #
+        sBeforeDash = getTextBefore( str(oSearchLog), ' -' )
+        #
+        self.assertTrue( isISOdatetime( sBeforeDash ) )
+        #
+        self.assertEqual( oSearchLog.iItems,      iExampleResponseCount )
+        self.assertEqual( oSearchLog.iStoreItems, iExampleResponseCount )
+        self.assertEqual( oSearchLog.iStoreUsers, iExampleResponseCount )
+        #
+        # try again with the same data
+        #
+        t = ( storeSearchResultsInFinders(
+                        self.oSearchMainLog.id,
+                        self.sMarket,
+                        self.user1.username,
+                        self.oSearchMain.id,
+                        self.oSearchMain.cTitle,
+                        self.setTestCategories ) )
+        #
+        iCountItems, iStoreItems, iStoreUsers = t
+        #
+        self.assertEqual( ItemFound.objects.count(), iCountItems )
+        #
+        self.assertEqual( iStoreItems, 0 )
+        #
+        self.assertEqual( iStoreUsers, 0 )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+
+    def test_oddball_item_search_results(self):
+        #
+        oOddBall = ItemFound.objects.get( iItemNumb = 233420619849 )
+        #
+        self.assertEqual(
+                oOddBall.iCatHeirarchy.cCatHierarchy,
+                'Consumer Electronics, Vintage Electronics, '
+                'Vintage Audio & Video, Vintage Parts & Accessories, '
+                'Vintage Tubes & Tube Sockets' )
+        #
+        self.assertEqual(
+                oOddBall.i2ndCatHeirarchy.cCatHierarchy,
+                'eBay Motors, Parts & Accessories, '
+                'Vintage Car & Truck Parts, Radio & Speaker Systems' )
+
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+
+
+class getImportSearchResultsTests( TestCasePlus ):
+    #
+    def test_get_search_results(self):
+        '''test readin an example search results file'''
+        # create/destroy test file needs to be in here
+        # test is run AFTER the last line in this file is executed
+        QuietDump( sExampleResponse, *tExampleFile )
+        #
+        itemResultsIterator = getSearchResultGenerator(
+             join( *tExampleFile ), 0 )
+        #
+        dThisItem = next( itemResultsIterator )
+        #
+        self.assertEqual( dThisItem["itemId"],  "253313715173" )
+        self.assertEqual( dThisItem["title" ],
+            "Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" )
+        self.assertEqual( dThisItem["location"],"Ruskin,FL,USA" )
+        self.assertEqual( dThisItem["country"], "US" )
+        self.assertEqual( dThisItem["postalCode"], "33570" )
+        self.assertEqual( dThisItem["globalId"], "EBAY-US" )
+        self.assertEqual( dThisItem["galleryURL"],
+            "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" )
+        self.assertEqual( dThisItem["viewItemURL"],
+            "http://www.ebay.com/itm/Simpson-360-2-Digital-Volt-Ohm-"
+            "Milliammeter-Operators-Manual-/253313715173" )
+        #
+        dListingInfo    = dThisItem["listingInfo"]
+        self.assertEqual( dListingInfo["startTime"], "2017-12-15T05:22:47.000Z" )
+        self.assertEqual( dListingInfo[ "endTime" ], "2018-01-14T05:22:47.000Z" )
+        self.assertEqual( dListingInfo["bestOfferEnabled" ], "false" )
+        self.assertEqual( dListingInfo["buyItNowAvailable"], "false" )
+        #
+        dPrimaryCategory= dThisItem["primaryCategory"]
+        self.assertEqual( dPrimaryCategory["categoryId"  ], "58277"       )
+        self.assertEqual( dPrimaryCategory["categoryName"], "Multimeters" )
+        #
+        dCondition      = dThisItem["condition"]
+        self.assertEqual( dCondition["conditionDisplayName"  ], "Used" )
+        self.assertEqual( dCondition["conditionId"           ], "3000" )
+        #
+        dSellingStatus  = dThisItem["sellingStatus"]
+        self.assertEqual( dSellingStatus["sellingState"], "Active" )
+
+        dCurrentPrice   = dSellingStatus["currentPrice"]
+        self.assertEqual( dCurrentPrice["@currencyId"], "USD" )
+        self.assertEqual( dCurrentPrice["__value__"  ], "10.0")
+        #
+        dConvertPrice   = dSellingStatus["convertedCurrentPrice"]
+        self.assertEqual( dConvertPrice["@currencyId"], "USD" )
+        self.assertEqual( dConvertPrice["__value__"  ], "10.0")
+        #
+        dPagination     = dThisItem["paginationOutput"]
+        self.assertEqual( dPagination["totalEntries"], "4" )
+        self.assertEqual( dPagination["thisEntry"   ], "1" )
+        #
+        dThisItem = next( itemResultsIterator )
+        #
+        dPrimaryCategory= dThisItem["primaryCategory"]
+        self.assertEqual( dPrimaryCategory["categoryId"  ], "64627"       )
+        self.assertEqual( dPrimaryCategory["categoryName"], "Vintage Tubes & Tube Sockets" )
+        #
+        dSecondyCategory= dThisItem["secondaryCategory"]
+        self.assertEqual( dSecondyCategory["categoryId"  ], "80741"       )
+        self.assertEqual( dSecondyCategory["categoryName"], "Radio & Speaker Systems" )
+        #
+        iItems = 2
+        #
+        for dThisItem in itemResultsIterator:
+            #
+            iItems += 1
+            #
+        #
+        self.assertEqual( iItems, iExampleResponseCount )
+        #
+        # DeleteIfExists( SEARCH_FILES_ROOT, sToday, sExampleFile )
+        #
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+
+
+class SearchFilesTesting( TestCasePlus ):
+    '''test new scheme for storing search files'''
+
+    def test_got_search_file_dirs( self ):
+        #
+        sTestSearchSubDir = split( tExampleFile[0] )[ -1 ]
+        #
+        self.assertIn( sTestSearchSubDir, getSearchRootFolders() )
