@@ -23,16 +23,13 @@ from ebayinfo.tests.test_utils import LiveTestGotCurrentEbayCategories
 # imported live test will run automatically when running live test
 
 from searching          import RESULTS_FILE_NAME_PATTERN
-from searching          import SEARCH_FILES_FOLDER
 
-from .base              import ( StoreSearchResultsTestsWebTestSetUp,
-                                 GetBrandsCategoriesModelsWebTestSetUp,
+from .base              import ( GetBrandsCategoriesModelsWebTestSetUp,
                                  StoreUserItemFoundWebTestBase,
                                  getItemHitsLog )
 
 from ..models           import Search, SearchLog
 from ..tests            import ( dSearchResult, sItemHitLog,
-                                 sExampleResponse, iExampleResponseCount,
                                  sResponseItems2Test )
 from ..utils_stars      import getFoundItemTester, findSearchHits
 from ..utils            import ( storeSearchResultsInFinders,
@@ -56,11 +53,9 @@ from pyPks.File.Del      import DeleteIfExists
 from pyPks.File.Spec     import getPathNameExt
 from pyPks.File.Test     import isFileThere
 from pyPks.File.Write    import QuietDump
-from pyPks.String.Get    import getTextBefore
 from pyPks.Time.Convert  import getDateTimeObjFromString   as getDate
 from pyPks.Time.Delta    import getDeltaDaysFromStrings, getIsoDateTimeNowPlus
 from pyPks.Time.Output   import getIsoDateTimeFromDateTime as getIsoDT
-from pyPks.Time.Test     import isISOdatetime
 
 
 
@@ -73,10 +68,6 @@ logging.basicConfig(
     format="%(asctime)-15s [%(levelname)s] %(funcName)s: %(message)s",
     level=logging.INFO)
 '''
-
-sExampleFile = '/tmp/search_results_____0_.json'
-
-
 
 def updateHitLogFile( oUserItems, sPathHere ):
     #
@@ -149,85 +140,6 @@ def updateHitLogFile( oUserItems, sPathHere ):
         #
     #
     return iBegRows, iEndRows
-
-
-class getImportSearchResultsTests( TestCasePlus ):
-    #
-    def test_get_search_results(self):
-        '''test readin an example search results file'''
-        # create/destroy test file needs to be in here
-        # test is run AFTER the last line in this file is executed
-        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, sExampleFile )
-        #
-        itemResultsIterator = getSearchResultGenerator( sExampleFile, 0 )
-        #
-        dThisItem = next( itemResultsIterator )
-        #
-        self.assertEqual( dThisItem["itemId"],  "253313715173" )
-        self.assertEqual( dThisItem["title" ],
-            "Simpson 360-2 Digital Volt-Ohm Milliammeter Operator's Manual" )
-        self.assertEqual( dThisItem["location"],"Ruskin,FL,USA" )
-        self.assertEqual( dThisItem["country"], "US" )
-        self.assertEqual( dThisItem["postalCode"], "33570" )
-        self.assertEqual( dThisItem["globalId"], "EBAY-US" )
-        self.assertEqual( dThisItem["galleryURL"],
-            "http://thumbs2.ebaystatic.com/m/m0WO4pWRZTzusBvJHT07rtw/140.jpg" )
-        self.assertEqual( dThisItem["viewItemURL"],
-            "http://www.ebay.com/itm/Simpson-360-2-Digital-Volt-Ohm-"
-            "Milliammeter-Operators-Manual-/253313715173" )
-        #
-        dListingInfo    = dThisItem["listingInfo"]
-        self.assertEqual( dListingInfo["startTime"], "2017-12-15T05:22:47.000Z" )
-        self.assertEqual( dListingInfo[ "endTime" ], "2018-01-14T05:22:47.000Z" )
-        self.assertEqual( dListingInfo["bestOfferEnabled" ], "false" )
-        self.assertEqual( dListingInfo["buyItNowAvailable"], "false" )
-        #
-        dPrimaryCategory= dThisItem["primaryCategory"]
-        self.assertEqual( dPrimaryCategory["categoryId"  ], "58277"       )
-        self.assertEqual( dPrimaryCategory["categoryName"], "Multimeters" )
-        #
-        dCondition      = dThisItem["condition"]
-        self.assertEqual( dCondition["conditionDisplayName"  ], "Used" )
-        self.assertEqual( dCondition["conditionId"           ], "3000" )
-        #
-        dSellingStatus  = dThisItem["sellingStatus"]
-        self.assertEqual( dSellingStatus["sellingState"], "Active" )
-
-        dCurrentPrice   = dSellingStatus["currentPrice"]
-        self.assertEqual( dCurrentPrice["@currencyId"], "USD" )
-        self.assertEqual( dCurrentPrice["__value__"  ], "10.0")
-        #
-        dConvertPrice   = dSellingStatus["convertedCurrentPrice"]
-        self.assertEqual( dConvertPrice["@currencyId"], "USD" )
-        self.assertEqual( dConvertPrice["__value__"  ], "10.0")
-        #
-        dPagination     = dThisItem["paginationOutput"]
-        self.assertEqual( dPagination["totalEntries"], "4" )
-        self.assertEqual( dPagination["thisEntry"   ], "1" )
-        #
-        dThisItem = next( itemResultsIterator )
-        #
-        dPrimaryCategory= dThisItem["primaryCategory"]
-        self.assertEqual( dPrimaryCategory["categoryId"  ], "64627"       )
-        self.assertEqual( dPrimaryCategory["categoryName"], "Vintage Tubes & Tube Sockets" )
-        #
-        dSecondyCategory= dThisItem["secondaryCategory"]
-        self.assertEqual( dSecondyCategory["categoryId"  ], "80741"       )
-        self.assertEqual( dSecondyCategory["categoryName"], "Radio & Speaker Systems" )
-        #
-        iItems = 2
-        #
-        for dThisItem in itemResultsIterator:
-            #
-            iItems += 1
-            #
-        #
-        self.assertEqual( iItems, iExampleResponseCount )
-        #
-        # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
-        #
-        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-
 
 
 '''
@@ -480,79 +392,6 @@ class storeUserItemFoundTests( StoreUserItemFoundWebTestBase ):
             #
             self.assertIsNotNone( oItem.cGalleryURL )
             #
-
-
-
-class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
-    #
-
-    def test_store_search_results(self):
-        #
-        ''' test storeSearchResultsInFinders() with actual record'''
-        #
-        #print('')
-        #print( 'self.oSearch.id:', self.oSearch.id )
-        #
-        iCountItems, iStoreItems, iStoreUsers = self.tMain
-        #
-        self.assertEqual( ItemFound.objects.count(), iCountItems )
-        self.assertEqual( ItemFound.objects.count(), iStoreItems )
-        #
-        self.assertEqual( UserItemFound.objects.count(), iStoreUsers )
-        #
-        oSearchLogs = SearchLog.objects.all()
-        #
-        self.assertEqual( len( oSearchLogs ), 2 )
-        #
-        oSearchLog = oSearchLogs[0]
-        #
-        sBeforeDash = getTextBefore( str(oSearchLog), ' -' )
-        #
-        self.assertTrue( isISOdatetime( sBeforeDash ) )
-        #
-        self.assertEqual( oSearchLog.iItems,      iExampleResponseCount )
-        self.assertEqual( oSearchLog.iStoreItems, iExampleResponseCount )
-        self.assertEqual( oSearchLog.iStoreUsers, iExampleResponseCount )
-        #
-        # try again with the same data
-        #
-        t = ( storeSearchResultsInFinders(
-                        self.oSearchMainLog.id,
-                        self.sMarket,
-                        self.user1.username,
-                        self.oSearchMain.id,
-                        self.oSearchMain.cTitle,
-                        self.setTestCategories ) )
-        #
-        iCountItems, iStoreItems, iStoreUsers = t
-        #
-        self.assertEqual( ItemFound.objects.count(), iCountItems )
-        #
-        self.assertEqual( iStoreItems, 0 )
-        #
-        self.assertEqual( iStoreUsers, 0 )
-        #
-        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
-
-
-
-    def test_oddball_item_search_results(self):
-        #
-        oOddBall = ItemFound.objects.get( iItemNumb = 233420619849 )
-        #
-        self.assertEqual(
-                oOddBall.iCatHeirarchy.cCatHierarchy,
-                'Consumer Electronics, Vintage Electronics, '
-                'Vintage Audio & Video, Vintage Parts & Accessories, '
-                'Vintage Tubes & Tube Sockets' )
-        #
-        self.assertEqual(
-                oOddBall.i2ndCatHeirarchy.cCatHierarchy,
-                'eBay Motors, Parts & Accessories, '
-                'Vintage Car & Truck Parts, Radio & Speaker Systems' )
-
-        #
-        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
@@ -946,8 +785,6 @@ class FileNameUtilitiesTesting( TestCasePlus ):
         lParts = sNewFileName.split( '_' )
         #
         self.assertEqual( lParts[6], '001' )
-
-
 
 
 
