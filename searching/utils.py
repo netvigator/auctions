@@ -16,8 +16,8 @@ from django.utils           import timezone
 
 from core.dj_import         import ObjectDoesNotExist, get_user_model
 
-from core.utils_ebay        import getValueOffItemDict
 from core.ebay_api_calls    import findItems
+from core.utils_ebay        import getValueOffItemDict
 
 from ebayinfo               import dMarketsRelated
 from ebayinfo.models        import Market, CategoryHierarchy
@@ -31,14 +31,14 @@ from finders.models         import ItemFound, UserItemFound
 
 from keepers.utils          import ITEM_PICS_ROOT, getItemPicsSubDir
 
+from searching              import ( RESULTS_FILE_NAME_PATTERN,
+                                     SEARCH_FILES_ROOT )
+
 from .models                import SearchLog, Search
 from .utilsearch            import ( ItemAlreadyInTable, getSearchResult,
                                      getSuccessOrNot, storeItemInfo,
                                      getPagination, SearchGotZeroResults,
                                      getSearchResultGenerator )
-
-from searching              import ( RESULTS_FILE_NAME_PATTERN,
-                                     SEARCH_FILES_FOLDER )
 
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.Dir.Get          import getMakeDir
@@ -63,7 +63,7 @@ logging.basicConfig(
 
 class SearchNotWorkingError( Exception ): pass
 
-getMakeDir( SEARCH_FILES_FOLDER )
+# getMakeDir( SEARCH_FILES_ROOT ) in __init__.py already
 
 def getHowManySearchDigitsNeeded( iID = None ):
     #
@@ -130,6 +130,7 @@ def _doSearchStoreInFile(
                     iSearchID       = None,
                     bGetBuyItNows   = False,
                     bInventory      = False,
+                    sToday          = None,
                     bUseSandbox     = False ):
     #
     '''sends search request to the ebay API, stores the response'''
@@ -340,7 +341,7 @@ def _doSearchStoreInFile(
         #
         if sFileName:
             #
-            QuietDump( sResponse, SEARCH_FILES_FOLDER, sFileName )
+            QuietDump( sResponse, SEARCH_FILES_ROOT, sToday, sFileName )
             #
         #
         iThisPage += 1
@@ -363,7 +364,7 @@ def _doSearchStoreInFile(
         logging.disable(logging.NOTSET)
         #
     #
-    sFileName = join( SEARCH_FILES_FOLDER, sFileName )
+    sFileName = join( SEARCH_FILES_ROOT, sToday, sFileName )
     #
     return sFileName, oSearch.cTitle
 
@@ -467,7 +468,7 @@ def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
 
 
 
-def trySearchCatchExceptStoreInFile( iSearchID ):
+def trySearchCatchExceptStoreInFile( iSearchID, sToday ):
     #
     '''high level script, does a search, catches exceptions, logs errors,
     stores results in file'''
@@ -500,7 +501,7 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
-    lGotFiles   = getFilesMatchingPattern( SEARCH_FILES_FOLDER, sFilePattern )
+    lGotFiles   = getFilesMatchingPattern( SEARCH_FILES_ROOT, sToday, sFilePattern )
     #
     for sFile in lGotFiles: DeleteIfExists( sFile )
     #
@@ -509,7 +510,8 @@ def trySearchCatchExceptStoreInFile( iSearchID ):
         t = _doSearchStoreInFile(
                 iSearchID       = iSearchID,
                 bGetBuyItNows   = oSearch.bGetBuyItNows,
-                bInventory      = oSearch.bInventory )
+                bInventory      = oSearch.bInventory,
+                sToday          = sToday )
         #
         # ### sandbox returns zero items ###
         # ### use bUseSandbox = False    ###
@@ -550,6 +552,7 @@ def storeSearchResultsInFinders(
             sUserName,
             iSearchID,
             sSearchName,
+            sToday,
             setTestCategories    = None,
             bCleanUpFiles        = False,
             bDoNotMentionAny     = False ):
@@ -563,13 +566,13 @@ def storeSearchResultsInFinders(
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
-    lGotFiles = getFilesMatchingPattern( SEARCH_FILES_FOLDER, sFilePattern )
+    lGotFiles = getFilesMatchingPattern( SEARCH_FILES_ROOT, sToday, sFilePattern )
     #
     if not lGotFiles:
         #
         logger.warning(
                 'storeSearchResultsInFinders() did not find file "%s"!'
-                % join( SEARCH_FILES_FOLDER, sFilePattern ) )
+                % join( SEARCH_FILES_ROOT, sToday, sFilePattern ) )
         #
         return 0, 0, 0
         #
@@ -737,6 +740,4 @@ def storeSearchResultsInFinders(
         #
     #
     return iItems, iStoreItems, iStoreUsers
-
-
 
