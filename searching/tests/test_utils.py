@@ -26,7 +26,7 @@ from searching          import RESULTS_FILE_NAME_PATTERN
 
 from .base              import ( GetBrandsCategoriesModelsWebTestSetUp,
                                  StoreUserItemFoundWebTestBase,
-                                 getItemHitsLog )
+                                 getItemHitsLog, sTODAY )
 
 from ..models           import Search, SearchLog
 from ..tests            import ( dSearchResult, sItemHitLog,
@@ -494,6 +494,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
                     sUserName,
                     iSearchID,
                     sSearchName,
+                    sTODAY,
                     self.setTestCategories,
                     bDoNotMentionAny = True )
         #
@@ -571,6 +572,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
                 sUserName,
                 iSearchID,
                 sSearchName,
+                sTODAY,
                 self.setTestCategories,
                 bDoNotMentionAny = True )
         #
