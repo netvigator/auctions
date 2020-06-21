@@ -16,8 +16,7 @@ from models.models      import Model
 
 from finders.models     import ItemFound, UserFinder, UserItemFound
 
-from searching          import RESULTS_FILE_NAME_PATTERN
-from searching          import SEARCH_FILES_FOLDER
+from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_ROOT
 
 from searching.tests    import iRecordStepsForThis
 
@@ -36,8 +35,11 @@ from ..utilsearch       import ItemAlreadyInTable
 
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Write   import QuietDump
+from pyPks.Time.Output  import getIsoDate
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
+
+sTODAY = getIsoDate()
 
 
 def getItemHitsLog( sPathFile ):
@@ -87,7 +89,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                    getSearchIdStr( oSearch.id ),
                    '000' ) )
         #
-        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, self.sExampleFileMain )
+        QuietDump( sExampleResponse, SEARCH_FILES_ROOT, sTODAY, self.sExampleFileMain )
         #
         tNow    = timezone.now()
         tBefore = tNow - timezone.timedelta( minutes = 5 )
@@ -129,7 +131,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                    getSearchIdStr( oSearch.id ),
                    '000' ) )
         #
-        QuietDump( sExampleResponse, SEARCH_FILES_FOLDER, self.sExampleFileManual )
+        QuietDump( sExampleResponse, SEARCH_FILES_ROOT, sTODAY, self.sExampleFileManual )
         #
         tNow    = timezone.now()
         tBefore = tNow - timezone.timedelta( minutes = 5 )
@@ -157,7 +159,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
 
     def tearDown(self):
         #
-        pass # DeleteIfExists( SEARCH_FILES_FOLDER, self.sExampleFile )
+        pass # DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
         #
         #ItemFound.objects.all().delete()
         #UserFinder.objects.all().delete()
@@ -881,10 +883,10 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
             self.dExampleFiles[ oUser.id ] = sExampleFile
             #
             #print( 'will DeleteIfExists' )
-            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+            DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
             #print( 'will QuietDump' )
-            QuietDump( sResponseItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
+            QuietDump( sResponseItems2Test, SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
             try:
                 t = storeSearchResultsInFinders(
@@ -915,10 +917,10 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
             self.dExampleFiles[ oUser.id ] = sExampleFile
             #
             #print( 'will DeleteIfExists' )
-            DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+            DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
             #print( 'will QuietDump' )
-            QuietDump( sManualItems2Test, SEARCH_FILES_FOLDER, sExampleFile )
+            QuietDump( sManualItems2Test, SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
             try:
                 t = ( storeSearchResultsInFinders(
@@ -953,7 +955,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
         #
         for sExampleFile in self.dExampleFiles.values():
             #
-            pass # DeleteIfExists( SEARCH_FILES_FOLDER, sExampleFile )
+            pass # DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
         #
         #ItemFound.objects.all().delete()
