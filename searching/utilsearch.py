@@ -1,6 +1,7 @@
 import logging
 
 from json                   import load, loads
+from os                     import walk
 
 from pprint                 import pprint
 
@@ -10,6 +11,8 @@ from django.utils           import timezone
 from finders.models         import ItemFound
 #
 from ebayinfo.models        import EbayCategory, CategoryHierarchy
+
+from searching              import SEARCH_FILES_ROOT
 
 from pyPks.Dict.Get         import getAnyValue
 from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
@@ -585,6 +588,14 @@ def getSearchResultGenerator( sFile, iLastPage, sContent = None ):
         dItem["paginationOutput"]= dPagination
         #
         yield dItem
+
+
+
+def getSearchRootFolders():
+    #
+    '''get the list of directories under SEARCH_FILES_ROOT'''
+    #
+    return next( t[1] for t in walk( SEARCH_FILES_ROOT ) if t[1] )
 
 
 
