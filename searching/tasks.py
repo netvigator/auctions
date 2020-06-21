@@ -24,6 +24,8 @@ from finders.models         import UserItemFound
 
 from core.utils             import getBegTime
 
+from pyPks.Time.Output      import getIsoDate
+
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
 
@@ -32,7 +34,7 @@ from core.utils             import getBegTime
 @shared_task( name = 'searching.tasks.trySearchCatchExceptStoreInFile' )
 def doTrySearchCatchExceptStoreInFileTask( iSearchID ):
     #
-    trySearchCatchExceptStoreInFile( iSearchID )
+    trySearchCatchExceptStoreInFile( iSearchID, getIsoDate() )
 
 
 # called as a daily (periodic) task
