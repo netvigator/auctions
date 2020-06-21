@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+from os                     import walk
 from time                   import sleep
 
 from django.contrib.auth    import get_user_model
@@ -10,6 +11,8 @@ from celery                 import shared_task
 from celery.schedules       import crontab
 
 #from auctionbot             import celery_app as app # app = Celery()
+
+from searching              import SEARCH_FILES_ROOT
 
 from .models                import Search, SearchLog
 
@@ -38,7 +41,7 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
     # really want to select for active users only (not inactive)
     #
-    tBeg = getBegTime()
+    tBeg = getBegTime( bOnlyList )
     #
     t12hAgo = tBeg - timezone.timedelta( hours = 12 )
     t04hAgo = tBeg - timezone.timedelta( hours =  4 )
@@ -54,6 +57,12 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     if len( qsSearches ) == 0 and bOnlyList:
         #
         print( 'no searches are due for any user !' )
+        #
+    #
+    if len( qsSearches ) > 0:
+        #
+        # here walk( ITEM_PICS_ROOT )
+        pass
         #
     #
     iSearches = len( qsSearches )
@@ -176,7 +185,7 @@ def doFindSearhHitsTasks(
 
 '''
 doSearchingPutResultsInFilesTasks() does NOT update database, only writes files
-watch file directory SEARCH_FILES_FOLDER and sort by date, most recent on top
+watch file directory SEARCH_FILES_ROOT and sort by date, most recent on top
 
 select id, "cTitle", date_trunc('second',"tBegSearch"), date_trunc('second',"tEndSearch"), "iUser_id" from searching ;
 select id, "cTitle", date_trunc('second',"tBegSearch"), date_trunc('second',"tEndSearch"), "cLastResult" from searching where "iUser_id" = 1 ;
