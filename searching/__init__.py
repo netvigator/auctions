@@ -38,12 +38,12 @@ DROP_AFTER_THIS = (
 SCRIPT_TEST_FILE        = '/tmp/auction_script_test.txt'
 
 if settings.TESTING:
-    SEARCH_FILES_FOLDER = '/tmp/searches-test'
+    SEARCH_FILES_ROOT = '/tmp/searches-test'
 else:
-    SEARCH_FILES_FOLDER = '/tmp/searches'
+    SEARCH_FILES_ROOT = '/tmp/searches'
 
 
-getMakeDir( SEARCH_FILES_FOLDER )
+getMakeDir( SEARCH_FILES_ROOT )
 
 
 def getPriorityChoices( oModel = None, oUser = None, sInclude = None ):
