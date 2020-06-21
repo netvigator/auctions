@@ -495,3 +495,12 @@ for testing, import the markets table in ebayinfo/tests/__init__.py
 instead of hard coding in core/tests/base.py
 
 2020-05-17 should improve logic for dowloading FixedPriceItem pics, also fetching final results
+
+2020-06-20 finder w list of hits, edit one, choose existing model
+crashed bot
+need to catch more gracefully
+
+2020-06-20 should download zero bid auctions for models w no or few keepers
+
+2020-06-20 getMakeDir() not setting group write permission!!!? from pyPks.Dir.Get
+might help: Dir.Test.isDirThereAndWritable()
