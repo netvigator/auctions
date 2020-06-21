@@ -5,8 +5,8 @@ from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
 
 EBAY_ITEMS_FOLDER = '/tmp/ebay_items'
 
-getMakeDir( EBAY_ITEMS_FOLDER )
 
+getMakeDir( EBAY_ITEMS_FOLDER )
 
 
 def _intEnforceMax( s ):
