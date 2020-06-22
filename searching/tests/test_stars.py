@@ -2898,12 +2898,30 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
-        iThisOne = 143625858664
         #
+        iThisOne = 143625858664
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 1, iThisOne,
-                'got warning in production' )
+                'meter got warning in production' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, 'meter' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertIsNone( oTest.iCategory )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 233624178941
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'meter got warning in production\n'
+                'model has category id 172 in dCategoryInfo for 233624178941' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
