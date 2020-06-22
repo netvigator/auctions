@@ -32,9 +32,9 @@ from pyPks.Time.Output      import getIsoDate
 
 
 @shared_task( name = 'searching.tasks.trySearchCatchExceptStoreInFile' )
-def doTrySearchCatchExceptStoreInFileTask( iSearchID ):
+def doTrySearchCatchExceptStoreInFileTask( iSearchID, sToday ):
     #
-    trySearchCatchExceptStoreInFile( iSearchID, getIsoDate() )
+    trySearchCatchExceptStoreInFile( iSearchID, sToday )
 
 
 # called as a daily (periodic) task
@@ -42,6 +42,8 @@ def doTrySearchCatchExceptStoreInFileTask( iSearchID ):
 def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
     # really want to select for active users only (not inactive)
+    #
+    sToday = getIsoDate()
     #
     tBeg = getBegTime( bOnlyList )
     #
@@ -85,7 +87,8 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
         else:
             #
             sLastFile = doTrySearchCatchExceptStoreInFileTask.delay(
-                            iSearchID = oSearch.id )
+                            iSearchID   = oSearch.id,
+                            sToday      = sToday )
             #
             if iSeq < iSearches: sleep( 1 )
             #
@@ -98,14 +101,16 @@ def storeSearchResultsInDbTask( iLogID,
                                 sMarket,
                                 sUserName,
                                 iSearchID,
-                                sSearchName ):
+                                sSearchName,
+                                sStoreDir ):
     #
     t = storeSearchResultsInFinders(
             iLogID,
             sMarket,
             sUserName,
             iSearchID,
-            sSearchName )
+            sSearchName,
+            sStoreDir )
     #
 
 
@@ -130,13 +135,15 @@ def doPutSearchResultsInFindersTasks():
         sSearchName = oLogSearch.iSearch.cTitle
         sUserName   = oLogSearch.iSearch.iUser.username
         sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
+        sStoreDir   = oLogSearch.cStoreDir
         #
         storeSearchResultsInDbTask.delay(
                     iLogID,
                     sMarket,
                     sUserName,
                     iSearchID,
-                    sSearchName )
+                    sSearchName,
+                    sStoreDir )
         #
 
 
