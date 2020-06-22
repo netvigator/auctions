@@ -364,9 +364,9 @@ def _doSearchStoreInFile(
         logging.disable(logging.NOTSET)
         #
     #
-    sFileName = join( SEARCH_FILES_ROOT, sToday, sFileName )
+    sFileSpec = join( SEARCH_FILES_ROOT, sToday, sFileName )
     #
-    return sFileName, oSearch.cTitle
+    return sFileSpec, oSearch.cTitle
 
 
 
@@ -488,7 +488,8 @@ def trySearchCatchExceptStoreInFile( iSearchID, sToday ):
     #
     oSearchLog = SearchLog(
             iSearch_id  = iSearchID,
-            tBegSearch  = tSearchStart )
+            tBegSearch  = tSearchStart,
+            cStoreDir   = sToday )
     #
     oSearchLog.save()
     #
@@ -501,7 +502,9 @@ def trySearchCatchExceptStoreInFile( iSearchID, sToday ):
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
-    lGotFiles   = getFilesMatchingPattern( SEARCH_FILES_ROOT, sToday, sFilePattern )
+    sDir        = join( SEARCH_FILES_ROOT, sToday )
+    #
+    lGotFiles   = getFilesMatchingPattern( sDir, sFilePattern )
     #
     for sFile in lGotFiles: DeleteIfExists( sFile )
     #
@@ -552,7 +555,7 @@ def storeSearchResultsInFinders(
             sUserName,
             iSearchID,
             sSearchName,
-            sToday,
+            sStoreDir,
             setTestCategories    = None,
             bCleanUpFiles        = False,
             bDoNotMentionAny     = False ):
@@ -566,13 +569,15 @@ def storeSearchResultsInFinders(
             RESULTS_FILE_NAME_PATTERN %
                 ( sMarket, sUserName, getSearchIdStr( iSearchID ), '*') )
     #
-    lGotFiles = getFilesMatchingPattern( SEARCH_FILES_ROOT, sToday, sFilePattern )
+    sDir        = join( SEARCH_FILES_ROOT, sStoreDir )
+    #
+    lGotFiles   = getFilesMatchingPattern( sDir, sFilePattern )
     #
     if not lGotFiles:
         #
         logger.warning(
                 'storeSearchResultsInFinders() did not find file "%s"!'
-                % join( SEARCH_FILES_ROOT, sToday, sFilePattern ) )
+                % join( SEARCH_FILES_ROOT, sStoreDir, sFilePattern ) )
         #
         return 0, 0, 0
         #
