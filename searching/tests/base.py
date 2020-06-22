@@ -4,6 +4,7 @@ from json.decoder       import JSONDecodeError
 
 from django.utils       import timezone
 
+from core.dj_import     import ObjectDoesNotExist
 from core.tests.base    import ( GetEbayCategoriesWebTestSetUp,
                                  getNamePositionDict,
                                  getTableFromScreenCaptureGenerator )
@@ -33,6 +34,7 @@ from ..utils_stars      import findSearchHits
 
 from ..utilsearch       import ItemAlreadyInTable
 
+from pyPks.Dir.Get      import getMakeDir
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Write   import QuietDump
 from pyPks.Time.Output  import getIsoDate
@@ -89,6 +91,8 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                    getSearchIdStr( oSearch.id ),
                    '000' ) )
         #
+        getMakeDir( SEARCH_FILES_ROOT, sTODAY )
+        #
         QuietDump( sExampleResponse, SEARCH_FILES_ROOT, sTODAY, self.sExampleFileMain )
         #
         tNow    = timezone.now()
@@ -110,6 +114,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                         self.user1.username,
                         self.oSearchMain.id,
                         self.oSearchMain.cTitle,
+                        sTODAY,
                         self.setTestCategories,
                         bCleanUpFiles = False )
         #
@@ -152,6 +157,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
                         self.user1.username,
                         self.oSearchManual.id,
                         self.oSearchManual.cTitle,
+                        sTODAY,
                         self.setTestCategories,
                         bCleanUpFiles = False )
         #
@@ -443,7 +449,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             #
             oCategory   = Category(
-                    cTitle      = 'Component',
+                    cTitle      = 'Component (misc)',
                     iStars      = 6,
                     bComponent  = True,
                     iUser       = oUser )
