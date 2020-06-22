@@ -806,6 +806,23 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["233624178941"],
+             "title":["SensorLink 940 700A Overhead Single Phase Transformer Meter, 100-277VAC 60Hz"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["4678"],"categoryName":["Other Test Meters & Detectors"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mc6ghC_E9g2o_1gJi8VVqHA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/SensorLink-940-700A-Overhead-Single-Phase-Transformer-Meter-100-277VAC-60Hz-\/233624178941"],
+             "autoPay":["false"],
+             "location":["USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"129.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"129.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT20H46M41S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-19T18:15:16.000Z"],
+             "endTime":["2020-06-26T18:15:16.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["New \u2013 Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
          },{ "itemId":["303591187120"],
              "title":["stephens trusonic pair of p30 and 214 drivers with  horns Klipsch klipschorn"],
              "globalId":["EBAY-US"],
