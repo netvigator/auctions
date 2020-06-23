@@ -103,7 +103,7 @@ sBrands = \
  Spartan           |      8 |            |            |
  Stromberg-Carlson |      5 |            |            |
  Stark             |      5 |            |            |
- Stephens          |      7 |            |            |
+ Stephens          |      7 |            |            | Stevens
  Supreme           |      5 |            |            |
  Sylvania          |      6 |            |            |
  Tannoy            |      7 |            |            |
@@ -493,8 +493,8 @@ sModels = \
  K-77               |           |      6 | f            | Klipsch           |       Driver |             |
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
- P-30               |           |      8 | f            | Stevens           |       Driver |             |
- 214                |           |      8 | f            | Stevens           |       Driver |             |
+ P-30               |           |      8 | f            | Stephens          |       Driver |             |
+ 214                |           |      7 | f            | Stephens          |       Driver |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
  T-35B              |           |      6 | t            | University        |       Driver |             |
  T-350B             |           |      7 | t            | University        |       Driver |             |
