@@ -449,7 +449,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             #
             oCategory   = Category(
-                    cTitle      = 'Component (misc)',
+                    cTitle      = 'Component',
                     iStars      = 6,
                     bComponent  = True,
                     iUser       = oUser )
@@ -568,6 +568,9 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                     elif sBrand:
                         print(
                             "need a category but ain't got one! (do got brand %s)" % sBrand )
+                    elif sCategory:
+                        print(
+                            "not finding category %s!" % sCategory )
                     else:
                         print(
                             "supposed to have a brand & category here "
@@ -901,6 +904,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                         oUser.username,
                         self.oSearchMain.id,
                         self.oSearchMain.cTitle,
+                        sTODAY,
                         self.setTestCategories )
                 #
             except JSONDecodeError:
@@ -935,6 +939,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                                 oUser.username,
                                 self.oSearchManual.id,
                                 self.oSearchManual.cTitle,
+                                sTODAY,
                                 self.setTestCategories ) )
                 #
             except JSONDecodeError:
