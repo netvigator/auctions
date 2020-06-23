@@ -24,6 +24,7 @@ from finders.models         import UserItemFound
 
 from core.utils             import getBegTime
 
+from pyPks.Dir.Get          import getMakeDir
 from pyPks.Time.Output      import getIsoDate
 
 # schedule tasks
@@ -44,6 +45,8 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     # really want to select for active users only (not inactive)
     #
     sToday = getIsoDate()
+    #
+    getMakeDir( SEARCH_FILES_ROOT, sToday )
     #
     tBeg = getBegTime( bOnlyList )
     #
