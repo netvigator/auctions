@@ -2981,6 +2981,29 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
+        iThisOne = 303591187120
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should 2 drivers but not klipschorn on end\n'
+                'fix using oLocated.dAndWords' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, '214' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Stephens' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, 'P-30' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Stephens' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -3017,28 +3040,18 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find PAS & FM3' )
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 303591187120
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should 2 drivers but not klipschorn on end\n'
+                'should find PAS & FM3\n'
                 'fix using oLocated.dAndWords' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         #

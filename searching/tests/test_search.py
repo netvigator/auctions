@@ -34,8 +34,8 @@ from pyPks.Dir.Get          import getMakeDir
 from pyPks.File.Del         import DeleteIfExists
 from pyPks.File.Write       import QuietDump
 from pyPks.String.Get       import getTextBefore
+from pyPks.Time.Test        import isISOdatetime
 from pyPks.Utils.Both2n3    import getThisFileSpec
-
 
 
 tExampleFile = (
@@ -248,11 +248,11 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCa
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
 
     def test_search_result_generator_last_page_got_zero(self):
         #
-        sThisFileName = join( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
+        sThisFileName = join( SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
         #
         oItemIter = getSearchResultGenerator( sThisFileName, 16 )
         #
@@ -286,17 +286,17 @@ class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, GetEbayCate
         #
         QuietDump(
                 sSuccessButZeroResults,
-                SEARCH_FILES_ROOT, sToday, self.sExampleFile )
+                SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
         #
         #
 
     def tearDown(self):
         #
-        DeleteIfExists( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
 
     def test_search_result_generator_search_got_zero(self):
         #
-        sThisFileName = join( SEARCH_FILES_ROOT, sToday, self.sExampleFile )
+        sThisFileName = join( SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
         #
         oItemIter = getSearchResultGenerator( sThisFileName, 1 )
         #
@@ -343,6 +343,7 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
                         self.user1.username,
                         self.oSearchMain.id,
                         self.oSearchMain.cTitle,
+                        sTODAY,
                         self.setTestCategories ) )
         #
         iCountItems, iStoreItems, iStoreUsers = t
@@ -452,7 +453,7 @@ class getImportSearchResultsTests( TestCasePlus ):
         #
         self.assertEqual( iItems, iExampleResponseCount )
         #
-        # DeleteIfExists( SEARCH_FILES_ROOT, sToday, sExampleFile )
+        # DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, sExampleFile )
         #
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
