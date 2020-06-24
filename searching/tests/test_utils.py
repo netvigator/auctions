@@ -474,7 +474,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
         #
         iSearchID = oSearch.id
         #
-        sLastFile = trySearchCatchExceptStoreInFile( iSearchID )
+        sLastFile = trySearchCatchExceptStoreInFile( iSearchID, sTODAY )
         #
         oSearch.refresh_from_db() # this is necessary to get the updated object!
         #
@@ -552,7 +552,7 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
         #
         iSearchID = oSearch.id
         #
-        sLastFile = trySearchCatchExceptStoreInFile( iSearchID )
+        sLastFile = trySearchCatchExceptStoreInFile( iSearchID, sTODAY )
         #
         oSearch.refresh_from_db() # this is necessary to get the updated object!
         #
