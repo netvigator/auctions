@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 174302152790
+iRecordStepsForThis = None or 133438318976
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -142,6 +142,7 @@ sModels = \
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  2A3 (RCA SP)       | mono plate |    10 | f            | RCA               |  Vacuum Tube |             |              | f
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
+ 245A               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
  417A               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -184,7 +185,7 @@ sModels = \
  6550-VI            |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex (PQ)      |  Vacuum Tube |             |              | f
- 83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       |              | t
+ 83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       | 83 total\\r#83 | t
  211                |           |      9 | f            |                   |  Vacuum Tube | VT-4C       |              | t
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -805,6 +806,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["133438318976"],
+             "title":["#83 Lot Of 3rca Cunningham Radiotron 45 Ux 245 Cx 345 Vacuum tubes "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mxd2TWCdKBT5g7ZiqsEz_oQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/83-Lot-3rca-Cunningham-Radiotron-45-Ux-245-Cx-345-Vacuum-tubes-\/133438318976"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["284**"],"location":["Wilmington,NC,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"202.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"202.5"}],
+             "bidCount":["6"],"sellingState":["Active"],"timeLeft":["P1DT1H54M37S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-14T23:21:01.000Z"],
+             "endTime":["2020-06-21T23:21:01.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["233624178941"],
              "title":["SensorLink 940 700A Overhead Single Phase Transformer Meter, 100-277VAC 60Hz"],
