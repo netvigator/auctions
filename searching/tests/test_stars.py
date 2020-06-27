@@ -3006,6 +3006,30 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 133438318976
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find 45 tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, '245A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Cunningham' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, '45' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Cunningham' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -3042,18 +3066,6 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find PAS & FM3\n'
                 'fix using oLocated.dAndWords' )
-        #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 133438318976
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find 45 tube' )
-        #
         #
         #
         #
