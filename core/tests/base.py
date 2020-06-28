@@ -332,6 +332,8 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             iCategory   = self.oCategory,
             iUser       = oUser )
         self.oModel.save()
+        #
+        self.iModelID = self.oModel.id
 
 
 
