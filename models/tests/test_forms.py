@@ -1,13 +1,15 @@
-from django.urls        import reverse
+from django.urls            import reverse
 
-from core.tests.base    import ( SetUpBrandsCategoriesModelsWebTest,
-                                 SetUpBrandsCategoriesModelsTestPlus,
-                                 getUrlQueryStringOff )
+from core.tests.base        import ( SetUpBrandsCategoriesModelsWebTest,
+                                     SetUpBrandsCategoriesModelsTestPlus,
+                                     getUrlQueryStringOff )
 
-from categories.models  import Category
+from categories.models      import Category
 
-from ..forms            import CreateModelForm, UpdateModelForm
-from ..models           import Model
+from ..forms                import CreateModelForm, UpdateModelForm
+from ..models               import Model
+
+from pyPks.Dict.Maintain    import purgeNoneValueItems
 
 
 
@@ -102,13 +104,108 @@ class WebTestFormValidation(
     # helpful:
     # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
     #
-    pass # note TestFormValidationMixin performs tests
+    def setUp(self):
+        #
+        super( WebTestFormValidation, self ).setUp()
+        #
+        self.loginWebTest()
+
+    def test_swap_title_and_lookfor( self ):
+        #
+        '''should swap title and look for without error'''
+        #
+        # webtest style
+        sUpdateURL  = reverse( 'models:edit', args=(self.iModelID,) )
+        #
+        oForm = self.app.get( sUpdateURL ).form
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'Fleetwood')
+        self.assertEqual( oForm['cLookFor'].value, 'Woodie'   )
+        #
+        oForm['cTitle']   = 'Woodie'
+        oForm['cLookFor'] = 'Fleetwood'
+        #
+        oResponse = oForm.submit()
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'Woodie' )
+        self.assertEqual( oForm['cLookFor'].value, 'Fleetwood'      )
+        #
+        oModel = Model.objects.get( id = self.iModelID )
+        #
+        self.assertEqual( oModel.cTitle,  'Woodie' )
+        self.assertEqual( oModel.cLookFor,'Fleetwood'      )
+
+
+    def test_change_Title_case_webtest_style( self ):
+        #
+        # webtest style
+        sUpdateURL  = reverse( 'models:edit', args=(self.iModelID,) )
+        #
+        oForm = self.app.get( sUpdateURL ).form
+        #
+        self.assertEqual( oForm['cTitle'].value, 'Fleetwood' )
+        #
+        oForm['cTitle']   = 'fleetwood'
+        #
+        oResponse = oForm.submit()
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'fleetwood' )
+        #
+        oModel = Model.objects.get( id = self.iModelID )
+        #
+        self.assertEqual( oModel.cTitle, 'fleetwood' )
+        #
 
 
 
 class TestPlusFormValidation(
         TestFormValidationMixin, SetUpBrandsCategoriesModelsTestPlus ):
     #
-    pass # note TestFormValidationMixin performs tests
+    def test_swap_title_and_lookfor( self ):
+        #
+        '''should swap title and look for without error'''
+        #
+        # django style
+        #
+        sUpdateURL  = reverse( 'models:edit', args=(self.iModelID,) )
+        #
+        oResponse   = self.client.get( sUpdateURL )
+        #
+        form        = oResponse.context['form'] # retrieve form data as dict
+        #
+        data = form.initial # form is unbound but contains data
+        #
+        self.assertEqual( data['cTitle'  ], 'Fleetwood')
+        self.assertEqual( data['cLookFor'], 'Woodie'   )
+        #
+        purgeNoneValueItems( data )
+        #
+        data['cTitle'  ] = 'Woodie'
+        data['cLookFor'] = 'Fleetwood'
+        #
+        form = UpdateModelForm( data = data )
+        #
+        self.assertTrue( form.is_valid() )
+
+
+    def test_change_Title_case_django_style( self ):
+        #
+        sUpdateURL  = reverse( 'models:edit', args=(self.iModelID,) )
+        #
+        oResponse   = self.client.get( sUpdateURL )
+        #
+        form        = oResponse.context['form'] # retrieve form data as dict
+        #
+        data = form.initial # form is unbound but contains data
+        #
+        self.assertEqual( data['cTitle'], 'Fleetwood' )
+        #
+        purgeNoneValueItems( data )
+        #
+        data['cTitle']   = 'fleetwood'
+        #
+        form = UpdateModelForm( data = data )
+        #
+        self.assertTrue( form.is_valid() )
 
 
