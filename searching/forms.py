@@ -45,7 +45,6 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
     '''
     using a form to get extra validation
     '''
-    which = 'Create' # can be over written
     #
     cPriority = forms.ChoiceField(
             choices     = ALL_PRIORITIES,
@@ -55,11 +54,9 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
 
     def __init__(self, *args, **kwargs):
         #
-        if 'which' in kwargs:
-            self.which = kwargs.pop('which')
+        self.bCreating = kwargs.get( 'instance' ) is None
         #
         super( BaseSearchForm, self ).__init__(*args, **kwargs)
-        # BaseSearchForm, self
         #
         self.fields[ 'cPriority' ].validators.append( isPriorityValid )
         #
@@ -85,7 +82,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
         #
         iMyCategory     = cleaned.get( 'iMyCategory', None )
         #
-        bCreating = ( self.which == 'Create' )
+        bCreating = self.bCreating
         #
         if bCreating and iDummyOriginal and not iDummyCategory:
             sMsg = 'Your ebay category "%s" is invalid' % iDummyOriginal
@@ -211,8 +208,8 @@ class CreateSearchForm( BaseSearchForm ):
 
 
 class UpdateSearchForm( BaseSearchForm ):
+    #
     '''form for editing existing search'''
-    which = 'Update' # can be over written
     #
 
     def __init__(self, *args, **kwargs):
