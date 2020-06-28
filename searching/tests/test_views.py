@@ -216,7 +216,7 @@ class SearchUpdateViewTests( BaseUserWebTestCase ):
         #
         self.assertEqual( self.view.template_name, 'searching/edit.html' )
         #
-        self.assertEqual( self.form.which, "Update" )
+        self.assertFalse( self.form.bCreating )
         #
         self.assertEqual( self.view.model, Search )
 
@@ -248,7 +248,7 @@ class SearchCreateViewTests( BaseUserWebTestCase ):
         #
         self.assertEqual( self.view.template_name, 'searching/add.html' )
         #
-        self.assertEqual( self.form.which, "Create" )
+        self.assertTrue( self.form.bCreating )
         #
         self.assertEqual( self.view.model, Search )
         #
@@ -270,7 +270,7 @@ class SearchCreateViewTests( BaseUserWebTestCase ):
         #
         self.assertEqual( self.view.template_name, 'searching/add.html' )
         #
-        self.assertEqual( self.form.which, "Create" )
+        self.assertTrue( self.form.bCreating )
         #
         self.assertEqual( self.view.model, Search )
         #
