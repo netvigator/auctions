@@ -62,9 +62,10 @@ class BaseModelFormGotCrispy( ModelForm ):
 
 class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
     #
-    which = 'Create' # can be over written
     #
     def __init__( self, *args, **kwargs ):
+        #
+        self.bCreating = kwargs.get( 'instance' ) is None
         #
         super( ModelFormValidatesTitle, self ).__init__( *args, **kwargs )
         #
@@ -72,6 +73,8 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
 
     def gotTitleAready( self, cTitle ):
+        #
+        sFieldName = self.Meta.model._meta.get_field('cTitle').verbose_name
         #
         if ( self.Meta.model.objects.filter(
                 iUser           = self.user,
@@ -82,23 +85,32 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
             # change the capitalization.
             #
             sGotTitle = (
-                    'Title "%s" already exists. '
-                    '(Putting some info in parens can overcome this glitch.)' )
+                    '%s %s already exists. '
+                    '(Putting some info in parens can overcome this glitch.)'
+                     % ( sFieldName, cTitle ) )
             #
             oInvalid = ValidationError(
-                    sGotTitle % cTitle,
+                    sGotTitle,
                     code = 'title already exists' )
             #
             self.add_error( 'cTitle', oInvalid )
             #
             #raise oInvalid
+            #
         #
         if ( self.Meta.model.objects.filter(
                 iUser               = self.user,
                 cLookFor__icontains = cTitle ).exists() ):
             #
-            oInvalid = ValidationError('Title "%s" is in Look For' % cTitle,
-                        code = 'title exists in Look For' )
+            oGot = self.Meta.model.objects.filter(
+                iUser               = self.user,
+                cLookFor__icontains  = cTitle )[ 0 ]
+            #
+            oInvalid = ValidationError(
+                    'Cannot put %s in %s, '
+                    '%s is already in Look_For for %s %s' %
+                    ( cTitle, sFieldName, cTitle, sFieldName, oGot.cTitle ),
+                    code = 'title exists in Look_For' )
             #
             self.add_error( 'cLookFor', oInvalid )
             #
@@ -112,7 +124,7 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         cleaned         = super( ModelFormValidatesTitle, self ).clean()
         #
-        bCreating       = ( self.which == 'Create' )
+        bCreating       = self.bCreating
         #
         bEditing        = not bCreating
         #
@@ -121,21 +133,19 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         cTitle          = cleaned.get( 'cTitle'   )
         cLookFor        = cleaned.get( 'cLookFor' )
         #
-        if cTitle: # cTitle can be None if field invalid
+        if not cTitle: return cleaned # cTitle can be None if field invalid
+        #
+        #
+        if bEditing and ( self.instance.cLookFor           and
+                          self.instance.cTitle in cLookFor and
+                          cTitle in self.instance.cLookFor ):
             #
-            if bEditing and ( self.instance.cLookFor           and
-                              self.instance.cTitle in cLookFor and
-                              cTitle in self.instance.cLookFor ):
-                #
-                pass # just rearranged, no need to query database
-                #
-            else:
-                #
-                if bCreating or self.instance.cTitle != cTitle:
-                    #
-                    self.gotTitleAready( cTitle )
-                    #
-                #
+            pass # just rearranged, no need to query database
             #
+        elif bCreating or self.instance.cTitle != cTitle:
+            #
+            self.gotTitleAready( cTitle )
+            #
+        #
         #
         return cleaned
