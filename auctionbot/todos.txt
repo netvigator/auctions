@@ -505,7 +505,4 @@ need to catch more gracefully
 2020-06-20 getMakeDir() not setting group write permission!!!? from pyPks.Dir.Get
 might help: Dir.Test.isDirThereAndWritable()
 
-2020-06-26
-cannot change cage to Title case!
-Category name* Cage
-Title "Cage" is in Look For
+
