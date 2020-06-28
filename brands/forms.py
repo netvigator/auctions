@@ -53,7 +53,6 @@ class CreateBrandForm( ModelFormValidatesTitle ):
 
 class UpdateBrandForm( ModelFormValidatesTitle ):
     #
-    which = 'Update'
 
     def __init__( self, *args, **kwargs ):
         #
