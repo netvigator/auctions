@@ -1,10 +1,12 @@
-from django.urls        import reverse
+from django.urls            import reverse
 
-from core.utils         import maybePrint
-from core.tests.base    import BaseUserWebTestCase, getUrlQueryStringOff
+from core.utils             import maybePrint
+from core.tests.base        import BaseUserWebTestCase, getUrlQueryStringOff
 
-from ..models           import Category
-from ..forms            import CreateCategoryForm, UpdateCategoryForm
+from ..models               import Category
+from ..forms                import CreateCategoryForm, UpdateCategoryForm
+
+from pyPks.Dict.Maintain    import purgeNoneValueItems
 
 
 class TestFormValidation( BaseUserWebTestCase ):
@@ -22,42 +24,20 @@ class TestFormValidation( BaseUserWebTestCase ):
         oCategory.save()
         #
         self.iCategoryID = oCategory.id
+        #
+        self.loginWebTest()
 
     def test_swap_title_and_lookfor( self ):
         #
         '''should swap title and look for without error'''
         #
-        self.loginWebTest()
-        #
+        # webtest style
         sUpdateURL  = reverse( 'categories:edit', args=(self.iCategoryID,) )
         #
-        #oResponse   = self.client.get( sUpdateURL )
-        ##
-        #form        = oResponse.context['form'] # retrieve form data as dict
-        ##
-        #data = form.initial # form is unbound but contains data
-        ##
-        #print()
-        #print( 'initial data:', data )
-        ##
-        #data['cTitle']   = 'thingamajig'
-        #data['cLookFor'] = 'Gadget'
-        ##
-        #print()
-        #print( 'updated data:', data )
-        ##
-        #oResponse = self.client.post( sUpdateURL, data )
-        ##
-        #print( 'form.is_valid():', form.is_valid() )
-        ##
-        #print( 'form.non_field_errors:', form.non_field_errors() )
-        ## retrieve again
-        #oResponse = self.client.get( sUpdateURL )
-        ##
-        #self.assertEqual(oResponse.context['form'].initial['cTitle'], 'thingamajig')
-        #
-        # webtest style
         oForm = self.app.get( sUpdateURL ).form
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'Gadget'      )
+        self.assertEqual( oForm['cLookFor'].value, 'thingamajig' )
         #
         oForm['cTitle']   = 'thingamajig'
         oForm['cLookFor'] = 'Gadget'
@@ -66,6 +46,11 @@ class TestFormValidation( BaseUserWebTestCase ):
         #
         self.assertEqual( oForm['cTitle'  ].value, 'thingamajig' )
         self.assertEqual( oForm['cLookFor'].value, 'Gadget'      )
+        #
+        oCategory = Category.objects.get( id = self.iCategoryID )
+        #
+        self.assertEqual( oCategory.cTitle,  'thingamajig' )
+        self.assertEqual( oCategory.cLookFor,'Gadget'      )
 
 
     def test_Title_got_outside_parens(self):
@@ -79,7 +64,7 @@ class TestFormValidation( BaseUserWebTestCase ):
             iUser       = self.user1 )
         #
         form = CreateCategoryForm(data=form_data)
-        form.request = self.request
+        #
         self.assertFalse(form.is_valid())
         #
         '''
@@ -93,7 +78,7 @@ class TestFormValidation( BaseUserWebTestCase ):
         form_data['cTitle'] = 'Widget'
         #
         form = CreateCategoryForm(data=form_data)
-        form.request = self.request
+        #
         self.assertTrue(form.is_valid())
 
 
@@ -107,10 +92,10 @@ class TestFormValidation( BaseUserWebTestCase ):
             iUser       = self.user1 )
         #
         form = CreateCategoryForm(data=form_data)
-        form.request = self.request
+        #
         self.assertTrue(form.is_valid())
         #
-        form.instance.iUser = self.user1
+        form.instance.iUser = self.user1 # need this!
         form.save()
         oCategory = Category.objects.get( cTitle = 'Widget' )
         self.assertEqual(
@@ -129,9 +114,10 @@ class TestFormValidation( BaseUserWebTestCase ):
             iUser       = self.user1 )
         #
         form = CreateCategoryForm(data=form_data)
-        form.request = self.request
-        form.user    = self.user1
-        self.assertFalse(form.is_valid())
+        #
+        form.user    = self.user1 # need this!
+        #
+        self.assertFalse( form.is_valid() )
         #
         form_data = dict(
             cTitle      = 'ThingaMaJig',
@@ -139,10 +125,16 @@ class TestFormValidation( BaseUserWebTestCase ):
             iUser       = self.user1.id )
         #
         form = CreateCategoryForm(data=form_data)
-        form.request = self.request
-        form.user    = self.user1
-        isFormValid = form.is_valid()
-        self.assertFalse( isFormValid )
+        #
+        form.user    = self.user1 # need this!
+        #
+        self.assertFalse( form.is_valid() )
+        #
+        sErrMsg = (
+                'Cannot put ThingaMaJig in category name, ThingaMaJig '
+                'is already in Look_For for category name Gadget' )
+        #
+        self.assertIn( sErrMsg, form.errors['cLookFor'] )
         #
         '''
         maybePrint('')
@@ -154,3 +146,74 @@ class TestFormValidation( BaseUserWebTestCase ):
             maybePrint( 'no form errors at bottom!' )
         '''
 
+    def test_change_Title_case_webtest_style( self ):
+        #
+        # webtest style
+        sUpdateURL  = reverse( 'categories:edit', args=(self.iCategoryID,) )
+        #
+        oForm = self.app.get( sUpdateURL ).form
+        #
+        self.assertEqual( oForm['cTitle'].value, 'Gadget' )
+        #
+        oForm['cTitle']   = 'gadget'
+        #
+        oResponse = oForm.submit()
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'gadget' )
+        #
+        oCategory = Category.objects.get( id = self.iCategoryID )
+        #
+        self.assertEqual( oCategory.cTitle, 'gadget' )
+        #
+
+
+    def test_change_Title_case_django_style( self ):
+        #
+        sUpdateURL  = reverse( 'categories:edit', args=(self.iCategoryID,) )
+        #
+        oResponse   = self.client.get( sUpdateURL )
+        #
+        form        = oResponse.context['form'] # retrieve form data as dict
+        #
+        data = form.initial # form is unbound but contains data
+        #
+        self.assertEqual( data['cTitle'], 'Gadget' )
+        #
+        purgeNoneValueItems( data )
+        #
+        data['cTitle']   = 'gadget'
+        #
+        form = UpdateCategoryForm( data = data )
+        #
+        self.assertTrue( form.is_valid() )
+        ## retrieve again
+        #oResponse = self.client.get( sUpdateURL )
+        ##
+        #self.assertEqual(oResponse.context['form'].initial['cTitle'], 'thingamajig')
+        '''
+        print()
+        print( 'initial data:', data )
+        #
+        #data['cLookFor'] = 'Gadget'
+        ##
+        print()
+        print( 'updated data:', data )
+        print( 'form.is_bound:', form.is_bound )
+        print( 'form.is_valid():', form.is_valid() )
+        #
+        maybePrint('')
+        if form.errors:
+            for k, v in form.errors.items():
+                maybePrint( k, ' -- ', v )
+        else:
+            maybePrint( 'no form errors at bottom!' )
+        #print( 'form.non_field_errors:', form.non_field_errors() )
+        oCategory = Category.objects.get( id = self.iCategoryID )
+        #
+        oForm = UpdateCategoryForm( instance = oCategory )
+        #
+        print( 'oForm.instance.cTitle:', oForm.instance.cTitle )
+        oForm.instance.cTitle = 'gadget'
+        oForm.user            = self.user1
+        #
+        '''
