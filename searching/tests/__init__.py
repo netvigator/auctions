@@ -260,6 +260,7 @@ sModels = \
  875A (Granada)     |           |      7 | f            | Altec-Lansing     |Speaker System| Granada     |
  890                |           |      7 | f            | Altec-Lansing     |Speaker Enclosure| Bolero   |
  811B               |           |      6 | t            | Altec-Lansing     |         Horn |             |
+ 920-8B             |           |      4 | t            | Altec-Lansing     |       Driver |             |
  A-433A             |           |      8 | t            | Altec-Lansing     |       Preamp |             |
  A-5                |           |      8 | f            | Altec-Lansing     |Speaker System|             |
  A-7                |           |      6 | f            | Altec-Lansing     |Speaker System|             |
@@ -806,6 +807,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["254630676292"],
+             "title":[" Altec Lansing 920-8B 12\\" Duplex Speakers w\/Crossovers VOTT 604 605 515 JBL"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mo7uQU_Y_KrUtDaGc4IKb1A\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-920-8B-12-Duplex-Speakers-w-Crossovers-VOTT-604-605-515-JBL-\/254630676292"],
+             "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+             "postalCode":["920**"],"location":["Bonsall,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"330.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"330.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT23H36M15S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-20T21:04:29.000Z"],
+             "endTime":["2020-06-27T21:04:29.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["133438318976"],
              "title":["#83 Lot Of 3rca Cunningham Radiotron 45 Ux 245 Cx 345 Vacuum tubes "],
