@@ -3073,6 +3073,12 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 254630676292
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Altec 920-8B not 604 605 515' )
+        #
         #
         #
         #
