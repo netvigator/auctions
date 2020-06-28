@@ -68,7 +68,6 @@ class CreateModelForm( ModelFormValidatesTitle ):
 
 class UpdateModelForm( ModelFormValidatesTitle ):
     #
-    which = 'Update'
 
     def __init__( self, *args, **kwargs ):
         #
