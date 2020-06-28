@@ -1,15 +1,16 @@
 # import inspect
 
-from django.urls        import reverse
+from django.urls            import reverse
 
-from core.utils         import maybePrint
-from core.tests.base    import BaseUserWebTestCase, getUrlQueryStringOff
+from core.utils             import maybePrint
+from core.tests.base        import BaseUserWebTestCase, getUrlQueryStringOff
 
 # Create your tests here.
 
-from ..forms            import CreateBrandForm, UpdateBrandForm
-from ..models           import Brand
+from ..forms                import CreateBrandForm, UpdateBrandForm
+from ..models               import Brand
 
+from pyPks.Dict.Maintain    import purgeNoneValueItems
 
 
 
@@ -26,6 +27,37 @@ class TestFormValidation( BaseUserWebTestCase ):
         oBrand = Brand(
             cTitle = "Cadillac", cLookFor = "Caddy", iUser = self.user1 )
         oBrand.save()
+        #
+        self.iBrandID = oBrand.id
+        #
+        self.loginWebTest()
+
+
+    def test_swap_title_and_lookfor( self ):
+        #
+        '''should swap title and look for without error'''
+        #
+        # webtest style
+        sUpdateURL  = reverse( 'brands:edit', args=(self.iBrandID,) )
+        #
+        oForm = self.app.get( sUpdateURL ).form
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'Cadillac')
+        self.assertEqual( oForm['cLookFor'].value, 'Caddy'   )
+        #
+        oForm['cTitle']   = 'Caddy'
+        oForm['cLookFor'] = 'Cadillac'
+        #
+        oResponse = oForm.submit()
+        #
+        self.assertEqual( oForm['cTitle'  ].value, 'Caddy'   )
+        self.assertEqual( oForm['cLookFor'].value, 'Cadillac')
+        #
+        oBrand = Brand.objects.get( id = self.iBrandID )
+        #
+        self.assertEqual( oBrand.cTitle,  'Caddy'   )
+        self.assertEqual( oBrand.cLookFor,'Cadillac')
+
 
     def test_Title_got_outside_parens(self):
         #
@@ -38,7 +70,7 @@ class TestFormValidation( BaseUserWebTestCase ):
             iUser       = self.user1.id )
         #
         form = CreateBrandForm(data=form_data)
-        form.request = self.request
+        #
         self.assertFalse(form.is_valid())
         #
         '''
@@ -52,7 +84,7 @@ class TestFormValidation( BaseUserWebTestCase ):
         form_data['cTitle'] = 'Chevrolet'
         #
         form = CreateBrandForm(data=form_data)
-        form.request = self.request
+        #
         self.assertTrue(form.is_valid())
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
@@ -68,10 +100,10 @@ class TestFormValidation( BaseUserWebTestCase ):
             iUser       = self.user1.id )
         #
         form = CreateBrandForm(data=form_data)
-        form.request = self.request
+        #
         self.assertTrue(form.is_valid())
         #
-        form.instance.iUser = self.user1
+        form.instance.iUser = self.user1 # need this!
         form.save()
         oBrand = Brand.objects.get( cTitle = 'Chevrolet' )
         self.assertEqual(
@@ -90,21 +122,18 @@ class TestFormValidation( BaseUserWebTestCase ):
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        # maybePrint( 'test_add_Title_already_there' )
         form = CreateBrandForm(data=form_data)
-        form.request = self.request
-        form.user    = self.user1
-        #isFormValid = form.is_valid()
-        #self.assertFalse( isFormValid )
+        ##
+        form.user    = self.user1 # need this!
+        #
         self.assertFalse( form.is_valid() )
         #
         form_data['cTitle'] = 'Caddy'
         #
         form = CreateBrandForm(data=form_data)
-        form.request = self.request
-        form.user    = self.user1
-        #isFormValid = form.is_valid()
-        #self.assertFalse( isFormValid )
+        ##
+        form.user    = self.user1 # need this!
+        #
         self.assertFalse( form.is_valid() )
         #
         ''' yes the errors are there
@@ -119,3 +148,45 @@ class TestFormValidation( BaseUserWebTestCase ):
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
+
+
+    def test_change_Title_case_webtest_style( self ):
+        #
+        # webtest style
+        sUpdateURL  = reverse( 'brands:edit', args=(self.iBrandID,) )
+        #
+        oForm = self.app.get( sUpdateURL ).form
+        #
+        self.assertEqual( oForm['cTitle'].value, 'Cadillac' )
+        #
+        oForm['cTitle']   = 'cadillac'
+        #
+        oResponse = oForm.submit()
+        #
+        self.assertEqual( oForm['cTitle'].value, 'cadillac' )
+        #
+        oBrand = Brand.objects.get( id = self.iBrandID )
+        #
+        self.assertEqual( oBrand.cTitle, 'cadillac' )
+        #
+
+
+    def test_change_Title_case_django_style( self ):
+        #
+        sUpdateURL  = reverse( 'brands:edit', args=(self.iBrandID,) )
+        #
+        oResponse   = self.client.get( sUpdateURL )
+        #
+        form        = oResponse.context['form'] # retrieve form data as dict
+        #
+        data = form.initial # form is unbound but contains data
+        #
+        self.assertEqual( data['cTitle'], 'Cadillac' )
+        #
+        purgeNoneValueItems( data )
+        #
+        data['cTitle']   = 'cadillac'
+        #
+        form = UpdateBrandForm( data = data )
+        #
+        self.assertTrue( form.is_valid() )
