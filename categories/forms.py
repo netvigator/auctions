@@ -54,7 +54,6 @@ class CreateCategoryForm( ModelFormValidatesTitle ):
 
 class UpdateCategoryForm( ModelFormValidatesTitle ):
     #
-    which = 'Update'
 
     def __init__( self, *args, **kwargs ):
         #
