@@ -3084,6 +3084,37 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 392837328193
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find KT-88 (GEC) GEC (Genalex) not KT-88 Mullard' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174319222859
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find driver not Century speaker system' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 254628290743
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find LE-20-1driver not the rest' )
+        #
+        #
+        #
+        #
+        #
+
         #
         #
         '''
