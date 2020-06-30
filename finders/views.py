@@ -75,7 +75,7 @@ class FinderIndexView(
 
 
 
-class ItemFoundDetailView( DetailViewGotModel ):
+class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
 
     model           = UserFinder
     parent          = ItemFound
