@@ -504,7 +504,11 @@ class GetUserSelectionsOnPost( object ):
                     oItem = ItemFound.objects.get( iItemNumb = int( sItemNumb ) )
                     messages.error( request, '%s -- %s' % ( sItemNumb, oItem.cTitle ) )
             #
-        if 'trashKeepers' in request.POST: # from button name in HTML file
+        elif 'TrashFinders' in request.POST: # from button name in HTML file
+            #
+            pass
+            #
+        elif 'TrashKeepers' in request.POST: # from button name in HTML file
             #
             # importing this at top caused a circular import problem
             #
