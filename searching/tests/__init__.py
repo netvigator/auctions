@@ -209,6 +209,8 @@ sModels = \
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             |              | f
+ KT-88              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-25 (10Y)        |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -472,13 +474,16 @@ sModels = \
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
  76                 |           |      6 | f            | JBL               |       Driver | 076         |
  175                |           |     10 | f            | JBL               |       Driver |             |
+ L100 (Century)     |           |      7 | f            | JBL               | Speaker System| Century    | mid century
  LE-175             |           |      8 | f            | JBL               |       Driver |             |
  275                |           |     10 | f            | JBL               |       Driver |             |
  D-130              |           |      7 | f            | JBL               |       Driver | 130         |
  D-130A             |           |      7 | f            | JBL               |       Driver | 130A        |
  D-130B             |           |      7 | f            | JBL               |       Driver | 130B        |
+ D216               |           |      5 | f            | JBL               |       Driver |             |
  LE5-5              |           |      5 | t            | JBL               |       Driver |             |
  LE14A              |           |      8 | f            | JBL               |       Driver |             |
+ LE-20-1            |           |      4 | t            | JBL               |       Driver |             |
  1217-1290          |           |      7 | f            | JBL               |         Horn |             |
  H5040              |           |      7 | f            | JBL               |         Horn |             |
  N2400              |           |      6 | f            | JBL               |    Crossover |             |
@@ -807,6 +812,57 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["254628290743"],
+             "title":["Working Pair of JBL LE20-1 Tweeters 8 Ohm Speakers L55 Lancer 66 77 88 99 4310"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mjj8oNgQ4JZImJnqEu8ZNAQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Working-Pair-JBL-LE20-1-Tweeters-8-Ohm-Speakers-L55-Lancer-66-77-88-99-4310-\/254628290743"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["041**"],"location":["South Portland,ME,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"139.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"139.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT4H48M36S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-18T02:13:10.000Z"],
+             "endTime":["2020-06-25T02:13:10.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["174319222859"],
+             "title":["Vintage Mid-Century Mod  Norelco - JBL D216 Speaker Cabinet "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mfYAz-7Pvh3sC1qksHjZuIw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Mid-Century-Mod-Norelco-JBL-D216-Speaker-Cabinet-\/174319222859"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"24.85"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"100.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"100.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT1H8M29S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"155.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"155.0"}],
+             "startTime":["2020-06-16T22:33:07.000Z"],
+             "endTime":["2020-06-23T22:33:07.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["6"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["392837328193"],
+             "title":["2 vintage NOS Genalex GEC (labelled Mullard) black plate KT88 6550 tubes  tested"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mEJrPF8F5XqXOqfFrr1zN4g\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-vintage-NOS-Genalex-GEC-labelled-Mullard-black-plate-KT88-6550-tubes-tested-\/392837328193"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["467**"],"location":["New Haven,IN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"261.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"261.0"}],
+             "bidCount":["31"],"sellingState":["Active"],"timeLeft":["P0DT3H4M22S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-14T00:30:36.000Z"],
+             "endTime":["2020-06-21T00:30:36.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["43"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["254630676292"],
              "title":[" Altec Lansing 920-8B 12\\" Duplex Speakers w\/Crossovers VOTT 604 605 515 JBL"],
