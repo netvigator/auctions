@@ -179,6 +179,7 @@ class Model( GetItemsForSomething, models.Model ):
             UserItemFound.objects.filter(
                 iUser               = oUser,
                 iModel              = oModel,
+                bListExclude        = False,
                 tRetrieved__isnull  = True )
             ).order_by( '-iHitStars', '-tTimeEnd' )
         #
