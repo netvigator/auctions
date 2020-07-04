@@ -128,7 +128,7 @@ sModels = \
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
  10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10\\r10,000 | t
- 12SN7              |           |      7 | t            |                   |  Vacuum Tube | 12SN7-GT    |              | t
+ 12SN7GT            |           |      7 | t            |                   |  Vacuum Tube | 12SN7       |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | f            |                   |  Vacuum Tube |             | 5814A        | t
@@ -164,6 +164,8 @@ sModels = \
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
  6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  6189               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
+ 6SL7GTA            |           |      5 | t            |                   |  Vacuum Tube | 6SL7\\r6SL7G |             | t
+ 6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f
  6V6G (Sylvania)    | Sylvania\\rSilvertone | 8 | f     | Sylvania          |  Vacuum Tube |             |              | f
  6V6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -812,6 +814,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["333634731461"],
+             "title":["VINTAGE AUDIO TUBES 6SN7, 12SN7, 6SL7 LOT OF OF 12 NOS NEW IN THE BOX TUNG-SOL, "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mxzCLB1Qw5D7Db2wvCiuEKA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/VINTAGE-AUDIO-TUBES-6SN7-12SN7-6SL7-LOT-12-NOS-NEW-BOX-TUNG-SOL-\/333634731461"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["870**"],"location":["Tijeras,NM,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"29.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"29.95"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT7H30M25S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-24T20:30:56.000Z"],
+             "endTime":["2020-06-29T20:30:56.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["254628290743"],
              "title":["Working Pair of JBL LE20-1 Tweeters 8 Ohm Speakers L55 Lancer 66 77 88 99 4310"],
