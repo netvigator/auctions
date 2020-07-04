@@ -354,12 +354,10 @@ class GetUserSelectionsOnPost( object ):
         #
         url = request.build_absolute_uri()
         #
-        tTrash = tuple( request.POST.getlist('bTrashThis') )
-        #
-        print( '"selectall" in request.POST:', "selectall" in request.POST )
-        print( '"search"    in request.POST:', "search"    in request.POST )
-        print( '"active"    in request.POST:', "active"    in request.POST )
-        print( '"deleted"   in request.POST:', "deleted"   in request.POST )
+        #print( '"selectall" in request.POST:', "selectall" in request.POST )
+        #print( '"search"    in request.POST:', "search"    in request.POST )
+        #print( '"active"    in request.POST:', "active"    in request.POST )
+        #print( '"deleted"   in request.POST:', "deleted"   in request.POST )
         #
         if "selectall" in request.POST: # from button name in HTML file
             #
@@ -381,10 +379,9 @@ class GetUserSelectionsOnPost( object ):
                         bGetResult   = True,
                         bListExclude = False )
             #
-            return HttpResponseRedirect( url )
-            #
         elif 'GetOrTrashFinders' in request.POST: # from button name in HTML file
             #
+            print( 'GetOrTrashFinders' )
             lAllItems       = request.POST.getlist('AllItems')
             #
             # fset = frozenset
@@ -393,11 +390,13 @@ class GetUserSelectionsOnPost( object ):
             #
             setExclude      = fset( request.POST.getlist('bListExclude') )
             # check box end user can change
+            print( 'setExclude:', setExclude )
             setGetResult    =  set( request.POST.getlist('bGetResult') )
             # check box end user can change
             setResultCheck  = fset( request.POST.getlist('GetResultChecked') )
             # hidden set if item has bGetResult as True when page composed
             setExcludeCheck = fset( request.POST.getlist('ExcludeChecked') )
+            print( 'setExcludeCheck:', setExcludeCheck )
             # hidden set if item has bListExclude as True when page composed
             #
             setCommon       = setGetResult.intersection( setExclude      )
@@ -437,6 +436,7 @@ class GetUserSelectionsOnPost( object ):
             #
             if lResultGet:
                 #
+                print( 'lResultGet:', lResultGet )
                 tResultGet = tuple( map( int, lResultGet   ) )
                 #
                 UserFinder.objects.filter(
@@ -451,6 +451,7 @@ class GetUserSelectionsOnPost( object ):
                 #
             if lResultCancel:
                 #
+                print( 'lResultCancel:', lResultCancel )
                 tResultCancel = tuple( map( int, lResultCancel) )
                 #
                 UserFinder.objects.filter(
@@ -465,6 +466,7 @@ class GetUserSelectionsOnPost( object ):
                 #
             if lExcludeYes:
                 #
+                print( 'lExcludeYes:', lExcludeYes )
                 tExcludeYes = tuple( map( int, lExcludeYes) )
                 #
                 UserFinder.objects.filter(
@@ -479,6 +481,7 @@ class GetUserSelectionsOnPost( object ):
                 #
             if lExcludeNo:
                 #
+                print( 'lExcludeNo:', lExcludeNo )
                 tExcludeNo  = tuple( map( int, lExcludeNo ) )
                 #
                 UserFinder.objects.filter(
@@ -506,13 +509,20 @@ class GetUserSelectionsOnPost( object ):
             #
         elif 'TrashFinders' in request.POST: # from button name in HTML file
             #
-            pass
+            tTrash = tuple( request.POST.getlist('bTrashThis') )
+            #
+            for sItemNumb in tTrash:
+                #
+                print( sItemNumb )
+                #
             #
         elif 'TrashKeepers' in request.POST: # from button name in HTML file
             #
             # importing this at top caused a circular import problem
             #
             from keepers.utils import deleteKeeperUserItem
+            #
+            tTrash = tuple( request.POST.getlist('bTrashThis') )
             #
             for sItemNumb in tTrash:
                 #
