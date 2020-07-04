@@ -406,12 +406,8 @@ class TestGenericModelOkay( GetBrandsCategoriesModelsWebTestSetUp ):
         self.assertTrue( oModel.bGenericModel )
 
 
+class SetupForStoreResultsTests( object ):
 
-class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
-    #
-    ''' class for testing trySearchCatchExceptStoreInFile() &
-    storeSearchResultsInFinders() store records '''
-    #
     def setUp( self ):
         #
         sThisFilePath, sName, sExt = getPathNameExt( realpath(__file__) )
@@ -420,7 +416,13 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
         #
         self.sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
         #
-        super( DoSearchStoreResultsTests, self ).setUp()
+        super( SetupForStoreResultsTests, self ).setUp()
+
+
+class CheckStoredResultsTest(
+            SetupForStoreResultsTests, GetBrandsCategoriesModelsWebTestSetUp ):
+
+    ''' class for testing trySearchCatchExceptStoreInFile() '''
 
     def test_already_stored_results( self ):
         #
@@ -458,6 +460,11 @@ class DoSearchStoreResultsTests( GetBrandsCategoriesModelsWebTestSetUp ):
                           'tests.test_utils.DoSearchStoreResultsTests' )
         #
 
+class DoSearchStoreResultsTests(
+            SetupForStoreResultsTests, GetBrandsCategoriesModelsWebTestSetUp ):
+    #
+    ''' class for storeSearchResultsInFinders() store records '''
+    #
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_key_word_only_search_store_results( self ):
