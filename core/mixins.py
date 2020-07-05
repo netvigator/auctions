@@ -381,7 +381,7 @@ class GetUserSelectionsOnPost( object ):
             #
         elif 'GetOrTrashFinders' in request.POST: # from button name in HTML file
             #
-            print( 'GetOrTrashFinders' )
+            #print( 'GetOrTrashFinders' )
             lAllItems       = request.POST.getlist('AllItems')
             #
             # fset = frozenset
@@ -390,13 +390,13 @@ class GetUserSelectionsOnPost( object ):
             #
             setExclude      = fset( request.POST.getlist('bListExclude') )
             # check box end user can change
-            print( 'setExclude:', setExclude )
+            #print( 'setExclude:', setExclude )
             setGetResult    =  set( request.POST.getlist('bGetResult') )
             # check box end user can change
             setResultCheck  = fset( request.POST.getlist('GetResultChecked') )
             # hidden set if item has bGetResult as True when page composed
             setExcludeCheck = fset( request.POST.getlist('ExcludeChecked') )
-            print( 'setExcludeCheck:', setExcludeCheck )
+            #print( 'setExcludeCheck:', setExcludeCheck )
             # hidden set if item has bListExclude as True when page composed
             #
             setCommon       = setGetResult.intersection( setExclude      )
@@ -436,7 +436,7 @@ class GetUserSelectionsOnPost( object ):
             #
             if lResultGet:
                 #
-                print( 'lResultGet:', lResultGet )
+                #print( 'lResultGet:', lResultGet )
                 tResultGet = tuple( map( int, lResultGet   ) )
                 #
                 UserFinder.objects.filter(
@@ -451,7 +451,7 @@ class GetUserSelectionsOnPost( object ):
                 #
             if lResultCancel:
                 #
-                print( 'lResultCancel:', lResultCancel )
+                #print( 'lResultCancel:', lResultCancel )
                 tResultCancel = tuple( map( int, lResultCancel) )
                 #
                 UserFinder.objects.filter(
@@ -466,7 +466,7 @@ class GetUserSelectionsOnPost( object ):
                 #
             if lExcludeYes:
                 #
-                print( 'lExcludeYes:', lExcludeYes )
+                #print( 'lExcludeYes:', lExcludeYes )
                 tExcludeYes = tuple( map( int, lExcludeYes) )
                 #
                 UserFinder.objects.filter(
@@ -481,7 +481,7 @@ class GetUserSelectionsOnPost( object ):
                 #
             if lExcludeNo:
                 #
-                print( 'lExcludeNo:', lExcludeNo )
+                #print( 'lExcludeNo:', lExcludeNo )
                 tExcludeNo  = tuple( map( int, lExcludeNo ) )
                 #
                 UserFinder.objects.filter(
@@ -509,12 +509,15 @@ class GetUserSelectionsOnPost( object ):
             #
         elif 'TrashFinders' in request.POST: # from button name in HTML file
             #
-            tTrash = tuple( request.POST.getlist('bTrashThis') )
+            tTrash = tuple( request.POST.getlist('bListExclude') )
             #
-            for sItemNumb in tTrash:
-                #
-                print( sItemNumb )
-                #
+            # next: queryset update method
+            # next: queryset update method
+            # next: queryset update method
+            #
+            UserItemFound.objects.filter(
+                    id__in = tTrash ).update(
+                        bListExclude = True )
             #
         elif 'TrashKeepers' in request.POST: # from button name in HTML file
             #
