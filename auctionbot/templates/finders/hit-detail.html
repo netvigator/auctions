@@ -1,3 +1,5 @@
+<!-- used by ItemFoundHitView -->
+<!-- get this from the list at bottom for a model, brand or category -->
 {% extends "base.html" %}
 {% load field_name %}
 {% load getLastDroppedFromCommaSeparatedString %}
@@ -7,6 +9,12 @@
 {% block content %}
 
     <h4>{{ object }}</h4>
+
+    <form action="" method="post">
+    <!-- core mixin class GetUserSelectionsOnPost looks for a post -->
+
+    {% csrf_token %}
+    <!-- need token here or submit button does not work -->
 
     <!-- Action buttons -->
     <div class="basic">
@@ -22,10 +30,8 @@
     </TR>
     <TR style="vertical-align:top">
         <TD>{% field_name parent 'iItemNumb' %}</TD>
-        <TD>
-              <a href="https://www.ebay.com/itm/{{object.iItemNumb.iItemNumb}}/">
+        <TD><a href="https://www.ebay.com/itm/{{object.iItemNumb.iItemNumb}}/">
                       {{ object.iItemNumb.iItemNumb }}</a></TD>
-
     </TR>
     <TR style="vertical-align:top">
         <TD>{% field_name parent 'cLocation' %}</TD>
@@ -192,5 +198,6 @@
         {% include "./hit-actions.html" %}
     </div>
     <!-- End Action buttons -->
+    </form>
 
 {% endblock %}
