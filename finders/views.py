@@ -102,7 +102,8 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
                 iItemNumb_id        = context[ 'object' ].iItemNumb,
-                iUser               = self.request.user
+                iUser               = self.request.user,
+                bListExclude        = False,
                 ).order_by( '-iHitStars' )
         #
         context['HitsForThis']  = qsThisItemAllHits
