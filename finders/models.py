@@ -1,5 +1,6 @@
 from django.db          import models
 from django.urls        import reverse
+from django.utils       import timezone
 
 from django_countries   import fields
 
@@ -186,7 +187,8 @@ class UserItemFound(models.Model):
     tTimeEnd        = models.DateTimeField( 'ending date/time',
                         null=True, db_index = True  )
     #
-    tCreate         = models.DateTimeField( 'created on', db_index = True )
+    tCreate         = models.DateTimeField( 'created on',
+                        default=timezone.now, db_index = True )
     tModify         = models.DateTimeField( 'updated on', auto_now = True )
     tRetrieved      = models.DateTimeField( 'retrieved info',
                         null = True, blank = True )
