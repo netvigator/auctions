@@ -2,7 +2,6 @@ from django             import forms
 
 from django.forms       import ModelForm
 
-
 from finders            import dItemFoundFields, dUserItemFoundUploadFields
 
 from core.crispy        import Field, Layout, Submit
@@ -65,6 +64,23 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
         #
         super( UserItemFoundForm, self ).__init__( *args, **kwargs )
         #
+        '''
+        if False and 'iItemNumb_id' in kwargs:
+            #
+            print( kwargs['iItemNumb_id'] )
+            self.fields['iItemNumb_id'] = kwargs['iItemNumb_id']
+            #
+        else:
+            if 'request' in self.__dict__:
+                print( 'self.request:', self.request )
+            print( 'args:', args )
+            print( 'kwargs:', kwargs )
+            if 'args' in self.__dict__:
+                print( 'self.args:', self.args )
+            if 'kwargs' in self.__dict__:
+                print( 'self.kwargs:', self.kwargs )
+        '''
+        #
         if self.instance.iBrand:
             self.fields["iModel"].queryset = (
                     Model.objects.filter(
@@ -110,7 +126,7 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
         igModel = self.cleaned_data['gModel']
         iModel  = self.cleaned_data['iModel']
         #
-        if iModel is None and igModel is not None:
+        if igModel and not iModel:
             #
             self.cleaned_data['iModel'] = Model.objects.get( pk = igModel )
             #
