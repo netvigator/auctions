@@ -77,6 +77,8 @@ class FinderIndexView(
 
 class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
 
+    # get this from the finders list (top menu item)
+
     model           = UserFinder
     parent          = ItemFound
     template_name   = 'finders/detail.html'
@@ -107,11 +109,15 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 ).order_by( '-iHitStars' )
         #
         context['HitsForThis']  = qsThisItemAllHits
+        context['iItemNumb']    = context[ 'object' ].iItemNumb
         #
         return context
 
 
-class ItemFoundHitView( DetailViewGotModel ):
+
+class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
+
+    # get this from the list at bottom for a model, brand or category
 
     model           = UserItemFound
     parent          = ItemFound
@@ -136,14 +142,14 @@ class ItemFoundHitView( DetailViewGotModel ):
          'parent': <class 'finders.models.ItemFound'>}
         '''
         #
-        qsThisItemAllHits = UserItemFound.objects.filter(
-                iItemNumb_id = context[ 'object' ].iItemNumb_id,
-                iUser        = context[ 'object' ].iUser )
-        #
-        qsThisItemOtherHits = qsThisItemAllHits.difference(
-                UserItemFound.objects.filter( id = context[ 'object' ].id ) )
+        qsThisItemOtherHits = UserItemFound.objects.filter(
+                iItemNumb_id  = context[ 'object' ].iItemNumb_id,
+                iUser         = context[ 'object' ].iUser,
+                bListExclude  = False
+                ).exclude( id = context[ 'object' ].id )
         #
         context['HitsForThis']  = qsThisItemOtherHits
+        context['iItemNumb']    = context[ 'object' ].iItemNumb_id
         #
         return context
 
