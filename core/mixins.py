@@ -342,6 +342,8 @@ class GetUserSelectionsOnPost( object ):
     this class is a mixin for finders index view,
     also for view DetailViewGotModelAlsoPost
     which manages keepers & finders under models, brands & categories
+    core views has DetailViewGotModelAlsoPost,
+    used for models, brands & categories
     so YES it makes sense for this to be in core mixins
     alternative would be complicated
     '''
