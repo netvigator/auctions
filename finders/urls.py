@@ -10,6 +10,8 @@ urlpatterns = [
     # hit view is one user item found
     # there could be other brands or models for the item
     # (other hits should be listed)
+
+    # get this from the list at bottom for a model, brand or category
     url( # specific ones need to be above the index url !!!!
         regex   = r'^hit/(?P<pk>[0-9]+)/$',
         view    = views.ItemFoundHitView.as_view(),
@@ -17,7 +19,8 @@ urlpatterns = [
     url(
         regex   = r'^add/$',
         view    = views.ItemFoundCreateView.as_view(),
-        name    = 'add'  ),
+        name    = 'add' ),
+    # get this from the finders list (top menu item)
     url(
         regex   = r'^(?P<pk>[0-9]+)/$',
         view    = views.ItemFoundDetailView.as_view(),
