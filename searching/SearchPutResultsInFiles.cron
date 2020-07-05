@@ -1,0 +1,13 @@
+#!/bin/bash
+#source ~/bin/config.sh
+TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+LOGFILE="/tmp/searches/search_log.log"
+if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 0 ]
+then
+        echo "$TIMESTAMP will do SearchPutResultsInFiles.sh" >> $LOGFILE
+        ~/Devel/auctions/searching/SearchPutResultsInFiles.sh
+else
+        echo "$TIMESTAMP not today: SearchPutResultsInFiles.sh" >> $LOGFILE
+fi
+
+#/usr/bin/test $(echo `date +%s` / 86400 % 2 == 0 |/usr/bin/bc) -eq 1 && /home/rick/Devel/auctions/searching/SearchPutResultsInFiles.sh
