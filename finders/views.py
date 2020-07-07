@@ -188,11 +188,10 @@ class ItemFoundCreateView( CreateViewCanCancel ):
     def form_valid( self, form ):
         #
         instance = form.instance
+        session  = self.request.session
         #
-        instance.iItemNumb_id = \
-                instance.iItemNumb_id or self.request.session['iItemNumb']
-        instance.iSearch_id   = \
-                instance.iSearch_id   or self.request.session['iSearch'  ]
-            #
+        instance.iItemNumb_id = instance.iItemNumb_id or session['iItemNumb']
+        instance.iSearch_id   = instance.iSearch_id   or session['iSearch'  ]
+        instance.iUser        = self.request.user
         #
         return super( ItemFoundCreateView, self ).form_valid( form )
