@@ -103,13 +103,17 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         '''
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
-                iItemNumb_id        = context[ 'object' ].iItemNumb,
+                iItemNumb_id        = context[ 'object' ].iItemNumb_id,
                 iUser               = self.request.user,
                 bListExclude        = False,
                 ).order_by( '-iHitStars' )
         #
         context['HitsForThis']  = qsThisItemAllHits
-        context['iItemNumb']    = context[ 'object' ].iItemNumb
+        #
+        session = self.request.session
+        #
+        session['iItemNumb']    = context[ 'object' ].iItemNumb_id
+        session['iSearch'  ]    = qsThisItemAllHits[0].iSearch_id
         #
         return context
 
@@ -131,7 +135,7 @@ class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
         context = super(
                 ItemFoundHitView, self
                 ).get_context_data( **kwargs )
-
+        #
         # qsThisItem = UserItemFound.objects.filter(
         #
         '''
@@ -149,7 +153,11 @@ class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 ).exclude( id = context[ 'object' ].id )
         #
         context['HitsForThis']  = qsThisItemOtherHits
-        context['iItemNumb']    = context[ 'object' ].iItemNumb_id
+        #
+        session = self.request.session
+        #
+        session['iItemNumb']    = context[ 'object' ].iItemNumb_id
+        session['iSearch'  ]    = qsThisItemOtherHits[0].iSearch_id
         #
         return context
 
@@ -177,3 +185,14 @@ class ItemFoundCreateView( CreateViewCanCancel ):
     success_message = 'New finder successfully saved!!!!'
     form_class      = UserItemFoundForm
 
+    def form_valid( self, form ):
+        #
+        instance = form.instance
+        #
+        instance.iItemNumb_id = \
+                instance.iItemNumb_id or self.request.session['iItemNumb']
+        instance.iSearch_id   = \
+                instance.iSearch_id   or self.request.session['iSearch'  ]
+            #
+        #
+        return super( ItemFoundCreateView, self ).form_valid( form )
