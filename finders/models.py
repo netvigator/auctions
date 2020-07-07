@@ -208,7 +208,9 @@ class UserItemFound(models.Model):
 
     def get_absolute_url(self):
         #
-        return reverse( 'finders:hit', kwargs = { 'pk': self.pk } )
+        return getReverseWithUpdatedQuery(
+                'finders:hit',
+                kwargs = { 'pk': self.pk, 'tModify': timezone.now() } )
 
     def get_edit_url(self):
         #
