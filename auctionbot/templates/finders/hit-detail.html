@@ -10,18 +10,18 @@
 
     <h4>{{ object }}</h4>
 
-    <form action="" method="post">
-    <!-- core mixin class GetUserSelectionsOnPost looks for a post -->
-
-    {% csrf_token %}
-    <!-- need token here or submit button does not work -->
-
     <!-- Action buttons -->
     <div class="basic">
         {% include "./hit-actions.html" %}
     </div>
     <!-- End Action buttons -->
     <hr>
+
+    <form action="" method="post">
+    <!-- core mixin class GetUserSelectionsOnPost looks for a post -->
+
+    {% csrf_token %}
+    <!-- need token here or submit button does not work -->
 
     <table>
     <TR style="vertical-align:top">
