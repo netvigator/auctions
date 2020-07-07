@@ -505,4 +505,4 @@ need to catch more gracefully
 2020-06-20 getMakeDir() not setting group write permission!!!? from pyPks.Dir.Get
 might help: Dir.Test.isDirThereAndWritable()
 
-
+2020-07-07 item hit, Edit button not working
