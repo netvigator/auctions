@@ -504,3 +504,10 @@ need to catch more gracefully
 
 2020-06-20 getMakeDir() not setting group write permission!!!? from pyPks.Dir.Get
 might help: Dir.Test.isDirThereAndWritable()
+
+2020-07-08 should catch trying to save a duplicate finder
+IntegrityError at /finders/edit/1414976/
+duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUser_id_iM_72ed5da4_uniq"
+DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id", "iBrand_id", "iCategory_id")=(264681758745, 1, 3878, 952, 146) already exists.
+
+severely need to test finders views more better!
