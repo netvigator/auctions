@@ -113,9 +113,7 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         session = self.request.session
         #
         session['iItemNumb']    = context[ 'object' ].iItemNumb_id
-        #
-        session['iSearch'  ]    = \
-                context['object'].iSearch or qsThisItemAllHits[0].iSearch_id
+        session['iSearch'  ]    = qsThisItemAllHits[0].iSearch_id
         #
         return context
 
@@ -162,7 +160,7 @@ class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
         session['iItemNumb']    = context[ 'object' ].iItemNumb_id
         #
         session['iSearch']      = \
-                context['object'].iSearch or qsThisItemOtherHits[0].iSearch_id
+                context['object'].iSearch_id or qsThisItemOtherHits[0].iSearch_id
         #
         return context
 
