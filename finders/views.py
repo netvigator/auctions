@@ -150,7 +150,8 @@ class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 iItemNumb_id  = context[ 'object' ].iItemNumb_id,
                 iUser         = context[ 'object' ].iUser,
                 bListExclude  = False
-                ).exclude( id = context[ 'object' ].id )
+                ).exclude( id = context[ 'object' ].id
+                ).order_by( '-iHitStars' )
         #
         context['HitsForThis']  = qsThisItemOtherHits
         #
