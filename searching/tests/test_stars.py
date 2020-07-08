@@ -3191,6 +3191,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 164264403031
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'actual model 66X9 should override Catalin generic model' )
+        #
+        #
+        #
+        #
+        #
         #
         '''
         '''
