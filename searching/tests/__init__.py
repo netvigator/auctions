@@ -816,6 +816,22 @@ sResponseItems2Test = \
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
 
+         },{ "itemId":["164264403031"],
+             "title":["RCA Black & Yellow Catalin Case Radio Model  66X9 (1946)"],
+             "globalId":["EBAY-US"],"subtitle":["Works and looks great!"],
+             "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mWqCsddc78XWtVDfucbmgdQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/RCA-Black-Yellow-Catalin-Case-Radio-Model-66X9-1946-\/164264403031"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["201**"],"location":["Leesburg,VA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"41.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"41.0"}],
+             "bidCount":["3"],"sellingState":["Active"],"timeLeft":["P4DT13H59M3S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-06-27T03:00:51.000Z"],
+             "endTime":["2020-07-04T03:00:51.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["42"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},{"itemId":["133448422879"],"title":["VINTAGE ART DECO DEWALD OLD ANTIQUE LYRE HARP
+
          },{ "itemId":["333634731461"],
              "title":["VINTAGE AUDIO TUBES 6SN7, 12SN7, 6SL7 LOT OF OF 12 NOS NEW IN THE BOX TUNG-SOL, "],
              "globalId":["EBAY-US"],
