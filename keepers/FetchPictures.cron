@@ -1,0 +1,11 @@
+#!/bin/bash
+#source ~/bin/config.sh
+TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+LOGFILE="/tmp/searches/keeper_log.log"
+if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 1 ]
+then
+        echo "$TIMESTAMP will do FetchPictures.sh" >> $LOGFILE
+        ~/Devel/auctions/keepers/FetchPictures.sh
+else
+        echo "$TIMESTAMP not today: FetchPictures.sh" >> $LOGFILE
+fi
