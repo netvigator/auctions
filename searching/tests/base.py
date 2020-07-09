@@ -277,6 +277,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             oCategory.save()
             #
+            oRadioCategory = oCategory
+            #
             #
             oCategory   = Category( cTitle      = 'Stereo System',
                                     iStars      = 3,
@@ -617,10 +619,18 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
+                                    iCategory   = oRadioCategory,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
                                     iCategory   = oVacuumTubes,
                                     iUser       = oUser )
             #
             oBrandCategory.save()
+            #
             #
             #
             oBrand = Brand.objects.get( cTitle = 'Philips', iUser = oUser )
@@ -861,6 +871,15 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
                                     iCategory   = oDriver,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Fada', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oRadioCategory,
                                     iUser       = oUser )
             #
             oBrandCategory.save()
