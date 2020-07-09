@@ -438,8 +438,6 @@ class CheckStoredResultsTest(
         #
         iDaysFromNow = - getDeltaDaysFromStrings( sLastAuctionEndDate )
         #
-        sSayLastEnd = ''
-        #
         if iDaysFromNow >= 2:
             sSayLastEnd = ( 'last auction end date '
                             'is about %s days from now' % iDaysFromNow )
@@ -448,16 +446,19 @@ class CheckStoredResultsTest(
         elif iDaysFromNow == 0:
             sSayLastEnd = 'last auction end date is TODAY!!!!'
         #
-        if sSayLastEnd:
-            print( '' )
-            print( sSayLastEnd )
+        sSayHow = ( 'do this:\n'
+                    'python manage.py test searching.'
+                    'tests.test_utils.DoSearchStoreResultsTests' )
+        #
+        print( '' )
+        print( sSayLastEnd )
+
+        if iDaysFromNow and iDaysFromNow < 5:
+            print( 'to update,', sSayHow )
         #
         self.assertGreater( iDaysFromNow, 0,
                     msg = 'got no future auction end dates, '
-                          'API test is WAY OVERDUE!\n'
-                          'do this:\n'
-                          'python manage.py test searching.'
-                          'tests.test_utils.DoSearchStoreResultsTests' )
+                          'API test is WAY OVERDUE!\n%s' % sSayHow )
         #
 
 class DoSearchStoreResultsTests(
