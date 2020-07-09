@@ -120,8 +120,6 @@ sBrands = \
 # ###  you need a BrandCategory row   ###
 # ###    code is in base.py     ###
 
-# 6SN7GTA\\r6SN7GTB
-
 # ### note column delimiter | must have a space on one side or the other
 sModels = \
 '''
@@ -394,6 +392,7 @@ sModels = \
  FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
  R-200              |           |      8 | f            | Fisher            |        Tuner |             |
  SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
+ Catalin            |           |     10 | f            |                   |        Radio |             |              | t
  mirror             |           |      8 | f            | Spartan           |        Radio |             |
  RC350              |           |      8 | f            | RCA               |        Radio |             |
  126                |           |      8 | f            | Garod             |        Radio |             |
@@ -830,7 +829,7 @@ sResponseItems2Test = \
              "startTime":["2020-06-27T03:00:51.000Z"],
              "endTime":["2020-07-04T03:00:51.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["42"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]},{"itemId":["133448422879"],"title":["VINTAGE ART DECO DEWALD OLD ANTIQUE LYRE HARP
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["333634731461"],
              "title":["VINTAGE AUDIO TUBES 6SN7, 12SN7, 6SL7 LOT OF OF 12 NOS NEW IN THE BOX TUNG-SOL, "],
