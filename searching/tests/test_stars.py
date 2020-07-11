@@ -20,7 +20,8 @@ from .base              import ( PutSearchResultsInDatabaseWebTestBase,
                                  StoreUserItemFoundWebTestBase )
 
 from ..utils_stars      import ( getFoundItemTester, findSearchHits,
-                                 _getRowRegExpressions, _getRelevantTitle )
+                                 _getRowRegExpressions, _getRelevantTitle,
+                                 ItemsFoundClass )
 
 from searching.tests    import iRecordStepsForThis
 
@@ -3792,4 +3793,26 @@ class GetRelevantTitleTests( AssertEmptyMixin, TestCasePlus ):
         self.assertEqual( sGotInParens.strip(),
                          '( 6AG6 G )( M.O.V. )(~  6V6G / EL33 /  EL3 )' )
         #
+
+class ItemsFoundClassTests( TestCasePlus ):
+    #
+
+    def test_add_item_found_item( self ):
+        #
+        oItemsFoundGizmo = ItemsFoundClass()
+        #
+        oItemsFoundGizmo.appendItem( iItemNumb = 282330751118 )
+        #
+        oThisHit = oItemsFoundGizmo[0]
+        #
+        for sProperty in oItemsFoundGizmo.tProperties:
+            #
+            if sProperty == 'iItemNumb':
+                #
+                self.assertEqual( oThisHit.iItemNumb, 282330751118 )
+                #
+            else:
+                #
+                self.assertIsNone( getattr( oThisHit, sProperty ) )
+                #
 
