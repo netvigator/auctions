@@ -415,6 +415,10 @@ pics owned by rick:rick
 AttributeError: module 'anymail.backends.mailgun' has no attribute 'MailgunBackend'
   File "django/utils/module_loading.py", line 23, in import_string
     return getattr(module, class_name)
+2020-07-09 ImportError: Module "anymail.backends.mailgun" does not define a "MailgunBackend" attribute/class
+maybe need a real DNS
+https://simpleisbetterthancomplex.com/tutorial/2017/05/27/how-to-configure-mailgun-to-send-emails-in-a-django-app.html
+
 
 2020-03-04 cancelled auctions
 cancelled auctions
