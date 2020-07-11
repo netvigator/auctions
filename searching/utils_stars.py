@@ -69,6 +69,39 @@ logging_level = logging.WARNING
 _oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 
+class ItemsFoundClass( list ):
+
+    tProperties = (
+        'iItemNumb',
+        'iHitStars',
+        'iSearch',
+        'iModel',
+        'iBrand',
+        'iCategory',
+        'iStarsModel',
+        'iStarsBrand',
+        'iStarsCategory',
+        'cFoundModel',
+        'iFoundModelLen',
+        'bModelKeyWords',
+        'cModelAlphaNum',
+        'cTitleLeftOver',
+        'cWhereCategory' )
+
+    def appendItem( self, **kwargs ):
+        #
+        for sProperty in self.tProperties:
+            #
+            if sProperty not in kwargs:
+                #
+                kwargs[ sProperty ] = None
+                #
+            #
+        #
+        oItemFound = ValueContainer( **kwargs )
+        #
+        self.append( oItemFound )
+
 
 def _getRelevantTitle( sTitle ):
     #
