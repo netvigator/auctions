@@ -31,7 +31,7 @@ from .base              import ( GetBrandsCategoriesModelsWebTestSetUp,
 from ..models           import Search, SearchLog
 from ..tests            import ( dSearchResult, sItemHitLog,
                                  sResponseItems2Test )
-from ..utils_stars      import getFoundItemTester, findSearchHits
+from ..utils_stars      import findSearchHits
 from ..utils            import ( storeSearchResultsInFinders,
                                  _putPageNumbInFileName,
                                  trySearchCatchExceptStoreInFile,
