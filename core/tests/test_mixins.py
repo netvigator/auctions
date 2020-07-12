@@ -12,7 +12,7 @@ from ..views                import ListViewGotModel
 
 from finders.views          import FinderIndexView
 
-from searching.utils_stars  import getFoundItemTester
+from searching.utils_stars  import _getFoundItemTester
 from searching.tests.base   import SetUpForHitStarsWebTests
 
 from pyPks.Object.Get       import QuickObject
@@ -400,7 +400,7 @@ class EditingTitleShouldBlankFinder( SetUpBrandsCategoriesModelsWebTest ):
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oBrand, dFinders )
+        foundItem = _getFoundItemTester( self.oBrand, dFinders )
         #
         t = foundItem( self.oBrand.cTitle )
         #
