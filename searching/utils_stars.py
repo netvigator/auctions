@@ -69,7 +69,7 @@ logging_level = logging.WARNING
 _oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 
-class ItemsFoundClass( list ):
+class HitsListClass( list ):
 
     tProperties = (
         'iItemNumb',
@@ -88,6 +88,24 @@ class ItemsFoundClass( list ):
         'cTitleLeftOver',
         'cWhereCategory' )
 
+    oItemFound          = None # ItemsFound table row (django ORM object)
+    lCategoryFound      = [] # list of categories (django ORM objects)
+    dGotCategories      = {} # key oCategory.id, value sInTitle
+    dModelIDinTitle     = {} # key oModel.id ]
+        #                      value = ValueContainer(
+        #                               sInTitle    = sInTitle,
+        #                               iCategory   = oCategory,
+        #                               iBrand      = oModel.iBrand,
+        #                               sModelTitle = oModel.cTitle )
+    dGotBrandIDsInTitle = {} # key oBrand.id, value sInTitle
+    oModelLocated       = None
+    bGotBrandForNonGenericModel = False
+    #
+
+    def __init__( self, **kwargs ):
+        #
+        self.__dict__.update( kwargs )
+
     def appendItem( self, **kwargs ):
         #
         for sProperty in self.tProperties:
@@ -98,9 +116,19 @@ class ItemsFoundClass( list ):
                 #
             #
         #
-        oItemFound = ValueContainer( **kwargs )
+        oNewHit = ValueContainer( **kwargs )
         #
-        self.append( oItemFound )
+        self.append( oNewHit )
+        #
+        return oNewHit
+
+    def appendCopy( self, oHit ):
+        #
+        oNewHit = deepcopy( oHit )
+        #
+        self.append( oNewHit )
+        #
+        return oNewHit
 
 
 def _getRelevantTitle( sTitle ):
@@ -422,11 +450,11 @@ def _whichGetsCredit( sInTitle, bInHeirarchy1, bInHeirarchy2 ):
     return sReturn
 
 
-def _printHitSearchSteps( oItem, dFindSteps ):
+def _printHitSearchSteps( oItemFound, dFindSteps ):
     #
     maybePrint('')
-    maybePrint('Item %s Hit Search Steps:' % oItem.iItemNumb )
-    maybePrint( oItem.cTitle )
+    maybePrint('Item %s Hit Search Steps:' % oItemFound.iItemNumb )
+    maybePrint( oItemFound.cTitle )
     #
     for k, v in dFindSteps.items():
         #
@@ -790,10 +818,26 @@ def _getSearchMyCategoryDict( oUser = oUserOne ):
 
 
 
+def updateModelIDinTitle(
+            dModelIDinTitle,
+            oModel,
+            sInTitle,
+            oCategory ):
+    #
+    if oModel.id not in dModelIDinTitle:
+        #
+        dModelIDinTitle[ oModel.id ] = ValueContainer(
+            sInTitle    = sInTitle,
+            iCategory   = oCategory,
+            iBrand      = oModel.iBrand,
+            sModelTitle = oModel.cTitle )
+        #
+    #
+
 
 
 def _doStepThruCategories(
-            oItem,
+            oItemFound,
             oUserItem,
             qsCategories,
             dFindersCategories,
@@ -801,15 +845,28 @@ def _doStepThruCategories(
             dFindSteps,
             bRecordSteps ):
     #
-    lModels     = dFindSteps[ 'models' ]
-    lCategories = dFindSteps[ 'categories' ]
+    lModels         = dFindSteps[ 'models' ]
+    lCategories     = dFindSteps[ 'categories' ]
     #
-    lCategoryFound = []
-    dGotCategories = {}
+    # breaks findSearchHits() !
+    # oHitsList  = HitsListClass()
     #
-    lItemFoundTemp = []
+    # lCategoryFound  = oHitsList.lCategoryFound
+    # dGotCategories  = oHitsList.dGotCategories
     #
-    oItemFound = ItemFound.objects.get( pk = oItem.iItemNumb )
+    # to avoid breaking findSearchHits(), must do this:
+    lCategoryFound  = []
+    dGotCategories  = {}
+    #
+    # oItemFound = oItem # ItemFound.objects.get( pk = oItem.iItemNumb )
+    #
+    oHitsList = HitsListClass(
+                dGotCategories  = dGotCategories,
+                lCategoryFound  = lCategoryFound,
+                oItemFound      = oItemFound )
+    #
+    # working here
+    lItemFoundTemp  = []
     #
     for oCategory in qsCategories:
         #
@@ -832,16 +889,16 @@ def _doStepThruCategories(
         #
         bInHeirarchy1  = ( # will be True if sInTitle is True
                 sInTitle or
-                ( oItem.iCatHeirarchy and # can be None
+                ( oItemFound.iCatHeirarchy and # can be None
                     foundItem(
-                        oItem.iCatHeirarchy.cCatHierarchy )[0] ) )
+                        oItemFound.iCatHeirarchy.cCatHierarchy )[0] ) )
         #
         bInHeirarchy2  = ( # will be True if either are True
                 sInTitle or
                 bInHeirarchy1 or
-                ( oItem.i2ndCatHeirarchy and
+                ( oItemFound.i2ndCatHeirarchy and
                     foundItem(
-                        oItem.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
+                        oItemFound.i2ndCatHeirarchy.cCatHierarchy )[0] ) )
         #
         #
         bGotCategory = sInTitle or bInHeirarchy1 or bInHeirarchy2
@@ -902,7 +959,7 @@ def _doStepThruCategories(
             elif bInHeirarchy1:
                 #
                 sInCategory1 = foundItem(
-                                oItem.iCatHeirarchy.cCatHierarchy )[0]
+                                oItemFound.iCatHeirarchy.cCatHierarchy )[0]
                 #
                 _appendIfNotAlreadyIn( lCategories,
                     '%s in primary caregory %s' %
@@ -911,7 +968,7 @@ def _doStepThruCategories(
             elif bInHeirarchy2:
                 #
                 sInCategory2 = foundItem(
-                                oItem.i2ndCatHeirarchy.cCatHierarchy )[0]
+                                oItemFound.i2ndCatHeirarchy.cCatHierarchy )[0]
                 #
                 _appendIfNotAlreadyIn( lCategories,
                     '%s in secondary caregory %s' %
@@ -938,6 +995,15 @@ def _doStepThruCategories(
         #
         dGotCategories[ oCategory.id ] = sInTitle
         #
+        oItemOnList = oHitsList.appendItem(
+                iItemNumb       = oItemFound,
+                iStarsCategory  = oCategory.iStars,
+                iHitStars       = oCategory.iStars,
+                iSearch         = oUserItem.iSearch,
+                iCategory       = oCategory,
+                cWhereCategory  = sWhich )
+        #
+        #
     #
     # cWhereCategory 'title' 'heirarchy1' or 'heirarchy2'
     #
@@ -960,7 +1026,7 @@ def _doStepThruCategories(
             #
         #
     #
-    return lCategoryFound, dGotCategories, lItemFoundTemp, oItemFound
+    return lItemFoundTemp, oHitsList
 
 
 
@@ -968,12 +1034,11 @@ def _doStepThruCategories(
 def _doStepThruModels(
             qsModels,
             dFindersModels,
-            oItem,
-            oItemFound,
             lItemFoundTemp,
+            oHitsList,
             oUserItem,
             dCategoryInfo,
-            dGotCategories,
+            dFamilyCategories,
             sAuctionTitleRelevantPart,
             sGotInParens,
             dFindSteps,
@@ -982,7 +1047,11 @@ def _doStepThruModels(
     lModels     = dFindSteps[ 'models' ]
     lCategories = dFindSteps[ 'categories' ]
     #
-    dModelIDinTitle     = {}
+    dModelIDinTitle     = {} # the other way breaks findSearchHits()
+    oHitsList.dModelIDinTitle = dModelIDinTitle
+    #
+    dGotCategories  = oHitsList.dGotCategories
+    oItemFound      = oHitsList.oItemFound
     #
     for oModel in qsModels:
         #
@@ -1092,7 +1161,9 @@ def _doStepThruModels(
         #
         bCategoryFamilyRelation = False
         #
-        for oTempItem in lItemFoundTemp: # lists categories found
+        # lItemFoundTemp = list( oHitsList ) # copy of categories found list
+        #
+        for oTempItem in lItemFoundTemp: # categories found list shallow copy
             #
             # like a crossover w drivers
             # or
@@ -1165,7 +1236,7 @@ def _doStepThruModels(
                         #
                         logger.warning(
                                 'model has category id %s in dCategoryInfo for %s' %
-                                ( iModelCateID, oItem.iItemNumb ) )
+                                ( iModelCateID, oItemFound.iItemNumb ) )
                         #
                         iFamily = dCategoryInfo[ iItemCateID ].iFamilyID
                         #
@@ -1218,6 +1289,20 @@ def _doStepThruModels(
                         cModelAlphaNum  = sModelAlphaNum,
                         cTitleLeftOver  = sWhatRemains )
                 #
+                oItemOnList = oHitsList.appendItem(
+                        iItemNumb       = oTempItem.iItemNumb,
+                        iStarsCategory  = oTempItem.iStarsCategory,
+                        iHitStars       = oTempItem.iHitStars,
+                        iSearch         = oTempItem.iSearch,
+                        iCategory       = oCategory,
+                        cWhereCategory  = sWhereCategory,
+                        iModel          = oModel,
+                        iStarsModel     = oModel.iStars,
+                        cFoundModel     = sInTitle,
+                        bModelKeyWords  = bGotKeyWords,
+                        cModelAlphaNum  = sModelAlphaNum,
+                        cTitleLeftOver  = sWhatRemains )
+                #
                 iModelStars = oModel.iStars or 1
                 #
                 iHitStars = oTempItem.iStarsCategory * iModelStars
@@ -1229,18 +1314,27 @@ def _doStepThruModels(
                 #
                 oNewTempItem.save()
                 #
+                oItemOnList.iHitStars  = iHitStars
+                #
+                oItemOnList.iFoundModelLen = _getModelFoundLen(
+                                                sInTitle, sGotInParens )
+                #
                 bFoundCategoryForModel  = True
                 #
                 lNewItemFoundTemp.append( oNewTempItem )
                 #
-                if oModel.id not in dModelIDinTitle:
-                    #
-                    dModelIDinTitle[ oModel.id ] = ValueContainer(
-                        sInTitle    = sInTitle,
-                        iCategory   = oCategory,
-                        iBrand      = oModel.iBrand,
-                        sModelTitle = oModel.cTitle )
-                    #
+                # not needed when using oHitsList
+                updateModelIDinTitle(
+                        dModelIDinTitle,
+                        oModel,
+                        sInTitle,
+                        oCategory )
+                #
+                updateModelIDinTitle(
+                        oHitsList.dModelIDinTitle,
+                        oModel,
+                        sInTitle,
+                        oCategory )
                 #
             elif    ( oModel.iCategory == oTempItem.iCategory and
                     oTempItem.iModel is None ):
@@ -1272,18 +1366,23 @@ def _doStepThruModels(
                 #
                 oTempItem.iHitStars         = iHitStars
                 #
+                # not needed when using oHitsList
                 oTempItem.save()
                 #
                 bFoundCategoryForModel      = True
                 #
-                if oModel.id not in dModelIDinTitle:
-                    #
-                    dModelIDinTitle[ oModel.id ] = ValueContainer(
-                        sInTitle    = sInTitle,
-                        iCategory   = oModel.iCategory,
-                        iBrand      = oModel.iBrand.id,
-                        sModelTitle = oModel.cTitle )
-                    #
+                # not needed when using oHitsList
+                updateModelIDinTitle(
+                        dModelIDinTitle,
+                        oModel,
+                        sInTitle,
+                        oCategory )
+                #
+                updateModelIDinTitle(
+                        oHitsList.dModelIDinTitle,
+                        oModel,
+                        sInTitle,
+                        oCategory )
                 #
                 if bRecordSteps and oModel.cTitle == 'E88CC':
                     maybePrint()
@@ -1291,6 +1390,7 @@ def _doStepThruModels(
                 #
             #
         #
+        # not needed when using oHitsList
         if lNewItemFoundTemp:
             #
             lItemFoundTemp.extend( lNewItemFoundTemp )
@@ -1338,6 +1438,18 @@ def _doStepThruModels(
                         lModels,
                         'category RegEx: %s' % oModel.iCategory.cRegExLook4Title )
             #
+            oItemOnList = oHitsList.appendItem(
+                    iItemNumb       = oItemFound,
+                    iHitStars       = oModel.iStars,
+                    iStarsModel     = oModel.iStars,
+                    cFoundModel     = sInTitle,
+                    cModelAlphaNum  = sModelAlphaNum,
+                    iFoundModelLen  = len( sModelAlphaNum ),
+                    iSearch         = oUserItem.iSearch,
+                    iModel          = oModel )
+            #
+            #
+            # not needed when using oHitsList
             oTempItem = ItemFoundTemp(
                     iItemNumb       = oItemFound,
                     iHitStars       = oModel.iStars,
@@ -1359,14 +1471,12 @@ def _doStepThruModels(
 
 
 def _doStepThruBrands(
-            oItem,
-            oItemFound,
             lItemFoundTemp,
+            oHitsList,
             oUser,
             qsBrands,
             dFindSteps,
             dFindersBrands,
-            lCategoryFound,
             sAuctionTitleRelevantPart,
             oUserItem,
             bRecordSteps ):
@@ -1374,9 +1484,13 @@ def _doStepThruBrands(
     lBrands = dFindSteps[ 'brands' ]
     lModels = dFindSteps[ 'models' ]
     #
+    #
+    lCategoryFound  = oHitsList.lCategoryFound
+    oItemFound      = oHitsList.oItemFound
+    #
     dGotBrandIDsInTitle = {}
     #
-    bGotBrandForNonGenericModel = False
+    oHitsList.dGotBrandIDsInTitle = dGotBrandIDsInTitle
     #
     for oBrand in qsBrands:
         #
@@ -1453,7 +1567,9 @@ def _doStepThruBrands(
         # django 2.2 gets confused when an item is added to lItemFoundTemp
         # deepcopy instead of copy solved the problem
         #
-        for oTempItem in lItemFoundTemp:
+        # lItemFoundTemp = list( oHitsList ) # copy of categories found list
+        #
+        for oTempItem in lItemFoundTemp: # categories found list shallow copy
             #
             tModelBrand = ( oTempItem.iModel, oBrand )
             #
@@ -1492,6 +1608,16 @@ def _doStepThruBrands(
                             ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
                     #
                 #
+                oNewItem = oHitsList.appendCopy( oTempItem )
+                #
+                oNewItem.iBrand      = None
+                oNewItem.iStarsBrand = 0
+                oNewItem.iHitStars   = 0
+                #
+                # needed when using oHitsList
+                # lItemFoundTemp.append( oNewItem )
+                #
+                # not needed when using oHitsList
                 oAnotherTempItem = deepcopy( oTempItem )
                 #
                 oAnotherTempItem.iBrand      = None
@@ -1520,6 +1646,8 @@ def _doStepThruBrands(
                                 'found brand %s for model %s' %
                                 ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
                         #
+                    #
+                    oHitsList.bGotBrandForNonGenericModel = True
                     #
                     bGotBrandForNonGenericModel = True
                     #
@@ -1608,7 +1736,7 @@ def _doStepThruBrands(
             oTempItem.iHitStars    = iHitStars
             #
             oTempItem = ItemFoundTemp(
-                    iItemNumb       = oItem,
+                    iItemNumb       = oItemFound,
                     iBrand          = oBrand,
                     iCategory       = oCategory,
                     iStarsBrand     = iBrandStars,
@@ -1620,6 +1748,15 @@ def _doStepThruBrands(
             #
             lItemFoundTemp.append( oTempItem )
             #
+            oItemOnList = oHitsList.appendItem(
+                    iItemNumb       = oItemFound,
+                    iBrand          = oBrand,
+                    iCategory       = oCategory,
+                    iStarsBrand     = iBrandStars,
+                    iStarsCategory  = iStarsCategory,
+                    iHitStars       = iHitStars,
+                    iSearch         = oUserItem.iSearch )
+            #
         elif not bFoundBrandForModel:
             #
             if bRecordSteps:
@@ -1630,7 +1767,7 @@ def _doStepThruBrands(
                 #
             #
             oTempItem = ItemFoundTemp(
-                    iItemNumb       = oItem,
+                    iItemNumb       = oItemFound,
                     iBrand          = oBrand,
                     iStarsBrand     = oBrand.iStars,
                     iHitStars       = iBrandStars,
@@ -1640,20 +1777,29 @@ def _doStepThruBrands(
             #
             lItemFoundTemp.append( oTempItem )
             #
+            oItemOnList = oHitsList.appendItem(
+                    iItemNumb       = oItemFound,
+                    iBrand          = oBrand,
+                    iStarsBrand     = oBrand.iStars,
+                    iHitStars       = iBrandStars,
+                    iSearch         = oUserItem.iSearch )
+            #
         #
     #
-    return bGotBrandForNonGenericModel, dGotBrandIDsInTitle
 
 
 
 
 def _getModelLocations(
-            dModelIDinTitle,
-            dGotBrandIDsInTitle,
+            oHitsList,
             sAuctionTitleRelevantPart,
             bRecordSteps ):
     #
-    oModelLocated = None
+    oModelLocated       = None
+    #
+    dModelIDinTitle     = oHitsList.dModelIDinTitle
+    dGotBrandIDsInTitle = oHitsList.dGotBrandIDsInTitle
+    #
     #
     if len( dModelIDinTitle ) > 1:
         #
@@ -1714,32 +1860,36 @@ def _getModelLocations(
             maybePrint( 'dAllWordLocations:' )
             maybePrettyP( o.dAllWordLocations )
     #
-    return oModelLocated
+    oHitsList.oModelLocated = oModelLocated
 
 
 
 
 def _doScoreCandidates(
-            oItem,
+            oHitsList,
             lItemFoundTemp,
-            oModelLocated,
-            dModelIDinTitle,
             oUserItem,
             dSearchMyCategory,
             dCategoryInfo,
-            dGotBrandIDsInTitle,
-            bGotBrandForNonGenericModel,
             dFindSteps,
             dSearchLogs,
             oUser,
             bRecordSteps ):
     #
-    tNow = timezone.now()
+    tNow                        = timezone.now()
     #
-    lCandidates = dFindSteps[ 'candidates' ]
-    lSelect     = dFindSteps[ 'selection' ]
+    lCandidates                 = dFindSteps[ 'candidates' ]
+    lSelect                     = dFindSteps[ 'selection' ]
     #
-    dModelID_oTempItem  = {}
+    dModelID_oTempItem          = {}
+    #
+    oItemFound                  = oHitsList.oItemFound
+    dModelIDinTitle             = oHitsList.dModelIDinTitle
+    dGotBrandIDsInTitle         = oHitsList.dGotBrandIDsInTitle
+    #
+    bGotBrandForNonGenericModel = oHitsList.bGotBrandForNonGenericModel
+    #
+    oModelLocated               = oHitsList.oModelLocated
     #
     if lItemFoundTemp:
         #
@@ -2054,7 +2204,7 @@ def _doScoreCandidates(
                                 logger.info(
                                     'weak hit: model location %s '
                                     'not in dLocationsModelIDs for %s' %
-                                    ( iLocation, oItem.iItemNumb ) )
+                                    ( iLocation, oItemFound.iItemNumb ) )
                                 #
                             #
                         #
@@ -2833,13 +2983,13 @@ def _doScoreCandidates(
         if iMaxStars:
             #
             oUserFinder = UserFinder(
-                    iItemNumb       = oItem,
+                    iItemNumb       = oItemFound,
                     iHitStars       = iMaxStars,
                     iMaxModel       = iMaxModel,
-                    cTitle          = oItem.cTitle,
-                    cMarket         = oItem.cMarket,
-                    cListingType    = oItem.cListingType,
-                    tTimeEnd        = oItem.tTimeEnd,
+                    cTitle          = oItemFound.cTitle,
+                    cMarket         = oItemFound.cMarket,
+                    cListingType    = oItemFound.cListingType,
+                    tTimeEnd        = oItemFound.tTimeEnd,
                     iUser           = oUser )
                 #
             #
@@ -2862,16 +3012,16 @@ def _doScoreCandidates(
     #
     if bRecordSteps:
         #
-        _printHitSearchSteps( oItem, dFindSteps )
+        _printHitSearchSteps( oItemFound, dFindSteps )
         #
     #
 
 
 
-def _getUserItems( oItem, oUser ):
+def _getUserItems( oItemFound, oUser ):
     #
     qsUserItems = UserItemFound.objects.filter(
-            iItemNumb   = oItem.iItemNumb,
+            iItemNumb   = oItemFound.iItemNumb,
             iUser       = oUser )
     #
     oUserItem = None
@@ -2897,7 +3047,7 @@ def _getUserItems( oItem, oUser ):
 
 
 def _getRecordSteps(
-            oItem,
+            oItemFound,
             setScriptTested,
             lScriptTested,
             dFindSteps,
@@ -2912,9 +3062,9 @@ def _getRecordSteps(
     if settings.COVERAGE:
         #
         bRecordSteps        = True
-        iRecordStepsForThis = oItem.iItemNumb
+        iRecordStepsForThis = oItemFound.iItemNumb
         #
-    elif (       oItem.iItemNumb == iRecordStepsForThis and
+    elif (       oItemFound.iItemNumb == iRecordStepsForThis and
             str( iRecordStepsForThis ) not in setScriptTested ):
         #
         lScriptTested.append( str( iRecordStepsForThis ) )
@@ -2955,7 +3105,7 @@ def _getRecordSteps(
         maybePrint( 'dCategoryInfo:' )
         maybePrettyP(dCategoryInfo )
         #
-        if len( oItem.cTitle ) > len( sAuctionTitleRelevantPart ):
+        if len( oItemFound.cTitle ) > len( sAuctionTitleRelevantPart ):
             #
             lPreliminary = dFindSteps[ 'preliminary' ]
             #
@@ -2963,7 +3113,7 @@ def _getRecordSteps(
                     lPreliminary,
                     'will consider only: %s' % sAuctionTitleRelevantPart )
             #
-            sLoppedOff = oItem.cTitle[ len( sAuctionTitleRelevantPart ) : ]
+            sLoppedOff = oItemFound.cTitle[ len( sAuctionTitleRelevantPart ) : ]
             #
             _appendIfNotAlreadyIn(
                     lPreliminary, '(will ignore: %s)' % sLoppedOff )
@@ -3035,13 +3185,13 @@ def findSearchHits(
     #
     ItemFoundTemp.objects.all().delete()
     #
-    qsItems = ItemFound.objects.filter(
+    qsItemsFound = ItemFound.objects.filter(
                 pk__in = UserItemFound.objects
                     .filter( iUser = oUser,
                              tLook4Hits__isnull = True )
                     .values_list( 'iItemNumb', flat=True ) )
     #
-    if len( qsItems ) == 0: return
+    if len( qsItemsFound ) == 0: return
     #
     dFindersBrands      = {}
     dFindersCategories  = {}
@@ -3078,14 +3228,14 @@ def findSearchHits(
     #
     # step thru the items one by one
     #
-    for oItem in qsItems:
+    for oItemFound in qsItemsFound:
         #
-        qsUserItems, oUserItem = _getUserItems( oItem, oUser )
+        qsUserItems, oUserItem = _getUserItems( oItemFound, oUser )
         #
         # if title includes for or fits, consider the part in front,
         # not what follows
         #
-        t = _getRelevantTitle( oItem.cTitle )
+        t = _getRelevantTitle( oItemFound.cTitle )
         #
         sAuctionTitleRelevantPart, sGotInParens = t
         #
@@ -3095,7 +3245,7 @@ def findSearchHits(
         #
         #
         t = _getRecordSteps(
-                oItem,
+                oItemFound,
                 setScriptTested,
                 lScriptTested,
                 dFindSteps,
@@ -3114,7 +3264,7 @@ def findSearchHits(
         #
         #
         t = _doStepThruCategories(
-                oItem,
+                oItemFound,
                 oUserItem,
                 qsCategories,
                 dFindersCategories,
@@ -3122,7 +3272,7 @@ def findSearchHits(
                 dFindSteps,
                 bRecordSteps )
         #
-        lCategoryFound, dGotCategories, lItemFoundTemp, oItemFound = t
+        lItemFoundTemp, oHitsList = t
         #
         #
         #
@@ -3130,15 +3280,14 @@ def findSearchHits(
         # step thru models
         #
         #
-        dModelIDinTitle = _doStepThruModels(
+        _doStepThruModels(
                 qsModels,
                 dFindersModels,
-                oItem,
-                oItemFound,
                 lItemFoundTemp,
+                oHitsList,
                 oUserItem,
                 dCategoryInfo,
-                dGotCategories,
+                dFamilyCategories,
                 sAuctionTitleRelevantPart,
                 sGotInParens,
                 dFindSteps,
@@ -3152,20 +3301,17 @@ def findSearchHits(
         # step thru brands
         #
         #
-        t = _doStepThruBrands(
-                oItem,
-                oItemFound,
+        _doStepThruBrands(
                 lItemFoundTemp,
+                oHitsList,
                 oUser,
                 qsBrands,
                 dFindSteps,
                 dFindersBrands,
-                lCategoryFound,
                 sAuctionTitleRelevantPart,
                 oUserItem,
                 bRecordSteps )
         #
-        bGotBrandForNonGenericModel, dGotBrandIDsInTitle = t
         #
         #
         #
@@ -3173,9 +3319,8 @@ def findSearchHits(
         # determine model locations for candidates
         #
         #
-        oModelLocated = _getModelLocations(
-                dModelIDinTitle,
-                dGotBrandIDsInTitle,
+        _getModelLocations(
+                oHitsList,
                 sAuctionTitleRelevantPart,
                 bRecordSteps )
         #
@@ -3185,15 +3330,11 @@ def findSearchHits(
         #
         #
         _doScoreCandidates(
-                oItem,
+                oHitsList,
                 lItemFoundTemp,
-                oModelLocated,
-                dModelIDinTitle,
                 oUserItem,
                 dSearchMyCategory,
                 dCategoryInfo,
-                dGotBrandIDsInTitle,
-                bGotBrandForNonGenericModel,
                 dFindSteps,
                 dSearchLogs,
                 oUser,
