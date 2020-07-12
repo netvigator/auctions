@@ -419,15 +419,15 @@ class SetupForStoreResultsTests( object ):
         super( SetupForStoreResultsTests, self ).setUp()
 
 
-class CheckStoredResultsTest(
+class StoredLiveItemNumbersTest(
             SetupForStoreResultsTests, GetBrandsCategoriesModelsWebTestSetUp ):
 
-    ''' class for testing trySearchCatchExceptStoreInFile() '''
+    ''' class for testing item numbers in sHitLogFile '''
 
-    def test_already_stored_results( self ):
+    def test_already_stored_item_numbers( self ):
         #
         '''test whether it has been a while since running the ebay API tests,
-        if it has been a while (mmore than 1 month), prompt to run soon
+        if it has been a while (more than 1 week), prompt to run soon
         so the list of actual item numbers can stay current enough'''
         #
         lItemHits = getItemHitsLog( self.sHitLogFile )
@@ -452,7 +452,7 @@ class CheckStoredResultsTest(
         #
         print( '' )
         print( sSayLastEnd )
-
+        #
         if iDaysFromNow and iDaysFromNow < 5:
             print( 'to update,', sSayHow )
         #
