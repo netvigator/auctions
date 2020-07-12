@@ -322,11 +322,11 @@ def _gotKeyWordsOrNoKeyWords( s, findKeyWords ):
     return findKeyWords is None or findKeyWords( s )
 
 
-def getFoundItemTester( oTableRow, dFinders,
-                        bAddDash        = False,
-                        bSubModelsOK    = False,
-                        bPluralize      = False,
-                        bExplainVerbose = False ):
+def _getFoundItemTester(    oTableRow, dFinders,
+                            bAddDash        = False,
+                            bSubModelsOK    = False,
+                            bPluralize      = False,
+                            bExplainVerbose = False ):
     #
     ''' pass model row instance, returns tester '''
     #
@@ -441,16 +441,9 @@ def _printHitSearchSteps( oItem, dFindSteps ):
             maybePrint( '    %s' % s )
             #
 
-def getTitleOrNone( o ):
+def _getTitleOrNone( o ):
     #
-    sTitle = 'None'
-    #
-    if hasattr( o, 'cTitle' ):
-        #
-        sTitle = o.cTitle
-        #
-    #
-    return sTitle
+    return o.cTitle if hasattr( o, 'cTitle' ) else 'None'
 
 
 def _appendIfNotAlreadyIn( l, s ):
@@ -820,7 +813,7 @@ def _doStepThruCategories(
     #
     for oCategory in qsCategories:
         #
-        foundItem = getFoundItemTester(
+        foundItem = _getFoundItemTester(
                         oCategory,
                         dFindersCategories,
                         bPluralize = True )
@@ -993,7 +986,7 @@ def _doStepThruModels(
     #
     for oModel in qsModels:
         #
-        foundItem = getFoundItemTester(
+        foundItem = _getFoundItemTester(
                         oModel,
                         dFindersModels,
                         bAddDash = True,
@@ -1387,7 +1380,7 @@ def _doStepThruBrands(
     #
     for oBrand in qsBrands:
         #
-        foundItem = getFoundItemTester(
+        foundItem = _getFoundItemTester(
                         oBrand, dFindersBrands, bAddDash = True )
         #
         bFoundBrandForModel = False
@@ -2143,9 +2136,9 @@ def _doScoreCandidates(
                         ( iScoreStars,
                             oTempItem.iHitStars,
                             oTempItem.iFoundModelLen,
-                            getTitleOrNone( oTempItem.iCategory ),
-                            getTitleOrNone( oTempItem.iModel ),
-                            getTitleOrNone( oTempItem.iBrand ) ) )
+                            _getTitleOrNone( oTempItem.iCategory ),
+                            _getTitleOrNone( oTempItem.iModel ),
+                            _getTitleOrNone( oTempItem.iBrand ) ) )
                     #
                 #
             #
@@ -2231,9 +2224,9 @@ def _doScoreCandidates(
                 _appendIfNotAlreadyIn(
                         lSelect,
                         'on top:   %s : %s : %s' %
-                        ( getTitleOrNone( lItemFoundSort[0].iCategory ),
-                            getTitleOrNone( lItemFoundSort[0].iModel ),
-                            getTitleOrNone( lItemFoundSort[0].iBrand )) )
+                        (   _getTitleOrNone( lItemFoundSort[0].iCategory ),
+                            _getTitleOrNone( lItemFoundSort[0].iModel ),
+                            _getTitleOrNone( lItemFoundSort[0].iBrand )) )
                 #
                 #maybePrint()
                 #maybePrint( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
@@ -2781,9 +2774,9 @@ def _doScoreCandidates(
                         _appendIfNotAlreadyIn(
                             lSelect,
                             'also storing: %s : %s : %s' %
-                                (   getTitleOrNone( oTempItem.iCategory ),
-                                    getTitleOrNone( oTempItem.iModel ),
-                                    getTitleOrNone( oTempItem.iBrand )) )
+                                (   _getTitleOrNone( oTempItem.iCategory ),
+                                    _getTitleOrNone( oTempItem.iModel ),
+                                    _getTitleOrNone( oTempItem.iBrand )) )
                         #
                     #
                     oNewUserItem = UserItemFound(
