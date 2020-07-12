@@ -515,3 +515,5 @@ duplicate key value violates unique constraint "useritemsfound_iItemNumb_id_iUse
 DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id", "iBrand_id", "iCategory_id")=(264681758745, 1, 3878, 952, 146) already exists.
 
 severely need to test finders views more better!
+
+2020-07-12 could add 7308 when alread had 7308 (6922/6DJ8)
