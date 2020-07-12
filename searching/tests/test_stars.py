@@ -19,7 +19,7 @@ from .base              import ( PutSearchResultsInDatabaseWebTestBase,
                                  SetUpForHitStarsWebTests,
                                  StoreUserItemFoundWebTestBase )
 
-from ..utils_stars      import ( getFoundItemTester, findSearchHits,
+from ..utils_stars      import ( _getFoundItemTester, findSearchHits,
                                  _getRowRegExpressions, _getRelevantTitle,
                                  ItemsFoundClass )
 
@@ -3248,7 +3248,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         print()
         print( "run daily:" )
-        print( "1) pmt searching.tests.test_utils.CheckStoredResultsTest" )
+        print( "1) pmt searching.tests.test_utils.StoredLiveItemNumbersTest" )
         print( "2) pmt ebayinfo.tests.test_utils.MarketsAndCategoriesTests" )
         print()
         #
@@ -3272,7 +3272,7 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         dFinders = {}
         #
-        foundItem = getFoundItemTester(
+        foundItem = _getFoundItemTester(
                         oModel,
                         dFinders,
                         bSubModelsOK = True,
@@ -3435,7 +3435,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oBrand, dFinders )
+        foundItem = _getFoundItemTester( self.oBrand, dFinders )
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
@@ -3489,7 +3489,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.WidgetCategory, dFinders )
+        foundItem = _getFoundItemTester( self.WidgetCategory, dFinders )
         #
         sAuctionTitle = 'WEATHER WIDGET GADGET FOR YOUR DESKTOP PC WINDOWS XP/VISTA/7/8'
         #
@@ -3542,7 +3542,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         dFinders  = {}
         #
-        foundItem = getFoundItemTester( self.oModel, dFinders )
+        foundItem = _getFoundItemTester( self.oModel, dFinders )
         #
         sAuctionTitle = '1976 Cadillac Eldorado Fleetwood Bicentennial'
         #
@@ -3616,7 +3616,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         dFinders = {}
         #
-        foundItem = getFoundItemTester(
+        foundItem = _getFoundItemTester(
                         oModel,
                         dFinders,
                         bAddDash = True )
@@ -3642,7 +3642,7 @@ class findersStorageTest( AssertEmptyMixin, SetUpBrandsCategoriesModelsWebTest )
         #
         dFinders = {}
         #
-        foundItem = getFoundItemTester(
+        foundItem = _getFoundItemTester(
                         oModel,
                         dFinders,
                         bAddDash = True )
