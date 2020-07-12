@@ -21,7 +21,7 @@ from .base              import ( PutSearchResultsInDatabaseWebTestBase,
 
 from ..utils_stars      import ( _getFoundItemTester, findSearchHits,
                                  _getRowRegExpressions, _getRelevantTitle,
-                                 ItemsFoundClass )
+                                 HitsListClass )
 
 from searching.tests    import iRecordStepsForThis
 
@@ -3206,6 +3206,36 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 353133698540
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 7581A not 6l6gc kt66 as latter tacked on end' )
+        #
+        #
+        #
+        #
+        iThisOne = 174332018867
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find GE 5881 and Sylvania 6L6WGB (aspirational) '
+                'production found GE 6L6WGB' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174337421134
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 6SN7GTA not 6SN7 (aspirational)' )
+        #
+        #
+        #
+        #
         #
         '''
         '''
@@ -3794,18 +3824,16 @@ class GetRelevantTitleTests( AssertEmptyMixin, TestCasePlus ):
                          '( 6AG6 G )( M.O.V. )(~  6V6G / EL33 /  EL3 )' )
         #
 
-class ItemsFoundClassTests( TestCasePlus ):
+class HitsListClassTests( TestCasePlus ):
     #
 
     def test_add_item_found_item( self ):
         #
-        oItemsFoundGizmo = ItemsFoundClass()
+        oHitsList = HitsListClass()
         #
-        oItemsFoundGizmo.appendItem( iItemNumb = 282330751118 )
+        oThisHit = oHitsList.appendItem( iItemNumb = 282330751118 )
         #
-        oThisHit = oItemsFoundGizmo[0]
-        #
-        for sProperty in oItemsFoundGizmo.tProperties:
+        for sProperty in oHitsList.tProperties:
             #
             if sProperty == 'iItemNumb':
                 #
@@ -3816,3 +3844,24 @@ class ItemsFoundClassTests( TestCasePlus ):
                 self.assertIsNone( getattr( oThisHit, sProperty ) )
                 #
 
+        #
+        oThisHit.iHitStars = list( range( 9 ) )
+        #
+        oHitsList.appendItem( iItemNumb = 254628290743 )
+        #
+        lCopy = list( oHitsList ) # shallow copy
+        #
+        self.assertIs(       oHitsList[0], lCopy[0] )
+        self.assertNotEqual( oHitsList[0], lCopy[1] )
+        #
+        self.assertEqual( oThisHit.iHitStars,   lCopy[0].iHitStars )
+        self.assertTrue(  oThisHit.iHitStars is lCopy[0].iHitStars )
+        #
+        oCopyHit = oHitsList.appendCopy( oThisHit )
+        #
+        self.assertEqual( oThisHit.iItemNumb, oCopyHit.iItemNumb )
+        self.assertEqual( oThisHit.iHitStars, oCopyHit.iHitStars )
+
+        self.assertFalse( oThisHit is oCopyHit )
+        #
+        self.assertFalse( oThisHit.iHitStars is oCopyHit.iHitStars )
