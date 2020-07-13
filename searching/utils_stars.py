@@ -71,7 +71,7 @@ _oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 class HitsListClass( list ):
 
-    tProperties = (
+    tPROPERTIES = (
         'iItemNumb',
         'iHitStars',
         'iSearch',
@@ -108,7 +108,7 @@ class HitsListClass( list ):
 
     def appendItem( self, **kwargs ):
         #
-        for sProperty in self.tProperties:
+        for sProperty in self.tPROPERTIES:
             #
             if sProperty not in kwargs:
                 #
@@ -1484,6 +1484,7 @@ def _doStepThruBrands(
     lBrands = dFindSteps[ 'brands' ]
     lModels = dFindSteps[ 'models' ]
     #
+    bGotBrandForNonGenericModel = False
     #
     lCategoryFound  = oHitsList.lCategoryFound
     oItemFound      = oHitsList.oItemFound
@@ -1647,8 +1648,6 @@ def _doStepThruBrands(
                                 ( oBrand.cTitle, oTempItem.iModel.cTitle ) )
                         #
                     #
-                    oHitsList.bGotBrandForNonGenericModel = True
-                    #
                     bGotBrandForNonGenericModel = True
                     #
                     bFoundBrandForModel = True
@@ -1786,6 +1785,9 @@ def _doStepThruBrands(
             #
         #
     #
+    oHitsList.bGotBrandForNonGenericModel = bGotBrandForNonGenericModel
+    #
+
 
 
 
