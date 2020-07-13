@@ -3833,7 +3833,7 @@ class HitsListClassTests( TestCasePlus ):
         #
         oThisHit = oHitsList.appendItem( iItemNumb = 282330751118 )
         #
-        for sProperty in oHitsList.tProperties:
+        for sProperty in oHitsList.tPROPERTIES:
             #
             if sProperty == 'iItemNumb':
                 #
