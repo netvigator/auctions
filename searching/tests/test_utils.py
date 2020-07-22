@@ -46,13 +46,14 @@ from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
 from categories.models  import Category
 from models.models      import Model
 
-from finders.models     import ItemFound, UserItemFound, ItemFoundTemp
+from finders.models     import ItemFound, UserItemFound
 
 from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
 from pyPks.File.Del      import DeleteIfExists
 from pyPks.File.Spec     import getPathNameExt
 from pyPks.File.Test     import isFileThere
 from pyPks.File.Write    import QuietDump
+from pyPks.String.Output import Plural
 from pyPks.Time.Convert  import getDateTimeObjFromString   as getDate
 from pyPks.Time.Delta    import getDeltaDaysFromStrings, getIsoDateTimeNowPlus
 from pyPks.Time.Output   import getIsoDateTimeFromDateTime as getIsoDT
@@ -445,6 +446,10 @@ class StoredLiveItemNumbersTest(
             sSayLastEnd = 'last auction end date is tomorrow'
         elif iDaysFromNow == 0:
             sSayLastEnd = 'last auction end date is TODAY!!!!'
+        else:
+            sSayLastEnd = ( '**** '
+                          'last auction end date was %s day%s ago ****\n' \
+                           % ( -iDaysFromNow, Plural( -iDaysFromNow ) ) )
         #
         sSayHow = ( 'do this:\n'
                     'python manage.py test searching.'
