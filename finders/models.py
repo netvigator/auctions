@@ -379,6 +379,9 @@ class ItemFoundTemp(models.Model):
     cWhereCategory  = models.CharField( 'where category was found',
                         default = 'title',
                         max_length = 10 ) # title heirarchy1 heirarchy2
+    bIncludeThis    = models.BooleanField(
+                        'include this hit when populating table?',
+                        default = True )
 
     def __str__(self):
         #
