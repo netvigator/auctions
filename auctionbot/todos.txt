@@ -517,3 +517,6 @@ DETAIL:  Key ("iItemNumb_id", "iUser_id", "iModel_id", "iBrand_id", "iCategory_i
 severely need to test finders views more better!
 
 2020-07-12 could add 7308 when alread had 7308 (6922/6DJ8)
+
+
+2020-07-14 finders cWhereCategory None / null should be allowed
