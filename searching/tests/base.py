@@ -76,6 +76,11 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         super( StoreSearchResultsTestsWebTestSetUp, self ).setUp()
         #
+        ItemFound.objects.all()
+        UserFinder.objects.all()
+        UserItemFound.objects.all()
+        SearchLog.objects.all()
+        #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
@@ -165,11 +170,12 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
 
     def tearDown(self):
         #
-        pass # DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, self.sExampleFile )
+        DeleteIfExists( SEARCH_FILES_ROOT, sTODAY, self.sExampleFileMain )
         #
-        #ItemFound.objects.all().delete()
-        #UserFinder.objects.all().delete()
-        #UserItemFound.objects.all().delete()
+        ItemFound.objects.all().delete()
+        UserFinder.objects.all().delete()
+        UserItemFound.objects.all().delete()
+        SearchLog.objects.all().delete()
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
@@ -976,8 +982,6 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
             #iTempItems = ItemFoundTemp.objects.all().count()
             #iItemFound = ItemFound.objects.all().count()
             #
-            # bCleanUpAfterYourself must be False or tests will fail!
-            #
             #print( '\n' )
             #print( 'setting up PutSearchResultsInDatabaseWebTest' )
 
@@ -1003,12 +1007,10 @@ class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
         #
         super( SetUpForHitStarsWebTests, self ).setUp()
         #
-        # bCleanUpAfterYourself must be False or tests will fail!
         # iRecordStepsForThis imported from __init__.py
         #
         findSearchHits( self.user1.id,
-                        bCleanUpAfterYourself   = False,
-                        iRecordStepsForThis     = iRecordStepsForThis )
+                        iRecordStepsForThis = iRecordStepsForThis )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
