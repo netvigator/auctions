@@ -3399,8 +3399,3 @@ def findSearchHits(
             oSearchLog.save()
         #
     #
-    # if bCleanUpAfterYourself:
-    #     #
-    #     ItemFoundTemp.objects.all().delete()
-    #     #
-    #
