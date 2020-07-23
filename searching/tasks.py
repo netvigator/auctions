@@ -157,14 +157,13 @@ def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
     if bShowProgress:
         print( 'calling findSearchHits() for user ID %s now ....' % iUser )
     #
-    findSearchHits( iUser, bCleanUpAfterYourself = bCleanUp )
+    findSearchHits( iUser )
     #
 
 
 # called as a hourly (periodic) task
 @shared_task( name = 'searching.tasks.doFindSearhHitsTasks' )
 def doFindSearhHitsTasks(
-            bCleanUpAfterYourself = True,
             bConsoleOut           = False,
             bDoTask_Later         = True ):
     #
@@ -180,14 +179,12 @@ def doFindSearhHitsTasks(
                 #
                 findSearchHitsTask.delay(
                     iUser           = oUser.id,
-                    bCleanUp        = bCleanUpAfterYourself,
                     bShowProgress   = bConsoleOut )
                 #
             else:
                 #
                 findSearchHitsTask(
                     iUser           = oUser.id,
-                    bCleanUp        = bCleanUpAfterYourself,
                     bShowProgress   = bConsoleOut )
                 #
             #
