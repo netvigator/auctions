@@ -1,0 +1,6 @@
+ 15  5   *   *   *   ~/bin/flush-old-backups
+  0 17   *   *   *   ~/Devel/auctions/searching/SearchPutResultsInFiles.cron
+  8 17   *   *   *   ~/Devel/auctions/keepers/FetchKeepers.cron
+ 25 17   *   *   *   ~/bin/backup-json.cron
+ 30 17   *   *   *   ~/Devel/auctions/searching/PutSearchResultsInFinders.cron
+ 38 17   *   *   *   ~/Devel/auctions/keepers/FetchPictures.cron
