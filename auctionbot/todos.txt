@@ -520,3 +520,5 @@ severely need to test finders views more better!
 
 
 2020-07-14 finders cWhereCategory None / null should be allowed
+
+2020-07-24 bot should not find Mullard if title says "Mullard?" and has other brands
