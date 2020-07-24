@@ -205,6 +205,7 @@ sModels = \
  EL34 (metal base)  | metal base|      9 | f            |                   |  Vacuum Tube |             |              | t
  EL34 (MB Mullard)  | metal base|     10 | f            | Mullard           |  Vacuum Tube |             |              | f
  EL34 (MB Amp BB)   | metal base|     10 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
+ EL34 (Mullard)     |           |     10 | f            | Mullard           |  Vacuum Tube |             |              | f
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -814,6 +815,22 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["283937831810"],
+             "title":["2x  EL34 \/ 6CA7 tubes  VALVO  - PHILIPS \/ MULLARD - AMPEREX - DD - EL 34 - 1958"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m7Ehjt9dajRQXrPy79zd2tg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-EL34-6CA7-tubes-VALVO-PHILIPS-MULLARD-AMPEREX-DD-EL-34-1958-\/283937831810"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"249.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"249.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT23H29M14S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-09T08:32:39.000Z"],
+             "endTime":["2020-07-19T08:32:39.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["174337421134"],
              "title":["1950s Raytheon 6SN7GTA 6SN7 Vacuum Tube Tested Guaranteed! USA Black Plate"],

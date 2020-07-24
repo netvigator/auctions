@@ -3236,6 +3236,17 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 283937831810
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'EL34 Valvo is first in a long line, '
+                's/n find Mullard down the list (aspirational)' )
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
