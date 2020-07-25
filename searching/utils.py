@@ -663,18 +663,19 @@ def storeSearchResultsInFinders(
                 #
                 if 'secondaryCategory' in dItem and not bTest2ndaryCategory:
                     #
-                    if iItemNumb == 233420619849:
-                        #
-                        #
-                        print( "will del dItem[ 'secondaryCategory' ]" )
-                    #
                     del dItem[ 'secondaryCategory' ] # 2nd category optional
                     #
                 #
             #
             bGotItem = ItemFound.objects.filter( pk = iItemNumb ).exists()
             #
-            if not bGotItem:
+            if bGotItem:
+                #
+                pass # print( 'already got item %s' % iItemNumb )
+                #
+            else:
+                #
+                # print( 'will store item %s, before count is %s' % ( iItemNumb, iStoreItems ) )
                 #
                 try:
                     #
@@ -732,6 +733,7 @@ def storeSearchResultsInFinders(
     #
     oSearchLog.save()
     #
+    # print( 'Search log saved, id is %s, iStoreItems is %s' % ( iLogID, iStoreItems ) )
     #logger.info(
         #'finished stroing records for "%s" search (ID %s) ...' %
         #( sSearchName, iSearchID ) )
