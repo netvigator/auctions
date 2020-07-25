@@ -321,7 +321,8 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         self.assertEqual( UserItemFound.objects.count(), iStoreUsers )
         #
-        oSearchLogs = SearchLog.objects.all()
+        # without ordering the search result, sometimes get error
+        oSearchLogs = SearchLog.objects.all().order_by( 'tEndStore' )
         #
         self.assertEqual( len( oSearchLogs ), 2 )
         #
@@ -331,12 +332,15 @@ class storeSearchResultsWebTests( StoreSearchResultsTestsWebTestSetUp ):
         #
         self.assertTrue( isISOdatetime( sBeforeDash ) )
         #
+        #if oSearchLog.iStoreItems != iExampleResponseCount:
+            #print( 'got wrong store items count for id %s' % oSearchLog.id )
         self.assertEqual( oSearchLog.iItems,      iExampleResponseCount )
         self.assertEqual( oSearchLog.iStoreItems, iExampleResponseCount )
         self.assertEqual( oSearchLog.iStoreUsers, iExampleResponseCount )
         #
         # try again with the same data
         #
+        #print( 'storing items in test_search' )
         t = ( storeSearchResultsInFinders(
                         self.oSearchMainLog.id,
                         self.sMarket,
