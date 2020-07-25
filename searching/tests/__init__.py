@@ -205,7 +205,7 @@ sModels = \
  EL34 (metal base)  | metal base|      9 | f            |                   |  Vacuum Tube |             |              | t
  EL34 (MB Mullard)  | metal base|     10 | f            | Mullard           |  Vacuum Tube |             |              | f
  EL34 (MB Amp BB)   | metal base|     10 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
- EL34 (Mullard)     |           |     10 | f            | Mullard           |  Vacuum Tube |             |              | f
+ EL34 (Mullard)     |           |      9 | f            | Mullard           |  Vacuum Tube |             |              | f
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -815,6 +815,21 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["264795576250"],
+             "title":["2 excellent 1958 long plate mullard 12ax7 and 1 161 coded mullard 12ax7 tube"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m2vi62YcvxezgEABUJdWUog\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-excellent-1958-long-plate-mullard-12ax7-and-1-161-coded-mullard-12ax7-tube-\/264795576250"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["457**"],"location":["Belpre,OH,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"7.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"159.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"159.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT16H47M51S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-14T01:50:41.000Z"],
+             "endTime":["2020-07-19T01:50:41.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["283937831810"],
              "title":["2x  EL34 \/ 6CA7 tubes  VALVO  - PHILIPS \/ MULLARD - AMPEREX - DD - EL 34 - 1958"],
