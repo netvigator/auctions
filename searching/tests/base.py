@@ -8,6 +8,7 @@ from core.dj_import     import ObjectDoesNotExist
 from core.tests.base    import ( GetEbayCategoriesWebTestSetUp,
                                  getNamePositionDict,
                                  getTableFromScreenCaptureGenerator )
+from core.utils         import maybePrint
 
 from ebayinfo.models    import EbayCategory
 
@@ -76,11 +77,6 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         super( StoreSearchResultsTestsWebTestSetUp, self ).setUp()
         #
-        ItemFound.objects.all()
-        UserFinder.objects.all()
-        UserItemFound.objects.all()
-        SearchLog.objects.all()
-        #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
         oSearch.save()
@@ -113,6 +109,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         self.oSearchMainLog = oSearchLog
         #
+        #print( '\nstoring new items now, this one should work' )
         self.tMain = storeSearchResultsInFinders(
                         self.oSearchMainLog.id,
                         self.sMarket,
@@ -156,6 +153,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
         #
         self.oSearchManualLog = oSearchLog
         #
+        #print( 'storing same items again, this one should not work' )
         self.tManual = storeSearchResultsInFinders(
                         self.oSearchManualLog.id,
                         self.sMarket,
@@ -549,15 +547,15 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser = oUser )
                         #
                         if len( oBrand ) > 1:
-                            print( '' )
-                            print( 'got more than one brand %s' % sBrand )
+                            maybePrint( '' )
+                            maybePrint( 'got more than one brand %s' % sBrand )
                         #
                         oBrand = oBrand.first()
                         #
                     else:
                         #
-                        print( '' )
-                        print( 'do not have brand %s' % sBrand )
+                        maybePrint( '' )
+                        maybePrint( 'do not have brand %s' % sBrand )
                         oBrand = None
                         #
                 else: # not sBrand, blank, generic model
@@ -571,16 +569,16 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser = oUser )
                 except ObjectDoesNotExist:
                     if sCategory and sBrand:
-                        print( 'not finding category %s for %s!' %
+                        maybePrint( 'not finding category %s for %s!' %
                             ( sCategory, sBrand ) )
                     elif sBrand:
-                        print(
+                        maybePrint(
                             "need a category but ain't got one! (do got brand %s)" % sBrand )
                     elif sCategory:
-                        print(
+                        maybePrint(
                             "not finding category %s!" % sCategory )
                     else:
-                        print(
+                        maybePrint(
                             "supposed to have a brand & category here "
                             "but ain't got nothin!" )
                     raise
@@ -922,6 +920,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
             #print( 'will QuietDump' )
             QuietDump( sResponseItems2Test, SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
+            #print( 'PutSearchResultsInDatabaseWebTestBase main storing items' )
             try:
                 t = storeSearchResultsInFinders(
                         self.oSearchMainLog.id,
@@ -934,8 +933,8 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                 #
             except JSONDecodeError:
                 #
-                print('')
-                print(  '### maybe a new item title has a quote '
+                maybePrint('')
+                maybePrint(  '### maybe a new item title has a quote '
                         'but only a single backslash ###' )
                 #
                 raise
@@ -957,6 +956,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
             #print( 'will QuietDump' )
             QuietDump( sManualItems2Test, SEARCH_FILES_ROOT, sTODAY, sExampleFile )
             #
+            #print( 'PutSearchResultsInDatabaseWebTestBase manual storing items' )
             try:
                 t = ( storeSearchResultsInFinders(
                                 self.oSearchManualLog.id,
@@ -969,8 +969,8 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                 #
             except JSONDecodeError:
                 #
-                print('')
-                print(  '### maybe a new item title has a quote '
+                maybePrint('')
+                maybePrint(  '### maybe a new item title has a quote '
                         'but only a single backslash ###' )
                 #
                 raise
