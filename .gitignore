@@ -76,8 +76,11 @@ mailhog
 staticfiles/
 
 .cache/
-
+.bin/
+.lib64/
+.
 *.kate-swp
+.pyvenv.cfg
 
 # celery beat schedule file
 celerybeat-schedule
