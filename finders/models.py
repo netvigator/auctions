@@ -343,7 +343,6 @@ double chek for strays:
 select count(*) from userfinders where "tTimeEnd" = null ;
 
 
-'''
 
 class ItemFoundTemp(models.Model):
     iItemNumb       = models.ForeignKey( ItemFound, on_delete=models.CASCADE )
@@ -398,3 +397,5 @@ class ItemFoundTemp(models.Model):
         db_table            = verbose_name_plural
 
 
+
+'''
