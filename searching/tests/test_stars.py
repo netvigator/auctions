@@ -13,8 +13,7 @@ from core.tests.base    import ( SetUpBrandsCategoriesModelsWebTest,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
                                  TestCasePlus )
 
-from finders.models     import ( ItemFound, UserItemFound, ItemFoundTemp,
-                                 UserFinder )
+from finders.models     import ItemFound, UserItemFound, UserFinder
 
 from .base              import ( PutSearchResultsInDatabaseWebTestBase,
                                  SetUpForHitStarsWebTests,
@@ -3135,6 +3134,17 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        #
+        #
+        iThisOne = 233646146565
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find PAS-3 Series II' )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'PAS-3 Series II' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
         #
         #
         #
