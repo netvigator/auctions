@@ -318,6 +318,7 @@ sModels = \
  PAS-2              |           |      6 | f            | Dynaco            |       Preamp |             |
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
  PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
+ PAS-3 Series II    |           |      5 | f            | Dynaco            |       Preamp | PAS-3 Series ll\\rPAS-3 Series 2 |
  FM-3               |           |      7 | f            | Dynaco            |        Tuner |             |
  Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
  A-25               |           |      8 | t            | Dynaco            |Speaker System|             |
@@ -815,6 +816,23 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["233646146565"],
+             "title":["DYNACO PAS 3 SERIES ll STEREO TUBE PREAMP  W\/ PHONO STAGE"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mYAOfs8DrMIIoojHn0QgWEQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/DYNACO-PAS-3-SERIES-ll-STEREO-TUBE-PREAMP-W-PHONO-STAGE-\/233646146565"],
+             "paymentMethod":["PayPal"],"autoPay":["true"],
+             "postalCode":["740**"],"location":["Sapulpa,OK,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"519.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"519.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT17H24M58S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"675.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"675.0"}],
+             "startTime":["2020-07-11T02:30:07.000Z"],
+             "endTime":["2020-07-18T02:30:07.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["16"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["264795576250"],
              "title":["2 excellent 1958 long plate mullard 12ax7 and 1 161 coded mullard 12ax7 tube"],
