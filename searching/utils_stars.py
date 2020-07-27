@@ -1015,16 +1015,6 @@ def _doStepThruCategories(
         sWhich = _whichGetsCredit(
                     sInTitle, bInHeirarchy1, bGotCategory )
         #
-        # oHitLine = ItemFoundTemp(
-        #         iItemNumb       = oItemFound,
-        #         iStarsCategory  = oCategory.iStars,
-        #         iHitStars       = oCategory.iStars,
-        #         iSearch         = oUserItem.iSearch,
-        #         iCategory       = oCategory,
-        #         cWhereCategory  = sWhich )
-        #
-        # oHitLine.save()
-        #
         lCategoryFound.append( oCategory )
         #
         dGotCategories[ oCategory.id ] = sInTitle
@@ -1815,7 +1805,6 @@ def _doScoreCandidates(
     #
     def isComponent( iCategory ): return iCategory in setComponents
     #
-    # if not lItemFoundTemp: # not lItemFoundTemp
     if len( oHitsList ) == 0:
         #
         if bRecordSteps:
@@ -1832,7 +1821,6 @@ def _doScoreCandidates(
         return # save one level of indent
     #
     #
-    # if len( lItemFoundTemp ) > 1:
     if len( oHitsList ) > 1:
         #
         if bRecordSteps:
@@ -1850,11 +1838,6 @@ def _doScoreCandidates(
         #
         # tNearFront, tOnEnd, tNearEnd, tInParens,
         # dAllWordLocations, tTitleWords
-        #
-        # dModelID_oTempItem = dict(
-        #         ( ( oTempItem.iModel.id, oTempItem )
-        #             for oTempItem in lItemFoundTemp
-        #             if oTempItem.iModel is not None ) )
         #
         dModelID_oHitsItem = dict(
                 ( ( oHitLine.oModel.id, oHitLine )
@@ -1971,9 +1954,6 @@ def _doScoreCandidates(
                         #
                     #
                 #
-            #
-            #
-            # lItemFoundTemp = [ o for o in lItemFoundTemp if o.bIncludeThis ]
             #
             oNewHitsObj = oHitsList.getCopyWithoutItems()
             #
@@ -2191,9 +2171,6 @@ def _doScoreCandidates(
                     #
                 #
             #
-            # lItemFoundTemp = [ o for o in lItemFoundTemp
-            #                    if o.cModelAlphaNum not in setExcludeTempModels ]
-            #
             for o in oHitsList:
                 #
                 if o.cModelAlphaNum in setExcludeHitsModels:
@@ -2202,30 +2179,6 @@ def _doScoreCandidates(
                     #
                 #
             #
-            '''
-            lIncludeHitItems = [ o for o in oHitsList if o.bIncludeThis ]
-            #
-            oNewHitsObj = oHitsList.getCopyWithoutItems()
-            #
-            lHitListNotExcluded = [ o for o in oHitsList if o.bIncludeThis ]
-            #                       if o.cModelAlphaNum not in setExcludeHitsModels ]
-            #
-            oNewHitsObj.appendObjects( *lHitListNotExcluded )
-            '''
-            #
-            # oNewHitsObj.testSameSame( lItemFoundTemp )
-            #if len( lItemFoundTemp ) != len( oNewHitsObj ) and oHitsList.oItemFound.iItemNumb == 174236717488:
-                #
-                #print( 'setExcludeHitsModels:', setExcludeHitsModels )
-                #print( '\niItemNumb:', oHitsList.oItemFound.iItemNumb )
-                #print( 'lItemFoundTemp len %s  oHitsList include %s  oHitsList not exclude %s' %
-                 #( len( lItemFoundTemp ), len( lIncludeHitItems ), len( lHitListNotExcluded ) ) )
-                #print( 'lItemFoundTemp:' )
-                #pprint( lItemFoundTemp )
-                #print( 'lHitListNotExcluded:' )
-                #pprint( lHitListNotExcluded )
-            #
-
         #
         if bRecordSteps:
             #
@@ -2253,8 +2206,6 @@ def _doScoreCandidates(
     #                       if o.cModelAlphaNum not in setExcludeHitsModels ]
     #
     oNewHitsObj.appendObjects( *lHitListNotExcluded )
-    #
-    # oNewHitsObj.testSameSame( lItemFoundTemp )
     #
     oHitsList = oNewHitsObj
     #
@@ -2434,8 +2385,6 @@ def _doScoreCandidates(
             #
         #
     else:
-        #
-        # lItemFoundSort = lItemFoundTemp
         #
         if bRecordSteps:
             #
@@ -3053,8 +3002,6 @@ def _doScoreCandidates(
         _printHitSearchSteps( oItemFound, dFindSteps )
         #
     #
-    # oHitsList.testSameSame( lItemFoundTemp )
-    #
 
 
 
@@ -3233,8 +3180,6 @@ def findSearchHits(
         #
     #
     dSearchLogs = { o.iSearch_id: o for o in qsSearchLogs }
-    #
-    # ItemFoundTemp.objects.all().delete()
     #
     qsItemsFound = ItemFound.objects.filter(
                 pk__in = UserItemFound.objects
