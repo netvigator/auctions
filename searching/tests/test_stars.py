@@ -3142,6 +3142,8 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
                 dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find PAS-3 Series II' )
         #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
         self.assertEqual( oTest.iModel.cTitle, 'PAS-3 Series II' )
         self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
         self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
