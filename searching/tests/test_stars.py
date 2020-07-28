@@ -3275,6 +3275,29 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        #
+        iThisOne = 264800383304
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find cage not amp (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 392882208927
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should not find Marantz 2' )
+        #
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
