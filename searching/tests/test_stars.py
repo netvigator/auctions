@@ -3152,6 +3152,20 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         #
         #
         #
+        iThisOne = 402322718905
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find FM-100B not FM-100' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'FM-100B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
+        #
+        #
+        #
         #
         #
         #
@@ -3292,6 +3306,16 @@ class FindSearchHitsWebTests( AssertNotEmptyMixin, SetUpForHitStarsWebTests ):
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should not find Marantz 2' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 184368873499
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find ALTEC 211 VOTT 311-90 288 not diaphrams' )
         #
         #
         #
