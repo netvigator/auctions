@@ -222,8 +222,10 @@ sModels = \
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rTX-100\\r100%
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | X-100\\rTX-100\\r100%
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
+ 211A               |           |      8 | t            | Altec-Lansing     |Speaker Enclosure|          |
  287F               |           |      9 | f            | Altec-Lansing     |  Theater Amp |             |
  288-8F             |           |      7 | t            | Altec-Lansing     |       Driver |             |
+ 288 (diaphram)     |           |      7 | f            | Altec-Lansing     |    Diaphragm |             |
  288                |           |      7 | f            | Altec-Lansing     |       Driver |             |
  311-90             |           |      9 | f            | Altec-Lansing     |         Horn |             |
  414E               |           |      5 | t            | Altec-Lansing     |       Driver |             |
@@ -392,6 +394,8 @@ sModels = \
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
  FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
+ FM-100             |           |      7 | f            | Fisher            |        Tuner |             |
+ FM-100B            |           |      6 | t            | Fisher            |        Tuner |             |
  R-200              |           |      8 | f            | Fisher            |        Tuner |             |
  SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
  Catalin            |           |     10 | f            |                   |        Radio |             |              | t
@@ -816,6 +820,41 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["402322718905"],
+             "title":["FISHER FM-100C FM MULTIPLEX STEREO TUBE TUNER 100 C with 6HR6 Tube"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73382"],"categoryName":["Vintage Tuners & Tube Tuners"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/miGwIEUpFd65tw9qfN33gpg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/FISHER-FM-100C-FM-MULTIPLEX-STEREO-TUBE-TUNER-100-C-6HR6-Tube-\/402322718905"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["430**"],"location":["Powell,OH,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.99"}],
+             "bidCount":["1"],"sellingState":["Active"],"timeLeft":["P1DT5H42M18S"]}],
+             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-11T14:44:22.000Z"],
+             "endTime":["2020-07-18T14:44:22.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["184368873499"],
+             "title":["Vintage ALTEC 211 VOTT Speakers 311-90 HORNS 288 Drivers PU ONLY."],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/macBXC5_NzykVFXxTudwh4Q\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-ALTEC-211-VOTT-Speakers-311-90-HORNS-288-Drivers-PU-ONLY-\/184368873499"],
+             "paymentMethod":["CashOnPickup","VisaMC"],"autoPay":["false"],
+             "postalCode":["452**"],"location":["Cincinnati,OH,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2500.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT15H58M39S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-19T00:59:27.000Z"],
+             "endTime":["2020-07-26T00:59:27.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["392882208927"],
              "title":["Marantz 510 510MR amp amplifier original Faceplate w\/ Handles Mint w\/ RA-2 box"],
