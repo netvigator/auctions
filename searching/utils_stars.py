@@ -1909,20 +1909,20 @@ def _doScoreCandidates(
             maybePrint( 'setCategoriesBeg:', setCategoriesBeg )
             maybePrint( 'setCategoriesOnEnd:', setCategoriesOnEnd )
             maybePrint( 'setCategoriesNearEnd:', setCategoriesNearEnd )
-            # maybePrint( 'len( lItemFoundTemp ) before:', len( lItemFoundTemp ) )
+            maybePrint( 'len( oHitsList ) before:', len( oHitsList ) )
             # maybePrint( 'dModelID_oTempItem:' )
             # maybePrettyP( dModelID_oTempItem )
             # for k, o in dModelID_oTempItem.items():
             #     maybePrint( ' %s: %s, %s' % ( k, o.iModel, o.iCategory ) )
             maybePrint( 'dLocationsModelIDs:' )
             maybePrettyP( dLocationsModelIDs )
-            # maybePrint( 'lItemFoundTemp (iModel, iBrand, iCategory):')
-            # maybePrettyP( lItemFoundTemp )
-            #for o in lItemFoundTemp:
-                #if o.iCategory is None:
-                    #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, 'None' ) )
+            # maybePrint( 'oHitsList (iModel, iBrand, iCategory):')
+            # maybePrettyP( oHitsList )
+            #for o in oHitsList:
+                #if o.oCategory is None:
+                    #maybePrint( '  %s - %s - %s (id %s)' % ( o.oModel, o.oBrand, o.oCategory, 'None' ) )
                 #else:
-                    #maybePrint( '  %s - %s - %s (id %s)' % ( o.iModel, o.iBrand, o.iCategory, o.iCategory.id ) )
+                    #maybePrint( '  %s - %s - %s (id %s)' % ( o.oModel, o.oBrand, o.oCategory, o.oCategory.id ) )
             maybePrint( 'oModelLocated:' )
             for s in vars( oModelLocated ):
                 if s.startswith( '_' ): continue
