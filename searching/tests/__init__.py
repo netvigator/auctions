@@ -157,7 +157,7 @@ sModels = \
  6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
- 6922               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ 6922 (= E88CC = CCa = CV2492)| |      5 | f            |                   |  Vacuum Tube |             |              | t
  6922 (Amperex Gold)| gold\\rGP |      7 | f           | Amperex (gold pins)|  Vacuum Tube |             |              | f
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
@@ -191,16 +191,16 @@ sModels = \
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
- CCa (= 6922)       |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ CCa (= 6922 = E88CC = CV2492)| |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV4108             |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  E188CC             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- E88CC              |           |      4 | f            |                   |  Vacuum Tube |             |              | t
+ E88CC (= 6922 = CCa = CV2492)| |      4 | f            |                   |  Vacuum Tube |             |              | t
  ECC82              |           |      5 | f            |                   |  Vacuum Tube | 12AU7       | 7AU7\\r5814A\\r5814WA\\r5963\\r6189\\r6680\\rB749 | t
- ECC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ ECC88 (=6DJ8)      |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL34               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  EL34 (metal base)  | metal base|      9 | f            |                   |  Vacuum Tube |             |              | t
  EL34 (MB Mullard)  | metal base|     10 | f            | Mullard           |  Vacuum Tube |             |              | f
@@ -820,6 +820,40 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["254665286871"],
+             "title":["NOS NIB GENUINE TELEFUNKEN GOLD PIN TUBE GERMANY 6922 E88CC ECC88 CCA DIAMOND <>"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mOwGXPMui09R58zgEhhowrA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/NOS-NIB-GENUINE-TELEFUNKEN-GOLD-PIN-TUBE-GERMANY-6922-E88CC-ECC88-CCA-DIAMOND-\/254665286871"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["957**"],"location":["Rocklin,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"280.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"280.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT11H51M7S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-25T20:54:07.000Z"],
+             "endTime":["2020-07-30T20:54:07.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["353147061609"],
+             "title":["TWO VINTAGE NOS GEC KT88 RADIO VALVES \/ TUBES. MADE IN ENGLAND."],
+             "globalId":["EBAY-GB"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Valves & Vacuum Tubes"]}],"secondaryCategory":[{"categoryId":["933"],"categoryName":["Tube & Valve Radios"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mfeEa6LADoYUU5WP9FAVnrw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/TWO-VINTAGE-NOS-GEC-KT88-RADIO-VALVES-TUBES-MADE-ENGLAND-\/353147061609"],
+             "paymentMethod":["MOCC","PersonalCheck","PayPal"],"autoPay":["false"],
+             "postalCode":["E49**"],"location":["United Kingdom"],"country":["GB"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"19.29"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"GBP","__value__":"205.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"265.36"}],
+             "bidCount":["18"],"sellingState":["Active"],"timeLeft":["P4DT9H3M1S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-23T18:07:47.000Z"],
+             "endTime":["2020-08-02T18:07:47.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["41"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["402322718905"],
              "title":["FISHER FM-100C FM MULTIPLEX STEREO TUBE TUNER 100 C with 6HR6 Tube"],
