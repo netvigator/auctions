@@ -8,6 +8,7 @@ from django_webtest     import WebTest
 from test_plus.test     import TestCase, CBVTestCase
 
 from core.dj_import     import HttpRequest, get_user_model
+from core.utils         import getWhatsNotInParens
 
 from config.settings.base import LOGIN_URL
 
@@ -602,6 +603,12 @@ class AssertNotEmptyMixin( object ):
 
     def assertNotEmpty(self, obj):
         self.assertTrue(obj)
+
+
+class AssertEqualIgnoreParensMixin( object ):
+
+    def EqualIgnoreParens( self, sTitle, sTarget ):
+        self.assertEqual( getWhatsNotInParens( sTitle ), sTarget )
 
 
 '''
