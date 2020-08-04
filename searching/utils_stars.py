@@ -8,8 +8,8 @@ from collections            import OrderedDict
 from itertools              import chain
 
 from django.conf            import settings
-from django.db.models       import Q, Max
 from django.contrib.auth    import get_user_model
+from django.db.models       import Q, Max
 from django.utils           import timezone
 
 from core.user_one          import oUserOne
@@ -879,7 +879,7 @@ def updateModelIDinTitle(
 
 def _doStepThruCategories(
             oItemFound,
-            oUserItem,
+            oUserItemFound,
             qsCategories,
             dFindersCategories,
             sAuctionTitleRelevantPart,
@@ -1022,7 +1022,7 @@ def _doStepThruCategories(
         oHitsList.appendItem(
                 iStarsCategory  = oCategory.iStars,
                 iHitStars       = oCategory.iStars,
-                oSearch         = oUserItem.iSearch,
+                oSearch         = oUserItemFound.iSearch,
                 oCategory       = oCategory,
                 cWhereCategory  = sWhich )
         #
@@ -1058,7 +1058,7 @@ def _doStepThruModels(
             qsModels,
             dFindersModels,
             oHitsList,
-            oUserItem,
+            oUserItemFound,
             dCategoryInfo,
             dFamilyCategories,
             sAuctionTitleRelevantPart,
@@ -1411,7 +1411,7 @@ def _doStepThruModels(
                     cFoundModel     = sInTitle,
                     cModelAlphaNum  = sModelAlphaNum,
                     iFoundModelLen  = len( sModelAlphaNum ),
-                    oSearch         = oUserItem.iSearch,
+                    oSearch         = oUserItemFound.iSearch,
                     oModel          = oModel )
             #
         #
@@ -1428,7 +1428,7 @@ def _doStepThruBrands(
             dFindSteps,
             dFindersBrands,
             sAuctionTitleRelevantPart,
-            oUserItem,
+            oUserItemFound,
             bRecordSteps ):
     #
     lBrands = dFindSteps[ 'brands' ]
@@ -1668,7 +1668,7 @@ def _doStepThruBrands(
                     iStarsBrand     = iBrandStars,
                     iStarsCategory  = iStarsCategory,
                     iHitStars       = iHitStars,
-                    oSearch         = oUserItem.iSearch )
+                    oSearch         = oUserItemFound.iSearch )
             #
         elif not bFoundBrandForModel:
             #
@@ -1683,7 +1683,7 @@ def _doStepThruBrands(
                     oBrand          = oBrand,
                     iStarsBrand     = oBrand.iStars,
                     iHitStars       = iBrandStars,
-                    oSearch         = oUserItem.iSearch )
+                    oSearch         = oUserItemFound.iSearch )
             #
         #
     #
@@ -1778,7 +1778,7 @@ def _isCompleteHit( o ):
 
 def _doScoreCandidates(
             oHitsList,
-            oUserItem,
+            oUserItemFound,
             dSearchMyCategory,
             dCategoryInfo,
             dFindSteps,
@@ -1814,9 +1814,9 @@ def _doScoreCandidates(
                 'did not find anything for this item' )
             #
         #
-        oUserItem.tLook4Hits = tNow
+        oUserItemFound.tLook4Hits = tNow
         #
-        oUserItem.save()
+        oUserItemFound.save()
         #
         return # save one level of indent
     #
@@ -2450,8 +2450,8 @@ def _doScoreCandidates(
         #
         if iItemsFoundTemp == 0: # store item on top here
             #
-            oUserItem.iBrand        = oHitLine.oBrand
-            oUserItem.iModel        = oHitLine.oModel
+            oUserItemFound.iBrand        = oHitLine.oBrand
+            oUserItemFound.iModel        = oHitLine.oModel
             #
             if oHitLine.oBrand:
                 #
@@ -2468,7 +2468,7 @@ def _doScoreCandidates(
             #
             if oMyCategory:
                 #
-                oUserItem.iCategory = oMyCategory
+                oUserItemFound.iCategory = oMyCategory
                 #
                 if bRecordSteps:
                     #
@@ -2479,16 +2479,15 @@ def _doScoreCandidates(
                     #
             else:
                 #
-                oUserItem.iCategory = oHitLine.oCategory
+                oUserItemFound.iCategory = oHitLine.oCategory
                 #
             #
-            oUserItem.iHitStars     = oHitLine.iHitStars
-            oUserItem.cWhereCategory= oHitLine.cWhereCategory
-            # oUserItem.iSearch     = oHitLine.oSearch
+            oUserItemFound.iHitStars     = oHitLine.iHitStars
+            oUserItemFound.cWhereCategory= oHitLine.cWhereCategory
             #
-            oUserItem.tLook4Hits = tNow
+            oUserItemFound.tLook4Hits = tNow
             #
-            oUserItem.save()
+            oUserItemFound.save()
             #
             if oHitLine.oModel:
                 #
@@ -2906,7 +2905,7 @@ def _doScoreCandidates(
             tNow = timezone.now()
             #
             if UserItemFound.objects.filter(
-                    iItemNumb       = oUserItem.iItemNumb,
+                    iItemNumb       = oUserItemFound.iItemNumb,
                     iUser           = oUser,
                     iModel          = oHitLine.oModel,
                     iBrand          = oHitLine.oBrand,
@@ -2930,7 +2929,7 @@ def _doScoreCandidates(
                     #
                 #
                 oNewUserItem = UserItemFound(
-                    iItemNumb       = oUserItem.iItemNumb,
+                    iItemNumb       = oUserItemFound.iItemNumb,
                     iHitStars       = oHitLine.iHitStars,
                     iSearch         = oHitLine.oSearch,
                     iModel          = oHitLine.oModel,
@@ -2982,7 +2981,29 @@ def _doScoreCandidates(
         #
     if iMaxStars:
         #
-        oUserFinder = UserFinder(
+        # cannot get try/except to work here!
+        #
+        qsUserFinder = UserFinder.objects.filter(
+                iItemNumb   = oItemFound,
+                iUser       = oUser )
+        #
+        if qsUserFinder.exists():
+            #
+            oUserFinder     = UserFinder.objects.get(
+                iItemNumb   = oItemFound,
+                iUser       = oUser )
+            #
+            oUserFinder.iItemNumb       = oItemFound
+            oUserFinder.iHitStars       = iMaxStars
+            oUserFinder.iMaxModel       = iMaxModel
+            oUserFinder.cTitle          = oItemFound.cTitle
+            oUserFinder.cMarket         = oItemFound.cMarket
+            oUserFinder.cListingType    = oItemFound.cListingType
+            oUserFinder.tTimeEnd        = oItemFound.tTimeEnd
+            #
+        else:
+            #
+            oUserFinder = UserFinder(
                 iItemNumb       = oItemFound,
                 iHitStars       = iMaxStars,
                 iMaxModel       = iMaxModel,
@@ -2995,6 +3016,11 @@ def _doScoreCandidates(
         #
         oUserFinder.save()
         #
+        # ### fix this ###
+        #IntegrityError
+        #duplicate key value violates unique constraint "userfinders_iItemNumb_id_iUser_id_d5544fef_uniq"
+        #DETAIL:  Key ("iItemNumb_id", "iUser_id")=(274439852789, 1) already exists.
+        #
     #
     #
     if bRecordSteps:
@@ -3005,30 +3031,30 @@ def _doScoreCandidates(
 
 
 
-def _getUserItems( oItemFound, oUser ):
+def _getUserItemFoundWantOnlyOne( oItemFound, oUser ):
     #
     qsUserItems = UserItemFound.objects.filter(
             iItemNumb   = oItemFound.iItemNumb,
             iUser       = oUser )
     #
-    oUserItem = None
+    oUserItemFound = None
     #
     lDeleteThese = []
     #
     for oNext in qsUserItems:
         #
-        if oUserItem is None:
-            oUserItem = oNext
+        if oUserItemFound is None:
+            oUserItemFound = oNext
         else:
             lDeleteThese.append( oNext )
     #
     for oThis in lDeleteThese:
         oThis.delete()
     #
-    oUserItem.iStarsBrand = oUserItem.iStarsCategory = 0
-    oUserItem.iStarsModel = oUserItem.iHitStars      = 0
+    oUserItemFound.iStarsBrand = oUserItemFound.iStarsCategory = 0
+    oUserItemFound.iStarsModel = oUserItemFound.iHitStars      = 0
     #
-    return qsUserItems, oUserItem
+    return oUserItemFound
 
 
 
@@ -3230,7 +3256,16 @@ def findSearchHits(
     #
     for oItemFound in qsItemsFound:
         #
-        qsUserItems, oUserItem = _getUserItems( oItemFound, oUser )
+        # qsItemsFound: ItemFound objects for which a
+        #               UserItemFound exists for the user for which
+        #                   tLook4Hits is null
+        #
+        # so oItemFound is an ItemFound for which a
+        #                       UserItemFound exists for the user for which
+        #                           tLook4Hits is null
+        #
+        #
+        oUserItemFound = _getUserItemFoundWantOnlyOne( oItemFound, oUser )
         #
         # if title includes for or fits, consider the part in front,
         # not what follows
@@ -3265,7 +3300,7 @@ def findSearchHits(
         #
         oHitsList = _doStepThruCategories(
                 oItemFound,
-                oUserItem,
+                oUserItemFound,
                 qsCategories,
                 dFindersCategories,
                 sAuctionTitleRelevantPart,
@@ -3283,7 +3318,7 @@ def findSearchHits(
                 qsModels,
                 dFindersModels,
                 oHitsList,
-                oUserItem,
+                oUserItemFound,
                 dCategoryInfo,
                 dFamilyCategories,
                 sAuctionTitleRelevantPart,
@@ -3306,7 +3341,7 @@ def findSearchHits(
                 dFindSteps,
                 dFindersBrands,
                 sAuctionTitleRelevantPart,
-                oUserItem,
+                oUserItemFound,
                 bRecordSteps )
         #
         #
@@ -3328,7 +3363,7 @@ def findSearchHits(
         #
         _doScoreCandidates(
                 oHitsList,
-                oUserItem,
+                oUserItemFound,
                 dSearchMyCategory,
                 dCategoryInfo,
                 dFindSteps,
