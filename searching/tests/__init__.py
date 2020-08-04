@@ -531,7 +531,8 @@ sModels = \
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  meter              |           |      3 | f            |                   |    Component | Meter Band  |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
- nine               |           |      9 | f            | KLH               |Speaker System|             |
+ model nine         |           |      9 | f            | KLH               |Speaker System| model 9     |
+ model five         |           |      6 | f            | KLH               |Speaker System| model 5     |
  IT-28              |           |      5 | f            | Heathkit          |Capacitor Checker|          | Capacitor Tester\rCapacitance Checker\rCapacitance Tester
  '''
 #      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
@@ -820,6 +821,39 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["274439852789"],
+              "title":["Jbl LE175 Compression Driver 8 Ohms w\/ 1217\/1290 Horn - Original - 1 of 2"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mPwaYckwdjgPTTVkjL4yCfQ\/140.jpg"],
+              "viewItemURL":["https:\/\/www.ebay.com\/itm\/Jbl-LE175-Compression-Driver-8-Ohms-w-1217-1290-Horn-Original-1-2-\/274439852789"],
+              "paymentMethod":["PayPal"],"autoPay":["false"],
+              "postalCode":["956**"],"location":["Carmichael,CA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],
+              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT12H21M44S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+              "startTime":["2020-07-26T21:22:26.000Z"],
+              "endTime":["2020-08-02T21:22:26.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["164303884779"],
+             "title":["FREE SHIP TUNG-SOL JAN CTL 6L6WGB 5881 Tube Tested 1958 6L6G"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m1HnbjdVi9R7aKEzmORCkCg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/FREE-SHIP-TUNG-SOL-JAN-CTL-6L6WGB-5881-Tube-Tested-1958-6L6G-\/164303884779"],
+             "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+             "postalCode":["211**"],"location":["Severna Park,MD,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT10H27M16S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-23T19:30:52.000Z"],
+             "endTime":["2020-07-30T19:30:52.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["true"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["254665286871"],
              "title":["NOS NIB GENUINE TELEFUNKEN GOLD PIN TUBE GERMANY 6922 E88CC ECC88 CCA DIAMOND <>"],
