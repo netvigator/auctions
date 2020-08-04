@@ -71,9 +71,23 @@ class MakeSureExampleItemGetsHit( StoreUserItemFoundWebTestBase ):
 
     def test_find_search_hits( self ):
         #
-        qsUserItemFound = UserItemFound.objects.filter(
+        qsUserFinder = UserFinder.objects.filter(
                             iItemNumb_id    = 282330751118,
                             iUser           = self.user1 )
+        #
+        self.assertFalse( qsUserFinder.exists() )
+        #
+        oUserFinder = UserFinder(
+            iItemNumb_id    = 282330751118,
+            iUser           = self.user1 )
+        #
+        oUserFinder.save()
+        #
+        qsUserFinder = UserFinder.objects.filter(
+                            iItemNumb_id    = 282330751118,
+                            iUser           = self.user1 )
+        #
+        self.assertTrue( qsUserFinder.exists() )
         #
         findSearchHits( self.user1.id,
                         iRecordStepsForThis = iRecordStepsForThis )
@@ -3183,6 +3197,29 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 274439852789
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find driver AND horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '1217-1290' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'LE-175' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -3357,6 +3394,19 @@ class FindSearchHitsWebTests(
         #self.assertEqual( oTest.iModel.cTitle, '6922 (Amperex Gold)' )
         #self.assertEqual( oTest.iBrand.cTitle, 'Amperex (gold pins)' )
         #self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 164303884779
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                's/n find 6L6G cuz it is on the end' )
+        #
+        #
+        #
         #
         #
         #
