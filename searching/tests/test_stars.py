@@ -3219,6 +3219,23 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 114331923325
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Peerless xfmr ? amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '16309' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Peerless' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Output Transformer' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -3377,6 +3394,17 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'paren equivalents selection should find 6922 & E88CC not ECC88 CCA' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174366894500
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'paren equivalents selection should find 6922 not rest' )
         #
         #
         #
