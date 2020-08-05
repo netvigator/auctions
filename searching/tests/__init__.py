@@ -86,6 +86,7 @@ sBrands = \
  Mullard IEC       |      5 |            |            | IEC Mullard
  National          |      7 |            |            |
  PACO              |      2 |            |            |
+ Peerless          |      8 |            |            |
  Philips           |      7 |            |            |
  Pilot             |      8 |            |            |
  Quad              |      5 |            |            |
@@ -192,7 +193,7 @@ sModels = \
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  CCa (= 6922 = E88CC = CV2492)| |      8 | f            |                   |  Vacuum Tube |             |              | t
- CV2492             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ CV2492 (= E88CC = CCa = 6922)| |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV4108             |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -336,6 +337,7 @@ sModels = \
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
+ W-5M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  EA-3               |           |      4 | f            | Heathkit          |Integrated Amp|             |
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
  C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
@@ -529,6 +531,7 @@ sModels = \
  8HD                |           |      5 | f            | Electro-Voice     |         Horn |             |
  X36                |           |      6 | f            | Electro-Voice     |    Crossover |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
+ 16309              |           |      7 | f            | Peerless          |Output Transformer|         |
  meter              |           |      3 | f            |                   |    Component | Meter Band  |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  model nine         |           |      9 | f            | KLH               |Speaker System| model 9     |
@@ -821,6 +824,39 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["114331923325"],
+             "title":["PEERLESS ATLEC TRANSFORMER 16309 Vintage Heathkit W-5M Monoblock Tube Amplifier "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mZjsiNHpJ1KEC7_AD1K6ODA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/PEERLESS-ATLEC-TRANSFORMER-16309-Vintage-Heathkit-W-5M-Monoblock-Tube-Amplifier-\/114331923325"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["070**"],"location":["Garfield,NJ,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"68.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"68.0"}],"bidCount":["16"],"sellingState":["Active"],"timeLeft":["P3DT9H3M5S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-31T18:03:20.000Z"],
+             "endTime":["2020-08-07T18:03:20.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["22"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["174366894500"],
+             "title":["LOT OF 8 TUBES BY RAYTHEON USA 6922 \/ E88CC \/ CV2492 \/ CCA SWEET TONE UNDERRATED"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mcDKFXQIP1BExYwru_1eU8Q\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/LOT-8-TUBES-RAYTHEON-USA-6922-E88CC-CV2492-CCA-SWEET-TONE-UNDERRATED-\/174366894500"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"420.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"420.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT19H12M22S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-28T04:15:19.000Z"],
+             "endTime":["2020-08-07T04:15:19.000Z"],
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["274439852789"],
               "title":["Jbl LE175 Compression Driver 8 Ohms w\/ 1217\/1290 Horn - Original - 1 of 2"],
