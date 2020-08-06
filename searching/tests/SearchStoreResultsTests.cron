@@ -1,0 +1,11 @@
+#!/bin/bash
+#source ~/bin/config.sh
+TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+LOGFILE="/tmp/searches/searches.log"
+if [ $(echo `date +%s` / 86400 % 3 == 0 |/usr/bin/bc) -eq 1 ]
+then
+        echo "$TIMESTAMP will do SearchStoreResultsTests.sh" >> $LOGFILE
+        ~/Devel/auctions/searching/tests/SearchStoreResultsTests.sh
+else
+        echo "$TIMESTAMP not today: SearchStoreResultsTests.sh" >> $LOGFILE
+fi
