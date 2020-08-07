@@ -3437,6 +3437,16 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 333655464250
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should not find tubes as category is transformers (aspirational)' )
+        #
+        #
+        #
+        #
+        #
         #
         '''
         '''
