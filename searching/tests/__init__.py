@@ -541,8 +541,8 @@ sModels = \
 #      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 
 
-dSearchResult = \
-{'autoPay': 'false',
+dSearchResult = {
+ 'autoPay': 'false',
  'condition': {'conditionDisplayName': 'New', 'conditionId': '1000'},
  'country': 'US',
  'galleryURL': 'http://thumbs3.ebaystatic.com/m/mutHoe85kv1_SUEGG3k1yBw/140.jpg',
@@ -824,6 +824,24 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["333655464250"],
+             "title":[" 2 Siemens Klangfilm output Transformer SE Tube Amp EL84 ECL82 1722"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mWYXcO1EXq4SZpk205363Eg\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-Siemens-Klangfilm-output-Transformer-SE-Tube-Amp-EL84-ECL82-1722-\/333655464250"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Germany"],"country":["DE"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"42.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT6H52M52S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-07-15T15:53:16.000Z"],
+             "endTime":["2020-07-22T15:53:16.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
+             "returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["114331923325"],
              "title":["PEERLESS ATLEC TRANSFORMER 16309 Vintage Heathkit W-5M Monoblock Tube Amplifier "],
