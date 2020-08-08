@@ -643,9 +643,9 @@ sExampleResponse = \
                 "bestOfferEnabled":["false" ],
                 "startTime":["2017-12-15T05:22:47.000Z" ],
                 "buyItNowAvailable":["false" ],
-                "endTime":["2018-01-14T05:22:47.000Z" ] } ]
+                "endTime":["2018-01-14T05:22:47.000Z" ] } ]},
 
-            },{ "itemId":["233420619849"],
+              { "itemId":["233420619849"],
                 "title":["6GM8 / ECC86 Vacuum Tube, New Tested "],
                 "globalId":["EBAY-US"],
                 "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -663,9 +663,9 @@ sExampleResponse = \
                 "endTime":["2019-12-08T19:16:01.000Z"],
                 "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
                 "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-                "isMultiVariationListing":["false"],"topRatedListing":["false"]
+                "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-            },{"itemId":["132401762082" ],"isMultiVariationListing":["false" ],
+              { "itemId":["132401762082" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["Simpson 360 Digital Multi Meter Volt Ohm Milliameter Working" ],
@@ -702,9 +702,9 @@ sExampleResponse = \
                 "watchCount":["5" ],
                 "startTime":["2017-11-16T21:11:42.000Z" ],
                 "buyItNowAvailable":["false" ],
-                "endTime":["2017-12-16T21:11:42.000Z" ] } ]
+                "endTime":["2017-12-16T21:11:42.000Z" ] } ]},
 
-            },{"itemId":["253303813311" ],"isMultiVariationListing":["false" ],
+              { "itemId":["253303813311" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["SIMPSON 360-2 RUNII DIGITAL OHM -VOLT METER #12286" ],
@@ -747,9 +747,9 @@ sExampleResponse = \
                     { "@currencyId": "USD", "__value__": "400.0" } ],
                 "bestOfferEnabled":["false" ],
                 "startTime":["2017-12-09T23:18:40.000Z" ],
-                "buyItNowAvailable":["true" ] } ]
+                "buyItNowAvailable":["true" ] } ]},
 
-            },{"itemId":["253295991282" ],"isMultiVariationListing":["false" ],
+            {"itemId":["253295991282" ],"isMultiVariationListing":["false" ],
               "topRatedListing":["false" ],
               "globalId":["EBAY-US" ],
               "title":["Simpson 360 Multimeter" ],
@@ -803,7 +803,7 @@ sExampleResponse = \
 # ###      also first item is tested in core.test_utils_ebay             ###
 
 # helpful useful regex re for splitting item info: .(?=,")
-
+# working
 sResponseItems2Test = \
 '''{"findItemsByKeywordsResponse":
   [{"ack":["Success"],"version":["1.13.0"],"timestamp":["2018-03-03T23:04:24.581Z"],
@@ -825,9 +825,9 @@ sResponseItems2Test = \
              "endTime":["2018-03-04T02:42:38.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["true"]
+             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-         },{ "itemId":["392896363748"],
+           { "itemId":["392896363748"],
              "title":["5 Amperex PQ 6922 E88CC Tubes Gold Pins Large Halo Getters Guaranteed NO Noise!"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -842,9 +842,9 @@ sResponseItems2Test = \
              "endTime":["2020-08-10T01:43:01.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["313173389194"],
+           { "itemId":["313173389194"],
              "title":["Vintage Heathkit W5M Tube Amplifier Chicago CTS Power Transformer 54-32 138048 1"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],"secondaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -860,9 +860,9 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["true"],
              "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/313173389194_1_0_1.jpg"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["333655464250"],
+           { "itemId":["333655464250"],
              "title":[" 2 Siemens Klangfilm output Transformer SE Tube Amp EL84 ECL82 1722"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],
@@ -878,9 +878,9 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
              "returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["114331923325"],
+           { "itemId":["114331923325"],
              "title":["PEERLESS ATLEC TRANSFORMER 16309 Vintage Heathkit W-5M Monoblock Tube Amplifier "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -894,9 +894,9 @@ sResponseItems2Test = \
              "endTime":["2020-08-07T18:03:20.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["22"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174366894500"],
+           { "itemId":["174366894500"],
              "title":["LOT OF 8 TUBES BY RAYTHEON USA 6922 \/ E88CC \/ CV2492 \/ CCA SWEET TONE UNDERRATED"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -911,9 +911,9 @@ sResponseItems2Test = \
              "endTime":["2020-08-07T04:15:19.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["274439852789"],
+           { "itemId":["274439852789"],
               "title":["Jbl LE175 Compression Driver 8 Ohms w\/ 1217\/1290 Horn - Original - 1 of 2"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -928,9 +928,9 @@ sResponseItems2Test = \
               "endTime":["2020-08-02T21:22:26.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["164303884779"],
+           { "itemId":["164303884779"],
              "title":["FREE SHIP TUNG-SOL JAN CTL 6L6WGB 5881 Tube Tested 1958 6L6G"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -944,9 +944,9 @@ sResponseItems2Test = \
              "startTime":["2020-07-23T19:30:52.000Z"],
              "endTime":["2020-07-30T19:30:52.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["true"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["254665286871"],
+           { "itemId":["254665286871"],
              "title":["NOS NIB GENUINE TELEFUNKEN GOLD PIN TUBE GERMANY 6922 E88CC ECC88 CCA DIAMOND <>"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -961,9 +961,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-30T20:54:07.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["353147061609"],
+           { "itemId":["353147061609"],
              "title":["TWO VINTAGE NOS GEC KT88 RADIO VALVES \/ TUBES. MADE IN ENGLAND."],
              "globalId":["EBAY-GB"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Valves & Vacuum Tubes"]}],"secondaryCategory":[{"categoryId":["933"],"categoryName":["Tube & Valve Radios"]}],
@@ -978,9 +978,9 @@ sResponseItems2Test = \
              "endTime":["2020-08-02T18:07:47.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["41"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["402322718905"],
+           { "itemId":["402322718905"],
              "title":["FISHER FM-100C FM MULTIPLEX STEREO TUBE TUNER 100 C with 6HR6 Tube"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73382"],"categoryName":["Vintage Tuners & Tube Tuners"]}],
@@ -996,9 +996,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-18T14:44:22.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184368873499"],
+           { "itemId":["184368873499"],
              "title":["Vintage ALTEC 211 VOTT Speakers 311-90 HORNS 288 Drivers PU ONLY."],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1013,9 +1013,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-26T00:59:27.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["392882208927"],
+           { "itemId":["392882208927"],
              "title":["Marantz 510 510MR amp amplifier original Faceplate w\/ Handles Mint w\/ RA-2 box"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -1030,9 +1030,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-30T00:42:40.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["264800383304"],
+           { "itemId":["264800383304"],
              "title":["Marantz Model 9 Tube Cage"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -1047,9 +1047,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-25T17:35:59.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["233646146565"],
+           { "itemId":["233646146565"],
              "title":["DYNACO PAS 3 SERIES ll STEREO TUBE PREAMP  W\/ PHONO STAGE"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
@@ -1064,9 +1064,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-18T02:30:07.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["16"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["264795576250"],
+           { "itemId":["264795576250"],
              "title":["2 excellent 1958 long plate mullard 12ax7 and 1 161 coded mullard 12ax7 tube"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1079,9 +1079,10 @@ sResponseItems2Test = \
              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT16H47M51S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
              "startTime":["2020-07-14T01:50:41.000Z"],
              "endTime":["2020-07-19T01:50:41.000Z"],
-             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["283937831810"],
+           { "itemId":["283937831810"],
              "title":["2x  EL34 \/ 6CA7 tubes  VALVO  - PHILIPS \/ MULLARD - AMPEREX - DD - EL 34 - 1958"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1095,9 +1096,9 @@ sResponseItems2Test = \
              "startTime":["2020-07-09T08:32:39.000Z"],
              "endTime":["2020-07-19T08:32:39.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174337421134"],
+           { "itemId":["174337421134"],
              "title":["1950s Raytheon 6SN7GTA 6SN7 Vacuum Tube Tested Guaranteed! USA Black Plate"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1112,9 +1113,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-10T23:18:36.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174332018867"],
+           { "itemId":["174332018867"],
              "title":["original GE 5881 and Sylvania  JAN6L6WGB Vacuum Tubes - 1 matched pair"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1129,9 +1130,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-06T04:00:19.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["353133698540"],
+           { "itemId":["353133698540"],
              "title":["2 vintage NOS Harman Kardan (GE) 7581A tubes   -tested - matched-  6l6gc kt66"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1146,9 +1147,9 @@ sResponseItems2Test = \
              "endTime":["2020-07-16T00:31:40.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["true"]
+             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-         },{ "itemId":["164264403031"],
+           { "itemId":["164264403031"],
              "title":["RCA Black & Yellow Catalin Case Radio Model  66X9 (1946)"],
              "globalId":["EBAY-US"],"subtitle":["Works and looks great!"],
              "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -1162,9 +1163,9 @@ sResponseItems2Test = \
              "startTime":["2020-06-27T03:00:51.000Z"],
              "endTime":["2020-07-04T03:00:51.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["42"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["333634731461"],
+           { "itemId":["333634731461"],
              "title":["VINTAGE AUDIO TUBES 6SN7, 12SN7, 6SL7 LOT OF OF 12 NOS NEW IN THE BOX TUNG-SOL, "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1179,9 +1180,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-29T20:30:56.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["254628290743"],
+           { "itemId":["254628290743"],
              "title":["Working Pair of JBL LE20-1 Tweeters 8 Ohm Speakers L55 Lancer 66 77 88 99 4310"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1196,9 +1197,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-25T02:13:10.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174319222859"],
+           { "itemId":["174319222859"],
              "title":["Vintage Mid-Century Mod  Norelco - JBL D216 Speaker Cabinet "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1213,9 +1214,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-23T22:33:07.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["6"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["392837328193"],
+           { "itemId":["392837328193"],
              "title":["2 vintage NOS Genalex GEC (labelled Mullard) black plate KT88 6550 tubes  tested"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1230,9 +1231,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-21T00:30:36.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["43"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["254630676292"],
+           { "itemId":["254630676292"],
              "title":[" Altec Lansing 920-8B 12\\" Duplex Speakers w\/Crossovers VOTT 604 605 515 JBL"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1247,9 +1248,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-27T21:04:29.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["133438318976"],
+           { "itemId":["133438318976"],
              "title":["#83 Lot Of 3rca Cunningham Radiotron 45 Ux 245 Cx 345 Vacuum tubes "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1264,9 +1265,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-21T23:21:01.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["233624178941"],
+           { "itemId":["233624178941"],
              "title":["SensorLink 940 700A Overhead Single Phase Transformer Meter, 100-277VAC 60Hz"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["4678"],"categoryName":["Other Test Meters & Detectors"]}],
@@ -1281,9 +1282,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-26T18:15:16.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["New \u2013 Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["303591187120"],
+           { "itemId":["303591187120"],
              "title":["stephens trusonic pair of p30 and 214 drivers with  horns Klipsch klipschorn"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1298,9 +1299,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-19T02:32:12.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["224038110383"],
+           { "itemId":["224038110383"],
              "title":["PAIR ALTEC 820A SPEAKERS 803A WOOFER 802C TWEETER N-800 CROSSOVER"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1315,9 +1316,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-14T23:26:39.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["293608035790"],
+           { "itemId":["293608035790"],
              "title":["Pair of Altec N-800-F Vintage Speaker Crossover"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1332,9 +1333,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-14T16:10:27.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["143625858664"],
+           { "itemId":["143625858664"],
              "title":["3 Ohmite Z-O 1000 ma Plate Chokes, 2 1\/2 Meter Band, VOM Tested @ 0.4 ohms"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],
@@ -1349,9 +1350,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-18T16:00:01.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["392820998298"],
+           { "itemId":["392820998298"],
              "title":["5814A 12AU7 ECC82 Tungsol tubes matched 4pcs. b"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1365,9 +1366,9 @@ sResponseItems2Test = \
              "startTime":["2020-05-31T20:10:15.000Z"],
              "endTime":["2020-06-07T20:10:15.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-             "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174302152790"],
+           { "itemId":["174302152790"],
              "title":["Dynaco Recapped PAS Tube Preamp And FM3 Tuner Excellent Condition!"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
@@ -1382,9 +1383,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-07T22:39:23.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["193480815469"],
+           { "itemId":["193480815469"],
              "title":["Antique FADA vintage Catalin tube radio model Dip-Top 711 working price reduced"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -1400,9 +1401,9 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["40"]}],"returnsAccepted":["false"],
              "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/193480815469_1_0_1.jpg"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["233597629477"],
+           { "itemId":["233597629477"],
              "title":["2A3 Single Mono Plate RCA Cunningham"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1417,9 +1418,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-31T03:57:01.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["264741220720"],
+           { "itemId":["264741220720"],
              "title":["1  excellent mil spec general electric 12ax7wa \/ 12ax7 tube  # K 69"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1431,9 +1432,9 @@ sResponseItems2Test = \
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
              "bidCount":["1"],"sellingState":["Active"],"timeLeft":["P0DT3H44M29S"]}],
              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2020-05-24T01:56:25.000Z"],"endTime":["2020-05-29T01:56:25.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174290984997"],
+           { "itemId":["174290984997"],
              "title":["10 vntg 12AX7A ~ Raytheon ~Black Plate~ Tube lot TV-7 & Hi-Fi Tested 12AX7   rca"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1449,9 +1450,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-25T12:00:05.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["true"]
+             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-         },{ "itemId":["174291344087"],
+           { "itemId":["174291344087"],
              "title":["7308 Audiophile Vacuum Tube Very Rare Superb Sound - CV4108 E188CC Raytheon Amp"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1466,9 +1467,9 @@ sResponseItems2Test = \
              "endTime":["2020-06-01T15:37:24.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["133401627353"],
+           { "itemId":["133401627353"],
              "title":["Matched Pair EL34 6CA7 Bugle Boy (Mullard) Metal Base Tubes SY1 57C 1957"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1483,9 +1484,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-10T22:02:50.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184284149755"],
+           { "itemId":["184284149755"],
              "title":["Electro Voice EV Vintage FiberGlass 8HD Horn Pair Speaker T10 T25 T250 A"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1500,9 +1501,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-15T13:32:08.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153920100946"],
+           { "itemId":["153920100946"],
              "title":["Jensen Vintage 16 Ohm A-402 Crossover Network Pair Speaker RP302 Imperial "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1516,9 +1517,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-12T14:37:04.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["353067866152"],
+           { "itemId":["353067866152"],
              "title":["1 vintage factory built Jensen PR-100 Imperial speaker  p15ll  rp-302  rp-201"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1533,9 +1534,9 @@ sResponseItems2Test = \
              "startTime":["2020-05-04T00:30:44.000Z"],
              "endTime":["2020-05-11T00:30:44.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["17"]}],"returnsAccepted":["true"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184281669249"],
+           { "itemId":["184281669249"],
              "title":["Electro Voice EV Vintage 16 Ohm X36 Crossover Network Pair Speaker T35 T350 B "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1550,9 +1551,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-13T15:06:33.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["293562589789"],
+           { "itemId":["293562589789"],
              "title":["JBL M31 (looks Like D130) Needs are-Coned"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1568,9 +1569,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-05T19:34:51.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["362980614720"],
+           { "itemId":["362980614720"],
              "title":["VT25  Western Electric Tube Valve matched pair NOS NIB not 300B 2a3 45 211"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1585,9 +1586,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-02T08:31:37.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["233573519366"],
+           { "itemId":["233573519366"],
              "title":["Westinghouse 6550 vintage tube"],
              "globalId":["EBAY-ENCA"],"primaryCategory":[{"categoryId":["64627"],
              "categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1602,9 +1603,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-04T00:00:47.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184168518275"],
+           { "itemId":["184168518275"],
              "title":["****Jensen Vintage 16 Ohm A-402 Crossover Network Speaker RP302 Imperial "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1619,9 +1620,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-12T23:44:37.000Z"],
              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["283709382058"],
+           { "itemId":["283709382058"],
              "title":["Vintage Altec 875A Granada Horn Speaker Pair - Barcelona Valencia Family"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1635,10 +1636,10 @@ sResponseItems2Test = \
              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
              "startTime":["2019-12-13T19:29:26.000Z"],
              "endTime":["2020-05-13T19:29:26.000Z"],
-             "listingType":["StoreInventory"],"gift":["false"],"watchCount":["155"]}],
-             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "listingType":["StoreInventory"],"gift":["false"],"watchCount":["155"]}],"returnsAccepted":["false"],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["133392165411"],
+           { "itemId":["133392165411"],
              "title":["Western Electric 300B tube >engraved base<"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1654,9 +1655,9 @@ sResponseItems2Test = \
              "endTime":["2020-05-01T11:27:57.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174253058987"],
+           { "itemId":["174253058987"],
              "title":["British Made Mullard 7DJ8 PCC88 Tube Valve -6DJ8 ECC88 sub -Warm Old School hifi"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1670,9 +1671,9 @@ sResponseItems2Test = \
              "startTime":["2020-04-16T19:10:36.000Z"],
              "endTime":["2020-04-26T19:10:36.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["254574295997"],
+           { "itemId":["254574295997"],
              "title":["IEC Mullard 6922 \/ E88CC \/ 6DJ8 Gold Pin Tube"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1688,9 +1689,9 @@ sResponseItems2Test = \
              "endTime":["2020-04-27T02:01:07.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["352961821505"],
+           { "itemId":["352961821505"],
              "title":["1 altec 287F amplifier meter panel "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],
@@ -1705,9 +1706,9 @@ sResponseItems2Test = \
              "startTime":["2020-02-06T03:13:47.000Z"],
              "endTime":["2020-05-06T03:13:47.000Z"],
              "listingType":["StoreInventory"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["313048572053"],
+           { "itemId":["313048572053"],
              "title":["11 Vintage 60's Western Electric 417A 5842 Bent D Getter Amplifier Tube Bulk Lot"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1722,9 +1723,9 @@ sResponseItems2Test = \
              "endTime":["2020-04-15T00:26:24.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["26"]}],"returnsAccepted":["true"],
              "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/313048572053_1_0_1.jpg"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["283830240734"],
+           { "itemId":["283830240734"],
              "title":["Vtg 60s ALTEC FLAMENCO 848A Speaker Set Horn 416Z 806A N800F 16ohm Valencia VOTT"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1740,9 +1741,9 @@ sResponseItems2Test = \
              "endTime":["2020-04-04T23:20:37.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["6"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174236717488"],
+           { "itemId":["174236717488"],
              "title":["Telefunken E88CC\/01 w\/ Mullard label <> audiophono grade 6922 CCA 6DJ8 Gold Pins"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1755,9 +1756,9 @@ sResponseItems2Test = \
              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P7DT20H33M21S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
              "startTime":["2020-03-31T18:38:00.000Z"],"endTime":["2020-04-10T18:38:00.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["313033073507"],
+           { "itemId":["313033073507"],
              "title":["VINTAGE ALTEC LANSING 755E speakers - Pair"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1771,9 +1772,9 @@ sResponseItems2Test = \
              "startTime":["2020-03-19T21:29:56.000Z"],
              "endTime":["2020-03-29T21:29:56.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["114154224682"],
+           { "itemId":["114154224682"],
              "title":["HEATHKIT TUBE AMPLIFIER EA-3   \/ UA-2 \/ UA-1"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -1788,9 +1789,9 @@ sResponseItems2Test = \
              "startTime":["2020-03-19T20:20:36.000Z"],
              "endTime":["2020-03-26T20:20:36.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["23"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174226403478"],
+           { "itemId":["174226403478"],
              "title":["4 pcs - RCA 6922 vintage vacuum tube quad - E88CC 6DJ8 CV2492 CCa - valves"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1805,9 +1806,9 @@ sResponseItems2Test = \
              "startTime":["2020-03-21T06:07:49.000Z"],
              "endTime":["2020-03-31T06:07:49.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["324090682443"],
+           { "itemId":["324090682443"],
              "title":["GOLD LION KT66 Vacuum tube 1 GENELEX logo MADE in UK M-Osram valve No Reserve"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1822,9 +1823,9 @@ sResponseItems2Test = \
              "startTime":["2020-03-02T19:54:54.000Z"],
              "endTime":["2020-03-09T19:54:54.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["383441473993"],
+           { "itemId":["383441473993"],
              "title":["BROOK 10C Tube Amplifier   Western Electric Fairchild 620 300B 2A3   Tested 10C3"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -1839,9 +1840,9 @@ sResponseItems2Test = \
              "startTime":["2020-02-28T23:35:03.000Z"],
              "endTime":["2020-02-29T23:35:03.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["254524704215"],
+           { "itemId":["254524704215"],
              "title":["15 x EL84 Telefunken Valvo Siemens Lorenz 6BQ5 old version Made in West Germany"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1856,9 +1857,9 @@ sResponseItems2Test = \
              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
              "startTime":["2020-02-28T03:05:26.000Z"],
              "endTime":["2020-03-06T03:05:26.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153839648277"],
+           { "itemId":["153839648277"],
              "title":["Vintage Dynaco A-50 speakers A50 A25 A-25"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1874,9 +1875,9 @@ sResponseItems2Test = \
              "endTime":["2020-02-27T19:02:01.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174183853047"],
+           { "itemId":["174183853047"],
              "title":["1940s Northern Western Electric Altec 604 Duplex Speaker in Original 605 Cabinet"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -1893,9 +1894,9 @@ sResponseItems2Test = \
              "endTime":["2020-02-14T00:36:06.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174177597476"],
+           { "itemId":["174177597476"],
              "title":["AC 100A Meter Split Core Transformer  "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["4678"],"categoryName":["Other Test Meters & Detectors"]}],
@@ -1911,9 +1912,9 @@ sResponseItems2Test = \
              "endTime":["2020-02-08T06:26:46.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["New \u2013 Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["274222992683"],
+           { "itemId":["274222992683"],
              "title":["AZ1 Valvo Pair! Mesh Plate Tube Valve Röhre Big Ballon Klangfilm AD1 Tested Good"],
              "globalId":["EBAY-GB"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Valves & Vacuum Tubes"]}],
@@ -1928,9 +1929,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-24T09:02:23.000Z"],
              "endTime":["2020-01-31T09:02:23.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["164044315855"],
+           { "itemId":["164044315855"],
              "title":["FISHER 80-R TUBE TUNER &PRE   vg shape \/ untested  ( 1 ea )"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
@@ -1945,9 +1946,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-23T01:57:03.000Z"],"returnsAccepted":["false"],
              "endTime":["2020-01-30T01:57:03.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["283752371216"],
+           { "itemId":["283752371216"],
              "title":["4x EL34 power tubes  RFT ( SIEMENS ) - NOS  - EL 34 "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1962,9 +1963,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-23T09:01:49.000Z"],
              "endTime":["2020-02-02T09:01:49.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["312954104297"],
+           { "itemId":["312954104297"],
              "title":["4x KT61 ( 6AG6 G ) tubes HALTRON ( M.O.V. ) - NOS (~  6V6G \/ EL33 \/  EL3 ) KT 61"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1980,9 +1981,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-23T08:48:36.000Z"],
              "endTime":["2020-02-02T08:48:36.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["312953984914"],
+           { "itemId":["312953984914"],
              "title":["2x  E82CC \/ 6189  VALVO \/  SIEMENS tubes -  NOS ( ECC802S \/ 12AU7WA ) -  E 82 CC"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -1998,9 +1999,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-23T08:11:11.000Z"],
              "endTime":["2020-02-02T08:11:11.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["164044313206"],
+           { "itemId":["164044313206"],
              "title":["DYNACO ST 70  ORIGINAL CAGE (with meter) VG SHAPE ( 1 EA )"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2017,9 +2018,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-30T01:53:18.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["283743905366"],
+           { "itemId":["283743905366"],
              "title":["2x  ECC88 \/ 6DJ8   TELEFUNKEN  <> tubes  - NOS  -  ( ~  7DJ8 \/ PCC88 )  MILITARY"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2035,9 +2036,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-16T09:09:40.000Z"],
              "endTime":["2020-01-26T09:09:40.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174147736580"],
+           { "itemId":["174147736580"],
              "title":["Valvo Heerlen E88CC NOS Grey Shield CCa 6DJ8 6922 CV2492 CV2493 CV5358 CV5472"],
              "globalId":["EBAY-US"],"subtitle":["Prod. in'60th, Grey Shield, Stage Getter, Goldpins"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2053,9 +2054,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-18T15:33:17.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["13"]}],"returnsAccepted":["false"],
              "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/174147736580_1_0_1.jpg"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174148034585"],
+           { "itemId":["174148034585"],
              "title":["4 lot 6201 GE dual triode preamp tube,pin compatible with 12AX7 used,tested,good"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2071,9 +2072,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-17T03:00:19.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174145135158"],
+           { "itemId":["174145135158"],
              "title":["NOS General Electric GE 5 Star 5814A 12au7 Vacuum Tube Tested Guaranteed! 3 Mica"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2088,9 +2089,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-04T00:16:47.000Z"],
              "endTime":["2020-01-11T00:16:47.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["202868417147"],
+           { "itemId":["202868417147"],
              "title":["Amperex 12AX7 ECC83 Vintage Tube Pair Bugle Boy Tested NOS (Noise Tested)"],
              "globalId":["EBAY-US"],"subtitle":["Amplitrex AT-1000 tested, a quality audio tube auction!"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2107,9 +2108,9 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["24"]}],
              "returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["true"]
+             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-         },{ "itemId":["202867134038"],
+           { "itemId":["202867134038"],
              "title":["Mullard 10M Master Series 12AX7 \/ ECC83 10,000 HR Gold Pin Tube Amplitrex Tested"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2127,9 +2128,9 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
              "returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["352919421447"],
+           { "itemId":["352919421447"],
              "title":["2 1950's Sylvania Black Plate 6SN7GTA 6SN7 Vacuum Tubes Test NOS Guaranteed! #6"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2145,9 +2146,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-11T00:18:34.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["114039185762"],
+           { "itemId":["114039185762"],
              "title":["Vintage Altec Lansing N-800-D Dividing Network"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2163,9 +2164,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-05T22:00:19.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["21"]}],
              "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174142861539"],
+           { "itemId":["174142861539"],
              "title":["AMPEREX BUGLE BOY EF86\/6267 VACUUM TUBE MESH PLATE"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2181,9 +2182,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-08T15:07:23.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["324030050981"],
+           { "itemId":["324030050981"],
              "title":["2 X ) KLH vintage model nine speaker power supply "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2198,9 +2199,9 @@ sResponseItems2Test = \
              "startTime":["2020-01-02T12:55:20.000Z"],
              "endTime":["2020-01-09T12:55:20.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["164011103887"],
+           { "itemId":["164011103887"],
              "title":["Altec 288 B Diaphragms "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2214,10 +2215,10 @@ sResponseItems2Test = \
              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
              "startTime":["2019-12-30T05:11:26.000Z"],
              "endTime":["2020-01-04T05:11:26.000Z"],
-             "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],
-             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],"returnsAccepted":["false"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153777954483"],
+           { "itemId":["153777954483"],
              "title":["Vintage Stark 8-77 Tube Tester Hickok 6000"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
@@ -2234,9 +2235,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-08T02:31:06.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["31"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["193278712422"],
+           { "itemId":["193278712422"],
              "title":["HICKOK 532 \/ 533 \/ 534 \/ 600 MUTUAL CONDUCTANCE TUBE TESTER ROLL CHART ASSEMBLY"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
@@ -2253,9 +2254,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-06T15:20:00.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["174143946146"],
+           { "itemId":["174143946146"],
              "title":["Amperex 6922 gold pin tube military edition audio grade gold pins 6DJ8 E88CC"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2272,9 +2273,9 @@ sResponseItems2Test = \
              "endTime":["2020-01-09T19:08:00.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["324020037678"],
+           { "itemId":["324020037678"],
              "title":["Altec Lansing Model 17 Custom Speakers 620 Cabinets with 604-8G"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2291,9 +2292,9 @@ sResponseItems2Test = \
              "endTime":["2019-12-28T23:49:44.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],
              "returnsAccepted":["true"],"condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184092262958"],
+           { "itemId":["184092262958"],
              "title":["VINTAGE PAIR OF GE 8417 AMP TUBES KZ 188-5"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2315,9 +2316,9 @@ sResponseItems2Test = \
              "endTime":["2019-12-28T20:41:58.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
              "returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184089371148"],
+           { "itemId":["184089371148"],
              "title":["Amperex\/Bugle Boy 12AT7 vacuum tube made in W. Germany"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2332,9 +2333,9 @@ sResponseItems2Test = \
              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
              "startTime":["2019-12-20T00:14:58.000Z"],
              "endTime":["2019-12-27T00:14:58.000Z"],"listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153747946010"],
+           { "itemId":["153747946010"],
              "title":["ALTEC LANSING 808 8A HORN Driver Symbiotik from HAMMOND B3 Leslie 122 Speaker"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2350,9 +2351,9 @@ sResponseItems2Test = \
              "startTime":["2019-12-03T03:58:40.000Z"],
              "endTime":["2019-12-13T03:58:40.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],
-             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["163972543321"],
+           { "itemId":["163972543321"],
              "title":["Acrosound TO-300  Output Tranformers, Pair, one mounted on Heathkit W3M Chassis."],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2369,9 +2370,9 @@ sResponseItems2Test = \
              "endTime":["2019-12-10T14:13:56.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["133251370953"],
+           { "itemId":["133251370953"],
              "title":["1x 7308 AMPEREX PQ USA Gold Pin HiFi Amplifier Vacuum Tube - TESTED"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2387,9 +2388,9 @@ sResponseItems2Test = \
              "startTime":["2019-11-25T15:56:31.000Z"],
              "endTime":["2019-11-30T15:56:31.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["123987878353"],
+           { "itemId":["123987878353"],
              "title":["Single Altec Lansing 415D 415-D Biflex 15 inch Speaker for Parts or Repair "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2405,9 +2406,9 @@ sResponseItems2Test = \
              "startTime":["2019-11-25T06:09:45.000Z"],
              "endTime":["2019-12-02T06:09:45.000Z"],"listingType":["Auction"],
              "gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153723814561"],
+           { "itemId":["153723814561"],
              "title":["FISHER R-200 TUBE TUNER~PHENOMENAL SOUND & CONDITION~TELFUNKEN~MULLARD~TUBE AMP"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2430,9 +2431,9 @@ sResponseItems2Test = \
              "endTime":["2019-11-24T21:04:50.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["323984684424"],
+           { "itemId":["323984684424"],
              "title":["Marantz 2 mono amplifier tube 1950's original EL34 amp PICK UP ONLY"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2450,9 +2451,9 @@ sResponseItems2Test = \
              "startTime":["2019-11-18T20:26:18.000Z"],
              "endTime":["2019-11-25T20:26:18.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["233407527461"],
+           { "itemId":["233407527461"],
              "title":["LOT OF 7 6V6 6V6GT KEN-RAD TUNG-SOL GE RCA TV7 TESTED"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2469,9 +2470,9 @@ sResponseItems2Test = \
              "endTime":["2019-11-23T21:52:20.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["392536575491"],
+           { "itemId":["392536575491"],
              "title":["JBL 175 DRIVER 1217-1290 HORN LENS SPEAKER "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2489,9 +2490,9 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],
              "watchCount":["1"]}],"returnsAccepted":["false"],
              "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/392536575491_1_0_1.jpg"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["184032120009"],
+           { "itemId":["184032120009"],
              "title":["Altec Lansing Magnificent A7-500-II Speakers pair "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2509,9 +2510,9 @@ sResponseItems2Test = \
              "endTime":["2019-11-18T15:30:14.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["193189027590"],
+           { "itemId":["193189027590"],
              "title":["Altec Lansing 604D Duplex 15\u201d Single Speaker & N-1600-B Crossover"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2528,9 +2529,9 @@ sResponseItems2Test = \
              "endTime":["2019-11-09T14:15:40.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153708457263"],
+           { "itemId":["153708457263"],
              "title":["ALTEC LANSING 421 A DIA CONE Vintage Bass Musical Instrument Speaker 1 PAIR"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2546,9 +2547,9 @@ sResponseItems2Test = \
              "startTime":["2019-11-02T23:10:03.000Z"],
              "endTime":["2019-11-12T23:10:03.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["133227447968"],
+           { "itemId":["133227447968"],
              "title":["Altec Lansing Big A7 Speakers Pair. Early Green Drivers 511b Horn 416A N-500-G"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2565,9 +2566,9 @@ sResponseItems2Test = \
              "endTime":["2019-11-10T17:00:03.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["113945886050"],
+           { "itemId":["113945886050"],
              "title":["JBL L220 Walnut Excellent with 076 Cats-eye, LE5-9, LE14A Aquaplas Cone all OEM"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2585,9 +2586,9 @@ sResponseItems2Test = \
              "endTime":["2019-11-08T22:47:21.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["123950129789"],
+           { "itemId":["123950129789"],
              "title":["Pair of Altec 1569A Theater EL34 Tube Amplifiers (Western Electric Era) Peerless"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2603,9 +2604,9 @@ sResponseItems2Test = \
              "startTime":["2019-10-23T20:24:29.000Z"],
              "endTime":["2019-11-02T20:24:29.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["6"]}],
-             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["383228212021"],
+           { "itemId":["383228212021"],
              "title":["Pair Electro-Voice EV The Patrician Premium System 18Wk, (2)828HF, T25A\/6HD T35"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2621,9 +2622,9 @@ sResponseItems2Test = \
              "startTime":["2019-10-23T19:06:07.000Z"],
              "endTime":["2019-11-02T19:06:07.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153684782088"],
+           { "itemId":["153684782088"],
              "title":["Vintage Heathkit AS-21 (Legato Compact) Altec 414a's (2) & 804a Drivers \/ Beauty"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2640,9 +2641,9 @@ sResponseItems2Test = \
              "startTime":["2019-10-14T20:51:04.000Z"],
              "endTime":["2019-10-19T20:51:04.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["233369497398"],
+           { "itemId":["233369497398"],
              "title":["Pilot 240 tube integrated amp stereo WORKING ala Fisher Scott"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2660,9 +2661,9 @@ sResponseItems2Test = \
              "endTime":["2019-10-20T01:58:55.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["283636126401"],
+           { "itemId":["283636126401"],
              "title":[" JBL L220 Oracle Speakers  076 Cat Eye Tweeters, LE14A Woofer, LE5-9 midrange"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2680,9 +2681,9 @@ sResponseItems2Test = \
              "endTime":["2019-10-17T14:47:42.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["202796135729"],
+           { "itemId":["202796135729"],
              "title":["SCOTT LK-72 Tube Amplifier 7199 GE 7591 Mullard 5AR4 Bench Checked and Serviced"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2699,9 +2700,9 @@ sResponseItems2Test = \
              "endTime":["2019-10-16T04:04:32.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["33"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["143400343473"],
+           { "itemId":["143400343473"],
              "title":["Klipsch K-77\/ EV\/ University T35 Tweeters Heresy La Scala Set Made 09\/07\/2012"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2717,9 +2718,9 @@ sResponseItems2Test = \
              "startTime":["2019-10-03T02:00:19.000Z"],
              "endTime":["2019-10-10T02:00:19.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-             "topRatedListing":["true"]
+             "topRatedListing":["true"]},
 
-         },{ "itemId":["383183181329"],
+           { "itemId":["383183181329"],
              "title":["Amperex Bugle Boy 6DJ8 ECC88 Vacuum Tube Tested 100%"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2733,10 +2734,10 @@ sResponseItems2Test = \
              "timeLeft":["P3DT7H16M25S"]}],
              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"15.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"15.0"}],
              "startTime":["2019-09-30T00:52:19.000Z"],
-             "endTime":["2019-10-07T00:52:19.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-             "topRatedListing":["false"]
+             "endTime":["2019-10-07T00:52:19.000Z"],"listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["323923889701"],
+           { "itemId":["323923889701"],
              "title":["Fisher FM-1000, 400-CX, SA-1000, stereo component set - vintage tube electronics"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -2754,9 +2755,9 @@ sResponseItems2Test = \
              "endTime":["2019-09-27T00:40:15.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["53"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-             "topRatedListing":["false"]
+             "topRatedListing":["false"]},
 
-         },{ "itemId":["352786860975"],
+           { "itemId":["352786860975"],
              "title":["Vintage Pair of Acoustic Research EARLY AR-2\/AR-2x Speakers PLEASE READ"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2772,9 +2773,9 @@ sResponseItems2Test = \
              "endTime":["2019-09-18T23:22:34.000Z"],"listingType":["Auction"],"gift":["false"],
              "watchCount":["5"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["183953915448"],
+           { "itemId":["183953915448"],
              "title":["Electro Voice EV Regency Speaker Cabinet Enclosure Empty Vintage Corner Horn "],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2793,9 +2794,9 @@ sResponseItems2Test = \
              "startTime":["2019-09-13T20:33:56.000Z"],
              "endTime":["2019-09-20T20:33:56.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["183952461011"],
+           { "itemId":["183952461011"],
              "title":["Tung Sol 6SN7GTB 82\/88"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2818,9 +2819,9 @@ sResponseItems2Test = \
              "startTime":["2019-09-12T21:31:32.000Z"],
              "endTime":["2019-09-19T21:31:32.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["264395445356"],
+           { "itemId":["264395445356"],
              "title":["2 RCA Type 83 JAN mil grade rectifier tubes.For Hickok,TV-7 tube testers & more."],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -2839,9 +2840,9 @@ sResponseItems2Test = \
              "endTime":["2019-07-22T02:07:44.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-             "topRatedListing":["false"]
+             "topRatedListing":["false"]},
 
-          },{ "itemId":["293128761816"],
+            { "itemId":["293128761816"],
               "title":["VINTAGE LOT ALTEC LANSING N-500-C NETWORK CROSSOVER w\/803B WOOFER SPEAKER+ HORN"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2857,9 +2858,9 @@ sResponseItems2Test = \
               "startTime":["2019-06-21T17:02:01.000Z"],
               "endTime":["2019-07-01T17:02:01.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{"itemId":["123795331323"],
+            {"itemId":["123795331323"],
               "title":["ALTEC 755A Loudspeaker Unit same as Western Electric 755A"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2877,9 +2878,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["41"]}],"returnsAccepted":["true"],
               "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/123795331323_1_0_1.jpg"],
               "isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["123790646318"],
+            { "itemId":["123790646318"],
               "title":["Altec 601A Speaker with N3000A Crossover"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2896,9 +2897,9 @@ sResponseItems2Test = \
               "startTime":["2019-06-03T02:07:40.000Z"],
               "endTime":["2019-06-13T02:07:40.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["223539937147"],
+            { "itemId":["223539937147"],
               "title":["Vintage Altec Lansing 601A Duplex speaker Co-axial woofer"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2914,9 +2915,9 @@ sResponseItems2Test = \
               "startTime":["2019-06-03T18:41:52.000Z"],
               "endTime":["2019-06-08T18:41:52.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["173922031351"],
+            { "itemId":["173922031351"],
               "title":["JBL JBL early \\"Jim\\" Lansing 150-4B 15\\" AlNiCo Paragon Hartsfield woofer 32 ohm"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2933,9 +2934,9 @@ sResponseItems2Test = \
               "startTime":["2019-06-03T11:24:38.000Z"],
               "endTime":["2019-06-10T11:24:38.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["401777677255"],
+            { "itemId":["401777677255"],
               "title":["Vintage  Altec Lansing Dividing Network Crossover N-3000G, 890B Bolero Speaker "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -2952,9 +2953,9 @@ sResponseItems2Test = \
               "startTime":["2019-05-31T17:19:27.000Z"],
               "endTime":["2019-06-07T17:19:27.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["192878961826"],
+            { "itemId":["192878961826"],
               "title":["Jensen RP-302A Vintage Super Tweeter 16 ohm 1957 Jensen Imperial"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],
@@ -2972,9 +2973,9 @@ sResponseItems2Test = \
               "startTime":["2019-04-03T02:15:10.000Z"],
               "endTime":["2019-04-10T02:15:10.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["202636634682"],
+            { "itemId":["202636634682"],
               "title":["Vintage Acoustic Research SAT 660 Speakers(2)"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],
@@ -2991,9 +2992,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
               "startTime":["2019-03-27T02:54:18.000Z"],
               "endTime":["2019-04-01T02:54:18.000Z"],
-              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-          },{ "itemId":["133004653920"],
+            { "itemId":["133004653920"],
               "title":["VINTAGE ALTEC LANSING 604D DUPLEX SPEAKER, With N-1600B CROSSOVER."],
               "globalId":["EBAY-US"],
               "subtitle":["Near mint condition .. in original 1950s packaging"],
@@ -3011,9 +3012,10 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"1350.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"1350.0"}],
               "startTime":["2019-03-27T16:34:17.000Z"],
               "endTime":["2019-04-03T16:34:17.000Z"],
-              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-          },{ "itemId":["293004871422"],
+            { "itemId":["293004871422"],
               "title":["Jbl L65 Jubal Le5-12 Mids Pair Working Nice! See Pictures"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3030,9 +3032,9 @@ sResponseItems2Test = \
               "startTime":["2019-03-13T02:46:55.000Z"],
               "endTime":["2019-03-20T02:46:55.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["254154293727"],
+            { "itemId":["254154293727"],
               "title":["vintage klipsch Lascalas"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3051,9 +3053,9 @@ sResponseItems2Test = \
               "startTime":["2019-03-07T13:14:25.000Z"],
               "endTime":["2019-03-14T13:14:25.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-          },{ "itemId":["254130264753"],
+            { "itemId":["254130264753"],
               "title":["The Fisher 105 - 3 Way Speakers \u2013 Cool Latticework Grills - 12\\" Woofers        "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3075,9 +3077,9 @@ sResponseItems2Test = \
               "startTime":["2019-02-18T19:34:33.000Z"],
               "endTime":["2019-02-25T19:34:33.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["323681140009"],
+            { "itemId":["323681140009"],
               "title":["Marantz Model 140 Stereo Amp, 3200 Preamp and Model 112 Tuner - Complete Stack!"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -3097,9 +3099,9 @@ sResponseItems2Test = \
               "endTime":["2019-02-10T00:14:28.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"],
               "watchCount":["14"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["223348187115"],
+            { "itemId":["223348187115"],
               "title":["ALTEC Early Model 606 Corner Cabinet 602A 15\\" Duplex Speaker  N3000A "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3117,9 +3119,9 @@ sResponseItems2Test = \
               "endTime":["2019-02-07T02:03:19.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["312436313310"],
+            { "itemId":["312436313310"],
               "title":["MARANTZ  MODEL 240 POWER AMPLIFIER, USED, GOOD CONDITION, TESTED"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -3138,9 +3140,9 @@ sResponseItems2Test = \
               "endTime":["2019-01-27T13:56:09.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["312417181299"],
+            { "itemId":["312417181299"],
               "title":["MARANTZ  MODEL 240 POWER AMPLIFIER, USED, GOOD CONDITION"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -3159,9 +3161,9 @@ sResponseItems2Test = \
               "endTime":["2019-01-13T13:55:47.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["173696834267"],
+            { "itemId":["173696834267"],
               "title":["1 NOS Westinghouse Canada 12au7A 12au7 Vacuum Tube TV7 Tested Guaranteed! NR! "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3178,9 +3180,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-18T03:10:30.000Z"],
               "endTime":["2018-12-25T03:10:30.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["372536713027"],
+            { "itemId":["372536713027"],
               "title":["VINTAGE RCA 6SN7GTB ELECTRON TUBE NOS"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3197,9 +3199,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-15T18:57:57.000Z"],
               "endTime":["2018-12-22T18:57:57.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["303000959884"],
+            { "itemId":["303000959884"],
               "title":["1 6SN7GT SYLVANIA 2-Hole Black Plate HiFi Radio Amplifier Vacuum Tube Code 126"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3217,9 +3219,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-18T03:19:06.000Z"],
               "endTime":["2018-12-21T03:19:06.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["173696832184"],
+            { "itemId":["173696832184"],
               "title":["2 Vintage Philips Holland GE  6DJ8 6922 E88CC Vacuum Tubes Tested Guaranteed!"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3237,9 +3239,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-18T03:07:28.000Z"],
               "endTime":["2018-12-25T03:07:28.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["303000971114"],
+            { "itemId":["303000971114"],
               "title":["3 Vintage Matsushita EL34 6CA7 Golden Series Tubes,1950s,Dual Getters,EX sound"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3257,9 +3259,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-18T03:36:20.000Z"],
               "endTime":["2018-12-25T03:36:20.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["123550734798"],
+            { "itemId":["123550734798"],
               "title":["LOT OF 10 pcs 12ax7 ecc83 VACUUM TUBES TESTED GOOD VINTAGE RCA TUNG-SOL RAYTHEON"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3276,10 +3278,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-18T00:31:46.000Z"],
               "endTime":["2018-12-23T00:31:46.000Z"],"listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-
-          },{ "itemId":["192748960622"],
+            { "itemId":["192748960622"],
               "title":["4 Qty. 6SN7 GTB Sylvania NIS, NIB"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3298,9 +3299,9 @@ sResponseItems2Test = \
               "endTime":["2018-12-12T23:01:21.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],
               "isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["192748949221"],
+            { "itemId":["192748949221"],
               "title":["Pair of Fisher XP6 Mid range speakers  5\\""],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3319,9 +3320,9 @@ sResponseItems2Test = \
               "endTime":["2018-12-08T22:46:58.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],
               "isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["352535627937"],
+            { "itemId":["352535627937"],
               "title":["1 NOS Sylvania 6V6G 6V6 Vacuum tube Tested Guaranteed! USA Marconi"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3339,10 +3340,9 @@ sResponseItems2Test = \
               "endTime":["2018-12-11T23:35:02.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
               "isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-
-          },{ "itemId":["312339506602"],
+            { "itemId":["312339506602"],
               "title":["Altec 1005B  A7 A4 Voice of the Theatre horn speaker "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3362,9 +3362,9 @@ sResponseItems2Test = \
               "watchCount":["6"]}],
               "returnsAccepted":["true"],
               "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/312339506602_1_0_1.jpg"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-          },{ "itemId":["113392158472"],
+            { "itemId":["113392158472"],
               "title":["ONE RAYTHEON REGISTERED 6L6 6L6GC Vacuum Tube  HICKOK 539C TESTED"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3382,9 +3382,9 @@ sResponseItems2Test = \
               "startTime":["2018-11-22T17:20:26.000Z"],
               "endTime":["2018-11-29T17:20:26.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["283272931267"],
+            { "itemId":["283272931267"],
               "title":["5 Tube  Tubes EF86 6CF8 Valvo Miniwatt Mullard Tube EF 86 tested"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3404,9 +3404,9 @@ sResponseItems2Test = \
               "endTime":["2018-11-29T15:52:29.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["1"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["382632483507"],
+            { "itemId":["382632483507"],
               "title":["FISHER XP7-B speakers TESTED beautiful condition"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3426,9 +3426,9 @@ sResponseItems2Test = \
               "endTime":["2018-11-26T23:25:58.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["323589685342"],
+            { "itemId":["323589685342"],
               "title":["ONE SPEAKER The Fisher XP 1 Speakers Mid Century "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3446,9 +3446,9 @@ sResponseItems2Test = \
               "startTime":["2018-12-08T23:25:16.000Z"],
               "endTime":["2018-12-13T23:25:16.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["264048401593"],
+            { "itemId":["264048401593"],
               "title":["Pair Vintage THE FISHER XP-7B  Speakers "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3467,9 +3467,9 @@ sResponseItems2Test = \
               "startTime":["2018-11-18T23:41:58.000Z"],
               "endTime":["2018-11-21T23:41:58.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["352494035670"],
+            { "itemId":["352494035670"],
               "title":["4 Vintage Philips ECG JAN 12AX7WA 7025 12ax7 Vacuum Tubes Tested Guaranteed!"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3487,9 +3487,9 @@ sResponseItems2Test = \
               "startTime":["2018-10-23T01:11:36.000Z"],
               "endTime":["2018-10-30T01:11:36.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-          },{ "itemId":["332849161811"],
+            { "itemId":["332849161811"],
               "title":["The Fisher XP-1 Vintage Speakers *Local Pickup Only*"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3509,10 +3509,9 @@ sResponseItems2Test = \
               "endTime":["2018-10-28T22:25:16.000Z"],
               "listingType":["Auction"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-
-          },{ "itemId":["192675470270"],
+            { "itemId":["192675470270"],
               "title":["University Sound Altec Audio Horn Model CIB-A8 w Mount White Tested Clean Used"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3530,9 +3529,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-              "topRatedListing":["true"]
+              "topRatedListing":["true"]},
 
-          },{ "itemId":["153200191510"],
+            { "itemId":["153200191510"],
               "title":["Rare!!! Vintage Altec Lansing 604 8G Studio Monitor Loud Speakers Pair 8 Ohms"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3548,9 +3547,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],
               "returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-              "topRatedListing":["true"]
+              "topRatedListing":["true"]},
 
-           },{"itemId":["173544935496"],
+             {"itemId":["173544935496"],
               "title":["2 Metal RCA 6V6 VT-107 Vacuum Tubes Tested Guaranteed!"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3567,9 +3566,9 @@ sResponseItems2Test = \
               "startTime":["2018-09-20T02:44:40.000Z"],
               "endTime":["2018-09-27T02:44:40.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["183436307728"],
+             {"itemId":["183436307728"],
               "title":["VINTAGE HICKOK MODEL 539B TUBE TESTER with CA-4 Adapter"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
@@ -3587,9 +3586,9 @@ sResponseItems2Test = \
               "endTime":["2018-09-21T00:28:34.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],"returnsAccepted":["false"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["192660195679"],
+             {"itemId":["192660195679"],
               "title":["Pair of Fisher XP6 10.5\\" Woofers"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3607,9 +3606,9 @@ sResponseItems2Test = \
               "endTime":["2018-09-19T23:43:54.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"],
               "watchCount":["2"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["192659380750"],
+             {"itemId":["192659380750"],
               "title":["Altec A5 Customized with sound nice so more than the original (515\/288\/2405)"],
               "globalId":["EBAY-US"],
               "subtitle":["A  version perfect with sound perfect"],
@@ -3628,9 +3627,9 @@ sResponseItems2Test = \
               "endTime":["2018-09-23T05:11:54.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["7"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["232913976977"],
+             {"itemId":["232913976977"],
               "title":["VINTAGE JBL 175 driver with 1217\/1290 HORNS!!SET OF TWO!!!! CLOSE NUMBERS!!!!"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3650,9 +3649,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["1"]}],"returnsAccepted":["false"],
               "isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["323437473473"],
+             {"itemId":["323437473473"],
               "title":["JBL Metregon 205 - Time Capsule! (130A, 275, N500, H5040)"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3668,9 +3667,9 @@ sResponseItems2Test = \
               "endTime":["2018-09-16T15:53:34.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["13"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["202430076409"],
+             {"itemId":["202430076409"],
               "title":["Classic Western Electric KS-15874-L2 Cardmatic Tube Tester Made By Hickok Great!"],
               "globalId":["EBAY-US"],
               "subtitle":["Totally Complete Outfit!  Really NIce!"],
@@ -3690,9 +3689,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["14"]}],"returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["323425124965"],
+             {"itemId":["323425124965"],
               "title":["Vintage Klipsch Heresy Red cloth Alnico horns, K-22 woofers, K-55V K700, K-77"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3708,9 +3707,9 @@ sResponseItems2Test = \
               "endTime":["2018-09-08T23:10:51.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"],
               "watchCount":["7"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["192633431454"],
+             {"itemId":["192633431454"],
               "title":["Spectacular JBL C38 Enclosure 2-Way Speakers D130, 075 & N2400"],
               "globalId":["EBAY-US"],"subtitle":["Mid Century look speakers that will blow the roof off"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3725,11 +3724,10 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
               "startTime":["2018-08-22T00:15:43.000Z"],
               "endTime":["2018-08-29T00:15:43.000Z"],
-              "listingType":["Auction"],"gift":["false"],
-              "watchCount":["45"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingType":["Auction"],"gift":["false"],"watchCount":["45"]}],"returnsAccepted":["false"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-
-           },{"itemId":["283100002617"],
+             {"itemId":["283100002617"],
               "title":["Vintage Hickok 539b Tube Tester with Model CA-5 Universal Adapter"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],
@@ -3748,9 +3746,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],
               "gift":["false"],"watchCount":["36"]}],"returnsAccepted":["true"],
               "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-           },{"itemId":["202401940540"],
+             {"itemId":["202401940540"],
               "title":["JBL D130, 075 & N2600 X-Over"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3768,9 +3766,9 @@ sResponseItems2Test = \
               "endTime":["2018-08-20T19:34:58.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["17"]}],"returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-           },{"itemId":["263879319271"],
+             {"itemId":["263879319271"],
               "title":["Marantz Model 240 Power Stereo Amplifier Vintage 120 Watts Working Silver Amp"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
@@ -3788,9 +3786,9 @@ sResponseItems2Test = \
               "endTime":["2018-08-22T00:29:53.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["163199461416"],
+             {"itemId":["163199461416"],
               "title":["■Vintage Altec 601B Speaker & N-3000B Crossover Network In Cabinet #204781"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3809,9 +3807,9 @@ sResponseItems2Test = \
               "endTime":["2018-08-20T05:41:31.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["2"]}],"returnsAccepted":["true"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-           },{"itemId":["263861079618"],
+             {"itemId":["263861079618"],
               "title":["10 PIECE LOT OF ASSORTED RCA TUBES"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3829,9 +3827,9 @@ sResponseItems2Test = \
               "endTime":["2018-08-12T20:53:36.000Z"],
               "listingType":["Auction"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["223093061969"],
+             {"itemId":["223093061969"],
               "title":["RCA Electron Tubes Vintage Mixed Lot of (10) Tubes w\/ Sleeve NIB NOS"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -3847,9 +3845,9 @@ sResponseItems2Test = \
               "startTime":["2018-08-08T00:00:40.000Z"],
               "endTime":["2018-08-13T00:00:40.000Z"],
               "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["153121548106"],
+             {"itemId":["153121548106"],
               "title":["VINTAGE TANNOY GRF CORNER CABINET w. 15\\" SILVER DUAL CONCENTRIC DRIVER LSU\/HF\/15"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3867,9 +3865,9 @@ sResponseItems2Test = \
               "endTime":["2018-08-10T22:04:29.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["22"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["283006362761"],
+             {"itemId":["283006362761"],
               "title":["ITM#2 Harman Kardon CITATION III X Multiplex FM Stereo Vacuum TUBE TUNER Radio"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["67807"],
@@ -3885,9 +3883,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-06-13T13:14:41.000Z"],"endTime":["2018-06-20T01:14:41.000Z"],
               "listingType":["Auction"],"gift":["false"],"watchCount":["18"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["113173838358"],
+             {"itemId":["113173838358"],
               "title":["Altec Lansing 806a Drivers  w 811 b Horns"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3908,11 +3906,9 @@ sResponseItems2Test = \
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["5"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-
-
-           },{"itemId":["273380279306"],
+             {"itemId":["273380279306"],
               "title":["Altec Lansing 288-8K High Frequency Drive MRII 542 Horn"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -3931,9 +3927,9 @@ sResponseItems2Test = \
               "endTime":["2018-08-06T15:25:42.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["2"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["232745789325"],
+             {"itemId":["232745789325"],
               "title":["Altec 603 B 15\\" Speaker 604 803 Vintage"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],
@@ -3942,72 +3938,65 @@ sResponseItems2Test = \
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/Altec-603-B-15-Speaker-604-803-Vintage-\/232745789325"],
               "paymentMethod":["PayPal"],
               "autoPay":["false"],
-              "postalCode":["19044"],
-              "location":["Horsham,PA,USA"],
-              "country":["US"],
-              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],
-              "handlingTime":["2"]}],
+              "postalCode":["19044"],"location":["Horsham,PA,USA"],"country":["US"],
+              "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"61.0"}],
               "convertedCurrentPrice":[{"@currencyId":"USD","__value__":"61.0"}],
               "bidCount":["5"],
-              "sellingState":["Active"],
-              "timeLeft":["P2DT20H44M52S"]}],
+              "sellingState":["Active"],"timeLeft":["P2DT20H44M52S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-25T00:25:29.000Z"],"endTime":["2018-05-02T00:25:29.000Z"],
               "listingType":["Auction"],
               "gift":["false"],
               "watchCount":["27"]}],
               "returnsAccepted":["false"],
               "isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-            },{"itemId":["332618106572"],
+              {"itemId":["332618106572"],
               "title":["NIB Matched Quad RCA 6BH6 6661 E90F BLACK Marantz 8B Test STRONG 98-101% NEW NOS"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
               "galleryURL":["http:\/\/thumbs1.ebaystatic.com\/m\/mbzAx1VlTAKPaAX9FMC5_aw\/140.jpg"],
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/NIB-Matched-Quad-RCA-6BH6-6661-E90F-BLACK-Marantz-8B-Test-STRONG-98-101-NEW-NOS-\/332618106572"],
               "paymentMethod":["PayPal"],"autoPay":["true"],
-              "postalCode":["53121"],
-              "location":["Elkhorn,WI,USA"],
-              "country":["US"],
+              "postalCode":["53121"],"location":["Elkhorn,WI,USA"],"country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.75"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"29.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"29.0"}],"sellingState":["Active"],"timeLeft":["P27DT5H18M54S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-12T00:55:39.000Z"],"endTime":["2018-05-12T00:55:39.000Z"],
               "listingType":["FixedPrice"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["183161209931"],
+             {"itemId":["183161209931"],
               "title":["1 Pair - JENSEN RP201 Horns + RP201 H-F Unit Compression Drivers - 16 Ohms"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqVhhyAT4V8qBM45j9jmBIQ\/140.jpg"],
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/1-Pair-JENSEN-RP201-Horns-RP201-H-F-Unit-Compression-Drivers-16-Ohms-\/183161209931"],
               "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
-              "postalCode":["97224"],
-              "location":["Portland,OR,USA"],
-              "country":["US"],
+              "postalCode":["97224"],"location":["Portland,OR,USA"],"country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"380.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"380.0"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P1DT4H33M39S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-06T00:02:31.000Z"],"endTime":["2018-04-16T00:02:31.000Z"],
-              "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "listingType":["Auction"],"gift":["false"],"watchCount":["12"]}],"returnsAccepted":["true"],
+              "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-           },{"itemId":["162988530803"],
+             {"itemId":["162988530803"],
               "title":["ALTEC LANSING  311-90 Horn for 288 290 291 292 299 drivers "],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
               "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mzRY0LYxDsD1ETtl0gj_xOQ\/140.jpg"],
               "viewItemURL":["http:\/\/www.ebay.com\/itm\/ALTEC-LANSING-311-90-Horn-288-290-291-292-299-drivers-\/162988530803"],
               "paymentMethod":["PayPal"],"autoPay":["false"],
-              "postalCode":["35210"],
-              "location":["Birmingham,AL,USA"],
-              "country":["US"],
+              "postalCode":["35210"],"location":["Birmingham,AL,USA"],"country":["US"],
               "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"399.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"399.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P1DT6H36M27S"]}],
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-09T02:05:02.000Z"],"endTime":["2018-04-16T02:05:02.000Z"],
-              "listingType":["Auction"],"gift":["false"],"watchCount":["25"]}],"returnsAccepted":["true"],"galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/162988530803_1_0_1.jpg"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "listingType":["Auction"],"gift":["false"],"watchCount":["25"]}],"returnsAccepted":["true"],
+              "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/162988530803_1_0_1.jpg"],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-           },{"itemId":["282602694679"],
+             {"itemId":["282602694679"],
               "title":["ALTEC LANSING 604E Super 15\\" Duplex Horn Speakers N-1500-A Crossover Pair"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -4022,9 +4011,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2017-08-08T00:53:54.000Z"],"endTime":["2018-05-05T00:53:54.000Z"],
               "listingType":["FixedPrice"],"gift":["false"],"watchCount":["51"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["192509883813"],
+             {"itemId":["192509883813"],
               "title":["Vintage THE FISHER 100 SPEAKER SYSTEM ~ Pair Retro Speakers Long Island City NY"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -4039,9 +4028,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"51.88"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"51.88"}],"startTime":["2018-04-13T14:07:11.000Z"],"endTime":["2018-04-20T14:07:11.000Z"],
               "listingType":["AuctionWithBIN"],"gift":["false"]}],
               "returnsAccepted":["false"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["162988285719"],
+             {"itemId":["162988285719"],
               "title":["RCA 12SN7GT Electron Radiotron Radio Audio Amp Vacuum Tube Antique TV NOS"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4057,9 +4046,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],
               "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["253486571279"],
+             {"itemId":["253486571279"],
               "title":["Vintage The Fisher XP-55B Speaker System-Pair"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
@@ -4073,9 +4062,9 @@ sResponseItems2Test = \
               "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"sellingState":["Active"],"timeLeft":["P3DT12H18M53S"]}],
               "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2018-03-13T01:48:50.000Z"],"endTime":["2018-04-12T01:48:50.000Z"],
               "listingType":["FixedPrice"],"gift":["false"]}],
-              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-           },{"itemId":["123046984227"],
+             {"itemId":["123046984227"],
               "title":["Tests NOS GE USA 5R4GB 2 Black T Plate Side [] Get HANGING FILAMENT Tube 100+%"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4090,9 +4079,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-03-28T17:57:55.000Z"],"endTime":["2018-04-27T17:57:55.000Z"],
               "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],
-              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]
+              "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-           },{"itemId":["162988285720"],
+             {"itemId":["162988285720"],
               "title":["Tung-Sol 5881 (6L6WGB) amplifier tube. TV-7 test NOS. for Bendix USA SHIPS ONLY"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4108,9 +4097,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],
               "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-           },{"itemId":["162988285721"],
+             {"itemId":["162988285721"],
               "title":["Tung-Sol 6L6WGB 5881 amplifier tube. TV-7 test NOS. for Bendix USA SHIPS ONLY"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4126,9 +4115,9 @@ sResponseItems2Test = \
               "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],"startTime":["2018-04-08T18:58:48.000Z"],"endTime":["2018-05-08T18:58:48.000Z"],
               "listingType":["StoreInventory"],"gift":["false"]}],
               "returnsAccepted":["true"],"isMultiVariationListing":["false"],
-              "topRatedListing":["false"]
+              "topRatedListing":["false"]},
 
-            },{"itemId":["142842525513"],
+              {"itemId":["142842525513"],
                "title":["Lot of 10 Vintage Vacuum Tubes - TUNG-SOL 6AU6A - Tested "],
                "globalId":["EBAY-US"],
                "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4151,9 +4140,9 @@ sResponseItems2Test = \
                "gift":["false"]}],
                "returnsAccepted":["true"],
                "isMultiVariationListing":["false"],
-               "topRatedListing":["false"]
+               "topRatedListing":["false"]},
 
-            },{"itemId":["273340636575"],
+              {"itemId":["273340636575"],
                "title":["Supreme TV-7 TUBE TESTER military vintage test western electric 300b"],
                "globalId":["EBAY-US"],
                "primaryCategory":[{"categoryId":["170062"],"categoryName":["Tube Testers"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4177,9 +4166,9 @@ sResponseItems2Test = \
                "watchCount":["53"]}],
                "returnsAccepted":["true"],
                "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-               "isMultiVariationListing":["false"],"topRatedListing":["false"]
+               "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-            },{"itemId":["263776955668"],
+              {"itemId":["263776955668"],
                "title":["LOT OF 10 5823 NOS NATIONAL GENERAL ELECTRIC RCA AND AMPEREX"],
                "globalId":["EBAY-US"],
                "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
@@ -4203,9 +4192,9 @@ sResponseItems2Test = \
                "gift":["false"]}],
                "returnsAccepted":["true"],
                "isMultiVariationListing":["false"],
-               "topRatedListing":["false"]
+               "topRatedListing":["false"]},
 
-            },{"itemId":["173375697400"],
+              {"itemId":["173375697400"],
                "title":["Pair (2)  '56 Jensen ST-875 \\/ H222 ~ Coaxial Hi-Fi Speaker & H.F. Balance p12 rp"],
                "globalId":["EBAY-US"],
                "subtitle":["Working Pair 12\\" Coaxial Speakers & Balance Controls"],
@@ -4229,9 +4218,9 @@ sResponseItems2Test = \
                "gift":["false"],
                "watchCount":["21"]}],
                "returnsAccepted":["true"],
-               "isMultiVariationListing":["false"],"topRatedListing":["true"]
+               "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
-           },{"itemId":["192577735613"],
+             {"itemId":["192577735613"],
               "title":["10 vintage tubes 6AU6 tubes Philips Mullard Super Radiotron tested NIB"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["64627"],
@@ -4257,9 +4246,9 @@ sResponseItems2Test = \
               "galleryPlusPictureURL":["http:\/\/galleryplus.ebayimg.com\/ws\/web\/192577735613_1_1_1.jpg"],
               "condition":[{"conditionId":["3000"],
               "conditionDisplayName":["Used"]}],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-           },{"itemId":["292640430401"],
+             {"itemId":["292640430401"],
               "title":["Vintage SET JENSEN IMPERIAL SPEAKER CROSSOVER NETWORK A-61, A-402, M 1131"],
               "globalId":["EBAY-US"],
               "primaryCategory":[{"categoryId":["50597"],
@@ -4280,9 +4269,9 @@ sResponseItems2Test = \
               "endTime":["2018-07-24T01:06:44.000Z"],
               "listingType":["Auction"],"gift":["false"],
               "watchCount":["6"]}],"returnsAccepted":["false"],
-              "isMultiVariationListing":["false"],"topRatedListing":["false"]
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]}
 
-              }]
+              ]
 
            }],
 
@@ -4313,9 +4302,9 @@ sManualItems2Test = \
              "endTime":["2020-04-27T02:27:12.000Z"],
              "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["2750"],"conditionDisplayName":["Like New"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["193427753317"],
+           { "itemId":["193427753317"],
              "title":["The Fisher X-100-B Stereo Amplifier Service Manual"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
@@ -4331,9 +4320,9 @@ sManualItems2Test = \
              "endTime":["2020-04-24T20:01:38.000Z"],
              "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["153883438316"],
+           { "itemId":["153883438316"],
              "title":["Heathkit Capacitor Checker Model IT-28 Manual"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["183079"],"categoryName":["Other Vintage Electronics"]}],
@@ -4346,9 +4335,9 @@ sManualItems2Test = \
              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT21H14M19S"]}],
              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2020-03-31T19:16:05.000Z"],"endTime":["2020-04-05T19:16:05.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
-         },{ "itemId":["193390315883"],
+           { "itemId":["193390315883"],
              "title":["The Fisher X-100 Stereo Amplifier Service Manual"],
              "globalId":["EBAY-US"],
              "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
@@ -4363,9 +4352,9 @@ sManualItems2Test = \
              "endTime":["2020-03-27T20:00:28.000Z"],
              "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]}
 
-              }]
+              ]
 
            }],
 
