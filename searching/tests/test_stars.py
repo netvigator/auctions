@@ -3448,6 +3448,28 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 313173389194
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'get transformer not amp, primary category component on end (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 392896363748
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'paren equivalents selection should find 6922 not E88CC (listed 2nd)' )
+        #
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
