@@ -38,6 +38,7 @@ sBrands = \
  Bogen             |      1 |            |            |
  Brociner          |      6 |            |            |
  Brook             |      8 |            |            |
+ Chicago           |      7 |            |            | Chicago Standard Transformer Corp.
  Coronado          |      7 |            |            |
  Crosley           |      3 |            |            |
  Cunningham        |      8 |            |            |
@@ -532,6 +533,7 @@ sModels = \
  X36                |           |      6 | f            | Electro-Voice     |    Crossover |             |
  TO-300             |           |      7 | f            | ACRO              |Output Transformer|         |
  16309              |           |      7 | f            | Peerless          |Output Transformer|         |
+ 54-32              |           |      7 | f            | Chicago           |Power Transformer|          |
  meter              |           |      3 | f            |                   |    Component | Meter Band  |
  1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  model nine         |           |      9 | f            | KLH               |Speaker System| model 9     |
@@ -824,6 +826,41 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]
+
+         },{ "itemId":["392896363748"],
+             "title":["5 Amperex PQ 6922 E88CC Tubes Gold Pins Large Halo Getters Guaranteed NO Noise!"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/maGkvCANsKcGqtG9vcmAsHw\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/5-Amperex-PQ-6922-E88CC-Tubes-Gold-Pins-Large-Halo-Getters-Guaranteed-NO-Noise-\/392896363748"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["926**"],"location":["Huntington Beach,CA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"31.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"31.0"}],
+             "bidCount":["4"],"sellingState":["Active"],"timeLeft":["P3DT16H40M3S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-08-05T01:43:01.000Z"],
+             "endTime":["2020-08-10T01:43:01.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
+
+         },{ "itemId":["313173389194"],
+             "title":["Vintage Heathkit W5M Tube Amplifier Chicago CTS Power Transformer 54-32 138048 1"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["67815"],"categoryName":["Vintage Transformers"]}],"secondaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m8Fh7ZNkJZPn2ugeKf_MLjA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Heathkit-W5M-Tube-Amplifier-Chicago-CTS-Power-Transformer-54-32-138048-1-\/313173389194"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["981**"],"location":["Seattle,WA,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.95"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"9.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"9.99"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT15H25M46S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+             "startTime":["2020-08-06T00:25:57.000Z"],
+             "endTime":["2020-08-13T00:25:57.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["true"],
+             "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/313173389194_1_0_1.jpg"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]
 
          },{ "itemId":["333655464250"],
              "title":[" 2 Siemens Klangfilm output Transformer SE Tube Amp EL84 ECL82 1722"],
