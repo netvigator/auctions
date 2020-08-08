@@ -400,6 +400,13 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             oCategory.save()
             #
+            oCategory   = Category( cTitle      = 'Power Transformer',
+                                    cLookFor    = 'Transformer\rTranformer',
+                                    iStars      = 6,
+                                    bComponent  = True,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
             oCategory   = Category(
                     cTitle      = 'Speaker Enclosure',
                     cLookFor    = 'Enclosure\rcabinet\rspeaker cabinet',
