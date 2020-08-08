@@ -1950,7 +1950,7 @@ def _doScoreCandidates(
                         #
                         lCandidates.append(
                             'do not have brand for model %s, '
-                            'so excluding' % oHitLine.iModel )
+                            'so excluding' % oHitLine.oModel )
                         #
                     #
                 #
