@@ -12,7 +12,7 @@
     {% if object_list %}
         {# the pagination section #}
         {% if is_paginated %}
-            {% include "../paginate.html" %}
+            {% include "../common/paginate.html" %}
         {% endif %}
         <div class="container">
         <div class="list-group">
@@ -38,7 +38,7 @@
         </div>
         {# the pagination section #}
         {% if is_paginated %}
-          {% include "../paginate.html" %}
+          {% include "../common/paginate.html" %}
         {% endif %}
     {% else %} <!-- brand_list -->
         <p>No models are available.</p>
