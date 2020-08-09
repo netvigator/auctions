@@ -27,8 +27,8 @@ class Keeper( models.Model ):
                         null = True, blank = True ) # d/n always get
     bBestOfferable  = models.BooleanField( 'buy it now enabled?',
                         default = False )
-    tTimeBeg        = models.DateTimeField( 'beginning date/time',null=True )
-    tTimeEnd        = models.DateTimeField( 'ending date/time',   null=True )
+    tTimeBeg        = models.DateTimeField( 'began', null=True )
+    tTimeEnd        = models.DateTimeField( 'end',   null=True )
     cEbayItemURL    = models.CharField( 'ebay item URL', max_length =188 )
     cListingType    = models.CharField( 'listing type', max_length = 15 )
     cLocation       = models.CharField( 'location', max_length = 58 )
