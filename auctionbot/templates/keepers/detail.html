@@ -27,6 +27,20 @@
         <TD>{% field_name model 'tTimeEnd' %}</TD>
         <TD>{{object.tTimeEnd}}</TD>
     </TR>
+    <tr style="vertical-align:top">
+        <td>Hits for this Item:</td>
+        <td>
+          {% include "../common/hit_index_on_detail.html" %}
+        </td>
+    </tr>
+    {% if HitsForThis %}
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        {% include "./index_buttons_hits.html" %}
+        </td>
+      </tr>
+    {% endif %}
     <TR style="vertical-align:top">
         <td>Hits for this Item:</td>
         <td>
