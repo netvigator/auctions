@@ -13,8 +13,9 @@ from ebayinfo.models    import EbayCategory
 from .mixins            import SearchViewSuccessPostFormValidMixin
 from .models            import Search
 
-# ### keep views thin! ###
 
+# ### views assemble presentation info ###
+# ###         keep views thin!         ###
 
 
 class SearchCreateView(
