@@ -14,7 +14,8 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
                              TitleSearchMixin )
 
 
-# ### keep views thin! ###
+# ### views assemble presentation info ###
+# ###         keep views thin!         ###
 
 
 class FinderIndexView(
@@ -112,13 +113,13 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         #
         session = self.request.session
         #
-        session['iItemNumb']    = context[ 'object' ].iItemNumb_id
-        session['iSearch'  ]    = qsThisItemAllHits[0].iSearch_id
+        session['iItemNumb'  ]  = context[ 'object' ].iItemNumb_id
+        session['iSearch'    ]  = qsThisItemAllHits[0].iSearch_id
         #
         return context
 
 
-
+"""
 class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
 
     # get this from the list at bottom for a model, brand or category
@@ -163,7 +164,7 @@ class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 context['object'].iSearch_id or qsThisItemOtherHits[0].iSearch_id
         #
         return context
-
+"""
 
 class ItemFoundUpdateView(
             AnyReleventHitStarColsChangedMixin, UpdateViewCanCancel ):
