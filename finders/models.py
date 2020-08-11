@@ -208,9 +208,13 @@ class UserItemFound(models.Model):
 
     def get_absolute_url(self):
         #
+        oUserFinder = UserFinder.objects.get(
+                iItemNumb_id = self.iItemNumb_id,
+                iUser        = self.iUser )
+        #
         return getReverseWithUpdatedQuery(
-                'finders:hit',
-                kwargs = { 'pk': self.pk, 'tModify': timezone.now() } )
+                'finders:detail',
+                kwargs = { 'pk': oUserFinder.pk, 'tModify': timezone.now() } )
 
     def get_edit_url(self):
         #
