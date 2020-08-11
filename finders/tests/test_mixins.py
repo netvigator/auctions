@@ -1,11 +1,10 @@
 from django.urls            import reverse
 
-from ..models               import UserItemFound
+from ..models               import UserItemFound, UserFinder
 
 from searching.tests.base   import StoreUserItemFoundWebTestBase
 
 from models.models          import Model
-
 
 
 class EditingUserItemFoundShouldRedoHitStars( StoreUserItemFoundWebTestBase ):
@@ -48,6 +47,12 @@ class EditingUserItemFoundShouldRedoHitStars( StoreUserItemFoundWebTestBase ):
         #
         oUserItemFound.save()
         #
+        oUserFinder = UserFinder(
+                iItemNumb   = oUserItemFound.iItemNumb,
+                iUser       = oUserItemFound.iUser )
+        #
+        oUserFinder.save() # need cuz UserItemFound.get_absolute_url()
+        #
         iExpectStars = (
                 oUserItemFound.iModel.iStars *
                 oUserItemFound.iBrand.iStars *
@@ -74,10 +79,10 @@ class EditingUserItemFoundShouldRedoHitStars( StoreUserItemFoundWebTestBase ):
         data['iModel'] = self.oModel2.id
         #
         # ### testing no longer works, maybe cuz the extra field gModel ###
-        #print('')
-        #print( 'form.is_valid():', form.is_valid() )
-        #print('searching data:')
-        #pprint( data )
+        # print('')
+        # print( 'form.is_valid():', form.is_valid() )
+        # print('searching data:')
+        # pprint( data )
         #
         # POST to the form
         r = self.client.post( update_url, data )
