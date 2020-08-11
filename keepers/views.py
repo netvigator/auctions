@@ -5,12 +5,16 @@ from core.mixins        import ( GetPaginationExtraInfoInContext,
                                  GetUserSelectionsOnPost,
                                  TitleSearchMixin )
 
-from core.views         import ( DeleteViewGotModel,
+from core.views         import ( DeleteViewGotModel, CreateViewCanCancel,
                                  DetailViewGotModel,  ListViewGotModel )
+
+from .forms             import KeeperForm
 
 from .models            import Keeper, UserKeeper
 
 
+# ### views assemble presentation info ###
+# ###         keep views thin!         ###
 
 
 class KeeperDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
@@ -63,3 +67,24 @@ class KeeperIndexView(
                             ).order_by( '-tTimeEnd' )
         #
         return qsKeepers
+
+
+
+class KeeperCreateView( CreateViewCanCancel ):
+
+    model           = UserKeeper
+    parent          = Keeper
+    template_name   = 'keepers/add.html'
+    success_message = 'New keeper hit successfully saved!!!!'
+    form_class      = KeeperForm
+
+    def form_valid( self, form ):
+        #
+        instance = form.instance
+        session  = self.request.session
+        #
+        instance.iItemNumb_id = instance.iItemNumb_id or session['iItemNumb']
+        instance.iSearch_id   = instance.iSearch_id   or session['iSearch'  ]
+        instance.iUser        = self.request.user
+        #
+        return super( ItemFoundCreateView, self ).form_valid( form )
