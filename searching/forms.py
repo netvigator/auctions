@@ -8,6 +8,10 @@ from core.dj_import     import ValidationError, ObjectDoesNotExist
 
 # from crispy_forms.bootstrap import InlineRadios
 
+# ### forms validate the incoming data against the database      ###
+# ### additional custom validation logic can be implemented here ###
+# ### crispy forms adds automatic layout functionality           ###
+
 from models.models      import Model
 
 from searching          import getPriorityChoices, ALL_PRIORITIES
@@ -73,7 +77,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
 
     def clean(self):
         #
-        cleaned = super( BaseSearchForm, self).clean()
+        cleaned         = super().clean()
         #
         sKeyWords       = cleaned.get( 'cKeyWords',     '' )
         #
