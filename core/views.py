@@ -19,7 +19,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
 from .utils                         import getSaySequence
 
 
-# ### keep views thin! ###
+# ### views assemble presentation info ###
+# ###         keep views thin!         ###
 
 
 class ListViewGotModel(

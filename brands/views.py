@@ -19,8 +19,9 @@ from categories.models  import Category, BrandCategory
 from models.models      import Model
 from keepers.utils      import deleteKeeperUserItem
 
-# ### keep views thin! ###
 
+# ### views assemble presentation info ###
+# ###         keep views thin!         ###
 
 
 class BrandCreateView( GetContextForBrandCategoryList,

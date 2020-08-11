@@ -15,7 +15,8 @@ from .forms             import CreateModelForm, UpdateModelForm
 from .models            import Model
 
 
-# ### keep views thin! ###
+# ### views assemble presentation info ###
+# ###         keep views thin!         ###
 
 
 class ModelIndexView( GetPaginationExtraInfoInContext, TitleSearchMixin,
