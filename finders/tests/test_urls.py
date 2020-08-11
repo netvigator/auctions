@@ -49,19 +49,19 @@ class TestURLs( TestCasePlus ):
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
-    def test_hit_resolve(self):
-        """/finders/<pk>/edit/ should resolve to finders:edit."""
-        self.assertEqual(
-            resolve('/finders/hit/1/').view_name,
-            'finders:hit' )
-        #
-        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+    #def test_hit_resolve(self):
+        #"""/finders/<pk>/edit/ should resolve to finders:edit."""
+        #self.assertEqual(
+            #resolve('/finders/hit/1/').view_name,
+            #'finders:hit' )
+        ##
+        ## print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
-    def test_hit_reverse(self):
-        """finders:edit should reverse to /finders/edit/."""
-        self.assertEqual(reverse('finders:hit', kwargs={ 'pk': 1 }),
-                         '/finders/hit/1/')
-        #
+    #def test_hit_reverse(self):
+        #"""finders:edit should reverse to /finders/edit/."""
+        #self.assertEqual(reverse('finders:hit', kwargs={ 'pk': 1 }),
+                         #'/finders/hit/1/')
+        ##
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
     def test_add_resolve(self):
