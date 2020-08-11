@@ -339,24 +339,6 @@ for useritemsfound and userkeepers, should be user specific !!!
 
 2019-12-11 learn from test_urls.py, update
 
-2019-12-16
-finders/models.py
-on finders list for models, categories and brands, want the link to go to the view not edit, not right, still troubleshooting
-+    #def get_absolute_url(self):
-+        ##
-+        #return getReverseWithUpdatedQuery(
-+                #'finders:edit',
-+                #kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
-+
-     def get_absolute_url(self):
-         #
--        return getReverseWithUpdatedQuery(
--                'finders:edit',
--                kwargs = { 'pk': self.pk, 'tModify': self.tModify } )
-+        return reverse( 'finders:hit', kwargs = { 'pk': self.pk } )
-
-2109-12-20 update:
-on finders list for models, categories and brands, want the link to go to the same view as on the finders index
 
 2109-12-20
 if you edit a useritemfound and the stars get updated, must update user finder!!!
@@ -522,3 +504,6 @@ severely need to test finders views more better!
 2020-07-14 finders cWhereCategory None / null should be allowed
 
 2020-07-24 bot should not find Mullard if title says "Mullard?" and has other brands
+
+2020-08-10 need to test: when adding or editing a finder hit,
+when the new one or edited one already exists, bot now handles gracefully
