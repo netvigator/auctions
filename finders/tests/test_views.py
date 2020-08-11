@@ -121,40 +121,40 @@ class FindersViewsTests( SetUpForHitStarsWebTests ):
 
 
 
-    def test_finders_hit( self ):
-        #
-        """
-        Test got finders hit
-        """
-        #
-        oBrand = Brand.objects.get(
-                cTitle = 'Altec-Lansing',
-                iUser  = self.user1 )
-        oModel = Model.objects.get(
-                cTitle = 'N-1500A',
-                iBrand = oBrand,
-                iUser  = self.user1 )
-        oCategory = Category.objects.get(
-                cTitle = 'Crossover',
-                iUser  = self.user1 )
-        #
-        oSample = UserItemFound.objects.get(
-                iBrand      = oBrand,
-                iModel      = oModel,
-                iCategory   = oCategory,
-                iUser       = self.user1 )
-        #
-        #print(oSample)
-        #
-        iSampleID = oSample.id
-        #
-        response = self.client.get(
-                reverse( 'finders:hit', kwargs={ 'pk': iSampleID } ) )
-        self.assertEqual(response.status_code, 200)
-        #
-        self.assertContains( response, "Altec-Lansing" )
-        self.assertContains( response, "N-1500A" )
-        self.assertContains( response, "Crossover" )
+    #def test_finders_hit( self ):
+        ##
+        #"""
+        #Test got finders hit
+        #"""
+        ##
+        #oBrand = Brand.objects.get(
+                #cTitle = 'Altec-Lansing',
+                #iUser  = self.user1 )
+        #oModel = Model.objects.get(
+                #cTitle = 'N-1500A',
+                #iBrand = oBrand,
+                #iUser  = self.user1 )
+        #oCategory = Category.objects.get(
+                #cTitle = 'Crossover',
+                #iUser  = self.user1 )
+        ##
+        #oSample = UserItemFound.objects.get(
+                #iBrand      = oBrand,
+                #iModel      = oModel,
+                #iCategory   = oCategory,
+                #iUser       = self.user1 )
+        ##
+        ##print(oSample)
+        ##
+        #iSampleID = oSample.id
+        ##
+        #response = self.client.get(
+                #reverse( 'finders:hit', kwargs={ 'pk': iSampleID } ) )
+        #self.assertEqual(response.status_code, 200)
+        ##
+        #self.assertContains( response, "Altec-Lansing" )
+        #self.assertContains( response, "N-1500A" )
+        #self.assertContains( response, "Crossover" )
 
 
     def test_finder_add_post(self):
