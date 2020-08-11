@@ -12,10 +12,10 @@ urlpatterns = [
     # (other hits should be listed)
 
     # get this from the list at bottom for a model, brand or category
-    url( # specific ones need to be above the index url !!!!
-        regex   = r'^hit/(?P<pk>[0-9]+)/$',
-        view    = views.ItemFoundHitView.as_view(),
-        name    = 'hit' ),
+    #url( # specific ones need to be above the index url !!!!
+        #regex   = r'^hit/(?P<pk>[0-9]+)/$',
+        #view    = views.ItemFoundHitView.as_view(),
+        #name    = 'hit' ),
     url(
         regex   = r'^add/$',
         view    = views.ItemFoundCreateView.as_view(),
