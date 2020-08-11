@@ -1,18 +1,17 @@
-from django             import forms
-
 from django.forms       import ModelForm
 
 from finders            import dItemFoundFields, dUserItemFoundUploadFields
 
-from core.crispy        import Field, Layout, Submit
-from core.forms         import BaseModelFormGotCrispy
-
-from models.models      import Model
+from core.dj_import     import ValidationError
+from core.forms         import BaseUserFinderKeeperForm
 
 from .models            import ItemFound, UserItemFound
 
 from ebayinfo.models    import EbayCategory
 
+# ### forms validate the incoming data against the database      ###
+# ### additional custom validation logic can be implemented here ###
+# ### crispy forms adds automatic layout functionality           ###
 
 
 tItemFoundFields = tuple( dItemFoundFields.keys() )
@@ -51,69 +50,11 @@ tUserItemFoundFields = (
     'iHitStars'  )
 
 
-class UserItemFoundForm( BaseModelFormGotCrispy ):
-    #
-    '''using a form on the edit user item found page'''
-    #
-    gModel = forms.ChoiceField(
-                    label='Generic Models '
-                          '(more than one brand may offer this model)' )
+class UserItemFoundForm( BaseUserFinderKeeperForm ):
 
-
-    def __init__( self, *args, **kwargs ):
-        #
-        super( UserItemFoundForm, self ).__init__( *args, **kwargs )
-        #
-        '''
-        if False and 'iItemNumb_id' in kwargs:
-            #
-            print( kwargs['iItemNumb_id'] )
-            self.fields['iItemNumb_id'] = kwargs['iItemNumb_id']
-            #
-        else:
-            if 'request' in self.__dict__:
-                print( 'self.request:', self.request )
-            print( 'args:', args )
-            print( 'kwargs:', kwargs )
-            if 'args' in self.__dict__:
-                print( 'self.args:', self.args )
-            if 'kwargs' in self.__dict__:
-                print( 'self.kwargs:', self.kwargs )
-        '''
-        #
-        if self.instance.iBrand:
-            self.fields["iModel"].queryset = (
-                    Model.objects.filter(
-                            iUser  = self.user,
-                            iBrand = self.instance.iBrand ) )
-        else:
-            self.fields["iModel"].queryset = Model.objects.filter(
-                                              iUser = self.user )
-
-        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
-        #
-        self.fields['gModel'].choices = (
-                ( o.pk, o.cTitle )
-                  for o in Model.objects.filter(
-                            iUser  = self.user,
-                            bGenericModel = True) )
-        #
-        self.fields['gModel'].required = False
-        #
-        # model could be None
-        if self.instance.iModel and self.instance.iModel.bGenericModel:
-            #
-            self.fields['gModel'].initial = self.instance.iModel_id
-            #
-        #
-        self.helper.layout = Layout(
-                'iModel',
-                'gModel',
-                'iBrand',
-                'iCategory',
-                'bGetResult',
-                Field( 'iHitStars', readonly = True ), )
+    class Meta:
+        model   = UserItemFound
+        fields  = tUserItemFoundFields
 
     def clean( self ):
         #
@@ -121,22 +62,42 @@ class UserItemFoundForm( BaseModelFormGotCrispy ):
             # Don't bother validating the formset unless each form is valid on its own
             return
         #
-        cleaned = super( UserItemFoundForm, self ).clean()
+        cleaned = super().clean()
         #
-        igModel = self.cleaned_data['gModel']
-        iModel  = self.cleaned_data['iModel']
-        #
-        if igModel and not iModel:
+        if UserItemFound.objects.filter(
+                iItemNumb_id= self.instance.iItemNumb_id,
+                iUser       = self.instance.iUser,
+                iModel      = cleaned["iModel"] or cleaned["gModel"] or None,
+                iBrand      = cleaned["iBrand"],
+                iCategory   = cleaned["iCategory"]
+                ).exists():
             #
-            self.cleaned_data['iModel'] = Model.objects.get( pk = igModel )
+            oUserItemFound = UserItemFound.objects.get(
+                iItemNumb_id= self.instance.iItemNumb_id,
+                iUser       = self.instance.iUser,
+                iModel      = cleaned["iModel"] or cleaned["gModel"] or None,
+                iBrand      = cleaned["iBrand"],
+                iCategory   = cleaned["iCategory"] )
+            #
+            if oUserItemFound.bListExclude: # hidden
+                #
+                oUserItemFound.bListExclude = False
+                #
+                oUserItemFound.save()
+                #
+                raise ValidationError(
+                    'The hit already exists but was hidden, '
+                    'it should now be visible',
+                    code = 'exists_but_hidden' )
+                #
+            else:
+                #
+                raise ValidationError(
+                    'The hit already exists',
+                    code = 'exists' )
+                #
             #
         #
         return cleaned
-
-    class Meta:
-        model   = UserItemFound
-        fields  = tUserItemFoundFields
-
-
 
 
