@@ -1,9 +1,14 @@
-from django.forms       import ModelForm
+from django.forms       import ModelForm, ChoiceField
 
-from core.crispy        import FormHelper
+from core.crispy        import FormHelper, Field, Layout, Submit
 from core.dj_import     import ValidationError
 from core.validators    import gotTextOutsideParens
 
+from models.models      import Model
+
+# ### forms validate the incoming data against the database      ###
+# ### additional custom validation logic can be implemented here ###
+# ### crispy forms adds automatic layout functionality           ###
 
 class BaseModelFormGotCrispy( ModelForm ):
     #
@@ -122,7 +127,11 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         '''on edit, usually check whether title is already in database
         tested in categories/test_forms'''
         #
-        cleaned         = super( ModelFormValidatesTitle, self ).clean()
+        if any( self.errors ):
+            # Don't bother validating the formset unless each form is valid on its own
+            return
+        #
+        cleaned         = super().clean()
         #
         bCreating       = self.bCreating
         #
@@ -147,5 +156,88 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
             self.gotTitleAready( cTitle )
             #
         #
+        #
+        return cleaned
+
+
+class BaseUserFinderKeeperForm( BaseModelFormGotCrispy ):
+    #
+    '''using a form on the edit user item found or keeper page'''
+    #
+    gModel = ChoiceField(
+                    label='Generic Models '
+                          '(more than one brand may offer this model)' )
+
+
+    def __init__( self, *args, **kwargs ):
+        #
+        super( BaseUserFinderKeeperForm, self ).__init__( *args, **kwargs )
+        #
+        '''
+        if False and 'iItemNumb_id' in kwargs:
+            #
+            print( kwargs['iItemNumb_id'] )
+            self.fields['iItemNumb_id'] = kwargs['iItemNumb_id']
+            #
+        else:
+            if 'request' in self.__dict__:
+                print( 'self.request:', self.request )
+            print( 'args:', args )
+            print( 'kwargs:', kwargs )
+            if 'args' in self.__dict__:
+                print( 'self.args:', self.args )
+            if 'kwargs' in self.__dict__:
+                print( 'self.kwargs:', self.kwargs )
+        '''
+        #
+        if self.instance.iBrand:
+            self.fields["iModel"].queryset = (
+                    Model.objects.filter(
+                            iUser  = self.user,
+                            iBrand = self.instance.iBrand ) )
+        else:
+            self.fields["iModel"].queryset = Model.objects.filter(
+                                              iUser = self.user )
+
+        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        #
+        self.fields['gModel'].choices = (
+                ( o.pk, o.cTitle )
+                  for o in Model.objects.filter(
+                            iUser  = self.user,
+                            bGenericModel = True) )
+        #
+        self.fields['gModel'].required = False
+        #
+        # model could be None
+        if self.instance.iModel and self.instance.iModel.bGenericModel:
+            #
+            self.fields['gModel'].initial = self.instance.iModel_id
+            #
+        #
+        self.helper.layout = Layout(
+                'iModel',
+                'gModel',
+                'iBrand',
+                'iCategory',
+                'bGetResult',
+                Field( 'iHitStars', readonly = True ), )
+
+    def clean( self ):
+        #
+        if any( self.errors ):
+            # Don't bother validating the formset unless each form is valid on its own
+            return
+        #
+        cleaned = super().clean()
+        #
+        igModel = self.cleaned_data['gModel']
+        iModel  = self.cleaned_data['iModel']
+        #
+        if igModel and not iModel:
+            #
+            self.cleaned_data['iModel'] = Model.objects.get( pk = igModel )
+            #
         #
         return cleaned
