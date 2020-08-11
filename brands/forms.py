@@ -6,6 +6,9 @@ from .models            import Brand
 
 from categories.models  import Category
 
+# ### forms validate the incoming data against the database      ###
+# ### additional custom validation logic can be implemented here ###
+# ### crispy forms adds automatic layout functionality           ###
 
 tModelFields = (
     'cTitle',
