@@ -3,6 +3,10 @@ from core.crispy    import Field, Layout, Submit
 from core.forms     import ModelFormValidatesTitle
 from .models        import Model
 
+# ### forms validate the incoming data against the database      ###
+# ### additional custom validation logic can be implemented here ###
+# ### crispy forms adds automatic layout functionality           ###
+
 tModelFields = (
     'cTitle',
     'bSubModelsOK',
