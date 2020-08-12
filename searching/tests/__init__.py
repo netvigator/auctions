@@ -29,7 +29,7 @@ sBrands = \
  Amperex (Bugle Boy) |    9 |            | BB\\rBugle Boy |
  Amperex           |      8 |            |            |
  Amperex (gold pins)|     9 | Amperex PQ | gold pin   |
- Amperex (PQ)      |      9 |            | Amperex PQ |
+ Amperex (PQ)      |      9 |            | PQ         |
  Arvin             |      7 |            |            |
  Astronic          |      2 |            |            |
  Audio Research    |      5 |            |            |
@@ -122,7 +122,11 @@ sBrands = \
 # ###  you need a BrandCategory row   ###
 # ###    code is in base.py     ###
 
-# ### note column delimiter | must have a space on one side or the other
+# ### note column delimiter | must have a space on one side or the other ###
+# ### note column delimiter | must have a space on one side or the other ###
+# ### note column delimiter | must have a space on one side or the other ###
+# ### note column delimiter | must have a space on one side or the other ###
+
 sModels = \
 '''
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
@@ -188,6 +192,7 @@ sModels = \
  6550-VI            |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex (PQ)      |  Vacuum Tube |             |              | f
+ 7581A              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       | 83 total\\r#83 | t
  211                |           |      9 | f            |                   |  Vacuum Tube | VT-4C       |              | t
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -281,6 +286,7 @@ sModels = \
  N-3900A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  603-b              |           |      7 | t            | Altec-Lansing     |       Driver |             |
  1569A              |           |      9 | t            | Altec-Lansing     |  Theater Amp |             |
+ Voice of the Theater |         |      7 | f            | Altec-Lansing     |Speaker System| VOT\\rVOTT\\rVoice of Theater |
  150-4B             |           |      9 | t            | Lansing           |       Driver |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  X-100-B            |           |      4 | t            | Fisher            |Integrated Amp|             |
@@ -826,6 +832,40 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           { "itemId":["233673482510"],
+             "title":["NOS PHILIPS\/ MULLARD EL 34 METAL BASE, MATCH PAIR"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mOwrYi3YU9di16MKVv3qZ6Q\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/NOS-PHILIPS-MULLARD-EL-34-METAL-BASE-MATCH-PAIR-\/233673482510"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "location":["Israel"],"country":["IL"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"79.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"599.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"599.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT8H58M51S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-08-07T18:01:51.000Z"],
+             "endTime":["2020-08-12T18:01:51.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           { "itemId":["174386989638"],
+             "title":["Pair of Vintage Altec Lansing \\"Voice of Theater\\" Cabinets with 288-16k Drivers "],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mOtnxdDF-_urICY5BYMIcPA\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Pair-Vintage-Altec-Lansing-Voice-Theater-Cabinets-288-16k-Drivers-\/174386989638"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["070**"],"location":["Passaic,NJ,USA"],"country":["US"],
+             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"3500.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"3500.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT13H23M9S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+             "startTime":["2020-08-09T22:23:43.000Z"],
+             "endTime":["2020-08-14T22:23:43.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["true"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            { "itemId":["392896363748"],
              "title":["5 Amperex PQ 6922 E88CC Tubes Gold Pins Large Halo Getters Guaranteed NO Noise!"],
