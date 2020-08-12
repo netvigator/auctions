@@ -1030,7 +1030,7 @@ class FindSearchHitsWebTests(
         #
         iThisOne = 352535627937
         #
-        self.print_len( dItemsToTest[ iThisOne ], 9, iThisOne,
+        self.print_len( dItemsToTest[ iThisOne ], 3, iThisOne,
                        'should find both Sylvania & Marconi' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
@@ -1769,7 +1769,7 @@ class FindSearchHitsWebTests(
         iThisOne = 233407527461
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 5, iThisOne,
                 'should find 6V6 and 6V6GT for GE, RCA, Tung-Sol & Ken-Rad' )
         #
         gotComponents = set( [] )
@@ -3167,7 +3167,7 @@ class FindSearchHitsWebTests(
         iThisOne = 402322718905
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find FM-100B not FM-100' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3236,6 +3236,59 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 233673482510
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find Mullard metal base EL34' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL34 (metal base)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL34 (MB Mullard)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 174143946146
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should only find 6922 not 6DJ8 E88CC' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922 (Amperex Gold)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (gold pins)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 254630676292
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Altec 920-8B not 604 605 515' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '920-8B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
         #
         #
         #
@@ -3270,17 +3323,6 @@ class FindSearchHitsWebTests(
                 'should find PAS & FM3\n'
                 'fix using oLocated.dAndWords' )
         #
-        #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 254630676292
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Altec 920-8B not 604 605 515' )
         #
         #
         #
@@ -3389,6 +3431,17 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174386989638
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find ALTEC 211 VOTT & 288-16k not diaphrams' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 254665286871
         #
         self.print_len(
@@ -3406,22 +3459,6 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'paren equivalents selection should find 6922 not rest' )
         #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 174143946146
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should only find 6922 not 6DJ8 E88CC' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        #self.assertEqual( oTest.iModel.cTitle, '6922 (Amperex Gold)' )
-        #self.assertEqual( oTest.iBrand.cTitle, 'Amperex (gold pins)' )
-        #self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
