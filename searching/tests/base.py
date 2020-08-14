@@ -75,7 +75,7 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     #
     def setUp(self):
         #
-        super( StoreSearchResultsTestsWebTestSetUp, self ).setUp()
+        super().setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
@@ -199,7 +199,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
 
     def setUp(self):
         #
-        super( GetBrandsCategoriesModelsWebTestSetUp, self ).setUp()
+        super().setUp()
         #
         for oUser in self.tUsers:
             #
@@ -906,7 +906,7 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
     #
     def setUp( self ):
         #
-        super( PutSearchResultsInDatabaseWebTestBase, self ).setUp()
+        super().setUp()
         #
         self.dExampleFiles = {}
         #
@@ -1012,7 +1012,7 @@ class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
     #
     def setUp( self ):
         #
-        super( SetUpForHitStarsWebTests, self ).setUp()
+        super().setUp()
         #
         # iRecordStepsForThis imported from __init__.py
         #
@@ -1040,7 +1040,7 @@ class StoreUserItemFoundWebTestBase( GetEbayCategoriesWebTestSetUp ):
         #
         '''set up to test _storeUserItemFound() with actual record'''
         #
-        super( StoreUserItemFoundWebTestBase, self ).setUp()
+        super().setUp()
         #
         class ThisShouldNotBeHappening( Exception ): pass
         #
