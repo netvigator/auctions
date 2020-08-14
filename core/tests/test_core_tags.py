@@ -93,7 +93,7 @@ class TestNameFilters( TestFormValidation ):
 
     def setUp( self ):
         #
-        super( TestNameFilters, self ).setUp()
+        super().setUp()
         #
         self.oCategory = Category.objects.get( id = self.iCategoryID )
 
