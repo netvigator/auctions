@@ -42,7 +42,7 @@ class StoreItemsTestPlusBase( TestCasePlus ):
 
     def setUp( self ):
         #
-        super( StoreItemsTestPlusBase, self ).setUp()
+        super().setUp()
         #
         t = _storeOneJsonItemInKeepers( 142766343340, s142766343340 )
         #
@@ -77,7 +77,7 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
 
     def setUp( self ):
         #
-        super( StoreSingleKeepersForWebTests, self ).setUp()
+        super().setUp()
         #
         d = {   293004871422 : s293004871422,
                 254154293727 : s254154293727,
