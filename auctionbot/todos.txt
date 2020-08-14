@@ -507,3 +507,6 @@ severely need to test finders views more better!
 
 2020-08-10 need to test: when adding or editing a finder hit,
 when the new one or edited one already exists, bot now handles gracefully
+
+
+2020-08-14 why were tests in core/tests/test_mixins.py not being run?
