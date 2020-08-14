@@ -20,7 +20,7 @@ class ModelViewsTests( BaseUserWebTestCase ):
 
     def setUp(self):
         #
-        super( ModelViewsTests, self ).setUp()
+        super().setUp()
         #
         sCategory = "Widgets"
         oCategory = Category( cTitle= sCategory, iUser = self.user1 )
@@ -121,7 +121,7 @@ class ModelViewsHitButtons( BaseUserWebTestCase ):
     """
     def setUp(self):
         #
-        super( ModelViewsHitButtons, self ).setUp()
+        super().setUp()
         #
         sCategory = "Widgets"
         oCategory = Category( cTitle= sCategory, iUser = self.user1 )
