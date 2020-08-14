@@ -180,7 +180,7 @@ class getSingleEbayCategoryMixin( object ):
 
     def setUp(self):
         #
-        super( getSingleEbayCategoryMixin, self ).setUp()
+        super().setUp()
         #
         self.ebc = EbayCategory(
             iCategoryID = 10,
@@ -214,7 +214,7 @@ class SetUpBrandsCategoriesModelsMixin( object ):
     #
     def setUp(self):
         #
-        super( SetUpBrandsCategoriesModelsMixin, self ).setUp()
+        super().setUp()
         #
         for oUser in self.tUsers:
             #
@@ -428,7 +428,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
 
     def setUp(self):
         #
-        super( GetEbayCategoriesWebTestSetUp, self ).setUp()
+        super().setUp()
         #
         self.iCategories = 0
         #
