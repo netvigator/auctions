@@ -6,7 +6,7 @@ class BrandModelWebTestBase( BaseUserWebTestCase ):
 
     def setUp( self ):
         #
-        super( BrandModelWebTestBase, self ).setUp()
+        super().setUp()
         #
         oBrand = Brand(
             cTitle          = "My premium brand",
