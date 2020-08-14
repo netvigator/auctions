@@ -192,7 +192,7 @@ class SearchUpdateViewTests( BaseUserWebTestCase ):
     def setUp(self):
 
         # call BaseUserWebTestCase.setUp()
-        super(SearchUpdateViewTests, self).setUp()
+        super().setUp()
         #
         sSearch = "Great Widget"
         oSearch = Search( cTitle = sSearch, iUser = self.user1 )
@@ -228,7 +228,7 @@ class SearchCreateViewTests( BaseUserWebTestCase ):
 
     def setUp(self):
         #
-        super(SearchCreateViewTests, self).setUp()
+        super().setUp()
         #
         data = dict(
             cTitle      = "Great Widget",
