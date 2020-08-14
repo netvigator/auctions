@@ -417,7 +417,7 @@ class SetupForStoreResultsTests( object ):
         #
         self.sHitLogFile = join( sThisFilePath, 'ItemHitsLog.log' )
         #
-        super( SetupForStoreResultsTests, self ).setUp()
+        super().setUp()
 
 
 class StoredLiveItemNumbersTest(
