@@ -14,7 +14,7 @@ class PutMarketsInDatabaseTestBase( TestCasePlus ):
     #
     def setUp(self):
         #
-        super( PutMarketsInDatabaseTestBase, self ).setUp()
+        super().setUp()
         #
         '''fetches the markets table text dump,
         uses that to populate the markets table.
