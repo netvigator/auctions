@@ -50,7 +50,7 @@ class BaseUserWebTestCaseCanAddSearches( BaseUserWebTestCase ):
     #
     def setUp( self ):
         #
-        super( BaseUserWebTestCaseCanAddSearches, self ).setUp()
+        super().setUp()
         #
         self.addSearch( "My clever search c", 'C1', self.user1 )
         #
@@ -223,7 +223,7 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCa
     #
     def setUp(self):
         #
-        super( storeSearchResultGeneratorLastPageGotZeroTest, self ).setUp()
+        super().setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
@@ -267,7 +267,7 @@ class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, GetEbayCate
     #
     def setUp(self):
         #
-        super( storeSearchResultGeneratorSearchGotZeroTest, self ).setUp()
+        super().setUp()
         #
         sSearch = "My clever search 1"
         oSearch = Search( cTitle= sSearch, iUser = self.user1 )
