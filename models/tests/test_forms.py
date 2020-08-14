@@ -106,7 +106,7 @@ class WebTestFormValidation(
     #
     def setUp(self):
         #
-        super( WebTestFormValidation, self ).setUp()
+        super().setUp()
         #
         self.loginWebTest()
 
