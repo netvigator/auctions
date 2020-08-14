@@ -1,9 +1,9 @@
-from copy               import deepcopy
+from copy                   import deepcopy
 
-from django.urls        import reverse
-from django.test        import RequestFactory
+from django.urls            import reverse
+from django.test            import RequestFactory
 
-from core.dj_import     import HttpRequest
+from core.dj_import         import HttpRequest
 
 from .base                  import SetUpBrandsCategoriesModelsWebTest
 
@@ -15,6 +15,7 @@ from finders.views          import FinderIndexView
 from searching.utils_stars  import _getFoundItemTester
 from searching.tests.base   import SetUpForHitStarsWebTests
 
+from pyPks.Dict.Maintain    import purgeNoneValueItems
 from pyPks.Object.Get       import QuickObject
 
 
@@ -23,7 +24,7 @@ class TestPagination( SetUpForHitStarsWebTests ):
 
     def setUp( self ):
         #
-        super( TestPagination, self ).setUp()
+        super().setUp()
         #
         self.factory = RequestFactory()
         #
@@ -41,7 +42,7 @@ class TestPagination( SetUpForHitStarsWebTests ):
     def test_pagination_tests( self ):
         '''test pagination thoroughly'''
         #
-        self.view.kwargs = { 'select' : 'P' } # testing glitch workaround
+        self.view.kwargs = { 'select' : 'A' } # testing glitch workaround
 
         self.view.object_list = self.view.get_queryset()
 
@@ -418,6 +419,8 @@ class EditingTitleShouldBlankFinder( SetUpBrandsCategoriesModelsWebTest ):
         data = form.initial # form is unbound but contains data
         #
         self.assertEqual( data['cLookFor'], 'Caddy')
+        #
+        purgeNoneValueItems( data )
         #
         # manipulate some data
         data['cLookFor'] = ''
