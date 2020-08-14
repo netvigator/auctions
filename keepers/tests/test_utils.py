@@ -368,7 +368,7 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
         #
         '''set up to test _storeUserItemFound() with actual record'''
         #
-        super( StoreSingleItemTests, self ).setUp()
+        super().setUp()
         #
         class ThisShouldNotBeHappening( Exception ): pass
         #
@@ -502,7 +502,7 @@ class UserItemsTests( StoreSingleKeepersForWebTests ):
 
     def setUp( self ):
         #
-        super( UserItemsTests, self ).setUp()
+        super().setUp()
         #
         self.tSeveral = (
             ( 223348187115, s223348187115 ),
