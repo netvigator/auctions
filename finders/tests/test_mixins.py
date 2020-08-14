@@ -1,57 +1,19 @@
 from django.urls            import reverse
 
-from ..models               import UserItemFound, UserFinder
-
-from searching.tests.base   import StoreUserItemFoundWebTestBase
-
-from models.models          import Model
+from .base                  import SetupUserItemsFoundAndUserFinders
 
 
-class EditingUserItemFoundShouldRedoHitStars( StoreUserItemFoundWebTestBase ):
+class EditingUserItemFoundShouldRedoHitStars( SetupUserItemsFoundAndUserFinders ):
     #
     ''' test AnyReleventHitStarColsChangedMixin'''
-
-    def setUp( self ):
-        #
-        '''set up to test _storeUserItemFound() with actual record'''
-        #
-        super( EditingUserItemFoundShouldRedoHitStars, self ).setUp()
-        #
-        self.oModel2 = Model(
-            cTitle      = "Calais",
-            cExcludeIf  = 'golf',
-            iStars      = 1,
-            iBrand      = self.oBrand,
-            iCategory   = self.oCategory,
-            iUser       = self.user1 )
-        self.oModel2.save()
 
 
     def test_change_model_recalculate_hitstars( self ):
         #
         ''' test AnyReleventHitStarColsChangedMixin'''
         #
-        self.loginWebTest()
-        #
-        oUserItemFound = UserItemFound.objects.get(
-                iItemNumb   = self.iItemNumb,
-                iUser       = self.user1 )
-        #
-        oUserItemFound.iBrand   = self.oBrand
-        oUserItemFound.iCategory= self.oCategory
-        oUserItemFound.iModel   = self.oModel
-        #
-        oUserItemFound.iHitStars= (  self.oBrand.iStars *
-                                     self.oModel.iStars *
-                                     self.oCategory.iStars )
-        #
-        oUserItemFound.save()
-        #
-        oUserFinder = UserFinder(
-                iItemNumb   = oUserItemFound.iItemNumb,
-                iUser       = oUserItemFound.iUser )
-        #
-        oUserFinder.save() # need cuz UserItemFound.get_absolute_url()
+        oUserFinder     = self.oUserFinder
+        oUserItemFound  = self.oUserItemFound
         #
         iExpectStars = (
                 oUserItemFound.iModel.iStars *
