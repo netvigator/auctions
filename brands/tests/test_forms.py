@@ -22,7 +22,7 @@ class TestFormValidation( BaseUserWebTestCase ):
 
     def setUp(self):
         #
-        super( TestFormValidation, self ).setUp()
+        super().setUp()
         #
         oBrand = Brand(
             cTitle = "Cadillac", cLookFor = "Caddy", iUser = self.user1 )
