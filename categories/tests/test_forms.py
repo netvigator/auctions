@@ -17,7 +17,7 @@ class TestFormValidation( BaseUserWebTestCase ):
 
     def setUp(self):
         #
-        super( TestFormValidation, self ).setUp()
+        super().setUp()
         #
         oCategory = Category(
             cTitle = "Gadget", cLookFor = "thingamajig", iUser = self.user1 )
