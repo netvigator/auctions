@@ -26,9 +26,7 @@ class KeeperDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         '''
         want more info to the context data.
         '''
-        context = super(
-                KeeperDetailView, self
-                ).get_context_data( **kwargs )
+        context = super().get_context_data( **kwargs )
 
         # qsThisItem = UserItemFound.objects.filter(
         #
@@ -87,4 +85,4 @@ class KeeperCreateView( CreateViewCanCancel ):
         instance.iSearch_id   = instance.iSearch_id   or session['iSearch'  ]
         instance.iUser        = self.request.user
         #
-        return super( ItemFoundCreateView, self ).form_valid( form )
+        return super().form_valid( form )
