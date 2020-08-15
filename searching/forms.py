@@ -60,7 +60,7 @@ class BaseSearchForm( BaseModelFormGotCrispy ):
         #
         self.bCreating = kwargs.get( 'instance' ) is None
         #
-        super( BaseSearchForm, self ).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         #
         self.fields[ 'cPriority' ].validators.append( isPriorityValid )
         #
@@ -201,7 +201,7 @@ class CreateSearchForm( BaseSearchForm ):
 
     def __init__(self, *args, **kwargs):
         #
-        super( CreateSearchForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
@@ -218,7 +218,7 @@ class UpdateSearchForm( BaseSearchForm ):
 
     def __init__(self, *args, **kwargs):
         #
-        super( UpdateSearchForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
