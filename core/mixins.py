@@ -22,7 +22,7 @@ class DoesLoggedInUserOwnThisRowMixin(object):
 
     def get_object(self):
         '''only allow owner (or superuser) to access the table row'''
-        obj = super(DoesLoggedInUserOwnThisRowMixin, self).get_object()
+        obj = super().get_object()
         if self.request.user.is_superuser:
             pass
         elif obj.iUser != self.request.user:
@@ -76,8 +76,7 @@ class WereAnyReleventRegExColsChangedMixin( WereAnyReleventColsChangedBase ):
             self.redoRegEx( form )
             #
         #
-        return super(
-                WereAnyReleventRegExColsChangedMixin, self ).form_valid( form )
+        return super().form_valid( form )
 
 
 class TitleSearchMixin(object):
@@ -89,7 +88,7 @@ class TitleSearchMixin(object):
         # all 3 of which inherit from ListViewGotModel
         # or from FinderIndexView or KeeperIndexView
         #
-        queryset = super( TitleSearchMixin, self ).get_queryset()
+        queryset = super().get_queryset()
         #
         # get the Q parameter
         #
@@ -112,11 +111,7 @@ class FormValidMixin( object ):
         obj = form.save( commit = False )
         obj.user = self.user = self.request.user
         form.instance.iUser  = self.request.user
-        #try:
-            #return super(FormValidMixin, self).form_valid(form)
-        #except IntegrityError:
-            #return self
-        return super(FormValidMixin, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class GetModelInContextMixin( object ):
@@ -126,8 +121,7 @@ class GetModelInContextMixin( object ):
         '''
         Adds the model to the context data.
         '''
-        context = super(
-                GetModelInContextMixin, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         #
         context['model'] = self.model
         #
@@ -146,8 +140,7 @@ class DoPostCanCancelMixin( object ):
             url = self.object.get_absolute_url()
             return HttpResponseRedirect(url)
         else:
-            return ( super( DoPostCanCancelMixin, self )
-                     .post( request, *args, **kwargs ) )
+            return super().post( request, *args, **kwargs )
 
 
 class GetFormMixin( object ):
@@ -161,7 +154,7 @@ class GetFormMixin( object ):
         (but not used because there was a much easier way)
         '''
         if not hasattr( self, 'form' ) or self.form is None:
-            form = super( GetFormMixin, self ).get_form(form_class)
+            form = super().get_form(form_class)
             self.form = form
         #
         form.request = self.request
@@ -183,9 +176,7 @@ class GetPaginationExtraInfoInContext( object ):
             #
             sPrevPage = kwargs.pop( 'sPrevPage' )
 
-        context = super(
-                GetPaginationExtraInfoInContext, self
-                ).get_context_data( **kwargs )
+        context = super().get_context_data( **kwargs )
 
         if not context.get( 'is_paginated' ):
             return context
