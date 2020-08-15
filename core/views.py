@@ -55,7 +55,7 @@ class CreateViewCanCancel( LoginRequiredMixin,
         return None
 
     def get_form(self, form_class=None):
-        form = super(CreateViewCanCancel, self).get_form(form_class)
+        form = super().get_form(form_class)
         return form
 
     def post(self, request, *args, **kwargs):
@@ -67,8 +67,7 @@ class CreateViewCanCancel( LoginRequiredMixin,
         else:
             # self.object = self.get_object() # assign the object to the view
             # cannot work, see above
-            return ( super( CreateViewCanCancel, self )
-                     .post( request, *args, **kwargs ) )
+            return super().post( request, *args, **kwargs )
 
 
 
@@ -97,7 +96,7 @@ class UpdateViewCanCancel(
     success_message = 'Record successfully saved!!!!'
 
     def get_form_kwargs(self):
-        kwargs = super( UpdateViewCanCancel, self ).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 
@@ -125,8 +124,7 @@ class DetailViewGotModelAlsoPost(
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        context = super(
-            DetailViewGotModelAlsoPost, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
         #
         oUser = self.request.user
