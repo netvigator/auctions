@@ -51,7 +51,7 @@ class BaseModelFormGotCrispy( ModelForm ):
             self.user = self.instance.iUser
             #
         #
-        super( BaseModelFormGotCrispy, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper = FormHelper()
         #
@@ -72,7 +72,7 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         self.bCreating = kwargs.get( 'instance' ) is None
         #
-        super( ModelFormValidatesTitle, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.fields[ 'cTitle' ].validators.append( gotTextOutsideParens )
         #
@@ -171,7 +171,7 @@ class BaseUserFinderKeeperForm( BaseModelFormGotCrispy ):
 
     def __init__( self, *args, **kwargs ):
         #
-        super( BaseUserFinderKeeperForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         '''
         if False and 'iItemNumb_id' in kwargs:
