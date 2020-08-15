@@ -64,14 +64,14 @@ class IntegerRangeField(models.PositiveSmallIntegerField):
     def formfield(self, **kwargs):
         defaults = {'min_value': self.min_value, 'max_value':self.max_value}
         defaults.update(kwargs)
-        return super(IntegerRangeField, self).formfield(**defaults)
+        return super().formfield(**defaults)
 
 
 # from https://stackoverflow.com/questions/19498740/how-can-i-make-all-charfield-in-uppercase-direct-in-model
 
 class UpperCaseCharField(models.CharField):
     def __init__(self, *args, **kwargs):
-        super(UpperCaseCharField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
     def pre_save(self, model_instance, add):
         value = getattr(model_instance, self.attname, None)
         if value:
@@ -79,7 +79,7 @@ class UpperCaseCharField(models.CharField):
             setattr(model_instance, self.attname, value)
             return value
         else:
-            return super(UpperCaseCharField, self).pre_save(model_instance, add)
+            return super().pre_save( model_instance, add )
 
 # Create your models here.
 
