@@ -32,7 +32,7 @@ class FinderIndexView(
     def get_queryset( self ):
         #
         # ADS
-        # qs = super( FinderIndexView, self ).get_queryset()
+        # qs = super().get_queryset()
         # sSelect = 'P'
         #
         sSelect = self.kwargs.get( 'select', 'A' )
@@ -66,7 +66,7 @@ class FinderIndexView(
         #
         elif sSelect == 'S': # Search
             #
-            qsGot = super( FinderIndexView, self ).get_queryset( *args, **kwargs )
+            qsGot = super().get_queryset( *args, **kwargs )
             #
             # want to find the get_queryset() method of TitleSearchMixin
             # not          the get_queryset() method of ListViewGotModel
@@ -89,9 +89,7 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         '''
         want more info to the context data.
         '''
-        context = super(
-                ItemFoundDetailView, self
-                ).get_context_data( **kwargs )
+        context = super().get_context_data( **kwargs )
 
         # qsThisItem = UserItemFound.objects.filter(
         #
@@ -133,9 +131,7 @@ class ItemFoundHitView( GetUserSelectionsOnPost, DetailViewGotModel ):
         '''
         want more info to the context data.
         '''
-        context = super(
-                ItemFoundHitView, self
-                ).get_context_data( **kwargs )
+        context = super().get_context_data( **kwargs )
         #
         # qsThisItem = UserItemFound.objects.filter(
         #
@@ -198,4 +194,4 @@ class ItemFoundCreateView( CreateViewCanCancel ):
         instance.iSearch_id   = instance.iSearch_id   or session['iSearch'  ]
         instance.iUser        = self.request.user
         #
-        return super( ItemFoundCreateView, self ).form_valid( form )
+        return super().form_valid( form )
