@@ -42,7 +42,7 @@ class CreateCategoryForm( ModelFormValidatesTitle ):
 
     def __init__( self, *args, **kwargs ):
         #
-        super( CreateCategoryForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
@@ -60,7 +60,7 @@ class UpdateCategoryForm( ModelFormValidatesTitle ):
 
     def __init__( self, *args, **kwargs ):
         #
-        super( UpdateCategoryForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
