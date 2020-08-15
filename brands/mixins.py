@@ -8,9 +8,7 @@ class GetContextForBrandCategoryList( object ):
 
     def get_context_data(self, **kwargs):
 
-        context = super(
-            GetContextForBrandCategoryList, self
-                ).get_context_data( **kwargs )
+        context = super().get_context_data( **kwargs )
         #
         qsAllCategories = Category.objects.filter( iUser = self.request.user )
         #
@@ -83,8 +81,7 @@ class PostUpdateBrandCategoryList( object ):
                 #
                 # this is a new record, row is not saved yet
                 #
-                oReturn = ( super( PostUpdateBrandCategoryList, self )
-                                   .post( request, *args, **kwargs ) )
+                oReturn = super().post( request, *args, **kwargs )
                 #
                 # oReturn:
                 # <HttpResponseRedirect
@@ -134,8 +131,7 @@ class PostUpdateBrandCategoryList( object ):
         #
         if oReturn is None:
             #
-            oReturn = ( super( PostUpdateBrandCategoryList, self )
-                                .post( request, *args, **kwargs ) )
+            oReturn = super().post( request, *args, **kwargs )
             #
         #
         return oReturn
