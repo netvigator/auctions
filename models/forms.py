@@ -58,7 +58,7 @@ class CreateModelForm( ModelFormValidatesTitle ):
     #
     def __init__( self, *args, **kwargs ):
         #
-        super( CreateModelForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
@@ -75,7 +75,7 @@ class UpdateModelForm( ModelFormValidatesTitle ):
 
     def __init__( self, *args, **kwargs ):
         #
-        super( UpdateModelForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
