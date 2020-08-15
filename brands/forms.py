@@ -41,7 +41,7 @@ class CreateBrandForm( ModelFormValidatesTitle ):
 
     def __init__( self, *args, **kwargs ):
         #
-        super( CreateBrandForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.form_tag = False
         #self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
@@ -59,7 +59,7 @@ class UpdateBrandForm( ModelFormValidatesTitle ):
 
     def __init__( self, *args, **kwargs ):
         #
-        super( UpdateBrandForm, self ).__init__( *args, **kwargs )
+        super().__init__( *args, **kwargs )
         #
         self.helper.form_tag = False
         #self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
