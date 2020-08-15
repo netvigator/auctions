@@ -22,7 +22,7 @@ class SearchViewSuccessPostFormValidMixin(object):
         #
         form.instance.iEbayCategory = form.cleaned_data.get('iEbayCategory')
         #
-        return super( SearchViewSuccessPostFormValidMixin, self ).form_valid(form)
+        return super().form_valid(form)
 
 
 
