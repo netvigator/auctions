@@ -586,7 +586,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
             iCategories += 1
             #
         #
-        self.iCategories = iCategories + 3 # add root categories
+        self.iCategories = iCategories + 4 # add root categories
         #
         self.setTestCategories = frozenset( setTestCategories )
         #
