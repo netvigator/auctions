@@ -1,9 +1,10 @@
-from django.urls            import reverse
+from django.urls    import reverse
 
-from .base                  import SetupUserItemsFoundAndUserFinders
+from .base          import SetupUserItemsFoundAndUserFindersWebTest
 
 
-class EditingUserItemFoundShouldRedoHitStars( SetupUserItemsFoundAndUserFinders ):
+class EditingUserItemFoundShouldRedoHitStars(
+        SetupUserItemsFoundAndUserFindersWebTest ):
     #
     ''' test AnyReleventHitStarColsChangedMixin'''
 
