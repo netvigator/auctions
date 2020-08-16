@@ -13,6 +13,7 @@ from requests.exceptions    import ConnectionError
 
 from pyPks.Collect.Output   import getTextSequence
 from pyPks.String.Find      import getFinderFindAll
+from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Eat       import eatFromWithin
 from pyPks.Time             import _sFormatISOdateTimeNoColon
 from pyPks.Time.Convert     import getDateTimeObjFromString
@@ -286,3 +287,21 @@ def getLink( o ):
 def getSaySequence( l ):
     #
     return getTextSequence( l, sAnd = '&' )
+
+
+def getSubstituteForReturn( s, sSub = ' - ', bOmitLast = False ):
+    #
+    if s:
+        #
+        l = [ s for s in oFinderCRorLF.split( s ) if s ]
+        #
+        if bOmitLast and len( l ) > 1:
+            #
+            del l[-1]
+            #
+        #
+        return sSub.join( l )
+        #
+    else:
+        return '' # run replace on None and you get an error
+
