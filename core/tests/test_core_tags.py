@@ -5,12 +5,10 @@ from .base                          import TestCasePlus
 from categories.models              import Category
 from categories.tests.test_forms    import TestFormValidation
 
-from ..templatetags.core_tags       import (
-                                        getIsoDateTime,
+from ..tags.core_tags               import (
                                         getDashForReturn,
                                         getLineBreakForReturn,
                                         getDashForReturnButDropLast,
-                                        getLastDroppedFromCommaSeparatedString,
                                         model_name,
                                         model_name_plural,
                                         field_name )
@@ -44,48 +42,6 @@ class GetDashForReturnTests( TestCasePlus ):
         self.assertEqual( getLineBreakForReturn( self.s ), sExpect )
 
 
-
-class GetDropLastForCommaSeparatorTests( TestCasePlus ):
-    '''get drop last for comma separator tests'''
-    #
-    s = 'abc, def, ghi, klm'
-    #
-
-    def test_get_drop_last(self):
-        #
-        sExpect = 'abc, def, ghi'
-        #
-        self.assertEqual( getLastDroppedFromCommaSeparatedString( self.s ), sExpect )
-
-
-
-
-
-
-
-
-
-class MiscCoreTagTests( TestCasePlus ):
-    ''' test getIsoDateTime '''
-
-    def test_get_ISO_date_time( self ):
-        #
-        self.assertTrue( isISOdatetime( getIsoDateTime( timezone.now() ) ) )
-        #
-
-    #def test_get_nbsp( self ):
-        ##
-        #s = 'a b c d e'
-        ##
-        #self.assertEquals( getNbsp(s), 'a&nbsp;b&nbsp;c&nbsp;d&nbsp;e' )
-        ##
-
-#class NbspTests( TestCasePlus ):
-    #'test substituting &nbsp; for spaces'
-    #def test_Nbsp(self):
-        ##
-        #self.assertEqual( getNbsp( "how now brown cow" ),
-                           #"how&nbsp;now&nbsp;brown&nbsp;cow" )
 
 
 class TestNameFilters( TestFormValidation ):
