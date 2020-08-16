@@ -6,7 +6,8 @@ from ..utils                import ( _getIsoDateTimeOffDateTimeCol,
                                      getReverseWithUpdatedQuery,
                                      getWhatsNotInParens,
                                      getShrinkItemURL, getLink,
-                                     getSaySequence )
+                                     getSaySequence,
+                                     getSubstituteForReturn )
 
 from .base                  import ( getUrlQueryStringOff, TestCasePlus,
                                      queryGotUpdated,
@@ -180,3 +181,24 @@ class TestGetLinksForObjects( SetUpBrandsCategoriesModelsWebTest ):
         oModel = Model.objects.all()[0]
         #
         self.assertIsNotNone( oModel )
+
+
+
+class TestGetSubstituteForReturn( TestCasePlus ):
+
+    def test_GetSubstituteForReturn( self ):
+        #
+        sOrig = 'abc\ndef\rghi\r\njkl'
+        #
+        self.assertEqual(
+                getSubstituteForReturn( sOrig ),
+                'abc - def - ghi - jkl' )
+        #
+        self.assertEqual(
+                getSubstituteForReturn( sOrig, bOmitLast = True ),
+                'abc - def - ghi' )
+        #
+        self.assertEqual(
+                getSubstituteForReturn( sOrig, '<BR>' ),
+                'abc<BR>def<BR>ghi<BR>jkl' )
+        #
