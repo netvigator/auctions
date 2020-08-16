@@ -437,7 +437,7 @@ model has category id 172 in dCategoryFamily for 264654090657
     <input type = "text" name = "q" />
 </form>
 
-breaks templates/finders/index_buttons_more.html
+breaks templates/finders/_index_buttons_more.html
 
 
 
