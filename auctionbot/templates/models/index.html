@@ -7,12 +7,12 @@
 {% block content %}
   <h2>Models</h2>
 
-    {% include "./add_search.html" %}
+    {% include "./_add_search.html" %}
 
     {% if object_list %}
         {# the pagination section #}
         {% if is_paginated %}
-            {% include "../common/paginate.html" %}
+            {% include "../common/_paginate.html" %}
         {% endif %}
         <div class="container">
         <div class="list-group">
@@ -38,12 +38,12 @@
         </div>
         {# the pagination section #}
         {% if is_paginated %}
-          {% include "../common/paginate.html" %}
+          {% include "../common/_paginate.html" %}
         {% endif %}
     {% else %} <!-- brand_list -->
         <p>No models are available.</p>
     {% endif %} <!-- brand_list -->
 
-    {% include "./add_search.html" %}
+    {% include "./_add_search.html" %}
 
 {% endblock content %}
