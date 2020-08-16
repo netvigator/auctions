@@ -3,29 +3,19 @@ from django.urls            import reverse
 from core.utils             import maybePrint
 from core.tests.base        import BaseUserWebTestCase, getUrlQueryStringOff
 
+from .base                  import TestCategoryFormValidation
+
 from ..models               import Category
 from ..forms                import CreateCategoryForm, UpdateCategoryForm
 
 from pyPks.Dict.Maintain    import purgeNoneValueItems
 
 
-class TestFormValidation( BaseUserWebTestCase ):
+class TestFormValidation( TestCategoryFormValidation ):
 
     ''' Category Form Tests '''
     # helpful:
     # https://stackoverflow.com/questions/2257958/django-unit-testing-for-form-edit
-
-    def setUp(self):
-        #
-        super().setUp()
-        #
-        oCategory = Category(
-            cTitle = "Gadget", cLookFor = "thingamajig", iUser = self.user1 )
-        oCategory.save()
-        #
-        self.iCategoryID = oCategory.id
-        #
-        self.loginWebTest()
 
     def test_swap_title_and_lookfor( self ):
         #
