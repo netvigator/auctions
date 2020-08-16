@@ -1,19 +1,19 @@
-from django.utils                   import timezone
+from django.utils           import timezone
 
-from .base                          import TestCasePlus
+from .base                  import TestCasePlus
 
-from categories.models              import Category
-from categories.tests.test_forms    import TestFormValidation
+from categories.models      import Category
 
-from ..tags.core_tags               import (
-                                        getDashForReturn,
-                                        getLineBreakForReturn,
-                                        getDashForReturnButDropLast,
-                                        model_name,
-                                        model_name_plural,
-                                        field_name )
+from categories.tests.base  import TestCategoryFormValidation
 
-from pyPks.Time.Test                import isISOdatetime
+from ..tags.core_tags       import (getDashForReturn,
+                                    getLineBreakForReturn,
+                                    getDashForReturnButDropLast,
+                                    model_name,
+                                    model_name_plural,
+                                    field_name )
+
+from pyPks.Time.Test        import isISOdatetime
 
 class GetDashForReturnTests( TestCasePlus ):
     '''get dash for return tests'''
@@ -44,7 +44,7 @@ class GetDashForReturnTests( TestCasePlus ):
 
 
 
-class TestNameFilters( TestFormValidation ):
+class TestNameFilters( TestCategoryFormValidation ):
     ''' test model_name, model_name_plural & field_name '''
 
     def setUp( self ):
