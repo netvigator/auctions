@@ -1,11 +1,10 @@
 
 
-from ..models           import Keeper
-from .test_utils        import StoreItemsTestPlus
+from ..models       import Keeper
+from .test_utils    import StoreItemsTestPlus
+from .base          import StoreItemsTestPlusBase
 
-
-class TestUrlProcessing( StoreItemsTestPlus ):
-
+class TestUrlProcessing( StoreItemsTestPlusBase ):
 
     def test_get_reverse( self ):
         #
