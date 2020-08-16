@@ -16,7 +16,7 @@ from core.user_one          import oUserOne
 from core.utils             import ( maybePrint, maybePrettyP,
                                      getWhatsNotInParens )
 
-from core.templatetags.core_tags import getDashForReturn
+from core.tags.core_tags    import getDashForReturn
 
 from .models                import Search, SearchLog
 
