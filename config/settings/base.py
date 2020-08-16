@@ -258,19 +258,18 @@ TEMPLATES = [
                 # Your stuff: custom template context processors go here
             ],
             'libraries':{
-                'sayListingType'    : 'core.templatetags.core_tags',
-                'getIsoDateTime'    : 'core.templatetags.core_tags',
-                'getNbsp'           : 'core.templatetags.core_tags',
-                'model_name'        : 'core.templatetags.core_tags',
-                'getDashForReturn'  : 'core.templatetags.core_tags',
+                'sayListingType'    : 'core.tags.core_tags',
+                'getDashForReturn'  : 'core.tags.core_tags',
                 'getDashForReturnButDropLast' :
-                                      'core.templatetags.core_tags',
-                'getLastDroppedFromCommaSeparatedString' :
-                                      'core.templatetags.core_tags',
+                                      'core.tags.core_tags',
                 'getLineBreakForReturn' :
-                                      'core.templatetags.core_tags',
-                'model_name_plural' : 'core.templatetags.core_tags',
-                'field_name'        : 'core.templatetags.core_tags',}
+                                      'core.tags.core_tags',
+                'model_name'        : 'core.tags.core_tags',
+                'model_name_plural' : 'core.tags.core_tags',
+                'field_name'        : 'core.tags.core_tags',
+                'getLastDroppedFromCommaSeparatedString' :
+                                      'finders.tags.finders_tags',
+                }
         },
     },
 ]
