@@ -20,6 +20,8 @@ class SetupUserItemsFoundAndUserFindersWebTest( StoreUserItemFoundWebTestBase ):
         #
         super().setUp()
         #
+        self.loginWebTest()
+        #
         self.oModel2 = Model(
             cTitle      = "Calais",
             cExcludeIf  = 'golf',
@@ -28,8 +30,6 @@ class SetupUserItemsFoundAndUserFindersWebTest( StoreUserItemFoundWebTestBase ):
             iCategory   = self.oCategory,
             iUser       = self.user1 )
         self.oModel2.save()
-        #
-        self.loginWebTest()
         #
         oUserItemFound = UserItemFound.objects.get(
                 iItemNumb   = self.iItemNumb,
@@ -47,7 +47,8 @@ class SetupUserItemsFoundAndUserFindersWebTest( StoreUserItemFoundWebTestBase ):
         #
         oUserFinder = UserFinder(
                 iItemNumb   = oUserItemFound.iItemNumb,
-                iUser       = oUserItemFound.iUser )
+                iUser       = oUserItemFound.iUser,
+                cTitle      = oUserItemFound.iItemNumb.cTitle )
         #
         oUserFinder.save() # need cuz UserItemFound.get_absolute_url()
         #
