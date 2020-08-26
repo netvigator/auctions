@@ -3293,6 +3293,27 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+        #
+        iThisOne = 184407865354
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Mullard metal base EL34 (production d/n find)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL34 (MB Mullard)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3501,6 +3522,16 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'paren equivalents selection should find 6922 not E88CC (listed 2nd)' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 133494283099
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'speaker system with components should only find speaker system (aspirational)' )
         #
         #
         #
