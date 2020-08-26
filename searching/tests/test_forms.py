@@ -33,13 +33,13 @@ class TestFormValidation(
         #
         '''after saving the form, next page should be the detail'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle          = 'Great Widget 1',
             cPriority       = "A1",
             cKeyWords       = "Blah bleh blih",
             iUser           = self.user1.id )
         #
-        form = CreateSearchForm(data=form_data)
+        form = CreateSearchForm( data = dFormData )
         form.request        = self.request
         form.instance.iUser = self.user1
         self.assertTrue( form.is_valid() )
@@ -54,12 +54,12 @@ class TestFormValidation(
     def test_form_valid(self):
 
         # has key words
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 3",
                 cKeyWords       = "Blah bleh blih",
                 cPriority       = "A2",
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         if form.errors:
             print()
@@ -69,42 +69,42 @@ class TestFormValidation(
         self.assertTrue( form.is_valid() )
 
         # has a category
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 4",
                 iDummyCategory  = 10, # see core.tests
                 cPriority       = "A3",
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         form.user    = self.user1
         self.assertTrue( form.is_valid() )
 
         # cPriority not good
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 4",
                 iDummyCategory  = 10, # see core.tests
                 cPriority       = "A",
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
         # no key words, no category
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 5",
                 cPriority       = "A4",
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
         # has an invalid category
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 6",
                 iDummyCategory  = 'abc',
                 cPriority       = "A5",
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
@@ -112,62 +112,62 @@ class TestFormValidation(
         #
         oCategory = Category.objects.filter( cTitle = "Capacitor Checker" )[0]
         #
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 7",
                 cPriority       = "A6",
                 iMyCategory     = oCategory.id,
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         self.assertFalse( form.is_valid() )
 
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search 8",
                 iDummyCategory  = 10, # see core.tests
                 cPriority       = "A7",
                 iMyCategory     = oCategory.id,
                 iUser           = self.user1 )
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         self.assertTrue( form.is_valid() )
 
 
     def test_add_stuff_already_there(self):
         #
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "My clever search",
                 cKeyWords       = "Blah bleh blih",
                 cPriority       = "A8",
                 iUser           = self.user1 )
         #
-        form = CreateSearchForm(data=dData)
+        form = CreateSearchForm(data=dFormData)
         form.request            = self.request
         form.instance.iUser     = self.user1
         self.assertTrue( form.is_valid() )
         form.save()
         #
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "Very clever search 1",
                 cKeyWords       = "Blah bleh blih", # same as above
                 cPriority       = "B1",
                 iUser           = self.user1 )
         #
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         # self.assertFalse( form.is_valid() ) # cannot test for now
         #
-        dData = dict(
+        dFormData = dict(
                 cTitle          = "Very clever search 2",
                 cKeyWords       = "Blah blih bleh", # same but different order
                 cPriority       = "B2",
                 iUser           = self.user1 )
         #
-        form = CreateSearchForm( data = dData )
+        form = CreateSearchForm( data = dFormData )
         form.request = self.request
         self.assertTrue( form.is_valid() ) # not comparing sets yet
         #
         '''
-        print( 'cTitle:', dData['cTitle'] )
+        print( 'cTitle:', dFormData['cTitle'] )
         if form.errors:
             print('form has at least one error:')
             for k, v in form.errors.items():
