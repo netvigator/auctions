@@ -1,4 +1,4 @@
-iRecordStepsForThis = None
+iRecordStepsForThis = None or 133494283099
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -528,8 +528,9 @@ sModels = \
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
  Patrician          |           |      9 | f            | Electro-Voice     |Speaker System|             |
  Regency            |           |      7 | f            | Electro-Voice     |Speaker System|             |
+ Aristocrat         |           |      6 | f            | Electro-Voice     |Speaker System|             |
  18WK               |           |      8 | f            | Electro-Voice     |       Driver |             |
- T-25-A             |           |      7 | t            | Electro-Voice     |       Driver |             |
+ T-25-A             |           |      9 | t            | Electro-Voice     |       Driver |             |
  T-35B              |           |      7 | t            | Electro-Voice     |       Driver |             |
  T-350B             |           |      7 | t            | Electro-Voice     |       Driver |             |
  T-250              |           |      7 | t            | Electro-Voice     |       Driver |             |
@@ -832,6 +833,41 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           { "itemId":["184407865354"],
+             "title":["RARE METAL BASE  MULLARD EL34 {6CA7} MISSING GUIDE PIN. TESTED ON A HICKOK 533A"],
+             "globalId":["EBAY-US"],
+             "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+             "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mdhM1Y870KFk71ivHukPUFQ\/140.jpg"],
+             "viewItemURL":["https:\/\/www.ebay.com\/itm\/RARE-METAL-BASE-MULLARD-EL34-6CA7-MISSING-GUIDE-PIN-TESTED-HICKOK-533A-\/184407865354"],
+             "paymentMethod":["PayPal"],"autoPay":["false"],
+             "postalCode":["461**"],"location":["Greenwood,IN,USA"],"country":["US"],
+             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"50.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"50.0"}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT17H13M37S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"150.0"}],
+             "startTime":["2020-08-18T02:15:54.000Z"],
+             "endTime":["2020-08-25T02:15:54.000Z"],
+             "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
+             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           { "itemId":["133494283099"],
+              "title":["2 Vintage Electro-Voice Aristocrat III with EV T35, T25A, 12W 16 Ohms 3-Way"],
+              "globalId":["EBAY-US"],
+              "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+              "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mr9ud8ZmHQnidioj0B5Q_fA\/140.jpg"],
+              "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-Vintage-Electro-Voice-Aristocrat-III-EV-T35-T25A-12W-16-Ohms-3-Way-\/133494283099"],
+              "paymentMethod":["CashOnPickup","PayPal"],"autoPay":["false"],
+              "postalCode":["774**"],"location":["Cypress,TX,USA"],"country":["US"],
+              "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"550.0"}],
+              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT4H11M5S"]}],
+              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+              "startTime":["2020-08-15T13:11:39.000Z"],
+              "endTime":["2020-08-22T13:11:39.000Z"],
+              "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            { "itemId":["233673482510"],
              "title":["NOS PHILIPS\/ MULLARD EL 34 METAL BASE, MATCH PAIR"],
