@@ -64,12 +64,12 @@ class TestFormValidation( BaseUserWebTestCase ):
         '''text in parens is OK,
         but there must be some text outside the parens'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = '(Chevrolet)',
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = CreateBrandForm(data=form_data)
+        form = CreateBrandForm( data = dFormData )
         #
         self.assertFalse(form.is_valid())
         #
@@ -81,9 +81,9 @@ class TestFormValidation( BaseUserWebTestCase ):
             maybePrint( 'no form errors above!' )
         '''
         #
-        form_data['cTitle'] = 'Chevrolet'
+        dFormData['cTitle'] = 'Chevrolet'
         #
-        form = CreateBrandForm(data=form_data)
+        form = CreateBrandForm( data = dFormData )
         #
         self.assertTrue(form.is_valid())
         #
@@ -94,12 +94,12 @@ class TestFormValidation( BaseUserWebTestCase ):
         #
         '''after saving the form, next page should be the detail'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'Chevrolet',
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = CreateBrandForm(data=form_data)
+        form = CreateBrandForm( data = dFormData )
         #
         self.assertTrue(form.is_valid())
         #
@@ -117,20 +117,20 @@ class TestFormValidation( BaseUserWebTestCase ):
         '''can add brand name not in there yet,
         cannot add a brand name already there'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'Cadillac',
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = CreateBrandForm(data=form_data)
+        form = CreateBrandForm( data = dFormData )
         ##
         form.user    = self.user1 # need this!
         #
         self.assertFalse( form.is_valid() )
         #
-        form_data['cTitle'] = 'Caddy'
+        dFormData['cTitle'] = 'Caddy'
         #
-        form = CreateBrandForm(data=form_data)
+        form = CreateBrandForm( data = dFormData )
         ##
         form.user    = self.user1 # need this!
         #
