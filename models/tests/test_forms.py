@@ -20,13 +20,13 @@ class TestFormValidationMixin( object ):
         '''text in parens is OK,
         but there must be some text outside the parens'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = '(LS3-5A)',
             iStars      = 5,
             iCategory   = self.CategoryID,
             iUser       = self.user1 )
         #
-        form = CreateModelForm(data=form_data)
+        form = CreateModelForm( data = dFormData )
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
@@ -38,9 +38,9 @@ class TestFormValidationMixin( object ):
             print( 'no form errors above!' )
         '''
         #
-        form_data['cTitle'] = 'LS3-5A'
+        dFormData['cTitle'] = 'LS3-5A'
         #
-        form = CreateModelForm(data=form_data)
+        form = CreateModelForm( data = dFormData )
         form.request = self.request
         self.assertTrue(form.is_valid())
 
@@ -56,13 +56,13 @@ class TestFormValidationMixin( object ):
         #
         '''after saving the form, next page should be the detail'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'LS3-5A',
             iStars      = 5,
             iCategory   = self.CategoryID,
             iUser       = self.user1 )
         #
-        form = CreateModelForm(data=form_data)
+        form = CreateModelForm( data = dFormData )
         form.request = self.request
         self.assertTrue(form.is_valid())
         #
@@ -80,19 +80,19 @@ class TestFormValidationMixin( object ):
         '''can add model name/# not in there yet,
         cannot add a name/# already there'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'Fleetwood',
             iStars      = 5,
             iCategory_id= self.CategoryID,
             iUser_id    = self.user1.id )
         #
-        form = CreateModelForm(data=form_data)
+        form = CreateModelForm( data = dFormData )
         form.request = self.request
         self.assertFalse(form.is_valid())
         #
-        form_data['cTitle'] = 'Woodie'
+        dFormData['cTitle'] = 'Woodie'
         #
-        form = CreateModelForm(data=form_data)
+        form = CreateModelForm( data = dFormData )
         form.request = self.request
         self.assertFalse(form.is_valid())
 
