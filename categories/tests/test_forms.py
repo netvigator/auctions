@@ -48,12 +48,12 @@ class TestFormValidation( TestCategoryFormValidation ):
         '''text in parens is OK,
         but there must be some text outside the parens'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = '(Widget)',
             iStars      = 5,
             iUser       = self.user1 )
         #
-        form = CreateCategoryForm(data=form_data)
+        form = CreateCategoryForm( data = dFormData )
         #
         self.assertFalse(form.is_valid())
         #
@@ -65,9 +65,9 @@ class TestFormValidation( TestCategoryFormValidation ):
             maybePrint( 'no form errors above!' )
         '''
         #
-        form_data['cTitle'] = 'Widget'
+        dFormData['cTitle'] = 'Widget'
         #
-        form = CreateCategoryForm(data=form_data)
+        form = CreateCategoryForm( data = dFormData )
         #
         self.assertTrue(form.is_valid())
 
@@ -76,12 +76,12 @@ class TestFormValidation( TestCategoryFormValidation ):
         #
         '''after saving the form, next page should be the detail'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'Widget',
             iStars      = 5,
             iUser       = self.user1 )
         #
-        form = CreateCategoryForm(data=form_data)
+        form = CreateCategoryForm( data = dFormData )
         #
         self.assertTrue(form.is_valid())
         #
@@ -98,23 +98,23 @@ class TestFormValidation( TestCategoryFormValidation ):
         '''can add category not in there yet,
         cannot add a category already there'''
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'Gadget',
             iStars      = 5,
             iUser       = self.user1 )
         #
-        form = CreateCategoryForm(data=form_data)
+        form = CreateCategoryForm( data = dFormData )
         #
         form.user    = self.user1 # need this!
         #
         self.assertFalse( form.is_valid() )
         #
-        form_data = dict(
+        dFormData = dict(
             cTitle      = 'ThingaMaJig',
             iStars      = 5,
             iUser       = self.user1.id )
         #
-        form = CreateCategoryForm(data=form_data)
+        form = CreateCategoryForm( data = dFormData )
         #
         form.user    = self.user1 # need this!
         #
