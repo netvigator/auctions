@@ -116,7 +116,11 @@ class FindSearchHitsWebTests(
         AssertNotEmptyMixin, AssertEqualIgnoreParensMixin,
         SetUpForHitStarsWebTests ):
 
-    def print_len( self, lTest, iExpect, iItemNumb = None, sExplain = None ):
+    def print_len( self,
+                  lTest, iExpect,
+                  iItemNumb = None,
+                  sExplain  = None,
+                  bDump     = False ):
         #
         if not lTest:
             #
@@ -154,6 +158,11 @@ class FindSearchHitsWebTests(
                         maybePrint( ' | '.join( lPrintThis ) )
                         #
                     #
+                    if bDump:
+                        maybePrint( 'dict:' )
+                        for k, v in o.__dict__.items(): # pretty print crashes
+                            maybePrint( '  ', k, ':', v )
+                        bDump = False
                 #
             #
             if sExplain: maybePrint( sExplain )
@@ -3313,6 +3322,44 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 254666569743
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'hit star count was wrong in production',
+                bDump = True )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Stereo 70' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        self.assertGreater( oTest.iHitStars, 348 ) # should be 350
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 333700045424
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 6189W not (5814A, 12AU7)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6189' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         iThisOne = 164011103887
         #
@@ -3538,6 +3585,7 @@ class FindSearchHitsWebTests(
         #
         #
         #
+
         '''
         '''
         #
