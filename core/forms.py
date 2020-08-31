@@ -160,7 +160,7 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         return cleaned
 
 
-class BaseUserFinderKeeperForm( BaseModelFormGotCrispy ):
+class BaseUserFinderKeeperFormGotCrispy( BaseModelFormGotCrispy ):
     #
     '''using a form on the edit user item found or keeper page'''
     #
@@ -198,7 +198,8 @@ class BaseUserFinderKeeperForm( BaseModelFormGotCrispy ):
         else:
             self.fields["iModel"].queryset = Model.objects.filter(
                                               iUser = self.user )
-
+        #
+        #
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
