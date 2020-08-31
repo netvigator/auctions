@@ -88,7 +88,7 @@ sBrands = \
  National          |      7 |            |            |
  PACO              |      2 |            |            |
  Peerless          |      8 |            |            |
- Philips           |      7 |            |            |
+ Philips           |      7 |            |            | Phillips
  Pilot             |      8 |            |            |
  Quad              |      5 |            |            |
  Radford           |      7 |            |            |
@@ -168,7 +168,7 @@ sModels = \
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
  6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- 6189               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
+ 6189               |           |      3 | t            |                   |  Vacuum Tube | 6189W       |              | t
  6SL7GTA            |           |      5 | t            |                   |  Vacuum Tube | 6SL7\\r6SL7G |             | t
  6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f
@@ -833,6 +833,40 @@ sResponseItems2Test = \
              "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+          { "itemId":["333700045424"],
+            "title":["3 NOS Phillips Jan 6189W (5814A, 12AU7) Vintage vaccum tubes with original Boxe"],
+            "globalId":["EBAY-ENCA"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mPl1bGpoVU29E87vvgkVkEw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/3-NOS-Phillips-Jan-6189W-5814A-12AU7-Vintage-vaccum-tubes-original-Boxe-\/333700045424"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["H1W2S7"],"location":["Canada"],"country":["CA"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"CAD","__value__":"38.35"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"29.27"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT9H42M17S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"CAD","__value__":"49.86"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"38.05"}],
+            "startTime":["2020-08-25T18:46:08.000Z"],
+            "endTime":["2020-09-01T18:46:08.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+          { "itemId":["254666569743"],
+            "title":["Dynaco ST 70 ST-70 Tube Amp"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m5dCazD1w3FLRTuWF2b8fyQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Dynaco-ST-70-ST-70-Tube-Amp-\/254666569743"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["301**"],"location":["Kennesaw,GA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"850.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"850.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT16H31M23S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-07-27T01:31:29.000Z"],
+            "endTime":["2020-08-03T01:31:29.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            { "itemId":["184407865354"],
              "title":["RARE METAL BASE  MULLARD EL34 {6CA7} MISSING GUIDE PIN. TESTED ON A HICKOK 533A"],
