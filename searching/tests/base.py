@@ -20,8 +20,6 @@ from finders.models     import ItemFound, UserFinder, UserItemFound
 
 from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_ROOT
 
-from searching.tests    import iRecordStepsForThis
-
 from ..models           import Search, SearchLog
 from ..tests            import ( sExampleResponse, sBrands, sModels,
                                  sResponseItems2Test, sManualItems2Test,
@@ -1014,10 +1012,7 @@ class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
         #
         super().setUp()
         #
-        # iRecordStepsForThis imported from __init__.py
-        #
-        findSearchHits( self.user1.id,
-                        iRecordStepsForThis = iRecordStepsForThis )
+        findSearchHits( self.user1.id )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
