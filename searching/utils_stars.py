@@ -3072,7 +3072,7 @@ def _getRecordSteps(
     #
     bRecordSteps = False
     #
-    if settings.COVERAGE:
+    if settings.COVERAGE: # set bRecordSteps and iRecordStepsForThis
         #
         bRecordSteps        = True
         iRecordStepsForThis = oItemFound.iItemNumb
@@ -3183,6 +3183,8 @@ def findSearchHits(
             iUser                   = oUserOne.id,
             iRecordStepsForThis     = None ):
     #
+    # note if settings.COVERAGE: set bRecordSteps and iRecordStepsForThis
+    #
     oUserModel = get_user_model()
     #
     oUser = oUserModel.objects.get( id = iUser )
@@ -3278,6 +3280,7 @@ def findSearchHits(
         #
         # troubleshooting code if applicable
         #
+        # note if settings.COVERAGE: set bRecordSteps and iRecordStepsForThis
         #
         t = _getRecordSteps(
                 oItemFound,
