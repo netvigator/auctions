@@ -508,3 +508,9 @@ severely need to test finders views more better!
 2020-08-10 need to test: when adding or editing a finder hit,
 when the new one or edited one already exists, bot now handles gracefully
 
+
+2020-08-28 GetSingleItemNotWorkingError: getSingleItem failure for item 174337421133
+{'Errors': [{'ErrorCode': '1.20', 'SeverityCode': 'Error', 'ErrorClassification': 'RequestError', 'LongMessage': 'Application ID invalid.', 'ShortMessage': 'Application ID invalid.'}], 'Ack': 'Failure', 'Timestamp': '2020-08-27T09:08:31.142Z', 'Version': '1141', 'Build': 'E1141_CORE_APILW_19170841_R1'}
+  File "keepers/utils.py", line 109, in _getJsonSingleItemResponse
+    raise GetSingleItemNotWorkingError( sMsg )
+need to handle gracefully
