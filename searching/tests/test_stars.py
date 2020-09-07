@@ -3361,6 +3361,29 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 313204121172
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find tuner & amps' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'MR-71' )
+        self.assertEqual( oTest.iBrand.cTitle, 'McIntosh' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Mc-75' )
+        self.assertEqual( oTest.iBrand.cTitle, 'McIntosh' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3585,7 +3608,17 @@ class FindSearchHitsWebTests(
         #
         #
         #
-
+        iThisOne = 124323737276
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 12AX7 not 7025 at end of list (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
@@ -3627,8 +3660,7 @@ class FindSearchHitsWebTests(
         #
         print()
         print( "run daily:" )
-        print( "1) pmt searching.tests.test_utils.StoredLiveItemNumbersTest" )
-        print( "2) pmt ebayinfo.tests.test_utils.MarketsAndCategoriesTests" )
+        print( "pmt ebayinfo.tests.test_utils.MarketsAndCategoriesTests" )
         print()
         #
         #
