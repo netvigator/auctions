@@ -223,7 +223,11 @@ class BaseUserFinderKeeperFormGotCrispy( BaseModelFormGotCrispy ):
                 'iBrand',
                 'iCategory',
                 'bGetResult',
-                Field( 'iHitStars', readonly = True ), )
+                Field( 'iHitStars', readonly = True ),
+                Field('iItemNumb',  type = "hidden" ),
+                Field('iSearch',    type = "hidden" ),
+                Field('tTimeEnd',   type = "hidden" ),
+                Field('iUser',      type = "hidden" ) )
 
     def clean( self ):
         #
