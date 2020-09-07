@@ -310,6 +310,15 @@ sModels = \
  PR-66              |           |      5 | f            | Fisher            |       Preamp |             |
  C-20               |           |      6 | f            | McIntosh          |       Preamp |             |
  C-11               |           |      7 | f            | McIntosh          |       Preamp |             |
+ AE-2               |           |      7 | f            | McIntosh          |       Preamp |             |
+ C-104              |           |      5 | f            | McIntosh          |       Preamp |             |
+ C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
+ C-108H             |           |      4 | t            | McIntosh          |       Preamp |             |
+ C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
+ C-8S               |           |      5 | f            | McIntosh          |       Preamp |             |
+ C-22               |           |      7 | f            | McIntosh          |       Preamp |             | CM
+ Mc-75              |           |      7 | f            | McIntosh          |    Amplifier |McIntosh 75  |
+ MR-71              |           |      7 | f            | McIntosh          |        Tuner |             |
  122                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp |             |
  HF-65              |           |      7 | f            | EICO              |       Preamp |             |
@@ -321,8 +330,6 @@ sModels = \
  Citation III-X     |           |      8 | f            | Harman-Kardon     |        Tuner |             |
  SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
  Point 1            |           |      8 | f            | Leak              |       Preamp |             |
- AE-2               |           |      7 | f            | McIntosh          |       Preamp |             |
- C-104              |           |      5 | f            | McIntosh          |       Preamp |             |
  PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             |
  PAS                |           |      6 | f            | Dynaco            |       Preamp |             |
  PAS-2              |           |      6 | f            | Dynaco            |       Preamp |             |
@@ -347,15 +354,12 @@ sModels = \
  W-5M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  EA-3               |           |      4 | f            | Heathkit          |Integrated Amp|             |
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
- C-4                |           |      4 | f            | McIntosh          |       Preamp |             |
- C-108H             |           |      4 | t            | McIntosh          |       Preamp |             |
  CL-35              |           |      7 | f            | Luxman            |       Preamp |             |
  Luminescence       |           |      9 | f            | MFA               |       Preamp |             |
  SC2                |           |      7 | f            | Radford           |       Preamp |             |
  C-32               |           |      7 | f            | Luxman            |       Preamp |             |
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
- C-8                |           |      4 | f            | McIntosh          |       Preamp |             | C-8S
  2                  |           |      6 | f            | Acoustic Research |Speaker System| AR-2        | LST-2\\r2 way\\r(2)
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
  2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
@@ -383,10 +387,8 @@ sModels = \
  SP-215             |           |     10 | f            | Pilot             |       Preamp |             |
  LC-21              |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Quad 22            |           |      8 | f            | Quad              |       Preamp |             |
- C-8S               |           |      5 | f            | McIntosh          |       Preamp |             |
  SV-1               |           |      8 | f            | RCA               |       Preamp |             |
  121-C              |           |      9 | t            | Scott, H.H.       |       Preamp |             |
- C-22               |           |      7 | f            | McIntosh          |       Preamp |             | CM
  SP-210             |           |      8 | f            | Pilot             |       Preamp |             |
  Verislope 3        |           |      8 | f            | Leak              |       Preamp | Verislope\\rVarislope\\rVeriscope\\rVariscope | Mono
  240                |           |      9 | f            | Fairchild         |       Preamp |             |
@@ -817,22 +819,56 @@ sResponseItems2Test = \
     "searchResult":
       [{"@count":"100",
         "item": [
-           { "itemId":["122990519283"],
-             "title":["Garol 6AU-1 Catalin Radio "],
-             "globalId":["EBAY-US"],
-             "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
-             "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
-             "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
-             "paymentMethod":["PayPal"],"autoPay":["false"],
-             "postalCode":["15085"],"location":["Trafford,PA,USA"],"country":["US"],
-             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
-             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
-             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-             "startTime":["2018-02-27T02:42:38.000Z"],
-             "endTime":["2018-03-04T02:42:38.000Z"],
-             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
-             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+          { "itemId":["122990519283"],
+            "title":["Garol 6AU-1 Catalin Radio "],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
+            "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["15085"],"location":["Trafford,PA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2018-02-27T02:42:38.000Z"],
+            "endTime":["2018-03-04T02:42:38.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+          { "itemId":["124323737276"],
+            "title":["2 NOS RCA 12AX7A ECC83 12AX7 7025 In Boxes Vacuum Tubes Fender Amps Love\u2019em"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/meIg0WrIqnPm_TwRDE4p68g\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-NOS-RCA-12AX7A-ECC83-12AX7-7025-Boxes-Vacuum-Tubes-Fender-Amps-Love-em-\/124323737276"],
+            "paymentMethod":["PayPal"],"autoPay":["true"],
+            "postalCode":["752**"],"location":["Dallas,TX,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.85"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"159.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"159.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT10H30M27S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"207.99"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"207.99"}],
+            "startTime":["2020-09-03T19:32:44.000Z"],
+            "endTime":["2020-09-10T19:32:44.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+          { "itemId":["313204121172"],
+            "title":["McIntosh MR71 FM Tuner & Two McIntosh 75 Amplifiers - Very Cool! "],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73382"],"categoryName":["Vintage Tuners & Tube Tuners"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/m1rvhl2iXtmp195wxP4U08A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/McIntosh-MR71-FM-Tuner-Two-McIntosh-75-Amplifiers-Very-Cool-\/313204121172"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["180**"],"location":["Bethlehem,PA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"3150.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"3150.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT3H0M7S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-02T12:01:54.000Z"],
+            "endTime":["2020-09-09T12:01:54.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["7"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
           { "itemId":["333700045424"],
             "title":["3 NOS Phillips Jan 6189W (5814A, 12AU7) Vintage vaccum tubes with original Boxe"],
