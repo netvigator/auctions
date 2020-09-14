@@ -514,3 +514,8 @@ when the new one or edited one already exists, bot now handles gracefully
   File "keepers/utils.py", line 109, in _getJsonSingleItemResponse
     raise GetSingleItemNotWorkingError( sMsg )
 need to handle gracefully
+
+
+2020-09-14 should be speaker system but production crashes when I try to fix
+Edit	SS-1B	Heathkit	Speaker System	360 ( 5 * 8 * 9 )
+Edit	SS-1	Heathkit	Stereo System	120 ( 5 * 8 * 3 )
