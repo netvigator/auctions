@@ -3384,6 +3384,28 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 143724779676
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find speaker not tuner (found tuner in production!!!)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'SS-1' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'SS-1B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3613,6 +3635,17 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12AX7 not 7025 at end of list (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 353198148398
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 6922 not anything else (aspirational)' )
         #
         #
         #
