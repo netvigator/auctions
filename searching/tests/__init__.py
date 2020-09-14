@@ -328,7 +328,6 @@ sModels = \
  AP-426             |           |      5 | f            | Stromberg-Carlson |       Preamp |             |
  Citation IV        |           |      9 | f            | Harman-Kardon     |       Preamp |             |
  Citation III-X     |           |      8 | f            | Harman-Kardon     |        Tuner |             |
- SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
  Point 1            |           |      8 | f            | Leak              |       Preamp |             |
  PAM-1              |           |      4 | f            | Dynaco            |       Preamp |             |
  PAS                |           |      6 | f            | Dynaco            |       Preamp |             |
@@ -349,10 +348,14 @@ sModels = \
  400-C              |           |      7 | f            | Fisher            |       Preamp |             | 400-CX
  130                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
+ SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  W-5M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  EA-3               |           |      4 | f            | Heathkit          |Integrated Amp|             |
+ AS-21              |           |      8 | f            | Heathkit          |Speaker System|             |
+ SS-1B              |           |      6 | f            | Heathkit          |Speaker System|             |
+ SS-1               |           |      5 | f            | Heathkit          |Speaker System| SS-1A       |
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
  CL-35              |           |      7 | f            | Luxman            |       Preamp |             |
  Luminescence       |           |      9 | f            | MFA               |       Preamp |             |
@@ -364,7 +367,6 @@ sModels = \
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
  2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
  2ax                |           |      8 | f            | Acoustic Research |Speaker System| AR-2ax      |
- AS-21              |           |      8 | f            | Heathkit          |Speaker System|             |
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -835,6 +837,38 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+          { "itemId":["143724779676"],
+            "title":["Heathkit SS-1 and SS1B vintage speakers"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73382"],"categoryName":["Vintage Tuners & Tube Tuners"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mOCZ5TSiIXcZmJ0BbgWo3Rg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-SS-1-and-SS1B-vintage-speakers-\/143724779676"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["358**"],"location":["Huntsville,AL,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"100.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"100.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT5H4M33S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-07T14:06:12.000Z"],
+            "endTime":["2020-09-14T14:06:12.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+          { "itemId":["353198148398"],
+            "title":["2 NOS Philips SQ Gold Pin 6922 E188CC 7308 6DJ8 Vacuum Tubes Tested Guaranteed!"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mS3v7Wl5RNBsRIeCrEEKeZg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-NOS-Philips-SQ-Gold-Pin-6922-E188CC-7308-6DJ8-Vacuum-Tubes-Tested-Guaranteed-\/353198148398"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["982**"],"location":["Point Roberts,WA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["CalculatedDomesticFlatInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"188.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"188.88"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT15H22M4S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-10T00:24:31.000Z"],
+            "endTime":["2020-09-17T00:24:31.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
           { "itemId":["124323737276"],
             "title":["2 NOS RCA 12AX7A ECC83 12AX7 7025 In Boxes Vacuum Tubes Fender Amps Love\u2019em"],
