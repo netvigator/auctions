@@ -349,7 +349,10 @@ sModels = \
  130                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
  SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
+ WA-1               |           |      6 | f            | Heathkit          | Power Supply |             |
+ WA-P1              |           |      6 | f            | Heathkit          |       Preamp |             |
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
+ W-2M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  W-5M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  EA-3               |           |      4 | f            | Heathkit          |Integrated Amp|             |
@@ -837,6 +840,55 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+          { "itemId":["143723340998"],
+            "title":["RCA Black And Yellow Marbleized Catalin Case Radio Model 66X9 (1946)"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mowMjNqAWJX1Zr6X91VeIKQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/RCA-Black-And-Yellow-Marbleized-Catalin-Case-Radio-Model-66X9-1946-\/143723340998"],
+            "autoPay":["false"],
+            "postalCode":["913**"],"location":["Valencia,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"55.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"595.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"595.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT8H11M42S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"800.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"800.0"}],
+            "startTime":["2020-09-06T17:13:50.000Z"],
+            "endTime":["2020-09-11T17:13:50.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+          { "itemId":["174424118447"],
+            "title":["Amperex 6922 gold pin grey plate pre amp audio tube mic tubes - e88cc cca 6dj8"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mUNKmBQ7Z1kJ3Hb623wd-sg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Amperex-6922-gold-pin-grey-plate-pre-amp-audio-tube-mic-tubes-e88cc-cca-6dj8-\/174424118447"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"14.99"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT15H49M44S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-06T00:53:37.000Z"],
+            "endTime":["2020-09-16T00:53:37.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+          { "itemId":["303677558755"],
+            "title":["heathkit wa-p1 preamplifier, wa-1 power source, wa-2 amplifier"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mG6qD94YgbSgjclrvmNNedw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/heathkit-wa-p1-preamplifier-wa-1-power-source-wa-2-amplifier-\/303677558755"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["840**"],"location":["Sandy,UT,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT17H56M38S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-07T03:01:43.000Z"],
+            "endTime":["2020-09-14T03:01:43.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["4000"],"conditionDisplayName":["Very Good"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
           { "itemId":["143724779676"],
             "title":["Heathkit SS-1 and SS1B vintage speakers"],
