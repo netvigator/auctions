@@ -3406,6 +3406,46 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174424118447
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 6922 not anything else -- on end!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922 (Amperex Gold)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (gold pins)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 303677558755
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'found manual not preamp in production!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'WA-1' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Power Supply' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'WA-P1' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Preamp' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3647,6 +3687,16 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 6922 not anything else (aspirational)' )
         #
+        #
+        #
+        #
+        #
+        iThisOne = 143723340998
+        #
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 66X9 not Catalin (aspirational)' )
         #
         #
         #
