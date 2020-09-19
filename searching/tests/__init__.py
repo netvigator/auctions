@@ -143,6 +143,7 @@ sModels = \
  7025 (12AX7A)      |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
+ 12DM7              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  2A3 (RCA SP)       | mono plate |    10 | f            | RCA               |  Vacuum Tube |             |              | f
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
@@ -177,6 +178,7 @@ sModels = \
  6V6 (metal can)    |           |      2 | f            |                   |  Vacuum Tube |             |              | t
  6V6GTA             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f
+ 5692 (RCA red base)| red       |      8 | f            | RCA               |  Vacuum Tube |             |              | f
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |              | f
  6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
  6L6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -839,6 +841,40 @@ sResponseItems2Test = \
             "endTime":["2018-03-04T02:42:38.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+          { "itemId":["224159570253"],
+            "title":["Lot of (3) GE 12DM7 (rare 12AX7 upgrade) NOS NIB Vacuum Tubes - READ"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mN3UmnN_R46nIga7EU9TFNg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Lot-3-GE-12DM7-rare-12AX7-upgrade-NOS-NIB-Vacuum-Tubes-READ-\/224159570253"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["975**"],"location":["Ashland,OR,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["true"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"10.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"10.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT12H22M46S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-16T21:24:57.000Z"],
+            "endTime":["2020-09-23T21:24:57.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+          { "itemId":["254659435056"],
+            "title":["1959 RCA Red Base BLACK PLATES 5692 (6SN7GT) tube NOS \/ NEW Audio Amplifier Nice"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mhdZsonDwtZ3JyLDTmLjO3w\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/1959-RCA-Red-Base-BLACK-PLATES-5692-6SN7GT-tube-NOS-NEW-Audio-Amplifier-Nice-\/254659435056"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["217**"],"location":["Brunswick,MD,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"62.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"62.0"}],
+            "bidCount":["12"],"sellingState":["Active"],"timeLeft":["P0DT16H17M55S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-07-20T01:20:43.000Z"],
+            "endTime":["2020-07-30T01:20:43.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["31"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
           { "itemId":["143723340998"],
