@@ -3446,6 +3446,40 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 254659435056
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find RCA red base 5692 (production choked)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5692 (RCA red base)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 224159570253
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 12DM7 not 12AX7 (in parens)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12DM7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3691,12 +3725,13 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 143723340998
         #
+        iThisOne = 143723340998
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 66X9 not Catalin (aspirational)' )
+        #
         #
         #
         #
