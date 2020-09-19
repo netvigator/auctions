@@ -468,6 +468,15 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            oCategory   = Category(
+                    cTitle      = 'Power Supply',
+                    cLookFor    = 'power source',
+                    iStars      = 5,
+                    iUser       = oUser )
+            #
+            oCategory.save()
+            #
+            #
             #
             #
             # Capacitor Checker is in core.tests.base.py already!
