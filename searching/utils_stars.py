@@ -1948,6 +1948,11 @@ def _doScoreCandidates(
                     #
                     if bRecordSteps:
                         #
+                        if oHitLine.oBrand:
+                            maybePrint( 'oHitLine.oBrand.id:', oHitLine.oBrand.id )
+                        else:
+                            maybePrint( 'oHitLine.oBrand is None' )
+                        #
                         lCandidates.append(
                             'do not have brand for model %s, '
                             'so excluding' % oHitLine.oModel )
