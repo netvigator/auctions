@@ -3736,6 +3736,49 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 154084743699
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find xover not drivers (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114403926425
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Mullard KT-66 not EL37 (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114406347170
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find METAL BASE Mullard EL34 (missed the metal in production)' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 203111418084
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find FM-100-B tuner '
+                '(missed in production cuz title says '
+                'Receiver Intergrated Amplifier)' )
+        #
+        #
+        #
+        #
         #
         '''
         '''
