@@ -519,3 +519,6 @@ need to handle gracefully
 2020-09-14 should be speaker system but production crashes when I try to fix
 Edit	SS-1B	Heathkit	Speaker System	360 ( 5 * 8 * 9 )
 Edit	SS-1	Heathkit	Stereo System	120 ( 5 * 8 * 3 )
+
+2020-09-20 upading user item found lowered the max score
+but user finder still has origial incorrect #
