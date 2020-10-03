@@ -1,4 +1,4 @@
-iRecordStepsForThis = None or 114406347170
+iRecordStepsForThis = None # or 114406347170
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -61,6 +61,7 @@ sBrands = \
  Heathkit          |      8 |            |            | Heath
  Hickok            |      8 |            |            |
  Interelectronics  |      3 |            |            |
+ Janszen           |      8 |            |            |
  JBL               |      7 |            |            |
  Jensen            |      8 |            |            |
  Kadette           |      6 |            |            |
@@ -311,6 +312,7 @@ sModels = \
  90-C               |           |      9 | f            | Fisher            |       Preamp |             |
  PR-6               |           |      5 | f            | Fisher            |       Preamp |             |
  PR-66              |           |      5 | f            | Fisher            |       Preamp |             |
+ 1-30               |           |      8 | f            | Janszen           |Speaker System|             |
  C-20               |           |      6 | f            | McIntosh          |       Preamp |             |
  C-11               |           |      7 | f            | McIntosh          |       Preamp |             |
  AE-2               |           |      7 | f            | McIntosh          |       Preamp |             |
@@ -373,6 +375,7 @@ sModels = \
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
  2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
  2ax                |           |      8 | f            | Acoustic Research |Speaker System| AR-2ax      |
+ AR-1W              |           |      7 | f            | Acoustic Research |    Subwoofer |             |
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -509,6 +512,7 @@ sModels = \
  D-130B             |           |      7 | f            | JBL               |       Driver | 130B        |
  D216               |           |      5 | f            | JBL               |       Driver |             |
  LE5-5              |           |      5 | t            | JBL               |       Driver |             |
+ LE-25              |           |      6 | t            | JBL               |       Driver |             |
  LE14A              |           |      8 | f            | JBL               |       Driver |             |
  LE-20-1            |           |      4 | t            | JBL               |       Driver |             |
  1217-1290          |           |      7 | f            | JBL               |         Horn |             |
@@ -842,6 +846,52 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["174456687870"],
+            "title":["Telefunken E88CC CCa NOS Grey Shield 6DJ8 6922 CV2492 CV2493 CV5358 CV5472"],
+            "globalId":["EBAY-US"],
+            "subtitle":["Produced in'60th, GreyShield, StageGetter, Goldpins"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mhtcw1JAvMUngye1rh2I0QQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Telefunken-E88CC-CCa-NOS-Grey-Shield-6DJ8-6922-CV2492-CV2493-CV5358-CV5472-\/174456687870"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Germany"],"country":["DE"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"52.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"2.25"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"2.25"}],"bidCount":["3"],"sellingState":["Active"],"timeLeft":["P9DT7H37M0S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-30T16:38:13.000Z"],"endTime":["2020-10-10T16:38:13.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["392962996598"],
+            "title":["Acoustic Research AR-1W and Janszen 1-30 Electrostatic Tweeter -  No Reserve!"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mHsGKXdVbYa1lOiKQ_fihyQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Acoustic-Research-AR-1W-and-Janszen-1-30-Electrostatic-Tweeter-No-Reserve-\/392962996598"],
+            "paymentMethod":["PayPal"],"autoPay":["true"],
+            "postalCode":["484**"],"location":["Metamora,MI,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"100.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"0.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"0.99"}],"bidCount":["1"],"sellingState":["Active"],"timeLeft":["P3DT12H26M27S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-30T09:27:20.000Z"],"endTime":["2020-10-04T21:27:18.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["22"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["254721901923"],
+            "title":["JBL L100 Century Speakers High Frequency Tweeters LE25 8 OHMS (1 Only)"],
+            "globalId":["EBAY-US"],"subtitle":["Work great Includes 4 original screws.free ship USA"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mRioIlE-01DQqZ1rReR7ghg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-L100-Century-Speakers-High-Frequency-Tweeters-LE25-8-OHMS-1-Only-\/254721901923"],
+            "autoPay":["false"],
+            "postalCode":["773**"],"location":["Humble,TX,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"120.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"120.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT12H50M34S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-09-17T21:51:16.000Z"],"endTime":["2020-09-22T21:51:16.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
           { "itemId":["203111418084"],
             "title":["Vintage Fisher FM - 100 - B Tube Receiver Intergrated Amplifier"],
