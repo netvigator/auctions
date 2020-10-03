@@ -477,6 +477,13 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oCategory.save()
             #
+            oCategory   = Category( cTitle      = 'Subwoofer',
+                                    cLookFor    = 'speaker',
+                                    iFamily_id  = oStereoSystem.id,
+                                    iStars      = 7,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
             #
             #
             #
