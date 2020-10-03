@@ -297,17 +297,6 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iCategory.cTitle,   'Driver' )
         #
         #
-        self.print_len( dItemsToTest[ 192509883813 ], 1 )
-        #
-        oTest = dItemsToTest[ 192509883813 ][ 0 ]
-        #
-        self.assertIsNotNone( oTest )
-        #
-        self.assertEqual( oTest.iModel.cTitle,    '100 (speaker)' )
-        #
-        self.assertEqual( oTest.iBrand.cTitle,    'Fisher' )
-        #
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         self.print_len( dItemsToTest[ 332618106572 ], 1 )
         #
@@ -1275,21 +1264,6 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, '604D' )
         self.assertEqual( oTest.iBrand.cTitle, 'Altec-Lansing' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
-        #
-        #
-        iThisOne = 202636634682
-        #
-        self.print_len(
-            dItemsToTest[ iThisOne ], 1, iThisOne,
-            'should not find AR-2' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertIsNone( oTest.iModel )
-        self.assertIsNone( oTest.iBrand )
-        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
-        #
-        #
         #
         #
         iThisOne = 192878961826
@@ -3343,6 +3317,30 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174456687870
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find E88CC & CCa not the rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'CCa (= 6922 = E88CC = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 333700045424
         #
         self.print_len(
@@ -3476,6 +3474,20 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
+        #
+        #
+        iThisOne = 192509883813
+        #
+        self.print_len( dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find speaker only, not amp')
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '100 (speaker)' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
         #
         #
         #
@@ -3775,6 +3787,44 @@ class FindSearchHitsWebTests(
                 'should find FM-100-B tuner '
                 '(missed in production cuz title says '
                 'Receiver Intergrated Amplifier)' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 254721901923
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find tweeter (missed in production) (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 202636634682
+        #
+        self.print_len(
+            dItemsToTest[ iThisOne ], 9, iThisOne,
+            'should not find AR-2' )
+        #
+        #oTest = dItemsToTest[ iThisOne ][ 0 ]
+        ##
+        #self.assertIsNone( oTest.iModel )
+        #self.assertIsNone( oTest.iBrand )
+        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 392962996598
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find subwoofer' )
+        #
         #
         #
         #
