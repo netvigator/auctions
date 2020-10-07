@@ -1,6 +1,7 @@
 
 from os                 import rename
 from random             import randrange
+from pprint             import pprint
 
 from django.db          import DataError
 from django.test        import tag
@@ -333,9 +334,16 @@ class MarketsAndCategoriesTests(
         #
         lUpdated = getWhetherAnyEbayCategoryListsAreUpdated()
         #
-        self.assertEmpty( lUpdated )
-        #
-        print( '\n\n### ebay categories are up to date. ###\n' )
+        if lUpdated:
+            #
+            print( '\n\n### ebay has updated categories ! ###\n' )
+            #
+            pprint( lUpdated )
+            #
+        else:
+            #
+            print( '\n\n### ebay categories are up to date. ###\n' )
+            #
 
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
