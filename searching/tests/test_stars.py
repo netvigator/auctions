@@ -3503,6 +3503,17 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174450674824
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find diaphrams not driver' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 324030050981
         #
         self.print_len(
@@ -3830,6 +3841,18 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 143758941408
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'd/n find 66X9 in production, should find' )
+        #
+        #
+        #
+        #
+        #
+        #
+
         '''
         '''
         #
