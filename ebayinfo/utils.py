@@ -939,6 +939,7 @@ then take the live server down for maintenance and update:
 get commands from office datbase server:
 generic example: pg_dump --data-only --table=tablename sourcedb > onetable.pg
 
+in postgres user on server
 
 pg_dump --data-only --table=markets auctions > markets.pg
 pg_dump --data-only --table=ebay_categories auctions > ebay_categories.pg
@@ -981,7 +982,7 @@ TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_
 
 
 open psql and auctions database
-if on office desktop
+if on HK office desktop
 psql -h 192.168.0.88 -p 5432 -U minion auctions
 or if in postgres user on datas server
 psql -U minion auctions
