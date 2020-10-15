@@ -342,8 +342,9 @@ sModels = \
  PAS-3 Series II    |           |      5 | f            | Dynaco            |       Preamp | PAS-3 Series ll\\rPAS-3 Series 2 |
  FM-3               |           |      7 | f            | Dynaco            |        Tuner |             |
  Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
- A-25               |           |      8 | t            | Dynaco            |Speaker System|             |
- A-50               |           |      6 | t            | Dynaco            |Speaker System|             |
+ A-25               |           |      8 | f            | Dynaco            |Speaker System|             |
+ A-50               |           |      6 | f            | Dynaco            |Speaker System|             |
+ Mark III           |           |      8 | f            | Dynaco            |    Amplifier | Mk III\\rMk 3\\rMark 3\\rMk lll\\rMark lll |
  SP-6               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-8               |           |      9 | f            | Audio Research    |       Preamp |             |
  S1001              |           |      6 | f            | ACRO              |       Preamp |             |
@@ -831,7 +832,7 @@ sResponseItems2Test = \
     "searchResult":
       [{"@count":"100",
         "item": [
-          { "itemId":["122990519283"],
+           {"itemId":["122990519283"],
             "title":["Garol 6AU-1 Catalin Radio "],
             "globalId":["EBAY-US"],
             "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
@@ -846,6 +847,71 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["293771607945"],
+            "title":["Dynakit Mark III Power Amp PAIR Mark 3 Dynaco"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mJRBwoihCOxm3zNOMj70Ceg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Dynakit-Mark-III-Power-Amp-PAIR-Mark-3-Dynaco-\/293771607945"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["100**"],"location":["New York,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"640.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"640.0"}],
+            "bidCount":["26"],"sellingState":["Active"],"timeLeft":["P1DT12H12M10S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-07T21:12:15.000Z"],"endTime":["2020-10-14T21:12:15.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["58"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["184480797243"],
+            "title":["PHILIPS 7581A ECG NOS NIB MATCHED QUAD 6L6GC"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/miV_iNl9pWlWOrgTDH-b9PA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/PHILIPS-7581A-ECG-NOS-NIB-MATCHED-QUAD-6L6GC-\/184480797243"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["937**"],"location":["Fresno,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"600.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"600.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT17H53M40S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-09T02:55:47.000Z"],"endTime":["2020-10-16T02:55:47.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/184480797243_1_0_1.jpg"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["254743198694"],
+            "title":["2X RCA 6SN7GT Matched Vacuum Tubes -Balanced, Black Plates D-Getter! 5692\/VT231"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mv_1PdOT1Zy4pCOokcfrIXw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2X-RCA-6SN7GT-Matched-Vacuum-Tubes-Balanced-Black-Plates-D-Getter-5692-VT231-\/254743198694"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["V0M1K0"],"location":["Canada"],"country":["CA"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"26.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"26.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT13H8M38S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"34.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"34.0"}],
+            "startTime":["2020-10-08T22:12:15.000Z"],"endTime":["2020-10-15T22:12:15.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["193694500374"],
+            "title":["Matched Pair (2) Telefunken ECC88 6DJ8 - E188CC 7308 E88CC 6922"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mDqQ5Eys0aW7NlfmKEHta7Q\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Matched-Pair-2-Telefunken-ECC88-6DJ8-E188CC-7308-E88CC-6922-\/193694500374"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Singapore"],"country":["SG"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT0H5M6S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-03T09:07:25.000Z"],"endTime":["2020-10-13T09:07:25.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["174450674824"],
             "title":["Altec Lansing Diaphragm Working 8 Ohm 604 802 804 806 807 808 902 908 909"],
