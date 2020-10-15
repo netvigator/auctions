@@ -3492,6 +3492,66 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 254743198694
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6SN7GT, found 5692 in production' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '6SN7GT' )
+        self.assertEqual( oTest.iBrand.cTitle,    'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 184480797243
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 7581A not 6L6GC (found both in production)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '7581A' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 293771607945
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should be more stars (not enough in production)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    'Mark III' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Dynaco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        self.assertGreater( oTest.iHitStars, 300 )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3841,18 +3901,19 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 143758941408
+        #
+        iThisOne = 193694500374
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'd/n find 66X9 in production, should find' )
+                'should find ECC88 not rest (aspirational)' )
         #
         #
         #
         #
         #
         #
-
+        #
         '''
         '''
         #
