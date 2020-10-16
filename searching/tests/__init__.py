@@ -372,6 +372,7 @@ sModels = \
  C-32               |           |      7 | f            | Luxman            |       Preamp |             |
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
+ AR-1               |           |      6 | f            | Acoustic Research |Speaker System| One         |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  2                  |           |      6 | f            | Acoustic Research |Speaker System| AR-2        | LST-2\\r2 way\\r(2)
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
  2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
@@ -557,7 +558,6 @@ sModels = \
  16309              |           |      7 | f            | Peerless          |Output Transformer|         |
  54-32              |           |      7 | f            | Chicago           |Power Transformer|          |
  meter              |           |      3 | f            |                   |    Component | Meter Band  |
- 1                  |           |      6 | f            | Acoustic Research |Speaker System| AR-1\\rOne  |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  model nine         |           |      9 | f            | KLH               |Speaker System| model 9     |
  model five         |           |      6 | f            | KLH               |Speaker System| model 5     |
  IT-28              |           |      5 | f            | Heathkit          |Capacitor Checker|          | Capacitor Tester\rCapacitance Checker\rCapacitance Tester
@@ -848,6 +848,37 @@ sResponseItems2Test = \
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
+           {"itemId":["284033931942"],
+            "title":["2x EL34 \/ 6CA7  tubes  PHILIPS \/ MULLARD  -  NOS  -  METAL base -  EL 34 - 1956"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mtliK8yb5C-mGq740-kyB3w\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-EL34-6CA7-tubes-PHILIPS-MULLARD-NOS-METAL-base-EL-34-1956-\/284033931942"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Germany"],"country":["DE"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"699.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"699.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT22H10M40S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-08T07:12:00.000Z"],"endTime":["2020-10-18T07:12:00.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["174463229621"],
+            "title":["Rare PQ 6922 D-Getter Amperex Gold Pin Grey Plate Tube - e88cc cca cv2492 6dj8"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mvgWiGJdMadYZiMmInAaCsQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Rare-PQ-6922-D-Getter-Amperex-Gold-Pin-Grey-Plate-Tube-e88cc-cca-cv2492-6dj8-\/174463229621"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.5"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.95"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT13H35M33S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-03T22:38:14.000Z"],"endTime":["2020-10-13T22:38:14.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
            {"itemId":["293771607945"],
             "title":["Dynakit Mark III Power Amp PAIR Mark 3 Dynaco"],
             "globalId":["EBAY-US"],
@@ -925,21 +956,6 @@ sResponseItems2Test = \
             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"86.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"86.0"}],"bidCount":["2"],"sellingState":["Active"],"timeLeft":["P0DT21H8M37S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
             "startTime":["2020-09-25T06:09:14.000Z"],"endTime":["2020-10-02T06:09:14.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],"returnsAccepted":["false"],
-            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
-
-           {"itemId":["143758941408"],
-            "title":["RCA Black And Yellow Marbleized Catalin Case Radio Model 66X9 (1946)"],
-            "globalId":["EBAY-US"],"autoPay":["false"],
-            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
-            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mowMjNqAWJX1Zr6X91VeIKQ\/140.jpg"],
-            "viewItemURL":["https:\/\/www.ebay.com\/itm\/RCA-Black-And-Yellow-Marbleized-Catalin-Case-Radio-Model-66X9-1946-\/143758941408"],
-            "postalCode":["913**"],"location":["Valencia,CA,USA"],"country":["US"],
-            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"55.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
-            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"595.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"595.0"}],
-            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT12H13M38S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"800.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"800.0"}],
-            "startTime":["2020-09-27T21:15:41.000Z"],"endTime":["2020-10-02T21:15:41.000Z"],
-            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
