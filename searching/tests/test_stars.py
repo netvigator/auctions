@@ -3552,6 +3552,43 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174463229621
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6922 not rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '6922 (Amperex Gold)' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Amperex (gold pins)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 392962996598
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find subwoofer' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    'AR-1W' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Acoustic Research' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Subwoofer' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3890,23 +3927,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 392962996598
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find subwoofer' )
-        #
-        #
-        #
-        #
-        #
-        #
         #
         iThisOne = 193694500374
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find ECC88 not rest (aspirational)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 284033931942
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find metal base EL34' )
         #
         #
         #
