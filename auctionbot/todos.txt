@@ -522,3 +522,28 @@ Edit	SS-1	Heathkit	Stereo System	120 ( 5 * 8 * 3 )
 
 2020-09-20 upading user item found lowered the max score
 but user finder still has origial incorrect #
+
+
+2020-10-21 crashed in production
+AttributeError: 'NoneType' object has no attribute 'text'
+  File "ebayinfo/utils.py", line 79, in getTagsValuesGotRoot
+    sNamerSpacer % sChildTag ).text
+
+UnexpectedResponse: Check file /tmp/ebay_files/Categories_Ver_EBAY-US.xml for tag "UpdateTime"!
+(3 additional frame(s) were not displayed)
+...
+  File "ebayinfo/utils.py", line 515, in getWhetherAnyEbayCategoryListsAreUpdated
+    bUseSandbox = bUseSandbox )
+  File "ebayinfo/utils.py", line 487, in _getCheckCategoryVersion
+    iVersion = _getCategoryVersionFromFile( sGlobalID, sFile )
+  File "ebayinfo/utils.py", line 405, in _getCategoryVersionFromFile
+    dTagsValues = _getCategoryVersionValues( sFile % sGlobalID )
+  File "ebayinfo/utils.py", line 394, in _getCategoryVersionValues
+    return getTagsValuesGotRoot( root, sFile = sFile )
+  File "ebayinfo/utils.py", line 83, in getTagsValuesGotRoot
+    ( sFile , sChildTag ) ) )
+
+Message
+
+UnexpectedResponse: Check file /tmp/ebay_files/Categories_Ver_EBAY-US.xml for tag "UpdateTime"!
+
