@@ -547,3 +547,5 @@ Message
 
 UnexpectedResponse: Check file /tmp/ebay_files/Categories_Ver_EBAY-US.xml for tag "UpdateTime"!
 
+<Errors><ShortMessage>Auth token is invalid.</ShortMessage><LongMessage>Validation of the authentication token in API request failed.</LongMessage>
+
