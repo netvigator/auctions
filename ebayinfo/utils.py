@@ -912,6 +912,9 @@ def _fillInCategoryHierarchiesObliteratedByMistake():
     #
 
 
+
+when ebay categories have been updated,
+to update application categories:
 from ebayinfo.utils import getCategoryListsUpdated
 getCategoryListsUpdated( bConsoleOut = True )
 
@@ -984,7 +987,7 @@ TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_
 open psql and auctions database
 if on HK office desktop
 psql -h 192.168.0.88 -p 5432 -U minion auctions
-or if in postgres user on datas server
+or if in postgres user on data server
 psql -U minion auctions
 then
 ALTER TABLE "category_hierarchies" DROP CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" ;
@@ -1003,6 +1006,12 @@ psql -h 192.168.8.88 -p 5432 -U minion auctions < ebay_categories.pg
 HK (now main server)
 psql -h 192.168.0.88 -p 5432 -U minion auctions < markets.pg
 psql -h 192.168.0.88 -p 5432 -U minion auctions < ebay_categories.pg
+
+remotely on data server
+psql -U minion auctions < /tmp/markets.pg
+psql -U minion auctions < /tmp/ebay_categories.pg
+
+psql -U minion auctions
 
 ALTER TABLE "category_hierarchies" ADD CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i"
  FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") ON DELETE NO ACTION ;
@@ -1032,6 +1041,7 @@ where p."cCatHierarchy" not like '%' || c.name ;
 
 if the queries above find any rows (discrepancy rows)
 run on office desktop or on webserver
+pms
 from ebayinfo.utils import updateCategoryHierarchies
 updateCategoryHierarchies()
 
@@ -1040,10 +1050,6 @@ select * from ebay_categories where "iSupercededBy" is not null ;
 
 
 
-when ebay categories have been updated,
-to update application categories:
-from ebayinfo.utils import getCategoryListsUpdated
-getCategoryListsUpdated( bConsoleOut = True )
 
 '''
 
