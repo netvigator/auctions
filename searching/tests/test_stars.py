@@ -5,6 +5,7 @@ from os.path            import join
 
 from pprint             import pprint
 
+from django.conf        import settings
 from django.urls        import reverse
 from django.utils       import timezone
 
@@ -131,6 +132,10 @@ class FindSearchHitsWebTests(
             else:
                 maybePrint( 'found nothing, iItemNumb not passed' )
             #
+        elif iRecordStepsForThis and not settings.COVERAGE:
+            #
+            pass
+            #
         elif len( lTest ) != iExpect:
             #
             maybePrint('')
@@ -183,6 +188,10 @@ class FindSearchHitsWebTests(
         #
         ''' test _storeUserItemFound() with actual record'''
         #
+        qsProblemUserItem = UserItemFound.objects.filter(
+                        iUser = self.user1,
+                        iItemNumb_id = 193711255768
+                        )
         #
         qsUserItems = UserItemFound.objects.filter(
                         iUser = self.user1,
@@ -2353,7 +2362,7 @@ class FindSearchHitsWebTests(
         iThisOne = 254574295997
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 3, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 's/n find Mullard just IEC Mullard' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3589,6 +3598,48 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 254745992356
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find AR-1 not A amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    'AR-1' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Acoustic Research' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 193711255768
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should AU-190' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    'AU-190' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Emerson' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -3946,6 +3997,16 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find metal base EL34' )
         #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114462711121
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find preamp and power supply' )
         #
         #
         #
