@@ -871,7 +871,8 @@ def updateModelIDinTitle(
             sInTitle    = sInTitle,
             oCategory   = oCategory,
             oBrand      = oModel.iBrand,
-            sModelTitle = oModel.cTitle )
+            sModelTitle = oModel.cTitle,
+            oModel      = oModel )
         #
     #
 
@@ -1784,6 +1785,7 @@ def _doScoreCandidates(
             dFindSteps,
             dSearchLogs,
             setComponents,
+            sGotInParens,
             oUser,
             bRecordSteps ):
     #
@@ -1948,10 +1950,10 @@ def _doScoreCandidates(
                     #
                     if bRecordSteps:
                         #
-                        if oHitLine.oBrand:
-                            maybePrint( 'oHitLine.oBrand.id:', oHitLine.oBrand.id )
-                        else:
-                            maybePrint( 'oHitLine.oBrand is None' )
+                        #if oHitLine.oBrand:
+                            #maybePrint( 'oHitLine.oBrand.id:', oHitLine.oBrand.id )
+                        #else:
+                            #maybePrint( 'oHitLine.oBrand is None' )
                         #
                         lCandidates.append(
                             'do not have brand for model %s, '
@@ -1978,6 +1980,16 @@ def _doScoreCandidates(
             #
         if setCategoriesBeg or oModelLocated.tInParens:
             #
+            lCompleteHits = [
+                    oHitLine.oModel
+                    for oHitLine in oHitsList
+                    if oHitLine.oModel and oHitLine.oBrand and oHitLine.oCategory ]
+            #
+            if bRecordSteps:
+                #
+                maybePrint( 'lCompleteHits:', lCompleteHits )
+                #
+            #
             setFamiliesBeg = frozenset(
                     ( dCategoryInfo[ id ].iFamilyID
                         for id in setCategoriesBeg
@@ -1995,7 +2007,14 @@ def _doScoreCandidates(
             #
             o = oModelLocated
             #
-            if (    o.tNearEnd  and
+            # v.oBrand and
+            # ### here ###
+            #
+            if len( lCompleteHits ) <= 1:
+                #
+                tTests = ()
+                #
+            elif (  o.tNearEnd  and
                     o.tOnEnd    and
                     len( o.tNearEnd ) > len( o.tOnEnd ) and
                     o.tNearEnd.endswith( o.tOnEnd ) ):
@@ -2881,7 +2900,18 @@ def _doScoreCandidates(
                 #
                 continue
                 #
-
+            elif oHitLine.cFoundModel and oHitLine.cFoundModel in sGotInParens:
+                #
+                if bRecordSteps:
+                    #
+                    _appendIfNotAlreadyIn(
+                        lSelect,
+                            'excluding %s '
+                            "because it's in parens" % oHitLine.oModel )
+                    #
+                #
+                continue
+                #
             elif uExact and oHitLine.oModel.bGenericModel:
                 #
                 if bRecordSteps:
@@ -3377,6 +3407,7 @@ def findSearchHits(
                 dFindSteps,
                 dSearchLogs,
                 setComponents,
+                sGotInParens,
                 oUser,
                 bRecordSteps )
     #
