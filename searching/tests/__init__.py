@@ -1,4 +1,4 @@
-iRecordStepsForThis = None # or 114406347170
+iRecordStepsForThis = None
 
 
 # sItemHitLog is just a starter, the file is ItemHitsLog.log
@@ -378,6 +378,7 @@ sModels = \
  2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
  2ax                |           |      8 | f            | Acoustic Research |Speaker System| AR-2ax      |
  AR-1W              |           |      7 | f            | Acoustic Research |    Subwoofer |             |
+ A                  |           |      5 | f            | Acoustic Research |Integrated Amp|             |
  SP-1               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-2               |           |      9 | f            | Audio Research    |       Preamp |             |
  SP-3               |           |      9 | f            | Audio Research    |       Preamp |             |
@@ -415,6 +416,7 @@ sModels = \
  Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
  7                  |           |     10 | f            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
  2                  |           |     10 | f            | Marantz           |    Amplifier | Model Two\\rModel 2 |
+ 4                  |           |      7 | f            | Marantz           | Power Supply | Quad\\r4 Channel\\r4 ea\\r4 each\\r4 NOS\\r4 pack\\r4 pair\\r4 pcs\\r4100\\rFour Ch\\rBox of 4\\rLot 4\\rqty 4\\rSet of 4
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
  FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
@@ -431,7 +433,15 @@ sModels = \
  1465               |           |      8 | f            | Crosley           |        Radio |             |
  66X8               |           |      8 | f            | RCA               |        Radio |             |
  43-8190            |           |      8 | f            | Coronado          |        Radio |             |
+ 235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
+ 400                |           |      7 | f            | Emerson           |        Radio |             |
+ 520                |           |      7 | f            | Emerson           |        Radio |             |
+ 511                |           |      8 | f            | Emerson           |        Radio |             |
+ AU-190             |           |      8 | f            | Emerson           |        Radio |             |
  AX-235             |           |      8 | f            | Emerson           |        Radio |             |
+ BT245              |           |      8 | f            | Emerson           |        Radio |             |
+ BM258              |           |      6 | t            | Emerson           |        Radio |             |
+ EP-375             |           |      9 | f            | Emerson           |        Radio |             |
  A5                 |           |      8 | f            | Addison           |        Radio |             |
  526-C              |           |      7 | t            | Bendix            |        Radio |             |
  E38                |           |      5 | f            | Lafayette         |        Radio |             |
@@ -446,32 +456,26 @@ sModels = \
  L-622              |           |      8 | f            | GE                |        Radio |             |
  3284               |           |      5 | f            | Silvertone        |        Radio |             |
  P38                |           |      4 | f            | Fada              |        Radio |             |
- BT245              |           |      8 | f            | Emerson           |        Radio |             |
  558                |           |      8 | f            | Spartan           |        Radio |             |
  66X9               |           |      6 | f            | RCA               |        Radio |             |
- EP-375             |           |      9 | f            | Emerson           |        Radio |             |
  A-501              |           |      7 | f            | DeWald            |        Radio |             |
  H136               |           |      8 | f            | Westinghouse      |        Radio |             |
  V-3468             |           |      8 | f            | Westinghouse      |        Radio |             |
  Bluebird           |           |      8 | f            | Spartan           |        Radio |             |
- 520                |           |      7 | f            | Emerson           |        Radio |             |
  1450               |           |      8 | f            | Garod             |        Radio |             |
  B501               |           |      7 | f            | DeWald            |        Radio |             |
  A2A                |           |      7 | t            | Addison           |        Radio |             |
- BM258              |           |      6 | t            | Emerson           |        Radio |             |
  50-X-C3            |           |      7 | t            | Motorola          |        Radio |             |
  50-XC4             |           |      9 | t            | Motorola          |        Radio |             |
  532                |           |      8 | f            | Arvin             |        Radio |             |
  H126               |           |      8 | f            | Westinghouse      |        Radio |             |
  6AU-1              |           |      9 | t            | Garod             |        Radio |             |
- AU-190             |           |      8 | f            | Emerson           |        Radio |             |
  2A                 |           |      8 | f            | Addison           |        Radio |             |
  700                |           |     10 | f            | Fada              |        Radio |             |
  K25                |           |      7 | f            | Kadette           |        Radio |             |
  711                |           |      8 | f            | Fada              |        Radio |             |
  53X                |           |      8 | f            | Fada              |        Radio |             |
  652                |           |      0 | f            | Fada              |        Radio |             |
- 400                |           |      7 | f            | Emerson           |        Radio |             |
  537                |           |      8 | f            | Spartan           |        Radio |             |
  F55                |           |      8 | f            | Fada              |        Radio |             |
  51C                |           |      8 | t            | Motorola          |        Radio |             |
@@ -481,13 +485,11 @@ sModels = \
  116                | Catalin   |      8 | f            | Fada              |        Radio |             |
  845                |           |      6 | f            | Fada              |        Radio |             |
  1000               | Catalin   |      9 | f            | Fada              |        Radio |             | 115
- 511                |           |      8 | f            | Emerson           |        Radio |             |
  5F60               |           |      9 | f            | Fada              |        Radio |             |
  L 56               |           |      8 | f            | Fada              |        Radio |             |
  5F50               |           |      7 | f            | Fada              |        Radio |             |
  526-MC             |           |      5 | f            | Bendix            |        Radio |             |
  248-NI             |           |     10 | f            | Sentinel          |        Radio |             |
- 235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  H-222              |           |      7 | f            | Jensen            |       Driver |             |
  A-402              |           |      8 | f            | Jensen            |    Crossover |             |
  A-61               |           |      7 | f            | Jensen            |    Crossover |             |
@@ -847,6 +849,55 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["114462711121"],
+            "title":["Marantz Model 1 Audio Consolette + Model 4 Power Supply For Parts Or Repair"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m-NKNtWtKePf6iCGaUIs1BQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Marantz-Model-1-Audio-Consolette-Model-4-Power-Supply-Parts-Repair-\/114462711121"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["900**"],"location":["Los Angeles,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"700.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"700.0"}],"bidCount":["8"],"sellingState":["Active"],
+            "timeLeft":["P4DT5H37M37S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-14T14:41:47.000Z"],"endTime":["2020-10-21T14:41:47.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["26"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["193711255768"],
+            "title":["Antique Emerson vintage Catalin tube radio model AU190 restored, working REDUCED"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mVgEb1eBDy4Ol6UGf0g7irQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Antique-Emerson-vintage-Catalin-tube-radio-model-AU190-restored-working-REDUCED-\/193711255768"],
+            "autoPay":["false"],
+            "postalCode":["301**"],"location":["Acworth,GA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"38.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"405.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"405.0"}],"bidCount":["8"],"sellingState":["Active"],"timeLeft":["P8DT16H29M49S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-16T01:31:58.000Z"],"endTime":["2020-10-26T01:31:58.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["53"]}],"returnsAccepted":["false"],
+            "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/193711255768_1_0_1.jpg"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["254745992356"],
+            "title":["A Pair  Classic Acoustic Research AR-1 Speaker"],
+            "globalId":["EBAY-US"],"subtitle":["Work great condition No tweeter"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mn6xyD5LzrHsX1awZSJfkmg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Pair-Classic-Acoustic-Research-AR-1-Speaker-\/254745992356"],
+            "autoPay":["false"],
+            "postalCode":["773**"],"location":["Humble,TX,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"170.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1025.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1025.0"}],
+            "bidCount":["3"],"sellingState":["Active"],"timeLeft":["P1DT12H4M40S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-11T21:05:07.000Z"],"endTime":["2020-10-18T21:05:07.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["284033931942"],
             "title":["2x EL34 \/ 6CA7  tubes  PHILIPS \/ MULLARD  -  NOS  -  METAL base -  EL 34 - 1956"],
