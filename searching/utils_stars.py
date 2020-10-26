@@ -436,10 +436,11 @@ def _getFoundItemTester(    oTableRow, dFinders,
             #
             sWhatRemains = ''
             #
-            if (    sFoundInTitle and
-                    uGotKeyWordsOrNoKeyWords and
-                    isinstance( oTableRow, Model ) and
-                    not uExcludeThis ):
+            if (    sFoundInTitle                   and
+                    uGotKeyWordsOrNoKeyWords        and
+                    isinstance( oTableRow, Model )  and
+                    not uExcludeThis                and
+                    s is not None ):
                 #
                 sWhatRemains = getSpaceForWhiteAlsoStrip(
                                     ' '.join( findTitle.split( s ) ) )
@@ -1980,16 +1981,6 @@ def _doScoreCandidates(
             #
         if setCategoriesBeg or oModelLocated.tInParens:
             #
-            lCompleteHits = [
-                    oHitLine.oModel
-                    for oHitLine in oHitsList
-                    if oHitLine.oModel and oHitLine.oBrand and oHitLine.oCategory ]
-            #
-            if bRecordSteps:
-                #
-                maybePrint( 'lCompleteHits:', lCompleteHits )
-                #
-            #
             setFamiliesBeg = frozenset(
                     ( dCategoryInfo[ id ].iFamilyID
                         for id in setCategoriesBeg
@@ -2010,7 +2001,21 @@ def _doScoreCandidates(
             # v.oBrand and
             # ### here ###
             #
-            if len( lCompleteHits ) <= 1:
+            tCompleteHits = tuple( (
+                    oHitLine.oModel
+                    for oHitLine in oHitsList
+                    if      oHitLine.oModel     and
+                            oHitLine.oBrand     and
+                            oHitLine.oCategory ) )
+            #
+            if bRecordSteps:
+                #
+                maybePrint( 'tCompleteHits:', tCompleteHits )
+                #
+            if len( tCompleteHits ) == 1:
+                #
+                # have one and only one complete hit,
+                # no need to exclude if on end
                 #
                 tTests = ()
                 #
