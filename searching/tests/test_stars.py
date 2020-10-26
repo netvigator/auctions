@@ -3637,6 +3637,40 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 114406347170
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find METAL BASE Mullard EL34 (missed the metal in production)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNotNone( oTest )
+        #
+        self.assertEqual( oTest.iModel.cTitle,    'EL34 (MB Mullard)' )
+        self.assertEqual( oTest.iBrand.cTitle,    'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 202636634682
+        #
+        self.print_len(
+            dItemsToTest[ iThisOne ], 1, iThisOne,
+            'should not find AR-2' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle,    '2' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -3929,16 +3963,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 114406347170
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find METAL BASE Mullard EL34 (missed the metal in production)' )
-        #
-        #
-        #
-        #
-        #
         iThisOne = 203111418084
         #
         self.print_len(
@@ -3956,23 +3980,6 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find tweeter (missed in production) (aspirational)' )
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 202636634682
-        #
-        self.print_len(
-            dItemsToTest[ iThisOne ], 9, iThisOne,
-            'should not find AR-2' )
-        #
-        #oTest = dItemsToTest[ iThisOne ][ 0 ]
-        ##
-        #self.assertIsNone( oTest.iModel )
-        #self.assertIsNone( oTest.iBrand )
-        #self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
-        #
         #
         #
         #
