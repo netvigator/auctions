@@ -13,6 +13,8 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetUserSelectionsOnPost,
                              TitleSearchMixin )
 
+from brands.models      import Brand
+from categories.models  import Category
 
 # ### views assemble presentation info ###
 # ###         keep views thin!         ###
@@ -175,6 +177,27 @@ class ItemFoundUpdateView(
         'iModel',
         'iBrand',
         'iCategory' )
+
+    def get_context_data( self, **kwargs ):
+        '''
+        want more info to the context data.
+        '''
+        #
+        context = super().get_context_data( **kwargs )
+
+        context['form'].fields['iBrand'].queryset = \
+                    Brand.objects.filter( iUser = self.request.user )
+        context['form'].fields['iCategory'].queryset = \
+                    Category.objects.filter( iUser = self.request.user )
+        #
+        instance = context['form'].instance
+        # session  = self.request.session
+        #
+        print( "instance.iItemNumb_id:", instance.iItemNumb_id )
+        print( "instance.iBrand:", instance.iBrand )
+        # print( "session['iItemNumb'] :", session['iItemNumb'] )
+        #
+        return context
 
 
 class ItemFoundCreateView( CreateViewCanCancel ):
