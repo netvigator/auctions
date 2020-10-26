@@ -439,11 +439,14 @@ def _getFoundItemTester(    oTableRow, dFinders,
             if (    sFoundInTitle                   and
                     uGotKeyWordsOrNoKeyWords        and
                     isinstance( oTableRow, Model )  and
-                    not uExcludeThis                and
-                    s is not None ):
+                    not uExcludeThis ):
+                #
+                # re.split returning a None in the list
+                # ' '.join() crashes on the None
                 #
                 sWhatRemains = getSpaceForWhiteAlsoStrip(
-                                    ' '.join( findTitle.split( s ) ) )
+                        ' '.join( ( sPart for sPart in findTitle.split( s )
+                                    if sPart is not None ) ) )
                 #
             #
             if ( settings.COVERAGE or True ) and bExplainVerbose: #
