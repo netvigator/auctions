@@ -431,8 +431,7 @@ def _getFoundItemTester(    oTableRow, dFinders,
             #
             uGotKeyWordsOrNoKeyWords = _gotKeyWordsOrNoKeyWords(
                                             s, searchKeyWords )
-            bGotKeyWords = ( uGotKeyWordsOrNoKeyWords and
-                             searchKeyWords is not None )
+            bGotKeyWords = ( uGotKeyWordsOrNoKeyWords and searchKeyWords )
             #
             sWhatRemains = ''
             #
@@ -445,8 +444,9 @@ def _getFoundItemTester(    oTableRow, dFinders,
                 # ' '.join() crashes on the None
                 #
                 sWhatRemains = getSpaceForWhiteAlsoStrip(
-                        ' '.join( ( sPart for sPart in findTitle.split( s )
-                                    if sPart is not None ) ) )
+                        ' '.join( ( sPart
+                                    for sPart in findTitle.split( s )
+                                    if sPart ) ) )
                 #
             #
             if ( settings.COVERAGE or True ) and bExplainVerbose: #
@@ -653,7 +653,7 @@ def _getFoundModelBooster( oHitsList, bRecordSteps ):
     #
     for o in oHitsList:
         #
-        if  (   o.cFoundModel is not None and
+        if  (   o.cFoundModel and
                 o.cModelAlphaNum == _getAlphaNum( o.cFoundModel ) ):
             #
             o.bExact = True
@@ -785,7 +785,7 @@ def _getCategoriesForPositions(
                 #
                 oHitLine = dModelID_oHitsItem[ iModelID ]
                 #
-                if oHitLine.oCategory is not None:
+                if oHitLine.oCategory:
                     #
                     lCategories.append( oHitLine.oCategory.id )
                     #
@@ -1848,7 +1848,7 @@ def _doScoreCandidates(
         dModelID_oHitsItem = dict(
                 ( ( oHitLine.oModel.id, oHitLine )
                     for oHitLine in oHitsList
-                    if oHitLine.oModel is not None ) )
+                    if oHitLine.oModel ) )
         #
         #if oItemFound.iItemNumb == 192659380750:
             #print( 'item 192659380750 -- same?\n' )
@@ -1858,7 +1858,7 @@ def _doScoreCandidates(
             #dModelID_oObjItem = dict(
                 #( ( oTempItem.iModel.id, oTempItem )
                     #for oTempItem in oHitsList
-                    #if oTempItem.iModel is not None ) )
+                    #if oTempItem.iModel ) )
             #print( 'dModelID_oTempItem - object:')
             #pprint( dModelID_oObjItem )
             #print()
@@ -1884,7 +1884,7 @@ def _doScoreCandidates(
             #
             tLocation = dWordLocations.get( sInTitle )
             #
-            if tLocation is not None:
+            if tLocation:
                 #
                 for i in tLocation:
                     #
@@ -1999,26 +1999,24 @@ def _doScoreCandidates(
             #
             # oHitsList = HitsListClass()
             #
-            o = oModelLocated
-            #
-            # v.oBrand and
-            # ### here ###
-            #
             tCompleteHits = tuple( (
                     oHitLine.oModel
                     for oHitLine in oHitsList
-                    if      oHitLine.oModel     and
-                            oHitLine.oBrand     and
-                            oHitLine.oCategory ) )
+                    if  oHitLine.oModel     and
+                        oHitLine.oBrand     and
+                        oHitLine.oCategory ) )
             #
             if bRecordSteps:
                 #
                 maybePrint( 'tCompleteHits:', tCompleteHits )
                 #
+            #
+            o = oModelLocated
+            #
             if len( tCompleteHits ) == 1:
                 #
                 # have one and only one complete hit,
-                # no need to exclude if on end
+                # no need to exclude if near end
                 #
                 tTests = ()
                 #
@@ -2080,7 +2078,7 @@ def _doScoreCandidates(
                 #
                 if not tLocations: continue
                 #
-                if setTest is not None:
+                if setTest:
                     #
                     if False and setCategoriesBeg == setTest:
                         #
@@ -2092,8 +2090,8 @@ def _doScoreCandidates(
                         #
                         continue
                         #
-                    elif (  setFamiliesBeg is not None and
-                            setFamily      is not None and
+                    elif (  setFamiliesBeg             and
+                            setFamily                  and
                             len( setFamiliesBeg ) == 1 and
                             setFamiliesBeg == setFamily ):
                         #
@@ -2287,9 +2285,9 @@ def _doScoreCandidates(
                     ) / nFoundModelBoost )
                 #
             #
-            if  (       oHitLine.oModel is not None and
+            if  (       oHitLine.oModel         and
                         oHitLine.oBrand is None and
-                        oHitLine.oModel.iBrand is not None ):
+                        oHitLine.oModel.iBrand ):
                 #
                 if bRecordSteps:
                     #
@@ -2646,7 +2644,7 @@ def _doScoreCandidates(
             #
             bGotBrand = False
             #
-            if (    oHitLine.oModel.iBrand is not None and
+            if (    oHitLine.oModel.iBrand and
                     oHitLine.oModel.iBrand != oHitLine.oBrand ):
                 #
                 continue
@@ -2811,7 +2809,7 @@ def _doScoreCandidates(
             elif     (  uExact and
                         oHitLine.oModel.bGenericModel and
                         bGotNonGenericForThis and
-                        oHitLine.oBrand is not None and
+                        oHitLine.oBrand and
                         oHitLine.oBrand.id in setBrandStoredIDs and
                         bGotKeyWordsModelForThis ):
                 #
@@ -2828,7 +2826,7 @@ def _doScoreCandidates(
                 #
             elif    (   uExact and
                         oHitLine.oModel.bGenericModel and
-                        oHitLine.oBrand is not None and
+                        oHitLine.oBrand and
                         oHitLine.oBrand.id in setBrandStoredIDs and
                         bGotNonGenericForThis ):
                 #
@@ -2876,7 +2874,7 @@ def _doScoreCandidates(
                     #
                 #
             elif (  uExact and
-                    oHitLine.oBrand is not None and
+                    oHitLine.oBrand and
                     oHitLine.oBrand.id in setBrandStoredIDs and
                     sModelTitleUPPER in lModelsStoredAlready ):
                 #
