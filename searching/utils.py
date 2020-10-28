@@ -638,8 +638,7 @@ def storeSearchResultsInFinders(
                     #
                 #
                 i2ndCategoryID = ( int( u2ndCategoryID )
-                                   if u2ndCategoryID is not None
-                                   else None )
+                                   if u2ndCategoryID else None )
                 #
                 tRelatedSites = dMarketsRelated.get( iEbaySiteID, () )
                 #
