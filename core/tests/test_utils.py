@@ -7,7 +7,8 @@ from ..utils                import ( _getIsoDateTimeOffDateTimeCol,
                                      getWhatsNotInParens,
                                      getShrinkItemURL, getLink,
                                      getSaySequence,
-                                     getSubstituteForReturn )
+                                     getSubstituteForReturn,
+                                     oInParensFinder )
 
 from .base                  import ( getUrlQueryStringOff, TestCasePlus,
                                      queryGotUpdated,
@@ -202,3 +203,21 @@ class TestGetSubstituteForReturn( TestCasePlus ):
                 getSubstituteForReturn( sOrig, '<BR>' ),
                 'abc<BR>def<BR>ghi<BR>jkl' )
         #
+
+class TestParensFinder( TestCasePlus ):
+
+    def test_oInParensFinder( self ):
+        #
+        sTitle = ( 'Phillips Jan 6189W (5814A, 12AU7) Vintage vaccum tubes' )
+        #
+        self.assertEqual( oInParensFinder( sTitle ), ['(5814A, 12AU7)'] )
+        #
+        sTitle = ( 'Phillips Jan 6189W [5814A, 12AU7] Vintage vaccum tubes' )
+        #
+        self.assertEqual( oInParensFinder( sTitle ), ['[5814A, 12AU7]'] )
+        #
+        sTitle = ( 'Phillips Jan 6189W {5814A, 12AU7} Vintage vaccum tubes' )
+        #
+        self.assertEqual( oInParensFinder( sTitle ), ['{5814A, 12AU7}'] )
+        #
+        # print( oInParensFinder( sTitle ) )
