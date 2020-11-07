@@ -2362,7 +2362,7 @@ class FindSearchHitsWebTests(
         iThisOne = 254574295997
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 3, iThisOne,
                 's/n find Mullard just IEC Mullard' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -2619,16 +2619,10 @@ class FindSearchHitsWebTests(
         iThisOne = 133401627353
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 2, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find metal base EL34' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, '6CA7' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'EL34 (MB Mullard)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
@@ -3290,7 +3284,7 @@ class FindSearchHitsWebTests(
         iThisOne = 184407865354
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find Mullard metal base EL34 (production d/n find)' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3353,7 +3347,7 @@ class FindSearchHitsWebTests(
         iThisOne = 333700045424
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find 6189W not (5814A, 12AU7)' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3371,7 +3365,7 @@ class FindSearchHitsWebTests(
         iThisOne = 313204121172
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find tuner & amps' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3394,7 +3388,7 @@ class FindSearchHitsWebTests(
         iThisOne = 143724779676
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find speaker not tuner (found tuner in production!!!)' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3416,7 +3410,7 @@ class FindSearchHitsWebTests(
         iThisOne = 174424118447
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find 6922 not anything else -- on end!' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3456,7 +3450,7 @@ class FindSearchHitsWebTests(
         iThisOne = 254659435056
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find RCA red base 5692 (production choked)' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3473,7 +3467,7 @@ class FindSearchHitsWebTests(
         iThisOne = 224159570253
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find 12DM7 not 12AX7 (in parens)' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3668,6 +3662,53 @@ class FindSearchHitsWebTests(
         self.assertIsNone( oTest.iBrand )
         self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 353253512857
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find driver and horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '2345' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '2420' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 284033931942
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find metal base EL34' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL34 (metal base)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL34 (MB Mullard)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
@@ -3998,17 +4039,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 284033931942
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find metal base EL34' )
-        #
-        #
-        #
-        #
-        #
-        #
         iThisOne = 114462711121
         #
         self.print_len(
@@ -4020,6 +4050,8 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+
         '''
         '''
         #
