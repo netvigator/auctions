@@ -22,7 +22,7 @@ from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
 #                "2017-12-15T05:22:47.000Z"
 EBAY_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
 
-oInParensFinder = getFinderFindAll( '\(.*\)' )
+oInParensFinder = getFinderFindAll( '\(.*\)|\[.*\]|\{.*\}' )
 
 if settings.COVERAGE: # ### server crashes if this is in utils_test ###
     #
