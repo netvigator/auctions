@@ -162,7 +162,7 @@ sModels = \
  6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
  6SN7GTB            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTA            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6CA7               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6CA7               |           |      6 | f            |                   |  Vacuum Tube |             | Mullard      | t
  6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  6922 (= E88CC = CCa = CV2492)| |      5 | f            |                   |  Vacuum Tube |             |              | t
@@ -508,6 +508,8 @@ sModels = \
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
  76                 |           |      6 | f            | JBL               |       Driver | 076         |
  175                |           |     10 | f            | JBL               |       Driver |             |
+ 2345               |           |      6 | f            | JBL               |         Horn |             |
+ 2420               |           |      7 | f            | JBL               |       Driver |             |
  L100 (Century)     |           |      7 | f            | JBL               | Speaker System| Century    | mid century
  LE-175             |           |      8 | f            | JBL               |       Driver |             |
  275                |           |     10 | f            | JBL               |       Driver |             |
@@ -849,6 +851,22 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["353253512857"],
+            "title":["Jbl 2420 jbl 2345"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mljbXhvxuozh15F76dmcy4A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Jbl-2420-jbl-2345-\/353253512857"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["371**"],"location":["Vanleer,TN,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT9H48M45S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-27T18:49:15.000Z"],"endTime":["2020-11-03T18:49:15.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["114462711121"],
             "title":["Marantz Model 1 Audio Consolette + Model 4 Power Supply For Parts Or Repair"],
