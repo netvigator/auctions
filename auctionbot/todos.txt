@@ -549,3 +549,20 @@ UnexpectedResponse: Check file /tmp/ebay_files/Categories_Ver_EBAY-US.xml for ta
 
 <Errors><ShortMessage>Auth token is invalid.</ShortMessage><LongMessage>Validation of the authentication token in API request failed.</LongMessage>
 
+
+
+2020-10-30 could not change brand or model
+Five Strong General Electric/Ken Rad 12AY7 Low Noise 12ax7 Upgrade Tubes
+could not change Ken Rad 12ax7 to a GE 12AY7
+264902694649 cannot change model to 5B/255M
+203162553209 cannot change model to 807
+2020-11-04 same problem, edits not saving 224217770294 & 224217770294
+add finder is broken!
+
+
+2020-11-06 FM - 100 - B d/n find FM-100-B
+
+
+2020-11-08 todo
+if you click on a finder that has been moved to keeper,
+instead of just showing 404, go to the keeper
