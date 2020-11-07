@@ -71,7 +71,7 @@ logging.basicConfig(
     level=logging.INFO)
 '''
 
-if iRecordStepsForThis is not None:
+if iRecordStepsForThis:
     #
     openAppendClose(
             str( iRecordStepsForThis ),
