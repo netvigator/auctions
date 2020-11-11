@@ -358,6 +358,7 @@ sModels = \
  WA-1               |           |      6 | f            | Heathkit          | Power Supply |             |
  WA-P1              |           |      6 | f            | Heathkit          |       Preamp |             |
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
+ W1-A1              |           |      9 | t            | Heathkit          |    Amplifier |             |
  W-2M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  W-5M               |           |      9 | f            | Heathkit          |    Amplifier |             |
@@ -365,6 +366,8 @@ sModels = \
  AS-21              |           |      8 | f            | Heathkit          |Speaker System|             |
  SS-1B              |           |      6 | f            | Heathkit          |Speaker System|             |
  SS-1               |           |      5 | f            | Heathkit          |Speaker System| SS-1A       |
+ 401-149            |           |      5 | f            | Heathkit          |       Driver |             |
+ IT-28              |           |      5 | f            | Heathkit          |Capacitor Checker|          | Capacitor Tester\rCapacitance Checker\rCapacitance Tester
  KT-600A            |           |      9 | t            | Lafayette         |       Preamp |             |
  CL-35              |           |      7 | f            | Luxman            |       Preamp |             |
  Luminescence       |           |      9 | f            | MFA               |       Preamp |             |
@@ -564,7 +567,6 @@ sModels = \
  meter              |           |      3 | f            |                   |    Component | Meter Band  |
  model nine         |           |      9 | f            | KLH               |Speaker System| model 9     |
  model five         |           |      6 | f            | KLH               |Speaker System| model 5     |
- IT-28              |           |      5 | f            | Heathkit          |Capacitor Checker|          | Capacitor Tester\rCapacitance Checker\rCapacitance Tester
  '''
 #      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 
@@ -851,6 +853,36 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["392996299612"],"globalId":["EBAY-US"],
+            "title":["Amperex PQ 7308 Gold Pin Vacuum Tube - Gm Tested Old Stock - E188CC E88CC 6922"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mFJTCf6GDSMAZXkTKmj_hKw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Amperex-PQ-7308-Gold-Pin-Vacuum-Tube-Gm-Tested-Old-Stock-E188CC-E88CC-6922-\/392996299612"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.95"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"145.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"145.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT17H38M57S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-30T02:41:38.000Z"],"endTime":["2020-11-09T02:41:38.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["254764410233"],"globalId":["EBAY-US"],
+            "title":["Single (1) Heathkit Woofer 401-149  Altec 416 ?"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mH87l-JK176o3EnlkmSQXeA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Single-1-Heathkit-Woofer-401-419-Altec-416-\/254764410233"],
+            "autoPay":["false"],
+            "postalCode":["773**"],"location":["Humble,TX,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT0H55M38S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-10-31T09:56:21.000Z"],"endTime":["2020-11-07T09:56:21.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["353253512857"],
             "title":["Jbl 2420 jbl 2345"],
@@ -1201,7 +1233,7 @@ sResponseItems2Test = \
             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
           { "itemId":["303677558755"],
-            "title":["heathkit wa-p1 preamplifier, wa-1 power source, wa-2 amplifier"],
+            "title":["heathkit wa-p1 preamplifier, wa-1 power source, w-2m amplifier"],
             "globalId":["EBAY-US"],
             "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
             "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mG6qD94YgbSgjclrvmNNedw\/140.jpg"],
