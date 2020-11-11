@@ -566,3 +566,11 @@ add finder is broken!
 2020-11-08 todo
 if you click on a finder that has been moved to keeper,
 instead of just showing 404, go to the keeper
+
+2020-11-10 todo
+303715124336 add amp
+
+
+2020-11-12 commented out much of
+finders.tests.test_mixins.EditingUserItemFoundShouldRedoHitStars
+test_change_model_recalculate_hitstars()
