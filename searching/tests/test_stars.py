@@ -3428,7 +3428,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'found manual not preamp in production!' )
+                'w-2m is near end but amplifier is on end, '
+                'should be exception to near end exclusion' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -3709,6 +3710,25 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'EL34 (MB Mullard)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 392996299612
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 7308 not rest (on end)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7308 (Amperex PQ)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (PQ)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
         #
         #
         #
@@ -4051,7 +4071,18 @@ class FindSearchHitsWebTests(
         #
         #
         #
-
+        iThisOne = 254764410233
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Heath 401-419 not Altec 416' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
