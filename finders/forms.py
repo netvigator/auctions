@@ -1,3 +1,4 @@
+from django.conf        import settings
 from django.forms       import ModelForm
 
 from finders            import dItemFoundFields, dUserItemFoundUploadFields
@@ -10,6 +11,17 @@ from .models            import ItemFound, UserItemFound
 from ebayinfo.models    import EbayCategory
 
 from pprint import pprint
+
+if settings.TESTING:
+    #
+    maybePrint   = print
+    maybePrettyP = pprint
+    #
+else:
+    #
+    def maybePrint(   *args ): pass
+    def maybePrettyP( *args ): pass
+    #
 
 # ### forms validate the incoming data against the database      ###
 # ### additional custom validation logic can be implemented here ###
@@ -64,8 +76,8 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         #
         if any( self.errors ):
             # Don't bother validating the formset unless each form is valid on its own
-            print("in clean() but got field error")
-            pprint( self.errors )
+            maybePrint("in clean() but got field error")
+            maybePrettyP( self.errors )
             #'iBrand': ['Select a valid choice. That choice is not one of the available choices.'],
             #'iHitStars': ['This field is required.'],
             #'iItemNumb': ['This field is required.'],
@@ -91,7 +103,7 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         #
         # it is totally bizarre that django crashes without all the id's!!!
         #
-        print("in clean()")
+        maybePrint("in clean()")
         if UserItemFound.objects.filter(
                 iItemNumb_id    = self.instance.iItemNumb_id,
                 iUser_id        = self.instance.iUser_id,
@@ -127,8 +139,8 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         #
         else:
             #
-            print("did not find such a hit")
-            pprint( self.instance.__dict__ )
+            maybePrint("did not find such a hit")
+            maybePrettyP( self.instance.__dict__ )
             #print( 'self.instance.iItemNumb_id:', self.instance.iItemNumb_id )
             #print( 'self.instance.iUser_id    :', self.instance.iUser_id )
             #print( 'iCleanModel               :', iCleanModel )
@@ -140,11 +152,12 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
                 for oUserItemFound in qsUserItemsFound:
                     oLast = oUserItemFound
                 #
-                print( 'last item:' )
-                pprint( oLast.__dict__ )
+                maybePrint( 'last item:' )
+                maybePrettyP( oLast.__dict__ )
                 #
             else:
-                print( 'no UserItemFound rows' )
-        return cleaned
+                maybePrint( 'no UserItemFound rows' )
+        #
+        return True or cleaned
 
 
