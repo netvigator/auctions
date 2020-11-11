@@ -1,4 +1,5 @@
 import logging
+import inspect
 
 from django.urls            import reverse
 
@@ -14,7 +15,7 @@ from .base                  import SetUpUserItemFoundWebTests
 
 from ..models               import UserFinder, UserItemFound
 
-
+from pprint import pprint
 
 class FindersNotYetViewTest( BaseUserWebTestCase ):
     """Finders views tests."""
@@ -40,10 +41,10 @@ class FindersNotYetViewTest( BaseUserWebTestCase ):
 
 
 class FindersViewsTests( SetUpUserItemFoundWebTests ):
+
     ''' test the finders views '''
 
-
-    def test_finders_view( self ):
+    def dont_test_finders_view( self ):
         #
         """
         Test got finders index
@@ -57,9 +58,11 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         #
         self.assertContains(response, "Altec 603" )
         self.assertContains(response, "Speaker 604 803 Vintage" )
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-    def test_finders_view_pass_params( self ):
+    def dont_test_finders_view_pass_params( self ):
         #
         """
         Test got finders search params as query string
@@ -95,8 +98,10 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         #print( "len( response.context['finders_list'] ):" )
         #print( len( response.context['finders_list'] ) )
         #
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
-    def test_finders_detail( self ):
+    def dont_test_finders_detail( self ):
         #
         """
         Test got finders detail view
@@ -109,10 +114,12 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         #
         self.assertContains( response, "Altec Lansing" )
         self.assertContains( response, "542 Horn" )
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
-    def test_finder_add_post(self):
+    def dont_test_finder_add_post(self):
         """
         Test post requests
         """
@@ -134,7 +141,7 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         #
         self.assertEqual( response.status_code, 200 )
         #
-        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_finder_edit( self ):
@@ -149,6 +156,11 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
                 iUser  = self.user1 )
 
         data = dict( iModel = oModel2 )
+        data['iBrand'] = self.oBrand
+        data['iUser' ] = self.user1
+        #
+        print( 'data (dict):' )
+        pprint( data )
         #
         # Create the request
         #
@@ -162,4 +174,4 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         #
         #self.assertEqual( oUpdated.iModel, oModel2 )
         #
-        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
