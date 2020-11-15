@@ -910,7 +910,17 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oBrandCategory.save()
             #
-
+            #
+            oBrand = Brand.objects.get( cTitle = 'Tungsram', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            #
             #
 
 
