@@ -574,3 +574,8 @@ instead of just showing 404, go to the keeper
 2020-11-12 commented out much of
 finders.tests.test_mixins.EditingUserItemFoundShouldRedoHitStars
 test_change_model_recalculate_hitstars()
+
+in finders.test.test_forms:
+total chaos, rename some tests from test_ to dont_test_ !!!!
+
+2020-11-15 cannot put R5A1 on 284068344722 Addison Catalin
