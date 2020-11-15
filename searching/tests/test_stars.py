@@ -3734,6 +3734,23 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 353264987836
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Heath E88CC not the ones on the end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Tungsram' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         iThisOne = 164011103887
         #
@@ -4076,6 +4093,7 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find Heath 401-419 not Altec 416' )
+        #
         #
         #
         #
