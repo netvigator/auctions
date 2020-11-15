@@ -112,6 +112,7 @@ sBrands = \
  Tannoy            |      7 |            |            |
  Telefunken        |      6 |            |            |
  Tung-Sol          |      7 |            |            |
+ Tungsram          |      7 |            |            |
  University        |      5 |            |            |
  UTC               |      8 |            |            |
  Valvo             |      5 |            |            |
@@ -853,6 +854,21 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["353264987836"],
+            "title":["2x Electrically MATCHED E88CC 1968 Tungsram Ujpest PAIR TUBES 6922 CCa CV2492"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mh2HpWPVDG0hqqVU_GdFtUA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-Electrically-MATCHED-E88CC-1968-Tungsram-Ujpest-PAIR-TUBES-6922-CCa-CV2492-\/353264987836"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Bulgaria"],"country":["BG"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"69.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"69.99"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT8H54M16S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-11-05T17:57:54.000Z"],"endTime":["2020-11-15T17:57:54.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+            "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["392996299612"],"globalId":["EBAY-US"],
             "title":["Amperex PQ 7308 Gold Pin Vacuum Tube - Gm Tested Old Stock - E188CC E88CC 6922"],
