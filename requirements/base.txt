@@ -19,7 +19,8 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.34.2
+# wheel==0.34.2
+wheel==0.35.1
 
 
 # LTS Django
@@ -29,20 +30,23 @@ django==2.2.13
 # Configuration
 django-environ==0.4.5
 # whitenoise==5.0.1
-whitenoise==5.1.0
+# whitenoise==5.1.0
+whitenoise==5.2.0
 
 
 # Forms
 django-braces==1.14.0
 # django-crispy-forms==1.9.0
-django-crispy-forms==1.9.1
+# django-crispy-forms==1.9.1
+django-crispy-forms==1.9.2
 
 # Models
 django-model-utils==4.0.0
 
 # Images
 # Pillow==7.1.1
-Pillow==7.1.2
+# Pillow==7.1.2
+Pillow==8.0.1
 
 # Password storage
 # argon2-cffi==19.2.0
@@ -51,21 +55,24 @@ argon2-cffi==20.1.0
 # For user registration, either via email or social
 # Well-built with regular release cycles!
 # django-allauth==0.41.0
-django-allauth==0.42.0
+# django-allauth==0.42.0
+django-allauth==0.43.0
 
 # Python-PostgreSQL Database Adapter
 # psycopg2==2.7.6.1
 # UserWarning: The psycopg2 wheel package will be renamed from release 2.8
 # in order to keep installing from binary please use "pip install psycopg2-binary" instead.
 # psycopg2-binary==2.8.4
-psycopg2-binary==2.8.5
+# psycopg2-binary==2.8.5
+psycopg2-binary==2.8.6
 
 # Unicode slugification
 awesome-slugify==1.6.5
 
 # Time zones support
 # pytz==2019.3
-pytz==2020.1
+# pytz==2020.1
+pytz==2020.4
 
 # Redis support
 # django-redis==4.11.0
@@ -77,7 +84,8 @@ redis==3.5.3
 
 # Your custom requirements go here
 
-django-countries==6.1.2
+# django-countries==6.1.2
+django-countries==6.1.3
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -87,9 +95,13 @@ django-countries==6.1.2
 
 # for the ebay API
 # lxml==4.5.0
-lxml==4.5.1
-requests==2.23.0
-requests[security]==2.23.0
+# lxml==4.5.1
+lxml==4.6.1
+
+# requests==2.23.0
+requests==2.25.0
+# requests[security]==2.23.0
+requests[security]==2.25.0
 
 
 # to handle the ebay category lists
@@ -104,7 +116,9 @@ django-admin-honeypot==1.1.0
 
 # task queue
 # celery==4.4.2
-celery==4.4.5
+# celery==4.4.5
+celery==5.0.2
+
 # redistools==0.1.7
 
 # users need to select their timezone
@@ -117,10 +131,12 @@ django-timezone-field==4.0
 # celery cannot start
 # https://github.com/pydanny/cookiecutter-django/issues/1954
 # kombu==4.6.8
-kombu==4.6.10
+# kombu==4.6.10
+kombu==5.0.2
 
 # need this 2019-02-13
-django-extensions==2.2.9
+# django-extensions==2.2.9
+django-extensions==3.0.9
 
 # cron job scheduling 2019-05-21
 # django-chroniker==1.0.12

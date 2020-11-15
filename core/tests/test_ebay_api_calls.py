@@ -57,8 +57,6 @@ class GetConfFileValuesTests( TestCasePlus ):
         #
         iDaysTillExpire = - int( getDeltaDaysFromObjs( oExpiration ) )
         #
-        self.assertGreater( iDaysTillExpire, 15 )
-        #
         if iDaysTillExpire <= 0:
             #
             print('')
@@ -72,6 +70,9 @@ class GetConfFileValuesTests( TestCasePlus ):
             print( '### eBay AUTH token expires in %s days!!! ###' % iDaysTillExpire )
             print( '### obtain new one from eBay developer webiste! ###' )
             print('')
+        #
+        self.assertGreater( iDaysTillExpire, 15 )
+        #
 
 
 class TestListingTypeTupleTests( TestCasePlus ):
