@@ -72,7 +72,7 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         model       = UserItemFound
         fields      = tUserItemFoundFields
 
-    def clean( self ):
+    def hide_clean( self ):
         #
         if any( self.errors ):
             # Don't bother validating the formset unless each form is valid on its own
