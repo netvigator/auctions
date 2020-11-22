@@ -193,8 +193,8 @@ class ItemFoundUpdateView(
         instance = context['form'].instance
         # session  = self.request.session
         #
-        print( "instance.iItemNumb_id:", instance.iItemNumb_id )
-        print( "instance.iBrand:", instance.iBrand )
+        # print( "instance.iItemNumb_id:", instance.iItemNumb_id )
+        # print( "instance.iBrand:", instance.iBrand )
         # print( "session['iItemNumb'] :", session['iItemNumb'] )
         #
         return context
