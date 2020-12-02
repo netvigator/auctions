@@ -72,6 +72,7 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         model       = UserItemFound
         fields      = tUserItemFoundFields
 
+    '''
     def hide_clean( self ):
         #
         if any( self.errors ):
@@ -159,5 +160,6 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
                 maybePrint( 'no UserItemFound rows' )
         #
         return True or cleaned
+    '''
 
 
