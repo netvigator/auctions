@@ -1,3 +1,4 @@
+from django.conf        import settings
 from django.forms       import ModelForm, ChoiceField
 
 from core.crispy        import FormHelper, Field, Layout, Submit
@@ -9,6 +10,10 @@ from models.models      import Model
 # ### forms validate the incoming data against the database      ###
 # ### additional custom validation logic can be implemented here ###
 # ### crispy forms adds automatic layout functionality           ###
+
+def maybePrint(   *args ): pass
+def maybePrettyP( *args ): pass
+
 
 class BaseModelFormGotCrispy( ModelForm ):
     #
@@ -224,15 +229,22 @@ class BaseUserFinderKeeperFormGotCrispy( BaseModelFormGotCrispy ):
                 'iCategory',
                 'bGetResult',
                 Field( 'iHitStars', readonly = True ),
+                Field('tTimeEnd',   type = "hidden" ),
                 Field('iItemNumb',  type = "hidden" ),
                 Field('iSearch',    type = "hidden" ),
-                Field('tTimeEnd',   type = "hidden" ),
                 Field('iUser',      type = "hidden" ) )
 
     def clean( self ):
         #
+        maybePrint("in core.forms.BaseUserFinderKeeperFormGotCrispy.clean()")
+        #
+        maybePrint("self.fields['tTimeEnd']",
+                    self.fields['tTimeEnd'].initial )
+        #
         if any( self.errors ):
             # Don't bother validating the formset unless each form is valid on its own
+            maybePrint("in core.forms.BaseUserFinderKeeperFormGotCrispy.clean() but got field error")
+            maybePrettyP( self.errors )
             return
         #
         cleaned = super().clean()
