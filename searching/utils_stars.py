@@ -2971,6 +2971,7 @@ def _doScoreCandidates(
                 #
                 oNewUserItem = UserItemFound(
                     iItemNumb       = oUserItemFound.iItemNumb,
+                    tTimeEnd        = oUserItemFound.tTimeEnd,
                     iHitStars       = oHitLine.iHitStars,
                     iSearch         = oHitLine.oSearch,
                     iModel          = oHitLine.oModel,
