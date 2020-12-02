@@ -393,6 +393,10 @@ class storeUserItemFoundTests( StoreUserItemFoundWebTestBase ):
             #
             self.assertIsNotNone( oItem.cGalleryURL )
             #
+            qsUserItems = UserItemFound.objects.filter( iItemNumb_id = iItemNumb )
+            #
+            self.assertEqual( len( qsUserItems ), 3 )
+
 
 
 
