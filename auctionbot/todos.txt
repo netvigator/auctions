@@ -585,3 +585,5 @@ total chaos, rename some tests from test_ to dont_test_ !!!!
 fix existing data:
 update useritemsfound set "tTimeEnd" = ( select "tTimeEnd" from itemsfound where "iItemNumb" = "iItemNumb_id" ) ;
 hopefully fixed
+
+2020-12-04 manual Add Finder not working! for new brand Hoffman
