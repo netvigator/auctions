@@ -61,18 +61,20 @@ class GetConfFileValuesTests( TestCasePlus ):
             #
             print('')
             print( '### eBay AUTH token has expired or will soon!!! ###' )
-            print( '### obtain new one from eBay developer webiste! ###' )
-            print('')
             #
         elif iDaysTillExpire < 32:
             #
             print('')
             print( '### eBay AUTH token expires in %s days!!! ###' % iDaysTillExpire )
+        #
+        if iDaysTillExpire < 32:
+            #
             print( '### obtain new one from eBay developer webiste! ###' )
+            print( '### remember to update server with new token!!! ###' )
             print('')
+            #
         #
         self.assertGreater( iDaysTillExpire, 15 )
-        #
 
 
 class TestListingTypeTupleTests( TestCasePlus ):
