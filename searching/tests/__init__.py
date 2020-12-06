@@ -285,6 +285,7 @@ sModels = \
  A7-500-II          |           |      6 | f            | Altec-Lansing     |Speaker System| Magnificent |
  N-500B             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-800E             |           |      6 | t            | Altec-Lansing     |    Crossover |             |
+ N-801-8A           |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1500A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-1600A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
  N-3000A            |           |      6 | t            | Altec-Lansing     |    Crossover |             |
@@ -854,6 +855,39 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["174530200735"],
+            "title":["Altec Lansing VOTT Crossovers 1pair N801-8A Pulled From Working 80\u2019s Valencias"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mtzn0HqTAtcuoE4BxPFv9Qg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-VOTT-Crossovers-1pair-N801-8A-Pulled-Working-80-s-Valencias-\/174530200735"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["647**"],"location":["Nevada,MO,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"157.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"157.5"}],
+            "bidCount":["2"],"sellingState":["Active"],"timeLeft":["P3DT20H56M17S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-11-23T05:56:54.000Z"],"endTime":["2020-11-30T05:56:54.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["303769355137"],
+            "title":["AMPEREX BUGLE BOY 12AX7\/ECC83 MADE IN HOLLAND-PRETTY NICE LETTERING\/LOGO"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m3pALGy2irdMzc4zyRNoeVA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/AMPEREX-BUGLE-BOY-12AX7-ECC83-MADE-HOLLAND-PRETTY-NICE-LETTERING-LOGO-\/303769355137"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["074**"],"location":["Sussex,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"4.5"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"50.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"50.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT13H23M48S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-11-15T22:26:34.000Z"],"endTime":["2020-11-22T22:26:34.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],
+            "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["353264987836"],
             "title":["2x Electrically MATCHED E88CC 1968 Tungsram Ujpest PAIR TUBES 6922 CCa CV2492"],
