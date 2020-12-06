@@ -28,7 +28,7 @@ from ..utils            import getSeqStripped
 
 from pyPks.String.Find  import getRegExObj
 from pyPks.String.Get   import getTextAfter, getTextBefore
-from pyPks.Time.Test    import isISOdatetimeFileNameSafe
+from pyPks.Time.Test    import isISOdatetimeFileNameSafe, isDateTimeObj
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 
@@ -607,8 +607,15 @@ class AssertNotEmptyMixin( object ):
 
 class AssertEqualIgnoreParensMixin( object ):
 
-    def EqualIgnoreParens( self, sTitle, sTarget ):
+    def assertEqualIgnoreParens( self, sTitle, sTarget ):
         self.assertEqual( getWhatsNotInParens( sTitle ), sTarget )
+
+
+class AssertIsDateTimeValueMixin( object ):
+
+    def assertIsDateTimeValue( self, uDateTime ):
+        #
+        self.assertTrue( isDateTimeObj( uDateTime ) )
 
 
 '''
