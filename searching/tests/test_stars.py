@@ -2665,6 +2665,7 @@ class FindSearchHitsWebTests(
             self.assertNotEqual( oTest.iModel.cTitle, ( '6BQ5' ) )
             self.assertIn(       oTest.iBrand.cTitle, tGotBrands )
             self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+            self.assertNotEmpty( oTest.tTimeEnd )
             #
         #
         #
@@ -3681,11 +3682,15 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
         self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
         #
+        self.assertNotEmpty( oTest.tTimeEnd )
+        #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, '2420' )
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
+        #
+        self.assertNotEmpty( oTest.tTimeEnd )
         #
         #
         #
@@ -3748,6 +3753,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+        #
+        #
+        #
+        iThisOne = 303769355137
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'check star count' )
+        #
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AX7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        self.assertGreater( oTest.iHitStars, 300 )
         #
         #
         #
@@ -4099,6 +4122,13 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+        #
+        iThisOne = 174530200735
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find crossover' )
         #
         #
         '''
