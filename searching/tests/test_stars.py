@@ -12,7 +12,8 @@ from django.utils       import timezone
 from core.utils         import maybePrint, getWhatsNotInParens
 from core.tests.base    import ( SetUpBrandsCategoriesModelsWebTest,
                                  AssertEmptyMixin, AssertNotEmptyMixin,
-                                 AssertEqualIgnoreParensMixin, TestCasePlus )
+                                 AssertEqualIgnoreParensMixin,
+                                 AssertIsDateTimeValueMixin, TestCasePlus )
 
 from finders.models     import ItemFound, UserItemFound, UserFinder
 
@@ -114,8 +115,9 @@ class MakeSureExampleItemGetsHit( StoreUserItemFoundWebTestBase ):
 
 
 class FindSearchHitsWebTests(
-        AssertNotEmptyMixin, AssertEqualIgnoreParensMixin,
-        SetUpForHitStarsWebTests ):
+        AssertNotEmptyMixin,
+        AssertEqualIgnoreParensMixin,
+        AssertIsDateTimeValueMixin, SetUpForHitStarsWebTests ):
 
     def print_len( self,
                   lTest, iExpect,
@@ -706,6 +708,9 @@ class FindSearchHitsWebTests(
             #
             gotComponents.add( oTest.iModel.cTitle    )
             gotCategories.add( oTest.iCategory.cTitle )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
         #
         self.assertEqual( gotComponents, setComponents )
         self.assertEqual( gotCategories, setCategories )
@@ -1170,6 +1175,9 @@ class FindSearchHitsWebTests(
             #
             gotComponents.add( sActualTitle )
             gotBrands.add(     oTest.iBrand.cTitle )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
         #
         self.assertEqual( gotComponents, setComponents )
         self.assertEqual( gotBrands,     setBrands     )
@@ -1225,6 +1233,8 @@ class FindSearchHitsWebTests(
             #
             gotComponents.add( oTest.iModel.cTitle    )
             gotCategories.add( oTest.iCategory.cTitle )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
             #
         #
         self.assertEqual( gotComponents, setComponents )
@@ -1446,6 +1456,9 @@ class FindSearchHitsWebTests(
                             ( '6DJ8', '6DJ8 (Bugle Boy)', 'ECC88 (=6DJ8)' ) )
             self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
             self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
         #
         #
         #
@@ -1475,6 +1488,8 @@ class FindSearchHitsWebTests(
             #
             gotComponents.add( oTest.iModel.cTitle    )
             gotCategories.add( oTest.iCategory.cTitle )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
             #
         #
         self.assertEqual( gotComponents, setComponents )
@@ -1510,6 +1525,8 @@ class FindSearchHitsWebTests(
             gotComponents.add( oTest.iModel.cTitle    )
             gotCategories.add( oTest.iCategory.cTitle )
             gotBrands.add(     oTest.iBrand.cTitle    )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
             #
         #
         self.assertEqual( gotComponents, setComponents )
@@ -1783,6 +1800,8 @@ class FindSearchHitsWebTests(
             gotComponents.add( oTest.iModel.cTitle    )
             gotBrands.add(     oTest.iBrand.cTitle )
             #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
         #
         self.assertEqual( gotComponents, setComponents )
         self.assertEqual( gotBrands,     setBrands     )
@@ -1992,7 +2011,7 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.EqualIgnoreParens(
+        self.assertEqualIgnoreParens(
                           oTest.iModel.cTitle, 'E88CC' )
         self.assertEqual( oTest.iBrand.cTitle, 'Valvo' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
@@ -2367,14 +2386,14 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.EqualIgnoreParens(
+        self.assertEqualIgnoreParens(
                           oTest.iModel.cTitle, 'E88CC' )
         self.assertEqual( oTest.iBrand.cTitle, 'Mullard IEC' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.EqualIgnoreParens(
+        self.assertEqualIgnoreParens(
                           oTest.iModel.cTitle, '6922' )
         self.assertEqual( oTest.iBrand.cTitle, 'Mullard IEC' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
@@ -2641,7 +2660,7 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.EqualIgnoreParens(
+        self.assertEqualIgnoreParens(
                           oTest.iModel.cTitle, '6922' )
         self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
@@ -2665,7 +2684,7 @@ class FindSearchHitsWebTests(
             self.assertNotEqual( oTest.iModel.cTitle, ( '6BQ5' ) )
             self.assertIn(       oTest.iBrand.cTitle, tGotBrands )
             self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-            self.assertNotEmpty( oTest.tTimeEnd )
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
             #
         #
         #
@@ -2732,14 +2751,14 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.EqualIgnoreParens(
+        self.assertEqualIgnoreParens(
                           oTest.iModel.cTitle, 'E88CC' )
         self.assertIn(    oTest.iBrand.cTitle, ( 'Mullard', 'Telefunken' ) )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.EqualIgnoreParens(
+        self.assertEqualIgnoreParens(
                           oTest.iModel.cTitle, 'E88CC' )
         self.assertIn(    oTest.iBrand.cTitle, ( 'Mullard', 'Telefunken' ) )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
@@ -3682,7 +3701,7 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
         self.assertEqual( oTest.iCategory.cTitle, 'Horn' )
         #
-        self.assertNotEmpty( oTest.tTimeEnd )
+        self.assertIsDateTimeValue( oTest.tTimeEnd )
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
@@ -3690,8 +3709,9 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
         self.assertEqual( oTest.iCategory.cTitle, 'Driver' )
         #
-        self.assertNotEmpty( oTest.tTimeEnd )
+        self.assertIsDateTimeValue( oTest.tTimeEnd )
         #
+        print( "type( oTest.tTimeEnd ):", type( oTest.tTimeEnd ) )
         #
         #
         #
