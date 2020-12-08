@@ -25,6 +25,8 @@ from categories.models  import Category
 
 if settings.TESTING:
     #
+    from pprint import pprint
+    #
     maybePrint   = print
     maybePrettyP = pprint
     #
