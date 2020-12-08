@@ -1,5 +1,3 @@
-from datetime                   import datetime, timezone
-
 from django.core.exceptions     import ValidationError
 
 from .base                      import ( TestCasePlus, getUrlQueryStringOff,
@@ -7,7 +5,6 @@ from .base                      import ( TestCasePlus, getUrlQueryStringOff,
                                          queryGotUpdated, getDefaultMarket )
 
 from ..user_one                 import oUserOne
-from ..utils                    import getDateTimeObjGotEbayStr as getDateTime
 
 from ebayinfo.models            import EbayCategory, Market
 
@@ -75,16 +72,6 @@ class CoreUserTests( TestCasePlus ):
     def test_get_user(self):
 
         self.assertEqual( oUserOne.username, 'netvigator')
-
-
-
-class DateTimeImportTests( TestCasePlus ):
-    '''test converting ebay string dates into python datetime objects'''
-    def test_convert_ebay_string_DateTime(self):
-        #
-        self.assertEqual(
-                getDateTime( "2017-12-15T05:22:47.000Z" ),
-                datetime(2017, 12, 15, 5, 22, 47, 0, timezone.utc ) )
 
 
 
