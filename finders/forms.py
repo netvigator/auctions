@@ -72,8 +72,7 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         model       = UserItemFound
         fields      = tUserItemFoundFields
 
-    '''
-    def hide_clean( self ):
+    def clean( self ):
         #
         if any( self.errors ):
             # Don't bother validating the formset unless each form is valid on its own
@@ -86,9 +85,9 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
             #'iSearch': ['This field is required.'],
             #'iUser': ['Select a valid choice. That choice is not one of the available choices.'],
             #'tTimeEnd': ['This field is required.']}
-            qsItems = ItemFound.objects.all()
+            #qsItems = ItemFound.objects.all()
             #print( 'ItemFound.objects.all() first object:', qsItems[0].iItemNumb )
-            #print( 'self.instance.iItemNumb_id:', self.instance.iItemNumb_id )
+            maybePrint( 'self.instance.iItemNumb_id:', self.instance.iItemNumb_id )
             return
         #
         cleaned = super().clean()
@@ -159,7 +158,6 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
             else:
                 maybePrint( 'no UserItemFound rows' )
         #
-        return True or cleaned
-    '''
+        return cleaned
 
 
