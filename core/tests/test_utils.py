@@ -1,4 +1,6 @@
-from django.utils           import timezone
+from datetime               import datetime, timezone
+
+from django.utils           import timezone as djangoTimeZone
 
 from django_webtest         import TestApp
 
@@ -8,7 +10,9 @@ from ..utils                import ( _getIsoDateTimeOffDateTimeCol,
                                      getShrinkItemURL, getLink,
                                      getSaySequence,
                                      getSubstituteForReturn,
-                                     oInParensFinder )
+                                     oInParensFinder,
+                                     getDateTimeObjGotEbayStr,
+                                     getEbayStrGotDateTimeObj )
 
 from .base                  import ( getUrlQueryStringOff, TestCasePlus,
                                      queryGotUpdated,
@@ -63,7 +67,7 @@ class DateTimeTests( TestCasePlus ):
         #
         '''test _getIsoDateTimeOffDateTimeCol()'''
         #
-        oNow = timezone.now()
+        oNow = djangoTimeZone.now()
         #
         sNow = _getIsoDateTimeOffDateTimeCol( oNow )
         #
@@ -72,7 +76,7 @@ class DateTimeTests( TestCasePlus ):
     def test_getReverseWithUpdatedQuery(self):
         #
         self.pk         = 1
-        self.tModify    = timezone.now()
+        self.tModify    = djangoTimeZone.now()
         #
         kwargs = { 'pk': self.pk, 'tModify': self.tModify }
         #
@@ -85,6 +89,27 @@ class DateTimeTests( TestCasePlus ):
         self.assertTrue( queryGotUpdated( tParts[1] ) )
         #
         self.assertFalse( queryGotUpdated( tParts[0] ) )
+
+
+
+class DateTimeConversionTests( TestCasePlus ):
+    '''test converting ebay string dates into python datetime objects'''
+    def test_convert_ebay_string_DateTime(self):
+        #
+        # testing getDateTimeObjGotEbayStr() & getEbayStrGotDateTimeObj()
+        #
+        sDateTimeEbay    = "2017-12-15T05:22:47.000Z"
+        oDateTimeFromStr = getDateTimeObjGotEbayStr( sDateTimeEbay )
+        oDateTimeNative  = datetime(2017, 12, 15, 5, 22, 47, 0, timezone.utc )
+        #
+        self.assertEqual( oDateTimeFromStr, oDateTimeNative )
+        #
+        sDateTimeEbayNew = getEbayStrGotDateTimeObj( oDateTimeFromStr )
+        #
+        self.assertEqual( sDateTimeEbay, sDateTimeEbayNew )
+
+
+
 
 
 class textProcessingTests( TestCasePlus ):
