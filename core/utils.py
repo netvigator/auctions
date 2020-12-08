@@ -16,7 +16,8 @@ from pyPks.String.Find      import getFinderFindAll
 from pyPks.String.Find      import oFinderCRorLFnMore as oFinderCRorLF
 from pyPks.String.Eat       import eatFromWithin
 from pyPks.Time             import _sFormatISOdateTimeNoColon
-from pyPks.Time.Convert     import getDateTimeObjFromString
+from pyPks.Time.Convert     import ( getDateTimeObjFromString,
+                                     getIsoDateTimeFromObj )
 from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
 
 #                "2017-12-15T05:22:47.000Z"
@@ -50,12 +51,23 @@ def getNamerSpacer( sRootTag, sXmlNameSpace = 'urn:ebay:apis:eBLBaseComponents' 
     return sNamerSpacer, sRootNameSpTag
 
 
+
 def getDateTimeObjGotEbayStr( sDateTime ):
     #
     '''convert ebay string dates into python datetime objects'''
     #
     return getDateTimeObjFromString(
             sDateTime, EBAY_DATE_FORMAT, oTimeZone = timezone.utc )
+
+
+
+def getEbayStrGotDateTimeObj( oDateTime ):
+    #
+    '''convert python datetime object into ebay string date'''
+    #
+    return getIsoDateTimeFromObj( oDateTime, EBAY_DATE_FORMAT )
+
+
 
 
 def getLastDictFromResponse( oResponse ):
