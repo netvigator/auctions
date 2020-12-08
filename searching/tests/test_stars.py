@@ -3795,6 +3795,23 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 264962601255
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find E88CC not 6922 & cca on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -4149,6 +4166,10 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find crossover' )
+        #
+        #
+        #
+        #
         #
         #
         '''
