@@ -1,3 +1,5 @@
+from django.conf    import settings
+
 from core.views     import ( DetailViewGotModel,  ListViewGotModel,
                              UpdateViewCanCancel, CreateViewCanCancel )
 
@@ -13,12 +15,24 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetUserSelectionsOnPost,
                              TitleSearchMixin )
 
+from core.utils     import getDateTimeObjGotEbayStr, getEbayStrGotDateTimeObj
+
 from brands.models      import Brand
 from categories.models  import Category
 
 # ### views assemble presentation info ###
 # ###         keep views thin!         ###
 
+if settings.TESTING:
+    #
+    maybePrint   = print
+    maybePrettyP = pprint
+    #
+else:
+    #
+    def maybePrint(   *args ): pass
+    def maybePrettyP( *args ): pass
+    #
 
 class FinderIndexView(
             GetUserSelectionsOnPost,
@@ -116,6 +130,11 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         session['iItemNumb'  ]  = context[ 'object' ].iItemNumb_id
         session['iSearch'    ]  = qsThisItemAllHits[0].iSearch_id
         #
+        # cannot serialize datetime object, so covert to string
+        #
+        session['sTimeEnd'   ]  = getEbayStrGotDateTimeObj(
+                                        context[ 'object' ].tTimeEnd )
+        #
         return context
 
 
@@ -208,13 +227,34 @@ class ItemFoundCreateView( CreateViewCanCancel ):
     success_message = 'New finder successfully saved!!!!'
     form_class      = UserItemFoundForm
 
-    def form_valid( self, form ):
+    def get_initial( self ):
         #
-        instance = form.instance
+        initial = super().get_initial()
+        #
         session  = self.request.session
         #
-        instance.iItemNumb_id = instance.iItemNumb_id or session['iItemNumb']
-        instance.iSearch_id   = instance.iSearch_id   or session['iSearch'  ]
-        instance.iUser        = self.request.user
+        initial['iItemNumb'] = session['iItemNumb']
+        initial['iSearch'  ] = session['iSearch'  ]
+        initial['tTimeEnd' ] = getDateTimeObjGotEbayStr( session['sTimeEnd' ] )
+        initial['iUser'    ] = self.request.user
+        #
+        return initial
+
+
+    def troubleshoot_form_valid( self, form ):
+        #
+        instance = form.instance
+        #session  = self.request.session
+        ##
+        #instance.iItemNumb_id = instance.iItemNumb_id or session['iItemNumb']
+        #instance.iSearch_id   = instance.iSearch_id   or session['iSearch'  ]
+        #instance.tTimeEnd     = instance.tTimeEnd     or session['tTimeEnd' ]
+        #instance.iUser        = self.request.user
+        #
+        maybePrint( 'iItemNumb_id, iSearch_id, tTimeEnd, iUser:',
+              instance.iItemNumb_id,
+              instance.iSearch_id,
+              instance.tTimeEnd,
+              instance.iUser )
         #
         return super().form_valid( form )
