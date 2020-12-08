@@ -1,7 +1,6 @@
 from builtins               import ConnectionResetError
 from datetime               import timedelta
 from urllib3.exceptions     import ProtocolError
-from pprint                 import pprint
 
 from django.conf            import settings
 from django.db.models       import ForeignKey
@@ -33,6 +32,8 @@ if settings.COVERAGE: # ### server crashes if this is in utils_test ###
     def maybePrettyP( *args ): pass
     #
 else:
+    #
+    from pprint import pprint
     #
     maybePrint   = print
     maybePrettyP = pprint
