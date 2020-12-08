@@ -10,9 +10,9 @@ from .models            import ItemFound, UserItemFound
 
 from ebayinfo.models    import EbayCategory
 
-from pprint import pprint
-
 if settings.TESTING:
+    #
+    from pprint import pprint
     #
     maybePrint   = print
     maybePrettyP = pprint
