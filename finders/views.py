@@ -233,12 +233,17 @@ class ItemFoundCreateView( CreateViewCanCancel ):
         #
         initial = super().get_initial()
         #
+        # in testing, values might not be there
+        #
         session  = self.request.session
         #
-        initial['iItemNumb'] = session['iItemNumb']
-        initial['iSearch'  ] = session['iSearch'  ]
-        initial['tTimeEnd' ] = getDateTimeObjGotEbayStr( session['sTimeEnd' ] )
-        initial['iUser'    ] = self.request.user
+        if session and 'iItemNumb' in session:
+            #
+            initial['iItemNumb'] = session['iItemNumb']
+            initial['iSearch'  ] = session['iSearch'  ]
+            initial['tTimeEnd' ] = getDateTimeObjGotEbayStr( session['sTimeEnd' ] )
+            initial['iUser'    ] = self.request.user
+            #
         #
         return initial
 
