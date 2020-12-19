@@ -1,6 +1,9 @@
 from copy               import deepcopy
 
 from django.urls        import reverse
+from django.utils       import timezone
+
+from core.utils         import getEbayStrGotDateTimeObj
 
 from .base              import SetupUserItemsFoundAndUserFindersWebTest
 
@@ -25,14 +28,6 @@ from pprint import pprint
 
 class TestAddingEditingUserHits( SetupUserItemsFoundAndUserFindersWebTest ):
     #
-
-    def setUp( self ):
-        #
-        super().setUp()
-        #
-
-
-
 
 
     def test_add_new_hit( self ):
@@ -107,10 +102,6 @@ class TestAddingEditingUserHits( SetupUserItemsFoundAndUserFindersWebTest ):
                 cTitle  = 'Fleetwood',
                 iUser   = self.user1 )
         #
-
-
-
-
         o601b = Model.objects.get( cTitle = '601b',iUser = self.user1 )
         #
         dNewHit = dict(
@@ -128,38 +119,47 @@ class TestAddingEditingUserHits( SetupUserItemsFoundAndUserFindersWebTest ):
         dFormData = dict(
                 iItemNumb   = self.iItemNumb,
                 iHitStars   = 5,
-                iSearch     = self.oSearch,
+                iSearch     = self.oSearch.id,
                 iModel      = None, # oFleetwood.id, form error on any model??
                 iBrand      = self.oBrand.id,    # Cadillac
                 iCategory   = self.oCategory.id, # manual
-                iUser       = self.user1 )
+                tTimeEnd    = timezone.now(),
+                iUser       = self.user1.id )
         #
-        sAddNewHitURL = reverse( 'finders:add' )
+        #sAddNewHitURL = reverse( 'finders:add' )
+        ##
+        #session = self.client.session
+        ##
+        #session['iItemNumb'] = self.iItemNumb
+        #session['iSearch'  ] = self.oSearch
+        #session['sTimeEnd' ] = getEbayStrGotDateTimeObj( timezone.now() )
+        ##
+        ## below ends up calling finders/views.py
+        ## initial['iItemNumb'] = session['iItemNumb']
+        ##
+        #oForm = self.app.get( sAddNewHitURL ).form
+        ##
+        #oForm['iItemNumb'] = self.iItemNumb
+        #oForm['iHitStars'] = 5
+        #oForm['iSearch'  ] = self.oSearch.id
+        #oForm['iModel'   ] = ''
+        #oForm['iBrand'   ] = self.oBrand.id
+        #oForm['iCategory'] = self.oCategory.id
+        #oForm['iUser'    ] = self.user1.id
         #
-        oForm = self.app.get( sAddNewHitURL ).form
-        #
-        oForm['iItemNumb'] = self.iItemNumb
-        oForm['iHitStars'] = 5
-        oForm['iSearch'  ] = self.oSearch
-        oForm['iModel'   ] = ''
-        oForm['iBrand'   ] = self.oBrand.id
-        oForm['iCategory'] = self.oCategory.id
-        oForm['iUser'    ] = self.user1
-
-
         form = UserItemFoundForm( data = dFormData )
         #
-        print( 'in test_forms:', form['iItemNumb'].value() )
+        # print( 'in test_forms:', form['iItemNumb'].value() )
         #
         form.user    = self.user1 # need this!
         form.request = self.request
         #
-        print( 'iBrand:', form['iBrand'].value() )
-        print( Brand.objects.get( id = form['iBrand'].value() ) )
-        print( 'self.user:', self.user )
-        #
-        print( 'Brands in form queryset:', form.fields["iBrand"].queryset )
-        print( Brand.objects.filter( iUser = self.user ) )
+        #print( 'iBrand:', form['iBrand'].value() )
+        #print( Brand.objects.get( id = form['iBrand'].value() ) )
+        #print( 'self.user:', self.user )
+        ##
+        #print( 'Brands in form queryset:', form.fields["iBrand"].queryset )
+        #print( Brand.objects.filter( iUser = self.user ) )
         #
         if form.errors:
             print()
@@ -167,8 +167,14 @@ class TestAddingEditingUserHits( SetupUserItemsFoundAndUserFindersWebTest ):
             for k, v in form.errors.items():
                 print( k, ' -- ', v )
         #
-        form.is_valid()
-        # self.assertTrue( form.is_valid() )
+        #print( 'iSearch: ', form['iSearch' ].value() )
+        #print( 'tTimeEnd:', form['tTimeEnd'].value() )
+        #print( 'iUser:   ', form['iUser'   ].value() )
+        #
+        #form.is_valid()
+        #
+        self.assertTrue( form.is_valid() )
+        #
         # try again, this time with something different
         #
         '''
