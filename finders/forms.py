@@ -103,7 +103,8 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         #
         # it is totally bizarre that django crashes without all the id's!!!
         #
-        maybePrint("in clean()")
+        # maybePrint("in clean()")
+        #
         if UserItemFound.objects.filter(
                 iItemNumb_id    = self.instance.iItemNumb_id,
                 iUser_id        = self.instance.iUser_id,
@@ -139,24 +140,28 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         #
         else:
             #
-            maybePrint("did not find such a hit")
-            maybePrettyP( self.instance.__dict__ )
+            #maybePrint("did not find such a hit")
+            #maybePrettyP( self.instance.__dict__ )
             #print( 'self.instance.iItemNumb_id:', self.instance.iItemNumb_id )
             #print( 'self.instance.iUser_id    :', self.instance.iUser_id )
             #print( 'iCleanModel               :', iCleanModel )
             #print( 'iCleanBrand               :', iCleanBrand )
             #print( 'iCleanCategory            :', iCleanCategory )
             #
-            qsUserItemsFound = UserItemFound.objects.all()
-            if len( qsUserItemsFound ) > 0:
-                for oUserItemFound in qsUserItemsFound:
-                    oLast = oUserItemFound
-                #
-                maybePrint( 'last item:' )
-                maybePrettyP( oLast.__dict__ )
-                #
-            else:
-                maybePrint( 'no UserItemFound rows' )
+            pass
+            #
+            #qsUserItemsFound = UserItemFound.objects.all()
+            ##
+            #if len( qsUserItemsFound ) > 0:
+                #for oUserItemFound in qsUserItemsFound:
+                    #oLast = oUserItemFound
+                ##
+                #maybePrint( 'last item:' )
+                #maybePrettyP( oLast.__dict__ )
+                ##
+            #else:
+                #maybePrint( 'no UserItemFound rows' )
+            #
         #
         return cleaned
 
