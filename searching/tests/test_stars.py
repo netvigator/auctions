@@ -3812,6 +3812,92 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 393049339833
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find PCC88, rest are on end, production got wrong' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'PCC88' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 203214608569
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 5, iThisOne,
+                'should find AZ12, GZ34 is on end' )
+        #
+        tGotBrands = (
+            'Siemens', 'Tungsram', 'Valvo', 'Telefunken', 'Philips' )
+        #
+        for i in range( 5 ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual(    oTest.iModel.cTitle, ( 'AZ12' ) )
+            self.assertIn(       oTest.iBrand.cTitle, tGotBrands )
+            self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 124480081681
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find CV2493, 6922 & 7308 are on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'CV2493' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 124460154694
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should not find EL84, in parens w "similar"' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL803S' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -4172,9 +4258,41 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        '''
-        '''
+        iThisOne = 373359374010
         #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find National KT-88 (generic) not Genalex KT-88 (GEC)' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 324413731079
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 8417 vacuum tube not Fisher SA1000 Amp' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 184571819479
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Siemens DG7-32 vacuum tube not Marantz 10B Tuner' )
+        #
+        #
+        #
+        #
+        #
+        #
+        '''
+        '''
         #
         #
         qsUserFinders = UserFinder.objects.all()
