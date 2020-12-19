@@ -133,7 +133,7 @@ sModels = \
 '''
        cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 --------------------+-----------+--------+--------------+-------------------+--------------+-------------+--------------+---------------+----------------+
- 10                 |           |      9 | f            |                   |  Vacuum Tube |             | Lot of 10\\rLot of (10)\\r^10\\r10,000 | t
+ 10                 |           |      9 | f            |                   |  Vacuum Tube |             | 10 NOS tubes\\rLot of 10\\rLot of (10)\\r^10\\r10,000 | t
  12SN7GT            |           |      7 | t            |                   |  Vacuum Tube | 12SN7       |              | t
  12AT7              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
@@ -202,12 +202,14 @@ sModels = \
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
+ AZ12               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  CCa (= 6922 = E88CC = CV2492)| |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV2492 (= E88CC = CCa = 6922)| |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV4108             |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  CV5358             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV5472             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ DG7-32             |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  E188CC             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  E88CC (= 6922 = CCa = CV2492)| |      4 | f            |                   |  Vacuum Tube |             |              | t
  ECC82              |           |      5 | f            |                   |  Vacuum Tube | 12AU7       | 7AU7\\r5814A\\r5814WA\\r5963\\r6189\\r6680\\rB749 | t
@@ -220,7 +222,9 @@ sModels = \
  EL37 (Mullard)     |           |     10 | f            | Mullard           |  Vacuum Tube |             |              | f
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
+ GZ34 (5AR4 cross)  |           |     10 | f            |                   |  Vacuum Tube |             |              | t
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ EL803S             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             |              | f
@@ -855,6 +859,122 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["184571819479"],
+            "title":["Siemens DG7-32 Marantz 10B Tuner CRT ELECTRON TUBE NEW IN original Packaging!!!"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/msnInMoKehM28rMZjKzh8ww\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Siemens-DG7-32-Marantz-10B-Tuner-CRT-ELECTRON-TUBE-NEW-original-Packaging-\/184571819479"],
+            "paymentMethod":["PayPal"],"autoPay":["true"],
+            "postalCode":["920**"],"location":["Vista,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"119.97"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"119.97"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT6H40M52S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"248.97"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"248.97"}],
+            "startTime":["2020-12-08T15:44:43.000Z"],"endTime":["2020-12-15T15:44:43.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["324413731079"],
+            "title":["Match code pairs NOS 8417 beam power output tubes use in Fisher SA1000 Bogan Amp"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["7275"],"categoryName":["Parts & Tubes"]}],"secondaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/myzOa1X5L1aTTv1dAh27ibw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Match-code-pairs-NOS-8417-beam-power-output-tubes-use-Fisher-SA1000-Bogan-Amp-\/324413731079"],"autoPay":["false"],
+            "postalCode":["495**"],"location":["Grand Rapids,MI,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"288.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"288.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT7H2M37S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-11T16:04:57.000Z"],"endTime":["2020-12-18T16:04:57.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["124460154694"],
+            "title":["TELEFUNKEN EL803S, 10 NOS tubes, Special Quality (EL84 Similar)"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m6cnuSstjebisizPE0tN-rg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/TELEFUNKEN-EL803S-10-NOS-tubes-Special-Quality-EL84-Similar-\/124460154694"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Hong Kong"],"country":["HK"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT17H24M53S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"85.0"}],
+            "convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"85.0"}],
+            "startTime":["2020-11-27T02:29:29.000Z"],"endTime":["2020-12-07T02:29:29.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["124480081681"],
+            "title":["Mullard CV2493 Matched Trio , 6922\/7308"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mshDBSt67CNrlOPgQ_DZunQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Mullard-CV2493-Matched-Trio-6922-7308-\/124480081681"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["941**"],"location":["San Francisco,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"250.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"250.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT18H58M49S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-10T04:01:02.000Z"],"endTime":["2020-12-17T04:01:02.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],
+            "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],
+            "conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["203214608569"],
+            "title":["Job lot 6 x AZ12 tubes Philips, Tungsram NOS - Telefunken Valvo Siemens GZ34"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mu5jf9fIPp7j93g3ZXKqz6Q\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Job-lot-6-x-AZ12-tubes-Philips-Tungsram-NOS-Telefunken-Valvo-Siemens-GZ34-\/203214608569"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["201**"],"location":["Italy"],"country":["IT"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"69.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT5H12M12S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-10T14:14:27.000Z"],"endTime":["2020-12-15T14:14:27.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["393049339833"],
+            "title":["4 NOS PHILIPS PCC88 AUDIO VAC TUBES - ECC88 6DJ8 E88CC 6922 CCA CV2492"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m-0ozp7VAOhD9igdhEQI-qw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/4-NOS-PHILIPS-PCC88-AUDIO-VAC-TUBES-ECC88-6DJ8-E88CC-6922-CCA-CV2492-\/393049339833"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.5"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.95"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT19H40M8S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-09T04:42:36.000Z"],"endTime":["2020-12-19T04:42:36.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["373359374010"],
+            "title":["Set of 3 Matched NOS National KT88 (GEC\/Genalex Machines) Vintage Vacuum Tubes"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mtnha3IR9sW1TX5IT5u6U_w\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Set-3-Matched-NOS-National-KT88-GEC-Genalex-Machines-Vintage-Vacuum-Tubes-\/373359374010"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["801**"],"location":["Englewood,CO,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"36.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"36.0"}],
+            "bidCount":["2"],"sellingState":["Active"],"timeLeft":["P3DT13H20M47S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-11-22T22:21:51.000Z"],"endTime":["2020-11-29T22:21:51.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],
+            "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["264962601255"],
             "title":["AEG Telefunken E88CC Tube <> 6922 cca"],
