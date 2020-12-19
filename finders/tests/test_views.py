@@ -15,6 +15,8 @@ from .base                  import SetUpUserItemFoundWebTests
 
 from ..models               import UserFinder, UserItemFound
 
+from pyPks.Dict.Maintain    import purgeNoneValueItems
+
 from pprint import pprint
 
 class FindersNotYetViewTest( BaseUserWebTestCase ):
@@ -150,12 +152,16 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         Test finders edit
         """
         #
+        data = self.oUserItemFound.__dict__
+        #
+        purgeNoneValueItems( data )
+        #
         oModel2 = Model.objects.get(
                 cTitle = '811B',
                 iBrand = self.oBrand,
                 iUser  = self.user1 )
 
-        data = dict( iModel = oModel2 )
+        data['iModel'] = oModel2
         data['iBrand'] = self.oBrand
         data['iUser' ] = self.user1
         #
