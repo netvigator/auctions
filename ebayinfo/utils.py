@@ -2,6 +2,8 @@ from logging            import getLogger
 from os.path            import join
 from time               import sleep
 
+from psycopg2           import OperationalError
+
 from django.conf        import settings
 from django.db          import DataError, connection
 from django.db.utils    import IntegrityError
@@ -10,13 +12,7 @@ from core.dj_import     import ET # xml.etree.ElementTree
 from core.dj_import     import ObjectDoesNotExist
 
 from core.utils         import ( getNamerSpacer,
-                                 getDownloadFileWriteToDisk,
                                  getBegTime, sayDuration )
-
-from psycopg2           import OperationalError
-
-from core.utils         import ( getNamerSpacer,
-                                 getDownloadFileWriteToDisk )
 
 # in __init__.py
 from ebayinfo           import dMarketsRelated, EBAY_FILES_FOLDER
