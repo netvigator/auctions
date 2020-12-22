@@ -1,35 +1,34 @@
-from django.urls        import reverse
+from django.urls            import reverse
 
-from django.db.utils    import IntegrityError
-from django.test        import RequestFactory
-from django.test.client import Client
+from django.db.utils        import IntegrityError
+from django.test            import RequestFactory
+from django.test.client     import Client
 
-from django_webtest     import WebTest
-from test_plus.test     import TestCase, CBVTestCase
+from django_webtest         import WebTest
+from test_plus.test         import TestCase, CBVTestCase
 
-from core.dj_import     import HttpRequest, get_user_model
-from core.utils         import getWhatsNotInParens
+from core.dj_import         import HttpRequest, get_user_model
+from core.utils             import getWhatsNotInParens
 
-from config.settings.base import LOGIN_URL
+from config.settings.base   import LOGIN_URL
 
-from brands.models      import Brand
-from categories.models  import Category
-from models.models      import Model
+from brands.models          import Brand
+from categories.models      import Category
+from models.models          import Model
 
-from ebayinfo.tests     import ( EBAY_CURRENT_VERSION_US,
-                                 EBAY_CURRENT_VERSION_GB,
-                                 EBAY_CURRENT_VERSION_Mo,
-                                 EBAY_CURRENT_VERSION_ENCA,
-                                 sEbayCategoryDump )
+from ebayinfo.tests         import ( EBAY_CURRENT_VERSION_US,
+                                     EBAY_CURRENT_VERSION_GB,
+                                     EBAY_CURRENT_VERSION_Mo,
+                                     EBAY_CURRENT_VERSION_ENCA,
+                                     sEbayCategoryDump )
 
-from ebayinfo.models    import EbayCategory, Market
+from ebayinfo.models        import EbayCategory, Market
 
-from ..utils            import getSeqStripped
-
-from pyPks.String.Find  import getRegExObj
-from pyPks.String.Get   import getTextAfter, getTextBefore
-from pyPks.Time.Test    import isISOdatetimeFileNameSafe, isDateTimeObj
-from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
+from pyPks.String.Find      import getRegExObj
+from pyPks.String.Get       import getTextAfter, getTextBefore
+from pyPks.Time.Test        import isISOdatetimeFileNameSafe, isDateTimeObj
+from pyPks.Utils.Config     import getBoolOffYesNoTrueFalse as getBool
+from pyPks.Utils.DataBase   import getTableFromScreenCaptureGenerator
 
 
 class UserSetUpMixin( object ):
@@ -93,9 +92,6 @@ class BaseUserViewTestPlusCase( UserSetUpMixin, CBVTestCase ):
 
 
 
-
-# must have space before or after bar "|"
-oFindColumnSplits          = getRegExObj( r'(?: \|)|(?:\| )' )
 
 def getDefaultMarket():
 
@@ -385,44 +381,6 @@ def setup_view_for_tests( view, request, *args, **kwargs ):
 
 
 
-def getNamePositionDict( lHeader ):
-    #
-    '''utility for getTableFromScreenCaptureGenerator()'''
-    #
-    dNamePosition = {}
-    #
-    i = 0
-    #
-    for sName in lHeader:
-        #
-        dNamePosition[ sName ] = i
-        #
-        i += 1
-        #
-    #
-    return dNamePosition
-
-
-def getTableFromScreenCaptureGenerator( uScreenCapture ):
-    #
-    if isinstance( uScreenCapture, str ):
-        #
-        oLines = uScreenCapture.split( '\n' )
-        #
-    else:
-        #
-        oLines = uScreenCapture
-        #
-    #
-    for sLine in oLines:
-        #
-        lParts = list( getSeqStripped( oFindColumnSplits.split( sLine ) ) )
-        #
-        if len( lParts ) == 1: continue
-        #
-        yield lParts
-
-
 
 class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
 
@@ -434,7 +392,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         self.market  = getDefaultMarket()
         #
-        sMarket, sWantVersion = 'EBAY-US', '117'
+        sMarket, sWantVersion = 'EBAY-US', EBAY_CURRENT_VERSION_US
         #
         iWantVersion = int( sWantVersion )
         #
@@ -450,7 +408,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         oRootCategory.save()
         #
-        sMarket, sWantVersion = 'EBAY-GB', '108'
+        sMarket, sWantVersion = 'EBAY-GB', EBAY_CURRENT_VERSION_GB
         #
         iWantVersion = int( sWantVersion )
         #
@@ -466,7 +424,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         oRootCategory.save()
         #
-        sMarket, sWantVersion = 'EBAY-ENCA', '119'
+        sMarket, sWantVersion = 'EBAY-ENCA', EBAY_CURRENT_VERSION_ENCA
         #
         iWantVersion = int( sWantVersion )
         #
@@ -482,7 +440,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         oRootCategory.save()
         #
-        sMarket, sWantVersion = 'EBAY-MOTOR', '75'
+        sMarket, sWantVersion = 'EBAY-MOTOR', EBAY_CURRENT_VERSION_Mo
         #
         iWantVersion = int( sWantVersion )
         #
@@ -500,7 +458,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
         #
         oTableIter = getTableFromScreenCaptureGenerator( sEbayCategoryDump )
         #
-        lHeader = next( oTableIter )
+        tHeader = next( oTableIter )
         #
         iCategories = 0
         #
