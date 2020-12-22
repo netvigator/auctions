@@ -151,9 +151,6 @@ def getWhatsNotInParens( s ):
 
 
 
-def getSeqStripped( l ): return ( s.strip() for s in l )
-
-
 
 def updateMemoryTableUpdated( sTable, sField = None ):
     #
