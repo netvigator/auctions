@@ -1,15 +1,7 @@
+from ebayinfo.tests.utils import getMarketsDict
+
 # ### on ebay category version update, ###
 # ### change these constants and the table below to test ###
-
-EBAY_CURRENT_VERSION_SG =  36
-EBAY_CURRENT_VERSION_US = 123
-EBAY_CURRENT_VERSION_GB = 114
-EBAY_CURRENT_VERSION_Mo =  75
-EBAY_CURRENT_VERSION_ENCA = 121
-
-prior_EBAY_CURRENT_VERSION_SG =  34
-prior_EBAY_CURRENT_VERSION_US = 122
-prior_EBAY_CURRENT_VERSION_GB = 111
 
 # select * from markets order by "iEbaySiteID" ;
 #
@@ -23,6 +15,34 @@ prior_EBAY_CURRENT_VERSION_GB = 111
 # suggest enhancement: use the table below instead of hard coding in core/tests/base.py
 
 sMarketsTable = \
+'''
+  cMarket   | cCountry | cLanguage | iEbaySiteID | bHasCategories | iCategoryVer | cCurrencyDef | cUseCategoryID | iUtcPlusOrMinus
+------------+----------+-----------+-------------+----------------+--------------+--------------+----------------+-----------------
+ EBAY-US    | US       | en-US     |           0 | t              |          124 | USD          |                |              -8
+ EBAY-ENCA  | CA       | en-CA     |           2 | t              |          122 | CAD          |                |              -8
+ EBAY-GB    | GB       | en-GB     |           3 | t              |          115 | GBP          |                |               0
+ EBAY-AU    | AU       | en-AU     |          15 | t              |          116 | AUD          |                |              10
+ EBAY-AT    | AT       | de-AT     |          16 | t              |           93 | EUR          |                |               1
+ EBAY-FRBE  | BE       | fr-BE     |          23 | f              |           88 | EUR          | EBAY-FR        |               1
+ EBAY-FR    | FR       | fr-FR     |          71 | t              |          112 | EUR          |                |               1
+ EBAY-DE    | DE       | de-DE     |          77 | t              |          125 | EUR          |                |               1
+ EBAY-MOTOR | US       | en-US     |         100 | t              |           75 | USD          |                |              -8
+ EBAY-IT    | IT       | it-IT     |         101 | t              |          104 | EUR          |                |               1
+ EBAY-NLBE  | BE       | nl-BE     |         123 | f              |           92 | EUR          |                |               1
+ EBAY-NL    | NL       | nl-NL     |         146 | t              |           86 | EUR          | EBAY-NL        |               1
+ EBAY-ES    | ES       | es-ES     |         186 | t              |           89 | EUR          |                |               1
+ EBAY-CH    | CH       | de-CH     |         193 | t              |           94 | CHF          |                |               1
+ EBAY-HK    | HK       | zh-Hant   |         201 | t              |           27 | HKD          |                |               8
+ EBAY-IN    | IN       | en-IN     |         203 | t              |           65 | INR          |                |               5
+ EBAY-IE    | IE       | en-IE     |         205 | t              |           73 | EUR          |                |               1
+ EBAY-MY    | MY       | en-MY     |         207 | t              |           38 | MYR          |                |               8
+ EBAY-FRCA  | CA       | fr-CA     |         210 | f              |           75 | CAD          |                |              -8
+ EBAY-PH    | PH       | en-PH     |         211 | t              |           38 | PHP          |                |               8
+ EBAY-PL    | PL       | pl-PL     |         212 | t              |           57 | PLN          |                |               1
+ EBAY-SG    | SG       | en-SG     |         216 | t              |           37 | SGD          |                |               8
+ EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
+'''
+sPriorMarketsTable = \
 '''
   cMarket   | cCountry | cLanguage | iEbaySiteID | bHasCategories | iCategoryVer | cCurrencyDef | cUseCategoryID | iUtcPlusOrMinus
 ------------+----------+-----------+-------------+----------------+--------------+--------------+----------------+-----------------
@@ -49,35 +69,22 @@ sMarketsTable = \
  EBAY-PL    | PL       | pl-PL     |         212 | t              |           56 | PLN          |                |               1
  EBAY-SG    | SG       | en-SG     |         216 | t              |           36 | SGD          |                |               8
  EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
-'''
-sPriorMarketsTable = \
-'''
-  cMarket   | cCountry | cLanguage | iEbaySiteID | bHasCategories | iCategoryVer | cCurrencyDef | cUseCategoryID | iUtcPlusOrMinus
-------------+----------+-----------+-------------+----------------+--------------+--------------+----------------+-----------------
- EBAY-US    | US       | en-US     |           0 | t              |          121 | USD          |                |              -8
- EBAY-ENCA  | CA       | en-CA     |           2 | t              |          119 | CAD          |                |              -8
- EBAY-GB    | GB       | en-GB     |           3 | t              |          112 | GBP          |                |               0
- EBAY-AU    | AU       | en-AU     |          15 | t              |          113 | AUD          |                |              10
- EBAY-AT    | AT       | de-AT     |          16 | t              |           90 | EUR          |                |               1
- EBAY-FRBE  | BE       | fr-BE     |          23 | f              |           85 | EUR          |                |               1
- EBAY-FR    | FR       | fr-FR     |          71 | t              |          109 | EUR          |                |               1
- EBAY-DE    | DE       | de-DE     |          77 | t              |          122 | EUR          |                |               1
- EBAY-MOTOR | US       | en-US     |         100 | t              |           75 | USD          |                |              -8
- EBAY-IT    | IT       | it-IT     |         101 | t              |          101 | EUR          |                |               1
- EBAY-NLBE  | BE       | nl-BE     |         123 | f              |           86 | EUR          |                |               1
- EBAY-NL    | NL       | nl-NL     |         146 | t              |           81 | EUR          |                |               1
- EBAY-ES    | ES       | es-ES     |         186 | t              |           86 | EUR          |                |               1
- EBAY-CH    | CH       | de-CH     |         193 | t              |           91 | CHF          |                |               1
- EBAY-HK    | HK       | zh-Hant   |         201 | t              |           24 | HKD          |                |               8
- EBAY-IN    | IN       | en-IN     |         203 | t              |           65 | INR          |                |               5
- EBAY-IE    | IE       | en-IE     |         205 | t              |           70 | EUR          |                |               1
- EBAY-MY    | MY       | en-MY     |         207 | t              |           35 | MYR          |                |               8
- EBAY-FRCA  | CA       | fr-CA     |         210 | f              |           72 | CAD          |                |              -8
- EBAY-PH    | PH       | en-PH     |         211 | t              |           35 | PHP          |                |               8
- EBAY-PL    | PL       | pl-PL     |         212 | t              |           54 | PLN          |                |               1
- EBAY-SG    | SG       | en-SG     |         216 | t              |           34 | SGD          |                |               8
- EBAY-SE    | SE       | sv-SE     |         218 | f              |           11 | SEK          |                |               1
  '''
+
+dMarketsCurrent             = getMarketsDict( sMarketsTable )
+
+EBAY_CURRENT_VERSION_SG     = dMarketsCurrent[ 216 ].iCategoryVer
+EBAY_CURRENT_VERSION_US     = dMarketsCurrent[   0 ].iCategoryVer
+EBAY_CURRENT_VERSION_GB     = dMarketsCurrent[   3 ].iCategoryVer
+EBAY_CURRENT_VERSION_Mo     = dMarketsCurrent[ 100 ].iCategoryVer # short for Motor
+EBAY_CURRENT_VERSION_ENCA   = dMarketsCurrent[   2 ].iCategoryVer
+
+dMarketsPrevious            = getMarketsDict( sPriorMarketsTable )
+
+prior_EBAY_CURRENT_VERSION_SG = dMarketsPrevious[ 216 ].iCategoryVer
+prior_EBAY_CURRENT_VERSION_US = dMarketsPrevious[   0 ].iCategoryVer
+prior_EBAY_CURRENT_VERSION_GB = dMarketsPrevious[   3 ].iCategoryVer
+
 
 # select "id","iCategoryID","name","iLevel","iParentID","bLeafCategory","iTreeVersion","iEbaySiteID_id"
 # from ebay_categories where "iEbaySiteID_id" = 2 and "iCategoryID" = 64627;
