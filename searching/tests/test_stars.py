@@ -3348,7 +3348,8 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iModel.cTitle,
+                                    'E88CC (= 6922 = CCa = CV2492)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -3767,7 +3768,8 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iModel.cTitle,
+                                    'E88CC (= 6922 = CCa = CV2492)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Tungsram' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -3803,7 +3805,8 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iModel.cTitle,
+                                    'E88CC (= 6922 = CCa = CV2492)' )
         self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -3866,6 +3869,25 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'CV2493' )
         self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 184571819479
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Siemens DG7-32 vacuum tube not Marantz 10B Tuner' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'DG7-32' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Siemens' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
         #
         #
         #
@@ -4062,7 +4084,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'paren equivalents selection should find 6922 & E88CC not ECC88 CCA' )
+                'paren equivalents selection should find 6922 & E88CC '
+                'not ECC88 CCA' )
         #
         #
         #
@@ -4094,7 +4117,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should not find tubes as category is transformers (aspirational)' )
+                'should not find tubes '
+                'as category is transformers (aspirational)' )
         #
         #
         #
@@ -4105,7 +4129,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'get transformer not amp, primary category component on end (aspirational)' )
+                'get transformer not amp, '
+                'primary category component on end (aspirational)' )
         #
         #
         #
@@ -4116,7 +4141,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'paren equivalents selection should find 6922 not E88CC (listed 2nd)' )
+                'paren equivalents selection should find 6922 '
+                'not E88CC (listed 2nd)' )
         #
         #
         #
@@ -4126,7 +4152,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'speaker system with components should only find speaker system (aspirational)' )
+                'speaker system with components should '
+                'only find speaker system (aspirational)' )
         #
         #
         #
@@ -4262,7 +4289,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find National KT-88 (generic) not Genalex KT-88 (GEC)' )
+                'should find National KT-88 (generic) '
+                'not Genalex KT-88 (GEC)' )
         #
         #
         #
@@ -4280,11 +4308,14 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 184571819479
+        #
+        iThisOne = 254810909863
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Siemens DG7-32 vacuum tube not Marantz 10B Tuner' )
+                'should find CCA vacuum tube '
+                'not E88CC or 6922 (aspirational)' )
+        #
         #
         #
         #
