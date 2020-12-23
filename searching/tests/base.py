@@ -1,44 +1,42 @@
-from pprint             import pprint
+from json.decoder           import JSONDecodeError
 
-from json.decoder       import JSONDecodeError
+from django.utils           import timezone
 
-from django.utils       import timezone
+from core.dj_import         import ObjectDoesNotExist
+from core.tests.base        import GetEbayCategoriesWebTestSetUp
+from core.utils             import maybePrint
 
-from core.dj_import     import ObjectDoesNotExist
-from core.tests.base    import ( GetEbayCategoriesWebTestSetUp,
-                                 getNamePositionDict,
-                                 getTableFromScreenCaptureGenerator )
-from core.utils         import maybePrint
+from ebayinfo.models        import EbayCategory
 
-from ebayinfo.models    import EbayCategory
+from brands.models          import Brand
+from categories.models      import Category, BrandCategory
+from models.models          import Model
 
-from brands.models      import Brand
-from categories.models  import Category, BrandCategory
-from models.models      import Model
+from finders.models         import ItemFound, UserFinder, UserItemFound
 
-from finders.models     import ItemFound, UserFinder, UserItemFound
+from searching              import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_ROOT
 
-from searching          import RESULTS_FILE_NAME_PATTERN, SEARCH_FILES_ROOT
-
-from ..models           import Search, SearchLog
+from ..models               import Search, SearchLog
 # in __init__.py
-from ..tests            import ( sExampleResponse, sBrands, sModels,
-                                 sResponseItems2Test, sManualItems2Test,
-                                 dSearchResult, iRecordStepsForThis )
+from ..tests                import ( sExampleResponse, sBrands, sModels,
+                                     sResponseItems2Test, sManualItems2Test,
+                                     dSearchResult, iRecordStepsForThis )
 
-from ..utils            import ( storeSearchResultsInFinders,
-                                 getSearchIdStr,
-                                 _storeUserItemFound, _storeItemFound )
+from ..utils                import ( storeSearchResultsInFinders,
+                                     getSearchIdStr,
+                                     _storeUserItemFound, _storeItemFound )
 
-from ..utils_stars      import findSearchHits
+from ..utils_stars          import findSearchHits
 
-from ..utilsearch       import ItemAlreadyInTable
+from ..utilsearch           import ItemAlreadyInTable
 
-from pyPks.Dir.Get      import getMakeDir
-from pyPks.File.Del     import DeleteIfExists
-from pyPks.File.Write   import QuietDump
-from pyPks.Time.Output  import getIsoDate
-from pyPks.Utils.Config import getBoolOffYesNoTrueFalse
+from pyPks.Dir.Get          import getMakeDir
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Write       import QuietDump
+from pyPks.Time.Output      import getIsoDate
+from pyPks.Utils.Config     import getBoolOffYesNoTrueFalse
+from pyPks.Utils.DataBase   import ( getNamePositionDict,
+                                     getTableFromScreenCaptureGenerator )
 
 
 sTODAY = getIsoDate()
@@ -509,9 +507,9 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oTableIter = getTableFromScreenCaptureGenerator( sBrands )
             #
-            lHeader = next( oTableIter )
+            tHeader = next( oTableIter )
             #
-            d = getNamePositionDict( lHeader )
+            d = getNamePositionDict( tHeader )
             #
             for lParts in oTableIter:
                 #
@@ -526,7 +524,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                 oBrand.save()
                 #
             #
-            oTableIter = getTableFromScreenCaptureGenerator( sModels )
+            oTableIter = getTableFromScreenCaptureGenerator(
+                                sModels, bListOut = True )
             #
             lHeader = next( oTableIter )
             #
