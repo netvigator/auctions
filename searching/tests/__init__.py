@@ -513,6 +513,7 @@ sModels = \
  539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
  539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
  600A               |           |      5 | t            | Hickok            |  Tube Tester |             |
+ 752A               |           |      6 | t            | Hickok            |  Tube Tester |             |
  6000A              |           |      6 | t            | Hickok            |  Tube Tester |             |
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
  76                 |           |      6 | f            | JBL               |       Driver | 076         |
@@ -859,6 +860,20 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["383859801103"],
+            "title":["Vintage. Military Hickok Tube Tester Model # 752 Still Works & We Have All..."],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m5XctmX2zihxjfORfHCM4qw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Military-Hickok-Tube-Tester-Model-752-Still-Works-We-Have-All-\/383859801103"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["354**"],"location":["Fosters,AL,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"261.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"261.0"}],
+            "bidCount":["10"],"sellingState":["Active"],"timeLeft":["P0DT10H48M0S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-15T19:50:01.000Z"],"endTime":["2020-12-22T19:50:01.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["27"]}],"returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["254810909863"],
             "title":["NOS NIB GENUINE TELEFUNKEN GOLD PIN TUBE GERMANY CCA TOP GRADE E88CC 6922"],
