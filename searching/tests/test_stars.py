@@ -3712,7 +3712,6 @@ class FindSearchHitsWebTests(
         #
         self.assertIsDateTimeValue( oTest.tTimeEnd )
         #
-        print( "type( oTest.tTimeEnd ):", type( oTest.tTimeEnd ) )
         #
         #
         #
@@ -3782,9 +3781,8 @@ class FindSearchHitsWebTests(
         iThisOne = 303769355137
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'check star count' )
-        #
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -3792,7 +3790,10 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        self.assertGreater( oTest.iHitStars, 300 )
+        self.assertGreater( oTest.iHitStars, 320 )
+        #
+        #
+        #
         #
         #
         #
@@ -3818,7 +3819,7 @@ class FindSearchHitsWebTests(
         iThisOne = 393049339833
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find PCC88, rest are on end, production got wrong' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3879,7 +3880,7 @@ class FindSearchHitsWebTests(
         iThisOne = 184571819479
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find Siemens DG7-32 vacuum tube not Marantz 10B Tuner' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -3906,6 +3907,24 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 383859801103
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'tube tester in wrong category (vacuum tube) '
+                'should find tube tester anyway' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '752A' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
         #
         #
@@ -4265,7 +4284,8 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Heath 401-419 not Altec 416' )
+                'should find Heath 401-419 not Altec 416,'
+                'question mark on end means maybe not' )
         #
         #
         #
@@ -4315,6 +4335,7 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find CCA vacuum tube '
                 'not E88CC or 6922 (aspirational)' )
+        #
         #
         #
         #
