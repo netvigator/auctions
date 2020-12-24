@@ -298,12 +298,21 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oCategory.save()
             #
             #
+            oCategory   = Category( cTitle      = 'Tube Tester',
+                                    iStars      = 8,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
+            oTubeTester = oCategory
+            #
+            #
             oCategory   = Category( cTitle      = 'Vacuum Tube',
                                     cLookFor    = 'tube\rtubes\rVintage Tubes',
                                     cExcludeIf  = 'tube radio\r'
-                                                   'tube clock radio\r'
-                                                   'tube portable radio',
+                                                  'tube clock radio\r'
+                                                  'tube portable radio',
                                     iStars      = 6,
+                                    iFamily_id  = oTubeTester.id,
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -374,14 +383,6 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iFamily_id  = oStereoSystem.id,
                                     iUser       = oUser )
             oCategory.save()
-            #
-            oCategory   = Category( cTitle      = 'Tube Tester',
-                                    iStars      = 8,
-                                    iUser       = oUser )
-            oCategory.save()
-            #
-            oTubeTester = oCategory
-            #
             #
             oCategory   = Category( cTitle      = 'Choke',
                                     cLookFor    = 'crossover',
