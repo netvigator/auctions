@@ -1259,9 +1259,10 @@ def _doStepThruModels(
                         # dCategoryInfo[ iItemCateID ] ==
                         # iModelCateID )
                         #
-                        logger.warning(
-                                'model has category id %s in dCategoryInfo for %s' %
-                                ( iModelCateID, oItemFound.iItemNumb ) )
+                        # obsolete warning?
+                        # logger.warning(
+                        #         'model has category id %s in dCategoryInfo for %s' %
+                        #         ( iModelCateID, oItemFound.iItemNumb ) )
                         #
                         iFamily = dCategoryInfo[ iItemCateID ].iFamilyID
                         #
