@@ -88,7 +88,7 @@ class Keeper( models.Model ):
                         choices = EBAY_SHIPPING_CHOICES,
                         null = True, blank = True ) # comes from item found
     bGlobalShipping = models.BooleanField( 'Global Shipping', default=False )
-    bBuyItNowable   = models.NullBooleanField(
+    bBuyItNowable   = models.BooleanField(
                         'buy it now enabled?', default = False,
                         null = True, blank = True )
     lBuyItNowPrice  = models.DecimalField( 'buy it now price (local currency)',
