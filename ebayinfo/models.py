@@ -1,7 +1,7 @@
 from django.core.validators     import MaxValueValidator, MinValueValidator
 from django.db                  import models
 from django.db.models           import PositiveSmallIntegerField as PosSmallInt
-from django.db.models           import Model, CharField, NullBooleanField
+from django.db.models           import Model, CharField, BooleanField
 from django.db.models           import SmallIntegerField as SmallInt
 from django_countries.fields    import CountryField
 from mptt.models                import MPTTModel, TreeForeignKey
@@ -38,7 +38,7 @@ class Market(Model):
                                 unique = True )
     cCountry        = CountryField(         'country' )
     cLanguage       = CharField(            'language',  max_length = 8 )
-    bHasCategories  = NullBooleanField(     'has own categories?', null=True)
+    bHasCategories  = BooleanField(         'has own categories?', null=True )
     iCategoryVer    = PosSmallInt(          'most recent category version',
                                 null = True )
     cCurrencyDef    = UpperCaseCharField(   'currency default',
