@@ -1,23 +1,32 @@
 # Local development dependencies go here
 -r base.txt
 
-# coverage==5.0.4
 # coverage==5.1
-coverage==5.3
+# coverage==5.3
+coverage==5.3.1
+
 django-coverage-plugin==1.8.0
 
 # Sphinx==2.4.4
 # Sphinx==3.1.0
-Sphinx==3.3.1
+# Sphinx==3.3.1
+Sphinx==3.4.1
+
 # django-extensions==2.2.9
-django-extensions==3.0.9
+# django-extensions==3.0.9
+django-extensions==3.1.0
+
 Werkzeug==1.0.1
+
 django-test-plus==1.4.0
+
 # factory-boy==2.12.0
-factory-boy==3.0.1
+# factory-boy==3.0.1
+factory-boy==3.1.0
 
 # django-debug-toolbar==2.2
-django-debug-toolbar==3.1.1
+# django-debug-toolbar==3.1.1
+django-debug-toolbar==3.2
 
 # improved REPL
 # ipdb==0.13.2
@@ -31,8 +40,8 @@ pytest-sugar==0.9.4
 
 # testfixtures==6.14.0
 # testfixtures==6.14.1
-testfixtures==6.15.0
-
+# testfixtures==6.15.0
+testfixtures==6.17.0
 
 django-webtest==1.9.7
 
