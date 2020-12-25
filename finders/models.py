@@ -242,9 +242,9 @@ class UserFinder(models.Model):
     tTimeEnd        = models.DateTimeField( 'ending date/time', null=True )
     iUser           = models.ForeignKey( User, on_delete=models.CASCADE,
                         verbose_name = 'Owner' )
-    bGetResult      = models.NullBooleanField( 'get results?',
+    bGetResult      = models.BooleanField( 'get results?',
                         null = True, default = False )
-    bListExclude    = models.NullBooleanField( 'exclude from listing?',
+    bListExclude    = models.BooleanField( 'exclude from listing?',
                         null = True, default = False )
     iMaxModel       = models.IntegerField( 'model hit with most stars',
                         null = True, default = False )
@@ -371,7 +371,7 @@ class ItemFoundTemp(models.Model):
                         'model name/number found in auction title',
                         max_length = 48,            null = True )
     iFoundModelLen  = models.PositiveSmallIntegerField( default = 0 )
-    bModelKeyWords  = models.NullBooleanField(
+    bModelKeyWords  = models.BooleanField(
                         'model has key words and they are in auction title?',
                         null = True, default = False )
     cModelAlphaNum  = models.CharField(
