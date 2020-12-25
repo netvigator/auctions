@@ -54,13 +54,13 @@ class Search(models.Model):
                                 max_length = 2, null = True,
                                 choices = ALL_PRIORITIES,
         help_text = 'high priority A1 A2 A3 ... Z9 low priority' )
-    bGetBuyItNows   = models.NullBooleanField(
+    bGetBuyItNows   = models.BooleanField(
                     "also get 'Buy It Nows' (fixed price non auctions)?",
         help_text = 'You may get an avalanche of useless junk '
                     'if you turn this on -- be careful!',
                                 blank = True, null = True,
                                 default = False )
-    bInventory    = models.NullBooleanField(
+    bInventory    = models.BooleanField(
                     "also get 'Store Inventory' "
                     "(fixed price items in ebay stores)?",
         help_text = 'You may get an avalanche of useless junk '
