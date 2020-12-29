@@ -3932,6 +3932,45 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 353329187713
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'found GE manual as model, '
+                'should find tube manual not vacuum tube as category '
+                '(production put Vacuum Tube category on hit)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'tube manual (GE)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Manual' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 293907171950
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Emerson model AX-235 '
+                '(only found Catalin in production)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'AX-235' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Emerson' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -4335,6 +4374,7 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find CCA vacuum tube '
                 'not E88CC or 6922 (aspirational)' )
+        #
         #
         #
         #
