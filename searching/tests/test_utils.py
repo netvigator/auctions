@@ -1,62 +1,63 @@
 import inspect
 import logging
 
-from os                 import rename
-from os.path            import realpath, join
-from datetime           import timedelta
+from os                     import rename
+from os.path                import realpath, join
+from datetime               import timedelta
 
-from django.test        import tag
-from django.utils       import timezone
-from core.tests.base    import ( getDefaultMarket,
-                                 GetEbayCategoriesWebTestSetUp,
-                                 getTableFromScreenCaptureGenerator,
-                                 TestCasePlus )
+from django.test            import tag
+from django.utils           import timezone
+from core.tests.base        import ( getDefaultMarket,
+                                     GetEbayCategoriesWebTestSetUp,
+                                     TestCasePlus )
 
 # from django.core.exceptions import ObjectDoesNotExist
-from core.dj_import     import ObjectDoesNotExist
+from core.dj_import         import ObjectDoesNotExist
 
-from ebayinfo.models    import CategoryHierarchy, EbayCategory
-from ebayinfo.tests     import sEbayCategoryDump
-from ebayinfo.utils     import dMarket2SiteID, getEbayCategoryHierarchies
+from ebayinfo.models        import CategoryHierarchy, EbayCategory
+from ebayinfo.tests         import sEbayCategoryDump
+from ebayinfo.utils         import dMarket2SiteID, getEbayCategoryHierarchies
 
+from ebayinfo.tests.base    import dMarkets
 from ebayinfo.tests.test_utils import LiveTestGotCurrentEbayCategories
 # imported live test will run automatically when running live test
 
-from searching          import RESULTS_FILE_NAME_PATTERN
+from searching              import RESULTS_FILE_NAME_PATTERN
 
-from .base              import ( GetBrandsCategoriesModelsWebTestSetUp,
-                                 StoreUserItemFoundWebTestBase,
-                                 getItemHitsLog, sTODAY )
+from .base                  import ( GetBrandsCategoriesModelsWebTestSetUp,
+                                     StoreUserItemFoundWebTestBase,
+                                     getItemHitsLog, sTODAY )
 
-from ..models           import Search, SearchLog
-from ..tests            import ( dSearchResult, sItemHitLog,
-                                 sResponseItems2Test )
-from ..utils_stars      import findSearchHits
-from ..utils            import ( storeSearchResultsInFinders,
-                                 _putPageNumbInFileName,
-                                 trySearchCatchExceptStoreInFile,
-                                 getSearchIdStr,
-                                 _storeUserItemFound, _storeItemFound )
+from ..models               import Search, SearchLog
+from ..tests                import ( dSearchResult, sItemHitLog,
+                                     sResponseItems2Test )
+from ..utils_stars          import findSearchHits
+from ..utils                import ( storeSearchResultsInFinders,
+                                     _putPageNumbInFileName,
+                                     trySearchCatchExceptStoreInFile,
+                                     getSearchIdStr,
+                                    _storeUserItemFound, _storeItemFound )
 
-from ..utilsearch       import ( getJsonFindingResponse, getSuccessOrNot,
-                                 ItemAlreadyInTable,
-                                 getPagination, _getFindingResponseGenerator,
-                                 getSearchResultGenerator )
+from ..utilsearch           import ( getJsonFindingResponse, getSuccessOrNot,
+                                     ItemAlreadyInTable, getPagination,
+                                     _getFindingResponseGenerator,
+                                     getSearchResultGenerator )
 
-from categories.models  import Category
-from models.models      import Model
+from categories.models      import Category
+from models.models          import Model
 
-from finders.models     import ItemFound, UserItemFound
+from finders.models         import ItemFound, UserItemFound
 
-from pyPks.Dict.Maintain import getDictValuesFromSingleElementLists
-from pyPks.File.Del      import DeleteIfExists
-from pyPks.File.Spec     import getPathNameExt
-from pyPks.File.Test     import isFileThere
-from pyPks.File.Write    import QuietDump
-from pyPks.String.Output import Plural
-from pyPks.Time.Convert  import getDateTimeObjFromString   as getDate
-from pyPks.Time.Delta    import getDeltaDaysFromStrings, getIsoDateTimeNowPlus
-from pyPks.Time.Output   import getIsoDateTimeFromDateTime as getIsoDT
+from pyPks.Dict.Maintain    import getDictValuesFromSingleElementLists
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Spec        import getPathNameExt
+from pyPks.File.Test        import isFileThere
+from pyPks.File.Write       import QuietDump
+from pyPks.String.Output    import Plural
+from pyPks.Time.Convert     import getDateTimeObjFromString   as getDate
+from pyPks.Time.Delta       import ( getDeltaDaysFromStrings,
+                                     getIsoDateTimeNowPlus )
+from pyPks.Time.Output      import getIsoDateTimeFromDateTime as getIsoDT
 
 
 
@@ -171,17 +172,8 @@ class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
         #
         iTableCount = EbayCategory.objects.all().count()
         #
-        oTableIter = getTableFromScreenCaptureGenerator( sEbayCategoryDump )
+        self.assertEqual( self.iCategories, iTableCount )
         #
-        lHeader = next( oTableIter )
-        #
-        iExpect = 4 # GetEbayCategoriesWebTestSetUp above adds root categories
-        #
-        for lParts in oTableIter: iExpect += 1
-        #
-        oCategories = EbayCategory.objects.all()
-        #
-        self.assertEqual( iExpect, iTableCount )
         #
         oMultimeters = EbayCategory.objects.get( iCategoryID = 58277 )
         #
