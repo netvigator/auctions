@@ -574,6 +574,7 @@ sModels = \
  meter              |           |      3 | f            |                   |    Component | Meter Band  |
  model nine         |           |      9 | f            | KLH               |Speaker System| model 9     |
  model five         |           |      6 | f            | KLH               |Speaker System| model 5     |
+ tube manual (GE)   |           |      8 | f            | GE                |  Tube Manual |
  '''
 #      cTitle       | cKeyWords | iStars | bSubModelsOK |      Brand        | Category     | cLookFor    | cExcludeIf   | bGenericModel | bMustHaveBrand |
 
@@ -860,6 +861,40 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["293907171950"],
+            "title":["Antique RED Emerson Catalin Radio Model AX235 - Not Working"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mnadD9NMPpCs8vRJCTBvtYA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Antique-RED-Emerson-Catalin-Radio-Model-AX235-Not-Working-\/293907171950"],
+            "autoPay":["false"],
+            "postalCode":["026**"],"location":["West Barnstable,MA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1195.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1195.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT13H58M31S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-18T23:00:24.000Z"],"endTime":["2020-12-25T23:00:24.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["353329187713"],
+            "title":["** General Electric Vacuum Tube Manual Vintage 360 Pages!! Great For Tube Amps**"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mA_LIzFjXbiUjo6o0DFRZbw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/General-Electric-Vacuum-Tube-Manual-Vintage-360-Pages-Great-Tube-Amps-\/353329187713"],
+            "paymentMethod":["PayPal"],"autoPay":["true"],
+            "postalCode":["454**"],"location":["Dayton,OH,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"3.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"3.95"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT14H24M30S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"15.0"}],
+            "convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"15.0"}],
+            "startTime":["2020-12-22T23:27:45.000Z"],"endTime":["2020-12-29T23:27:45.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["383859801103"],
             "title":["Vintage. Military Hickok Tube Tester Model # 752 Still Works & We Have All..."],
