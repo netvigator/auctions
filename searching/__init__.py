@@ -27,7 +27,7 @@ DROP_AFTER_THIS = (
         r'tested (?:on|with)\b|'
         r'from\b|'
         r'ala\b|'
-        r'used (?:with|in|on)\b|'
+        r'used* (?:with|in|on)\b|'
         r'same as\b|'
         r'not\b|'
         r'like\b|'
