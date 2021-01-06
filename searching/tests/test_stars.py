@@ -3834,31 +3834,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 203214608569
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 5, iThisOne,
-                'should find AZ12, GZ34 is on end' )
-        #
-        tGotBrands = (
-            'Siemens', 'Tungsram', 'Valvo', 'Telefunken', 'Philips' )
-        #
-        for i in range( 5 ):
-            #
-            oTest = dItemsToTest[ iThisOne ][ i ]
-            #
-            self.assertEqual(    oTest.iModel.cTitle, ( 'AZ12' ) )
-            self.assertIn(       oTest.iBrand.cTitle, tGotBrands )
-            self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-            self.assertIsDateTimeValue( oTest.tTimeEnd )
-            #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
         iThisOne = 124480081681
         #
         self.print_len(
@@ -3964,6 +3939,87 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'AX-235' )
         self.assertEqual( oTest.iBrand.cTitle, 'Emerson' )
         self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 124456370294
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find EL803S vacuum tube not EL84' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'EL803S' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 203229454434
+        #
+        tGotBrands = (
+                'Siemens', 'Tungsram', 'Valvo', 'Telefunken', 'Philips' )
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], len( tGotBrands ), iThisOne,
+                'should find AZ12 vacuum tube not GZ34 on end!!!' )
+        #
+        for i in range( len( tGotBrands ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual(    oTest.iModel.cTitle, ( 'AZ12' ) )
+            self.assertNotEqual( oTest.iModel.cTitle, ( 'GZ34' ) )
+            self.assertIn(       oTest.iBrand.cTitle, tGotBrands )
+            self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393074957317
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6922 vacuum tube not CCa or E88CC on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6922 (Amperex Gold)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (gold pins)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393077386167
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'vacuum tube CCA is on the end but production found it!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)')
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
@@ -4374,7 +4430,6 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find CCA vacuum tube '
                 'not E88CC or 6922 (aspirational)' )
-        #
         #
         #
         #
@@ -4873,6 +4928,13 @@ class GetRelevantTitleTests( AssertEmptyMixin, TestCasePlus ):
         self.assertEmpty( sGotInParens )
         #
         sFullTitle = "ALTEC LANSING 311-90 Horn used with Voice of Theather Speaker System"
+        #
+        sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
+        #
+        self.assertEqual( sRetnTitle.strip(), sWantTitle )
+        self.assertEmpty( sGotInParens )
+        #
+        sFullTitle = "ALTEC LANSING 311-90 Horn use with Voice of Theather Speaker System"
         #
         sRetnTitle, sGotInParens = _getRelevantTitle( sFullTitle )
         #
