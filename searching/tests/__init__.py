@@ -156,6 +156,7 @@ sModels = \
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5842               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 5AR4               |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
@@ -222,7 +223,7 @@ sModels = \
  EL37 (Mullard)     |           |     10 | f            | Mullard           |  Vacuum Tube |             |              | f
  EF86               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EF86 (Amperex BB)  |           |      9 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
- GZ34 (5AR4 cross)  |           |     10 | f            |                   |  Vacuum Tube |             |              | t
+ GZ34 (5AR4 cross)  |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL803S             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -862,6 +863,70 @@ sResponseItems2Test = \
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
+           {"itemId":["393077386167"],
+            "title":["Best Tone Old Mullard E88CC Old Stock Vac Tube HIFI Audio PreAmp Mic Rode K2 CCa"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mdr9ode4d_Jsaw75KlFgr7A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Best-Tone-Old-Mullard-E88CC-Old-Stock-Vac-Tube-HIFI-Audio-PreAmp-Mic-Rode-K2-CCa-\/393077386167"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"165.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"165.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P7DT8H52M49S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-31T17:56:01.000Z"],"endTime":["2021-01-10T17:56:01.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],
+            "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["393074957317"],
+            "title":["Amperex HP Red Tip 6922 Gold Pin D-Getter Tube - Very Rare - Tested - CCa E88CC"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m2aMC5wjmzxKaWEgaZz4-sQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Amperex-HP-Red-Tip-6922-Gold-Pin-D-Getter-Tube-Very-Rare-Tested-CCa-E88CC-\/393074957317"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.95"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"75.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"75.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P9DT10H4M35S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-29T19:06:36.000Z"],"endTime":["2021-01-08T19:06:36.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["203229454434"],
+            "title":["Job lot 6 x AZ12 tubes Philips, Tungsram NOS - Telefunken Valvo Siemens GZ34"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mu5jf9fIPp7j93g3ZXKqz6Q\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Job-lot-6-x-AZ12-tubes-Philips-Tungsram-NOS-Telefunken-Valvo-Siemens-GZ34-\/203229454434"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["201**"],"location":["Italy"],"country":["IT"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"69.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT5H13M5S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2020-12-25T14:15:08.000Z"],"endTime":["2020-12-30T14:15:08.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["124456370294"],
+            "title":["TELEFUNKEN EL803S (EL84 replacement with minor modification) 82 NOS tubes"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m6cnuSstjebisizPE0tN-rg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/TELEFUNKEN-EL803S-EL84-replacement-minor-modification-82-NOS-tubes-\/124456370294"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Hong Kong"],"country":["HK"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"30.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"550.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT16H53M37S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2020-11-25T01:58:00.000Z"],"endTime":["2020-12-05T01:58:00.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
            {"itemId":["293907171950"],
             "title":["Antique RED Emerson Catalin Radio Model AX235 - Not Working"],
             "globalId":["EBAY-US"],
@@ -991,23 +1056,6 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"]}],
             "returnsAccepted":["false"],"condition":[{"conditionId":["3000"],
             "conditionDisplayName":["Used"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
-
-           {"itemId":["203214608569"],
-            "title":["Job lot 6 x AZ12 tubes Philips, Tungsram NOS - Telefunken Valvo Siemens GZ34"],
-            "globalId":["EBAY-US"],
-            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mu5jf9fIPp7j93g3ZXKqz6Q\/140.jpg"],
-            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Job-lot-6-x-AZ12-tubes-Philips-Tungsram-NOS-Telefunken-Valvo-Siemens-GZ34-\/203214608569"],
-            "paymentMethod":["PayPal"],"autoPay":["false"],
-            "postalCode":["201**"],"location":["Italy"],"country":["IT"],
-            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"69.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.0"}],
-            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT5H12M12S"]}],
-            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
-            "startTime":["2020-12-10T14:14:27.000Z"],"endTime":["2020-12-15T14:14:27.000Z"],
-            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["false"],
-            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
-            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["393049339833"],
             "title":["4 NOS PHILIPS PCC88 AUDIO VAC TUBES - ECC88 6DJ8 E88CC 6922 CCA CV2492"],
