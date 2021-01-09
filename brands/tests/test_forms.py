@@ -25,11 +25,21 @@ class TestFormValidation( BaseUserWebTestCase ):
         super().setUp()
         #
         oBrand = Brand(
-            cTitle = "Cadillac", cLookFor = "Caddy", iUser = self.user1 )
+            cTitle = "Cadillac",
+            cLookFor = "Caddy",
+            iUser = self.user1 )
         oBrand.save()
         #
         self.iBrandID = oBrand.id
         #
+        oBrand = Brand(
+            cTitle = "IPC",
+            cLookFor = "International Projector",
+            iUser = self.user1 )
+        oBrand.save()
+        #
+
+
         self.loginWebTest()
 
 
@@ -136,6 +146,16 @@ class TestFormValidation( BaseUserWebTestCase ):
         #
         self.assertFalse( form.is_valid() )
         #
+        dFormData = dict(
+            cTitle      = 'International',
+            cLookFor    = "International Servicemaster",
+            iStars      = 5,
+            iUser       = self.user1.id )
+        #
+        form = CreateBrandForm( data = dFormData )
+        ##
+        form.user    = self.user1 # need this!
+        #
         ''' yes the errors are there
         maybePrint('')
         maybePrint( 'form.is_valid() returns', form.is_valid() )
@@ -144,7 +164,10 @@ class TestFormValidation( BaseUserWebTestCase ):
                 maybePrint( k, ' -- ', v )
         else:
             maybePrint( 'no form errors at bottom!' )
+        #
         '''
+        #
+        self.assertTrue( form.is_valid() )
         #
         # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
