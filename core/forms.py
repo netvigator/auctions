@@ -110,7 +110,7 @@ class ModelFormValidatesTitle( BaseModelFormGotCrispy ):
         #
         if ( self.Meta.model.objects.filter(
                 iUser               = self.user,
-                cLookFor__icontains = cTitle ).exists() ):
+                cLookFor__iexact    = cTitle ).exists() ):
             #
             oGot = self.Meta.model.objects.filter(
                 iUser               = self.user,
