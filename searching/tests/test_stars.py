@@ -254,7 +254,11 @@ class FindSearchHitsWebTests(
         #
         self.assertEqual( oTest.cWhereCategory,   'title' )
         #
-        self.assertTrue(   oTest.iHitStars > 100 )
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
         #
         self.print_len( dItemsToTest[ 123046984227 ], 1 )
         #
@@ -270,7 +274,11 @@ class FindSearchHitsWebTests(
         #
         self.assertEqual( oTest.cWhereCategory,   'title' )
         #
-        self.assertTrue(   oTest.iHitStars > 100 )
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
         #
         self.print_len( dItemsToTest[ 162988285719 ], 1 )
         #
@@ -3193,11 +3201,15 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
-        self.assertGreater( oTest.iHitStars, 500 )
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
         #
         self.assertEqual( oTest.iModel.cTitle, 'KT-88 (GEC)' )
         self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
         #
         #
         #
@@ -3332,7 +3344,11 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
         self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #
-        self.assertGreater( oTest.iHitStars, 348 ) # should be 350
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
         #
         #
         #
@@ -3569,7 +3585,11 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle,    'Dynaco' )
         self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
         #
-        self.assertGreater( oTest.iHitStars, 300 )
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
         #
         #
         #
@@ -3790,7 +3810,11 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
-        self.assertGreater( oTest.iHitStars, 320 )
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
         #
         #
         #
@@ -4023,6 +4047,69 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 324413731079
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 8417 vacuum tube not Fisher SA1000 Amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, '8417')
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual(  oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 193850236707
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'production cut stars in half' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Mark III' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393096795512
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find 7308 vacuum tube -- listed 1st' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7308' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7308' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
@@ -4412,17 +4499,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 324413731079
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find 8417 vacuum tube not Fisher SA1000 Amp' )
-        #
-        #
-        #
-        #
-        #
-        #
         #
         iThisOne = 254810909863
         #
@@ -4431,6 +4507,17 @@ class FindSearchHitsWebTests(
                 'should find CCA vacuum tube '
                 'not E88CC or 6922 (aspirational)' )
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114630935472
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'finds Hickok 539C tube tester!' )
         #
         #
         #
