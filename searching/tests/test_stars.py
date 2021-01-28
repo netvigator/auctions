@@ -1456,12 +1456,13 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 2, iThisOne,
                 'finding only Aperex BB brand & ECC88 + 6DJ8 BB is ideal' )
         #
+        tModels = ( '6DJ8', '6DJ8 (Bugle Boy)', 'ECC88 (=6DJ8)' )
+        #
         for i in range( len( dItemsToTest[ iThisOne ] ) ):
             #
             oTest = dItemsToTest[ iThisOne ][ i ]
             #
-            self.assertIn(    oTest.iModel.cTitle,
-                            ( '6DJ8', '6DJ8 (Bugle Boy)', 'ECC88 (=6DJ8)' ) )
+            self.assertIn(    oTest.iModel.cTitle, tModels )
             self.assertEqual( oTest.iBrand.cTitle, 'Amperex (Bugle Boy)' )
             self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
             #
@@ -4055,7 +4056,7 @@ class FindSearchHitsWebTests(
         iThisOne = 324413731079
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find 8417 vacuum tube not Fisher SA1000 Amp' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -4112,6 +4113,57 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
+        #
+        #
+        #
+        iThisOne = 254837945288
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 4, iThisOne,
+                'should find ECC88 vacuum tube -- listed 1st' )
+        #
+        tModels = ( 'E88CC (= 6922 = CCa = CV2492)',
+                    '6DJ8',
+                    'E188CC',
+                    'ECC88 (=6DJ8)' )
+
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertIn(    oTest.iModel.cTitle, tModels )
+            self.assertEqual( oTest.iBrand.cTitle, 'Philips' )
+            self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393097923941
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find only e88cc & 6922 vacuum tubes -- listed 1st' )
+        #
+        tModels = ( 'E88CC (= 6922 = CCa = CV2492)',
+                    '6922 (= E88CC = CCa = CV2492)' )
+        #
+        tBrands = ( 'Telefunken', 'Tungsram' )
+        #
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertIn(    oTest.iModel.cTitle, tModels )
+            self.assertIn(    oTest.iBrand.cTitle, tBrands )
+            self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
         #
         #
         #
@@ -4519,6 +4571,15 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'finds Hickok 539C tube tester!' )
         #
+        #
+        #
+        #
+        #
+        iThisOne = 114645019556
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'finds Hickok 539C tube tester!' )
         #
         #
         #
