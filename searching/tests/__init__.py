@@ -423,10 +423,11 @@ sModels = \
  350-P              |           |      8 | f            | Regency           |       Preamp |             | AD1/350
  350                |           |      3 | f            | Ampex             |       Preamp |             | AD1/350
  Quad 33            |           |      2 | f            | Quad              |       Preamp |             |
- Audio Consolette   |           |     10 | f            | Marantz           |       Preamp |           1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
- 7                  |           |     10 | f            | Marantz           |       Preamp |             | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
+ Audio Consolette   |           |     10 | f            | Marantz           |       Preamp | Model One\\rModel 1 | 1 pc\\r45\\rDD 5.1\\rDLB\\rWC-1\\rMA500\\rPMD\\r1050\\r200\\rQuad Adapter\\rSQ\\rVan Alstine\\rChannel\\rRecorder
+ 7                  |           |     10 | f            | Marantz           |       Preamp | Model Seven\\rModel 7 | 7 pcs\\rBrook\\r7T\\rSC-7\\rSG-7\\rfaceplate
  2                  |           |     10 | f            | Marantz           |    Amplifier | Model Two\\rModel 2 |
- 4                  |           |      7 | f            | Marantz           | Power Supply | Quad\\r4 Channel\\r4 ea\\r4 each\\r4 NOS\\r4 pack\\r4 pair\\r4 pcs\\r4100\\rFour Ch\\rBox of 4\\rLot 4\\rqty 4\\rSet of 4
+ 4                  |           |      7 | f            | Marantz           | Power Supply | Model Four\\rModel 4 | Quad\\r4 Channel\\r4 ea\\r4 each\\r4 NOS\\r4 pack\\r4 pair\\r4 pcs\\r4100\\rFour Ch\\rBox of 4\\rLot 4\\rqty 4\\rSet of 4
+ 5                  |           |     10 | f            | Marantz           |    Amplifier | Model Five\\rModel 5 |
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
  FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
@@ -481,7 +482,7 @@ sModels = \
  H126               |           |      8 | f            | Westinghouse      |        Radio |             |
  6AU-1              |           |      9 | t            | Garod             |        Radio |             |
  2A                 |           |      8 | f            | Addison           |        Radio |             |
- 700                |           |     10 | f            | Fada              |        Radio |             |
+ 700                |           |     10 | f            | Fada              |        Radio | Cloud       |
  K25                |           |      7 | f            | Kadette           |        Radio |             |
  711                |           |      8 | f            | Fada              |        Radio |             |
  53X                |           |      8 | f            | Fada              |        Radio |             |
@@ -862,6 +863,121 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["284168423897"],
+            "title":["50 Triode matched tubes altec RCA 755a tad"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mQ6-xtxfTpj1GNP4HOeUINg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/50-Triode-matched-tubes-altec-RCA-755a-tad-\/284168423897"],
+            "paymentMethod":["PayPal"],"autoPay":["true"],
+            "postalCode":["100**"],"location":["New York,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"529.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"529.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT19H15M7S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"698.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"698.0"}],
+            "startTime":["2021-02-01T04:15:12.000Z"],"endTime":["2021-02-11T04:15:12.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["143929889905"],
+            "title":["Marantz 4.5 inch midrange from HD-55 speaker #1"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m4USjtyyTd5H3Ef16jKO87g\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Marantz-4-5-inch-midrange-HD-55-speaker-1-\/143929889905"],
+            "autoPay":["false"],
+            "postalCode":["604**"],"location":["Oak Forest,IL,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"20.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"20.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT14H18M56S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-01-26T23:19:47.000Z"],"endTime":["2021-02-02T23:19:47.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["114650217123"],
+            "title":["lot of 5 BECKMAN USA 6211 Vacuum Tubes - HICKOK 539C TESTED"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/ma5cp8vnzsWg_oxhCFkd8zg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/lot-5-BECKMAN-USA-6211-Vacuum-Tubes-HICKOK-539C-TESTED-\/114650217123"],
+            "postalCode":["070**"],"location":["Garfield,NJ,USA"],"country":["US"],
+            "autoPay":["false"],"shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"14.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"14.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT10H58M31S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-01-25T20:00:50.000Z"],"endTime":["2021-02-01T20:00:50.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["265028909832"],
+            "title":["1 super rare strong Engraved base  western electric Hanging O getter  300B tube"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mFUOZUONLiuszvoSIfOae7A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/1-super-rare-strong-Engraved-base-western-electric-Hanging-O-getter-300B-tube-\/265028909832"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["457**"],"location":["Belpre,OH,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"3599.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"3599.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P4DT16H58M43S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-01-27T02:00:58.000Z"],"endTime":["2021-02-01T02:00:58.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["324466562496"],
+            "title":["Antique Dewald Catalin Tube Radio - Model A-502 - Two Color"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mv4RdoH2kdMCFEgBIG9lMsA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Antique-Dewald-Catalin-Tube-Radio-Model-A-502-Two-Color-\/324466562496"],
+            "postalCode":["026**"],"location":["Centerville,MA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"695.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"695.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT16H58M56S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-01-28T02:00:52.000Z"],"endTime":["2021-02-04T02:00:52.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["14"]}],
+            "autoPay":["false"],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["193851426563"],
+            "title":["Fabulous FADA Butterscotch & Red Catalin Radio Model 700 Cloud Working Condition"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mi8q9ABd8gWF5NTxdC1hKqg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fabulous-FADA-Butterscotch-Red-Catalin-Radio-Model-700-Cloud-Working-Condition-\/193851426563"],
+            "autoPay":["false"],
+            "postalCode":["020**"],"location":["Green Harbor,MA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"489.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"489.0"}],
+            "bidCount":["12"],"sellingState":["Active"],"timeLeft":["P0DT15H32M49S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-01-16T00:34:45.000Z"],"endTime":["2021-01-26T00:34:45.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["68"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["333865256171"],
+            "title":["One Original Acoustic Research AR 2ax Mid Midrange Speaker 1405"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mzZ6wRlis6ZSw_-Oy2yLJKA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/One-Original-Acoustic-Research-AR-2ax-Mid-Midrange-Speaker-1405-\/333865256171"],
+            "autoPay":["false"],
+            "postalCode":["358**"],"location":["Huntsville,AL,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"39.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"39.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT16H13M58S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-01-22T01:14:42.000Z"],"endTime":["2021-01-29T01:14:42.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["114645019556"],
             "title":["LOT OF 3  1625 OR VT-136 Vacuum TubeS  - HICKOK 539C TESTED"],
@@ -1527,8 +1643,7 @@ sResponseItems2Test = \
             "sellingStatus":[{"currentPrice":[{"@currencyId":"GBP","__value__":"29.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"37.71"}],"bidCount":["8"],"sellingState":["Active"],"timeLeft":["P3DT3H57M52S"]}],
             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
             "startTime":["2020-09-13T13:00:11.000Z"],"endTime":["2020-09-20T13:00:11.000Z"],
-            "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],
-            "returnsAccepted":["false"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],"returnsAccepted":["false"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
@@ -1845,8 +1960,7 @@ sResponseItems2Test = \
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"49.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"49.0"}],
              "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT6H52M52S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
              "startTime":["2020-07-15T15:53:16.000Z"],"endTime":["2020-07-22T15:53:16.000Z"],
-             "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
-             "returnsAccepted":["false"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
@@ -3024,8 +3138,7 @@ sResponseItems2Test = \
              "timeLeft":["P1DT14H22M28S"]}],
              "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
              "startTime":["2020-01-01T16:22:23.000Z"],"endTime":["2020-01-11T16:22:23.000Z"],
-             "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],
-             "returnsAccepted":["false"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["16"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
@@ -3199,11 +3312,10 @@ sResponseItems2Test = \
                 "expeditedShipping":["false"],
                 "oneDayShippingAvailable":["false"]}],
              "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"40.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"40.0"}],
-             "bidCount":["0"],"sellingState":["Active"],
-             "timeLeft":["P5DT22H29M12S"]}],
+             "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT22H29M12S"]}],
              "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
-             "startTime":["2019-12-21T20:41:58.000Z"],"endTime":["2019-12-28T20:41:58.000Z"],"listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
-             "returnsAccepted":["false"],
+             "startTime":["2019-12-21T20:41:58.000Z"],"endTime":["2019-12-28T20:41:58.000Z"],
+             "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
              "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
              "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
