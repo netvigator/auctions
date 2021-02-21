@@ -229,7 +229,8 @@ def _getTitleRegExress(
                                  bAddDash       = bAddDash,
                                  bSubModelsOK   = bTitleSubModelsOK,
                                  iWordBoundChrs = WORD_BOUNDARY_MAX,
-                                 bPluralize     = bPluralize )
+                                 bPluralize     = bPluralize,
+                                 bExcludeDots   = True )
     #
     if oTableRow.cLookFor:
         #
@@ -239,7 +240,8 @@ def _getTitleRegExress(
                                 sLookFor,
                                 bAddDash       = bAddDash,
                                 bSubModelsOK   = False,
-                                iWordBoundChrs = WORD_BOUNDARY_MAX )
+                                iWordBoundChrs = WORD_BOUNDARY_MAX,
+                                bExcludeDots   = True )
         #
         sRegExpress = '|'.join( ( sRegExpress, sLook4Express ) )
         #
