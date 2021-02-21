@@ -4167,8 +4167,55 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 324466562496
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Dewald model A-502' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-502' )
+        self.assertEqual( oTest.iBrand.cTitle, 'DeWald' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
         #
         #
+        #
+        #
+        #
+        #
+        iThisOne = 265028909832
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find engraved base 300b' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '300B (etched base)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Western Electric' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 143929889905
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should NOT find Marantz 5 Amp!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        self.assertEqual(  oTest.iBrand.cTitle, 'Marantz' )
+        self.assertIsNone( oTest.iCategory )
         #
         #
         #
@@ -4556,7 +4603,7 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find CCA vacuum tube '
+                'should find CCa vacuum tube '
                 'not E88CC or 6922 (aspirational)' )
         #
         #
@@ -4581,6 +4628,48 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'finds Hickok 539C tube tester!' )
         #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 333865256171
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'finds AR-1 speaker!' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 193851426563
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Fada model 700' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114650217123
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should NOT find Hickok	539-C Vacuum Tube!' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 284168423897
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find RCA 50 vacuum tube, even in wrong category!' )
         #
         #
         #
