@@ -4201,6 +4201,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 393122192068
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find e88cc vacuum tube, '
+                'not 6922/CCa/6DJ8 -- stuck on end!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
