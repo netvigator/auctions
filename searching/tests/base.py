@@ -300,6 +300,7 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             oCategory   = Category( cTitle      = 'Tube Tester',
                                     iStars      = 8,
+                                    cExcludeIf  = 'tested',
                                     iUser       = oUser )
             oCategory.save()
             #
@@ -917,6 +918,27 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             #
             oBrand = Brand.objects.get( cTitle = 'Tungsram', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            #
+            oBrand = Brand.objects.get( cTitle = 'Concertone', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            #
+            #
+            oBrand = Brand.objects.get( cTitle = 'National Union', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
