@@ -39,6 +39,7 @@ sBrands = \
  Brociner          |      6 |            |            |
  Brook             |      8 |            |            |
  Chicago           |      7 |            |            | Chicago Standard Transformer Corp.
+ Concertone        |      5 |            |            | Berlant Concertone
  Coronado          |      7 |            |            |
  Crosley           |      3 |            |            |
  Cunningham        |      8 |            |            |
@@ -87,6 +88,7 @@ sBrands = \
  Mullard 10M       |      9 |            |            | 10M
  Mullard IEC       |      5 |            |            | IEC Mullard
  National          |      7 |            |            |
+ National Union    |      7 |            |            | National\\rNU
  PACO              |      2 |            |            |
  Peerless          |      8 |            |            |
  Philips           |      7 |            |            | Phillips
@@ -152,7 +154,10 @@ sModels = \
  245A               |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  300B (etched base) | etched\\rengraved | 9 | t         | Western Electric  |  Vacuum Tube |             |              | f
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
+ 310A               |           |      8 | f            |                   |  Vacuum Tube |             | Camcorder    | t
  417A               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 5U4GA              |           |      6 | f            |                   |  Vacuum Tube | 5U4GB\\r5U4 |              | t
+ 5U4G               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5842               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -160,6 +165,7 @@ sModels = \
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 6CA4 (rectifier)   |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
  6SN7GTB            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -480,7 +486,7 @@ sModels = \
  50-XC4             |           |      9 | t            | Motorola          |        Radio |             |
  532                |           |      8 | f            | Arvin             |        Radio |             |
  H126               |           |      8 | f            | Westinghouse      |        Radio |             |
- 6AU-1              |           |      9 | t            | Garod             |        Radio |             |
+ 6AU-1 (Commander)  |           |      9 | t            | Garod             |        Radio | Commander   |
  2A                 |           |      8 | f            | Addison           |        Radio |             |
  700                |           |     10 | f            | Fada              |        Radio | Cloud       |
  K25                |           |      7 | f            | Kadette           |        Radio |             |
@@ -511,9 +517,9 @@ sModels = \
  Imperial           |           |      9 | f            | Jensen            |Speaker System|             |
  15" Silver         |           |      7 | f            | Tannoy            |       Driver |             |
  GRF                |           |      7 | f            | Tannoy            |Speaker Enclosure|          |
- 539-A              |           |      5 | f            | Hickok            |  Tube Tester |             |
- 539-B              |           |      9 | f            | Hickok            |  Tube Tester |             |
- 539-C              |           |      5 | f            | Hickok            |  Tube Tester |             |
+ 539-A              |           |      5 | f            | Hickok            |  Tube Tester |             | HICKOK 539A TESTED
+ 539-B              |           |      9 | f            | Hickok            |  Tube Tester |             | HICKOK 539B TESTED
+ 539-C              |           |      5 | f            | Hickok            |  Tube Tester |             | HICKOK 539C TESTED
  600A               |           |      5 | t            | Hickok            |  Tube Tester |             |
  752A               |           |      6 | t            | Hickok            |  Tube Tester |             |
  6000A              |           |      6 | t            | Hickok            |  Tube Tester |             |
@@ -841,6 +847,7 @@ sExampleResponse = \
 # ###      also first item is tested in core.test_utils_ebay             ###
 
 # helpful useful regex re for splitting item info: .(?=,")
+# search files grep -rl  #  *.json .
 # working
 sResponseItems2Test = \
 '''{"findItemsByKeywordsResponse":
@@ -863,6 +870,120 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["233902651284"],
+            "title":["ANTIQUE FADA CATALIN TUBE RADIO #1000"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mIqlwVGAoJMeEhHTye5UHfA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/ANTIQUE-FADA-CATALIN-TUBE-RADIO-1000-\/233902651284"],
+            "paymentMethod":["CashOnPickup"],"autoPay":["false"],
+            "postalCode":["070**"],"location":["Lincoln Park,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1295.75"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1295.75"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT15H17M10S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-02-20T00:19:07.000Z"],"endTime":["2021-03-02T00:19:07.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["193900630287"],
+            "title":["Catalin Tube Radio, Emerson #520, 1946, Works, Beautiful, Not perfect, Read Text"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mM9ifYTpV11oGPGjDA-sMTA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Catalin-Tube-Radio-Emerson-520-1946-Works-Beautiful-Not-perfect-Read-Text-\/193900630287"],
+            "autoPay":["false"],
+            "postalCode":["208**"],"location":["Damascus,MD,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"29.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"29.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT7H15M26S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-02-18T16:17:23.000Z"],"endTime":["2021-02-25T16:17:23.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["11"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["133669957883"],
+            "title":["PAIR 5U4G COKE BOTTLE SHAPE Vacuum TubeS HICKOK 539C TESTED"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mFS_dxUttENTAF1KSVWdYUg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/PAIR-5U4G-COKE-BOTTLE-SHAPE-Vacuum-TubeS-HICKOK-539C-TESTED-\/133669957883"],
+            "autoPay":["false"],"returnsAccepted":["true"],
+            "postalCode":["070**"],"location":["Garfield,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"15.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"15.5"}],
+            "bidCount":["2"],"sellingState":["Active"],"timeLeft":["P0DT10H38M17S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-02-19T19:40:19.000Z"],"endTime":["2021-02-26T19:40:19.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["114707640209"],
+            "title":["ONE 6CA4 OR EZ81  Vacuum Tube HICKOK 539C TESTED"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mSOgyyjMpkSJdG9n2RSvARg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/ONE-6CA4-EZ81-Vacuum-Tube-HICKOK-539C-TESTED-\/114707640209"],
+            "autoPay":["false"],"returnsAccepted":["true"],
+            "postalCode":["070**"],"location":["Garfield,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT9H54M2S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-02-28T18:56:43.000Z"],"endTime":["2021-03-07T18:56:43.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["224358169615"],
+            "title":["Vintage 1930's RCA Radiotron Type 10 210 310 Engraved Base Globe Amplifier Tube"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],"secondaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mPo73tKak-hrD5FnWf7Cchg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-1930s-RCA-Radiotron-Type-10-210-310-Engraved-Base-Globe-Amplifier-Tube-\/224358169615"],
+            "postalCode":["981**"],"location":["Seattle,WA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"8.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "autoPay":["false"],"sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"90.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"90.0"}],
+            "bidCount":["11"],"sellingState":["Active"],"timeLeft":["P0DT15H58M58S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-02-22T01:00:52.000Z"],"endTime":["2021-03-01T01:00:52.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],"returnsAccepted":["true"],
+            "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/224358169615_1_0_1.jpg"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["164689957035"],
+            "title":["Beautiful catalin Garod Commander radio"],
+            "globalId":["EBAY-US"],"subtitle":["Butterscotch\/red trim garod commander"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],"secondaryCategory":[{"categoryId":["132"],"categoryName":["Other Collectible Radios"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mE7GIZtGllsYlKB8gLP7NqQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Beautiful-catalin-Garod-Commander-radio-\/164689957035"],
+            "paymentMethod":["PayPal"],"autoPay":["true"],
+            "postalCode":["740**"],"location":["Sapulpa,OK,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"550.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"550.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT16H54M35S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"725.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"725.0"}],
+            "startTime":["2021-02-07T01:56:48.000Z"],"endTime":["2021-02-14T01:56:48.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["14"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["114665350940"],
+            "title":["LOT OF 5 6V6 Vacuum TubeS HICKOK 539C TESTED"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mgLZuYET1wPwSoxUp4a1s2g\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/LOT-5-6V6-Vacuum-TubeS-HICKOK-539C-TESTED-\/114665350940"],
+            "autoPay":["false"],
+            "postalCode":["070**"],"location":["Garfield,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"24.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"24.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT9H55M16S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-02-03T18:58:07.000Z"],"endTime":["2021-02-10T18:58:07.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["393122192068"],
             "title":["pair of mullard mitcham e88cc gold pin tubes, 7L R code - 6922\/CCa\/6DJ8"],

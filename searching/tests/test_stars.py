@@ -4238,6 +4238,182 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 164689957035
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Garrod 6AU-1 (Commander) Radio' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6AU-1 (Commander)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Garod' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 224358169615
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find RCA 10 vacuum tube, 1st on list' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '10' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 133669957883
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 5U4G vacuum tube, not Hickok 539-C!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5U4G' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114707640209
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find RCA 6CA4 vacuum tube, not Hickok 539-C!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6CA4 (rectifier)' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114665350940
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6V6 vacuum tube, not Hickok 539-C!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6V6 (metal can)' )
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114650217123
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should NOT find Hickok	539-C Vacuum Tube!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114645019556
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'production found Hickok 539C tube tester!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        self.assertIsNone( oTest.iCategory )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 193900630287
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Emerson 520 radio' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '520' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Emerson' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 114630935472
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'production found Hickok 539C tube tester!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12AX7' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Concertone' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7025 (12AX7A)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Concertone' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 373359374010
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find National KT-88 (generic) '
+                'not Genalex KT-88 (GEC)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-88' )
+        self.assertEqual( oTest.iBrand.cTitle, 'National Union' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-88 (GEC)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -4604,18 +4780,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 373359374010
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find National KT-88 (generic) '
-                'not Genalex KT-88 (GEC)' )
-        #
-        #
-        #
-        #
-        #
-        #
         #
         iThisOne = 254810909863
         #
@@ -4624,27 +4788,6 @@ class FindSearchHitsWebTests(
                 'should find CCa vacuum tube '
                 'not E88CC or 6922 (aspirational)' )
         #
-        #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 114630935472
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'finds Hickok 539C tube tester!' )
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 114645019556
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'finds Hickok 539C tube tester!' )
         #
         #
         #
@@ -4665,19 +4808,11 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Fada model 700' )
+                'should find Fada model 700 Radio' )
         #
         #
         #
         #
-        #
-        #
-        #
-        iThisOne = 114650217123
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should NOT find Hickok	539-C Vacuum Tube!' )
         #
         #
         #
@@ -4688,6 +4823,19 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find RCA 50 vacuum tube, even in wrong category!' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 233902651284
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Fada 1000 radio' )
+        #
+        #
         #
         #
         #
