@@ -12,6 +12,7 @@
 # any changes?
 # 1st, "workon auctions" -- load the virtual environment!!!
 # pip install -r requirements/local.txt
+# then test !!!!  duh !!!!
 # don't do this one, pip install -r requirements/test.txt
 
 
@@ -25,12 +26,14 @@ wheel==0.36.2
 
 
 # LTS Django
-# django==2.2.13
-django==3.1.4
+# django==3.1.4
+django==3.1.7
 
 
 # Configuration
 django-environ==0.4.5
+
+
 # whitenoise==5.0.1
 # whitenoise==5.1.0
 whitenoise==5.2.0
@@ -38,9 +41,8 @@ whitenoise==5.2.0
 
 # Forms
 django-braces==1.14.0
-# django-crispy-forms==1.9.1
-# django-crispy-forms==1.9.2
-django-crispy-forms==1.10.0
+# django-crispy-forms==1.10.0
+django-crispy-forms==1.11.2
 
 # Models
 # django-model-utils==4.0.0
@@ -55,7 +57,7 @@ Pillow==8.0.1
 # argon2-cffi==19.2.0
 argon2-cffi==20.1.0
 
-# For user registration, either via email or social
+# For user registration, either via email or social media
 # Well-built with regular release cycles!
 # django-allauth==0.42.0
 # django-allauth==0.43.0
@@ -72,10 +74,11 @@ psycopg2-binary==2.8.6
 # Unicode slugification
 awesome-slugify==1.6.5
 
+
 # Time zones support
-# pytz==2020.1
-# pytz==2020.4
-pytz==2020.5
+# pytz==2020.5
+pytz==2021.1
+
 
 # Redis support
 # django-redis==4.11.0
@@ -87,9 +90,9 @@ redis==3.5.3
 
 # Your custom requirements go here
 
-# django-countries==6.1.2
-# django-countries==6.1.3
-django-countries==7.0
+# django-countries==7.0
+django-countries==7.1
+
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -98,9 +101,9 @@ django-countries==7.0
 
 
 # for the ebay API
-# lxml==4.5.1
-# lxml==4.6.1
-lxml==4.6.2
+# lxml==4.6.2
+lxml==4.6.3
+
 
 # requests==2.23.0
 # requests==2.25.0
@@ -111,7 +114,8 @@ requests==2.25.1
 requests[security]==2.25.1
 
 # to handle the ebay category lists
-django-mptt==0.11.0
+# django-mptt==0.11.1
+django-mptt==0.12.0
 
 # fake admin page
 django-admin-honeypot==1.1.0
@@ -129,8 +133,9 @@ celery==5.0.5
 # redistools==0.1.7
 
 # users need to select their timezone
-# django-timezone-field==4.0
-django-timezone-field==4.1.1
+# django-timezone-field==4.1.1
+django-timezone-field==4.1.2
+
 
 # need menus
 # django-menu==0.1.13
@@ -144,14 +149,14 @@ django-timezone-field==4.1.1
 kombu==5.0.2
 
 # need this 2019-02-13
-# django-extensions==2.2.9
-# django-extensions==3.0.9
-django-extensions==3.1.0
+# django-extensions==3.1.0
+django-extensions==3.1.1
+
 
 # cron job scheduling 2019-05-21
 # django-chroniker==1.0.12
 # auction bot only needs cron jobs
 
 # know whether user is logged in 2019-12-11
-# but py.up says this not work under python3
+# but py.up says this does not work under python3
 django-last-seen==0.3
