@@ -88,7 +88,7 @@ sBrands = \
  Mullard 10M       |      9 |            |            | 10M
  Mullard IEC       |      5 |            |            | IEC Mullard
  National          |      7 |            |            |
- National Union    |      7 |            |            | National\\rNU
+ National Union    |      7 | International |         | National\\rNU
  PACO              |      2 |            |            |
  Peerless          |      8 |            |            |
  Philips           |      7 |            |            | Phillips
@@ -102,6 +102,7 @@ sBrands = \
  Sargent-Rayment   |      4 |            |            |
  Scott, H.H.       |      8 |            |            | Scott\\rH.H. Scott
  Sentinel          |      6 |            |            |
+ Servicemaster     |      5 |            |            | International\\rIC Servicemaster\\rInternational Servicemaster
  Sherwood          |      5 |            |            |
  Siemens           |      4 |            |            |
  Silvertone        |      3 |            |            |
@@ -234,6 +235,7 @@ sModels = \
  EL803S             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ KT-77              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             |              | f
  KT-88              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-25 (10Y)        |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -870,6 +872,133 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["233925275716"],
+            "title":["ANTIQUE FADA CATALIN TUBE RADIO #1000"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mIqlwVGAoJMeEhHTye5UHfA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/ANTIQUE-FADA-CATALIN-TUBE-RADIO-1000-\/233925275716"],
+            "paymentMethod":["CashOnPickup"],"autoPay":["false"],
+            "postalCode":["070**"],"location":["Lincoln Park,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1295.75"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1295.75"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT15H51M17S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-10T00:53:01.000Z"],"endTime":["2021-03-20T00:53:01.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["333913480232"],
+            "title":["JBL N2400 Crossover set D130,075,C36,C38,LE175"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73372"],"categoryName":["Vintage Speaker & Horn Drivers"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/m7W2y94DY6A6igtTUNzFHmg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-N2400-Crossover-set-D130-075-C36-C38-LE175-\/333913480232"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["480**"],"location":["Clinton Township,MI,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"30.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"220.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"220.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT15H7M32S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-08T00:11:04.000Z"],"endTime":["2021-03-15T00:11:04.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["6"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["284216157724"],
+            "title":["KT77 International Tubes Set of 4 EL34 New Old Stock NOS Eico Heathkit McIntosh "],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mw-97YszIXPwPjCu3-Rmqqg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/KT77-International-Tubes-Set-4-EL34-New-Old-Stock-NOS-Eico-Heathkit-McIntosh-\/284216157724"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["493**"],"location":["Rockford,MI,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"98.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"98.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT10H2M16S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"128.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"128.0"}],
+            "startTime":["2021-03-11T19:04:18.000Z"],"endTime":["2021-03-21T19:04:18.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["393183444861"],
+            "title":["valvo e88cc red label edition 1964 siemens germany gold pins, cca cv2492 6922"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m_Imy64Srd9rYgRx5v_CbCQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/valvo-e88cc-red-label-edition-1964-siemens-germany-gold-pins-cca-cv2492-6922-\/393183444861"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"10.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"65.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"65.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT12H16M6S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-11T21:18:40.000Z"],"endTime":["2021-03-21T21:18:40.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["193962263668"],
+            "title":["One (1) Siemens & Halske CCa = E188CC\/ 7308 \/ E88CC \/ 6922"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mj5qtT_X1ok47eAelDaAJzA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/One-1-Siemens-Halske-CCa-E188CC-7308-E88CC-6922-\/193962263668"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "location":["Singapore"],"country":["SG"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"99.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"99.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT20H58M36S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-16T06:00:31.000Z"],"endTime":["2021-03-23T06:00:31.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["265084499560"],
+            "title":["ECC88 E88CC 6922 6DJ8 TELEFUNKEN GERMANY TUBES MATCHED PAIR NOS 2 pcs."],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mc7kvhUiXlP5G9FbdDZtYgw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/ECC88-E88CC-6922-6DJ8-TELEFUNKEN-GERMANY-TUBES-MATCHED-PAIR-NOS-2-pcs-\/265084499560"],
+            "paymentMethod":["PayPal","VisaMC"],"autoPay":["false"],
+            "location":["Serbia"],"country":["RS"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["10"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"129.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"129.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT0H25M19S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-11T09:28:30.000Z"],"endTime":["2021-03-18T09:28:30.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],
+            "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["353415718707"],
+            "title":["1 vintage Telefunken e88cc gold pin tube  -tested-  6922 6dj8"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m9FSL2HtR9muBSaMpOsbCDw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/1-vintage-Telefunken-e88cc-gold-pin-tube-tested-6922-6dj8-\/353415718707"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["467**"],"location":["New Haven,IN,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"58.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"58.0"}],
+            "bidCount":["15"],"sellingState":["Active"],"timeLeft":["P1DT15H29M52S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-11T00:31:45.000Z"],"endTime":["2021-03-18T00:31:45.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["28"]}],
+            "returnsAccepted":["true"],"isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["393177154814"],
+            "title":["2 NOS siemens e88cc audiophile tubes, gm tested, rare early type, 6922 CCa HIFI"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m_qkpLpLD3hMQXU9qx-sr8g\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-NOS-siemens-e88cc-audiophile-tubes-gm-tested-rare-early-type-6922-CCa-HIFI-\/393177154814"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["902**"],"location":["Redondo Beach,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"14.95"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT5H52M38S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-03-07T14:54:58.000Z"],"endTime":["2021-03-17T14:54:58.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["233902651284"],
             "title":["ANTIQUE FADA CATALIN TUBE RADIO #1000"],
