@@ -1,5 +1,6 @@
 # Pro-tip: Try not to put anything here. Avoid dependencies in
 # production that aren't in development.
+# first load the virtual environment, then
 # pip install -r requirements/production.txt
 -r base.txt
 
