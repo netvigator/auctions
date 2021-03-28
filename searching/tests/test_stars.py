@@ -4126,7 +4126,7 @@ class FindSearchHitsWebTests(
                     '6DJ8',
                     'E188CC',
                     'ECC88 (=6DJ8)' )
-
+        #
         for i in range( len( dItemsToTest[ iThisOne ] ) ):
             #
             oTest = dItemsToTest[ iThisOne ][ i ]
@@ -4408,6 +4408,67 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'KT-88 (GEC)' )
         self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393177154814
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find e88cc but production also found 6922 CCa on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Siemens' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 284216157724
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Servicemaster KT-77 '
+                'production found all brands on end!?' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-77' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Servicemaster' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393183444861
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find valvo e88cc '
+                'not cca cv2492 & 6922 on end,'
+                'not finding siemens would be enhancement' )
+        #
+        tBrands = ( 'Siemens', 'Valvo' )
+        #
+        for i in range( len( dItemsToTest[ iThisOne ] ) ):
+            #
+            oTest = dItemsToTest[ iThisOne ][ i ]
+            #
+            self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+            self.assertIn(    oTest.iBrand.cTitle, tBrands )
+            self.assertEqual( oTest.iCategory.cTitle, ( 'Vacuum Tube' ) )
+            #
+            self.assertIsDateTimeValue( oTest.tTimeEnd )
+            #
         #
         #
         #
@@ -4835,6 +4896,79 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find Fada 1000 radio' )
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393177154814
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find e88cc not 6922 CCa as latter on end' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 353415718707
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find e88cc not 6922 6dj8 as latter on end' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 265084499560
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'enhancement idea: look into parens, '
+                'find ECC88 not E88CC 6922 or 6DJ8' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 193962263668
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'enhancement idea: exclude after =, '
+                'find CCa not E188CC 7308  E88CC or 6922' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 333913480232
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find JBL N2400 Crossover '
+                'not D130  075 C36 C38 LE175 on end' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 233925275716
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Fada 1000 on end not Catalin' )
         #
         #
         #
