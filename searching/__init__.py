@@ -29,6 +29,7 @@ DROP_AFTER_THIS = (
         r'ala\b|'
         r'used* (?:with|in|on)\b|'
         r'same as\b|'
+        r'=\b|'
         r'not\b|'
         r'like\b|'
         r'compatible with\b|'
