@@ -100,7 +100,7 @@ django-countries==7.0
 # for the ebay API
 # lxml==4.5.1
 # lxml==4.6.1
-lxml==4.6.2
+lxml==4.6.3
 
 # requests==2.23.0
 # requests==2.25.0
