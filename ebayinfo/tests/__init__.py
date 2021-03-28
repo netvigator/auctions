@@ -234,6 +234,7 @@ sEbayCategoryDump = \
  5006 |       10806 | 1930-69                       |      6 |     37840 | t             |          117 |          0
  9891 |       39996 | Vintage Manuals               |      5 |    175741 | t             |          117 |          0
 130254|       64627 | Vintage Tubes & Tube Sockets  |      5 |    175741 | t             |          119 |          2
+ 9892 |       73372 | Vintage Speaker & Horn Drivers |     5 |    175741 | t             |          124 |          0
 
 219227|        6000 | eBay Motors                   |      1 |      6000 | f             |           75 |        100
 220511|        6028 | Parts & Accessories           |      2 |      6000 | f             |           75 |        100
