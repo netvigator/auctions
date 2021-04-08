@@ -27,7 +27,7 @@ wheel==0.36.2
 
 # LTS Django
 # django==3.1.4
-django==3.1.7
+django==3.1.8
 
 
 # Configuration
