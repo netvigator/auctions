@@ -1,3 +1,7 @@
+#
+# do not modify on server! this file is under version control!
+# update on development machine, commit changes, then update server
+#
 ### OSX ###
 .DS_Store
 .AppleDouble
@@ -77,6 +81,7 @@ staticfiles/
 
 .cache/
 .bin/
+.lib/
 .lib64/
 .
 *.kate-swp
