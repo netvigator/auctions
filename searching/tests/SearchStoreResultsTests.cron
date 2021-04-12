@@ -1,5 +1,7 @@
-#!/bin/bash
-#source ~/bin/config.sh
+#!/usr/bin/env bash
+#
+# this is only run on a development machine!
+#
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 LOGFILE="/tmp/searches/searches.log"
 if [ $(echo `date +%s` / 86400 % 3 == 0 |/usr/bin/bc) -eq 1 ]
