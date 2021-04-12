@@ -4475,6 +4475,57 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 393221366294
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 7308 only, not stuff on end, '
+                'why did production find them all?' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '7308' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 353415718707
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find e88cc not 6922 6dj8 as latter on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393177154814
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find e88cc not 6922 CCa as latter on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Siemens' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -4820,7 +4871,7 @@ class FindSearchHitsWebTests(
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Heath 401-419 not Altec 416,'
+                'should find Heath 401-419 not Altec 416, '
                 'question mark on end means maybe not' )
         #
         #
@@ -4902,27 +4953,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 393177154814
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find e88cc not 6922 CCa as latter on end' )
-        #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 353415718707
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find e88cc not 6922 6dj8 as latter on end' )
-        #
-        #
-        #
-        #
-        #
         #
         iThisOne = 265084499560
         #
@@ -4959,16 +4989,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        #
-        #
-        #
-        #
-        #
-        iThisOne = 233925275716
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Fada 1000 on end not Catalin' )
         #
         #
         #
