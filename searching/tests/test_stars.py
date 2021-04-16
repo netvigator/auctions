@@ -4526,6 +4526,30 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 294106808636
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'finds JBL 4311B Speaker System OK, '
+                'but hit stars are too low' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '4311B' )
+        self.assertEqual( oTest.iBrand.cTitle, 'JBL' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -4957,7 +4981,7 @@ class FindSearchHitsWebTests(
         iThisOne = 265084499560
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'enhancement idea: look into parens, '
                 'find ECC88 not E88CC 6922 or 6DJ8' )
         #
@@ -4969,7 +4993,7 @@ class FindSearchHitsWebTests(
         iThisOne = 193962263668
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'enhancement idea: exclude after =, '
                 'find CCa not E188CC 7308  E88CC or 6922' )
         #
@@ -4983,9 +5007,11 @@ class FindSearchHitsWebTests(
         iThisOne = 333913480232
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find JBL N2400 Crossover '
                 'not D130  075 C36 C38 LE175 on end' )
+        #
+        #
         #
         #
         #
