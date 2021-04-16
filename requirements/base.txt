@@ -26,8 +26,8 @@ wheel==0.36.2
 
 
 # LTS Django
-# django==3.1.4
-django==3.1.7
+# django==3.1.7
+django==3.2
 
 
 # Configuration
@@ -49,8 +49,8 @@ django-crispy-forms==1.11.2
 django-model-utils==4.1.1
 
 # Images
-# Pillow==8.0.1
-Pillow==8.1.1
+# Pillow==8.1.1
+Pillow==8.2
 
 # Password storage
 # argon2-cffi==19.2.0
@@ -148,8 +148,8 @@ django-timezone-field==4.1.2
 kombu==5.0.2
 
 # need this 2019-02-13
-# django-extensions==3.1.0
-django-extensions==3.1.1
+# django-extensions==3.1.1
+django-extensions==3.1.2
 
 
 # cron job scheduling 2019-05-21
