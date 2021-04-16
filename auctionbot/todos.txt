@@ -606,3 +606,7 @@ https://github.com/eBay/ebay-oauth-python-client
 Please take the necessary action to migrate your applications to use OAuth tokens for calling the Shopping API.
 Note: Make sure that all your Shopping API calls are being made on HTTPS in both sandbox and production environments.
 We appreciate your help in continuing to ensure eBay is a secure and trusted marketplace.
+
+
+2021-04-16
+finder list select all should select most recent of relisted auctions -- d/n select the prior ones
