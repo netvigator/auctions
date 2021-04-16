@@ -410,3 +410,7 @@ countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States',
 # code can know if a test is being run
 TESTING  = len(sys.argv) > 1 and 'test' in sys.argv[1]
 COVERAGE = '_' in os.environ and os.environ['_'].endswith( 'coverage' )
+
+
+# 2021-04-17 getting a message on runnig tests after pip upgrade
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
