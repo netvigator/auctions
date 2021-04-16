@@ -549,6 +549,7 @@ sModels = \
  C38 (Baron)        |           |      8 | f            | JBL               |Speaker Enclosure| Baron    | S-38\\rBookshelf\\rN-38
  C45 (Metregon)     |           |      6 | f            | JBL               |Speaker Enclosure| Metregon |
  L220 (Oracle)      |           |      6 | f            | JBL               |Speaker System|             |
+ 4311B              |           |      8 | t            | JBL               |Speaker System|             |
  CA-5               |           |      5 | f            | Hickok            |    Accessory |             |
  CA-3               |           |      5 | t            | Hickok            |    Accessory |             | CA-5
  Heresy (H700)      |           |      6 | f            | Klipsch           |Speaker System|             |
@@ -872,6 +873,22 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["294106808636"],
+            "title":["JBL 4311B Studio Control Monitors in Walnut Enclosures w\/ Black Grill Covers"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mbvsy7_Htz2_Lf7vuecdnfg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/JBL-4311B-Studio-Control-Monitors-Walnut-Enclosures-w-Black-Grill-Covers-\/294106808636"],
+            "autoPay":["true"],"returnsAccepted":["false"],
+            "postalCode":["803**"],"location":["Boulder,CO,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"200.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"800.0"}],"bidCount":["15"],"sellingState":["Active"],"timeLeft":["P0DT7H55M21S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-04-06T19:56:10.000Z"],"endTime":["2021-04-13T16:55:50.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["42"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["393221366294"],
             "title":["2 x Raytheon 7308 vacuum tubes\/valves - cv4108 e188cc e88cc 6922 cca rode preamp"],
