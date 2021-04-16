@@ -68,7 +68,6 @@ logging_level = logging.WARNING
 _oDropAfterThisFinder = getRegExObj( DROP_AFTER_THIS )
 
 
-
 class HitsListClass( list ):
 
     tPROPERTIES = (
@@ -86,7 +85,7 @@ class HitsListClass( list ):
         'cModelAlphaNum',
         'cTitleLeftOver',
         'cWhereCategory',
-        'bIncludeThis' ) # bIncludeThis
+        'bIncludeThis' )
     #
     _dDefaults = dict(
             iStars = 1,
@@ -884,6 +883,19 @@ def updateModelIDinTitle(
 
 
 
+def _isCategoryInTitle( o ): return o.cWhereCategory == 'title'
+
+
+def _gotCategoryInTitle( oHitsList ):
+    #
+    # cWhereCategory 'title' 'heirarchy1' or 'heirarchy2'
+    #
+    # if have category in title, discount other categories
+    #
+    return get1stThatMeets( oHitsList, _isCategoryInTitle )
+
+
+
 def _doStepThruCategories(
             oItemFound,
             oUserItemFound,
@@ -1039,12 +1051,7 @@ def _doStepThruCategories(
     #
     # if have category in title, discount other categories
     #
-    def gotCategorInTitle( o ): return o.cWhereCategory == 'title'
-    #
-    oGotCategoryInTitle = get1stThatMeets(
-                            oHitsList, gotCategorInTitle )
-    #
-    if oGotCategoryInTitle:
+    if len( oHitsList ) > 1 and _gotCategoryInTitle( oHitsList ):
         #
         for o in oHitsList:
             #
@@ -2417,7 +2424,21 @@ def _doScoreCandidates(
             #maybePrint( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
             #
         #
-    else:
+    else: # len( oHitsList ) == 1
+        #
+        if not _isCategoryInTitle( oHitsList[0] ):
+            #
+            # need to undiscount
+            #
+            oHit = oHitsList[0]
+            #
+            oHit.iStarsCategory = oHit.oCategory.iStars
+            #
+            oHit.iHitStars      = (
+                    oHit.iStarsModel *
+                    oHit.iStarsBrand *
+                    oHit.iStarsCategory )
+            #
         #
         if bRecordSteps:
             #
