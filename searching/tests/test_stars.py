@@ -4550,6 +4550,80 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 254948354352
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find E88CC vacuum tube '
+                'not the rest' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Tungsram' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 333865256171
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'finds AR-1 speaker!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '2ax' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Acoustic Research' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 265126706480
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should not find AA xover (aspirational)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual(  oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 203352800117
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should not find D-120 driver' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual(  oTest.iModel.cTitle, 'D-120' )
+        self.assertEqual(  oTest.iBrand.cTitle, 'RCA' )
+        self.assertIsNone( oTest.iCategory )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -4930,16 +5004,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 333865256171
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'finds AR-1 speaker!' )
-        #
-        #
-        #
-        #
-        #
         iThisOne = 193851426563
         #
         self.print_len(
@@ -5010,7 +5074,6 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find JBL N2400 Crossover '
                 'not D130  075 C36 C38 LE175 on end' )
-        #
         #
         #
         #
