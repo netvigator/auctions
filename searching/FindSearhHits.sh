@@ -5,4 +5,8 @@
 #
 cd ~/Devel/auctions
 source ~/.virtualenvs/auctions/bin/activate
-python manage.py shell --command="from searching.tasks import doFindSearhHitsTasks; doFindSearhHitsTasks()"
+python manage.py shell --command=\
+    "from searching.tasks import doFindSearhHitsTasks; " \
+    "from keepers.tasks import doGetFetchUserItemsTasks; " \
+    "doGetFetchUserItemsTasks(); " \
+    "doFindSearhHitsTasks()"
