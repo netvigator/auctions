@@ -390,7 +390,7 @@ sModels = \
  C-32               |           |      7 | f            | Luxman            |       Preamp |             |
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
- AR-1               |           |      6 | f            | Acoustic Research |Speaker System| One         |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
+ AR-1               |           |      6 | f            | Acoustic Research |Speaker System|             |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  2                  |           |      6 | f            | Acoustic Research |Speaker System| AR-2        | LST-2\\r2 way\\r(2)
  2a                 |           |      6 | f            | Acoustic Research |Speaker System| AR-2a       |
  2x                 |           |      7 | f            | Acoustic Research |Speaker System| AR-2x       |
@@ -533,6 +533,7 @@ sModels = \
  L100 (Century)     |           |      7 | f            | JBL               | Speaker System| Century    | mid century
  LE-175             |           |      8 | f            | JBL               |       Driver |             |
  275                |           |     10 | f            | JBL               |       Driver |             |
+ D-120              |           |      6 | f            | JBL               |       Driver | 120         |
  D-130              |           |      7 | f            | JBL               |       Driver | 130         |
  D-130A             |           |      7 | f            | JBL               |       Driver | 130A        |
  D-130B             |           |      7 | f            | JBL               |       Driver | 130B        |
@@ -557,6 +558,7 @@ sModels = \
  K-55-V             |           |      6 | f            | Klipsch           |       Driver |             |
  K-77               |           |      6 | f            | Klipsch           |       Driver |             |
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
+ AA                 |           |      6 | f            | Klipsch           |    Crossover |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  P-30               |           |      8 | f            | Stephens          |       Driver |             |
  214                |           |      7 | f            | Stephens          |       Driver |             |
@@ -871,6 +873,53 @@ sResponseItems2Test = \
             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
             "startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["265126706480"],
+            "title":["Heathkit AA-18 Vintage Solid State Amplifier"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mSYgGaI97-r6g3Wj9f_E5IQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-AA-18-Vintage-Solid-State-Amplifier-\/265126706480"],
+            "autoPay":["false"],
+            "postalCode":["907**"],"location":["Los Alamitos,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.05"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"91.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"91.0"}],
+            "bidCount":["4"],"sellingState":["Active"],"timeLeft":["P2DT14H38M2S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-04-16T23:38:08.000Z"],"endTime":["2021-04-23T23:38:08.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["30"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["254948354352"],
+            "title":["2x Electrically MATCHED E88CC 1968 Tungsram Ujpest PAIR TUBES 6922 CCa CV2492"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mh2HpWPVDG0hqqVU_GdFtUA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-Electrically-MATCHED-E88CC-1968-Tungsram-Ujpest-PAIR-TUBES-6922-CCa-CV2492-\/254948354352"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],"globalId":["EBAY-US"],
+            "location":["Bulgaria"],"country":["BG"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"79.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"79.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT7H55M8S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-04-19T16:58:07.000Z"],"endTime":["2021-04-29T16:58:07.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["203352800117"],
+            "title":["RCA PA 120-101B  Extremely Rare Vintage Integrated Amplifier ( 120 Watts Per Cha"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mF3_GT075953umukkWjew7Q\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/RCA-PA-120-101B-Extremely-Rare-Vintage-Integrated-Amplifier-120-Watts-Per-Cha-\/203352800117"],
+            "autoPay":["true"],
+            "postalCode":["146**"],"location":["Rochester,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"49.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT11H10M11S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"199.99"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"199.99"}],
+            "startTime":["2021-04-18T20:10:19.000Z"],"endTime":["2021-04-21T20:10:19.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
