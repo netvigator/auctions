@@ -610,3 +610,8 @@ We appreciate your help in continuing to ensure eBay is a secure and trusted mar
 
 2021-04-16
 finder list select all should select most recent of relisted auctions -- d/n select the prior ones
+
+2021-05-10
+before running pmt ebayinfo.tests.test_utils.MarketsAndCategoriesTests
+call test_token_expiration() in /core/tests/test_ebay_api_calls.py
+also update copy of secrets.ini
