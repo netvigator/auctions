@@ -95,7 +95,7 @@ sBrands = \
  Pilot             |      8 |            |            |
  Quad              |      5 |            |            |
  Radford           |      7 |            |            |
- Radio Craftsmen   |      8 |            |            |
+ Radio Craftsmen   |      8 |            |            | Radio Craftsman
  Raytheon          |      7 |            |            |
  RCA               |      7 |            |            |
  Regency           |      5 |            |            |
@@ -341,6 +341,7 @@ sModels = \
  MR-71              |           |      7 | f            | McIntosh          |        Tuner |             |
  122                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp |             |
+ C450               |           |      7 | f            | Radio Craftsmen   |    Amplifier |             |
  HF-65              |           |      7 | f            | EICO              |       Preamp |             |
  PC-1               |           |      9 | f            | Electro-Voice     |       Preamp |             |
  210PA              |           |      6 | f            | Grommes           |       Preamp |             |
@@ -876,13 +877,27 @@ sResponseItems2Test = \
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
+           {"itemId":["265143392793"],
+            "title":["VINTAGE TECHNICS TV\/FM\/AM STEREO RECEIVER SA-450"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mROblBJy5vpkBLoKL6acFAw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/VINTAGE-TECHNICS-TV-FM-AM-STEREO-RECEIVER-SA-450-\/265143392793"],
+            "postalCode":["113**"],"location":["Rego Park,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"25.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"70.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"70.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT11H28M53S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-04-30T20:33:42.000Z"],"endTime":["2021-05-07T20:33:42.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
            {"itemId":["265126706480"],
             "title":["Heathkit AA-18 Vintage Solid State Amplifier"],
-            "globalId":["EBAY-US"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
             "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mSYgGaI97-r6g3Wj9f_E5IQ\/140.jpg"],
             "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-AA-18-Vintage-Solid-State-Amplifier-\/265126706480"],
-            "autoPay":["false"],
             "postalCode":["907**"],"location":["Los Alamitos,CA,USA"],"country":["US"],
             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.05"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"91.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"91.0"}],
@@ -909,11 +924,10 @@ sResponseItems2Test = \
 
            {"itemId":["203352800117"],
             "title":["RCA PA 120-101B  Extremely Rare Vintage Integrated Amplifier ( 120 Watts Per Cha"],
-            "globalId":["EBAY-US"],
+            "globalId":["EBAY-US"],"autoPay":["true"],
             "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
             "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mF3_GT075953umukkWjew7Q\/140.jpg"],
             "viewItemURL":["https:\/\/www.ebay.com\/itm\/RCA-PA-120-101B-Extremely-Rare-Vintage-Integrated-Amplifier-120-Watts-Per-Cha-\/203352800117"],
-            "autoPay":["true"],
             "postalCode":["146**"],"location":["Rochester,NY,USA"],"country":["US"],
             "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"49.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"149.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"149.99"}],
