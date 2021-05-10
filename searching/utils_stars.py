@@ -2424,7 +2424,7 @@ def _doScoreCandidates(
             #maybePrint( 'len( lItemFoundSort ):', len( lItemFoundSort ) )
             #
         #
-    else: # len( oHitsList ) == 1
+    elif oHitsList: # len( oHitsList ) == 1
         #
         if not _isCategoryInTitle( oHitsList[0] ):
             #
