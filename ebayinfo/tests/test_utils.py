@@ -19,7 +19,8 @@ from ebayinfo           import ( EBAY_SHIPPING_CHOICES,
 from ..models           import EbayCategory, Market, CategoryHierarchy
 
 # the following are in the tests __init__.py file
-from ..tests            import ( sExampleCategoryVersion, sExampleCategoryList,
+from ..tests            import ( sExampleCategoryVersion,
+                                 sExampleCategoryList,
                                  EBAY_CURRENT_VERSION_US,
                                  EBAY_CURRENT_VERSION_SG )
 
@@ -32,6 +33,7 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                                  getEbayCategoryHierarchies )
 
 from .base              import PutMarketsInDatabaseTestBase
+from .test_auth_token   import ConfFileTokenExpiredTests
 
 from pyPks.File.Del     import DeleteIfExists
 from pyPks.File.Write   import WriteText2File
@@ -49,6 +51,7 @@ sExampleWrongChildTag = sExampleCategoryVersion.replace(
 
 class CatetoryVersionMissing( Exception ): pass
 class CatetoryListHasNewVers( Exception ): pass
+
 
 
 
@@ -306,6 +309,10 @@ class MarketsAndCategoriesTests(
     '''test getMarketsIntoDatabase()'''
     #
 
+    def test_token_expiration( self ):
+        #
+        ConfFileTokenExpiredTests.not_here_test_token_expiration( self )
+
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_got_current_category_version_list( self ):
         #
@@ -342,7 +349,7 @@ class MarketsAndCategoriesTests(
             #
         else:
             #
-            print( '\n\n### ebay categories are up to date. ###\n' )
+            print( '\nebay categories are up to date.' )
             #
 
 
