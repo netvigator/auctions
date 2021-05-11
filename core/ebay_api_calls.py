@@ -65,7 +65,7 @@ def _getConfValues():
 oConfValues = _getConfValues()
 
 
-def _getApiConfValues( bUseSandbox = False ):
+def getApiConfValues( bUseSandbox = False ):
     #
     if bUseSandbox:
         dUseThis = oConfValues.dEbaySandbox
@@ -147,7 +147,7 @@ def _getItemInfo( uItemNumb, sCallName,
         dParams['IncludeSelector'] = ','.join( tWantMore )
         #
     #
-    dConfValues = _getApiConfValues( bUseSandbox )
+    dConfValues = getApiConfValues( bUseSandbox )
     #
     sEndPointURL= dConfValues[ "endpoints"][ 'shopping'        ]
     iSiteID     = dConfValues[ "call"     ][ "global_id"       ]
@@ -192,7 +192,7 @@ def _getCategoriesOrVersion(
             bUseSandbox  = False,
             **headers ):
     #
-    dConfValues = _getApiConfValues( bUseSandbox )
+    dConfValues = getApiConfValues( bUseSandbox )
     #
     sEndPointURL= dConfValues[ "endpoints"][ 'trading'         ]
     sCompatible = dConfValues[ "trading"  ][ "compatibility"   ]
@@ -364,7 +364,7 @@ def _getEbayFindingResponse(
     #
     ''' connect to ebay for finding, get response '''
     #
-    dConfValues = _getApiConfValues( bUseSandbox )
+    dConfValues = getApiConfValues( bUseSandbox )
     #
     sEndPointURL= dConfValues[ "endpoints"][ 'finding'    ]
     sGlobalID   = dConfValues[ "call"     ][ "global_id"  ]
@@ -427,7 +427,7 @@ def findItems(
     #
     dHeader = _getMarketHeader( sMarketID )
     #
-    dConfValues = _getApiConfValues( bUseSandbox )
+    dConfValues = getApiConfValues( bUseSandbox )
     #
     sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
     sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
