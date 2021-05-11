@@ -311,7 +311,10 @@ class MarketsAndCategoriesTests(
 
     def test_token_expiration( self ):
         #
-        ConfFileTokenExpiredTests.not_here_test_token_expiration( self )
+        ConfFileTokenExpiredTests.not_here_test_token_expiration( self ) # real
+       #ConfFileTokenExpiredTests.not_here_test_token_expiration( self, -10 )
+       #ConfFileTokenExpiredTests.not_here_test_token_expiration( self,  10 )
+
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
     def test_got_current_category_version_list( self ):
