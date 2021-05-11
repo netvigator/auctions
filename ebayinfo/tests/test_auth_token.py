@@ -11,21 +11,29 @@ from pyPks.Time.Delta       import getDeltaDaysFromObjs
 class ConfFileTokenExpiredTests( TestCasePlus ):
     '''ebay API conf file values tests'''
 
-    def not_here_test_token_expiration( self ):
+    def not_here_test_token_expiration( self, iDaysTillExpire = None ):
         '''tokens expire, keep tabs'''
         #
-        dConfValues     = getApiConfValues()
+        if iDaysTillExpire is None: # allows manual testing of expiration msg
+            #
+            dConfValues     = getApiConfValues()
+            #
+            sExpiration     = dConfValues['auth']['expires']
+            #
+            oExpiration     = getDateTimeObjFromString( sExpiration )
+            #
+            iDaysTillExpire = - int( getDeltaDaysFromObjs( oExpiration ) )
+            #
         #
-        sExpiration     = dConfValues['auth']['expires']
-        #
-        oExpiration     = getDateTimeObjFromString( sExpiration )
-        #
-        iDaysTillExpire = - int( getDeltaDaysFromObjs( oExpiration ) )
-        #
-        if iDaysTillExpire <= 0:
+        if iDaysTillExpire == 0:
             #
             print('')
             print( '### eBay AUTH token has expired or will soon!!! ###' )
+            #
+        elif iDaysTillExpire < 0:
+            #
+            print('')
+            print( '### eBay AUTH token has expired already!!!      ###' )
             #
         elif iDaysTillExpire < 32:
             #
