@@ -1,10 +1,8 @@
 
 from .base                  import TestCasePlus
 
-from ..ebay_api_calls       import _getApiConfValues, _getListingTypeTuple
+from ..ebay_api_calls       import getApiConfValues, _getListingTypeTuple
 
-from pyPks.Time.Convert     import getDateTimeObjFromString
-from pyPks.Time.Delta       import getDeltaDaysFromObjs
 
 
 class GetConfFileValuesTests( TestCasePlus ):
@@ -12,7 +10,7 @@ class GetConfFileValuesTests( TestCasePlus ):
 
     def setUp( self ):
         #
-        self.dConfValues = _getApiConfValues()
+        self.dConfValues = getApiConfValues()
 
 
     def test_ini_values(self):
@@ -33,7 +31,7 @@ class GetConfFileValuesTests( TestCasePlus ):
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
                 sTokenStart )
 
-        dConfValues = _getApiConfValues( bUseSandbox = True )
+        dConfValues = getApiConfValues( bUseSandbox = True )
 
         self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
@@ -48,33 +46,6 @@ class GetConfFileValuesTests( TestCasePlus ):
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
                 sTokenStart )
 
-    def test_token_expiration( self ):
-        '''tokens expire, keep tabs'''
-        #
-        sExpiration     = self.dConfValues['auth']['expires']
-        #
-        oExpiration     = getDateTimeObjFromString( sExpiration )
-        #
-        iDaysTillExpire = - int( getDeltaDaysFromObjs( oExpiration ) )
-        #
-        if iDaysTillExpire <= 0:
-            #
-            print('')
-            print( '### eBay AUTH token has expired or will soon!!! ###' )
-            #
-        elif iDaysTillExpire < 32:
-            #
-            print('')
-            print( '### eBay AUTH token expires in %s days!!! ###' % iDaysTillExpire )
-        #
-        if iDaysTillExpire < 32:
-            #
-            print( '### obtain new one from eBay developer webiste! ###' )
-            print( '### remember to update server with new token!!! ###' )
-            print('')
-            #
-        #
-        self.assertGreater( iDaysTillExpire, 15 )
 
 
 class TestListingTypeTupleTests( TestCasePlus ):
