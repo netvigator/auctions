@@ -33,6 +33,8 @@ from core.models                import UpperCaseCharField
 # https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
 
 # NOTES: update the database from a backup at bottom
+# NOTES: after ebay updates its categories,
+#        follow the notes at bottom of ./tasks.py
 
 class Market(Model):
     iEbaySiteID     = PosSmallInt(          'site ID', primary_key = True )
