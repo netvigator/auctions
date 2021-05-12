@@ -32,6 +32,8 @@ from core.models                import UpperCaseCharField
 # currencies:
 # https://developer.ebay.com/devzone/finding/callref/Enums/currencyIdList.html
 
+# NOTES: update the database from a backup at bottom
+
 class Market(Model):
     iEbaySiteID     = PosSmallInt(          'site ID', primary_key = True )
     cMarket         = UpperCaseCharField(   'ebay Global ID', max_length = 14,
