@@ -982,9 +982,9 @@ TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_
 
 open psql and auctions database
 if on HK office desktop
-psql -h 192.168.0.88 -p 5432 -U minion auctions
+psql -h 192.168.0.88 -p 5432 -U <user name> auctions
 or if in postgres user on data server
-psql -U minion auctions
+psql -U <user name> auctions
 then
 ALTER TABLE "category_hierarchies" DROP CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i" ;
 ALTER TABLE "itemsfound" DROP CONSTRAINT "itemsfound_iEbaySiteID_id_306e5c7e_fk_markets_iEbaySiteID" ;
@@ -996,18 +996,18 @@ truncate table ebay_categories ;
 truncate table markets ;
 
 BKK (obsolete)
-psql -h 192.168.8.88 -p 5432 -U minion auctions < markets.pg
-psql -h 192.168.8.88 -p 5432 -U minion auctions < ebay_categories.pg
+psql -h 192.168.8.88 -p 5432 -U <user name> auctions < markets.pg
+psql -h 192.168.8.88 -p 5432 -U <user name> auctions < ebay_categories.pg
 
 HK (now main server)
-psql -h 192.168.0.88 -p 5432 -U minion auctions < markets.pg
-psql -h 192.168.0.88 -p 5432 -U minion auctions < ebay_categories.pg
+psql -h 192.168.0.88 -p 5432 -U <user name> auctions < markets.pg
+psql -h 192.168.0.88 -p 5432 -U <user name> auctions < ebay_categories.pg
 
 remotely on data server
-psql -U minion auctions < /tmp/markets.pg
-psql -U minion auctions < /tmp/ebay_categories.pg
+psql -U <user name> auctions < /tmp/markets.pg
+psql -U <user name> auctions < /tmp/ebay_categories.pg
 
-psql -U minion auctions
+psql -U <user name> auctions
 
 ALTER TABLE "category_hierarchies" ADD CONSTRAINT "category_hierarchies_iEbaySiteID_id_30db3771_fk_markets_i"
  FOREIGN KEY ("iEbaySiteID_id") REFERENCES markets("iEbaySiteID") ON DELETE NO ACTION ;
