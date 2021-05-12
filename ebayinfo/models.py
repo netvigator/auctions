@@ -161,3 +161,24 @@ class Condition(models.Model):
         db_table            = 'conditions'
 
 
+'''
+update the database from a backup
+
+from postgres user on server
+### in psql application: ###
+drop database auctions ;
+create database auctions ;
+GRANT ALL PRIVILEGES ON database auctions TO <user name> ;
+
+
+from terminal on remote machine:
+pg_restore -h 192.168.8.88 -p 5432 -U <user name> -c -d auctions <file_name>
+
+at HK office:
+pg_restore -h 192.168.0.88 -p 5432 -U <user name> -c -d auctions <file_name>
+
+roving laptop
+pg_restore -p 5432 -U <user name> -c -d auctions <file_name>
+
+
+'''
