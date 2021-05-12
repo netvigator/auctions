@@ -9,8 +9,7 @@ from django.test        import tag
 from core.utils         import updateMemoryTableUpdated
 
 from core.tests.base    import ( TestCasePlus, getDefaultMarket,
-                                 GetEbayCategoriesWebTestSetUp,
-                                 AssertEmptyMixin )
+                                 GetEbayCategoriesWebTestSetUp )
 
 from ebayinfo           import ( EBAY_SHIPPING_CHOICES,
                                  dEBAY_SHIPPING_CHOICE_CODE,
@@ -304,8 +303,7 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
 
 
 
-class MarketsAndCategoriesTests(
-            AssertEmptyMixin, PutMarketsInDatabaseTestBase ):
+class MarketsAndCategoriesTests( PutMarketsInDatabaseTestBase ):
     '''test getMarketsIntoDatabase()'''
     #
 
