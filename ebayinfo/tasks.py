@@ -81,6 +81,7 @@ def getCategoryListsUpdated( bConsoleOut = False ):
 # ### on a separate machine and database, no need for celery !!! ###
 
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
-# ### from ebayinfo.tasks import getWhetherAnyEbayCategoryListsAreUpdated, getCategoryListsUpdated
+# ### python manage.py test ebayinfo.tests.test_utils.MarketsAndCategoriesTests
+# ### from ebayinfo.tasks import getCategoryListsUpdated    ###
 # ### run getCategoryListsUpdated( bConsoleOut = True )     ###
 # ### run getCategoryListsUpdated() to update               ###
