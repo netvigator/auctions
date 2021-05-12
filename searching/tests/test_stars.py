@@ -5082,12 +5082,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        #
         iThisOne = 265143392793
         #
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find nothing' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 274789395338
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 8298A not 6146B on end' )
         #
         #
         #
