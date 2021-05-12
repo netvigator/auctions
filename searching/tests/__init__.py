@@ -197,6 +197,7 @@ sModels = \
  6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6146B              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6550               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6550A              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -206,6 +207,7 @@ sModels = \
  7308 (Amperex PQ)  |           |      9 | f            | Amperex (PQ)      |  Vacuum Tube |             |              | f
  7581A              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       | 83 total\\r#83 | t
+ 8298A              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  211                |           |      9 | f            |                   |  Vacuum Tube | VT-4C       |              | t
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -874,6 +876,22 @@ sResponseItems2Test = \
             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
             "startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["274789395338"],
+            "title":["2 - 8298A Vacuum Tube 1 WESTINGHOUSE 63-30 & 1 G.E. WDB 6146B "],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["true"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mXz5E5dlGyiO1ZbAjVjdecA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-8298A-Vacuum-Tube-1-WESTINGHOUSE-63-30-1-G-E-WDB-6146B-\/274789395338"],
+            "postalCode":["686**"],"location":["Platte Center,NE,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"6.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"21.98"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"21.98"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT13H29M14S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-07T22:32:14.000Z"],"endTime":["2021-05-17T22:32:14.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
