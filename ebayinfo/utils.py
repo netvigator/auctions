@@ -940,8 +940,8 @@ generic example: pg_dump --data-only --table=tablename sourcedb > onetable.pg
 
 in postgres user on server
 
-pg_dump --data-only --table=markets auctions > markets.pg
-pg_dump --data-only --table=ebay_categories auctions > ebay_categories.pg
+pg_dump --data-only --table=markets auctions > /tmp/markets.pg
+pg_dump --data-only --table=ebay_categories auctions > /tmp/ebay_categories.pg
 
 
 markets referenced by:
