@@ -85,3 +85,5 @@ def getCategoryListsUpdated( bConsoleOut = False ):
 # ### from ebayinfo.tasks import getCategoryListsUpdated    ###
 # ### run getCategoryListsUpdated( bConsoleOut = True )     ###
 # ### run getCategoryListsUpdated() to update               ###
+
+# ### step by step instructions at bottom of ./utils.py     ###
