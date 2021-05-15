@@ -154,6 +154,13 @@ def getWhatsNotInParens( s ):
 
 def updateMemoryTableUpdated( sTable, sField = None ):
     #
+    '''
+    the idea was to update a live server after ebay categories were update
+    but this idea is obsolete, now that
+    ebay categories are updated on a separate machine
+    the server is taken down, and the new categories are copied in
+    '''
+    #
     import ebayinfo.utils
     #
     if ( sTable == 'markets' and sField and sField == 'iCategoryVer' ):
