@@ -995,6 +995,8 @@ ALTER TABLE "searching" DROP CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_
 truncate table ebay_categories ;
 truncate table markets ;
 
+from shell in postgres user:
+
 HK (now main server)
 psql -h 192.168.0.88 -p 5432 -U <user name> auctions < markets.pg
 psql -h 192.168.0.88 -p 5432 -U <user name> auctions < ebay_categories.pg
