@@ -995,10 +995,6 @@ ALTER TABLE "searching" DROP CONSTRAINT "searching_iEbayCategory_id_9fe370a3_fk_
 truncate table ebay_categories ;
 truncate table markets ;
 
-BKK (obsolete)
-psql -h 192.168.8.88 -p 5432 -U <user name> auctions < markets.pg
-psql -h 192.168.8.88 -p 5432 -U <user name> auctions < ebay_categories.pg
-
 HK (now main server)
 psql -h 192.168.0.88 -p 5432 -U <user name> auctions < markets.pg
 psql -h 192.168.0.88 -p 5432 -U <user name> auctions < ebay_categories.pg
@@ -1051,11 +1047,7 @@ select * from ebay_categories where "iSupercededBy" is not null ;
 
 # ### after updating ebay categories, check whether         ###
 # ### searches that were connected are still connected !!!  ###
-
-# ### in production, if any category versions are updated,  ###
-# ###                        call                           ###
-# ### updateMemoryTableUpdated( 'markets', 'iCategoryVer' ) ###
-# ###                     in core.utils                     ###
+# ### (queries above)                                       ###
 
 # ###      if you update categories for a market,           ###
 # ###  update sMarketsTable in ebayinfo/tests/__init__.py   ###
@@ -1064,6 +1056,3 @@ select * from ebay_categories where "iSupercededBy" is not null ;
 
 # ### run getWhetherAnyEbayCategoryListsAreUpdated() daily  ###
 # from ebayinfo.utils import getWhetherAnyEbayCategoryListsAreUpdated
-
-# QuietDump( getCategoryVersionGotGlobalID( 'EBAY-GB' ), 'Categories_Ver_EBAY-GB.xml' )
-
