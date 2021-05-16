@@ -534,12 +534,24 @@ def getShowMarketsHaveNewerCategoryVersionLists():
     #
     lNewerCategories = getWhetherAnyEbayCategoryListsAreUpdated()
     #
-    lOut = [ ( dSiteID2Market[ d['iSiteID'] ], d['iTableHas'], d['iEbayHas'] )
-             for d in lNewerCategories ]
+    if lNewerCategories:
+        #
+        lNew = [ ( d['iSiteID'], d ) for d in lNewerCategories ]
+        #
+        lNew.sort()
+        #
+        lMarkets = [ t[1] for t in lNew ]
+        #
+        lMarketsHaveNewerCategoryVersionLists = [
+            '    %3s |       %3s |      %3s' %
+            ( d['iSiteID'], d['iTableHas'], d['iEbayHas'] )
+            for d in lMarkets ]
+        #
+        lMarketsHaveNewerCategoryVersionLists[0:0] = [
+            'Site ID | Table Has | Ebay Has' ]
+        #
     #
-    lOut.sort()
-    #
-    return lOut
+    return lMarketsHaveNewerCategoryVersionLists
 
 
 def _getCategoryHierarchyID(
