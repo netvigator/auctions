@@ -1,7 +1,6 @@
 
 from os                 import rename
 from random             import randrange
-from pprint             import pprint
 
 from django.db          import DataError
 from django.test        import tag
@@ -29,7 +28,8 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                                  _putCategoriesInDatabase, countCategories,
                                  _getCheckCategoryVersion, dSiteID2ListVers,
                                  getWhetherAnyEbayCategoryListsAreUpdated,
-                                 getEbayCategoryHierarchies )
+                                 getEbayCategoryHierarchies,
+                                 getShowMarketsHaveNewerCategoryVersionLists )
 
 from .base              import PutMarketsInDatabaseTestBase
 from .test_auth_token   import ConfFileTokenExpiredTests
@@ -340,13 +340,13 @@ class MarketsAndCategoriesTests( PutMarketsInDatabaseTestBase ):
 
     def test_whether_ebay_categories_were_updated( self ):
         #
-        lUpdated = getWhetherAnyEbayCategoryListsAreUpdated()
+        lUpdated = getShowMarketsHaveNewerCategoryVersionLists()
         #
         if lUpdated:
             #
             print( '\n\n### ebay has updated categories ! ###\n' )
             #
-            pprint( lUpdated )
+            for s in lUpdated: print( s )
             #
         else:
             #
