@@ -176,10 +176,10 @@ GRANT ALL PRIVILEGES ON database auctions TO <user name> ;
 
 
 from terminal on remote machine:
-pg_restore -h 192.168.8.88 -p 5432 -U <user name> -c -d auctions <file_name>
+pg_restore -h data -p 5432 -U <user name> -c -d auctions <file_name>
 
 at HK office:
-pg_restore -h 192.168.0.88 -p 5432 -U <user name> -c -d auctions <file_name>
+pg_restore -h data -p 5432 -U <user name> -c -d auctions <file_name>
 
 roving laptop
 pg_restore -p 5432 -U <user name> -c -d auctions <file_name>
