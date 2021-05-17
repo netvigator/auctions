@@ -89,6 +89,7 @@ sBrands = \
  Mullard IEC       |      5 |            |            | IEC Mullard
  National          |      7 |            |            |
  National Union    |      7 | International |         | National\\rNU
+ Osram             |      7 |            |            |
  PACO              |      2 |            |            |
  Peerless          |      8 |            |            |
  Philips           |      7 |            |            | Phillips
@@ -236,6 +237,8 @@ sModels = \
  PCC88              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL803S             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  EL84               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ KT-55 (GEC)        |           |      8 | f            | GEC (Genalex)     |  Vacuum Tube |             |              | f
+ KT-55              |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  KT-77              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             |              | f
@@ -878,6 +881,21 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["224450198521"],
+            "title":["KT55 NOS Pair GEC England Osram KT66 with 50 volt Heater KT77 KT88 6L6 6550"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/m1l1W_KRFynxJxr8PYyV3_g\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/KT55-NOS-Pair-GEC-England-Osram-KT66-50-volt-Heater-KT77-KT88-6L6-6550-\/224450198521"],
+            "postalCode":["913**"],"location":["Agoura Hills,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"78.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"78.0"}],
+            "bidCount":["8"],"sellingState":["Active"],"timeLeft":["P0DT8H57M49S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-04T17:59:47.000Z"],"endTime":["2021-05-09T17:59:47.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["24"]}],
+            "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["274789395338"],
             "title":["2 - 8298A Vacuum Tube 1 WESTINGHOUSE 63-30 & 1 G.E. WDB 6146B "],
