@@ -534,6 +534,8 @@ def getShowMarketsHaveNewerCategoryVersionLists():
     #
     lNewerCategories = getWhetherAnyEbayCategoryListsAreUpdated()
     #
+    lMarketsHaveNewerCategoryVersionLists = []
+    #
     if lNewerCategories:
         #
         lNew = [ ( d['iSiteID'], d ) for d in lNewerCategories ]
