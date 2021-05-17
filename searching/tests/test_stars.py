@@ -2232,10 +2232,16 @@ class FindSearchHitsWebTests(
         iThisOne = 324090682443
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 2, iThisOne,
                 'should find Genalex Gold Lion not the others' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-66' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Osram' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
         self.assertEqual( oTest.iModel.cTitle, 'KT-66' )
         self.assertEqual( oTest.iBrand.cTitle, 'Genalex (Gold Lion)' )
@@ -4624,6 +4630,48 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 224450198521
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find KT55 ONLY (others are on end)!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-66' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Osram' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-55 (GEC)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 265143392793
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find nothing' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        self.assertIsNone( oTest.iBrand )
+        self.assertEqual( oTest.iCategory.cTitle, 'Accessory' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5082,18 +5130,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 265143392793
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find nothing' )
-        #
-        #
-        #
-        #
-        #
-        #
-        #
         #
         iThisOne = 274789395338
         #
@@ -5106,11 +5142,8 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        #
-        #
         '''
         '''
-        #
         #
         qsUserFinders = UserFinder.objects.all()
         #
