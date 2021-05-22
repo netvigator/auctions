@@ -100,7 +100,7 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
 
 
-@shared_task( name = 'searching.tasks.storeSearchResultsInFinders' )
+# @shared_task( name = 'searching.tasks.storeSearchResultsInFinders' )
 def storeSearchResultsInDbTask( iLogID,
                                 sMarket,
                                 sUserName,
@@ -119,7 +119,7 @@ def storeSearchResultsInDbTask( iLogID,
 
 
 # called as a hourly (periodic) task
-@shared_task( name = 'searching.tasks.doPutSearchResultsInFindersTasks' )
+# @shared_task( name = 'searching.tasks.doPutSearchResultsInFindersTasks' )
 def doPutSearchResultsInFindersTasks( bOnlySay = False ):
     #
     qsLogSearches = (
@@ -134,7 +134,8 @@ def doPutSearchResultsInFindersTasks( bOnlySay = False ):
     #
     if bOnlySay:
         #
-        print( 'would put %s searhes in finders' % len( qsLogSearches ) )
+        print( 'would put results from %s searhes into finders' %
+                len( qsLogSearches ) )
         #
     else:
         #
@@ -147,7 +148,8 @@ def doPutSearchResultsInFindersTasks( bOnlySay = False ):
             sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
             sStoreDir   = oLogSearch.cStoreDir
             #
-            storeSearchResultsInDbTask.delay(
+            # storeSearchResultsInDbTask.delay(
+            storeSearchResultsInDbTask(
                         iLogID,
                         sMarket,
                         sUserName,
