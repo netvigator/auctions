@@ -996,7 +996,7 @@ TABLE "itemsfound" CONSTRAINT "itemsfound_iCatHeirarchy_id_1ebfb2e6_fk_category_
 
 open psql and auctions database
 if on HK office desktop
-psql -h 192.168.0.88 -p 5432 -U <user name> auctions
+psql -h data -p 5432 -U <user name> auctions
 or if in postgres user on data server
 psql -U <user name> auctions
 then
@@ -1012,8 +1012,8 @@ truncate table markets ;
 from shell in postgres user:
 
 HK (now main server)
-psql -h 192.168.0.88 -p 5432 -U <user name> auctions < markets.pg
-psql -h 192.168.0.88 -p 5432 -U <user name> auctions < ebay_categories.pg
+psql -h data -p 5432 -U <user name> auctions < markets.pg
+psql -h data -p 5432 -U <user name> auctions < ebay_categories.pg
 
 remotely on data server
 psql -U <user name> auctions < /tmp/markets.pg
