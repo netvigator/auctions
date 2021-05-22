@@ -32,14 +32,14 @@ from pyPks.Time.Output      import getIsoDate
 
 
 
-@shared_task( name = 'searching.tasks.trySearchCatchExceptStoreInFile' )
+# @shared_task( name = 'searching.tasks.trySearchCatchExceptStoreInFile' )
 def doTrySearchCatchExceptStoreInFileTask( iSearchID, sToday ):
     #
     trySearchCatchExceptStoreInFile( iSearchID, sToday )
 
 
 # called as a daily (periodic) task
-@shared_task( name = 'searching.tasks.doSearchingPutResultsInFiles' )
+# @shared_task( name = 'searching.tasks.doSearchingPutResultsInFiles' )
 def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
     # really want to select for active users only (not inactive)
@@ -89,7 +89,8 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
             #
         else:
             #
-            sLastFile = doTrySearchCatchExceptStoreInFileTask.delay(
+            # sLastFile = doTrySearchCatchExceptStoreInFileTask.delay(
+            sLastFile = doTrySearchCatchExceptStoreInFileTask(
                             iSearchID   = oSearch.id,
                             sToday      = sToday )
             #
@@ -211,7 +212,7 @@ count should decline to zero
 
 
 # workflow
-# 30 mins per user doSearchingPutResultsInFiles
+# 30 mins per user doSearchingPutResultsInFilesTasks
 #                  doSearchingPutResultsInFilesTasks( bOnlyList = True )
 # 40 mins per user putSearchResultsInFinders
 # 90 mins per user doFindSearhHits
