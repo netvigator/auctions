@@ -120,7 +120,7 @@ def storeSearchResultsInDbTask( iLogID,
 
 # called as a hourly (periodic) task
 @shared_task( name = 'searching.tasks.doPutSearchResultsInFindersTasks' )
-def doPutSearchResultsInFindersTasks():
+def doPutSearchResultsInFindersTasks( bOnlySay = False ):
     #
     qsLogSearches = (
             SearchLog.objects
@@ -132,23 +132,29 @@ def doPutSearchResultsInFindersTasks():
                     cResult            = 'Success' )
                 .order_by( "tBegSearch" ) )
     #
-    for oLogSearch in qsLogSearches:
+    if bOnlySay:
         #
-        iLogID      = oLogSearch.pk
-        iSearchID   = oLogSearch.iSearch_id
-        sSearchName = oLogSearch.iSearch.cTitle
-        sUserName   = oLogSearch.iSearch.iUser.username
-        sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
-        sStoreDir   = oLogSearch.cStoreDir
+        print( 'would put %s searhes in finders' % len( qsLogSearches ) )
         #
-        storeSearchResultsInDbTask.delay(
-                    iLogID,
-                    sMarket,
-                    sUserName,
-                    iSearchID,
-                    sSearchName,
-                    sStoreDir )
+    else:
         #
+        for oLogSearch in qsLogSearches:
+            #
+            iLogID      = oLogSearch.pk
+            iSearchID   = oLogSearch.iSearch_id
+            sSearchName = oLogSearch.iSearch.cTitle
+            sUserName   = oLogSearch.iSearch.iUser.username
+            sMarket     = oLogSearch.iSearch.iUser.iEbaySiteID.cMarket
+            sStoreDir   = oLogSearch.cStoreDir
+            #
+            storeSearchResultsInDbTask.delay(
+                        iLogID,
+                        sMarket,
+                        sUserName,
+                        iSearchID,
+                        sSearchName,
+                        sStoreDir )
+            #
 
 
 
