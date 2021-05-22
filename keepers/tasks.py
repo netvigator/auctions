@@ -27,14 +27,14 @@ logging_level = logging.INFO
 
 
 
-@shared_task( name = 'keepers.tasks.getSingleItemThenStore' )
+# @shared_task( name = 'keepers.tasks.getSingleItemThenStore' )
 def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
     #
     getSingleItemThenStore( iItemNumb, **kwargs )
 
 
 
-@shared_task( name = 'keepers.tasks.deleteOldItemsFound' )
+# @shared_task( name = 'keepers.tasks.deleteOldItemsFound' )
 def deleteOldItemsFoundTask( iOldCutOff ):
     #
     # itemsfound is for temporary holding
@@ -72,7 +72,7 @@ def deleteOldItemsFoundTask( iOldCutOff ):
 
 
 
-@shared_task( name = 'keepers.tasks.getFetchUserItems' )
+# @shared_task( name = 'keepers.tasks.getFetchUserItems' )
 def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
     #
     qsUserItemNumbs = getFindersForResultsFetching()
@@ -127,7 +127,8 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
             #
             # assign task
             #
-            doGetSingleItemThenStoreTask.delay( oItemFound.iItemNumb )
+            # doGetSingleItemThenStoreTask.delay( oItemFound.iItemNumb )
+            doGetSingleItemThenStoreTask( oItemFound.iItemNumb )
             #
         #
         if iOldItems:
@@ -135,7 +136,8 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
             # deleteOldItemsFoundTask.apply_async(
             #         queue='low_priority', args = (iOldCutOff,) )
             #
-            deleteOldItemsFoundTask.delay( iOldCutOff )
+            # deleteOldItemsFoundTask.delay( iOldCutOff )
+            deleteOldItemsFoundTask( iOldCutOff )
             #
         #
 
