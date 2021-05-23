@@ -1,6 +1,5 @@
 
-from celery             import shared_task
-from celery.schedules   import crontab
+# from celery           import shared_task
 
 from .utils             import getWhetherAnyEbayCategoryListsAreUpdated
 from .utils             import getCategoryListThenStore, dSiteID2Market
@@ -11,7 +10,6 @@ from core.utils         import getBegTime, sayDuration
 
 
 # ### l = getWhetherAnyEbayCategoryListsAreUpdated() ###
-
 
 
 def getAllMissingCategoryLists():
