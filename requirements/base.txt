@@ -2,7 +2,7 @@
 # python3
 # postgresql server (on server)
 # postgresql-client-common & postgresql-client-[n.n] on client
-# reddis server for celery
+# x reddis server for celery
 
 # are the requirements outdated?
 # take a look monthly:
@@ -78,13 +78,23 @@ awesome-slugify==1.6.5
 # pytz==2020.5
 pytz==2021.1
 
+# 2021-05-24 celery not working, so giving up on it!
+# instead, will set nice level on cron job processes
+# will leave the celery structure in place, to allow retrying later if desired
+
+# task queue
+# celery==4.4.5
+# celery==4.4.7
+# celery==5.0.2
+# celery==5.0.5
+
+# redistools==0.1.7
 
 # Redis support
 # django-redis==4.11.0
 # redis==3.4.1
-django-redis==4.12.1
-redis==3.5.3
-
+# django-redis==4.12.1
+# redis==3.5.3
 
 
 # Your custom requirements go here
@@ -122,14 +132,6 @@ django-admin-honeypot==1.1.0
 # store regex objects
 # django-regex-field==1.0.0 case sensitive only!
 
-
-# task queue
-# celery==4.4.5
-# celery==4.4.7
-# celery==5.0.2
-celery==5.0.5
-
-# redistools==0.1.7
 
 # users need to select their timezone
 # django-timezone-field==4.1.1
