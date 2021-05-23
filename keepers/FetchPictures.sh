@@ -5,5 +5,5 @@
 #
 cd ~/Devel/auctions
 source ~/.virtualenvs/auctions/bin/activate
-python manage.py shell --command="from keepers.tasks import doGetItemPicturesTasks; doGetItemPicturesTasks()"
+nice python manage.py shell --command="from keepers.tasks import doGetItemPicturesTasks; doGetItemPicturesTasks()"
 
