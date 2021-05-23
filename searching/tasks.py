@@ -7,10 +7,7 @@ from django.contrib.auth    import get_user_model
 from django.db.models       import Q
 from django.utils           import timezone
 
-from celery                 import shared_task
-from celery.schedules       import crontab
-
-#from auctionbot             import celery_app as app # app = Celery()
+#from celery                import shared_task
 
 from searching              import SEARCH_FILES_ROOT
 
@@ -29,6 +26,10 @@ from pyPks.Time.Output      import getIsoDate
 
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
+
+# 2021-05-24 celery not working, so giving up on it!
+# instead, will set nice level on cron job processes
+# will leave the celery structure in place, to allow retrying later if desired
 
 
 
@@ -160,7 +161,7 @@ def doPutSearchResultsInFindersTasks( bOnlySay = False ):
 
 
 
-@shared_task( name = 'searching.tasks.findSearchHits' )
+# @shared_task( name = 'searching.tasks.findSearchHits' )
 def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
     #
     if bShowProgress:
@@ -171,7 +172,7 @@ def findSearchHitsTask( iUser, bCleanUp = True, bShowProgress = False ):
 
 
 # called as a hourly (periodic) task
-@shared_task( name = 'searching.tasks.doFindSearhHitsTasks' )
+# @shared_task( name = 'searching.tasks.doFindSearhHitsTasks' )
 def doFindSearhHitsTasks(
             bConsoleOut           = False,
             bDoTask_Later         = True ):
@@ -186,7 +187,8 @@ def doFindSearhHitsTasks(
             #
             if bDoTask_Later:
                 #
-                findSearchHitsTask.delay(
+                # findSearchHitsTask.delay(
+                findSearchHitsTask(
                     iUser           = oUser.id,
                     bShowProgress   = bConsoleOut )
                 #
