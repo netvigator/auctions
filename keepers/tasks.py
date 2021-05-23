@@ -4,7 +4,7 @@ import logging
 
 from django.db              import connection
 
-from celery                 import shared_task
+#from celery                import shared_task
 
 from core.utils             import sayIsoDateTimeNoTimeZone, getPriorDateTime
 
@@ -25,7 +25,9 @@ logging_level = logging.INFO
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
 
-
+# 2021-05-24 celery not working, so giving up on it!
+# instead, will set nice level on cron job processes
+# will leave the celery structure in place, to allow retrying later if desired
 
 # @shared_task( name = 'keepers.tasks.getSingleItemThenStore' )
 def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
@@ -143,13 +145,13 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
 
 
 
-@shared_task( name = 'keepers.tasks.getItemPictures' )
+# @shared_task( name = 'keepers.tasks.getItemPictures' )
 def getItemPicturesTask( iItemNumb ):
     #
     getItemPictures( iItemNumb )
 
 
-@shared_task( name = 'keepers.tasks.doGetItemPicturesTasks' )
+# @shared_task( name = 'keepers.tasks.doGetItemPicturesTasks' )
 def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
     #
     qsGetPics = getItemsForPicsDownloading( iLimit )
