@@ -5,13 +5,29 @@ from logging                import getLogger
 
 from sys                    import argv
 
-from celery                 import Celery
-from celery                 import shared_task
+#from celery                import Celery, shared_task
 
 from django.apps            import apps, AppConfig
 from django.conf            import settings
 
 from config.settings.base   import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
+
+# begin workaround
+# 2021-05-24 celery not working, so giving up on it!
+# instead, will set nice level on cron job processes
+# will leave the celery structure in place, to allow retrying later if desired
+
+from pyPks.Object.Get       import QuickObject, ValueContainer
+
+class Celery( ValueContainer ):
+
+    conf = QuickObject()
+
+    def __init__( self, *args, **kwargs ):
+        #
+        super( Celery, self ).__init__( **kwargs )
+
+# end workaround
 
 sConfig = 'config.settings.production'
 
@@ -26,9 +42,11 @@ if not settings.configured:
 
 logger = getLogger(__name__)
 
+
 app = Celery('auctionbot',
             backend = CELERY_RESULT_BACKEND,
             broker  = CELERY_BROKER_URL )
+
 
 # https://pawelzny.com/python/celery/2017/08/14/celery-4-tasks-best-practices/
 app.conf.task_create_missing_queues = True
@@ -68,7 +86,7 @@ class CeleryConfig(AppConfig):
                 opbeat_register_handlers()
 
 
-@shared_task( bind = True, name = 'celery.debug_task' )
+# @shared_task( bind = True, name = 'celery.debug_task' )
 def debug_task(self):
     logger.debug('Request: {0!r}'.format(self.request) ) # pragma: no cover
 
@@ -76,7 +94,7 @@ def debug_task(self):
 # https://stackoverflow.com/questions/46530784/make-django-test-case-database-visible-to-celery/46564964#46564964
 # assert 'celery.ping' in app.tasks
 
-@shared_task( name = 'celery.ping' )
+# @shared_task( name = 'celery.ping' )
 def ping():
     # type: () -> str
     """Pretty sophisticated task that brilliantly returns 'pong'."""
