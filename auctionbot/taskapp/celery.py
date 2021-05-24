@@ -6,28 +6,33 @@ from logging                import getLogger
 from sys                    import argv
 
 #from celery                import Celery, shared_task
+#from celery.contrib.testing.worker  import start_worker
 
 from django.apps            import apps, AppConfig
 from django.conf            import settings
 
 from config.settings.base   import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
 
-# begin workaround
+# ### begin workaround ###
 # 2021-05-24 celery not working, so giving up on it!
 # instead, will set nice level on cron job processes
 # will leave the celery structure in place, to allow retrying later if desired
 
-from pyPks.Object.Get       import QuickObject, ValueContainer
+from pyPks.Object.Get       import Null
 
-class Celery( ValueContainer ):
+start_worker            = Null()
 
-    conf = QuickObject()
+class Celery( Null ):
+
+    conf                = Null()
+    config_from_object  = Null()
+    autodiscover_tasks  = Null()
 
     def __init__( self, *args, **kwargs ):
         #
         super( Celery, self ).__init__( **kwargs )
 
-# end workaround
+# ### end workaround ###
 
 sConfig = 'config.settings.production'
 
