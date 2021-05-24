@@ -5142,6 +5142,17 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174772188371
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find E88CC CCa only, rest are on end' )
+        #
+        #
+        #
+        #
+        #
+        #
         '''
         '''
         #
