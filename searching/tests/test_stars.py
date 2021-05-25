@@ -4672,6 +4672,46 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174772188371
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find E88CC CCa only, rest are on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'CCa (= 6922 = E88CC = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 384160566733
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 12V6GTA not tube tester model' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '12V6GTA' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Delco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5142,11 +5182,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 174772188371
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find E88CC CCa only, rest are on end' )
         #
         #
         #
