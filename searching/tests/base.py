@@ -971,6 +971,17 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             #
             #
             #
+            oBrand = Brand.objects.get( cTitle = 'Delco', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            # if you add a new brand here,
+            # the brand must also be added to the list in __init__.py
 
 
 
