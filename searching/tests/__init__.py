@@ -43,6 +43,7 @@ sBrands = \
  Coronado          |      7 |            |            |
  Crosley           |      3 |            |            |
  Cunningham        |      8 |            |            |
+ Delco             |      6 |            |            |
  DeWald            |      4 |            |            |
  DuKane            |      7 |            |            |
  Dynaco            |      5 |            |            | Dyna\\rDynakit
@@ -150,6 +151,7 @@ sModels = \
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
  12DM7              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 12V6GTA            |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  2A3                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  2A3 (RCA SP)       | mono plate |    10 | f            | RCA               |  Vacuum Tube |             |              | f
  45                 |           |      8 | f            |                   |  Vacuum Tube | Type 45\\rUX-245\\rGX-245 | | t
@@ -879,6 +881,21 @@ sResponseItems2Test = \
             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
             "startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["384160566733"],
+            "title":["2 DELCO 12V6GT VACUUM TUBES  CERTIFIED GOOD HICKOK 600A TESTED STRONG"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mirPbuVP_01SBaouK3LkePQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-DELCO-12V6GT-VACUUM-TUBES-CERTIFIED-GOOD-HICKOK-600A-TESTED-STRONG-\/384160566733"],
+            "postalCode":["740**"],"location":["Broken Arrow,OK,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"4.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"4.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT6H25M52S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-12T15:28:43.000Z"],"endTime":["2021-05-19T15:28:43.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
