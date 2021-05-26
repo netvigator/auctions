@@ -317,6 +317,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     #
     bItemNumberStillGood = True
     bGot_503_SkipForNow  = False
+    bGot_token_OAuth_app = False
     #
     if 'sContent' in kwargs: # passed for testing
         #
@@ -372,6 +373,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
             #
             bGot_503_SkipForNow  = True
             #
+        except GetSingleItemNotWorkingError: # token issue
+            #
+            bGot_token_OAuth_app = True
+            #
         #
         #
     #
@@ -400,6 +405,10 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
     elif bGot_503_SkipForNow:
         #
         logger.info( 'got JSONDecodeError probably 503 temp problem! %s', str( iItemNumb ) )
+        #
+    elif bGot_token_OAuth_app:
+        #
+        logger.info( 'got OATH token error! %s', str( iItemNumb ) )
         #
     elif oItemFound is None:
         #
