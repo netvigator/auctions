@@ -88,7 +88,8 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
         #
         for iItemNumb in qsUserItemNumbs:
             #
-            doGetSingleItemThenStoreTask.delay( iItemNumb )
+            # doGetSingleItemThenStoreTask.delay( iItemNumb )
+            doGetSingleItemThenStoreTask( iItemNumb )
             #
     #
     # carry on, fetch final results
@@ -183,7 +184,8 @@ def doGetItemPicturesTasks( iLimit = 500,  bOnlySay = False ):
             #
             for iItemNumb in qsGetPics:
                 #
-                getItemPicturesTask.delay( iItemNumb )
+                # getItemPicturesTask.delay( iItemNumb )
+                getItemPicturesTask( iItemNumb )
                 #
             #
         except PermissionError:
