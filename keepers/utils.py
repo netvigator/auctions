@@ -302,7 +302,7 @@ def _makeUserKeeperRow( oUserFinder ):
 
 
 
-def getSingleItemThenStore( iItemNumb, **kwargs ):
+def getSingleItemThenStore( iItemNumb, oAuthToken = None, **kwargs ):
     #
     '''
     gets single item result from ebay API (can pass response for testing)
@@ -327,7 +327,7 @@ def getSingleItemThenStore( iItemNumb, **kwargs ):
         #
         try:
             #
-            sContent = getSingleItem( iItemNumb )
+            sContent = getSingleItem( iItemNumb, oAuthToken = oAuthToken )
             #
         except timeout as e: # ebay timed out 2020-01-18 & 2020-06-05
             #
