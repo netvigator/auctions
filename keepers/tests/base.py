@@ -141,7 +141,7 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
                     oUserFinder.save()
                 #
             #
-            getSingleItemThenStore( iItemNumb )
+            getSingleItemThenStore( iItemNumb, oAuthToken = None )
             #
             qsItems = Keeper.objects.filter( pk = iItemNumb )
             #
