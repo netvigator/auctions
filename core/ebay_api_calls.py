@@ -133,10 +133,27 @@ def _getResponseEbayApi(
     #
     return oResponse.text
 
+'''
+Best Practices
+GetSingleItem has been optimized for response size, speed and usability.
+So, it returns the most commonly used fields by default.
+Use the IncludeSelector field to get more data—
+but please note that getting more data can result in longer response times.
+...
+So, after you initially retrieve an item's details,
+cache the item data locally, and then use GetItemStatus
+from then on to more quickly update the details that tend to change.
+Depending on your use case, you can call GetSingleItem again occasionally
+to see if the seller has revised any other data in the listing.
+
+http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html#IncludeSelector
+
+'''
 
 def _getItemInfo( uItemNumb, sCallName,
                   bUseSandbox = False,
-                  tWantMore   = None ):
+                  tWantMore   = None,
+                  oAuthToken  = None ):
     #
     dParams = { 'callname'          : sCallName, # 'GetSingleItem',
                 'responseencoding'  : "JSON",
@@ -172,17 +189,20 @@ _tIncludeDefaults = ( 'Details', 'TextDescription' )
 def getSingleItem(
             uItemNumb,
             bUseSandbox = False,
-            tWantMore = _tIncludeDefaults ):
+            tWantMore   = _tIncludeDefaults,
+            oAuthToken  = None ):
     #
     return _getItemInfo( uItemNumb, 'GetSingleItem',
                          tWantMore   = tWantMore,
-                         bUseSandbox = bUseSandbox )
+                         bUseSandbox = bUseSandbox,
+                         oAuthToken  = oAuthToken )
 
 
 def getItemStatus( uItemNumb, bUseSandbox = False ):
     #
     return _getItemInfo( uItemNumb, 'GetItemStatus',
-                         bUseSandbox = bUseSandbox )
+                         bUseSandbox = bUseSandbox,
+                         oAuthToken  = oAuthToken )
 
 
 def _getCategoriesOrVersion(
@@ -289,6 +309,7 @@ def _getEbayFindingResponse(
             bUseSandbox     = False,
             uTimeOuts       = ( 4, 10 ), # ( connect, read )
             sSayInfo        = '',
+            oAuthToken      = None,
             **headers ):
     #
     if sKeyWords and sCategoryID:
@@ -373,7 +394,13 @@ def _getEbayFindingResponse(
     dHttpHeaders= {
             "X-EBAY-SOA-GLOBAL-ID"        : sGlobalID, # can override this
             "X-EBAY-SOA-SECURITY-APPNAME" : sAppID }
-
+    #
+    if oAuthToken is not None:
+        #
+        dHttpHeaders[
+            "X-EBAY-API-IAF-TOKEN" ]      = oAuthToken.sToken
+        #
+    #
     dHttpHeaders.update( headers )
     #
     return _postResponseEbayApi(
@@ -423,7 +450,8 @@ def findItems(
             iPage           = 1,
             tListingTypes   = ('Auction', 'AuctionWithBIN'),
             bUseSandbox     = False,
-            sSayInfo        = '' ):
+            sSayInfo        = '',
+            oAuthToken      = None ):
     #
     dHeader = _getMarketHeader( sMarketID )
     #
@@ -443,6 +471,7 @@ def findItems(
                     tListingTypes   = tListingTypes,
                     uTimeOuts       = tTimeOuts,
                     sSayInfo        = sSayInfo,
+                    oAuthToken      = oAuthToken,
                     **dHeader ) )
 
 #sResults = findItems( sKeyWords = 'Simpson 360', '58277' )
@@ -459,15 +488,15 @@ def getCategoryVersionGotSiteID(
     #
     return _getDecoded( oVersion )
 
-#These are invalid!
+#These are invalid! getCategoryVersionGotSiteID argument got a hyphen
 #QuietDump( getCategoryVersionGotSiteID( 'EBAY-US' ), 'Categories_Ver_EBAY-US.xml' )
 #QuietDump( getCategoryVersionGotSiteID( 'EBAY-DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
-#These are invalid!
+#These are invalid! getCategoryVersionGotSiteID argument got an underscore
 #QuietDump( getCategoryVersionGotSiteID( 'EBAY_US' ), 'Categories_Ver_EBAY-US.xml' )
 #QuietDump( getCategoryVersionGotSiteID( 'EBAY_DE' ), 'Categories_Ver_EBAY-DE.xml' )
 
-#### These are OK ####
+# ### These are OK ### getCategoryVersionGotSiteID argument got an integer
 #QuietDump( getCategoryVersionGotSiteID(  0 ), 'Categories_Ver_EBAY-US.xml' )
 #QuietDump( getCategoryVersionGotSiteID( 77 ), 'Categories_Ver_EBAY-DE.xml' )
 
@@ -515,20 +544,4 @@ def getMarketCategoriesGotGlobalID(
 # QuietDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml' )
 # QuietDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml' )
 
-'''
 
-Best Practices
-GetSingleItem has been optimized for response size, speed and usability.
-So, it returns the most commonly used fields by default.
-Use the IncludeSelector field to get more data—
-but please note that getting more data can result in longer response times.
-...
-So, after you initially retrieve an item's details,
-cache the item data locally, and then use GetItemStatus
-from then on to more quickly update the details that tend to change.
-Depending on your use case, you can call GetSingleItem again occasionally
-to see if the seller has revised any other data in the listing.
-
-http://developer.ebay.com/devzone/shopping/docs/callref/getsingleitem.html#IncludeSelector
-
-'''
