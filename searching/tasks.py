@@ -49,10 +49,10 @@ def doSearchingPutResultsInFilesTasks( bOnlyList = False ):
     #
     getMakeDir( SEARCH_FILES_ROOT, sToday )
     #
-    tBeg = getBegTime( bOnlyList )
+    oBeg = getBegTime( bConsoleOut = bOnlyList )
     #
-    t12hAgo = tBeg - timezone.timedelta( hours = 12 )
-    t04hAgo = tBeg - timezone.timedelta( hours =  4 )
+    t12hAgo = oBeg - timezone.timedelta( hours = 12 )
+    t04hAgo = oBeg - timezone.timedelta( hours =  4 )
     #
     qsSearches = (
             Search.objects.filter(
