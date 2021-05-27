@@ -721,7 +721,10 @@ def getEbayCategoryHierarchies( dItem, dEbayCatHierarchies ):
 
 def getCategoryListsUpdated( bConsoleOut = False ):
     #
-    tBeg = getBegTime( bConsoleOut )
+    if bConsoleOut:
+        #
+        oBeg = getBegTime( bConsoleOut )
+        #
     #
     lNeedUpdates = getWhetherAnyEbayCategoryListsAreUpdated()
     #
@@ -748,7 +751,7 @@ def getCategoryListsUpdated( bConsoleOut = False ):
     #
     if bConsoleOut:
         #
-        sayDuration( tBeg )
+        sayDuration( oBeg )
 
 
 
