@@ -180,24 +180,24 @@ def sayIsoDateTimeNoTimeZone( tDateTime ):
 
 def getBegTime( bConsoleOut = False ):
     #
-    tBeg = timezone.now()
+    oBeg = timezone.now()
     #
     if bConsoleOut:
         #
-        print( 'Beg:', sayIsoDateTimeNoTimeZone( tBeg ) )
+        print( 'Beg:', sayIsoDateTimeNoTimeZone( oBeg ) )
         #
     #
-    return tBeg
+    return oBeg
 
 
 
-def sayDuration( tBeg ):
+def sayDuration( oBeg ):
     #
-    tEnd = timezone.now()
+    oEnd = timezone.now()
     #
-    print( 'End:', sayIsoDateTimeNoTimeZone( tEnd ) )
+    print( 'End:', sayIsoDateTimeNoTimeZone( oEnd ) )
     #
-    lDuration = str( tEnd - tBeg ).split( '.' )
+    lDuration = str( oEnd - oBeg ).split( '.' )
     #
     print( 'Duration:', lDuration[0] )
 
