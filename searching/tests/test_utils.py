@@ -3,10 +3,9 @@ import logging
 
 from os                     import rename
 from os.path                import realpath, join
-from datetime               import timedelta
 
 from django.test            import tag
-from django.utils           import timezone
+from django.utils           import timezone as tz
 from core.tests.base        import ( getDefaultMarket,
                                      GetEbayCategoriesWebTestSetUp,
                                      TestCasePlus )
@@ -802,23 +801,24 @@ class FileNameUtilitiesTesting( TestCasePlus ):
 
 '''
 will need later
+        #
         iWantOlderThan = 100
         #
         oSearch = ItemFound( cTitle = self.sTitle1, iItemNumb = self.iItemID1 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
+        dDropDead = tz.now() - tz.timedelta( days = iWantOlderThan -2 )
         oSearch.tCreate = dDropDead
         oSearch.save()
         #
         oSearch = ItemFound( cTitle = self.sTitle2, iItemNumb = self.iItemID2 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan - 9 )
+        dDropDead = tz.now() - tz.timedelta( days = iWantOlderThan - 9 )
         oSearch.tCreate = dDropDead
         oSearch.save()
         #
         oSearch = ItemFound( cTitle = self.sTitle3, iItemNumb = self.iItemID3 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
+        dDropDead = tz.now() - tz.timedelta( days = iWantOlderThan + 2 )
         oSearch.tCreate = dDropDead
         oSearch.save()
 
@@ -827,21 +827,21 @@ will need later
         iItemID1 = 2823
         oSearch = UserItemFound( iItemNumb = iItemID1, iUser = self.user1 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan -2 )
+        dDropDead = tz.now() - tz.timedelta( days = iWantOlderThan -2 )
         oSearch.tCreate = dDropDead
         oSearch.save()
         #
         iItemID2 = 2418
         oSearch = UserItemFound( iItemNumb = iItemID2, iUser = self.user1 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 1 )
+        dDropDead = tz.now() - tz.timedelta( days = iWantOlderThan + 1 )
         oSearch.tCreate = dDropDead
         oSearch.save()
         #
         iItemID3 = 2607
         oSearch = UserItemFound( iItemNumb = iItemID3, iUser = self.user1 )
         oSearch.save()
-        dDropDead = timezone.now() - timedelta( days = iWantOlderThan + 2 )
+        dDropDead = tz.now() - tz.timedelta( days = iWantOlderThan + 2 )
         oSearch.tCreate = dDropDead
         oSearch.save()
 
