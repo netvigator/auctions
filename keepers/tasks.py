@@ -30,9 +30,9 @@ logging_level = logging.INFO
 # will leave the celery structure in place, to allow retrying later if desired
 
 # @shared_task( name = 'keepers.tasks.getSingleItemThenStore' )
-def doGetSingleItemThenStoreTask( iItemNumb, **kwargs ):
+def doGetSingleItemThenStoreTask( iItemNumb, oAuthToken = None, **kwargs ):
     #
-    getSingleItemThenStore( iItemNumb, **kwargs )
+    getSingleItemThenStore( iItemNumb, oAuthToken = oAuthToken, **kwargs )
 
 
 
@@ -75,7 +75,8 @@ def deleteOldItemsFoundTask( iOldCutOff ):
 
 
 # @shared_task( name = 'keepers.tasks.getFetchUserItems' )
-def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
+def doGetFetchUserItemsTasks(
+            oAuthToken = None, bOnlySay = False, bDoFinalOnly = False ):
     #
     qsUserItemNumbs = getFindersForResultsFetching()
     #
@@ -89,7 +90,7 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
         for iItemNumb in qsUserItemNumbs:
             #
             # doGetSingleItemThenStoreTask.delay( iItemNumb )
-            doGetSingleItemThenStoreTask( iItemNumb )
+            doGetSingleItemThenStoreTask( iItemNumb, oAuthToken = oAuthToken )
             #
     #
     # carry on, fetch final results
@@ -131,7 +132,8 @@ def doGetFetchUserItemsTasks( bOnlySay = False, bDoFinalOnly = False ):
             # assign task
             #
             # doGetSingleItemThenStoreTask.delay( oItemFound.iItemNumb )
-            doGetSingleItemThenStoreTask( oItemFound.iItemNumb )
+            doGetSingleItemThenStoreTask(
+                    oItemFound.iItemNumb, oAuthToken = oAuthToken )
             #
         #
         if iOldItems:
