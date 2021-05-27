@@ -621,25 +621,10 @@ if the brand of the model is different from the brand, show the brand of the mod
 if the category of the model is different from the category, so the category of the model
 
 
-2021-05-12
-[{'iEbayHas': 94, 'iSiteID': 16, 'iTableHas': 93},
- {'iEbayHas': 117, 'iSiteID': 15, 'iTableHas': 116},
- {'iEbayHas': 95, 'iSiteID': 193, 'iTableHas': 94},
- {'iEbayHas': 126, 'iSiteID': 77, 'iTableHas': 125},
- {'iEbayHas': 123, 'iSiteID': 2, 'iTableHas': 122},
- {'iEbayHas': 90, 'iSiteID': 186, 'iTableHas': 89},
- {'iEbayHas': 113, 'iSiteID': 71, 'iTableHas': 112},
- {'iEbayHas': 89, 'iSiteID': 23, 'iTableHas': 88},
- {'iEbayHas': 76, 'iSiteID': 210, 'iTableHas': 75},
- {'iEbayHas': 117, 'iSiteID': 3, 'iTableHas': 115},
- {'iEbayHas': 28, 'iSiteID': 201, 'iTableHas': 27},
- {'iEbayHas': 75, 'iSiteID': 205, 'iTableHas': 73},
- {'iEbayHas': 105, 'iSiteID': 101, 'iTableHas': 104},
- {'iEbayHas': 76, 'iSiteID': 100, 'iTableHas': 75},
- {'iEbayHas': 39, 'iSiteID': 207, 'iTableHas': 38},
- {'iEbayHas': 87, 'iSiteID': 146, 'iTableHas': 86},
- {'iEbayHas': 93, 'iSiteID': 123, 'iTableHas': 92},
- {'iEbayHas': 39, 'iSiteID': 211, 'iTableHas': 38},
- {'iEbayHas': 58, 'iSiteID': 212, 'iTableHas': 57},
- {'iEbayHas': 38, 'iSiteID': 216, 'iTableHas': 37},
- {'iEbayHas': 125, 'iSiteID': 0, 'iTableHas': 124}]
+2021-05-26
+???
+/tmp/ebay_items/single_item_response_failure_2021-05-26_19.27.50_234016229053_.json
+{'Timestamp': '2021-05-26T12:27:49.949Z', 'Ack': 'Failure', 'Errors': [{'ShortMessage': 'Token not available in request.', 'LongMessage': 'Token not available in request. Please specify a valid token as HTTP header.', 'ErrorCode': '1.33', 'SeverityCode': 'Error', 'ErrorClassification': 'RequestError'}], 'Build': 'E1199_CORE_APILW_19146596_R1', 'Version': '1199'}(auctions)
+implemented work around
+
+https://forums.developer.ebay.com/questions/41879/do-i-need-an-oauth-application-access-token.html
