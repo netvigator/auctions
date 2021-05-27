@@ -1,5 +1,4 @@
 from builtins               import ConnectionResetError
-from datetime               import timedelta
 from urllib3.exceptions     import ProtocolError
 
 from django.conf            import settings
@@ -222,7 +221,7 @@ def getShrinkItemURL( sURL ):
 
 def getOldRecordToRecycleGenerator( oModel, iHowOld, sDateTimeField ):
     #
-    tOlderThan = timezone.now() - timedelta( days = iHowOld )
+    tOlderThan = timezone.now() - timezone.timedelta( days = iHowOld )
     #
     sDateTimeFilter = '%s__lte' % sDateTimeField
     #
