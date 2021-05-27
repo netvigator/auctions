@@ -1,7 +1,6 @@
 import logging
 import inspect
 
-from datetime           import timedelta
 from os                 import listdir
 from os.path            import dirname, join
 from shutil             import rmtree
