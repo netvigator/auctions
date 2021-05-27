@@ -131,6 +131,7 @@ def _doSearchStoreInFile(
                     bGetBuyItNows   = False,
                     bInventory      = False,
                     sToday          = None,
+                    oAuthToken      = None,
                     bUseSandbox     = False ):
     #
     '''sends search request to the ebay API, stores the response'''
@@ -257,6 +258,7 @@ def _doSearchStoreInFile(
                                 tListingTypes   = tListingTypes,
                                 sMarketID       = sMarket,
                                 iPage           = iThisPage, # will ignore if < 1
+                                oAuthToken      = oAuthToken,
                                 bUseSandbox     = bUseSandbox )
                 #
             except ConnectionResetError as e:
@@ -370,6 +372,7 @@ def _doSearchStoreInFile(
 
 
 
+
 def _getValueUserOrOther( dItem, k, dThisField, oUser = None, **kwargs ):
     #
     if k == 'iUser':
@@ -468,7 +471,7 @@ def _storeUserItemFound( dItem, iItemNumb, oUser, iSearch ):
 
 
 
-def trySearchCatchExceptStoreInFile( iSearchID, sToday ):
+def trySearchCatchExceptStoreInFile( iSearchID, sToday, oAuthToken = None ):
     #
     '''high level script, does a search, catches exceptions, logs errors,
     stores results in file'''
@@ -514,7 +517,8 @@ def trySearchCatchExceptStoreInFile( iSearchID, sToday ):
                 iSearchID       = iSearchID,
                 bGetBuyItNows   = oSearch.bGetBuyItNows,
                 bInventory      = oSearch.bInventory,
-                sToday          = sToday )
+                sToday          = sToday,
+                oAuthToken      = oAuthToken )
         #
         # ### sandbox returns zero items ###
         # ### use bUseSandbox = False    ###
