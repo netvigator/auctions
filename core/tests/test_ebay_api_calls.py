@@ -1,8 +1,16 @@
+import inspect
 
-from .base                  import TestCasePlus
+from django.utils       import timezone
 
-from ..ebay_api_calls       import getApiConfValues, _getListingTypeTuple
+from .base              import TestCasePlus
 
+from ..ebay_api_calls   import getApiConfValues, _getListingTypeTuple, \
+                               _ApplicationtToken, _getRequestHeaders, \
+                               _getApplicationRequestBody, lScopes
+
+from pyPks.Time.Convert import getIsoDateTimeFromObj
+
+sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
 
 class GetConfFileValuesTests( TestCasePlus ):
@@ -25,7 +33,6 @@ class GetConfFileValuesTests( TestCasePlus ):
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
-        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
         self.assertEqual(
                 dConfValues['auth']['token'][ : len( sTokenStart ) ],
@@ -38,8 +45,6 @@ class GetConfFileValuesTests( TestCasePlus ):
 
         self.assertEqual( dConfValues['endpoints']['finding'],
                     'http://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
-
-        sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
         self.assertEqual(
@@ -79,6 +84,86 @@ class TestListingTypeTupleTests( TestCasePlus ):
         self.assertEqual( tGotTypes , tWantTypes )
 
 
+
+class AuthTokenTests( TestCasePlus ):
+    '''ebay API conf file values tests'''
+
+    def setUp( self ):
+        #
+        self.dConfValues = getApiConfValues()
+
+    def test_auth_object( self ):
+        #
+        oTest = _ApplicationtToken( error = 'abc' )
+        #
+        self.assertEqual( str( oTest ), '{"error": "abc"}' )
+        #
+        oSomeLater = timezone.now() + timezone.timedelta( seconds = 7200 )
+        #
+        oTest = _ApplicationtToken(
+                    access_token = sTokenStart,
+                    tokenExpires = oSomeLater )
+        #
+        sExpect = ( '{"access_token": "%s", "expires": "%s"}' %
+                    (   sTokenStart,
+                        getIsoDateTimeFromObj( oSomeLater ) ) )
+        #
+        self.assertEqual( str( oTest ), sExpect )
+        #
+        oMoreLter = timezone.now() + timezone.timedelta( seconds = 2 * 7200 )
+        #
+        oTest = _ApplicationtToken(
+                    access_token        = sTokenStart,
+                    tokenExpires        = oSomeLater,
+                    refresh_token       = sTokenStart.swapcase(),
+                    refreshExpires= oMoreLter )
+        #
+        sExpect = ( '{"access_token": "%s", "expires": "%s", '
+                    '"refresh_token": "%s", "expires": "%s"}' %
+                    ( sTokenStart,
+                      getIsoDateTimeFromObj( oSomeLater ),
+                      sTokenStart.swapcase(),
+                      getIsoDateTimeFromObj( oMoreLter ) ) )
+        #
+        self.assertEqual( str( oTest ), sExpect )
+        #
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+    def test_request_headers( self ):
+        #
+        dHeaders = _getRequestHeaders( self.dConfValues )
+        #
+        self.assertIn( 'Authorization', dHeaders )
+        self.assertIn( 'Content-Type',  dHeaders )
+        #
+        self.assertEqual(
+                dHeaders['Content-Type'],
+                'application/x-www-form-urlencoded' )
+        #
+        self.assertTrue( dHeaders['Authorization'].startswith( 'Basic ') )
+        #
+        self.assertEqual( len( dHeaders['Authorization'] ), 113 )
+
+
+    def test_request_body( self ):
+        #
+        dBody = _getApplicationRequestBody( self.dConfValues, lScopes )
+        #
+        self.assertIn( 'grant_type',    dBody )
+        self.assertIn( 'redirect_uri',  dBody )
+        self.assertIn( 'scope',         dBody )
+        #
+        self.assertEqual( dBody['grant_type'], 'client_credentials' )
+
+        self.assertEqual( dBody['scope'],
+                          'https://api.ebay.com/oauth/api_scope' )
+        #
+        self.assertEqual( len( dBody['redirect_uri'] ), 34 )
+        #
+        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
 '''
 use these for time out tests only because downloaded file is HUGE:
     getMarketCategoriesGotSiteID()
@@ -91,6 +176,7 @@ do test:
     getSingleItem()
     getItemStatus()
 '''
+
 
 
 
