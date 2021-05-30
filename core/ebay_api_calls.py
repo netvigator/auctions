@@ -1,4 +1,8 @@
+from base64             import b64encode
 from copy               import deepcopy
+from json               import loads
+from json.decoder       import JSONDecodeError
+from logging            import getLogger
 from os                 import environ
 from os.path            import join
 from sys                import path
@@ -7,7 +11,7 @@ from sys                import path
 
 from urllib.request     import urlopen, Request
 
-import django
+from django.utils       import timezone as tz
 
 from lxml               import etree
 import requests
@@ -16,16 +20,18 @@ from ebayinfo.models    import Market
 from ebayinfo.utils     import dMarket2SiteID
 
 from pyPks.Iter.AllVers import tMap
+from pyPks.Object.Get   import ValueContainer
+from pyPks.Time.Convert import getIsoDateTimeFromObj
 from pyPks.Utils.Config import getConfDict
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 
 path.append('~/Devel/auctions')
 
+logger = getLogger(__name__)
 
 class InvalidParameters( Exception ): pass
 
-# django.setup()
 
 '''
 for troubleshooting:
@@ -39,6 +45,56 @@ tEBAY_LISTING_TYPES = (
       'FixedPrice',
       'StoreInventory',
       'All' )
+
+
+class _ApplicationtToken( ValueContainer ):
+    #
+    '''
+    tokenExpires & refreshExpires: datetime in UTC
+    '''
+    error           = None
+    access_token    = None
+    refresh_token   = None
+    tokenExpires    = None
+    refreshExpires  = None
+
+    def __init__(self, **kwargs ):
+        #
+        super( _ApplicationtToken, self).__init__( **kwargs )
+
+    def __str__( self ):
+        #
+        lTokenStr = [ '{' ]
+        #
+        if self.error is None:
+            #
+            lTokenStr.append(
+                    '"access_token": "' +
+                    self.access_token   +
+                    '", "expires": "'   +
+                    getIsoDateTimeFromObj( self.tokenExpires ) )
+            lTokenStr.append( '"' )
+            #
+            if self.refresh_token is not None:
+                #
+                lTokenStr.append( ', ' )
+                #
+                lTokenStr.append(
+                    '"refresh_token": "'+
+                    self.refresh_token  +
+                    '", "expires": "'   +
+                    getIsoDateTimeFromObj( self.refreshExpires ) )
+                lTokenStr.append( '"' )
+                #
+            #
+        else: # error is not None
+            #
+            lTokenStr.append( '"error": "' + self.error + '"' )
+            #
+        #
+        lTokenStr.append( '}' )
+        #
+        return ''.join( lTokenStr )
 
 
 def _getConfValues():
@@ -216,8 +272,8 @@ def _getCategoriesOrVersion(
     #
     sEndPointURL= dConfValues[ "endpoints"][ 'trading'         ]
     sCompatible = dConfValues[ "trading"  ][ "compatibility"   ]
-    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"     ]
-    sCertID     = dConfValues[ "keys"     ][ "ebay_certid"     ]
+    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"     ] # client_id
+    sCertID     = dConfValues[ "keys"     ][ "ebay_certid"     ] # client_secret
     sDevID      = dConfValues[ "keys"     ][ "ebay_dev_id"     ]
     sToken      = dConfValues[ "auth"     ][ "token"           ]
     sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
@@ -544,4 +600,134 @@ def getMarketCategoriesGotGlobalID(
 # QuietDump( getMarketCategoriesGotGlobalID(),            'Categories_All_EBAY-US.xml' )
 # QuietDump( getMarketCategoriesGotGlobalID( 'EBAY-GB' ), 'Categories_All_EBAY-GB.xml' )
 
+
+'''
+logic and code for testing whether oAuthToken is still good
+
+from django.utils import timezone as tz
+oUseUntil = tz.now() + tz.timedelta( seconds = 5 )
+
+In [42]: oUseUntil > tz.now()
+Out[42]: True
+
+In [43]: oUseUntil > tz.now()
+Out[43]: True
+
+In [44]: oUseUntil > tz.now()
+Out[44]: True
+
+In [45]: oUseUntil > tz.now()
+Out[45]: False
+
+
+sEndPointURLAuthWeb = dConfValues[ "endpoints"][ 'auth_web' ]
+sEndPointURLAuthApi = dConfValues[ "endpoints"][ 'auth_api' ]
+
+
+
+'''
+
+
+def _getRequestHeaders( dConfValues ):
+    #
+    sCredential = '%s:%s' % (
+            dConfValues[ "keys" ][ "ebay_app_id" ],
+            dConfValues[ "keys" ][ "ebay_certid" ] )
+    #
+    sCredentialEncoded = b64encode( sCredential.encode("utf-8") )
+    #
+    dHeaders = {
+            'Content-Type' : 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic %s' % sCredentialEncoded }
+    #
+    return dHeaders
+
+
+def _getApplicationRequestBody( dConfValues, lScopes ):
+    #
+    dBody = {
+            'grant_type': 'client_credentials',
+            'redirect_uri': dConfValues[ "keys" ][ "ebay_ru_name" ],
+            'scope': ' '.join( lScopes )
+    }
+    #
+    return dBody
+
+
+lScopes = [ 'https://api.ebay.com/oauth/api_scope' ]
+
+
+def getApplicationToken( lScopes = lScopes, bUseSandbox = False ):
+    #
+    dConfValues     = getApiConfValues( bUseSandbox )
+    #
+    dHeaders        = _getRequestHeaders( dConfValues )
+    #
+    dBody           = _getApplicationRequestBody( dConfValues, lScopes )
+    #
+    sEndPointURL    = dConfValues[ "endpoints"][ 'auth_web' ]
+    #
+    oResponse       = requests.post(
+            sEndPointURL, data = dBody, headers = dHeaders )
+    #
+    oJsonException  = None
+    #
+    try:
+        #
+        dContent    = loads( oResponse.content )
+        #
+    except JSONDecodeError as oJsonException: # ebay server down?
+        #
+        dContent    = None
+        #
+    #
+    if dContent is None:
+        #
+        #if oJsonException is not None:
+            #sTokenValue = str( oJsonException )
+        #else:
+        sContent = oResponse.content.decode( encoding = 'utf-8' )
+        #
+        if (    sContent.startswith( '<!DOCTYPE html>' ) and
+                'server is down' in sContent ):
+            #
+            sTokenValue = 'server is down'
+            #
+        else:
+            #
+            sTokenValue = sContent
+            #
+        #
+        oAppToken   = _ApplicationtToken(
+            error   = '%s: %s' %
+            ( str( oResponse.status_code ), sTokenValue ) )
+        #
+    elif oResponse.status_code == requests.codes.ok:
+        #
+        iGoodFor    = int( dContent['expires_in'] ) - 300
+        #
+        oAppToken   = _ApplicationtToken(
+            access_token    = dContent['access_token'],
+            tokenExpires    =
+                    tz.now() +
+                    tz.timedelta( seconds = iGoodFor ) )
+        #
+    else:
+        #
+        oAppToken   = _ApplicationtToken(
+            error   = '%s: %s' %
+            ( str( oResponse.status_code ),
+              dContent['error_description'] ) )
+        #
+        logger.error(
+                "Unable to retrieve token.  Status code: %s - %s" %
+                ( resp.status_code,
+                  requests.status_codes._codes[resp.status_code] ) )
+        #
+        logger.error(
+                "Error: %s - %s" %
+                ( dContent['error'], dContent['error_description'] ) )
+        #
+    #
+    return oAppToken
 
