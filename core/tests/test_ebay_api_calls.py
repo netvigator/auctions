@@ -6,7 +6,8 @@ from .base              import TestCasePlus
 
 from ..ebay_api_calls   import getApiConfValues, _getListingTypeTuple, \
                                _ApplicationtToken, _getRequestHeaders, \
-                               _getApplicationRequestBody, lScopes
+                               _getApplicationRequestBody, lScopes, \
+                               getApplicationToken
 
 from pyPks.Time.Convert import getIsoDateTimeFromObj
 
@@ -44,7 +45,7 @@ class GetConfFileValuesTests( TestCasePlus ):
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
 
         self.assertEqual( dConfValues['endpoints']['finding'],
-                    'http://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
+                    'https://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
         self.assertEqual(
@@ -143,7 +144,7 @@ class AuthTokenTests( TestCasePlus ):
         #
         self.assertTrue( dHeaders['Authorization'].startswith( 'Basic ') )
         #
-        self.assertEqual( len( dHeaders['Authorization'] ), 113 )
+        self.assertEqual( len( dHeaders['Authorization'] ), 110 )
 
 
     def test_request_body( self ):
@@ -151,7 +152,6 @@ class AuthTokenTests( TestCasePlus ):
         dBody = _getApplicationRequestBody( self.dConfValues, lScopes )
         #
         self.assertIn( 'grant_type',    dBody )
-        self.assertIn( 'redirect_uri',  dBody )
         self.assertIn( 'scope',         dBody )
         #
         self.assertEqual( dBody['grant_type'], 'client_credentials' )
@@ -159,9 +159,23 @@ class AuthTokenTests( TestCasePlus ):
         self.assertEqual( dBody['scope'],
                           'https://api.ebay.com/oauth/api_scope' )
         #
-        self.assertEqual( len( dBody['redirect_uri'] ), 34 )
-        #
         print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+
+    def test_get_token( self ):
+        #
+        oToken = getApplicationToken( bUseSandbox = True )
+        #
+        self.assertIsNotNone( oToken )
+        #
+        self.assertIsNone( oToken.error )
+        #
+        self.assertGreater( oToken.tokenExpires, timezone.now() )
+        #
+        self.assertGreater( len( oToken.access_token ), 1800 )
+        #
+        self.assertTrue( oToken.access_token.startswith( 'v^' ) )
+
 
 
 '''
