@@ -7,7 +7,7 @@ from os                 import environ
 from os.path            import join
 from sys                import path
 
-#from pprint            import pprint
+from pprint            import pprint
 
 from urllib.request     import urlopen, Request
 
@@ -101,15 +101,19 @@ def _getConfValues():
     #
     class oConfValues( object ): pass
     #
-    dProdSecrets   = getConfDict( 'config/settings/Secrets.ini' )  # secret
+    dConfSecrets   = getConfDict( 'config/settings/Secrets.ini' )  # secret
     dEbayConf      = getConfDict( 'config/settings/ebay.ini' )     # not secret
-    dSandBox       = getConfDict( 'config/settings/sandbox.ini' )  # mixed
+    #
+    # sandbox.ini now obsolete
+    # dSandBox     = getConfDict( 'config/settings/sandbox.ini' )  # mixed
     #
     dEbaySandbox   = deepcopy( dEbayConf )
-    dEbaySandbox.update( dProdSecrets ) # add production secrets
-    dEbaySandbox.update( dSandBox ) # overwrite secrets, add some non secrets
-
-    dProduction    = dProdSecrets
+    dEbaySandbox['endpoints'] = dEbaySandbox['sandboxendpoints']
+    dEbaySandbox.update( dConfSecrets ) # add production secrets
+    dEbaySandbox['keys'] = dEbaySandbox['sandboxkeys']
+    dEbaySandbox['auth'] = dEbaySandbox['sandboxauth']
+    #
+    dProduction    = dConfSecrets
     dProduction.update( dEbayConf ) # non secrets mixed in for convenience
     #
     oConfValues.dEbaySandbox = dEbaySandbox
@@ -174,6 +178,7 @@ def _getResponseEbayApi(
         sEndPointURL,
         dData,
         uTimeOuts   = ( 4, 10 ), # ( connect, read )
+        dHeaders = {},
         **kwargs ):
     #
     ''' connect to ebay, do a GET, get response '''
@@ -185,6 +190,7 @@ def _getResponseEbayApi(
     oResponse = requests.get(
                     sEndPointURL,
                     params  = dData,
+                    headers = dHeaders,
                     timeout = uTimeOuts )
     #
     return oResponse.text
@@ -229,6 +235,11 @@ def _getItemInfo( uItemNumb, sCallName,
     sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
     sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
     #
+    # both the appid query parameter and X-EBAY-API-APP-ID HTTP header
+    # will be deprecated on June 30, 2021
+    #
+    # instead use X-EBAY-API-IAF-TOKEN
+    #
     dMore       = dict( appid   = sAppID,
                         siteid  = str( iSiteID ),
                         version = sCompatible )
@@ -237,7 +248,16 @@ def _getItemInfo( uItemNumb, sCallName,
     #
     tTimeOuts   = tMap( int, ( sTimeOutConn, sTimeOutRead ) )
     #
-    return _getResponseEbayApi( sEndPointURL, dParams, tTimeOuts )
+    dHeaders = {}
+    #
+    if oAuthToken is not None and oAuthToken.error is None:
+        #
+        dHeaders = { 'X-EBAY-API-IAF-TOKEN': oAuthToken.access_token }
+        #
+        del dParams['appid']
+        #
+    #
+    return _getResponseEbayApi( sEndPointURL, dParams, tTimeOuts, dHeaders )
 
 
 _tIncludeDefaults = ( 'Details', 'TextDescription' )
@@ -621,6 +641,8 @@ Out[45]: False
 
 
 sEndPointURLAuthWeb = dConfValues[ "endpoints"][ 'auth_web' ]
+
+for application token
 sEndPointURLAuthApi = dConfValues[ "endpoints"][ 'auth_api' ]
 
 
@@ -630,11 +652,16 @@ sEndPointURLAuthApi = dConfValues[ "endpoints"][ 'auth_api' ]
 
 def _getRequestHeaders( dConfValues ):
     #
+    # Authorization – The word "Basic "
+    # followed by your Base64-encoded OAuth credentials
+    # (<client_id>:<client_secret>).
+    #
     sCredential = '%s:%s' % (
             dConfValues[ "keys" ][ "ebay_app_id" ],
             dConfValues[ "keys" ][ "ebay_certid" ] )
     #
-    sCredentialEncoded = b64encode( sCredential.encode("utf-8") )
+    sCredentialEncoded = b64encode(
+            sCredential.encode("utf-8") ).decode( 'utf-8' )
     #
     dHeaders = {
             'Content-Type' : 'application/x-www-form-urlencoded',
@@ -645,9 +672,11 @@ def _getRequestHeaders( dConfValues ):
 
 def _getApplicationRequestBody( dConfValues, lScopes ):
     #
+    # maybe not needed
+    #        'redirect_uri': dConfValues[ "keys" ][ "ebay_ru_name" ],
+    #
     dBody = {
             'grant_type': 'client_credentials',
-            'redirect_uri': dConfValues[ "keys" ][ "ebay_ru_name" ],
             'scope': ' '.join( lScopes )
     }
     #
@@ -665,7 +694,7 @@ def getApplicationToken( lScopes = lScopes, bUseSandbox = False ):
     #
     dBody           = _getApplicationRequestBody( dConfValues, lScopes )
     #
-    sEndPointURL    = dConfValues[ "endpoints"][ 'auth_web' ]
+    sEndPointURL    = dConfValues[ "endpoints"][ 'auth_api' ]
     #
     oResponse       = requests.post(
             sEndPointURL, data = dBody, headers = dHeaders )
@@ -721,8 +750,8 @@ def getApplicationToken( lScopes = lScopes, bUseSandbox = False ):
         #
         logger.error(
                 "Unable to retrieve token.  Status code: %s - %s" %
-                ( resp.status_code,
-                  requests.status_codes._codes[resp.status_code] ) )
+                ( oResponse.status_code,
+                  requests.status_codes._codes[ oResponse.status_code ] ) )
         #
         logger.error(
                 "Error: %s - %s" %
