@@ -14,6 +14,8 @@ class ConfFileTokenExpiredTests( TestCasePlus ):
     def not_here_test_token_expiration( self, iDaysTillExpire = None ):
         '''tokens expire, keep tabs'''
         #
+        # this test is called in ../test_utils.ConfFileTokenExpiredTests
+        #
         if iDaysTillExpire is None: # allows manual testing of expiration msg
             #
             dConfValues     = getApiConfValues()
@@ -42,9 +44,9 @@ class ConfFileTokenExpiredTests( TestCasePlus ):
         #
         if iDaysTillExpire < 32:
             #
+            print('')
             print( '### obtain new one from eBay developer webiste! ###' )
             print( '### remember to update server with new token!!! ###' )
-            print('')
             #
         else:
             #
