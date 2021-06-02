@@ -97,9 +97,8 @@ class _ApplicationtToken( ValueContainer ):
         return ''.join( lTokenStr )
 
 
-def _getConfValues():
-    #
-    class oConfValues( object ): pass
+
+def getApiConfValues( bUseSandbox = False ):
     #
     dConfSecrets   = getConfDict( 'config/settings/Secrets.ini' )  # secret
     dEbayConf      = getConfDict( 'config/settings/ebay.ini' )     # not secret
@@ -107,32 +106,20 @@ def _getConfValues():
     # sandbox.ini now obsolete
     # dSandBox     = getConfDict( 'config/settings/sandbox.ini' )  # mixed
     #
-    dEbaySandbox   = deepcopy( dEbayConf )
-    dEbaySandbox['endpoints'] = dEbaySandbox['sandboxendpoints']
-    dEbaySandbox.update( dConfSecrets ) # add production secrets
-    dEbaySandbox['keys'] = dEbaySandbox['sandboxkeys']
-    dEbaySandbox['auth'] = dEbaySandbox['sandboxauth']
-    #
-    dProduction    = dConfSecrets
-    dProduction.update( dEbayConf ) # non secrets mixed in for convenience
-    #
-    oConfValues.dEbaySandbox = dEbaySandbox
-    oConfValues.dProduction  = dProduction
-    #
-    return oConfValues
-
-
-oConfValues = _getConfValues()
-
-
-def getApiConfValues( bUseSandbox = False ):
-    #
     if bUseSandbox:
-        dUseThis = oConfValues.dEbaySandbox
+        dEbaySandbox                = dEbayConf
+        dEbaySandbox['endpoints']   = dEbaySandbox['sandboxendpoints']
+        dEbaySandbox.update( dConfSecrets ) # add production secrets
+        dEbaySandbox['keys']        = dEbaySandbox['sandboxkeys']
+        dEbaySandbox['auth']        = dEbaySandbox['sandboxauth']
+        dUseThis = dEbaySandbox
     else:
-        dUseThis = oConfValues.dProduction
+        dProduction = dConfSecrets
+        dProduction.update( dEbayConf ) # non secrets mixed in for convenience
+        dUseThis    = dProduction
     #
     return dUseThis
+
 
 
 def _postResponseEbayApi(
