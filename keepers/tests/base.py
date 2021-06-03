@@ -4,6 +4,7 @@ from os.path                import join
 
 from django.utils           import timezone
 
+from core.ebay_api_calls    import getApplicationToken
 from core.tests.base        import ( AssertEmptyMixin, AssertNotEmptyMixin,
                                      TestCasePlus )
 
@@ -79,6 +80,8 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
         #
         super().setUp()
         #
+        self.oAuthToken = getApplicationToken()
+        #
         d = {   293004871422 : s293004871422,
                 254154293727 : s254154293727,
                 254130264753 : s254130264753,
@@ -141,7 +144,7 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
                     oUserFinder.save()
                 #
             #
-            getSingleItemThenStore( iItemNumb, oAuthToken = None )
+            getSingleItemThenStore( iItemNumb, oAuthToken = self.oAuthToken )
             #
             qsItems = Keeper.objects.filter( pk = iItemNumb )
             #
