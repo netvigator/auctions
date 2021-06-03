@@ -56,8 +56,9 @@ sBrands = \
  Garod             |      5 |            |            | Garol
  GE                |      5 |            |            | General Electric
  GE (5 Star)       |      8 |            | 5 Star     | General Electric
- GEC (Genalex)     |      9 |            |            | Genalex\\rGenelex
- Genalex (Gold Lion)|    10 |            | Gold Lion  | Genelex
+ GEC (Genalex)     |      9 | Russia\\rreissue |      | Genalex\\rGenelex
+ Genalex (Gold Lion)|    10 | Russia\\rreissue | Gold Lion | Genelex
+ Genalex (Russian) |      6 |      | Russia\\rreissue | Genelex
  Grommes           |      5 |            |            |
  Harman-Kardon     |      7 |            |            |
  Heathkit          |      8 |            |            | Heath
@@ -243,7 +244,7 @@ sModels = \
  KT-55              |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  KT-77              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             |              | f
+ KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             | Russia\\rreissue
  KT-88              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-25 (10Y)        |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
@@ -884,6 +885,24 @@ sResponseItems2Test = \
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
+           {"itemId":["224466544043"],
+            "title":["2 Vintage Used Genalex Gold Lion KT-88 6550 4-Getter Amplifier Tube Pair Russia"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],"secondaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mspGbkuhZJLkk8BxxPY5jzg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-Vintage-Used-Genalex-Gold-Lion-KT-88-6550-4-Getter-Amplifier-Tube-Pair-Russia-\/224466544043"],
+            "autoPay":["false"],
+            "postalCode":["981**"],"location":["Seattle,WA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"12.95"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"31.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"31.0"}],
+            "bidCount":["9"],"sellingState":["Active"],"timeLeft":["P0DT15H12M48S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-19T00:12:58.000Z"],"endTime":["2021-05-26T00:12:58.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["20"]}],"returnsAccepted":["true"],
+            "galleryPlusPictureURL":["https:\/\/galleryplus.ebayimg.com\/ws\/web\/224466544043_1_0_1.jpg"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
            {"itemId":["384160566733"],
             "title":["2 DELCO 12V6GT VACUUM TUBES  CERTIFIED GOOD HICKOK 600A TESTED STRONG"],
             "globalId":["EBAY-US"],"autoPay":["false"],
@@ -898,21 +917,6 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
-
-           {"itemId":["174772188371"],
-            "title":["Telefunken E88CC CCa NOS Grey Shield 6DJ8 6922 CV2492 CV2493 CV5358 CV5472"],
-            "globalId":["EBAY-US"],"subtitle":["Produced in'60th, GreyShield, StageGetter, Goldpins"],
-            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/m6jHIYx7VHIbBK_X9xE8jlg\/140.jpg"],
-            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Telefunken-E88CC-CCa-NOS-Grey-Shield-6DJ8-6922-CV2492-CV2493-CV5358-CV5472-\/174772188371"],
-            "location":["Germany"],"country":["DE"],
-            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"24.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
-            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"77.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"77.0"}],
-            "bidCount":["13"],"sellingState":["Active"],"timeLeft":["P6DT7H31M9S"]}],"autoPay":["false"],
-            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
-            "startTime":["2021-05-19T16:33:13.000Z"],"endTime":["2021-05-29T16:33:13.000Z"],
-            "listingType":["Auction"],"gift":["false"],"watchCount":["29"]}],
-            "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["224450198521"],
             "title":["KT55 NOS Pair GEC England Osram KT66 with 50 volt Heater KT77 KT88 6L6 6550"],
@@ -973,21 +977,6 @@ sResponseItems2Test = \
             "startTime":["2021-04-16T23:38:08.000Z"],"endTime":["2021-04-23T23:38:08.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["30"]}],"returnsAccepted":["false"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
-            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
-
-           {"itemId":["254948354352"],
-            "title":["2x Electrically MATCHED E88CC 1968 Tungsram Ujpest PAIR TUBES 6922 CCa CV2492"],
-            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
-            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mh2HpWPVDG0hqqVU_GdFtUA\/140.jpg"],
-            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2x-Electrically-MATCHED-E88CC-1968-Tungsram-Ujpest-PAIR-TUBES-6922-CCa-CV2492-\/254948354352"],
-            "paymentMethod":["PayPal"],"autoPay":["false"],"globalId":["EBAY-US"],
-            "location":["Bulgaria"],"country":["BG"],
-            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"9.99"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
-            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"79.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"79.99"}],
-            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P8DT7H55M8S"]}],
-            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
-            "startTime":["2021-04-19T16:58:07.000Z"],"endTime":["2021-04-29T16:58:07.000Z"],
-            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["true"],
             "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["203352800117"],
