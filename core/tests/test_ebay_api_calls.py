@@ -106,7 +106,7 @@ class AuthTokenTests( TestCasePlus ):
                     tokenExpires = oSomeLater )
         #
         sExpect = ( '{"access_token": "%s", "expires": "%s"}' %
-                    (   sTokenStart,
+                     (  sTokenStart,
                         getIsoDateTimeFromObj( oSomeLater ) ) )
         #
         self.assertEqual( str( oTest ), sExpect )
