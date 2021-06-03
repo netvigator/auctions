@@ -240,7 +240,7 @@ def _getItemInfo( uItemNumb, sCallName,
         #
         dHeaders = { 'X-EBAY-API-IAF-TOKEN': oAuthToken.access_token }
         #
-        del dParams['appid']
+        del dParams[ 'appid' ]
         #
     #
     return _getResponseEbayApi( sEndPointURL, dParams, tTimeOuts, dHeaders )
@@ -449,7 +449,7 @@ def _getEbayFindingResponse(
     #
     dConfValues = getApiConfValues( bUseSandbox )
     #
-    sEndPointURL= dConfValues[ "endpoints"][ 'finding'    ]
+    sEndPointURL= dConfValues[ "endpoints"][ "finding"    ]
     sGlobalID   = dConfValues[ "call"     ][ "global_id"  ]
     sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"]
     #
@@ -461,6 +461,8 @@ def _getEbayFindingResponse(
         #
         dHttpHeaders[
             "X-EBAY-API-IAF-TOKEN" ]      = oAuthToken.sToken
+        #
+        del dHttpHeaders[ "X-EBAY-SOA-SECURITY-APPNAME" ]
         #
     #
     dHttpHeaders.update( headers )
