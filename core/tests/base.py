@@ -33,44 +33,49 @@ from pyPks.Utils.DataBase   import getTableFromScreenCaptureGenerator
 
 class UserSetUpMixin( object ):
 
-    def setUp(self):
+    @classmethod
+    def setUpTestData( cls ):
 
-        self.factory = RequestFactory()
+        cls.factory = RequestFactory()
 
-        self.market  = getDefaultMarket()
+        cls.market  = getDefaultMarket()
 
         oUserModel = get_user_model()
 
-        self.user1 = oUserModel.objects.create_user(
+        cls.user1 = oUserModel.objects.create_user(
                                     'username1', 'email@ymail.com')
-        self.user1.set_password( 'mypassword')
-        self.user1.first_name   = 'John'
-        self.user1.last_name    = 'Citizen'
-        self.user1.save()
+        cls.user1.set_password( 'mypassword')
+        cls.user1.first_name   = 'John'
+        cls.user1.last_name    = 'Citizen'
+        cls.user1.save()
 
-        self.user2 = oUserModel.objects.create_user(
+        cls.user2 = oUserModel.objects.create_user(
                                     'username2', 'email@gmail.com')
-        self.user2.set_password( 'mypassword')
-        self.user2.first_name   = 'Joe'
-        self.user2.last_name    = 'Blow'
-        self.user2.save()
+        cls.user2.set_password( 'mypassword')
+        cls.user2.first_name   = 'Joe'
+        cls.user2.last_name    = 'Blow'
+        cls.user2.save()
 
-        self.user3 = oUserModel.objects.create_user(
+        cls.user3 = oUserModel.objects.create_user(
                                     'username3', 'email@hotmail.com' )
-        self.user3.set_password( 'mypassword')
-        self.user3.first_name   = 'Oscar'
-        self.user3.last_name    = 'Zilch'
-        self.user3.is_superuser = True
-        self.user3.save()
+        cls.user3.set_password( 'mypassword')
+        cls.user3.first_name   = 'Oscar'
+        cls.user3.last_name    = 'Zilch'
+        cls.user3.is_superuser = True
+        cls.user3.save()
         #
-        self.request = HttpRequest()
-        self.request.user = self.user1
+        cls.request = HttpRequest()
+        cls.request.user = cls.user1
         #
-        self.client.login(username ='username1', password='mypassword')
         #
         # putting user1 last saves the user1 records in self
         #
-        self.tUsers = ( self.user3, self.user2, self.user1 )
+        cls.tUsers = ( cls.user3, cls.user2, cls.user1 )
+        #
+
+    def setUp(self):
+        #
+        self.client.login(username ='username1', password='mypassword')
         #
 
 
@@ -210,7 +215,7 @@ class SetUpBrandsCategoriesModelsMixin( object ):
     #
     def setUp(self):
         #
-        super().setUp()
+        super().setUp() # absolutely need for this mixin !!!
         #
         for oUser in self.tUsers:
             #
