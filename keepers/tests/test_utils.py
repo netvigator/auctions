@@ -1,63 +1,61 @@
 import logging
 import inspect
 
-from os                 import listdir
-from os.path            import dirname, join
-from shutil             import rmtree
-from time               import sleep
+from os                     import listdir
+from os.path                import dirname, join
+from shutil                 import rmtree
+from time                   import sleep
 
-from django.test        import tag
-from django.utils       import timezone
+from django.test            import tag
+from django.utils           import timezone
 
-from keepers            import getListAsLines
+from keepers                import getListAsLines
 
-from core.utils         import maybePrint
+from core.utils             import maybePrint
 
-from core.tests.base    import ( GetEbayCategoriesWebTestSetUp,
-                                 AssertEmptyMixin, AssertNotEmptyMixin,
-                                 TestCasePlus )
+from core.tests.base        import GetEbayCategoriesWebTestSetUp, \
+                                   AssertEmptyMixin, AssertNotEmptyMixin, \
+                                   TestCasePlus
 
-from .base              import ( StoreItemsTestPlusBase,
-                                 StoreSingleKeepersForWebTests )
+from .base                  import StoreItemsTestPlusBase, \
+                                   StoreSingleKeepersForWebTests
 
-from ..models           import Keeper, UserKeeper, KeeperImage
+from ..models               import Keeper, UserKeeper, KeeperImage
 
-from ..tests            import ( s142766343340, s232742493872,
-                                 s232709513135, s282330751118,
-                                 s223348187115, s173696834267,
-                                 s372536713027, s173696832184,
-                                 sMissingItemIdErrorGotAck,
-                                 sMadeUpErrorNoAck )
+from ..tests                import s142766343340, s232742493872, \
+                                   s232709513135, s282330751118, \
+                                   s223348187115, s173696834267, \
+                                   s372536713027, s173696832184, \
+                                   sMissingItemIdErrorGotAck, \
+                                   sMadeUpErrorNoAck
 
+from ..utils                import _storeOneJsonItemInKeepers, \
+                                   getSingleItemThenStore, \
+                                   getFindersForResultsFetching, \
+                                   getItemPicsSubDir, \
+                                   getPicFileList, \
+                                   _getPicExtension, \
+                                   _getPicFileNameExtn, \
+                                   ITEM_PICS_ROOT, \
+                                   _getItemPicture, \
+                                   getItemPictures, \
+                                   GetSingleItemNotWorkingError, \
+                                   getItemsForPicsDownloading, \
+                                   deleteKeeperUserItem
 
-
-from ..utils            import ( _storeOneJsonItemInKeepers,
-                                 getSingleItemThenStore,
-                                 getFindersForResultsFetching,
-                                 getItemPicsSubDir,
-                                 getPicFileList,
-                                 _getPicExtension,
-                                 _getPicFileNameExtn,
-                                 ITEM_PICS_ROOT,
-                                 _getItemPicture,
-                                 getItemPictures,
-                                 GetSingleItemNotWorkingError,
-                                 getItemsForPicsDownloading,
-                                 deleteKeeperUserItem )
-
-from finders.models     import ItemFound, UserItemFound, UserFinder
+from finders.models         import ItemFound, UserItemFound, UserFinder
 
 from searching.models       import Search
 from searching.tests        import dSearchResult, iRecordStepsForThis
 from searching.utils        import _storeUserItemFound, _storeItemFound
 from searching.utils_stars  import findSearchHits, SCRIPT_TEST_FILE
 
-from pyPks.Dir.Test     import isDirThere
-from pyPks.File.Del     import DeleteIfExists
-from pyPks.File.Get     import Touch
-from pyPks.File.Test    import isFileThere
-from pyPks.File.Write   import openAppendClose
-from pyPks.String.Get   import getTextAfter
+from pyPks.Dir.Test         import isDirThere
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Get         import Touch
+from pyPks.File.Test        import isFileThere
+from pyPks.File.Write       import openAppendClose
+from pyPks.String.Get       import getTextAfter
 
 
 logger = logging.getLogger(__name__)
