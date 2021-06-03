@@ -47,20 +47,22 @@ tEBAY_LISTING_TYPES = (
       'All' )
 
 
-class _ApplicationtToken( ValueContainer ):
+class _ApplicationtToken( object ):
     #
     '''
     tokenExpires & refreshExpires: datetime in UTC
     '''
+    # credit (and see): ValueContainer in pyPks.Object.Get
+    #
     error           = None
     access_token    = None
     refresh_token   = None
     tokenExpires    = None
     refreshExpires  = None
 
-    def __init__(self, **kwargs ):
+    def __init__( self, **kwargs ):
         #
-        super( _ApplicationtToken, self).__init__( **kwargs )
+        self.__dict__.update( kwargs )
 
     def __str__( self ):
         #
@@ -69,22 +71,16 @@ class _ApplicationtToken( ValueContainer ):
         if self.error is None:
             #
             lTokenStr.append(
-                    '"access_token": "' +
-                    self.access_token   +
-                    '", "expires": "'   +
-                    getIsoDateTimeFromObj( self.tokenExpires ) )
-            lTokenStr.append( '"' )
+                    '"access_token": "%s", "expires": "%s"' %
+                    ( self.access_token,
+                      getIsoDateTimeFromObj( self.tokenExpires ) ) )
             #
             if self.refresh_token is not None:
                 #
-                lTokenStr.append( ', ' )
-                #
                 lTokenStr.append(
-                    '"refresh_token": "'+
-                    self.refresh_token  +
-                    '", "expires": "'   +
-                    getIsoDateTimeFromObj( self.refreshExpires ) )
-                lTokenStr.append( '"' )
+                        ', "refresh_token": "%s", "expires": "%s"' %
+                        ( self.refresh_token,
+                          getIsoDateTimeFromObj( self.refreshExpires ) ) )
                 #
             #
         else: # error is not None
@@ -96,6 +92,9 @@ class _ApplicationtToken( ValueContainer ):
         #
         return ''.join( lTokenStr )
 
+    def isStillGood( self ):
+        #
+        return self.tokenExpires > tz.now()
 
 
 def getApiConfValues( bUseSandbox = False ):
@@ -714,19 +713,22 @@ def getApplicationToken( lScopes = lScopes, bUseSandbox = False ):
             sTokenValue = sContent
             #
         #
-        oAppToken   = _ApplicationtToken(
-            error   = '%s: %s' %
+        sSayError = ( '%s: %s' %
             ( str( oResponse.status_code ), sTokenValue ) )
+        #
+        oAppToken   = _ApplicationtToken( error = sSayError)
+        #
+        logger.error( "Unable to retrieve token -- %s" % sSayError )
         #
     elif oResponse.status_code == requests.codes.ok:
         #
         iGoodFor    = int( dContent['expires_in'] ) - 300
         #
+        dtExpires   = tz.now() + tz.timedelta( seconds = iGoodFor )
+        #
         oAppToken   = _ApplicationtToken(
             access_token    = dContent['access_token'],
-            tokenExpires    =
-                    tz.now() +
-                    tz.timedelta( seconds = iGoodFor ) )
+            tokenExpires    = dtExpires )
         #
     else:
         #
