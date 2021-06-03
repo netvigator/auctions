@@ -3362,7 +3362,7 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        #
+        #174772188371
         iThisOne = 174456687870
         #
         self.print_len(
@@ -4556,24 +4556,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 254948354352
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
-                'should find E88CC vacuum tube '
-                'not the rest' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Tungsram' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        #
-        #
-        #
-        #
-        #
         #
         iThisOne = 333865256171
         #
@@ -4672,29 +4654,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 174772188371
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 2, iThisOne,
-                'should find E88CC CCa only, rest are on end' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'E88CC (= 6922 = CCa = CV2492)' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 1 ]
-        #
-        self.assertEqual( oTest.iModel.cTitle, 'CCa (= 6922 = E88CC = CV2492)' )
-        self.assertEqual( oTest.iBrand.cTitle, 'Telefunken' )
-        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
-        #
-        #
-        #
-        #
-        #
-        #
         iThisOne = 384160566733
         #
         self.print_len(
@@ -4706,6 +4665,34 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, '12V6GTA' )
         self.assertEqual( oTest.iBrand.cTitle, 'Delco' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 224466544043
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find Genalex (Russian) not Genalex (Gold Lion)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6550' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Genalex (Russian)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-88' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Genalex (Russian)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
@@ -5176,6 +5163,7 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 8298A not 6146B on end' )
+        #
         #
         #
         #
