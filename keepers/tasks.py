@@ -6,6 +6,7 @@ from django.db              import connection
 
 #from celery                import shared_task
 
+from core.ebay_api_calls    import getApplicationToken
 from core.utils             import sayIsoDateTimeNoTimeZone, getPriorDateTime
 
 from .models                import Keeper
@@ -77,6 +78,11 @@ def deleteOldItemsFoundTask( iOldCutOff ):
 # @shared_task( name = 'keepers.tasks.getFetchUserItems' )
 def doGetFetchUserItemsTasks(
             oAuthToken = None, bOnlySay = False, bDoFinalOnly = False ):
+    #
+    if oAuthToken is None:
+        #
+        oAuthToken = getApplicationToken()
+        #
     #
     qsUserItemNumbs = getFindersForResultsFetching()
     #
