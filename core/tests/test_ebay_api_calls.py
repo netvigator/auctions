@@ -159,7 +159,7 @@ class AuthTokenTests( TestCasePlus ):
         self.assertEqual( dBody['scope'],
                           'https://api.ebay.com/oauth/api_scope' )
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
     def test_get_token( self ):
