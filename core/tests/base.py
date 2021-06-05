@@ -179,21 +179,22 @@ def queryGotUpdated( s ):
 
 class getSingleEbayCategoryMixin( object ):
 
-    def setUp(self):
+    @classmethod
+    def setUpTestData( cls ):
         #
-        super().setUp()
+        super().setUpTestData()
         #
-        self.ebc = EbayCategory(
+        cls.ebc = EbayCategory(
             iCategoryID = 10,
             name        = 'hot products',
             iLevel      = 1,
             iParentID   = 1,
             iTreeVersion= 1,
-            iEbaySiteID = self.market,
+            iEbaySiteID = cls.market,
             bLeafCategory = False )
-        self.ebc.save()
+        cls.ebc.save()
         #
-        self.client = Client()
+        cls.client = Client()
 
 
 
@@ -213,54 +214,55 @@ class SetUpBrandsCategoriesModelsMixin( object ):
     #
     '''reuse setup code for WebTest and TestCasePlus '''
     #
-    def setUp(self):
+    @classmethod
+    def setUpTestData( cls ):
         #
-        super().setUp() # absolutely need for this mixin !!!
+        super().setUpTestData() # absolutely need for this mixin !!!
         #
-        for oUser in self.tUsers:
+        for oUser in cls.tUsers:
             #
-            self.setUpBrandsCategoriesModels( oUser )
+            cls.setUpBrandsCategoriesModels( cls, oUser )
             #
-            # putting user1 last saves the user1 records in self
+            # putting user1 last saves the user1 records in cls
 
 
-    def setUpBrandsCategoriesModels( self, oUser ):
+    def setUpBrandsCategoriesModels( cls, oUser ):
         #
-        self.oBrand_hp = Brand(
+        cls.oBrand_hp = Brand(
             cTitle      = "Hewlett-Packard",
             cLookFor    = "hp",
             cExcludeIf  = '',
             iStars      = 5,
             iUser       = oUser )
         #
-        self.oBrand_hp.save()
+        cls.oBrand_hp.save()
         #
-        self.oBrand_GT = Brand(
+        cls.oBrand_GT = Brand(
             cTitle      = "Groove Tube",
             cLookFor    = "Groove Tubes",
             cExcludeIf  = '',
             iStars      = 4,
             iUser       = oUser )
         #
-        self.oBrand_GT.save()
+        cls.oBrand_GT.save()
         #
-        self.oBrand = Brand(
+        cls.oBrand = Brand(
             cTitle      = "Cadillac",
             cLookFor    = "Caddy",
             cExcludeIf  = 'golf',
             iStars      = 5,
             iUser       = oUser )
         #
-        self.oBrand.save()
+        cls.oBrand.save()
         #
-        self.oCategory = Category(
+        cls.oCategory = Category(
             cTitle      = "Capacitor Checker",
             cLookFor    = "Capacitor Tester\r"
                           "Capacitance Checker\r"
                           "Capacitance Tester",
             iStars      = 5,
             iUser       = oUser )
-        self.oCategory.save()
+        cls.oCategory.save()
         #
         oBrand = Brand(
             cTitle      = "Digital",
@@ -276,31 +278,31 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             bSubModelsOK= False,
             iStars      = 4,
             iBrand      = oBrand,
-            iCategory   = self.oCategory,
+            iCategory   = cls.oCategory,
             iUser       = oUser )
         oModel.save()
         #
-        self.oCategory = Category(
+        cls.oCategory = Category(
             cTitle      = "Widget",
             cKeyWords   = 'Gadget',
             cLookFor    = "Gizmo",
             cExcludeIf  = 'Delta',
             iStars      = 5,
             iUser       = oUser )
-        self.oCategory.save()
+        cls.oCategory.save()
         #
-        self.CategoryID = self.oCategory.id
+        cls.CategoryID = cls.oCategory.id
         #
-        self.WidgetCategory = self.oCategory
+        cls.WidgetCategory = cls.oCategory
         #
         #
-        self.oCategory = Category(
+        cls.oCategory = Category(
             cTitle      = "Manual",
             iStars      = 3,
             iUser       = oUser )
-        self.oCategory.save()
+        cls.oCategory.save()
         #
-        self.ManualCategory = self.oCategory
+        cls.ManualCategory = cls.oCategory
         #
         #
         #
@@ -308,8 +310,8 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             cTitle      = "601b",
             bSubModelsOK= True,
             iStars      = 5,
-            iBrand      = self.oBrand,
-            iCategory   = self.oCategory,
+            iBrand      = cls.oBrand,
+            iCategory   = cls.oCategory,
             iUser       = oUser )
         oModel.save()
         #
@@ -317,25 +319,25 @@ class SetUpBrandsCategoriesModelsMixin( object ):
             cTitle      = "Model 2",
             cLookFor    = "Model Two",
             iStars      = 5,
-            iBrand      = self.oBrand,
-            iCategory   = self.oCategory,
+            iBrand      = cls.oBrand,
+            iCategory   = cls.oCategory,
             iUser       = oUser )
         oModel.save()
         #
         # overwrite
         #
-        self.oModel = Model(
+        cls.oModel = Model(
             cTitle      = "Fleetwood",
             cLookFor    = "Woodie",
             cKeyWords   = 'Eldorado',
             cExcludeIf  = 'golf\rtournament', # used in tests/test_stars.py
             iStars      = 5,
-            iBrand      = self.oBrand,
-            iCategory   = self.oCategory,
+            iBrand      = cls.oBrand,
+            iCategory   = cls.oCategory,
             iUser       = oUser )
-        self.oModel.save()
+        cls.oModel.save()
         #
-        self.iModelID = self.oModel.id
+        cls.iModelID = cls.oModel.id
 
 
 
@@ -389,13 +391,14 @@ def setup_view_for_tests( view, request, *args, **kwargs ):
 
 class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
 
-    def setUp(self):
+    @classmethod
+    def setUpTestData( cls ):
         #
-        super().setUp()
+        super().setUpTestData()
         #
-        self.iCategories = 0
+        cls.iCategories = 0
         #
-        self.market  = getDefaultMarket()
+        cls.market  = getDefaultMarket()
         #
         sMarket, sWantVersion = 'EBAY-US', EBAY_CURRENT_VERSION_US
         #
@@ -405,7 +408,7 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
             name            = \
                 '%s version %s Root' % ( sMarket, sWantVersion ),
             iCategoryID     = 0,
-            iEbaySiteID     = self.market,
+            iEbaySiteID     = cls.market,
             iTreeVersion    = iWantVersion,
             iLevel          = 0,
             bLeafCategory   = False,
@@ -549,9 +552,9 @@ class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
             iCategories += 1
             #
         #
-        self.iCategories = iCategories + 4 # add root categories
+        cls.iCategories = iCategories + 4 # add root categories
         #
-        self.setTestCategories = frozenset( setTestCategories )
+        cls.setTestCategories = frozenset( setTestCategories )
         #
 
 
