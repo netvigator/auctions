@@ -1558,10 +1558,12 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+        #
         iThisOne = 202796135729
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 1, iThisOne,
+                dItemsToTest[ iThisOne ], 3, iThisOne,
                 'should find LK-72 integrated amp' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -1569,6 +1571,21 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'LK-72' )
         self.assertEqual( oTest.iBrand.cTitle, 'Scott, H.H.' )
         self.assertEqual( oTest.iCategory.cTitle, 'Integrated Amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5AR4' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5AR4' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Mullard' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
         #
         #
         #
@@ -4688,6 +4705,27 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'KT-88' )
         self.assertEqual( oTest.iBrand.cTitle, 'Genalex (Russian)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 124724521361
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find W-2 amp not (wrong category) vacuum tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'W-2M' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Heathkit' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
         #
         #
         #
