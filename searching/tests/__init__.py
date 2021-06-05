@@ -245,7 +245,7 @@ sModels = \
  KT-66              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  KT-77              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  KT-88 (GEC)        |           |     10 | f            | GEC (Genalex)     |  Vacuum Tube |             | Russia\\rreissue
- KT-88              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ KT-88              |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  VT-25 (10Y)        |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -383,7 +383,7 @@ sModels = \
  WA-P1              |           |      6 | f            | Heathkit          |       Preamp |             |
  WA-P2              |           |      5 | f            | Heathkit          |       Preamp |             |
  W1-A1              |           |      9 | t            | Heathkit          |    Amplifier |             |
- W-2M               |           |      9 | f            | Heathkit          |    Amplifier |             |
+ W-2M               |           |      9 | t            | Heathkit          |    Amplifier |             |
  W-3M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  W-5M               |           |      9 | f            | Heathkit          |    Amplifier |             |
  EA-3               |           |      4 | f            | Heathkit          |Integrated Amp|             |
@@ -884,6 +884,23 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["124724521361"],
+            "title":["Heathkit W-2 Amp and Power Supply..."],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mxTjExo5c0x0o0DsYToc96Q\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Heathkit-W-2-Amp-and-Power-Supply-\/124724521361"],
+            "paymentMethod":["PayPal"],"autoPay":["false"],
+            "postalCode":["453**"],"location":["Tipp City,OH,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"350.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"350.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT9H30M41S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-14T18:32:41.000Z"],"endTime":["2021-05-19T18:32:41.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["224466544043"],
             "title":["2 Vintage Used Genalex Gold Lion KT-88 6550 4-Getter Amplifier Tube Pair Russia"],
