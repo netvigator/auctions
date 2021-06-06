@@ -2366,7 +2366,8 @@ def _doScoreCandidates(
                 #
                 continue
             #
-            if (    oHitLine.iHitStars >= iTopHitStars and
+            if (    oHitLine.iHitStars >= iTopHitStars  and
+                    iTopScoreStars > 0                  and
                     sTopTitle                           and
                     sTitle                              and
                     len( sTitle ) < len( sTopTitle )    and
