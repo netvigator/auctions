@@ -26,8 +26,8 @@ wheel==0.36.2
 
 
 # LTS Django
-# django==3.1.7
-django==3.2
+# django==3.2
+django==3.2.4
 
 
 # Configuration
@@ -100,8 +100,8 @@ pytz==2021.1
 # Your custom requirements go here
 
 # django-countries==7.0
-django-countries==7.1
-
+# django-countries==7.1
+django-countries==7.2.1
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -142,16 +142,14 @@ django-timezone-field==4.1.2
 # django-menu==0.1.13
 # should consider carefully
 
-# celery cannot start
 # https://github.com/pydanny/cookiecutter-django/issues/1954
-# kombu==4.6.8
-# kombu==4.6.10
-# kombu==4.6.11
-kombu==5.0.2
+# kombu==5.0.2
+kombu==5.1.0
 
 # need this 2019-02-13
 # django-extensions==3.1.1
-django-extensions==3.1.2
+# django-extensions==3.1.2
+django-extensions==3.1.3
 
 
 # cron job scheduling 2019-05-21
