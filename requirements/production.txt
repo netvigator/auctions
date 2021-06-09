@@ -15,7 +15,8 @@ gevent==21.1.2
 # Static and Media Storage
 # ------------------------------------------------
 # boto3==1.17.39
-boto3==1.17.53
+# boto3==1.17.53
+boto3==1.17.91
 
 # django-storages==1.9.1
 # django-storages==1.10.1
@@ -25,7 +26,8 @@ django-storages==1.11.1
 # Email backends for Mailgun, Postmark, SendGrid and more
 # -------------------------------------------------------
 # django-anymail==8.1
-django-anymail==8.2
+# django-anymail==8.2
+django-anymail==8.3
 
 
 # Raven is the Sentry client
@@ -33,5 +35,6 @@ django-anymail==8.2
 raven==6.10.0
 
 # ubuntu package is old and has issues, install from pip instead
-mod_wsgi==4.7.1
+# mod_wsgi==4.7.1
+mod_wsgi==4.8.0
 
