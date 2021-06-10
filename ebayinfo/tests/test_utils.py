@@ -31,7 +31,7 @@ from ..utils            import ( CATEGORY_VERSION_FILE,
                                  getEbayCategoryHierarchies,
                                  getShowMarketsHaveNewerCategoryVersionLists )
 
-from .base              import PutMarketsInDatabaseTestBase
+from .base              import PutMarketsInDatabaseTestPlusBase
 from .test_auth_token   import ConfFileTokenExpiredTests
 
 from pyPks.File.Del     import DeleteIfExists
@@ -255,7 +255,7 @@ class TestHeirarchiesAreTheyCompleteWebTest( GetEbayCategoriesWebTestSetUp ):
 
 
 
-class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
+class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestPlusBase ):
     '''test getMarketsIntoDatabase()'''
     #
 
@@ -303,7 +303,7 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestBase ):
 
 
 
-class MarketsAndCategoriesTests( PutMarketsInDatabaseTestBase ):
+class MarketsAndCategoriesTests( PutMarketsInDatabaseTestPlusBase ):
     '''test getMarketsIntoDatabase()'''
     #
 
