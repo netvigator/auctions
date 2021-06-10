@@ -58,7 +58,7 @@ tCategoryArrayTags = (
     'LeafCategory' )
 
 
-def getTagsValuesGotRoot( root, tTags = tVersionChildTags, sFile = None ):
+def _getTagsValuesGotRoot( root, tTags = tVersionChildTags, sFile = None ):
     #
     if root.tag != sRootNameSpTag:
         #
@@ -86,14 +86,14 @@ def getTagsValuesGotRoot( root, tTags = tVersionChildTags, sFile = None ):
     return dTagsValues
 
 
-def getCategoryIterable(
+def _getCategoryIterable(
         sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117' ):
     #
     tree = ET.parse( sFile )
     #
     root = tree.getroot()
     #
-    dTagsValues = getTagsValuesGotRoot(
+    dTagsValues = _getTagsValuesGotRoot(
             root, tTags = tListingChildTags, sFile = sFile )
     #
     if dTagsValues[ 'CategoryVersion' ] != sWantVersion:
@@ -109,11 +109,11 @@ def getCategoryIterable(
 
 
 
-def countCategories(
+def _countCategories(
         sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117',
         bSayCount = False ):
     #
-    oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
+    oCategories, dTagsValues = _getCategoryIterable( sFile, sWantVersion )
     #
     i = 0
     #
@@ -131,10 +131,10 @@ def countCategories(
 
 
 
-def getCategoryDictGenerator(
+def _getCategoryDictGenerator(
         sFile = CATEGORY_LISTING_FILE % 'EBAY-US', sWantVersion = '117' ):
     #
-    oCategories, dTagsValues = getCategoryIterable( sFile, sWantVersion )
+    oCategories, dTagsValues = _getCategoryIterable( sFile, sWantVersion )
     #
     for oCategory in oCategories:
         #
@@ -158,7 +158,7 @@ def getCategoryDictGenerator(
 
 
 '''
-categoryDictIterable = getCategoryDictGenerator()
+categoryDictIterable = _getCategoryDictGenerator()
 pprint( next( categoryDictIterable ) )
 returns
 {'CategoryID': '20081',
@@ -206,14 +206,14 @@ def _putCategoriesInDatabase(
     #
     oMarket, sMarket, sWantVersion = t
     #
-    # getCategoryDictGenerator checks for the expected version
+    # _getCategoryDictGenerator checks for the expected version
     #
     if sFile is None:
         #
         sFile = CATEGORY_LISTING_FILE % sMarket
         #
     #
-    categoryDictIterable = getCategoryDictGenerator(
+    categoryDictIterable = _getCategoryDictGenerator(
         sFile = sFile, sWantVersion = sWantVersion )
     #
     if bShowProgress: # progress meter for running in shell, no need to test
@@ -226,7 +226,7 @@ def _putCategoriesInDatabase(
         #
         for dCategory in categoryDictIterable: iCount +=1
         #
-        categoryDictIterable = getCategoryDictGenerator(
+        categoryDictIterable = _getCategoryDictGenerator(
             sFile = CATEGORY_LISTING_FILE % sMarket,
             sWantVersion = sWantVersion )
         #
@@ -358,6 +358,15 @@ def getCategoryListThenStore(
             bUseSandbox     = False,
             bShowProgress   = False ):
     #
+    '''When ebay updates its category list for a market,
+    the bot can download a text table of the current categories
+    from the ebay api.
+    This high level function
+    fetches the list from ebay
+    then updates the database with the new info.
+    Note that ebay usually puts out updates categories
+    for several markets all together (suddenly).
+    '''
     # circular import problem, this must be here not at top
     from core.ebay_api_calls import getMarketCategoriesGotGlobalID
     #
@@ -387,7 +396,7 @@ def _getCategoryVersionValues( sFile ):
     #
     root = tree.getroot()
     #
-    return getTagsValuesGotRoot( root, sFile = sFile )
+    return _getTagsValuesGotRoot( root, sFile = sFile )
 
 
 
