@@ -22,7 +22,7 @@ from config.wsgi            import application
 
 from ebayinfo.models        import Market
 from ebayinfo.tests         import EBAY_CURRENT_VERSION_US
-from ebayinfo.tests.base    import PutMarketsInDatabaseTestBase
+from ebayinfo.tests.base    import PutMarketsInDatabaseTestPlusBase
 
 from models.models          import Model
 
@@ -143,7 +143,7 @@ class textProcessingTests( TestCasePlus ):
         self.assertEqual( getSaySequence( t ), 'Moe, Larry & Curly' )
 
 
-class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTestBase ):
+class TestUpdatingLoadedDictiorary( PutMarketsInDatabaseTestPlusBase ):
     #
     def test_get_dict_siteID_2_list_vers( self ):
         #
