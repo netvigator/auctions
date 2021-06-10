@@ -1,4 +1,5 @@
 from core.tests.base        import TestCasePlus
+from django_webtest         import WebTest
 
 from ..models               import Market
 
@@ -9,17 +10,14 @@ from ebayinfo.tests.utils   import getMarketsDict
 dMarkets = getMarketsDict( sMarketsTable )
 
 
-class PutMarketsInDatabaseTestBase( TestCasePlus ):
-    ''' set up for tests '''
-    #
-    def setUp(self):
-        #
-        super().setUp()
+class PutMarketsInDatabaseMixIn( object ):
+
+    @classmethod
+    def setUpTestData(self):
         #
         '''fetches the markets table text dump,
         uses that to populate the markets table.
         useful for testing, where the database starts empty.'''
-        #
         #
         for k, v in dMarkets.items():
             #
@@ -35,3 +33,17 @@ class PutMarketsInDatabaseTestBase( TestCasePlus ):
                 cUseCategoryID  = v.cUseCategoryID )
             #
             oMarket.save()
+
+
+
+class PutMarketsInDatabaseTestPlusBase( PutMarketsInDatabaseMixIn, TestCasePlus ):
+    ''' set up for tests '''
+    #
+    pass
+
+
+class PutMarketsInDatabaseWebTestBase( PutMarketsInDatabaseMixIn, WebTest ):
+    ''' set up for tests '''
+    #
+    pass
+
