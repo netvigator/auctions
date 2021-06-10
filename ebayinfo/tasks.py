@@ -46,7 +46,11 @@ def getCategoryListThenStoreTask( uMarket, uWantVersion, bShowProgress ):
     #
 '''
 
-
+# ### use the function of the SAME NAME in utils ###
+# ### use the function of the SAME NAME in utils ###
+# ### use the function of the SAME NAME in utils ###
+# ### use the function of the SAME NAME in utils ###
+'''
 def getCategoryListsUpdated( bConsoleOut = False ):
     #
     tBeg = getBegTime( bConsoleOut )
@@ -71,7 +75,7 @@ def getCategoryListsUpdated( bConsoleOut = False ):
     if bConsoleOut:
         #
         sayDuration( tBeg )
-
+'''
 
 
 # ### on a separate machine and database, no need for celery !!! ###
