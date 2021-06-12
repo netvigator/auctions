@@ -360,6 +360,8 @@ class StoreSingleItemTests( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeItemFound() '''
     #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
 
     def setUp( self ):
         #
