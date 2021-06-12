@@ -221,6 +221,8 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCa
     #
     ''' class for testing getSearchResultGenerator() last page got nothing '''
     #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
     def setUp(self):
         #
         super().setUp()
@@ -264,6 +266,8 @@ class storeSearchResultGeneratorLastPageGotZeroTest( AssertEmptyMixin, GetEbayCa
 class storeSearchResultGeneratorSearchGotZeroTest( AssertEmptyMixin, GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing getSearchResultGenerator() search got nothing '''
+    #
+    '''obsolete when the changes started in June 2021 are complete'''
     #
     def setUp(self):
         #
