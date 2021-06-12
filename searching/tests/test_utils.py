@@ -164,6 +164,9 @@ def updateHitLogFile( oUserItems, sPathHere ):
 class storeItemFoundTests( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeItemFound() '''
+    #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
 
     def test_store_ebay_categories(self):
         #
