@@ -70,6 +70,8 @@ class StoreSearchResultsTestsWebTestSetUp( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing storeSearchResultsInFinders() store records '''
     #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
     def setUp(self):
         #
         super().setUp()
@@ -1126,6 +1128,9 @@ class SetUpForHitStarsWebTests( PutSearchResultsInDatabaseWebTestBase ):
 class StoreUserItemFoundWebTestBase( GetEbayCategoriesWebTestSetUp ):
     #
     ''' class for testing _storeUserItemFound() '''
+    #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
 
     def setUp( self ):
         #
