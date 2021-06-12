@@ -1,3 +1,4 @@
+import inspect
 
 from os                 import rename
 from random             import randrange
@@ -25,13 +26,16 @@ from ..tests            import ( sExampleCategoryVersion,
 from ..utils            import ( CATEGORY_VERSION_FILE,
                                  _getCategoryVersionFromFile,
                                  UnexpectedResponse, CATEGORY_LISTING_FILE,
-                                 _putCategoriesInDatabase, countCategories,
+                                 _putCategoriesInDatabase, _countCategories,
                                  _getCheckCategoryVersion, dSiteID2ListVers,
                                  getWhetherAnyEbayCategoryListsAreUpdated,
                                  getEbayCategoryHierarchies,
                                  getShowMarketsHaveNewerCategoryVersionLists )
 
-from .base              import PutMarketsInDatabaseTestPlusBase
+from .base              import PutMarketsInDatabaseTestPlusBase, \
+                               GetMarketsAndCategoriesWebTestSetUp, \
+                               GetMarketsAndCategoriesTestPlusSetUp
+
 from .test_auth_token   import ConfFileTokenExpiredTests
 
 from pyPks.File.Del     import DeleteIfExists
@@ -50,8 +54,6 @@ sExampleWrongChildTag = sExampleCategoryVersion.replace(
 
 class CatetoryVersionMissing( Exception ): pass
 class CatetoryListHasNewVers( Exception ): pass
-
-
 
 
 class TestEbayShippingChoices(TestCasePlus):
@@ -191,15 +193,14 @@ class PutCategoriesInDatabaseTestCasePlus( TestCasePlus ):
         WriteText2File(
                 sExampleCategoryList, self.sFile )
         #
-        iTags, iCount = countCategories()
+        iTags, iCount = _countCategories()
         #
         self.assertEqual( 8, iCount ) #  integer count in the abbreviated file
         self.assertEqual( iTags, '19188' ) # str count in the original file
 
 
 
-
-class TestHeirarchiesAreTheyCompleteWebTest( GetEbayCategoriesWebTestSetUp ):
+class TestHeirarchiesAreTheyCompleteMixin( object ):
 
     def test_are_heirarchies_complete( self ):
         #
@@ -250,9 +251,33 @@ class TestHeirarchiesAreTheyCompleteWebTest( GetEbayCategoriesWebTestSetUp ):
                 'Test, Measurement & Inspection, Testers & Calibrators, '
                 'Tube Testers' )
         #
+        #print()
+        #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+
+class TestHeirarchiesAreTheyCompleteWebTest(
+        TestHeirarchiesAreTheyCompleteMixin, GetEbayCategoriesWebTestSetUp ):
+    #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
+    # test comes in via mixin above
+    #
+    pass
 
 
+class AreHeirarchiesCompleteWebTest(
+        TestHeirarchiesAreTheyCompleteMixin, GetMarketsAndCategoriesWebTestSetUp ):
+    #
+    # test comes in via mixin above
+    #
+    pass
 
+
+class AreHeirarchiesCompleteTestPlus(
+        TestHeirarchiesAreTheyCompleteMixin, GetMarketsAndCategoriesTestPlusSetUp ):
+    #
+    # test comes in via mixin above
+    #
+    pass
 
 
 class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestPlusBase ):
