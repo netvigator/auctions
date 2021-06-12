@@ -4736,6 +4736,31 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 265175948421
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find 45 tube not TV-7 tester' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '45' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '45' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Cunningham' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         iThisOne = 164011103887
         #
@@ -5205,6 +5230,18 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 265179503338
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 12BY7A tube not 600A tester' )
         #
         #
         #
