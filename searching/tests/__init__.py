@@ -148,6 +148,7 @@ sModels = \
  12AX7 (GE)         |           |      9 | f            | GE                |  Vacuum Tube |             |              | f
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             | 7025         | t
+ 12BY7A             |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  7025 (12AX7A)      |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA           |           |      7 | t            |                   |  Vacuum Tube |             |              | t
  12AX7-WA (Philips) |           |      8 | t            | Philips           |  Vacuum Tube |             |              | f
@@ -161,6 +162,7 @@ sModels = \
  300B (no kws)      |           |      8 | t            | Western Electric  |  Vacuum Tube |             |              | f
  310A               |           |      8 | f            |                   |  Vacuum Tube |             | Camcorder    | t
  417A               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 45                 |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  5U4GA              |           |      6 | f            |                   |  Vacuum Tube | 5U4GB\\r5U4 |              | t
  5U4G               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
@@ -882,6 +884,40 @@ sResponseItems2Test = \
             "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
             "startTime":["2018-02-27T02:42:38.000Z"],"endTime":["2018-03-04T02:42:38.000Z"],
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["265175948421"],
+            "title":["2 Cunningham (RCA) Globe 45 amplifier tubes. 1929-30 production. TV-7 test good."],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mPhfrVekwQokpHOM1G4CZ0A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/2-Cunningham-RCA-Globe-45-amplifier-tubes-1929-30-production-TV-7-test-good-\/265175948421"],
+            "autoPay":["false"],
+            "postalCode":["342**"],"location":["Sarasota,FL,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"130.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"130.0"}],
+            "bidCount":["25"],"sellingState":["Active"],"timeLeft":["P2DT17H45M40S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-28T02:47:31.000Z"],"endTime":["2021-06-07T02:47:31.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["31"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["265179503338"],
+            "title":["12BY7A BLACK PLATE CERTIFIED GOOD HICKOK 600A TESTED "],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mkaWYDDeLM6axRbGkPPPWCA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/12BY7A-BLACK-PLATE-CERTIFIED-GOOD-HICKOK-600A-TESTED-\/265179503338"],
+            "autoPay":["false"],
+            "postalCode":["740**"],"location":["Broken Arrow,OK,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT16H58M53S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"6.5"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"6.5"}],
+            "startTime":["2021-05-31T02:02:02.000Z"],"endTime":["2021-06-10T02:02:02.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
 
