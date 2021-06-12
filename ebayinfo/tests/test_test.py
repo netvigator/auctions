@@ -1,8 +1,12 @@
 from ..models           import EbayCategory
 
-from .base              import GetMarketsAndCategoriesWebTestSetUp
+from .base              import GetMarketsAndCategoriesWebTestSetUp, \
+                               GetMarketsAndCategoriesTestPlusSetUp
 
 from core.tests.base    import GetEbayCategoriesWebTestSetUp
+
+
+
 
 class TestEbayCategoriesSetUp( GetEbayCategoriesWebTestSetUp ):
     #
@@ -18,7 +22,7 @@ class TestEbayCategoriesSetUp( GetEbayCategoriesWebTestSetUp ):
 
 
 
-class EbayCategoriesWebSetUp( GetMarketsAndCategoriesWebTestSetUp ):
+class EbayCategoriesSetUpMixIn( object ):
     #
     '''new June 2021'''
     #
@@ -28,3 +32,24 @@ class EbayCategoriesWebSetUp( GetMarketsAndCategoriesWebTestSetUp ):
         #
         self.assertEqual(
                 EbayCategory.objects.all().count(), self.iCategories )
+
+
+
+class EbayCategoriesWebSetUp(
+        EbayCategoriesSetUpMixIn, GetMarketsAndCategoriesWebTestSetUp ):
+    #
+    # to avoid search ambiguity, for now, name is EbayCategoriesWebSetUp
+    # change name to EbayCategoriesWebTestSetUp later
+    #
+    # the actual test comes in via mixin above
+    #
+    pass
+
+
+class EbayCategoriesTestPlusSetUp(
+        EbayCategoriesSetUpMixIn, GetMarketsAndCategoriesTestPlusSetUp ):
+    #
+    # the actual test comes in via mixin above
+    #
+    pass
+
