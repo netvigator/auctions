@@ -390,6 +390,9 @@ def setup_view_for_tests( view, request, *args, **kwargs ):
 
 
 class GetEbayCategoriesWebTestSetUp( SetUpBrandsCategoriesModelsWebTest ):
+    #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
 
     @classmethod
     def setUpTestData( cls ):
