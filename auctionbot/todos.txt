@@ -587,27 +587,6 @@ total chaos, rename some tests from test_ to dont_test_ !!!!
 2020-12-06 need to warn when auth token is not working !
 
 
-2021-03-06
-Termination of APPID based authorization in Shopping API
-
-You are receiving this email because our records indicate that you have an application that calls the eBay Shopping API via passing APP ID (Client ID) in the request, either in the header or as a parameter in the HTTP request. In our continuing effort to follow industry standards and protect our APIs and API users, eBay has now enabled OAuth authorization for Shopping API.
-We will stop support for APPID based authorization by June 30th 2021. Any Shopping API requests submitted with APPID based authorization will fail starting July 1st  2021.
-You can refer to the documentation on OAuth access tokens here:
-https://developer.ebay.com/api-docs/static/oauth-tokens.html
-Shopping API will require the OAuth access token generated using the client credentials grant flow to successfully make a call. For more details, please refer to the Shopping API: Making an API call documentation.
-client credentials grant flow: https://developer.ebay.com/api-docs/static/oauth-client-credentials-grant.html
-Making an API call: https://developer.ebay.com/Devzone/shopping/docs/Concepts/ShoppingAPI_FormatOverview.html
-
-To help with the token generation process, eBay offers several client libraries that you can use to quickly implement the minting of OAuth tokens in your applications:
-
-OAuth client library for Python
-https://github.com/eBay/ebay-oauth-python-client
-
-Please take the necessary action to migrate your applications to use OAuth tokens for calling the Shopping API.
-Note: Make sure that all your Shopping API calls are being made on HTTPS in both sandbox and production environments.
-We appreciate your help in continuing to ensure eBay is a secure and trusted marketplace.
-
-
 2021-04-16
 finder list select all should select most recent of relisted auctions -- d/n select the prior ones
 
