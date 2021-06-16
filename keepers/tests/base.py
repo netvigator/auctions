@@ -24,7 +24,8 @@ from ..tests                import ( s142766343340,
                                      s372536713027,
                                      s173696832184,
                                      s303000971114,
-                                     s323589685342 )
+                                     s323589685342,
+                                     s164862306610 )
 
 from finders.models         import ItemFound, UserFinder, UserItemFound
 
@@ -90,7 +91,8 @@ class StoreSingleKeepersForWebTests( AssertNotEmptyMixin, AssertEmptyMixin,
                 372536713027 : s372536713027,
                 173696832184 : s173696832184,
                 303000971114 : s303000971114,
-                323589685342 : s323589685342 }
+                323589685342 : s323589685342,
+                164862306610 : s164862306610 }
         #
         iCount = 0
         #
