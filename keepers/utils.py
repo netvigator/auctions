@@ -226,7 +226,8 @@ def _storeOneJsonItemInKeepers( iItemNumb, sContent, **kwargs ):
             # ### not all real categories are in the test database
             #
             # print( 'dNewResult["iCategoryID"]:', dNewResult['iCategoryID'] )
-            sMsg = 'in keepers: form did not save, item %s' % dGotItem['iItemNumb']
+            sMsg = ( 'in keepers: form did not save, item %s\nContent:\n%s' %
+                     ( dGotItem['iItemNumb'], sContent ) )
             #
             errorLogger( sMsg )
             #print( '' )
