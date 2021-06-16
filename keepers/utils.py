@@ -161,7 +161,7 @@ def _storeOneJsonItemInKeepers( iItemNumb, sContent, **kwargs ):
         #
         # print( '%s:' % dGotItem['iItemNumb'], dGotItem['cLocation'] )
         #
-        if dGotItem['cLocation'] in ( 'Ritopek', 'Belgrade' ):
+        if dGotItem['cLocation'] in ( 'Ritopek', 'Belgrade', 'Centa' ):
             #
             dGotItem['cCountry'] = 'RS'
             #
