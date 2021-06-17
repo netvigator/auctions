@@ -4760,6 +4760,50 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 133786791662
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6BG6GA tube, '
+                'production also found rest on end!!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6BG6GA' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Raytheon' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 324641716722
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'should find tubes production missed' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5U4GA' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5931 (5U4WG)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sylvania' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         iThisOne = 164011103887
@@ -5242,6 +5286,7 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12BY7A tube not 600A tester' )
+        #
         #
         #
         #
