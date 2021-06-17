@@ -168,10 +168,12 @@ sModels = \
  5814A              |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5842               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  5881               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 5931 (5U4WG)       |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  5AR4               |           |      9 | f            |                   |  Vacuum Tube |             |              | t
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 6BG6GA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6CA4 (rectifier)   |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
@@ -886,6 +888,37 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["324641716722"],
+            "title":["5931 5U4GB JAN CHS Sylvania Rectifiers Black Plates 5U4WG Premium 5U4 Tube"],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m8F37RNvfJOl49gwT3F497w\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/5931-5U4GB-JAN-CHS-Sylvania-Rectifiers-Black-Plates-5U4WG-Premium-5U4-Tube-\/324641716722"],
+            "postalCode":["913**"],"location":["Agoura Hills,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.0"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["0"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"5.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"5.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT9H21M20S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-05-24T18:23:20.000Z"],"endTime":["2021-05-29T18:23:20.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["5"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["133786791662"],
+            "title":["13 NOS RAYTHEON 6BG6GA with PLATE CAPS - Vacuum Tubes UNUSED, 6L6G 6L6GA 6L6GB"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/mp2gpCgyHlmQ45ykVNt4hSQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/13-NOS-RAYTHEON-6BG6GA-PLATE-CAPS-Vacuum-Tubes-UNUSED-6L6G-6L6GA-6L6GB-\/133786791662"],
+            "postalCode":["973**"],"location":["Jefferson,OR,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["4"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"69.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"69.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT16H58M29S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-12T02:00:37.000Z"],"endTime":["2021-06-22T02:00:37.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["2"]}],
+            "returnsAccepted":["false"],"isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["265175948421"],
             "title":["2 Cunningham (RCA) Globe 45 amplifier tubes. 1929-30 production. TV-7 test good."],
