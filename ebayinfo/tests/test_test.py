@@ -8,21 +8,7 @@ from core.tests.base    import GetEbayCategoriesWebTestSetUp
 
 
 
-class TestEbayCategoriesSetUp( GetEbayCategoriesWebTestSetUp ):
-    #
-    '''obsolete when the changes started in June 2021 are complete'''
-    #
-
-    def test_set_up_categories( self ):
-        #
-        '''test whether all the categories are in the table'''
-        #
-        self.assertEqual(
-                EbayCategory.objects.all().count(), self.iCategories )
-
-
-
-class EbayCategoriesSetUpMixIn( object ):
+class TestEbayCategoriesSetUpMixIn( object ):
     #
     '''new June 2021'''
     #
@@ -34,12 +20,25 @@ class EbayCategoriesSetUpMixIn( object ):
                 EbayCategory.objects.all().count(), self.iCategories )
 
 
+class TestEbayCategoriesSetUp(
+        TestEbayCategoriesSetUpMixIn, GetEbayCategoriesWebTestSetUp ):
+    #
+    '''obsolete when the changes started in June 2021 are complete'''
+    #
+    # the actual test comes in via mixin above
+    #
+    pass
+
+
+
 
 class EbayCategoriesWebSetUp(
-        EbayCategoriesSetUpMixIn, GetMarketsAndCategoriesWebTestSetUp ):
+        TestEbayCategoriesSetUpMixIn, GetMarketsAndCategoriesWebTestSetUp ):
     #
     # to avoid search ambiguity, for now, name is EbayCategoriesWebSetUp
     # change name to EbayCategoriesWebTestSetUp later
+    #
+    # new June 2021
     #
     # the actual test comes in via mixin above
     #
@@ -47,7 +46,9 @@ class EbayCategoriesWebSetUp(
 
 
 class EbayCategoriesTestPlusSetUp(
-        EbayCategoriesSetUpMixIn, GetMarketsAndCategoriesTestPlusSetUp ):
+        TestEbayCategoriesSetUpMixIn, GetMarketsAndCategoriesTestPlusSetUp ):
+    #
+    # new June 2021
     #
     # the actual test comes in via mixin above
     #
