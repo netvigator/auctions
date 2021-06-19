@@ -54,6 +54,8 @@ class PutMarketsInDatabaseMixIn( object ):
 class PutMarketsInDatabaseTestPlusBase( PutMarketsInDatabaseMixIn, TestCasePlus ):
     ''' set up for tests '''
     #
+    # compatible with new June 2021
+    #
     pass
 
 
