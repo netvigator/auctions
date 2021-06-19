@@ -1,7 +1,6 @@
 from django.core.exceptions     import ValidationError
 
 from .base                      import ( TestCasePlus, getUrlQueryStringOff,
-                                         GetEbayCategoriesWebTestSetUp,
                                          queryGotUpdated, getDefaultMarket )
 
 from ..user_one                 import oUserOne
