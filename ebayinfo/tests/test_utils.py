@@ -200,7 +200,7 @@ class PutCategoriesInDatabaseTestCasePlus( TestCasePlus ):
 
 
 
-class TestHeirarchiesAreTheyCompleteMixin( object ):
+class TestWhetherHeirarchiesAreCompleteMixin( object ):
 
     def test_are_heirarchies_complete( self ):
         #
@@ -255,7 +255,7 @@ class TestHeirarchiesAreTheyCompleteMixin( object ):
         #print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 class TestHeirarchiesAreTheyCompleteWebTest(
-        TestHeirarchiesAreTheyCompleteMixin, GetEbayCategoriesWebTestSetUp ):
+        TestWhetherHeirarchiesAreCompleteMixin, GetEbayCategoriesWebTestSetUp ):
     #
     '''obsolete when the changes started in June 2021 are complete'''
     #
@@ -265,23 +265,29 @@ class TestHeirarchiesAreTheyCompleteWebTest(
 
 
 class AreHeirarchiesCompleteWebTest(
-        TestHeirarchiesAreTheyCompleteMixin, GetMarketsAndCategoriesWebTestSetUp ):
+        TestWhetherHeirarchiesAreCompleteMixin, GetMarketsAndCategoriesWebTestSetUp ):
     #
     # test comes in via mixin above
+    #
+    # new June 2021
     #
     pass
 
 
 class AreHeirarchiesCompleteTestPlus(
-        TestHeirarchiesAreTheyCompleteMixin, GetMarketsAndCategoriesTestPlusSetUp ):
+        TestWhetherHeirarchiesAreCompleteMixin, GetMarketsAndCategoriesTestPlusSetUp ):
     #
     # test comes in via mixin above
+    #
+    # new June 2021
     #
     pass
 
 
 class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestPlusBase ):
     '''test getMarketsIntoDatabase()'''
+    #
+    # compatible with new June 2021
     #
 
     def test_market_count( self ):
@@ -330,6 +336,8 @@ class PutMarketsInDatabaseTest( PutMarketsInDatabaseTestPlusBase ):
 
 class MarketsAndCategoriesTests( PutMarketsInDatabaseTestPlusBase ):
     '''test getMarketsIntoDatabase()'''
+    #
+    # compatible with new June 2021
     #
 
     def test_token_expiration( self ):
@@ -405,6 +413,8 @@ class MarketsAndCategoriesTests( PutMarketsInDatabaseTestPlusBase ):
 
 class LiveTestGotCurrentEbayCategories( PutMarketsInDatabaseTest ):
     '''test getMarketsIntoDatabase()'''
+    #
+    # compatible with new June 2021
     #
 
     @tag('ebay_api') # pmt script has exclude-tag param, excludes this test
