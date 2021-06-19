@@ -90,6 +90,10 @@ prior_EBAY_CURRENT_VERSION_GB = dMarketsPrevious[   3 ].iCategoryVer
 # from ebay_categories where "iEbaySiteID_id" = 2 and "iCategoryID" = 64627;
 
 # CAVEAT! if you add a category from a new market, you must add the root to GetEbayCategoriesWebTestSetUp!!!
+# obsolete when the changes started in June 2021 are complete
+#
+# CAVEAT! if you add a category from a new market, you must add the root to GetEbayCategoriesMixIn!!!
+# new June 2021
 
 sEbayCategoryDump = \
 '''
