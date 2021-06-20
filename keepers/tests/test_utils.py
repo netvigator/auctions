@@ -14,8 +14,9 @@ from keepers                import getListAsLines
 from core.utils             import maybePrint
 
 from core.tests.base        import GetEbayCategoriesWebTestSetUp, \
-                                   AssertEmptyMixin, AssertNotEmptyMixin, \
-                                   TestCasePlus
+                                   AssertEmptyMixin, AssertNotEmptyMixin
+
+from core.tests.base_class  import TestCasePlus
 
 from .base                  import StoreItemsTestPlusBase, \
                                    StoreSingleKeepersForWebTests
