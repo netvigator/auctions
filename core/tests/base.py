@@ -4,11 +4,13 @@ from django.db.utils        import IntegrityError
 from django.test            import RequestFactory
 from django.test.client     import Client
 
-from django_webtest         import WebTest
-from test_plus.test         import TestCase, CBVTestCase
+# from django_webtest         import WebTest
+# from test_plus.test         import TestCase, CBVTestCase
 
 from core.dj_import         import HttpRequest, get_user_model
 from core.utils             import getWhatsNotInParens
+
+from .base_class            import TestCasePlus, TestViewPlus, WebTestCase
 
 from config.settings.base   import LOGIN_URL
 
@@ -79,19 +81,13 @@ class UserSetUpMixin( object ):
         #
 
 
-class TestCasePlus( TestCase ):
-    """subclass of test_plus.test TestCase
-    allows implementation of project specific helper methods"""
-    #
-    pass
-
 
 class BaseUserTestPlusCase( UserSetUpMixin, TestCasePlus ):
 
     pass
 
 
-class BaseUserViewTestPlusCase( UserSetUpMixin, CBVTestCase ):
+class BaseUserViewTestPlusCase( UserSetUpMixin, TestViewPlus ):
 
     pass
 
@@ -199,7 +195,7 @@ class getSingleEbayCategoryMixin( object ):
 
 
 
-class BaseUserWebTestCase( UserSetUpMixin, WebTest ):
+class BaseUserWebTestCase( UserSetUpMixin, WebTestCase ):
 
     def loginWebTest( self, username ='username1', password = 'mypassword' ):
         #
