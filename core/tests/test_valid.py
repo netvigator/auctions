@@ -1,8 +1,8 @@
-from django.core.exceptions     import ValidationError
+from django.core.exceptions import ValidationError
 
-from core.tests.base            import TestCasePlus
+from core.tests.base_class  import TestCasePlus
 
-from ..validators               import gotTextOutsideParens
+from ..validators           import gotTextOutsideParens
 
 
 class GotTextOutsideParensTests( TestCasePlus ):
