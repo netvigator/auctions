@@ -1,8 +1,8 @@
 from django.urls            import reverse
 
-from core.tests.base        import ( SetUpBrandsCategoriesModelsWebTest,
-                                     SetUpBrandsCategoriesModelsTestPlus,
-                                     getUrlQueryStringOff )
+from core.tests.base        import SetUpBrandsCategoriesModelsWebTest, \
+                                   SetUpBrandsCategoriesModelsTestPlus, \
+                                   getUrlQueryStringOff
 
 from categories.models      import Category
 
