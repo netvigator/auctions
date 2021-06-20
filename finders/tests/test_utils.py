@@ -1,6 +1,6 @@
-from core.tests.base    import TestCasePlus
+from core.tests.base_class  import TestCasePlus
 
-from ..utils            import getLastDropped
+from ..utils                import getLastDropped
 
 
 class TestGetLastDropped( TestCasePlus ):
