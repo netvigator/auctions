@@ -4,9 +4,6 @@ from django.db.utils        import IntegrityError
 from django.test            import RequestFactory
 from django.test.client     import Client
 
-# from django_webtest         import WebTest
-# from test_plus.test         import TestCase, CBVTestCase
-
 from core.dj_import         import HttpRequest, get_user_model
 from core.utils             import getWhatsNotInParens
 
