@@ -599,3 +599,10 @@ on Finder page,
 if the brand of the model is different from the brand, show the brand of the model
 if the category of the model is different from the category, so the category of the model
 
+2021-06-21 on Model page, at the Keepers list, implement new button "Trash all zero bid auctions"
+
+2021-06-21 category page should list models for that category?
+
+2021-06-21 if a keeper has 2 hits, trashing one hit should not trash the whole keeper
+
+2021-06-21 keeper edit not working, just a flash
