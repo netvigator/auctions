@@ -315,8 +315,8 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                                   'tube clock radio\r'
                                                   'tube portable radio',
                                     iStars      = 6,
-                                    iFamily_id  = oTubeTester.id,
                                     iUser       = oUser )
+            #                       iFamily_id  = oTubeTester.id,
             oCategory.save()
             #
             oVacuumTubes = oCategory
