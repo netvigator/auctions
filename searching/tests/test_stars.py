@@ -1,37 +1,39 @@
 #import inspect
 
-from copy               import copy
-from os.path            import join
+from copy                   import copy
+from os.path                import join
 
-from pprint             import pprint
+from pprint                 import pprint
 
-from django.conf        import settings
-from django.urls        import reverse
-from django.utils       import timezone
+from django.conf            import settings
+from django.urls            import reverse
+from django.utils           import timezone
 
-from core.utils         import maybePrint, getWhatsNotInParens
-from core.tests.base    import ( SetUpBrandsCategoriesModelsWebTest,
-                                 AssertEmptyMixin, AssertNotEmptyMixin,
-                                 AssertEqualIgnoreParensMixin,
-                                 AssertIsDateTimeValueMixin, TestCasePlus )
+from core.utils             import maybePrint, getWhatsNotInParens
+from core.tests.base        import SetUpBrandsCategoriesModelsWebTest, \
+                                   AssertEmptyMixin, \
+                                   AssertNotEmptyMixin, \
+                                   AssertEqualIgnoreParensMixin, \
+                                   AssertIsDateTimeValueMixin
+from core.tests.base_class  import TestCasePlus
 
-from finders.models     import ItemFound, UserItemFound, UserFinder
+from finders.models         import ItemFound, UserItemFound, UserFinder
 
-from .base              import ( PutSearchResultsInDatabaseWebTestBase,
-                                 SetUpForHitStarsWebTests,
-                                 StoreUserItemFoundWebTestBase )
+from .base                  import PutSearchResultsInDatabaseWebTestBase, \
+                                   SetUpForHitStarsWebTests, \
+                                   StoreUserItemFoundWebTestBase
 
-from ..utils_stars      import ( _getFoundItemTester, findSearchHits,
-                                 _getRowRegExpressions, _getRelevantTitle,
-                                 HitsListClass )
+from ..utils_stars          import _getFoundItemTester, findSearchHits, \
+                                   _getRowRegExpressions, _getRelevantTitle, \
+                                   HitsListClass
 
-from searching.tests    import iRecordStepsForThis
+from searching.tests        import iRecordStepsForThis
 
-from brands.views       import BrandUpdateView
-from models.models      import Model
+from brands.views           import BrandUpdateView
+from models.models          import Model
 
-from pyPks.Object.Get   import ValueContainer
-from pyPks.String.Find  import getRegExpress, getRegExObj
+from pyPks.Object.Get       import ValueContainer
+from pyPks.String.Find      import getRegExpress, getRegExObj
 
 
 def _getRegExSearchOrNone( s ):
