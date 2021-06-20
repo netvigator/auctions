@@ -1,4 +1,4 @@
-from core.tests.base        import TestCasePlus
+from core.tests.base_class  import TestCasePlus
 from django_webtest         import WebTest
 
 from ..models               import Market, EbayCategory
