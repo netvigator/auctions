@@ -1,12 +1,11 @@
-from core.tests.base        import TestCasePlus
-
 from os.path                import join
 
 from django.utils           import timezone
 
 from core.ebay_api_calls    import getApplicationToken
-from core.tests.base        import ( AssertEmptyMixin, AssertNotEmptyMixin,
-                                     TestCasePlus )
+
+from core.tests.base        import AssertEmptyMixin, AssertNotEmptyMixin
+from core.tests.base_class  import TestCasePlus
 
 from ..models               import UserKeeper, Keeper
 
