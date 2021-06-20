@@ -1,9 +1,10 @@
-from ..models           import Keeper
+from ..models               import Keeper
 
-from core.tests.base    import AssertEmptyMixin, TestCasePlus
+from core.tests.base        import AssertEmptyMixin
+from core.tests.base_class  import TestCasePlus
 
-from pyPks.File.Get     import getListOffFileLines
-from pyPks.String.Get   import getTextBefore
+from pyPks.File.Get         import getListOffFileLines
+from pyPks.String.Get       import getTextBefore
 
 
 class MakeSureAllFieldsAreInTableTest( AssertEmptyMixin, TestCasePlus ):
