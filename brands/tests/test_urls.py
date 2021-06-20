@@ -1,8 +1,8 @@
 # import inspect
 
-from django.urls        import reverse, resolve
+from django.urls            import reverse, resolve
 
-from core.tests.base    import TestCasePlus
+from core.tests.base_class  import TestCasePlus
 
 
 
