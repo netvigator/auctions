@@ -1,7 +1,9 @@
 
-from ..admin            import MyUserCreationForm
+from ..admin                import MyUserCreationForm
 
-from core.tests.base    import getDefaultMarket, TestCasePlus
+from core.tests.base        import getDefaultMarket
+
+from core.tests.base_class  import TestCasePlus
 
 
 class TestMyUserCreationForm( TestCasePlus ):
