@@ -1,6 +1,6 @@
 
-from core.tests.base    import ( BaseUserWebTestCase,
-                                 getUrlQueryStringOff, queryGotUpdated )
+from core.tests.base    import BaseUserWebTestCase, \
+                               getUrlQueryStringOff, queryGotUpdated
 
 from .base              import PutSearchResultsInDatabaseWebTestBase
 
