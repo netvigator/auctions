@@ -1,9 +1,9 @@
 
-from core.tests.base                import TestCasePlus
+from core.tests.base_class  import TestCasePlus
 
-from .celery                        import app, start_worker
+from .celery                import app, start_worker
 
-from .tasks                         import add
+from .tasks                 import add
 
 class BatchSimulationTestCase( TestCasePlus ):
     allow_database_queries = True
