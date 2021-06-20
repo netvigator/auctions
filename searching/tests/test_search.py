@@ -4,10 +4,12 @@ from django.db.models       import Max
 from django.http            import HttpResponseRedirect
 from django.urls            import reverse, reverse_lazy
 
-from core.tests.base        import ( setup_view_for_tests,
-                                     GetEbayCategoriesWebTestSetUp,
-                                     AssertEmptyMixin, TestCasePlus,
-                                     BaseUserWebTestCase )
+from core.tests.base        import setup_view_for_tests, \
+                                   GetEbayCategoriesWebTestSetUp, \
+                                   AssertEmptyMixin, \
+                                   BaseUserWebTestCase
+
+from core.tests.base_class  import TestCasePlus
 
 from core.utils             import getShrinkItemURL
 
@@ -18,16 +20,15 @@ from searching              import SEARCH_FILES_ROOT
 from searching              import getPriorityChoices, ALL_PRIORITIES
 
 from .base                  import StoreSearchResultsTestsWebTestSetUp, sTODAY
-
 from ..models               import Search, SearchLog
-from ..tests                import ( sExampleResponse, sLastPageZeroEntries,
-                                     iExampleResponseCount,
-                                     sSuccessButZeroResults )
-from ..utils                import ( getIdStrZeroFilled, getSearchIdStr,
-                                     getHowManySearchDigitsNeeded,
-                                     storeSearchResultsInFinders )
-from ..utilsearch           import ( getSearchRootFolders,
-                                     getSearchResultGenerator )
+from ..tests                import sExampleResponse, sLastPageZeroEntries, \
+                                   iExampleResponseCount, \
+                                   sSuccessButZeroResults
+from ..utils                import getIdStrZeroFilled, getSearchIdStr, \
+                                   getHowManySearchDigitsNeeded, \
+                                   storeSearchResultsInFinders
+from ..utilsearch           import getSearchRootFolders, \
+                                   getSearchResultGenerator
 from ..views                import SearchCreateView
 
 from pyPks.Dir.Get          import getMakeDir
