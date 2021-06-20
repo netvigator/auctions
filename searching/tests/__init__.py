@@ -30,6 +30,7 @@ sBrands = \
  Amperex           |      8 |            |            |
  Amperex (gold pins)|     9 | Amperex PQ | gold pin   |
  Amperex (PQ)      |      9 |            | PQ         |
+ Amplitrex         |      6 |            |            |
  Arvin             |      7 |            |            |
  Astronic          |      2 |            |            |
  Audio Research    |      5 |            |            |
@@ -254,8 +255,6 @@ sModels = \
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
- 8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rTX-100\\r100%
  100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | X-100\\rTX-100\\r100%
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
@@ -538,6 +537,9 @@ sModels = \
  600A               |           |      5 | t            | Hickok            |  Tube Tester |             |
  752A               |           |      6 | t            | Hickok            |  Tube Tester |             |
  6000A              |           |      6 | t            | Hickok            |  Tube Tester |             |
+ TV-7               |           |      6 | f            | Hickok            |  Tube Tester |             |
+ TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
+ 8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
  75                 |           |     10 | f            | JBL               |       Driver | 075         |
  76                 |           |      6 | f            | JBL               |       Driver | 076         |
  175                |           |     10 | f            | JBL               |       Driver |             |
@@ -573,6 +575,7 @@ sModels = \
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  AA                 |           |      6 | f            | Klipsch           |    Crossover |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
+ AT1000             |           |      6 | f            | Amplitrex         |  Tube Tester |             |
  P-30               |           |      8 | f            | Stephens          |       Driver |             |
  214                |           |      7 | f            | Stephens          |       Driver |             |
  755A               |           |      8 | t            | Western Electric  |       Driver |             |
@@ -875,11 +878,10 @@ sResponseItems2Test = \
         "item": [
            {"itemId":["122990519283"],
             "title":["Garol 6AU-1 Catalin Radio "],
-            "globalId":["EBAY-US"],
+            "globalId":["EBAY-US"],"paymentMethod":["PayPal"],"autoPay":["false"],
             "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],
             "galleryURL":["http:\/\/thumbs4.ebaystatic.com\/m\/mqcfM87dPUKfbuWlIpUTi-w\/140.jpg"],
             "viewItemURL":["http:\/\/www.ebay.com\/itm\/Garol-6AU-1-Catalin-Radio-\/122990519283"],
-            "paymentMethod":["PayPal"],"autoPay":["false"],
             "postalCode":["15085"],"location":["Trafford,PA,USA"],"country":["US"],
             "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
             "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"563.88"}],"bidCount":["14"],"sellingState":["Active"],"timeLeft":["P0DT3H38M14S"]}],
@@ -888,6 +890,37 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["402912192265"],
+            "title":["9 vntg  6L6G   RCA  Tubes ~ Amplitrex AT-1000 & Hi-Fi Amp Tested ~ 6L6  tube lot"],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["true"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mQzibDzzn2Ndnpqx5TaqpUg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/9-vntg-6L6G-RCA-Tubes-Amplitrex-AT-1000-Hi-Fi-Amp-Tested-6L6-tube-lot-\/402912192265"],
+            "postalCode":["672**"],"location":["Wichita,KS,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"15.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"190.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"190.5"}],
+            "bidCount":["2"],"sellingState":["Active"],"timeLeft":["P1DT16H58M36S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-11T02:00:36.000Z"],"endTime":["2021-06-14T02:00:36.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["22"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["265195507764"],
+            "title":["Matched Pair-National Union 45 ST amplifier tubes. TV-7 test @ NOS specs."],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["true"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mxNTKN_IdKcENA1MhyFAGPw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Matched-Pair-National-Union-45-ST-amplifier-tubes-TV-7-test-NOS-specs-\/265195507764"],
+            "postalCode":["342**"],"location":["Sarasota,FL,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"73.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"73.0"}],
+            "bidCount":["8"],"sellingState":["Active"],"timeLeft":["P0DT17H45M49S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-14T02:47:45.000Z"],"endTime":["2021-06-21T02:47:45.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["324641716722"],
             "title":["5931 5U4GB JAN CHS Sylvania Rectifiers Black Plates 5U4WG Premium 5U4 Tube"],
