@@ -2623,19 +2623,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 353067866152
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find Imperial speaker maybe not rest ?' )
-        #
-        oTest = dItemsToTest[ iThisOne ][ 0 ]
-        #
-        #self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
-        self.assertEqual(  oTest.iBrand.cTitle, 'Jensen' )
-        #self.assertEqual(  oTest.iCategory.cTitle, 'Speaker System' )
-        #
-        #
         #
         #
         # Electro Voice EV Vintage 16 Ohm X36 Crossover Network Pair Speaker T35 T350 B
@@ -3490,7 +3477,7 @@ class FindSearchHitsWebTests(
         iThisOne = 303677558755
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
+                dItemsToTest[ iThisOne ], 2, iThisOne,
                 'w-2m is near end but amplifier is on end, '
                 'should be exception to near end exclusion' )
         #
@@ -3545,7 +3532,7 @@ class FindSearchHitsWebTests(
         #
         iThisOne = 192509883813
         #
-        self.print_len( dItemsToTest[ iThisOne ], 9, iThisOne,
+        self.print_len( dItemsToTest[ iThisOne ], 1, iThisOne,
                 'should find speaker only, not amp')
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
@@ -4808,6 +4795,62 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 265195507764
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 45 tube not TV-7 tester' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '45' )
+        self.assertEqual( oTest.iBrand.cTitle, 'National Union' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 402912192265
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 6L6G tube not Amplitrex AT-1000 tester' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '6L6G' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 353067866152
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Imperial speaker maybe not rest ?' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        #self.assertEqual( oTest.iModel.cTitle, 'Imperial' )
+        self.assertEqual(  oTest.iBrand.cTitle, 'Jensen' )
+        #self.assertEqual(  oTest.iCategory.cTitle, 'Speaker System' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5288,6 +5331,7 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12BY7A tube not 600A tester' )
+        #
         #
         #
         #
