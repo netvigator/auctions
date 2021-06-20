@@ -1,46 +1,47 @@
 import inspect
 
-from os                 import rename
-from random             import randrange
+from os                     import rename
+from random                 import randrange
 
-from django.db          import DataError
-from django.test        import tag
+from django.db              import DataError
+from django.test            import tag
 
-from core.utils         import updateMemoryTableUpdated
+from core.utils             import updateMemoryTableUpdated
 
-from core.tests.base    import ( TestCasePlus, getDefaultMarket,
-                                 GetEbayCategoriesWebTestSetUp )
+from core.tests.base        import getDefaultMarket, \
+                                   GetEbayCategoriesWebTestSetUp
+from core.tests.base_class  import TestCasePlus
 
-from ebayinfo           import ( EBAY_SHIPPING_CHOICES,
-                                 dEBAY_SHIPPING_CHOICE_CODE,
-                                 getEbayShippingChoiceCode )
+from ebayinfo               import EBAY_SHIPPING_CHOICES, \
+                                   dEBAY_SHIPPING_CHOICE_CODE, \
+                                   getEbayShippingChoiceCode
 
-from ..models           import EbayCategory, Market, CategoryHierarchy
+from ..models               import EbayCategory, Market, CategoryHierarchy
 
 # the following are in the tests __init__.py file
-from ..tests            import ( sExampleCategoryVersion,
-                                 sExampleCategoryList,
-                                 EBAY_CURRENT_VERSION_US,
-                                 EBAY_CURRENT_VERSION_SG )
+from ..tests                import sExampleCategoryVersion, \
+                                   sExampleCategoryList, \
+                                   EBAY_CURRENT_VERSION_US, \
+                                   EBAY_CURRENT_VERSION_SG
 
-from ..utils            import ( CATEGORY_VERSION_FILE,
-                                 _getCategoryVersionFromFile,
-                                 UnexpectedResponse, CATEGORY_LISTING_FILE,
-                                 _putCategoriesInDatabase, _countCategories,
-                                 _getCheckCategoryVersion, dSiteID2ListVers,
-                                 getWhetherAnyEbayCategoryListsAreUpdated,
-                                 getEbayCategoryHierarchies,
-                                 getShowMarketsHaveNewerCategoryVersionLists )
+from ..utils                import CATEGORY_VERSION_FILE, \
+                                   _getCategoryVersionFromFile, \
+                                   UnexpectedResponse, CATEGORY_LISTING_FILE, \
+                                   _putCategoriesInDatabase, _countCategories, \
+                                   _getCheckCategoryVersion, dSiteID2ListVers, \
+                                   getWhetherAnyEbayCategoryListsAreUpdated, \
+                                   getEbayCategoryHierarchies, \
+                                   getShowMarketsHaveNewerCategoryVersionLists
 
-from .base              import PutMarketsInDatabaseTestPlusBase, \
-                               GetMarketsAndCategoriesWebTestSetUp, \
-                               GetMarketsAndCategoriesTestPlusSetUp
+from .base                  import PutMarketsInDatabaseTestPlusBase, \
+                                   GetMarketsAndCategoriesWebTestSetUp, \
+                                   GetMarketsAndCategoriesTestPlusSetUp
 
-from .test_auth_token   import ConfFileTokenExpiredTests
+from .test_auth_token       import ConfFileTokenExpiredTests
 
-from pyPks.File.Del     import DeleteIfExists
-from pyPks.File.Write   import WriteText2File
-from pyPks.Utils.Get    import getRandomTrueOrFalse
+from pyPks.File.Del         import DeleteIfExists
+from pyPks.File.Write       import WriteText2File
+from pyPks.Utils.Get        import getRandomTrueOrFalse
 
 sMessedCategoryVersion = sExampleCategoryVersion.replace(
         'GetCategoriesResponse', 'ResponseGetCategories' )
