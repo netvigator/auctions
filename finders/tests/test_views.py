@@ -1,6 +1,8 @@
 import logging
 import inspect
 
+from pprint import pprint
+
 from django.urls            import reverse
 
 from core.tests.base        import ( SetUpBrandsCategoriesModelsTestPlus,
@@ -16,8 +18,6 @@ from .base                  import SetUpUserItemFoundWebTests
 from ..models               import UserFinder, UserItemFound
 
 from pyPks.Dict.Maintain    import purgeNoneValueItems
-
-from pprint import pprint
 
 class FindersNotYetViewTest( BaseUserWebTestCase ):
     """Finders views tests."""
