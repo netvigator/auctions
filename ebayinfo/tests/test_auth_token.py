@@ -1,7 +1,7 @@
 
 
 from core.ebay_api_calls    import getApiConfValues
-from core.tests.base        import TestCasePlus
+from core.tests.base_class  import TestCasePlus
 
 from pyPks.Time.Convert     import getDateTimeObjFromString
 from pyPks.Time.Delta       import getDeltaDaysFromObjs
