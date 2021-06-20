@@ -1,7 +1,8 @@
-from django.urls        import reverse, resolve
+from django.urls            import reverse, resolve
 
-from core.tests.base    import getDefaultMarket, TestCasePlus
+from core.tests.base        import getDefaultMarket
 
+from core.tests.base_class  import TestCasePlus
 
 
 class TestUserURLs( TestCasePlus ):
