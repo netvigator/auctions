@@ -4851,6 +4851,44 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 334040187177
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find GE L-570 radio' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'L-570' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GE' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 373615958685
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'listed in tube category, but should find SP-10 amp not tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'SP-10' )
+        self.assertEqual( oTest.iBrand.cTitle, 'RCA' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5331,6 +5369,7 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12BY7A tube not 600A tester' )
+        #
         #
         #
         #
