@@ -432,7 +432,7 @@ sModels = \
  LC-21              |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Quad 22            |           |      8 | f            | Quad              |       Preamp |             |
  SV-1               |           |      8 | f            | RCA               |       Preamp |             |
- SP-10              |           |     10 | f            | RCA               |    Amplifier |             |
+ SP-10              |           |     10 | f            | RCA               |    Amplifier | MI-12190    |
  121-C              |           |      9 | t            | Scott, H.H.       |       Preamp |             |
  SP-210             |           |      8 | f            | Pilot             |       Preamp |             |
  Verislope 3        |           |      8 | f            | Leak              |       Preamp | Verislope\\rVarislope\\rVeriscope\\rVariscope | Mono
