@@ -432,6 +432,7 @@ sModels = \
  LC-21              |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Quad 22            |           |      8 | f            | Quad              |       Preamp |             |
  SV-1               |           |      8 | f            | RCA               |       Preamp |             |
+ SP-10              |           |     10 | f            | RCA               |    Amplifier |             |
  121-C              |           |      9 | t            | Scott, H.H.       |       Preamp |             |
  SP-210             |           |      8 | f            | Pilot             |       Preamp |             |
  Verislope 3        |           |      8 | f            | Leak              |       Preamp | Verislope\\rVarislope\\rVeriscope\\rVariscope | Mono
@@ -455,14 +456,15 @@ sModels = \
  FM-100B            |           |      6 | t            | Fisher            |        Tuner |             |
  R-200              |           |      8 | f            | Fisher            |        Tuner |             |
  SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
- Catalin            |           |     10 | f            |                   |        Radio |             |              | t
+ Catalin            |           |      7 | f            |                   |        Radio |             |              | t
  mirror             |           |      8 | f            | Spartan           |        Radio |             |
  RC350              |           |      8 | f            | RCA               |        Radio |             |
+ 66X8               |           |      8 | f            | RCA               |        Radio |             |
+ 66X9               |           |      6 | f            | RCA               |        Radio |             |
  126                |           |      8 | f            | Garod             |        Radio |             |
  R5A1               |           |      7 | f            | Addison           |        Radio |             |
  50XC               |           |      7 | f            | Motorola          |        Radio |             |
  1465               |           |      8 | f            | Crosley           |        Radio |             |
- 66X8               |           |      8 | f            | RCA               |        Radio |             |
  43-8190            |           |      8 | f            | Coronado          |        Radio |             |
  235                |           |      7 | f            | Emerson           |        Radio | Little Miracle |
  400                |           |      7 | f            | Emerson           |        Radio |             |
@@ -488,7 +490,6 @@ sModels = \
  3284               |           |      5 | f            | Silvertone        |        Radio |             |
  P38                |           |      4 | f            | Fada              |        Radio |             |
  558                |           |      8 | f            | Spartan           |        Radio |             |
- 66X9               |           |      6 | f            | RCA               |        Radio |             |
  A-501              |           |      7 | f            | DeWald            |        Radio |             |
  H136               |           |      8 | f            | Westinghouse      |        Radio |             |
  V-3468             |           |      8 | f            | Westinghouse      |        Radio |             |
@@ -890,6 +891,41 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["373615958685"],
+            "title":["VINTAGE RCA TUBE AMPLIFIER, SP-10 \/ 10 WATT POWER 6V6 MI-12190 Ca.1954. RARE!"],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mjvhtZMB8XvE68zrNWlpZ6g\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/VINTAGE-RCA-TUBE-AMPLIFIER-SP-10-10-WATT-POWER-6V6-MI-12190-Ca-1954-RARE-\/373615958685"],
+            "autoPay":["false"],
+            "postalCode":["061**"],"location":["West Hartford,CT,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"52.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"595.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"595.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P2DT6H49M13S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"895.0"}],
+            "convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"895.0"}],
+            "startTime":["2021-06-15T15:51:45.000Z"],"endTime":["2021-06-22T15:51:45.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["8"]}],
+            "returnsAccepted":["false"],
+            "condition":[{"conditionId":["7000"],"conditionDisplayName":["For parts or not working"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["334040187177"],
+            "title":["RARE 1941 General Electric Catalin Radio L570 Tortoise Shell Burgundy Marbelized"],
+            "globalId":["EBAY-US"],"returnsAccepted":["true"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["38034"],"categoryName":["1930-49"]}],"secondaryCategory":[{"categoryId":["72397"],"categoryName":["Bakelite"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/msBBVv5pcvxSN2TtU-FaXPA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/RARE-1941-General-Electric-Catalin-Radio-L570-Tortoise-Shell-Burgundy-Marbelized-\/334040187177"],
+            "postalCode":["949**"],"location":["Novato,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"60.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"1600.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"1600.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT8H45M23S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-14T23:47:30.000Z"],"endTime":["2021-06-21T17:47:22.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["19"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["402912192265"],
             "title":["9 vntg  6L6G   RCA  Tubes ~ Amplitrex AT-1000 & Hi-Fi Amp Tested ~ 6L6  tube lot"],
