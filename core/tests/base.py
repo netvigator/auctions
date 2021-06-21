@@ -74,6 +74,11 @@ class UserSetUpMixin( object ):
 
     def setUp(self):
         #
+        # for an unknown reason, WebTestCase requires setUp() to he here!
+        # it does not work to move it into the TEstPlus classes below
+        #
+        super().setUp()
+        #
         self.client.login(username ='username1', password='mypassword')
         #
 
