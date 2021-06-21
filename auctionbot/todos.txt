@@ -584,9 +584,6 @@ total chaos, rename some tests from test_ to dont_test_ !!!!
 2020-12-04 manual Add Finder not working! for new brand Hoffman
 
 
-2020-12-06 need to warn when auth token is not working !
-
-
 2021-04-16
 finder list select all should select most recent of relisted auctions -- d/n select the prior ones
 
@@ -606,3 +603,4 @@ if the category of the model is different from the category, so the category of 
 2021-06-21 if a keeper has 2 hits, trashing one hit should not trash the whole keeper
 
 2021-06-21 keeper edit not working, just a flash
+would like to edit Craftsmen C500 174737747354 The Fisher Tune-O-Matic 500-TX Stereo Receiver - Parts or Repair Only
