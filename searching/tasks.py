@@ -7,6 +7,10 @@ from django.contrib.auth    import get_user_model
 from django.db.models       import Q
 from django.utils           import timezone
 
+from django.core.wsgi       import get_wsgi_application
+
+application = get_wsgi_application()
+
 #from celery                import shared_task
 
 from searching              import SEARCH_FILES_ROOT
