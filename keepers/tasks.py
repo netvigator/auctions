@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import logging
 
+from django.core.wsgi       import get_wsgi_application
 from django.db              import connection
 
 #from celery                import shared_task
@@ -22,6 +23,7 @@ logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
 
+application = get_wsgi_application()
 
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
@@ -29,6 +31,8 @@ logging_level = logging.INFO
 # 2021-05-24 celery not working, so giving up on it!
 # instead, will set nice level on cron job processes
 # will leave the celery structure in place, to allow retrying later if desired
+
+# noted on 2021-06-23: pictures have not been downloading sice 2021-05-24 !!!
 
 # @shared_task( name = 'keepers.tasks.getSingleItemThenStore' )
 def doGetSingleItemThenStoreTask( iItemNumb, oAuthToken = None, **kwargs ):
