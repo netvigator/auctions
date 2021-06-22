@@ -4887,6 +4887,28 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 194201084389
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'check stars, too low in production' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iHitStars,
+                    oTest.iModel.iStars *
+                    oTest.iBrand.iStars *
+                    oTest.iCategory.iStars )
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-88 (GEC)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         iThisOne = 164011103887
@@ -5369,6 +5391,11 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12BY7A tube not 600A tester' )
+        #
+        #
+        #
+        #
+        #
         #
         #
         #
