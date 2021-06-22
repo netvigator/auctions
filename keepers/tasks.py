@@ -2,8 +2,6 @@ from __future__ import absolute_import
 
 import logging
 
-import django
-
 from django.db              import connection
 
 #from celery                import shared_task
@@ -24,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
 
-django.setup()
 
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
