@@ -3,6 +3,9 @@ from __future__ import absolute_import
 import logging
 
 from django.core.wsgi       import get_wsgi_application
+
+application = get_wsgi_application()
+
 from django.db              import connection
 
 #from celery                import shared_task
@@ -22,8 +25,6 @@ from finders.models         import ItemFound, UserItemFound
 logger = logging.getLogger(__name__)
 
 logging_level = logging.INFO
-
-application = get_wsgi_application()
 
 # schedule tasks
 # http://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html
