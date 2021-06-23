@@ -890,9 +890,12 @@ def getItemsForPicsDownloading( iLimit = 50 ):
     #
     # bGetPictures = True, not implemented yet
     #
+    tTooOld = timezone.now() - timezone.timedelta( days = 95 )
+    #
     qsGetPics = Keeper.objects.filter(
                     tGotPictures__isnull = True,
-                    iBidCount__gt = 0,
+                    tTimeEnd__gt         = tTooOld,
+                    iBidCount__gt        = 0,
                 ).order_by( 'tTimeEnd'
                 ).values_list( 'iItemNumb', flat = True
                 )[ : iLimit ]
@@ -910,6 +913,7 @@ def getItemsForPicsDownloading( iLimit = 50 ):
     #
     qsZeroBids = Keeper.objects.filter(
                         iBidCount           = 0,
+                        tTimeEnd__gt        = tTooOld,
                         cListingType        = 'FixedPriceItem',
                         tGotPictures__isnull= True
                     ).values_list( 'iItemNumb', flat = True
