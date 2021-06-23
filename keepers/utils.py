@@ -727,7 +727,76 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
 
 
 
+def doMissingPicsSearch():
+    #
+    tBefore = timezone.now() - timezone.timedelta( days = 92 )
+    #
+    qsGotPics = Keeper.objects.filter(
+                    tGotPictures__isnull = False,
+                    tTimeEnd__gt = tBefore,
+                    iGotPictures__gt = 0,
+                ).order_by( 'tTimeEnd'
+                ).values_list( 'iItemNumb', flat = True )
+    #
+    oProgressMeter = TextMeter()
+    #
+    iCount = len( qsGotPics )
+    #
+    sSayRows = ReadableNo( iCount )
+    #
+    sLineB4 = 'stepping thru recent keepers ...'
+    sOnLeft = "%s %s" % ( sSayRows, 'keepers' )
+    #
+    oProgressMeter.start( iCount, sOnLeft, sLineB4 )
+    #
+    iSeq = 0
+    iFix = 0
+    #
+    for iItemNumb in qsGotPics:
+        #
+        iSeq += 1
+        #
+        if gotPicsForItem( iItemNumb ) > 0: continue
+        #
+        oItem = Keeper.objects.get( iItemNumb = iItemNumb )
+        #
+        oItem.iGotPictures = 0
+        oItem.bGotPictures = False
+        #
+        oItem.save()
+        #
+        iFix +=1
+        #
+        oProgressMeter.update( iSeq )
+        #
+    #
+    oProgressMeter.end( iSeq )
+    #
+    print( '\nOf %s rows, %s (%s%%) did not actually have any pictures' %
+           ( sSayRows, ReadableNo( iFix ), 100 * iFix // iCount ) )
 
+
+def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    sItemNumb = str( uItemNumb )
+    #
+    sSubDir = getItemPicsSubDir( sItemNumb, sItemPicsRoot )
+    #
+    return glob( '%s*' % join( sSubDir, sItemNumb ) )
+
+
+
+
+
+def gotPicsForItem( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    '''
+    pass the item number, returns the integer # of pictures we got
+    boolean value of 0     is False,
+    boolean value of n > 0 is True
+    '''
+    #
+    return len( getPicFileList( uItemNumb, sItemPicsRoot ) )
 
 
 
@@ -744,6 +813,8 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     lWantPics = [ s for s in oItem.cPictureURLs.split() if isURL( s ) ]
     #
     dGotPics = { s : None for s in lWantPics }
+    #
+    bTried2GetAllPics = False
     #
     for iReTries in range( 5 ):
         #
@@ -769,6 +840,10 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
                         #
                         dGotPics[ sURL ] = 'Not Found' # can quit trying
                         #
+                        logger.warning(
+                            'sequence %s pic not found for %s, got result: %s' %
+                            ( iSeq, iItemNumb, sResult ) )
+                        #
                     #
                 elif isFileThere( sSubDir, sResult ):
                     #
@@ -791,17 +866,19 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
             iSeq += 1
             #
         #
-        bGotAllPics = len( lWantPics ) == len( dGotPics )
+        bTried2GetAllPics = len( lWantPics ) == len( dGotPics )
         #
-        if bGotAllPics: break
-        #
-    #
-    if bGotAllPics:
-        #
-        oItem.bGotPictures = True
+        if bTried2GetAllPics: break
         #
     #
-    oItem.iGotPictures = len( dGotPics )
+    iPicsOnDisk = gotPicsForItem( iItemNumb )
+    #
+    if bTried2GetAllPics:
+        #
+        oItem.bGotPictures = iPicsOnDisk > 0
+        #
+    #
+    oItem.iGotPictures = iPicsOnDisk
     #
     oItem.tGotPictures = timezone.now()
     #
@@ -840,27 +917,6 @@ def getItemsForPicsDownloading( iLimit = 50 ):
     #
     return qsGetPics.union( qsZeroBids )
 
-
-
-def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
-    #
-    sItemNumb = str( uItemNumb )
-    #
-    sSubDir = getItemPicsSubDir( sItemNumb, sItemPicsRoot )
-    #
-    return glob( '%s*' % join( sSubDir, sItemNumb ) )
-
-
-
-def gotPicsForItem( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
-    #
-    '''
-    pass the item number, returns the integer # of pictures we got
-    boolean value of 0     is False,
-    boolean value of n > 0 is True
-    '''
-    #
-    return len( getPicFileList( uItemNumb, sItemPicsRoot ) )
 
 
 
