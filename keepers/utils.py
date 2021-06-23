@@ -11,6 +11,10 @@ from time                   import sleep
 from django.conf            import settings
 from django.utils           import timezone
 
+from django.core.wsgi       import get_wsgi_application
+
+application = get_wsgi_application()
+
 from core.ebay_api_calls    import getSingleItem
 from core.utils             import getPriorDateTime
 
