@@ -8,7 +8,10 @@ LOGFILE="/tmp/searches/search_log.log"
 if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 0 ]
 then
         echo "$TIMESTAMP will nice PutSearchResultsInFinders.sh" >> $LOGFILE
-        time ~/Devel/auctions/searching/PutSearchResultsInFinders.sh >> $LOGFILE 2>&1
+        SECONDS=0
+        ~/Devel/auctions/searching/PutSearchResultsInFinders.sh >> $LOGFILE 2>&1
+        duration=$SECONDS
+        echo "$((duration/3600))h $(((duration/60)%60))m $((duration%60))s elapsed." >> $LOGFILE
 else
         echo "$TIMESTAMP not today: PutSearchResultsInFinders.sh" >> $LOGFILE
 fi
