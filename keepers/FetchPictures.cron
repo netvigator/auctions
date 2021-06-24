@@ -8,7 +8,10 @@ LOGFILE="/tmp/searches/keeper_log.log"
 if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 1 ]
 then
         echo "$TIMESTAMP will nice FetchPictures.sh" >> $LOGFILE
-        time ~/Devel/auctions/keepers/FetchPictures.sh >> $LOGFILE 2>&1
+        SECONDS=0
+        ~/Devel/auctions/keepers/FetchPictures.sh >> $LOGFILE 2>&1
+        duration=$SECONDS
+        echo "$(($duration / 3600)) hour(s) and $((($duration % 3600)/60)) minute(s) elapsed." >> $LOGFILE
 else
         echo "$TIMESTAMP not today: FetchPictures.sh" >> $LOGFILE
 fi
