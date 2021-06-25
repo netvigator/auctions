@@ -255,8 +255,6 @@ sModels = \
  VT-107 (6V6 metal) |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  VT-107A (6V6GT)    |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  VT-107B (6V6G)     |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rTX-100\\r100%
- 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | X-100\\rTX-100\\r100%
  1005B              |           |      6 | t            | Altec-Lansing     |         Horn |             |
  211A               |           |      8 | t            | Altec-Lansing     |Speaker Enclosure|          |
  287F               |           |      9 | f            | Altec-Lansing     |  Theater Amp |             |
@@ -319,6 +317,19 @@ sModels = \
  Voice of the Theater |         |      7 | f            | Altec-Lansing     |Speaker System| VOT\\rVOTT\\rVoice of Theater |
  150-4B             |           |      9 | t            | Lansing           |       Driver |             |
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
+ 400-C              |           |      7 | f            | Fisher            |       Preamp |             | 400-CX
+ 50-C               |           |      7 | f            | Fisher            |       Preamp |             |
+ 400-CX             |           |     10 | f            | Fisher            |       Preamp |             | 400-CX-2
+ 400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
+ 400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
+ FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
+ FM-100             |           |      7 | f            | Fisher            |        Tuner |             |
+ FM-100B            |           |      6 | t            | Fisher            |        Tuner |             |
+ R-200              |           |      8 | f            | Fisher            |        Tuner |             |
+ SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
+ 100 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rTX-100\\r100%
+ 200 (amp)          |           |      9 | f            | Fisher            |    Amplifier |             | X-100\\rTX-100\\r100%\\rR-200
+ 100 (speaker)      |           |      5 | f            | Fisher            |Speaker System|             | X-100\\rTX-100\\r100%
  X-100-B            |           |      4 | t            | Fisher            |Integrated Amp|             |
  XP-1A              |           |      4 | t            | Fisher            |Speaker System|             |
  XP-2B              |           |      4 | t            | Fisher            |Speaker System| XP-3        |
@@ -330,14 +341,14 @@ sModels = \
  XP-8A              |           |      4 | t            | Fisher            |Speaker System| XP-8        |
  XP-9B              |           |      4 | t            | Fisher            |Speaker System| XP-9        |
  XP-55B             |           |      4 | t            | Fisher            |Speaker System| XP-55       |
- HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
- HF-85              |           |      7 | f            | EICO              |       Preamp |             |
- ST-84              |           |      7 | f            | EICO              |       Preamp |             |
  80-C               |           |      7 | f            | Fisher            |       Preamp |             |
  80-R               |           |      7 | f            | Fisher            |        Tuner |             |
  90-C               |           |      9 | f            | Fisher            |       Preamp |             |
  PR-6               |           |      5 | f            | Fisher            |       Preamp |             |
  PR-66              |           |      5 | f            | Fisher            |       Preamp |             |
+ HF-61A             |           |      6 | t            | EICO              |       Preamp |             |
+ HF-85              |           |      7 | f            | EICO              |       Preamp |             |
+ ST-84              |           |      7 | f            | EICO              |       Preamp |             |
  1-30               |           |      8 | f            | Janszen           |Speaker System|             |
  C-20               |           |      6 | f            | McIntosh          |       Preamp |             |
  C-11               |           |      7 | f            | McIntosh          |       Preamp |             |
@@ -378,7 +389,6 @@ sModels = \
  116B               |           |      9 | t            | Langevin          |       Preamp |             |
  PR-100A            |           |      8 | t            | Bogen             |       Preamp |             |
  Consolette         |           |      6 | f            | Interelectronics  |       Preamp |             |
- 400-C              |           |      7 | f            | Fisher            |       Preamp |             | 400-CX
  130                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
  Citation I         |           |      8 | f            | Harman-Kardon     |       Preamp |             | Sixteen
  SP-2               |           |      5 | f            | Heathkit          |       Preamp |             |
@@ -400,7 +410,6 @@ sModels = \
  Luminescence       |           |      9 | f            | MFA               |       Preamp |             |
  SC2                |           |      7 | f            | Radford           |       Preamp |             |
  C-32               |           |      7 | f            | Luxman            |       Preamp |             |
- 50-C               |           |      7 | f            | Fisher            |       Preamp |             |
  CL-32              |           |      8 | f            | Luxman            |       Preamp |             |
  AR-1               |           |      6 | f            | Acoustic Research |Speaker System|             |Tower\\rGES Acoustic\\rHC-1\\rSUB\\r1 pair\\rOne Only\\rone pair\\rone owner\\rone previous owner\\r1 of\\rone of\\rMC.1\\rAthena\\rHome Theater\\ronly One
  2                  |           |      6 | f            | Acoustic Research |Speaker System| AR-2        | LST-2\\r2 way\\r(2)
@@ -440,7 +449,6 @@ sModels = \
  245                |           |      9 | f            | Fairchild         |       Preamp |             |
  620                |           |     10 | f            | Fairchild         |    Amplifier |             |
  QC II              |           |      8 | f            | Quad              |       Preamp |             |
- 400-CX             |           |     10 | f            | Fisher            |       Preamp |             | 400-CX-2
  350-P              |           |      8 | f            | Regency           |       Preamp |             | AD1/350
  350                |           |      3 | f            | Ampex             |       Preamp |             | AD1/350
  Quad 33            |           |      2 | f            | Quad              |       Preamp |             |
@@ -449,13 +457,6 @@ sModels = \
  2                  |           |     10 | f            | Marantz           |    Amplifier | Model Two\\rModel 2 |
  4                  |           |      7 | f            | Marantz           | Power Supply | Model Four\\rModel 4 | Quad\\r4 Channel\\r4 ea\\r4 each\\r4 NOS\\r4 pack\\r4 pair\\r4 pcs\\r4100\\rFour Ch\\rBox of 4\\rLot 4\\rqty 4\\rSet of 4
  5                  |           |     10 | f            | Marantz           |    Amplifier | Model Five\\rModel 5 |
- 400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
- 400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
- FM-1000            |           |     10 | f            | Fisher            |        Tuner |             |
- FM-100             |           |      7 | f            | Fisher            |        Tuner |             |
- FM-100B            |           |      6 | t            | Fisher            |        Tuner |             |
- R-200              |           |      8 | f            | Fisher            |        Tuner |             |
- SA-1000            |           |     10 | f            | Fisher            |    Amplifier |             |
  Catalin            |           |      7 | f            |                   |        Radio |             |              | t
  mirror             |           |      8 | f            | Spartan           |        Radio |             |
  RC350              |           |      8 | f            | RCA               |        Radio |             |
@@ -891,6 +892,24 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["284334569373"],
+            "title":["Fisher R-200 tube tuner with cabinet, Fisher tubes, working"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["73382"],"categoryName":["Vintage Tuners & Tube Tuners"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mtb2LubJkeVqXnvpimYtJyQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-R-200-tube-tuner-cabinet-Fisher-tubes-working-\/284334569373"],
+            "postalCode":["112**"],"location":["Brooklyn,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"50.0"}],
+            "shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"375.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"375.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT7H58M37S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],
+            "buyItNowPrice":[{"@currencyId":"USD","__value__":"550.0"}],"convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"550.0"}],
+            "startTime":["2021-06-16T17:00:01.000Z"],"endTime":["2021-06-21T17:00:01.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["9"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["194201084389"],
             "title":["2 Vintage matching pair Genalex KT88 tubes England stereo amplifier test strong"],
