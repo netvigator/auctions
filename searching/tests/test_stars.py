@@ -4911,6 +4911,25 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 284334569373
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find R-200 tuner not 200 amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'R-200' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tuner' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5391,10 +5410,6 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12BY7A tube not 600A tester' )
-        #
-        #
-        #
-        #
         #
         #
         #
