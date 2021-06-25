@@ -1039,6 +1039,8 @@ class PutSearchResultsInDatabaseWebTestBase( GetBrandsCategoriesModelsWebTestSet
                 maybePrint('')
                 maybePrint(  '### maybe a new item title has a quote '
                         'but only a single backslash ###' )
+                maybePrint(  '### or you forgot to include the comma '
+                        'at the end of a new item ###' )
                 #
                 raise
                 #
