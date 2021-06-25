@@ -606,6 +606,6 @@ if the category of the model is different from the category, so the category of 
 would like to edit Craftsmen C500 174737747354 The Fisher Tune-O-Matic 500-TX Stereo Receiver - Parts or Repair Only
 
 
-2021-06-25 item is Fisher R-200 tuner, in tuner category, but bot found Fishe 200 amp as model
+2021-06-25 item is Fisher R-200 tuner, in tuner category, but bot found Fisher 200 amp as model
 working around by putting R-200 in the exclude list for 200 amp,
 but bot should get this right without having to put R-200 in the exclude list for 200 amp
