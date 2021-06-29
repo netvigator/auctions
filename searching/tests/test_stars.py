@@ -4930,6 +4930,25 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 384245883780
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find Stereo 120 not 120 amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'Stereo 120' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Dynaco' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5410,7 +5429,6 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find 12BY7A tube not 600A tester' )
-        #
         #
         #
         #
