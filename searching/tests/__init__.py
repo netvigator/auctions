@@ -380,6 +380,8 @@ sModels = \
  PAS-3 Series II    |           |      5 | f            | Dynaco            |       Preamp | PAS-3 Series ll\\rPAS-3 Series 2 |
  FM-3               |           |      7 | f            | Dynaco            |        Tuner |             |
  Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
+ Stereo 120         |           |      3 | f            | Dynaco            |    Amplifier | St 120      |
+ 120                |           |      4 | f            | Dynaco            |    Amplifier |             |
  A-25               |           |      8 | f            | Dynaco            |Speaker System|             |
  A-50               |           |      6 | f            | Dynaco            |Speaker System|             |
  Mark III           |           |      8 | f            | Dynaco            |    Amplifier | Mk III\\rMk 3\\rMark 3\\rMk lll\\rMark lll |
@@ -892,6 +894,22 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["384245883780"],
+            "title":["Dynaco ST-120 Stereo 120 Power Amplifier Tested 100%"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mNLt897uN5iNnpZ6lyAA1_A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Dynaco-ST-120-Stereo-120-Power-Amplifier-Tested-100-\/384245883780"],
+            "postalCode":["088**"],"location":["Helmetta,NJ,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"60.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P6DT13H30M45S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-27T22:30:52.000Z"],"endTime":["2021-07-04T22:30:52.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["284334569373"],
             "title":["Fisher R-200 tube tuner with cabinet, Fisher tubes, working"],
