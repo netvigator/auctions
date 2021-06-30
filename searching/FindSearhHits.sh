@@ -5,7 +5,8 @@
 #
 cd ~/Devel/auctions
 source ~/.virtualenvs/auctions/bin/activate
+SECONDS=0
 nice python manage.py shell --command="from keepers.tasks import doGetFetchUserItemsTasks; doGetFetchUserItemsTasks()"
 nice python manage.py shell --command="from searching.tasks import doFindSearhHitsTasks; doFindSearhHitsTasks()"
-# output date/time in case person is watching
-date
+duration=$SECONDS
+echo "$((duration/3600))h $(((duration/60)%60))m $((duration%60))s elapsed."
