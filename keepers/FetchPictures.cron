@@ -3,6 +3,9 @@
 # do not modify on server! this file is under version control!
 # update on development machine, commit changes, then update server
 #
+# bash command to check for recent pictures
+# find /srv/big/media/Keeper_Pictures -printf '%T+ %p\n' | grep jpg | sort -r | head
+#
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 LOGFILE="/tmp/searches/keeper_log.log"
 if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 1 ]
