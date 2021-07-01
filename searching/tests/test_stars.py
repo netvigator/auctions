@@ -5439,6 +5439,19 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 384234552013
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find 515-8G driver' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         '''
