@@ -727,6 +727,66 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
 
 
 
+def doRestoredPicsUpdate():
+    #
+    qsGotPics = Keeper.objects.all(
+                ).order_by( 'tTimeEnd'
+                ).values_list( 'iItemNumb', flat = True )
+    #
+    oProgressMeter = TextMeter()
+    #
+    iCount = len( qsGotPics )
+    #
+    sSayRows = ReadableNo( iCount )
+    #
+    sLineB4 = 'stepping thru all keepers ...'
+    sOnLeft = "%s %s" % ( sSayRows, 'keepers' )
+    #
+    oProgressMeter.start( iCount, sOnLeft, sLineB4 )
+    #
+    iSeq = 0
+    iFix = 0
+    iNoP = 0
+    #
+    for iItemNumb in qsGotPics:
+        #
+        iSeq += 1
+        #
+        iGotPictures = gotPicsForItem( iItemNumb )
+        #
+        oItem = Keeper.objects.get( iItemNumb = iItemNumb )
+        #
+        if oItem.iGotPictures != iGotPictures:
+            #
+            oItem.iGotPictures = iGotPictures
+            oItem.bGotPictures = iGotPictures > 0
+            #
+            oItem.save()
+            #
+            iFix +=1
+            #
+            if iGotPictures == 0:
+                #
+                iNoP +=1
+                #
+            #
+        #
+        oProgressMeter.update( iSeq )
+        #
+    #
+    oProgressMeter.end( iSeq )
+    #
+    print( '\nOf %s rows, %s (%s%%) did not have correct picture count' %
+           ( sSayRows, ReadableNo( iFix ), 100 * iFix // iCount ) )
+    #
+    iGotPics = iFix - iNoP
+    #
+    tSaySplit = ( ReadableNo( iNoP ), ReadableNo( iGotPics ) )
+    #
+    print( 'among those, %s not pictures were found, '
+           'while %s items had pictures' % tSaySplit )
+
+
 def doMissingPicsSearch():
     #
     tBefore = timezone.now() - timezone.timedelta( days = 92 )
