@@ -4,6 +4,9 @@ import sys
 
 if __name__ == '__main__':
     if 'DJANGO_SETTINGS_MODULE' not in os.environ:
+        # note that cron jobs will not get the environment
+        # unless the script runs source $HOME/.bashrc
+        # so you must add source $HOME/.bashrc to the cron job script !!!
         os.environ.setdefault(
             'DJANGO_SETTINGS_MODULE', 'config.settings.local')
     try:
