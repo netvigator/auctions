@@ -272,7 +272,11 @@ sModels = \
  440C               |           |      5 | t            | Altec-Lansing     |       Preamp |             |
  445A               |           |      8 | f            | Altec-Lansing     |       Preamp |             |
  511A               |           |      6 | f            | Altec-Lansing     |         Horn |             |
- 515A               |           |      7 | t            | Altec-Lansing     |       Driver | 515         | 515B\\r515C  |
+ 515A               |           |     10 | f            | Altec-Lansing     |       Driver | 515         | 515-8\\r515-16 |
+ 515B               |           |     10 | f            | Altec-Lansing     |       Driver |             | 515-8\\r515-16 |
+ 515C               |           |      5 | f            | Altec-Lansing     |       Driver |             | 515-8\\r515-16 |
+ 515-8G             |           |      5 | t            | Altec-Lansing     |       Driver |             |
+ 515-16G            |           |      5 | t            | Altec-Lansing     |       Driver |             |
  542                |           |      6 | f            | Altec-Lansing     |         Horn |             |
  601a (driver)      |           |      8 | t            | Altec-Lansing     |       Driver |             |
  601B (enclosure)   |           |      7 | t            | Altec-Lansing     |Speaker Enclosure|          |
@@ -894,6 +898,22 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["384234552013"],
+            "title":["Altec Lansing 515-8hhp High Powered Low Frequency Horn Speaker Woofer"],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["false"],
+            "primaryCategory":[{"categoryId":["50597"],"categoryName":["Vintage Speakers"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mZA7R7BhG8LV0MN61AEM-Yg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Altec-Lansing-515-8hhp-High-Powered-Low-Frequency-Horn-Speaker-Woofer-\/384234552013"],
+            "postalCode":["144**"],"location":["Clifton Springs,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"299.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"299.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT14H1M35S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-21T23:02:05.000Z"],"endTime":["2021-06-26T23:02:05.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["3"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["384245883780"],
             "title":["Dynaco ST-120 Stereo 120 Power Amplifier Tested 100%"],
