@@ -783,7 +783,7 @@ def doRestoredPicsUpdate():
     #
     tSaySplit = ( ReadableNo( iNoP ), ReadableNo( iGotPics ) )
     #
-    print( 'among those, %s not pictures were found, '
+    print( 'among those, %s no pictures were found, '
            'while %s items had pictures' % tSaySplit )
 
 
@@ -822,6 +822,7 @@ def doMissingPicsSearch():
         #
         oItem.iGotPictures = 0
         oItem.bGotPictures = False
+        oItem.tGotPictures = None
         #
         oItem.save()
         #
