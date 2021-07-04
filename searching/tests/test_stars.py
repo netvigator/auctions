@@ -5453,6 +5453,19 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 174819347546
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'enhancement idea: exclude after "SUB", '
+                'find 7DJ8 not rest' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         '''
         '''
