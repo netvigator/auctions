@@ -612,3 +612,6 @@ but bot should get this right without having to put R-200 in the exclude list fo
 
 2021-06-30 ignore models after = if found something before
 304043981880 BRIMAR CV717= 5R4G= 5R4GYA/B = 5R4WGY rectifier tube / valve. NEW in box. NR!!
+
+
+2021-07-04 idea for category level option: ignore model after, such as = and sub for vacuum tubes
