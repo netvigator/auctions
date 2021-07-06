@@ -9,7 +9,7 @@ if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 0 ]
 then
         echo "$TIMESTAMP will nice SearchPutResultsInFiles.sh" >> $LOGFILE
         SECONDS=0
-        ~/Devel/auctions/searching/SearchPutResultsInFiles.sh >> $LOGFILE 2>&1
+        ~/Devel/auctions/searching/SearchPutResultsInFiles.sh >> $LOGFILE
         duration=$SECONDS
         echo "$((duration/3600))h $(((duration/60)%60))m $((duration%60))s elapsed." >> $LOGFILE
 else
