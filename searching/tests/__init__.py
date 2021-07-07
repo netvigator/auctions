@@ -366,7 +366,7 @@ sModels = \
  Mc-75              |           |      7 | f            | McIntosh          |    Amplifier |McIntosh 75  |
  MR-71              |           |      7 | f            | McIntosh          |        Tuner |             |
  122                |           |      8 | f            | Scott, H.H.       |       Preamp |             |
- C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp |             |
+ C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp | 350         | MI-350\\rHT-350\\rST-350\\rT-350\\rTO-350 |
  C450               |           |      7 | f            | Radio Craftsmen   |    Amplifier |             |
  HF-65              |           |      7 | f            | EICO              |       Preamp |             |
  PC-1               |           |      9 | f            | Electro-Voice     |       Preamp |             |
