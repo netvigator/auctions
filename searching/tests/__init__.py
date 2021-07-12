@@ -175,21 +175,24 @@ sModels = \
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6BG6GA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6CA4 (rectifier)   |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6CA7               |           |      6 | f            |                   |  Vacuum Tube |             | Mullard      | t
+ 6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
+ 6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
+ 6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6GA              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6GB              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
+ 6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
+ 6SL7GTA            |           |      5 | t            |                   |  Vacuum Tube | 6SL7\\r6SL7G |             | t
  6SN7GT (Sylvania)  |           |      8 | f            | Sylvania          |  Vacuum Tube |             |              | f
  6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
  6SN7GTB            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6SN7GTA            |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6CA7               |           |      6 | f            |                   |  Vacuum Tube |             | Mullard      | t
- 6DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6DJ8 (Bugle Boy)   | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
- 6922 (= E88CC = CCa = CV2492)| |      5 | f            |                   |  Vacuum Tube |             |              | t
- 6922 (Amperex Gold)| gold\\rGP |      7 | f           | Amperex (gold pins)|  Vacuum Tube |             |              | f
- 6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
- 6AU6A              |           |      6 | f            |                   |  Vacuum Tube | 6AU6        |              | t
- 6BQ5               |           |      7 | f            |                   |  Vacuum Tube |             |              | t
- 6189               |           |      3 | t            |                   |  Vacuum Tube | 6189W       |              | t
- 6SL7GTA            |           |      5 | t            |                   |  Vacuum Tube | 6SL7\\r6SL7G |             | t
  6SN7GT             |           |      6 | t            |                   |  Vacuum Tube | 6SN7        |              | t
  6V6G (GE)          |           |      8 | f            | GE                |  Vacuum Tube |             |              | f
  6V6G (Sylvania)    | Sylvania\\rSilvertone | 8 | f     | Sylvania          |  Vacuum Tube |             |              | f
@@ -199,25 +202,23 @@ sModels = \
  6V6GTA (RCA)       |           |      7 | f            | RCA               |  Vacuum Tube |             |              | f
  5692 (RCA red base)| red       |      8 | f            | RCA               |  Vacuum Tube |             |              | f
  6V6GT (Mazda)      |           |      8 | f            | Mazda             |  Vacuum Tube |             |              | f
- 6L6 (metal can)    |           |      4 | f            |                   |  Vacuum Tube |             |              | t
- 6L6G               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- 6L6GA              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- 6L6GB              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- 6L6GC              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
- 6L6WGB             |           |      8 | t            |                   |  Vacuum Tube |             |              | t
  7DJ8               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6146B              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
+ 6189               |           |      3 | t            |                   |  Vacuum Tube | 6189W       |              | t
  6201               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6550               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6550A              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  6550 (Tung-Sol)    |           |     10 | f            | Tung-Sol          |  Vacuum Tube |             |              | f
  6550-VI            |           |      9 | f            |                   |  Vacuum Tube |             |              | t
+ 6922 (= E88CC = CCa = CV2492)| |      5 | f            |                   |  Vacuum Tube |             |              | t
+ 6922 (Amperex Gold)| gold\\rGP |      7 | f           | Amperex (gold pins)|  Vacuum Tube |             |              | f
  7308               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  7308 (Amperex PQ)  |           |      9 | f            | Amperex (PQ)      |  Vacuum Tube |             |              | f
  7581A              |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  83                 |           |      6 | f            |                   |  Vacuum Tube | VT-83       | 83 total\\r#83 | t
  8298A              |           |      3 | f            |                   |  Vacuum Tube |             |              | t
  211                |           |      9 | f            |                   |  Vacuum Tube | VT-4C       |              | t
+ 8416               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  8417               |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AD1                |           |      8 | f            |                   |  Vacuum Tube |             |              | t
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
@@ -898,6 +899,21 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["373626569836"],
+            "title":["Trio  amperex pq  8416 goldpin tubes tested strong 12volt 6dj8"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/m6SVqrIzZwABczK_EB_6Msg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Trio-amperex-pq-8416-goldpin-tubes-tested-strong-12volt-6dj8-\/373626569836"],
+            "postalCode":["V5M1P4"],"location":["Canada"],"country":["CA"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"20.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"59.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"59.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P1DT8H25M20S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-06-24T17:27:06.000Z"],"endTime":["2021-07-01T17:27:06.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["174819347546"],
             "title":["7DJ8 SUB 4 6DJ8 PCC88 MULLARD Heerlen 6922 ECC88  PAIR  #7 PHONO GRADE"],
