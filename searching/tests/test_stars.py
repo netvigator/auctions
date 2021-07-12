@@ -4949,6 +4949,23 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 373626569836
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 8416 not 6DJ8 on end (production found both)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '8416' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Amperex (PQ)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5459,7 +5476,6 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'enhancement idea: exclude after "SUB", '
                 'find 7DJ8 not rest' )
-        #
         #
         #
         #
