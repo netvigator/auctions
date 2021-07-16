@@ -1,10 +1,9 @@
 from django.urls                import reverse
-from django.views.generic       import DetailView, ListView, RedirectView
+from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from core.views                 import UpdateViewCanCancel
-
+from core.mixins                import DoPostCanCancelMixin
 from .models import User
 
 tUserFields = (
@@ -33,7 +32,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
                        kwargs={'username': self.request.user.username})
 
 
-class UserUpdateView(LoginRequiredMixin, UpdateViewCanCancel):
+class UserUpdateView( DoPostCanCancelMixin, LoginRequiredMixin, UpdateView ):
 
     fields = tUserFields[:-1]
 
