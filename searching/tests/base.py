@@ -392,6 +392,13 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
                                     iUser       = oUser )
             oCategory.save()
             #
+            oCategory   = Category( cTitle      = 'Tuner-Preamplifier',
+                                    cLookFor    = 'pre amp tuner\rtuner pre amp',
+                                    iStars      = 5,
+                                    iFamily_id  = oStereoSystem.id,
+                                    iUser       = oUser )
+            oCategory.save()
+            #
             oCategory   = Category( cTitle      = 'Choke',
                                     cLookFor    = 'crossover',
                                     iStars      = 7,
@@ -983,6 +990,24 @@ class GetBrandsCategoriesModelsWebTestSetUp( StoreSearchResultsTestsWebTestSetUp
             oBrandCategory.save()
             #
             oBrand = Brand.objects.get( cTitle = 'Genalex (Russian)', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Fivre', iUser = oUser )
+            #
+            oBrandCategory = BrandCategory(
+                                    iBrand      = oBrand,
+                                    iCategory   = oVacuumTubes,
+                                    iUser       = oUser )
+            #
+            oBrandCategory.save()
+            #
+            oBrand = Brand.objects.get( cTitle = 'Brimar', iUser = oUser )
             #
             oBrandCategory = BrandCategory(
                                     iBrand      = oBrand,
