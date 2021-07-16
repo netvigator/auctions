@@ -18,6 +18,9 @@
       {% if object.iMarket %}
         <p>{{ object.iMarket }}</p>
       {% endif %}
+      {% if object.cCollection %}
+        <p>{{ object.cCollection }}</p>
+      {% endif %}
       {% if object.cLocation %}
         <p>{{ object.cLocation }}</p>
       {% endif %}
@@ -29,7 +32,7 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">Update My Info</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
