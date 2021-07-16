@@ -46,6 +46,7 @@ class UserSetUpMixin( object ):
         cls.user1.set_password( 'mypassword')
         cls.user1.first_name   = 'John'
         cls.user1.last_name    = 'Citizen'
+        cls.user1.cCollection  = 'widgets'
         cls.user1.save()
 
         cls.user2 = oUserModel.objects.create_user(
@@ -53,6 +54,7 @@ class UserSetUpMixin( object ):
         cls.user2.set_password( 'mypassword')
         cls.user2.first_name   = 'Joe'
         cls.user2.last_name    = 'Blow'
+        cls.user2.cCollection  = 'gizmos'
         cls.user2.save()
 
         cls.user3 = oUserModel.objects.create_user(
@@ -60,6 +62,7 @@ class UserSetUpMixin( object ):
         cls.user3.set_password( 'mypassword')
         cls.user3.first_name   = 'Oscar'
         cls.user3.last_name    = 'Zilch'
+        cls.user3.cCollection  = 'thingamajigs'
         cls.user3.is_superuser = True
         cls.user3.save()
         #
