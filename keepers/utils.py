@@ -947,11 +947,11 @@ def getItemPictures( iItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
 
 
-def getItemsForPicsDownloading( iLimit = 50 ):
+def getItemsForPicsDownloading( iLimit = 50, iTooOldDays = 95 ):
     #
     # bGetPictures = True, not implemented yet
     #
-    tTooOld = timezone.now() - timezone.timedelta( days = 95 )
+    tTooOld = timezone.now() - timezone.timedelta( iTooOldDays )
     #
     qsGetPics = Keeper.objects.filter(
                     tGotPictures__isnull = True,
