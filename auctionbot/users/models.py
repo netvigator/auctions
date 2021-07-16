@@ -25,8 +25,10 @@ class User(AbstractUser):
     '''for testing, it is a big challenge to set default iEbaySiteID from markets table,
     because when testing, markets table starts out empty'''
 
-    cBio        = models.TextField( 'Bio info', max_length=500, blank=True)
-    cLocation   = models.CharField( 'Location', max_length=30, blank=True)
+    cCollection = models.CharField( 'Collection', max_length=80,  blank=True,
+                    help_text = 'describe the collectables you are tracking' )
+    cBio        = models.TextField( 'Bio info',   max_length=500, blank=True)
+    cLocation   = models.CharField( 'Location',   max_length=30,  blank=True)
     zTimeZone   = TimeZoneField( default = 'UTC' )
 
     def __str__(self):
