@@ -36,6 +36,7 @@ sBrands = \
  Audio Research    |      5 |            |            |
  Bell              |      4 |            |            |
  Bendix            |      7 |            |            |
+ Brimar            |      7 |            |            |
  Bogen             |      1 |            |            |
  Brociner          |      6 |            |            |
  Brook             |      8 |            |            |
@@ -54,6 +55,7 @@ sBrands = \
  Fada              |      8 |            |            |
  Fairchild         |      8 |            |            |
  Fisher            |      9 |            |            |
+ Fivre             |      7 |            |            |
  Garod             |      5 |            |            | Garol
  GE                |      5 |            |            | General Electric
  GE (5 Star)       |      8 |            | 5 Star     | General Electric
@@ -224,6 +226,7 @@ sModels = \
  AZ1                |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  AZ12               |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  CCa (= 6922 = E88CC = CV2492)| |      8 | f            |                   |  Vacuum Tube |             |              | t
+ CV717 (5R4GY)      |           |      5 | f            |                   |  Vacuum Tube |             |              | t
  CV2492 (= E88CC = CCa = 6922)| |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV2493             |           |      7 | f            |                   |  Vacuum Tube |             |              | t
  CV4108             |           |      8 | f            |                   |  Vacuum Tube |             |              | t
@@ -324,6 +327,7 @@ sModels = \
  Designers Handbook | Radiotron |      6 | f            | RCA               |         Book | Designer's Handbook |
  400-C              |           |      7 | f            | Fisher            |       Preamp |             | 400-CX
  50-C               |           |      7 | f            | Fisher            |       Preamp |             |
+ 90T                |           |      7 | f            | Fisher            | Tuner-Preamplifier |       |
  400-CX             |           |     10 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX (4 button)  |           |      8 | f            | Fisher            |       Preamp |             | 400-CX-2
  400-CX-2           |           |     10 | f            | Fisher            |       Preamp |             |
@@ -383,6 +387,7 @@ sModels = \
  PAS-3              |           |      7 | f            | Dynaco            |       Preamp |             | PAS-2
  PAS-3X             |           |      9 | f            | Dynaco            |       Preamp |             |
  PAS-3 Series II    |           |      5 | f            | Dynaco            |       Preamp | PAS-3 Series ll\\rPAS-3 Series 2 |
+ PAT-4              |           |      3 | f            | Dynaco            |       Preamp |             |
  FM-3               |           |      7 | f            | Dynaco            |        Tuner |             |
  Stereo 70          |           |      7 | f            | Dynaco            |    Amplifier | St 70       |
  Stereo 120         |           |      3 | f            | Dynaco            |    Amplifier | St 120      |
@@ -899,6 +904,53 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["154527600412"],
+            "title":["DYNACO PAT 4 STEREO PREAMPLIFER, DYNACO STEREO 120, DYNATUNER TUBE MODEL FM-3 "],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["67807"],"categoryName":["Vintage Preamps & Tube Preamps"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mfsEVRbiCW9xCJuNYR9_pOg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/DYNACO-PAT-4-STEREO-PREAMPLIFER-DYNACO-STEREO-120-DYNATUNER-TUBE-MODEL-FM-3-\/154527600412"],
+            "postalCode":["302**"],"location":["Grantville,GA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"200.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"200.0"}],
+            "bidCount":["1"],"sellingState":["Active"],"timeLeft":["P4DT17H35M22S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-07-12T02:38:25.000Z"],"endTime":["2021-07-19T02:38:25.000Z"],
+            "listingType":["Auction"],"gift":["false"],
+            "watchCount":["13"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["203523362222"],
+            "title":["8X NOS and NIB tubes Fivre 5R4GY DD-getter CV717= 5R4G= 5R4GYA\/B= 5R4WGY Brimar"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs3.ebaystatic.com\/m\/m1hZzIkqX_SYsxaK87qM_KQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/8X-NOS-and-NIB-tubes-Fivre-5R4GY-DD-getter-CV717-5R4G-5R4GYA-B-5R4WGY-Brimar-\/203523362222"],
+            "postalCode":["201**"],"location":["Italy"],"country":["IT"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"90.0"}],"shippingType":["Flat"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["2"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"649.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"649.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT4H37M44S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-07-12T13:40:08.000Z"],"endTime":["2021-07-17T13:40:08.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["1500"],"conditionDisplayName":["Open box"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["154528640023"],
+            "title":["Fisher 90T AM\/FM Tuner\/Preamplifier"],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["false"],
+            "primaryCategory":[{"categoryId":["73382"],"categoryName":["Vintage Tuners & Tube Tuners"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mg4l9W06IJNcY6lhV8WiGqQ\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Fisher-90T-AM-FM-Tuner-Preamplifier-\/154528640023"],
+            "postalCode":["939**"],"location":["Carmel,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"175.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"175.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT13H55M30S"]}],
+            "listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-07-12T22:56:44.000Z"],"endTime":["2021-07-19T22:56:44.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["8"]}],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["373626569836"],
             "title":["Trio  amperex pq  8416 goldpin tubes tested strong 12volt 6dj8"],
