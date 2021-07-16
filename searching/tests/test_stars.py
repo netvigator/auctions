@@ -4966,6 +4966,50 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 154528640023
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find tuner-preamp, production d/n find' )
+        #
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '90T' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Fisher' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tuner-Preamplifier' )
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 203523362222
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 2, iThisOne,
+                'aspirational: should ingnore generic models to right of = ' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5R4GYB' )
+        self.assertIn(    oTest.iBrand.cTitle, ( 'Fivre', 'Brimar' ) )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 1 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '5R4GYB' )
+        self.assertIn(    oTest.iBrand.cTitle, ( 'Fivre', 'Brimar' ) )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5476,6 +5520,21 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'enhancement idea: exclude after "SUB", '
                 'find 7DJ8 not rest' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 154527600412
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find all 3 items' )
+        #
+        #
         #
         #
         #
