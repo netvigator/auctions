@@ -57,7 +57,7 @@ from pyPks.File.Get         import Touch
 from pyPks.File.Test        import isFileThere
 from pyPks.File.Write       import openAppendClose
 from pyPks.String.Get       import getTextAfter
-
+from pyPks.Time.Delta       import getDeltaDaysFromDates
 
 logger = logging.getLogger(__name__)
 
@@ -514,7 +514,9 @@ class UserItemsTests( StoreSingleKeepersForWebTests ):
 
     def test_got_items_for_pic_downloading( self ):
         #
-        qsGetPics = getItemsForPicsDownloading()
+        iDaysAgo = getDeltaDaysFromDates("2018-03-30")
+        #
+        qsGetPics = getItemsForPicsDownloading( iTooOldDays = iDaysAgo )
         #
         self.assertGreaterEqual( len( qsGetPics ), len( self.tSeveral ) )
         #
