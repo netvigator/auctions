@@ -1,3 +1,5 @@
+DJANGO_SETTINGS_MODULE=config.settings.production
+# m  h dom mon dow   command
  15  5   *   *   *   ~/bin/flush-old-backups
   0 17   *   *   *   ~/Devel/auctions/searching/SearchPutResultsInFiles.cron
   8 17   *   *   *   ~/Devel/auctions/keepers/FetchKeepers.cron
