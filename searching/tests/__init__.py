@@ -588,6 +588,7 @@ sModels = \
  K-77               |           |      6 | f            | Klipsch           |       Driver |             |
  K-700              |           |      6 | f            | Klipsch           |         Horn |             |
  AA                 |           |      6 | f            | Klipsch           |    Crossover |             |
+ E-2                |           |      5 | f            | Klipsch           |    Crossover |             |
  KS-15874           |           |      9 | f            | Western Electric  |  Tube Tester |             |
  AT1000             |           |      6 | f            | Amplitrex         |  Tube Tester |             |
  P-30               |           |      8 | f            | Stephens          |       Driver |             |
@@ -904,6 +905,23 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["255055360217"],
+            "title":["Vintage, Electro Voice E-V 1244 STEREO CONTROL Amplifier, in working condition."],
+            "globalId":["EBAY-US"],
+            "primaryCategory":[{"categoryId":["73368"],"categoryName":["Vintage Amplifiers & Tube Amps"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mgDQn3sf8PZt-uvgOzP3dXg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Electro-Voice-E-V-1244-STEREO-CONTROL-Amplifier-working-condition-\/255055360217"],
+            "autoPay":["false"],
+            "postalCode":["287**"],"location":["Marshall,NC,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["true"],"oneDayShippingAvailable":["false"],"handlingTime":["1"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"300.0"}],
+            "convertedCurrentPrice":[{"@currencyId":"USD","__value__":"300.0"}],"bidCount":["0"],"sellingState":["Active"],"timeLeft":["P7DT16H40M17S"]}],
+            "listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-07-16T01:40:25.000Z"],"endTime":["2021-07-26T01:40:25.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["1"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["154527600412"],
             "title":["DYNACO PAT 4 STEREO PREAMPLIFER, DYNACO STEREO 120, DYNATUNER TUBE MODEL FM-3 "],
