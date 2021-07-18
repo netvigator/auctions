@@ -34,8 +34,11 @@ class MyUserAdmin(AuthUserAdmin):
     add_form = MyUserCreationForm
     fieldsets = (
             ('User Profile',
-              {'fields': ('name','iEbaySiteID','cLocation','zTimeZone')}),
+              {'fields':
+                   ('name','iEbaySiteID','cLocation',
+                    'zTimeZone','cCollection')}),
     ) + AuthUserAdmin.fieldsets
     list_display = (
-        'username','name','is_superuser','iEbaySiteID','cLocation','zTimeZone')
+        'username','name','is_superuser','iEbaySiteID','cLocation',
+        'zTimeZone','cCollection')
     search_fields = ['name']
