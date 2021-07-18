@@ -5541,6 +5541,19 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 255055360217
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find E-V Amp, '
+                'production found Klipsch E-2 crossover!!! ' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         '''
         '''
