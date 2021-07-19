@@ -1508,4 +1508,6 @@ def deleteSomePics( error_file = '/tmp/got_no_pics.txt' ):
     #
     for iItemNumb in open( error_file ):
         #
+        if not iItemNumb: continue
+        #
         _deleteItemPics( iItemNumb )
