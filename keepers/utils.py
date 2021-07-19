@@ -727,6 +727,46 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
 
 
 
+def gotPicsForItem( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    '''
+    pass the item number, returns the integer # of pictures we got
+    boolean value of 0     is False,
+    boolean value of n > 0 is True
+    '''
+    #
+    return len( getPicFileList( uItemNumb, sItemPicsRoot ) )
+
+
+
+
+
+def _updateKeeperRow( iItemNumb ):
+    #
+    iGotPictures = gotPicsForItem( iItemNumb )
+    #
+    oItem = Keeper.objects.get( iItemNumb = iItemNumb )
+    #
+    bFixed, bNoPics = False, False
+    #
+    if oItem.iGotPictures != iGotPictures:
+        #
+        oItem.iGotPictures = iGotPictures
+        oItem.bGotPictures = iGotPictures > 0
+        #
+        oItem.save()
+        #
+        bFixed = True
+        #
+        if iGotPictures == 0:
+            #
+            bNoPics = True
+            #
+        #
+    #
+    return bFixed, bNoPics
+
+
 def doRestoredPicsUpdate():
     #
     qsGotPics = Keeper.objects.all(
@@ -752,24 +792,11 @@ def doRestoredPicsUpdate():
         #
         iSeq += 1
         #
-        iGotPictures = gotPicsForItem( iItemNumb )
+        bFixed, bNoPics = _updateKeeperRow( iItemNumb )
         #
-        oItem = Keeper.objects.get( iItemNumb = iItemNumb )
+        if bFixed:  iFix +=1
         #
-        if oItem.iGotPictures != iGotPictures:
-            #
-            oItem.iGotPictures = iGotPictures
-            oItem.bGotPictures = iGotPictures > 0
-            #
-            oItem.save()
-            #
-            iFix +=1
-            #
-            if iGotPictures == 0:
-                #
-                iNoP +=1
-                #
-            #
+        if bNoPics: iNoP +=1
         #
         oProgressMeter.update( iSeq )
         #
@@ -844,20 +871,6 @@ def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     sSubDir = getItemPicsSubDir( sItemNumb, sItemPicsRoot )
     #
     return glob( '%s*' % join( sSubDir, sItemNumb ) )
-
-
-
-
-
-def gotPicsForItem( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
-    #
-    '''
-    pass the item number, returns the integer # of pictures we got
-    boolean value of 0     is False,
-    boolean value of n > 0 is True
-    '''
-    #
-    return len( getPicFileList( uItemNumb, sItemPicsRoot ) )
 
 
 
@@ -1412,3 +1425,88 @@ def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
         #
     #
 
+
+def update_some_keeper_rows( log_file = '/tmp/got_pics.txt' ):
+    #
+    oProgressMeter = TextMeter()
+    #
+    iCount = sum( 1 for line in open( log_file ) )
+    #
+    sSayRows = ReadableNo( iCount )
+    #
+    sLineB4 = 'stepping thru some keepers ...'
+    sOnLeft = "%s %s" % ( sSayRows, 'keepers' )
+    #
+    oProgressMeter.start( iCount, sOnLeft, sLineB4 )
+    #
+    iSeq = 0
+    iFix = 0
+    #
+    for iItemNumb in open( log_file ):
+        #
+        iSeq += 1
+        #
+        if not iItemNumb: continue
+        #
+        bFixed, bNoPics = _updateKeeperRow( int( iItemNumb ) )
+        #
+        if bFixed:  iFix +=1
+        #
+        oProgressMeter.update( iSeq )
+        #
+    #
+    oProgressMeter.end( iSeq )
+    #
+    print( '\nOf %s rows, %s (%s%%) did not have correct picture count' %
+           ( sSayRows, ReadableNo( iFix ), 100 * iFix // iCount ) )
+    #
+
+
+def move_errant_pics():
+    #
+    from os                 import walk, rename
+    from os.path            import join
+
+    from pyPks.Dir.Get      import getMakeDir
+    from pyPks.File.Test    import isFileThere
+    from pyPks.File.Spec    import getNameNoPathNoExt
+    from pyPks.File.Write   import openAppendClose
+    from pyPks.String.Get   import getTextBefore
+
+    # correct_dir = '/srv/big/media/Keeper_Pictures'
+    mistake_dir = '/srv/big/media/Keeper_Pictures/Keeper_Pictures'
+
+    setItemIDs = set( () )
+    log_file = '/tmp/got_pics.txt'
+    #
+    for root, dirs, files in walk( mistake_dir ):
+        #
+        correct_dir = root.replace(
+                'Keeper_Pictures/Keeper_Pictures', 'Keeper_Pictures' )
+        #
+        for file in files:
+            #
+            correct_file = join( correct_dir, file )
+            #
+            if isFileThere( correct_file):
+                # print( '%s is where is should be' % correct_file )
+                pass
+            else:
+                # print( '%s is NOT where is should be' % correct_file )
+                wrong_place = join( root, file )
+                # print( 'would move \n%s to \n%s\n' % ( wrong_place, correct_file ) )
+                # getMakeDir( correct_dir )
+                #
+                rename( wrong_place, correct_file )
+                #
+                item_id = getTextBefore( file, '-' )
+                #
+                if False and item_id not in setItemIDs:
+                    #
+                    setItemIDs.add( item_id )
+                    print( 'would move pics for item id %s' %  item_id )
+                    openAppendClose( item_id, log_file )
+                    #
+                #
+            #
+        #
