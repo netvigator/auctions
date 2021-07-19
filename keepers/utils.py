@@ -745,24 +745,28 @@ def _updateKeeperRow( iItemNumb ):
     #
     iGotPictures = gotPicsForItem( iItemNumb )
     #
-    oItem = Keeper.objects.get( iItemNumb = iItemNumb )
-    #
     bFixed, bNoPics = False, False
     #
-    if oItem.iGotPictures != iGotPictures:
+    try:
+        oItem = Keeper.objects.get( iItemNumb = iItemNumb )
+    except Keeper.DoesNotExist:
+        pass
+    else:
         #
-        oItem.iGotPictures = iGotPictures
-        oItem.bGotPictures = iGotPictures > 0
-        #
-        oItem.save()
-        #
-        bFixed = True
-        #
-        if iGotPictures == 0:
+        if oItem.iGotPictures != iGotPictures:
             #
-            bNoPics = True
+            oItem.iGotPictures = iGotPictures
+            oItem.bGotPictures = iGotPictures > 0
             #
-        #
+            oItem.save()
+            #
+            bFixed = True
+            #
+            if iGotPictures == 0:
+                #
+                bNoPics = True
+                #
+            #
     #
     return bFixed, bNoPics
 
@@ -1426,7 +1430,9 @@ def getOrphanPicsReports( sDateBeg = None, sDateEnd = None ):
     #
 
 
-def update_some_keeper_rows( log_file = '/tmp/got_pics.txt' ):
+def update_some_keeper_rows(
+        log_file   = '/tmp/got_pics.txt',
+        error_file = '/tmp/got_no_pics.txt' ):
     #
     oProgressMeter = TextMeter()
     #
@@ -1450,7 +1456,10 @@ def update_some_keeper_rows( log_file = '/tmp/got_pics.txt' ):
         #
         bFixed, bNoPics = _updateKeeperRow( int( iItemNumb ) )
         #
-        if bFixed:  iFix +=1
+        if bFixed:
+            iFix +=1
+        else:
+            openAppendClose( str( iItemNumb ), error_file )
         #
         oProgressMeter.update( iSeq )
         #
@@ -1467,10 +1476,6 @@ def move_errant_pics():
     from os                 import walk, rename
     from os.path            import join
 
-    from pyPks.Dir.Get      import getMakeDir
-    from pyPks.File.Test    import isFileThere
-    from pyPks.File.Spec    import getNameNoPathNoExt
-    from pyPks.File.Write   import openAppendClose
     from pyPks.String.Get   import getTextBefore
 
     # correct_dir = '/srv/big/media/Keeper_Pictures'
