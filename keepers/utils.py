@@ -1001,6 +1001,28 @@ def getItemsForPicsDownloading( iLimit = 50, iTooOldDays = 95 ):
 
 
 
+def _deleteItemPics( uItemNumb ):
+    #
+    lFiles = getPicFileList( uItemNumb, ITEM_PICS_ROOT )
+    #
+    if lFiles:
+        #
+        for sFile in lFiles:
+            #
+            # print( 'would delete %s' % sFile )
+            #
+            remove( sFile )
+            #
+        #
+        # next: queryset delete method
+        # next: queryset delete method
+        # next: queryset delete method
+        #
+        KeeperImage.objects.filter( iItemNumb = iItemNumb ).delete()
+        #
+    #
+
+
 
 def deleteKeeperUserItem( uItemNumb, oUser ):
     #
@@ -1056,42 +1078,7 @@ def deleteKeeperUserItem( uItemNumb, oUser ):
             #
         else: # old enough to dump
             #
-            lFiles = getPicFileList( uItemNumb, ITEM_PICS_ROOT )
-            #
-            if lFiles:
-                #
-                lFiles.sort()
-                #
-                for sFile in lFiles:
-                    #
-                    # print( 'would delete %s' % sFile )
-                    #
-                    remove( sFile )
-                    #
-                    # pass
-                    #
-                #
-                # print( 'KeeperImage.objects.filter(' )
-                # print( '        iItemNumb = iItemNumb, iUser = oUser ).delete()' )
-                #
-                # next: queryset delete method
-                # next: queryset delete method
-                # next: queryset delete method
-                #
-                KeeperImage.objects.filter(
-                        iItemNumb = iItemNumb, iUser = oUser ).delete()
-                #
-            #
-            # print( 'Keeper.objects.filter( iItemNumb = iItemNumb ).delete()' )
-            #
-            # next: queryset delete method
-            # next: queryset delete method
-            # next: queryset delete method
-            #
-            Keeper.objects.filter( iItemNumb = iItemNumb ).delete()
-            #
-            # print( 'len( qsDumpThese ):', len( qsDumpThese ) )
-            #
+            _deleteItemPics( uItemNumb )
             #
             # next: queryset update method
             # next: queryset update method
@@ -1515,3 +1502,10 @@ def move_errant_pics():
                 #
             #
         #
+
+
+def deleteSomePics( error_file = '/tmp/got_no_pics.txt' ):
+    #
+    for iItemNumb in open( error_file ):
+        #
+        _deleteItemPics( iItemNumb )
