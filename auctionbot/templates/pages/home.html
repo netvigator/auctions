@@ -1,1 +1,28 @@
 {% extends "base.html" %}
+{% load static i18n %}
+{% block title %}Auction Shopping Bot Collections{% endblock %}
+
+
+{% block content %}
+    {% if user_list %}
+        <table>
+        <tr>
+        <th>Collections</th>
+        <th style="text-align:right"><i class="far fa-star"></i></th>
+        <th>Wanted?</th>
+        <th>Want everything?</th>
+        <th>Nationality</th>
+        <th>comment</th>
+        </tr>
+        {% for user in user_list %}
+            <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.iEbaySiteID.name }}</td>
+            <td>{{ user.cCollection.name }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No users are available.</p>
+    {% endif %}
+{% endblock content %}
