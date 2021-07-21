@@ -5008,6 +5008,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 203529378220
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 284-N radio, production did not!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '284-N' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Sentinel' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         iThisOne = 164011103887
