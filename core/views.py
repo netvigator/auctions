@@ -14,7 +14,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              FormValidMixin, GetFormMixin,
                                              GetUserSelectionsOnPost,
                                              GetModelInContextMixin,
-                                             DoPostCanCancelMixin )
+                                             DoPostCanCancelMixin,
+                                             LoggedInOrVisitorMixin )
 
 from .utils                         import getSaySequence
 
@@ -24,7 +25,7 @@ from .utils                         import getSaySequence
 
 
 class ListViewGotModel(
-            LoginRequiredMixin, GetModelInContextMixin, ListView ):
+            LoggedInOrVisitorMixin, GetModelInContextMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
     so that the template has access to its model class.
@@ -103,7 +104,7 @@ class UpdateViewCanCancel(
 
 
 
-class DetailViewGotModel( LoginRequiredMixin,
+class DetailViewGotModel( LoggedInOrVisitorMixin,
                 DoesLoggedInUserOwnThisRowMixin, GetModelInContextMixin,
                 DetailView ):
     '''
