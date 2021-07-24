@@ -36,3 +36,10 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
+
+    def get_visiting_url(self):
+        return reverse('visiting', kwargs={'pk': self.pk})
+
+# 2021-07-23 change to non-sequential primary keys in psql on server
+# ALTER TABLE users_user ALTER COLUMN id
+# SET DEFAULT randomized(nextval('users_user_id_seq')::integer)::integer ;
