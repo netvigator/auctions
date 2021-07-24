@@ -1,13 +1,14 @@
-from django.contrib         import messages
-from django.core.exceptions import PermissionDenied
-from django.db              import IntegrityError
-from django.db.models       import Q
-from django.http            import HttpResponseRedirect
+from django.contrib             import messages
+from django.contrib.auth.mixins import AccessMixin
+from django.core.exceptions     import PermissionDenied
+from django.db                  import IntegrityError
+from django.db.models           import Q
+from django.http                import HttpResponseRedirect
 
-from core.utils             import getLink, getSaySequence
+from core.utils                 import getLink, getSaySequence
 
-from pyPks.Collect.Query    import get1stThatMeets
-from pyPks.Collect.Test     import containsAny
+from pyPks.Collect.Query        import get1stThatMeets
+from pyPks.Collect.Test         import containsAny
 
 fset = frozenset
 
@@ -547,3 +548,17 @@ class GetUserSelectionsOnPost( object ):
         #
         return HttpResponseRedirect( url )
 
+
+class LoggedInOrVisitorMixin( AccessMixin ):
+    #
+    def dispatch(self, request, *args, **kwargs):
+        #
+        if request.user.is_authenticated or request.session.get('visiting'):
+            #
+            return super().dispatch(request, *args, **kwargs)
+            #
+        else:
+            #
+            # This will redirect to the login view
+            return self.handle_no_permission()
+            #
