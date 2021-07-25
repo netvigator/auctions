@@ -727,6 +727,19 @@ def _getItemPicture( sURL, iItemNumb, sItemPicsSubDir, iSeq ):
 
 
 
+
+def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
+    #
+    sItemNumb = str( uItemNumb )
+    #
+    sSubDir = getItemPicsSubDir( sItemNumb, sItemPicsRoot )
+    #
+    return glob( '%s*' % join( sSubDir, sItemNumb ) )
+
+
+
+
+
 def gotPicsForItem( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
     #
     '''
@@ -866,16 +879,6 @@ def doMissingPicsSearch():
     #
     print( '\nOf %s rows, %s (%s%%) did not actually have any pictures' %
            ( sSayRows, ReadableNo( iFix ), 100 * iFix // iCount ) )
-
-
-def getPicFileList( uItemNumb, sItemPicsRoot = ITEM_PICS_ROOT ):
-    #
-    sItemNumb = str( uItemNumb )
-    #
-    sSubDir = getItemPicsSubDir( sItemNumb, sItemPicsRoot )
-    #
-    return glob( '%s*' % join( sSubDir, sItemNumb ) )
-
 
 
 
@@ -1018,7 +1021,7 @@ def _deleteItemPics( uItemNumb ):
         # next: queryset delete method
         # next: queryset delete method
         #
-        KeeperImage.objects.filter( iItemNumb = iItemNumb ).delete()
+        KeeperImage.objects.filter( iItemNumb = int( uItemNumb ) ).delete()
         #
     #
 
