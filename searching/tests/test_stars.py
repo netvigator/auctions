@@ -4621,8 +4621,8 @@ class FindSearchHitsWebTests(
         iThisOne = 224450198521
         #
         self.print_len(
-                dItemsToTest[ iThisOne ], 2, iThisOne,
-                'should find KT55 ONLY (others are on end)!' )
+                dItemsToTest[ iThisOne ], 3, iThisOne,
+                'should find KT55 & KT66 ONLY (others are on end)!' )
         #
         oTest = dItemsToTest[ iThisOne ][ 0 ]
         #
@@ -4632,9 +4632,17 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-66' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 2 ]
+        #
         self.assertEqual( oTest.iModel.cTitle, 'KT-55 (GEC)' )
         self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
         #
         #
         #
@@ -5019,6 +5027,27 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, '284-N' )
         self.assertEqual( oTest.iBrand.cTitle, 'Sentinel' )
         self.assertEqual( oTest.iCategory.cTitle, 'Radio' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 393465011463
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find KT77 not 6ca7/el34 on end '
+                'which production found but test OK!!!' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'KT-77' )
+        self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         #
         #
@@ -5565,6 +5594,8 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find E-V Amp, '
                 'production found Klipsch E-2 crossover!!! ' )
+        #
+        #
         #
         #
         #
