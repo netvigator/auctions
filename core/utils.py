@@ -321,3 +321,28 @@ def getSubstituteForReturn( s, sSub = ' - ', bOmitLast = False ):
     else:
         return '' # run replace on None and you get an error
 
+
+def sayMoreAboutHitsForThis( qsThisItemAllHits ):
+    #
+    for item in qsThisItemAllHits:
+        #
+        lSayMore = []
+        #
+        if item.iModel:
+            if item.iModel.iBrand and item.iModel.iBrand != item.iBrand:
+                lSayMore.append(
+                    getWhatsNotInParens( item.iModel.iBrand.cTitle ) )
+            if ( item.iModel.iCategory and
+                    item.iModel.iCategory != item.iCategory ):
+                lSayMore.append(
+                    getWhatsNotInParens( item.iModel.iCategory.cTitle ) )
+        #
+        if lSayMore:
+            #
+            item.sayModel = '%s (%s)' % (
+                item.iModel.cTitle, ' '.join( lSayMore ) )
+            #
+        else:
+            #
+            item.sayModel = item.iModel.cTitle
+            #
