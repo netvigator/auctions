@@ -126,6 +126,14 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 bListExclude    = False,
                 ).order_by( '-iHitStars' )
         #
+        if len( qsThisItemAllHits ) == 0:
+            #
+            qsThisItemAllHits = UserItemFound.objects.filter(
+                iItemNumb_id    = context[ 'object' ].iItemNumb_id,
+                iUser           = self.request.user,
+                ).order_by( '-iHitStars' )
+            #
+        #
         sayMoreAboutHitsForThis( qsThisItemAllHits )
         #
         context['HitsForThis']  = qsThisItemAllHits
@@ -133,7 +141,11 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
         session = self.request.session
         #
         session['iItemNumb'  ]  = context[ 'object' ].iItemNumb_id
-        session['iSearch'    ]  = qsThisItemAllHits[0].iSearch_id
+        #
+        if len( qsThisItemAllHits ) == 0:
+            session['iSearch']  = None
+        else:
+            session['iSearch']  = qsThisItemAllHits[0].iSearch_id
         #
         # cannot serialize datetime object, so covert to string
         #
