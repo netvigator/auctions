@@ -8,6 +8,8 @@ from core.mixins        import ( GetPaginationExtraInfoInContext,
 from core.views         import ( DeleteViewGotModel, CreateViewCanCancel,
                                  DetailViewGotModel,  ListViewGotModel )
 
+from core.utils         import sayMoreAboutHitsForThis
+
 from .forms             import KeeperForm
 
 from .models            import Keeper, UserKeeper
@@ -34,6 +36,8 @@ class KeeperDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 iItemNumb_id    = context[ 'object' ].iItemNumb,
                 iUser           = self.request.user,
                 ).order_by( '-iHitStars' )
+        #
+        sayMoreAboutHitsForThis( qsThisItemAllHits )
         #
         context['HitsForThis']  = qsThisItemAllHits
         #
