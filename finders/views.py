@@ -15,7 +15,8 @@ from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetUserSelectionsOnPost,
                              TitleSearchMixin )
 
-from core.utils     import getDateTimeObjGotEbayStr, getEbayStrGotDateTimeObj
+from core.utils     import ( getDateTimeObjGotEbayStr, getEbayStrGotDateTimeObj,
+                             sayMoreAboutHitsForThis )
 
 from brands.models      import Brand
 from categories.models  import Category
@@ -124,6 +125,8 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
                 iUser           = self.request.user,
                 bListExclude    = False,
                 ).order_by( '-iHitStars' )
+        #
+        sayMoreAboutHitsForThis( qsThisItemAllHits )
         #
         context['HitsForThis']  = qsThisItemAllHits
         #
