@@ -5593,7 +5593,7 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find E-V Amp, '
-                'production found Klipsch E-2 crossover!!! ' )
+                'production found Klipsch E-2 crossover!!!' )
         #
         #
         #
