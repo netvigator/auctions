@@ -17,7 +17,7 @@
           <tr>
             <td><a href="{{ item.get_edit_url }}">Edit</a></td>
             <TD><input class="checkbox" name="bListExclude" type="checkbox" value={{ item.id }}></td>
-            <td><a href="{{ item.iModel.get_absolute_url    }}">{{ item.iModel    }}</a></td>
+            <td><a href="{{ item.iModel.get_absolute_url    }}">{{ item.sayModel  }}</a></td>
             <td><a href="{{ item.iBrand.get_absolute_url    }}">{{ item.iBrand    }}</a></td>
             <td><a href="{{ item.iCategory.get_absolute_url }}">{{ item.iCategory }}</a></td>
             <td>{{ item.iHitStars }} ( {{item.iModel.iStars}} * {{item.iBrand.iStars}} * {{item.iCategory.iStars}} )</td>
