@@ -571,27 +571,23 @@ class GetUserOrVisiting( object ):
         #
         request = self.request
         #
-        if (    request.user and
-                request.user.is_authenticated and
-                request.user.id == request.session.get('visiting') ):
+        oUser = request.user
+        #
+        if hasattr( request, 'session' ) and request.session.get('visiting'):
             #
-            oUser = request.user
+            if (    request.user.is_authenticated and
+                    request.user.id == request.session.get('visiting') ):
+                #
+                pass # can first visit, then log in and then access own data
+                #
+            else:
+                #
+                User = get_user_model()
+                #
+                oUser = User.objects.get(id = request.session.get('visiting'))
+                #
             #
-            isVisiting = False
-            #
-        elif request.session.get('visiting'):
-            #
-            User = get_user_model()
-            #
-            oUser = User.objects.get( id = request.session.get('visiting') )
-            #
-            isVisiting = True
-            #
-        else:
-            #
-            oUser = request.user
-            #
-            isVisiting = False
-            #
+        #
+        isVisiting = ( oUser != request.user )
         #
         return oUser, isVisiting
