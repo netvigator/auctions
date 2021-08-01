@@ -88,7 +88,7 @@ class ModelViewsTests( BaseUserWebTestCase ):
         self.client.login(username='username2', password='mypassword')
 
         response = self.client.get(
-                reverse( 'models:detail', kwargs={ 'pk': iLeverID } ) )
+                reverse( 'models:edit', kwargs={ 'pk': iLeverID } ) )
 
         self.assertEqual(response.status_code, 403) # forbidden
         self.assertEqual(
