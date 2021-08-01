@@ -342,7 +342,7 @@ def sayMoreAboutHitsForThis( qsThisItemAllHits ):
             item.sayModel = '%s [%s]' % (
                 item.iModel.cTitle, ' '.join( lSayMore ) )
             #
-        else:
+        elif item.sayModel:
             #
             item.sayModel = item.iModel.cTitle
             #
