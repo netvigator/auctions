@@ -4632,13 +4632,13 @@ class FindSearchHitsWebTests(
         #
         oTest = dItemsToTest[ iThisOne ][ 1 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'KT-66' )
+        self.assertIn(    oTest.iModel.cTitle, ( 'KT-55 (GEC)', 'KT-66' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
         oTest = dItemsToTest[ iThisOne ][ 2 ]
         #
-        self.assertEqual( oTest.iModel.cTitle, 'KT-55 (GEC)' )
+        self.assertIn(    oTest.iModel.cTitle, ( 'KT-55 (GEC)', 'KT-66' ) )
         self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
         #
@@ -5048,6 +5048,26 @@ class FindSearchHitsWebTests(
         self.assertEqual( oTest.iModel.cTitle, 'KT-77' )
         self.assertEqual( oTest.iBrand.cTitle, 'GEC (Genalex)' )
         self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 384296512263
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find 799 tube testor (listed in wrong category)' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, '799' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Hickok' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Tube Tester' )
         #
         #
         #
@@ -5594,8 +5614,6 @@ class FindSearchHitsWebTests(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find E-V Amp, '
                 'production found Klipsch E-2 crossover!!!' )
-        #
-        #
         #
         #
         #
