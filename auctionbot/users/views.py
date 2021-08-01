@@ -21,7 +21,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'
-
+    template_name = 'users/user_detail.html'
 
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
@@ -38,6 +38,7 @@ class UserUpdateView( DoPostCanCancelMixin, LoginRequiredMixin, UpdateView ):
 
     # we already imported User in the view code above, remember?
     model = User
+    template_name = 'users/user_form.html'
 
     # send the user back to their own page after a successful update
     def get_success_url(self):
@@ -57,3 +58,4 @@ class UserListView(LoginRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'
+    template_name = 'users/user_list.html'
