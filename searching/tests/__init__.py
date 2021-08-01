@@ -551,6 +551,7 @@ sModels = \
  600A               |           |      5 | t            | Hickok            |  Tube Tester |             |
  752A               |           |      6 | t            | Hickok            |  Tube Tester |             |
  6000A              |           |      6 | t            | Hickok            |  Tube Tester |             |
+ 799                |           |      8 | f            | Hickok            |  Tube Tester |             |
  TV-7               |           |      6 | f            | Hickok            |  Tube Tester |             |
  TV-7               |           |      5 | f            | Supreme           |  Tube Tester |             |
  8-77               |           |      7 | f            | Stark             |  Tube Tester |             |
@@ -905,6 +906,21 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["384296512263"],
+            "title":["Vintage Hickok 799 \\"Mustang\\" Mutual Conductance Vacuum Tube Tester - Refurbished"],
+            "globalId":["EBAY-US"],"autoPay":["true"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs4.ebaystatic.com\/m\/mpgJ13wlchd-o9iqgB3x0wg\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Vintage-Hickok-799-Mustang-Mutual-Conductance-Vacuum-Tube-Tester-Refurbished-\/384296512263"],
+            "postalCode":["551**"],"location":["Saint Paul,MN,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"202.5"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"202.5"}],
+            "bidCount":["2"],"sellingState":["Active"],"timeLeft":["P1DT13H47M41S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-07-26T22:49:35.000Z"],"endTime":["2021-08-02T22:49:35.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["15"]}],"returnsAccepted":["true"],
+            "condition":[{"conditionId":["2500"],"conditionDisplayName":["Seller refurbished"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["393465011463"],
             "title":["2 vintage NOS GEC Genalex  KT77  tubes -tested- matched- 6ca7\/el34"],
