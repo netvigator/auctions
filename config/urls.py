@@ -6,15 +6,15 @@ from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
-from .views import CollectionsListView
+from .views import CollectionsListView, UserVisitView
 
 urlpatterns = [
     url(r'^$', CollectionsListView.as_view(
                 template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(
                 template_name='pages/about.html'), name='about'),
-    url(r'^visiting/(?P<pk>[0-9]+)$', CollectionsListView.as_view(
-                template_name='pages/visiting.html'), name='visiting'),
+    url(r'^visiting/(?P<pk>[0-9]+)/$', UserVisitView.as_view(
+                template_name='users/visiting.html'), name='visiting'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
