@@ -13,7 +13,7 @@ from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetUserSelectionsOnPost,
-                             TitleSearchMixin )
+                             TitleSearchMixin, GetUserOrVisiting )
 
 from core.utils     import ( getDateTimeObjGotEbayStr, getEbayStrGotDateTimeObj,
                              sayMoreAboutHitsForThis )
@@ -54,31 +54,33 @@ class FinderIndexView(
         # qs = super().get_queryset()
         # sSelect = 'P'
         #
+        oUser, isVisiting = self.getUserOrVisiting()
+        #
         sSelect = self.kwargs.get( 'select', 'A' )
         #
         if not sSelect: sSelect = 'A'
         #
         if sSelect == 'A': # all
             qsGot = UserFinder.objects.filter(
-                        iUser               = self.request.user,
+                        iUser               = oUser,
                         bListExclude        = False,
                     ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         #elif sSelect == 'P': # postive (non-zero hit stars)
         #    qsGot = UserFinder.objects.filter(
-        #                iUser               = self.request.user,
+        #                iUser               = oUser,
         #                iHitStars__isnull   = False,
         #                bListExclude        = False,
         #            ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         #
         elif sSelect == 'D': # "deleted" (excluded from list)
             qsGot = UserFinder.objects.filter(
-                        iUser               = self.request.user,
+                        iUser               = oUser,
                         iHitStars__isnull   = False,
                         bListExclude        = True
                     ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
         #elif sSelect == 'Z': # iHitStars = 0
         #    qsGot = UserFinder.objects.filter(
-        #                iUser               = self.request.user,
+        #                iUser               = oUser,
         #                iHitStars           = 0,
         #                bListExclude        = False
         #            ).order_by( '-iHitStars', 'iMaxModel', 'tTimeEnd' )
@@ -95,7 +97,8 @@ class FinderIndexView(
 
 
 
-class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
+class ItemFoundDetailView(
+        GetUserOrVisiting, GetUserSelectionsOnPost, DetailViewGotModel ):
 
     # get this from the finders list (top menu item)
 
@@ -119,10 +122,12 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
          'model': <class 'finders.models.UserItemFound'>,\
          'parent': <class 'finders.models.ItemFound'>}
         '''
+        oUser, isVisiting = self.getUserOrVisiting()
+        #
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
                 iItemNumb_id    = context[ 'object' ].iItemNumb_id,
-                iUser           = self.request.user,
+                iUser           = oUser,
                 bListExclude    = False,
                 ).order_by( '-iHitStars' )
         #
@@ -130,7 +135,7 @@ class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
             #
             qsThisItemAllHits = UserItemFound.objects.filter(
                 iItemNumb_id    = context[ 'object' ].iItemNumb_id,
-                iUser           = self.request.user,
+                iUser           = oUser,
                 ).order_by( '-iHitStars' )
             #
         #
