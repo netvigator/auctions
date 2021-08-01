@@ -74,7 +74,7 @@ class BrandViewsTests( BaseUserWebTestCase ):
         # print( 'logged out of user1, logged into user 2')
 
         response = self.client.get(
-                reverse( 'brands:detail', kwargs={ 'pk': sLeverID } ) )
+                reverse( 'brands:edit', kwargs={ 'pk': sLeverID } ) )
 
         self.assertEqual(response.status_code, 403) # forbidden
         self.assertEqual(
