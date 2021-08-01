@@ -5,6 +5,7 @@
 {% block content %}
     {% if user_list %}
         <h2>Collections</h2>
+        Choose a collection to visit: click on a description.
         <table>
         <tr>
         <th>description</th>
@@ -12,7 +13,7 @@
         </tr>
         {% for user in user_list %}
             <tr>
-            <td><a href="{{ user.get_visiting_url }}/">{{ user.cCollection }}</a></td>
+            <td><a href="{{ user.get_visiting_url }}">{{ user.cCollection }}</a></td>
             <td>{{ user.iEbaySiteID }}</td>
             </tr>
         {% endfor %}
