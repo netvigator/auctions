@@ -1,4 +1,5 @@
 from django.contrib             import messages
+from django.contrib.auth        import get_user_model
 from django.contrib.auth.mixins import AccessMixin
 from django.core.exceptions     import PermissionDenied
 from django.db                  import IntegrityError
@@ -551,7 +552,7 @@ class GetUserSelectionsOnPost( object ):
 
 class LoggedInOrVisitorMixin( AccessMixin ):
     #
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch( self, request, *args, **kwargs):
         #
         if request.user.is_authenticated or request.session.get('visiting'):
             #
@@ -562,3 +563,35 @@ class LoggedInOrVisitorMixin( AccessMixin ):
             # This will redirect to the login view
             return self.handle_no_permission()
             #
+
+
+class GetUserOrVisiting( object ):
+
+    def getUserOrVisiting( self ):
+        #
+        request = self.request
+        #
+        if (    request.user and
+                request.user.is_authenticated and
+                request.user.id == request.session.get('visiting') ):
+            #
+            oUser = request.user
+            #
+            isVisiting = False
+            #
+        elif request.session.get('visiting'):
+            #
+            User = get_user_model()
+            #
+            oUser = User.objects.get( id = request.session.get('visiting') )
+            #
+            isVisiting = True
+            #
+        else:
+            #
+            oUser = request.user
+            #
+            isVisiting = False
+            #
+        #
+        return oUser, isVisiting
