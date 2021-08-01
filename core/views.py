@@ -15,7 +15,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              GetUserSelectionsOnPost,
                                              GetModelInContextMixin,
                                              DoPostCanCancelMixin,
-                                             LoggedInOrVisitorMixin )
+                                             LoggedInOrVisitorMixin,
+                                             GetUserOrVisiting )
 
 from .utils                         import getSaySequence
 
@@ -24,7 +25,7 @@ from .utils                         import getSaySequence
 # ###         keep views thin!         ###
 
 
-class ListViewGotModel(
+class ListViewGotModel( GetUserOrVisiting,
             LoggedInOrVisitorMixin, GetModelInContextMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
@@ -33,7 +34,9 @@ class ListViewGotModel(
 
     def get_queryset(self):
         #
-        queryset = self.model.objects.filter( iUser = self.request.user )
+        oUser, isVisiting = self.getUserOrVisiting()
+        #
+        queryset = self.model.objects.filter( iUser = oUser )
         #
         return queryset
 
@@ -105,7 +108,7 @@ class UpdateViewCanCancel(
 
 
 class DetailViewGotModel( LoggedInOrVisitorMixin,
-                DoesLoggedInUserOwnThisRowMixin, GetModelInContextMixin,
+                GetModelInContextMixin,
                 DetailView ):
     '''
     Enhanced DetailView which also includes the model in the context data,
@@ -117,18 +120,19 @@ class DetailViewGotModel( LoggedInOrVisitorMixin,
 
 
 class DetailViewGotModelAlsoPost(
+            GetUserOrVisiting,
             SuccessMessageMixin,
             GetUserSelectionsOnPost,
             DetailViewGotModel ):
 
     '''detail view for Brands, Categories & Models, manages Keepers & Finders'''
 
-    def get_context_data(self, **kwargs):
+    def get_context_data( self, **kwargs ):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the categories
         #
-        oUser = self.request.user
+        oUser, isVisiting = self.getUserOrVisiting()
         #
         t = self.object.getKeeperContextForThis( self.object, oUser )
         #
@@ -143,6 +147,8 @@ class DetailViewGotModelAlsoPost(
         #
         context['finders_list']         = qsFinderItems
         context['sHowManyFinders']      = sHowManyFinders
+        #
+        context['isVisiting']           = isVisiting
         #
         return context
 
