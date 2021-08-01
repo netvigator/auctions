@@ -158,7 +158,7 @@ class SearchViewsTests( BaseUserWebTestCase ):
         self.client.login(username='username2', password='mypassword')
 
         response = self.client.get(
-                reverse( 'searching:detail', kwargs={ 'pk': sGadgetID } ) )
+                reverse( 'searching:edit', kwargs={ 'pk': sGadgetID } ) )
 
         self.assertEqual(response.status_code, 403) # forbidden
         self.assertEqual(
