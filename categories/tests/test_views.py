@@ -69,7 +69,7 @@ class CategoryViewsTests( BaseUserWebTestCase ):
         self.client.login(username='username2', password='mypassword')
 
         response = self.client.get(
-                reverse( 'categories:detail', kwargs={ 'pk': iGadgetID } ) )
+                reverse( 'categories:edit', kwargs={ 'pk': iGadgetID } ) )
 
         self.assertEqual(response.status_code, 403) # forbidden
         self.assertEqual(
