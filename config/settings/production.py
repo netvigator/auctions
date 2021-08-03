@@ -185,6 +185,7 @@ INSTALLED_APPS += ['anymail', ]
 
 ANYMAIL = {
     'MAILGUN_API_KEY': getSecret( 'MAILGUN_API_KEY', 'email' ),
+    'MAILGUN_SENDER_DOMAIN': 'mg.auctionshoppingbot.com'
 }
 
 EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
