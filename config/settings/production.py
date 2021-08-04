@@ -188,7 +188,7 @@ ANYMAIL = {
     'MAILGUN_SENDER_DOMAIN': 'mg.auctionshoppingbot.com'
 }
 
-EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
