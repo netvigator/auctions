@@ -41,6 +41,9 @@ class Category( GetItemsForSomething, models.Model ):
     iStars          = IntegerRangeField(
                         'desireability, 10 star category is most desireable',
                             min_value = 0, max_value = 10, default = 5 )
+    bModelsByYear   = models.BooleanField(
+                        'do models vary by year?', default = False,
+        help_text = 'examples: automobiles, guitars' )
     bAllOfInterest  = models.BooleanField(
                         'want everything of this category?', default = False,
         help_text = 'Definitely set to True for desireable & rare categories' )
