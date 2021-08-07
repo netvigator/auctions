@@ -1,7 +1,10 @@
-from core.crispy    import Field, Layout, Submit
+from core.crispy        import Field, Layout, Submit
 
-from core.forms     import ModelFormValidatesTitle
-from .models        import Model
+from core.forms         import ModelFormValidatesTitle
+
+from categories.models  import Category
+
+from .models            import Model
 
 # ### forms validate the incoming data against the database      ###
 # ### additional custom validation logic can be implemented here ###
@@ -79,6 +82,9 @@ class UpdateModelForm( ModelFormValidatesTitle ):
         #
         self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        #
+        self.fields['iCategory'].queryset = \
+                Category.objects.filter( iUser = self.user )
         #
         self.helper.layout = _getLayout()
 
