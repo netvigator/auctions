@@ -37,6 +37,12 @@
         <TD>{% field_name model 'cLookFor' %}</TD>
         <TD>{{object.cLookFor|getDashForReturn}}</TD>
     </TR>
+    {% if object.iCategory.bModelsByYear %}
+      <TR style="vertical-align:top">
+          <TD>{% field_name model 'iModelYear' %}</TD>
+          <TD>{{object.iModelYear}}</TD>
+      </TR>
+    {% endif %}
     <TR style="vertical-align:top">
         <TD>{% field_name model 'iStars' %}</TD>
         <TD>{{object.iStars}}</TD>
