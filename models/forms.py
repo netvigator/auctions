@@ -1,6 +1,8 @@
+from django             import forms
+
 from core.crispy        import Field, Layout, Submit
 
-from core.forms         import ModelFormValidatesTitle
+from core.forms         import ModelFormValidatesTitle, tPossibleYears
 
 from categories.models  import Category
 
@@ -14,6 +16,7 @@ tModelFields = (
     'cTitle',
     'bSubModelsOK',
     'cLookFor',
+    'iModelYear',
     'iBrand',
     'bGenericModel',
     'iCategory',
@@ -39,6 +42,7 @@ def _getLayout():
             'cTitle',
             'bSubModelsOK',
             Field('cLookFor', rows='2'),
+            'iModelYear',
             'iBrand',
             'bGenericModel',
             'iCategory',
@@ -59,6 +63,8 @@ def _getLayout():
 
 class CreateModelForm( ModelFormValidatesTitle ):
     #
+    iModelYear = forms.ChoiceField( choices = tPossibleYears )
+
     def __init__( self, *args, **kwargs ):
         #
         super().__init__( *args, **kwargs )
@@ -75,6 +81,7 @@ class CreateModelForm( ModelFormValidatesTitle ):
 
 class UpdateModelForm( ModelFormValidatesTitle ):
     #
+    iModelYear = forms.ChoiceField( choices = tPossibleYears )
 
     def __init__( self, *args, **kwargs ):
         #
