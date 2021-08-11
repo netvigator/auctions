@@ -55,6 +55,10 @@ class Model( GetItemsForSomething, models.Model ):
                         'model number or name',
                         max_length = 48, db_index = True,
         help_text   = _sHelpTextModelTitle )
+    iModelYear      = models.IntegerField(
+                        'model year',
+                        null = True, blank = True,
+        help_text = 'optional - can specify if model varies by year' )
     cKeyWords       = models.TextField(
                         'model key words',
                         null = True, blank = True,
