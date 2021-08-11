@@ -1,3 +1,5 @@
+from datetime           import datetime
+
 from django.conf        import settings
 from django.forms       import ModelForm, ChoiceField
 
@@ -14,6 +16,10 @@ from models.models      import Model
 def maybePrint(   *args ): pass
 def maybePrettyP( *args ): pass
 
+
+tPossibleYears = tuple(
+        ( ( str(i), i )
+          for i in range( datetime.now().year + 1, 1900, -1 ) ) )
 
 class BaseModelFormGotCrispy( ModelForm ):
     #
