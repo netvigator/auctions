@@ -53,6 +53,10 @@
         <TD>{{ object.bModelsShared|yesno:"Yes,No" }}</TD>
     </TR>
     <TR style="vertical-align:top">
+        <TD>{% field_name model 'bModelsByYear' %}</TD>
+        <TD>{{ object.bModelsByYear|yesno:"Yes,No" }}</TD>
+    </TR>
+    <TR style="vertical-align:top">
         <TD>{% field_name model 'cExcludeIf' %}</TD>
         <TD>{{object.cExcludeIf|getDashForReturn}}</TD>
     </TR>
