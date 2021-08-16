@@ -10,6 +10,7 @@ from core.utils                 import getLink, getSaySequence
 
 from pyPks.Collect.Query        import get1stThatMeets
 from pyPks.Collect.Test         import containsAny
+from pyPks.Dict.Get             import DictCanSave
 
 fset = frozenset
 
@@ -136,7 +137,7 @@ class GetModelInContextMixin( object ):
 class DoPostCanCancelMixin( object ):
     '''more DRY, move some copied and pasted code here'''
 
-    def post(self, request, *args, **kwargs):
+    def post( self, request, *args, **kwargs ):
         if "cancel" in request.POST:
             self.object = self.get_object()
             url = self.object.get_absolute_url()
@@ -565,7 +566,35 @@ class LoggedInOrVisitorMixin( AccessMixin ):
             #
 
 
-class GetUserOrVisiting( object ):
+class SetUserNeedsModelYearsMixin( object ):
+    #
+    def setUserNeedsModelYears( self, oUser, bModelsByYear = False ):
+        #
+        # circular import crash if this is at the top
+        from categories.models import Category
+        #
+        if not hasattr( self.request, 'session' ):
+            self.request.session = DictCanSave()
+        #
+        session = self.request.session
+        #
+        needsModelYears = bool(
+                bModelsByYear or
+                Category.objects.filter(
+                        iUser         = oUser,
+                        bModelsByYear = True ).exists() )
+        #
+        session["needsModelYears"] = needsModelYears
+        #
+        session.save()
+        #
+        # print( 'session["needsModelYears"]:', session["needsModelYears"] )
+        #
+
+
+
+
+class GetUserOrVisiting( SetUserNeedsModelYearsMixin ):
 
     def getUserOrVisiting( self ):
         #
@@ -588,6 +617,24 @@ class GetUserOrVisiting( object ):
                 #
             #
         #
-        isVisiting = ( oUser != request.user )
+        isVisiting = True
+        #
+        if oUser == request.user:
+            #
+            self.setUserNeedsModelYears( oUser )
+            #
+            isVisiting = False
+            #
         #
         return oUser, isVisiting
+
+
+
+class GetFormKeyWordArgsMixin( object ):
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user']    = self.request.user
+        kwargs['request'] = self.request
+        return kwargs
+
