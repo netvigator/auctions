@@ -5,10 +5,9 @@ from django.urls        import reverse_lazy
 
 from core.mixins        import WereAnyReleventRegExColsChangedMixin
 
-from core.views         import (
-                            CreateViewCanCancel, DeleteViewGotModel,
-                            ListViewGotModel, UpdateViewCanCancel,
-                            DetailViewGotModelAlsoPost )
+from core.views         import CreateViewCanCancel, DeleteViewGotModel, \
+                               ListViewGotModel, UpdateViewCanCancel, \
+                               DetailViewGotModelAlsoPost
 
 from .forms             import UpdateCategoryForm, CreateCategoryForm
 from .models            import Category
@@ -43,7 +42,7 @@ class CategoryCreateView( CreateViewCanCancel ):
 
 
 class CategoryUpdateView(
-        WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
+        WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel ):
 
     form_class      = UpdateCategoryForm
     model           = Category
