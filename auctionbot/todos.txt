@@ -613,4 +613,4 @@ but bot should get this right without having to put R-200 in the exclude list fo
 2021-07-04 idea for category level option: ignore model after, such as = and sub for vacuum tubes
 
 
-2021-08-16 cries for help from test_finder_edit
+2021-08-16 cries for help from test_finder_edit, please clean up core.forms.BaseModelFormGotCrispy
