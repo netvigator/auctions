@@ -62,6 +62,8 @@ class BaseModelFormGotCrispy( ModelForm ):
             self.user = self.instance.iUser
             #
         #
+        self.request = kwargs.pop( 'request', None ) # crashes django code if there
+        #
         super().__init__( *args, **kwargs )
         #
         self.helper = FormHelper()
