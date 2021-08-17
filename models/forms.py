@@ -95,7 +95,7 @@ class UpdateModelForm( NewModelDataForm ):
         #
         super().__init__( *args, **kwargs )
         #
-        self.helper.add_input(Submit('submit', 'Save Changes', css_class='btn-primary'))
+        self.helper.add_input(Submit('submit', 'Save changes', css_class='btn-primary'))
         #
         self.helper.layout = _getLayout()
 
