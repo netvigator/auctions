@@ -1,5 +1,6 @@
 from core.crispy    import Field, Layout, Submit
 from core.forms     import ModelFormValidatesTitle
+from core.mixins    import SetUserNeedsModelYearsMixin
 
 from .models        import Category
 
@@ -19,6 +20,7 @@ tModelFields = (
     'iFamily',
     'cExcludeIf',
     'bModelsShared',
+    'bModelsByYear',
     )
 
 
@@ -35,38 +37,66 @@ def _getLayout():
             'bComponent',
             'iFamily',
             Field('cExcludeIf', rows='2'),
-            'bModelsShared' )
+            'bModelsShared',
+            'bModelsByYear' )
 
-class CreateCategoryForm( ModelFormValidatesTitle ):
+class NewCategoryDataForm(
+            SetUserNeedsModelYearsMixin, ModelFormValidatesTitle ):
+
+    def __init__( self, *args, **kwargs ):
+        #
+        # request is a custom parameter!!! see the view mixin
+        # can crash django code if there!!!
+        #
+        self.request = kwargs.pop( 'request', None )
+        #
+        super().__init__( *args, **kwargs )
+        #
+        self.helper.add_input(
+                Submit( 'cancel', 'Cancel', css_class='btn-primary' ) )
+        #
+
+    class Meta:
+        model   = Category
+        fields  = tModelFields
+
+    def clean( self ):
+        #
+        if any( self.errors ): return
+        #
+        cleaned = super().clean()
+        #
+        if  ( self.request is not None and
+              self['bModelsByYear'].value and
+              hasattr( self.request, 'user' ) ):
+            #
+            self.setUserNeedsModelYears( self.request.user, True )
+            #
+        #
+        return cleaned
+
+
+class CreateCategoryForm( NewCategoryDataForm ):
     #
 
     def __init__( self, *args, **kwargs ):
         #
         super().__init__( *args, **kwargs )
         #
-        self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        self.helper.add_input(
+                Submit( 'submit', 'Create', css_class='btn-primary' ) )
         #
         self.helper.layout = _getLayout()
 
-    class Meta:
-        model   = Category
-        fields  = tModelFields
 
-
-
-class UpdateCategoryForm( ModelFormValidatesTitle ):
+class UpdateCategoryForm( NewCategoryDataForm ):
     #
 
     def __init__( self, *args, **kwargs ):
         #
         super().__init__( *args, **kwargs )
         #
-        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        self.helper.add_input(
+                Submit( 'submit', 'Save Changes', css_class='btn-primary' ) )
         #
         self.helper.layout = _getLayout()
-
-    class Meta:
-        model   = Category
-        fields  = tModelFields
