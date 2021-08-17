@@ -92,7 +92,7 @@ class BaseUserTestPlusCase( UserSetUpMixin, TestCasePlus ):
     pass
 
 
-class BaseUserViewTestPlusCase( UserSetUpMixin, TestViewPlus ):
+class BaseUserCBVTestPlusCase( UserSetUpMixin, TestViewPlus ):
 
     pass
 
@@ -296,11 +296,11 @@ class SetUpBrandsCategoriesModelsMixin( object ):
         #
         cls.WidgetCategory = cls.oCategory
         #
-        #
         cls.oCategory = Category(
             cTitle      = "Manual",
             iStars      = 3,
             iUser       = oUser )
+        #
         cls.oCategory.save()
         #
         cls.ManualCategory = cls.oCategory
@@ -365,7 +365,7 @@ class SetUpBrandsCategoriesModelsTestPlus(
 
 
 class SetUpBrandsCategoriesModelsViewTestPlus(
-            SetUpBrandsCategoriesModelsMixin, BaseUserViewTestPlusCase ):
+            SetUpBrandsCategoriesModelsMixin, BaseUserCBVTestPlusCase ):
 
     ''' handy base class that sets up some models / tables '''
 
@@ -584,8 +584,14 @@ class AssertEqualIgnoreParensMixin( object ):
 class AssertIsDateTimeValueMixin( object ):
 
     def assertIsDateTimeValue( self, uDateTime ):
-        #
         self.assertTrue( isDateTimeObj( uDateTime ) )
+
+
+class AssertObjectHasAttrMixin( object ):
+
+    def assertHasAttr( self, o, s ):
+        self.assertTrue( hasattr( o, s ) )
+
 
 
 '''
