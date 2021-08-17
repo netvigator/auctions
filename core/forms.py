@@ -213,7 +213,7 @@ class BaseUserFinderKeeperFormGotCrispy( BaseModelFormGotCrispy ):
                                               iUser = self.user )
         #
         #
-        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        self.helper.add_input(Submit('submit', 'Save changes', css_class='btn-primary'))
         self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
         self.fields['gModel'].choices = (
