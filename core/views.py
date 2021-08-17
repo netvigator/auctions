@@ -16,7 +16,8 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              GetModelInContextMixin,
                                              DoPostCanCancelMixin,
                                              LoggedInOrVisitorMixin,
-                                             GetUserOrVisiting )
+                                             GetUserOrVisiting,
+                                             GetFormKeyWordArgsMixin )
 
 from .utils                         import getSaySequence
 
@@ -42,7 +43,7 @@ class ListViewGotModel( GetUserOrVisiting,
 
 
 
-class CreateViewCanCancel( LoginRequiredMixin,
+class CreateViewCanCancel( GetFormKeyWordArgsMixin, LoginRequiredMixin,
             SuccessMessageMixin, FormValidMixin, GetFormMixin,
             CreateView ):
     '''
@@ -88,22 +89,15 @@ class DeleteViewGotModel( LoginRequiredMixin, GetModelInContextMixin,
 
 
 
-
 class UpdateViewCanCancel(
-            LoginRequiredMixin, SuccessMessageMixin, FormValidMixin,
-            DoesLoggedInUserOwnThisRowMixin, GetModelInContextMixin,
-            GetFormMixin, DoPostCanCancelMixin,
+            GetFormKeyWordArgsMixin, LoginRequiredMixin, SuccessMessageMixin,
+            FormValidMixin, DoesLoggedInUserOwnThisRowMixin,
+            GetModelInContextMixin, DoPostCanCancelMixin, GetFormMixin,
             UpdateView ):
     '''
     Enhanced UpdateView which includes crispy form Update and Cancel buttons.
     '''
     success_message = 'Record successfully saved!!!!'
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
-
 
 
 
