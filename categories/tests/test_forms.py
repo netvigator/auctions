@@ -207,3 +207,37 @@ class TestFormValidation( TestCategoryFormValidation ):
         oForm.user            = self.user1
         #
         '''
+
+
+class TestFormSetSession( TestCategoryFormValidation ):
+
+    def test_set_category_bModelsByYear_webtest_style( self ):
+        #
+        # webtest style
+        sUpdateURL  = reverse( 'categories:edit', args=(self.iCategoryID,) )
+        #
+        oGizm = self.app.get( sUpdateURL )
+        #
+        request = oGizm.request
+        #
+        # request['session'] = DictCanSave()
+        # TypeError: 'TestRequest' object does not support item assignment
+        #
+        form = oGizm.form
+        #
+        self.assertFalse( form['bModelsByYear'].value )
+        #
+        form['bModelsByYear'] = True
+        #
+        oResponse = form.submit()
+        #
+        self.assertTrue( form['bModelsByYear'].value )
+        #
+        # print( "form['bModelsByYear'].value:", form['bModelsByYear'].value )
+        #
+        oCategory = Category.objects.get( id = self.iCategoryID )
+        #
+        self.assertTrue( oCategory.bModelsByYear )
+        #
+        # self.assertTrue( request.session["needsModelYears"] )
+        # print( "request['session']:", request['session'] )
