@@ -50,12 +50,31 @@ _sHelpTextModelExcludeIf = (
         ( sExcludeIfHelpText % 'model' ) )
 
 
+class CustomIntegerField(models.Field):
+    #
+    # for iModelYear below
+    # modified based on
+    # https://stackoverflow.com/questions/67578158/override-django-model-field-get-prep-value-method
+    #
+    def get_prep_value(self, value):
+        value = super().get_prep_value(value)
+        if not value:
+            return None
+        try:
+            return int(value)
+        except (TypeError, ValueError) as e:
+            field_name = self.name
+            if self.verbose_name:
+                field_name = self.verbose_name
+            raise e.__class__("Custom Error Message") from e
+
+
 class Model( GetItemsForSomething, models.Model ):
     cTitle          = gotSomethingOutsideTitleParensCharField(
                         'model number or name',
                         max_length = 48, db_index = True,
         help_text   = _sHelpTextModelTitle )
-    iModelYear      = models.IntegerField(
+    iModelYear      = CustomIntegerField(
                         'model year',
                         null = True, blank = True,
         help_text = 'optional - can specify if model varies by year' )
