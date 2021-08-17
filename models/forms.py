@@ -4,8 +4,6 @@ from core.crispy        import Field, Layout, Submit
 
 from core.forms         import ModelFormValidatesTitle, tPossibleYears
 
-from categories.models  import Category
-
 from .models            import Model
 
 # ### forms validate the incoming data against the database      ###
@@ -61,40 +59,43 @@ def _getLayout():
             'cFileSpec5' )
 
 
-class CreateModelForm( ModelFormValidatesTitle ):
+class NewModelDataForm( ModelFormValidatesTitle ):
     #
-    iModelYear = forms.ChoiceField( choices = tPossibleYears )
+    iModelYear = forms.ChoiceField(
+            choices = tPossibleYears, required = False )
 
+    def __init__( self, *args, **kwargs ):
+        #
+        super().__init__( *args, **kwargs )
+        #
+        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        #
+
+    class Meta:
+        model   = Model
+        fields  = tModelFields
+
+
+
+class CreateModelForm( NewModelDataForm ):
+    #
     def __init__( self, *args, **kwargs ):
         #
         super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
         self.helper.layout = _getLayout()
 
-    class Meta:
-        model   = Model
-        fields  = tModelFields
 
 
-class UpdateModelForm( ModelFormValidatesTitle ):
+class UpdateModelForm( NewModelDataForm ):
     #
-    iModelYear = forms.ChoiceField( choices = tPossibleYears )
-
     def __init__( self, *args, **kwargs ):
         #
         super().__init__( *args, **kwargs )
         #
-        self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
-        #
-        self.fields['iCategory'].queryset = \
-                Category.objects.filter( iUser = self.user )
+        self.helper.add_input(Submit('submit', 'Save Changes', css_class='btn-primary'))
         #
         self.helper.layout = _getLayout()
 
-    class Meta:
-        model   = Model
-        fields  = tModelFields
