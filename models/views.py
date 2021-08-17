@@ -14,6 +14,8 @@ from core.views         import (
 from .forms             import CreateModelForm, UpdateModelForm
 from .models            import Model
 
+from categories.models  import Category
+
 
 # ### views assemble presentation info ###
 # ###         keep views thin!         ###
@@ -35,7 +37,20 @@ class ModelDetailView( DetailViewGotModelAlsoPost ):
 
 
 
-class ModelCreateView( CreateViewCanCancel ):
+class CategoryContextMixin( object ):
+
+    def get_context_data(self, **kwargs):
+        #
+        context = super().get_context_data( **kwargs )
+        #
+        context['form'].fields['iCategory'].queryset = \
+                Category.objects.filter( iUser = self.request.user )
+        #
+        return context
+
+
+
+class ModelCreateView( CategoryContextMixin, CreateViewCanCancel ):
 
     model           = Model
     form_class      = CreateModelForm
@@ -44,7 +59,8 @@ class ModelCreateView( CreateViewCanCancel ):
 
 
 
-class ModelUpdateView( WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
+class ModelUpdateView( CategoryContextMixin,
+            WereAnyReleventRegExColsChangedMixin, UpdateViewCanCancel):
 
     form_class      = UpdateModelForm
     model           = Model
