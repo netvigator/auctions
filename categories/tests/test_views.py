@@ -1,8 +1,9 @@
 import logging
 
+from django.test        import Client
 from django.urls        import reverse
 
-from core.tests.base    import BaseUserWebTestCase
+from core.tests.base    import BaseUserWebTestCase, BaseUserTestPlusCase
 
 from core.utils         import getExceptionMessageFromResponse
 
@@ -96,7 +97,7 @@ class CategoryViewsTests( BaseUserWebTestCase ):
 
 
 
-class CategoryViewsHitButtons( BaseUserWebTestCase ):
+class CategoryViewsHitButtonsWebTest( BaseUserWebTestCase ):
     """
     Test Save and Cancel
     """
@@ -192,6 +193,10 @@ class CategoryViewsHitButtons( BaseUserWebTestCase ):
                 reverse('categories:edit', kwargs={'pk': oCategory.id} ), data )
         # import pdb; pdb.set_trace()
         self.assertEqual( response.status_code, 200 )
+        #
+        #response = self.client.post( request, data )
+
+
 
 
     def test_edit_hit_cancel(self):
@@ -215,4 +220,48 @@ class CategoryViewsHitButtons( BaseUserWebTestCase ):
         #pprint( response.__dict__ )
         self.assertEqual( response.status_code, 200 )
         # self.assertRedirects( response, reverse( 'categories:index' ) )
+
+
+
+class CategoryViewTestDjangoStyle( BaseUserTestPlusCase ):
+
+
+    def test_edit_set_ModelsByYear(self):
+        #
+        """
+        set a category to bModelsByYear
+        """
+        #
+        #
+        sCategory = "Widgets"
+        oCategory = Category( cTitle = sCategory, iUser = self.user1 )
+        oCategory.save()
+        #
+        data = dict(
+            cTitle          = "Gadget",
+            iUser           = self.user1,
+            bModelsByYear   = True )
+        # Create the request
+        #sURL = reverse( 'categories:edit', kwargs={ 'pk': oCategory.id } )
+        sURL = self.reverse('categories:edit', pk = oCategory.id )
+        #print( 'sURL:', sURL )
+        #c = Client()
+        response = self.client.post( path = sURL, data = data )
+
+        #print( 'response.status_code:', response.status_code )
+        #print( 'response.__dict__:' )
+        #pprint( response.__dict__ )
+        self.assertEqual( response.status_code, 200 )
+        # self.assertRedirects( response, reverse( 'categories:index' ) )
+        # print( 'after post, oCategory.bModelsByYear =', oCategory.bModelsByYear )
+        # self.assertTrue( 'needsModelYears' in self.request.session )
+        #data = dict( bModelsByYear = True )
+        #
+        #response = self.client.post(
+                #reverse('categories:edit', kwargs={'pk': oCategory.id} ), data )
+        #
+        # sURL = reverse('categories:edit', kwargs={'pk': oCategory.id} )
+        #self.assertEqual(form["bModelsByYear"].value, False)
+        # print( 'dir( response ):', dir( response ) )
+        #print( 'response.request.session:', response.request.session )
 
