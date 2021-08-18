@@ -44,6 +44,9 @@ class CreateBrandForm( ModelFormValidatesTitle ):
         super().__init__( *args, **kwargs )
         #
         self.helper.form_tag = False
+        #
+        # using buttons in the template cuz want buttons below category list
+        #
         #self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         #self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
@@ -62,7 +65,10 @@ class UpdateBrandForm( ModelFormValidatesTitle ):
         super().__init__( *args, **kwargs )
         #
         self.helper.form_tag = False
-        #self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        #
+        # using buttons in the template cuz want buttons below category list
+        #
+        #self.helper.add_input(Submit('submit', 'Save changes', css_class='btn-primary'))
         #self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
         self.helper.layout = _getLayout()
