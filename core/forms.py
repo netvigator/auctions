@@ -72,7 +72,7 @@ class BaseModelFormGotCrispy( ModelForm ):
         # subclass should set:
         # self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
         # or
-        # self.helper.add_input(Submit('submit', 'Update', css_class='btn-primary'))
+        # self.helper.add_input(Submit('submit', 'Save changes', css_class='btn-primary'))
         # and
         # self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
 
@@ -214,7 +214,9 @@ class BaseUserFinderKeeperFormGotCrispy( BaseModelFormGotCrispy ):
         #
         #
         self.helper.add_input(Submit('submit', 'Save changes', css_class='btn-primary'))
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
+        self.helper.add_input(Submit('cancel', 'Cancel',
+                                     css_class      = 'btn-primary',
+                                     formnovalidate = 'formnovalidate' ) )
         #
         self.fields['gModel'].choices = (
                 ( o.pk, o.cTitle )
