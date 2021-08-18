@@ -3,24 +3,31 @@
 {% block title %}Auction Shopping Bot | Add Brand{% endblock %}
 
 
-{% block content %} 
+{% block content %}
 
     <h1>Add a Brand</h1>
     <p>
-    {% csrf_token %}
 
     <form action="{% url "brands:add" %}" method="post">
 
-    <button class='btn btn-primary btn-blue' type = "submit"> Add </button>
-    <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
+    <!-- using buttons in the template cuz want buttons below category list -->
+    <button class='btn btn-primary btn-blue' type = "submit"> Add Brand </button>
+    <input class='btn btn-primary btn-blue'
+        type="submit" name="cancel" value=" Cancel "
+        formnovalidate = 'formnovalidate' />
 
-
+    {% csrf_token %}
     {% crispy form %}
 
     {% include "./_brand_category_list.html" %}
-    <p>
 
-    <button class='btn btn-primary btn-blue' type = "submit"> Add </button>
-    <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
+    <p>
+    <p>
+    <button class='btn btn-primary btn-blue' type = "submit"> Add Brand </button>
+    <input class='btn btn-primary btn-blue'
+        type="submit" name="cancel" value=" Cancel "
+        formnovalidate = 'formnovalidate' />
+
+    </form>
 
 {% endblock %}
