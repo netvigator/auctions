@@ -64,13 +64,6 @@ class NewModelDataForm( ModelFormValidatesTitle ):
     iModelYear = forms.ChoiceField(
             choices = tPossibleYears, required = False )
 
-    def __init__( self, *args, **kwargs ):
-        #
-        super().__init__( *args, **kwargs )
-        #
-        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
-        #
-
     class Meta:
         model   = Model
         fields  = tModelFields
@@ -83,7 +76,11 @@ class CreateModelForm( NewModelDataForm ):
         #
         super().__init__( *args, **kwargs )
         #
-        self.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        self.helper.add_input(Submit('submit', 'Add Model', css_class='btn-primary'))
+        #
+        self.helper.add_input(Submit('cancel', 'Cancel',
+                                    css_class      = 'btn-primary',
+                                    formnovalidate = 'formnovalidate' ) )
         #
         self.helper.layout = _getLayout()
 
@@ -96,6 +93,8 @@ class UpdateModelForm( NewModelDataForm ):
         super().__init__( *args, **kwargs )
         #
         self.helper.add_input(Submit('submit', 'Save changes', css_class='btn-primary'))
+        #
+        self.helper.add_input(Submit('cancel', 'Cancel', css_class='btn-primary'))
         #
         self.helper.layout = _getLayout()
 
