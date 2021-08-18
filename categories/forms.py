@@ -52,9 +52,6 @@ class NewCategoryDataForm(
         #
         super().__init__( *args, **kwargs )
         #
-        self.helper.add_input(
-                Submit( 'cancel', 'Cancel', css_class='btn-primary' ) )
-        #
 
     class Meta:
         model   = Category
@@ -84,7 +81,12 @@ class CreateCategoryForm( NewCategoryDataForm ):
         super().__init__( *args, **kwargs )
         #
         self.helper.add_input(
-                Submit( 'submit', 'Create', css_class='btn-primary' ) )
+                Submit( 'submit', 'Add Category', css_class='btn-primary' ) )
+        #
+        self.helper.add_input(
+                Submit( 'cancel', 'Cancel',
+                       css_class      = 'btn-primary',
+                       formnovalidate = 'formnovalidate' ) )
         #
         self.helper.layout = _getLayout()
 
@@ -98,5 +100,8 @@ class UpdateCategoryForm( NewCategoryDataForm ):
         #
         self.helper.add_input(
                 Submit( 'submit', 'Save Changes', css_class='btn-primary' ) )
+        #
+        self.helper.add_input(
+                Submit( 'cancel', 'Cancel', css_class='btn-primary' ) )
         #
         self.helper.layout = _getLayout()
