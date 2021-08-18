@@ -3,13 +3,14 @@
 
 {% block title %}Auction Shopping Bot Brand | {{ brand }}{% endblock %}
 
-{% block content %} 
- 
+{% block content %}
+
     <h1>Edit {{ brand }} Info</h1>
 
     <form action="{% url "brands:edit" pk=brand.id %}" method="post">
 
-    <button class='btn btn-primary btn-blue' type = "submit"> Save </button>
+    <!-- using buttons in the template cuz want buttons below category list -->
+    <button class='btn btn-primary btn-blue' type = "submit"> Save changes </button>
     <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
 
     {% csrf_token %}
@@ -18,7 +19,8 @@
     {% include "./_brand_category_list.html" %}
 
     <p>
-    <button class='btn btn-primary btn-blue' type = "submit"> Save </button>
+    <p>
+    <button class='btn btn-primary btn-blue' type = "submit"> Save changes </button>
     <input class='btn btn-primary btn-blue'  type="submit" name="cancel" value=" Cancel " />
 
     </form>
