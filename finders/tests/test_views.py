@@ -46,7 +46,7 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
 
     ''' test the finders views '''
 
-    def dont_test_finders_view( self ):
+    def test_finders_view( self ):
         #
         """
         Test got finders index
@@ -61,10 +61,10 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         self.assertContains(response, "Altec 603" )
         self.assertContains(response, "Speaker 604 803 Vintage" )
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-    def dont_test_finders_view_pass_params( self ):
+    def test_finders_view_pass_params( self ):
         #
         """
         Test got finders search params as query string
@@ -101,9 +101,9 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         #print( len( response.context['finders_list'] ) )
         #
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
-    def dont_test_finders_detail( self ):
+    def test_finders_detail( self ):
         #
         """
         Test got finders detail view
@@ -117,13 +117,13 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         self.assertContains( response, "Altec Lansing" )
         self.assertContains( response, "542 Horn" )
         #
-        print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
+        # print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
 
     def dont_test_finder_add_post(self):
         """
-        Test post requests
+        Test post requests -- get error in form
         """
         oModel = Model.objects.get(
                 cTitle = '311-90',
@@ -146,10 +146,10 @@ class FindersViewsTests( SetUpUserItemFoundWebTests ):
         print( 'ran %s' % inspect.getframeinfo( inspect.currentframe() ).function )
 
 
-    def test_finder_edit( self ):
+    def dont_test_finder_edit( self ):
         #
         """
-        Test finders edit
+        Test finders edit -- wrong idea?
         """
         #
         data = self.oUserItemFound.__dict__
