@@ -76,7 +76,7 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
         #
         if any( self.errors ):
             # Don't bother validating the formset unless each form is valid on its own
-            maybePrint("in clean() but got field error")
+            maybePrint("in finders forms UserItemFoundForm clean() but got field error")
             maybePrettyP( self.errors )
             #'iBrand': ['Select a valid choice. That choice is not one of the available choices.'],
             #'iHitStars': ['This field is required.'],
@@ -88,6 +88,7 @@ class UserItemFoundForm( BaseUserFinderKeeperFormGotCrispy ):
             #qsItems = ItemFound.objects.all()
             #print( 'ItemFound.objects.all() first object:', qsItems[0].iItemNumb )
             maybePrint( 'self.instance.iItemNumb_id:', self.instance.iItemNumb_id )
+            print( self.instance.__dict__)
             return
         #
         cleaned = super().clean()
