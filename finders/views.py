@@ -20,6 +20,7 @@ from core.utils     import ( getDateTimeObjGotEbayStr, getEbayStrGotDateTimeObj,
 
 from brands.models      import Brand
 from categories.models  import Category
+from models.models      import Model
 
 # ### views assemble presentation info ###
 # ###         keep views thin!         ###
@@ -230,6 +231,8 @@ class ItemFoundUpdateView(
                     Brand.objects.filter( iUser = self.request.user )
         context['form'].fields['iCategory'].queryset = \
                     Category.objects.filter( iUser = self.request.user )
+        context['form'].fields['iModel'].queryset = \
+                    Model.objects.filter( iUser = self.request.user )
         #
         instance = context['form'].instance
         # session  = self.request.session
