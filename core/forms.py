@@ -28,8 +28,10 @@ class BaseModelFormGotCrispy( ModelForm ):
 
     def __init__( self, *args, **kwargs ):
         #
-        self.request = kwargs.get( 'request' )
+        #
+        self.request = kwargs.pop( 'request', None )
         # Voila, now you can access request via self.request!
+        # must pop cuz crashes django code if there
         #
         self.user = None
         #
@@ -45,10 +47,6 @@ class BaseModelFormGotCrispy( ModelForm ):
             #
             self.user = kwargs.pop( 'iUser' )
             #
-        elif hasattr( self, 'user' ) and self.user:
-            #
-            self.user = self.user
-            #
         elif ( hasattr( self, 'instance' ) and
                hasattr( self.instance, 'user' ) and
                self.instance.user ):
@@ -61,8 +59,6 @@ class BaseModelFormGotCrispy( ModelForm ):
             #
             self.user = self.instance.iUser
             #
-        #
-        self.request = kwargs.pop( 'request', None ) # crashes django code if there
         #
         super().__init__( *args, **kwargs )
         #
