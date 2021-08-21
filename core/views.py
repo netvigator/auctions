@@ -26,7 +26,7 @@ from .utils                         import getSaySequence
 # ###         keep views thin!         ###
 
 
-class ListViewGotModel( GetUserOrVisiting,
+class ListViewGotModel( GetUserOrVisiting, GetFormKeyWordArgsMixin,
             LoggedInOrVisitorMixin, GetModelInContextMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
@@ -78,7 +78,7 @@ class CreateViewCanCancel( GetFormKeyWordArgsMixin, LoginRequiredMixin,
 
 class DeleteViewGotModel( LoginRequiredMixin, GetModelInContextMixin,
                 DoesLoggedInUserOwnThisRowMixin, SuccessMessageMixin,
-                DoPostCanCancelMixin,
+                DoPostCanCancelMixin, GetFormKeyWordArgsMixin,
                 DeleteView ):
     '''
     Enhanced DeleteView which also includes the model in the context data,
@@ -115,6 +115,7 @@ class DetailViewGotModel( LoggedInOrVisitorMixin,
 
 class DetailViewGotModelAlsoPost(
             GetUserOrVisiting,
+            GetFormKeyWordArgsMixin,
             SuccessMessageMixin,
             GetUserSelectionsOnPost,
             DetailViewGotModel ):
