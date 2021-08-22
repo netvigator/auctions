@@ -16,7 +16,7 @@ from .mixins                        import ( DoesLoggedInUserOwnThisRowMixin,
                                              GetModelInContextMixin,
                                              DoPostCanCancelMixin,
                                              LoggedInOrVisitorMixin,
-                                             GetUserOrVisiting,
+                                             GetUserOrVisitingMixin,
                                              GetFormKeyWordArgsMixin )
 
 from .utils                         import getSaySequence
@@ -26,7 +26,7 @@ from .utils                         import getSaySequence
 # ###         keep views thin!         ###
 
 
-class ListViewGotModel( GetUserOrVisiting, GetFormKeyWordArgsMixin,
+class ListViewGotModel( GetUserOrVisitingMixin, GetFormKeyWordArgsMixin,
             LoggedInOrVisitorMixin, GetModelInContextMixin, ListView ):
     '''
     Enhanced ListView which also includes the model in the context data,
@@ -101,7 +101,9 @@ class UpdateViewCanCancel(
 
 
 
-class DetailViewGotModel( LoggedInOrVisitorMixin,
+class DetailViewGotModel(
+                LoggedInOrVisitorMixin,
+                GetUserOrVisitingMixin,
                 GetModelInContextMixin,
                 DetailView ):
     '''
@@ -114,7 +116,6 @@ class DetailViewGotModel( LoggedInOrVisitorMixin,
 
 
 class DetailViewGotModelAlsoPost(
-            GetUserOrVisiting,
             GetFormKeyWordArgsMixin,
             SuccessMessageMixin,
             GetUserSelectionsOnPost,
