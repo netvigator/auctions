@@ -182,12 +182,13 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'auctions',
-        'USER': 'secret',
+        'ENGINE'  : 'django.db.backends.postgresql',
+        'NAME'    : 'auctions',
+        'USER'    : 'secret',
         'PASSWORD': 'secret',
-        'HOST': 'varies',
-        'PORT': 'default',
+        'HOST'    : 'varies',
+        'PORT'    : 'default',
+        'OPTIONS' : {},
     }
 }
 
@@ -195,6 +196,10 @@ DATABASES['default']['USER'    ] = getSecret( 'POSTGRES_USER'    )
 DATABASES['default']['PASSWORD'] = getSecret( 'POSTGRES_PASSWORD')
 DATABASES['default']['HOST'    ] = getSecret( 'POSTGRES_HOST'    )
 DATABASES['default']['PORT'    ] = getSecret( 'POSTGRES_PORT'    )
+
+sslmode = getSecret( 'POSTGRES_SSLMODE' )
+if sslmode and sslmode == 'require':
+    DATABASES['default']['OPTIONS' ] = {'sslmode': 'require'}
 
 
 DATABASES['default']['ATOMIC_REQUESTS'] = True
