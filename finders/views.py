@@ -13,7 +13,7 @@ from .models        import ItemFound, UserItemFound, UserFinder
 
 from core.mixins    import ( GetPaginationExtraInfoInContext,
                              GetUserSelectionsOnPost,
-                             TitleSearchMixin, GetUserOrVisiting )
+                             TitleSearchMixin )
 
 from core.utils     import ( getDateTimeObjGotEbayStr, getEbayStrGotDateTimeObj,
                              sayMoreAboutHitsForThis )
@@ -55,6 +55,7 @@ class FinderIndexView(
         # qs = super().get_queryset()
         # sSelect = 'P'
         #
+        # ListViewGotModel inherits from GetUserOrVisitingMixin
         oUser, isVisiting = self.getUserOrVisiting()
         #
         sSelect = self.kwargs.get( 'select', 'A' )
@@ -98,8 +99,7 @@ class FinderIndexView(
 
 
 
-class ItemFoundDetailView(
-        GetUserOrVisiting, GetUserSelectionsOnPost, DetailViewGotModel ):
+class ItemFoundDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
 
     # get this from the finders list (top menu item)
 
@@ -123,8 +123,9 @@ class ItemFoundDetailView(
          'model': <class 'finders.models.UserItemFound'>,\
          'parent': <class 'finders.models.ItemFound'>}
         '''
-        oUser, isVisiting = self.getUserOrVisiting()
         #
+        # DetailViewGotModel inherits from GetUserOrVisitingMixin
+        oUser, isVisiting = self.getUserOrVisiting()
         #
         qsThisItemAllHits = UserItemFound.objects.filter(
                 iItemNumb_id    = context[ 'object' ].iItemNumb_id,
@@ -143,6 +144,8 @@ class ItemFoundDetailView(
         sayMoreAboutHitsForThis( qsThisItemAllHits )
         #
         context['HitsForThis']  = qsThisItemAllHits
+        #
+        context['isVisiting']   = isVisiting
         #
         session = self.request.session
         #
