@@ -187,5 +187,7 @@ pg_restore -p 5432 -U <user name> -c -d auctions <file_name>
 on webserver
 pg_restore -h localhost -p 5432 -U <user name> -c -d auctions <file_name>
 
+digital ocean
+pg_restore -h <host> -p <port> -U <user name> -c -d auctions <file_name>
 
 '''
