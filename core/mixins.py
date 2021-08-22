@@ -594,7 +594,7 @@ class SetUserNeedsModelYearsMixin( object ):
 
 
 
-class GetUserOrVisiting( SetUserNeedsModelYearsMixin ):
+class GetUserOrVisitingMixin( SetUserNeedsModelYearsMixin ):
 
     def getUserOrVisiting( self ):
         #
