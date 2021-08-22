@@ -31,11 +31,6 @@ py3_path = os.path.join(
 
 sys.path.append( py3_path )
 
-# if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
-if 'APACHE_RUN_USER' in os.environ:
-    # need Sentry with or without DJANGO_SETTINGS_MODULE in the env
-    from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
-
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
 # mod_wsgi daemon mode with each site in its own daemon process, or use
@@ -58,8 +53,10 @@ except Exception:
         os.kill(os.getpid(), signal.SIGINT)
         time.sleep(2.5)
 
-#if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
-if 'APACHE_RUN_USER' in os.environ:
+# if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
+if 'APACHE_RUN_USER' in os.environ or 'NGINX_RUN_USER' in os.environ:
+    # need Sentry with or without DJANGO_SETTINGS_MODULE in the env
+    from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
     application = Sentry(application)
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
