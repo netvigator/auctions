@@ -32,14 +32,19 @@ class KeeperDetailView( GetUserSelectionsOnPost, DetailViewGotModel ):
 
         # qsThisItem = UserItemFound.objects.filter(
         #
+        # DetailViewGotModel inherits from GetUserOrVisitingMixin
+        oUser, isVisiting = self.getUserOrVisiting()
+        #
         qsThisItemAllHits = UserKeeper.objects.filter(
                 iItemNumb_id    = context[ 'object' ].iItemNumb,
-                iUser           = self.request.user,
+                iUser           = oUser,
                 ).order_by( '-iHitStars' )
         #
         sayMoreAboutHitsForThis( qsThisItemAllHits )
         #
         context['HitsForThis']  = qsThisItemAllHits
+        #
+        context['isVisiting']   = isVisiting
         #
         return context
 
@@ -50,6 +55,7 @@ class KeeperIndexView(
             GetPaginationExtraInfoInContext,
             TitleSearchMixin,
             ListViewGotModel ):
+
     model               = Keeper
     template_name       = 'keepers/index.html'
     context_object_name = 'keeper_list'
@@ -57,7 +63,8 @@ class KeeperIndexView(
 
     def get_queryset(self):
         #
-        oUser = self.request.user
+        # ListViewGotModel inherits from GetUserOrVisitingMixin
+        oUser, isVisiting = self.getUserOrVisiting()
         #
         lUserKeeperNumbs = ( UserKeeper.objects.filter(
                                 iUser = oUser )
