@@ -79,14 +79,25 @@
         <TD>{% field_name model 'cFeedbackPercent' %}</TD>
         <TD>{{object.cFeedbackPercent}}</TD>
     </TR>
-    <TR style="vertical-align:top">
-        <TD>{% field_name model 'iBidCount' %}</TD>
-        <TD>{{object.iBidCount}}</TD>
-    </TR>
-    <TR style="vertical-align:top">
-        <TD>{% field_name model 'dConvertPrice' %}</TD>
-        <TD>{{object.dConvertPrice}}</TD>
-    </TR>
+    {% if isVisiting %}
+      <TR style="vertical-align:top">
+          <TD>{% field_name model 'iBidCount' %}</TD>
+          <TD>* join to see *</TD>
+      </TR>
+      <TR style="vertical-align:top">
+          <TD>{% field_name model 'dConvertPrice' %}</TD>
+          <TD>* join to see *</TD>
+      </TR>
+    {% else %}
+      <TR style="vertical-align:top">
+          <TD>{% field_name model 'iBidCount' %}</TD>
+          <TD>{{object.iBidCount}}</TD>
+      </TR>
+      <TR style="vertical-align:top">
+          <TD>{% field_name model 'dConvertPrice' %}</TD>
+          <TD>{{object.dConvertPrice}}</TD>
+      </TR>
+    {% endif %}
     <TR style="vertical-align:top">
         <TD>{% field_name model 'cConvertCurrency' %}</TD>
         <TD>{{object.cConvertCurrency}}</TD>
