@@ -1,4 +1,7 @@
 # Local development dependencies go here
+# first load the virtual environment, then
+# pip install -r requirements/local.txt
+
 -r base.txt
 
 # coverage==5.3.1
