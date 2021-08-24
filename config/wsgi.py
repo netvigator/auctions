@@ -54,7 +54,8 @@ except Exception:
         time.sleep(2.5)
 
 # if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
-if 'APACHE_RUN_USER' in os.environ or 'NGINX_RUN_USER' in os.environ:
+if ( 'APACHE_RUN_USER' in os.environ or
+        ( 'USER' in os.environ and os.environ['USER'] == 'django' ) ):
     # need Sentry with or without DJANGO_SETTINGS_MODULE in the env
     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
     application = Sentry(application)
