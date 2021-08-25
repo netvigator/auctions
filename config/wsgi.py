@@ -26,10 +26,11 @@ sys.path.append( app_path )
 # appending py3_path enhancement suggested by:
 # https://www.metaltoad.com/blog/hosting-django-sites-apache
 
-py3_path = os.path.join(
+if 'APACHE_RUN_USER' in os.environ:
+    py3_path = os.path.join(
         app_path.replace( 'Devel', '.virtualenvs' ), 'bin/python' )
 
-sys.path.append( py3_path )
+    sys.path.append( py3_path )
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
@@ -54,8 +55,7 @@ except Exception:
         time.sleep(2.5)
 
 # if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
-if ( 'APACHE_RUN_USER' in os.environ or
-        ( 'USER' in os.environ and os.environ['USER'] == 'django' ) ):
+if 'APACHE_RUN_USER' in os.environ or 'NGINX_RUN_USER' in os.environ:
     # need Sentry with or without DJANGO_SETTINGS_MODULE in the env
     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
     application = Sentry(application)
