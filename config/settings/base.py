@@ -199,14 +199,14 @@ DATABASES['default']['PORT'    ] = getSecret( 'POSTGRES_PORT'    )
 
 from pprint import pprint
 
-print( 'dSecretsConf:' )
-pprint( dSecretsConf )
+# print( 'dSecretsConf:' )
+# pprint( dSecretsConf )
 
 sslmode = getSecret( 'POSTGRES_SSLMODE' )
 if sslmode and sslmode == 'require':
     DATABASES['default']['OPTIONS' ] = {'sslmode': 'require'}
 
-print( "DATABASES['default']['OPTIONS' ]:", DATABASES['default']['OPTIONS' ] )
+# print( "DATABASES['default']['OPTIONS' ]:", DATABASES['default']['OPTIONS' ] )
 
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
