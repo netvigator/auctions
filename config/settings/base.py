@@ -197,6 +197,10 @@ DATABASES['default']['PASSWORD'] = getSecret( 'POSTGRES_PASSWORD')
 DATABASES['default']['HOST'    ] = getSecret( 'POSTGRES_HOST'    )
 DATABASES['default']['PORT'    ] = getSecret( 'POSTGRES_PORT'    )
 
+from pprint import pprint
+
+print( 'dSecretsConf:' )
+pprint dSecretsConf
 sslmode = getSecret( 'POSTGRES_SSLMODE' )
 if sslmode and sslmode == 'require':
     DATABASES['default']['OPTIONS' ] = {'sslmode': 'require'}
