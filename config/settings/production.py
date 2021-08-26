@@ -66,9 +66,7 @@ X_FRAME_OPTIONS = 'DENY'
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
-                         default=[ '59.148.236.215',
-                                   '192.168.8.48',
-                                   '192.168.0.1',
+                         default=[ '143.198.146.89',
                                    'localhost',
                                    'auctionshoppingbot.com',
                                    'antei.xyz'] ) # latter is for sentry
@@ -165,8 +163,8 @@ STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
-# hard coded path, will surely change when sever moves!
-STATICFILES_DIRS.append( '/srv/big/static/' )
+# hard coded path, will surely change when server moves!
+STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
 
 
 # EMAIL
