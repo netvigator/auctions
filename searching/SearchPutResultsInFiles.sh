@@ -5,5 +5,6 @@
 #
 # put above crontab settings:
 # PROJECT_HOME=/home/django/auctions
+# DJANGO_SETTINGS_MODULE=config.settings.production
 cd $PROJECT_HOME
 nice python manage.py shell --command="from searching.tasks import doSearchingPutResultsInFilesTasks; doSearchingPutResultsInFilesTasks()"
