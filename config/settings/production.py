@@ -109,10 +109,10 @@ AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
 # stored files.
 # Example: "http://media.example.com/"
 # MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = '/srv/big/media/'
+MEDIA_URL = '/home/django/django_project/django_project/media'
 
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/srv/big/media/'
+MEDIA_ROOT = '/home/django/django_project/django_project/media'
 
 # Static Assets
 # ------------------------
