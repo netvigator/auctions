@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/test $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 0 && nice ~/bin/backup-json.sh
