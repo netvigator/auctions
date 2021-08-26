@@ -4,7 +4,7 @@ cd /tmp/searches
 # ls
 datedir=`date '+%Y-%m-%d'`
 cd $datedir
-file_start="/home/django/django_project/django_project/backups/backups"
+file_start="/home/django/django_project/django_project/backups/searches"
 # echo $file_start
 timeslot=`date '+%Y-%m-%d.tar.gz'`
 # echo $timeslot
