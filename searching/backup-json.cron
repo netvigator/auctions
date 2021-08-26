@@ -1,2 +1,9 @@
-#!/bin/bash
-/usr/bin/test $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 0 && nice ~/bin/backup-json.sh
+#!/usr/bin/env bash
+#
+# do not modify on server! this file is under version control!
+# update on development machine, commit changes, then update server
+#
+if [ $(echo `date +%s` / 86400 % 2 == 0 |/usr/bin/bc) -eq 0 ]
+then
+    nice ~/bin/backup-json.sh
+fi
