@@ -69,7 +69,9 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
                          default=[ '143.198.146.89',
                                    'localhost',
                                    'auctionshoppingbot.com',
+                                   '*',
                                    'antei.xyz'] ) # latter is for sentry
+# '*' https://stackoverflow.com/questions/54133995/how-to-resolve-err-connection-refused-when-connecting-to-virtualenv-django-runni
 # END SITE CONFIGURATION
 
 # INSTALLED_APPS += ['gunicorn', ]
