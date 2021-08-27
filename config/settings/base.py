@@ -422,7 +422,7 @@ countriesSettings.COUNTRIES_OVERRIDE = { 'US': 'United States',
                                          'AN':'Netherlands Antilles' }
 
 # code can know if a test is being run
-TESTING  = len(sys.argv) > 1 and 'test' in sys.argv[1]
+TESTING  = len(sys.argv) > 1 and 'test' in sys.argv[1] # settings
 COVERAGE = '_' in os.environ and os.environ['_'].endswith( 'coverage' )
 
 
