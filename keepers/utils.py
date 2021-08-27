@@ -53,6 +53,7 @@ logging_level = logging.INFO
 if settings.TESTING: # logging during tests
     errorLogger = logger.info # does not output to screen during tests
     ITEM_PICS_ROOT = '/tmp/pictures_test_directory'
+    getMakeDir( ITEM_PICS_ROOT )
 else:
     errorLogger = logger.error # outputs to screen during tests
     ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Keeper_Pictures' )
@@ -61,7 +62,7 @@ else:
 # getMakeDir( EBAY_ITEMS_FOLDER ) in __init__.py already
 
 
-getMakeDir( ITEM_PICS_ROOT )
+print( 'ITEM_PICS_ROOT:', ITEM_PICS_ROOT )
 
 
 oErrObj = getRegExObj(
