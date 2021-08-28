@@ -37,5 +37,5 @@ raven==6.10.0
 
 # ubuntu package is old and has issues, install from pip instead
 # mod_wsgi==4.7.1
-mod_wsgi==4.8.0
-
+# mod_wsgi==4.8.0
+# not needed for nginx
