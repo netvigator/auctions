@@ -3,6 +3,7 @@
 # do not modify on server! this file is under version control!
 # update on development machine, commit changes, then update server
 #
+mkdir -p /tmp/searches
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 LOGFILE="/tmp/searches/search_log.log"
 if [ $(echo `date +%s` / 86400 % 2 == 0 |/usr/bin/bc) -eq 0 ]
