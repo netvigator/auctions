@@ -26,8 +26,6 @@ from pyPks.Utils.Config import getConfDict
 from pyPks.Utils.Config import getBoolOffYesNoTrueFalse as getBool
 
 
-path.append('~/Devel/auctions')
-
 logger = getLogger(__name__)
 
 class InvalidParameters( Exception ): pass
