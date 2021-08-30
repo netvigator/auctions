@@ -12,7 +12,7 @@ if [ $(echo `date +%s` / 86400 % 2 == 1 |/usr/bin/bc) -eq 1 ]
 then
         echo "$TIMESTAMP will nice FetchPictures.sh" >> $LOGFILE
         SECONDS=0
-        ~/Devel/auctions/keepers/FetchPictures.sh >> $LOGFILE 2>&1
+        ~/auctions/keepers/FetchPictures.sh >> $LOGFILE 2>&1
         duration=$SECONDS
         echo "$((duration/3600))h $(((duration/60)%60))m $((duration%60))s elapsed." >> $LOGFILE
 else
