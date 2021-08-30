@@ -9,11 +9,11 @@ if [ $(echo `date +%s` / 86400 % 2 == 0 |/usr/bin/bc) -eq 0 ]
 then
         echo "$TIMESTAMP will nice SearchPutResultsInFiles.sh" >> $LOGFILE
         SECONDS=0
-        ~/Devel/auctions/searching/SearchPutResultsInFiles.sh >> $LOGFILE
+        ~/auctions/searching/SearchPutResultsInFiles.sh >> $LOGFILE
         duration=$SECONDS
         echo "$((duration/3600))h $(((duration/60)%60))m $((duration%60))s elapsed." >> $LOGFILE
 else
         echo "$TIMESTAMP not today: SearchPutResultsInFiles.sh" >> $LOGFILE
 fi
 
-#/usr/bin/test $(echo `date +%s` / 86400 % 2 == 0 |/usr/bin/bc) -eq 1 && /home/rick/Devel/auctions/searching/SearchPutResultsInFiles.sh
+#/usr/bin/test $(echo `date +%s` / 86400 % 2 == 0 |/usr/bin/bc) -eq 1 && /home/rick/auctions/searching/SearchPutResultsInFiles.sh
