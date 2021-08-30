@@ -1,4 +1,7 @@
 DJANGO_SETTINGS_MODULE=config.settings.production
+PROJECT_HOME=/home/django/auctions
+
+aam server
 # m  h dom mon dow   command
  15  5   *   *   *   ~/bin/flush-old-backups
   0 17   *   *   *   ~/Devel/auctions/searching/SearchPutResultsInFiles.cron
@@ -6,3 +9,10 @@ DJANGO_SETTINGS_MODULE=config.settings.production
  25 17   *   *   *   ~/bin/backup-json.cron
  30 17   *   *   *   ~/Devel/auctions/searching/PutSearchResultsInFinders.cron
  38 17   *   *   *   ~/Devel/auctions/keepers/FetchPictures.cron
+
+digital ocean
+# m  h dom mon dow   command
+  0 10   *   *   *   ~/auctions/searching/SearchPutResultsInFiles.cron
+ 25 10   *   *   *   ~/auctions/searching/backup-json.cron
+ 30 10   *   *   *   ~/auctions/searching/PutSearchResultsInFinders.cron
+
