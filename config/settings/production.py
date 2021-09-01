@@ -66,7 +66,7 @@ X_FRAME_OPTIONS = 'DENY'
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
-                         default=[ '143.198.146.89',
+                         default=[ '147.182.255.231',
                                    'localhost',
                                    'auctionshoppingbot.com',
                                    '*',
