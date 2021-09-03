@@ -8,6 +8,6 @@ file_start="/home/django/django_project/django_project/backups/searches"
 # echo $file_start
 timeslot=`date '+%Y-%m-%d.tar.gz'`
 # echo $timeslot
-file=($file_start-$timeslot)
+file=$file_start-$timeslot
 echo $file
 nice tar -zcf $file *.json
