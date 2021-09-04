@@ -20,9 +20,7 @@ DATABASE_PORT       = DATABASES['default']['PORT'    ]
 sURI = 'postgresql://%s:%s@%s:%s/auctions' % (
     POSTGRES_USER, POSTGRES_PASSWORD, DATABASE_HOST, DATABASE_PORT )
 
-tDump = (   'pg_dump',
-            sURI,
-            '-Fc')
+tDump = ( 'pg_dump', sURI, '-Fc' )
 
 def do_backup():
     #
