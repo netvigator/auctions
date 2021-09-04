@@ -26,7 +26,7 @@ tDump = (   'pg_dump',
 
 def do_backup():
     #
-    sNow = getNowIsoDateTimeFileNameSafe()
+    sNow = getNowIsoDateTimeFileNameSafe()[:16]
     #
     sFile = "/tmp/auctions-database-%s.backup" % sNow
     #
