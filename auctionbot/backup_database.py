@@ -8,7 +8,7 @@ from subprocess             import run
 
 from config.settings.base   import DATABASES
 
-from Time.Output            import getNowIsoDateTimeFileNameSafe
+from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
 
 
 POSTGRES_USER       = DATABASES['default']['USER'    ]
