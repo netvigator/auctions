@@ -31,10 +31,12 @@ tVacuum = ( 'vacuumdb', '-z', sAdmin )
 #
 def do_backup():
     #
-    oVacuum = run( tVacuum )
-    #
-    print( oVacuum.returncode, oVacuum.stdout, oVacuum.stderr )
-    #
+    if POSTGRES_ADMIN:
+        #
+        oVacuum = run( tVacuum )
+        #
+        print( oVacuum.returncode, oVacuum.stdout, oVacuum.stderr )
+        #
     sNow = getNowIsoDateTimeFileNameSafe()[:16]
     #
     sFile = "/tmp/auctions-database-%s.backup" % sNow
