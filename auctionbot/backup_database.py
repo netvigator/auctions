@@ -29,17 +29,18 @@ sAdmin = 'postgresql://%s:%s@%s:%s/auctions' % (
 
 tVacuum = ( 'vacuumdb', '-z', sAdmin )
 #
+sBackUpDir = os.environ["BACKUP_DIR"]
+#
+sNow = getNowIsoDateTimeFileNameSafe()[:16]
+#
+sFile = "%sauctions-database-%s.backup" % ( sBackUpDir, sNow )
+#
 def do_backup():
     #
     if POSTGRES_ADMIN:
         #
         oVacuum = run( tVacuum )
         #
-        print( oVacuum.returncode, oVacuum.stdout, oVacuum.stderr )
-        #
-    sNow = getNowIsoDateTimeFileNameSafe()[:16]
-    #
-    sFile = "/tmp/auctions-database-%s.backup" % sNow
     #
     fDump = open( sFile, "w" )
     #
