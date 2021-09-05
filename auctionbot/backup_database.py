@@ -16,13 +16,24 @@ POSTGRES_PASSWORD   = DATABASES['default']['PASSWORD']
 DATABASE_HOST       = DATABASES['default']['HOST'    ]
 DATABASE_PORT       = DATABASES['default']['PORT'    ]
 
+POSTGRES_ADMIN      = DATABASES['default']['ADMIN'   ]
+POSTGRES_ADMIN_PW   = DATABASES['default']['ADMIN_PW']
 
 sURI = 'postgresql://%s:%s@%s:%s/auctions' % (
     POSTGRES_USER, POSTGRES_PASSWORD, DATABASE_HOST, DATABASE_PORT )
 
 tDump = ( 'pg_dump', sURI, '-Fc' )
 
+sAdmin = 'postgresql://%s:%s@%s:%s/auctions' % (
+    POSTGRES_ADMIN, POSTGRES_ADMIN_PW, DATABASE_HOST, DATABASE_PORT )
+
+tVacuum = ( 'vacuumdb', '-z', sAdmin )
+#
 def do_backup():
+    #
+    oVacuum = run( tVacuum )
+    #
+    print( oVacuum.returncode, oVacuum.stdout, oVacuum.stderr )
     #
     sNow = getNowIsoDateTimeFileNameSafe()[:16]
     #
