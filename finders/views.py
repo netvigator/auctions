@@ -229,15 +229,23 @@ class ItemFoundUpdateView(
         '''
         #
         context = super().get_context_data( **kwargs )
-
+        #
         context['form'].fields['iBrand'].queryset = \
                     Brand.objects.filter( iUser = self.request.user )
         context['form'].fields['iCategory'].queryset = \
                     Category.objects.filter( iUser = self.request.user )
-        context['form'].fields['iModel'].queryset = \
-                    Model.objects.filter( iUser = self.request.user )
         #
         instance = context['form'].instance
+        #
+        if instance.iBrand is not None:
+            context['form'].fields['iModel'].queryset = \
+                    Model.objects.filter(
+                        iUser = self.request.user,
+                        iBrand = instance.iBrand )
+        else:
+            context['form'].fields['iModel'].queryset = \
+                    Model.objects.filter( iUser = self.request.user )
+        #
         # session  = self.request.session
         #
         # print( "instance.iItemNumb_id:", instance.iItemNumb_id )
