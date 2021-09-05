@@ -198,9 +198,12 @@ DATABASES['default']['HOST'    ] = getSecret( 'POSTGRES_HOST'    )
 DATABASES['default']['PORT'    ] = getSecret( 'POSTGRES_PORT'    )
 
 # these are needed to vaccum database on digitalocean
-if 'ADMIN' in DATABASES['default']:
+try:
     DATABASES['default']['ADMIN'   ] = getSecret( 'POSTGRES_ADMIN'   )
     DATABASES['default']['ADMIN_PW'] = getSecret( 'POSTGRES_ADMIN_PW')
+except ImproperlyConfigured:
+    DATABASES['default']['ADMIN'   ] = None
+    DATABASES['default']['ADMIN_PW'] = None
 
 # from pprint import pprint
 # print( 'dSecretsConf:' )
