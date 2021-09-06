@@ -3,6 +3,7 @@ all secrets are in Secrets.ini
 do not want to repeat them somewere (more DRY)
 therefore must get all secrets from Secrets.ini
 '''
+from os                     import environ
 
 from subprocess             import run
 
@@ -29,7 +30,7 @@ sAdmin = 'postgresql://%s:%s@%s:%s/auctions' % (
 
 tVacuum = ( 'vacuumdb', '-z', sAdmin )
 #
-sBackUpDir = os.environ["BACKUP_DIR"]
+sBackUpDir = environ["BACKUP_DIR"]
 #
 sNow = getNowIsoDateTimeFileNameSafe()[:16]
 #
