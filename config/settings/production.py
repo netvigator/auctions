@@ -84,10 +84,13 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
 # See: http://django-storages.readthedocs.io/en/latest/index.html
 INSTALLED_APPS += ['storages', ]
 
-#AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
-#AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
-#AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
-AWS_AUTO_CREATE_BUCKET = True
+AWS_ACCESS_KEY_ID       = getSecret('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY   = getSecret('AWS_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = getSecret('AWS_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL     = 'https://auction-files.sfo3.digitaloceanspaces.com'
+AWS_S3_CUSTOM_DOMAIN    = 'https://auction-files.sfo3.cdn.digitaloceanspaces.com'
+AWS_DEFAULT_ACL         = 'public-read'
+AWS_AUTO_CREATE_BUCKET  = True
 AWS_QUERYSTRING_AUTH = False
 # AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat() # comes from boto3, deprecated
 
@@ -109,10 +112,12 @@ AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
 # stored files.
 # Example: "http://media.example.com/"
 # MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = '/home/django/django_project/django_project/media/'
+# MEDIA_URL = '/home/django/django_project/django_project/media/'
+MEDIA_URL = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'media')
 
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/home/django/django_project/django_project/media/'
+# MEDIA_ROOT = '/home/django/django_project/django_project/media/'
+MEDIA_ROOT = 'media/'
 
 # Static Assets
 # ------------------------
@@ -163,12 +168,13 @@ STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 '''
 # STATIC_ROOT = '/home/django/django_project/django_project/'
-STATIC_ROOT = 'https://auction-files.sfo3.digitaloceanspaces.com'
 
-STATIC_URL = '/static/'
+STATIC_URL = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'static')
+STATIC_ROOT = 'static/'
 
 # https://docs.djangoproject.com/en/3.2/howto/static-files/deployment/
-# STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE= 'custom_storages.MediaStorage'
 
 # hard coded path, will surely change when server moves!
 # STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
