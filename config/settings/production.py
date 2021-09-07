@@ -162,13 +162,17 @@ class laxCompressedManifestStaticFilesStorage( CompressedManifestStaticFilesStor
 STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 '''
-STATIC_ROOT = '/home/django/django_project/django_project/'
+# STATIC_ROOT = '/home/django/django_project/django_project/'
+STATIC_ROOT = 'https://auction-files.sfo3.digitaloceanspaces.com'
 
 STATIC_URL = '/static/'
 
-# hard coded path, will surely change when server moves!
-STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
+# https://docs.djangoproject.com/en/3.2/howto/static-files/deployment/
+# STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
 
+# hard coded path, will surely change when server moves!
+# STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
+STATICFILES_DIRS.append( 'https://auction-files.sfo3.digitaloceanspaces.com/static/' )
 
 # EMAIL
 # ------------------------------------------------------------------------------
