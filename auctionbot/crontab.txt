@@ -16,6 +16,7 @@ PROJECT_HOME=/home/django/auctions
 BACKUP_DIR=/home/django/django_project/django_project/backups/
 # m h  dom mon dow   command
   0 10   *   *   *   ~/auctions/searching/SearchPutResultsInFiles.cron
+ 17 10   *   *   *   ~/auctions/keepers/FetchKeepers.cron
  25 10   *   *   *   ~/auctions/searching/backup-json.cron
  30 10   *   *   *   ~/auctions/searching/PutSearchResultsInFinders.cron
-
+ 45 10   *   *   *   ~/auctions/auctionbot/backup_database.cron
