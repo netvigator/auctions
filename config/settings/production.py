@@ -94,7 +94,7 @@ AWS_S3_CUSTOM_DOMAIN    = 'https://sfo3.cdn.digitaloceanspaces.com'
 AWS_DEFAULT_ACL         = 'public-read'
 AWS_AUTO_CREATE_BUCKET  = True
 AWS_QUERYSTRING_AUTH    = False
-AWS_S3_ADDRESSING_STYLE = ‘virtual’
+AWS_S3_ADDRESSING_STYLE = 'virtual'
 
 # AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat() # comes from boto3, deprecated
 
