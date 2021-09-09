@@ -178,7 +178,8 @@ DEFAULT_FILE_STORAGE= 'custom_storages.MediaStorage'
 
 # hard coded path, will surely change when server moves!
 # STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
-STATICFILES_DIRS.append( 'https://auction-files.sfo3.digitaloceanspaces.com/static/' )
+# STATICFILES_DIRS = [ 'https://auction-files.sfo3.digitaloceanspaces.com/static/' ]
+STATICFILES_DIRS = [ STATIC_URL ]
 
 # EMAIL
 # ------------------------------------------------------------------------------
