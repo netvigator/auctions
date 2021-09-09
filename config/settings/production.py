@@ -19,16 +19,6 @@ logger = logging.getLogger(__name__)
 
 from .base import *  # noqa
 
-from storages.backends.s3boto3 import S3Boto3Storage
-
-class StaticStorage(S3Boto3Storage):
-    bucket_name = getSecret('AWS_BUCKET_NAME')
-    location = 'static'
-
-class MediaStorage(S3Boto3Storage):
-    bucket_name = getSecret('AWS_BUCKET_NAME')
-    location = 'media'
-
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
