@@ -169,8 +169,8 @@ STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 '''
 # STATIC_ROOT = '/home/django/django_project/django_project/'
 
-STATIC_URL = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'static')
-STATIC_ROOT = 'static/'
+STATIC_URL  = 'static/'
+STATIC_ROOT = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'static')
 
 # https://docs.djangoproject.com/en/3.2/howto/static-files/deployment/
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
