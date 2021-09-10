@@ -177,11 +177,12 @@ STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 
 
 # STATIC_URL = '/static/'
-STATIC_ROOT = ROOT_DIR / 'staticfiles'
-STATICFILES_DIRS = (ROOT_DIR / 'static',)
+# STATIC_ROOT = ROOT_DIR / 'staticfiles'
+# STATICFILES_DIRS = (ROOT_DIR / 'static',)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = ROOT_DIR / 'mediafiles'
+# in base.py
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = ROOT_DIR / 'mediafiles'
 
 STATIC_URL  = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'static')
 
@@ -191,8 +192,8 @@ DEFAULT_FILE_STORAGE= 'custom_storages.MediaStorage'
 
 # hard coded path, will surely change when server moves!
 # STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
-# STATICFILES_DIRS = [ 'https://auction-files.sfo3.digitaloceanspaces.com/static/' ]
-# above
+STATICFILES_DIRS = [ STATIC_ROOT ]
+
 
 # EMAIL
 # ------------------------------------------------------------------------------
