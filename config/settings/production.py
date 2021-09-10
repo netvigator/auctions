@@ -95,6 +95,7 @@ AWS_DEFAULT_ACL         = 'public-read'
 AWS_AUTO_CREATE_BUCKET  = True
 AWS_QUERYSTRING_AUTH    = False
 AWS_S3_ADDRESSING_STYLE = 'virtual'
+AWS_LOCATION            = 'static'
 
 # AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat() # comes from boto3, deprecated
 
@@ -172,8 +173,16 @@ STATICFILES_STORAGE = 'laxCompressedManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 '''
 # STATIC_ROOT = '/home/django/django_project/django_project/'
+# STATIC_ROOT = 'static/'
 
-STATIC_ROOT = 'static/'
+
+# STATIC_URL = '/static/'
+STATIC_ROOT = ROOT_DIR / 'staticfiles'
+STATICFILES_DIRS = (ROOT_DIR / 'static',)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = ROOT_DIR / 'mediafiles'
+
 STATIC_URL  = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'static')
 
 # https://docs.djangoproject.com/en/3.2/howto/static-files/deployment/
@@ -182,7 +191,8 @@ DEFAULT_FILE_STORAGE= 'custom_storages.MediaStorage'
 
 # hard coded path, will surely change when server moves!
 # STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
-STATICFILES_DIRS = [ 'https://auction-files.sfo3.digitaloceanspaces.com/static/' ]
+# STATICFILES_DIRS = [ 'https://auction-files.sfo3.digitaloceanspaces.com/static/' ]
+# above
 
 # EMAIL
 # ------------------------------------------------------------------------------
