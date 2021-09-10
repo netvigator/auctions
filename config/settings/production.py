@@ -192,7 +192,7 @@ DEFAULT_FILE_STORAGE= 'custom_storages.MediaStorage'
 
 # hard coded path, will surely change when server moves!
 # STATICFILES_DIRS.append( '/home/django/django_project/django_project/static/' )
-STATICFILES_DIRS = [ STATIC_ROOT ]
+# STATICFILES_DIRS = [ STATIC_ROOT ]
 
 
 # EMAIL
