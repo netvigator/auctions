@@ -86,11 +86,11 @@ INSTALLED_APPS += ['storages', ]
 
 AWS_ACCESS_KEY_ID       = getSecret('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY   = getSecret('AWS_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = getSecret('AWS_BUCKET_NAME')
-#AWS_S3_ENDPOINT_URL    = 'https://auction-files.sfo3.digitaloceanspaces.com'
-#AWS_S3_CUSTOM_DOMAIN   = 'https://auction-files.sfo3.cdn.digitaloceanspaces.com'
-AWS_S3_ENDPOINT_URL     = 'https://sfo3.digitaloceanspaces.com'
-AWS_S3_CUSTOM_DOMAIN    = 'https://sfo3.cdn.digitaloceanspaces.com'
+AWS_STORAGE_BUCKET_NAME = 'auction-files'
+AWS_S3_ENDPOINT_URL     = 'https://auction-files.sfo3.digitaloceanspaces.com'
+AWS_S3_CUSTOM_DOMAIN    = 'https://auction-files.sfo3.cdn.digitaloceanspaces.com'
+#AWS_S3_ENDPOINT_URL    = 'https://sfo3.digitaloceanspaces.com'
+#AWS_S3_CUSTOM_DOMAIN   = 'https://sfo3.cdn.digitaloceanspaces.com'
 AWS_DEFAULT_ACL         = 'public-read'
 AWS_AUTO_CREATE_BUCKET  = True
 AWS_QUERYSTRING_AUTH    = False
