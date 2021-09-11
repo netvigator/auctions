@@ -20,29 +20,29 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-# wheel==0.34.2
 # wheel==0.35.1
-wheel==0.36.2
+# wheel==0.36.2
+wheel==0.37.0
 
 
 # LTS Django
 # django==3.2
-django==3.2.4
+django==3.2.7
 
 
 # Configuration
-django-environ==0.4.5
+django-environ==0.7.0
 
 
 # whitenoise==5.0.1
 # whitenoise==5.1.0
-whitenoise==5.2.0
+whitenoise==5.3.0
 
 
 # Forms
 django-braces==1.14.0
 # django-crispy-forms==1.10.0
-django-crispy-forms==1.11.2
+django-crispy-forms==1.12.0
 
 # Models
 # django-model-utils==4.0.0
@@ -50,17 +50,17 @@ django-model-utils==4.1.1
 
 # Images
 # Pillow==8.1.1
-Pillow==8.2
+Pillow==8.3.2
 
 # Password storage
 # argon2-cffi==19.2.0
-argon2-cffi==20.1.0
+argon2-cffi==21.1.0
 
 # For user registration, either via email or social media
 # Well-built with regular release cycles!
 # django-allauth==0.42.0
 # django-allauth==0.43.0
-django-allauth==0.44.0
+django-allauth==0.45.0
 
 # Python-PostgreSQL Database Adapter
 # psycopg2==2.7.6.1
@@ -68,7 +68,7 @@ django-allauth==0.44.0
 # in order to keep installing from binary please use "pip install psycopg2-binary" instead.
 # psycopg2-binary==2.8.4
 # psycopg2-binary==2.8.5
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.1
 
 # Unicode slugification
 awesome-slugify==1.6.5
@@ -116,15 +116,15 @@ lxml==4.6.3
 
 # requests==2.23.0
 # requests==2.25.0
-requests==2.25.1
+requests==2.26.0
 
 # requests[security]==2.23.0
 # requests[security]==2.25.0
-requests[security]==2.25.1
+requests[security]==2.26.0
 
 # to handle the ebay category lists
 # django-mptt==0.11.1
-django-mptt==0.12.0
+django-mptt==0.13.3
 
 # fake admin page
 django-admin-honeypot==1.1.0
@@ -135,7 +135,7 @@ django-admin-honeypot==1.1.0
 
 # users need to select their timezone
 # django-timezone-field==4.1.1
-django-timezone-field==4.1.2
+django-timezone-field==4.2.1
 
 
 # need menus
