@@ -58,13 +58,6 @@ else:
     errorLogger = logger.error # outputs to screen during tests
     ITEM_PICS_ROOT = join( settings.MEDIA_ROOT, 'Keeper_Pictures' )
 
-
-# getMakeDir( EBAY_ITEMS_FOLDER ) in __init__.py already
-
-
-print( 'ITEM_PICS_ROOT:', ITEM_PICS_ROOT )
-
-
 oErrObj = getRegExObj(
             r'^(?:ProtocolError|ConnectionError|ConnectionResetError)' )
 
