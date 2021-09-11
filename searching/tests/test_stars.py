@@ -5051,6 +5051,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 294304226473
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                's/n find 5Y3, 6004 should exclude' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertIsNone( oTest.iModel )
+        self.assertEqual( oTest.iBrand.cTitle, 'Hytron' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
