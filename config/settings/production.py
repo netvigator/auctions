@@ -95,10 +95,8 @@ AWS_STORAGE_BUCKET_NAME = 'auction-files'
 #AWS_S3_ENDPOINT_URL     = 'https://auction-files.sfo3.digitaloceanspaces.com'
 #AWS_S3_CUSTOM_DOMAIN    = 'https://auction-files.sfo3.cdn.digitaloceanspaces.com'
 # do do it this way:
-#AWS_S3_ENDPOINT_URL    = 'https://sfo3.digitaloceanspaces.com'
-#AWS_S3_CUSTOM_DOMAIN   = 'https://sfo3.cdn.digitaloceanspaces.com'
-AWS_S3_ENDPOINT_URL    = 'sfo3.digitaloceanspaces.com'
-AWS_S3_CUSTOM_DOMAIN   = 'sfo3.cdn.digitaloceanspaces.com'
+AWS_S3_ENDPOINT_URL    = 'https://sfo3.digitaloceanspaces.com'
+AWS_S3_CUSTOM_DOMAIN   = 'https://sfo3.cdn.digitaloceanspaces.com'
 AWS_DEFAULT_ACL         = 'public-read'
 AWS_AUTO_CREATE_BUCKET  = True
 AWS_QUERYSTRING_AUTH    = False
@@ -126,8 +124,7 @@ AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
 # Example: "http://media.example.com/"
 # MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 # MEDIA_URL = '/home/django/django_project/django_project/media/'
-MEDIA_URL = 'https://{}.{}/{}/'.format(
-        AWS_STORAGE_BUCKET_NAME, AWS_S3_CUSTOM_DOMAIN, 'media')
+MEDIA_URL = '{}/{}/'.format( AWS_S3_CUSTOM_DOMAIN, 'media')
 
 # Example: "/var/www/example.com/media/"
 # MEDIA_ROOT = '/home/django/django_project/django_project/media/'
@@ -193,8 +190,7 @@ STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = ROOT_DIR / 'mediafiles'
 
-STATIC_URL = 'https://{}.{}/{}/'.format(
-        AWS_STORAGE_BUCKET_NAME, AWS_S3_CUSTOM_DOMAIN, 'static')
+STATIC_URL = '{}/{}/'.format( AWS_S3_CUSTOM_DOMAIN, 'static')
 
 
 # https://docs.djangoproject.com/en/3.2/howto/static-files/deployment/
