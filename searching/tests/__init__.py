@@ -66,6 +66,7 @@ sBrands = \
  Harman-Kardon     |      7 |            |            |
  Heathkit          |      8 |            |            | Heath
  Hickok            |      8 |            |            |
+ Hytron            |      6 |            |            |
  Interelectronics  |      3 |            |            |
  Janszen           |      8 |            |            |
  JBL               |      7 |            |            |
@@ -176,6 +177,7 @@ sModels = \
  5R4GA              |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  5R4GYB             |           |      6 | t            |                   |  Vacuum Tube |             |              | t
  5R4WGA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
+ 5Y3G               |           |      7 | f            |                   |  Vacuum Tube | R52\\r5Y3   | 6004         | t
  6BG6GA             |           |      4 | t            |                   |  Vacuum Tube |             |              | t
  6BH6               |           |      6 | f            |                   |  Vacuum Tube |             |              | t
  6CA4 (rectifier)   |           |      6 | f            |                   |  Vacuum Tube |             |              | t
@@ -906,6 +908,21 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["294304226473"],
+            "title":["VACUUM TUBES 6004\/5Y3 HYTRON TAN BASE MILITARY GRADE NOS 4 TUBES"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs2.ebaystatic.com\/m\/mdS1gfv_wNkgZZ4BgEENHuw\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/VACUUM-TUBES-6004-5Y3-HYTRON-TAN-BASE-MILITARY-GRADE-NOS-4-TUBES-\/294304226473"],
+            "postalCode":["117**"],"location":["Syosset,NY,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["FreePickup"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["5"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"19.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"19.99"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P5DT8H34M34S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["false"],
+            "startTime":["2021-07-30T17:35:37.000Z"],"endTime":["2021-08-06T17:35:37.000Z"],
+            "listingType":["Auction"],"gift":["false"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["384296512263"],
             "title":["Vintage Hickok 799 \\"Mustang\\" Mutual Conductance Vacuum Tube Tester - Refurbished"],
