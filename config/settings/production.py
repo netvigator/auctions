@@ -124,7 +124,8 @@ AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
 # Example: "http://media.example.com/"
 # MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 # MEDIA_URL = '/home/django/django_project/django_project/media/'
-MEDIA_URL = '{}/{}/'.format( AWS_S3_CUSTOM_DOMAIN, 'media')
+MEDIA_URL = 'https://{}.{}/{}/'.format(
+    AWS_STORAGE_BUCKET_NAME, AWS_S3_CUSTOM_DOMAIN[8:], 'media')
 
 # Example: "/var/www/example.com/media/"
 # MEDIA_ROOT = '/home/django/django_project/django_project/media/'
@@ -190,8 +191,8 @@ STATICFILES_STORAGE = 'CompressedManifestStaticFilesStorage'
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = ROOT_DIR / 'mediafiles'
 
-STATIC_URL = '{}/{}/'.format( AWS_S3_CUSTOM_DOMAIN, 'static')
-
+STATIC_URL = 'https://{}.{}/{}/'.format(
+    AWS_STORAGE_BUCKET_NAME, AWS_S3_CUSTOM_DOMAIN[8:], 'static')
 
 # https://docs.djangoproject.com/en/3.2/howto/static-files/deployment/
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
