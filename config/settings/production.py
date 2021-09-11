@@ -76,7 +76,6 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
 
 # INSTALLED_APPS += ['gunicorn', ]
 
-
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files
@@ -95,8 +94,8 @@ AWS_STORAGE_BUCKET_NAME = 'auction-files'
 #AWS_S3_ENDPOINT_URL     = 'https://auction-files.sfo3.digitaloceanspaces.com'
 #AWS_S3_CUSTOM_DOMAIN    = 'https://auction-files.sfo3.cdn.digitaloceanspaces.com'
 # do do it this way:
-AWS_S3_ENDPOINT_URL    = 'https://sfo3.digitaloceanspaces.com'
-AWS_S3_CUSTOM_DOMAIN   = 'https://sfo3.cdn.digitaloceanspaces.com'
+AWS_S3_ENDPOINT_URL     = 'https://sfo3.digitaloceanspaces.com'
+AWS_S3_CUSTOM_DOMAIN    = 'https://sfo3.cdn.digitaloceanspaces.com'
 AWS_DEFAULT_ACL         = 'public-read'
 AWS_AUTO_CREATE_BUCKET  = True
 AWS_QUERYSTRING_AUTH    = False
