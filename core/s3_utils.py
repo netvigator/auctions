@@ -8,13 +8,13 @@ import boto3
 
 from botocore.client import Config
 
-oSession = boto3.session.Session()
-
 
 sBucketName = settings.AWS_STORAGE_BUCKET_NAME
 
 
 def getClient():
+    #
+    oSession = boto3.session.Session()
     #
     client = oSession.client(
             's3',
