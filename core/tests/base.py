@@ -9,7 +9,7 @@ from core.utils             import getWhatsNotInParens
 
 from .base_class            import TestCasePlus, TestViewPlus, WebTestCase
 
-from config.settings.base   import LOGIN_URL
+from django.conf            import settings
 
 from brands.models          import Brand
 from categories.models      import Category
@@ -204,7 +204,7 @@ class BaseUserWebTestCase( UserSetUpMixin, WebTestCase ):
 
     def loginWebTest( self, username ='username1', password = 'mypassword' ):
         #
-        form = self.app.get( reverse( LOGIN_URL ) ).form
+        form = self.app.get( reverse( settings.LOGIN_URL ) ).form
         form['login']    = username
         form['password'] = password
         response = form.submit()
