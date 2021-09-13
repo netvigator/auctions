@@ -162,3 +162,11 @@ django-last-seen==0.3
 
 # aws -- cancel
 # awsebcli==3.20.1
+
+# need here for testing s3_utils.py
+# Static and Media Storage
+# ------------------------------------------------
+# boto3==1.17.39
+# boto3==1.17.53
+boto3==1.18.40
+
