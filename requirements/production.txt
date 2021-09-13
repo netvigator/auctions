@@ -13,12 +13,6 @@ gevent==21.8.0
 
 # gunicorn==19.7.1
 
-# Static and Media Storage
-# ------------------------------------------------
-# boto3==1.17.39
-# boto3==1.17.53
-boto3==1.18.40
-
 # django-storages==1.9.1
 # django-storages==1.10.1
 django-storages==1.11.1
