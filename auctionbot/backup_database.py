@@ -9,6 +9,8 @@ from subprocess         import run
 
 from django.conf        import settings
 
+from core.s3_utils      import putFile
+
 from pyPks.Time.Output  import getNowIsoDateTimeFileNameSafe
 
 
@@ -34,9 +36,13 @@ tVacuum = ( 'vacuumdb', '-z', sAdmin )
 #
 sBackUpDir = environ["BACKUP_DIR"]
 #
-sNow = getNowIsoDateTimeFileNameSafe()[:16]
+sNow    = getNowIsoDateTimeFileNameSafe()[:16]
 #
-sFile = "%sauctions-database-%s.backup" % ( sBackUpDir, sNow )
+sFile   = "auctions-database-%s.backup" % sNow
+#
+sTemp   = '%s%s' % ( sBackUpDir, sFile )
+#
+sBackUp = '%s%s' % ( 'backups/', sFile )
 #
 def do_backup():
     #
@@ -45,13 +51,13 @@ def do_backup():
         oVacuum = run( tVacuum )
         #
     #
-    fDump = open( sFile, "w" )
+    fDump = open( sTemp, "w" )
     #
     oResult = run( tDump, stdout = fDump )
     #
     fDump.close()
     #
+    putFile( sTemp, sBackUp )
+    #
     return oResult.returncode, oResult.stderr
-
-
 
