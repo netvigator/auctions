@@ -3,22 +3,24 @@ all secrets are in Secrets.ini
 do not want to repeat them somewere (more DRY)
 therefore must get all secrets from Secrets.ini
 '''
-from os                     import environ
+from os                 import environ
 
-from subprocess             import run
+from subprocess         import run
 
-from config.settings.base   import DATABASES
+from django.conf        import settings
 
-from pyPks.Time.Output      import getNowIsoDateTimeFileNameSafe
+from pyPks.Time.Output  import getNowIsoDateTimeFileNameSafe
 
 
-POSTGRES_USER       = DATABASES['default']['USER'    ]
-POSTGRES_PASSWORD   = DATABASES['default']['PASSWORD']
-DATABASE_HOST       = DATABASES['default']['HOST'    ]
-DATABASE_PORT       = DATABASES['default']['PORT'    ]
+DATABASES               = settings.DATABASES
 
-POSTGRES_ADMIN      = DATABASES['default']['ADMIN'   ]
-POSTGRES_ADMIN_PW   = DATABASES['default']['ADMIN_PW']
+POSTGRES_USER           = DATABASES['default']['USER'    ]
+POSTGRES_PASSWORD       = DATABASES['default']['PASSWORD']
+DATABASE_HOST           = DATABASES['default']['HOST'    ]
+DATABASE_PORT           = DATABASES['default']['PORT'    ]
+
+POSTGRES_ADMIN          = DATABASES['default']['ADMIN'   ]
+POSTGRES_ADMIN_PW       = DATABASES['default']['ADMIN_PW']
 
 sURI = 'postgresql://%s:%s@%s:%s/auctions' % (
     POSTGRES_USER, POSTGRES_PASSWORD, DATABASE_HOST, DATABASE_PORT )
