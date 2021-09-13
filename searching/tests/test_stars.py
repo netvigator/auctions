@@ -5069,6 +5069,26 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 133868992940
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'should find CCa, not others on end' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'CCa (= 6922 = E88CC = CV2492)' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Siemens' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Vacuum Tube' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         iThisOne = 164011103887
         #
         self.print_len(
@@ -5617,6 +5637,25 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'Altec Lansing 288-8K High Frequency Drive MRII 542 Horn' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 265297816558
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find ECC88 tube not rest' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #oTest = dItemsToTest[ 273380279306 ][ 0 ]
         ##
