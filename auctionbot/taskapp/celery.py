@@ -11,8 +11,6 @@ from sys                    import argv
 from django.apps            import apps, AppConfig
 from django.conf            import settings
 
-from config.settings.base   import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
-
 # ### begin workaround ###
 # 2021-05-24 celery not working, so giving up on it!
 # instead, will set nice level on cron job processes
@@ -49,8 +47,8 @@ logger = getLogger(__name__)
 
 
 app = Celery('auctionbot',
-            backend = CELERY_RESULT_BACKEND,
-            broker  = CELERY_BROKER_URL )
+            backend = settings.CELERY_RESULT_BACKEND,
+            broker  = settings.CELERY_BROKER_URL )
 
 
 # https://pawelzny.com/python/celery/2017/08/14/celery-4-tasks-best-practices/
