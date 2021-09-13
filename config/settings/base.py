@@ -436,3 +436,39 @@ COVERAGE = '_' in os.environ and os.environ['_'].endswith( 'coverage' )
 
 # 2021-04-17 getting a message on runnig tests after pip upgrade
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+AWS_STORAGE_BUCKET_NAME = 'auction-files'
+AWS_ACCESS_KEY_ID       = getSecret('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY   = getSecret('AWS_SECRET_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'auction-files' in base.py
+# cannot include the AWS_STORAGE_BUCKET_NAME in the AWS_S3_ENDPOINT_URL!
+# when doing collectstatic, get error:
+# SSLError: SSL validation failed for
+# https://auction-files.auction-files.sfo3.digitaloceanspaces.com/static/favicon.ico
+# note auction-files is repeated in front
+#AWS_S3_ENDPOINT_URL     = 'https://auction-files.sfo3.digitaloceanspaces.com'
+#AWS_S3_CUSTOM_DOMAIN    = 'https://auction-files.sfo3.cdn.digitaloceanspaces.com'
+# do do it this way:
+AWS_S3_ENDPOINT_URL     = 'https://sfo3.digitaloceanspaces.com'
+AWS_S3_CUSTOM_DOMAIN    = 'https://sfo3.cdn.digitaloceanspaces.com'
+AWS_DEFAULT_ACL         = 'public-read'
+AWS_AUTO_CREATE_BUCKET  = True
+AWS_QUERYSTRING_AUTH    = False
+AWS_S3_ADDRESSING_STYLE = 'virtual'
+AWS_LOCATION            = 'static'
+
+# AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat() # comes from boto3, deprecated
+
+# AWS cache settings, don't change unless you know what you're doing:
+AWS_EXPIRY = 60 * 60 * 24 * 7
+
+# TODO See: https://github.com/jschneier/django-storages/issues/47
+# Revert the following and use str after the above-mentioned bug is fixed in
+# either django-storage-redux or boto
+# update 2019-05-12
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
+control = 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIRY, AWS_EXPIRY)
+#AWS_HEADERS = {
+    #'Cache-Control': bytes(control, encoding='latin-1')
+#}
+AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': control }
