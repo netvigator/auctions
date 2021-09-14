@@ -2,12 +2,18 @@
 # can draw inspiration from:
 # https://github.com/Mashoud123/Python3-DigitalOcean-Spaces-Manager-v2-Advanced/blob/master/spaces.py
 
-from django.conf    import settings
+from logging                import getLogger
+
+from django.conf            import settings
 
 import boto3
 
-from botocore.client import Config
+from botocore.client        import Config
 
+from botocore.exceptions    import ClientError
+
+
+logger      = getLogger(__name__)
 
 sBucketName = settings.AWS_STORAGE_BUCKET_NAME
 
@@ -84,3 +90,62 @@ def putFile( sLocalFile, sUploadName ):
         #
     return message
 
+
+def getPreSignedURL(
+        sObject,
+        bucket_name = sBucketName,
+        expiration  = 3600 ):
+    #
+    '''
+    https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html
+    '''
+    #
+    oClient = getClient()
+    #
+    try:
+        #
+        response = oClient.generate_presigned_url('get_object',
+                    Params      = { 'Bucket': bucket_name, 'Key': sObject },
+                    ExpiresIn   = expiration )
+        #
+    except ClientError as e:
+        #
+        logger.error( 'pre signed URL failed: %s' % str( e ) )
+        #
+        response = None
+        #
+    #
+    return response
+
+
+
+def getPreSignedPost(
+        sObject,
+        bucket_name = sBucketName,
+        fields      = None,
+        conditions  = None,
+        expiration  = 3600 ):
+    #
+    '''
+    https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html
+    '''
+    #
+    oClient = getClient()
+    #
+    try:
+        #
+        response = oClient.generate_presigned_post(
+                    bucket_name,
+                    sObject,
+                    Fields      = fields,
+                    Conditions  = conditions,
+                    ExpiresIn   = expiration)
+        #
+    except ClientError as e:
+        #
+        logger.error( 'pre signed Post failed: %s' % str( e ) )
+        #
+        response = None
+        #
+    #
+    return response
