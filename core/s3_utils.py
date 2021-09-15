@@ -98,6 +98,7 @@ def getPreSignedURL(
     #
     '''
     https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html
+    https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html
     '''
     #
     oClient = getClient()
@@ -116,6 +117,14 @@ def getPreSignedURL(
         #
     #
     return response
+
+
+'''
+in core utils,
+getDownloadFileWriteToDisk() writes a stream to disk
+getFileStream() returns a tuple, text result and response object (or None)
+'''
+
 
 
 
