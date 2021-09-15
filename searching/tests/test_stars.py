@@ -5087,6 +5087,24 @@ class FindSearchHitsWebTests(
         #
         #
         #
+        iThisOne = 114975000496
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 1, iThisOne,
+                'amp listed in manual category, title says amp, should find amp' )
+        #
+        oTest = dItemsToTest[ iThisOne ][ 0 ]
+        #
+        self.assertEqual( oTest.iModel.cTitle, 'A-20-C' )
+        self.assertEqual( oTest.iBrand.cTitle, 'Electro-Voice' )
+        self.assertEqual( oTest.iCategory.cTitle, 'Amplifier' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
         #
         #
         iThisOne = 164011103887
@@ -5649,6 +5667,21 @@ class FindSearchHitsWebTests(
         self.print_len(
                 dItemsToTest[ iThisOne ], 9, iThisOne,
                 'should find ECC88 tube not rest' )
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        iThisOne = 265301892140
+        #
+        self.print_len(
+                dItemsToTest[ iThisOne ], 9, iThisOne,
+                'should find Tung Sol 12AX7 tube not rest' )
+        #
         #
         #
         #
