@@ -149,8 +149,9 @@ sModels = \
  12AT7 (Bugle Boy)  | Bugle Boy\\rBB | 7 | f          | Amperex (Bugle Boy) |  Vacuum Tube |             |              | f
  12AU7A             |           |      5 | f            |                   |  Vacuum Tube |             | 5814A        | t
  12AU7WA            |           |      4 | t            |                   |  Vacuum Tube |             |              | t
- 12AX7 (GE)         |           |      9 | f            | GE                |  Vacuum Tube |             |              | f
  12AX7              |           |      6 | f            |                   |  Vacuum Tube |             |              | t
+ 12AX7 (Tung-Sol)   |           |      6 | f            | Tung-Sol          |  Vacuum Tube |             |              | f
+ 12AX7 (GE)         |           |      9 | f            | GE                |  Vacuum Tube |             |              | f
  12AX7A             |           |      6 | f            |                   |  Vacuum Tube |             | 7025         | t
  12BY7A             |           |      3 | t            |                   |  Vacuum Tube |             |              | t
  7025 (12AX7A)      |           |      7 | t            |                   |  Vacuum Tube |             |              | t
@@ -376,7 +377,6 @@ sModels = \
  C-350              |           |      8 | f            | Radio Craftsmen   |       Preamp | 350         | MI-350\\rHT-350\\rST-350\\rT-350\\rTO-350 |
  C450               |           |      7 | f            | Radio Craftsmen   |    Amplifier |             |
  HF-65              |           |      7 | f            | EICO              |       Preamp |             |
- PC-1               |           |      9 | f            | Electro-Voice     |       Preamp |             |
  210PA              |           |      6 | f            | Grommes           |       Preamp |             |
  212                |           |      5 | f            | Grommes           |       Preamp |             |
  AP-426             |           |      5 | f            | Stromberg-Carlson |       Preamp |             |
@@ -603,6 +603,8 @@ sModels = \
  LK-72              |           |      5 | f            | Scott, H.H.       |Integrated Amp|             |
  240                |           |      9 | f            | Scott, H.H.       |    Amplifier |             |
  240                |           |      6 | f            | Pilot             |Integrated Amp|             |
+ A-20-C             |           |      9 | t            | Electro-Voice     |    Amplifier |             |
+ PC-1               |           |      9 | f            | Electro-Voice     |       Preamp |             |
  Patrician          |           |      9 | f            | Electro-Voice     |Speaker System|             |
  Regency            |           |      7 | f            | Electro-Voice     |Speaker System|             |
  Aristocrat         |           |      6 | f            | Electro-Voice     |Speaker System|             |
@@ -908,6 +910,37 @@ sResponseItems2Test = \
             "listingType":["Auction"],"gift":["false"],"watchCount":["44"]}],"returnsAccepted":["true"],
             "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
             "isMultiVariationListing":["false"],"topRatedListing":["true"]},
+
+           {"itemId":["114975000496"],
+            "title":["Electro Voice Mono tube amplifier A20-C , altec western eletric"],
+            "globalId":["EBAY-US"],"autoPay":["false"],"returnsAccepted":["true"],
+            "primaryCategory":[{"categoryId":["39996"],"categoryName":["Vintage Manuals"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/m11ksj8OfvSSGVj2EUz2DSA\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Electro-Voice-Mono-tube-amplifier-A20-C-altec-western-eletric-\/114975000496"],
+            "postalCode":["905**"],"location":["Torrance,CA,USA"],"country":["US"],
+            "shippingInfo":[{"shippingType":["Calculated"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"399.0"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"399.0"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P3DT18H1M11S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],
+            "startTime":["2021-09-07T04:04:05.000Z"],"endTime":["2021-09-17T04:04:05.000Z"],
+            "listingType":["Auction"],"gift":["false"],"watchCount":["10"]}],
+            "condition":[{"conditionId":["5000"],"conditionDisplayName":["Good"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
+
+           {"itemId":["265301892140"],
+            "title":["Superb Matched Pair ⚡️ Tung-Sol ⚡️12AX7 \/ ECC83 \/ 7025 Hickok Tested, Excellent"],
+            "globalId":["EBAY-US"],"autoPay":["false"],
+            "primaryCategory":[{"categoryId":["64627"],"categoryName":["Vintage Tubes & Tube Sockets"]}],
+            "galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mXW-yw7wu8CY7pWBm65yF4A\/140.jpg"],
+            "viewItemURL":["https:\/\/www.ebay.com\/itm\/Superb-Matched-Pair-Tung-Sol-12AX7-ECC83-7025-Hickok-Tested-Excellent-\/265301892140"],
+            "postalCode":["973**"],"location":["Albany,OR,USA"],"country":["US"],
+            "shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"5.25"}],"shippingType":["FlatDomesticCalculatedInternational"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],
+            "sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"84.95"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"84.95"}],
+            "bidCount":["0"],"sellingState":["Active"],"timeLeft":["P0DT8H38M38S"]}],"listingInfo":[{"bestOfferEnabled":["false"],"buyItNowAvailable":["true"],"buyItNowPrice":[{"@currencyId":"USD","__value__":"124.95"}],
+            "convertedBuyItNowPrice":[{"@currencyId":"USD","__value__":"124.95"}],
+            "startTime":["2021-09-06T18:40:08.000Z"],"endTime":["2021-09-13T18:40:08.000Z"],
+            "listingType":["AuctionWithBIN"],"gift":["false"],"watchCount":["4"]}],"returnsAccepted":["false"],
+            "condition":[{"conditionId":["3000"],"conditionDisplayName":["Used"]}],
+            "isMultiVariationListing":["false"],"topRatedListing":["false"]},
 
            {"itemId":["265297816558"],
             "title":["ECC88 6DJ8 E88CC E188CC EI FACTORY PHILIPS YUGOSLAVIA MATCHED QUAD 4 Pcs NOS"],
