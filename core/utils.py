@@ -286,6 +286,52 @@ def getDownloadFileWriteToDisk( sURL, sWriteToFile = None ):
 
 
 
+def getFileStream( sURL ):
+    #
+    '''utility for fetching ebay item pictures'''
+    #
+    from requests   import get
+    #
+    sResult = 'unknown'
+    #
+    r = None
+    #
+    try:
+        #
+        r = get( sURL, stream = True )
+        #
+        if 'X-EBAY-C-EXTENSION' in r.headers: # error, returns dict like str
+            #
+            sResult = r.headers[ 'X-EBAY-C-EXTENSION' ]
+            #
+        elif r.status_code != 200: # error, catch others?
+            #
+            sResult = str( r.status_code )
+            #
+        elif r.headers.get( 'Content-Type', '' ).startswith( 'image' ):
+            #
+            sResult = 'Stream ready' # file spec
+            #
+        #
+    except ConnectionResetError as e:
+        #
+        sResult = 'ConnectionResetError: %s' % e
+        #
+    except ConnectionError as e:
+        #
+        sResult = 'ConnectionError: %s' % e
+        #
+    except ProtocolError as e:
+        #
+        sResult = 'ProtocolError: %s' % e
+        #
+    #
+    return sResult, r
+
+
+
+
+
 def getLink( o ):
     #
     if o is None:
