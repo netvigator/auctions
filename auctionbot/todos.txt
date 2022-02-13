@@ -614,3 +614,8 @@ but bot should get this right without having to put R-200 in the exclude list fo
 
 
 2021-08-16 cries for help from test_finder_edit, please clean up core.forms.BaseModelFormGotCrispy
+
+
+2022-02-13
+/home/django/.local/lib/python3.8/site-packages/whitenoise/base.py:115: UserWarning: No directory at: /home/django/auctions/staticfiles/
+warnings.warn(u"No directory at: {}".format(root))
