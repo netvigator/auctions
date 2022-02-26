@@ -619,3 +619,8 @@ but bot should get this right without having to put R-200 in the exclude list fo
 2022-02-13
 /home/django/.local/lib/python3.8/site-packages/whitenoise/base.py:115: UserWarning: No directory at: /home/django/auctions/staticfiles/
 warnings.warn(u"No directory at: {}".format(root))
+
+
+2022-02-26
+should automatically discard some keepers -- per seller, identical titles, sequence in time, zero bid auctions, only keep the last zero bid auction
+NB: only get seller ID when keeper results pulled down -- not available in finders
