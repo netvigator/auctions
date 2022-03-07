@@ -20,47 +20,58 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-# wheel==0.35.1
-# wheel==0.36.2
-wheel==0.37.0
+# wheel==0.37.0
+wheel==0.37.1
 
 
 # LTS Django
 # django==3.2
 django==3.2.7
+# django==4.0.2
+# perhaps all packages are not yet compaitble with django 4.0
+# got error
+# ImportError: cannot import name 'ugettext_lazy' from 'django.utils.translation
 
 
 # Configuration
-django-environ==0.7.0
+# django-environ==0.7.0
+django-environ==0.8.1
 
 
 # whitenoise==5.0.1
 # whitenoise==5.1.0
-whitenoise==5.3.0
+# whitenoise==5.3.0
+whitenoise==6.0.0
 
 
 # Forms
-django-braces==1.14.0
+# django-braces==1.14.0
+django-braces==1.15.0
 # django-crispy-forms==1.10.0
-django-crispy-forms==1.12.0
+# django-crispy-forms==1.12.0
+django-crispy-forms==1.14.0
 
 # Models
 # django-model-utils==4.0.0
-django-model-utils==4.1.1
+# django-model-utils==4.1.1
+django-model-utils==4.2.0
 
 # Images
 # Pillow==8.1.1
-Pillow==8.3.2
+# Pillow==8.3.2
+# Pillow==9.0.1
 
 # Password storage
 # argon2-cffi==19.2.0
-argon2-cffi==21.1.0
+# argon2-cffi==21.1.0
+argon2-cffi==21.3.0
 
 # For user registration, either via email or social media
 # Well-built with regular release cycles!
 # django-allauth==0.42.0
 # django-allauth==0.43.0
-django-allauth==0.45.0
+# django-allauth==0.45.0
+django-allauth==0.49.0
 
 # Python-PostgreSQL Database Adapter
 # psycopg2==2.7.6.1
@@ -68,7 +79,8 @@ django-allauth==0.45.0
 # in order to keep installing from binary please use "pip install psycopg2-binary" instead.
 # psycopg2-binary==2.8.4
 # psycopg2-binary==2.8.5
-psycopg2-binary==2.9.1
+# psycopg2-binary==2.9.1
+psycopg2-binary==2.9.3
 
 # Unicode slugification
 awesome-slugify==1.6.5
@@ -76,7 +88,8 @@ awesome-slugify==1.6.5
 
 # Time zones support
 # pytz==2020.5
-pytz==2021.1
+# pytz==2021.1
+pytz==2021.3
 
 # 2021-05-24 celery not working, so giving up on it!
 # instead, will set nice level on cron job processes
@@ -102,6 +115,7 @@ pytz==2021.1
 # django-countries==7.0
 # django-countries==7.1
 django-countries==7.2.1
+# django-countries==7.3
 
 # money added by RG 2017-11-27
 # django-money==0.12.3
@@ -111,20 +125,23 @@ django-countries==7.2.1
 
 # for the ebay API
 # lxml==4.6.2
-lxml==4.6.3
-
+# lxml==4.6.3
+lxml==4.8.0
 
 # requests==2.23.0
 # requests==2.25.0
-requests==2.26.0
+# requests==2.26.0
+requests==2.27.1
 
 # requests[security]==2.23.0
 # requests[security]==2.25.0
-requests[security]==2.26.0
+# requests[security]==2.26.0
+requests[security]==2.27.1
 
 # to handle the ebay category lists
 # django-mptt==0.11.1
-django-mptt==0.13.3
+# django-mptt==0.13.3
+django-mptt==0.13.4
 
 # fake admin page
 django-admin-honeypot==1.1.0
@@ -135,7 +152,8 @@ django-admin-honeypot==1.1.0
 
 # users need to select their timezone
 # django-timezone-field==4.1.1
-django-timezone-field==4.2.1
+# django-timezone-field==4.2.1
+django-timezone-field==5.0
 
 
 # need menus
@@ -144,12 +162,14 @@ django-timezone-field==4.2.1
 
 # https://github.com/pydanny/cookiecutter-django/issues/1954
 # kombu==5.0.2
-kombu==5.1.0
+# kombu==5.1.0
+kombu==5.2.3
 
 # need this 2019-02-13
 # django-extensions==3.1.1
 # django-extensions==3.1.2
-django-extensions==3.1.3
+# django-extensions==3.1.3
+django-extensions==3.1.5
 
 
 # cron job scheduling 2019-05-21
@@ -168,5 +188,5 @@ django-last-seen==0.3
 # ------------------------------------------------
 # boto3==1.17.39
 # boto3==1.17.53
-boto3==1.18.40
-
+# boto3==1.18.40
+boto3==1.21.8
