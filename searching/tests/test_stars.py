@@ -5662,20 +5662,6 @@ class FindSearchHitsWebTests(
         #
         #
         #
-        iThisOne = 265297816558
-        #
-        self.print_len(
-                dItemsToTest[ iThisOne ], 9, iThisOne,
-                'should find ECC88 tube not rest' )
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
         iThisOne = 265301892140
         #
         self.print_len(
