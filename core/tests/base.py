@@ -593,6 +593,11 @@ class AssertObjectHasAttrMixin( object ):
         self.assertTrue( hasattr( o, s ) )
 
 
+class AssertStartsWithMixin( object ):
+
+    def assertStartsWith( self, longer, shorter ):
+        self.assertTrue( longer.startswith( shorter ) )
+
 
 '''
 oTest = {
