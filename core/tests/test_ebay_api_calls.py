@@ -2,7 +2,7 @@ import inspect
 
 from django.utils       import timezone
 
-from .base              import TestCasePlus
+from .base              import TestCasePlus, AssertStartsWithMixin
 
 from ..ebay_api_calls   import getApiConfValues, _getListingTypeTuple, \
                                _ApplicationtToken, _getRequestHeaders, \
@@ -14,7 +14,7 @@ from pyPks.Time.Convert import getIsoDateTimeFromObj
 sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
 
-class GetConfFileValuesTests( TestCasePlus ):
+class GetConfFileValuesTests( AssertStartsWithMixin, TestCasePlus ):
     '''ebay API conf file values tests'''
 
     def setUp( self ):
@@ -29,28 +29,26 @@ class GetConfFileValuesTests( TestCasePlus ):
         self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
 
-        self.assertEqual( dConfValues['endpoints']['finding'],
-                    'https://svcs.ebay.com/services/search/FindingService/v1' )
+        self.assertStartsWith(
+                    dConfValues['endpoints']['finding'],
+                    'https://svcs.ebay.com/' )
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
 
-        self.assertEqual(
-                dConfValues['auth']['token'][ : len( sTokenStart ) ],
-                sTokenStart )
+        self.assertStartsWith( dConfValues['auth']['token'], sTokenStart )
 
         dConfValues = getApiConfValues( bUseSandbox = True )
 
         self.assertEqual( dConfValues['call']['global_id'], 'EBAY-US' )
         self.assertEqual( dConfValues['call']['siteid'   ], '0'       )
 
-        self.assertEqual( dConfValues['endpoints']['finding'],
-                    'https://svcs.sandbox.ebay.com/services/search/FindingService/v1' )
+        self.assertStartsWith(
+                    dConfValues['endpoints']['finding'],
+                    'https://svcs.sandbox.ebay.com' )
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
-        self.assertEqual(
-                dConfValues['auth']['token'][ : len( sTokenStart ) ],
-                sTokenStart )
+        self.assertStartsWith( dConfValues['auth']['token'], sTokenStart )
 
 
 
