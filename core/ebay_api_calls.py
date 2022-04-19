@@ -274,14 +274,14 @@ def _getCategoriesOrVersion(
     #
     dConfValues = getApiConfValues( bUseSandbox )
     #
-    sEndPointURL= dConfValues[ "endpoints"][ 'trading'         ]
-    sCompatible = dConfValues[ "trading"  ][ "compatibility"   ]
-    sAppID      = dConfValues[ "keys"     ][ "ebay_app_id"     ] # client_id
-    sCertID     = dConfValues[ "keys"     ][ "ebay_certid"     ] # client_secret
-    sDevID      = dConfValues[ "keys"     ][ "ebay_dev_id"     ]
-    sToken      = dConfValues[ "auth"     ][ "token"           ]
-    sTimeOutConn= dConfValues[ "call"     ][ "time_out_connect"]
-    sTimeOutRead= dConfValues[ "call"     ][ "time_out_read"   ]
+    sEndPointURL= dConfValues[ "endpoints"  ][ 'trading'         ]
+    sCompatible = dConfValues[ "trading"    ][ "compatibility"   ]
+    sAppID      = dConfValues[ "keys"       ][ "ebay_app_id"     ] # client_id
+    sCertID     = dConfValues[ "keys"       ][ "ebay_certid"     ] # client_secret
+    sDevID      = dConfValues[ "keys"       ][ "ebay_dev_id"     ]
+    sToken      = dConfValues[ "auth-n-auth"][ "token"           ]
+    sTimeOutConn= dConfValues[ "call"       ][ "time_out_connect"]
+    sTimeOutRead= dConfValues[ "call"       ][ "time_out_read"   ]
     #
     dHttpHeaders= {
             "X-EBAY-API-CALL-NAME"          : 'GetCategories',
