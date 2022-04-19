@@ -343,7 +343,10 @@ class MarketsAndCategoriesTests( PutMarketsInDatabaseTestPlusBase ):
 
     def test_token_expiration( self ):
         #
-        ConfFileTokenExpiredTests.not_here_test_token_expiration( self ) # real
+        ConfFileTokenExpiredTests.not_here_test_token_expiration(
+                self ) # real 'OAuth'
+        ConfFileTokenExpiredTests.not_here_test_token_expiration(
+                self, 'Auth-n-Auth' ) # trading
         #ConfFileTokenExpiredTests.not_here_test_token_expiration( self, -10 )
         #ConfFileTokenExpiredTests.not_here_test_token_expiration( self,  10 )
 
