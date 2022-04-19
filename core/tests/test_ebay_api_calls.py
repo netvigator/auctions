@@ -11,8 +11,8 @@ from ..ebay_api_calls   import getApiConfValues, _getListingTypeTuple, \
 
 from pyPks.Time.Convert import getIsoDateTimeFromObj
 
-sTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
-
+sAAndATokenStart = 'v^1.1#i^1#r^1#p^3#I^3#f'
+sOAuthTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
 class GetConfFileValuesTests( AssertStartsWithMixin, TestCasePlus ):
     '''ebay API conf file values tests'''
@@ -36,7 +36,7 @@ class GetConfFileValuesTests( AssertStartsWithMixin, TestCasePlus ):
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
 
 
-        self.assertStartsWith( dConfValues['auth']['token'], sTokenStart )
+        self.assertStartsWith( dConfValues['auth-n-auth']['token'], sAAndATokenStart )
 
         dConfValues = getApiConfValues( bUseSandbox = True )
 
@@ -48,7 +48,8 @@ class GetConfFileValuesTests( AssertStartsWithMixin, TestCasePlus ):
                     'https://svcs.sandbox.ebay.com' )
 
         self.assertIsNotNone( dConfValues[ "keys"     ].get( "ebay_app_id" ) )
-        self.assertStartsWith( dConfValues['auth']['token'], sTokenStart )
+        self.assertStartsWith( dConfValues['oauth']['token'], sOAuthTokenStart )
+        # forgot sandbox password, cannot sign in, cannot get new token
 
 
 
@@ -100,11 +101,11 @@ class AuthTokenTests( TestCasePlus ):
         oSomeLater = timezone.now() + timezone.timedelta( seconds = 7200 )
         #
         oTest = _ApplicationtToken(
-                    access_token = sTokenStart,
+                    access_token = sAAndATokenStart,
                     tokenExpires = oSomeLater )
         #
         sExpect = ( '{"access_token": "%s", "expires": "%s"}' %
-                     (  sTokenStart,
+                     (  sAAndATokenStart,
                         getIsoDateTimeFromObj( oSomeLater ) ) )
         #
         self.assertEqual( str( oTest ), sExpect )
@@ -112,16 +113,16 @@ class AuthTokenTests( TestCasePlus ):
         oMoreLter = timezone.now() + timezone.timedelta( seconds = 2 * 7200 )
         #
         oTest = _ApplicationtToken(
-                    access_token        = sTokenStart,
+                    access_token        = sAAndATokenStart,
                     tokenExpires        = oSomeLater,
-                    refresh_token       = sTokenStart.swapcase(),
+                    refresh_token       = sAAndATokenStart.swapcase(),
                     refreshExpires= oMoreLter )
         #
         sExpect = ( '{"access_token": "%s", "expires": "%s", '
                     '"refresh_token": "%s", "expires": "%s"}' %
-                    ( sTokenStart,
+                    ( sAAndATokenStart,
                       getIsoDateTimeFromObj( oSomeLater ),
-                      sTokenStart.swapcase(),
+                      sAAndATokenStart.swapcase(),
                       getIsoDateTimeFromObj( oMoreLter ) ) )
         #
         self.assertEqual( str( oTest ), sExpect )
