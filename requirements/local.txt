@@ -6,7 +6,8 @@
 
 # coverage==5.3.1
 # coverage==5.5
-coverage==6.3.2
+# coverage==6.3.2 # not available????
+coverage==6.2
 
 # django-coverage-plugin==1.8.0
 # django-coverage-plugin==2.0.0
