@@ -26,7 +26,7 @@ wheel==0.37.1
 
 # LTS Django
 # django==3.2
-django==3.2.7
+django==3.2.13
 # django==4.0.2
 # perhaps all packages are not yet compaitble with django 4.0
 # got error
