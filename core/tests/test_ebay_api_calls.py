@@ -11,7 +11,7 @@ from ..ebay_api_calls   import getApiConfValues, _getListingTypeTuple, \
 
 from pyPks.Time.Convert import getIsoDateTimeFromObj
 
-sAAndATokenStart = 'v^1.1#i^1#r^1#p^3#I^3#f'
+sAAndATokenStart = 'v^1.1#i^1#'
 sOAuthTokenStart = 'AgAAAA**AQAAAA**aAAAAA**'
 
 class GetConfFileValuesTests( AssertStartsWithMixin, TestCasePlus ):
