@@ -130,6 +130,11 @@ django-countries==7.2.1
 # lxml==4.6.2
 # lxml==4.6.3
 lxml==4.8.0
+# new for for the ebay API, need for eBay OAuth Client Library
+# https://github.com/eBay/ebay-oauth-python-client
+# requests==2.21.0
+selenium==3.141.0
+PyYAML==5.4
 
 # requests==2.23.0
 # requests==2.25.0
