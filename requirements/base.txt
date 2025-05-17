@@ -74,7 +74,9 @@ argon2-cffi==21.3.0
 # django-allauth==0.42.0
 # django-allauth==0.43.0
 # django-allauth==0.45.0
-django-allauth==0.49.0
+# django-allauth==0.49.0
+# needed 2025-05-17
+django-allauth==0.50.0
 
 # Python-PostgreSQL Database Adapter
 # psycopg2==2.7.6.1
@@ -134,7 +136,9 @@ lxml==4.8.0
 # https://github.com/eBay/ebay-oauth-python-client
 # requests==2.21.0
 selenium==3.141.0
-PyYAML==5.4
+# PyYAML==5.4
+# needed 2025-05-17
+PyYAML==6.0.1
 
 # requests==2.23.0
 # requests==2.25.0
